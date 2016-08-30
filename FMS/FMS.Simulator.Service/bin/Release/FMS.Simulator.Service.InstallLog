@@ -1,0 +1,73 @@
+﻿Uninstalling assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Removing EventLog source FMS.Simulation.
+Service FMS.Simulation is being removed from the system...
+Service FMS.Simulation was successfully removed from the system.
+Installing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Installing service FMS.Simulation...
+Service FMS.Simulation has been successfully installed.
+Creating EventLog source FMS.Simulation in log Application...
+Committing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Uninstalling assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Removing EventLog source FMS.Simulation.
+Service FMS.Simulation is being removed from the system...
+Service FMS.Simulation was successfully removed from the system.
+Installing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Rolling back assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Uninstalling assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Removing EventLog source FMS.Simulation.
+Warning: The source FMS.Simulation is not registered on the local machine.
+Service FMS.Simulation is being removed from the system...
+An exception occurred during the uninstallation of the System.ServiceProcess.ServiceInstaller installer.
+System.ComponentModel.Win32Exception: The specified service does not exist as an installed service
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Installing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Rolling back assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Installing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe
+Installing service FMS.Simulation...
+Service FMS.Simulation has been successfully installed.
+Creating EventLog source FMS.Simulation in log Application...
+Committing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator.Service\bin\Release\FMS.Simulator.Service.exe

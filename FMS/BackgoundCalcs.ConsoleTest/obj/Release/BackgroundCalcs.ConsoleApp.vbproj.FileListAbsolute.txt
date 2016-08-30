@@ -1,0 +1,17 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\BackgroundCalcs.ConsoleApp.exe.config
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\BackgroundCalcs.ConsoleApp.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\BackgroundCalcs.ConsoleApp.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\BackgroundCalcs.ConsoleApp.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\BackgroundCalcs.ClassLib.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\BackgroundCalcs.ClassLib.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\BackgroundCalcs.ClassLib.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\FMS.Business.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Release\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Release\BackgroundCalcs.ConsoleApp.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Release\BackgroundCalcs.ConsoleApp.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Release\BackgroundCalcs.ConsoleApp.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Release\BackgroundCalcs.ConsoleApp.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Release\BackgroundCalcs.ConsoleApp.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Release\BackgroundCalcs.ConsoleApp.pdb

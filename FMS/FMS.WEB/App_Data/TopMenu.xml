@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item Text="Home" NavigateUrl="Home.aspx" />
+  <item Text="Fleet Map" NavigateUrl="FleetMap.aspx" />
+  <!--<item Text="Company List" NavigateUrl="Default.aspx"  />-->
+  <item Text="Report Generator" NavigateUrl="ReportGenerator.aspx"  />
+  <!--<item Text="Excel Viewer" NavigateUrl="ExcelView.aspx"  />-->
+  <item Text="GeoFences &amp; Alerts" NavigateUrl="AlarmsAndAlerts.aspx"   />
+  <item Text="Application Management" NavigateUrl="UserManagement.aspx"   />
+  <item Text="Vehicle &amp; Driver Management" NavigateUrl="ResourceMgmnt.aspx"   />
+  <item Text="Contacts" NavigateUrl="Contacts.aspx"   />
+  <item Text="Feature Requests" NavigateUrl="Debug.aspx"  />
+</items>

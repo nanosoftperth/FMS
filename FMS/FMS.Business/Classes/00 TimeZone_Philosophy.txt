@@ -1,0 +1,33 @@
+﻿  _______ _____ __  __ ______   __________  _   _ ______   _    _          _   _ _____  _      _____ _   _  _____ 
+ |__   __|_   _|  \/  |  ____| |___  / __ \| \ | |  ____| | |  | |   /\   | \ | |  __ \| |    |_   _| \ | |/ ____|
+    | |    | | | \  / | |__       / / |  | |  \| | |__    | |__| |  /  \  |  \| | |  | | |      | | |  \| | |  __ 
+    | |    | | | |\/| |  __|     / /| |  | | . ` |  __|   |  __  | / /\ \ | . ` | |  | | |      | | | . ` | | |_ |
+    | |   _| |_| |  | | |____   / /_| |__| | |\  | |____  | |  | |/ ____ \| |\  | |__| | |____ _| |_| |\  | |__| |
+    |_|  |_____|_|  |_|______| /_____\____/|_| \_|______| |_|  |_/_/    \_\_| \_|_____/|______|_____|_| \_|\_____|
+
+The server is always at "Perth Time"
+
+Any public static methods  MUST change the date parameters to "Server/Perth time"
+All calculations are done using "Perth time". When the result object is returned, as a last touch, the dates are converted BACK to "Client time"
+
+If there are any public methods which are not used externally, they must be marked as "Friend" instead. This will avoid confusion.
+
+FRIEND STATIC : presumes already in server time
+PUBLIC STATIC : presumes will alter to server time, process, return to client time
+
+The client time is set in the singleton helper class. This is set by the external project. 
+
+It is recommended as follows:
+
+SERVER APPLICATIONS
+========================
+Dont set to anything, the default in the singleton is already "PERTH TIME" 
+
+CLIENT FACING APPLICATIONS
+============================
+
+Set the singleton timezone to the users timezone. 
+
+The users timezone is the applications time-zone by default. It can also expliticly be defined as something else.
+
+Remember to change Datetime.Now to DateTime.Now.ToLCientTimezone otherwise you will be using perth time.

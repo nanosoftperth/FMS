@@ -1,0 +1,12 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\bin\Release\BackgroundCalcs.ClassLib.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\bin\Release\BackgroundCalcs.ClassLib.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\bin\Release\BackgroundCalcs.ClassLib.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\bin\Release\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\bin\Release\FMS.Business.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\bin\Release\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Release\BackgroundCalcs.ClassLib.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Release\BackgroundCalcs.ClassLib.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Release\BackgroundCalcs.ClassLib.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Release\BackgroundCalcs.ClassLib.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Release\BackgroundCalcs.ClassLib.pdb

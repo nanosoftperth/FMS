@@ -1,0 +1,36 @@
+<%@ Master Language="VB" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="MainLight.master.vb" Inherits="FMS.WEB.MainLightMaster" %>
+
+<%-- DXCOMMENT: Page Light.master is a master page for Account pages --%>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+
+
+    <div class="content">
+
+        <%-- <link href="Content/bootstrap.css" rel="stylesheet" />--%>
+
+
+        <style type="text/css">
+           
+        </style>
+
+        <div id="lightContainerDIV">
+
+            <dx:ASPxRoundPanel ContentHeight="100%" ClientInstanceName="contentRoundPanel" ID="ASPxRoundPanel1" runat="server" Width="100%" EnableTheming="True" Theme="Moderno" HeaderText="Vehicle & Driver Management" Height="282px">
+                <PanelCollection>
+                    <dx:PanelContent runat="server">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                    </dx:PanelContent>
+                </PanelCollection>
+
+            </dx:ASPxRoundPanel>
+
+        </div>
+    </div>
+
+
+
+
+    <dx:ASPxGlobalEvents ID="ASPxGlobalEvents1" runat="server">
+        <ClientSideEvents ControlsInitialized="function(s,e){MainLightMaster_ControlsInitialised();}" />
+    </dx:ASPxGlobalEvents>
+</asp:Content>

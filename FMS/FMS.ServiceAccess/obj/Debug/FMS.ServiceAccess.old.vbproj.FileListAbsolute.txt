@@ -1,0 +1,14 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\FMS.ServiceAccess.old.dll.config
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\FMS.ServiceAccess.old.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\FMS.ServiceAccess.old.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\FMS.ServiceAccess.old.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\FMS.Business.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\bin\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.old.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.old.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.old.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.old.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.old.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.old.pdb

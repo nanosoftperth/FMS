@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\inetpub\FMS</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Account/ChangePassword.aspx">
+      <publishTime>01/19/2016 11:05:08</publishTime>
+    </File>
+    <File Include="Account/ChangePasswordSuccess.aspx">
+      <publishTime>01/19/2016 11:05:08</publishTime>
+    </File>
+    <File Include="Account/Login.aspx">
+      <publishTime>01/19/2016 11:05:08</publishTime>
+    </File>
+    <File Include="Account/Register.aspx">
+      <publishTime>01/19/2016 11:05:08</publishTime>
+    </File>
+    <File Include="Account/RegisterSuccess.aspx">
+      <publishTime>01/19/2016 11:05:10</publishTime>
+    </File>
+    <File Include="Account/Web.config">
+      <publishTime>01/19/2016 11:05:10</publishTime>
+    </File>
+    <File Include="App_Data/NWind.mdf">
+      <publishTime>02/02/2016 07:19:01</publishTime>
+    </File>
+    <File Include="App_Data/NWind_log.ldf">
+      <publishTime>02/02/2016 07:19:01</publishTime>
+    </File>
+    <File Include="App_Data/SideMenu.xml">
+      <publishTime>01/19/2016 11:05:24</publishTime>
+    </File>
+    <File Include="App_Data/TopMenu.xml">
+      <publishTime>01/27/2016 15:58:32</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>02/02/2016 13:35:29</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>02/02/2016 13:35:28</publishTime>
+    </File>
+    <File Include="bin/DXWebApplication1.dll">
+      <publishTime>02/02/2016 13:45:34</publishTime>
+    </File>
+    <File Include="bin/DXWebApplication1.xml">
+      <publishTime>02/02/2016 13:45:34</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>01/22/2016 08:48:12</publishTime>
+    </File>
+    <File Include="Content/Images/9051a7_7900e319de294aa4b0166540479978ea.png">
+      <publishTime>01/19/2016 14:13:20</publishTime>
+    </File>
+    <File Include="Content/Images/AquaHeader.jpg">
+      <publishTime>01/19/2016 11:05:14</publishTime>
+    </File>
+    <File Include="Content/Images/BlackGlassHeader.jpg">
+      <publishTime>01/19/2016 11:05:14</publishTime>
+    </File>
+    <File Include="Content/Images/cloud_web.jpg">
+      <publishTime>01/19/2016 14:35:52</publishTime>
+    </File>
+    <File Include="Content/Images/download.jpg">
+      <publishTime>01/19/2016 14:43:42</publishTime>
+    </File>
+    <File Include="Content/Images/GlassHeader.jpg">
+      <publishTime>01/19/2016 11:05:14</publishTime>
+    </File>
+    <File Include="Content/Images/google-map-logo-589x225.gif">
+      <publishTime>01/19/2016 14:41:34</publishTime>
+    </File>
+    <File Include="Content/Images/markers/home-icon.png">
+      <publishTime>01/20/2016 13:53:44</publishTime>
+    </File>
+    <File Include="Content/Images/markers/lorry_48.png">
+      <publishTime>01/20/2016 13:29:56</publishTime>
+    </File>
+    <File Include="Content/Images/markers/truck_48.png">
+      <publishTime>01/20/2016 13:29:32</publishTime>
+    </File>
+    <File Include="Content/Images/pi case.jpg">
+      <publishTime>01/19/2016 14:13:20</publishTime>
+    </File>
+    <File Include="Content/Images/PlasticBlueHeader.jpg">
+      <publishTime>01/19/2016 11:05:14</publishTime>
+    </File>
+    <File Include="Content/Images/ppjs.png">
+      <publishTime>01/19/2016 16:16:56</publishTime>
+    </File>
+    <File Include="Content/Images/Raspberry_Pi_Logo.svg.png">
+      <publishTime>01/19/2016 14:13:20</publishTime>
+    </File>
+    <File Include="Content/Images/RedWineHeader.jpg">
+      <publishTime>01/19/2016 11:05:14</publishTime>
+    </File>
+    <File Include="Content/javascript/FleetMap.js">
+      <publishTime>01/22/2016 16:47:06</publishTime>
+    </File>
+    <File Include="Content/javascript/jquery-1.10.2.min.js">
+      <publishTime>01/20/2016 21:54:16</publishTime>
+    </File>
+    <File Include="Content/javascript/markerWithLabel.js">
+      <publishTime>01/20/2016 14:16:28</publishTime>
+    </File>
+    <File Include="Content/javascript/modernizr-2.6.2.js">
+      <publishTime>01/20/2016 21:55:16</publishTime>
+    </File>
+    <File Include="Content/javascript/page.js">
+      <publishTime>01/20/2016 09:22:26</publishTime>
+    </File>
+    <File Include="Content/javascript/respond.min.js">
+      <publishTime>01/19/2016 12:30:58</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>01/22/2016 08:40:56</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>01/19/2016 13:22:34</publishTime>
+    </File>
+    <File Include="DefaultService.svc">
+      <publishTime>01/19/2016 19:38:46</publishTime>
+    </File>
+    <File Include="ExcelView.aspx">
+      <publishTime>01/30/2016 07:22:13</publishTime>
+    </File>
+    <File Include="FleetMap.aspx">
+      <publishTime>01/30/2016 07:22:13</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/19/2016 11:05:10</publishTime>
+    </File>
+    <File Include="Home.aspx">
+      <publishTime>01/21/2016 15:40:40</publishTime>
+    </File>
+    <File Include="Light.master">
+      <publishTime>01/19/2016 11:05:12</publishTime>
+    </File>
+    <File Include="Main.master">
+      <publishTime>01/20/2016 21:28:32</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>02/02/2016 13:35:26</publishTime>
+    </File>
+    <File Include="ReportGenerator.aspx">
+      <publishTime>01/27/2016 15:57:44</publishTime>
+    </File>
+    <File Include="Root.master">
+      <publishTime>01/30/2016 07:26:04</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>02/02/2016 13:45:35</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

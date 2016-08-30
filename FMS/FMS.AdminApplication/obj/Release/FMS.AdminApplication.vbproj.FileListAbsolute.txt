@@ -1,0 +1,15 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\FMS.AdminApplication.exe.config
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\FMS.AdminApplication.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\FMS.AdminApplication.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\FMS.AdminApplication.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\FMS.Business.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Release\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Release\FMS.AdminApplication.Form1.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Release\FMS.AdminApplication.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Release\FMS.AdminApplication.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Release\FMS.AdminApplication.exe.licenses
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Release\FMS.AdminApplication.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Release\FMS.AdminApplication.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Release\FMS.AdminApplication.pdb
