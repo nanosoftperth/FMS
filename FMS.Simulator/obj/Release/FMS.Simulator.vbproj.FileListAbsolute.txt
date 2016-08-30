@@ -1,0 +1,14 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\FMS.Simulator.exe.config
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\FMS.Simulator.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\FMS.Simulator.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\FMS.Simulator.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\FMS.Business.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\bin\Release\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Release\FMS.Simulator.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Release\FMS.Simulator.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Release\FMS.Simulator.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Release\FMS.Simulator.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Release\FMS.Simulator.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Release\FMS.Simulator.pdb

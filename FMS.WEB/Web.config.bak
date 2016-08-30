@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <sectionGroup name="devExpress">
+      <section name="themes" type="DevExpress.Web.ThemesConfigurationSection, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+      <section name="compression" type="DevExpress.Web.CompressionConfigurationSection, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+      <section name="settings" type="DevExpress.Web.SettingsConfigurationSection, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+      <section name="errors" type="DevExpress.Web.ErrorsConfigurationSection, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+    </sectionGroup>
+  </configSections>
+  <connectionStrings>
+    <add name="ApplicationServices" connectionString="data source=(localdb)\v11.0;integrated security=SSPI;attachdbfilename=|DataDirectory|\aspnetdb.mdf" providerName="System.Data.SqlClient"/>
+    <add name="NWindConnectionString" connectionString="data source=(localdb)\v11.0;attachdbfilename=|DataDirectory|\NWind.mdf;integrated security=True;connect timeout=120" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.5">
+      <assemblies>
+        <add assembly="DevExpress.Data.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxHtmlEditor.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxSpellChecker.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxTreeList.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxThemes.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxPivotGrid.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Utils.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Office.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.SpellChecker.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Charts.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraCharts.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraGauges.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraGauges.v15.1.Presets, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxGauges.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Printing.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraReports.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraPivotGrid.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.PivotGrid.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxScheduler.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxSpreadsheet.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.RichEdit.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="DevExpress.Web.ASPxRichEdit.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+        <add assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+      </assemblies>
+    </compilation>
+    <authentication mode="Forms">
+      <forms loginUrl="~/Account/Login.aspx" timeout="2880"/>
+    </authentication>
+    <membership>
+      <providers>
+        <clear/>
+        <add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ApplicationServices" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="false" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="/"/>
+      </providers>
+    </membership>
+    <profile>
+      <providers>
+        <clear/>
+        <add name="AspNetSqlProfileProvider" type="System.Web.Profile.SqlProfileProvider" connectionStringName="ApplicationServices" applicationName="/"/>
+      </providers>
+    </profile>
+    <roleManager enabled="false">
+      <providers>
+        <clear/>
+        <add name="AspNetSqlRoleProvider" type="System.Web.Security.SqlRoleProvider" connectionStringName="ApplicationServices" applicationName="/"/>
+        <add name="AspNetWindowsTokenRoleProvider" type="System.Web.Security.WindowsTokenRoleProvider" applicationName="/"/>
+      </providers>
+    </roleManager>
+    <httpHandlers>
+      <add path="ASPxUploadProgressHandlerPage.ashx" verb="GET,POST"
+        type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+        validate="false" />
+      <add path="DX.ashx" verb="GET" type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+        validate="false" />
+      <add path="ChartImg.axd" verb="GET,HEAD,POST" type="System.Web.UI.DataVisualization.Charting.ChartHttpHandler, System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+        validate="false" />
+    </httpHandlers>
+    <httpModules>
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule"/>
+    </httpModules>
+    <globalization culture="" uiCulture=""/>
+    <httpRuntime maxRequestLength="4096" requestValidationMode="4.0" executionTimeout="110" targetFramework="4.5"/>
+    <pages validateRequest="true" clientIDMode="AutoID">
+      <controls>
+        <add tagPrefix="dx" namespace="DevExpress.Web" assembly="DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+        <add tagPrefix="asp" namespace="System.Web.UI.DataVisualization.Charting"
+          assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      </controls>
+    </pages>
+  </system.web>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true">
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+        name="ASPxHttpHandlerModule" />
+    </modules>
+    <handlers>
+      <remove name="ChartImageHandler" />
+      <add type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+        verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" name="ASPxUploadProgressHandler"
+        preCondition="integratedMode" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+        verb="GET" path="DX.ashx" name="ASPxHttpHandlerModule" preCondition="integratedMode" />
+      <add name="ChartImageHandler" preCondition="integratedMode" verb="GET,HEAD,POST"
+        path="ChartImg.axd" type="System.Web.UI.DataVisualization.Charting.ChartHttpHandler, System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    </handlers>
+    <validation validateIntegratedModeConfiguration="false" />
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="30000000" />
+      </requestFiltering>
+    </security>
+  </system.webServer>
+  <devExpress>
+    <themes enableThemesAssembly="true" styleSheetTheme="" theme="Metropolis" customThemeAssemblies=""/>
+    <compression enableHtmlCompression="false" enableCallbackCompression="true" enableResourceCompression="true" enableResourceMerging="true"/>
+    <settings doctypeMode="Html5" rightToLeft="false" embedRequiredClientLibraries="true" ieCompatibilityVersion="edge"/>
+    <errors callbackErrorRedirectUrl=""/>
+  </devExpress>
+  <appSettings>
+    <add key="vs:EnableBrowserLink" value="false" />
+    <add key="ChartImageHandler" value="storage=file;timeout=20;dir=c:\TempImageFiles\;" />
+  </appSettings>
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true"/>
+          <serviceDebug includeExceptionDetailInFaults="false"/>
+        </behavior>
+      </serviceBehaviors>
+      <endpointBehaviors>
+        <behavior name="DXWebApplication1.DefaultServiceAspNetAjaxBehavior">
+          <enableWebScript/>
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true"/>
+    <services>
+      <service name="DXWebApplication1.DefaultService">
+        <endpoint address="" behaviorConfiguration="DXWebApplication1.DefaultServiceAspNetAjaxBehavior" binding="webHttpBinding" contract="DXWebApplication1.DefaultService"/>
+      </service>
+    </services>
+  </system.serviceModel>
+</configuration>

@@ -1,0 +1,16 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.exe.config
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\FMS.Business.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\bin\Debug\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.Form1.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.exe.licenses
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.pdb

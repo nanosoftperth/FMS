@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Debug\BackgoundCalcs.ConsoleTest.exe.config
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Debug\BackgoundCalcs.ConsoleTest.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Debug\BackgoundCalcs.ConsoleTest.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\bin\Debug\BackgoundCalcs.ConsoleTest.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgoundCalcs.ConsoleTest.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgoundCalcs.ConsoleTest.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgoundCalcs.ConsoleTest.exe
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgoundCalcs.ConsoleTest.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgoundCalcs.ConsoleTest.pdb

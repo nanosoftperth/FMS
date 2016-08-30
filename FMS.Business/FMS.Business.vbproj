@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3C504D9-37B7-43FD-8971-241551DA4794}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FMS.Business</RootNamespace>
+    <AssemblyName>FMS.Business</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>FMS.Business.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>FMS.Business.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="OSIsoft.AFSDK, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6238be57836698e6, processorArchitecture=MSIL" />
+    <Reference Include="OSIsoft.PISDK, Version=1.4.0.0, Culture=neutral, PublicKeyToken=c3309f0734ba2805, processorArchitecture=AMD64">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OSIsoft.PISDKCommon, Version=1.4.0.0, Culture=neutral, PublicKeyToken=c3309f0734ba2805, processorArchitecture=x86">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OSIsoft.PITimeServer, Version=1.4.0.0, Culture=neutral, PublicKeyToken=c3309f0734ba2805, processorArchitecture=x86">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\ApplicationSettings.vb" />
+    <Compile Include="Classes\BackgroundCalculations\EmailHelper.vb" />
+    <Compile Include="Classes\BackgroundCalculations\GeoFenceCalcs.vb" />
+    <Compile Include="Classes\BackgroundCalculations\SpeedTimeCalcs.vb" />
+    <Compile Include="Classes\DataObjects\AlertType.vb" />
+    <Compile Include="Classes\DataObjects\AlertTypeOccurance.vb" />
+    <Compile Include="Classes\DataObjects\Application.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationDriver.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationGeoFence.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationGeoFenceProperty.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationGeoFenceSide.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationVehicle.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationVehicleDriverTime.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationVehicleOdometerReading.vb" />
+    <Compile Include="Classes\DataObjects\AuthenticationToken.vb" />
+    <Compile Include="Classes\DataObjects\Contact.vb" />
+    <Compile Include="Classes\DataObjects\customEvent.vb" />
+    <Compile Include="Classes\DataObjects\CustomResource.vb" />
+    <Compile Include="Classes\DataObjects\Device.vb" />
+    <Compile Include="Classes\DataObjects\Feature.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationFeatureRole.vb" />
+    <Compile Include="Classes\DataObjects\GeoFenceDeviceCollision.vb" />
+    <Compile Include="Classes\DataObjects\Group.vb" />
+    <Compile Include="Classes\DataObjects\GroupSubscriber.vb" />
+    <Compile Include="Classes\DataObjects\LogEntry.vb" />
+    <Compile Include="Classes\DataObjects\SimulatorSetting.vb" />
+    <Compile Include="Classes\DataObjects\Subscriber.vb" />
+    <Compile Include="Classes\DataObjects\TimeZone.vb" />
+    <Compile Include="Classes\DataObjects\WebServiceLogLine.vb" />
+    <Compile Include="Classes\DataObjects\WorkRequest.vb" />
+    <Compile Include="Classes\Extension Methods\ExtentionModule.vb" />
+    <Compile Include="Classes\Interfaces\ITimezoneAware.vb" />
+    <Compile Include="Classes\ReportGeneration\ActivityReportLine.vb" />
+    <Compile Include="Classes\ReportGeneration\GeoFenceReport_Simple.vb" />
+    <Compile Include="Classes\ReportGeneration\ReportGenerator.vb" />
+    <Compile Include="Classes\DataObjects\Role.vb" />
+    <Compile Include="Classes\DataObjects\Setting.vb" />
+    <Compile Include="Classes\DataObjects\User.vb" />
+    <Compile Include="Classes\ReportGeneration\VehicleActivityReportObject.vb" />
+    <Compile Include="Classes\ReturnObjects.vb" />
+    <Compile Include="Classes\SingletonAccess.vb" />
+    <Compile Include="Class1.vb" />
+    <Compile Include="Classes\TimeZoneHelper.vb" />
+    <Compile Include="Data\FMSDatabaseLINQ.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FMSDatabaseLINQ.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\FMSDatabaseLINQ.vb">
+      <DependentUpon>FMSDatabaseLINQ.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="GoogleServices\GoogleMapsObject.vb" />
+    <Compile Include="GoogleServices\GoogleAPI.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Data\FMSDatabaseLINQ.dbml.layout">
+      <DependentUpon>FMSDatabaseLINQ.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\FMSDatabaseLINQ.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FMSDatabaseLINQ.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Classes\DataObjects\0_notes.txt" />
+    <Content Include="Classes\ReportGeneration\speed and time logic.png" />
+    <Content Include="Classes\00 TimeZone_Philosophy.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

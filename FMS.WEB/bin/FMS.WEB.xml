@@ -1,0 +1,3273 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+FMS.WEB
+</name>
+</assembly>
+<members>
+<member name="F:FMS.WEB.Login.ASPxPanel1">
+	<summary>
+ASPxPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Login.lblUserName">
+	<summary>
+lblUserName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Login.tbUserName">
+	<summary>
+tbUserName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Login.lblPassword">
+	<summary>
+lblPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Login.tbPassword">
+	<summary>
+tbPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Login.cbRememberMe">
+	<summary>
+cbRememberMe control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Login.btnLogin">
+	<summary>
+btnLogin control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.appointmentDiv">
+	<summary>
+appointmentDiv control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.statusContainer">
+	<summary>
+statusContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.startTimeClockContainer">
+	<summary>
+startTimeClockContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.lblStartTime">
+	<summary>
+lblStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.endTimeClockContainer">
+	<summary>
+endTimeClockContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.lblEndTime">
+	<summary>
+lblEndTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.imageContainer">
+	<summary>
+imageContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalSameDayAppointmentTemplate.lblTitle">
+	<summary>
+lblTitle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.TimeZoneTester.cboPossibleTimeZones">
+	<summary>
+cboPossibleTimeZones control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.TimeZoneTester.dgvTimezoneSettings">
+	<summary>
+dgvTimezoneSettings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.TimeZoneTester.odsAllTimeZoneOptions">
+	<summary>
+odsAllTimeZoneOptions control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.TimeZoneTester.odsTimeZoneData">
+	<summary>
+odsTimeZoneData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.ASPxPanel1">
+	<summary>
+ASPxPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.lblCurrentPassword">
+	<summary>
+lblCurrentPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.tbCurrentPassword">
+	<summary>
+tbCurrentPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.lblPassword">
+	<summary>
+lblPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.tbPassword">
+	<summary>
+tbPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.lblConfirmPassword">
+	<summary>
+lblConfirmPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.tbConfirmPassword">
+	<summary>
+tbConfirmPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePassword.btnChangePassword">
+	<summary>
+btnChangePassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.Body">
+	<summary>
+Body control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.HeaderPane">
+	<summary>
+HeaderPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.btnUniqco">
+	<summary>
+btnUniqco control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.binaryImageLogo">
+	<summary>
+binaryImageLogo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.header_companyName">
+	<summary>
+header_companyName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.header_applicationName">
+	<summary>
+header_applicationName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.HeadLoginView">
+	<summary>
+HeadLoginView control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.HeaderMenu">
+	<summary>
+HeaderMenu control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.Content">
+	<summary>
+Content control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.XmlDataSourceHeader">
+	<summary>
+XmlDataSourceHeader control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RegisterSuccess.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.pageControlMain">
+	<summary>
+pageControlMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.dateEditDay">
+	<summary>
+dateEditDay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.timeEditFrom">
+	<summary>
+timeEditFrom control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.ASPxLabel3">
+	<summary>
+ASPxLabel3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.timeEditTo">
+	<summary>
+timeEditTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.ASPxLabel6">
+	<summary>
+ASPxLabel6 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.dgvApplicationVehicleDriver">
+	<summary>
+dgvApplicationVehicleDriver control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsApplicationVehicleDriverTimeslot">
+	<summary>
+odsApplicationVehicleDriverTimeslot control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsAVDTVehicles">
+	<summary>
+odsAVDTVehicles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsAVDTDrivers">
+	<summary>
+odsAVDTDrivers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.ASPxGridView2">
+	<summary>
+ASPxGridView2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsDrivers">
+	<summary>
+odsDrivers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.dgvVehicles">
+	<summary>
+dgvVehicles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsVehicles">
+	<summary>
+odsVehicles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsOdometerReadings">
+	<summary>
+odsOdometerReadings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsVehiclesDevices">
+	<summary>
+odsVehiclesDevices control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GeoFenceAlertAudit.dgvAlertTypeOccurences">
+	<summary>
+dgvAlertTypeOccurences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GeoFenceAlertAudit.odsATOAlarmTypeOccurance">
+	<summary>
+odsATOAlarmTypeOccurance control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GeoFenceAlertAudit.odsATOAlertType">
+	<summary>
+odsATOAlertType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentEditForm.Image">
+	<summary>
+Image control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentEditForm.lblConfirm">
+	<summary>
+lblConfirm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentEditForm.rbAction">
+	<summary>
+rbAction control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentEditForm.btnOk">
+	<summary>
+btnOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentEditForm.btnCancel">
+	<summary>
+btnCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.appointmentDiv">
+	<summary>
+appointmentDiv control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.statusContainer">
+	<summary>
+statusContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.imageContainer">
+	<summary>
+imageContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.lblStartTime">
+	<summary>
+lblStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.lblEndTime">
+	<summary>
+lblEndTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.lblTitle">
+	<summary>
+lblTitle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.horizontalSeparator">
+	<summary>
+horizontalSeparator control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.VerticalAppointmentTemplate.lblDescription">
+	<summary>
+lblDescription control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.LightMaster.ASPxRoundPanel1">
+	<summary>
+ASPxRoundPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.LightMaster.MainContent">
+	<summary>
+MainContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:FMS.WEB.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:FMS.WEB.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:FMS.WEB.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:FMS.WEB.OdometerTest.dgvVehicles">
+	<summary>
+dgvVehicles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.OdometerTest.odsVehicles">
+	<summary>
+odsVehicles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.OdometerTest.odsOdometerReadings">
+	<summary>
+odsOdometerReadings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.OdometerTest.odsVehiclesDevices">
+	<summary>
+odsVehiclesDevices control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ExcelView.ASPxSpreadsheet1">
+	<summary>
+ASPxSpreadsheet1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test_Settings.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test_Settings.imgCompanylogo">
+	<summary>
+imgCompanylogo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test_Settings.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test_Settings.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test_Settings.ASPxGridView1">
+	<summary>
+ASPxGridView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test_Settings.odsSettings">
+	<summary>
+odsSettings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.WebForm1.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.WebForm1.ASPxPopupControl1">
+	<summary>
+ASPxPopupControl1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.WebForm1.ASPxTimeEdit1">
+	<summary>
+ASPxTimeEdit1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.debugger.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.debugger.comboApplications">
+	<summary>
+comboApplications control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.debugger.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.debugger.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.debugger.odsApplications">
+	<summary>
+odsApplications control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.debugger.ASPxGridView1">
+	<summary>
+ASPxGridView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.debugger.odsLogs">
+	<summary>
+odsLogs control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportContent.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportContent.ASPxDocumentViewer1">
+	<summary>
+ASPxDocumentViewer1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportContent.ASPxGlobalEvents1">
+	<summary>
+ASPxGlobalEvents1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.MainLightMaster.ASPxRoundPanel1">
+	<summary>
+ASPxRoundPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.MainLightMaster.ASPxGlobalEvents1">
+	<summary>
+ASPxGlobalEvents1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.labelGroups">
+	<summary>
+labelGroups control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.labelMembers">
+	<summary>
+labelMembers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.dgvGroups">
+	<summary>
+dgvGroups control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.odsGroups">
+	<summary>
+odsGroups control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.dgvPotentialGroupMembers">
+	<summary>
+dgvPotentialGroupMembers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.odsSubscriber">
+	<summary>
+odsSubscriber control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.btnAdd">
+	<summary>
+btnAdd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.btnRemove">
+	<summary>
+btnRemove control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Group.dgvGroupMembers">
+	<summary>
+dgvGroupMembers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test3.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test3.dateEditStartTime">
+	<summary>
+dateEditStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test3.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test3.dateEditEndtime">
+	<summary>
+dateEditEndtime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test3.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test3.dgvGeoFences">
+	<summary>
+dgvGeoFences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test3.odsGeoFenceReport">
+	<summary>
+odsGeoFenceReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.lblVehicle">
+	<summary>
+lblVehicle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.ASPxLabel4">
+	<summary>
+ASPxLabel4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.lblDriver">
+	<summary>
+lblDriver control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.ASPxLabel3">
+	<summary>
+ASPxLabel3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.logLabel">
+	<summary>
+logLabel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.memMessageToSend">
+	<summary>
+memMessageToSend control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.cbSendText">
+	<summary>
+cbSendText control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.cbSendEmail">
+	<summary>
+cbSendEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.DriverPropertyDisplay.btnSendMessageToDriver">
+	<summary>
+btnSendMessageToDriver control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Debug.ASPxPageControl1">
+	<summary>
+ASPxPageControl1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Debug.dateStart">
+	<summary>
+dateStart control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Debug.dateEnd">
+	<summary>
+dateEnd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Debug.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Debug.ASPxGridView1">
+	<summary>
+ASPxGridView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Debug.odsAuditObjs">
+	<summary>
+odsAuditObjs control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:FMS.WEB.ReportDataHandler.GetVehicleReportValues(System.DateTime,System.DateTime,System.String)">
+	<summary>
+ IF this report has been cached in RAM , then return the cached report.
+ If not, then populate the session cache with the report and return that
+ </summary>
+</member><member name="F:FMS.WEB.Test.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxPageControl1">
+	<summary>
+ASPxPageControl1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.dgvUsers">
+	<summary>
+dgvUsers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsRoles">
+	<summary>
+odsRoles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.dgvRoles">
+	<summary>
+dgvRoles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsRolesUsers">
+	<summary>
+odsRolesUsers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsRolesRoles">
+	<summary>
+odsRolesRoles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsFeatures">
+	<summary>
+odsFeatures control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxGridView2">
+	<summary>
+ASPxGridView2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.dgvRoleAccessToFeatures">
+	<summary>
+dgvRoleAccessToFeatures control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsApplicationFeatureRoles">
+	<summary>
+odsApplicationFeatureRoles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsAppFeatRoleFeatures">
+	<summary>
+odsAppFeatRoleFeatures control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsAppFeatRoleRoles">
+	<summary>
+odsAppFeatRoleRoles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.imgCompanylogo">
+	<summary>
+imgCompanylogo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.dgvSettings">
+	<summary>
+dgvSettings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxLabel3">
+	<summary>
+ASPxLabel3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.cboPossibleTimeZones">
+	<summary>
+cboPossibleTimeZones control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.dgvTimezoneSettings">
+	<summary>
+dgvTimezoneSettings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsAllTimeZoneOptions">
+	<summary>
+odsAllTimeZoneOptions control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsTimeZoneData">
+	<summary>
+odsTimeZoneData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsUsers">
+	<summary>
+odsUsers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsSettings">
+	<summary>
+odsSettings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsTimeZonesForUsers">
+	<summary>
+odsTimeZonesForUsers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:FMS.WEB.WebServices.VehicleDistanceData.#ctor">
+	<summary>
+ required for serialization purposes 
+ </summary>
+	<remarks></remarks>
+</member><member name="F:FMS.WEB.AppointmentToolTip.buttonDiv">
+	<summary>
+buttonDiv control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentToolTip.btnShowMenu">
+	<summary>
+btnShowMenu control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentDeleteForm.imgWarning">
+	<summary>
+imgWarning control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentDeleteForm.lblConfirm">
+	<summary>
+lblConfirm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentDeleteForm.rbAction">
+	<summary>
+rbAction control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentDeleteForm.btnOk">
+	<summary>
+btnOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RecurrentAppointmentDeleteForm.btnCancel">
+	<summary>
+btnCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReminderForm.lbItems">
+	<summary>
+lbItems control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReminderForm.btnDismissAll">
+	<summary>
+btnDismissAll control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReminderForm.btnDismiss">
+	<summary>
+btnDismiss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReminderForm.lblClickSnooze">
+	<summary>
+lblClickSnooze control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReminderForm.cbSnooze">
+	<summary>
+cbSnooze control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReminderForm.btnSnooze">
+	<summary>
+btnSnooze control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxPageControl1">
+	<summary>
+ASPxPageControl1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxLabel4">
+	<summary>
+ASPxLabel4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxComboBox2">
+	<summary>
+ASPxComboBox2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.odsReports">
+	<summary>
+odsReports control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxHyperLink1">
+	<summary>
+ASPxHyperLink1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxLabel5">
+	<summary>
+ASPxLabel5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxComboBox1">
+	<summary>
+ASPxComboBox1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.odsVehicles">
+	<summary>
+odsVehicles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.deTimeFrom">
+	<summary>
+deTimeFrom control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxLabel3">
+	<summary>
+ASPxLabel3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.deTimeTo">
+	<summary>
+deTimeTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.chartSpeed">
+	<summary>
+chartSpeed control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportGenerator.ASPxGlobalEvents2">
+	<summary>
+ASPxGlobalEvents2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.ASPxComboBox1">
+	<summary>
+ASPxComboBox1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.odsVehicles">
+	<summary>
+odsVehicles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.deTimeFrom">
+	<summary>
+deTimeFrom control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.ASPxLabel3">
+	<summary>
+ASPxLabel3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.deTimeTo">
+	<summary>
+deTimeTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.test2.ASPxGlobalEvents1">
+	<summary>
+ASPxGlobalEvents1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordSuccess.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.InplaceEditor.mainContainer">
+	<summary>
+mainContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.InplaceEditor.memSubject">
+	<summary>
+memSubject control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.InplaceEditor.buttonContainer">
+	<summary>
+buttonContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.InplaceEditor.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.InplaceEditor.btnCancel">
+	<summary>
+btnCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.InplaceEditor.btnEditForm">
+	<summary>
+btnEditForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.MainMaster.ContentLeft">
+	<summary>
+ContentLeft control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.MainMaster.MainContent">
+	<summary>
+MainContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.MainMaster.XmlDataSourceLeft">
+	<summary>
+XmlDataSourceLeft control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Contacts.odsContacts">
+	<summary>
+odsContacts control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Contacts.dgvConteact">
+	<summary>
+dgvConteact control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Main_Test.comboTest">
+	<summary>
+comboTest control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Main_Test.odsGeoFences">
+	<summary>
+odsGeoFences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.SelectionToolTip.buttonDiv">
+	<summary>
+buttonDiv control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.SelectionToolTip.btnShowMenu">
+	<summary>
+btnShowMenu control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:FMS.WEB.FleetMap.GetVINNumberSettings">
+	<summary>
+ If we receive a querystring asking to show a vehicle (by VIN number)
+ then we will need to send those details to the client. This method
+ gets those values and adds them to a list of settings which is then sent to the 
+ client side for processing.
+ </summary>
+</member><member name="F:FMS.WEB.GeoFencePropertyDisplay.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GeoFencePropertyDisplay.dgvGeoFenceProperty">
+	<summary>
+dgvGeoFenceProperty control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GeoFencePropertyDisplay.odsApplicationGeoFenceProperties">
+	<summary>
+odsApplicationGeoFenceProperties control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ReportPopupTester.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB._Default.ASPxGridView1">
+	<summary>
+ASPxGridView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB._Default.SqlDataSource1">
+	<summary>
+SqlDataSource1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentDragToolTip.lblInterval">
+	<summary>
+lblInterval control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentDragToolTip.lblInfo">
+	<summary>
+lblInfo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Home.ASPxRoundPanel1">
+	<summary>
+ASPxRoundPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test1.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test1.ASPxScheduler1">
+	<summary>
+ASPxScheduler1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test1.appointmentDataSource">
+	<summary>
+appointmentDataSource control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test1.odsResources">
+	<summary>
+odsResources control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.ValidationContainer">
+	<summary>
+ValidationContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblSubject">
+	<summary>
+lblSubject control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.tbSubject">
+	<summary>
+tbSubject control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblLocation">
+	<summary>
+lblLocation control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.tbLocation">
+	<summary>
+tbLocation control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblLabel">
+	<summary>
+lblLabel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.edtLabel">
+	<summary>
+edtLabel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblStartDate">
+	<summary>
+lblStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.edtStartDate">
+	<summary>
+edtStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.edtStartTime">
+	<summary>
+edtStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblEndDate">
+	<summary>
+lblEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.edtEndDate">
+	<summary>
+edtEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.edtEndTime">
+	<summary>
+edtEndTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblStatus">
+	<summary>
+lblStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.edtStatus">
+	<summary>
+edtStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.chkAllDay">
+	<summary>
+chkAllDay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblAllDay">
+	<summary>
+lblAllDay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblResource">
+	<summary>
+lblResource control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.ddResource">
+	<summary>
+ddResource control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.edtResource">
+	<summary>
+edtResource control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.chkReminder">
+	<summary>
+chkReminder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.lblReminder">
+	<summary>
+lblReminder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.cbReminder">
+	<summary>
+cbReminder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.tbDescription">
+	<summary>
+tbDescription control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.AppointmentRecurrenceForm1">
+	<summary>
+AppointmentRecurrenceForm1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.btnOk">
+	<summary>
+btnOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.btnCancel">
+	<summary>
+btnCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentForm.schedulerStatusInfo">
+	<summary>
+schedulerStatusInfo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GotoDateForm.lblDate">
+	<summary>
+lblDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GotoDateForm.edtDate">
+	<summary>
+edtDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GotoDateForm.lblView">
+	<summary>
+lblView control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GotoDateForm.cbView">
+	<summary>
+cbView control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GotoDateForm.btnOk">
+	<summary>
+btnOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.GotoDateForm.btnCancel">
+	<summary>
+btnCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.test1">
+	<summary>
+test1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxDateEdit1">
+	<summary>
+ASPxDateEdit1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ddlTrucks">
+	<summary>
+ddlTrucks control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.heatMapStartTime">
+	<summary>
+heatMapStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.heatMapEndTime">
+	<summary>
+heatMapEndTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnHeatMapSearch">
+	<summary>
+btnHeatMapSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.cb">
+	<summary>
+cb control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.cbOpiacy">
+	<summary>
+cbOpiacy control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.cbRadius">
+	<summary>
+cbRadius control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxCheckBox1">
+	<summary>
+ASPxCheckBox1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxCheckBox2">
+	<summary>
+ASPxCheckBox2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxCheckBox5">
+	<summary>
+ASPxCheckBox5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxCheckBox3">
+	<summary>
+ASPxCheckBox3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.cbSnapToRoad">
+	<summary>
+cbSnapToRoad control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel9">
+	<summary>
+ASPxLabel9 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.spinTimeSeconds">
+	<summary>
+spinTimeSeconds control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.comboTimeSecondsMultiplier">
+	<summary>
+comboTimeSecondsMultiplier control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxCheckBox4">
+	<summary>
+ASPxCheckBox4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.odsTrucks">
+	<summary>
+odsTrucks control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.cbViewGeoFences">
+	<summary>
+cbViewGeoFences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.cbViewGeoFenceLabels">
+	<summary>
+cbViewGeoFenceLabels control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnViewGeofencing">
+	<summary>
+btnViewGeofencing control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel10">
+	<summary>
+ASPxLabel10 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.pcMain">
+	<summary>
+pcMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.Panel1">
+	<summary>
+Panel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxPageControl1">
+	<summary>
+ASPxPageControl1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.dgvGeoFenceSummary">
+	<summary>
+dgvGeoFenceSummary control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnView">
+	<summary>
+btnView control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.odsGeoFences">
+	<summary>
+odsGeoFences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.odsGeoFencesUsers">
+	<summary>
+odsGeoFencesUsers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxTextBox1">
+	<summary>
+ASPxTextBox1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxMemo1">
+	<summary>
+ASPxMemo1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel3">
+	<summary>
+ASPxLabel3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxColorEdit1">
+	<summary>
+ASPxColorEdit1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel4">
+	<summary>
+ASPxLabel4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.combogeoFenceTypeSelection">
+	<summary>
+combogeoFenceTypeSelection control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnPlaceOnMap">
+	<summary>
+btnPlaceOnMap control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnClearFromMap">
+	<summary>
+btnClearFromMap control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel5">
+	<summary>
+ASPxLabel5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.cbGeoEditGeoFences">
+	<summary>
+cbGeoEditGeoFences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ObjectDataSource1">
+	<summary>
+ObjectDataSource1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel6">
+	<summary>
+ASPxLabel6 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.memoGeoEditDescription">
+	<summary>
+memoGeoEditDescription control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel7">
+	<summary>
+ASPxLabel7 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.colorGeoEditSelct">
+	<summary>
+colorGeoEditSelct control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxLabel8">
+	<summary>
+ASPxLabel8 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnEditDelete">
+	<summary>
+btnEditDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.btnEditSave">
+	<summary>
+btnEditSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.autoUpdate">
+	<summary>
+autoUpdate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.popupDate">
+	<summary>
+popupDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxPanel1">
+	<summary>
+ASPxPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxDateEdit2">
+	<summary>
+ASPxDateEdit2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.popupReport">
+	<summary>
+popupReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.FleetMap.ASPxGlobalEvents1">
+	<summary>
+ASPxGlobalEvents1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.ASPxPageControl1">
+	<summary>
+ASPxPageControl1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dgvApplicationAlerts">
+	<summary>
+dgvApplicationAlerts control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsAlerts">
+	<summary>
+odsAlerts control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsDrivers">
+	<summary>
+odsDrivers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsGeoFences">
+	<summary>
+odsGeoFences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsSubscribers">
+	<summary>
+odsSubscribers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsEnumVals">
+	<summary>
+odsEnumVals control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.ASPxLabel1">
+	<summary>
+ASPxLabel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dateEditStartTime">
+	<summary>
+dateEditStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.ASPxLabel2">
+	<summary>
+ASPxLabel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dateEditEndtime">
+	<summary>
+dateEditEndtime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.ASPxButton1">
+	<summary>
+ASPxButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.gridExport">
+	<summary>
+gridExport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dgvGeoFences">
+	<summary>
+dgvGeoFences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsGeoFenceReport">
+	<summary>
+odsGeoFenceReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.labelGroups">
+	<summary>
+labelGroups control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.labelMembers">
+	<summary>
+labelMembers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.ASPxLabel3">
+	<summary>
+ASPxLabel3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dgvGroups">
+	<summary>
+dgvGroups control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsGroups">
+	<summary>
+odsGroups control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dgvPotentialGroupMembers">
+	<summary>
+dgvPotentialGroupMembers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsSubscriber">
+	<summary>
+odsSubscriber control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.btnAdd">
+	<summary>
+btnAdd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.btnRemove">
+	<summary>
+btnRemove control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dgvGroupMembers">
+	<summary>
+dgvGroupMembers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.dgvAlertTypeOccurences">
+	<summary>
+dgvAlertTypeOccurences control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsATOAlarmTypeOccurance">
+	<summary>
+odsATOAlarmTypeOccurance control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AlarmsAndAlerts.odsATOAlertType">
+	<summary>
+odsATOAlertType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ProblemPage.lblProblemMessage">
+	<summary>
+lblProblemMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblSubject">
+	<summary>
+lblSubject control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.tbSubject">
+	<summary>
+tbSubject control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblLocation">
+	<summary>
+lblLocation control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.tbLocation">
+	<summary>
+tbLocation control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblLabel">
+	<summary>
+lblLabel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.edtLabel">
+	<summary>
+edtLabel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblStartDate">
+	<summary>
+lblStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.edtStartDate">
+	<summary>
+edtStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblEndDate">
+	<summary>
+lblEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.edtEndDate">
+	<summary>
+edtEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblStatus">
+	<summary>
+lblStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.edtStatus">
+	<summary>
+edtStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.chkAllDay">
+	<summary>
+chkAllDay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblAllDay">
+	<summary>
+lblAllDay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblResource">
+	<summary>
+lblResource control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.ddResource">
+	<summary>
+ddResource control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.edtResource">
+	<summary>
+edtResource control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.chkReminder">
+	<summary>
+chkReminder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.lblReminder">
+	<summary>
+lblReminder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.cbReminder">
+	<summary>
+cbReminder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.tbDescription">
+	<summary>
+tbDescription control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.chkRecurrence">
+	<summary>
+chkRecurrence control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.RecurrencePanel">
+	<summary>
+RecurrencePanel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.btnOk">
+	<summary>
+btnOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.btnCancel">
+	<summary>
+btnCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.AppointmentFormEx.schedulerStatusInfo">
+	<summary>
+schedulerStatusInfo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.ASPxPanel1">
+	<summary>
+ASPxPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.lblUserName">
+	<summary>
+lblUserName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.tbUserName">
+	<summary>
+tbUserName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.lblEmail">
+	<summary>
+lblEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.tbEmail">
+	<summary>
+tbEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.lblPassword">
+	<summary>
+lblPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.tbPassword">
+	<summary>
+tbPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.lblConfirmPassword">
+	<summary>
+lblConfirmPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.tbConfirmPassword">
+	<summary>
+tbConfirmPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Register.btnCreateUser">
+	<summary>
+btnCreateUser control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.appointmentDiv">
+	<summary>
+appointmentDiv control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.statusContainer">
+	<summary>
+statusContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.imgStartContinueArrow">
+	<summary>
+imgStartContinueArrow control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.lblStartContinueText">
+	<summary>
+lblStartContinueText control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.startTimeClockContainer">
+	<summary>
+startTimeClockContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.lblStartTime">
+	<summary>
+lblStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.imageContainer">
+	<summary>
+imageContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.lblTitle">
+	<summary>
+lblTitle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.endTimeClockContainer">
+	<summary>
+endTimeClockContainer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.lblEndTime">
+	<summary>
+lblEndTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.lblEndContinueText">
+	<summary>
+lblEndContinueText control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.HorizontalAppointmentTemplate.imgEndContinueArrow">
+	<summary>
+imgEndContinueArrow control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.UserManagement.ASPxRoundPanel1">
+	<summary>
+ASPxRoundPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

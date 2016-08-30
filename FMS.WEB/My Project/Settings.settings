@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="debug_company_name" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cannon</Value>
+    </Setting>
+    <Setting Name="version" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2.6.19</Value>
+    </Setting>
+    <Setting Name="debug_testing_token" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="test_url" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FleetMap.aspx?VINNumber=grantsVIN&amp;token=64E8EE54-8AE1-4023-8065-979F117ED5FA</Value>
+    </Setting>
+    <Setting Name="NoAuthenticationRequiredURLs" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;/Account/Login.aspx&lt;/string&gt;
+  &lt;string&gt;/ProblemPage.aspx&lt;/string&gt;
+  &lt;string&gt;/Account/Register.aspx&lt;/string&gt;
+  &lt;string&gt;/Account/RegisterSuccess.aspx&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

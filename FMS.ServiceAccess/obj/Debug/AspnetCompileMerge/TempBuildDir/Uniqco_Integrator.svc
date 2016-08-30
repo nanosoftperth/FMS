@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="VB" Debug="true" Service="FMS.ServiceAccess.Uniqco_Integrator" CodeBehind="Uniqco_Integrator.svc.vb" %>

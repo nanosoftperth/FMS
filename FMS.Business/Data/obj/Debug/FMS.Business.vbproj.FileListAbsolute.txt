@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\bin\Debug\FMS.Business.dll.config
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\bin\Debug\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\bin\Debug\FMS.Business.pdb
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\bin\Debug\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.Resources.resources
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.dll
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.xml
+C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.pdb
