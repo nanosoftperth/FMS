@@ -268,7 +268,7 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString, mappingSource)
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString1, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -343,6 +343,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ApplicationGeoFence_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160615)
 		Get
 			Return Me.GetTable(Of ApplicationGeoFence_20160615)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationGeoFence_20160842s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160842)
+		Get
+			Return Me.GetTable(Of ApplicationGeoFence_20160842)
 		End Get
 	End Property
 	
@@ -1795,6 +1801,8 @@ Partial Public Class ApplicationDriver
 	
 	Private _Notes As String
 	
+	Private _emailaddress As String
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -1833,6 +1841,10 @@ Partial Public Class ApplicationDriver
     Partial Private Sub OnNotesChanging(value As String)
     End Sub
     Partial Private Sub OnNotesChanged()
+    End Sub
+    Partial Private Sub OnemailaddressChanging(value As String)
+    End Sub
+    Partial Private Sub OnemailaddressChanged()
     End Sub
     #End Region
 	
@@ -1922,7 +1934,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -1966,6 +1978,22 @@ Partial Public Class ApplicationDriver
 				Me._Notes = value
 				Me.SendPropertyChanged("Notes")
 				Me.OnNotesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_emailaddress", DbType:="VarChar(500)")>  _
+	Public Property emailaddress() As String
+		Get
+			Return Me._emailaddress
+		End Get
+		Set
+			If (String.Equals(Me._emailaddress, value) = false) Then
+				Me.OnemailaddressChanging(value)
+				Me.SendPropertyChanging
+				Me._emailaddress = value
+				Me.SendPropertyChanged("emailaddress")
+				Me.OnemailaddressChanged
 			End If
 		End Set
 	End Property
@@ -2690,6 +2718,156 @@ Partial Public Class ApplicationGeoFence_20160615
 	End Property
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationGeoFence_20160842")>  _
+Partial Public Class ApplicationGeoFence_20160842
+	
+	Private _ApplicationGeoFenceID As System.Guid
+	
+	Private _ApplictionID As System.Guid
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _UserID As System.Nullable(Of System.Guid)
+	
+	Private _DateCreated As System.Nullable(Of Date)
+	
+	Private _Colour As String
+	
+	Private _isCircular As System.Nullable(Of Boolean)
+	
+	Private _CircleRadiusMetres As System.Nullable(Of Double)
+	
+	Private _CircleCentre As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationGeoFenceID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationGeoFenceID() As System.Guid
+		Get
+			Return Me._ApplicationGeoFenceID
+		End Get
+		Set
+			If ((Me._ApplicationGeoFenceID = value)  _
+						= false) Then
+				Me._ApplicationGeoFenceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplictionID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplictionID() As System.Guid
+		Get
+			Return Me._ApplictionID
+		End Get
+		Set
+			If ((Me._ApplictionID = value)  _
+						= false) Then
+				Me._ApplictionID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(MAX)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="VarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me._Description = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier")>  _
+	Public Property UserID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._UserID
+		End Get
+		Set
+			If (Me._UserID.Equals(value) = false) Then
+				Me._UserID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime")>  _
+	Public Property DateCreated() As System.Nullable(Of Date)
+		Get
+			Return Me._DateCreated
+		End Get
+		Set
+			If (Me._DateCreated.Equals(value) = false) Then
+				Me._DateCreated = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Colour", DbType:="VarChar(50)")>  _
+	Public Property Colour() As String
+		Get
+			Return Me._Colour
+		End Get
+		Set
+			If (String.Equals(Me._Colour, value) = false) Then
+				Me._Colour = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_isCircular", DbType:="Bit")>  _
+	Public Property isCircular() As System.Nullable(Of Boolean)
+		Get
+			Return Me._isCircular
+		End Get
+		Set
+			If (Me._isCircular.Equals(value) = false) Then
+				Me._isCircular = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CircleRadiusMetres", DbType:="Float")>  _
+	Public Property CircleRadiusMetres() As System.Nullable(Of Double)
+		Get
+			Return Me._CircleRadiusMetres
+		End Get
+		Set
+			If (Me._CircleRadiusMetres.Equals(value) = false) Then
+				Me._CircleRadiusMetres = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CircleCentre", DbType:="VarChar(500)")>  _
+	Public Property CircleCentre() As String
+		Get
+			Return Me._CircleCentre
+		End Get
+		Set
+			If (String.Equals(Me._CircleCentre, value) = false) Then
+				Me._CircleCentre = value
+			End If
+		End Set
+	End Property
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationGeofenceProperty")>  _
 Partial Public Class ApplicationGeofenceProperty
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -3210,7 +3388,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -10180,7 +10358,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

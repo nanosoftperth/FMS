@@ -33,7 +33,7 @@
     <form id="form1" runat="server">
 
         <%-- ======================== SCRIPTS ======================== --%>
-        <script src='<%= ResolveUrl("~/Content/javascript/jquery-3.0.0.min.js")%>?version=<%=WebVersion%>'></script>
+        <script src='<%= ResolveUrl("~/Content/javascript/jquery-3.1.0.min.js")%>?version=<%=WebVersion%>'></script>
         <script src='<%= ResolveUrl("~/Content/javascript/page.js")%>?version=<%=WebVersion%>'></script>
 
         <%-- ======================== STYLE SHEETS ======================== --%>

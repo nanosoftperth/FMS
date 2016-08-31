@@ -5,6 +5,8 @@ Namespace BackgroundCalculations
 
     Public Class EmailHelper
 
+        Public Const SMS_PROVIDER As String = "send.smsbroadcast.com.au"
+
         '***************************    EMAIL CONTENT AS OF 05/APR/2016     ***************************
         Public Const EmailContent As String = _
         "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
@@ -50,12 +52,12 @@ Namespace BackgroundCalculations
             'the content is the subject of the 
 
             Dim textListToEmail As String = String.Empty
-            Dim textEmailFormat As String = "{0}@send.smsbroadcast.com.au"
+            Dim textEmailFormat As String = "{0}@{1}"
 
             'get a list of "04XXXXXXXX@app.wholesalesms.com.au"
             Dim strList As List(Of String) = (From s In textList.Split(";").ToList _
                                                Where Not String.IsNullOrEmpty(s.Trim)
-                                               Select String.Format(textEmailFormat, s.Trim)).ToList
+                                               Select String.Format(textEmailFormat, s.Trim, SMS_PROVIDER)).ToList
 
             For Each s As String In strList
                 textListToEmail &= If(String.IsNullOrEmpty(textListToEmail), "", ";") & s
@@ -70,6 +72,8 @@ Namespace BackgroundCalculations
                 Dim enteredorexited As String = If(typ = DataObjects.AlertType.ActionType.Enters, "entered", "exited")
                 Dim subject As String = String.Format(EmailContent, companyName, driverName, enteredorexited, geofence_Name, EntryOrExitTime_formatted)
 
+                subject = subject.Replace(vbNewLine, ". ")
+
                 SendEmail(textListToEmail, subject, subject)
 
             Catch ex As Exception
@@ -80,8 +84,15 @@ Namespace BackgroundCalculations
 
         End Function
 
+        Public Shared Function sendSMS(phoneNumber As String, message As String) As Boolean
 
-        Private Shared Function sendEmail(recipient As String, subject As String, content As String) As Boolean
+            Dim emailAddress As String = String.Format("{0}@{1}", phoneNumber.Trim, SMS_PROVIDER)
+
+            Return SendEmail(emailAddress, message, message)
+
+        End Function
+
+        Public Shared Function sendEmail(recipient As String, subject As String, content As String) As Boolean
 
             Dim wasSuccess As Boolean = False
 

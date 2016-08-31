@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMS" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMS;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=FMS;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[AlertSubscriber.deleteme]" Member="AlertSubscriber_deletemes">
     <Type Name="AlertSubscriber_deleteme">
       <Column Name="AlertSubscriberID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -73,6 +73,7 @@
       <Column Name="photoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="emailaddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ApplicationFeatureRole" Member="ApplicationFeatureRoles">
@@ -104,6 +105,20 @@
   </Table>
   <Table Name="dbo.ApplicationGeoFence_20160615" Member="ApplicationGeoFence_20160615s">
     <Type Name="ApplicationGeoFence_20160615">
+      <Column Name="ApplicationGeoFenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ApplictionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Colour" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="isCircular" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CircleRadiusMetres" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CircleCentre" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ApplicationGeoFence_20160842" Member="ApplicationGeoFence_20160842s">
+    <Type Name="ApplicationGeoFence_20160842">
       <Column Name="ApplicationGeoFenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ApplictionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />

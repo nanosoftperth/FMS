@@ -6,10 +6,17 @@ FMS.Business
 </name>
 </assembly>
 <members>
-<member name="M:FMS.Business.DataObjects.Application.#ctor">
+<member name="M:FMS.Business.DataObjects.Role.GetFeaturesBitwise">
 	<summary>
- for serialization only
+ bitwise operation from object "FeatureListConstants"
  </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.Subscriber.update(FMS.Business.DataObjects.Subscriber)">
+	<summary>
+ left empty but required for the object data source in group.aspx
+ </summary>
+	<param name="x"></param>
 	<remarks></remarks>
 </member><member name="P:FMS.Business.DataObjects.TimeZone.SerializedTimezoneObject">
 	<summary>
@@ -31,43 +38,26 @@ FMS.Business
  for serialization purposes only
  </summary>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.Device.#ctor">
-	<summary>
- retain for serialization purposes
- </summary>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.BackgroundCalculations.EmailHelper.SendSMS(System.String,System.String,System.String,System.String,System.DateTime,FMS.Business.DataObjects.AlertType.ActionType)">
-	<summary>
- Sends SMS messages using the paid-for SMS gateway
- which converts emails to SMS's
- </summary>
-	<param name="textList">a semi-colon seperated list of SMS numbers</param>
-</member><member name="M:FMS.Business.DataObjects.Setting.#ctor">
-	<summary>
- for serialisation only
- </summary>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.AuthenticationToken.#ctor">
-	<summary>
- for serialisation only
- </summary>
-</member><member name="M:FMS.Business.DataObjects.Subscriber.update(FMS.Business.DataObjects.Subscriber)">
-	<summary>
- left empty but required for the object data source in group.aspx
- </summary>
-	<param name="x"></param>
-	<remarks></remarks>
 </member><member name="M:FMS.Business.DataObjects.WorkRequest.#ctor">
 	<summary>
  for serialization purposes only
  </summary>
 	<remarks></remarks>
-</member><member name="F:FMS.Business.ReportGeneration.ActivityReportLine.STOP_TIME_MIN_MINUTES">
+</member><member name="P:FMS.Business.SingletonAccess.ClientSelected_TimeZone">
 	<summary>
- The minimum amount of time a vehicle can be stopped before 
- it is classed as having actually STOPPED.
- This needs to be short enough to detect stopping at the shops
- but long enough to not detect stopping at a set of lights!
+ Singleton object which  holds the time-zone of the applications
+ this is is actually the time-zone of the user, if that is not defined, then that of the application
+ If THAT is not defined, then is auto-assigns Perth as the timezone for the appcliation 
+ this can be altered by the user via the website if theyhave privilages.
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.AlertTypeOccurance.#ctor">
+	<summary>
+ for serialisation purposes
+ </summary>
+	<remarks></remarks>
+</member><member name="P:FMS.Business.ReportGeneration.VehicleActivityReportLine.IsNew">
+	<summary>
+ internal property used whilst doing calculations, please ignore outside of this context
  </summary>
 </member><member name="M:FMS.Business.GetListOfItemsWithPositions_ReturnObject.#ctor">
 	<summary>
@@ -92,22 +82,6 @@ FMS.Business
  for serialization only
  </summary>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.GeoFenceDeviceCollision.#ctor">
-	<summary>
- serialization only
- </summary>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.SimulatorSetting.#ctor">
-	<summary>
- for serialization purposes only
- </summary>
-</member><member name="P:FMS.Business.SingletonAccess.ClientSelected_TimeZone">
-	<summary>
- Singleton object which  holds the time-zone of the applications
- this is is actually the time-zone of the user, if that is not defined, then that of the application
- If THAT is not defined, then is auto-assigns Perth as the timezone for the appcliation 
- this can be altered by the user via the website if theyhave privilages.
- </summary>
 </member><member name="M:FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(System.Guid,System.Nullable{System.DateTime})">
 	<summary>
  Processes the geofence collisons, return the earliest date for us 
@@ -115,15 +89,6 @@ FMS.Business
  </summary>
 	<returns>Returns the earliest data which any device still had no data for </returns>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.AlertTypeOccurance.#ctor">
-	<summary>
- for serialisation purposes
- </summary>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.ApplicationGeoFenceProperty.#ctor">
-	<summary>
- for serialization
- </summary>
 </member><member name="P:FMS.Business.DataObjects.ApplicationDriver.RepresentsEveryone">
 	<summary>
  For when bound to a cotnrol which needs the "everyone" option
@@ -136,26 +101,17 @@ FMS.Business
  for serialization 
  </summary>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.Role.GetFeaturesBitwise">
+</member><member name="M:FMS.Business.DataObjects.Setting.#ctor">
 	<summary>
- bitwise operation from object "FeatureListConstants"
- </summary>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:FMS.Business.ReportGeneration.VehicleActivityReportLine.IsNew">
-	<summary>
- internal property used whilst doing calculations, please ignore outside of this context
- </summary>
-</member><member name="M:FMS.Business.DataObjects.ActionEnumOption.#ctor">
-	<summary>
- for serialization only
+ for serialisation only
  </summary>
 	<remarks></remarks>
-</member><member name="T:FMS.Business.DataObjects.ActionEnumOption">
+</member><member name="M:FMS.Business.BackgroundCalculations.EmailHelper.SendSMS(System.String,System.String,System.String,System.String,System.DateTime,FMS.Business.DataObjects.AlertType.ActionType)">
 	<summary>
- this class ihas been specifically created for binding purposes with the aspxGridView on the alerts page
+ Sends SMS messages using the paid-for SMS gateway
+ which converts emails to SMS's
  </summary>
-	<remarks></remarks>
+	<param name="textList">a semi-colon seperated list of SMS numbers</param>
 </member><member name="P:FMS.Business.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
@@ -169,6 +125,16 @@ FMS.Business
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="M:FMS.Business.DataObjects.ActionEnumOption.#ctor">
+	<summary>
+ for serialization only
+ </summary>
+	<remarks></remarks>
+</member><member name="T:FMS.Business.DataObjects.ActionEnumOption">
+	<summary>
+ this class ihas been specifically created for binding purposes with the aspxGridView on the alerts page
+ </summary>
+	<remarks></remarks>
 </member><member name="M:FMS.Business.DataObjects.ApplicationVehicle.#ctor">
 	<summary>
  for serialization only
@@ -181,6 +147,40 @@ FMS.Business
  </summary>
 	<param name="appid"></param>
 	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.GeoFenceDeviceCollision.#ctor">
+	<summary>
+ serialization only
+ </summary>
+	<remarks></remarks>
+</member><member name="F:FMS.Business.ReportGeneration.ActivityReportLine.STOP_TIME_MIN_MINUTES">
+	<summary>
+ The minimum amount of time a vehicle can be stopped before 
+ it is classed as having actually STOPPED.
+ This needs to be short enough to detect stopping at the shops
+ but long enough to not detect stopping at a set of lights!
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.SimulatorSetting.#ctor">
+	<summary>
+ for serialization purposes only
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.ApplicationGeoFenceProperty.#ctor">
+	<summary>
+ for serialization
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.AuthenticationToken.#ctor">
+	<summary>
+ for serialisation only
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.Device.#ctor">
+	<summary>
+ retain for serialization purposes
+ </summary>
+	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.Application.#ctor">
+	<summary>
+ for serialization only
+ </summary>
 	<remarks></remarks>
 </member>
 </members>
