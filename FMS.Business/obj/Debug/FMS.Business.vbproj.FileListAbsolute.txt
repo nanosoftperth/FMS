@@ -9,3 +9,13 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.xml
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.pdb
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Business\obj\Debug\FMS.Business.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\bin\Debug\FMS.Business.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\bin\Debug\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\bin\Debug\FMS.Business.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\bin\Debug\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Debug\FMS.Business.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Debug\FMS.Business.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Debug\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Debug\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Debug\FMS.Business.pdb

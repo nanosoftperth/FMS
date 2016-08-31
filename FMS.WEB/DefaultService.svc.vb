@@ -146,12 +146,27 @@ Public Class DefaultService
     Public Function SendDriverMessage(SendEmail As Boolean, SendText As Boolean, _
                                       MsgToSend As String, DriverID As String) As SendDriverMessage_ReturnObject
 
-        'param.SendEmail = sendEmail;
-        'param.SendText = sendText;
-        'param.MsgToSend = msgToSend;
-        'param.DriverID = 'testDriverID';
+        Dim retobj As New SendDriverMessage_ReturnObject
 
-        Return New SendDriverMessage_ReturnObject With {.ReturnString = "Message from server"}
+        Try
+
+            Dim did As Guid = Guid.Parse(DriverID)
+
+            Dim driver = Business.DataObjects.ApplicationDriver.GetDriverFromID(did)
+
+            Dim fromStr As String = String.Format("Message sent from nanosoft-FMS by {0} ", ThisSession.User.UserName)
+
+            If SendEmail Then Business.BackgroundCalculations.EmailHelper.SendEmail(driver.EmailAddress, fromStr, MsgToSend)
+            If SendText Then Business.BackgroundCalculations.EmailHelper.SendSMS(driver.PhoneNumber, fromStr & ": " & MsgToSend)
+
+            retobj.ReturnString = "Messages sent successfully"
+
+
+        Catch ex As Exception
+            retobj.ReturnString = String.Format("EXCEPTOIN CAUSED{0}{1}{0}{2}", vbNewLine, ex.Message, String.Empty)
+        End Try
+
+        Return retobj
 
     End Function
 

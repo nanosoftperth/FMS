@@ -13,6 +13,9 @@
     Public Property VehicleName As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'test (for demo): DevicePropertyDisplay.aspx?DeviceID=auto06
+
         If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
         Dim truckLst As List(Of Business.Truck) = Business.Truck.GetExampleFleetNow(ThisSession.ApplicationID)
@@ -27,6 +30,19 @@
 
         lblVehicle.Text = Me.VehicleName
         lblDriver.Text = Me.DriverName
+
+        If Not String.IsNullOrEmpty(Me.DriverID) Then
+
+            Dim did As Guid = Guid.Parse(Me.DriverID)
+
+            Dim d = Business.DataObjects.ApplicationDriver.GetDriverFromID(did)
+
+            Me.binaryImageDriver.ContentBytes = d.PhotoBinary
+            Me.binaryImageDriver.DataBind()
+
+        End If
+
+       
 
         'if not logged in, then redirect to the login page (applies to all pages so placed in the master page)
         'If Membership.GetUser Is Nothing Then

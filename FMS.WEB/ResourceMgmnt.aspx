@@ -57,7 +57,7 @@
             </td>
 
             <td>
-                <dx:ASPxPageControl Width="700px" ID="pageControlMain" runat="server" ActiveTabIndex="0">
+                <dx:ASPxPageControl Width="700px" ID="pageControlMain" runat="server" ActiveTabIndex="1">
                     <TabPages>
                         <dx:TabPage Text="Assign Drivers to Vehicles">
                             <ContentCollection>
@@ -251,7 +251,7 @@
                                         Settings-ShowColumnHeaders="false" ClientInstanceName="dgvDrivers" KeyFieldName="ApplicationDriverID" ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="odsDrivers" Theme="SoftOrange">
                                         <Templates>
                                             <DataRow>
-                                                <table>
+                                                <table style="table-layout: fixed;">
                                                     <tr>
                                                         <td>
                                                             <table>
@@ -282,45 +282,54 @@
                                                             </dx:ASPxBinaryImage>
                                                         </td>
                                                         <td>
-                                                            <table class="dataviewtd">
+                                                            <table class="dataviewtd" style="table-layout: fixed;">
                                                                 <tr>
                                                                     <td class="dataviewtd">
                                                                         <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Forname:">
                                                                         </dx:ASPxLabel>
                                                                     </td>
-                                                                    <td class="dataviewtd">
+                                                                    <td class="dataviewtd" style="word-wrap: break-word;">
                                                                         <dx:ASPxLabel Width="100" ID="Label1" runat="server" Text='<%# Eval("FirstName")%>'>
                                                                         </dx:ASPxLabel>
-                                                                        <td class="dataviewtd">
-                                                                            <td rowspan="3" class="dataviewtd">
-                                                                                <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Notes:">
-                                                                                </dx:ASPxLabel>
-                                                                                <dx:ASPxMemo ID="ASPxMemo1" ReadOnly="true" Text='<%# Eval("Notes")%>' runat="server" Height="80px" Width="300px">
-                                                                                </dx:ASPxMemo>
-                                                                            </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="dataviewtd">
                                                                         <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="Surname:">
                                                                         </dx:ASPxLabel>
                                                                     </td>
-                                                                    <td class="dataviewtd">
+                                                                    <td class="dataviewtd" style="word-wrap: break-word;">
                                                                         <dx:ASPxLabel ID="ASPxLabel5" runat="server" Text='<%# Eval("Surname")%>'>
                                                                         </dx:ASPxLabel>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="dataviewtd">
-                                                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Phone Number:">
+                                                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Phone #:">
                                                                         </dx:ASPxLabel>
                                                                     </td>
-                                                                    <td class="dataviewtd">
+                                                                    <td class="dataviewtd" style="word-wrap: break-word;">
                                                                         <dx:ASPxLabel ID="Label2f" runat="server" Text='<%# Eval("PhoneNumber")%>'>
+                                                                        </dx:ASPxLabel>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="dataviewtd">
+                                                                        <dx:ASPxLabel ID="ASPxLabel7" runat="server" Text="Email:">
+                                                                        </dx:ASPxLabel>
+                                                                    </td>
+                                                                    <td class="dataviewtd" style="word-wrap: break-word;width:150px;" >
+                                                                        <dx:ASPxLabel ID="ASPxLabel8" runat="server" Text='<%# Eval("EmailAddress")%>'>
                                                                         </dx:ASPxLabel>
                                                                     </td>
                                                                 </tr>
                                                             </table>
                                                         </td>
+                                                        <td rowspan="4" class="dataviewtd">
+
+                                                            <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Notes:">
+                                                            </dx:ASPxLabel>
+                                                            <dx:ASPxMemo ID="ASPxMemo1" ReadOnly="true" Text='<%# Eval("Notes")%>' runat="server" Height="80px" Width="300px">
+                                                            </dx:ASPxMemo>
                                                     </tr>
                                                 </table>
                                             </DataRow>
@@ -338,15 +347,18 @@
 
                                         <EditFormLayoutProperties ColCount="2">
                                             <Items>
-                                                <dx:GridViewColumnLayoutItem ColumnName="PhotoBinary">
-                                                </dx:GridViewColumnLayoutItem>
-                                                <dx:GridViewColumnLayoutItem ColumnName="Notes">
-                                                </dx:GridViewColumnLayoutItem>
-                                                <dx:GridViewColumnLayoutItem ColumnName="First Name">
-                                                </dx:GridViewColumnLayoutItem>
-                                                <dx:GridViewColumnLayoutItem ColumnName="Phone Number">
+                                                <dx:GridViewColumnLayoutItem ColumnName="PhotoBinary" RowSpan="5">
                                                 </dx:GridViewColumnLayoutItem>
                                                 <dx:GridViewColumnLayoutItem ColumnName="Surname">
+                                                    <CaptionSettings HorizontalAlign="Center" Location="Left" />
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="First Name" Caption="Forname:">
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="Email Address" Caption="Email     ">
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="Phone Number" Caption="Phone #">
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="Notes" Caption="Notes     ">
                                                 </dx:GridViewColumnLayoutItem>
                                                 <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right">
                                                 </dx:EditModeCommandLayoutItem>
@@ -363,7 +375,7 @@
                                             </dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="PhoneNumber" ShowInCustomizationForm="True" VisibleIndex="5">
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="PhotoLocation" ShowInCustomizationForm="True" VisibleIndex="6" Visible="False">
+                                            <dx:GridViewDataTextColumn FieldName="PhotoLocation" ShowInCustomizationForm="True" VisibleIndex="7" Visible="False">
                                             </dx:GridViewDataTextColumn>
                                             <dx:GridViewDataBinaryImageColumn ShowInCustomizationForm="True" VisibleIndex="2" FieldName="PhotoBinary">
                                                 <PropertiesBinaryImage EnableClientSideAPI="True">
@@ -373,12 +385,21 @@
                                                         </UploadSettings>
                                                     </EditingSettings>
                                                 </PropertiesBinaryImage>
-                                                
+
                                             </dx:GridViewDataBinaryImageColumn>
-                                            <dx:GridViewDataMemoColumn FieldName="Notes" ShowInCustomizationForm="True" VisibleIndex="7">
+
+                                            <dx:GridViewDataTextColumn Caption="Email Address"
+                                                FieldName="EmailAddress"
+                                                Name="Email"
+                                                ShowInCustomizationForm="True"
+                                                VisibleIndex="6">
+                                            </dx:GridViewDataTextColumn>
+
+                                            <dx:GridViewDataMemoColumn FieldName="Notes" ShowInCustomizationForm="True" VisibleIndex="8">
                                                 <PropertiesMemoEdit Columns="50" Height="100px">
                                                 </PropertiesMemoEdit>
                                             </dx:GridViewDataMemoColumn>
+
                                         </Columns>
                                     </dx:ASPxGridView>
                                     <asp:ObjectDataSource ID="odsDrivers" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationDriver" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllDrivers" TypeName="FMS.Business.DataObjects.ApplicationDriver" UpdateMethod="Update">

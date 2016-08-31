@@ -12,6 +12,8 @@
         Public Property PhotoBinary() As Byte()
         Public Property Notes As String
 
+        Public Property EmailAddress As String
+
         ''' <summary>
         ''' For when bound to a cotnrol which needs the "everyone" option
         ''' </summary>
@@ -61,6 +63,8 @@
                 Me.Surname = ad.Surname
                 Me.ApplicationID = ad.ApplicationID
                 Me.Notes = ad.Notes
+                Me.EmailAddress = ad.emailaddress
+
 
                 If ad.photoBinary IsNot Nothing Then _
                         PhotoBinary = ad.photoBinary.ToArray
@@ -85,6 +89,7 @@
                 .Surname = ad.Surname
                 .ApplicationID = ad.ApplicationID
                 .Notes = ad.Notes
+                .emailaddress = ad.EmailAddress
 
                 If ad.PhotoBinary Is Nothing Then
                     'get the "mysteryman" row
@@ -114,6 +119,7 @@
                 .Surname = ad.Surname
                 .ApplicationID = ad.ApplicationID
                 .Notes = ad.Notes
+                .emailaddress = ad.EmailAddress
 
                 If ad.PhotoBinary IsNot Nothing Then .photoBinary = New System.Data.Linq.Binary(ad.PhotoBinary)
             End With

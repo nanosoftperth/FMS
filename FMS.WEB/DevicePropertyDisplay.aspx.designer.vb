@@ -23,6 +23,15 @@ Partial Public Class DriverPropertyDisplay
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
+    '''binaryImageDriver control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents binaryImageDriver As Global.DevExpress.Web.ASPxBinaryImage
+
+    '''<summary>
     '''ASPxLabel2 control.
     '''</summary>
     '''<remarks>
