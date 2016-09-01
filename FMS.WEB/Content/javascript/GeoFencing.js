@@ -653,7 +653,7 @@ function showArrays(event) {
     var newURL = 'GeoFencePropertyDisplay.aspx?ApplicationGeoFenceID=' + this.ApplicationGeoFenceID;
     contentString = s + '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 200px; width: 400px\'></iframe>';
 
-    infoWindow = new google.maps.InfoWindow();
+    //infoWindow = new google.maps.InfoWindow();
 
     infoWindow.setContent(contentString);
     infoWindow.setPosition(event.latLng);

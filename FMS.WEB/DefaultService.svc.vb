@@ -156,11 +156,15 @@ Public Class DefaultService
 
             Dim fromStr As String = String.Format("Message sent from nanosoft-FMS by {0} ", ThisSession.User.UserName)
 
-            If SendEmail Then Business.BackgroundCalculations.EmailHelper.SendEmail(driver.EmailAddress, fromStr, MsgToSend)
-            If SendText Then Business.BackgroundCalculations.EmailHelper.SendSMS(driver.PhoneNumber, fromStr & ": " & MsgToSend)
 
-            retobj.ReturnString = "Messages sent successfully"
+            If driver Is Nothing Then
+                retobj.ReturnString = "There is no driver assigned to the vehicle. No message has been sent."
+            Else
+                If SendEmail Then Business.BackgroundCalculations.EmailHelper.SendEmail(driver.EmailAddress, fromStr, MsgToSend)
+                If SendText Then Business.BackgroundCalculations.EmailHelper.SendSMS(driver.PhoneNumber, fromStr & ": " & MsgToSend)
 
+                retobj.ReturnString = "Messages sent successfully"
+            End If
 
         Catch ex As Exception
             retobj.ReturnString = String.Format("EXCEPTOIN CAUSED{0}{1}{0}{2}", vbNewLine, ex.Message, String.Empty)
