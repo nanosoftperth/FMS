@@ -141,6 +141,14 @@
 
 #Region "Get methods"
 
+
+        Public Shared Function GetMysteryManImage() As Byte()
+
+            Return SingletonAccess.FMSDataContextContignous.ApplicationDrivers.Where( _
+                                Function(i) i.FirstName = "mysteryman").Single.photoBinary.ToArray
+
+        End Function
+
         Public Shared ReadOnly Property DriverREpresentingEveryone As DataObjects.ApplicationDriver
             Get
                 Return New ApplicationDriver() With {.ApplicationDriverID = New Guid("d44c2063-d241-49b8-92c1-623dfc23ddcc") _

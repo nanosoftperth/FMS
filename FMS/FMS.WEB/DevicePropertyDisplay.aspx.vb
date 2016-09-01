@@ -31,17 +31,18 @@
         lblVehicle.Text = Me.VehicleName
         lblDriver.Text = Me.DriverName
 
-        If Not String.IsNullOrEmpty(Me.DriverID) Then
+        If Not Guid.Parse(Me.DriverID) = Guid.Empty Then
 
             Dim did As Guid = Guid.Parse(Me.DriverID)
 
             Dim d = Business.DataObjects.ApplicationDriver.GetDriverFromID(did)
 
             Me.binaryImageDriver.ContentBytes = d.PhotoBinary
-            Me.binaryImageDriver.DataBind()
-
+        Else
+            Me.binaryImageDriver.ContentBytes = Business.DataObjects.ApplicationDriver.GetMysteryManImage
         End If
 
+        Me.binaryImageDriver.DataBind()
        
 
         'if not logged in, then redirect to the login page (applies to all pages so placed in the master page)
