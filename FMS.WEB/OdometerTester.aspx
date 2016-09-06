@@ -20,6 +20,7 @@
                 }
                 #leftTable{
                     float:left;
+                    padding-left:20px;
                 }
 
 
@@ -73,7 +74,50 @@
 
             <div id="dataDiv">
 
-                <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="odsDeviceEvent">
+                    <SettingsPager Mode="ShowAllRecords">
+                    </SettingsPager>
+                    <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+                    <SettingsSearchPanel Visible="True" />
+                    <Columns>
+                        <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowSelectCheckbox="True" VisibleIndex="0">
+                        </dx:GridViewCommandColumn>
+                        <dx:GridViewDataTextColumn FieldName="DeviceID" VisibleIndex="1">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataDateColumn FieldName="StartTime" VisibleIndex="2" Width="150px">
+                            <PropertiesDateEdit DisplayFormatString="G">
+                                <TimeSectionProperties>
+                                    <TimeEditProperties>
+                                        <ClearButton Visibility="Auto">
+                                        </ClearButton>
+                                    </TimeEditProperties>
+                                </TimeSectionProperties>
+                                <ClearButton Visibility="Auto">
+                                </ClearButton>
+                            </PropertiesDateEdit>
+                        </dx:GridViewDataDateColumn>
+                        <dx:GridViewDataTextColumn FieldName="Speed" VisibleIndex="4">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataDateColumn FieldName="Endtime" VisibleIndex="3" Width="150px">
+                            <PropertiesDateEdit DisplayFormatString="G">
+                                <TimeSectionProperties>
+                                    <TimeEditProperties>
+                                        <ClearButton Visibility="Auto">
+                                        </ClearButton>
+                                    </TimeEditProperties>
+                                </TimeSectionProperties>
+                                <ClearButton Visibility="Auto">
+                                </ClearButton>
+                            </PropertiesDateEdit>
+                        </dx:GridViewDataDateColumn>
+                        <dx:GridViewDataTextColumn FieldName="Distance" VisibleIndex="5">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Cumulativedistance" VisibleIndex="6">
+                        </dx:GridViewDataTextColumn>
+                    </Columns>
+                </dx:ASPxGridView>                
+
+                <asp:ObjectDataSource ID="odsDeviceEvent" runat="server" SelectMethod="GetDistanceVals" TypeName="FMS.Business.DebugObjects.DeviceEvent"></asp:ObjectDataSource>
 
             </div>
 

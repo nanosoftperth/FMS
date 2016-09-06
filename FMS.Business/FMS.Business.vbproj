@@ -105,6 +105,7 @@
     <Compile Include="Classes\DataObjects\TimeZone.vb" />
     <Compile Include="Classes\DataObjects\WebServiceLogLine.vb" />
     <Compile Include="Classes\DataObjects\WorkRequest.vb" />
+    <Compile Include="Classes\DebugObjects\DeviceEvent.vb" />
     <Compile Include="Classes\Extension Methods\ExtentionModule.vb" />
     <Compile Include="Classes\Interfaces\ITimezoneAware.vb" />
     <Compile Include="Classes\ReportGeneration\ActivityReportLine.vb" />

@@ -14,7 +14,7 @@ Public Class Helper
         Dim foundVehicle As FMS.Business.DataObjects.ApplicationVehicle = Nothing
         Dim foundApplication As Business.DataObjects.Application = Nothing
 
-        'search through all the company names for uniqco and saerch for the vehicle with the correct VIN
+        'search through all the company names for uniqco and search for the vehicle with the correct VIN
         'TODO: This could be done a lot more efficiently
         For Each companyName As String In My.Settings.COMPANY_LIST_UNDER_UNIQCO.Split(",").ToList
 
@@ -97,7 +97,8 @@ Public Class Helper
 
                 dailyReading.Kilometers = .KilometersTravelled + odoReading.OdometerReading
 
-                If foundVehicle.Name.ToLower.Contains("grant") Then dailyReading.Kilometers = (.KilometersTravelled * 1.05) + odoReading.OdometerReading
+                If foundVehicle.Name.ToLower.Contains("grant") Then dailyReading.Kilometers = _
+                                                    (.KilometersTravelled + odoReading.OdometerReading)
 
                 dailyReading.Enginehours = (engineHoursOn + .EngineHoursOn).TotalHours
             End With
