@@ -11,3 +11,16 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConso
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConsole\obj\Release\FMS.TestConsole.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConsole\obj\Release\FMS.TestConsole.exe
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConsole\obj\Release\FMS.TestConsole.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.TestConsole.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.TestConsole.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.TestConsole.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.ServiceAccess.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.ServiceAccess.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.ServiceAccess.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.Business.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Release\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Release\FMS.TestConsole.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Release\FMS.TestConsole.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Release\FMS.TestConsole.pdb

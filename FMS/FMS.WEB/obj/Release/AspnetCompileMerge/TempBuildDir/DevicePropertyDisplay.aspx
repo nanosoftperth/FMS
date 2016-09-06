@@ -32,7 +32,7 @@
                 param.SendText = sendText;
                 param.MsgToSend = msgToSend;
 
-                param.DriverID = 'testDriverID';
+                param.DriverID = driverID;
 
                 if (msgToSend == '') {
                     alert('please enter a message to send');
@@ -44,7 +44,7 @@
                     return false;
                 }
 
-                btnSendMessageToDriver.SetEnabled(false)
+                btnSendMessageToDriver.SetEnabled(false);
 
                 ajaxMethod("DefaultService.svc/" + 'SendDriverMessage',
                                 param, sendMessage_SuccessCallback, sendMessage_ErrorCallback, sendMessage_FinallyCallback);
@@ -59,13 +59,12 @@
 
             })
 
-
             var deviceID = '<%=DeviceID%>';
             var driverID = '<%=DriverID%>';
             var driverName = '<%=DriverName%>';
             var vehicleName = '<%=VehicleName%>';
-            
-            
+
+
             function getLastMessage() {
 
                 var param = {};
@@ -90,13 +89,18 @@
             }
 
             function sendMessage_SuccessCallback(result) {
-
                 alert(result.d._ReturnString);
+
+                btnSendMessageToDriver.SetEnabled(true);
             }
 
-            function sendMessage_ErrorCallback(result) { }
+            function sendMessage_ErrorCallback(result) {
 
-            function sendMessage_FinallyCallback() { }
+            }
+
+            function sendMessage_FinallyCallback() {
+
+            }
 
 
 
@@ -122,17 +126,40 @@
             <table>
                 <tr>
                     <td>
-                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Vehicle"></dx:ASPxLabel>
+
+
+                        <dx:ASPxBinaryImage ID="binaryImageDriver" runat="server" Width="72px">
+                        </dx:ASPxBinaryImage>
+
+
                     </td>
-                    <td><dx:ASPxLabel ID="lblVehicle" runat="server" Text="Vehicle"></dx:ASPxLabel></td>
-                </tr>
-                <tr>
                     <td>
-                        <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Driver"></dx:ASPxLabel>
+                        <table>
+                            <tr>
+                                <td style="padding: 3px;margin-left:10px;"><b>
+                                    <dx:ASPxLabel ID="ASPxLabel2" CssClass="boldme" runat="server" Text="Vehicle"></dx:ASPxLabel>
+                                </b>
+                                </td>
+                                <td style="padding: 3px;">
+                                    <dx:ASPxLabel ID="lblVehicle" runat="server" Text="Vehicle"></dx:ASPxLabel>
+                                </td>
+                            </tr>
+                            <tr>
+                                 <td style="padding: 3px;margin-left:10px;"><b>
+                                    <dx:ASPxLabel ID="ASPxLabel4" CssClass="boldme" runat="server" Text="Driver"></dx:ASPxLabel>
+                                </b>
+                                </td>
+                                <td style="padding: 3px;">
+                                    <dx:ASPxLabel ID="lblDriver" runat="server" Text="Vehicle"></dx:ASPxLabel>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
-                    <td><dx:ASPxLabel ID="lblDriver" runat="server" Text="Vehicle"></dx:ASPxLabel></td>
                 </tr>
+
             </table>
+
+
 
             <hr />
             <%--<div id="container" style="width: 200px; height: 200px; margin: 0 auto"></div>--%>

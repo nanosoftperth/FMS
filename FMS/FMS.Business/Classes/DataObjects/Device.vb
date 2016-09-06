@@ -65,6 +65,24 @@
 
         End Function
 
+
+        Public Shared Function GetFromDeviceID(deviceID As String) As DataObjects.Device
+
+            Dim retobj As DataObjects.Device
+
+            With New LINQtoSQLClassesDataContext
+
+
+                retobj = (From x In .Devices Where x.DeviceID = deviceID _
+                            Select New DataObjects.Device(x)).SingleOrDefault
+
+                .Dispose()
+            End With
+
+            Return retobj
+
+        End Function
+
         Public Shared Sub Update(d As DataObjects.Device)
 
             Dim dvce As FMS.Business.Device = SingletonAccess.FMSDataContextContignous.Devices.Where( _

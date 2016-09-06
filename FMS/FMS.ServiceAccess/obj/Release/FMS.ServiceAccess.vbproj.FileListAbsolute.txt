@@ -23,3 +23,29 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAc
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.dll
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.xml
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.WEB.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.WEB.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.WEB.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.Business.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.dll.licenses
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.pdb

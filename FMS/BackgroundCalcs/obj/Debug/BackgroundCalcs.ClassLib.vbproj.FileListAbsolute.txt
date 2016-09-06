@@ -11,3 +11,16 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCal
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.dll
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.xml
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\bin\Debug\BackgroundCalcs.ClassLib.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\bin\Debug\BackgroundCalcs.ClassLib.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\bin\Debug\BackgroundCalcs.ClassLib.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\bin\Debug\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\bin\Debug\FMS.Business.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\bin\Debug\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs\obj\Debug\BackgroundCalcs.ClassLib.vbprojResolveAssemblyReference.cache

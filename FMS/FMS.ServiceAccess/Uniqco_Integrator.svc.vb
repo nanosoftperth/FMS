@@ -62,7 +62,8 @@ Public Class Uniqco_Integrator
 
     End Function
 
-    Public Function GetVehicleData(VIN_Numbers As List(Of WebServices.VINNumberRequest), username As String, password As String) As WebServices.GetVehicleData_Response Implements IUniqco_Integrator.GetVehicleData
+    Public Function GetVehicleData(VIN_Numbers As List(Of WebServices.VINNumberRequest), _
+                                   username As String, password As String) As WebServices.GetVehicleData_Response Implements IUniqco_Integrator.GetVehicleData
 
 
         'limoVIN, grantsVIN (as tests)

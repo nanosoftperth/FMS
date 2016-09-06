@@ -95,11 +95,20 @@ Partial Public Class OdometerTester
     Protected WithEvents odsDevices As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''GridView1 control.
+    '''ASPxGridView1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents ASPxGridView1 As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsDeviceEvent control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDeviceEvent As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

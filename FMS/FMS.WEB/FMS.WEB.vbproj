@@ -294,6 +294,13 @@
       <DependentUpon>NoAccessPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="OdometerTester.aspx.designer.vb">
+      <DependentUpon>OdometerTester.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OdometerTester.aspx.vb">
+      <DependentUpon>OdometerTester.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="ProblemPage.aspx.designer.vb">
       <DependentUpon>ProblemPage.aspx</DependentUpon>
     </Compile>
@@ -697,6 +704,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Main_Test.aspx" />
     <Content Include="NoAccessPage.aspx" />
+    <Content Include="OdometerTester.aspx" />
     <Content Include="ProblemPage.aspx" />
     <Content Include="ReportContent.aspx" />
     <Content Include="Reports\reporttocopy.png" />

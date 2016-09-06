@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
-  <setAcl path="C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.ServiceAccess\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

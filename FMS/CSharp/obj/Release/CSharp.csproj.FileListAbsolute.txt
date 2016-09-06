@@ -8,3 +8,13 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\CSharp\bin\Re
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\CSharp\obj\Release\CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\CSharp\obj\Release\CSharp.exe
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\CSharp\obj\Release\CSharp.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\bin\Release\CSharp.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\bin\Release\CSharp.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\bin\Release\CSharp.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\bin\Release\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\bin\Release\FMS.Business.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\bin\Release\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\obj\Release\CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\obj\Release\CSharp.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\obj\Release\CSharp.pdb

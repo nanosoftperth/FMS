@@ -3,7 +3,7 @@ Imports System.Text
 
 Module Module1
 
-    Dim version As String = "10.01.3"
+    Dim version As String = "10.04.666"
 
     Public Property fileName As String = String.Empty
 
@@ -51,10 +51,11 @@ Module Module1
     Public Sub main_method()
 
 
+        LogMsg("Version ""{0}"" ", version)
+
         Dim lst As List(Of FMS.Business.DataObjects.Application) = FMS.Business.DataObjects.Application.GetAllApplications()
 
-        For Each o As FMS.Business.DataObjects.Application In lst.Where(Function(x) x.ApplicationName <> "test app" _
-                                                                            AndAlso x.ApplicationName <> "demo99")
+        For Each o As FMS.Business.DataObjects.Application In lst.Where(Function(x) x.ApplicationName <> "test app")
 
             LogMsg("Processing ""{0}"" at {1}", o.ApplicationName, Now.ToLongDateString)
 
