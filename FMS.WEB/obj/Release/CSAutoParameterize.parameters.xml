@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="ApplicationServices-Web.config Connection String" description="ApplicationServices Connection String used in web.config by the application to access the database." defaultValue="Data Source=WINDOWS-VULTR;Initial Catalog=FMS;Integrated Security=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Desktop\\DXWebApplication1\\DXWebApplication1\\FMS\.WEB\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ApplicationServices']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2013\\Projects\\Project1\\FMS\\FMS\.WEB\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ApplicationServices']/@connectionString" />
   </parameter>
   <parameter name="NORTHWNDConnectionString-Web.config Connection String" description="NORTHWNDConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=windows-vultr;Initial Catalog=NORTHWND;Integrated Security=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Desktop\\DXWebApplication1\\DXWebApplication1\\FMS\.WEB\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NORTHWNDConnectionString']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2013\\Projects\\Project1\\FMS\\FMS\.WEB\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NORTHWNDConnectionString']/@connectionString" />
   </parameter>
   <parameter name="xpf.printing-Web.config Connection String" description="xpf.printing Connection String used in web.config by the application to access the database." defaultValue="xpoprovider=MSSqlServer;data source=(localdb)\v11.0;attachdbfilename=|DataDirectory|\ReportService.mdf;integrated security=True;connect timeout=120" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Desktop\\DXWebApplication1\\DXWebApplication1\\FMS\.WEB\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='xpf.printing']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2013\\Projects\\Project1\\FMS\\FMS\.WEB\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='xpf.printing']/@connectionString" />
   </parameter>
 </parameters>

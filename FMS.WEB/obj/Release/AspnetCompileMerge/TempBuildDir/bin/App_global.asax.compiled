@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="8" virtualPath="/global.asax" hash="ffffffff8ae3708d" filehash="ffffc79e0692a895" flags="150000" assembly="App_global.asax" type="ASP._global_asax">
+<preserve resultType="8" virtualPath="/global.asax" hash="ffffffff8ae3708d" filehash="ffffc82b4d62dc8f" flags="150000" assembly="App_global.asax" type="ASP._global_asax">
     <filedeps>
         <filedep name="/global.asax" />
     </filedeps>
