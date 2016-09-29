@@ -11,16 +11,3 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConso
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConsole\obj\Debug\FMS.TestConsole.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConsole\obj\Debug\FMS.TestConsole.exe
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.TestConsole\obj\Debug\FMS.TestConsole.pdb
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.TestConsole.exe.config
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.TestConsole.exe
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.TestConsole.pdb
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.ServiceAccess.dll
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.Business.dll
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.ServiceAccess.pdb
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.ServiceAccess.xml
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.Business.pdb
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\bin\Debug\FMS.Business.xml
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.csprojResolveAssemblyReference.cache
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.exe
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.pdb

@@ -193,6 +193,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
     End Sub
+  Partial Private Sub InsertCAN_Data(instance As CAN_Data)
+    End Sub
+  Partial Private Sub UpdateCAN_Data(instance As CAN_Data)
+    End Sub
+  Partial Private Sub DeleteCAN_Data(instance As CAN_Data)
+    End Sub
   Partial Private Sub InsertCannonData(instance As CannonData)
     End Sub
   Partial Private Sub UpdateCannonData(instance As CannonData)
@@ -268,7 +274,7 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString1, mappingSource)
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -469,6 +475,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
 		Get
 			Return Me.GetTable(Of AuthenticationToken)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_Datas() As System.Data.Linq.Table(Of CAN_Data)
+		Get
+			Return Me.GetTable(Of CAN_Data)
 		End Get
 	End Property
 	
@@ -7302,6 +7314,244 @@ Partial Public Class AuthenticationToken
 				Me._StartDate = value
 				Me.SendPropertyChanged("StartDate")
 				Me.OnStartDateChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CAN_Data")>  _
+Partial Public Class CAN_Data
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _arbritration_id As String
+	
+	Private _data As String
+	
+	Private _dlc As System.Nullable(Of Integer)
+	
+	Private _is_extended_id As System.Nullable(Of Integer)
+	
+	Private _is_error_frame As System.Nullable(Of Integer)
+	
+	Private _is_remote_frame As System.Nullable(Of Integer)
+	
+	Private _timestamp As System.Nullable(Of Date)
+	
+	Private _Id As Integer
+	
+	Private _DeviceID As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub Onarbritration_idChanging(value As String)
+    End Sub
+    Partial Private Sub Onarbritration_idChanged()
+    End Sub
+    Partial Private Sub OndataChanging(value As String)
+    End Sub
+    Partial Private Sub OndataChanged()
+    End Sub
+    Partial Private Sub OndlcChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OndlcChanged()
+    End Sub
+    Partial Private Sub Onis_extended_idChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onis_extended_idChanged()
+    End Sub
+    Partial Private Sub Onis_error_frameChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onis_error_frameChanged()
+    End Sub
+    Partial Private Sub Onis_remote_frameChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onis_remote_frameChanged()
+    End Sub
+    Partial Private Sub OntimestampChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OntimestampChanged()
+    End Sub
+    Partial Private Sub OnIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIdChanged()
+    End Sub
+    Partial Private Sub OnDeviceIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnDeviceIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_arbritration_id", DbType:="NChar(10)")>  _
+	Public Property arbritration_id() As String
+		Get
+			Return Me._arbritration_id
+		End Get
+		Set
+			If (String.Equals(Me._arbritration_id, value) = false) Then
+				Me.Onarbritration_idChanging(value)
+				Me.SendPropertyChanging
+				Me._arbritration_id = value
+				Me.SendPropertyChanged("arbritration_id")
+				Me.Onarbritration_idChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_data", DbType:="VarChar(200)")>  _
+	Public Property data() As String
+		Get
+			Return Me._data
+		End Get
+		Set
+			If (String.Equals(Me._data, value) = false) Then
+				Me.OndataChanging(value)
+				Me.SendPropertyChanging
+				Me._data = value
+				Me.SendPropertyChanged("data")
+				Me.OndataChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dlc", DbType:="Int")>  _
+	Public Property dlc() As System.Nullable(Of Integer)
+		Get
+			Return Me._dlc
+		End Get
+		Set
+			If (Me._dlc.Equals(value) = false) Then
+				Me.OndlcChanging(value)
+				Me.SendPropertyChanging
+				Me._dlc = value
+				Me.SendPropertyChanged("dlc")
+				Me.OndlcChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_is_extended_id", DbType:="Int")>  _
+	Public Property is_extended_id() As System.Nullable(Of Integer)
+		Get
+			Return Me._is_extended_id
+		End Get
+		Set
+			If (Me._is_extended_id.Equals(value) = false) Then
+				Me.Onis_extended_idChanging(value)
+				Me.SendPropertyChanging
+				Me._is_extended_id = value
+				Me.SendPropertyChanged("is_extended_id")
+				Me.Onis_extended_idChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_is_error_frame", DbType:="Int")>  _
+	Public Property is_error_frame() As System.Nullable(Of Integer)
+		Get
+			Return Me._is_error_frame
+		End Get
+		Set
+			If (Me._is_error_frame.Equals(value) = false) Then
+				Me.Onis_error_frameChanging(value)
+				Me.SendPropertyChanging
+				Me._is_error_frame = value
+				Me.SendPropertyChanged("is_error_frame")
+				Me.Onis_error_frameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_is_remote_frame", DbType:="Int")>  _
+	Public Property is_remote_frame() As System.Nullable(Of Integer)
+		Get
+			Return Me._is_remote_frame
+		End Get
+		Set
+			If (Me._is_remote_frame.Equals(value) = false) Then
+				Me.Onis_remote_frameChanging(value)
+				Me.SendPropertyChanging
+				Me._is_remote_frame = value
+				Me.SendPropertyChanged("is_remote_frame")
+				Me.Onis_remote_frameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_timestamp", DbType:="DateTime")>  _
+	Public Property timestamp() As System.Nullable(Of Date)
+		Get
+			Return Me._timestamp
+		End Get
+		Set
+			If (Me._timestamp.Equals(value) = false) Then
+				Me.OntimestampChanging(value)
+				Me.SendPropertyChanging
+				Me._timestamp = value
+				Me.SendPropertyChanged("timestamp")
+				Me.OntimestampChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Id", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Id() As Integer
+		Get
+			Return Me._Id
+		End Get
+		Set
+			If ((Me._Id = value)  _
+						= false) Then
+				Me.OnIdChanging(value)
+				Me.SendPropertyChanging
+				Me._Id = value
+				Me.SendPropertyChanged("Id")
+				Me.OnIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property DeviceID() As String
+		Get
+			Return Me._DeviceID
+		End Get
+		Set
+			If (String.Equals(Me._DeviceID, value) = false) Then
+				Me.OnDeviceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._DeviceID = value
+				Me.SendPropertyChanged("DeviceID")
+				Me.OnDeviceIDChanged
 			End If
 		End Set
 	End Property
