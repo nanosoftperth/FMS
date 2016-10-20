@@ -6,7 +6,12 @@ FMS.Business
 </name>
 </assembly>
 <members>
-<member name="M:FMS.Business.DataObjects.Role.GetFeaturesBitwise">
+<member name="M:FMS.Business.BackgroundCalculations.CustTimeRange.#ctor">
+	<summary>
+ for serialization only
+ </summary>
+	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.Role.GetFeaturesBitwise">
 	<summary>
  bitwise operation from object "FeatureListConstants"
  </summary>

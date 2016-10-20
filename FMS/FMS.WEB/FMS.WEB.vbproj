@@ -544,6 +544,13 @@
       <DependentUpon>Group.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Test_Forms\MileageTester.aspx.designer.vb">
+      <DependentUpon>MileageTester.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\MileageTester.aspx.vb">
+      <DependentUpon>MileageTester.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\OdometerTest.aspx.designer.vb">
       <DependentUpon>OdometerTest.aspx</DependentUpon>
     </Compile>
@@ -625,6 +632,13 @@
     <Compile Include="WebServices\IUniqco_Integrator.vb" />
     <Compile Include="WebServices\Uniqco_Integrator.svc.vb">
       <DependentUpon>Uniqco_Integrator.svc</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\VehicleLog.aspx.designer.vb">
+      <DependentUpon>VehicleLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\VehicleLog.aspx.vb">
+      <DependentUpon>VehicleLog.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="WebService_Uniqco.svc.vb">
       <DependentUpon>WebService_Uniqco.svc</DependentUpon>
@@ -745,6 +759,7 @@
     <Content Include="Test_Forms\CircularGeoFenceTest.aspx" />
     <Content Include="Test_Forms\GeoFenceAlertAudit.aspx" />
     <Content Include="Test_Forms\Group.aspx" />
+    <Content Include="Test_Forms\MileageTester.aspx" />
     <Content Include="Test_Forms\OdometerTest.aspx" />
     <Content Include="Test_Forms\ReportPopupTester.aspx" />
     <Content Include="Test_Forms\test2.aspx" />
@@ -754,6 +769,7 @@
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebServices\Uniqco_Integrator.svc" />
+    <Content Include="WebServices\VehicleLog.aspx" />
     <Content Include="WebService_Uniqco.svc" />
     <Content Include="Content\Helvetica\Helvetica Neue LT Std\HelveticaNeueLTStd-Bd.otf" />
     <Content Include="Content\Helvetica\Helvetica Neue LT Std\HelveticaNeueLTStd-BdCn.otf" />
@@ -863,6 +879,10 @@
     <ProjectReference Include="..\FMS.Business\FMS.Business.vbproj">
       <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
       <Name>FMS.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS.ServiceAccess\FMS.ServiceAccess.vbproj">
+      <Project>{d44020a7-8bd2-4ab3-925b-ff4a76ec620a}</Project>
+      <Name>FMS.ServiceAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

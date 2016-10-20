@@ -15,3 +15,20 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalc
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.exe
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.xml
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ClassLib.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ClassLib.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ClassLib.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\FMS.Business.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.pdb

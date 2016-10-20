@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("uniqco")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("uniqco,demo,partners")>  _
         Public ReadOnly Property COMPANY_LIST_UNDER_UNIQCO() As String
             Get
                 Return CType(Me("COMPANY_LIST_UNDER_UNIQCO"),String)

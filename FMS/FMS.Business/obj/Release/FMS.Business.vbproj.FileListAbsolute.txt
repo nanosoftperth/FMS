@@ -18,4 +18,3 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Bu
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Release\FMS.Business.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Release\FMS.Business.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Release\FMS.Business.pdb
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Business\obj\Release\FMS.Business.vbprojResolveAssemblyReference.cache

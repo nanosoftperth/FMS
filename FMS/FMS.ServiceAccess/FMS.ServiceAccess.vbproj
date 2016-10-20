@@ -183,10 +183,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FMS.WEB\FMS.WEB.vbproj">
-      <Project>{310d980f-2973-4dfe-bdef-6339ae1760c2}</Project>
-      <Name>FMS.WEB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FMS.Business\FMS.Business.vbproj">
       <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
       <Name>FMS.Business</Name>

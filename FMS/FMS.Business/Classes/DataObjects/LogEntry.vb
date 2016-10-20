@@ -28,7 +28,6 @@ Namespace DataObjects
 
             Dim pips As PISDK.PIValues = pip.Data.RecordedValues(pitStart, pitEnd)
 
-
             Dim retlst As New List(Of LogEntry)
 
             For Each piv As PISDK.PIValue In pips

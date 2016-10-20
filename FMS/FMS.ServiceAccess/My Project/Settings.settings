@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="COMPANY_LIST_UNDER_UNIQCO" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">uniqco</Value>
+      <Value Profile="(Default)">uniqco,demo,partners</Value>
     </Setting>
   </Settings>
 </SettingsFile>
