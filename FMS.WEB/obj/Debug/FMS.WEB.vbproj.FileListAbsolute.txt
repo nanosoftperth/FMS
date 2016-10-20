@@ -493,3 +493,6 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.WE
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.WEB\obj\Debug\FMS.WEB.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.WEB\obj\Debug\FMS.WEB.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.WEB\obj\Debug\FMS.WEB.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.WEB\bin\FMS.ServiceAccess.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.WEB\bin\FMS.ServiceAccess.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.WEB\bin\FMS.ServiceAccess.xml

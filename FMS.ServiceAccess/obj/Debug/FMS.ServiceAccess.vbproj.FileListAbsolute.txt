@@ -31,12 +31,9 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Se
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\EntityFramework.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\EntityFramework.SqlServer.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.Business.dll
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.WEB.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\Newtonsoft.Json.dll
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.WEB.pdb
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.WEB.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.Business.pdb
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\FMS.Business.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\bin\EntityFramework.xml

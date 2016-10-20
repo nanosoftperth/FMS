@@ -1,24 +1,63 @@
-﻿Uninstalling assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+﻿Uninstalling assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
 Affected parameters are:
    logtoconsole = 
-   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
-   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
 Removing EventLog source FMSBackgroundCalcs.
-Warning: The source FMSBackgroundCalcs is not registered on the local machine.
 Service FMSBackgroundCalcs is being removed from the system...
-An exception occurred during the uninstallation of the System.ServiceProcess.ServiceInstaller installer.
-System.ComponentModel.Win32Exception: The specified service does not exist as an installed service
-An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
-Installing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Service FMSBackgroundCalcs was successfully removed from the system.
+Installing assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
 Affected parameters are:
    logtoconsole = 
-   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
-   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
 Installing service FMSBackgroundCalcs...
 Service FMSBackgroundCalcs has been successfully installed.
 Creating EventLog source FMSBackgroundCalcs in log Application...
-Committing assembly 'C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Committing assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
 Affected parameters are:
    logtoconsole = 
-   logfile = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
-   assemblypath = C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+Uninstalling assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+Removing EventLog source FMSBackgroundCalcs.
+Service FMSBackgroundCalcs is being removed from the system...
+Service FMSBackgroundCalcs was successfully removed from the system.
+Installing assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+Installing service FMSBackgroundCalcs...
+Service FMSBackgroundCalcs has been successfully installed.
+Creating EventLog source FMSBackgroundCalcs in log Application...
+Committing assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+Uninstalling assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+Removing EventLog source FMSBackgroundCalcs.
+Service FMSBackgroundCalcs is being removed from the system...
+Service FMSBackgroundCalcs was successfully removed from the system.
+Installing assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe
+Installing service FMSBackgroundCalcs...
+Service FMSBackgroundCalcs has been successfully installed.
+Creating EventLog source FMSBackgroundCalcs in log Application...
+Committing assembly 'C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.InstallLog
+   assemblypath = C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\bin\Release\BackgroundCalcs.Service.exe

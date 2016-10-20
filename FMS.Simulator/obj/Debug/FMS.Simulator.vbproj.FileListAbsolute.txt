@@ -12,3 +12,17 @@ C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Debug\FMS.Simulator.exe
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Debug\FMS.Simulator.xml
 C:\Users\Administrator\Desktop\DXWebApplication1\DXWebApplication1\FMS.Simulator\obj\Debug\FMS.Simulator.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\FMS.Simulator.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\FMS.Simulator.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\FMS.Simulator.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\FMS.Simulator.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\FMS.Business.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\FMS.Business.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\bin\Debug\FMS.Business.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.pdb

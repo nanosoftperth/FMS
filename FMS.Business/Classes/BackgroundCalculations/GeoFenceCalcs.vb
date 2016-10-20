@@ -48,6 +48,9 @@ Namespace BackgroundCalculations
                 Dim alertDriver As DataObjects.ApplicationDriver = drivers.Where( _
                                                                 Function(d) d.ApplicationDriverID = alertDefn.DriverID).SingleOrDefault
 
+                'if the driver has been delted, then we cannot process this alert
+                If alertDriver Is Nothing Then Continue For
+
                 For Each rslt As ReportGeneration.GeoFenceReport_Simple In results
 
                     'determine what type of geo-fence result happened
