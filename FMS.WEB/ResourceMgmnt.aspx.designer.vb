@@ -174,4 +174,31 @@ Partial Public Class ResourceMgmnt
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsVehiclesDevices As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''dgvDetailBookings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dgvDetailBookings As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsBookingDriver control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsBookingDriver As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsBooking control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsBooking As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

@@ -207,5 +207,9 @@ Public Class ResourceMgmnt
 
 
 
+    Protected Sub odsBooking_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
+        Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationBooking)
+        ab.ApplicationId = ThisSession.ApplicationID
 
+    End Sub
 End Class

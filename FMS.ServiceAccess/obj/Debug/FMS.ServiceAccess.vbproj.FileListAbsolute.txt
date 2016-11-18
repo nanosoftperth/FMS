@@ -47,3 +47,26 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Se
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.dll
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.pdb
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.dll.config
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.pdb
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\FMS.ServiceAccess.xml
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\EntityFramework.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\EntityFramework.SqlServer.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\FMS.Business.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.Core.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\Newtonsoft.Json.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\FMS.Business.pdb
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\FMS.Business.xml
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\EntityFramework.xml
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\EntityFramework.SqlServer.xml
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.Core.xml
+C:\temp\ryan\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.vbprojResolveAssemblyReference.cache
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.Resources.resources
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.vbproj.GenerateResource.Cache
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.dll.licenses
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.dll
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.xml
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.pdb

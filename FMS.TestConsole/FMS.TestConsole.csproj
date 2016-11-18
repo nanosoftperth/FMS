@@ -85,6 +85,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMS.Business\FMS.Business.vbproj">
+      <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
+      <Name>FMS.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMS.ServiceAccess\FMS.ServiceAccess.vbproj">
       <Project>{d44020a7-8bd2-4ab3-925b-ff4a76ec620a}</Project>
       <Name>FMS.ServiceAccess</Name>

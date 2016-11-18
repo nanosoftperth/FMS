@@ -13,6 +13,22 @@ namespace FMS.TestConsole
         {
 
 
+            //var x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress("28 maidstone way, morley, 6062, australia");
+
+            //var y = new Business.DataObjects.ApplicationGeoFence();
+
+            //y.ApplicationGeoFenceSides = x.ApplicationGeoFenceSides;
+
+            //y.CircleCentreLat = (decimal)x.lat;
+            //y.CircleCentreLong = x.lng;
+
+            
+
+           // Guid newID = FMS.Business.DataObjects.ApplicationGeoFence.Create(y);
+
+
+
+            //return;
 
             sr1.Uniqco_IntegratorClient svr1 = new sr1.Uniqco_IntegratorClient();
 

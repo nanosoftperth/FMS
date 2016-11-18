@@ -3,6 +3,8 @@
 <%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
 
     <script type="text/javascript">
 
@@ -33,11 +35,19 @@
 
             dgvApplicationVehicleDriver.PerformCallback(params);
         }
+        var initsearchlocation = function (s, e) {
+            debugger;
+            var search_input_box = s.inputElement;
+            search_input_box.placeholder = "Search Box";
+            var searchBox = new google.maps.places.SearchBox(search_input_box);
 
+        }
     </script>
 
-
     <style type="text/css">
+        .small-nonbold label {
+            font-weight:400;
+        }
         .dataviewtd {
             padding: 5px;
         }
@@ -247,8 +257,7 @@
                             <ContentCollection>
                                 <dx:ContentControl runat="server">
                                     <dx:ASPxGridView SettingsBehavior-ConfirmDelete="true" SettingsText-ConfirmDelete="Are you sure you wish to delete the driver?"
-                                        SettingsPager-PageSize="3"
-                                        Settings-ShowColumnHeaders="false" ClientInstanceName="dgvDrivers" KeyFieldName="ApplicationDriverID" ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="odsDrivers" Theme="SoftOrange">
+                                        SettingsPager-PageSize="3" ClientInstanceName="dgvDrivers" KeyFieldName="ApplicationDriverID" ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="odsDrivers" Theme="SoftOrange">
                                         <Templates>
                                             <DataRow>
                                                 <table style="table-layout: fixed;">
@@ -337,7 +346,7 @@
 
                                         <SettingsPager PageSize="3"></SettingsPager>
 
-                                        <Settings ShowColumnHeaders="True"></Settings>
+                                        <Settings ShowColumnHeaders="False"></Settings>
 
                                         <SettingsBehavior ConfirmDelete="True"></SettingsBehavior>
 
@@ -537,6 +546,97 @@
                                     </asp:ObjectDataSource>
 
 
+                                </dx:ContentControl>
+                            </ContentCollection>
+                        </dx:TabPage>
+                        <dx:TabPage Text="Bookings">
+                            <ContentCollection>
+                                <dx:ContentControl>
+                                    
+                                                <dx:ASPxGridView ID="dgvDetailBookings"
+                                                    runat="server"
+                                                    AutoGenerateColumns="False"
+                                                    EnableTheming="True"
+                                                    Theme="SoftOrange"
+                                                    DataSourceID="odsBooking"
+                                                    KeyFieldName="ApplicationBookingId">
+                                                    
+                                        <EditFormLayoutProperties ColCount="2"  >
+                                            <Items>
+                                                <dx:GridViewColumnLayoutItem ColumnName="ApplicationDriverID" >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="CustomerName"  >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="ArrivalTime" >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="CustomerPhone" >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="GeofenceLeave" CssClass ="search-address">
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="CustomerEmail" >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem VerticalAlign="Top" ColumnName="GeofenceDestination" CssClass ="search-address" RowSpan ="2"  >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="IsAlert5min" Caption="Send 'within 5 minutes away' message" CaptionCellStyle-CssClass="small-nonbold" HorizontalAlign="Center" >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:GridViewColumnLayoutItem ColumnName="IsAlertLeaveForPickup" Caption="Send 'left to pick you up' message" CaptionCellStyle-CssClass="small-nonbold" HorizontalAlign="Center"  >
+                                                </dx:GridViewColumnLayoutItem>
+                                                <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right">
+                                                </dx:EditModeCommandLayoutItem>
+                                            </Items>
+                                        </EditFormLayoutProperties>
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowEditButton="True" ShowDeleteButton="True">
+                                                        </dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ApplicationBookingId" Visible="false" ShowInCustomizationForm="True" VisibleIndex="1">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ApplicationId" Visible="false"  ShowInCustomizationForm="True" VisibleIndex="2">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataDateColumn PropertiesDateEdit-DisplayFormatString="G" PropertiesDateEdit-EditFormat="DateTime" FieldName="ArrivalTime" VisibleIndex="3">
+                                                            <PropertiesDateEdit>
+                                                                <TimeSectionProperties Visible="True">
+                                                                    <TimeEditProperties>
+                                                                        <ClearButton Visibility="Auto">
+                                                                        </ClearButton>
+                                                                    </TimeEditProperties>
+                                                                </TimeSectionProperties>
+                                                                <ClearButton Visibility="Auto"></ClearButton>
+                                                            </PropertiesDateEdit>
+                                                        </dx:GridViewDataDateColumn>
+                                                        <dx:GridViewDataComboBoxColumn FieldName="ApplicationDriverID" Caption="Driver" ShowInCustomizationForm="True" VisibleIndex="4">
+                                                            <PropertiesComboBox DataSourceID="odsBookingDriver" TextField="NameFormatted" ValueField="ApplicationDriverID">
+                                                            </PropertiesComboBox>
+                                                        </dx:GridViewDataComboBoxColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="GeofenceLeave" Caption="Geo-fence Leave" ShowInCustomizationForm="True" VisibleIndex="5">
+                                                            <PropertiesTextEdit ClientInstanceName="GeofenceLeave" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="GeofenceDestination" Caption="Geo-fence Destination"  ShowInCustomizationForm="True" VisibleIndex="6">
+                                                            <PropertiesTextEdit ClientInstanceName="GeofenceDestination" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
+                                                        
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CustomerName" ShowInCustomizationForm="True" VisibleIndex="7">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CustomerPhone" ShowInCustomizationForm="True" VisibleIndex="8">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CustomerEmail" ShowInCustomizationForm="True" VisibleIndex="9">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataCheckColumn FieldName="IsAlert5min" Caption="Alert if 5 min away" ShowInCustomizationForm="True" VisibleIndex="10">
+                                                        </dx:GridViewDataCheckColumn>
+                                                        <dx:GridViewDataCheckColumn FieldName="IsAlertLeaveForPickup" Caption="Alert if has left for pickup" ShowInCustomizationForm="True" VisibleIndex="1">
+                                                        </dx:GridViewDataCheckColumn>
+                                                    </Columns>
+                                                </dx:ASPxGridView>
+                                    
+                                    <asp:ObjectDataSource ID="odsBookingDriver" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationDriver" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllDrivers" TypeName="FMS.Business.DataObjects.ApplicationDriver" UpdateMethod="Update">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DbType="Guid" Name="applicatoinid" SessionField="ApplicationID" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
+                                    <asp:ObjectDataSource ID="odsBooking" OnInserting="odsBooking_Inserting" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationBooking" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllBookingsForApplication" TypeName="FMS.Business.DataObjects.ApplicationBooking" UpdateMethod="Update">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
+                                            </SelectParameters>
+                                    </asp:ObjectDataSource>
                                 </dx:ContentControl>
                             </ContentCollection>
                         </dx:TabPage>

@@ -82,6 +82,7 @@
     <Compile Include="Classes\DataObjects\AlertType.vb" />
     <Compile Include="Classes\DataObjects\AlertTypeOccurance.vb" />
     <Compile Include="Classes\DataObjects\Application.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationBooking.vb" />
     <Compile Include="Classes\DataObjects\ApplicationDriver.vb" />
     <Compile Include="Classes\DataObjects\ApplicationGeoFence.vb" />
     <Compile Include="Classes\DataObjects\ApplicationGeoFenceProperty.vb" />

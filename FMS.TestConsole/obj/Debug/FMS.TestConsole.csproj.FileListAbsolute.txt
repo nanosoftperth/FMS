@@ -24,3 +24,16 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Te
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.exe
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.pdb
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.TestConsole.exe.config
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.TestConsole.exe
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.TestConsole.pdb
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.Business.dll
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.ServiceAccess.dll
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\Newtonsoft.Json.dll
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.Business.pdb
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.Business.xml
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.ServiceAccess.pdb
+C:\temp\ryan\FMS\FMS.TestConsole\bin\Debug\FMS.ServiceAccess.xml
+C:\temp\ryan\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.csprojResolveAssemblyReference.cache
+C:\temp\ryan\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.exe
+C:\temp\ryan\FMS\FMS.TestConsole\obj\Debug\FMS.TestConsole.pdb

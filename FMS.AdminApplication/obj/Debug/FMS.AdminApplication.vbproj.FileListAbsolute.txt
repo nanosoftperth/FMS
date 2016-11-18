@@ -30,3 +30,19 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Ad
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.exe
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.pdb
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.exe.config
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.exe
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.pdb
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.AdminApplication.xml
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.Business.dll
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\Newtonsoft.Json.dll
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.Business.pdb
+C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.Business.xml
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.vbprojResolveAssemblyReference.cache
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.Form1.resources
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.Resources.resources
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.vbproj.GenerateResource.Cache
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.exe.licenses
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.exe
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.xml
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.pdb
