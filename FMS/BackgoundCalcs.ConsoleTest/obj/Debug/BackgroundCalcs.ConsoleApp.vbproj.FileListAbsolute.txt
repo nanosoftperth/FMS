@@ -32,3 +32,20 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\Backgo
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.exe
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.pdb
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.exe.config
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.exe
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.pdb
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ConsoleApp.xml
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ClassLib.dll
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\FMS.Business.dll
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\Newtonsoft.Json.dll
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ClassLib.pdb
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\BackgroundCalcs.ClassLib.xml
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\FMS.Business.pdb
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\bin\Debug\FMS.Business.xml
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.vbprojResolveAssemblyReference.cache
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.Resources.resources
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.vbproj.GenerateResource.Cache
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.exe
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.xml
+C:\temp\ryan\FMS\BackgoundCalcs.ConsoleTest\obj\Debug\BackgroundCalcs.ConsoleApp.pdb

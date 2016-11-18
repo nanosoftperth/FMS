@@ -30,7 +30,6 @@ Public Class ThisSession
         End Set
     End Property
 
-
     Public Shared Property ApplicationVehicleID As Guid
         Get
             Return HttpContext.Current.Session("ApplicationVehicleID")

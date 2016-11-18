@@ -586,6 +586,13 @@
       <DependentUpon>test3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Test_Forms\TestRyan.aspx.designer.vb">
+      <DependentUpon>TestRyan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\TestRyan.aspx.vb">
+      <DependentUpon>TestRyan.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\test_Settings.aspx.designer.vb">
       <DependentUpon>test_Settings.aspx</DependentUpon>
     </Compile>
@@ -764,6 +771,7 @@
     <Content Include="Test_Forms\ReportPopupTester.aspx" />
     <Content Include="Test_Forms\test2.aspx" />
     <Content Include="Test_Forms\test3.aspx" />
+    <Content Include="Test_Forms\TestRyan.aspx" />
     <Content Include="Test_Forms\test_Settings.aspx" />
     <Content Include="Test_Forms\TimeZoneTester.aspx" />
     <Content Include="WebForm1.aspx" />
