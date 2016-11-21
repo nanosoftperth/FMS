@@ -63,19 +63,6 @@
       <Column Name="NativeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.ApplicationDriver" Member="ApplicationDrivers">
-    <Type Name="ApplicationDriver">
-      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="photo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="photoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="emailaddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ApplicationFeatureRole" Member="ApplicationFeatureRoles">
     <Type Name="ApplicationFeatureRole">
       <Column Name="ApplicationFeatureRoledID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -85,22 +72,6 @@
       <Association Name="aspnet_Application_ApplicationFeatureRole" Member="aspnet_Application" ThisKey="ApplicationID" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
       <Association Name="aspnet_Role_ApplicationFeatureRole" Member="aspnet_Role" ThisKey="RoleID" OtherKey="RoleId" Type="aspnet_Role" IsForeignKey="true" />
       <Association Name="Feature_ApplicationFeatureRole" Member="Feature" ThisKey="FeatureID" OtherKey="FeatureID" Type="Feature" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ApplicationGeoFence" Member="ApplicationGeoFences">
-    <Type Name="ApplicationGeoFence">
-      <Column Name="ApplicationGeoFenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplictionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Colour" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="isCircular" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="CircleRadiusMetres" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CircleCentre" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="ApplicationGeoFence_ApplicationGeoFenceSide" Member="ApplicationGeoFenceSides" ThisKey="ApplicationGeoFenceID" OtherKey="ApplicationGeoFenceID" Type="ApplicationGeoFenceSide" />
-      <Association Name="aspnet_Application_ApplicationGeoFence" Member="aspnet_Application" ThisKey="ApplictionID" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ApplicationGeoFence_20160615" Member="ApplicationGeoFence_20160615s">
@@ -221,12 +192,12 @@
       <Column Name="TimeZoneDSTOffset" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="TimezoneDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Association Name="aspnet_Application_ApplicationFeatureRole" Member="ApplicationFeatureRoles" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationFeatureRole" />
-      <Association Name="aspnet_Application_ApplicationGeoFence" Member="ApplicationGeoFences" ThisKey="ApplicationId" OtherKey="ApplictionID" Type="ApplicationGeoFence" />
       <Association Name="aspnet_Application_ApplicationSettingValue" Member="ApplicationSettingValues" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationSettingValue" />
       <Association Name="aspnet_Application_aspnet_Membership" Member="aspnet_Memberships" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Membership" />
       <Association Name="aspnet_Application_aspnet_Path" Member="aspnet_Paths" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Path" />
       <Association Name="aspnet_Application_aspnet_Role" Member="aspnet_Roles" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Role" />
       <Association Name="aspnet_Application_aspnet_User" Member="aspnet_Users" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_User" />
+      <Association Name="aspnet_Application_ApplicationGeoFence" Member="ApplicationGeoFences" ThisKey="ApplicationId" OtherKey="ApplictionID" Type="ApplicationGeoFence" />
     </Type>
   </Table>
   <Table Name="dbo.aspnet_Membership" Member="aspnet_Memberships">
@@ -544,19 +515,51 @@
       <Column Name="DateLogged" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.ApplicationGeoFence" Member="ApplicationGeoFences">
+    <Type Name="ApplicationGeoFence">
+      <Column Name="ApplicationGeoFenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplictionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Colour" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="isCircular" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CircleRadiusMetres" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CircleCentre" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="isBooking" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="ApplicationGeoFence_ApplicationGeoFenceSide" Member="ApplicationGeoFenceSides" ThisKey="ApplicationGeoFenceID" OtherKey="ApplicationGeoFenceID" Type="ApplicationGeoFenceSide" />
+      <Association Name="aspnet_Application_ApplicationGeoFence" Member="aspnet_Application" ThisKey="ApplictionID" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ApplicationDriver" Member="ApplicationDrivers">
+    <Type Name="ApplicationDriver">
+      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="photo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="photoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="emailaddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationBookings" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationBooking" />
+    </Type>
+  </Table>
   <Table Name="dbo.ApplicationBooking" Member="ApplicationBookings">
     <Type Name="ApplicationBooking">
       <Column Name="ApplicationBookingId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ArrivalTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="GeofenceLeave" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="GeofenceDestination" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GeofenceLeave" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GeofenceDestination" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="IsAlert5min" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="IsAlertLeaveForPickup" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ContactId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ContactID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CustomerEmail" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

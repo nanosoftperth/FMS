@@ -6,39 +6,7 @@ FMS.WEB
 </name>
 </assembly>
 <members>
-<member name="F:FMS.WEB.TestRyan.ASPxGridView1">
-	<summary>
-ASPxGridView1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.WEB.TestRyan.odsAppBooking">
-	<summary>
-odsAppBooking control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.WEB.TestRyan.odsApplicatoinBooking">
-	<summary>
-odsApplicatoinBooking control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.WEB.TestRyan.odsApplicationGeoFence">
-	<summary>
-odsApplicationGeoFence control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.WEB.ChangePasswordSuccess.form1">
+<member name="F:FMS.WEB.ChangePasswordSuccess.form1">
 	<summary>
 form1 control.
 </summary>
@@ -978,6 +946,38 @@ To modify move field declaration from designer file to code-behind file.
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="F:FMS.WEB.TestRyan.ASPxGridView1">
+	<summary>
+ASPxGridView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.TestRyan.odsAppBooking">
+	<summary>
+odsAppBooking control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.TestRyan.odsApplicatoinBooking">
+	<summary>
+odsApplicatoinBooking control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.TestRyan.odsApplicationGeoFence">
+	<summary>
+odsApplicationGeoFence control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:FMS.WEB.MainLightMaster.ASPxRoundPanel1">
 	<summary>
 ASPxRoundPanel1 control.
@@ -1157,6 +1157,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:FMS.WEB.ResourceMgmnt.odsBookingDriver">
 	<summary>
 odsBookingDriver control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsBookingGeofence">
+	<summary>
+odsBookingGeofence control.
 </summary>
 	<remarks>
 Auto-generated field.

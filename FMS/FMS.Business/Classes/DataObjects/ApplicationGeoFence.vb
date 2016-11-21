@@ -15,6 +15,15 @@ Namespace DataObjects
         Public Property IsCircular As Boolean
         Public Property CircleRadiusMetres As Decimal
         Public Property CircleCentre As String
+        Dim _isBooking As Boolean
+        Public Property isBooking As Nullable(Of Boolean)
+            Set(value As Nullable(Of Boolean))
+                _isBooking = If(value Is Nothing, False, value)
+            End Set
+            Get
+                Return _isBooking
+            End Get
+        End Property
 
         'this is not read-only becuase this causes it to be invisible in javascript
         Public Property CircleCentreLat As Decimal
@@ -75,6 +84,7 @@ Namespace DataObjects
                 .IsCircular = If(g.isCircular.HasValue, g.isCircular, False) 'default to polygon (historical reasons, shold not need to do this in future)
                 .CircleRadiusMetres = If(g.CircleRadiusMetres.HasValue, g.CircleRadiusMetres, False)
                 .CircleCentre = g.CircleCentre
+                .isBooking = g.isBooking
             End With
 
             For Each s As Business.ApplicationGeoFenceSide In g.ApplicationGeoFenceSides.OrderBy(Function(x) x.loadOrder)
@@ -95,6 +105,7 @@ Namespace DataObjects
                 .ApplictionID = agf.ApplicationID
                 .DateCreated = Now
                 .Description = agf.Description
+                .isBooking = agf.isBooking
                 .Name = agf.Name
                 .Colour = agf.Colour
                 .UserID = agf.UserID
@@ -142,6 +153,7 @@ Namespace DataObjects
                 x.ApplictionID = agf.ApplicationID
                 x.DateCreated = agf.DateCreated
                 x.Description = agf.Description
+                'x.isBooking = agf.isBooking
                 x.Name = agf.Name
                 x.UserID = agf.UserID
                 x.Colour = agf.Colour
