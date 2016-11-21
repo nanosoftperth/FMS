@@ -25,7 +25,6 @@
 
         Public ReadOnly Property ApplicationDriverIDAsString As String
             Get
-
                 If ApplicationDriverID = Guid.Empty Then
                     Return String.Empty
                 Else
@@ -53,7 +52,6 @@
         End Sub
 
         Public Sub New(ad As FMS.Business.ApplicationDriver)
-
             With ad
                 Me.ApplicationDriverID = ad.ApplicationDriverID
                 Me.FirstName = ad.FirstName

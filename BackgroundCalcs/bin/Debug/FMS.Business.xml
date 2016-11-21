@@ -6,12 +6,7 @@ FMS.Business
 </name>
 </assembly>
 <members>
-<member name="M:FMS.Business.DataObjects.ApplicationBooking.#ctor">
-	<summary>
- for serialization 
- </summary>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(System.Guid,System.Nullable{System.DateTime})">
+<member name="M:FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(System.Guid,System.Nullable{System.DateTime})">
 	<summary>
  Processes the geofence collisons, return the earliest date for us 
  to calcluate the new geo-fence alerts
@@ -190,6 +185,11 @@ FMS.Business
 </member><member name="M:FMS.Business.DataObjects.AlertTypeOccurance.#ctor">
 	<summary>
  for serialisation purposes
+ </summary>
+	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.ApplicationBooking.#ctor">
+	<summary>
+ for serialization 
  </summary>
 	<remarks></remarks>
 </member>

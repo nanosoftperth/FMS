@@ -6,14 +6,19 @@
         Public Property ApplicationDriverID As System.Nullable(Of System.Guid)
         Public Property ApplicationId As System.Nullable(Of System.Guid)
         Public Property ArrivalTime As System.Nullable(Of Date)
-        Public Property GeofenceLeave As String
-        Public Property GeofenceDestination As String
-        Public Property ContactId As System.Nullable(Of System.Guid)
+        Public Property GeofenceLeave As System.Guid
+        Public Property GeofenceDestination As System.Guid
+        Public Property ContactID As System.Guid
         Public Property CustomerPhone As String
         Public Property CustomerEmail As String
         Public Property IsAlert5min As System.Nullable(Of Boolean)
         Public Property IsAlertLeaveForPickup As System.Nullable(Of Boolean)
-
+        Public ReadOnly Property DriverPhotoBinary() As Byte()
+            Get
+                Return Driver.PhotoBinary
+            End Get
+        End Property
+        Public Property Driver As ApplicationDriver
 #End Region
 
 #Region "constructors"
@@ -33,7 +38,7 @@
                 .ArrivalTime = d.ArrivalTime
                 .GeofenceLeave = d.GeofenceLeave
                 .GeofenceDestination = d.GeofenceDestination
-                .ContactId = d.ContactId
+                .ContactID = d.ContactID
                 .CustomerPhone = d.CustomerPhone
                 .CustomerEmail = d.CustomerEmail
                 .IsAlert5min = d.IsAlert5min
@@ -49,7 +54,6 @@
         Public Shared Sub Create(ad As DataObjects.ApplicationBooking)
 
             Dim d As New FMS.Business.ApplicationBooking
-
             With d
                 .ApplicationBookingId = Guid.NewGuid
                 .ApplicationDriverID = ad.ApplicationDriverID
@@ -57,7 +61,7 @@
                 .ArrivalTime = ad.ArrivalTime
                 .GeofenceLeave = ad.GeofenceLeave
                 .GeofenceDestination = ad.GeofenceDestination
-                .ContactId = ad.ContactId
+                .ContactID = ad.ContactID
                 .CustomerPhone = ad.CustomerPhone
                 .CustomerEmail = ad.CustomerEmail
                 .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
@@ -85,7 +89,7 @@
                     .ArrivalTime = ad.ArrivalTime
                     .GeofenceLeave = ad.GeofenceLeave
                     .GeofenceDestination = ad.GeofenceDestination
-                    .ContactId = ad.ContactId
+                    .ContactID = ad.ContactID
                     .CustomerPhone = ad.CustomerPhone
                     .CustomerEmail = ad.CustomerEmail
                     .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
@@ -125,11 +129,12 @@
                                                                 .ArrivalTime = d.ArrivalTime,
                                                                 .GeofenceLeave = d.GeofenceLeave,
                                                                 .GeofenceDestination = d.GeofenceDestination,
-                                                                .ContactId = d.ContactId,
+                                                                .ContactID = d.ContactID,
                                                                 .CustomerPhone = d.CustomerPhone,
                                                                 .CustomerEmail = d.CustomerEmail,
                                                                 .IsAlert5min = d.IsAlert5min,
-                                                                .IsAlertLeaveForPickup = d.IsAlertLeaveForPickup}
+                                                                .IsAlertLeaveForPickup = d.IsAlertLeaveForPickup,
+                                                                .Driver = New DataObjects.ApplicationDriver(d.ApplicationDriver)}
                                                             ).OrderByDescending(Function(f) f.ApplicationBookingId).ToList
         End Function
 
