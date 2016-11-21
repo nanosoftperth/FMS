@@ -7,6 +7,7 @@ Public Class ResourceMgmnt
 
 #Region "odometer information"
 
+
     Public Sub dgvDetailOdometerReadings_BeforePerformDataSelect(sender As Object, e As System.EventArgs)
         ThisSession.ApplicationVehicleID = CType(sender, ASPxGridView).GetMasterRowKeyValue()
     End Sub
@@ -212,4 +213,30 @@ Public Class ResourceMgmnt
         ab.ApplicationId = ThisSession.ApplicationID
 
     End Sub
+
+    Protected Sub odsBookingContact_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
+        Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.Contact)
+        ab.ApplicationID = ThisSession.ApplicationID
+    End Sub
+
+    'Protected Sub Unnamed_ItemRequestedByValue(sender As Object, e As DevExpress.Web.ListEditItemRequestedByValueEventArgs)
+    '    Dim id As Guid
+    '    If e.Value Is Nothing Or Not Guid.TryParse(e.Value.ToString, id) Then
+    '        Return
+    '    End If
+    '    Dim cbx = CType(sender, ASPxComboBox)
+
+    '    cbx.DataSource = FMS.Business.DataObjects.Contact.GetAllForApplication(ThisSession.ApplicationID).Where(Function(x) x.ContactID = id).ToList
+    '    cbx.DataBind()
+
+    'End Sub
+
+    'Protected Sub Unnamed_ItemsRequestedByFilterCondition(sender As Object, e As DevExpress.Web.ListEditItemsRequestedByFilterConditionEventArgs)
+    '    Dim cbx = CType(sender, ASPxComboBox)
+    '    Dim skip = e.BeginIndex
+    '    Dim take = e.EndIndex - e.BeginIndex + 1
+
+    '    cbx.DataSource = FMS.Business.DataObjects.Contact.GetAllForApplication(ThisSession.ApplicationID).Where(Function(x) x.NameFormatted.StartsWith(e.Filter)).Skip(skip).Take(take).ToList
+    '    cbx.DataBind()
+    'End Sub
 End Class

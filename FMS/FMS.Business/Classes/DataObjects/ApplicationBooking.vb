@@ -8,7 +8,7 @@
         Public Property ArrivalTime As System.Nullable(Of Date)
         Public Property GeofenceLeave As String
         Public Property GeofenceDestination As String
-        Public Property CustomerName As String
+        Public Property ContactId As System.Nullable(Of System.Guid)
         Public Property CustomerPhone As String
         Public Property CustomerEmail As String
         Public Property IsAlert5min As System.Nullable(Of Boolean)
@@ -33,7 +33,7 @@
                 .ArrivalTime = d.ArrivalTime
                 .GeofenceLeave = d.GeofenceLeave
                 .GeofenceDestination = d.GeofenceDestination
-                .CustomerName = d.CustomerName
+                .ContactId = d.ContactId
                 .CustomerPhone = d.CustomerPhone
                 .CustomerEmail = d.CustomerEmail
                 .IsAlert5min = d.IsAlert5min
@@ -57,7 +57,7 @@
                 .ArrivalTime = ad.ArrivalTime
                 .GeofenceLeave = ad.GeofenceLeave
                 .GeofenceDestination = ad.GeofenceDestination
-                .CustomerName = ad.CustomerName
+                .ContactId = ad.ContactId
                 .CustomerPhone = ad.CustomerPhone
                 .CustomerEmail = ad.CustomerEmail
                 .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
@@ -85,7 +85,7 @@
                     .ArrivalTime = ad.ArrivalTime
                     .GeofenceLeave = ad.GeofenceLeave
                     .GeofenceDestination = ad.GeofenceDestination
-                    .CustomerName = ad.CustomerName
+                    .ContactId = ad.ContactId
                     .CustomerPhone = ad.CustomerPhone
                     .CustomerEmail = ad.CustomerEmail
                     .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
@@ -125,7 +125,7 @@
                                                                 .ArrivalTime = d.ArrivalTime,
                                                                 .GeofenceLeave = d.GeofenceLeave,
                                                                 .GeofenceDestination = d.GeofenceDestination,
-                                                                .CustomerName = d.CustomerName,
+                                                                .ContactId = d.ContactId,
                                                                 .CustomerPhone = d.CustomerPhone,
                                                                 .CustomerEmail = d.CustomerEmail,
                                                                 .IsAlert5min = d.IsAlert5min,
