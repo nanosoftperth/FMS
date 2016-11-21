@@ -13,7 +13,11 @@
         Public Property MobileNumber As String
         Public Property CompanyName As String
         Public Property ContactID As Guid
-
+        Public ReadOnly Property NameFormatted As String
+            Get
+                Return String.Format("{0} {1}", Forname, Surname)
+            End Get
+        End Property
 
 #End Region
 

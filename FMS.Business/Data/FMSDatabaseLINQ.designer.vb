@@ -1958,7 +1958,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -3412,7 +3412,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -10347,15 +10347,15 @@ Partial Public Class ApplicationBooking
 	
 	Private _GeofenceDestination As String
 	
-	Private _CustomerName As String
+	Private _IsAlert5min As System.Nullable(Of Boolean)
+	
+	Private _IsAlertLeaveForPickup As System.Nullable(Of Boolean)
+	
+	Private _ContactId As System.Nullable(Of System.Guid)
 	
 	Private _CustomerPhone As String
 	
 	Private _CustomerEmail As String
-	
-	Private _IsAlert5min As System.Nullable(Of Boolean)
-	
-	Private _IsAlertLeaveForPickup As System.Nullable(Of Boolean)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -10388,9 +10388,17 @@ Partial Public Class ApplicationBooking
     End Sub
     Partial Private Sub OnGeofenceDestinationChanged()
     End Sub
-    Partial Private Sub OnCustomerNameChanging(value As String)
+    Partial Private Sub OnIsAlert5minChanging(value As System.Nullable(Of Boolean))
     End Sub
-    Partial Private Sub OnCustomerNameChanged()
+    Partial Private Sub OnIsAlert5minChanged()
+    End Sub
+    Partial Private Sub OnIsAlertLeaveForPickupChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsAlertLeaveForPickupChanged()
+    End Sub
+    Partial Private Sub OnContactIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnContactIdChanged()
     End Sub
     Partial Private Sub OnCustomerPhoneChanging(value As String)
     End Sub
@@ -10399,14 +10407,6 @@ Partial Public Class ApplicationBooking
     Partial Private Sub OnCustomerEmailChanging(value As String)
     End Sub
     Partial Private Sub OnCustomerEmailChanged()
-    End Sub
-    Partial Private Sub OnIsAlert5minChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnIsAlert5minChanged()
-    End Sub
-    Partial Private Sub OnIsAlertLeaveForPickupChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnIsAlertLeaveForPickupChanged()
     End Sub
     #End Region
 	
@@ -10512,18 +10512,50 @@ Partial Public Class ApplicationBooking
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(MAX)")>  _
-	Public Property CustomerName() As String
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlert5min", DbType:="Bit")>  _
+	Public Property IsAlert5min() As System.Nullable(Of Boolean)
 		Get
-			Return Me._CustomerName
+			Return Me._IsAlert5min
 		End Get
 		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me.OnCustomerNameChanging(value)
+			If (Me._IsAlert5min.Equals(value) = false) Then
+				Me.OnIsAlert5minChanging(value)
 				Me.SendPropertyChanging
-				Me._CustomerName = value
-				Me.SendPropertyChanged("CustomerName")
-				Me.OnCustomerNameChanged
+				Me._IsAlert5min = value
+				Me.SendPropertyChanged("IsAlert5min")
+				Me.OnIsAlert5minChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlertLeaveForPickup", DbType:="Bit")>  _
+	Public Property IsAlertLeaveForPickup() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAlertLeaveForPickup
+		End Get
+		Set
+			If (Me._IsAlertLeaveForPickup.Equals(value) = false) Then
+				Me.OnIsAlertLeaveForPickupChanging(value)
+				Me.SendPropertyChanging
+				Me._IsAlertLeaveForPickup = value
+				Me.SendPropertyChanged("IsAlertLeaveForPickup")
+				Me.OnIsAlertLeaveForPickupChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactId", DbType:="UniqueIdentifier")>  _
+	Public Property ContactId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ContactId
+		End Get
+		Set
+			If (Me._ContactId.Equals(value) = false) Then
+				Me.OnContactIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ContactId = value
+				Me.SendPropertyChanged("ContactId")
+				Me.OnContactIdChanged
 			End If
 		End Set
 	End Property
@@ -10556,38 +10588,6 @@ Partial Public Class ApplicationBooking
 				Me._CustomerEmail = value
 				Me.SendPropertyChanged("CustomerEmail")
 				Me.OnCustomerEmailChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlert5min", DbType:="Bit")>  _
-	Public Property IsAlert5min() As System.Nullable(Of Boolean)
-		Get
-			Return Me._IsAlert5min
-		End Get
-		Set
-			If (Me._IsAlert5min.Equals(value) = false) Then
-				Me.OnIsAlert5minChanging(value)
-				Me.SendPropertyChanging
-				Me._IsAlert5min = value
-				Me.SendPropertyChanged("IsAlert5min")
-				Me.OnIsAlert5minChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlertLeaveForPickup", DbType:="Bit")>  _
-	Public Property IsAlertLeaveForPickup() As System.Nullable(Of Boolean)
-		Get
-			Return Me._IsAlertLeaveForPickup
-		End Get
-		Set
-			If (Me._IsAlertLeaveForPickup.Equals(value) = false) Then
-				Me.OnIsAlertLeaveForPickupChanging(value)
-				Me.SendPropertyChanging
-				Me._IsAlertLeaveForPickup = value
-				Me.SendPropertyChanged("IsAlertLeaveForPickup")
-				Me.OnIsAlertLeaveForPickupChanged
 			End If
 		End Set
 	End Property
@@ -10902,7 +10902,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

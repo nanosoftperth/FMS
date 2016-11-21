@@ -565,7 +565,7 @@
                                             <Items>
                                                 <dx:GridViewColumnLayoutItem ColumnName="ApplicationDriverID" >
                                                 </dx:GridViewColumnLayoutItem>
-                                                <dx:GridViewColumnLayoutItem ColumnName="CustomerName"  >
+                                                <dx:GridViewColumnLayoutItem ColumnName="ContactId">
                                                 </dx:GridViewColumnLayoutItem>
                                                 <dx:GridViewColumnLayoutItem ColumnName="ArrivalTime" >
                                                 </dx:GridViewColumnLayoutItem>
@@ -612,21 +612,56 @@
                                                         </dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="GeofenceDestination" Caption="Geo-fence Destination"  ShowInCustomizationForm="True" VisibleIndex="6">
                                                             <PropertiesTextEdit ClientInstanceName="GeofenceDestination" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
-                                                        
                                                         </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="CustomerName" ShowInCustomizationForm="True" VisibleIndex="7">
-                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataComboboxColumn FieldName="ContactId" Caption="Customer" ShowInCustomizationForm="True" VisibleIndex="7">
+                                                            <PropertiesComboBox DataSourceID="odsBookingContact" TextField="NameFormatted" ValueField="ContactId" ValueType="System.Guid" IncrementalFilteringMode="Contains" >
+                                                            </PropertiesComboBox>
+                                                              <EditItemTemplate>
+                                                            <dx:ASPxGridLookup ID="ASPxGridLookup1" Width="100%" runat="server" 
+                                                                AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingContact" 
+                                                                KeyFieldName="ContactID" TextFormatString="{1}" 
+                                                                Value='<%# Bind("ContactID")%>' IncrementalFilteringMode="Contains">
+                                                                <GridViewProperties>
+                                                                    <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
+                                                                </GridViewProperties>
+                                                                <Columns>
+                                                                    <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowEditButton="False" ShowDeleteButton="False">
+                                                                    </dx:GridViewCommandColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="ContactID"  Visible="false" VisibleIndex="0">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="NameFormatted" Visible="false" VisibleIndex="2">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="Forname" VisibleIndex="3">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="Surname" VisibleIndex="4">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="CompanyName" VisibleIndex="5">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="MobileNumber" VisibleIndex="6">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="EmailAddress" VisibleIndex="7">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridLookup>
+                    
+                                                        </EditItemTemplate>
+                                                        </dx:GridViewDataComboboxColumn>
                                                         <dx:GridViewDataTextColumn FieldName="CustomerPhone" ShowInCustomizationForm="True" VisibleIndex="8">
                                                         </dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="CustomerEmail" ShowInCustomizationForm="True" VisibleIndex="9">
                                                         </dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataCheckColumn FieldName="IsAlert5min" Caption="Alert if 5 min away" ShowInCustomizationForm="True" VisibleIndex="10">
                                                         </dx:GridViewDataCheckColumn>
-                                                        <dx:GridViewDataCheckColumn FieldName="IsAlertLeaveForPickup" Caption="Alert if has left for pickup" ShowInCustomizationForm="True" VisibleIndex="1">
+                                                        <dx:GridViewDataCheckColumn FieldName="IsAlertLeaveForPickup" Caption="Alert if has left for pickup" ShowInCustomizationForm="True" VisibleIndex="11">
                                                         </dx:GridViewDataCheckColumn>
                                                     </Columns>
                                                 </dx:ASPxGridView>
                                     
+                                    <asp:ObjectDataSource ID="odsBookingContact" OnInserting="odsBookingContact_Inserting" runat="server" DataObjectTypeName="FMS.Business.DataObjects.Contact" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllForApplication" TypeName="FMS.Business.DataObjects.Contact" UpdateMethod="Update">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DbType="Guid" Name="appidd" SessionField="ApplicationID" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
                                     <asp:ObjectDataSource ID="odsBookingDriver" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationDriver" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllDrivers" TypeName="FMS.Business.DataObjects.ApplicationDriver" UpdateMethod="Update">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="applicatoinid" SessionField="ApplicationID" />
