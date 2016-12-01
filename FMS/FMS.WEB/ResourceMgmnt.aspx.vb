@@ -218,12 +218,13 @@ Public Class ResourceMgmnt
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.Contact)
         ab.ApplicationID = ThisSession.ApplicationID
     End Sub
+    'THIS IS FOR UPDATING DATA BEFORE INSERT
     Protected Sub odsBookingGeofence_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationGeoFence)
         Dim x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress(ab.Description)
         ab.ApplicationID = ThisSession.ApplicationID
         ab.IsCircular = True
-        ab.CircleRadiusMetres = 2000
+        ab.CircleRadiusMetres = 200
         ab.CircleCentre = x.lat + "|" + x.lng
         ab.isBooking = True
         ab.UserID = ThisSession.User.UserId

@@ -22,20 +22,6 @@
       <Column Name="Complete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.AlertType" Member="AlertTypes">
-    <Type Name="AlertType">
-      <Column Name="ApplicationAlertTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="DriverId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="GeoFenceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Timespan_seconds" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DeliveryGroup" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Action" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SubscriberNativeID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="SendEmail" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="SendText" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.AlertTypeOccurance" Member="AlertTypeOccurances">
     <Type Name="AlertTypeOccurance">
       <Column Name="AlertTypeOccuranceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -560,6 +546,22 @@
       <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CustomerEmail" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlertType" Member="AlertTypes">
+    <Type Name="AlertType">
+      <Column Name="ApplicationAlertTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DriverId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="GeoFenceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Timespan_seconds" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeliveryGroup" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Action" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubscriberNativeID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="SendEmail" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SendText" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isBooking" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isSent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

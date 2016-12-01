@@ -27,7 +27,13 @@ Namespace BackgroundCalculations
             Dim alertTypeOccurances As List(Of DataObjects.AlertTypeOccurance) = DataObjects.AlertTypeOccurance.GetAllForApplication(appid)
 
             'get all the alert defenitions for the application
-            Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid)
+            'TODO: add a filter here which finds alert types which are 
+            'NOT BOOKINGS
+            'OR (are bookings and have not had an alert sent yet)
+
+            'Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid) '--ORI
+            'BY RYAN: 
+            Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid).Where(Function(x) x.isBooking = False Or (x.isBooking = True And x.isSent = False)).ToList
 
             'get all the subscribers
             Dim subscribers As List(Of DataObjects.Subscriber) = FMS.Business.DataObjects.Subscriber.GetAllforApplication(appid)
@@ -65,6 +71,15 @@ Namespace BackgroundCalculations
                         isCorrectDriver = rslt.ApplicationDriverID.Value = alertDriver.ApplicationDriverID
                     End If
 
+                    'somewhere in here we will need to flag the alerttype as "sent" if it is a booking 
+
+                    'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
+                    If alertDefn.isBooking And Not alertDefn.isSent Then
+                        alertDefn.isSent = True
+                        DataObjects.AlertType.Update(alertDefn)
+                    End If
+
+                    
                     Select Case alertDefn.Action
 
 
@@ -161,6 +176,7 @@ Namespace BackgroundCalculations
                 'if the email / texts were sent correctly (without exception) , then log the result in the DB
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.MessageContent) Then DataObjects.AlertTypeOccurance.Create(newAlertTypeOccurance)
 
+                
             End If
 
         End Sub

@@ -53,6 +53,8 @@ Namespace DataObjects
         Public Property SendEmail As Boolean
         Public Property SendText As Boolean
 
+        Public Property isBooking As Boolean
+        Public Property isSent As Boolean
 
 #End Region
 
@@ -65,6 +67,14 @@ Namespace DataObjects
 
             Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
                      Where x.ApplicationID = appID _
+                     Select New DataObjects.AlertType(x)).ToList
+
+        End Function
+        Public Shared Function GetALLForApplicationExSentBooking(appID As Guid) As List(Of DataObjects.AlertType)
+
+
+            Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
+                     Where x.ApplicationID = appID And x.isBooking = False _
                      Select New DataObjects.AlertType(x)).ToList
 
         End Function
@@ -93,7 +103,8 @@ Namespace DataObjects
 
                     .SendEmail = at.SendEmail
                     .SendText = at.SendText
-
+                    .isBooking = at.isBooking
+                    .isSent = at.isSent
                 End With
 
                 SingletonAccess.FMSDataContextContignous.AlertTypes.InsertOnSubmit(newObj)
@@ -131,6 +142,8 @@ Namespace DataObjects
 
                 .SendEmail = at.SendEmail
                 .SendText = at.SendText
+                .isBooking = at.isBooking
+                .isSent = at.isSent
 
             End With
 
@@ -171,9 +184,12 @@ Namespace DataObjects
                 If .DeliveryGroup.HasValue Then DeliveryGroup = .DeliveryGroup.Value
 
                 DriverID = .DriverId
-
+                
                 SendEmail = If(.SendEmail.HasValue, .SendEmail.Value, False)
                 SendText = If(.SendText.HasValue, .SendText.Value, False)
+
+                isBooking = If(.isBooking.HasValue, .isBooking.Value, False)
+                isSent = If(.isSent.HasValue, .isSent.Value, False)
 
 
                 GeoFenceId = .GeoFenceID
