@@ -70,7 +70,36 @@
 
             End With
 
+            Dim desti As New FMS.Business.AlertType
+            With desti
+                .ApplicationAlertTypeID = Guid.NewGuid
+                .ApplicationID = ad.ApplicationId
+                .DriverId = ad.ApplicationDriverID
+                .GeoFenceID = ad.GeofenceDestination
+                .Timespan_seconds = 0
+                .Action = 0
+                .SubscriberNativeID = ad.ContactID
+                .SendEmail = True
+                .SendText = True
+                .isBooking = True
+            End With
+
+            Dim le As New FMS.Business.AlertType
+            With le
+                .ApplicationAlertTypeID = Guid.NewGuid
+                .ApplicationID = ad.ApplicationId
+                .DriverId = ad.ApplicationDriverID
+                .GeoFenceID = ad.GeofenceLeave
+                .Timespan_seconds = 0
+                .Action = 0
+                .SubscriberNativeID = ad.ContactID
+                .SendEmail = True
+                .SendText = True
+                .isBooking = True
+            End With
             SingletonAccess.FMSDataContextContignous.ApplicationBookings.InsertOnSubmit(d)
+            SingletonAccess.FMSDataContextContignous.AlertTypes.InsertOnSubmit(desti)
+            SingletonAccess.FMSDataContextContignous.AlertTypes.InsertOnSubmit(le)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
 
         End Sub
