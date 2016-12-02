@@ -11,7 +11,6 @@
            return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]); // padding
        };
 
-
        Date.prototype.toStringReasonable = function () {
            var yyyy = this.getFullYear().toString();
            var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
@@ -19,7 +18,16 @@
            return dd + '/' + mm + '/' + yyyy
        };
 
-
+       function CloseGeofenceLeaveLookup() {
+           GeofenceLeaveLookup.ConfirmCurrentSelection();
+           GeofenceLeaveLookup.HideDropDown();
+           GeofenceLeaveLookup.Focus();
+       } 
+       function CloseGeofenceDestinationLookup() {
+           GeofenceDestinationLookup.ConfirmCurrentSelection();
+           GeofenceDestinationLookup.HideDropDown();
+           GeofenceDestinationLookup.Focus();
+       } 
        function dateEditDay_DateChanged(s, e) {
 
            //dateEditDay, timeEditFrom, timeEditTo, dgvApplicationVehicleDriver
@@ -555,22 +563,25 @@
                                     <PropertiesComboBox DataSourceID="odsBookingGeofence" TextField="Name" ValueField="ApplicationGeoFenceID">
                                     </PropertiesComboBox>
                                     <EditItemTemplate>
-                                       <dx:ASPxGridLookup ID="ASPxGridLookup1" Width="100%" runat="server" 
-                                          AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingGeofence" 
+                                       <dx:ASPxGridLookup ID="GeofenceLeaveLookup" ClientInstanceName="GeofenceLeaveLookup" Width="100%" runat="server" 
+                                          AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingGeofence"
                                           KeyFieldName="ApplicationGeoFenceID" TextFormatString="{1}" 
                                           Value='<%# Bind("GeofenceLeave")%>' IncrementalFilteringMode="Contains">
+                                          
                                           <GridViewProperties>
+                                              <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
                                              <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
+                                              <SettingsCommandButton NewButton-Text="Add New Address"></SettingsCommandButton>
+                                        <Settings ShowStatusBar="Visible" />
                                           </GridViewProperties>
+                                           
                                           <Columns>
-                                             <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowEditButton="False" ShowDeleteButton="False">
+                                             <dx:GridViewCommandColumn VisibleIndex="0" Width="50px" ShowNewButtonInHeader="true" ShowEditButton="False" ShowDeleteButton="False">
                                              </dx:GridViewCommandColumn>
                                              <dx:GridViewDataTextColumn FieldName="ApplicationGeoFenceID"  Visible="false" VisibleIndex="1">
                                              </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="Name" Caption="Geo-Fence" VisibleIndex="2">
-                                             </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="Description" Width="250px" VisibleIndex="3">
-                                                <PropertiesTextEdit Style-CssClass="search-address" Width="250px" ClientInstanceName="Description" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
+                                             <dx:GridViewDataTextColumn FieldName="Name" Caption="Address" EditFormSettings-Caption="Type address here:" Width="250px" VisibleIndex="3">
+                                                <PropertiesTextEdit Style-CssClass="search-address" Width="250px" ClientInstanceName="Name" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
                                              </dx:GridViewDataTextColumn>
                                           </Columns>
                                        </dx:ASPxGridLookup>
@@ -580,22 +591,23 @@
                                     <PropertiesComboBox DataSourceID="odsBookingGeofence" TextField="Name" ValueField="ApplicationGeoFenceID">
                                     </PropertiesComboBox>
                                     <EditItemTemplate>
-                                       <dx:ASPxGridLookup ID="ASPxGridLookup1" Width="100%" runat="server" 
+                                       <dx:ASPxGridLookup ID="GeofenceDestinationLookup" ClientInstanceName="GeofenceDestinationLookup" Width="100%" runat="server" 
                                           AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingGeofence" 
                                           KeyFieldName="ApplicationGeoFenceID" TextFormatString="{1}" 
                                           Value='<%# Bind("GeofenceDestination")%>' IncrementalFilteringMode="Contains">
                                           <GridViewProperties>
+                                              <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
                                              <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
+                                              <SettingsCommandButton NewButton-Text="Add New Address"></SettingsCommandButton>
+                                        <Settings ShowStatusBar="Visible" />
                                           </GridViewProperties>
                                           <Columns>
-                                             <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowEditButton="False" ShowDeleteButton="False">
+                                             <dx:GridViewCommandColumn VisibleIndex="0" Width="50px" ShowNewButtonInHeader="true" ShowEditButton="False" ShowDeleteButton="False">
                                              </dx:GridViewCommandColumn>
                                              <dx:GridViewDataTextColumn FieldName="ApplicationGeoFenceID"  Visible="false" VisibleIndex="1">
                                              </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="Name" Caption="Geo-Fence" VisibleIndex="2">
-                                             </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="Description" Width="250px" VisibleIndex="3">
-                                                <PropertiesTextEdit Style-CssClass="search-address" Width="250px" ClientInstanceName="Description" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
+                                             <dx:GridViewDataTextColumn FieldName="Name" Caption="Address" EditFormSettings-Caption="Type address here:" Width="250px" VisibleIndex="3">
+                                                <PropertiesTextEdit Style-CssClass="search-address" Width="250px" ClientInstanceName="Name" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
                                              </dx:GridViewDataTextColumn>
                                           </Columns>
                                        </dx:ASPxGridLookup>

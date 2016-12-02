@@ -203,6 +203,15 @@ Partial Public Class FleetMap
     Protected WithEvents cbViewGeoFences As Global.DevExpress.Web.ASPxCheckBox
 
     '''<summary>
+    '''cbViewGeoFencesWithBooking control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbViewGeoFencesWithBooking As Global.DevExpress.Web.ASPxCheckBox
+
+    '''<summary>
     '''cbViewGeoFenceLabels control.
     '''</summary>
     '''<remarks>

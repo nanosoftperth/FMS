@@ -279,6 +279,7 @@ function cbViewGeoFences_checkChanged(event_args) {
 
 
     cbViewGeoFences.SetEnabled(false);
+    cbViewGeoFencesWithBooking.SetEnabled(false);
 
     var waschecked = cbViewGeoFences.GetChecked();
 
@@ -287,12 +288,14 @@ function cbViewGeoFences_checkChanged(event_args) {
     } else {
         destroyAllGeoFencesAndLabels();
         cbViewGeoFences.SetEnabled(true);
+        cbViewGeoFencesWithBooking.SetEnabled(true);
     }
 }
 
 function getGeoFencesFromDBAndShow_finally() {
 
     cbViewGeoFences.SetEnabled(true);
+    cbViewGeoFencesWithBooking.SetEnabled(true);
     return false;
 }
 
@@ -334,7 +337,9 @@ function getGeoFencesFromDBAndShow_successCallback(result) {
     destroyAllGeoFencesAndLabels();
 
     result.d._GeoFences.forEach(function (item, index) {
-
+        if (!(cbViewGeoFencesWithBooking.GetChecked())) {
+            if (item.isBooking) return true;
+        }
         var colour = item.Colour;
         var name = item.Name;
 

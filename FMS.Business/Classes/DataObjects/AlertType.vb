@@ -62,6 +62,9 @@ Namespace DataObjects
 #Region "Getters and setters"
 
 
+
+        'Public Shared Function GetAllOpenBookings
+
         Public Shared Function GetALLForApplication(appID As Guid) As List(Of DataObjects.AlertType)
 
 
@@ -71,8 +74,6 @@ Namespace DataObjects
 
         End Function
         Public Shared Function GetALLForApplicationExSentBooking(appID As Guid) As List(Of DataObjects.AlertType)
-
-
             Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
                      Where x.ApplicationID = appID And x.isBooking = False _
                      Select New DataObjects.AlertType(x)).ToList
