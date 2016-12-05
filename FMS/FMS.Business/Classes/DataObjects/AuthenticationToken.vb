@@ -10,7 +10,8 @@
         Public Property UserID As Guid
         Public Property ExpiryDate As Date
         Public Property StartDate As Date
-
+        Public Property TokenType As String
+        Public Property isFPUsable As Boolean
 #End Region
 
 #Region "constructors"
@@ -24,7 +25,8 @@
                 Me.UserID = x.UserID
                 Me.ExpiryDate = x.ExpiryDate.timezoneToClient
                 Me.StartDate = x.StartDate.timezoneToClient
-
+                Me.TokenType = x.TokenType
+                Me.isFPUsable = x.isFPUsable
             End With
 
         End Sub
@@ -46,6 +48,7 @@
 
             Dim dbToken As New Business.AuthenticationToken
 
+            With New LINQtoSQLClassesDataContext
             With dbToken
                 .ApplicationID = t.ApplicationID
                 .ExpiryDate = t.ExpiryDate.timezoneToPerth
@@ -53,11 +56,39 @@
                 .TokenId = t.TokenID
                 .UserID = t.UserID
                 .TokenId = If(t.TokenID = Guid.Empty, Guid.NewGuid, t.TokenID)
+                .TokenType = t.TokenType
+                .isFPUsable = t.isFPUsable
             End With
 
-            SingletonAccess.FMSDataContextContignous.AuthenticationTokens.InsertOnSubmit(dbToken)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                .AuthenticationTokens.InsertOnSubmit(dbToken)
+                .SubmitChanges()
+            End With
 
+            Return dbToken.TokenId
+
+        End Function
+        Public Shared Function Update(t As DataObjects.AuthenticationToken) As Guid
+
+            Dim dbToken As FMS.Business.AuthenticationToken
+
+            With New LINQtoSQLClassesDataContext
+                dbToken = .AuthenticationTokens. _
+                                Where(Function(x) x.TokenId = t.TokenID).SingleOrDefault
+
+                With dbToken
+                    .ApplicationID = t.ApplicationID
+                    .ExpiryDate = t.ExpiryDate.timezoneToPerth
+                    .StartDate = t.StartDate.timezoneToPerth
+                    .TokenId = t.TokenID
+                    .UserID = t.UserID
+                    .TokenType = t.TokenType
+                    .isFPUsable = t.isFPUsable
+                End With
+
+                .SubmitChanges()
+
+            End With
+            
             Return dbToken.TokenId
 
         End Function
@@ -75,7 +106,28 @@
             Return If(t Is Nothing, Nothing, New DataObjects.AuthenticationToken(t))
 
         End Function
+        Public Shared Function GetFPTokenFromID(tokenID As Guid) As AuthenticationToken
 
+
+            Dim t As Business.AuthenticationToken = SingletonAccess.FMSDataContextNew. _
+                            AuthenticationTokens.Where(Function(x) x.TokenId = tokenID And
+                                                           x.ExpiryDate > Now And
+                                                           x.TokenType = "FP" And
+                                                           x.isFPUsable = True).SingleOrDefault()
+
+            Return If(t Is Nothing, Nothing, New DataObjects.AuthenticationToken(t))
+
+        End Function
+        Public Shared Function GetExistingTokenIdForUser(userID As Guid) As Guid
+            Dim t As Business.AuthenticationToken = SingletonAccess.FMSDataContextNew. _
+                            AuthenticationTokens.Where(Function(x) x.UserID = userID And
+                                                           x.ExpiryDate > Now And
+                                                           x.TokenType = "FP" And
+                                                           x.isFPUsable = True).SingleOrDefault()
+
+            Return If(t Is Nothing, Nothing, t.TokenId)
+
+        End Function
 #End Region
 
     End Class

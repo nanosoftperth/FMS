@@ -15,36 +15,36 @@
                                 <p>Use the form below to create a new account.</p>
                                 <p>Passwords are required to be a minimum of <%= Membership.MinRequiredPasswordLength %> characters in length.</p>
                             </div>
-                            <dx:ASPxLabel ID="lblUserName" runat="server" AssociatedControlID="tbUserName" Text="User Name:" />
+                            <dx:ASPxLabel ID="lblUserName" Theme="SoftOrange" runat="server" AssociatedControlID="tbUserName" Text="User Name:" />
                             <div class="form-field">
-                                <dx:ASPxTextBox ID="tbUserName" runat="server" Width="200px">
+                                <dx:ASPxTextBox Theme="SoftOrange" ID="tbUserName" runat="server" Width="200px">
                                     <ValidationSettings ValidationGroup="RegisterUserValidationGroup">
                                         <RequiredField ErrorText="User Name is required." IsRequired="true" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </div>
-                            <dx:ASPxLabel ID="lblEmail" runat="server" AssociatedControlID="tbEmail" Text="E-mail:" />
+                            <dx:ASPxLabel ID="lblEmail" Theme="SoftOrange" runat="server" AssociatedControlID="tbEmail" Text="E-mail:" />
                             <div class="form-field">
-                                <dx:ASPxTextBox ID="tbEmail" runat="server" Width="200px">
+                                <dx:ASPxTextBox Theme="SoftOrange" ID="tbEmail" runat="server" Width="200px">
                                     <ValidationSettings ValidationGroup="RegisterUserValidationGroup">
                                         <RequiredField ErrorText="E-mail is required." IsRequired="true" />
                                         <RegularExpression ErrorText="Email validation failed" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </div>
-                            <dx:ASPxLabel ID="lblPassword" runat="server" AssociatedControlID="tbPassword" Text="Password:" />
+                            <dx:ASPxLabel ID="lblPassword" Theme="SoftOrange" runat="server" AssociatedControlID="tbPassword" Text="Password:" />
                             <div class="form-field">
-                                <dx:ASPxTextBox ID="tbPassword" ClientInstanceName="Password" Password="true" runat="server"
+                                <dx:ASPxTextBox Theme="SoftOrange" ID="tbPassword" ClientInstanceName="Password" Password="true" runat="server"
                                     Width="200px">
                                     <ValidationSettings ValidationGroup="RegisterUserValidationGroup">
                                         <RequiredField ErrorText="Password is required." IsRequired="true" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </div>
-                            <dx:ASPxLabel ID="lblConfirmPassword" runat="server" AssociatedControlID="tbConfirmPassword"
+                            <dx:ASPxLabel Theme="SoftOrange" ID="lblConfirmPassword" runat="server" AssociatedControlID="tbConfirmPassword"
                                 Text="Confirm password:" />
                             <div class="form-field">
-                                <dx:ASPxTextBox ID="tbConfirmPassword" Password="true" runat="server" Width="200px">
+                                <dx:ASPxTextBox Theme="SoftOrange" ID="tbConfirmPassword" Password="true" runat="server" Width="200px">
                                     <ValidationSettings ValidationGroup="RegisterUserValidationGroup">
                                         <RequiredField ErrorText="Confirm Password is required." IsRequired="true" />
                                     </ValidationSettings>
@@ -56,7 +56,7 @@
             }" />
                                 </dx:ASPxTextBox>
                             </div>
-                            <dx:ASPxButton ID="btnCreateUser" runat="server" Text="Create User" ValidationGroup="RegisterUserValidationGroup"
+                            <dx:ASPxButton Theme="SoftOrange" ID="btnCreateUser" runat="server" Text="Create User" ValidationGroup="RegisterUserValidationGroup"
                                 OnClick="btnCreateUser_Click">
                             </dx:ASPxButton>
                         </td>

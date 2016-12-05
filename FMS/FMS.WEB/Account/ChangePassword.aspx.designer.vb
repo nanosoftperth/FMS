@@ -23,24 +23,6 @@ Partial Public Class ChangePassword
     Protected WithEvents ASPxPanel1 As Global.DevExpress.Web.ASPxPanel
 
     '''<summary>
-    '''lblCurrentPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCurrentPassword As Global.DevExpress.Web.ASPxLabel
-
-    '''<summary>
-    '''tbCurrentPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbCurrentPassword As Global.DevExpress.Web.ASPxTextBox
-
-    '''<summary>
     '''lblPassword control.
     '''</summary>
     '''<remarks>

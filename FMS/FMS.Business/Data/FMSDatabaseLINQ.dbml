@@ -318,15 +318,6 @@
       <Column Name="Details" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
-  <Table Name="dbo.AuthenticationToken" Member="AuthenticationTokens">
-    <Type Name="AuthenticationToken">
-      <Column Name="TokenId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ExpiryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.CAN_Data" Member="CAN_Datas">
     <Type Name="CAN_Data">
       <Column Name="arbritration_id" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
@@ -562,6 +553,17 @@
       <Column Name="SendText" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="isBooking" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="isSent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AuthenticationToken" Member="AuthenticationTokens">
+    <Type Name="AuthenticationToken">
+      <Column Name="TokenId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ExpiryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TokenType" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="isFPUsable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

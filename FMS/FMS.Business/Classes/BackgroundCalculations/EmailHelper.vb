@@ -12,20 +12,32 @@ Namespace BackgroundCalculations
         "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
         "Driver ""{1}"" {2} location ""{3}"" at {4}. """
 
+        'BY RYAN: 
+        Public Const EmailContentForForgotPassword As String = _
+        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
+        "You can change your password by clicking the link below : " & vbNewLine & _
+        "{1}" & vbNewLine & _
+        "The link will expire after 24 hours."
 
         Friend Shared Function SendEmail(emailList As String, companyName As String, _
                                          driverName As String, geofence_Name As String, _
-                                         EntryOrExitTime As Date, typ As DataObjects.AlertType.ActionType) As String
+                                         EntryOrExitTime As Date, typ As DataObjects.AlertType.ActionType, isBooking As Boolean) As String
 
 
             Dim messageBody As String = String.Empty
 
             Try
-
                 messageBody = My.Settings.EmailMessage
                 Dim EntryOrExitTime_formatted As String = EntryOrExitTime.ToString("dd/MMM/yyyy HH:mm:ss")
                 Dim enteredorexited As String = If(typ = DataObjects.AlertType.ActionType.Enters, "entered", "exited")
-                Dim subject As String = String.Format("geo-fence alert from {0}.nanosoft.com.au", companyName)
+                Dim subject As String
+
+                'BY RYAN: Email for booking!
+                If (isBooking) Then
+                    subject = String.Format("booking alert from {0}.nanosoft.com.au", companyName)
+                Else
+                    subject = String.Format("geo-fence alert from {0}.nanosoft.com.au", companyName)
+                End If
 
                 messageBody = String.Format(EmailContent, companyName, driverName, enteredorexited, geofence_Name, EntryOrExitTime_formatted)
 
@@ -36,6 +48,19 @@ Namespace BackgroundCalculations
 
             Return messageBody
 
+        End Function
+
+        'BY RYAN: 
+        Public Shared Function SendEmailChangePasswordRequest(emailList As String, companyName As String, uri As String) As String
+            Dim messageBody As String = String.Empty
+            Try
+                Dim subject As String = String.Format("request change password alert from {0}.nanosoft.com.au", companyName)
+                messageBody = String.Format(EmailContentForForgotPassword, companyName, uri)
+                SendEmail(emailList, subject, messageBody)
+            Catch ex As Exception
+                Dim x As String = ex.Message
+            End Try
+            Return messageBody
         End Function
 
         ''' <summary>
