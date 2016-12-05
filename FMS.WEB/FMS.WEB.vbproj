@@ -215,6 +215,13 @@
       <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Account\ForgotPassword.aspx.designer.vb">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ForgotPassword.aspx.vb">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Account\Login.aspx.designer.vb">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
@@ -668,6 +675,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Account.css" />
+    <Content Include="Account\ForgotPassword.aspx" />
     <Content Include="Account\Web.config" />
     <Content Include="AlarmsAndAlerts.aspx" />
     <Content Include="App_Data\NWind.mdf" />

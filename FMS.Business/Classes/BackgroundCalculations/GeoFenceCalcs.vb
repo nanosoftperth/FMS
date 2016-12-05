@@ -33,7 +33,7 @@ Namespace BackgroundCalculations
 
             'Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid) '--ORI
             'BY RYAN: 
-            Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid).Where(Function(x) x.isBooking = False Or (x.isBooking = True And x.isSent = False)).ToList
+            Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetAllOpenBookings(appid)
 
             'get all the subscribers
             Dim subscribers As List(Of DataObjects.Subscriber) = FMS.Business.DataObjects.Subscriber.GetAllforApplication(appid)
@@ -166,7 +166,7 @@ Namespace BackgroundCalculations
                 'send the emails, this returns nothing if there was an exception (dodgy)
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.Emails) Then _
                         newAlertTypeOccurance.MessageContent = BackgroundCalculations.EmailHelper _
-                                .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, rslt.StartTime, actnType)
+                                .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, rslt.StartTime, actnType, alertDefn.isBooking)
 
                 'send SMS to subscribers with SMS messages
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.Texts) Then _

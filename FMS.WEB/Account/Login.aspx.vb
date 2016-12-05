@@ -12,7 +12,6 @@ Public Class Login
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
 
         If Membership.ValidateUser(tbUserName.Text, tbPassword.Text) Then
-
             FormsAuthentication.SetAuthCookie(tbUserName.Text, cbRememberMe.Checked)
 
             If String.IsNullOrEmpty(Request.QueryString("ReturnUrl")) Then

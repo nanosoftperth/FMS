@@ -169,12 +169,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub Deleteaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
     End Sub
-  Partial Private Sub InsertAuthenticationToken(instance As AuthenticationToken)
-    End Sub
-  Partial Private Sub UpdateAuthenticationToken(instance As AuthenticationToken)
-    End Sub
-  Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
-    End Sub
   Partial Private Sub InsertCAN_Data(instance As CAN_Data)
     End Sub
   Partial Private Sub UpdateCAN_Data(instance As CAN_Data)
@@ -276,6 +270,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdateAlertType(instance As AlertType)
     End Sub
   Partial Private Sub DeleteAlertType(instance As AlertType)
+    End Sub
+  Partial Private Sub InsertAuthenticationToken(instance As AuthenticationToken)
+    End Sub
+  Partial Private Sub UpdateAuthenticationToken(instance As AuthenticationToken)
+    End Sub
+  Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
     End Sub
   #End Region
 	
@@ -460,12 +460,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
-		Get
-			Return Me.GetTable(Of AuthenticationToken)
-		End Get
-	End Property
-	
 	Public ReadOnly Property CAN_Datas() As System.Data.Linq.Table(Of CAN_Data)
 		Get
 			Return Me.GetTable(Of CAN_Data)
@@ -577,6 +571,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property AlertTypes() As System.Data.Linq.Table(Of AlertType)
 		Get
 			Return Me.GetTable(Of AlertType)
+		End Get
+	End Property
+	
+	Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
+		Get
+			Return Me.GetTable(Of AuthenticationToken)
 		End Get
 	End Property
 	
@@ -6377,160 +6377,6 @@ Partial Public Class aspnet_WebEvent_Event
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.AuthenticationToken")>  _
-Partial Public Class AuthenticationToken
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _TokenId As System.Guid
-	
-	Private _ApplicationID As System.Guid
-	
-	Private _UserID As System.Guid
-	
-	Private _ExpiryDate As Date
-	
-	Private _StartDate As Date
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnTokenIdChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnTokenIdChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnUserIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnUserIDChanged()
-    End Sub
-    Partial Private Sub OnExpiryDateChanging(value As Date)
-    End Sub
-    Partial Private Sub OnExpiryDateChanged()
-    End Sub
-    Partial Private Sub OnStartDateChanging(value As Date)
-    End Sub
-    Partial Private Sub OnStartDateChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TokenId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property TokenId() As System.Guid
-		Get
-			Return Me._TokenId
-		End Get
-		Set
-			If ((Me._TokenId = value)  _
-						= false) Then
-				Me.OnTokenIdChanging(value)
-				Me.SendPropertyChanging
-				Me._TokenId = value
-				Me.SendPropertyChanged("TokenId")
-				Me.OnTokenIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationID() As System.Guid
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If ((Me._ApplicationID = value)  _
-						= false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property UserID() As System.Guid
-		Get
-			Return Me._UserID
-		End Get
-		Set
-			If ((Me._UserID = value)  _
-						= false) Then
-				Me.OnUserIDChanging(value)
-				Me.SendPropertyChanging
-				Me._UserID = value
-				Me.SendPropertyChanged("UserID")
-				Me.OnUserIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ExpiryDate", DbType:="DateTime NOT NULL")>  _
-	Public Property ExpiryDate() As Date
-		Get
-			Return Me._ExpiryDate
-		End Get
-		Set
-			If ((Me._ExpiryDate = value)  _
-						= false) Then
-				Me.OnExpiryDateChanging(value)
-				Me.SendPropertyChanging
-				Me._ExpiryDate = value
-				Me.SendPropertyChanged("ExpiryDate")
-				Me.OnExpiryDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StartDate", DbType:="DateTime NOT NULL")>  _
-	Public Property StartDate() As Date
-		Get
-			Return Me._StartDate
-		End Get
-		Set
-			If ((Me._StartDate = value)  _
-						= false) Then
-				Me.OnStartDateChanging(value)
-				Me.SendPropertyChanging
-				Me._StartDate = value
-				Me.SendPropertyChanged("StartDate")
-				Me.OnStartDateChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CAN_Data")>  _
 Partial Public Class CAN_Data
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -10716,6 +10562,204 @@ Partial Public Class AlertType
 				Me._isSent = value
 				Me.SendPropertyChanged("isSent")
 				Me.OnisSentChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.AuthenticationToken")>  _
+Partial Public Class AuthenticationToken
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _TokenId As System.Guid
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _UserID As System.Guid
+	
+	Private _ExpiryDate As Date
+	
+	Private _StartDate As Date
+	
+	Private _TokenType As String
+	
+	Private _isFPUsable As System.Nullable(Of Boolean)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnTokenIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnTokenIdChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnUserIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnUserIDChanged()
+    End Sub
+    Partial Private Sub OnExpiryDateChanging(value As Date)
+    End Sub
+    Partial Private Sub OnExpiryDateChanged()
+    End Sub
+    Partial Private Sub OnStartDateChanging(value As Date)
+    End Sub
+    Partial Private Sub OnStartDateChanged()
+    End Sub
+    Partial Private Sub OnTokenTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnTokenTypeChanged()
+    End Sub
+    Partial Private Sub OnisFPUsableChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnisFPUsableChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TokenId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property TokenId() As System.Guid
+		Get
+			Return Me._TokenId
+		End Get
+		Set
+			If ((Me._TokenId = value)  _
+						= false) Then
+				Me.OnTokenIdChanging(value)
+				Me.SendPropertyChanging
+				Me._TokenId = value
+				Me.SendPropertyChanged("TokenId")
+				Me.OnTokenIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property UserID() As System.Guid
+		Get
+			Return Me._UserID
+		End Get
+		Set
+			If ((Me._UserID = value)  _
+						= false) Then
+				Me.OnUserIDChanging(value)
+				Me.SendPropertyChanging
+				Me._UserID = value
+				Me.SendPropertyChanged("UserID")
+				Me.OnUserIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ExpiryDate", DbType:="DateTime NOT NULL")>  _
+	Public Property ExpiryDate() As Date
+		Get
+			Return Me._ExpiryDate
+		End Get
+		Set
+			If ((Me._ExpiryDate = value)  _
+						= false) Then
+				Me.OnExpiryDateChanging(value)
+				Me.SendPropertyChanging
+				Me._ExpiryDate = value
+				Me.SendPropertyChanged("ExpiryDate")
+				Me.OnExpiryDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StartDate", DbType:="DateTime NOT NULL")>  _
+	Public Property StartDate() As Date
+		Get
+			Return Me._StartDate
+		End Get
+		Set
+			If ((Me._StartDate = value)  _
+						= false) Then
+				Me.OnStartDateChanging(value)
+				Me.SendPropertyChanging
+				Me._StartDate = value
+				Me.SendPropertyChanged("StartDate")
+				Me.OnStartDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TokenType", DbType:="NVarChar(150)")>  _
+	Public Property TokenType() As String
+		Get
+			Return Me._TokenType
+		End Get
+		Set
+			If (String.Equals(Me._TokenType, value) = false) Then
+				Me.OnTokenTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._TokenType = value
+				Me.SendPropertyChanged("TokenType")
+				Me.OnTokenTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_isFPUsable", DbType:="Bit")>  _
+	Public Property isFPUsable() As System.Nullable(Of Boolean)
+		Get
+			Return Me._isFPUsable
+		End Get
+		Set
+			If (Me._isFPUsable.Equals(value) = false) Then
+				Me.OnisFPUsableChanging(value)
+				Me.SendPropertyChanging
+				Me._isFPUsable = value
+				Me.SendPropertyChanged("isFPUsable")
+				Me.OnisFPUsableChanged
 			End If
 		End Set
 	End Property

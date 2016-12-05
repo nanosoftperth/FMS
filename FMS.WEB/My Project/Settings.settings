@@ -21,6 +21,10 @@
   &lt;string&gt;/ProblemPage.aspx&lt;/string&gt;
   &lt;string&gt;/Account/Register.aspx&lt;/string&gt;
   &lt;string&gt;/Account/RegisterSuccess.aspx&lt;/string&gt;
+  &lt;string&gt;/Account/ForgotPassword.aspx&lt;/string&gt;
+  &lt;string&gt;/Account/ChangePassword.aspx&lt;/string&gt;
+  &lt;string&gt;/Account/ChangePasswordSuccess.aspx&lt;/string&gt;
+  &lt;string&gt;/NoAccessPage.aspx&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>

@@ -6,9 +6,65 @@ FMS.WEB
 </name>
 </assembly>
 <members>
-<member name="F:FMS.WEB.ChangePasswordSuccess.form1">
+<member name="F:FMS.WEB.ForgotPassword.ASPxPanel1">
 	<summary>
-form1 control.
+ASPxPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.panelContent1">
+	<summary>
+panelContent1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.lblUserName">
+	<summary>
+lblUserName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.tbUserName">
+	<summary>
+tbUserName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.btnSendEmail">
+	<summary>
+btnSendEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.ASPxPanel2">
+	<summary>
+ASPxPanel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.panelContent2">
+	<summary>
+panelContent2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.lblEmail">
+	<summary>
+lblEmail control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -2295,22 +2351,6 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:FMS.WEB.ChangePassword.ASPxPanel1">
 	<summary>
 ASPxPanel1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.WEB.ChangePassword.lblCurrentPassword">
-	<summary>
-lblCurrentPassword control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.WEB.ChangePassword.tbCurrentPassword">
-	<summary>
-tbCurrentPassword control.
 </summary>
 	<remarks>
 Auto-generated field.
