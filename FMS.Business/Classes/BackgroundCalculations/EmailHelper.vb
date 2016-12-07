@@ -13,7 +13,6 @@ Namespace BackgroundCalculations
         "Driver ""{1}"" {2} location ""{3}"" at {4}. """
 
         'BY RYAN: 
-
         Public Const BookingEmailContent As String = _
         "dear {0}, " & vbNewLine & vbNewLine & _
         "Your driver {1} is {2} away from your location now. They are driving a {3}." & vbNewLine & _
@@ -26,6 +25,12 @@ Namespace BackgroundCalculations
         "You can change your password by clicking the link below : " & vbNewLine & _
         "{1}" & vbNewLine & _
         "The link will expire after 24 hours."
+
+        Public Const EmailContentForNewUser As String = _
+        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
+        "Your account has been successfully created. " & vbNewLine & _
+        "Username : {1}" & vbNewLine & _
+        "Password : {2}"
 
         Friend Shared Function SendEmail(emailList As String, companyName As String, _
                                          driverName As String, geofence_Name As String, _
@@ -86,6 +91,19 @@ Namespace BackgroundCalculations
             Try
                 Dim subject As String = String.Format("request change password alert from {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(EmailContentForForgotPassword, companyName, uri)
+                SendEmail(emailList, subject, messageBody)
+            Catch ex As Exception
+                Dim x As String = ex.Message
+            End Try
+            Return messageBody
+        End Function
+
+        'BY RYAN: 
+        Public Shared Function SendEmailUserCreated(emailList As String, companyName As String, username As String, password As String) As String
+            Dim messageBody As String = String.Empty
+            Try
+                Dim subject As String = String.Format("new user alert from {0}.nanosoft.com.au", companyName)
+                messageBody = String.Format(EmailContentForNewUser, companyName, username, password)
                 SendEmail(emailList, subject, messageBody)
             Catch ex As Exception
                 Dim x As String = ex.Message

@@ -53,6 +53,23 @@ Namespace DataObjects
 #End Region
 
 #Region "CRUD"
+        Public Shared Sub Insert(u As User)
+            'BY RYAN
+            'Create Membership on FMS.WEB
+            'will only do update here
+            Dim o As aspnet_User = (From i In SingletonAccess.FMSDataContextContignous.aspnet_Users _
+                                    Where i.UserId = u.UserId).SingleOrDefault
+
+            With u
+                o.aspnet_Membership.Mobile = u.Mobile
+                o.TimeZoneID = .TimeZoneID
+
+                SingletonAccess.FMSDataContextContignous.usp_RemoveAllrolesForUserAndAssignRole(u.UserId, .RoleID)
+            End With
+
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+        End Sub
 
         Public Shared Sub Update(u As User)
 

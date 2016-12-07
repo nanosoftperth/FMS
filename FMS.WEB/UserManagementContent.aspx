@@ -65,7 +65,7 @@
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="Email" ShowInCustomizationForm="True" VisibleIndex="4">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="LastLoggedInDate" ShowInCustomizationForm="True" VisibleIndex="7">
+                                        <dx:GridViewDataDateColumn FieldName="LastLoggedInDate" EditFormSettings-Visible="False" ShowInCustomizationForm="True" VisibleIndex="7">
                                             <PropertiesDateEdit>
                                                 <TimeSectionProperties>
                                                     <TimeEditProperties>
@@ -408,11 +408,10 @@
             <asp:ObjectDataSource ID="odsUsers"
                 runat="server"
                 DataObjectTypeName="FMS.Business.DataObjects.User"
-                InsertMethod="Insert"
+                InsertMethod="Insert" OnInserting="odsUsers_Inserting"
                 SelectMethod="GetAllUsersForApplication"
                 TypeName="FMS.Business.DataObjects.User"
                 UpdateMethod="Update">
-
                 <SelectParameters>
                     <asp:SessionParameter DbType="Guid"
                         Name="applicationid"

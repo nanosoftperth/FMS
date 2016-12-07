@@ -9,7 +9,6 @@ Public Class Register
         Try
             Dim user As MembershipUser = Membership.CreateUser(tbUserName.Text, tbPassword.Text, tbEmail.Text)
 
-
             ' we need to assign the new user to the "generl" role (by default)
             FMS.Business.DataObjects.User.AssignUSerToGeneralRole(user.UserName, ThisSession.ApplicationID)
 

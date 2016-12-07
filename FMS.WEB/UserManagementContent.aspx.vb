@@ -101,4 +101,17 @@ Public Class Test
         FMS.Business.SingletonAccess.ClientSelected_TimeZone = If(Not String.IsNullOrEmpty(ThisSession.User.TimeZone.ID), _
                                                                         ThisSession.User.TimeZone, ThisSession.ApplicationObject.TimeZone)
     End Sub
+
+    Protected Sub odsUsers_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
+        'BY RYAN
+        Dim agp = Membership.GeneratePassword(9, 0)
+        'TODO: email must be unique per application and not empty
+        Dim x = CType(e.InputParameters(0), FMS.Business.DataObjects.User)
+        x.ApplicationID = ThisSession.ApplicationID
+        Dim user As MembershipUser = Membership.CreateUser(x.UserName, agp, x.Email)
+        x.UserId = user.ProviderUserKey
+
+        'send an email with agp
+        BackgroundCalculations.EmailHelper.SendEmailUserCreated(x.Email, ThisSession.ApplicationName, x.UserName, agp)
+    End Sub
 End Class
