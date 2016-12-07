@@ -225,7 +225,7 @@ Public Class ResourceMgmnt
         ab.ApplicationID = ThisSession.ApplicationID
         ab.Description = ab.Name
         ab.IsCircular = True
-        ab.CircleRadiusMetres = 2000
+        ab.CircleRadiusMetres = 1000 'Temp: must be 2 km
         ab.CircleCentre = x.lat + "|" + x.lng
         ab.isBooking = True
         ab.UserID = ThisSession.User.UserId
@@ -257,4 +257,5 @@ Public Class ResourceMgmnt
     '    cbx.DataSource = FMS.Business.DataObjects.Contact.GetAllForApplication(ThisSession.ApplicationID).Where(Function(x) x.NameFormatted.StartsWith(e.Filter)).Skip(skip).Take(take).ToList
     '    cbx.DataBind()
     'End Sub
+
 End Class

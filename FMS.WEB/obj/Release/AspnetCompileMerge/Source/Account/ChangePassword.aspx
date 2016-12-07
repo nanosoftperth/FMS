@@ -14,27 +14,19 @@
                 </div>
 
                 <br />
-                <dx:ASPxLabel ID="lblCurrentPassword" runat="server" Text="Old Password:" />
+                <dx:ASPxLabel ID="lblPassword" runat="server" Theme="SoftOrange" AssociatedControlID="tbPassword" Text="New Password:" />
                 <div class="form-field">
-                    <dx:ASPxTextBox ID="tbCurrentPassword" runat="server" Password="true" Width="200px">
-                        <ValidationSettings ValidationGroup="ChangeUserPasswordValidationGroup">
-                            <RequiredField ErrorText="Old Password is required." IsRequired="true" />
-                        </ValidationSettings>
-                    </dx:ASPxTextBox>
-                </div>
-                <dx:ASPxLabel ID="lblPassword" runat="server" AssociatedControlID="tbPassword" Text="Password:" />
-                <div class="form-field">
-                    <dx:ASPxTextBox ID="tbPassword" ClientInstanceName="Password" Password="true" runat="server"
+                    <dx:ASPxTextBox ID="tbPassword" Theme="SoftOrange" ClientInstanceName="Password" Password="true" runat="server"
                         Width="200px">
                         <ValidationSettings ValidationGroup="ChangeUserPasswordValidationGroup">
                             <RequiredField ErrorText="Password is required." IsRequired="true" />
                         </ValidationSettings>
                     </dx:ASPxTextBox>
                 </div>
-                <dx:ASPxLabel ID="lblConfirmPassword" runat="server" AssociatedControlID="tbConfirmPassword"
-                    Text="Password:" />
+                <dx:ASPxLabel ID="lblConfirmPassword" Theme="SoftOrange" runat="server" AssociatedControlID="tbConfirmPassword"
+                    Text="Confirm Password:" />
                 <div class="form-field">
-                    <dx:ASPxTextBox ID="tbConfirmPassword" Password="true" runat="server" Width="200px">
+                    <dx:ASPxTextBox ID="tbConfirmPassword" Theme="SoftOrange" Password="true" runat="server" Width="200px">
                         <ValidationSettings ValidationGroup="ChangeUserPasswordValidationGroup">
                             <RequiredField ErrorText="Confirm Password is required." IsRequired="true" />
                         </ValidationSettings>
@@ -46,7 +38,7 @@
         }" />
                     </dx:ASPxTextBox>
                 </div>
-                <dx:ASPxButton ID="btnChangePassword" runat="server" Text="Change Password" ValidationGroup="ChangeUserPasswordValidationGroup"
+                <dx:ASPxButton ID="btnChangePassword" runat="server" Theme="SoftOrange" Text="Change Password" ValidationGroup="ChangeUserPasswordValidationGroup"
                     OnClick="btnChangePassword_Click">
                 </dx:ASPxButton>
             </dx:PanelContent>

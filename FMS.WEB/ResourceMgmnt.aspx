@@ -482,7 +482,7 @@
                   <dx:TabPage Text="Bookings">
                      <ContentCollection>
                         <dx:ContentControl>
-                           <dx:ASPxGridView ID="dgvDetailBookings"
+                           <dx:ASPxGridView ID="dgvDetailBookings" ClientInstanceName="dgvDetailBookings"
                               runat="server"
                               AutoGenerateColumns="False"
                               EnableTheming="True"
@@ -624,7 +624,17 @@
                                           AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingContact" 
                                           KeyFieldName="ContactID" TextFormatString="{1}" 
                                           Value='<%# Bind("ContactID")%>' IncrementalFilteringMode="Contains">
-                                           
+                                           <GridViewClientSideEvents FocusedRowChanged="function(s, e) {
+                                               var g = lkContact.GetGridView()
+                                               var val = g.GetRowValues(s.focusedRowIndex,'MobileNumber;EmailAddress',function (values) {
+                                                    var mn = values[0];
+                                                    var ea = values[1];
+                                                    var cp =  dgvDetailBookings.GetEditor('CustomerPhone')
+                                                    var ce =  dgvDetailBookings.GetEditor('CustomerEmail')
+                                                    cp.SetText(mn);
+                                                    ce.SetText(ea);
+                                                });
+                                            }" />
                                           <GridViewProperties>
                                              <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
                                           </GridViewProperties>

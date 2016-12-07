@@ -334,7 +334,7 @@ function getGeoFencesFromDBAndShow_successCallback(result) {
     destroyAllGeoFencesAndLabels();
 
     result.d._GeoFences.forEach(function (item, index) {
-
+       
         var colour = item.Colour;
         var name = item.Name;
 
@@ -384,6 +384,11 @@ function getGeoFencesFromDBAndShow_successCallback(result) {
         loopPolygon["isCircle"] = iscircle;
         loopCircle["isCircle"] = iscircle;
 
+        //BY RYAN: include isBooking in gobal array
+        var isBooking = item.isBooking;
+
+        loopPolygon["isBooking"] = isBooking;
+        loopCircle["isBooking"] = isBooking;
         //alert(JSON.stringify(loopPolygon));
         if (iscircle) {
 
@@ -412,10 +417,14 @@ function getGeoFencesFromDBAndShow_successCallback(result) {
 
         var newLabel = getLabelInvisibleMarker(polygonLocation, polygonName);
 
-        polygonLabelMarkers.push(newLabel);
+        polygonLabelMarkers.push({
+            label : newLabel,
+            forBooking: item.isBooking
+        });
     })
 
     showGeoFences();
+    showBooking();
     showGeoFenceLabels();
 
     //update the summary grid view
@@ -425,23 +434,37 @@ function getGeoFencesFromDBAndShow_successCallback(result) {
 function cbViewGeoFenceLabels_checkChanged() {
     showGeoFenceLabels();
 }
-
+function cbViewGeoFencesWithBooking_checkChanged() {
+    showBooking();
+    showGeoFenceLabels();
+}
 function showGeoFenceLabels() {
 
     var show = cbViewGeoFenceLabels.GetChecked();
 
+    var showb  = cbViewGeoFencesWithBooking.GetChecked();
     //avoids crashing if the object is null 
     if (polygonLabelMarkers == null) { return null; }
 
     polygonLabelMarkers.forEach(function (item, index) {
-        item.setMap(show == true ? map : null);
+        debugger;
+        if (item.forBooking) item.label.setMap(show && showb ? map : null);
+        else item.label.setMap(show ? map : null);
     });
 }
+function showBooking() {
+    var show = cbViewGeoFencesWithBooking.GetChecked();
 
-function showGeoFences() {
+    //avoids crashing if the object is null 
+    if (ALLGeoFencesArr == null) { return null; }
 
     ALLGeoFencesArr.forEach(function (item, index) {
-        item.setMap(map);
+        if (item.isBooking) item.setMap(show == true ? map : null);
+    });
+}
+function showGeoFences() {
+    ALLGeoFencesArr.forEach(function (item, index) {
+        if (!item.isBooking) item.setMap(map);
     })
 
     if (GeoFenceIDToShowOnrefresh != null) {
@@ -458,7 +481,7 @@ function destroyAllGeoFencesAndLabels() {
     });
 
     polygonLabelMarkers.forEach(function (item, index) {
-        item.setMap(null);
+        item.label.setMap(null);
     });
 
     //set to nothing and then reinitialise

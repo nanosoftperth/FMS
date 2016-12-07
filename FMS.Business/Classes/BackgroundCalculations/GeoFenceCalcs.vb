@@ -33,7 +33,7 @@ Namespace BackgroundCalculations
 
             'Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid) '--ORI
             'BY RYAN: 
-            Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetAllOpenBookings(appid)
+            Dim alertTypes = DataObjects.AlertType.GetAllOpenBookings(appid)
 
             'get all the subscribers
             Dim subscribers As List(Of DataObjects.Subscriber) = FMS.Business.DataObjects.Subscriber.GetAllforApplication(appid)
@@ -46,7 +46,7 @@ Namespace BackgroundCalculations
                                        ReportGeneration.GeoFenceReport_Simple.GetReport(appid, startDate, Now)
 
             'for each alert type, get all of the geofence collissions whch have not already been processed
-            For Each alertDefn As DataObjects.AlertType In alertTypes
+            For Each alertDefn In alertTypes
 
                 'get the geo-fence COLLISIONS which we are interested in 
                 Dim results = geoReportRslts.Where(Function(x) x.ApplicationGeoFenceID = alertDefn.GeoFenceId).ToList
@@ -79,7 +79,7 @@ Namespace BackgroundCalculations
                         DataObjects.AlertType.Update(alertDefn)
                     End If
 
-                    
+
                     Select Case alertDefn.Action
 
 
@@ -140,7 +140,6 @@ Namespace BackgroundCalculations
 
             Dim emailAndTextList = getEmailListFromSubscriber(thisSubscriber, subscribers)
 
-
             If Not alreadyFiredAlert Then
 
                 'create the new alert occurance, then send the email/text
@@ -164,9 +163,16 @@ Namespace BackgroundCalculations
 
 
                 'send the emails, this returns nothing if there was an exception (dodgy)
-                If Not String.IsNullOrEmpty(newAlertTypeOccurance.Emails) Then _
+                If Not String.IsNullOrEmpty(newAlertTypeOccurance.Emails) Then
+                    If alertDefn.isBooking Then
                         newAlertTypeOccurance.MessageContent = BackgroundCalculations.EmailHelper _
-                                .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, rslt.StartTime, actnType, alertDefn.isBooking)
+                            .SendEmail(newAlertTypeOccurance.Emails, applicationName, thisSubscriber.Name, rslt.Driver_Name, "2 km", rslt.Vehicle_Name, "")
+                    Else
+                        newAlertTypeOccurance.MessageContent = BackgroundCalculations.EmailHelper _
+                            .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, rslt.StartTime, actnType)
+
+                    End If
+                End If
 
                 'send SMS to subscribers with SMS messages
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.Texts) Then _
@@ -176,7 +182,7 @@ Namespace BackgroundCalculations
                 'if the email / texts were sent correctly (without exception) , then log the result in the DB
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.MessageContent) Then DataObjects.AlertTypeOccurance.Create(newAlertTypeOccurance)
 
-                
+
             End If
 
         End Sub

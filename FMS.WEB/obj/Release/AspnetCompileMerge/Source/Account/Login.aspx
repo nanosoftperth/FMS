@@ -19,17 +19,17 @@
         <a href="Register.aspx">Register</a> if you don't have an account.
                                 </p>
                             </div>
-                            <dx:ASPxLabel ID="lblUserName" runat="server" AssociatedControlID="tbUserName" Text="User Name:" />
+                            <dx:ASPxLabel Theme="SoftOrange" ID="lblUserName" runat="server" AssociatedControlID="tbUserName" Text="User Name:" />
                             <div class="form-field">
-                                <dx:ASPxTextBox ID="tbUserName" runat="server" Width="200px">
+                                <dx:ASPxTextBox Theme="SoftOrange" ID="tbUserName" runat="server" Width="200px">
                                     <ValidationSettings ValidationGroup="LoginUserValidationGroup">
                                         <RequiredField ErrorText="User Name is required." IsRequired="true" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </div>
-                            <dx:ASPxLabel ID="lblPassword" runat="server" AssociatedControlID="tbPassword" Text="Password:" />
+                            <dx:ASPxLabel Theme="SoftOrange" ID="lblPassword" runat="server" AssociatedControlID="tbPassword" Text="Password:" />
                             <div class="form-field">
-                                <dx:ASPxTextBox ID="tbPassword" runat="server" Password="true" Width="200px">
+                                <dx:ASPxTextBox Theme="SoftOrange" ID="tbPassword" runat="server" Password="true" Width="200px">
                                     <ValidationSettings ValidationGroup="LoginUserValidationGroup">
                                         <RequiredField ErrorText="Password is required." IsRequired="true" />
                                     </ValidationSettings>
@@ -38,7 +38,10 @@
                             <div class="form-field">
                                 <asp:CheckBox CssClass="floatRight" ID="cbRememberMe" Text=" remember me?" runat="server" />
                             </div>
-                            <dx:ASPxButton ID="btnLogin" runat="server" Text="Log In" ValidationGroup="LoginUserValidationGroup"
+                            <div class="form-field">
+                                <a href="ForgotPassword.aspx">Forgot Password</a>
+                            </div>
+                            <dx:ASPxButton ID="btnLogin" Theme="SoftOrange" runat="server" Text="Log In" ValidationGroup="LoginUserValidationGroup"
                                 OnClick="btnLogin_Click">
                             </dx:ASPxButton>
                         </td>

@@ -446,7 +446,7 @@
                                                     AutoPostBack="false"
                                                     Text="include bookings">
                                                     <ClientSideEvents CheckedChanged="function(s, e) {
-	cbViewGeoFences_checkChanged(e);
+	cbViewGeoFencesWithBooking_checkChanged(e);
 }" />
                                                 </dx:ASPxCheckBox>
                                             </div>
