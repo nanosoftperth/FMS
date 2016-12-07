@@ -438,6 +438,23 @@
                                     <tr>
                                         <td style="padding-top: 7px; padding-left: 68px;">
                                             <div style="float: left;">
+                                                <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFencesWithBooking"
+                                                    ID="cbViewGeoFencesWithBooking"
+                                                    Checked="false"
+                                                    runat="server"
+                                                    EnableTheming="True"
+                                                    AutoPostBack="false"
+                                                    Text="include bookings">
+                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	cbViewGeoFencesWithBooking_checkChanged(e);
+}" />
+                                                </dx:ASPxCheckBox>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 7px; padding-left: 68px;">
+                                            <div style="float: left;">
                                                 <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFenceLabels" ID="cbViewGeoFenceLabels" Checked="false" runat="server" EnableTheming="True" Text="show labels">
                                                     <ClientSideEvents CheckedChanged="function(s, e) {
 	cbViewGeoFenceLabels_checkChanged(e);

@@ -71,10 +71,10 @@ Namespace DataObjects
                      Select New DataObjects.AlertType(x)).ToList
 
         End Function
-        Public Shared Function GetAllOpenBookings(appID As Guid) As List(Of DataObjects.AlertType)
+        Public Shared Function GetAllOpenBookings(appID As Guid)
             Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
                      Where x.ApplicationID = appID _
-                     Select New DataObjects.AlertType(x)).Where(Function(x) x.isBooking = False Or (x.isBooking = True And x.isSent = False)).ToList
+                     Select New DataObjects.AlertType(x)).ToList().Where(Function(y) y.isBooking = False Or (y.isBooking = True And y.isSent = False))
 
         End Function
 #End Region
