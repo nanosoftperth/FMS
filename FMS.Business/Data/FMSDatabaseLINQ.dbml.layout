@@ -386,19 +386,6 @@
         <elementListCompartment Id="a11f0f6f-0dcb-480b-a053-f8a5a6344d08" absoluteBounds="11.015, 2.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e5c37926-8eda-4a3c-9b83-b2ee3a79a425" absoluteBounds="8.125, 0.75, 2, 2.9247054036458331">
-      <DataClassMoniker Name="/LINQtoSQLClassesDataContext/ApplicationBooking" />
-      <nestedChildShapes>
-        <elementListCompartment Id="57ab6379-3f3b-49c0-9bb1-3cc988bbf1a6" absoluteBounds="8.14, 1.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(11 : 2.71235270182292); (10.125 : 2.71235270182292)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/LINQtoSQLClassesDataContext/ApplicationDriver/ApplicationDriver_ApplicationBooking" />
-      <nodes>
-        <classShapeMoniker Id="b44d285d-185b-4068-87b3-603eebbfc33c" />
-        <classShapeMoniker Id="e5c37926-8eda-4a3c-9b83-b2ee3a79a425" />
-      </nodes>
-    </associationConnector>
     <classShape Id="ccbcffbd-d21a-46c7-8d52-5927b62f765d" absoluteBounds="6.375, 0.875, 2, 3.1170068359375">
       <DataClassMoniker Name="/LINQtoSQLClassesDataContext/AlertType" />
       <nestedChildShapes>
@@ -411,5 +398,18 @@
         <elementListCompartment Id="be1ed441-2b6e-490b-897a-eb33795a3efc" absoluteBounds="16.39, 8.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="38399bda-6021-4e6f-806d-5c926d90b1cc" absoluteBounds="8.375, 1, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/LINQtoSQLClassesDataContext/ApplicationBooking" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa243f48-0904-4e74-bbca-3936f8892714" absoluteBounds="8.39, 1.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11 : 3.02005126953125); (10.375 : 3.02005126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQtoSQLClassesDataContext/ApplicationDriver/ApplicationDriver_ApplicationBooking" />
+      <nodes>
+        <classShapeMoniker Id="b44d285d-185b-4068-87b3-603eebbfc33c" />
+        <classShapeMoniker Id="38399bda-6021-4e6f-806d-5c926d90b1cc" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

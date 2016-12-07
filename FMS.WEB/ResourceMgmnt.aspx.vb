@@ -211,7 +211,18 @@ Public Class ResourceMgmnt
     Protected Sub odsBooking_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationBooking)
         ab.ApplicationId = ThisSession.ApplicationID
-
+        Dim gdes = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceDestination)
+        Dim gleave = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceLeave)
+        If gdes IsNot Nothing Then
+            ab.GeofenceDestinationId = gdes.ApplicationGeoFenceID
+        Else
+            ab.GeofenceDestinationId = CreateBookingGeofence(ab.GeofenceDestination)
+        End If
+        If gleave IsNot Nothing Then
+            ab.GeofenceLeaveId = gdes.ApplicationGeoFenceID
+        Else
+            ab.GeofenceLeaveId = CreateBookingGeofence(ab.GeofenceLeave)
+        End If
     End Sub
 
     Protected Sub odsBookingContact_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
@@ -219,11 +230,11 @@ Public Class ResourceMgmnt
         ab.ApplicationID = ThisSession.ApplicationID
     End Sub
     'THIS IS FOR UPDATING DATA BEFORE INSERT
-    Protected Sub odsBookingGeofence_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
-        Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationGeoFence)
-        Dim x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress(ab.Name)
+    Private Function CreateBookingGeofence(location As String) As Guid
+        Dim ab = New FMS.Business.DataObjects.ApplicationGeoFence
+        Dim x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress(location)
         ab.ApplicationID = ThisSession.ApplicationID
-        ab.Description = ab.Name
+        ab.Description = location
         ab.IsCircular = True
         ab.CircleRadiusMetres = 1000 'Temp: must be 2 km
         ab.CircleCentre = x.lat + "|" + x.lng
@@ -235,7 +246,8 @@ Public Class ResourceMgmnt
                                         .Latitude = x.lat,
                                         .Longitude = x.lng
                                         })
-    End Sub
+        Return FMS.Business.DataObjects.ApplicationGeoFence.Create(ab)
+    End Function
 
     'Protected Sub Unnamed_ItemRequestedByValue(sender As Object, e As DevExpress.Web.ListEditItemRequestedByValueEventArgs)
     '    Dim id As Guid

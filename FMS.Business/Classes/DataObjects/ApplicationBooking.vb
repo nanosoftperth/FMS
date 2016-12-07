@@ -6,8 +6,10 @@
         Public Property ApplicationDriverID As System.Nullable(Of System.Guid)
         Public Property ApplicationId As System.Nullable(Of System.Guid)
         Public Property ArrivalTime As System.Nullable(Of Date)
-        Public Property GeofenceLeave As System.Guid
-        Public Property GeofenceDestination As System.Guid
+        Public Property GeofenceLeave As String
+        Public Property GeofenceDestination As String
+        Public Property GeofenceLeaveId As System.Guid
+        Public Property GeofenceDestinationId As System.Guid
         Public Property ContactID As System.Guid
         Public Property CustomerPhone As String
         Public Property CustomerEmail As String
@@ -38,6 +40,8 @@
                 .ArrivalTime = d.ArrivalTime
                 .GeofenceLeave = d.GeofenceLeave
                 .GeofenceDestination = d.GeofenceDestination
+                .GeofenceLeaveId = d.GeofenceLeaveId
+                .GeofenceDestinationId = d.GeofenceDestinationId
                 .ContactID = d.ContactID
                 .CustomerPhone = d.CustomerPhone
                 .CustomerEmail = d.CustomerEmail
@@ -61,6 +65,8 @@
                 .ArrivalTime = ad.ArrivalTime
                 .GeofenceLeave = ad.GeofenceLeave
                 .GeofenceDestination = ad.GeofenceDestination
+                .GeofenceLeaveId = ad.GeofenceLeaveId
+                .GeofenceDestinationId = ad.GeofenceDestinationId
                 .ContactID = ad.ContactID
                 .CustomerPhone = ad.CustomerPhone
                 .CustomerEmail = ad.CustomerEmail
@@ -75,7 +81,7 @@
                 .ApplicationAlertTypeID = Guid.NewGuid
                 .ApplicationID = ad.ApplicationId
                 .DriverId = ad.ApplicationDriverID
-                .GeoFenceID = ad.GeofenceDestination
+                .GeoFenceID = ad.GeofenceDestinationId
                 .Timespan_seconds = 0
                 .Action = 0
                 .SubscriberNativeID = ad.ContactID
@@ -89,7 +95,7 @@
                 .ApplicationAlertTypeID = Guid.NewGuid
                 .ApplicationID = ad.ApplicationId
                 .DriverId = ad.ApplicationDriverID
-                .GeoFenceID = ad.GeofenceLeave
+                .GeoFenceID = ad.GeofenceDestinationId
                 .Timespan_seconds = 0
                 .Action = 0
                 .SubscriberNativeID = ad.ContactID
@@ -118,6 +124,8 @@
                     .ArrivalTime = ad.ArrivalTime
                     .GeofenceLeave = ad.GeofenceLeave
                     .GeofenceDestination = ad.GeofenceDestination
+                    .GeofenceLeaveId = ad.GeofenceLeaveId
+                    .GeofenceDestinationId = ad.GeofenceDestinationId
                     .ContactID = ad.ContactID
                     .CustomerPhone = ad.CustomerPhone
                     .CustomerEmail = ad.CustomerEmail
@@ -158,6 +166,8 @@
                                                                 .ArrivalTime = d.ArrivalTime,
                                                                 .GeofenceLeave = d.GeofenceLeave,
                                                                 .GeofenceDestination = d.GeofenceDestination,
+                                                                .GeofenceLeaveId = d.GeofenceLeaveId,
+                                                                .GeofenceDestinationId = d.GeofenceDestinationId,
                                                                 .ContactID = d.ContactID,
                                                                 .CustomerPhone = d.CustomerPhone,
                                                                 .CustomerEmail = d.CustomerEmail,

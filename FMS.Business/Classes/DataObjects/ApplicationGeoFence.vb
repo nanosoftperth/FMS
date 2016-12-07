@@ -198,7 +198,16 @@ Namespace DataObjects
             Return retobj
 
         End Function
+        Public Shared Function FindApplicationGeoFence(applicationGeoFenceID As Guid, name As String) As DataObjects.ApplicationGeoFence
 
+            Dim retobj As DataObjects.ApplicationGeoFence = _
+                       (From i In SingletonAccess.FMSDataContextNew.ApplicationGeoFences
+                           Where i.ApplicationGeoFenceID = applicationGeoFenceID And i.Name.Equals(name)
+                           Select New DataObjects.ApplicationGeoFence(i)).SingleOrDefault
+
+            Return retobj
+
+        End Function
         Public Shared Function GetAllApplicationGeoFences(appID As Guid) As List(Of DataObjects.ApplicationGeoFence)
 
             Dim retobj As List(Of DataObjects.ApplicationGeoFence) = _
