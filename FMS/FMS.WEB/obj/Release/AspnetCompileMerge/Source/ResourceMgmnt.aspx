@@ -482,7 +482,7 @@
                   <dx:TabPage Text="Bookings">
                      <ContentCollection>
                         <dx:ContentControl>
-                           <dx:ASPxGridView ID="dgvDetailBookings"
+                           <dx:ASPxGridView ID="dgvDetailBookings" ClientInstanceName="dgvDetailBookings"
                               runat="server"
                               AutoGenerateColumns="False"
                               EnableTheming="True"
@@ -559,60 +559,12 @@
                                        </dx:ASPxGridLookup>
                                     </EditItemTemplate>
                                  </dx:GridViewDataComboBoxColumn>
-                                 <dx:GridViewDataComboBoxColumn FieldName="GeofenceLeave" Caption="Geo-fence Leave" ShowInCustomizationForm="True" VisibleIndex="6">
-                                    <PropertiesComboBox DataSourceID="odsBookingGeofence" TextField="Name" ValueField="ApplicationGeoFenceID">
-                                    </PropertiesComboBox>
-                                    <EditItemTemplate>
-                                       <dx:ASPxGridLookup ID="GeofenceLeaveLookup" ClientInstanceName="GeofenceLeaveLookup" Width="100%" runat="server" 
-                                          AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingGeofence"
-                                          KeyFieldName="ApplicationGeoFenceID" TextFormatString="{1}" 
-                                          Value='<%# Bind("GeofenceLeave")%>' IncrementalFilteringMode="Contains">
-                                          
-                                          <GridViewProperties>
-                                              <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
-                                             <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
-                                              <SettingsCommandButton NewButton-Text="Add New Address"></SettingsCommandButton>
-                                        <Settings ShowStatusBar="Visible" />
-                                          </GridViewProperties>
-                                           
-                                          <Columns>
-                                             <dx:GridViewCommandColumn VisibleIndex="0" Width="50px" ShowNewButtonInHeader="true" ShowEditButton="False" ShowDeleteButton="False">
-                                             </dx:GridViewCommandColumn>
-                                             <dx:GridViewDataTextColumn FieldName="ApplicationGeoFenceID"  Visible="false" VisibleIndex="1">
-                                             </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="Name" Caption="Address" EditFormSettings-Caption="Type address here:" Width="250px" VisibleIndex="3">
-                                                <PropertiesTextEdit Style-CssClass="search-address" Width="250px" ClientInstanceName="Name" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
-                                             </dx:GridViewDataTextColumn>
-                                          </Columns>
-                                       </dx:ASPxGridLookup>
-                                    </EditItemTemplate>
-                                 </dx:GridViewDataComboBoxColumn>
-                                 <dx:GridViewDataComboBoxColumn FieldName="GeofenceDestination" Caption="Geo-fence Destination" ShowInCustomizationForm="True" VisibleIndex="7">
-                                    <PropertiesComboBox DataSourceID="odsBookingGeofence" TextField="Name" ValueField="ApplicationGeoFenceID">
-                                    </PropertiesComboBox>
-                                    <EditItemTemplate>
-                                       <dx:ASPxGridLookup ID="GeofenceDestinationLookup" ClientInstanceName="GeofenceDestinationLookup" Width="100%" runat="server" 
-                                          AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingGeofence" 
-                                          KeyFieldName="ApplicationGeoFenceID" TextFormatString="{1}" 
-                                          Value='<%# Bind("GeofenceDestination")%>' IncrementalFilteringMode="Contains">
-                                          <GridViewProperties>
-                                              <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
-                                             <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
-                                              <SettingsCommandButton NewButton-Text="Add New Address"></SettingsCommandButton>
-                                        <Settings ShowStatusBar="Visible" />
-                                          </GridViewProperties>
-                                          <Columns>
-                                             <dx:GridViewCommandColumn VisibleIndex="0" Width="50px" ShowNewButtonInHeader="true" ShowEditButton="False" ShowDeleteButton="False">
-                                             </dx:GridViewCommandColumn>
-                                             <dx:GridViewDataTextColumn FieldName="ApplicationGeoFenceID"  Visible="false" VisibleIndex="1">
-                                             </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="Name" Caption="Address" EditFormSettings-Caption="Type address here:" Width="250px" VisibleIndex="3">
-                                                <PropertiesTextEdit Style-CssClass="search-address" Width="250px" ClientInstanceName="Name" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
-                                             </dx:GridViewDataTextColumn>
-                                          </Columns>
-                                       </dx:ASPxGridLookup>
-                                    </EditItemTemplate>
-                                 </dx:GridViewDataComboBoxColumn>
+                                 <dx:GridViewDataTextColumn FieldName="GeofenceLeave" Caption="Geo-fence Leave" ShowInCustomizationForm="True" VisibleIndex="6" PropertiesTextEdit-ClientSideEvents-Init="initsearchlocation">
+                                    
+                                 </dx:GridViewDataTextColumn>
+                                 <dx:GridViewDataTextColumn FieldName="GeofenceDestination" Caption="Geo-fence Destination" ShowInCustomizationForm="True" VisibleIndex="7" PropertiesTextEdit-ClientSideEvents-Init="initsearchlocation">
+                                    
+                                 </dx:GridViewDataTextColumn>
                                  <%-- <dx:GridViewDataTextColumn FieldName="GeofenceDestination" Caption="Geo-fence Destination"  ShowInCustomizationForm="True" VisibleIndex="6">
                                     <PropertiesTextEdit ClientInstanceName="GeofenceDestination" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
                                     </dx:GridViewDataTextColumn>--%>
@@ -624,7 +576,17 @@
                                           AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingContact" 
                                           KeyFieldName="ContactID" TextFormatString="{1}" 
                                           Value='<%# Bind("ContactID")%>' IncrementalFilteringMode="Contains">
-                                           
+                                           <GridViewClientSideEvents FocusedRowChanged="function(s, e) {
+                                               var g = lkContact.GetGridView()
+                                               var val = g.GetRowValues(s.focusedRowIndex,'MobileNumber;EmailAddress',function (values) {
+                                                    var mn = values[0];
+                                                    var ea = values[1];
+                                                    var cp =  dgvDetailBookings.GetEditor('CustomerPhone')
+                                                    var ce =  dgvDetailBookings.GetEditor('CustomerEmail')
+                                                    cp.SetText(mn);
+                                                    ce.SetText(ea);
+                                                });
+                                            }" />
                                           <GridViewProperties>
                                              <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
                                           </GridViewProperties>
@@ -667,11 +629,6 @@
                            <asp:ObjectDataSource ID="odsBookingDriver" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationDriver" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllDrivers" TypeName="FMS.Business.DataObjects.ApplicationDriver" UpdateMethod="Update">
                               <SelectParameters>
                                  <asp:SessionParameter DbType="Guid" Name="applicatoinid" SessionField="ApplicationID" />
-                              </SelectParameters>
-                           </asp:ObjectDataSource>
-                           <asp:ObjectDataSource ID="odsBookingGeofence" OnInserting="odsBookingGeofence_Inserting" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationGeoFence" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllApplicationGeoFences" TypeName="FMS.Business.DataObjects.ApplicationGeoFence" UpdateMethod="Update">
-                              <SelectParameters>
-                                 <asp:SessionParameter DbType="Guid" Name="appID" SessionField="ApplicationID" />
                               </SelectParameters>
                            </asp:ObjectDataSource>
                            <asp:ObjectDataSource ID="odsBooking" OnInserting="odsBooking_Inserting" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationBooking" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllBookingsForApplication" TypeName="FMS.Business.DataObjects.ApplicationBooking" UpdateMethod="Update">
