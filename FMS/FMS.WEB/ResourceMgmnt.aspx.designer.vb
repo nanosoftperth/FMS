@@ -203,15 +203,6 @@ Partial Public Class ResourceMgmnt
     Protected WithEvents odsBookingDriver As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''odsBookingGeofence control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsBookingGeofence As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
     '''odsBooking control.
     '''</summary>
     '''<remarks>
