@@ -208,6 +208,13 @@
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Account\ChangePasswordRequest.aspx.designer.vb">
+      <DependentUpon>ChangePasswordRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordRequest.aspx.vb">
+      <DependentUpon>ChangePasswordRequest.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Account\ChangePasswordSuccess.aspx.designer.vb">
       <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
     </Compile>
@@ -675,6 +682,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Account.css" />
+    <Content Include="Account\ChangePasswordRequest.aspx" />
     <Content Include="Account\ForgotPassword.aspx" />
     <Content Include="Account\Web.config" />
     <Content Include="AlarmsAndAlerts.aspx" />
@@ -698,6 +706,7 @@
     <Content Include="Content\Images\download.jpg" />
     <Content Include="Content\Images\GlassHeader.jpg" />
     <Content Include="Content\Images\google-map-logo-589x225.gif" />
+    <Content Include="Content\Images\icon-user-default.png" />
     <Content Include="Content\Images\location-icon.png" />
     <Content Include="Content\Images\markers\home-icon.png" />
     <Content Include="Content\Images\markers\lorry_48.png" />

@@ -10,7 +10,7 @@ Public Class ChangePassword
                     Dim Token = FMS.Business.DataObjects.AuthenticationToken.GetFPTokenFromID(Guid.Parse(_tokenId))
 
                     If Token IsNot Nothing Then
-                        If Token.TokenType <> "FP" Then Response.Redirect("~/NoAccessPage.aspx") 'not for forgot password
+                        If Token.TokenType <> "CP" Then Response.Redirect("~/NoAccessPage.aspx") 'not for forgot password
                         If Token.ExpiryDate < Now Then Response.Redirect("~/NoAccessPage.aspx") 'expired
 
                     Else
@@ -34,7 +34,7 @@ Public Class ChangePassword
                 tbPassword.ErrorText = "Password is not valid"
                 tbPassword.IsValid = False
             Else
-                Token.isFPUsable = False 'make it so that link can only be used once
+                Token.isCPUsed = False 'make it so that link can only be used once
                 FMS.Business.DataObjects.AuthenticationToken.Update(Token)
                 Response.Redirect("ChangePasswordSuccess.aspx")
             End If

@@ -7,7 +7,7 @@
         </asp:Content>
 
 <asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
     
     <div style="float: left;margin-left:200px;margin-top:20px;margin-right:200px;">
                 

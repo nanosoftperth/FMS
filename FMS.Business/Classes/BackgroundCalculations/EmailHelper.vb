@@ -29,8 +29,8 @@ Namespace BackgroundCalculations
         Public Const EmailContentForNewUser As String = _
         "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
         "Your account has been successfully created. " & vbNewLine & _
-        "Username : {1}" & vbNewLine & _
-        "Password : {2}"
+        "Username :  {1}" & vbNewLine & _
+        "Password :  {2}"
 
         Friend Shared Function SendEmail(emailList As String, companyName As String, _
                                          driverName As String, geofence_Name As String, _

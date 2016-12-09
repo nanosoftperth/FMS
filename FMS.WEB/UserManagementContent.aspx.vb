@@ -113,5 +113,6 @@ Public Class Test
 
         'send an email with agp
         BackgroundCalculations.EmailHelper.SendEmailUserCreated(x.Email, ThisSession.ApplicationName, x.UserName, agp)
+        dgvUsers.JSProperties("cpHasInserted") = x.Email
     End Sub
 End Class

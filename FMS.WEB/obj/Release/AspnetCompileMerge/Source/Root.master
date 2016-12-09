@@ -12,7 +12,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0,minimum-scale=1.0" />
     <title></title>
-
+    <script>
+        var divider = 0;
+    </script>
 
     <style type="text/css">
         p.MsoNormal {
@@ -120,11 +122,16 @@
                                     
                                     <a href="~/Account/Login.aspx" runat="server" id="loginLink">Log In</a>
                                     | 
-                                        <a href="~/Account/Register.aspx" runat="server" id="registerLink">Register</a>
+                                    <a href="~/Account/Register.aspx" runat="server" id="registerLink">Register</a>
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     Welcome <span class="bold">
-                                        <asp:LoginName ID="HeadLoginName" runat="server" />
+                                        <dx:ASPxHyperLink ID="HeadLoginName" ClientInstanceName="HeadLoginName" Cursor="pointer" runat="server" Text="" OnInit="HeadLoginName_Init" >
+                                            <ClientSideEvents Click="function(s,e){
+                                                    ASPxPopupClientControl.ShowAtElement(s.GetMainElement());
+                                                }" />
+                                    </dx:ASPxHyperLink>
+                                      <%--  <asp:LoginName ID="HeadLoginName" runat="server" />--%>
                                     </span>! [
                                         <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
                                             LogoutPageUrl="~/" />
@@ -132,6 +139,54 @@
                                 </LoggedInTemplate>
                             </asp:LoginView>
                         </div>
+                        <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="220px" Height="100%"
+                            MaxWidth="800px" MaxHeight="800px" MinHeight="50px" MinWidth="150px" ID="pcMain"
+                            ShowFooter="False" PopupElementID="HeadLoginName" ShowHeader="false"
+                            runat="server" ShowCloseButton="false" EnableViewState="false" PopupHorizontalAlign="Center" PopupAnimationType="None" CloseAnimationType="Fade" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
+                            <ContentCollection>
+                                <dx:PopupControlContentControl runat="server">
+                                    <asp:Panel ID="Panel1" runat="server">
+                                            <table style="margin:2px;">
+                                                <tr>
+                                                    <td>
+                                                        <div style="border-radius: 50%; overflow: hidden; background-color:#fa9921">
+                                                            <img src="/Content/Images/icon-user-default.png" style="height:60px"/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                           <table style="margin-left:10px;height:60px">
+                                                               <tr>
+                                                                   <td style="font-size:15px" >
+                                                                       <asp:LoginName ID="HeadLoginName" runat="server"/>
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <td style="font-size:9px">
+                                                                       <table>
+                                                                           <tr>
+                                                                               <td>
+                                        <dx:ASPxHyperLink ID="lnkUserViewProfile" ClientInstanceName="lnkUserViewProfile" Cursor="pointer" runat="server" Text="View Profile" ></dx:ASPxHyperLink>
+                                                                                    
+                                                                               </td>
+                                                                           </tr>
+                                                                           <tr>
+                                                                               <td>
+                                                                                   
+                                        <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
+                                                                                    
+                                                                               </td>
+                                                                           </tr>
+                                                                       </table>
+                                                                   </td>
+                                                               </tr>
+                                                           </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                    </asp:Panel>
+                                </dx:PopupControlContentControl>
+                            </ContentCollection>
+                        </dx:ASPxPopupControl>
 
                     </div>
                     <div class="headerMenu">

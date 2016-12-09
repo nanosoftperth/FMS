@@ -11,7 +11,7 @@
         Public Property ExpiryDate As Date
         Public Property StartDate As Date
         Public Property TokenType As String
-        Public Property isFPUsable As Boolean
+        Public Property isCPUsed As Boolean
 #End Region
 
 #Region "constructors"
@@ -26,7 +26,7 @@
                 Me.ExpiryDate = x.ExpiryDate.timezoneToClient
                 Me.StartDate = x.StartDate.timezoneToClient
                 Me.TokenType = x.TokenType
-                Me.isFPUsable = x.isFPUsable
+                Me.isCPUsed = x.isCPUsed
             End With
 
         End Sub
@@ -49,16 +49,16 @@
             Dim dbToken As New Business.AuthenticationToken
 
             With New LINQtoSQLClassesDataContext
-            With dbToken
-                .ApplicationID = t.ApplicationID
-                .ExpiryDate = t.ExpiryDate.timezoneToPerth
-                .StartDate = t.StartDate.timezoneToPerth
-                .TokenId = t.TokenID
-                .UserID = t.UserID
-                .TokenId = If(t.TokenID = Guid.Empty, Guid.NewGuid, t.TokenID)
-                .TokenType = t.TokenType
-                .isFPUsable = t.isFPUsable
-            End With
+                With dbToken
+                    .ApplicationID = t.ApplicationID
+                    .ExpiryDate = t.ExpiryDate.timezoneToPerth
+                    .StartDate = t.StartDate.timezoneToPerth
+                    .TokenId = t.TokenID
+                    .UserID = t.UserID
+                    .TokenId = If(t.TokenID = Guid.Empty, Guid.NewGuid, t.TokenID)
+                    .TokenType = t.TokenType
+                    .isCPUsed = t.isCPUsed
+                End With
 
                 .AuthenticationTokens.InsertOnSubmit(dbToken)
                 .SubmitChanges()
@@ -82,13 +82,13 @@
                     .TokenId = t.TokenID
                     .UserID = t.UserID
                     .TokenType = t.TokenType
-                    .isFPUsable = t.isFPUsable
+                    .isCPUsed = t.isCPUsed
                 End With
 
                 .SubmitChanges()
 
             End With
-            
+
             Return dbToken.TokenId
 
         End Function
@@ -112,8 +112,8 @@
             Dim t As Business.AuthenticationToken = SingletonAccess.FMSDataContextNew. _
                             AuthenticationTokens.Where(Function(x) x.TokenId = tokenID And
                                                            x.ExpiryDate > Now And
-                                                           x.TokenType = "FP" And
-                                                           x.isFPUsable = True).SingleOrDefault()
+                                                           x.TokenType = "CP" And
+                                                           x.isCPUsed = True).SingleOrDefault()
 
             Return If(t Is Nothing, Nothing, New DataObjects.AuthenticationToken(t))
 
@@ -122,8 +122,8 @@
             Dim t As Business.AuthenticationToken = SingletonAccess.FMSDataContextNew. _
                             AuthenticationTokens.Where(Function(x) x.UserID = userID And
                                                            x.ExpiryDate > Now And
-                                                           x.TokenType = "FP" And
-                                                           x.isFPUsable = True).SingleOrDefault()
+                                                           x.TokenType = "CP" And
+                                                           x.isCPUsed = True).SingleOrDefault()
 
             Return If(t Is Nothing, Nothing, t.TokenId)
 

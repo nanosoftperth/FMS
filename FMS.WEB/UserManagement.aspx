@@ -7,7 +7,7 @@
     <script src="Content/javascript/UserManagement.js"></script>
 
 
-    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
 
      <div style="position:absolute;bottom:10px;top:150px;left:15%;right:15%">
 
@@ -16,7 +16,7 @@
 
             <dx:PanelContent  runat="server">
                 
-                    <table>
+                    <table style="width:100%;">
                         <tr>
                             <td style="vertical-align:top;">
                                 <img style="top:2px;left:2px; height: 146px; width: 134px;" src="Content/Images/user-management.png" />

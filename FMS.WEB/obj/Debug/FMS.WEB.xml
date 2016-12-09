@@ -6,7 +6,95 @@ FMS.WEB
 </name>
 </assembly>
 <members>
-<member name="F:FMS.WEB.ForgotPassword.ASPxPanel1">
+<member name="F:FMS.WEB.ChangePasswordRequest.ASPxRoundPanel1">
+	<summary>
+ASPxRoundPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.ASPxPanel1">
+	<summary>
+ASPxPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.panelContent1">
+	<summary>
+panelContent1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.lblPassword">
+	<summary>
+lblPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.tbPassword">
+	<summary>
+tbPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.lblConfirmPassword">
+	<summary>
+lblConfirmPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.tbConfirmPassword">
+	<summary>
+tbConfirmPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.btnSendEmail">
+	<summary>
+btnSendEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.ASPxPanel2">
+	<summary>
+ASPxPanel2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.panelContent2">
+	<summary>
+panelContent2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ChangePasswordRequest.lblEmail">
+	<summary>
+lblEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.ForgotPassword.ASPxPanel1">
 	<summary>
 ASPxPanel1 control.
 </summary>
@@ -617,6 +705,46 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:FMS.WEB.RootMaster.HeadLoginView">
 	<summary>
 HeadLoginView control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.pcMain">
+	<summary>
+pcMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.Panel1">
+	<summary>
+Panel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.HeadLoginName">
+	<summary>
+HeadLoginName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.lnkUserViewProfile">
+	<summary>
+lnkUserViewProfile control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.RootMaster.lnkUserChangePassword">
+	<summary>
+lnkUserChangePassword control.
 </summary>
 	<remarks>
 Auto-generated field.
