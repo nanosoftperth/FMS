@@ -190,8 +190,5 @@ Public Class RootMaster
         header_applicationName.InnerText = ThisSession.header_applicationName
     End Sub
 
-    Protected Sub HeadLoginName_Init(sender As Object, e As EventArgs)
-        Dim lname = CType(sender, DevExpress.Web.ASPxHyperLink)
-        lname.Text =ThisSession.User.UserName
-    End Sub
+
 End Class
