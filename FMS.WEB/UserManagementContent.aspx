@@ -50,8 +50,8 @@
                     <dx:TabPage Text="Users" Name="tab_Users">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="UserId" ID="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="629px">
-                                    <SettingsPager PageSize="50">
+                                <dx:ASPxGridView KeyFieldName="UserId" ID="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
+                                    <SettingsPager PageSize="50" >
                                     </SettingsPager>
                                     <Settings ShowGroupPanel="True" />
                                     <ClientSideEvents EndCallback ="function(s,e){
@@ -129,7 +129,7 @@
                     <dx:TabPage Text="Roles" Name="tab_Roles">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="RoleID" ID="dgvRoles" runat="server" AutoGenerateColumns="False" DataSourceID="odsRolesRoles" EnableTheming="True" Theme="SoftOrange">
+                                <dx:ASPxGridView KeyFieldName="RoleID" ID="dgvRoles" runat="server" AutoGenerateColumns="False" DataSourceID="odsRolesRoles" EnableTheming="True" Theme="SoftOrange" Width="100%">
                                     <SettingsDetail ShowDetailRow="True" />
                                     <Templates>
                                         <DetailRow>
@@ -199,7 +199,7 @@
                                     SelectMethod="GetAllFeatures"
                                     TypeName="FMS.Business.DataObjects.Feature"></asp:ObjectDataSource>
                                 <dx:ASPxGridView ID="ASPxGridView2" runat="server"
-                                    AutoGenerateColumns="False" DataSourceID="odsFeatures"
+                                    AutoGenerateColumns="False" DataSourceID="odsFeatures"  Width="100%"
                                     Theme="SoftOrange">
                                     <SettingsPager PageSize="50"></SettingsPager>
                                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
@@ -218,7 +218,7 @@
                     <dx:TabPage Text="Roles Access to Features" Name="tab_RolesAccessToFeatures">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="ApplicationFeatureRoleID" ID="dgvRoleAccessToFeatures" runat="server" AutoGenerateColumns="False" DataSourceID="odsApplicationFeatureRoles" Theme="SoftOrange">
+                                <dx:ASPxGridView KeyFieldName="ApplicationFeatureRoleID" ID="dgvRoleAccessToFeatures" runat="server" AutoGenerateColumns="False" DataSourceID="odsApplicationFeatureRoles"  Width="100%" Theme="SoftOrange">
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <SettingsSearchPanel Visible="True" />
