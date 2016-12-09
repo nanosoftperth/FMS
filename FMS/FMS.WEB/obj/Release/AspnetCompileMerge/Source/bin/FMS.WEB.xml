@@ -734,17 +734,17 @@ HeadLoginName control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:FMS.WEB.RootMaster.lnkUserViewProfile">
+</member><member name="F:FMS.WEB.RootMaster.lnkUserChangePassword">
 	<summary>
-lnkUserViewProfile control.
+lnkUserChangePassword control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:FMS.WEB.RootMaster.lnkUserChangePassword">
+</member><member name="F:FMS.WEB.RootMaster.HeadLoginStatus">
 	<summary>
-lnkUserChangePassword control.
+HeadLoginStatus control.
 </summary>
 	<remarks>
 Auto-generated field.

@@ -126,22 +126,21 @@
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     Welcome <span class="bold">
-                                        <dx:ASPxHyperLink ID="HeadLoginName" ClientInstanceName="HeadLoginName" Cursor="pointer" runat="server" Text="" OnInit="HeadLoginName_Init" >
+                                        
+                                        <asp:LoginName ID="HeadLoginName" runat="server" />
+                                    </span>! [
+                                    <dx:ASPxHyperLink ID="HeadManage" ClientInstanceName="HeadManage" Cursor="pointer" runat="server" Text="Manage"  >
                                             <ClientSideEvents Click="function(s,e){
                                                     ASPxPopupClientControl.ShowAtElement(s.GetMainElement());
                                                 }" />
                                     </dx:ASPxHyperLink>
-                                      <%--  <asp:LoginName ID="HeadLoginName" runat="server" />--%>
-                                    </span>! [
-                                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
-                                            LogoutPageUrl="~/" />
                                     ]
                                 </LoggedInTemplate>
                             </asp:LoginView>
                         </div>
                         <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="220px" Height="100%"
                             MaxWidth="800px" MaxHeight="800px" MinHeight="50px" MinWidth="150px" ID="pcMain"
-                            ShowFooter="False" PopupElementID="HeadLoginName" ShowHeader="false"
+                            ShowFooter="False" PopupElementID="HeadManage" ShowHeader="false"
                             runat="server" ShowCloseButton="false" EnableViewState="false" PopupHorizontalAlign="Center" PopupAnimationType="None" CloseAnimationType="Fade" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
                             <ContentCollection>
                                 <dx:PopupControlContentControl runat="server">
@@ -165,15 +164,16 @@
                                                                        <table>
                                                                            <tr>
                                                                                <td>
-                                        <dx:ASPxHyperLink ID="lnkUserViewProfile" ClientInstanceName="lnkUserViewProfile" Cursor="pointer" runat="server" Text="View Profile" ></dx:ASPxHyperLink>
+                                                                                   
+                                        <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
                                                                                     
                                                                                </td>
                                                                            </tr>
                                                                            <tr>
                                                                                <td>
                                                                                    
-                                        <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
-                                                                                    
+                                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis"
+                                            LogoutPageUrl="~/" />                 
                                                                                </td>
                                                                            </tr>
                                                                        </table>
