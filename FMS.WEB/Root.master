@@ -141,7 +141,7 @@
                         <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="220px" Height="100%"
                             MaxWidth="800px" MaxHeight="800px" MinHeight="50px" MinWidth="150px" ID="pcMain"
                             ShowFooter="False" PopupElementID="HeadManage" ShowHeader="false"
-                            runat="server" ShowCloseButton="false" EnableViewState="false" PopupHorizontalAlign="Center" PopupAnimationType="None" CloseAnimationType="Fade" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
+                            runat="server" ShowCloseButton="false" EnableViewState="false" PopupHorizontalAlign="RightSides" PopupAnimationType="None" CloseAnimationType="Fade" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
                             <ContentCollection>
                                 <dx:PopupControlContentControl runat="server">
                                     <asp:Panel ID="Panel1" runat="server">

@@ -397,8 +397,8 @@
                                           </dx:GridViewCommandColumn>
                                           <dx:GridViewDataTextColumn FieldName="ApplicationVehicleOdometerReadingID" Visible="False" VisibleIndex="1">
                                           </dx:GridViewDataTextColumn>
-                                          <dx:GridViewDataTextColumn FieldName="OdometerReading" VisibleIndex="2">
-                                          </dx:GridViewDataTextColumn>
+                                          <dx:GridViewDataSpinEditColumn FieldName="OdometerReading" VisibleIndex="2">
+                                          </dx:GridViewDataSpinEditColumn>
                                           <dx:GridViewDataTextColumn FieldName="ApplicationVehicleID" Visible="False" VisibleIndex="3">
                                           </dx:GridViewDataTextColumn>
                                           <dx:GridViewDataDateColumn FieldName="TimeReadingTaken" VisibleIndex="4">
