@@ -113,15 +113,6 @@ Partial Public Class RootMaster
     Protected WithEvents HeadLoginName As Global.System.Web.UI.WebControls.LoginName
 
     '''<summary>
-    '''lnkUserViewProfile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkUserViewProfile As Global.DevExpress.Web.ASPxHyperLink
-
-    '''<summary>
     '''lnkUserChangePassword control.
     '''</summary>
     '''<remarks>
@@ -129,6 +120,15 @@ Partial Public Class RootMaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkUserChangePassword As Global.DevExpress.Web.ASPxHyperLink
+
+    '''<summary>
+    '''HeadLoginStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HeadLoginStatus As Global.System.Web.UI.WebControls.LoginStatus
 
     '''<summary>
     '''HeaderMenu control.
