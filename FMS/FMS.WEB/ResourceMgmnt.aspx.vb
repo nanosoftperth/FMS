@@ -236,7 +236,7 @@ Public Class ResourceMgmnt
         ab.ApplicationID = ThisSession.ApplicationID
         ab.Description = location
         ab.IsCircular = True
-        ab.CircleRadiusMetres = 1000 'Temp: must be 2 km
+        ab.CircleRadiusMetres = 2000 'Temp: must be 2 km
         ab.CircleCentre = x.lat + "|" + x.lng
         ab.isBooking = True
         ab.UserID = ThisSession.User.UserId
