@@ -20,8 +20,8 @@
                     .StartDate = Now
                     .TokenID = Guid.NewGuid
                     .UserID = user.ProviderUserKey
-                    .TokenType = "FP"
-                    .isFPUsable = True
+                    .TokenType = "CP"
+                    .isCPUsed = True
                 End With
 
                 TokenID = FMS.Business.DataObjects.AuthenticationToken.Create(t)

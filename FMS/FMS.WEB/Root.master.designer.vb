@@ -86,6 +86,51 @@ Partial Public Class RootMaster
     Protected WithEvents HeadLoginView As Global.System.Web.UI.WebControls.LoginView
 
     '''<summary>
+    '''pcMain control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pcMain As Global.DevExpress.Web.ASPxPopupControl
+
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''HeadLoginName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HeadLoginName As Global.System.Web.UI.WebControls.LoginName
+
+    '''<summary>
+    '''lnkUserViewProfile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkUserViewProfile As Global.DevExpress.Web.ASPxHyperLink
+
+    '''<summary>
+    '''lnkUserChangePassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkUserChangePassword As Global.DevExpress.Web.ASPxHyperLink
+
+    '''<summary>
     '''HeaderMenu control.
     '''</summary>
     '''<remarks>

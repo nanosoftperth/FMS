@@ -44,7 +44,7 @@
         <div class="centreme">
 
             <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="4"
-                EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="700px">
+                EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 
                     <dx:TabPage Text="Users" Name="tab_Users">
@@ -54,6 +54,13 @@
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <Settings ShowGroupPanel="True" />
+                                    <ClientSideEvents EndCallback ="function(s,e){
+                                            debugger;
+                                            if (s.cpHasInserted) {
+                                                alert('A mail has been sent to ' + s.cpHasInserted + ' with the default password.');
+                                                delete s.HasInserted;
+                                            }
+                                        }" />
                                     <Columns>
                                         <dx:GridViewCommandColumn ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                         </dx:GridViewCommandColumn>
@@ -411,7 +418,7 @@
                 InsertMethod="Insert" OnInserting="odsUsers_Inserting"
                 SelectMethod="GetAllUsersForApplication"
                 TypeName="FMS.Business.DataObjects.User"
-                UpdateMethod="Update">
+                UpdateMethod="Update"> 
                 <SelectParameters>
                     <asp:SessionParameter DbType="Guid"
                         Name="applicationid"

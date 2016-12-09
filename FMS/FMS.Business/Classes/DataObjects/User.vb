@@ -91,16 +91,16 @@ Namespace DataObjects
 
 
 #End Region
-        Public Shared Sub AssignUSerToGeneralRole(userName As String, applicationid As Guid)
+        Public Shared Sub AssignUSerToGeneralRole(userName As String, userid As Guid, applicationid As Guid)
 
 
             Dim role As DataObjects.Role = DataObjects.Role.GetAllRolesforApplication(applicationid).Where(Function(x) x.Name.ToLower = "general").SingleOrDefault()
 
             If role Is Nothing Then Throw New Exception("There was no ""general"" role to assign the user to")
 
-            Dim u As DataObjects.User = DataObjects.User.GetAllUsersForApplication(applicationid).Where(Function(x) x.UserName.ToLower = userName.ToLower).SingleOrDefault()
+            Dim u As DataObjects.User = DataObjects.User.GetAllUsersForApplication(applicationid).Where(Function(x) x.UserId = userid).SingleOrDefault()
 
-            If u Is Nothing Then Throw New Exception(String.Format("There was non ""(0}"" user found in the database", userName))
+            If u Is Nothing Then Throw New Exception(String.Format("There was non ""(0}"" user found in the database", UserName))
 
 
             u.RoleID = role.RoleID

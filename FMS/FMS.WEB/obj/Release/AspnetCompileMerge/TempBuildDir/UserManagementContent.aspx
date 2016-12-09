@@ -44,7 +44,7 @@
         <div class="centreme">
 
             <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="4"
-                EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="700px">
+                EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 
                     <dx:TabPage Text="Users" Name="tab_Users">
@@ -54,6 +54,13 @@
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <Settings ShowGroupPanel="True" />
+                                    <ClientSideEvents EndCallback ="function(s,e){
+                                            debugger;
+                                            if (s.cpHasInserted) {
+                                                alert('A mail has been sent to ' + s.cpHasInserted + ' with the default password.');
+                                                delete s.HasInserted;
+                                            }
+                                        }" />
                                     <Columns>
                                         <dx:GridViewCommandColumn ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                         </dx:GridViewCommandColumn>
@@ -65,7 +72,7 @@
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="Email" ShowInCustomizationForm="True" VisibleIndex="4">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="LastLoggedInDate" ShowInCustomizationForm="True" VisibleIndex="7">
+                                        <dx:GridViewDataDateColumn FieldName="LastLoggedInDate" EditFormSettings-Visible="False" ShowInCustomizationForm="True" VisibleIndex="7">
                                             <PropertiesDateEdit>
                                                 <TimeSectionProperties>
                                                     <TimeEditProperties>
@@ -408,11 +415,10 @@
             <asp:ObjectDataSource ID="odsUsers"
                 runat="server"
                 DataObjectTypeName="FMS.Business.DataObjects.User"
-                InsertMethod="Insert"
+                InsertMethod="Insert" OnInserting="odsUsers_Inserting"
                 SelectMethod="GetAllUsersForApplication"
                 TypeName="FMS.Business.DataObjects.User"
-                UpdateMethod="Update">
-
+                UpdateMethod="Update"> 
                 <SelectParameters>
                     <asp:SessionParameter DbType="Guid"
                         Name="applicationid"
