@@ -11,7 +11,7 @@
         Public Property ExpiryDate As Date
         Public Property StartDate As Date
         Public Property TokenType As String
-        Public Property isCPUsed As Boolean
+        Public Property isUsedForChangePassword As Boolean
 #End Region
 
 #Region "constructors"
@@ -26,7 +26,7 @@
                 Me.ExpiryDate = x.ExpiryDate.timezoneToClient
                 Me.StartDate = x.StartDate.timezoneToClient
                 Me.TokenType = x.TokenType
-                Me.isCPUsed = If(x.isCPUsed.HasValue, x.isCPUsed.Value, False)
+                Me.isUsedForChangePassword = If(x.isUsedForChangePassword.HasValue, x.isUsedForChangePassword.Value, False)
             End With
 
         End Sub
@@ -57,7 +57,7 @@
                     .UserID = t.UserID
                     .TokenId = If(t.TokenID = Guid.Empty, Guid.NewGuid, t.TokenID)
                     .TokenType = t.TokenType
-                    .isCPUsed = t.isCPUsed
+                    .isUsedForChangePassword = t.isUsedForChangePassword
                 End With
 
                 .AuthenticationTokens.InsertOnSubmit(dbToken)
@@ -82,7 +82,7 @@
                     .TokenId = t.TokenID
                     .UserID = t.UserID
                     .TokenType = t.TokenType
-                    .isCPUsed = t.isCPUsed
+                    .isUsedForChangePassword = t.isUsedForChangePassword
                 End With
 
                 .SubmitChanges()
@@ -113,7 +113,7 @@
                             AuthenticationTokens.Where(Function(x) x.TokenId = tokenID And
                                                            x.ExpiryDate > Now And
                                                            x.TokenType = "CP" And
-                                                           x.isCPUsed = True).SingleOrDefault()
+                                                           x.isUsedForChangePassword = True).SingleOrDefault()
 
             Return If(t Is Nothing, Nothing, New DataObjects.AuthenticationToken(t))
 
@@ -123,7 +123,7 @@
                             AuthenticationTokens.Where(Function(x) x.UserID = userID And
                                                            x.ExpiryDate > Now And
                                                            x.TokenType = "CP" And
-                                                           x.isCPUsed = True).SingleOrDefault()
+                                                           x.isUsedForChangePassword = True).SingleOrDefault()
 
             Return If(t Is Nothing, Nothing, t.TokenId)
 

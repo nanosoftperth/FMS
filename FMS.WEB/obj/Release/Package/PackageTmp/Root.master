@@ -141,7 +141,7 @@
                         <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="220px" Height="100%"
                             MaxWidth="800px" MaxHeight="800px" MinHeight="50px" MinWidth="150px" ID="pcMain"
                             ShowFooter="False" PopupElementID="HeadManage" ShowHeader="false"
-                            runat="server" ShowCloseButton="false" EnableViewState="false" PopupHorizontalAlign="Center" PopupAnimationType="None" CloseAnimationType="Fade" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
+                            runat="server" ShowCloseButton="false" EnableViewState="false" PopupHorizontalAlign="RightSides" PopupAnimationType="None" CloseAnimationType="Fade" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
                             <ContentCollection>
                                 <dx:PopupControlContentControl runat="server">
                                     <asp:Panel ID="Panel1" runat="server">
@@ -153,33 +153,29 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                           <table style="margin-left:10px;height:60px">
-                                                               <tr>
-                                                                   <td style="font-size:15px" >
-                                                                       <asp:LoginName ID="HeadLoginName" runat="server"/>
-                                                                   </td>
-                                                               </tr>
-                                                               <tr>
-                                                                   <td style="font-size:9px">
-                                                                       <table>
-                                                                           <tr>
-                                                                               <td>
-                                                                                   
-                                        <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
-                                                                                    
-                                                                               </td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                               <td>
-                                                                                   
-                                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis"
-                                            LogoutPageUrl="~/" />                 
-                                                                               </td>
-                                                                           </tr>
-                                                                       </table>
-                                                                   </td>
-                                                               </tr>
-                                                           </table>
+                                                        <table style="margin-left:10px;height:60px">
+                                                            <tr>
+                                                                <td style="font-size:15px" >
+                                                                    <asp:LoginName ID="HeadLoginName" runat="server"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-size:9px">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td>
+                                                                                 <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                 <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis" LogoutPageUrl="~/" />                 
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </td>
                                                 </tr>
                                             </table>
