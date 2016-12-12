@@ -200,13 +200,10 @@ Public Class ResourceMgmnt
 
     End Sub
 
-
     Private Sub dgvApplicationVehicleDriver_CustomErrorText(sender As Object, e As ASPxGridViewCustomErrorTextEventArgs) Handles dgvApplicationVehicleDriver.CustomErrorText
 
         If e.ErrorText = "Nullable object must have a value." Then e.ErrorText = "You cannot have a passenger without a driver."
     End Sub
-
-
 
     Protected Sub odsBooking_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationBooking)
