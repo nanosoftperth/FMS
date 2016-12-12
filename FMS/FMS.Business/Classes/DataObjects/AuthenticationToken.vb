@@ -26,7 +26,7 @@
                 Me.ExpiryDate = x.ExpiryDate.timezoneToClient
                 Me.StartDate = x.StartDate.timezoneToClient
                 Me.TokenType = x.TokenType
-                Me.isCPUsed = x.isCPUsed
+                Me.isCPUsed = If(x.isCPUsed.HasValue, x.isCPUsed.Value, False)
             End With
 
         End Sub
