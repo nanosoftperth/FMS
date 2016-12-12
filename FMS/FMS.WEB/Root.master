@@ -153,33 +153,29 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                           <table style="margin-left:10px;height:60px">
-                                                               <tr>
-                                                                   <td style="font-size:15px" >
-                                                                       <asp:LoginName ID="HeadLoginName" runat="server"/>
-                                                                   </td>
-                                                               </tr>
-                                                               <tr>
-                                                                   <td style="font-size:9px">
-                                                                       <table>
-                                                                           <tr>
-                                                                               <td>
-                                                                                   
-                                        <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
-                                                                                    
-                                                                               </td>
-                                                                           </tr>
-                                                                           <tr>
-                                                                               <td>
-                                                                                   
-                                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis"
-                                            LogoutPageUrl="~/" />                 
-                                                                               </td>
-                                                                           </tr>
-                                                                       </table>
-                                                                   </td>
-                                                               </tr>
-                                                           </table>
+                                                        <table style="margin-left:10px;height:60px">
+                                                            <tr>
+                                                                <td style="font-size:15px" >
+                                                                    <asp:LoginName ID="HeadLoginName" runat="server"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-size:9px">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td>
+                                                                                 <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                 <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis" LogoutPageUrl="~/" />                 
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </td>
                                                 </tr>
                                             </table>

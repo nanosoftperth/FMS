@@ -34,7 +34,7 @@ Public Class ChangePassword
                 tbPassword.ErrorText = "Password is not valid"
                 tbPassword.IsValid = False
             Else
-                Token.isCPUsed = False 'make it so that link can only be used once
+                Token.isUsedForChangePassword = False 'make it so that link can only be used once
                 FMS.Business.DataObjects.AuthenticationToken.Update(Token)
                 Response.Redirect("ChangePasswordSuccess.aspx")
             End If

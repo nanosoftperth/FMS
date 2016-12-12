@@ -10647,7 +10647,7 @@ Partial Public Class AuthenticationToken
 	
 	Private _TokenType As String
 	
-	Private _isCPUsed As System.Nullable(Of Boolean)
+	Private _isUsedForChangePassword As System.Nullable(Of Boolean)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -10680,9 +10680,9 @@ Partial Public Class AuthenticationToken
     End Sub
     Partial Private Sub OnTokenTypeChanged()
     End Sub
-    Partial Private Sub OnisCPUsedChanging(value As System.Nullable(Of Boolean))
+    Partial Private Sub OnisUsedForChangePasswordChanging(value As System.Nullable(Of Boolean))
     End Sub
-    Partial Private Sub OnisCPUsedChanged()
+    Partial Private Sub OnisUsedForChangePasswordChanged()
     End Sub
     #End Region
 	
@@ -10792,18 +10792,18 @@ Partial Public Class AuthenticationToken
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_isCPUsed", DbType:="Bit")>  _
-	Public Property isCPUsed() As System.Nullable(Of Boolean)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_isUsedForChangePassword", DbType:="Bit")>  _
+	Public Property isUsedForChangePassword() As System.Nullable(Of Boolean)
 		Get
-			Return Me._isCPUsed
+			Return Me._isUsedForChangePassword
 		End Get
 		Set
-			If (Me._isCPUsed.Equals(value) = false) Then
-				Me.OnisCPUsedChanging(value)
+			If (Me._isUsedForChangePassword.Equals(value) = false) Then
+				Me.OnisUsedForChangePasswordChanging(value)
 				Me.SendPropertyChanging
-				Me._isCPUsed = value
-				Me.SendPropertyChanged("isCPUsed")
-				Me.OnisCPUsedChanged
+				Me._isUsedForChangePassword = value
+				Me.SendPropertyChanged("isUsedForChangePassword")
+				Me.OnisUsedForChangePasswordChanged
 			End If
 		End Set
 	End Property

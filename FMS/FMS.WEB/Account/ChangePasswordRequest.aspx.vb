@@ -22,7 +22,7 @@
                         .TokenID = Guid.NewGuid
                         .UserID = ThisSession.UserID
                         .TokenType = "CP"
-                        .isCPUsed = True
+                        .isUsedForChangePassword = True
                     End With
 
                     TokenID = FMS.Business.DataObjects.AuthenticationToken.Create(t)
