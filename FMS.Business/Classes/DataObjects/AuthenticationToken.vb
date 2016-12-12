@@ -41,7 +41,6 @@
 
 #End Region
 
-
 #Region "CRUD"
 
         Public Shared Function Create(t As DataObjects.AuthenticationToken) As Guid
