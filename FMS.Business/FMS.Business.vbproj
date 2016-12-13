@@ -102,6 +102,7 @@
     <Compile Include="Classes\DataObjects\Group.vb" />
     <Compile Include="Classes\DataObjects\GroupSubscriber.vb" />
     <Compile Include="Classes\DataObjects\LogEntry.vb" />
+    <Compile Include="Classes\DataObjects\PaidFeature.vb" />
     <Compile Include="Classes\DataObjects\SimulatorSetting.vb" />
     <Compile Include="Classes\DataObjects\Subscriber.vb" />
     <Compile Include="Classes\DataObjects\TimeZone.vb" />

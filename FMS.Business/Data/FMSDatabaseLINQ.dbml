@@ -557,6 +557,13 @@
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.PaidFeatures" Member="PaidFeatures">
+    <Type Name="PaidFeature">
+      <Column Name="ApplicationPaidFeaturesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PaidFeatureDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.AuthenticationToken" Member="AuthenticationTokens">
     <Type Name="AuthenticationToken">
       <Column Name="TokenId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -565,7 +572,7 @@
       <Column Name="ExpiryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="TokenType" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="isCPUsed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isUsedForChangePassword" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

@@ -79,7 +79,7 @@ Public Class ResourceMgmnt
         Dim retlst As List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime) = _
                                     FMS.Business.DataObjects.ApplicationVehicleDriverTime. _
                                             GetAllForApplicationAndDatePeriodIncludingDuds(ThisSession.ApplicationID, Me.dateEditDay.Date, Me.timeEditTo.DateTime)
-
+        pageControlMain.TabPages(3).Visible = FMS.Business.DataObjects.PaidFeature.HasAccessToPaidFeatures(ThisSession.ApplicationID, "Bookings") 'ByRyan: Will determine if Application has access to Feature
     End Sub
 
 
