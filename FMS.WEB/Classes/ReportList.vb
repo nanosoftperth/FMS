@@ -21,12 +21,16 @@ Public Class AvailableReport
         Dim repts As New List(Of AvailableReport)
 
 
-        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "VehicleReport6.vb" _
+        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "VehicleReport" _
                                            , .ReportDescription = "All journeys and stops for a specific vehicle" _
                                            , .VisibleReportName = "Vehicle report"})
 
+        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "ServiceVehicleReport" _
+                                           , .ReportDescription = "Testing Phase" _
+                                           , .VisibleReportName = "Service Vehicle report"})
 
-        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "ReportGeoFence_byDriver.vb" _
+
+        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "ReportGeoFence_byDriver" _
                                    , .ReportDescription = "A driver and ALL the geo-fences they have gone through i the time period" _
                                    , .VisibleReportName = "Geo-fence report (by driver)"})
 

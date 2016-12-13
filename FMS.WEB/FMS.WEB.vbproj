@@ -334,7 +334,10 @@
     <Compile Include="Reports\ReportGeoFence_byDriver.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\VehicleReport6.vb">
+    <Compile Include="Reports\VehicleReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ServiceVehicleReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RoundRobinService.svc.vb">
@@ -676,8 +679,11 @@
     <EmbeddedResource Include="Reports\ReportGeoFence_byDriver.resx">
       <DependentUpon>ReportGeoFence_byDriver.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\VehicleReport6.resx">
-      <DependentUpon>VehicleReport6.vb</DependentUpon>
+    <EmbeddedResource Include="Reports\VehicleReport.resx">
+      <DependentUpon>VehicleReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ServiceVehicleReport.resx">
+      <DependentUpon>ServiceVehicleReport.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
