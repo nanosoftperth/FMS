@@ -6,6 +6,14 @@
         Dim reportname As String = Request.QueryString("Report")
         Me.ASPxDocumentViewer1.Report = GetReportFromName(reportname)
 
+        'BY RYAN: chane column labels 
+        If reportname = "ServiceVehicleReport" Then
+            With CType(ASPxDocumentViewer1.Report, ServiceVehicleReport)
+                .ArrivalCell.Text = ThisSession.ApplicationName + " H.Q. Arrival"
+                .DepartureCell.Text = ThisSession.ApplicationName + " H.Q. Departure"
+            End With
+        End If
+
         'if this is not going to automatically fill parameters, then exit sub here 
         If String.IsNullOrEmpty(Request.QueryString("autoFillParams")) Then Exit Sub
 
