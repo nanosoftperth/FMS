@@ -21,7 +21,7 @@
             popupReport.ShowAtPos(posX, 130);
             popupReport.SetHeight(newHeight - 140);
             popupReport.SetHeaderText(popupHeader);
-            popupReport.SetContentUrl('/ReportContent.aspx?Report=VehicleReport6&autoFillParams=true&vehicleid=' + vehicleID);
+            popupReport.SetContentUrl('/ReportContent.aspx?Report=VehicleReport&autoFillParams=true&vehicleid=' + vehicleID);
 
             var posX = $(window).width() - 850;
             var newHeight = $(window).height();
