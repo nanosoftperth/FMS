@@ -77,13 +77,14 @@
     Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Public WithEvents ArrivalCell As DevExpress.XtraReports.UI.XRTableCell
+    Public WithEvents DepartureCell As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents CustomDeparture As DevExpress.XtraReports.UI.CalculatedField
 
     'Required by the Designer
     Private components As System.ComponentModel.IContainer
@@ -119,8 +120,8 @@
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ArrivalCell = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.DepartureCell = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -169,6 +170,7 @@
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.CustomDeparture = New DevExpress.XtraReports.UI.CalculatedField()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,10 +193,10 @@
         '
         'XrTable2
         '
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(3.000132!, 9.999974!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(3.000132!, 0.0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(711.9999!, 26.12496!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(711.9999!, 28.20829!)
         Me.XrTable2.StylePriority.UseTextAlignment = False
         Me.XrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -226,12 +228,12 @@
         Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.ArrivalTime", "{0:hh:mm tt}")})
         Me.XrTableCell14.Name = "XrTableCell14"
         Me.XrTableCell14.StyleName = "DataField"
-        Me.XrTableCell14.Weight = 37.985422214075342R
+        Me.XrTableCell14.Weight = 37.98541615846738R
         '
         'XrTableCell18
         '
         Me.XrTableCell18.CanGrow = False
-        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.DepartureTime", "{0:hh:mm tt}")})
+        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.CustomDeparture")})
         Me.XrTableCell18.Name = "XrTableCell18"
         Me.XrTableCell18.StyleName = "DataField"
         Me.XrTableCell18.Weight = 38.998703601838706R
@@ -241,7 +243,7 @@
         Me.XrTableCell20.CanGrow = False
         Me.XrTableCell20.Name = "XrTableCell20"
         Me.XrTableCell20.StyleName = "DataField"
-        Me.XrTableCell20.Weight = 23.166596071495313R
+        Me.XrTableCell20.Weight = 23.166602127103268R
         '
         'TopMargin
         '
@@ -260,7 +262,7 @@
         'PageHeaderBand1
         '
         Me.PageHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-        Me.PageHeaderBand1.HeightF = 25.0!
+        Me.PageHeaderBand1.HeightF = 34.375!
         Me.PageHeaderBand1.Name = "PageHeaderBand1"
         '
         'XrTable1
@@ -284,7 +286,7 @@
         '
         'XrTableRow3
         '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.XrTableCell9, Me.XrTableCell11, Me.XrTableCell13, Me.XrTableCell15})
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.XrTableCell9, Me.ArrivalCell, Me.DepartureCell, Me.XrTableCell15})
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.Weight = 1.0R
         '
@@ -300,17 +302,17 @@
         Me.XrTableCell9.Text = "Home/Start"
         Me.XrTableCell9.Weight = 0.552771923094167R
         '
-        'XrTableCell11
+        'ArrivalCell
         '
-        Me.XrTableCell11.Name = "XrTableCell11"
-        Me.XrTableCell11.Text = "H.Q. Arrival"
-        Me.XrTableCell11.Weight = 0.90201820417842116R
+        Me.ArrivalCell.Name = "ArrivalCell"
+        Me.ArrivalCell.Text = "H.Q. Arrival"
+        Me.ArrivalCell.Weight = 0.90201820417842116R
         '
-        'XrTableCell13
+        'DepartureCell
         '
-        Me.XrTableCell13.Name = "XrTableCell13"
-        Me.XrTableCell13.Text = "H.Q. Departure"
-        Me.XrTableCell13.Weight = 0.9260797145282601R
+        Me.DepartureCell.Name = "DepartureCell"
+        Me.DepartureCell.Text = "H.Q. Departure"
+        Me.DepartureCell.Weight = 0.9260797145282601R
         '
         'XrTableCell15
         '
@@ -782,7 +784,7 @@
         'Detail1
         '
         Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
-        Me.Detail1.HeightF = 36.12493!
+        Me.Detail1.HeightF = 28.20829!
         Me.Detail1.Name = "Detail1"
         '
         'ObjectDataSource1
@@ -801,9 +803,17 @@
         Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter3]", GetType(String))
         Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter4, Parameter5, Parameter6})
         '
+        'CustomDeparture
+        '
+        Me.CustomDeparture.DataMember = "LineValies"
+        Me.CustomDeparture.Expression = resources.GetString("CustomDeparture.Expression")
+        Me.CustomDeparture.FieldType = DevExpress.XtraReports.UI.FieldType.[String]
+        Me.CustomDeparture.Name = "CustomDeparture"
+        '
         'ServiceVehicleReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeaderBand1, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport})
+        Me.CalculatedFields.AddRange(New DevExpress.XtraReports.UI.CalculatedField() {Me.CustomDeparture})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
         Me.DataSource = Me.ObjectDataSource1
         Me.Margins = New System.Drawing.Printing.Margins(57, 75, 32, 100)
