@@ -271,6 +271,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
     End Sub
+  Partial Private Sub InsertPaidFeature(instance As PaidFeature)
+    End Sub
+  Partial Private Sub UpdatePaidFeature(instance As PaidFeature)
+    End Sub
+  Partial Private Sub DeletePaidFeature(instance As PaidFeature)
+    End Sub
   Partial Private Sub InsertAuthenticationToken(instance As AuthenticationToken)
     End Sub
   Partial Private Sub UpdateAuthenticationToken(instance As AuthenticationToken)
@@ -571,6 +577,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
 		Get
 			Return Me.GetTable(Of ApplicationBooking)
+		End Get
+	End Property
+	
+	Public ReadOnly Property PaidFeatures() As System.Data.Linq.Table(Of PaidFeature)
+		Get
+			Return Me.GetTable(Of PaidFeature)
 		End Get
 	End Property
 	
@@ -10606,6 +10618,113 @@ Partial Public Class ApplicationBooking
 					Me._ApplicationDriverID = CType(Nothing, System.Guid)
 				End If
 				Me.SendPropertyChanged("ApplicationDriver")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.PaidFeatures")>  _
+Partial Public Class PaidFeature
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationPaidFeaturesID As System.Guid
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _PaidFeatureDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationPaidFeaturesIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationPaidFeaturesIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnPaidFeatureDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnPaidFeatureDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationPaidFeaturesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationPaidFeaturesID() As System.Guid
+		Get
+			Return Me._ApplicationPaidFeaturesID
+		End Get
+		Set
+			If ((Me._ApplicationPaidFeaturesID = value)  _
+						= false) Then
+				Me.OnApplicationPaidFeaturesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationPaidFeaturesID = value
+				Me.SendPropertyChanged("ApplicationPaidFeaturesID")
+				Me.OnApplicationPaidFeaturesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PaidFeatureDescription", DbType:="NVarChar(MAX)")>  _
+	Public Property PaidFeatureDescription() As String
+		Get
+			Return Me._PaidFeatureDescription
+		End Get
+		Set
+			If (String.Equals(Me._PaidFeatureDescription, value) = false) Then
+				Me.OnPaidFeatureDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._PaidFeatureDescription = value
+				Me.SendPropertyChanged("PaidFeatureDescription")
+				Me.OnPaidFeatureDescriptionChanged
 			End If
 		End Set
 	End Property

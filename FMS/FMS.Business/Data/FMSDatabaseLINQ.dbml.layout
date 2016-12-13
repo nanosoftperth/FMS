@@ -405,10 +405,16 @@
         <classShapeMoniker Id="38399bda-6021-4e6f-806d-5c926d90b1cc" />
       </nodes>
     </associationConnector>
-    <classShape Id="f734924a-ff91-4464-95bc-0b9a5dc2824c" absoluteBounds="16, 9.125, 2, 2.1554996744791666">
+    <classShape Id="f4053122-d1af-45d6-98ec-e33e20182634" absoluteBounds="4.375, 5.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LINQtoSQLClassesDataContext/PaidFeature" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fd5a39e1-ebf7-46cc-9696-9fc5c1c8f089" absoluteBounds="4.39, 5.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8f76318a-3f8d-433c-a5eb-291aeacbdda2" absoluteBounds="16.25, 9.75, 2, 2.1554996744791666">
       <DataClassMoniker Name="/LINQtoSQLClassesDataContext/AuthenticationToken" />
       <nestedChildShapes>
-        <elementListCompartment Id="12a32d6f-5520-4a0a-b4b2-b2b397dec06f" absoluteBounds="16.015, 9.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="318eff79-3342-4477-8475-f090a22e72ad" absoluteBounds="16.265, 10.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
