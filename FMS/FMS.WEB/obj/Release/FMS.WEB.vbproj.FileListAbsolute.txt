@@ -493,9 +493,10 @@ C:\temp\ryan\FMS\FMS.WEB\bin\ru\DevExpress.Web.ASPxRichEdit.v15.1.resources.dll
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.vbprojResolveAssemblyReference.cache
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.Resources.resources
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.ReportGeoFence_byDriver.resources
-C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.VehicleReport6.resources
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.vbproj.GenerateResource.Cache
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.dll.licenses
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.dll
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.xml
 C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.pdb
+C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.VehicleReport.resources
+C:\temp\ryan\FMS\FMS.WEB\obj\Release\FMS.WEB.ServiceVehicleReport.resources

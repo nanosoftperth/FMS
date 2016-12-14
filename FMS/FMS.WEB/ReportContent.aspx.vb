@@ -6,7 +6,7 @@
         Dim reportname As String = Request.QueryString("Report")
         Me.ASPxDocumentViewer1.Report = GetReportFromName(reportname)
 
-        'BY RYAN: chane column labels 
+        'BY RYAN: change column labels 
         If reportname = "ServiceVehicleReport" Then
             With CType(ASPxDocumentViewer1.Report, ServiceVehicleReport)
                 .ArrivalCell.Text = ThisSession.ApplicationName + " H.Q. Arrival"
