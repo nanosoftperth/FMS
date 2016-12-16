@@ -84,7 +84,6 @@
     Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
-    Friend WithEvents CustomDeparture As DevExpress.XtraReports.UI.CalculatedField
 
     'Required by the Designer
     Private components As System.ComponentModel.IContainer
@@ -170,7 +169,6 @@
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.CustomDeparture = New DevExpress.XtraReports.UI.CalculatedField()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -209,7 +207,7 @@
         'XrTableCell8
         '
         Me.XrTableCell8.CanGrow = False
-        Me.XrTableCell8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.StartTime", "{0:dd/MM/yyyy}")})
+        Me.XrTableCell8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ServiceLineValies.HomeStart", "{0:dd/MM/yyyy}")})
         Me.XrTableCell8.Name = "XrTableCell8"
         Me.XrTableCell8.StyleName = "DataField"
         Me.XrTableCell8.Weight = 17.853417099743695R
@@ -217,7 +215,7 @@
         'XrTableCell10
         '
         Me.XrTableCell10.CanGrow = False
-        Me.XrTableCell10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.StartTime", "{0:hh:mm tt}")})
+        Me.XrTableCell10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ServiceLineValies.HomeStart", "{0:hh:mm tt}")})
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StyleName = "DataField"
         Me.XrTableCell10.Weight = 23.278111812845985R
@@ -225,7 +223,7 @@
         'XrTableCell14
         '
         Me.XrTableCell14.CanGrow = False
-        Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.ArrivalTime", "{0:hh:mm tt}")})
+        Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ServiceLineValies.Arrival", "{0:hh:mm tt}")})
         Me.XrTableCell14.Name = "XrTableCell14"
         Me.XrTableCell14.StyleName = "DataField"
         Me.XrTableCell14.Weight = 37.98541615846738R
@@ -233,7 +231,7 @@
         'XrTableCell18
         '
         Me.XrTableCell18.CanGrow = False
-        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.CustomDeparture")})
+        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ServiceLineValies.formatted_Departure")})
         Me.XrTableCell18.Name = "XrTableCell18"
         Me.XrTableCell18.StyleName = "DataField"
         Me.XrTableCell18.Weight = 38.998703601838706R
@@ -241,6 +239,7 @@
         'XrTableCell20
         '
         Me.XrTableCell20.CanGrow = False
+        Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ServiceLineValies.formatted_HomeStart_End")})
         Me.XrTableCell20.Name = "XrTableCell20"
         Me.XrTableCell20.StyleName = "DataField"
         Me.XrTableCell20.Weight = 23.166602127103268R
@@ -776,7 +775,7 @@
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
-        Me.DetailReport.DataMember = "LineValies"
+        Me.DetailReport.DataMember = "ServiceLineValies"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
@@ -789,7 +788,7 @@
         '
         'ObjectDataSource1
         '
-        Me.ObjectDataSource1.DataMember = "GetVehicleReportValues"
+        Me.ObjectDataSource1.DataMember = "GetServiceVehicleReportValues"
         Me.ObjectDataSource1.DataSource = GetType(FMS.WEB.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         Parameter4.Name = "startdate"
@@ -803,17 +802,9 @@
         Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter3]", GetType(String))
         Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter4, Parameter5, Parameter6})
         '
-        'CustomDeparture
-        '
-        Me.CustomDeparture.DataMember = "LineValies"
-        Me.CustomDeparture.Expression = resources.GetString("CustomDeparture.Expression")
-        Me.CustomDeparture.FieldType = DevExpress.XtraReports.UI.FieldType.[String]
-        Me.CustomDeparture.Name = "CustomDeparture"
-        '
         'ServiceVehicleReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeaderBand1, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport})
-        Me.CalculatedFields.AddRange(New DevExpress.XtraReports.UI.CalculatedField() {Me.CustomDeparture})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
         Me.DataSource = Me.ObjectDataSource1
         Me.Margins = New System.Drawing.Printing.Margins(57, 75, 32, 100)

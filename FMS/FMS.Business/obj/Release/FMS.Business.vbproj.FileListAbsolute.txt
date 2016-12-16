@@ -28,3 +28,4 @@ C:\temp\ryan\FMS\FMS.Business\obj\Release\FMS.Business.vbproj.GenerateResource.C
 C:\temp\ryan\FMS\FMS.Business\obj\Release\FMS.Business.dll
 C:\temp\ryan\FMS\FMS.Business\obj\Release\FMS.Business.xml
 C:\temp\ryan\FMS\FMS.Business\obj\Release\FMS.Business.pdb
+C:\temp\ryan\FMS\FMS.Business\obj\Release\FMS.Business.vbprojResolveAssemblyReference.cache
