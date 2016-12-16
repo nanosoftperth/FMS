@@ -64,6 +64,79 @@ Public Class ReportDataHandler
 
     End Function
 
+    'BY RYAN
+    Public Shared Function GetServiceVehicleReportValues(startdate As Date _
+                                                  , endDate As Date _
+                                                  , vehicleName As String) As CachedServiceVehicleReport
+
+
+        startdate = startdate
+        endDate = endDate.AddDays(1)
+
+
+        'get the vehicleid (guid)
+        Dim vehicleID As Guid = _
+            FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
+                    .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
+
+
+        'Find out if the report is alreaedy in the cache
+        Dim rept As CachedServiceVehicleReport = (From x In ThisSession.CachedServiceVehicleReports _
+                                            Where x.EndDate = endDate _
+                                            AndAlso x.StartDate = startdate _
+                                            AndAlso x.VehicleID = vehicleID).SingleOrDefault
+
+        Dim GET_CAHCHED_REPORT As Boolean = True
+
+        'MAKE the report and add it to the cache if it doesnt exist
+        If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
+
+            Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
+                    FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
+
+            Dim c = New List(Of CachedServiceVehicleReportLine)
+
+            'get all date
+            Dim ddate = (From x In vehicleReportLines Select x.StartTime.Value.ToShortDateString()).Distinct.ToList
+            For Each dateloop In ddate
+                ' get vehicleReportLines per date
+                Dim vrl = (From x In vehicleReportLines Where x.StartTime.Value.ToShortDateString() = dateloop Order By x.StartTime Select x).ToList
+                Dim i = New CachedServiceVehicleReportLine()
+
+                Dim apsettings = Business.DataObjects.Setting.GetSettingsForApplication_withoutImages(ThisSession.ApplicationID)
+                Dim aplat = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Lattitude").Value
+                Dim aplog = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Longitude").Value
+                Dim aploc = New Business.BackgroundCalculations.Loc(aplat, aplog)
+                '1km(1000m) radius 
+                Dim vrlloc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 1000, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.FirstOrDefault
+                If vrlloc IsNot Nothing Then
+                    i.Arrival = vrlloc.ArrivalTime
+                    i.Departure = vrlloc.DepartureTime
+                End If
+                i.HomeStart = vrl.First.StartTime
+                i.HomeStart_End = vrl.Last.StartTime
+                c.Add(i)
+            Next
+
+            rept = (New CachedServiceVehicleReport With {.VehicleID = vehicleID _
+                                                    , .StartDate = startdate _
+                                                    , .EndDate = endDate _
+                                                    , .LineValies = vehicleReportLines _
+                                                    , .ServiceLineValies = c})
+
+            'TimeZoneHelper.AltertoHQTimeZone(rept) 'should n olonger be required, don eat business layer
+
+            rept.CalculateSummaries()
+
+            ThisSession.CachedVehicleReports.Add(rept)
+
+        End If
+
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+
+        Return rept
+
+    End Function
 
     Public Shared Function GetGeoCacheReportByDriver(startDate As Date, endDate As Date, driverID As String) As ClientSide_GeoFenceReport_ByDriver
 

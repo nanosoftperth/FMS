@@ -226,9 +226,4 @@
   <metadata name="ObjectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="CustomDeparture.Expression" xml:space="preserve">
-    <value>Remove(Remove(ToStr([DepartureTime]),0 ,CharIndex(' ', ToStr([DepartureTime]))+1 ),CharIndex(' ', Remove(ToStr([DepartureTime]),0 ,CharIndex(' ', ToStr([DepartureTime]))+1 ))-3 ,3 )
-
-+' ('+ ToStr(Iif(DateDiffMinute([ArrivalTime],[DepartureTime] ) &lt;60, DateDiffMinute([ArrivalTime],[DepartureTime])+' mins' ,ToInt((DateDiffMinute([ArrivalTime],[DepartureTime]) / 60)) + ':' +(DateDiffMinute([ArrivalTime],[DepartureTime]) % 60) +' hrs')) + ')'</value>
-  </data>
 </root>

@@ -166,6 +166,16 @@ Public Class ThisSession
 
         End Get
     End Property
+    Public Shared ReadOnly Property CachedServiceVehicleReports As List(Of CachedServiceVehicleReport)
+        Get
+
+            If HttpContext.Current.Session("CachedServiceVehicleReports") Is Nothing Then _
+                    HttpContext.Current.Session("CachedServiceVehicleReports") = New List(Of CachedServiceVehicleReport)
+
+            Return CType(HttpContext.Current.Session("CachedServiceVehicleReports"), List(Of CachedServiceVehicleReport))
+
+        End Get
+    End Property
 
     Public Shared Function GetTimeZoneValues() As List(Of FMS.Business.DataObjects.Setting)
 
@@ -266,7 +276,6 @@ Public Class CachedVehicleReport
 
 #End Region
 
-
     Public Property LineValies As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine)
 
     Public Sub New()
@@ -281,3 +290,44 @@ Public Class CachedVehicleReport
 
 End Class
 
+
+'BY RYAN 
+'only difference is LineValies
+Public Class CachedServiceVehicleReport
+    Inherits CachedVehicleReport
+    Public Property ServiceLineValies As List(Of CachedServiceVehicleReportLine)
+
+End Class
+
+Public Class CachedServiceVehicleReportLine
+
+    Public Property HomeStart As DateTime?
+    Public Property Arrival As DateTime?
+    Public Property Departure As DateTime?
+    Public Property HomeStart_End As DateTime?
+    Public ReadOnly Property formatted_Departure As String
+        Get
+            Return If(Departure Is Nothing, "", Departure.Value.ToShortTimeString() + formatTimeSpan(Arrival, Departure))
+        End Get
+    End Property
+    Public ReadOnly Property formatted_HomeStart_End As String
+        Get
+            Return If(HomeStart_End Is Nothing, "", HomeStart_End.Value.ToShortTimeString() + formatTimeSpan(Departure, HomeStart_End))
+        End Get
+    End Property
+    Private Function formatTimeSpan(d1 As DateTime?, d2 As DateTime?) As String
+        If d1 Is Nothing Then Return ""
+        If d2 Is Nothing Then Return ""
+        Dim min = d2.Value.Subtract(d1.Value).Minutes
+        If min < 60 Then
+            Return " (" + min.ToString("##") + "mins)"
+        Else
+            Dim hr = d2.Value.Subtract(d1.Value).Hours
+            Dim hrmin = min - (hr * 60)
+            Return " (" + hr.ToString + ":" + hrmin.ToString("##") + "hrs)"
+        End If
+
+        Return ""
+    End Function
+
+End Class

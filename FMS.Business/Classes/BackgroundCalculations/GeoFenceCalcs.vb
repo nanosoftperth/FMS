@@ -468,6 +468,20 @@ Namespace BackgroundCalculations
             Return distanceFromCentre <= circleRadius
 
         End Function
+        'BY RYAN
+        Public Shared Function isPointInCircle(center As Loc, radius As Decimal, point As Loc) As Boolean
+
+            Dim lat As Decimal = center.lt
+            Dim lng As Decimal = center.lg
+
+            Dim circleCentre As Loc = New Loc(lat, lng)
+            Dim circleRadius As Decimal = radius
+
+            Dim distanceFromCentre As Decimal = CoordDistanceM(circleCentre, point)
+
+            Return distanceFromCentre <= circleRadius
+
+        End Function
 
         Public Shared Function CoordDistanceM(Pos1 As Loc, Pos2 As Loc) As Double
 

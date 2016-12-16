@@ -22,6 +22,8 @@ Namespace ReportGeneration
 
         Public Property DriverName As String
         Public Property StopLocation As String
+        Public Property Lat As Decimal 'BYRYAN
+        Public Property Lng As Decimal 'BYRYAN
 
         Public Property StartTime As DateTime?
         Public Property ArrivalTime As New DateTime?
@@ -139,11 +141,19 @@ Namespace ReportGeneration
 
                 'if this is the first time weve stopped, then find out the address
                 'if (in the very first place) we were already stopped, get that address
-                If wasPreviouslyTravelling And isCurrentlyStopped Then _
+                If wasPreviouslyTravelling And isCurrentlyStopped Then
                     loopVARL.StopLocation = FMS.Business.GoogleGeoCodeResponse.GetForLatLong(s_current.Lat, s_current.Lng)
+                    'BY RYAN
+                    loopVARL.Lat = s_current.Lat
+                    loopVARL.Lng = s_current.Lng
+                End If
+
 
                 If isfirstLoopAndFirstValWasStopped Then
                     loopVARL.StopLocation = FMS.Business.GoogleGeoCodeResponse.GetForLatLong(s_prev.Lat, s_prev.Lng)
+                    'BY RYAN
+                    loopVARL.Lat = s_prev.Lat
+                    loopVARL.Lng = s_prev.Lng
                 End If
 
                 'If we are stopped, then add to the correct total
@@ -188,6 +198,9 @@ Namespace ReportGeneration
 
                             loopVARL.StartTime = s_current.StartTime
                             loopVARL.StopLocation = FMS.Business.GoogleGeoCodeResponse.GetForLatLong(s_next.Lat, s_next.Lng)
+                            'BY RYAN
+                            loopVARL.Lat = s_next.Lat
+                            loopVARL.Lng = s_next.Lng
                             loopVARL.ArrivalTime = s_next.StartTime
                             loopVARL.DepartureTime = s_next.EndTime
 
