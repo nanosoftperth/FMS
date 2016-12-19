@@ -16,7 +16,7 @@ Namespace DataObjects
         Public Shared Function insert(r As Role) As Guid
 
             Dim applicationName As String = (From a In SingletonAccess.FMSDataContextContignous.aspnet_Applications Where a.ApplicationId = r.ApplicationID).Single.ApplicationName
-            SingletonAccess.FMSDataContextContignous.aspnet_Roles_CreateRole(applicationName, r.Name)
+            SingletonAccess.FMSDataContextContignous.aspnet_Roles_CreateRole(applicationName, r.Name, r.Description)
 
             Dim app As DataObjects.Application = DataObjects.Application.GetFromApplicationName(applicationName)
 
@@ -78,6 +78,7 @@ Namespace DataObjects
                 Me.Name = .RoleName
                 Me.RoleID = .RoleId
                 Me.ApplicationID = .ApplicationId
+                Me.Description = .Description
             End With
 
         End Sub

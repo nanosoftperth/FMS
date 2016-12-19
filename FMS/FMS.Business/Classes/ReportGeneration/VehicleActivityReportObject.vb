@@ -38,7 +38,7 @@ Namespace ReportGeneration
 
 #Region "read only properties (mostly for formatting, dev express forms causing issues)"
 
-        Private Const dateFormat As String = "dd/MMM/yyyy HH:mm:ss"
+        Private Const dateFormat As String = "dd/MMM/yyyy HH:mm:ss tt"
         'Private Const timeFormat As String = "dd\.hh\:mm\:ss"
 
         Private Function timespanFormatCust(t As TimeSpan) As String

@@ -318,7 +318,7 @@ Public Class CachedServiceVehicleReportLine
     Private Function formatTimeSpan(d1 As DateTime?, d2 As DateTime?) As String
         If d1 Is Nothing Then Return ""
         If d2 Is Nothing Then Return ""
-        Dim min = d2.Value.Subtract(d1.Value).Minutes
+        Dim min = d2.Value.Subtract(d1.Value).TotalMinutes
         If min < 60 Then
             Return " (" + min.ToString("##") + "mins)"
         Else

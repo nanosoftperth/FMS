@@ -112,7 +112,23 @@ Public Class Test
         x.UserId = user.ProviderUserKey
 
         'send an email with agp
-        BackgroundCalculations.EmailHelper.SendEmailUserCreated(x.Email, ThisSession.ApplicationName, x.UserName, agp)
-        dgvUsers.JSProperties("cpHasInserted") = x.Email
+        If x.SendEmailtoUserWithDefPass Then
+            BackgroundCalculations.EmailHelper.SendEmailUserCreated(x.Email, ThisSession.ApplicationName, x.UserName, agp)
+            dgvUsers.JSProperties("cpHasInserted") = x.Email
+
+        End If
+    End Sub
+
+    Protected Sub dgvUsers_BeforeGetCallbackResult(sender As Object, e As EventArgs)
+
+        Dim x = CType(sender, DevExpress.Web.ASPxGridView)
+        If Not x.IsNewRowEditing Then
+            Dim c = CType(x.Columns("SendEmailtoUserWithDefPass"), DevExpress.Web.GridViewDataColumn)
+            c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False
+        End If
+    End Sub
+
+    Protected Sub dgvUsers_InitNewRow(sender As Object, e As DevExpress.Web.Data.ASPxDataInitNewRowEventArgs)
+        e.NewValues("SendEmailtoUserWithDefPass") = True
     End Sub
 End Class

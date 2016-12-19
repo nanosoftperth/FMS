@@ -64,7 +64,7 @@ Public Class ReportDataHandler
 
     End Function
 
-    'BY RYAN
+    'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT
     Public Shared Function GetServiceVehicleReportValues(startdate As Date _
                                                   , endDate As Date _
                                                   , vehicleName As String) As CachedServiceVehicleReport
@@ -97,24 +97,29 @@ Public Class ReportDataHandler
             Dim c = New List(Of CachedServiceVehicleReportLine)
 
             'get all date
-            Dim ddate = (From x In vehicleReportLines Select x.StartTime.Value.ToShortDateString()).Distinct.ToList
+            Dim ddate = (From x In vehicleReportLines Select If(x.StartTime Is Nothing, "", x.StartTime.Value.ToShortDateString())).Distinct.ToList
             For Each dateloop In ddate
                 ' get vehicleReportLines per date
-                Dim vrl = (From x In vehicleReportLines Where x.StartTime.Value.ToShortDateString() = dateloop Order By x.StartTime Select x).ToList
+                Dim vrl = (From x In vehicleReportLines Where If(x.StartTime Is Nothing, "", x.StartTime.Value.ToShortDateString()) = dateloop Order By x.StartTime Select x).ToList
                 Dim i = New CachedServiceVehicleReportLine()
 
                 Dim apsettings = Business.DataObjects.Setting.GetSettingsForApplication_withoutImages(ThisSession.ApplicationID)
                 Dim aplat = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Lattitude").Value
                 Dim aplog = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Longitude").Value
                 Dim aploc = New Business.BackgroundCalculations.Loc(aplat, aplog)
-                '1km(1000m) radius 
-                Dim vrlloc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 1000, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.FirstOrDefault
-                If vrlloc IsNot Nothing Then
-                    i.Arrival = vrlloc.ArrivalTime
-                    i.Departure = vrlloc.DepartureTime
+                '500m radius 
+                Dim vrl_floc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 200, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.FirstOrDefault
+                If vrl_floc IsNot Nothing Then
+                    i.Arrival = vrl_floc.ArrivalTime
+                End If
+                Dim vrl_lloc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 200, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.LastOrDefault
+
+                If vrl_lloc IsNot Nothing Then
+                    Dim cl = vrl(vrl.IndexOf(vrl_lloc) + 1)
+                    i.Departure = cl.StartTime
                 End If
                 i.HomeStart = vrl.First.StartTime
-                i.HomeStart_End = vrl.Last.StartTime
+                i.HomeStart_End = vrl.Last.ArrivalTime
                 c.Add(i)
             Next
 

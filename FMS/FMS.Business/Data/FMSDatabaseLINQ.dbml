@@ -591,11 +591,6 @@
     <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.aspnet_Roles_CreateRole" Method="aspnet_Roles_CreateRole">
-    <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
-    <Parameter Name="RoleName" Parameter="roleName" Type="System.String" DbType="NVarChar(256)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.aspnet_Roles_GetAllRoles" Method="aspnet_Roles_GetAllRoles">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <ElementType Name="aspnet_Roles_GetAllRolesResult">
@@ -688,5 +683,11 @@
       <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="GeoFenceDeviceCollissionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.aspnet_Roles_CreateRole" Method="aspnet_Roles_CreateRole">
+    <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="RoleName" Parameter="roleName" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(256)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>
