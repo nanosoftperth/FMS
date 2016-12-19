@@ -253,23 +253,25 @@ Public Class DefaultService
             Next
 
             'Check if there is already a geofence with that name
+            'by ryan
             Dim alreadyExists As Boolean = FMS.Business.DataObjects.ApplicationGeoFence.GetAllApplicationGeoFences( _
-                            ThisSession.ApplicationID).Where(Function(x) x.Name.ToLower = Name).Count > 0
+                            ThisSession.ApplicationID).Select(Function(c) c.Name.Trim.ToLower).Contains(Name)
 
-            retobj.IsCircular = geofence.IsCircular
+                retobj.IsCircular = geofence.IsCircular
 
-            If Not alreadyExists Then
-                retobj.NewGeoFenceID = FMS.Business.DataObjects.ApplicationGeoFence.Create(geofence).ToString
-                retobj.wasSuccess = True
-                retobj.MessageFromServer = "Successful creation of geofence!"
-            Else
-                retobj.wasSuccess = False
-                retobj.MessageFromServer = String.Format("The geo-fence ""{0}"" already exists." & _
-                            "{1}Please use a different name or edit the existing geo-fence using the edit tab.", Name, vbNewLine)
-            End If
+                If Not alreadyExists Then
+                    retobj.NewGeoFenceID = FMS.Business.DataObjects.ApplicationGeoFence.Create(geofence).ToString
+                    retobj.wasSuccess = True
+                    retobj.MessageFromServer = "Successful creation of geofence!"
+                Else
+                    retobj.wasSuccess = False
+                    retobj.MessageFromServer = String.Format("The geo-fence ""{0}"" already exists." & _
+                                "{1}Please use a different name or edit the existing geo-fence using the edit tab.", Name, vbNewLine)
+                End If
 
         Catch ex As Exception
             retobj.wasSuccess = False
+            Dim vbNewLine = ""
             retobj.MessageFromServer = String.Format("ERROR at Server:{0}{1}{0}{2}", vbNewLine, ex.Message, ex.StackTrace)
         End Try
 

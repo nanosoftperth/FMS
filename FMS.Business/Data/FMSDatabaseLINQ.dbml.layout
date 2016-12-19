@@ -262,7 +262,7 @@
         <classShapeMoniker Id="cabc036b-8523-42c2-9d0f-84916e224106" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.882813125 : 15.1651025390625); (1.882813125 : 21.1114005533854); (9.25 : 21.1114005533854)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.882813125 : 15.1651025390625); (1.882813125 : 21.1114005533854); (2.13151260416667 : 21.1114005533854 : JumpStart); (2.29817927083333 : 21.1114005533854 : JumpEnd); (9.25 : 21.1114005533854)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/aspnet_Application/aspnet_Application_aspnet_Membership" />
       <nodes>
         <classShapeMoniker Id="6d75e2e3-4e15-4044-869a-ba5d8f8c6fcb" />
@@ -297,14 +297,14 @@
         <classShapeMoniker Id="f11bf19c-ec88-4cb0-852f-9c7b775a49eb" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.2187475 : 15.1651025390625); (1.2187475 : 16.6354484049479); (1.79947979166667 : 16.6354484049479 : JumpStart); (1.96614645833333 : 16.6354484049479 : JumpEnd); (2.13151260416667 : 16.6354484049479 : JumpStart); (2.29817927083333 : 16.6354484049479 : JumpEnd); (2.46354541666667 : 16.6354484049479 : JumpStart); (2.63021208333333 : 16.6354484049479 : JumpEnd); (3.5 : 16.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.2187475 : 15.1651025390625); (1.2187475 : 16.6354484049479); (2.13151260416667 : 16.6354484049479 : JumpStart); (2.29817927083333 : 16.6354484049479 : JumpEnd); (2.46354541666667 : 16.6354484049479 : JumpStart); (2.63021208333333 : 16.6354484049479 : JumpEnd); (3.5 : 16.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/aspnet_Application/aspnet_Application_aspnet_Role" />
       <nodes>
         <classShapeMoniker Id="6d75e2e3-4e15-4044-869a-ba5d8f8c6fcb" />
         <classShapeMoniker Id="c4c799cd-649e-4741-97a1-7a4d7f80f0fd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 18.40625); (5.91666666666667 : 18.40625 : JumpStart); (6.08333333333333 : 18.40625 : JumpEnd); (9.25 : 18.40625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 18.40625); (9.25 : 18.40625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/aspnet_User/aspnet_User_aspnet_Membership" />
       <nodes>
         <classShapeMoniker Id="7f556682-ce0c-415d-9a17-9d5f1d6f709e" />
@@ -318,7 +318,7 @@
         <classShapeMoniker Id="3ca99b9c-1a9b-419e-8d87-f41f1c5dbeb9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 19.0166387766927); (6.25 : 19.0166387766927)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 19.0166387766927); (5.91666666666667 : 19.0166387766927 : JumpStart); (6.08333333333333 : 19.0166387766927 : JumpEnd); (6.25 : 19.0166387766927)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/aspnet_User/aspnet_User_aspnet_Profile" />
       <nodes>
         <classShapeMoniker Id="7f556682-ce0c-415d-9a17-9d5f1d6f709e" />
@@ -398,7 +398,7 @@
         <elementListCompartment Id="aa243f48-0904-4e74-bbca-3936f8892714" absoluteBounds="8.39, 1.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 3.02005126953125); (10.375 : 3.02005126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 3.02005126953125); (10.375 : 3.02005126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/ApplicationDriver/ApplicationDriver_ApplicationBooking" />
       <nodes>
         <classShapeMoniker Id="b44d285d-185b-4068-87b3-603eebbfc33c" />

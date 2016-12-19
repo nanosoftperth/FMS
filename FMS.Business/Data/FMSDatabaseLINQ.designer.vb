@@ -599,12 +599,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,Integer)
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_CreateRole")>  _
-	Public Function aspnet_Roles_CreateRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleName", DbType:="NVarChar(256)")> ByVal roleName As String) As Integer
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, roleName)
-		Return CType(result.ReturnValue,Integer)
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_GetAllRoles")>  _
 	Public Function aspnet_Roles_GetAllRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String) As ISingleResult(Of aspnet_Roles_GetAllRolesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName)
@@ -657,6 +651,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGeoFenceCollisionsResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGeoFenceCollisionsResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_CreateRole")>  _
+	Public Function aspnet_Roles_CreateRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleName", DbType:="NVarChar(256)")> ByVal roleName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Description", DbType:="NVarChar(256)")> ByVal description As String) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, roleName, description)
+		Return CType(result.ReturnValue,Integer)
 	End Function
 End Class
 

@@ -12,6 +12,7 @@ Namespace DataObjects
         Public Property TimeZoneID As String
         Public Property LastLoggedInDate As Date
         Public Property RoleID As Guid
+        Public Property SendEmailtoUserWithDefPass As Boolean
 
 
         Public Sub UpdatetimeZone(Optional u As aspnet_User = Nothing)
