@@ -50,15 +50,15 @@
                     <dx:TabPage Text="Users" Name="tab_Users">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="UserId" ID="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
+                                <dx:ASPxGridView KeyFieldName="UserId" OnInitNewRow="dgvUsers_InitNewRow" OnBeforeGetCallbackResult="dgvUsers_BeforeGetCallbackResult" ID="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
                                     <SettingsPager PageSize="50" >
                                     </SettingsPager>
                                     <Settings ShowGroupPanel="True" />
                                     <ClientSideEvents EndCallback ="function(s,e){
-                                            debugger;
                                             if (s.cpHasInserted) {
                                                 alert('A mail has been sent to ' + s.cpHasInserted + ' with the default password.');
-                                                delete s.HasInserted;
+                                                delete s.cpHasInserted;
+
                                             }
                                         }" />
                                     <Columns>
@@ -72,18 +72,7 @@
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="Email" ShowInCustomizationForm="True" VisibleIndex="4">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="LastLoggedInDate" EditFormSettings-Visible="False" ShowInCustomizationForm="True" VisibleIndex="7">
-                                            <PropertiesDateEdit>
-                                                <TimeSectionProperties>
-                                                    <TimeEditProperties>
-                                                        <ClearButton Visibility="Auto">
-                                                        </ClearButton>
-                                                    </TimeEditProperties>
-                                                </TimeSectionProperties>
-                                                <ClearButton Visibility="Auto">
-                                                </ClearButton>
-                                            </PropertiesDateEdit>
-                                        </dx:GridViewDataDateColumn>
+                                         
                                         <dx:GridViewDataComboBoxColumn FieldName="RoleID" ShowInCustomizationForm="True" VisibleIndex="8" Caption="Role">
                                             <PropertiesComboBox DataSourceID="odsRoles" TextField="Name" ValueField="RoleID">
                                                 <ClearButton Visibility="Auto">
@@ -109,6 +98,9 @@
                                                 </ClearButton>
                                             </PropertiesComboBox>
                                         </dx:GridViewDataComboBoxColumn>
+                                        <dx:GridViewDataCheckColumn FieldName="SendEmailtoUserWithDefPass" ShowInCustomizationForm="true" VisibleIndex="8"  Visible="false" >
+                                             <EditFormSettings Caption="Send email to user with password and login details" Visible="True" />
+                                        </dx:GridViewDataCheckColumn>
                                     </Columns>
                                 </dx:ASPxGridView>
                                 <asp:ObjectDataSource ID="odsRoles"
@@ -169,13 +161,15 @@
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <Columns>
-                                        <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                        <dx:GridViewCommandColumn Width="100px" ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="Name" ShowInCustomizationForm="True" VisibleIndex="2">
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="RoleID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="3">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="Description" ShowInCustomizationForm="True" VisibleIndex="4">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                 </dx:ASPxGridView>
@@ -361,7 +355,7 @@
                                                                     <dx:ASPxGridView ID="dgvTimezoneSettings"
                                                                         ClientInstanceName="dgvTimezoneSettings"
                                                                         runat="server"
-                                                                        DataSourceID="odsTimeZoneData"
+                                                                        DataSourceID="odsTimeZoneData" Width="100%"
                                                                         AutoGenerateColumns="False">
 
 
@@ -383,7 +377,7 @@
                                                 </tr>
 
                                                  <tr>
-                                                    <td style="padding-left: 10px; padding-right: 60px; padding-bottom: 10px; padding-top: 12px; text-align:right;">
+                                                    <td style="padding-left: 10px; padding-bottom: 10px; padding-top: 12px; text-align:right;">
                                                         application version "<%=AppVersion%>"
                                                     </td>
                                                 </tr>

@@ -1,6 +1,8 @@
 ﻿var metros;
 var map;
 var currentPolygon;
+
+var currentCircle; //BY Ryan : Initialization must be null
 var ALLGeoFencesArr = [];
 var polygonLabelMarkers = [];
 var GeoFenceIDToShowOnrefresh = null;
@@ -116,14 +118,17 @@ function deleteGeoFence_successCallback(result) {
 
 function colorGeoEditSelct_ColorChanged() {
 
-    var selectedItem = getSelectedEditItem();
+    //BY RYAN 
+    //check if any geofence was selected
+    if (cbGeoEditGeoFences.GetSelectedItem()) {
+        var selectedItem = getSelectedEditItem();
 
-    //GEt Polygon related to the geoFence
-    var poly = getGeoFenceFromID(selectedItem.id);
+        //GEt Polygon related to the geoFence
+        var poly = getGeoFenceFromID(selectedItem.id);
 
-    var selectedColour = colorGeoEditSelct.GetColor();
-
-    poly.setOptions({ strokeColor: selectedColour, fillColor: selectedColour });
+        var selectedColour = colorGeoEditSelct.GetColor();
+        poly.setOptions({ strokeColor: selectedColour, fillColor: selectedColour });
+    }
 }
 
 function getSelectedEditItem() {
@@ -131,7 +136,6 @@ function getSelectedEditItem() {
     var retObj = {};
 
     var selItem = cbGeoEditGeoFences.GetSelectedItem().texts;
-
     retObj.name = selItem[0];
     retObj.desc = selItem[1];
     retObj.id = selItem[2];
@@ -139,7 +143,7 @@ function getSelectedEditItem() {
 
     latlngs = null;
     circleCentre = null;
-    circleRadius = null;    
+    circleRadius = null;
 
     try {
 
@@ -156,8 +160,8 @@ function getSelectedEditItem() {
         } else {
 
             latlngs = getPolygonArrsStr(selectedPolygonOrCircle);
-        }  
-        
+        }
+
 
     } catch (e) { }
 
@@ -447,7 +451,6 @@ function showGeoFenceLabels() {
     if (polygonLabelMarkers == null) { return null; }
 
     polygonLabelMarkers.forEach(function (item, index) {
-        debugger;
         if (item.forBooking) item.label.setMap(show && showb ? map : null);
         else item.label.setMap(show ? map : null);
     });
@@ -537,6 +540,7 @@ function btnSave_Click() {
     var circleOrPolygon = combogeoFenceTypeSelection.GetValue();
 
     var latlngs = getPolygonArrsStr(currentPolygon);
+    debugger;
 
     saveNewPolygonToDB(latlngs, name, desc, colour, circleLatLngStr, circleRadius, circleOrPolygon)
 
@@ -633,7 +637,7 @@ function getDifrnce(num1, num2) {
 }
 
 function goefenceColour_ColorChanged() {
-
+    debugger;
     if (currentPolygon != null) {
 
         currentPolygon.fillColor = goefenceColour.GetColor();
@@ -692,11 +696,19 @@ function func_mapClicked(event) {
     var bnds = map.getBounds();
     //alert(bnds('south'));
     //alert(JSON.stringify(bnds));
+    debugger;
+    //var top = bnds.H.j;
+    //var bottom = bnds.H.H;
+    //var left = bnds.j.j;
+    //var right = bnds.j.H;
 
-    var top = bnds.H.j;
-    var bottom = bnds.H.H;
-    var left = bnds.j.j;
-    var right = bnds.j.H;
+    //By Ryan
+    var top = bnds.getNorthEast().lat();
+    var right = bnds.getNorthEast().lng();
+    var bottom = bnds.getSouthWest().lat();
+    var left = bnds.getSouthWest().lng();
+   
+
 
     var event_lat = event.latLng.lat();
     var event_lng = event.latLng.lng();
@@ -769,7 +781,6 @@ function func_mapClicked(event) {
     //console.log(map.getZoom());
 }
 
-currentCircle = {};
 
 function ShowEditableGeoFence() {
 

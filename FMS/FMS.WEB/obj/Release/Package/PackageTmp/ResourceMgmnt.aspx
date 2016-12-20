@@ -282,7 +282,7 @@
                                                       <dx:ASPxLabel ID="ASPxLabel7" runat="server" Text="Email:">
                                                       </dx:ASPxLabel>
                                                    </td>
-                                                   <td class="dataviewtd" style="word-wrap: break-word;width:150px;" >
+                                                   <td class="dataviewtd" style="word-wrap: break-word;max-width:250px;width:250px" >
                                                       <dx:ASPxLabel ID="ASPxLabel8" runat="server" Text='<%# Eval("EmailAddress")%>'>
                                                       </dx:ASPxLabel>
                                                    </td>
@@ -294,6 +294,7 @@
                                              </dx:ASPxLabel>
                                              <dx:ASPxMemo ID="ASPxMemo1" ReadOnly="true" Text='<%# Eval("Notes")%>' runat="server" Height="80px" Width="300px">
                                              </dx:ASPxMemo>
+                                              </td>
                                        </tr>
                                     </table>
                                  </DataRow>
@@ -505,9 +506,9 @@
                                     </dx:GridViewColumnLayoutItem>
                                     <dx:GridViewColumnLayoutItem VerticalAlign="Top" ColumnName="GeofenceDestination" CssClass ="search-address" RowSpan ="2"  >
                                     </dx:GridViewColumnLayoutItem>
-                                    <dx:GridViewColumnLayoutItem ColumnName="IsAlert5min" Caption="Send 'within 5 minutes away' message" CaptionCellStyle-CssClass="small-nonbold" HorizontalAlign="Center" >
+                                    <dx:GridViewColumnLayoutItem ColumnName="IsAlert5min" Caption="Send 'within 5 minutes away' message" CaptionCellStyle-CssClass="small-nonbold" HorizontalAlign="Right" >
                                     </dx:GridViewColumnLayoutItem>
-                                    <dx:GridViewColumnLayoutItem ColumnName="IsAlertLeaveForPickup" Caption="Send 'left to pick you up' message" CaptionCellStyle-CssClass="small-nonbold" HorizontalAlign="Center"  >
+                                    <dx:GridViewColumnLayoutItem ColumnName="IsAlertLeaveForPickup" Caption="Send 'left to pick you up' message" CaptionCellStyle-CssClass="small-nonbold" HorizontalAlign="Right"  >
                                     </dx:GridViewColumnLayoutItem>
                                     <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right">
                                     </dx:EditModeCommandLayoutItem>
