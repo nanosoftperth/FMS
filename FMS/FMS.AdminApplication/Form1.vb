@@ -34,7 +34,11 @@
 
   
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+
         Me.cbSelectedApplication.DataSource = FMS.Business.DataObjects.Application.GetAllApplications
+
+        Me.batchComboApplications.DataSource = FMS.Business.DataObjects.Application.GetAllApplications
+
     End Sub
 
     Private Sub btnUpdateSetting_Click(sender As Object, e As EventArgs) Handles btnUpdateSetting.Click
@@ -273,4 +277,55 @@
 
 
     End Sub
+
+
+    Private Sub batchBtnCreate_Click(sender As Object, e As EventArgs) Handles batchBtnCreate.Click
+        DeviceBatchCreate(False)
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        DeviceBatchCreate(True)
+    End Sub
+
+
+    Private Sub DeviceBatchCreate(justShowOutput As Boolean)
+
+        Dim pattern As String = batchTxtPattern.Text
+        Dim startNumber As Integer = CInt(batchTxtstartNo.Text)
+        Dim batchSize As Integer = CInt(batchTxtBatchSize.Text)
+        Dim applicationID As Guid = batchComboApplications.SelectedValue
+
+        For i As Integer = startNumber To (startNumber + batchSize)
+
+            Dim newDeviceName As String = String.Format(pattern, i)
+
+            If Not justShowOutput Then
+
+
+                Dim device As New FMS.Business.DataObjects.Device
+
+                With device
+                    .ApplicatinID = applicationID
+                    .CreationDate = Now
+                    .DeviceID = newDeviceName
+                    .notes = "batch generated"
+                End With
+
+                FMS.Business.DataObjects.Device.Create(device)
+                'create PI Points
+                FMS.Business.SingletonAccess.CreateLatLongTagsForDevice(device.DeviceID)
+
+                batchTxtMemoOutput.Text &= vbNewLine & String.Format("device {0} created", newDeviceName)
+
+
+            Else
+
+                batchTxtMemoOutput.Text &= vbNewLine & newDeviceName
+            End If
+        Next
+
+
+    End Sub
+
 End Class
+

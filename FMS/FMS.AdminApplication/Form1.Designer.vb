@@ -69,15 +69,27 @@ Partial Class Form1
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.btnSimulationSettingsSave = New System.Windows.Forms.Button()
+        Me.btnSimulationSettingsLoad = New System.Windows.Forms.Button()
         Me.dgvSimulationSettings = New System.Windows.Forms.DataGridView()
-        Me.SimulatorSettingBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SimulatorSettingIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SourceDeviceIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DestinationDeviceIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartTimeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EndTimeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnSimulationSettingsLoad = New System.Windows.Forms.Button()
-        Me.btnSimulationSettingsSave = New System.Windows.Forms.Button()
+        Me.SimulatorSettingBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.batchBtnTest = New System.Windows.Forms.TabPage()
+        Me.batchTxtMemoOutput = New DevExpress.XtraEditors.MemoEdit()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.batchBtnCreate = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.batchTxtBatchSize = New System.Windows.Forms.TextBox()
+        Me.batchTxtstartNo = New System.Windows.Forms.TextBox()
+        Me.batchTxtPattern = New System.Windows.Forms.TextBox()
+        Me.batchComboApplications = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -97,6 +109,8 @@ Partial Class Form1
         Me.TabPage6.SuspendLayout()
         CType(Me.dgvSimulationSettings, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimulatorSettingBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.batchBtnTest.SuspendLayout()
+        CType(Me.batchTxtMemoOutput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -107,6 +121,7 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage6)
+        Me.TabControl1.Controls.Add(Me.batchBtnTest)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
@@ -512,6 +527,24 @@ Partial Class Form1
         Me.TabPage6.Text = "SimulationSettings"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
+        'btnSimulationSettingsSave
+        '
+        Me.btnSimulationSettingsSave.Location = New System.Drawing.Point(171, 35)
+        Me.btnSimulationSettingsSave.Name = "btnSimulationSettingsSave"
+        Me.btnSimulationSettingsSave.Size = New System.Drawing.Size(119, 23)
+        Me.btnSimulationSettingsSave.TabIndex = 1
+        Me.btnSimulationSettingsSave.Text = "Save"
+        Me.btnSimulationSettingsSave.UseVisualStyleBackColor = True
+        '
+        'btnSimulationSettingsLoad
+        '
+        Me.btnSimulationSettingsLoad.Location = New System.Drawing.Point(31, 35)
+        Me.btnSimulationSettingsLoad.Name = "btnSimulationSettingsLoad"
+        Me.btnSimulationSettingsLoad.Size = New System.Drawing.Size(119, 23)
+        Me.btnSimulationSettingsLoad.TabIndex = 1
+        Me.btnSimulationSettingsLoad.Text = "Load"
+        Me.btnSimulationSettingsLoad.UseVisualStyleBackColor = True
+        '
         'dgvSimulationSettings
         '
         Me.dgvSimulationSettings.AutoGenerateColumns = False
@@ -522,10 +555,6 @@ Partial Class Form1
         Me.dgvSimulationSettings.Name = "dgvSimulationSettings"
         Me.dgvSimulationSettings.Size = New System.Drawing.Size(667, 284)
         Me.dgvSimulationSettings.TabIndex = 0
-        '
-        'SimulatorSettingBindingSource
-        '
-        Me.SimulatorSettingBindingSource.DataSource = GetType(FMS.Business.DataObjects.SimulatorSetting)
         '
         'SimulatorSettingIDDataGridViewTextBoxColumn
         '
@@ -557,23 +586,123 @@ Partial Class Form1
         Me.EndTimeDataGridViewTextBoxColumn.HeaderText = "EndTime"
         Me.EndTimeDataGridViewTextBoxColumn.Name = "EndTimeDataGridViewTextBoxColumn"
         '
-        'btnSimulationSettingsLoad
+        'SimulatorSettingBindingSource
         '
-        Me.btnSimulationSettingsLoad.Location = New System.Drawing.Point(31, 35)
-        Me.btnSimulationSettingsLoad.Name = "btnSimulationSettingsLoad"
-        Me.btnSimulationSettingsLoad.Size = New System.Drawing.Size(119, 23)
-        Me.btnSimulationSettingsLoad.TabIndex = 1
-        Me.btnSimulationSettingsLoad.Text = "Load"
-        Me.btnSimulationSettingsLoad.UseVisualStyleBackColor = True
+        Me.SimulatorSettingBindingSource.DataSource = GetType(FMS.Business.DataObjects.SimulatorSetting)
         '
-        'btnSimulationSettingsSave
+        'batchBtnTest
         '
-        Me.btnSimulationSettingsSave.Location = New System.Drawing.Point(171, 35)
-        Me.btnSimulationSettingsSave.Name = "btnSimulationSettingsSave"
-        Me.btnSimulationSettingsSave.Size = New System.Drawing.Size(119, 23)
-        Me.btnSimulationSettingsSave.TabIndex = 1
-        Me.btnSimulationSettingsSave.Text = "Save"
-        Me.btnSimulationSettingsSave.UseVisualStyleBackColor = True
+        Me.batchBtnTest.Controls.Add(Me.batchComboApplications)
+        Me.batchBtnTest.Controls.Add(Me.batchTxtMemoOutput)
+        Me.batchBtnTest.Controls.Add(Me.Button8)
+        Me.batchBtnTest.Controls.Add(Me.batchBtnCreate)
+        Me.batchBtnTest.Controls.Add(Me.Label3)
+        Me.batchBtnTest.Controls.Add(Me.Label2)
+        Me.batchBtnTest.Controls.Add(Me.Label4)
+        Me.batchBtnTest.Controls.Add(Me.Label1)
+        Me.batchBtnTest.Controls.Add(Me.batchTxtBatchSize)
+        Me.batchBtnTest.Controls.Add(Me.batchTxtstartNo)
+        Me.batchBtnTest.Controls.Add(Me.batchTxtPattern)
+        Me.batchBtnTest.Location = New System.Drawing.Point(4, 22)
+        Me.batchBtnTest.Name = "batchBtnTest"
+        Me.batchBtnTest.Padding = New System.Windows.Forms.Padding(3)
+        Me.batchBtnTest.Size = New System.Drawing.Size(713, 394)
+        Me.batchBtnTest.TabIndex = 6
+        Me.batchBtnTest.Text = "batch vehicle add"
+        Me.batchBtnTest.UseVisualStyleBackColor = True
+        '
+        'batchTxtMemoOutput
+        '
+        Me.batchTxtMemoOutput.Location = New System.Drawing.Point(324, 46)
+        Me.batchTxtMemoOutput.Name = "batchTxtMemoOutput"
+        Me.batchTxtMemoOutput.Size = New System.Drawing.Size(331, 306)
+        Me.batchTxtMemoOutput.TabIndex = 5
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(101, 146)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(75, 23)
+        Me.Button8.TabIndex = 4
+        Me.Button8.Text = "Test"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'batchBtnCreate
+        '
+        Me.batchBtnCreate.Location = New System.Drawing.Point(194, 146)
+        Me.batchBtnCreate.Name = "batchBtnCreate"
+        Me.batchBtnCreate.Size = New System.Drawing.Size(75, 23)
+        Me.batchBtnCreate.TabIndex = 4
+        Me.batchBtnCreate.Text = "Create"
+        Me.batchBtnCreate.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(26, 109)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(75, 13)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "amount to add"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(26, 86)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(67, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "start Number"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(26, 61)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(141, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "pattern {i.e. cannon{0:000} )"
+        '
+        'batchTxtBatchSize
+        '
+        Me.batchTxtBatchSize.Location = New System.Drawing.Point(169, 109)
+        Me.batchTxtBatchSize.Name = "batchTxtBatchSize"
+        Me.batchTxtBatchSize.Size = New System.Drawing.Size(100, 20)
+        Me.batchTxtBatchSize.TabIndex = 1
+        '
+        'batchTxtstartNo
+        '
+        Me.batchTxtstartNo.Location = New System.Drawing.Point(169, 83)
+        Me.batchTxtstartNo.Name = "batchTxtstartNo"
+        Me.batchTxtstartNo.Size = New System.Drawing.Size(100, 20)
+        Me.batchTxtstartNo.TabIndex = 1
+        '
+        'batchTxtPattern
+        '
+        Me.batchTxtPattern.Location = New System.Drawing.Point(169, 58)
+        Me.batchTxtPattern.Name = "batchTxtPattern"
+        Me.batchTxtPattern.Size = New System.Drawing.Size(100, 20)
+        Me.batchTxtPattern.TabIndex = 0
+        '
+        'batchComboApplications
+        '
+        Me.batchComboApplications.DataSource = Me.ApplicationBindingSource
+        Me.batchComboApplications.DisplayMember = "ApplicationName"
+        Me.batchComboApplications.FormattingEnabled = True
+        Me.batchComboApplications.Location = New System.Drawing.Point(169, 31)
+        Me.batchComboApplications.Name = "batchComboApplications"
+        Me.batchComboApplications.Size = New System.Drawing.Size(100, 21)
+        Me.batchComboApplications.TabIndex = 6
+        Me.batchComboApplications.ValueMember = "ApplicationID"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(26, 34)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(59, 13)
+        Me.Label4.TabIndex = 2
+        Me.Label4.Text = "Application"
         '
         'Form1
         '
@@ -604,6 +733,9 @@ Partial Class Form1
         Me.TabPage6.ResumeLayout(False)
         CType(Me.dgvSimulationSettings, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimulatorSettingBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.batchBtnTest.ResumeLayout(False)
+        Me.batchBtnTest.PerformLayout()
+        CType(Me.batchTxtMemoOutput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -664,5 +796,17 @@ Partial Class Form1
     Friend WithEvents StartTimeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EndTimeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SimulatorSettingBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents batchBtnTest As System.Windows.Forms.TabPage
+    Friend WithEvents batchBtnCreate As System.Windows.Forms.Button
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents batchTxtstartNo As System.Windows.Forms.TextBox
+    Friend WithEvents batchTxtPattern As System.Windows.Forms.TextBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents batchTxtBatchSize As System.Windows.Forms.TextBox
+    Friend WithEvents batchTxtMemoOutput As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents batchComboApplications As System.Windows.Forms.ComboBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class
