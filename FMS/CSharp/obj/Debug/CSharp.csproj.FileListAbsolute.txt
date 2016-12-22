@@ -18,6 +18,7 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\obj\Debug\CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\obj\Debug\CSharp.exe
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\CSharp\obj\Debug\CSharp.pdb
+C:\temp\ryan\FMS\CSharp\obj\Debug\CSharp.csprojResolveAssemblyReference.cache
 C:\temp\ryan\FMS\CSharp\bin\Debug\CSharp.exe.config
 C:\temp\ryan\FMS\CSharp\bin\Debug\CSharp.exe
 C:\temp\ryan\FMS\CSharp\bin\Debug\CSharp.pdb
@@ -25,6 +26,5 @@ C:\temp\ryan\FMS\CSharp\bin\Debug\FMS.Business.dll
 C:\temp\ryan\FMS\CSharp\bin\Debug\Newtonsoft.Json.dll
 C:\temp\ryan\FMS\CSharp\bin\Debug\FMS.Business.pdb
 C:\temp\ryan\FMS\CSharp\bin\Debug\FMS.Business.xml
-C:\temp\ryan\FMS\CSharp\obj\Debug\CSharp.csprojResolveAssemblyReference.cache
 C:\temp\ryan\FMS\CSharp\obj\Debug\CSharp.exe
 C:\temp\ryan\FMS\CSharp\obj\Debug\CSharp.pdb

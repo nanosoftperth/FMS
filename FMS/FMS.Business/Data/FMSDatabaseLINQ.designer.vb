@@ -283,6 +283,18 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
     End Sub
+  Partial Private Sub InsertApplicationImage(instance As ApplicationImage)
+    End Sub
+  Partial Private Sub UpdateApplicationImage(instance As ApplicationImage)
+    End Sub
+  Partial Private Sub DeleteApplicationImage(instance As ApplicationImage)
+    End Sub
+  Partial Private Sub InsertFleetMapMarker(instance As FleetMapMarker)
+    End Sub
+  Partial Private Sub UpdateFleetMapMarker(instance As FleetMapMarker)
+    End Sub
+  Partial Private Sub DeleteFleetMapMarker(instance As FleetMapMarker)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -589,6 +601,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
 		Get
 			Return Me.GetTable(Of AuthenticationToken)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationImages() As System.Data.Linq.Table(Of ApplicationImage)
+		Get
+			Return Me.GetTable(Of ApplicationImage)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetMapMarkers() As System.Data.Linq.Table(Of FleetMapMarker)
+		Get
+			Return Me.GetTable(Of FleetMapMarker)
 		End Get
 	End Property
 	
@@ -10923,6 +10947,284 @@ Partial Public Class AuthenticationToken
 				Me._isUsedForChangePassword = value
 				Me.SendPropertyChanged("isUsedForChangePassword")
 				Me.OnisUsedForChangePasswordChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationImage")>  _
+Partial Public Class ApplicationImage
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationImageID As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Img As System.Data.Linq.Binary
+	
+	Private _Name As String
+	
+	Private _Type As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationImageIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationImageIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnImgChanging(value As System.Data.Linq.Binary)
+    End Sub
+    Partial Private Sub OnImgChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnTypeChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationImageID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationImageID() As System.Guid
+		Get
+			Return Me._ApplicationImageID
+		End Get
+		Set
+			If ((Me._ApplicationImageID = value)  _
+						= false) Then
+				Me.OnApplicationImageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationImageID = value
+				Me.SendPropertyChanged("ApplicationImageID")
+				Me.OnApplicationImageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property Img() As System.Data.Linq.Binary
+		Get
+			Return Me._Img
+		End Get
+		Set
+			If (Object.Equals(Me._Img, value) = false) Then
+				Me.OnImgChanging(value)
+				Me.SendPropertyChanging
+				Me._Img = value
+				Me.SendPropertyChanged("Img")
+				Me.OnImgChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(350)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Type", DbType:="NVarChar(350)")>  _
+	Public Property Type() As String
+		Get
+			Return Me._Type
+		End Get
+		Set
+			If (String.Equals(Me._Type, value) = false) Then
+				Me.OnTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._Type = value
+				Me.SendPropertyChanged("Type")
+				Me.OnTypeChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.FleetMapMarker")>  _
+Partial Public Class FleetMapMarker
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _FleetMapMarkerId As System.Guid
+	
+	Private _ApplicationId As System.Nullable(Of System.Guid)
+	
+	Private _Vehicle_ApplicationImageId As System.Nullable(Of System.Guid)
+	
+	Private _Home_ApplicationImageId As System.Nullable(Of System.Guid)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnFleetMapMarkerIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFleetMapMarkerIdChanged()
+    End Sub
+    Partial Private Sub OnApplicationIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIdChanged()
+    End Sub
+    Partial Private Sub OnVehicle_ApplicationImageIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnVehicle_ApplicationImageIdChanged()
+    End Sub
+    Partial Private Sub OnHome_ApplicationImageIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnHome_ApplicationImageIdChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FleetMapMarkerId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property FleetMapMarkerId() As System.Guid
+		Get
+			Return Me._FleetMapMarkerId
+		End Get
+		Set
+			If ((Me._FleetMapMarkerId = value)  _
+						= false) Then
+				Me.OnFleetMapMarkerIdChanging(value)
+				Me.SendPropertyChanging
+				Me._FleetMapMarkerId = value
+				Me.SendPropertyChanged("FleetMapMarkerId")
+				Me.OnFleetMapMarkerIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If (Me._ApplicationId.Equals(value) = false) Then
+				Me.OnApplicationIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationId = value
+				Me.SendPropertyChanged("ApplicationId")
+				Me.OnApplicationIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Vehicle_ApplicationImageId", DbType:="UniqueIdentifier")>  _
+	Public Property Vehicle_ApplicationImageId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._Vehicle_ApplicationImageId
+		End Get
+		Set
+			If (Me._Vehicle_ApplicationImageId.Equals(value) = false) Then
+				Me.OnVehicle_ApplicationImageIdChanging(value)
+				Me.SendPropertyChanging
+				Me._Vehicle_ApplicationImageId = value
+				Me.SendPropertyChanged("Vehicle_ApplicationImageId")
+				Me.OnVehicle_ApplicationImageIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Home_ApplicationImageId", DbType:="UniqueIdentifier")>  _
+	Public Property Home_ApplicationImageId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._Home_ApplicationImageId
+		End Get
+		Set
+			If (Me._Home_ApplicationImageId.Equals(value) = false) Then
+				Me.OnHome_ApplicationImageIdChanging(value)
+				Me.SendPropertyChanging
+				Me._Home_ApplicationImageId = value
+				Me.SendPropertyChanged("Home_ApplicationImageId")
+				Me.OnHome_ApplicationImageIdChanged
 			End If
 		End Set
 	End Property

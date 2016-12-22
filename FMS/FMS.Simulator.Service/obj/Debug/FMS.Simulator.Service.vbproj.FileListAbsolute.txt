@@ -36,6 +36,11 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Si
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.exe
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.pdb
+C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.vbprojResolveAssemblyReference.cache
+C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.Resources.resources
+C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.ProjectInstaller.resources
+C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.FMS_Simulation.resources
+C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.vbproj.GenerateResource.Cache
 C:\temp\ryan\FMS\FMS.Simulator.Service\bin\Debug\FMS.Simulator.Service.exe.config
 C:\temp\ryan\FMS\FMS.Simulator.Service\bin\Debug\FMS.Simulator.Service.exe
 C:\temp\ryan\FMS\FMS.Simulator.Service\bin\Debug\FMS.Simulator.Service.pdb
@@ -47,11 +52,6 @@ C:\temp\ryan\FMS\FMS.Simulator.Service\bin\Debug\FMS.Simulator.pdb
 C:\temp\ryan\FMS\FMS.Simulator.Service\bin\Debug\FMS.Simulator.xml
 C:\temp\ryan\FMS\FMS.Simulator.Service\bin\Debug\FMS.Business.pdb
 C:\temp\ryan\FMS\FMS.Simulator.Service\bin\Debug\FMS.Business.xml
-C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.vbprojResolveAssemblyReference.cache
-C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.Resources.resources
-C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.ProjectInstaller.resources
-C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.FMS_Simulation.resources
-C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.vbproj.GenerateResource.Cache
 C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.exe
 C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.xml
 C:\temp\ryan\FMS\FMS.Simulator.Service\obj\Debug\FMS.Simulator.Service.pdb

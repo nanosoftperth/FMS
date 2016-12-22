@@ -265,6 +265,9 @@
     <Compile Include="Classes\ReportList.vb" />
     <Compile Include="Classes\ResourceHelper.vb" />
     <Compile Include="Classes\ThisSession.vb" />
+    <Compile Include="Content\FleetMapMarker.ashx.vb">
+      <DependentUpon>FleetMapMarker.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Debug.aspx.designer.vb">
       <DependentUpon>Debug.aspx</DependentUpon>
     </Compile>
@@ -285,6 +288,9 @@
     <Compile Include="Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\MapImages.ashx.vb">
+      <DependentUpon>MapImages.ashx</DependentUpon>
     </Compile>
     <Compile Include="DevicePropertyDisplay.aspx.designer.vb">
       <DependentUpon>DevicePropertyDisplay.aspx</DependentUpon>
@@ -714,10 +720,14 @@
     <Content Include="Content\Images\google-map-logo-589x225.gif" />
     <Content Include="Content\Images\icon-user-default.png" />
     <Content Include="Content\Images\location-icon.png" />
+    <Content Include="Content\Images\markers\boat_48.png" />
+    <Content Include="Content\Images\markers\car_48.png" />
     <Content Include="Content\Images\markers\home-icon.png" />
     <Content Include="Content\Images\markers\lorry_48.png" />
+    <Content Include="Content\Images\markers\moped_48.png" />
     <Content Include="Content\Images\markers\nothing.png" />
     <Content Include="Content\Images\markers\truck_48.png" />
+    <Content Include="Content\Images\markers\van_48.png" />
     <Content Include="Content\Images\mC-settings.png" />
     <Content Include="Content\Images\pi case.jpg" />
     <Content Include="Content\Images\PlasticBlueHeader.jpg" />
@@ -873,6 +883,8 @@
     <Content Include="Content\Helvetica\Helvetica\Helvetica.ttf" />
     <Content Include="Content\Helvetica\Helvetica\mac original dfont\Helvetica.dfont" />
     <Content Include="Content\HelveticaNeue-Medium.otf" />
+    <Content Include="Content\MapImages.ashx" />
+    <Content Include="Content\FleetMapMarker.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

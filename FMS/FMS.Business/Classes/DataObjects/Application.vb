@@ -14,7 +14,7 @@ Namespace DataObjects
                 Return Setting.GetSettingsForApplication(Me.ApplicationName.ToLower)
             End Get
         End Property
-
+       
         Public ReadOnly Property GetLogoBinary() As Byte()
             Get
 
@@ -75,7 +75,6 @@ Namespace DataObjects
                 End With
 
             End If
-
         End Sub
 
 

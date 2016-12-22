@@ -147,7 +147,7 @@
                                                             </ClearButton>
                                                         </PropertiesDateEdit>
                                                     </dx:GridViewDataDateColumn>
-                                                    <dx:GridViewDataComboBoxColumn FieldName="RoleID" VisibleIndex="5">
+                                                    <dx:GridViewDataComboBoxColumn FieldName="RoleID" Caption="Role" VisibleIndex="5">
                                                         <PropertiesComboBox DataSourceID="odsRolesRoles" TextField="Name" ValueField="RoleID">
                                                             <ClearButton Visibility="Auto">
                                                             </ClearButton>
@@ -378,10 +378,121 @@
 
                                                  <tr>
                                                     <td style="padding-left: 10px; padding-bottom: 10px; padding-top: 12px; text-align:right;">
-                                                        application version "<%=AppVersion%>"
-                                                    </td>
+                                                        application version &quot;&quot;</td>
                                                 </tr>
                                             </table>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                                            <br />
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="padding:10px;">
+                                            <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Fleet Map Markers:" Font-Bold="True"></dx:ASPxLabel>
+                                        
+                                          <dx:ASPxButton Width="80px" CssClass="thebutton" ID="ASPxButton3" OnClick="ASPxButton3_Click"
+                                                            runat="server"
+                                                            Text="Save Changes">
+                                                        </dx:ASPxButton></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxPanel ID="ASPxPanel1" Theme="SoftOrange" runat="server" Width="100%">
+                                                <Border BorderStyle="Solid" BorderColor="#d3d3d3" BorderWidth="2px" />
+                                                <PanelCollection>
+                                                    <dx:PanelContent>
+                                                        <table style="width:100%">
+                                                            <tr>
+                                                                <td style="width:58px;background-color:white;padding:5px;text-align:center">
+                                                                    <table style="width:100%">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <dx:ASPxButton ID="ASPxButtonHome" Checked="true" ClientInstanceName="ASPxButtonHome" Border-BorderStyle="Dashed" Border-BorderWidth="1px" Border-BorderColor="#d3d3d3" Width="48px" Height="48px"  runat="server" AutoPostBack="False" GroupName="MapMarker" ImagePosition="Top" Text="HQ">
+                                                                                        <Image Width="48px" Height="48px" Url="content/FleetMapMarker.ashx?type=home">
+                                                                                        </Image>
+
+<Border BorderColor="LightGray" BorderStyle="Dashed" BorderWidth="1px"></Border><ClientSideEvents Click="function(s,e){
+    dvGalery.PerformCallback();
+    }" />
+                                                                                        </dx:ASPxButton>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <dx:ASPxButton ID="ASPxButtonVehicle" ClientInstanceName="ASPxButtonVehicle" Border-BorderStyle="Dashed" Border-BorderWidth="1px" Border-BorderColor="#d3d3d3" Width="48px" Height="48px"  runat="server" AutoPostBack="False" GroupName="MapMarker" ImagePosition="Top" Text="Vehicle">
+                                                                                        <Image Width="48px" Height="48px" Url="content/FleetMapMarker.ashx?type=vehicle">
+                                                                                        </Image>
+
+<Border BorderColor="LightGray" BorderStyle="Dashed" BorderWidth="1px"></Border><ClientSideEvents Click="function(s,e){
+    dvGalery.PerformCallback();
+    }" />
+                                                                                        </dx:ASPxButton>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                                <td >  
+                                                                    <table style="width:100%">
+                                                                        <tr>
+                                                                            <td  style="width:85%">
+                                                                    <div style="padding:10px">
+                                                                        <dx:ASPxHiddenField ID="ASPxHiddenFieldUpdateType" ClientInstanceName="ASPxHiddenFieldUpdateType" runat="server"></dx:ASPxHiddenField>
+                                                                       <script>
+                                                                           function ImageClick(s, e) {
+                                                                               debugger;
+                                                                               var id = s.GetImageUrl();
+                                                                               id = id.split('=')[1];
+                                                                               if (ASPxButtonHome.GetChecked()) {
+                                                                                   ASPxButtonHome.SetImageUrl(s.GetImageUrl());
+                                                                                   ASPxHiddenFieldUpdateType.Set("UTHome", id);
+                                                                               }
+
+                                                                               else if (ASPxButtonVehicle.GetChecked()) {
+                                                                                   ASPxButtonVehicle.SetImageUrl(s.GetImageUrl());
+                                                                                   ASPxHiddenFieldUpdateType.Set("UTVehicle", id);
+                                                                               }
+                                                                           }
+                                                                       </script>
+                                                                        <dx:ASPxDataView ID="dvGalery" OnCustomCallback="dvGalery_CustomCallback" ClientInstanceName="dvGalery" runat="server" DataSourceID="odsMapMarker" AllowPaging="False"
+        Layout="Flow" PageIndex="-1" Width="100%" ItemSpacing="4" Height="150px"  style="border:1px solid black"
+        EnableTheming="false">
+<PagerSettings ShowNumericButtons="False"></PagerSettings>
+        <ItemTemplate>
+            <a href="javascript:void(0);">
+                <dx:ASPxImage runat="server" ImageUrl= '<%#"Content/MapImages.ashx?imgId=" + Eval("Id").ToString()%>' AlternateText='<%# Eval("Name")%>' Width="20px" Height="20px" ShowLoadingImage="true">
+                    <ClientSideEvents Click="ImageClick" />
+                </dx:ASPxImage>
+            </a>
+        </ItemTemplate>
+        <Paddings Padding="0px" />
+        <ItemStyle Height="20px" Width="20px" BackColor="Transparent" Border-BorderStyle="None">
+            <Paddings Padding="0px" />
+            <Border BorderWidth="1px" />
+        </ItemStyle>
+    </dx:ASPxDataView>
+          <asp:ObjectDataSource ID="odsMapMarker" runat="server" OnSelecting="odsMapMarker_Selecting" SelectMethod="GetAllImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
+        <SelectParameters>
+            <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
+            <asp:Parameter Name="type" Type="String" />
+        </SelectParameters>
+    </asp:ObjectDataSource></div>
+                                                                    
+                                                                                
+                                                                            </td>
+                                                                            <td style="width:15%;padding-right:10px">
+                                                                                
+                                                        <dx:ASPxBinaryImage ID="ASPxBinaryImageBrowse" Width="100%" Height="125px" runat="server" BinaryStorageMode="Session">
+                                                            <EditingSettings UploadSettings-UploadValidationSettings-MaxFileSizeErrorText="Image size must be 10kb and below!" UploadSettings-UploadValidationSettings-MaxFileSize="10000" Enabled="True" EmptyValueText="" ButtonPanelSettings-Position="Bottom"></EditingSettings>
+                                                        
+                                                        </dx:ASPxBinaryImage>
+                                                                                <dx:ASPxButton Width="100%" Height="25px" ID="ASPxButtonBrowse" OnClick="ASPxButtonBrowse_Click"
+                                                            runat="server"
+                                                            Text="Upload">
+                                                        </dx:ASPxButton></td></tr></table></td></tr></table>
+                                                    </dx:PanelContent>
+                                                </PanelCollection>
+                                            </dx:ASPxPanel>
                                         </td>
                                     </tr>
                                 </table>

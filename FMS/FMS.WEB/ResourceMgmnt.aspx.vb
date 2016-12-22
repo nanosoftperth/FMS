@@ -71,8 +71,7 @@ Public Class ResourceMgmnt
         If IsPostBack Then Exit Sub
 
         Dim currentDate As Date = Now.timezoneToClient
-
-        Me.dateEditDay.Date = New Date(currentDate.Year, currentDate.Month, currentDate.Day)
+        dateEditDay.Date = currentDate
         Me.timeEditFrom.DateTime = Me.dateEditDay.Date.AddHours(5)
         Me.timeEditTo.DateTime = Me.dateEditDay.Date.AddHours(23).AddMinutes(59).AddSeconds(59)
 

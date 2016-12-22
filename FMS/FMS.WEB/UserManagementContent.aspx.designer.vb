@@ -203,6 +203,96 @@ Partial Public Class Test
     Protected WithEvents dgvTimezoneSettings As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''ASPxLabel4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel4 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''ASPxButton3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButton3 As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''ASPxPanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxPanel1 As Global.DevExpress.Web.ASPxPanel
+
+    '''<summary>
+    '''ASPxButtonHome control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButtonHome As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''ASPxButtonVehicle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButtonVehicle As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''ASPxHiddenFieldUpdateType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxHiddenFieldUpdateType As Global.DevExpress.Web.ASPxHiddenField
+
+    '''<summary>
+    '''dvGalery control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dvGalery As Global.DevExpress.Web.ASPxDataView
+
+    '''<summary>
+    '''odsMapMarker control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsMapMarker As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''ASPxBinaryImageBrowse control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxBinaryImageBrowse As Global.DevExpress.Web.ASPxBinaryImage
+
+    '''<summary>
+    '''ASPxButtonBrowse control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButtonBrowse As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
     '''odsAllTimeZoneOptions control.
     '''</summary>
     '''<remarks>
