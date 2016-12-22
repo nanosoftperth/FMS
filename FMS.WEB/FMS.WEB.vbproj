@@ -720,6 +720,7 @@
     <Content Include="Content\Images\google-map-logo-589x225.gif" />
     <Content Include="Content\Images\icon-user-default.png" />
     <Content Include="Content\Images\location-icon.png" />
+    <Content Include="Content\Images\markers\big-image-png-6IW2jS-clipart.png" />
     <Content Include="Content\Images\markers\boat_48.png" />
     <Content Include="Content\Images\markers\car_48.png" />
     <Content Include="Content\Images\markers\home-icon.png" />
