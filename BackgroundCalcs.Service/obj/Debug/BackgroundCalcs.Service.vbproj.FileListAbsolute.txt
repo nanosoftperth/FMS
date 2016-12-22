@@ -38,6 +38,10 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\Backgr
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.exe
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.xml
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Project1\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.pdb
+C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.Resources.resources
+C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.ProjectInstaller.resources
+C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.BackgroundCalcsService.resources
+C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.vbproj.GenerateResource.Cache
 C:\temp\ryan\FMS\BackgroundCalcs.Service\bin\Debug\install.bat
 C:\temp\ryan\FMS\BackgroundCalcs.Service\bin\Debug\BackgroundCalcs.Service.exe.config
 C:\temp\ryan\FMS\BackgroundCalcs.Service\bin\Debug\BackgroundCalcs.Service.exe
@@ -51,10 +55,6 @@ C:\temp\ryan\FMS\BackgroundCalcs.Service\bin\Debug\BackgroundCalcs.ConsoleApp.xm
 C:\temp\ryan\FMS\BackgroundCalcs.Service\bin\Debug\FMS.Business.pdb
 C:\temp\ryan\FMS\BackgroundCalcs.Service\bin\Debug\FMS.Business.xml
 C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.vbprojResolveAssemblyReference.cache
-C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.Resources.resources
-C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.ProjectInstaller.resources
-C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.BackgroundCalcsService.resources
-C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.vbproj.GenerateResource.Cache
 C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.exe
 C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.xml
 C:\temp\ryan\FMS\BackgroundCalcs.Service\obj\Debug\BackgroundCalcs.Service.pdb

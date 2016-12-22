@@ -96,33 +96,36 @@ Public Class ReportDataHandler
 
             Dim c = New List(Of CachedServiceVehicleReportLine)
 
-            'get all date
+            'from vehicleReportLines, get all distinct date
             Dim ddate = (From x In vehicleReportLines Select If(x.StartTime Is Nothing, "", x.StartTime.Value.ToShortDateString())).Distinct.ToList
+
+            'get lat long of application
+            Dim apsettings = Business.DataObjects.Setting.GetSettingsForApplication_withoutImages(ThisSession.ApplicationID)
+            Dim aplat = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Lattitude").Value
+            Dim aplog = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Longitude").Value
+            Dim aploc = New Business.BackgroundCalculations.Loc(aplat, aplog)
             For Each dateloop In ddate
-                ' get vehicleReportLines per date
+                ' group all activities in vehicleReportLines per date
                 Dim vrl = (From x In vehicleReportLines Where If(x.StartTime Is Nothing, "", x.StartTime.Value.ToShortDateString()) = dateloop Order By x.StartTime Select x).ToList
                 Dim i = New CachedServiceVehicleReportLine()
 
-                Dim apsettings = Business.DataObjects.Setting.GetSettingsForApplication_withoutImages(ThisSession.ApplicationID)
-                Dim aplat = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Lattitude").Value
-                Dim aplog = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Longitude").Value
-                Dim aploc = New Business.BackgroundCalculations.Loc(aplat, aplog)
-                '500m radius 
+                'in activity list for each date, get the first to enter the application with a 200m radius  
                 Dim vrl_floc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 200, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.FirstOrDefault
                 If vrl_floc IsNot Nothing Then
-                    i.Arrival = vrl_floc.ArrivalTime
+                    i.Arrival = vrl_floc.ArrivalTime 'get the arrival 
                 End If
+                'in activity list for each date, get the lastentry to enter the application with a 200m radius  
                 Dim vrl_lloc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 200, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.LastOrDefault
-
+                'get the index oof last and add 1 to have the first 'out' in application
                 If vrl_lloc IsNot Nothing Then
                     Dim cl = vrl(vrl.IndexOf(vrl_lloc) + 1)
-                    i.Departure = cl.StartTime
+                    i.Departure = cl.StartTime 'Get departuere
                 End If
-                i.HomeStart = vrl.First.StartTime
-                i.HomeStart_End = vrl.Last.ArrivalTime
+                i.HomeStart = vrl.First.StartTime 'get start time from the first activity of the day
+                i.HomeStart_End = vrl.Last.ArrivalTime ' get start/end time from the last activity of the day
                 c.Add(i)
             Next
-
+            'create the report source
             rept = (New CachedServiceVehicleReport With {.VehicleID = vehicleID _
                                                     , .StartDate = startdate _
                                                     , .EndDate = endDate _
@@ -131,8 +134,10 @@ Public Class ReportDataHandler
 
             'TimeZoneHelper.AltertoHQTimeZone(rept) 'should n olonger be required, don eat business layer
 
+            'compute the summaries
             rept.CalculateSummaries()
 
+            'put in session
             ThisSession.CachedVehicleReports.Add(rept)
 
         End If

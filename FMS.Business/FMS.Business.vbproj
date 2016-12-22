@@ -87,6 +87,7 @@
     <Compile Include="Classes\DataObjects\ApplicationGeoFence.vb" />
     <Compile Include="Classes\DataObjects\ApplicationGeoFenceProperty.vb" />
     <Compile Include="Classes\DataObjects\ApplicationGeoFenceSide.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationImage.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicle.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicleDriverTime.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicleOdometerReading.vb" />
@@ -98,6 +99,7 @@
     <Compile Include="Classes\DataObjects\Device.vb" />
     <Compile Include="Classes\DataObjects\Feature.vb" />
     <Compile Include="Classes\DataObjects\ApplicationFeatureRole.vb" />
+    <Compile Include="Classes\DataObjects\FleetMapMarker.vb" />
     <Compile Include="Classes\DataObjects\GeoFenceDeviceCollision.vb" />
     <Compile Include="Classes\DataObjects\Group.vb" />
     <Compile Include="Classes\DataObjects\GroupSubscriber.vb" />

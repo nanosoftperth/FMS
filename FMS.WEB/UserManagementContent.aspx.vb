@@ -15,7 +15,6 @@ Public Class Test
 
         '############           EXIT THE SUB HERE IF THIS IS A CALL/POST BACK      #############
         If IsPostBack Or IsCallback Then Exit Sub
-
         Dim thisapp As DataObjects.Application = DataObjects.Application.GetFromAppID(ThisSession.ApplicationID)
 
         Dim Settings As List(Of DataObjects.Setting) = DataObjects.Setting.GetSettingsForApplication(thisapp.ApplicationName)
@@ -130,5 +129,60 @@ Public Class Test
 
     Protected Sub dgvUsers_InitNewRow(sender As Object, e As DevExpress.Web.Data.ASPxDataInitNewRowEventArgs)
         e.NewValues("SendEmailtoUserWithDefPass") = True
+    End Sub
+
+    Protected Sub odsMapMarker_Selecting(sender As Object, e As ObjectDataSourceSelectingEventArgs)
+        If ASPxButtonHome.Checked Then
+            e.InputParameters("Type") = "home"
+        ElseIf ASPxButtonVehicle.Checked Then
+            e.InputParameters("Type") = "vehicle"
+        End If
+    End Sub
+
+    Protected Sub dvGalery_CustomCallback(sender As Object, e As DevExpress.Web.CallbackEventArgsBase)
+        dvGalery.DataBind()
+    End Sub
+    'BY RYAN
+    Protected Sub ASPxButtonBrowse_Click(sender As Object, e As EventArgs)
+        If Me.ASPxBinaryImageBrowse.ContentBytes Is Nothing Then Exit Sub
+
+        Dim logoBytes() As Byte = Me.ASPxBinaryImageBrowse.ContentBytes
+        Dim s = New DataObjects.ApplicationImage
+
+        s.ApplicationID = ThisSession.ApplicationID
+        s.Name = "Uploaded by " + ThisSession.User.UserName
+        If ASPxButtonHome.Checked Then
+            s.Type = "home"
+        ElseIf ASPxButtonVehicle.Checked Then
+            s.Type = "vehicle"
+        End If
+        s.Img = logoBytes
+
+        Dim imageid = DataObjects.ApplicationImage.Create(s)
+
+        ASPxHiddenFieldUpdateType.Clear()
+        ASPxBinaryImageBrowse.ContentBytes = Nothing
+        dvGalery.DataBind()
+
+        Dim fmm = DataObjects.FleetMapMarker.GetApplicationFleetMapMarket(ThisSession.ApplicationID)
+        If ASPxButtonHome.Checked Then
+            fmm.Home_ApplicationImageID = imageid
+        ElseIf ASPxButtonVehicle.Checked Then
+            fmm.Vehicle_ApplicationImageID = imageid
+        End If
+        DataObjects.FleetMapMarker.Update(fmm)
+    End Sub
+
+    Protected Sub ASPxButton3_Click(sender As Object, e As EventArgs)
+        dvGalery.DataBind()
+        Dim fmm = DataObjects.FleetMapMarker.GetApplicationFleetMapMarket(ThisSession.ApplicationID)
+        If ASPxHiddenFieldUpdateType.Contains("UTHome") Then
+            fmm.Home_ApplicationImageID = Guid.Parse(ASPxHiddenFieldUpdateType("UTHome").ToString())
+        End If
+        If ASPxHiddenFieldUpdateType.Contains("UTVehicle") Then
+            fmm.Vehicle_ApplicationImageID = Guid.Parse(ASPxHiddenFieldUpdateType("UTVehicle").ToString())
+        End If
+        DataObjects.FleetMapMarker.Update(fmm)
+        ASPxHiddenFieldUpdateType.Clear()
     End Sub
 End Class
