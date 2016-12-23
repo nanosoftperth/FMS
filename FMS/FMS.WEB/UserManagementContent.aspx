@@ -378,7 +378,7 @@
 
                                                  <tr>
                                                     <td style="padding-left: 10px; padding-bottom: 10px; padding-top: 12px; text-align:right;">
-                                                        application version &quot;&quot;</td>
+                                                        application version &quot; <%= AppVersion%> &quot;</td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -482,8 +482,17 @@
                                                                             </td>
                                                                             <td style="width:15%;padding-right:10px">
                                                                                 
-                                                        <dx:ASPxBinaryImage ID="ASPxBinaryImageBrowse" Width="100%" Height="125px" runat="server" BinaryStorageMode="Session">
-                                                            <EditingSettings UploadSettings-UploadValidationSettings-MaxFileSizeErrorText="Image size must be 10kb and below!" UploadSettings-UploadValidationSettings-MaxFileSize="10000" Enabled="True" EmptyValueText="" ButtonPanelSettings-Position="Bottom"></EditingSettings>
+                                                                                <dx:ASPxBinaryImage ID="ASPxBinaryImageBrowse1" Width="100%" Height="125px" runat="server" BinaryStorageMode="Session" ShowLoadingImage="True">
+                                                   
+                                                                     <EditingSettings 
+
+                                                                UploadSettings-UploadValidationSettings-MaxFileSizeErrorText="Image size must be 30kB and below!" 
+                                                                UploadSettings-UploadValidationSettings-MaxFileSize="30000" 
+                                                                Enabled="True" 
+                                                                EmptyValueText="" 
+                                                                ButtonPanelSettings-Position="Bottom">
+
+                                                            </EditingSettings>
                                                         
                                                         </dx:ASPxBinaryImage>
                                                                                 <dx:ASPxButton Width="100%" Height="25px" ID="ASPxButtonBrowse" OnClick="ASPxButtonBrowse_Click"

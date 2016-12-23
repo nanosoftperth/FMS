@@ -144,9 +144,10 @@ Public Class Test
     End Sub
     'BY RYAN
     Protected Sub ASPxButtonBrowse_Click(sender As Object, e As EventArgs)
-        If Me.ASPxBinaryImageBrowse.ContentBytes Is Nothing Then Exit Sub
 
-        Dim logoBytes() As Byte = Me.ASPxBinaryImageBrowse.ContentBytes
+        If Me.ASPxBinaryImageBrowse1.ContentBytes Is Nothing Then Exit Sub
+
+        Dim logoBytes() As Byte = Me.ASPxBinaryImageBrowse1.ContentBytes
         Dim s = New DataObjects.ApplicationImage
 
         s.ApplicationID = ThisSession.ApplicationID
@@ -161,16 +162,18 @@ Public Class Test
         Dim imageid = DataObjects.ApplicationImage.Create(s)
 
         ASPxHiddenFieldUpdateType.Clear()
-        ASPxBinaryImageBrowse.ContentBytes = Nothing
+        ASPxBinaryImageBrowse1.ContentBytes = Nothing
         dvGalery.DataBind()
 
         Dim fmm = DataObjects.FleetMapMarker.GetApplicationFleetMapMarket(ThisSession.ApplicationID)
+
         If ASPxButtonHome.Checked Then
             fmm.Home_ApplicationImageID = imageid
         ElseIf ASPxButtonVehicle.Checked Then
             fmm.Vehicle_ApplicationImageID = imageid
         End If
         DataObjects.FleetMapMarker.Update(fmm)
+
     End Sub
 
     Protected Sub ASPxButton3_Click(sender As Object, e As EventArgs)
