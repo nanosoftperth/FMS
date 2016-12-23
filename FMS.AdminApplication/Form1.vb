@@ -1,5 +1,8 @@
 ﻿Public Class Form1
 
+
+
+
     Private Sub btnCreateSetting_Click(sender As Object, e As EventArgs) Handles btnCreateSetting.Click
 
         FMS.Business.SingletonAccess.CreateSetting(txtCreateSetting.Text)
@@ -327,5 +330,50 @@
 
     End Sub
 
+    Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
+
+        Dim diagResult As DialogResult = OpenFileDialog1.ShowDialog()
+
+        txtPickleFileLocation.Text = OpenFileDialog1.FileName
+
+
+    End Sub
+
+    Public WithEvents pProcessor As New PickleProcessor
+
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+
+        btnStop.Visible = True
+        Button10.Visible = False
+
+        pProcessor.StopAllWorking()
+
+        pProcessor = New PickleProcessor
+
+        AddHandler pProcessor.MessageFired, AddressOf pProcessor_MessageFired
+
+        pProcessor.ProcessFile(txtPickleFileLocation.Text, txtURLFormat.Text)
+
+    End Sub
+
+    Public Sub pProcessor_MessageFired(s As String)
+
+
+        memoPickleProcess.Text &= vbNewLine & s
+
+        memoPickleProcess.SelectionStart = Int32.MaxValue
+        memoPickleProcess.ScrollToCaret()
+    End Sub
+
+
+    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+
+        btnStop.Visible = False
+        Button10.Visible = True
+
+        pProcessor.StopAllWorking()
+
+    End Sub
 End Class
 
