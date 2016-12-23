@@ -275,13 +275,13 @@ Partial Public Class Test
     Protected WithEvents odsMapMarker As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''ASPxBinaryImageBrowse control.
+    '''ASPxBinaryImageBrowse1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ASPxBinaryImageBrowse As Global.DevExpress.Web.ASPxBinaryImage
+    Protected WithEvents ASPxBinaryImageBrowse1 As Global.DevExpress.Web.ASPxBinaryImage
 
     '''<summary>
     '''ASPxButtonBrowse control.
