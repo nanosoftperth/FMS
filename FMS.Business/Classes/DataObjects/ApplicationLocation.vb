@@ -24,6 +24,7 @@ Namespace DataObjects
                 Me.ApplicationLocationID = .ApplicationLocationID
                 Me.Lattitude = .Lattitude
                 Me.Longitude = .Longitude
+                Me.Address = .Address
             End With
 
         End Sub
