@@ -53,6 +53,7 @@
                                 <dx:ASPxGridView KeyFieldName="UserId" OnInitNewRow="dgvUsers_InitNewRow" OnBeforeGetCallbackResult="dgvUsers_BeforeGetCallbackResult" ID="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
                                     <SettingsPager PageSize="50" >
                                     </SettingsPager>
+                                    <SettingsBehavior ConfirmDelete ="true" />
                                     <Settings ShowGroupPanel="True" />
                                     <ClientSideEvents EndCallback ="function(s,e){
                                             if (s.cpHasInserted) {
@@ -62,7 +63,7 @@
                                             }
                                         }" />
                                     <Columns>
-                                        <dx:GridViewCommandColumn ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                        <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="true" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" VisibleIndex="1" Visible="False">
                                         </dx:GridViewDataTextColumn>
@@ -378,7 +379,7 @@
 
                                                  <tr>
                                                     <td style="padding-left: 10px; padding-bottom: 10px; padding-top: 12px; text-align:right;">
-                                                        application version &quot;&quot;</td>
+                                                        application version &quot; <%= AppVersion%> &quot;</td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -440,7 +441,6 @@
                                                                         <dx:ASPxHiddenField ID="ASPxHiddenFieldUpdateType" ClientInstanceName="ASPxHiddenFieldUpdateType" runat="server"></dx:ASPxHiddenField>
                                                                        <script>
                                                                            function ImageClick(s, e) {
-                                                                               debugger;
                                                                                var id = s.GetImageUrl();
                                                                                id = id.split('=')[1];
                                                                                if (ASPxButtonHome.GetChecked()) {
@@ -482,8 +482,17 @@
                                                                             </td>
                                                                             <td style="width:15%;padding-right:10px">
                                                                                 
-                                                        <dx:ASPxBinaryImage ID="ASPxBinaryImageBrowse" Width="100%" Height="125px" runat="server" BinaryStorageMode="Session">
-                                                            <EditingSettings UploadSettings-UploadValidationSettings-MaxFileSizeErrorText="Image size must be 10kb and below!" UploadSettings-UploadValidationSettings-MaxFileSize="10000" Enabled="True" EmptyValueText="" ButtonPanelSettings-Position="Bottom"></EditingSettings>
+                                                                                <dx:ASPxBinaryImage ID="ASPxBinaryImageBrowse1" Width="100%" Height="125px" runat="server" BinaryStorageMode="Session" ShowLoadingImage="True">
+                                                   
+                                                                     <EditingSettings 
+
+                                                                UploadSettings-UploadValidationSettings-MaxFileSizeErrorText="Image size must be 30kB and below!" 
+                                                                UploadSettings-UploadValidationSettings-MaxFileSize="30000" 
+                                                                Enabled="True" 
+                                                                EmptyValueText="" 
+                                                                ButtonPanelSettings-Position="Bottom">
+
+                                                            </EditingSettings>
                                                         
                                                         </dx:ASPxBinaryImage>
                                                                                 <dx:ASPxButton Width="100%" Height="25px" ID="ASPxButtonBrowse" OnClick="ASPxButtonBrowse_Click"
@@ -523,7 +532,8 @@
                 InsertMethod="Insert" OnInserting="odsUsers_Inserting"
                 SelectMethod="GetAllUsersForApplication"
                 TypeName="FMS.Business.DataObjects.User"
-                UpdateMethod="Update"> 
+                UpdateMethod="Update" 
+                DeleteMethod="Delete" OnDeleting="odsUsers_Deleting"> 
                 <SelectParameters>
                     <asp:SessionParameter DbType="Guid"
                         Name="applicationid"

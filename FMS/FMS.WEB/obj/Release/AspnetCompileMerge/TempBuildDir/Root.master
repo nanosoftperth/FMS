@@ -22,7 +22,7 @@
             margin-right: 0cm;
             margin-bottom: 10.0pt;
             margin-left: 0cm;
-            line-height: 115%;
+            /*line-height: 115%;*/
             font-size: 11.0pt;
             font-family: "Arial","sans-serif";
         }
@@ -43,13 +43,13 @@
         <link rel="stylesheet" type="text/css" href='<%= ResolveUrl("~/Content/bootstrap.css")%>?version=<%=WebVersion%>' />
 
 
-        <dx:ASPxPanel   ID="HeaderPane" 
-                        runat="server" 
-                        FixedPosition="WindowTop" 
-                        ClientInstanceName="headerPane" 
-                        CssClass="headerPane" 
-                        Collapsible="true" 
-                        Theme="Metropolis">
+        <dx:ASPxPanel ID="HeaderPane"
+            runat="server"
+            FixedPosition="WindowTop"
+            ClientInstanceName="headerPane"
+            CssClass="headerPane"
+            Collapsible="true"
+            Theme="Metropolis">
 
             <SettingsAdaptivity CollapseAtWindowInnerWidth="500" />
             <Styles>
@@ -63,9 +63,7 @@
 
 
                         <style type="text/css">
-                            
-
-                           .uniqcoButtonCSSClass {                                
+                            .uniqcoButtonCSSClass {
                                 float: right;
                                 position: absolute;
                                 right: 300px;
@@ -102,16 +100,15 @@
                                    
                                 </style>
 
-                                <%--<a id="TitleLink" href="~/" runat="server">--%>
+
                                 <p class="MsoNormal">
                                     <b>
                                         <span runat="server" id="header_companyName" class="headerCustom" style="color: #466289;">Company Name</span>
                                         <span runat="server" id="header_applicationName" class="headerCustom" style="color: #FA6121;">&nbsp;&nbsp;Application Name</span>
-                                        <%--<span runat="server" id="header_companyName" style="font-size: 25.0pt; mso-bidi-font-size: 10.0pt; line-height: 115%; font-family: &quot;Century Gothic&quot;,&quot;sans-serif&quot;; color: #215868; ">Company Name</span>
-                                                <span runat="server" id="Span2" style="font-size: 25.0pt; mso-bidi-font-size: 10.0pt; line-height: 115%; font-family: &quot;Century Gothic&quot;,&quot;sans-serif&quot;; color: #7C2313; ">&nbsp;&nbsp;Application Name</span>--%>
+
                                     </b>
                                 </p>
-                                <%--</a>--%>
+
                             </div>
 
                         </div>
@@ -119,18 +116,18 @@
                         <div class="loginControl">
                             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                                 <AnonymousTemplate>
-                                    
+
                                     <a href="~/Account/Login.aspx" runat="server" id="loginLink">Log In</a>
                                     | 
                                     <a href="~/Account/Register.aspx" runat="server" id="registerLink">Register</a>
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     Welcome <span class="bold">
-                                        
+
                                         <asp:LoginName ID="HeadLoginName" runat="server" />
                                     </span>! [
-                                    <dx:ASPxHyperLink ID="HeadManage" ClientInstanceName="HeadManage" Cursor="pointer" runat="server" Text="Manage"  >
-                                            <ClientSideEvents Click="function(s,e){
+                                    <dx:ASPxHyperLink ID="HeadManage" ClientInstanceName="HeadManage" Cursor="pointer" runat="server" Text="Manage">
+                                        <ClientSideEvents Click="function(s,e){
                                                     ASPxPopupClientControl.ShowAtElement(s.GetMainElement());
                                                 }" />
                                     </dx:ASPxHyperLink>
@@ -138,6 +135,8 @@
                                 </LoggedInTemplate>
                             </asp:LoginView>
                         </div>
+
+
                         <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="220px" Height="100%"
                             MaxWidth="800px" MaxHeight="800px" MinHeight="50px" MinWidth="150px" ID="pcMain"
                             ShowFooter="False" PopupElementID="HeadManage" ShowHeader="false"
@@ -145,52 +144,69 @@
                             <ContentCollection>
                                 <dx:PopupControlContentControl runat="server">
                                     <asp:Panel ID="Panel1" runat="server">
-                                            <table style="margin:2px;">
-                                                <tr>
-                                                    <td>
-                                                        <div style="border-radius: 50%; overflow: hidden; background-color:#fa9921">
-                                                            <img src="/Content/Images/icon-user-default.png" style="height:60px"/>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <table style="margin-left:10px;height:60px">
-                                                            <tr>
-                                                                <td style="font-size:15px" >
-                                                                    <asp:LoginName ID="HeadLoginName" runat="server"/>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="font-size:9px">
-                                                                    <table>
-                                                                        <tr>
-                                                                            <td>
-                                                                                 <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password" ></dx:ASPxHyperLink>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>
-                                                                                 <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis" LogoutPageUrl="~/" />                 
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                        <table style="margin: 2px;">
+                                            <tr>
+                                                <td>
+                                                    <div style="border-radius: 50%; overflow: hidden; background-color: #fa9921">
+                                                        <img src="/Content/Images/icon-user-default.png" style="height: 60px" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <table style="margin-left: 10px; height: 60px">
+                                                        <tr>
+                                                            <td style="font-size: 15px">
+                                                                <asp:LoginName ID="HeadLoginName" runat="server" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="font-size: 9px">
+                                                                <table>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password"></dx:ASPxHyperLink>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis" LogoutPageUrl="~/" />
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </asp:Panel>
                                 </dx:PopupControlContentControl>
                             </ContentCollection>
                         </dx:ASPxPopupControl>
 
-                    </div>
-                    <div class="headerMenu">
-                        <%-- DXCOMMENT: Configure the header menu --%>
-                        <dx:ASPxMenu ID="HeaderMenu" runat="server" CssClass="headerMenu" ClientInstanceName="headerMenu" ItemAutoWidth="False" Width="100%" DataSourceID="XmlDataSourceHeader" EnableTheming="True" Theme="Metropolis" Font-Bold="True" Font-Size="Medium">
-                        </dx:ASPxMenu>
+
+                        <div class="headerMenu">
+                            <%-- DXCOMMENT: Configure the header menu --%>
+                            <dx:ASPxMenu ID="HeaderMenu" 
+                                runat="server" 
+                                CssClass="headerMenu" 
+                                ClientInstanceName="headerMenu" 
+                                ItemAutoWidth="False" 
+                                Width="100%" 
+                                DataSourceID="XmlDataSourceHeader" 
+                                EnableTheming="True" 
+                                Theme="Metropolis" 
+                                Font-Bold="True" 
+                                Font-Size="Medium"                                 
+                                EnableAdaptivity="True" 
+                                EncodeHtml="False">
+
+                                </dx:ASPxMenu>                      
+
+                        </div>
+
 
                     </div>
+
                 </dx:PanelContent>
             </PanelCollection>
             <ExpandBarTemplate>

@@ -540,7 +540,6 @@ function btnSave_Click() {
     var circleOrPolygon = combogeoFenceTypeSelection.GetValue();
 
     var latlngs = getPolygonArrsStr(currentPolygon);
-    debugger;
 
     saveNewPolygonToDB(latlngs, name, desc, colour, circleLatLngStr, circleRadius, circleOrPolygon)
 
@@ -637,7 +636,6 @@ function getDifrnce(num1, num2) {
 }
 
 function goefenceColour_ColorChanged() {
-    debugger;
     if (currentPolygon != null) {
 
         currentPolygon.fillColor = goefenceColour.GetColor();
@@ -696,7 +694,6 @@ function func_mapClicked(event) {
     var bnds = map.getBounds();
     //alert(bnds('south'));
     //alert(JSON.stringify(bnds));
-    debugger;
     //var top = bnds.H.j;
     //var bottom = bnds.H.H;
     //var left = bnds.j.j;

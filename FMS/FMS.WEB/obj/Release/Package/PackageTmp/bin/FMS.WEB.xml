@@ -1434,9 +1434,9 @@ odsMapMarker control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:FMS.WEB.Test.ASPxBinaryImageBrowse">
+</member><member name="F:FMS.WEB.Test.ASPxBinaryImageBrowse1">
 	<summary>
-ASPxBinaryImageBrowse control.
+ASPxBinaryImageBrowse1 control.
 </summary>
 	<remarks>
 Auto-generated field.

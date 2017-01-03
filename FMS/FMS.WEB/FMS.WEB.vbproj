@@ -730,6 +730,7 @@
     <Content Include="Content\Images\markers\nothing.png" />
     <Content Include="Content\Images\markers\plane_48.png" />
     <Content Include="Content\Images\markers\truck_48.png" />
+    <Content Include="Content\Images\markers\truck_62x38.png" />
     <Content Include="Content\Images\markers\van_48.png" />
     <Content Include="Content\Images\mC-settings.png" />
     <Content Include="Content\Images\pi case.jpg" />

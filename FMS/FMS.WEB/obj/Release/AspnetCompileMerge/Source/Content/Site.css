@@ -190,7 +190,7 @@ html, body {
 
 .templateTitle {
     float: left;
-    margin: 16px 12px 16px;
+    /*margin: 16px 12px 16px;*/
 }
 
 .dxpnl-edge.t.headerPane.bar .templateTitle {
