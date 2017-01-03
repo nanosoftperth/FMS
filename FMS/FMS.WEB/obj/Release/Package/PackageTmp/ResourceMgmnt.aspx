@@ -131,6 +131,7 @@
                                              <SettingsEditing Mode="Batch">
                                                 <BatchEditSettings EditMode="Row"></BatchEditSettings>
                                              </SettingsEditing>
+                                              <SettingsPager PageSize="20"></SettingsPager>
                                              <Columns>
                                                 <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                                 <dx:GridViewDataTextColumn FieldName="ApplicationVehicleDriverTimeID" VisibleIndex="2" Visible="False"></dx:GridViewDataTextColumn>
