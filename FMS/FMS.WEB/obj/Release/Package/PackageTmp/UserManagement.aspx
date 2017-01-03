@@ -18,7 +18,7 @@
                 
                     <table style="width:100%;">
                         <tr>
-                            <td style="vertical-align:top;">
+                            <td style="vertical-align:top;width:134px;">
                                 <img style="top:2px;left:2px; height: 146px; width: 134px;" src="Content/Images/user-management.png" />
 
                             </td>
@@ -31,7 +31,7 @@
 
                             <td style="padding-left:20px;">
                                 
-                                <p class="lead">This page can be used to configure users / roles and what features each role has access to:</p>
+                                <%--<p class="lead">This page can be used to configure users / roles and what features each role has access to:</p>--%>
                                 <p class="lead">
                             
                                     <iframe id="frmContent" src="UserManagementContent.aspx" style="width:100%;bottom:10px; border: none;overflow-y:visible;" class="row"></iframe>

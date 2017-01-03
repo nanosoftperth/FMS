@@ -19,23 +19,34 @@ function RootMasterControlsInitialised() {
     var logoHeight = $('.headerLogo').height();
     if (logoHeight > 90) {
         $('.loginControl').css('right', '130px');
+        $('.loginControl').css('top', '-17px');
     } else {
         $('.loginControl').css('right', '1px');
     }
+
+   
 }
 
+
+var iframeHeightOffset = 250;
+
 function MainLightMaster_ControlsInitialised() {
+
+    //alert('controls initialised')
+
 
     window.onload = window.onresize = function () {
 
         var window_height = window.innerHeight;
-        var contentHeight = window_height - 180;
+        var contentHeight = window_height;
+
+        //alert('height:' + contentHeight);
 
         contentRoundPanel.SetHeight(contentHeight);
 
         try {
 
-            $('#frmContent').css('height', window_height - 300 + "px");
+            $('#frmContent').css('height', (window_height - iframeHeightOffset ) + "px");
             $('#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_CC').css('padding-bottom', '0px');
 
         } catch (e) { }
@@ -51,7 +62,7 @@ function MainLightMaster_ControlsInitialised() {
 
     try {
 
-        $('#frmContent').css('height', window_height - 300 + "px");
+        $('#frmContent').css('height', (window_height - iframeHeightOffset ) + "px");
         $('#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_CC').css('padding-bottom', '0px');
 
     } catch (e) { }

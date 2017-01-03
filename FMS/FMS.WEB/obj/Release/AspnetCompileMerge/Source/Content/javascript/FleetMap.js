@@ -673,7 +673,7 @@ function getLabelInvisibleMarker(location, text) {
         labelContent: text,
         labelAnchor: new google.maps.Point(22, 0),
         labelClass: "labelsPloygon", // the CSS class for the label
-        labelStyle: { opacity: 0.75 },
+        //labelStyle: { opacity: 0.75 },
         map: map
     });
 
@@ -690,7 +690,7 @@ function addMarker(location, lblContent, markerID) {
         labelContent: lblContent,
         labelAnchor: new google.maps.Point(22, 0),
         labelClass: "labels", // the CSS class for the label
-        labelStyle: { opacity: 0.75 },
+        //labelStyle: { opacity: 0.75 },
         map: map
     });
 
