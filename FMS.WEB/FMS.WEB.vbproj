@@ -539,6 +539,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Settings.vb" />
+    <Compile Include="Test_Forms\BusinessLocationaspx.aspx.designer.vb">
+      <DependentUpon>BusinessLocationaspx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\BusinessLocationaspx.aspx.vb">
+      <DependentUpon>BusinessLocationaspx.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\CANData.aspx.designer.vb">
       <DependentUpon>CANData.aspx</DependentUpon>
     </Compile>
@@ -799,8 +806,10 @@
     <Content Include="MainLight.master" />
     <Content Include="GeoFencePropertyDisplay.aspx" />
     <Content Include="Contacts.aspx" />
+    <Content Include="Test_Forms\BusinessLocationaspx.aspx" />
     <Content Include="Test_Forms\CANData.aspx" />
     <Content Include="Test_Forms\CircularGeoFenceTest.aspx" />
+    <Content Include="Test_Forms\CSSTest.html" />
     <Content Include="Test_Forms\GeoFenceAlertAudit.aspx" />
     <Content Include="Test_Forms\Group.aspx" />
     <Content Include="Test_Forms\MileageTester.aspx" />
@@ -968,7 +977,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1090/</IISUrl>
+          <IISUrl>http://localhost:1098/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
