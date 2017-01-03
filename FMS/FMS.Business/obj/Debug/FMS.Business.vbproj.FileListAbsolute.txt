@@ -30,3 +30,4 @@ C:\temp\ryan\FMS\FMS.Business\obj\Debug\FMS.Business.vbproj.GenerateResource.Cac
 C:\temp\ryan\FMS\FMS.Business\obj\Debug\FMS.Business.dll
 C:\temp\ryan\FMS\FMS.Business\obj\Debug\FMS.Business.xml
 C:\temp\ryan\FMS\FMS.Business\obj\Debug\FMS.Business.pdb
+C:\temp\ryan\FMS\FMS.Business\obj\Debug\FMS.Business.vbprojResolveAssemblyReference.cache
