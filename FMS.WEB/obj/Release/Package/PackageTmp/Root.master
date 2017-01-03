@@ -229,7 +229,8 @@
         </script>
 
         <dx:ASPxGlobalEvents runat="server">
-            <ClientSideEvents ControlsInitialized="updateHeaderMenuOrientation" BrowserWindowResized="updateHeaderMenuOrientation" />
+            <ClientSideEvents ControlsInitialized="updateHeaderMenuOrientation" 
+                BrowserWindowResized="updateHeaderMenuOrientation" />
         </dx:ASPxGlobalEvents>
 
 

@@ -855,6 +855,7 @@
 
 
     <style type="text/css">
+
         .labels {
             color: black;
             background-color: white;
@@ -862,11 +863,17 @@
             font-size: 10px;
             font-weight: bold;
             text-align: center;
-            /*width: 60px;*/
             border: 2px solid black;
             white-space: nowrap;
-            opacity: 1 !Important;
+            opacity: 0.8 !Important;
         }
+
+        .labels:hover {
+            opacity: 0.1 !Important;
+            border:none;
+            background-color:none;
+        }
+       
 
         .labelsPloygon {
             color: black;
