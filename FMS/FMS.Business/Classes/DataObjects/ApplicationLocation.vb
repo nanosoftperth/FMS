@@ -8,7 +8,6 @@ Namespace DataObjects
         Public Property Name As String
         Public Property Longitude As String
         Public Property Lattitude As String
-
         Public Property Address As String
 
       
@@ -88,6 +87,10 @@ Namespace DataObjects
 
 #Region "gets & sets"
 
+        'required for devexpress binding
+        Public Shared Function GetAllIncludingDefault(appid As Guid) As List(Of DataObjects.ApplicationLocation)
+            Return GetAll(appid, True)
+        End Function
 
         ''' <summary>
         ''' Normal "get all", with  few caveats
