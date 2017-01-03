@@ -382,6 +382,7 @@
                               <SettingsDetail ShowDetailRow="true" />
                               <SettingsBehavior ConfirmDelete="True" />
                               <SettingsSearchPanel Visible="True" />
+                              <SettingsPager PageSize="20"></SettingsPager>
                               <SettingsText ConfirmDelete="Are you sure you wish to delete the vehicle?" />
                               <Templates>
                                  <DetailRow>
