@@ -218,6 +218,19 @@ Namespace DataObjects
             Return retobj
 
         End Function
+        'BY RYAN 
+        'Check if name for Geofence already exist
+        'Need to ensure that Geofence name is Unique
+        Public Shared Function IfApplicationGeoFencesAlreadyExist(appID As Guid, xname As String) As Boolean
+
+            Dim retobj = _
+                            (From i In SingletonAccess.FMSDataContextNew.ApplicationGeoFences
+                                Where i.ApplictionID = appID
+                                Select i.Name).ToList.Contains(xname)
+
+            Return retobj
+
+        End Function
 
         'Public Shared Function GetAllApplicationGeoFences(appID As Guid,tl As Business.) As List(Of DataObjects.ApplicationGeoFence)
 

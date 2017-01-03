@@ -88,6 +88,13 @@ Namespace DataObjects
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
 
         End Sub
+        Public Shared Sub Delete(u As User)
+            'BY RYAN 
+            Dim o As aspnet_User = (From i In SingletonAccess.FMSDataContextContignous.aspnet_Users _
+                                    Where i.UserId = u.UserId).SingleOrDefault
+
+            Web.Security.Membership.DeleteUser(o.UserName)
+        End Sub
 
 
 
@@ -101,7 +108,7 @@ Namespace DataObjects
 
             Dim u As DataObjects.User = DataObjects.User.GetAllUsersForApplication(applicationid).Where(Function(x) x.UserId = userid).SingleOrDefault()
 
-            If u Is Nothing Then Throw New Exception(String.Format("There was non ""(0}"" user found in the database", UserName))
+            If u Is Nothing Then Throw New Exception(String.Format("There was non ""(0}"" user found in the database", userName))
 
 
             u.RoleID = role.RoleID

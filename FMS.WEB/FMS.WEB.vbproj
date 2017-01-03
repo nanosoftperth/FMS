@@ -721,12 +721,14 @@
     <Content Include="Content\Images\icon-user-default.png" />
     <Content Include="Content\Images\location-icon.png" />
     <Content Include="Content\Images\markers\big-image-png-6IW2jS-clipart.png" />
+    <Content Include="Content\Images\markers\boat2_48.png" />
     <Content Include="Content\Images\markers\boat_48.png" />
     <Content Include="Content\Images\markers\car_48.png" />
     <Content Include="Content\Images\markers\home-icon.png" />
     <Content Include="Content\Images\markers\lorry_48.png" />
     <Content Include="Content\Images\markers\moped_48.png" />
     <Content Include="Content\Images\markers\nothing.png" />
+    <Content Include="Content\Images\markers\plane_48.png" />
     <Content Include="Content\Images\markers\truck_48.png" />
     <Content Include="Content\Images\markers\van_48.png" />
     <Content Include="Content\Images\mC-settings.png" />

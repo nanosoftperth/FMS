@@ -62,7 +62,7 @@
                                             }
                                         }" />
                                     <Columns>
-                                        <dx:GridViewCommandColumn ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                        <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="true" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" VisibleIndex="1" Visible="False">
                                         </dx:GridViewDataTextColumn>
@@ -440,7 +440,6 @@
                                                                         <dx:ASPxHiddenField ID="ASPxHiddenFieldUpdateType" ClientInstanceName="ASPxHiddenFieldUpdateType" runat="server"></dx:ASPxHiddenField>
                                                                        <script>
                                                                            function ImageClick(s, e) {
-                                                                               debugger;
                                                                                var id = s.GetImageUrl();
                                                                                id = id.split('=')[1];
                                                                                if (ASPxButtonHome.GetChecked()) {
@@ -532,7 +531,8 @@
                 InsertMethod="Insert" OnInserting="odsUsers_Inserting"
                 SelectMethod="GetAllUsersForApplication"
                 TypeName="FMS.Business.DataObjects.User"
-                UpdateMethod="Update"> 
+                UpdateMethod="Update" 
+                DeleteMethod="Delete"> 
                 <SelectParameters>
                     <asp:SessionParameter DbType="Guid"
                         Name="applicationid"

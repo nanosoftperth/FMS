@@ -1370,6 +1370,86 @@ dgvTimezoneSettings control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:FMS.WEB.Test.ASPxLabel4">
+	<summary>
+ASPxLabel4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxButton3">
+	<summary>
+ASPxButton3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxPanel1">
+	<summary>
+ASPxPanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxButtonHome">
+	<summary>
+ASPxButtonHome control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxButtonVehicle">
+	<summary>
+ASPxButtonVehicle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxHiddenFieldUpdateType">
+	<summary>
+ASPxHiddenFieldUpdateType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.dvGalery">
+	<summary>
+dvGalery control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.odsMapMarker">
+	<summary>
+odsMapMarker control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxBinaryImageBrowse">
+	<summary>
+ASPxBinaryImageBrowse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.Test.ASPxButtonBrowse">
+	<summary>
+ASPxButtonBrowse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:FMS.WEB.Test.odsAllTimeZoneOptions">
 	<summary>
 odsAllTimeZoneOptions control.

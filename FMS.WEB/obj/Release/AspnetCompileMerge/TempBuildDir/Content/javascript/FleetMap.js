@@ -656,9 +656,9 @@ function finallyCallback(result) {
 
 var iconBase = 'content/images/markers/';
 
-var icon_truck = iconBase + 'truck_48.png';
+var icon_truck = 'content/FleetMapMarker.ashx?type=vehicle';
 var icon_lorry = iconBase + 'lorry_48.png';
-var icon_home = iconBase + 'home-icon.png';
+var icon_home = 'content/FleetMapMarker.ashx?type=home';
 var icon_nothing = iconBase + 'nothing.png';
 
 var markers = [];
