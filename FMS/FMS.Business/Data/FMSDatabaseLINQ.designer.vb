@@ -295,6 +295,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteFleetMapMarker(instance As FleetMapMarker)
     End Sub
+  Partial Private Sub InsertApplicationLocation(instance As ApplicationLocation)
+    End Sub
+  Partial Private Sub UpdateApplicationLocation(instance As ApplicationLocation)
+    End Sub
+  Partial Private Sub DeleteApplicationLocation(instance As ApplicationLocation)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -613,6 +619,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property FleetMapMarkers() As System.Data.Linq.Table(Of FleetMapMarker)
 		Get
 			Return Me.GetTable(Of FleetMapMarker)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationLocations() As System.Data.Linq.Table(Of ApplicationLocation)
+		Get
+			Return Me.GetTable(Of ApplicationLocation)
 		End Get
 	End Property
 	
@@ -11225,6 +11237,179 @@ Partial Public Class FleetMapMarker
 				Me._Home_ApplicationImageId = value
 				Me.SendPropertyChanged("Home_ApplicationImageId")
 				Me.OnHome_ApplicationImageIdChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationLocation")>  _
+Partial Public Class ApplicationLocation
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationLocationID As System.Guid
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _Name As String
+	
+	Private _Longitude As String
+	
+	Private _Lattitude As String
+	
+	Private _Address As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationLocationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationLocationIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnLongitudeChanging(value As String)
+    End Sub
+    Partial Private Sub OnLongitudeChanged()
+    End Sub
+    Partial Private Sub OnLattitudeChanging(value As String)
+    End Sub
+    Partial Private Sub OnLattitudeChanged()
+    End Sub
+    Partial Private Sub OnAddressChanging(value As String)
+    End Sub
+    Partial Private Sub OnAddressChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationLocationID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationLocationID() As System.Guid
+		Get
+			Return Me._ApplicationLocationID
+		End Get
+		Set
+			If ((Me._ApplicationLocationID = value)  _
+						= false) Then
+				Me.OnApplicationLocationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationLocationID = value
+				Me.SendPropertyChanged("ApplicationLocationID")
+				Me.OnApplicationLocationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(500)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Longitude", DbType:="VarChar(100)")>  _
+	Public Property Longitude() As String
+		Get
+			Return Me._Longitude
+		End Get
+		Set
+			If (String.Equals(Me._Longitude, value) = false) Then
+				Me.OnLongitudeChanging(value)
+				Me.SendPropertyChanging
+				Me._Longitude = value
+				Me.SendPropertyChanged("Longitude")
+				Me.OnLongitudeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Lattitude", DbType:="VarChar(100)")>  _
+	Public Property Lattitude() As String
+		Get
+			Return Me._Lattitude
+		End Get
+		Set
+			If (String.Equals(Me._Lattitude, value) = false) Then
+				Me.OnLattitudeChanging(value)
+				Me.SendPropertyChanging
+				Me._Lattitude = value
+				Me.SendPropertyChanged("Lattitude")
+				Me.OnLattitudeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Address", DbType:="VarChar(MAX)")>  _
+	Public Property Address() As String
+		Get
+			Return Me._Address
+		End Get
+		Set
+			If (String.Equals(Me._Address, value) = false) Then
+				Me.OnAddressChanging(value)
+				Me.SendPropertyChanging
+				Me._Address = value
+				Me.SendPropertyChanged("Address")
+				Me.OnAddressChanged
 			End If
 		End Set
 	End Property
