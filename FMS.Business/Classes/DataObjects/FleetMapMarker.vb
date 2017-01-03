@@ -78,25 +78,34 @@ Namespace DataObjects
 
 
         Public Shared Function GetApplicationFleetMapMarket(applicationid As Guid) As DataObjects.FleetMapMarker
+
             Dim ctx = New FMS.Business.LINQtoSQLClassesDataContext()
+
             Using ctx
                 Dim ff = ctx.FleetMapMarkers. _
                             Where(Function(y) y.ApplicationId = applicationid).SingleOrDefault
+
                 Dim retval As DataObjects.FleetMapMarker
+
                 If ff IsNot Nothing Then
                     retval = New DataObjects.FleetMapMarker(ff)
                 Else
+
                     retval = New DataObjects.FleetMapMarker()
                     retval.FleetMapMarkerId = Guid.NewGuid
                     retval.ApplicationID = applicationid
+
                     retval.Vehicle_ApplicationImageID = DataObjects.ApplicationImage.GetDefaultImages("truck")
                     retval.Home_ApplicationImageID = DataObjects.ApplicationImage.GetDefaultImages("home")
 
                 End If
                 Return retval
             End Using
+
+
         End Function
 
 #End Region
+
     End Class
 End Namespace
