@@ -109,7 +109,6 @@ Public Class Test
         x.ApplicationID = ThisSession.ApplicationID
         Dim user As MembershipUser = Membership.CreateUser(x.UserName, agp, x.Email)
         x.UserId = user.ProviderUserKey
-
         'send an email with agp
         If x.SendEmailtoUserWithDefPass Then
             BackgroundCalculations.EmailHelper.SendEmailUserCreated(x.Email, ThisSession.ApplicationName, x.UserName, agp)
@@ -188,4 +187,5 @@ Public Class Test
         DataObjects.FleetMapMarker.Update(fmm)
         ASPxHiddenFieldUpdateType.Clear()
     End Sub
+
 End Class

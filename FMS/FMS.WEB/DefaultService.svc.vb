@@ -254,8 +254,7 @@ Public Class DefaultService
 
             'Check if there is already a geofence with that name
             'by ryan
-            Dim alreadyExists As Boolean = FMS.Business.DataObjects.ApplicationGeoFence.GetAllApplicationGeoFences( _
-                            ThisSession.ApplicationID).Select(Function(c) c.Name.Trim.ToLower).Contains(Name)
+            Dim alreadyExists As Boolean = FMS.Business.DataObjects.ApplicationGeoFence.IfApplicationGeoFencesAlreadyExist(ThisSession.ApplicationID, Name)
 
                 retobj.IsCircular = geofence.IsCircular
 
