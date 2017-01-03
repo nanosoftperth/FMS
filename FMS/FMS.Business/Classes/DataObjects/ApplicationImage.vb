@@ -111,6 +111,7 @@
 
             Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name.ToLower().Contains(name)).ApplicationImageID
         End Function
+
         Public Shared Function GetAllDefaultImages(type As String)
 
             Return SingletonAccess.FMSDataContextNew.ApplicationImages. _
