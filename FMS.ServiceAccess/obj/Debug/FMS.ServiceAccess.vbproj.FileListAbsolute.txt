@@ -63,7 +63,6 @@ C:\temp\ryan\FMS\FMS.ServiceAccess\bin\EntityFramework.xml
 C:\temp\ryan\FMS\FMS.ServiceAccess\bin\EntityFramework.SqlServer.xml
 C:\temp\ryan\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.Core.xml
 C:\temp\ryan\FMS\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.vbprojResolveAssemblyReference.cache
 C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.Resources.resources
 C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.vbproj.GenerateResource.Cache
 C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.dll.licenses
