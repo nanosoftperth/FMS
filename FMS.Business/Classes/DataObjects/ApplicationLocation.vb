@@ -88,8 +88,8 @@ Namespace DataObjects
 #Region "gets & sets"
 
         'required for devexpress binding
-        Public Shared Function GetAllIncludingDefault(appid As Guid) As List(Of DataObjects.ApplicationLocation)
-            Return GetAll(appid, True)
+        Public Shared Function GetAllIncludingDefault(ApplicationID As Guid) As List(Of DataObjects.ApplicationLocation)
+            Return GetAll(ApplicationID, True)
         End Function
 
         ''' <summary>
