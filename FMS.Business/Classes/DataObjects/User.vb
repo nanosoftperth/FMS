@@ -1,4 +1,5 @@
-﻿
+﻿Imports System.Web.Security
+
 Namespace DataObjects
 
     Public Class User
@@ -56,27 +57,38 @@ Namespace DataObjects
 #Region "CRUD"
         Public Shared Sub Insert(u As User)
             'BY RYAN
-            'Create Membership on FMS.WEB
-            'will only do update here
+            'create membership
+            Dim agp = Membership.GeneratePassword(9, 0)
+            Dim user = Membership.CreateUser(u.UserName, agp, u.Email)
+            'update user
             Dim o As aspnet_User = (From i In SingletonAccess.FMSDataContextContignous.aspnet_Users _
-                                    Where i.UserId = u.UserId).SingleOrDefault
-
+                                    Where i.UserId = user.ProviderUserKey).SingleOrDefault
             With u
-                o.aspnet_Membership.Mobile = u.Mobile
+                o.aspnet_Membership.Mobile = .Mobile
                 o.TimeZoneID = .TimeZoneID
 
-                SingletonAccess.FMSDataContextContignous.usp_RemoveAllrolesForUserAndAssignRole(u.UserId, .RoleID)
+                SingletonAccess.FMSDataContextContignous.usp_RemoveAllrolesForUserAndAssignRole(o.UserId, .RoleID)
             End With
 
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+            'Send Email
+            If u.SendEmailtoUserWithDefPass Then
+                BackgroundCalculations.EmailHelper.SendEmailUserCreated(u.Email, Application.GetFromAppID(u.ApplicationID).ApplicationName, u.UserName, agp)
+            End If
 
         End Sub
 
         Public Shared Sub Update(u As User)
 
+            'update membership
+
+            Dim user = Membership.GetUser(u.UserId)
+            user.Email = u.Email
+            Membership.UpdateUser(user)
+            'update user
             Dim o As aspnet_User = (From i In SingletonAccess.FMSDataContextContignous.aspnet_Users _
                                     Where i.UserId = u.UserId).SingleOrDefault
-
             With u
                 o.UserName = .UserName
                 o.aspnet_Membership.Mobile = u.Mobile
@@ -93,7 +105,7 @@ Namespace DataObjects
             Dim o As aspnet_User = (From i In SingletonAccess.FMSDataContextContignous.aspnet_Users _
                                     Where i.UserId = u.UserId).SingleOrDefault
 
-            Web.Security.Membership.DeleteUser(o.UserName)
+            Membership.DeleteUser(o.UserName)
         End Sub
 
 
