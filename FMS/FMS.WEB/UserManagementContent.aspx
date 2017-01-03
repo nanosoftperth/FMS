@@ -53,6 +53,7 @@
                                 <dx:ASPxGridView KeyFieldName="UserId" OnInitNewRow="dgvUsers_InitNewRow" OnBeforeGetCallbackResult="dgvUsers_BeforeGetCallbackResult" ID="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
                                     <SettingsPager PageSize="50" >
                                     </SettingsPager>
+                                    <SettingsBehavior ConfirmDelete ="true" />
                                     <Settings ShowGroupPanel="True" />
                                     <ClientSideEvents EndCallback ="function(s,e){
                                             if (s.cpHasInserted) {
@@ -532,7 +533,7 @@
                 SelectMethod="GetAllUsersForApplication"
                 TypeName="FMS.Business.DataObjects.User"
                 UpdateMethod="Update" 
-                DeleteMethod="Delete"> 
+                DeleteMethod="Delete" OnDeleting="odsUsers_Deleting"> 
                 <SelectParameters>
                     <asp:SessionParameter DbType="Guid"
                         Name="applicationid"

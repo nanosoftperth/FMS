@@ -1,4 +1,5 @@
 ﻿Imports FMS.Business
+Imports FMS.Business.DataObjects.FeatureListConstants
 
 Public Class Test
     Inherits System.Web.UI.Page
@@ -188,4 +189,10 @@ Public Class Test
         ASPxHiddenFieldUpdateType.Clear()
     End Sub
 
+    Protected Sub odsUsers_Deleting(sender As Object, e As ObjectDataSourceMethodEventArgs)
+        If Not ThisSession.User.GetIfAccessToFeature(FeatureListAccess.User_Management__Edit__Users) Then
+            Throw New Exception("You do not have ""edit"" access to this page.")
+            e.Cancel = True
+        End If
+    End Sub
 End Class
