@@ -193,9 +193,6 @@
                                 <asp:ObjectDataSource ID="odsFeatures" runat="server"
                                     SelectMethod="GetAllFeatures"
                                     TypeName="FMS.Business.DataObjects.Feature">
-                                    <SelectParameters>
-                                        <asp:SessionParameter DbType="Guid" Name="appid" SessionField="ApplicationID" />
-                                    </SelectParameters>
                                 </asp:ObjectDataSource>
                                 <dx:ASPxGridView ID="ASPxGridView2" runat="server"
                                     AutoGenerateColumns="False" DataSourceID="odsFeatures"  Width="100%"

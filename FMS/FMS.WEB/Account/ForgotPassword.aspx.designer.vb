@@ -50,6 +50,33 @@ Partial Public Class ForgotPassword
     Protected WithEvents tbUserName As Global.DevExpress.Web.ASPxTextBox
 
     '''<summary>
+    '''ASPxLabel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel1 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''lblUserEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUserEmail As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''tbEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbEmail As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
     '''btnSendEmail control.
     '''</summary>
     '''<remarks>
