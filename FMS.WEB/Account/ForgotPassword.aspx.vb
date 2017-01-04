@@ -5,8 +5,7 @@
     End Sub
 
     Protected Sub btnSendEmail_Click(sender As Object, e As EventArgs)
-        Dim user = Membership.GetUser(tbUserName.Text)
-
+        Dim user = If(String.IsNullOrEmpty(tbUserName.Text.Trim()), Membership.GetUser(Membership.GetUserNameByEmail(tbEmail.Text)), Membership.GetUser(tbUserName.Text))
         If user IsNot Nothing Then
             'to avoid creating unecessary number of tokens if user clicks on forgot password many times, just use the first created with 'isFPUsable = True'
             Dim TokenID As Guid = FMS.Business.DataObjects.AuthenticationToken.GetExistingTokenIdForUser(Guid.Parse(user.ProviderUserKey.ToString))

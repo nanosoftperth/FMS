@@ -19,10 +19,51 @@
                             
                             <dx:ASPxLabel ID="lblUserName" Theme="SoftOrange" runat="server" AssociatedControlID="tbUserName" Text="User Name:" />
                             <div class="form-field">
-                                <dx:ASPxTextBox ID="tbUserName" Theme="SoftOrange" runat="server" Width="200px">
-                                    <ValidationSettings ValidationGroup="LoginUserValidationGroup">
-                                        <RequiredField ErrorText="User Name is required." IsRequired="true" />
+                                <dx:ASPxTextBox ID="tbUserName" ClientInstanceName="tbUserName" Theme="SoftOrange" runat="server" Width="200px">
+                                    <ValidationSettings ValidationGroup="ForgotPasswordValidationGroup">
                                     </ValidationSettings>
+                                     <ClientSideEvents Validation="function(s, e) {
+                                        var un = tbEmail.GetText();
+                                        if(!un){
+                                            var em = tbUserName.GetText();
+                                            if(!em) {   
+                                                e.isValid = false;
+                                                e.errorText = 'Username is required.';
+                                            }
+                                        }
+                                    }" GotFocus="function(s, e) {
+                                         tbEmail.SetText('');
+                                         }" />
+                                </dx:ASPxTextBox>
+                            </div>
+                            <div class="form-field">
+                                <dx:ASPxLabel ID="ASPxLabel1" Theme="SoftOrange" runat="server" Text="- or -" />
+                             </div>   
+                            <dx:ASPxLabel ID="lblUserEmail" Theme="SoftOrange" runat="server" AssociatedControlID="tbEmail" Text="Email:" />
+                            <div class="form-field">
+                                <dx:ASPxTextBox Theme="SoftOrange" ID="tbEmail" ClientInstanceName="tbEmail" runat="server" Width="200px">
+                                    <ValidationSettings ValidationGroup="ForgotPasswordValidationGroup" >
+                                    </ValidationSettings>
+                                    <ClientSideEvents Validation="function(s, e) {
+                                        var un = tbUserName.GetText();
+                                        if(!un){
+                                            var em = tbEmail.GetText();
+                                            if(!em) {   
+                                                e.isValid = false;
+                                                e.errorText = 'E-mail is required.';
+                                            }
+                                            else
+                                            {
+                                                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                                                if(!emailReg.test( em)){
+                                                    e.isValid = false;
+                                                    e.errorText = 'Email validation failed';
+                                                }
+                                            }
+                                        }
+                                    }" GotFocus="function(s, e) {
+                                         tbUserName.SetText('');
+                                         }" />
                                 </dx:ASPxTextBox>
                             </div>
                             <dx:ASPxButton ID="btnSendEmail" Theme="SoftOrange" runat="server" Text="Send Email" ValidationGroup="ForgotPasswordValidationGroup"
