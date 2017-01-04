@@ -39,7 +39,7 @@
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Me.cbSelectedApplication.DataSource = FMS.Business.DataObjects.Application.GetAllApplications
-
+        Me.cbFMApplication.DataSource = FMS.Business.DataObjects.Application.GetAllApplications
         Me.batchComboApplications.DataSource = FMS.Business.DataObjects.Application.GetAllApplications
 
     End Sub
@@ -374,6 +374,39 @@
 
         pProcessor.StopAllWorking()
 
+    End Sub
+
+    Private Sub cbFMApplication_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbFMApplication.SelectedIndexChanged
+
+        Try
+
+            Dim selectedObject As FMS.Business.DataObjects.Application = cbFMApplication.SelectedItem
+
+            Me.dgvApplicationFeature.DataSource = _
+                FMS.Business.DataObjects.ApplicationFeature.GetAllFeatures(selectedObject.ApplicationID)
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Dim appid As Guid = CType(cbFMApplication.SelectedItem, 
+                                       FMS.Business.DataObjects.Application).ApplicationID
+        FMS.Business.DataObjects.ApplicationFeature.delete(appid)
+        For Each r As DataGridViewRow In dgvApplicationFeature.Rows
+            Dim row = CType(r.DataBoundItem, FMS.Business.DataObjects.FeaturesForApplication)
+            If row.IsInApplicationFeature = True Then
+                Dim x = New FMS.Business.DataObjects.ApplicationFeature()
+                x.ApplicationID = appid
+                x.FeatureID = row.FeatureID
+                FMS.Business.DataObjects.ApplicationFeature.insert(x)
+            End If
+        Next
+
+        Me.dgvApplicationSettings.Refresh()
     End Sub
 End Class
 

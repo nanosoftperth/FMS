@@ -69,3 +69,4 @@ C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.dll.licenses
 C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.dll
 C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.xml
 C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.pdb
+C:\temp\ryan\FMS\FMS.ServiceAccess\obj\Debug\FMS.ServiceAccess.vbprojResolveAssemblyReference.cache

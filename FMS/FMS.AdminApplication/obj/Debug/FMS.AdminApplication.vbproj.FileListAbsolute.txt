@@ -45,3 +45,4 @@ C:\temp\ryan\FMS\FMS.AdminApplication\bin\Debug\FMS.Business.xml
 C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.exe
 C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.xml
 C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.pdb
+C:\temp\ryan\FMS\FMS.AdminApplication\obj\Debug\FMS.AdminApplication.vbprojResolveAssemblyReference.cache
