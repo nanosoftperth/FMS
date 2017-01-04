@@ -865,13 +865,13 @@
             text-align: center;
             border: 2px solid black;
             white-space: nowrap;
-            opacity: 0.8 !Important;
+            opacity: 0.7 !Important;
         }
 
         .labels:hover {
-            opacity: 0.1 !Important;
-            border:none;
-            background-color:none;
+            opacity: 0 !Important;
+           
+            background-color:none !Important;
         }
        
 

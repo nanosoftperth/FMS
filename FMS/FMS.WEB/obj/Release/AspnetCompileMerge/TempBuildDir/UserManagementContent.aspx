@@ -43,7 +43,7 @@
 
         <div class="centreme">
 
-            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="4"
+            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="3"
                 EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 
@@ -192,7 +192,11 @@
                             <dx:ContentControl runat="server">
                                 <asp:ObjectDataSource ID="odsFeatures" runat="server"
                                     SelectMethod="GetAllFeatures"
-                                    TypeName="FMS.Business.DataObjects.Feature"></asp:ObjectDataSource>
+                                    TypeName="FMS.Business.DataObjects.Feature">
+                                    <SelectParameters>
+                                        <asp:SessionParameter DbType="Guid" Name="appid" SessionField="ApplicationID" />
+                                    </SelectParameters>
+                                </asp:ObjectDataSource>
                                 <dx:ASPxGridView ID="ASPxGridView2" runat="server"
                                     AutoGenerateColumns="False" DataSourceID="odsFeatures"  Width="100%"
                                     Theme="SoftOrange">
@@ -243,7 +247,11 @@
                                         <asp:SessionParameter DbType="Guid" Name="appid" SessionField="ApplicationID" />
                                     </SelectParameters>
                                 </asp:ObjectDataSource>
-                                <asp:ObjectDataSource ID="odsAppFeatRoleFeatures" runat="server" SelectMethod="GetAllFeatures" TypeName="FMS.Business.DataObjects.Feature"></asp:ObjectDataSource>
+                                <asp:ObjectDataSource ID="odsAppFeatRoleFeatures" runat="server" SelectMethod="GetAllFeatures" TypeName="FMS.Business.DataObjects.Feature">
+                                    <SelectParameters>
+                                        <asp:SessionParameter DbType="Guid" Name="appid" SessionField="ApplicationID" />
+                                    </SelectParameters>
+                                </asp:ObjectDataSource>
                                 <asp:ObjectDataSource ID="odsAppFeatRoleRoles" runat="server" SelectMethod="GetAllRolesforApplication" TypeName="FMS.Business.DataObjects.Role">
                                     <SelectParameters>
                                         <asp:SessionParameter DbType="Guid" Name="appID" SessionField="ApplicationID" />
@@ -491,6 +499,10 @@
                                                                 Enabled="True" 
                                                                 EmptyValueText="" 
                                                                 ButtonPanelSettings-Position="Bottom">
+
+<UploadSettings>
+<UploadValidationSettings MaxFileSize="30000" MaxFileSizeErrorText="Image size must be 30kB and below!"></UploadValidationSettings>
+</UploadSettings>
 
                                                             </EditingSettings>
                                                         
