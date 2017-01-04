@@ -39,3 +39,4 @@ C:\temp\ryan\FMS\FMS.Simulator\bin\Debug\FMS.Business.xml
 C:\temp\ryan\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.exe
 C:\temp\ryan\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.xml
 C:\temp\ryan\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.pdb
+C:\temp\ryan\FMS\FMS.Simulator\obj\Debug\FMS.Simulator.vbprojResolveAssemblyReference.cache

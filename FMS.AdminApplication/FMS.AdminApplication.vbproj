@@ -129,6 +129,7 @@
     </None>
     <None Include="My Project\DataSources\FMS.Business.DataObjects.Application.datasource" />
     <None Include="My Project\DataSources\FMS.Business.DataObjects.Device.datasource" />
+    <None Include="My Project\DataSources\FMS.Business.DataObjects.FeaturesForApplication.datasource" />
     <None Include="My Project\DataSources\FMS.Business.DataObjects.Setting.datasource" />
     <None Include="My Project\DataSources\FMS.Business.DataObjects.SimulatorSetting.datasource" />
     <None Include="My Project\Settings.settings">

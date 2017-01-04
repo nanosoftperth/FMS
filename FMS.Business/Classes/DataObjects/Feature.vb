@@ -45,8 +45,8 @@
 
                     Case FeatureListConstants.Vehicle_and_Driver_Management__Edit__Assign_Drivers_to_Vehicles
                         Return FeatureListConstants.FeatureListAccess.Vehicle_and_Driver_Management__Edit__Assign_Drivers_to_Vehicles
-
-
+                    Case FeatureListConstants.Vehicle_and_Driver_Management__Bookings
+                        Return FeatureListConstants.FeatureListAccess.Vehicle_and_Driver_Management__Bookings
                     Case FeatureListConstants.Vehicle_and_Driver_Management__Edit__Drivers
                         Return FeatureListConstants.FeatureListAccess.Vehicle_and_Driver_Management__Edit__Drivers
 
@@ -116,6 +116,13 @@
                      Select New DataObjects.Feature(i)).ToList
 
         End Function
+        Public Shared Function GetAllFeatures(appid As Guid) As List(Of Feature)
+
+            Return (From i In SingletonAccess.FMSDataContextNew.ApplicationFeatures
+                    Where i.ApplicationID = appid
+                     Select New DataObjects.Feature(i.Feature)).ToList
+
+        End Function
 
 
     End Class
@@ -135,6 +142,7 @@
         Public Const User_Management__Edit__Roles As String = "User Management - Edit - Roles"
         Public Const Fleet_Map__GeoFence_Edit As String = "Fleet Map - GeoFence Edit"
         Public Const Vehicle_and_Driver_Management__Read_Only As String = "Vehicle and Driver Management - Read Only"
+        Public Const Vehicle_and_Driver_Management__Bookings As String = "Vehicle and Driver Management - Bookings"
         Public Const Vehicle_and_Driver_Management__Edit__Vehicles As String = "Vehicle and Driver Management - Edit - Vehicles"
         Public Const User_Management__Edit__Users As String = "User Management - Edit - Users"
         Public Const Contact_Management__Edit As String = "Contact Management - Edit"
@@ -154,10 +162,11 @@
             User_Management__Edit__Roles = 512
             Fleet_Map__GeoFence_Edit = 1024
             Vehicle_and_Driver_Management__Read_Only = 2048
-            Vehicle_and_Driver_Management__Edit__Vehicles = 4069
-            User_Management__Edit__Users = 8192
-            Contact_Management__View = 16384
-            Contact_Management__Edit = 32768
+            Vehicle_and_Driver_Management__Bookings = 4069
+            Vehicle_and_Driver_Management__Edit__Vehicles = 8192
+            User_Management__Edit__Users = 16384
+            Contact_Management__View = 32768
+            Contact_Management__Edit = 1073741824
         End Enum
 
     End Class

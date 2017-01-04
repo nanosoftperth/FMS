@@ -978,6 +978,30 @@ To modify move field declaration from designer file to code-behind file.
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="F:FMS.WEB.BusinessLocationaspx.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.BusinessLocationaspx.ASPxGridView1">
+	<summary>
+ASPxGridView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.WEB.BusinessLocationaspx.odsApplicationLocations">
+	<summary>
+odsApplicationLocations control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:FMS.WEB.TestRyan.ASPxGridView1">
 	<summary>
 ASPxGridView1 control.

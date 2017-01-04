@@ -78,6 +78,11 @@ Partial Class Form1
         Me.StartTimeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EndTimeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SimulatorSettingBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.dgvApplicationFeature = New System.Windows.Forms.DataGridView()
+        Me.FeaturesForApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.cbFMApplication = New System.Windows.Forms.ComboBox()
         Me.batchBtnTest = New System.Windows.Forms.TabPage()
         Me.batchComboApplications = New System.Windows.Forms.ComboBox()
         Me.batchTxtMemoOutput = New DevExpress.XtraEditors.MemoEdit()
@@ -100,6 +105,11 @@ Partial Class Form1
         Me.txtPickleFileLocation = New System.Windows.Forms.TextBox()
         Me.txtURLFormat = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.IsInApplicationFeatureDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.FeatureIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FeatureNameDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FeatureDescriptionDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -119,6 +129,10 @@ Partial Class Form1
         Me.TabPage6.SuspendLayout()
         CType(Me.dgvSimulationSettings, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimulatorSettingBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage7.SuspendLayout()
+        CType(Me.dgvApplicationFeature, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FeaturesForApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel5.SuspendLayout()
         Me.batchBtnTest.SuspendLayout()
         CType(Me.batchTxtMemoOutput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pickleProcessor.SuspendLayout()
@@ -133,13 +147,14 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage6)
+        Me.TabControl1.Controls.Add(Me.TabPage7)
         Me.TabControl1.Controls.Add(Me.batchBtnTest)
         Me.TabControl1.Controls.Add(Me.pickleProcessor)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(721, 420)
+        Me.TabControl1.Size = New System.Drawing.Size(1178, 597)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -150,7 +165,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(713, 394)
+        Me.TabPage1.Size = New System.Drawing.Size(1170, 571)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Application List"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -188,14 +203,15 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(713, 394)
+        Me.TabPage2.Size = New System.Drawing.Size(1170, 571)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Manage Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'btnUpdateSetting
         '
-        Me.btnUpdateSetting.Location = New System.Drawing.Point(486, 27)
+        Me.btnUpdateSetting.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnUpdateSetting.Location = New System.Drawing.Point(1017, 25)
         Me.btnUpdateSetting.Name = "btnUpdateSetting"
         Me.btnUpdateSetting.Size = New System.Drawing.Size(125, 23)
         Me.btnUpdateSetting.TabIndex = 2
@@ -206,13 +222,16 @@ Partial Class Form1
         '
         Me.dgvApplicationSettings.AllowUserToAddRows = False
         Me.dgvApplicationSettings.AllowUserToDeleteRows = False
+        Me.dgvApplicationSettings.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvApplicationSettings.AutoGenerateColumns = False
         Me.dgvApplicationSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvApplicationSettings.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NameDataGridViewTextBoxColumn, Me.ValueDataGridViewTextBoxColumn})
         Me.dgvApplicationSettings.DataSource = Me.SettingBindingSource
         Me.dgvApplicationSettings.Location = New System.Drawing.Point(9, 61)
         Me.dgvApplicationSettings.Name = "dgvApplicationSettings"
-        Me.dgvApplicationSettings.Size = New System.Drawing.Size(701, 327)
+        Me.dgvApplicationSettings.Size = New System.Drawing.Size(1153, 488)
         Me.dgvApplicationSettings.TabIndex = 1
         '
         'NameDataGridViewTextBoxColumn
@@ -236,7 +255,7 @@ Partial Class Form1
         Me.cbSelectedApplication.DataSource = Me.ApplicationBindingSource
         Me.cbSelectedApplication.DisplayMember = "ApplicationName"
         Me.cbSelectedApplication.FormattingEnabled = True
-        Me.cbSelectedApplication.Location = New System.Drawing.Point(31, 27)
+        Me.cbSelectedApplication.Location = New System.Drawing.Point(24, 27)
         Me.cbSelectedApplication.Name = "cbSelectedApplication"
         Me.cbSelectedApplication.Size = New System.Drawing.Size(171, 21)
         Me.cbSelectedApplication.TabIndex = 0
@@ -261,7 +280,7 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.btnCreateSetting)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(713, 394)
+        Me.TabPage3.Size = New System.Drawing.Size(1170, 571)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Test tab"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -363,7 +382,7 @@ Partial Class Form1
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(713, 394)
+        Me.TabPage4.Size = New System.Drawing.Size(1170, 571)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Device Management"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -374,7 +393,7 @@ Partial Class Form1
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(3, 62)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(707, 329)
+        Me.Panel2.Size = New System.Drawing.Size(1164, 506)
         Me.Panel2.TabIndex = 2
         '
         'dgvDevices
@@ -386,7 +405,7 @@ Partial Class Form1
         Me.dgvDevices.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDevices.Location = New System.Drawing.Point(0, 0)
         Me.dgvDevices.Name = "dgvDevices"
-        Me.dgvDevices.Size = New System.Drawing.Size(707, 329)
+        Me.dgvDevices.Size = New System.Drawing.Size(1164, 506)
         Me.dgvDevices.TabIndex = 0
         '
         'DeviceIDDataGridViewTextBoxColumn
@@ -436,7 +455,7 @@ Partial Class Form1
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(3, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(707, 59)
+        Me.Panel1.Size = New System.Drawing.Size(1164, 59)
         Me.Panel1.TabIndex = 1
         '
         'Button5
@@ -464,7 +483,7 @@ Partial Class Form1
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(713, 394)
+        Me.TabPage5.Size = New System.Drawing.Size(1170, 571)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Applications"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -475,7 +494,7 @@ Partial Class Form1
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(3, 68)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(707, 323)
+        Me.Panel4.Size = New System.Drawing.Size(1164, 500)
         Me.Panel4.TabIndex = 1
         '
         'DataGridView2
@@ -490,7 +509,7 @@ Partial Class Form1
         Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
-        Me.DataGridView2.Size = New System.Drawing.Size(707, 323)
+        Me.DataGridView2.Size = New System.Drawing.Size(1164, 500)
         Me.DataGridView2.TabIndex = 0
         '
         'ApplicationNameDataGridViewTextBoxColumn
@@ -515,7 +534,7 @@ Partial Class Form1
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(3, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(707, 65)
+        Me.Panel3.Size = New System.Drawing.Size(1164, 65)
         Me.Panel3.TabIndex = 0
         '
         'Button6
@@ -535,7 +554,7 @@ Partial Class Form1
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(713, 394)
+        Me.TabPage6.Size = New System.Drawing.Size(1170, 571)
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "SimulationSettings"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -603,6 +622,57 @@ Partial Class Form1
         '
         Me.SimulatorSettingBindingSource.DataSource = GetType(FMS.Business.DataObjects.SimulatorSetting)
         '
+        'TabPage7
+        '
+        Me.TabPage7.Controls.Add(Me.dgvApplicationFeature)
+        Me.TabPage7.Controls.Add(Me.Panel5)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage7.Size = New System.Drawing.Size(1170, 571)
+        Me.TabPage7.TabIndex = 8
+        Me.TabPage7.Text = "Feature Management"
+        Me.TabPage7.UseVisualStyleBackColor = True
+        '
+        'dgvApplicationFeature
+        '
+        Me.dgvApplicationFeature.AllowUserToAddRows = False
+        Me.dgvApplicationFeature.AllowUserToDeleteRows = False
+        Me.dgvApplicationFeature.AutoGenerateColumns = False
+        Me.dgvApplicationFeature.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvApplicationFeature.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IsInApplicationFeatureDataGridViewCheckBoxColumn, Me.FeatureIDDataGridViewTextBoxColumn, Me.FeatureNameDataGridViewCheckBoxColumn, Me.FeatureDescriptionDataGridViewCheckBoxColumn})
+        Me.dgvApplicationFeature.DataSource = Me.FeaturesForApplicationBindingSource
+        Me.dgvApplicationFeature.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvApplicationFeature.Location = New System.Drawing.Point(3, 62)
+        Me.dgvApplicationFeature.Name = "dgvApplicationFeature"
+        Me.dgvApplicationFeature.Size = New System.Drawing.Size(1164, 506)
+        Me.dgvApplicationFeature.TabIndex = 2
+        '
+        'FeaturesForApplicationBindingSource
+        '
+        Me.FeaturesForApplicationBindingSource.DataSource = GetType(FMS.Business.DataObjects.FeaturesForApplication)
+        '
+        'Panel5
+        '
+        Me.Panel5.Controls.Add(Me.Button9)
+        Me.Panel5.Controls.Add(Me.cbFMApplication)
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel5.Location = New System.Drawing.Point(3, 3)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(1164, 59)
+        Me.Panel5.TabIndex = 0
+        '
+        'cbFMApplication
+        '
+        Me.cbFMApplication.DataSource = Me.ApplicationBindingSource
+        Me.cbFMApplication.DisplayMember = "ApplicationName"
+        Me.cbFMApplication.FormattingEnabled = True
+        Me.cbFMApplication.Location = New System.Drawing.Point(33, 15)
+        Me.cbFMApplication.Name = "cbFMApplication"
+        Me.cbFMApplication.Size = New System.Drawing.Size(171, 21)
+        Me.cbFMApplication.TabIndex = 1
+        Me.cbFMApplication.ValueMember = "ApplicationID"
+        '
         'batchBtnTest
         '
         Me.batchBtnTest.Controls.Add(Me.batchComboApplications)
@@ -619,7 +689,7 @@ Partial Class Form1
         Me.batchBtnTest.Location = New System.Drawing.Point(4, 22)
         Me.batchBtnTest.Name = "batchBtnTest"
         Me.batchBtnTest.Padding = New System.Windows.Forms.Padding(3)
-        Me.batchBtnTest.Size = New System.Drawing.Size(713, 394)
+        Me.batchBtnTest.Size = New System.Drawing.Size(1170, 571)
         Me.batchBtnTest.TabIndex = 6
         Me.batchBtnTest.Text = "batch vehicle add"
         Me.batchBtnTest.UseVisualStyleBackColor = True
@@ -730,7 +800,7 @@ Partial Class Form1
         Me.pickleProcessor.Location = New System.Drawing.Point(4, 22)
         Me.pickleProcessor.Name = "pickleProcessor"
         Me.pickleProcessor.Padding = New System.Windows.Forms.Padding(3)
-        Me.pickleProcessor.Size = New System.Drawing.Size(713, 394)
+        Me.pickleProcessor.Size = New System.Drawing.Size(1170, 571)
         Me.pickleProcessor.TabIndex = 7
         Me.pickleProcessor.Text = "pickle processor"
         Me.pickleProcessor.UseVisualStyleBackColor = True
@@ -804,11 +874,53 @@ Partial Class Form1
         Me.txtURLFormat.TabIndex = 0
         Me.txtURLFormat.Text = "http://cannon.nanosoft.com.au:9000/api/dataaccess{0}"
         '
+        'IsInApplicationFeatureDataGridViewCheckBoxColumn
+        '
+        Me.IsInApplicationFeatureDataGridViewCheckBoxColumn.DataPropertyName = "IsInApplicationFeature"
+        Me.IsInApplicationFeatureDataGridViewCheckBoxColumn.HeaderText = ""
+        Me.IsInApplicationFeatureDataGridViewCheckBoxColumn.Name = "IsInApplicationFeatureDataGridViewCheckBoxColumn"
+        Me.IsInApplicationFeatureDataGridViewCheckBoxColumn.Width = 50
+        '
+        'FeatureIDDataGridViewTextBoxColumn
+        '
+        Me.FeatureIDDataGridViewTextBoxColumn.DataPropertyName = "FeatureID"
+        Me.FeatureIDDataGridViewTextBoxColumn.HeaderText = "FeatureID"
+        Me.FeatureIDDataGridViewTextBoxColumn.Name = "FeatureIDDataGridViewTextBoxColumn"
+        Me.FeatureIDDataGridViewTextBoxColumn.Visible = False
+        '
+        'FeatureNameDataGridViewCheckBoxColumn
+        '
+        Me.FeatureNameDataGridViewCheckBoxColumn.DataPropertyName = "FeatureName"
+        Me.FeatureNameDataGridViewCheckBoxColumn.HeaderText = "FeatureName"
+        Me.FeatureNameDataGridViewCheckBoxColumn.Name = "FeatureNameDataGridViewCheckBoxColumn"
+        Me.FeatureNameDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.FeatureNameDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.FeatureNameDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'FeatureDescriptionDataGridViewCheckBoxColumn
+        '
+        Me.FeatureDescriptionDataGridViewCheckBoxColumn.DataPropertyName = "FeatureDescription"
+        Me.FeatureDescriptionDataGridViewCheckBoxColumn.HeaderText = "FeatureDescription"
+        Me.FeatureDescriptionDataGridViewCheckBoxColumn.Name = "FeatureDescriptionDataGridViewCheckBoxColumn"
+        Me.FeatureDescriptionDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.FeatureDescriptionDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.FeatureDescriptionDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Button9
+        '
+        Me.Button9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button9.Location = New System.Drawing.Point(1021, 15)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(125, 23)
+        Me.Button9.TabIndex = 3
+        Me.Button9.Text = "Update"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(721, 420)
+        Me.ClientSize = New System.Drawing.Size(1178, 597)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Form1"
         Me.Text = "FMS Administration"
@@ -833,6 +945,10 @@ Partial Class Form1
         Me.TabPage6.ResumeLayout(False)
         CType(Me.dgvSimulationSettings, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimulatorSettingBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage7.ResumeLayout(False)
+        CType(Me.dgvApplicationFeature, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FeaturesForApplicationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel5.ResumeLayout(False)
         Me.batchBtnTest.ResumeLayout(False)
         Me.batchBtnTest.PerformLayout()
         CType(Me.batchTxtMemoOutput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -921,5 +1037,15 @@ Partial Class Form1
     Friend WithEvents txtURLFormat As System.Windows.Forms.TextBox
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents btnStop As System.Windows.Forms.Button
+    Friend WithEvents TabPage7 As System.Windows.Forms.TabPage
+    Friend WithEvents Panel5 As System.Windows.Forms.Panel
+    Friend WithEvents dgvApplicationFeature As System.Windows.Forms.DataGridView
+    Friend WithEvents cbFMApplication As System.Windows.Forms.ComboBox
+    Friend WithEvents FeaturesForApplicationBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents IsInApplicationFeatureDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents FeatureIDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents FeatureNameDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents FeatureDescriptionDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button9 As System.Windows.Forms.Button
 
 End Class

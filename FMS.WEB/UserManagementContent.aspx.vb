@@ -195,4 +195,8 @@ Public Class Test
             e.Cancel = True
         End If
     End Sub
+
+    Protected Sub ASPxPageControl1_ActiveTabChanged(source As Object, e As DevExpress.Web.TabControlEventArgs) Handles ASPxPageControl1.ActiveTabChanged
+
+    End Sub
 End Class

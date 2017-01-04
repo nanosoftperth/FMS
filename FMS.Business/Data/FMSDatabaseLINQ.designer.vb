@@ -277,12 +277,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteGroupSubscriber(instance As GroupSubscriber)
     End Sub
-  Partial Private Sub InsertPaidFeature(instance As PaidFeature)
-    End Sub
-  Partial Private Sub UpdatePaidFeature(instance As PaidFeature)
-    End Sub
-  Partial Private Sub DeletePaidFeature(instance As PaidFeature)
-    End Sub
   Partial Private Sub InsertSetting(instance As Setting)
     End Sub
   Partial Private Sub UpdateSetting(instance As Setting)
@@ -300,6 +294,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdateWebServiceLog(instance As WebServiceLog)
     End Sub
   Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
+    End Sub
+  Partial Private Sub InsertApplicationFeature(instance As ApplicationFeature)
+    End Sub
+  Partial Private Sub UpdateApplicationFeature(instance As ApplicationFeature)
+    End Sub
+  Partial Private Sub DeleteApplicationFeature(instance As ApplicationFeature)
     End Sub
   #End Region
 	
@@ -604,12 +604,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property PaidFeatures() As System.Data.Linq.Table(Of PaidFeature)
-		Get
-			Return Me.GetTable(Of PaidFeature)
-		End Get
-	End Property
-	
 	Public ReadOnly Property Settings() As System.Data.Linq.Table(Of Setting)
 		Get
 			Return Me.GetTable(Of Setting)
@@ -625,6 +619,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
 		Get
 			Return Me.GetTable(Of WebServiceLog)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationFeatures() As System.Data.Linq.Table(Of ApplicationFeature)
+		Get
+			Return Me.GetTable(Of ApplicationFeature)
 		End Get
 	End Property
 	
@@ -5057,6 +5057,8 @@ Partial Public Class aspnet_Application
 	
 	Private _aspnet_Users As EntitySet(Of aspnet_User)
 	
+	Private _ApplicationFeatures As EntitySet(Of ApplicationFeature)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -5111,6 +5113,7 @@ Partial Public Class aspnet_Application
 		Me._aspnet_Paths = New EntitySet(Of aspnet_Path)(AddressOf Me.attach_aspnet_Paths, AddressOf Me.detach_aspnet_Paths)
 		Me._aspnet_Roles = New EntitySet(Of aspnet_Role)(AddressOf Me.attach_aspnet_Roles, AddressOf Me.detach_aspnet_Roles)
 		Me._aspnet_Users = New EntitySet(Of aspnet_User)(AddressOf Me.attach_aspnet_Users, AddressOf Me.detach_aspnet_Users)
+		Me._ApplicationFeatures = New EntitySet(Of ApplicationFeature)(AddressOf Me.attach_ApplicationFeatures, AddressOf Me.detach_ApplicationFeatures)
 		OnCreated
 	End Sub
 	
@@ -5329,6 +5332,16 @@ Partial Public Class aspnet_Application
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="aspnet_Application_ApplicationFeature", Storage:="_ApplicationFeatures", ThisKey:="ApplicationId", OtherKey:="ApplicationID")>  _
+	Public Property ApplicationFeatures() As EntitySet(Of ApplicationFeature)
+		Get
+			Return Me._ApplicationFeatures
+		End Get
+		Set
+			Me._ApplicationFeatures.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -5413,6 +5426,16 @@ Partial Public Class aspnet_Application
 	End Sub
 	
 	Private Sub detach_aspnet_Users(ByVal entity As aspnet_User)
+		Me.SendPropertyChanging
+		entity.aspnet_Application = Nothing
+	End Sub
+	
+	Private Sub attach_ApplicationFeatures(ByVal entity As ApplicationFeature)
+		Me.SendPropertyChanging
+		entity.aspnet_Application = Me
+	End Sub
+	
+	Private Sub detach_ApplicationFeatures(ByVal entity As ApplicationFeature)
 		Me.SendPropertyChanging
 		entity.aspnet_Application = Nothing
 	End Sub
@@ -9798,6 +9821,8 @@ Partial Public Class Feature
 	
 	Private _ApplicationFeatureRoles As EntitySet(Of ApplicationFeatureRole)
 	
+	Private _ApplicationFeatures As EntitySet(Of ApplicationFeature)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -9822,6 +9847,7 @@ Partial Public Class Feature
 	Public Sub New()
 		MyBase.New
 		Me._ApplicationFeatureRoles = New EntitySet(Of ApplicationFeatureRole)(AddressOf Me.attach_ApplicationFeatureRoles, AddressOf Me.detach_ApplicationFeatureRoles)
+		Me._ApplicationFeatures = New EntitySet(Of ApplicationFeature)(AddressOf Me.attach_ApplicationFeatures, AddressOf Me.detach_ApplicationFeatures)
 		OnCreated
 	End Sub
 	
@@ -9884,6 +9910,16 @@ Partial Public Class Feature
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Feature_ApplicationFeature", Storage:="_ApplicationFeatures", ThisKey:="FeatureID", OtherKey:="FeatureID")>  _
+	Public Property ApplicationFeatures() As EntitySet(Of ApplicationFeature)
+		Get
+			Return Me._ApplicationFeatures
+		End Get
+		Set
+			Me._ApplicationFeatures.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -9908,6 +9944,16 @@ Partial Public Class Feature
 	End Sub
 	
 	Private Sub detach_ApplicationFeatureRoles(ByVal entity As ApplicationFeatureRole)
+		Me.SendPropertyChanging
+		entity.Feature = Nothing
+	End Sub
+	
+	Private Sub attach_ApplicationFeatures(ByVal entity As ApplicationFeature)
+		Me.SendPropertyChanging
+		entity.Feature = Me
+	End Sub
+	
+	Private Sub detach_ApplicationFeatures(ByVal entity As ApplicationFeature)
 		Me.SendPropertyChanging
 		entity.Feature = Nothing
 	End Sub
@@ -10894,113 +10940,6 @@ Partial Public Class GroupSubscriber
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.PaidFeatures")>  _
-Partial Public Class PaidFeature
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ApplicationPaidFeaturesID As System.Guid
-	
-	Private _ApplicationID As System.Guid
-	
-	Private _PaidFeatureDescription As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnApplicationPaidFeaturesIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationPaidFeaturesIDChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnPaidFeatureDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnPaidFeatureDescriptionChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationPaidFeaturesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ApplicationPaidFeaturesID() As System.Guid
-		Get
-			Return Me._ApplicationPaidFeaturesID
-		End Get
-		Set
-			If ((Me._ApplicationPaidFeaturesID = value)  _
-						= false) Then
-				Me.OnApplicationPaidFeaturesIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationPaidFeaturesID = value
-				Me.SendPropertyChanged("ApplicationPaidFeaturesID")
-				Me.OnApplicationPaidFeaturesIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationID() As System.Guid
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If ((Me._ApplicationID = value)  _
-						= false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PaidFeatureDescription", DbType:="NVarChar(MAX)")>  _
-	Public Property PaidFeatureDescription() As String
-		Get
-			Return Me._PaidFeatureDescription
-		End Get
-		Set
-			If (String.Equals(Me._PaidFeatureDescription, value) = false) Then
-				Me.OnPaidFeatureDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._PaidFeatureDescription = value
-				Me.SendPropertyChanged("PaidFeatureDescription")
-				Me.OnPaidFeatureDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Setting")>  _
 Partial Public Class Setting
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -11432,6 +11371,182 @@ Partial Public Class WebServiceLog
 				Me._DateLogged = value
 				Me.SendPropertyChanged("DateLogged")
 				Me.OnDateLoggedChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationFeature")>  _
+Partial Public Class ApplicationFeature
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationFeatureID As System.Guid
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _FeatureID As System.Guid
+	
+	Private _aspnet_Application As EntityRef(Of aspnet_Application)
+	
+	Private _Feature As EntityRef(Of Feature)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationFeatureIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationFeatureIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnFeatureIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFeatureIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._aspnet_Application = CType(Nothing, EntityRef(Of aspnet_Application))
+		Me._Feature = CType(Nothing, EntityRef(Of Feature))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationFeatureID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationFeatureID() As System.Guid
+		Get
+			Return Me._ApplicationFeatureID
+		End Get
+		Set
+			If ((Me._ApplicationFeatureID = value)  _
+						= false) Then
+				Me.OnApplicationFeatureIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationFeatureID = value
+				Me.SendPropertyChanged("ApplicationFeatureID")
+				Me.OnApplicationFeatureIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				If Me._aspnet_Application.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FeatureID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property FeatureID() As System.Guid
+		Get
+			Return Me._FeatureID
+		End Get
+		Set
+			If ((Me._FeatureID = value)  _
+						= false) Then
+				If Me._Feature.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnFeatureIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FeatureID = value
+				Me.SendPropertyChanged("FeatureID")
+				Me.OnFeatureIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="aspnet_Application_ApplicationFeature", Storage:="_aspnet_Application", ThisKey:="ApplicationID", OtherKey:="ApplicationId", IsForeignKey:=true)>  _
+	Public Property aspnet_Application() As aspnet_Application
+		Get
+			Return Me._aspnet_Application.Entity
+		End Get
+		Set
+			Dim previousValue As aspnet_Application = Me._aspnet_Application.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._aspnet_Application.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._aspnet_Application.Entity = Nothing
+					previousValue.ApplicationFeatures.Remove(Me)
+				End If
+				Me._aspnet_Application.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.ApplicationFeatures.Add(Me)
+					Me._ApplicationID = value.ApplicationId
+				Else
+					Me._ApplicationID = CType(Nothing, System.Guid)
+				End If
+				Me.SendPropertyChanged("aspnet_Application")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Feature_ApplicationFeature", Storage:="_Feature", ThisKey:="FeatureID", OtherKey:="FeatureID", IsForeignKey:=true)>  _
+	Public Property Feature() As Feature
+		Get
+			Return Me._Feature.Entity
+		End Get
+		Set
+			Dim previousValue As Feature = Me._Feature.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Feature.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Feature.Entity = Nothing
+					previousValue.ApplicationFeatures.Remove(Me)
+				End If
+				Me._Feature.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.ApplicationFeatures.Add(Me)
+					Me._FeatureID = value.FeatureID
+				Else
+					Me._FeatureID = CType(Nothing, System.Guid)
+				End If
+				Me.SendPropertyChanged("Feature")
 			End If
 		End Set
 	End Property
