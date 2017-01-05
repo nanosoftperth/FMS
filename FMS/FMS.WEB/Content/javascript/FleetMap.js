@@ -682,11 +682,11 @@ function getLabelInvisibleMarker(location, text) {
 
 
 // Adds a marker to the map and push to the array.
-function addMarker(location, lblContent, markerID) {
+function addMarker(location, lblContent, markerID, vehicleName) {
 
     var marker = new MarkerWithLabel({
         position: location,
-        icon: icon_truck,
+        icon: icon_truck + '&vname=' + vehicleName,
         labelContent: lblContent,
         labelAnchor: new google.maps.Point(22, 0),
         labelClass: "labels", // the CSS class for the label
@@ -749,7 +749,8 @@ function upsertMapTrucks(result) {
 
 
         } else {
-            addMarker(markerPosn, labelContent, trucks[index].ID);
+            debugger;
+            addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName);
         }
 
         if (map.getZoom() <= 11) { $('.labels').hide(); }else { $('.labels').show(); }

@@ -218,17 +218,6 @@
       <Column Name="TimeZoneSerialzed" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.ApplicationVehicle" Member="ApplicationVehicles">
-    <Type Name="ApplicationVehicle">
-      <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Registration" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="DeviceID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="VINNumber" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ApplicationVehicleDriverTime" Member="ApplicationVehicleDriverTimes">
     <Type Name="ApplicationVehicleDriverTime">
       <Column Name="ApplicationVehicleDriverTimeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -605,6 +594,18 @@
       <Column Name="FeatureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="aspnet_Application_ApplicationFeature" Member="aspnet_Application" ThisKey="ApplicationID" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
       <Association Name="Feature_ApplicationFeature" Member="Feature" ThisKey="FeatureID" OtherKey="FeatureID" Type="Feature" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ApplicationVehicle" Member="ApplicationVehicles">
+    <Type Name="ApplicationVehicle">
+      <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Registration" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DeviceID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="VINNumber" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ApplicationImageID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

@@ -90,6 +90,7 @@
     <Compile Include="Classes\DataObjects\ApplicationGeoFenceProperty.vb" />
     <Compile Include="Classes\DataObjects\ApplicationGeoFenceSide.vb" />
     <Compile Include="Classes\DataObjects\ApplicationImage.vb" />
+    <Compile Include="Classes\DataObjects\ApplicationLocation.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicle.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicleDriverTime.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicleOdometerReading.vb" />
