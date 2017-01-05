@@ -869,7 +869,7 @@
         }
 
         .labels:hover {
-            opacity: 0 !Important;
+            opacity: 0.1 !Important;
            
             background-color:none !Important;
         }
