@@ -61,7 +61,7 @@ Public Class FleetMap
         'for use with javascript (if the user has access to manage geofences)
         loopStr &= String.Format(str, "Fleet_Management_Page_Manage_geofences", userCanManageGeoFences, vbNewLine)
 
-        loopStr = String.Format("<script type=""text/javascript"">{0}{1}{0}</script>", loopStr, vbNewLine)
+        loopStr = String.Format("<script type=""text/javascript"">{0}{1}{0}</script>", vbNewLine, loopStr)
 
         If Not ClientScript.IsClientScriptBlockRegistered("1") Then ClientScript.RegisterStartupScript(Me.[GetType](), "1", loopStr)
 
