@@ -431,6 +431,7 @@
                                        </Columns>
                                     </dx:ASPxGridView>
                                  </DetailRow>
+                                 
                               </Templates>
                               <Columns>
                                  <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
@@ -439,11 +440,20 @@
                                  </dx:GridViewDataTextColumn>
                                  <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
                                  </dx:GridViewDataTextColumn>
-                                 <dx:GridViewDataTextColumn FieldName="Name" ShowInCustomizationForm="True" VisibleIndex="3">
+                                 <dx:GridViewDataComboBoxColumn ShowInCustomizationForm="True" VisibleIndex="3" Caption="Icon" FieldName="ApplicationImageID">
+                                 <PropertiesComboBox ImageUrlField="ImgUrl" DataSourceID="odsMapMarker" TextField="Name" ValueField="ApplicationImageID">
+                                     <ItemImage Height="24px" Width="23px" />
+                                    <ClearButton Visibility="Auto">
+                                    </ClearButton>
+                                </PropertiesComboBox>
+                                 </dx:GridViewDataComboBoxColumn>
+                                 <dx:GridViewDataTextColumn FieldName="Name" ShowInCustomizationForm="True" VisibleIndex="4">
                                  </dx:GridViewDataTextColumn>
-                                 <dx:GridViewDataTextColumn FieldName="Registration" ShowInCustomizationForm="True" VisibleIndex="5">
+                                 <dx:GridViewDataTextColumn Caption="VIN Number" FieldName="VINNumber" ShowInCustomizationForm="True" VisibleIndex="5">
                                  </dx:GridViewDataTextColumn>
-                                 <dx:GridViewDataTextColumn FieldName="Notes" ShowInCustomizationForm="True" VisibleIndex="6">
+                                 <dx:GridViewDataTextColumn FieldName="Registration" ShowInCustomizationForm="True" VisibleIndex="6">
+                                 </dx:GridViewDataTextColumn>
+                                 <dx:GridViewDataTextColumn FieldName="Notes" ShowInCustomizationForm="True" VisibleIndex="7">
                                  </dx:GridViewDataTextColumn>
                                  <dx:GridViewDataComboBoxColumn FieldName="DeviceID" ShowInCustomizationForm="True" VisibleIndex="7">
                                     <PropertiesComboBox DataSourceID="odsVehiclesDevices" TextField="DeviceID" ValueField="DeviceID">
@@ -451,10 +461,14 @@
                                        </ClearButton>
                                     </PropertiesComboBox>
                                  </dx:GridViewDataComboBoxColumn>
-                                 <dx:GridViewDataTextColumn Caption="VIN Number" FieldName="VINNumber" ShowInCustomizationForm="True" VisibleIndex="4">
-                                 </dx:GridViewDataTextColumn>
                               </Columns>
                            </dx:ASPxGridView>
+                            <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
+                                <SelectParameters>
+                                    <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
+                                    <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
                            <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
                               <SelectParameters>
                                  <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />

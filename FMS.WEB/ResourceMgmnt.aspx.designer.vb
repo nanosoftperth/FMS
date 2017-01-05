@@ -149,6 +149,15 @@ Partial Public Class ResourceMgmnt
     Protected WithEvents dgvVehicles As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''odsMapMarker control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsMapMarker As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsVehicles control.
     '''</summary>
     '''<remarks>

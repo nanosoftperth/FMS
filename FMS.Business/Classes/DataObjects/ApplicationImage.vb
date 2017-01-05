@@ -107,6 +107,18 @@
             Return retval
         End Function
 
+        Public Shared Function GetAllApplicationImages(applicationid As Guid, type As String)
+            Dim retval = (From x In SingletonAccess.FMSDataContextNew.ApplicationImages _
+                        Where (x.ApplicationID = applicationid Or x.ApplicationID Is Nothing) And x.Type = type _
+                        Select New With {
+                                    .ApplicationImageID = x.ApplicationImageID,
+                                    .Name = x.Name,
+                                    .ImgUrl = "~/Content/MapImages.ashx?imgId=" + x.ApplicationImageID.ToString()
+                                    }).ToList
+
+            Return retval
+        End Function
+
         Public Shared Function GetDefaultImages(name As String) As Guid
 
             Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name.ToLower().Contains(name)).ApplicationImageID

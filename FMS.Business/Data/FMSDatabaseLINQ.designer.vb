@@ -121,12 +121,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteApplicationTimeZone(instance As ApplicationTimeZone)
     End Sub
-  Partial Private Sub InsertApplicationVehicle(instance As ApplicationVehicle)
-    End Sub
-  Partial Private Sub UpdateApplicationVehicle(instance As ApplicationVehicle)
-    End Sub
-  Partial Private Sub DeleteApplicationVehicle(instance As ApplicationVehicle)
-    End Sub
   Partial Private Sub InsertApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
     End Sub
   Partial Private Sub UpdateApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
@@ -301,6 +295,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteApplicationFeature(instance As ApplicationFeature)
     End Sub
+  Partial Private Sub InsertApplicationVehicle(instance As ApplicationVehicle)
+    End Sub
+  Partial Private Sub UpdateApplicationVehicle(instance As ApplicationVehicle)
+    End Sub
+  Partial Private Sub DeleteApplicationVehicle(instance As ApplicationVehicle)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -433,12 +433,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ApplicationTimeZones() As System.Data.Linq.Table(Of ApplicationTimeZone)
 		Get
 			Return Me.GetTable(Of ApplicationTimeZone)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationVehicles() As System.Data.Linq.Table(Of ApplicationVehicle)
-		Get
-			Return Me.GetTable(Of ApplicationVehicle)
 		End Get
 	End Property
 	
@@ -625,6 +619,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ApplicationFeatures() As System.Data.Linq.Table(Of ApplicationFeature)
 		Get
 			Return Me.GetTable(Of ApplicationFeature)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationVehicles() As System.Data.Linq.Table(Of ApplicationVehicle)
+		Get
+			Return Me.GetTable(Of ApplicationVehicle)
 		End Get
 	End Property
 	
@@ -4433,201 +4433,6 @@ Partial Public Class ApplicationTimeZone
 				Me._TimeZoneSerialzed = value
 				Me.SendPropertyChanged("TimeZoneSerialzed")
 				Me.OnTimeZoneSerialzedChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationVehicle")>  _
-Partial Public Class ApplicationVehicle
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ApplicationVehicleID As System.Guid
-	
-	Private _Name As String
-	
-	Private _Registration As String
-	
-	Private _Notes As String
-	
-	Private _DeviceID As String
-	
-	Private _ApplicationID As System.Guid
-	
-	Private _VINNumber As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnApplicationVehicleIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationVehicleIDChanged()
-    End Sub
-    Partial Private Sub OnNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnNameChanged()
-    End Sub
-    Partial Private Sub OnRegistrationChanging(value As String)
-    End Sub
-    Partial Private Sub OnRegistrationChanged()
-    End Sub
-    Partial Private Sub OnNotesChanging(value As String)
-    End Sub
-    Partial Private Sub OnNotesChanged()
-    End Sub
-    Partial Private Sub OnDeviceIDChanging(value As String)
-    End Sub
-    Partial Private Sub OnDeviceIDChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnVINNumberChanging(value As String)
-    End Sub
-    Partial Private Sub OnVINNumberChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationVehicleID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ApplicationVehicleID() As System.Guid
-		Get
-			Return Me._ApplicationVehicleID
-		End Get
-		Set
-			If ((Me._ApplicationVehicleID = value)  _
-						= false) Then
-				Me.OnApplicationVehicleIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationVehicleID = value
-				Me.SendPropertyChanged("ApplicationVehicleID")
-				Me.OnApplicationVehicleIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(500)")>  _
-	Public Property Name() As String
-		Get
-			Return Me._Name
-		End Get
-		Set
-			If (String.Equals(Me._Name, value) = false) Then
-				Me.OnNameChanging(value)
-				Me.SendPropertyChanging
-				Me._Name = value
-				Me.SendPropertyChanged("Name")
-				Me.OnNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Registration", DbType:="VarChar(50)")>  _
-	Public Property Registration() As String
-		Get
-			Return Me._Registration
-		End Get
-		Set
-			If (String.Equals(Me._Registration, value) = false) Then
-				Me.OnRegistrationChanging(value)
-				Me.SendPropertyChanging
-				Me._Registration = value
-				Me.SendPropertyChanged("Registration")
-				Me.OnRegistrationChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="VarChar(MAX)")>  _
-	Public Property Notes() As String
-		Get
-			Return Me._Notes
-		End Get
-		Set
-			If (String.Equals(Me._Notes, value) = false) Then
-				Me.OnNotesChanging(value)
-				Me.SendPropertyChanging
-				Me._Notes = value
-				Me.SendPropertyChanged("Notes")
-				Me.OnNotesChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(10)")>  _
-	Public Property DeviceID() As String
-		Get
-			Return Me._DeviceID
-		End Get
-		Set
-			If (String.Equals(Me._DeviceID, value) = false) Then
-				Me.OnDeviceIDChanging(value)
-				Me.SendPropertyChanging
-				Me._DeviceID = value
-				Me.SendPropertyChanged("DeviceID")
-				Me.OnDeviceIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationID() As System.Guid
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If ((Me._ApplicationID = value)  _
-						= false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VINNumber", DbType:="VarChar(100)")>  _
-	Public Property VINNumber() As String
-		Get
-			Return Me._VINNumber
-		End Get
-		Set
-			If (String.Equals(Me._VINNumber, value) = false) Then
-				Me.OnVINNumberChanging(value)
-				Me.SendPropertyChanging
-				Me._VINNumber = value
-				Me.SendPropertyChanged("VINNumber")
-				Me.OnVINNumberChanged
 			End If
 		End Set
 	End Property
@@ -11547,6 +11352,223 @@ Partial Public Class ApplicationFeature
 					Me._FeatureID = CType(Nothing, System.Guid)
 				End If
 				Me.SendPropertyChanged("Feature")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationVehicle")>  _
+Partial Public Class ApplicationVehicle
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationVehicleID As System.Guid
+	
+	Private _Name As String
+	
+	Private _Registration As String
+	
+	Private _Notes As String
+	
+	Private _DeviceID As String
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _VINNumber As String
+	
+	Private _ApplicationImageID As System.Nullable(Of System.Guid)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationVehicleIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationVehicleIDChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnRegistrationChanging(value As String)
+    End Sub
+    Partial Private Sub OnRegistrationChanged()
+    End Sub
+    Partial Private Sub OnNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnNotesChanged()
+    End Sub
+    Partial Private Sub OnDeviceIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnDeviceIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnVINNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnVINNumberChanged()
+    End Sub
+    Partial Private Sub OnApplicationImageIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationImageIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationVehicleID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationVehicleID() As System.Guid
+		Get
+			Return Me._ApplicationVehicleID
+		End Get
+		Set
+			If ((Me._ApplicationVehicleID = value)  _
+						= false) Then
+				Me.OnApplicationVehicleIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationVehicleID = value
+				Me.SendPropertyChanged("ApplicationVehicleID")
+				Me.OnApplicationVehicleIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(500)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Registration", DbType:="VarChar(50)")>  _
+	Public Property Registration() As String
+		Get
+			Return Me._Registration
+		End Get
+		Set
+			If (String.Equals(Me._Registration, value) = false) Then
+				Me.OnRegistrationChanging(value)
+				Me.SendPropertyChanging
+				Me._Registration = value
+				Me.SendPropertyChanged("Registration")
+				Me.OnRegistrationChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="VarChar(MAX)")>  _
+	Public Property Notes() As String
+		Get
+			Return Me._Notes
+		End Get
+		Set
+			If (String.Equals(Me._Notes, value) = false) Then
+				Me.OnNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._Notes = value
+				Me.SendPropertyChanged("Notes")
+				Me.OnNotesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(10)")>  _
+	Public Property DeviceID() As String
+		Get
+			Return Me._DeviceID
+		End Get
+		Set
+			If (String.Equals(Me._DeviceID, value) = false) Then
+				Me.OnDeviceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._DeviceID = value
+				Me.SendPropertyChanged("DeviceID")
+				Me.OnDeviceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VINNumber", DbType:="VarChar(100)")>  _
+	Public Property VINNumber() As String
+		Get
+			Return Me._VINNumber
+		End Get
+		Set
+			If (String.Equals(Me._VINNumber, value) = false) Then
+				Me.OnVINNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._VINNumber = value
+				Me.SendPropertyChanged("VINNumber")
+				Me.OnVINNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationImageID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationImageID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationImageID
+		End Get
+		Set
+			If (Me._ApplicationImageID.Equals(value) = false) Then
+				Me.OnApplicationImageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationImageID = value
+				Me.SendPropertyChanged("ApplicationImageID")
+				Me.OnApplicationImageIDChanged
 			End If
 		End Set
 	End Property

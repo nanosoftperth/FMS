@@ -9,6 +9,7 @@
         Public Property Notes As String
         Public Property DeviceID As String
         Public Property ApplicationID As Guid
+        Public Property ApplicationImageID As Guid?
         Public Property VINNumber As String
         Public Property CurrentDriver As FMS.Business.DataObjects.ApplicationDriver
 
@@ -29,6 +30,13 @@
                 Me.DeviceID = av.DeviceID
                 Me.ApplicationID = av.ApplicationID
                 Me.VINNumber = If(String.IsNullOrEmpty(av.VINNumber), String.Empty, av.VINNumber)
+                If av.ApplicationImageID Is Nothing Then
+                    Dim mm = DataObjects.FleetMapMarker.GetApplicationFleetMapMarket(av.ApplicationID)
+                    Me.ApplicationImageID = mm.Vehicle_ApplicationImageID
+                Else
+                    Me.ApplicationImageID = av.ApplicationImageID
+                End If
+               
             End With
 
         End Sub
@@ -57,6 +65,8 @@
                 .DeviceID = av.DeviceID
                 .ApplicationID = av.ApplicationID
                 .VINNumber = av.VINNumber
+                .ApplicationImageID = av.ApplicationImageID
+
             End With
 
             SingletonAccess.FMSDataContextContignous.ApplicationVehicles.InsertOnSubmit(contextAppVecle)
@@ -78,6 +88,8 @@
                 .DeviceID = av.DeviceID
                 .ApplicationID = av.ApplicationID
                 .VINNumber = av.VINNumber
+                
+                .ApplicationImageID = av.ApplicationImageID
             End With
 
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -102,6 +114,12 @@
         Public Shared Function GetFromVINNumber(vinNumber As String, appid As Guid) As ApplicationVehicle
 
             Return GetAll(appid).Where(Function(x) x.VINNumber.ToLower.Trim = vinNumber.ToLower.Trim).SingleOrDefault
+
+        End Function
+
+        Public Shared Function GetFromName(name As String, appid As Guid) As ApplicationVehicle
+
+            Return GetAll(appid).Where(Function(x) x.Name.ToLower.Trim = name.ToLower.Trim).SingleOrDefault
 
         End Function
 
