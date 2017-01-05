@@ -121,7 +121,7 @@
 
         Public Shared Function GetDefaultImages(name As String) As Guid
 
-            Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name.ToLower().Contains(name)).ApplicationImageID
+            Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name = "Default Truck").ApplicationImageID
         End Function
 
         Public Shared Function GetAllDefaultImages(type As String)
