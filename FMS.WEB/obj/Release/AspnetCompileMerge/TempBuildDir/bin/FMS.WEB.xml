@@ -1170,6 +1170,14 @@ dgvVehicles control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:FMS.WEB.ResourceMgmnt.odsMapMarker">
+	<summary>
+odsMapMarker control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:FMS.WEB.ResourceMgmnt.odsVehicles">
 	<summary>
 odsVehicles control.

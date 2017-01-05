@@ -6,14 +6,7 @@ FMS.Business
 </name>
 </assembly>
 <members>
-<member name="M:FMS.Business.DataObjects.ApplicationLocation.GetAll(System.Guid,System.Boolean)">
-	<summary>
- Normal "get all", with  few caveats
- </summary>
-	<param name="ApplicationID"></param>
-	<param name="IncludeDefault">If there are 0 ApplicationLocations, then add
- the "old style" application (lat/long/name) settings as a applictionLocation object </param>
-</member><member name="M:FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(System.Guid,System.Nullable{System.DateTime})">
+<member name="M:FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(System.Guid,System.Nullable{System.DateTime})">
 	<summary>
  Processes the geofence collisons, return the earliest date for us 
  to calcluate the new geo-fence alerts
@@ -104,6 +97,13 @@ FMS.Business
  for serialization only
  </summary>
 	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.ApplicationLocation.GetAll(System.Guid,System.Boolean)">
+	<summary>
+ Normal "get all", with  few caveats
+ </summary>
+	<param name="ApplicationID"></param>
+	<param name="IncludeDefault">If there are 0 ApplicationLocations, then add
+ the "old style" application (lat/long/name) settings as a applictionLocation object </param>
 </member><member name="M:FMS.Business.DataObjects.ActionEnumOption.#ctor">
 	<summary>
  for serialization only

@@ -48,8 +48,8 @@ function MarkerLabel_(marker) {
     // in the "overlayMouseTarget" pane, a veil that covers just the label. This is done so that
     // events can be captured even if the label is in the shadow of a google.maps.InfoWindow.
     // Code is included here to ensure the veil is always exactly the same size as the label.
-    this.eventDiv_ = document.createElement("div");
-    this.eventDiv_.style.cssText = this.labelDiv_.style.cssText;
+    this.eventDiv_ = this.labelDiv_;// document.createElement("div");
+    //this.eventDiv_.style.cssText = this.labelDiv_.style.cssText;
 }
 
 // MarkerLabel_ inherits from OverlayView:
@@ -111,6 +111,7 @@ MarkerLabel_.prototype.onAdd = function () {
       }),
       google.maps.event.addDomListener(this.eventDiv_, "mouseover", function (e) {
           me.eventDiv_.style.cursor = "pointer";
+          me.eventDiv_.style.opacity = "0.1";
           google.maps.event.trigger(me.marker_, "mouseover", e);
       }),
       google.maps.event.addDomListener(this.eventDiv_, "mouseout", function (e) {
