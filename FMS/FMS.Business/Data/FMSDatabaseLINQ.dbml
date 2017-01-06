@@ -272,6 +272,7 @@
       <Column Name="TimeZoneOffset" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="TimeZoneDSTOffset" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="TimezoneDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="DefaultApplicationLocationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="aspnet_Application_ApplicationFeature" Member="ApplicationFeatures" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationFeature" />
       <Association Name="aspnet_Application_ApplicationFeatureRole" Member="ApplicationFeatureRoles" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationFeatureRole" />
       <Association Name="aspnet_Application_ApplicationGeoFence" Member="ApplicationGeoFences" ThisKey="ApplicationId" OtherKey="ApplictionID" Type="ApplicationGeoFence" />

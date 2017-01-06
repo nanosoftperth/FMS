@@ -2430,7 +2430,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4058,7 +4058,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4447,7 +4447,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -5275,6 +5275,8 @@ Partial Public Class aspnet_Application
 	
 	Private _TimezoneDescription As String
 	
+	Private _DefaultApplicationLocationID As System.Nullable(Of System.Guid)
+	
 	Private _ApplicationFeatures As EntitySet(Of ApplicationFeature)
 	
 	Private _ApplicationFeatureRoles As EntitySet(Of ApplicationFeatureRole)
@@ -5333,6 +5335,10 @@ Partial Public Class aspnet_Application
     Partial Private Sub OnTimezoneDescriptionChanging(value As String)
     End Sub
     Partial Private Sub OnTimezoneDescriptionChanged()
+    End Sub
+    Partial Private Sub OnDefaultApplicationLocationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnDefaultApplicationLocationIDChanged()
     End Sub
     #End Region
 	
@@ -5490,6 +5496,22 @@ Partial Public Class aspnet_Application
 				Me._TimezoneDescription = value
 				Me.SendPropertyChanged("TimezoneDescription")
 				Me.OnTimezoneDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DefaultApplicationLocationID", DbType:="UniqueIdentifier")>  _
+	Public Property DefaultApplicationLocationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._DefaultApplicationLocationID
+		End Get
+		Set
+			If (Me._DefaultApplicationLocationID.Equals(value) = false) Then
+				Me.OnDefaultApplicationLocationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._DefaultApplicationLocationID = value
+				Me.SendPropertyChanged("DefaultApplicationLocationID")
+				Me.OnDefaultApplicationLocationIDChanged
 			End If
 		End Set
 	End Property
@@ -12024,7 +12046,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
