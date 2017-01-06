@@ -10,6 +10,8 @@ Namespace DataObjects
         Public Property Lattitude As String
         Public Property Address As String
 
+        Public Property ApplicationImageID As Guid
+
         Public Property ApplicationImage As DataObjects.ApplicationImage
 
         ''' <summary>
@@ -29,11 +31,17 @@ Namespace DataObjects
         Public Sub New(al As Business.ApplicationLocation)
 
             With al
+
                 Me.ApplicationID = .ApplicationID
                 Me.ApplicationLocationID = .ApplicationLocationID
                 Me.Lattitude = .Lattitude
                 Me.Longitude = .Longitude
                 Me.Address = .Address
+
+                'If there is no applicationimage defined (param == null, then use the "default" one instead).
+                Me.ApplicationImageID = If(.ApplicationImageID Is Nothing, DataObjects.ApplicationImage.GetDefaultHomeImageID, .ApplicationImageID)
+                Me.ApplicationImage = DataObjects.ApplicationImage.GetImageFromID(.ApplicationImageID)
+
             End With
 
         End Sub
@@ -130,13 +138,18 @@ Namespace DataObjects
 
                 Dim lattitude As String = appObj.Settings.Where(Function(x) x.Name = "Business_Lattitude").Single.Value
                 Dim longitude As String = appObj.Settings.Where(Function(x) x.Name = "Business_Longitude").Single.Value
-                Dim Name As String = appObj.Settings.Where(Function(x) x.Name = "ApplicationName").Single.Value
+                Dim Name As String = appObj.Settings.Where(Function(x) x.Name = "CompanyName").Single.Value
+
+                Dim appImageID As Guid = DataObjects.ApplicationImage.GetDefaultHomeImageID
+                Dim img As DataObjects.ApplicationImage = DataObjects.ApplicationImage.GetImageFromID(appImageID)
 
                 Dim defaultObj As New DataObjects.ApplicationLocation With {.ApplicationID = ApplicationID,
                                                                             .ApplicationLocationID = Guid.Empty,
                                                                             .Lattitude = lattitude,
                                                                             .Longitude = longitude,
-                                                                            .Name = Name}
+                                                                            .Name = Name,
+                                                                            .ApplicationImageID = appImageID,
+                                                                            .ApplicationImage = img}
 
                 retobj.Add(defaultObj)
 
