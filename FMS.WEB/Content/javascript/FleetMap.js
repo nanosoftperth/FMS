@@ -749,7 +749,6 @@ function upsertMapTrucks(result) {
 
 
         } else {
-            debugger;
             addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName);
         }
 
