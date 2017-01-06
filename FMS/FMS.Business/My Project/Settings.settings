@@ -35,5 +35,11 @@ This is an automated alert
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=localhost;Initial Catalog=FMS;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="DefaultTruckImageName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Default Truck</Value>
+    </Setting>
+    <Setting Name="DefaultHomeImageName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Default Home</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

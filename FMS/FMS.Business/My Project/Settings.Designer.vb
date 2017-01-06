@@ -94,6 +94,24 @@ Namespace My
                 Return CType(Me("FMSConnectionString1"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Default Truck")>  _
+        Public ReadOnly Property DefaultTruckImageName() As String
+            Get
+                Return CType(Me("DefaultTruckImageName"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Default Home")>  _
+        Public ReadOnly Property DefaultHomeImageName() As String
+            Get
+                Return CType(Me("DefaultHomeImageName"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

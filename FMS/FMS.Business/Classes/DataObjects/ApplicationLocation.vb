@@ -10,7 +10,17 @@ Namespace DataObjects
         Public Property Lattitude As String
         Public Property Address As String
 
-      
+        Public Property ApplicationImage As DataObjects.ApplicationImage
+
+        ''' <summary>
+        ''' for binding to devexpress controls, just gets the image from the applicationimage object
+        ''' </summary>
+        Public ReadOnly Property ImageBinary() As Byte()
+            Get
+                Return If(ApplicationImage Is Nothing, Nothing, ApplicationImage.Img)
+            End Get
+        End Property
+
         Public Sub New()
 
         End Sub
