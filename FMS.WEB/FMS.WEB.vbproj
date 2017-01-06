@@ -265,6 +265,9 @@
     <Compile Include="Classes\ReportList.vb" />
     <Compile Include="Classes\ResourceHelper.vb" />
     <Compile Include="Classes\ThisSession.vb" />
+    <Compile Include="Content\DriverImages.ashx.vb">
+      <DependentUpon>DriverImages.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Content\FleetMapMarker.ashx.vb">
       <DependentUpon>FleetMapMarker.ashx</DependentUpon>
     </Compile>
@@ -898,6 +901,7 @@
     <Content Include="Content\HelveticaNeue-Medium.otf" />
     <Content Include="Content\MapImages.ashx" />
     <Content Include="Content\FleetMapMarker.ashx" />
+    <Content Include="Content\DriverImages.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

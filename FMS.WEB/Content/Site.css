@@ -97,6 +97,7 @@
 
 #lightContainerDIV {
     float: left;
+    display:inline-block;
     bottom: 10px;
     top: 175px;
     margin-left: 10%;

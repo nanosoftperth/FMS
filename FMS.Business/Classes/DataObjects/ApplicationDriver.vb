@@ -178,6 +178,16 @@
                                                             ).ToList
         End Function
 
+        Public Shared Function GetAllDriversWithImageUrl(applicatoinid As Guid)
+
+            Return (From y In SingletonAccess.FMSDataContextNew.ApplicationDrivers _
+                        Where y.ApplicationID = applicatoinid Select New With {
+                            .NameFormatted = String.Format("{0} {1}", y.FirstName, y.Surname),
+                            .ApplicationDriverID = y.ApplicationDriverID,
+                            .ImgUrl = "~/Content/DriverImages.ashx?Id=" + y.ApplicationDriverID.ToString()
+                            }).ToList
+        End Function
+
         Public Shared Function GetDriverFromID(applicationdriverid As Guid) As DataObjects.ApplicationDriver
 
             'if this happens to be the ""driver representing everyone"
