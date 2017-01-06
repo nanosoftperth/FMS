@@ -77,11 +77,24 @@
             }
 
             function getLog_SuccessCallback(result) {
-
+                debugger;
                 var s = result.d._ReturnString.replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n');
 
-                logLabel.SetText(s);
+                //temp
+                //need improvements
+                try
+                {
+                    var x = result.d._ReturnString.split(",");
+                    var lat = x[1].replace("lat:", "");
+                    var lon = x[2].replace("lng", "");
+                    $('#streetView_image').show();
+                    $('#streetView_image').attr("src", "https://maps.googleapis.com/maps/api/streetview?size=150x100&location=" + lat + "," + lon + "&key=AIzaSyA4rAT0fdTZLNkJ5o0uaAwZ89vVPQpr_Kc");
+                }
+                catch (err) {
+                    $('#streetView_image').hide();
+                }
 
+                logLabel.SetText(s);
                 setTimeout(function () {
                     getLastMessage();
                 }, 1000);
@@ -166,6 +179,7 @@
             <dx:ASPxLabel ID="ASPxLabel3" CssClass="boldme" runat="server" Text="Last message from vehicle:"></dx:ASPxLabel>
             <br />
             <dx:ASPxLabel ClientInstanceName="logLabel" ID="logLabel" runat="server" Text="loading..."></dx:ASPxLabel>
+            <img src="#" id="streetView_image" style ="width:100%;height:100px"/>
             <hr />
             <table>
                 <tr>
