@@ -107,7 +107,7 @@
             Return retval
         End Function
 
-        Public Shared Function GetAllApplicationImages(applicationid As Guid, type As String)
+        Public Shared Function GetAllApplicationImages(applicationid As Guid, type As String) As List(Of DataObjects.ApplicationImage)
             Dim retval = (From x In SingletonAccess.FMSDataContextNew.ApplicationImages _
                         Where (x.ApplicationID = applicationid Or x.ApplicationID Is Nothing) And x.Type = type _
                         Select New With {
