@@ -162,7 +162,6 @@ Namespace DataObjects
 
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
 
-
         End Sub
 
         Public Sub UpdateTimeZoneData()
