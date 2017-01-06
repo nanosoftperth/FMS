@@ -6,10 +6,17 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body style="background-color: none !Important;">
 
 
     <form id="form1" runat="server">
+
+        <link href="Content/Jira.css" rel="stylesheet" />
+
+        <script src="Content/javascript/jquery-3.1.0.min.js"></script>
+
+        <link href="Content/javascript/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+        <script src="Content/javascript/jquery-ui/jquery-ui.min.js"></script>
 
         <style type="text/css">
             .thebutton {
@@ -32,6 +39,26 @@
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
 
         <script type="text/javascript">
+
+
+            function cboDefaultBusinessLocation_SelectedIndexChanged(s, e) {
+
+                //save the value here.
+                var selectedValue = cboDefaultBusinessLocation.GetValue();
+                sendMsg('value selected: ' + selectedValue);
+            }
+
+            function sendMsg(message) {
+
+                $('#aui-flag-container').hide();
+
+                $('#msg').text(message);
+
+                $('#aui-flag-container').toggle('slow'
+                        , function () {
+                            $(this).delay(2500).toggle('slow');
+                        });
+            }
 
             function cboPossibleTimeZones_SelectedIndexChanged(s, e) {
 
@@ -69,7 +96,17 @@
 
         </script>
 
+        <div id="aui-flag-container" style="display:none;">
+            <div class="aui-flag" aria-hidden="false">
+                <div class="aui-message aui-message-success success closeable shadowed aui-will-close">
+                    <div id="msg">This is some example text</div>
 
+                    <span class="aui-icon icon-close" role="button" tabindex="0"></span>
+
+
+                </div>
+            </div>
+        </div>
 
         <div class="centreme">
 
@@ -351,6 +388,32 @@
                                         <td style="vertical-align: top; padding-left: 50px;">
                                             <table>
 
+                                                <tr>
+                                                    <td style="padding-left: 3px; padding-right: 10px; padding-bottom: 10px; padding-top: 12px; vertical-align: top;">
+
+                                                        <dx:ASPxLabel ID="ASPxLabel5" runat="server" Text="Default Business Location" Font-Bold="True"></dx:ASPxLabel>
+                                                        <dx:ASPxLabel ID="ASPxLabel6" runat="server" Text="   *The business locatoin the map will open over" Font-Bold="False" Font-Italic="true"></dx:ASPxLabel>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+
+                                                        <dx:ASPxComboBox
+                                                            ClientInstanceName="cboDefaultBusinessLocation"
+                                                            runat="server"
+                                                            DataSourceID="odsApplicationLocations"
+                                                            ValueField="ApplicationLocationID"
+                                                            TextField="Name"
+                                                            CssClass="cboPossibleTimeZones"
+                                                            Width="260px">
+
+                                                            <ClientSideEvents SelectedIndexChanged="function(s,e){cboDefaultBusinessLocation_SelectedIndexChanged(s,e); }" />
+
+                                                        </dx:ASPxComboBox>
+
+                                                    </td>
+                                                </tr>
+
 
                                                 <tr>
                                                     <td style="padding-left: 3px; padding-right: 10px; padding-bottom: 10px; padding-top: 12px; vertical-align: top;">
@@ -509,7 +572,7 @@
                                             <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Fleet Map Markers:" Font-Bold="True"></dx:ASPxLabel>
                                         </td>
                                     </tr>
-                                    
+
 
                                     <tr>
                                         <td>

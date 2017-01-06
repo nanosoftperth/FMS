@@ -763,6 +763,24 @@
     <Content Include="Content\javascript\heatMap.js" />
     <Content Include="Content\javascript\jquery-1.10.2.min.js" />
     <Content Include="Content\javascript\jquery-3.1.0.min.js" />
+    <Content Include="Content\javascript\jquery-ui\AUTHORS.txt" />
+    <Content Include="Content\javascript\jquery-ui\external\jquery\jquery.js" />
+    <Content Include="Content\javascript\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\javascript\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\javascript\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\javascript\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\javascript\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\javascript\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\javascript\jquery-ui\index.html" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.css" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.js" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.structure.css" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.structure.min.css" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.theme.css" />
+    <Content Include="Content\javascript\jquery-ui\jquery-ui.theme.min.css" />
+    <Content Include="Content\javascript\jquery-ui\LICENSE.txt" />
     <Content Include="Content\javascript\markerWithLabel.js" />
     <Content Include="Content\javascript\modernizr-2.6.2.js" />
     <Content Include="Content\javascript\page.js" />
@@ -770,6 +788,7 @@
     <Content Include="Content\javascript\respond.min.js" />
     <Content Include="Content\javascript\truckAnmiator.js" />
     <Content Include="Content\javascript\UserManagement.js" />
+    <Content Include="Content\Jira.css" />
     <Content Include="Content\notes.txt" />
     <Content Include="Content\Site.css" />
     <Content Include="Debug.aspx" />
@@ -902,6 +921,7 @@
     <Content Include="Content\MapImages.ashx" />
     <Content Include="Content\FleetMapMarker.ashx" />
     <Content Include="Content\DriverImages.ashx" />
+    <Content Include="Content\javascript\jquery-ui\package.json" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -981,7 +1001,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:10189/</IISUrl>
+          <IISUrl>http://localhost:10289/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
