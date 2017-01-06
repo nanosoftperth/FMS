@@ -119,6 +119,7 @@
             Return retval
         End Function
 
+        'TODO: we need to tidy up the below two methods (are confusing)
         Public Shared Function GetDefaultImages(name As String) As Guid
 
             Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name = "Default Truck").ApplicationImageID
