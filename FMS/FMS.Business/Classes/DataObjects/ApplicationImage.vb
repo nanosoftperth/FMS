@@ -124,6 +124,10 @@
             Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name = "Default Truck").ApplicationImageID
         End Function
 
+        Public Shared Function GetDefaultTruckImageID() As Guid
+            Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name = "Default Truck").ApplicationImageID
+        End Function
+
         Public Shared Function GetAllDefaultImages(type As String)
 
             Return SingletonAccess.FMSDataContextNew.ApplicationImages. _
