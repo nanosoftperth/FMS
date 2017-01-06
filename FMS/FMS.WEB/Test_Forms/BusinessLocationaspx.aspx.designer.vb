@@ -23,13 +23,13 @@ Partial Public Class BusinessLocationaspx
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''ASPxGridView1 control.
+    '''dgvBusinessLocations control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ASPxGridView1 As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents dgvBusinessLocations As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
     '''odsApplicationLocations control.
@@ -39,4 +39,13 @@ Partial Public Class BusinessLocationaspx
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsApplicationLocations As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsHomeImages control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsHomeImages As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

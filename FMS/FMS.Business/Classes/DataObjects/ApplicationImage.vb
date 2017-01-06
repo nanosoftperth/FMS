@@ -10,6 +10,13 @@
         Public Property Type As String
         Public Property Img() As Byte()
 
+        Public ReadOnly Property ImgURL As String
+            Get
+                Return "~/Content/MapImages.ashx?imgId=" + Me.ApplicationImageID.ToString()
+            End Get
+        End Property
+
+
 #End Region
 
 #Region "constructors"
@@ -108,12 +115,12 @@
         End Function
 
         Public Shared Function GetAllApplicationImages(applicationid As Guid, type As String) As List(Of DataObjects.ApplicationImage)
-            Dim retval = (From x In SingletonAccess.FMSDataContextNew.ApplicationImages _
+
+            Dim retval As List(Of DataObjects.ApplicationImage) = (From x In SingletonAccess.FMSDataContextNew.ApplicationImages _
                         Where (x.ApplicationID = applicationid Or x.ApplicationID Is Nothing) And x.Type = type _
-                        Select New With {
+                        Select New DataObjects.ApplicationImage With {
                                     .ApplicationImageID = x.ApplicationImageID,
-                                    .Name = x.Name,
-                                    .ImgUrl = "~/Content/MapImages.ashx?imgId=" + x.ApplicationImageID.ToString()
+                                    .Name = x.Name
                                     }).ToList
 
             Return retval
