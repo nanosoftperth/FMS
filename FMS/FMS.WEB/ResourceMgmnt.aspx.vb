@@ -79,8 +79,12 @@ Public Class ResourceMgmnt
                                     FMS.Business.DataObjects.ApplicationVehicleDriverTime. _
                                             GetAllForApplicationAndDatePeriodIncludingDuds(ThisSession.ApplicationID, Me.dateEditDay.Date, Me.timeEditTo.DateTime)
        
+        Try
+            pageControlMain.TabPages(3).Visible = ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Vehicle_and_Driver_Management__Bookings)  'ByRyan: Will determine if Application has access to Feature
 
-        pageControlMain.TabPages(3).Visible = ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Vehicle_and_Driver_Management__Bookings)  'ByRyan: Will determine if Application has access to Feature
+        Catch ex As Exception
+
+        End Try
     End Sub
 
 
