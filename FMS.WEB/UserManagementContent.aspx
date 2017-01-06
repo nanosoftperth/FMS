@@ -509,8 +509,7 @@
                                             <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Fleet Map Markers:" Font-Bold="True"></dx:ASPxLabel>
                                         </td>
                                     </tr>
-
-
+                                    
 
                                     <tr>
                                         <td>
