@@ -203,22 +203,31 @@ Partial Public Class Test
     Protected WithEvents dgvTimezoneSettings As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
-    '''ASPxLabel4 control.
+    '''dgvBusinessLocations control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ASPxLabel4 As Global.DevExpress.Web.ASPxLabel
+    Protected WithEvents dgvBusinessLocations As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
-    '''ASPxButton3 control.
+    '''odsApplicationLocations control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ASPxButton3 As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents odsApplicationLocations As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsHomeImages control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsHomeImages As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
     '''ASPxPanel1 control.
@@ -291,6 +300,24 @@ Partial Public Class Test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ASPxButtonBrowse As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''ASPxLabel4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel4 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''ASPxButton3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButton3 As Global.DevExpress.Web.ASPxButton
 
     '''<summary>
     '''odsAllTimeZoneOptions control.
