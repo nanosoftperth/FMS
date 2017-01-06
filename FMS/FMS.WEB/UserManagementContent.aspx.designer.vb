@@ -176,6 +176,24 @@ Partial Public Class Test
     Protected WithEvents dgvSettings As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''ASPxLabel5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel5 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''ASPxLabel6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel6 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
     '''ASPxLabel3 control.
     '''</summary>
     '''<remarks>

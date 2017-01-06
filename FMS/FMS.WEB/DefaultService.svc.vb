@@ -17,7 +17,12 @@ Public Class DefaultService
         Return Now.ToString
     End Function
 
+    <OperationContract()>
+<WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
+    Public Function SaveDefaultBusinessLocation(newBusinessLocation As String) As String
 
+        Return Now.ToString
+    End Function
 
     'JAVASCRIPT CALLER
     'param.colour = selectedItem.colour;

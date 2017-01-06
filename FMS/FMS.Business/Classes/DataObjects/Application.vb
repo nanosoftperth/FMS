@@ -8,8 +8,7 @@ Namespace DataObjects
         Public Property ApplicationName As String
         Public Property ApplicationID As Guid
         Public Property TimeZone As DataObjects.TimeZone
-
-        Public Property DefaultBusinessLocationID As Guid
+        Public Property DefaultBusinessLocationID As Guid?
 
         Public ReadOnly Property Settings As List(Of FMS.Business.DataObjects.Setting)
             Get
@@ -145,7 +144,26 @@ Namespace DataObjects
 
 #End Region
 
+
+
+
+
 #Region "timezone methods"
+
+        Public Sub SaveDefaultBusinessLocation(businessLocationID As Guid)
+
+
+            Dim a As Business.aspnet_Application = (From x In SingletonAccess.FMSDataContextContignous.aspnet_Applications _
+                                                     Where x.ApplicationId = Me.ApplicationID).Single
+
+            With a
+                a.DefaultApplicationLocationID = businessLocationID
+            End With
+
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+
+        End Sub
 
         Public Sub UpdateTimeZoneData()
 

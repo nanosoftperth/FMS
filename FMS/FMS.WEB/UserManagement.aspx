@@ -29,7 +29,7 @@
                                 </p>
                             </td>--%>
 
-                            <td style="padding-left:20px;">
+                            <td style="padding-left:20px;background-color:white !Important;">
                                 
                                 <%--<p class="lead">This page can be used to configure users / roles and what features each role has access to:</p>--%>
                                 <p class="lead">
