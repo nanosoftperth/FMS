@@ -97,6 +97,15 @@
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationBookings" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationBooking" />
     </Type>
   </Table>
+  <Table Name="dbo.ApplicationFeature" Member="ApplicationFeatures">
+    <Type Name="ApplicationFeature">
+      <Column Name="ApplicationFeatureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FeatureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Application_ApplicationFeature" Member="aspnet_Application" ThisKey="ApplicationID" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
+      <Association Name="Feature_ApplicationFeature" Member="Feature" ThisKey="FeatureID" OtherKey="FeatureID" Type="Feature" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ApplicationFeatureRole" Member="ApplicationFeatureRoles">
     <Type Name="ApplicationFeatureRole">
       <Column Name="ApplicationFeatureRoledID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -197,6 +206,7 @@
       <Column Name="Longitude" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Lattitude" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ApplicationImageID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ApplicationSettingValue" Member="ApplicationSettingValues">
@@ -216,6 +226,18 @@
       <Column Name="timeZoneID" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="timeZoneDesc" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="TimeZoneSerialzed" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ApplicationVehicle" Member="ApplicationVehicles">
+    <Type Name="ApplicationVehicle">
+      <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Registration" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DeviceID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="VINNumber" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ApplicationImageID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ApplicationVehicleDriverTime" Member="ApplicationVehicleDriverTimes">
@@ -250,6 +272,7 @@
       <Column Name="TimeZoneOffset" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="TimeZoneDSTOffset" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="TimezoneDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="aspnet_Application_ApplicationFeature" Member="ApplicationFeatures" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationFeature" />
       <Association Name="aspnet_Application_ApplicationFeatureRole" Member="ApplicationFeatureRoles" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationFeatureRole" />
       <Association Name="aspnet_Application_ApplicationGeoFence" Member="ApplicationGeoFences" ThisKey="ApplicationId" OtherKey="ApplictionID" Type="ApplicationGeoFence" />
       <Association Name="aspnet_Application_ApplicationSettingValue" Member="ApplicationSettingValues" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationSettingValue" />
@@ -257,7 +280,6 @@
       <Association Name="aspnet_Application_aspnet_Path" Member="aspnet_Paths" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Path" />
       <Association Name="aspnet_Application_aspnet_Role" Member="aspnet_Roles" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Role" />
       <Association Name="aspnet_Application_aspnet_User" Member="aspnet_Users" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_User" />
-      <Association Name="aspnet_Application_ApplicationFeature" Member="ApplicationFeatures" ThisKey="ApplicationId" OtherKey="ApplicationID" Type="ApplicationFeature" />
     </Type>
   </Table>
   <Table Name="dbo.aspnet_Membership" Member="aspnet_Memberships">
@@ -490,8 +512,8 @@
       <Column Name="FeatureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FeatureName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="FeatureDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="Feature_ApplicationFeatureRole" Member="ApplicationFeatureRoles" ThisKey="FeatureID" OtherKey="FeatureID" Type="ApplicationFeatureRole" />
       <Association Name="Feature_ApplicationFeature" Member="ApplicationFeatures" ThisKey="FeatureID" OtherKey="FeatureID" Type="ApplicationFeature" />
+      <Association Name="Feature_ApplicationFeatureRole" Member="ApplicationFeatureRoles" ThisKey="FeatureID" OtherKey="FeatureID" Type="ApplicationFeatureRole" />
     </Type>
   </Table>
   <Table Name="dbo.FleetMapMarker" Member="FleetMapMarkers">
@@ -560,6 +582,13 @@
       <Column Name="NativeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.PaidFeatures" Member="PaidFeatures">
+    <Type Name="PaidFeature">
+      <Column Name="ApplicationPaidFeaturesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PaidFeatureDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Setting" Member="Settings">
     <Type Name="Setting">
       <Column Name="SettingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -585,27 +614,6 @@
       <Column Name="company" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="XMLResponse" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="DateLogged" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ApplicationFeature" Member="ApplicationFeatures">
-    <Type Name="ApplicationFeature">
-      <Column Name="ApplicationFeatureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="FeatureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_Application_ApplicationFeature" Member="aspnet_Application" ThisKey="ApplicationID" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
-      <Association Name="Feature_ApplicationFeature" Member="Feature" ThisKey="FeatureID" OtherKey="FeatureID" Type="Feature" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ApplicationVehicle" Member="ApplicationVehicles">
-    <Type Name="ApplicationVehicle">
-      <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Registration" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="DeviceID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="VINNumber" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ApplicationImageID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
