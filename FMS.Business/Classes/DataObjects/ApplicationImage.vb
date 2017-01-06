@@ -126,7 +126,15 @@
         End Function
 
         Public Shared Function GetDefaultTruckImageID() As Guid
-            Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing And y.Name = "Default Truck").ApplicationImageID
+
+            Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing _
+                                                                                           And y.Name = "Default Truck").ApplicationImageID
+        End Function
+
+        Public Shared Function GetDefaultHomeImageID() As Guid
+
+            Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing _
+                                                                                           And y.Name = "Default Home").ApplicationImageID
         End Function
 
         Public Shared Function GetAllDefaultImages(type As String)
