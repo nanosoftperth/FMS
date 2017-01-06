@@ -196,6 +196,16 @@ Public Class Test
         End If
     End Sub
 
+
+    Private Sub dgvBusinessLocations_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvBusinessLocations.RowInserting
+        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+    End Sub
+
+    Private Sub dgvBusinessLocations_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles dgvBusinessLocations.RowUpdating
+        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+    End Sub
+
+
     Protected Sub ASPxPageControl1_ActiveTabChanged(source As Object, e As DevExpress.Web.TabControlEventArgs) Handles ASPxPageControl1.ActiveTabChanged
 
     End Sub

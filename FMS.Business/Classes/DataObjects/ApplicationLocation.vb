@@ -37,6 +37,7 @@ Namespace DataObjects
                 Me.Lattitude = .Lattitude
                 Me.Longitude = .Longitude
                 Me.Address = .Address
+                Me.Name = .Name
 
                 'If there is no applicationimage defined (param == null, then use the "default" one instead).
                 Me.ApplicationImageID = If(.ApplicationImageID Is Nothing, DataObjects.ApplicationImage.GetDefaultHomeImageID, .ApplicationImageID)
@@ -57,6 +58,7 @@ Namespace DataObjects
                 .Address = al.Address
                 .ApplicationID = al.ApplicationID
                 .ApplicationLocationID = If(al.ApplicationLocationID = Guid.Empty, Guid.NewGuid, al.ApplicationLocationID)
+                .ApplicationImageID = al.ApplicationImageID
                 .Lattitude = al.Lattitude
                 .Longitude = al.Longitude
                 .Name = al.Name
@@ -84,6 +86,17 @@ Namespace DataObjects
 
         Public Shared Sub Update(al As Business.DataObjects.ApplicationLocation)
 
+            'if we are being asked to update the application locatoin which has been 
+            '"temporarily created" (this is done when there are no locations defined yet but there is
+            'old style setting defined for the copmany location. Then we need to create the applicationlocation object
+            'and update that with these settings.
+            Dim updatingNonExistantObj As Boolean = al.ApplicationLocationID = Guid.Empty
+
+            If updatingNonExistantObj Then
+                Create(al)
+                Exit Sub
+            End If
+
             Dim dbobj = SingletonAccess.FMSDataContextContignous.ApplicationLocations.Where( _
                             Function(x) x.ApplicationLocationID = al.ApplicationLocationID).Single
 
@@ -91,6 +104,7 @@ Namespace DataObjects
                 .Address = al.Address
                 .ApplicationID = al.ApplicationID
                 '.ApplicationLocationID = al.ApplicationLocationID
+                .ApplicationImageID = al.ApplicationImageID
                 .Lattitude = al.Lattitude
                 .Longitude = al.Longitude
                 .Name = al.Name

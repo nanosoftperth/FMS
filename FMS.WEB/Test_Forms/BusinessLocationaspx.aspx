@@ -14,19 +14,36 @@
 
         <script type="text/javascript">
 
-            var initsearchlocation = function (s, e) {
+            var initsearchlocationBusinessLocs = function (s, e) {
                 var search_input_box = s.inputElement;
                 search_input_box.placeholder = "Search Box";
                 var searchBox = new google.maps.places.SearchBox(search_input_box);
+
+                searchBox.addListener('places_changed', function () {
+                    newItemSelected(searchBox);
+
+                });
             }
+
+
+            function newItemSelected(searchBox) {
+
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                var nisLat = places[0].geometry.location.lat();
+                var nisLng = places[0].geometry.location.lng();
+
+                editLat.SetText(nisLat);
+                editLng.SetText(nisLng);
+            }
+
         </script>
 
         <div>
-
-
-            <%--========================================================================--%>
-            <%--                            OBJECT DATA SOURCES                         --%>
-            <%--========================================================================--%>
 
             <dx:ASPxGridView
                 ID="dgvBusinessLocations"
@@ -45,39 +62,37 @@
                     </dx:GridViewDataTextColumn>
                     <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="1">
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="Longitude" VisibleIndex="3">
+                    <dx:GridViewDataTextColumn FieldName="Longitude" VisibleIndex="3" EditCellStyle-CssClass="editLng" PropertiesTextEdit-ClientInstanceName="editLng" >
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="Lattitude" VisibleIndex="4">
+                    <dx:GridViewDataTextColumn FieldName="Lattitude" VisibleIndex="4" EditCellStyle-CssClass="editLat" PropertiesTextEdit-ClientInstanceName="editLat">
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="2" PropertiesTextEdit-ClientSideEvents-Init="initsearchlocation">
+                    <dx:GridViewDataTextColumn FieldName="Address"  VisibleIndex="2" PropertiesTextEdit-ClientSideEvents-Init="initsearchlocation">
                     </dx:GridViewDataTextColumn>
 
                     <dx:GridViewDataTextColumn FieldName="ApplicationImageID" Visible="False" VisibleIndex="8">
                     </dx:GridViewDataTextColumn>
+
                     <dx:GridViewDataComboBoxColumn Caption="Image" FieldName="ApplicationImageID" VisibleIndex="5">
                         <PropertiesComboBox DataSourceID="odsHomeImages" ImageUrlField="ImgURL" TextField="Name" ValueField="ApplicationImageID">
                             <ClearButton Visibility="Auto">
                             </ClearButton>
                         </PropertiesComboBox>
                     </dx:GridViewDataComboBoxColumn>
+
                 </Columns>
             </dx:ASPxGridView>
-
-            <asp:ObjectDataSource runat="server" ID="odsApplicationLocations" DataObjectTypeName="FMS.Business.DataObjects.ApplicationLocation" DeleteMethod="Delete" InsertMethod="Update" SelectMethod="GetAllIncludingDefault" TypeName="FMS.Business.DataObjects.ApplicationLocation" UpdateMethod="Update">
-                <SelectParameters>
-                    <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="ApplicationID"></asp:SessionParameter>
-                </SelectParameters>
-            </asp:ObjectDataSource>
         </div>
 
+        <%--========================================================================--%>
+        <%--                            OBJECT DATA SOURCES                         --%>
+        <%--========================================================================--%>
 
-        <%--   <asp:ObjectDataSource ID="odsMapMarkerold" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
+
+        <asp:ObjectDataSource runat="server" ID="odsApplicationLocations" DataObjectTypeName="FMS.Business.DataObjects.ApplicationLocation" DeleteMethod="Delete" InsertMethod="Update" SelectMethod="GetAllIncludingDefault" TypeName="FMS.Business.DataObjects.ApplicationLocation" UpdateMethod="Update">
             <SelectParameters>
-                <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
-                <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
+                <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="ApplicationID"></asp:SessionParameter>
             </SelectParameters>
-        </asp:ObjectDataSource>--%>
-
+        </asp:ObjectDataSource>
 
         <asp:ObjectDataSource ID="odsHomeImages" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
             <SelectParameters>
