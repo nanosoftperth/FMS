@@ -760,8 +760,8 @@ function upsertMapTrucks(result) {
 
 
 
-var numDeltas = 3000 / 10;
-var delay = 10;
+var numDeltas = 3000 / 100;
+var delay = 100;
 
 function moveMarker(marker, markerPosn) {
 
@@ -772,10 +772,7 @@ function moveMarker(marker, markerPosn) {
 
     var deltaLat = (oldLat - newLat) / numDeltas;
     var deltaLng = (oldLng - newLng) / numDeltas;
-
-    //marker.setPosition(markerPosn);
-
-    //console.warn(deltaLat);  
+  
 
     moveMarkerSelfIterative(marker, numDeltas, 1, oldLat, oldLng, deltaLat, deltaLng);
 
