@@ -119,9 +119,25 @@ Namespace DataObjects
 
 #Region "gets & sets"
 
+        Public Shared Function GetAllIncludingInheritFromApplication(ApplicationID As Guid) As List(Of DataObjects.ApplicationLocation)
+
+            Dim r = GetAll(ApplicationID, True)
+
+            For Each x In r
+                If x.ApplicationLocationID = Guid.Empty Then x.Name = "use app default"
+            Next
+
+            Return r
+
+        End Function
+
         'required for devexpress binding
         Public Shared Function GetAllIncludingDefault(ApplicationID As Guid) As List(Of DataObjects.ApplicationLocation)
-            Return GetAll(ApplicationID, True)
+
+
+            Dim includeDefault = DataObjects.Application.GetFromAppID(ApplicationID).DefaultBusinessLocationID = Guid.Empty
+
+            Return GetAll(ApplicationID, includeDefault)
         End Function
 
         ''' <summary>
@@ -146,7 +162,7 @@ Namespace DataObjects
             End With
 
             'If we have 0 items in the list, then we shall use the "old school" logitude and lattitude provided by the application object
-            If retobj.Count = 0 AndAlso IncludeDefault Then
+            If IncludeDefault Then
 
                 Dim appObj As DataObjects.Application = DataObjects.Application.GetFromAppID(ApplicationID)
 
@@ -164,7 +180,6 @@ Namespace DataObjects
                                                                             .Name = Name,
                                                                             .ApplicationImageID = appImageID,
                                                                             .ApplicationImage = img}
-
                 retobj.Add(defaultObj)
 
             End If

@@ -29,6 +29,9 @@ Public Class Test
 
         cboPossibleTimeZones.Value = ThisSession.ApplicationObject.TimeZone.ID
 
+        cboDefaultBusinessLocation.DataBind()
+        cboDefaultBusinessLocation.Value = ThisSession.ApplicationObject.DefaultBusinessLocationID
+
     End Sub
 
     Protected Sub ASPxButton1_Click(sender As Object, e As EventArgs) Handles ASPxButton1.Click
@@ -89,6 +92,10 @@ Public Class Test
         dgvTimezoneSettings.DataSourceID = Nothing
         dgvTimezoneSettings.DataSource = ThisSession.GetTimeZoneValues
         dgvTimezoneSettings.DataBind()
+
+    End Sub
+
+    Private Sub Page_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
 
     End Sub
 

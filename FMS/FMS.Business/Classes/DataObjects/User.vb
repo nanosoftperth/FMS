@@ -15,6 +15,13 @@ Namespace DataObjects
         Public Property RoleID As Guid
         Public Property SendEmailtoUserWithDefPass As Boolean
 
+        ''' <summary>
+        ''' If this has a null value in the DB backend, then this will return an empty GUID
+        ''' this is for binding in the devexpress controlls where it will expect a deault option 
+        ''' to be in the list with an ID of guid.empty for "use application default".
+        ''' </summary>
+        Public Property ApplicationLocationID As Guid
+
 
         Public Sub UpdatetimeZone(Optional u As aspnet_User = Nothing)
 
@@ -38,6 +45,8 @@ Namespace DataObjects
 
                 Me.LastLoggedInDate = u.aspnet_Membership.LastLoginDate.timezoneToClient
                 Me.Mobile = u.aspnet_Membership.Mobile
+
+                Me.ApplicationLocationID = If(u.ApplicationLocation.HasValue, u.ApplicationLocation.Value, Guid.Empty)
 
                 UpdatetimeZone()
 
@@ -66,7 +75,7 @@ Namespace DataObjects
             With u
                 o.aspnet_Membership.Mobile = .Mobile
                 o.TimeZoneID = .TimeZoneID
-
+                o.ApplicationLocation = u.ApplicationLocationID
                 SingletonAccess.FMSDataContextContignous.usp_RemoveAllrolesForUserAndAssignRole(o.UserId, .RoleID)
             End With
 
@@ -93,6 +102,8 @@ Namespace DataObjects
                 o.UserName = .UserName
                 o.aspnet_Membership.Mobile = u.Mobile
                 o.TimeZoneID = .TimeZoneID
+
+                o.ApplicationLocation = u.ApplicationLocationID
 
                 SingletonAccess.FMSDataContextContignous.usp_RemoveAllrolesForUserAndAssignRole(u.UserId, .RoleID)
             End With

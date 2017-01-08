@@ -8,7 +8,7 @@ Namespace DataObjects
         Public Property ApplicationName As String
         Public Property ApplicationID As Guid
         Public Property TimeZone As DataObjects.TimeZone
-        Public Property DefaultBusinessLocationID As Guid?
+        Public Property DefaultBusinessLocationID As Guid
 
         Public ReadOnly Property Settings As List(Of FMS.Business.DataObjects.Setting)
             Get
@@ -51,7 +51,7 @@ Namespace DataObjects
             Me.ApplicationID = a.ApplicationId
             Me.ApplicationName = a.ApplicationName
 
-            Me.DefaultBusinessLocationID = a.DefaultApplicationLocationID
+            Me.DefaultBusinessLocationID = If(a.DefaultApplicationLocationID.HasValue, a.DefaultApplicationLocationID.Value, Guid.Empty)
 
             'if the timezone has been SET, then use the timezoneinfo object 
             'if not, then use the google object which is gotten from their WEB API
