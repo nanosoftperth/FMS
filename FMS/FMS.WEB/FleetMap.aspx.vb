@@ -46,7 +46,17 @@ Public Class FleetMap
 
         Dim settingstoSendtoCLient As New List(Of DataObjects.Setting)
 
-        settingstoSendtoCLient.AddRange(ThisSession.ApplicationObject.Settings)
+        'settingstoSendtoCLient.AddRange(ThisSession.ApplicationObject.Settings)
+
+        Dim appLocationID As Guid = If(ThisSession.User.ApplicationLocationID = Guid.Empty, _
+                                       ThisSession.ApplicationObject.DefaultBusinessLocationID, _
+                                       ThisSession.User.ApplicationLocationID)
+
+        Dim defaultBusinessLocation As DataObjects.ApplicationLocation = DataObjects.ApplicationLocation.GetFromID(appLocationID)
+
+        settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = "Business_Lattitude", .Value = defaultBusinessLocation.Lattitude})
+        settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = "Business_Longitude", .Value = defaultBusinessLocation.Longitude})
+
         settingstoSendtoCLient.AddRange(GetVINNumberSettings)
 
         Dim str As String = "var serverSetting_{0} = '{1}';{2}"

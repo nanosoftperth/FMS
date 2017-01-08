@@ -424,6 +424,9 @@ function clientServerroundRobin() {
     param.getAllTrucksAtSpecificTime = getAllTrucksAtSpecificTime;
     param.getAllTrucksAtSpecificTimeDate = getAllTrucksAtSpecificTimeDate;
 
+    param.isFirstCall = firstTimeRunningRoundRobin;
+    //isFirstCall, firstTimeRunningRoundRobin
+
     ajaxMethod("RoundRobinService.svc/" + 'ClientServerRoundRobin',
           param, clientServerroundRobin_SuccessCallback, clientServerroundRobin_ErrorCallback, clientServerroundRobin_FinallyCallback);
 
@@ -460,22 +463,39 @@ var TrucksReturnedFromServer = {};
 
 var firstTimeRunningRoundRobin = true;
 
+function showBusinessLocations(businessLocations) {
+
+    $(businessLocations).each(function () {
+
+        var name = $(this)[0].Name;
+        var lat = $(this)[0].Lattitude;
+        var lng = $(this)[0].Longitude;
+        var appImageID = $(this)[0].ApplicationImageID;
+
+        var isDefault = false;
+        var markerPosn = new google.maps.LatLng(lat, lng);
+
+        var marker = new MarkerWithLabel({
+            position: markerPosn,
+            icon: icon_truck + '&Id=' + appImageID,
+            labelContent: name,
+            labelAnchor: new google.maps.Point(22, 0),
+            labelClass: "labels" // the CSS class for the label                            
+        });
+
+        // marker.addListener('click', showInfoWindow);//DeviceID        
+        marker.setMap(map);
+    })
+}
+
+
 function clientServerroundRobin_SuccessCallback(result) {
 
-
-    //activityViewerAutoUpdateToNow
-    //activityViewer_autoincrement_selected
-    //autoUpdateCurrentActivity 
-    //_viewMachineAtTime
-
+    
     //if this is not he first time running the round robin, then add the business locatoins to the map
-    if (!firstTimeRunningRoundRobin) {
-
-        //TODO: DAVE finished work here on sunday, need to add ALL locations to the map
-        //they need to auto-change when the round robin fires but not have the client access the SQL backend literally
-        //every time we refresh the screen.
-
-
+    if (firstTimeRunningRoundRobin ) {
+       
+        showBusinessLocations(result.d._BusinessLocations);
         firstTimeRunningRoundRobin = false;
     }
 
@@ -753,8 +773,7 @@ function upsertMapTrucks(result) {
 
         if (trucksMarker != null) {
             trucksMarker.labelContent = labelContent;
-            //trucksMarker.setPosition(markerPosn);
-            moveMarker(trucksMarker,markerPosn);
+                       moveMarker(trucksMarker,markerPosn);
 
             trucksMarker.label.setStyles();
             trucksMarker.label.draw();
@@ -862,26 +881,26 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
     }
 
 
-    function addPPJSMarker(lat, lng, companyName) {
+    //function addPPJSMarker(lat, lng, companyName) {
 
-        //var lat = parseFloat(serverSetting_Business_Lattitude);
-        //var lng = parseFloat(serverSetting_Business_Longitude);
-        var markerPosn = new google.maps.LatLng(lat, lng);
+    //    //var lat = parseFloat(serverSetting_Business_Lattitude);
+    //    //var lng = parseFloat(serverSetting_Business_Longitude);
+    //    var markerPosn = new google.maps.LatLng(lat, lng);
 
-        //var companyName = serverSetting_CompanyName;
+    //    //var companyName = serverSetting_CompanyName;
 
-        var marker = new MarkerWithLabel({
-            position: markerPosn,
-            icon: icon_home,
-            labelContent: companyName,
-            labelAnchor: new google.maps.Point(22, 0),
-            labelClass: "labels", // the CSS class for the label
-            labelStyle: { opacity: 0.75 },
-            map: map
-        });
+    //    var marker = new MarkerWithLabel({
+    //        position: markerPosn,
+    //        icon: icon_home,
+    //        labelContent: companyName,
+    //        labelAnchor: new google.maps.Point(22, 0),
+    //        labelClass: "labels", // the CSS class for the label
+    //        labelStyle: { opacity: 0.75 },
+    //        map: map
+    //    });
 
-        marker.setMap(map);
-    }
+    //    marker.setMap(map);
+    //}
 
 
 
@@ -902,7 +921,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
 
         map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-        addPPJSMarker(lat, lng, serverSetting_CompanyName);
+        //addPPJSMarker(lat, lng, serverSetting_CompanyName);
 
 
         google.maps.event.addListener(map, 'click', function (event) {

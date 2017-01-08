@@ -24,7 +24,24 @@ Public Class RoundRobinService
     '****           activityViewer_autoIncrement_secondsTotal 
     '****           var autoUpdateCurrentActivity 
     '******************************************************************************
-
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="activityViewer_SelectedVehicle"></param>
+    ''' <param name="activityViewerStartTime"></param>
+    ''' <param name="activityViewerEndTime"></param>
+    ''' <param name="activityViewerAutoUpdateToNow"></param>
+    ''' <param name="activityViewer_autoincrement_selected"></param>
+    ''' <param name="activityViewer_autoIncrement_seconds"></param>
+    ''' <param name="activityViewer_autoIncrement_secondsMultiplier"></param>
+    ''' <param name="activityViewer_autoIncrement_secondsTotal"></param>
+    ''' <param name="autoUpdateCurrentActivity"></param>
+    ''' <param name="viewMachineAtTime"></param>
+    ''' <param name="getAllTrucksAtSpecificTime"></param>
+    ''' <param name="getAllTrucksAtSpecificTimeDate"></param>
+    ''' <param name="isFirstCall">is this the first time that the page is calling this function? (for cache reasons)</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     <OperationContract()>
 <WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
     Public Function ClientServerRoundRobin(activityViewer_SelectedVehicle As String,
@@ -38,7 +55,9 @@ Public Class RoundRobinService
                                            autoUpdateCurrentActivity As Boolean,
                                            viewMachineAtTime As Boolean,
                                            getAllTrucksAtSpecificTime As Boolean,
-                                           getAllTrucksAtSpecificTimeDate As String) As ClientServerRoundRobin_ReturnObject
+                                           getAllTrucksAtSpecificTimeDate As String,
+                                            isFirstCall As Boolean
+                                            ) As ClientServerRoundRobin_ReturnObject
 
 
         Dim retobj As New ClientServerRoundRobin_ReturnObject
@@ -74,8 +93,10 @@ Public Class RoundRobinService
                     retobj.queryDate = Now.timezoneToClient
             End Select
 
-            'TODO: we need to determine if this is the fist time that we have ran this for this page POSTBACK
-            retobj.BusinessLocations = DataObjects.ApplicationLocation.GetAll(ThisSession.ApplicationID, True)
+            'if this is the first call to the round robin service from the page, then update the session object
+            'it doesnt matter if this is called from another page in the same session. 
+            If isFirstCall Then ThisSession.BusinessLocations = DataObjects.ApplicationLocation.GetAll(ThisSession.ApplicationID)
+            retobj.BusinessLocations = ThisSession.BusinessLocations
 
             retobj.activityViewerAutoUpdateToNow = activityViewerAutoUpdateToNow
             retobj.activityViewer_autoincrement_selected = activityViewer_autoincrement_selected
