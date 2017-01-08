@@ -194,6 +194,15 @@ Partial Public Class Test
     Protected WithEvents ASPxLabel6 As Global.DevExpress.Web.ASPxLabel
 
     '''<summary>
+    '''cboDefaultBusinessLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboDefaultBusinessLocation As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
     '''ASPxLabel3 control.
     '''</summary>
     '''<remarks>
@@ -381,4 +390,13 @@ Partial Public Class Test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsTimeZonesForUsers As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsApplicationLocationsWithDefault control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsApplicationLocationsWithDefault As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

@@ -18,6 +18,8 @@
         <link href="Content/javascript/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
         <script src="Content/javascript/jquery-ui/jquery-ui.min.js"></script>
 
+        <script src="Content/javascript/page.js"></script>
+
         <style type="text/css">
             .thebutton {
                 margin-left: 10px;
@@ -41,12 +43,35 @@
         <script type="text/javascript">
 
 
+            //  Public Function SaveDefaultBusinessLocation(newBusinessLocation As String) As String
+
+
             function cboDefaultBusinessLocation_SelectedIndexChanged(s, e) {
 
                 //save the value here.
                 var selectedValue = cboDefaultBusinessLocation.GetValue();
-                sendMsg('value selected: ' + selectedValue);
+
+                var param = {};
+
+                param.newBusinessLocation = selectedValue;
+
+                ajaxMethod("DefaultService.svc/" + 'SaveDefaultBusinessLocation',
+                                    param, UMC_SuccessCallback, UMC_ErrorCallback, UMC_FinallyCallback);
+
             }
+
+            function UMC_SuccessCallback(obj) {
+                sendMsg('SUCCESS saving new default business location!');
+            }
+
+            function UMC_ErrorCallback(obj) {
+                sendMsg('ERROR: ' + JSON.stringify(obj));
+            }
+
+            function UMC_FinallyCallback(obj) {
+                //nop
+            }
+
 
             function sendMsg(message) {
 
@@ -96,7 +121,7 @@
 
         </script>
 
-        <div id="aui-flag-container" style="display:none;">
+        <div id="aui-flag-container" style="display: none;">
             <div class="aui-flag" aria-hidden="false">
                 <div class="aui-message aui-message-success success closeable shadowed aui-will-close">
                     <div id="msg">This is some example text</div>
@@ -110,7 +135,7 @@
 
         <div class="centreme">
 
-            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="6"
+            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0"
                 EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 
@@ -156,7 +181,7 @@
                                         <dx:GridViewDataComboBoxColumn Caption="Time Zone"
                                             FieldName="TimeZoneID"
                                             ShowInCustomizationForm="True"
-                                            VisibleIndex="6">
+                                            VisibleIndex="7">
 
                                             <PropertiesComboBox DataSourceID="odsTimeZonesForUsers"
                                                 TextField="Description"
@@ -166,9 +191,15 @@
                                                 </ClearButton>
                                             </PropertiesComboBox>
                                         </dx:GridViewDataComboBoxColumn>
-                                        <dx:GridViewDataCheckColumn FieldName="SendEmailtoUserWithDefPass" ShowInCustomizationForm="true" VisibleIndex="8" Visible="false">
+                                        <dx:GridViewDataCheckColumn FieldName="SendEmailtoUserWithDefPass" ShowInCustomizationForm="true" VisibleIndex="9" Visible="false">
                                             <EditFormSettings Caption="Send email to user with password and login details" Visible="True" />
                                         </dx:GridViewDataCheckColumn>
+                                        <dx:GridViewDataComboBoxColumn Caption="Business Location" FieldName="ApplicationLocationID" ShowInCustomizationForm="True" VisibleIndex="6">
+                                            <PropertiesComboBox DataSourceID="odsApplicationLocationsWithDefault" TextField="Name" ValueField="ApplicationLocationID">
+                                                <ClearButton Visibility="Auto">
+                                                </ClearButton>
+                                            </PropertiesComboBox>
+                                        </dx:GridViewDataComboBoxColumn>
                                     </Columns>
                                 </dx:ASPxGridView>
                                 <asp:ObjectDataSource ID="odsRoles"
@@ -392,7 +423,7 @@
                                                     <td style="padding-left: 3px; padding-right: 10px; padding-bottom: 10px; padding-top: 12px; vertical-align: top;">
 
                                                         <dx:ASPxLabel ID="ASPxLabel5" runat="server" Text="Default Business Location" Font-Bold="True"></dx:ASPxLabel>
-                                                        <dx:ASPxLabel ID="ASPxLabel6" runat="server" Text="   *The business locatoin the map will open over" Font-Bold="False" Font-Italic="true"></dx:ASPxLabel>
+                                                        <dx:ASPxLabel ID="ASPxLabel6" runat="server" Text="   *The business location the map will open over" Font-Bold="False" Font-Italic="true"></dx:ASPxLabel>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -401,13 +432,17 @@
                                                         <dx:ASPxComboBox
                                                             ClientInstanceName="cboDefaultBusinessLocation"
                                                             runat="server"
+                                                            ID="cboDefaultBusinessLocation"
                                                             DataSourceID="odsApplicationLocations"
                                                             ValueField="ApplicationLocationID"
+                                                            ValueType="System.Guid"
                                                             TextField="Name"
                                                             CssClass="cboPossibleTimeZones"
                                                             Width="260px">
 
                                                             <ClientSideEvents SelectedIndexChanged="function(s,e){cboDefaultBusinessLocation_SelectedIndexChanged(s,e); }" />
+
+<ClearButton Visibility="Auto"></ClearButton>
 
                                                         </dx:ASPxComboBox>
 
@@ -531,7 +566,7 @@
                                             </dx:GridViewDataTextColumn>
 
                                             <dx:GridViewDataComboBoxColumn Caption="Image" FieldName="ApplicationImageID" VisibleIndex="5" MinWidth="150" Width="150px">
-                                                <PropertiesComboBox DataSourceID="odsHomeImages" ImageUrlField="ImgURL" TextField="Name" ValueField="ApplicationImageID">
+                                                <PropertiesComboBox DataSourceID="odsHomeImages" ImageUrlField="ImgURL" TextField="" ValueField="ApplicationImageID">
                                                     <ClearButton Visibility="Auto">
                                                     </ClearButton>
                                                 </PropertiesComboBox>
@@ -542,7 +577,7 @@
                                 </div>
 
                                 <%--========================================================================--%>
-                                <%--                            OBJECT DATA SOURCES                         --%>
+                                <%--                       BUSINESS LOCATION | OBJECT DATA SOURCES          --%>
                                 <%--========================================================================--%>
 
 
@@ -552,9 +587,14 @@
                                     </SelectParameters>
                                 </asp:ObjectDataSource>
 
-                                <asp:ObjectDataSource ID="odsHomeImages" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
+                                <asp:ObjectDataSource 
+                                    ID="odsHomeImages" 
+                                    runat="server" 
+                                    SelectMethod="GetAllApplicationImages" 
+                                    TypeName="FMS.Business.DataObjects.ApplicationImage">
                                     <SelectParameters>
-                                        <asp:QueryStringParameter DbType="Guid" Name="applicationid" QueryStringField="ApplicationID" />
+
+                                        <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" DefaultValue="" Name="applicationid"></asp:SessionParameter>
                                         <asp:Parameter DefaultValue="home" Name="type" Type="String" />
                                     </SelectParameters>
                                 </asp:ObjectDataSource>
@@ -758,6 +798,11 @@
                 runat="server"
                 SelectMethod="GetMSftTimeZonesAutoInheritOption"
                 TypeName="FMS.Business.DataObjects.TimeZone"></asp:ObjectDataSource>
+            <asp:ObjectDataSource ID="odsApplicationLocationsWithDefault" runat="server" SelectMethod="GetAllIncludingInheritFromApplication" TypeName="FMS.Business.DataObjects.ApplicationLocation">
+                <SelectParameters>
+                    <asp:SessionParameter DbType="Guid" Name="ApplicationID" SessionField="ApplicationID" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
         </div>
     </form>
 </body>
