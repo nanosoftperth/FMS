@@ -36,8 +36,6 @@ Public Class FleetMapMarker
                 End If
 
                 'TODO: we need to remove all below this line, especially the GOTO :) !
-
-
                 If type.ToLower.Equals("vehicle") And vehicleName IsNot Nothing Then 'BY RYAN: Check if vehicle has unique icon
                     Dim v = DataObjects.ApplicationVehicle.GetFromName(vehicleName, .Session("ApplicationID"))
 

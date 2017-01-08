@@ -74,6 +74,9 @@ Public Class RoundRobinService
                     retobj.queryDate = Now.timezoneToClient
             End Select
 
+            'TODO: we need to determine if this is the fist time that we have ran this for this page POSTBACK
+            retobj.BusinessLocations = DataObjects.ApplicationLocation.GetAll(ThisSession.ApplicationID, True)
+
             retobj.activityViewerAutoUpdateToNow = activityViewerAutoUpdateToNow
             retobj.activityViewer_autoincrement_selected = activityViewer_autoincrement_selected
             retobj.autoUpdateCurrentActivity = autoUpdateCurrentActivity

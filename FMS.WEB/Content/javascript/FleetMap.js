@@ -458,6 +458,8 @@ function roundRobinSanityCheck() {
 
 var TrucksReturnedFromServer = {};
 
+var firstTimeRunningRoundRobin = true;
+
 function clientServerroundRobin_SuccessCallback(result) {
 
 
@@ -466,6 +468,18 @@ function clientServerroundRobin_SuccessCallback(result) {
     //autoUpdateCurrentActivity 
     //_viewMachineAtTime
 
+    //if this is not he first time running the round robin, then add the business locatoins to the map
+    if (!firstTimeRunningRoundRobin) {
+
+        //TODO: DAVE finished work here on sunday, need to add ALL locations to the map
+        //they need to auto-change when the round robin fires but not have the client access the SQL backend literally
+        //every time we refresh the screen.
+
+
+        firstTimeRunningRoundRobin = false;
+    }
+
+   
     try {
 
         var updatetime = false;
