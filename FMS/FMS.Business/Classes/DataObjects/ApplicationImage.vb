@@ -140,8 +140,15 @@
 
         Public Shared Function GetDefaultHomeImageID() As Guid
 
-            Return SingletonAccess.FMSDataContextNew.ApplicationImages.SingleOrDefault(Function(y) y.ApplicationID Is Nothing _
-                                                                                           And y.Name = "Default Home").ApplicationImageID
+            Return GetDefaultHomeImage.ApplicationImageID
+        End Function
+
+        Public Shared Function GetDefaultHomeImage() As DataObjects.ApplicationImage
+
+            Return (From ai In SingletonAccess.FMSDataContextContignous.ApplicationImages _
+                    Where ai.Name = "Default Home" _
+                    Select New DataObjects.ApplicationImage(ai)).Single
+
         End Function
 
         Public Shared Function GetAllDefaultImages(type As String)
