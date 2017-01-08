@@ -83,6 +83,8 @@ Public Class Truck
     Public Property time As String
     Public Property Driver As String
 
+    Public Property ApplicationImageID As String
+
     Private Property __comboBoxDisplay As String
 
     Public Property ComboBoxDisplay As String
@@ -98,13 +100,13 @@ Public Class Truck
     End Property
 
 
-    Public Sub New(id As String, queryDate As Date, driver As String, truckName As String)
+    Public Sub New(id As String, queryDate As Date, driver As String, truckName As String, applicationImageID As Guid)
 
         Me.Driver = driver
         Me.ID = id
         Me.time = queryDate
         Me.TruckName = truckName
-
+        Me.ApplicationImageID = applicationImageID.ToString
         'dont try and get the lat long combo if the deviceID was not supplied
         If String.IsNullOrEmpty(id) Then Exit Sub
 
@@ -251,7 +253,7 @@ Public Class Truck
                 Dim drivername As String = If(.CurrentDriver Is Nothing, "unknown driver", .CurrentDriver.NameFormatted)
                 Dim driverid As Guid = If(.CurrentDriver Is Nothing, Guid.Empty, .CurrentDriver.ApplicationDriverID)
 
-                Dim t As Truck = New Truck(.DeviceID, time, drivername, .Name)
+                Dim t As Truck = New Truck(.DeviceID, time, drivername, .Name, .ApplicationImageID)
 
                 t.DriverID = driverid
 

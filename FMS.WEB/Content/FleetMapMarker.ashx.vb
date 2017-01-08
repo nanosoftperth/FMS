@@ -15,9 +15,32 @@ Public Class FleetMapMarker
                 Dim contType = "image/png"
                 Dim ImageData As Byte()
 
+                Dim id_str As String = .Request.QueryString("Id")
+
+                If Not String.IsNullOrEmpty(id_str) Then
+
+                    Dim id As Guid = Guid.Parse(id_str)
+                    Dim img = DataObjects.ApplicationImage.GetImageFromID(id)
+
+                    'check if this imate is associated with the applicationId
+                    Dim appIsAllowedAccess As Boolean = img.ApplicationID Is Nothing OrElse img.ApplicationID.Value = ThisSession.ApplicationID
+                    'if it is not, then return to default.
+                    If Not appIsAllowedAccess Then img = DataObjects.ApplicationImage.GetDefaultHomeImage
+
+                    .Response.Clear()
+                    .Response.ContentType = contType
+                    .Response.BinaryWrite(img.Img)
+
+                    Exit Sub
+
+                End If
+
+                'TODO: we need to remove all below this line, especially the GOTO :) !
+
+
                 If type.ToLower.Equals("vehicle") And vehicleName IsNot Nothing Then 'BY RYAN: Check if vehicle has unique icon
                     Dim v = DataObjects.ApplicationVehicle.GetFromName(vehicleName, .Session("ApplicationID"))
-                    
+
                     Dim img = DataObjects.ApplicationImage.GetImageFromID(v.ApplicationImageID)
                     If Not img Is Nothing Then
                         ImageData = img.Img

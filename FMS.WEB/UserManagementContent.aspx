@@ -566,7 +566,7 @@
                                             </dx:GridViewDataTextColumn>
 
                                             <dx:GridViewDataComboBoxColumn Caption="Image" FieldName="ApplicationImageID" VisibleIndex="5" MinWidth="150" Width="150px">
-                                                <PropertiesComboBox DataSourceID="odsHomeImages" ImageUrlField="ImgURL" TextField="" ValueField="ApplicationImageID">
+                                                <PropertiesComboBox DataSourceID="odsHomeImages" ImageUrlField="ImgURL" TextField="Name" ValueField="ApplicationImageID">
                                                     <ClearButton Visibility="Auto">
                                                     </ClearButton>
                                                 </PropertiesComboBox>

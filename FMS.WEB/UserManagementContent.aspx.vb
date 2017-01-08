@@ -158,7 +158,10 @@ Public Class Test
         Dim s = New DataObjects.ApplicationImage
 
         s.ApplicationID = ThisSession.ApplicationID
-        s.Name = "Uploaded by " + ThisSession.User.UserName
+
+        's.Name = "Uploaded by " + ThisSession.User.UserName
+        s.Name = "custom" 'we need a way to "edit" the image names(or the image itself), or leave them as "custom"
+
         If ASPxButtonHome.Checked Then
             s.Type = "home"
         ElseIf ASPxButtonVehicle.Checked Then

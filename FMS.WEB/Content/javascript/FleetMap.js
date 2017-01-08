@@ -682,11 +682,11 @@ function getLabelInvisibleMarker(location, text) {
 
 
 // Adds a marker to the map and push to the array.
-function addMarker(location, lblContent, markerID, vehicleName) {
+function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {
 
     var marker = new MarkerWithLabel({
         position: location,
-        icon: icon_truck + '&vname=' + vehicleName,
+        icon: icon_truck + '&Id=' + applicationImageID,
         labelContent: lblContent,
         labelAnchor: new google.maps.Point(22, 0),
         labelClass: "labels", // the CSS class for the label
@@ -749,7 +749,7 @@ function upsertMapTrucks(result) {
 
 
         } else {
-            addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName);
+            addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName, trucks[index].ApplicationImageID);
         }
 
         if (map.getZoom() <= 11) { $('.labels').hide(); }else { $('.labels').show(); }
@@ -773,30 +773,25 @@ function moveMarker(marker, markerPosn) {
     var deltaLng = (oldLng - newLng) / numDeltas;
   
 
-    moveMarkerSelfIterative(marker, numDeltas, 1, oldLat, oldLng, deltaLat, deltaLng);
+    marker.setPosition(markerPosn);
+
+    //we need to do more work on the "animation" of the vehicles, currently i have disabled this for work on later.
+    //-dg : 20170108
+    //moveMarkerSelfIterative(marker, numDeltas, 1, oldLat, oldLng, deltaLat, deltaLng);
 
 }
 
 
 function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaLat, deltaLng) {
 
-    //var oldLat = marker.getPosition().lat();
-    //var oldLng = marker.getPosition().lng();
-
     var newLat = oldLat - (deltaLat * itrn);
     var newLng = oldLng - (deltaLng * itrn);
-
-    //console.warn(newLng);
-
-
     var latlng = new google.maps.LatLng(newLat, newLng);
 
     marker.setPosition(latlng);
 
     if (itrn != numDeltas) {
-
         setTimeout(function () { moveMarkerSelfIterative(marker, numDeltas, itrn + 1, oldLat, oldLng, deltaLat, deltaLng) }, delay);
-
     }
 }
 
@@ -853,18 +848,13 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
     }
 
 
+    function addPPJSMarker(lat, lng, companyName) {
 
-
-
-    function addPPJSMarker() {
-
-        //serverSetting_
-
-        var lat = parseFloat(serverSetting_Business_Lattitude);
-        var lng = parseFloat(serverSetting_Business_Longitude);
+        //var lat = parseFloat(serverSetting_Business_Lattitude);
+        //var lng = parseFloat(serverSetting_Business_Longitude);
         var markerPosn = new google.maps.LatLng(lat, lng);
 
-        var companyName = serverSetting_CompanyName;
+        //var companyName = serverSetting_CompanyName;
 
         var marker = new MarkerWithLabel({
             position: markerPosn,
@@ -898,7 +888,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
 
         map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-        addPPJSMarker();
+        addPPJSMarker(lat, lng, serverSetting_CompanyName);
 
 
         google.maps.event.addListener(map, 'click', function (event) {
@@ -933,15 +923,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
 
         retobj = result;
 
-        //var marker = new MarkerWithLabel({
-        //    position: markerPosn,
-        //    icon: icon_home,
-        //    labelContent: "PPJS",
-        //    labelAnchor: new google.maps.Point(22, 0),
-        //    labelClass: "labels", // the CSS class for the label
-        //    labelStyle: { opacity: 0.75 },
-        //    map: map
-        //});
+      
     }
 
     // This example adds a search box to a map, using the Google Place Autocomplete
