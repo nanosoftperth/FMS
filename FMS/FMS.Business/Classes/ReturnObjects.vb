@@ -283,6 +283,9 @@ Public Class ClientServerRoundRobin_ReturnObject
     Public Property DeviceID As String
     Public Property LatLongs As List(Of Truck.LatLong)
     Public Property Trucks As New List(Of Truck)
+
+    Public Property BusinessLocations As List(Of DataObjects.ApplicationLocation)
+
     Public Property WasError As Boolean
     Public Property ErrorMessage As String
     Public Property activityViewerAutoUpdateToNow As Boolean
