@@ -99,6 +99,15 @@ Public Class ThisSession
         End Set
     End Property
 
+    Public Shared Property BusinessLocations As List(Of DataObjects.ApplicationLocation)
+        Get
+            Return HttpContext.Current.Session("BusinessLocations")
+        End Get
+        Set(value As List(Of DataObjects.ApplicationLocation))
+            HttpContext.Current.Session("BusinessLocations") = value
+        End Set
+    End Property
+
     Public Shared Property ApplicationObject As FMS.Business.DataObjects.Application
         Get
             Return HttpContext.Current.Session("ApplicationObject")

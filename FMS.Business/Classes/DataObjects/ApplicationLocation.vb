@@ -140,6 +140,15 @@ Namespace DataObjects
             Return GetAll(ApplicationID, includeDefault)
         End Function
 
+
+        Public Shared Function GetFromID(appLocationID As Guid) As DataObjects.ApplicationLocation
+
+            Dim dbobj = SingletonAccess.FMSDataContextContignous.ApplicationLocations.Where(Function(x) x.ApplicationLocationID = appLocationID).Single
+
+            Return New DataObjects.ApplicationLocation(dbobj)
+
+        End Function
+
         ''' <summary>
         ''' Normal "get all", with  few caveats
         ''' </summary>
