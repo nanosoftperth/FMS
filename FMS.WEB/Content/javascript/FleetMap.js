@@ -10,7 +10,7 @@
 var textSeparator = ";";
 var selectedItemString = '';
 
-
+var selectedTrucks;
 //MARKER INFOWINDOW
 
 var infoWindowVehicle = new google.maps.InfoWindow();
@@ -633,7 +633,9 @@ function cbSnapToRoad_CheckChanged(s, e) {
 
 
 function btnHeatMapSearch_Click(s, e) {
-
+    //
+    selectedTrucks = checkListBox.GetSelectedItems();
+    //alert(selectedTrucks[0].value);
     autoUpdate.SetChecked(false);
     cbHeatmapAutoUpdate.SetChecked(false);
     cbAutoIncrement.SetChecked(false);
@@ -717,7 +719,7 @@ function getLabelInvisibleMarker(location, text) {
 
 // Adds a marker to the map and push to the array.
 function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {
-
+    //alert(vehicleName);
     var marker = new MarkerWithLabel({
         position: location,
         icon: icon_truck + '&Id=' + applicationImageID,
@@ -744,10 +746,10 @@ var alreadyRan = false;
 
 function upsertMapTrucks(result) {
 
+    
     var index;
     var trucks = result.d._Trucks;
     var truckArr = [];
-
     //console.log(result);
 
     for (index = 0; index < trucks.length; ++index) {
@@ -772,12 +774,17 @@ function upsertMapTrucks(result) {
         var markerPosn = new google.maps.LatLng(trucks[index].lat, trucks[index].lng);
 
         if (trucksMarker != null) {
+            debugger;
+            var dd = (trucks[index].isHidden != 1);
+            //By RYAN: Hide marker and label
+            trucksMarker.visible = dd;
+            trucksMarker.labelVisible = dd;
+            trucksMarker.labelClass = "labels" + ((!dd) ? " labels-hidden" : "");
             trucksMarker.labelContent = labelContent;
-                       moveMarker(trucksMarker,markerPosn);
-
+            moveMarker(trucksMarker, markerPosn);
             trucksMarker.label.setStyles();
             trucksMarker.label.draw();
-            trucksMarker.setShape();  
+            trucksMarker.setShape();
             //update the marker label here to reflect the new driver
 
 
@@ -785,8 +792,14 @@ function upsertMapTrucks(result) {
             addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName, trucks[index].ApplicationImageID);
         }
 
-        if (map.getZoom() <= 11) { $('.labels').hide(); }else { $('.labels').show(); }
 
+    }
+    if (map.getZoom() <= 11) {
+        $('.labels').hide();
+    }
+    else {
+        //By Ryan
+        $('.labels:not(.labels-hidden)').show();
     }
 }
 
@@ -980,9 +993,13 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
         map.addListener('bounds_changed', function () {
 
             searchBox.setBounds(map.getBounds());
-
-            if (map.getZoom() <= 11) { $('.labels').hide('slow'); }
-            else { $('.labels').show('slow'); }
+            if (map.getZoom() <= 11) {
+                $('.labels').hide('slow');
+            }
+            else { 
+                //By Ryan
+                $('.labels:not(.labels-hidden)').show('slow');
+            }
 
         });
 
@@ -1187,7 +1204,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
         //heatmap.data.length = 0;    
 
         var googlelatlngs = [];
-
+       
         HeatMapTrucksReturnedFromServer.forEach(function (item, index) {
 
             if (item.ShowJourneyOnMap) {
@@ -1209,8 +1226,37 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
         applyActionViewerOptions();
 
         //from fleetmap.js
+        //
+        //var arrayLength = selectedTrucks.length;
+        //for (var i = 0; i < arrayLength; i++) {
+        //    alert(selectedTrucks[i].value);
+        //    //Do something
+        //}
+        var r = { d: { _Trucks: [] } };
+        var arrayLength = result.d._Trucks.length;
+        for (var i = 0; i < arrayLength; i++) {
+            //alert(result.d._Trucks[i].ID);
+            var arrayLengthx = selectedTrucks.length;
+            var flagdelete = "1";
+            for (var j = 0; j < arrayLengthx; j++) {
+                //alert(selectedTrucks[i].value);
+                if(result.d._Trucks[i].ID==selectedTrucks[j].value){
+                    flagdelete = '0';
+                    break;
+                }
+                //Do something
+            }
+            $.extend(result.d._Trucks[i], { isHidden: flagdelete });
+            //if (flagdelete == 1) {
+            //    //delete result.d._Trucks[i];
+            //    //result.d._Trucks[i].lat = '0.0';
+            //    //result.d._Trucks[i].lng = '0.0';
+            //}
+            //Do something
+        }
+        
         upsertMapTrucks(result);
-
+        
         //centre on the truck were concentrating on 
         var centreOnVan = cbFollowTruck.GetChecked();
         //if (centreOnVan) centreInOnTruck(result.d._DeviceID);
@@ -1261,7 +1307,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
     //cbGradientToggle.valueChecked
 
     function toggleHeatmap() {
-
+        //alert('toggles');
         if (thisHeatmap == null) return null;
 
         if (cbShowHeatmap.GetChecked() == true) {
