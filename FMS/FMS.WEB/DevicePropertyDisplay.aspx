@@ -70,14 +70,14 @@
                 var param = {};
 
                 param.DeviceID = deviceID;
-
+                
                 ajaxMethod("DefaultService.svc/" + 'GetLatestMessage',
                                 param, getLog_SuccessCallback, sendMessage_ErrorCallback, sendMessage_FinallyCallback);
 
             }
 
             function getLog_SuccessCallback(result) {
-                debugger;
+                
                 var s = result.d._ReturnString.replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n');
 
                 //temp
@@ -88,7 +88,7 @@
                     var lat = x[1].replace("lat:", "");
                     var lon = x[2].replace("lng", "");
                     $('#streetView_image').show();
-                    $('#streetView_image').attr("src", "https://maps.googleapis.com/maps/api/streetview?size=150x100&location=" + lat + "," + lon + "&key=AIzaSyA4rAT0fdTZLNkJ5o0uaAwZ89vVPQpr_Kc");
+                    $('#streetView_image').attr("src", "https://maps.googleapis.com/maps/api/streetview?size=150x100&location=" + lat + "," + lon + "&key=AIzaSyCeMLNUixkGRU-PwkiVbHTrMr5Foz07KWQ");
                 }
                 catch (err) {
                     $('#streetView_image').hide();

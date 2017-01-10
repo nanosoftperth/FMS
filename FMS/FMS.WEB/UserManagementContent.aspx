@@ -41,8 +41,7 @@
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
 
         <script type="text/javascript">
-
-
+            
             //  Public Function SaveDefaultBusinessLocation(newBusinessLocation As String) As String
 
 
@@ -735,8 +734,6 @@
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px;">
-
-
                                             <div style="float: right;">
                                                 <dx:ASPxButton Width="80px" CssClass="thebutton" ID="ASPxButton3" OnClick="ASPxButton3_Click"
                                                     runat="server"
