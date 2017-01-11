@@ -175,14 +175,14 @@ Public Class Test
         ASPxBinaryImageBrowse1.ContentBytes = Nothing
         dvGalery.DataBind()
 
-        Dim fmm = DataObjects.FleetMapMarker.GetApplicationFleetMapMarket(ThisSession.ApplicationID)
+        'Dim fmm = DataObjects.FleetMapMarker.GetApplicationFleetMapMarket(ThisSession.ApplicationID)
 
-        If ASPxButtonHome.Checked Then
-            fmm.Home_ApplicationImageID = imageid
-        ElseIf ASPxButtonVehicle.Checked Then
-            fmm.Vehicle_ApplicationImageID = imageid
-        End If
-        DataObjects.FleetMapMarker.Update(fmm)
+        'If ASPxButtonHome.Checked Then
+        '    fmm.Home_ApplicationImageID = imageid
+        'ElseIf ASPxButtonVehicle.Checked Then
+        '    fmm.Vehicle_ApplicationImageID = imageid
+        'End If
+        'DataObjects.FleetMapMarker.Update(fmm)
 
     End Sub
 
@@ -218,5 +218,11 @@ Public Class Test
 
     Protected Sub ASPxPageControl1_ActiveTabChanged(source As Object, e As DevExpress.Web.TabControlEventArgs) Handles ASPxPageControl1.ActiveTabChanged
 
+    End Sub
+
+    Protected Sub cpDeleteImage_Callback(source As Object, e As DevExpress.Web.CallbackEventArgs)
+        Dim id = Guid.Parse(e.Parameter)
+        Dim ImagetoDelete = DataObjects.ApplicationImage.GetImageFromID(id)
+        DataObjects.ApplicationImage.Delete(ImagetoDelete)
     End Sub
 End Class

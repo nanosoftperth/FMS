@@ -302,6 +302,15 @@ Partial Public Class Test
     Protected WithEvents ASPxHiddenFieldUpdateType As Global.DevExpress.Web.ASPxHiddenField
 
     '''<summary>
+    '''cpDeleteImage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cpDeleteImage As Global.DevExpress.Web.ASPxCallback
+
+    '''<summary>
     '''dvGalery control.
     '''</summary>
     '''<remarks>

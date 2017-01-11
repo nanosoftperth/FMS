@@ -49,7 +49,7 @@ Module Module1
     End Sub
 
     Public Sub main_method()
-
+        'THIS IS RUN INFINITELY BY THE SERVICE - RYAN
 
         LogMsg("Version ""{0}"" ", version)
 

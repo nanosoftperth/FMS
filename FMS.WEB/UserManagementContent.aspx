@@ -19,6 +19,8 @@
         <script src="Content/javascript/jquery-ui/jquery-ui.min.js"></script>
 
         <script src="Content/javascript/page.js"></script>
+        <script src="Content/contextMenu/jquery.contextMenu.js"></script>
+        <link href="Content/contextMenu/jquery.contextMenu.css" rel="stylesheet" />
 
         <style type="text/css">
             .thebutton {
@@ -39,9 +41,25 @@
         </style>
 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
-
+        
         <script type="text/javascript">
-            
+            $(function () {
+                $.contextMenu({
+                    selector: '.context-menu-one',
+                    callback: function (key, options) {
+                        var id = (this[0].src).split('=')[1];
+                        cpDeleteImage.PerformCallback(id);
+                        //window.console && console.log(m) || alert(m);
+                    },
+                    items: {
+                        "delete": { name: "Delete", icon: "delete" }
+                    }
+                });
+
+                //$('.context-menu-one').on('click', function (e) {
+                //    console.log('clicked', this);
+                //})
+            });
             //  Public Function SaveDefaultBusinessLocation(newBusinessLocation As String) As String
 
 
@@ -657,6 +675,11 @@
                                                                             <td style="width: 85%">
                                                                                 <div style="padding: 10px">
                                                                                     <dx:ASPxHiddenField ID="ASPxHiddenFieldUpdateType" ClientInstanceName="ASPxHiddenFieldUpdateType" runat="server"></dx:ASPxHiddenField>
+                                                                                    <dx:ASPxCallback ID="cpDeleteImage" ClientInstanceName="cpDeleteImage" OnCallback="cpDeleteImage_Callback" runat="server">
+                                                                                        <ClientSideEvents EndCallback="function(s,e){
+                                                                                                dvGalery.PerformCallback();
+                                                                                            }" />
+                                                                                    </dx:ASPxCallback>
                                                                                     <script>
                                                                                         function ImageClick(s, e) {
                                                                                             var id = s.GetImageUrl();
@@ -677,8 +700,8 @@
                                                                                         EnableTheming="false">
                                                                                         <PagerSettings ShowNumericButtons="False"></PagerSettings>
                                                                                         <ItemTemplate>
-                                                                                            <a href="javascript:void(0);">
-                                                                                                <dx:ASPxImage runat="server" ImageUrl='<%#"Content/MapImages.ashx?imgId=" + Eval("Id").ToString()%>' AlternateText='<%# Eval("Name")%>' Width="20px" Height="20px" ShowLoadingImage="true">
+                                                                                            <a  href="javascript:void(0);">
+                                                                                                <dx:ASPxImage runat="server" CssClass="context-menu-one" ImageUrl='<%#"Content/MapImages.ashx?imgId=" + Eval("Id").ToString()%>' AlternateText='<%# Eval("Name")%>' Width="20px" Height="20px" ShowLoadingImage="true">
                                                                                                     <ClientSideEvents Click="ImageClick" />
                                                                                                 </dx:ASPxImage>
                                                                                             </a>

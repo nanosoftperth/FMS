@@ -717,6 +717,12 @@
     <Content Include="App_Data\TopMenu.xml" />
     <Content Include="Content\Accoridan.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\contextMenu\jquery.contextMenu.css" />
+    <Content Include="Content\contextMenu\jquery.contextMenu.js" />
+    <Content Include="Content\contextMenu\jquery.contextMenu.min.css" />
+    <Content Include="Content\contextMenu\jquery.contextMenu.min.js" />
+    <Content Include="Content\contextMenu\jquery.ui.position.js" />
+    <Content Include="Content\contextMenu\jquery.ui.position.min.js" />
     <Content Include="Content\Images\9051a7_7900e319de294aa4b0166540479978ea.png" />
     <Content Include="Content\Images\account_access_1.jpg" />
     <Content Include="Content\Images\AquaHeader.jpg" />
@@ -922,6 +928,12 @@
     <Content Include="Content\FleetMapMarker.ashx" />
     <Content Include="Content\DriverImages.ashx" />
     <Content Include="Content\javascript\jquery-ui\package.json" />
+    <Content Include="Content\contextMenu\font\context-menu-icons.eot" />
+    <Content Include="Content\contextMenu\font\context-menu-icons.ttf" />
+    <Content Include="Content\contextMenu\font\context-menu-icons.woff" />
+    <Content Include="Content\contextMenu\font\context-menu-icons.woff2" />
+    <Content Include="Content\contextMenu\jquery.contextMenu.min.css.map" />
+    <Content Include="Content\contextMenu\jquery.contextMenu.min.js.map" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

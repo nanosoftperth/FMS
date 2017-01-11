@@ -774,7 +774,7 @@ function upsertMapTrucks(result) {
         var markerPosn = new google.maps.LatLng(trucks[index].lat, trucks[index].lng);
 
         if (trucksMarker != null) {
-            debugger;
+            
             var dd = (trucks[index].isHidden != 1);
             //By RYAN: Hide marker and label
             trucksMarker.visible = dd;
