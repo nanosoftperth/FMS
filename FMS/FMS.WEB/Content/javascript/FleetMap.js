@@ -480,6 +480,7 @@ function showBusinessLocations(businessLocations) {
             icon: icon_truck + '&Id=' + appImageID,
             labelContent: name,
             labelAnchor: new google.maps.Point(22, 0),
+            zIndex: 9999999,
             labelClass: "labels" // the CSS class for the label                            
         });
 
@@ -1002,6 +1003,9 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
             }
 
         });
+
+      
+
 
         var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve
