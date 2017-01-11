@@ -43,10 +43,10 @@ Public Class FleetMapMarker
                     If Not img Is Nothing Then
                         ImageData = img.Img
                     Else 'Use default image
-                        GoTo DefaultImage
+                        ImageData = GetDefaultImage(type, .Session("ApplicationID"))
                     End If
                 Else
-DefaultImage:       'Use default image
+                    'Use default image
                     ImageData = GetDefaultImage(type, .Session("ApplicationID"))
                 End If
 
