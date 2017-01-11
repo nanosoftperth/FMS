@@ -248,7 +248,18 @@
         <asp:XmlDataSource ID="XmlDataSourceHeader" runat="server" DataFile="~/App_Data/TopMenu.xml"
             XPath="/items/*"></asp:XmlDataSource>
 
+        <script type="text/javascript">
 
+            // Requires jQuery!
+            //jQuery.ajax({
+            //    url: "https://nanosoft.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/mivkc6/100024/c/1000.670.2/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=7bbbd1e1",
+            //    type: "get",
+            //    cache: true,
+            //    dataType: "script"
+            //});
+
+
+        </script>
 
     </form>
 </body>
