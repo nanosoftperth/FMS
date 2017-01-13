@@ -215,6 +215,8 @@
                   <dx:TabPage Name="Drivers" Text="Drivers">
                      <ContentCollection>
                         <dx:ContentControl runat="server">
+                            <dx:ASPxHyperLink ID="lnkNewDriver" Theme="SoftOrange" ClientInstanceName="lnkNewDriver" runat="server" Text="Add New Driver" NavigateUrl="javascript:dgvDrivers.AddNewRow()">
+                            </dx:ASPxHyperLink>
                            <dx:ASPxGridView SettingsBehavior-ConfirmDelete="true" SettingsText-ConfirmDelete="Are you sure you wish to delete the driver?"
                               SettingsPager-PageSize="3" ClientInstanceName="dgvDrivers" KeyFieldName="ApplicationDriverID" ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="odsDrivers" Theme="SoftOrange">
                               <Templates>

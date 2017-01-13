@@ -94,7 +94,6 @@ Partial Public Class ResourceMgmnt
     '''</remarks>
     Protected WithEvents dgvApplicationVehicleDriver As Global.DevExpress.Web.ASPxGridView
 
-
     '''<summary>
     '''odsApplicationVehicleDriverTimeslot control.
     '''</summary>
@@ -121,6 +120,15 @@ Partial Public Class ResourceMgmnt
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsAVDTDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''lnkNewDriver control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkNewDriver As Global.DevExpress.Web.ASPxHyperLink
 
     '''<summary>
     '''ASPxGridView2 control.
@@ -194,17 +202,6 @@ Partial Public Class ResourceMgmnt
     '''</remarks>
     Protected WithEvents dgvDetailBookings As Global.DevExpress.Web.ASPxGridView
 
- 
-
-    '''<summary>
-    '''ASPxGridLookup1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxGridLookup1 As Global.DevExpress.Web.ASPxGridLookup
-
     '''<summary>
     '''odsBookingContact control.
     '''</summary>
@@ -231,5 +228,4 @@ Partial Public Class ResourceMgmnt
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsBooking As Global.System.Web.UI.WebControls.ObjectDataSource
-
 End Class
