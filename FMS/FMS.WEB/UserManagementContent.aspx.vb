@@ -114,7 +114,19 @@ Public Class Test
         'Dim agp = Membership.GeneratePassword(9, 0)
         'TODO: email must be unique per application and not empty
         Dim x = CType(e.InputParameters(0), FMS.Business.DataObjects.User)
+
+        Dim o As FMS.Business.aspnet_User = FMS.Business.DataObjects.User.CheckExistingUser(x.Email)
+        Try
+            If o.aspnet_Membership.Email.Length > 1 And IsNothing(0) = False Then
+                e.Cancel = True
+                Exit Sub
+            End If
+        Catch
+            'Nothing to do, just continue statement below
+        End Try
         x.ApplicationID = ThisSession.ApplicationID
+
+       
         'Dim user As MembershipUser = Membership.CreateUser(x.UserName, agp, x.Email)
         'x.UserId = user.ProviderUserKey
         'send an email with agp
