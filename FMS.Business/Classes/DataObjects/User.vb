@@ -62,7 +62,14 @@ Namespace DataObjects
         End Sub
 
 #End Region
+        Public Shared Function CheckExistingUser(_email As String) As FMS.Business.aspnet_User
+            Dim o As FMS.Business.aspnet_User = (From i In SingletonAccess.FMSDataContextNew.aspnet_Users _
+                                 Where i.aspnet_Membership.Email = _email).FirstOrDefault
 
+
+            Return o
+
+        End Function
 #Region "CRUD"
         Public Shared Sub Insert(u As User)
             'BY RYAN
