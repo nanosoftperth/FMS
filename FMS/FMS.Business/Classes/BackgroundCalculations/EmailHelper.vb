@@ -89,7 +89,7 @@ Namespace BackgroundCalculations
         Public Shared Function SendEmailChangePasswordRequest(emailList As String, companyName As String, uri As String) As String
             Dim messageBody As String = String.Empty
             Try
-                Dim subject As String = String.Format("request change password alert from {0}.nanosoft.com.au", companyName)
+                Dim subject As String = String.Format("request change of user credential / password from {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(EmailContentForForgotPassword, companyName, uri)
                 SendEmail(emailList, subject, messageBody)
             Catch ex As Exception
@@ -102,7 +102,7 @@ Namespace BackgroundCalculations
         Public Shared Function SendEmailUserCreated(emailList As String, companyName As String, username As String, password As String) As String
             Dim messageBody As String = String.Empty
             Try
-                Dim subject As String = String.Format("new user alert from {0}.nanosoft.com.au", companyName)
+                Dim subject As String = String.Format("New user alert from {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(EmailContentForNewUser, companyName, username, password)
                 SendEmail(emailList, subject, messageBody)
             Catch ex As Exception
