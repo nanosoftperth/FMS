@@ -175,8 +175,9 @@ function getSelectedEditItem() {
 
 function cbGeoEditGeoFences_SelectedIndexChanges(s, e) {
     //alert(JSON.stringify(e));
-
+    //USED WHEN GEOFENCE IS SELECTED
     //get the item from the drop down list
+    
     var selectedItem = getSelectedEditItem();
 
     var debugStr = "name:{0}\ndesc:{1}\nid:{2}\ncolour,{3}".format(selectedItem.name, selectedItem.desc, selectedItem.id, selectedItem.colour)
@@ -512,6 +513,7 @@ function getPolygonArrsStr(plyGon) {
 function btnPlaceOnMap_Click() {
 
     //remove polygon if it it already on the map and has not been saved yet
+    //USED TO PLACE NEW POLYGON ON MAP
     if (currentPolygon != null) { currentPolygon.setMap(null); }
     createPolygonOnClick();
 }
@@ -665,6 +667,9 @@ function goefenceColour_ColorChanged() {
 function popupGeoCaching_Closing() {
     google.maps.event.clearListeners(map, 'click');
     if (currentPolygon != null) { currentPolygon.setMap(null); currentPolygon = null; }
+   //BY RYAN: WHEN THE POPUP WINDOW IS CLOSED
+    cbViewGeoFences.SetChecked(true); cbViewGeoFences_checkChanged(null);
+    GeoFenceIDToShowOnRefreshMakeEditable = false;
 }
 
 
