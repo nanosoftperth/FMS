@@ -77,6 +77,15 @@ Partial Public Class FleetMap
     Protected WithEvents btnHeatMapSearch As Global.DevExpress.Web.ASPxButton
 
     '''<summary>
+    '''cbExcludeCars control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbExcludeCars As Global.DevExpress.Web.ASPxCheckBox
+
+    '''<summary>
     '''cb control.
     '''</summary>
     '''<remarks>

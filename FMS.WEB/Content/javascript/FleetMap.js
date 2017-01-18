@@ -775,12 +775,19 @@ function upsertMapTrucks(result) {
         var markerPosn = new google.maps.LatLng(trucks[index].lat, trucks[index].lng);
 
         if (trucksMarker != null) {
-            
-            var dd = (trucks[index].isHidden != 1);
-            //By RYAN: Hide marker and label
-            trucksMarker.visible = dd;
-            trucksMarker.labelVisible = dd;
-            trucksMarker.labelClass = "labels" + ((!dd) ? " labels-hidden" : "");
+            //BY RYAN: THE ITERATION HAS TO PASS THRU A CHECK IF VEHICLES NOT SELECTED CAN BE VISIBLE
+            if (cbExcludeCars.GetChecked()) {
+                var truckIsHidden = (trucks[index].isHidden != 1);
+                //By RYAN: Hide marker and label
+                trucksMarker.visible = truckIsHidden;
+                trucksMarker.labelVisible = truckIsHidden;
+                trucksMarker.labelClass = "labels" + ((!truckIsHidden) ? " labels-hidden" : "");
+            }
+            else {
+                trucksMarker.visible = true;
+                trucksMarker.labelVisible = true;
+                trucksMarker.labelClass = "labels";
+            }
             trucksMarker.labelContent = labelContent;
             moveMarker(trucksMarker, markerPosn);
             trucksMarker.label.setStyles();
