@@ -260,7 +260,15 @@
                                                         </dx:ASPxButton>
                                                     </td>
                                                 </tr>
-
+                                                <tr>
+                                                    <td>
+                                                        <dx:ASPxCheckBox ID="cbExcludeCars" runat="server" ClientInstanceName="cbExcludeCars" EnableTheming="True" Text="Hide vehicles not selected" Theme="SoftOrange">
+                                                            <ClientSideEvents CheckedChanged="function(s, e) {
+	
+}" />
+                                                        </dx:ASPxCheckBox>
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <dx:ASPxCheckBox ID="cb" runat="server" ClientInstanceName="cbGradientToggle" EnableTheming="True" Text="Gradient" Theme="SoftOrange">
