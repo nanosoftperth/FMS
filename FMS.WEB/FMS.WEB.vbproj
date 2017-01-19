@@ -732,6 +732,7 @@
     <Content Include="Content\Images\cloud.jpg" />
     <Content Include="Content\Images\cloud_web.jpg" />
     <Content Include="Content\Images\download.jpg" />
+    <Content Include="Content\Images\flow_chart_2.png" />
     <Content Include="Content\Images\GlassHeader.jpg" />
     <Content Include="Content\Images\google-map-logo-589x225.gif" />
     <Content Include="Content\Images\icon-user-default.png" />
@@ -748,7 +749,6 @@
     <Content Include="Content\Images\markers\truck_48.png" />
     <Content Include="Content\Images\markers\truck_62x38.png" />
     <Content Include="Content\Images\markers\van_48.png" />
-    <Content Include="Content\Images\mC-settings.old.png" />
     <Content Include="Content\Images\mC-settings.png" />
     <Content Include="Content\Images\pi case.jpg" />
     <Content Include="Content\Images\PlasticBlueHeader.jpg" />
@@ -1014,7 +1014,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:15389/</IISUrl>
+          <IISUrl>http://localhost:18389/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -56,15 +56,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("endeavour")>  _
-        Public ReadOnly Property debug_company_name() As String
-            Get
-                Return CType(Me("debug_company_name"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("2.8.0")>  _
         Public ReadOnly Property version() As String
             Get
@@ -101,6 +92,15 @@ Namespace My
         Public ReadOnly Property NoAuthenticationRequiredURLs() As Global.System.Collections.Specialized.StringCollection
             Get
                 Return CType(Me("NoAuthenticationRequiredURLs"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("demo")>  _
+        Public ReadOnly Property debug_company_name() As String
+            Get
+                Return CType(Me("debug_company_name"),String)
             End Get
         End Property
     End Class
