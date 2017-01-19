@@ -21,7 +21,7 @@ Namespace BackgroundCalculations
         "Nanosoft Automated Services"
 
         Public Const EmailContentForForgotPassword As String = _
-        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
+        "Message from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
         "You can change your password by clicking the link below : " & vbNewLine & _
         "{1}" & vbNewLine & _
         "The link will expire after 24 hours."
