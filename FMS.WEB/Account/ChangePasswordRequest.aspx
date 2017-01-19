@@ -26,7 +26,7 @@
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </div>
-                            <dx:ASPxLabel Theme="SoftOrange" ID="lblConfirmPassword" runat="server" AssociatedControlID="tbConfirmPassword"
+                           <%-- <dx:ASPxLabel Theme="SoftOrange" ID="lblConfirmPassword" runat="server" AssociatedControlID="tbConfirmPassword"
                                 Text="Confirm password:" />
                             <div class="form-field">
                                 <dx:ASPxTextBox Theme="SoftOrange" ID="tbConfirmPassword" Password="true" runat="server" Width="200px">
@@ -40,7 +40,7 @@
                                         e.errorText = 'The Password and Confirmation Password must match.';
                                     }" />
                                 </dx:ASPxTextBox>
-                            </div>
+                            </div>--%>
                             <dx:ASPxButton ID="btnSendEmail" Theme="SoftOrange" runat="server" Text="Confirm" ValidationGroup="CPRValidationGroup"
                                 OnClick="btnSendEmail_Click">
                             </dx:ASPxButton>

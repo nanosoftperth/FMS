@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class ChangePasswordRequest
 
     '''<summary>
-    '''ASPxRoundPanel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxRoundPanel1 As Global.DevExpress.Web.ASPxRoundPanel
-
-    '''<summary>
     '''ASPxPanel1 control.
     '''</summary>
     '''<remarks>
@@ -57,24 +48,6 @@ Partial Public Class ChangePasswordRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbPassword As Global.DevExpress.Web.ASPxTextBox
-
-    '''<summary>
-    '''lblConfirmPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblConfirmPassword As Global.DevExpress.Web.ASPxLabel
-
-    '''<summary>
-    '''tbConfirmPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbConfirmPassword As Global.DevExpress.Web.ASPxTextBox
 
     '''<summary>
     '''btnSendEmail control.
