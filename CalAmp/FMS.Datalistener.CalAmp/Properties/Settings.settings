@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FMS.Datalistener.CalAmp.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="LogDirectory" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\Administrator\Desktop\telegram_recorder</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>
