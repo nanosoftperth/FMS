@@ -140,6 +140,15 @@ Partial Public Class ResourceMgmnt
     Protected WithEvents ASPxGridView2 As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''odsApplicationLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsApplicationLocation As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsDrivers control.
     '''</summary>
     '''<remarks>

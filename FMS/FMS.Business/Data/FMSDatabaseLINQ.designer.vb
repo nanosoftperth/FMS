@@ -67,12 +67,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
     End Sub
-  Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
-    End Sub
-  Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
-    End Sub
-  Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
-    End Sub
   Partial Private Sub InsertApplicationFeature(instance As ApplicationFeature)
     End Sub
   Partial Private Sub UpdateApplicationFeature(instance As ApplicationFeature)
@@ -307,6 +301,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
     End Sub
+  Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
+    End Sub
+  Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
+    End Sub
+  Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -367,12 +367,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
 		Get
 			Return Me.GetTable(Of ApplicationBooking)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
-		Get
-			Return Me.GetTable(Of ApplicationDriver)
 		End Get
 	End Property
 	
@@ -637,6 +631,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
 		Get
 			Return Me.GetTable(Of WebServiceLog)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
+		Get
+			Return Me.GetTable(Of ApplicationDriver)
 		End Get
 	End Property
 	
@@ -2272,267 +2272,6 @@ Partial Public Class ApplicationBooking
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationDriver")>  _
-Partial Public Class ApplicationDriver
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ApplicationDriverID As System.Guid
-	
-	Private _FirstName As String
-	
-	Private _Surname As String
-	
-	Private _PhoneNumber As String
-	
-	Private _photo As String
-	
-	Private _photoBinary As System.Data.Linq.Binary
-	
-	Private _ApplicationID As System.Nullable(Of System.Guid)
-	
-	Private _Notes As String
-	
-	Private _emailaddress As String
-	
-	Private _ApplicationBookings As EntitySet(Of ApplicationBooking)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnApplicationDriverIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationDriverIDChanged()
-    End Sub
-    Partial Private Sub OnFirstNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnFirstNameChanged()
-    End Sub
-    Partial Private Sub OnSurnameChanging(value As String)
-    End Sub
-    Partial Private Sub OnSurnameChanged()
-    End Sub
-    Partial Private Sub OnPhoneNumberChanging(value As String)
-    End Sub
-    Partial Private Sub OnPhoneNumberChanged()
-    End Sub
-    Partial Private Sub OnphotoChanging(value As String)
-    End Sub
-    Partial Private Sub OnphotoChanged()
-    End Sub
-    Partial Private Sub OnphotoBinaryChanging(value As System.Data.Linq.Binary)
-    End Sub
-    Partial Private Sub OnphotoBinaryChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnNotesChanging(value As String)
-    End Sub
-    Partial Private Sub OnNotesChanged()
-    End Sub
-    Partial Private Sub OnemailaddressChanging(value As String)
-    End Sub
-    Partial Private Sub OnemailaddressChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._ApplicationBookings = New EntitySet(Of ApplicationBooking)(AddressOf Me.attach_ApplicationBookings, AddressOf Me.detach_ApplicationBookings)
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ApplicationDriverID() As System.Guid
-		Get
-			Return Me._ApplicationDriverID
-		End Get
-		Set
-			If ((Me._ApplicationDriverID = value)  _
-						= false) Then
-				Me.OnApplicationDriverIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationDriverID = value
-				Me.SendPropertyChanged("ApplicationDriverID")
-				Me.OnApplicationDriverIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FirstName", DbType:="VarChar(MAX)")>  _
-	Public Property FirstName() As String
-		Get
-			Return Me._FirstName
-		End Get
-		Set
-			If (String.Equals(Me._FirstName, value) = false) Then
-				Me.OnFirstNameChanging(value)
-				Me.SendPropertyChanging
-				Me._FirstName = value
-				Me.SendPropertyChanged("FirstName")
-				Me.OnFirstNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Surname", DbType:="VarChar(MAX)")>  _
-	Public Property Surname() As String
-		Get
-			Return Me._Surname
-		End Get
-		Set
-			If (String.Equals(Me._Surname, value) = false) Then
-				Me.OnSurnameChanging(value)
-				Me.SendPropertyChanging
-				Me._Surname = value
-				Me.SendPropertyChanged("Surname")
-				Me.OnSurnameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNumber", DbType:="VarChar(MAX)")>  _
-	Public Property PhoneNumber() As String
-		Get
-			Return Me._PhoneNumber
-		End Get
-		Set
-			If (String.Equals(Me._PhoneNumber, value) = false) Then
-				Me.OnPhoneNumberChanging(value)
-				Me.SendPropertyChanging
-				Me._PhoneNumber = value
-				Me.SendPropertyChanged("PhoneNumber")
-				Me.OnPhoneNumberChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photo", DbType:="VarChar(MAX)")>  _
-	Public Property photo() As String
-		Get
-			Return Me._photo
-		End Get
-		Set
-			If (String.Equals(Me._photo, value) = false) Then
-				Me.OnphotoChanging(value)
-				Me.SendPropertyChanging
-				Me._photo = value
-				Me.SendPropertyChanged("photo")
-				Me.OnphotoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
-	Public Property photoBinary() As System.Data.Linq.Binary
-		Get
-			Return Me._photoBinary
-		End Get
-		Set
-			If (Object.Equals(Me._photoBinary, value) = false) Then
-				Me.OnphotoBinaryChanging(value)
-				Me.SendPropertyChanging
-				Me._photoBinary = value
-				Me.SendPropertyChanged("photoBinary")
-				Me.OnphotoBinaryChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
-	Public Property ApplicationID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If (Me._ApplicationID.Equals(value) = false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="VarChar(MAX)")>  _
-	Public Property Notes() As String
-		Get
-			Return Me._Notes
-		End Get
-		Set
-			If (String.Equals(Me._Notes, value) = false) Then
-				Me.OnNotesChanging(value)
-				Me.SendPropertyChanging
-				Me._Notes = value
-				Me.SendPropertyChanged("Notes")
-				Me.OnNotesChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_emailaddress", DbType:="VarChar(500)")>  _
-	Public Property emailaddress() As String
-		Get
-			Return Me._emailaddress
-		End Get
-		Set
-			If (String.Equals(Me._emailaddress, value) = false) Then
-				Me.OnemailaddressChanging(value)
-				Me.SendPropertyChanging
-				Me._emailaddress = value
-				Me.SendPropertyChanged("emailaddress")
-				Me.OnemailaddressChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ApplicationDriver_ApplicationBooking", Storage:="_ApplicationBookings", ThisKey:="ApplicationDriverID", OtherKey:="ApplicationDriverID")>  _
-	Public Property ApplicationBookings() As EntitySet(Of ApplicationBooking)
-		Get
-			Return Me._ApplicationBookings
-		End Get
-		Set
-			Me._ApplicationBookings.Assign(value)
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_ApplicationBookings(ByVal entity As ApplicationBooking)
-		Me.SendPropertyChanging
-		entity.ApplicationDriver = Me
-	End Sub
-	
-	Private Sub detach_ApplicationBookings(ByVal entity As ApplicationBooking)
-		Me.SendPropertyChanging
-		entity.ApplicationDriver = Nothing
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationFeature")>  _
 Partial Public Class ApplicationFeature
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -4058,7 +3797,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4447,7 +4186,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -11755,6 +11494,289 @@ Partial Public Class WebServiceLog
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationDriver")>  _
+Partial Public Class ApplicationDriver
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationDriverID As System.Guid
+	
+	Private _FirstName As String
+	
+	Private _Surname As String
+	
+	Private _PhoneNumber As String
+	
+	Private _photo As String
+	
+	Private _photoBinary As System.Data.Linq.Binary
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Notes As String
+	
+	Private _emailaddress As String
+	
+	Private _ApplicationLocationID As System.Nullable(Of System.Guid)
+	
+	Private _ApplicationBookings As EntitySet(Of ApplicationBooking)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationDriverIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationDriverIDChanged()
+    End Sub
+    Partial Private Sub OnFirstNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnFirstNameChanged()
+    End Sub
+    Partial Private Sub OnSurnameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSurnameChanged()
+    End Sub
+    Partial Private Sub OnPhoneNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnPhoneNumberChanged()
+    End Sub
+    Partial Private Sub OnphotoChanging(value As String)
+    End Sub
+    Partial Private Sub OnphotoChanged()
+    End Sub
+    Partial Private Sub OnphotoBinaryChanging(value As System.Data.Linq.Binary)
+    End Sub
+    Partial Private Sub OnphotoBinaryChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnNotesChanged()
+    End Sub
+    Partial Private Sub OnemailaddressChanging(value As String)
+    End Sub
+    Partial Private Sub OnemailaddressChanged()
+    End Sub
+    Partial Private Sub OnApplicationLocationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationLocationIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._ApplicationBookings = New EntitySet(Of ApplicationBooking)(AddressOf Me.attach_ApplicationBookings, AddressOf Me.detach_ApplicationBookings)
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationDriverID() As System.Guid
+		Get
+			Return Me._ApplicationDriverID
+		End Get
+		Set
+			If ((Me._ApplicationDriverID = value)  _
+						= false) Then
+				Me.OnApplicationDriverIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationDriverID = value
+				Me.SendPropertyChanged("ApplicationDriverID")
+				Me.OnApplicationDriverIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FirstName", DbType:="VarChar(MAX)")>  _
+	Public Property FirstName() As String
+		Get
+			Return Me._FirstName
+		End Get
+		Set
+			If (String.Equals(Me._FirstName, value) = false) Then
+				Me.OnFirstNameChanging(value)
+				Me.SendPropertyChanging
+				Me._FirstName = value
+				Me.SendPropertyChanged("FirstName")
+				Me.OnFirstNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Surname", DbType:="VarChar(MAX)")>  _
+	Public Property Surname() As String
+		Get
+			Return Me._Surname
+		End Get
+		Set
+			If (String.Equals(Me._Surname, value) = false) Then
+				Me.OnSurnameChanging(value)
+				Me.SendPropertyChanging
+				Me._Surname = value
+				Me.SendPropertyChanged("Surname")
+				Me.OnSurnameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNumber", DbType:="VarChar(MAX)")>  _
+	Public Property PhoneNumber() As String
+		Get
+			Return Me._PhoneNumber
+		End Get
+		Set
+			If (String.Equals(Me._PhoneNumber, value) = false) Then
+				Me.OnPhoneNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._PhoneNumber = value
+				Me.SendPropertyChanged("PhoneNumber")
+				Me.OnPhoneNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photo", DbType:="VarChar(MAX)")>  _
+	Public Property photo() As String
+		Get
+			Return Me._photo
+		End Get
+		Set
+			If (String.Equals(Me._photo, value) = false) Then
+				Me.OnphotoChanging(value)
+				Me.SendPropertyChanging
+				Me._photo = value
+				Me.SendPropertyChanged("photo")
+				Me.OnphotoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property photoBinary() As System.Data.Linq.Binary
+		Get
+			Return Me._photoBinary
+		End Get
+		Set
+			If (Object.Equals(Me._photoBinary, value) = false) Then
+				Me.OnphotoBinaryChanging(value)
+				Me.SendPropertyChanging
+				Me._photoBinary = value
+				Me.SendPropertyChanged("photoBinary")
+				Me.OnphotoBinaryChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="VarChar(MAX)")>  _
+	Public Property Notes() As String
+		Get
+			Return Me._Notes
+		End Get
+		Set
+			If (String.Equals(Me._Notes, value) = false) Then
+				Me.OnNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._Notes = value
+				Me.SendPropertyChanged("Notes")
+				Me.OnNotesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_emailaddress", DbType:="VarChar(500)")>  _
+	Public Property emailaddress() As String
+		Get
+			Return Me._emailaddress
+		End Get
+		Set
+			If (String.Equals(Me._emailaddress, value) = false) Then
+				Me.OnemailaddressChanging(value)
+				Me.SendPropertyChanging
+				Me._emailaddress = value
+				Me.SendPropertyChanged("emailaddress")
+				Me.OnemailaddressChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationLocationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationLocationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationLocationID
+		End Get
+		Set
+			If (Me._ApplicationLocationID.Equals(value) = false) Then
+				Me.OnApplicationLocationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationLocationID = value
+				Me.SendPropertyChanged("ApplicationLocationID")
+				Me.OnApplicationLocationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ApplicationDriver_ApplicationBooking", Storage:="_ApplicationBookings", ThisKey:="ApplicationDriverID", OtherKey:="ApplicationDriverID")>  _
+	Public Property ApplicationBookings() As EntitySet(Of ApplicationBooking)
+		Get
+			Return Me._ApplicationBookings
+		End Get
+		Set
+			Me._ApplicationBookings.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_ApplicationBookings(ByVal entity As ApplicationBooking)
+		Me.SendPropertyChanging
+		entity.ApplicationDriver = Me
+	End Sub
+	
+	Private Sub detach_ApplicationBookings(ByVal entity As ApplicationBooking)
+		Me.SendPropertyChanging
+		entity.ApplicationDriver = Nothing
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -12046,7 +12068,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

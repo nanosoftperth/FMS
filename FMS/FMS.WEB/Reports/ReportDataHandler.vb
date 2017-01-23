@@ -100,9 +100,13 @@ Public Class ReportDataHandler
             Dim ddate = (From x In vehicleReportLines Select If(x.StartTime Is Nothing, "", x.StartTime.Value.ToShortDateString())).Distinct.ToList
 
             'get lat long of application
-            Dim apsettings = Business.DataObjects.Setting.GetSettingsForApplication_withoutImages(ThisSession.ApplicationID)
-            Dim aplat = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Lattitude").Value
-            Dim aplog = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Longitude").Value
+            'Dim apsettings = Business.DataObjects.Setting.GetSettingsForApplication_withoutImages(ThisSession.ApplicationID)
+            'Dim aplat = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Lattitude").Value
+            'Dim aplog = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Longitude").Value
+            'BY RYAN P. : GETS THE LONGITUDE AND LATITUDE PER DRIVER AND VEHICLE ASSIGNED
+            Dim appv = Business.DataObjects.ApplicationLocation.GetLocationVehicle(startdate, endDate, vehicleID, ThisSession.ApplicationID)
+            Dim aplat = appv.Lattitude
+            Dim aplog = appv.Longitude
             Dim aploc = New Business.BackgroundCalculations.Loc(aplat, aplog)
             For Each dateloop In ddate
                 ' group all activities in vehicleReportLines per date

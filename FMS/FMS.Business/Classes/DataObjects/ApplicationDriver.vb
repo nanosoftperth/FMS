@@ -14,6 +14,7 @@
 
         Public Property EmailAddress As String
 
+        Public Property ApplicationLocationID As Guid?
         ''' <summary>
         ''' For when bound to a cotnrol which needs the "everyone" option
         ''' </summary>
@@ -22,7 +23,15 @@
         ''' <remarks></remarks>
         Public Property RepresentsEveryone As Boolean = False
 
-
+        Public ReadOnly Property ApplicationLocation As String
+            Get
+                If ApplicationLocationID = Guid.Empty Then
+                    Return "use app default"
+                Else
+                    Return DataObjects.ApplicationLocation.GetFromID(Me.ApplicationLocationID.Value).Name
+                End If
+            End Get
+        End Property
         Public ReadOnly Property ApplicationDriverIDAsString As String
             Get
                 If ApplicationDriverID = Guid.Empty Then
@@ -62,7 +71,7 @@
                 Me.ApplicationID = ad.ApplicationID
                 Me.Notes = ad.Notes
                 Me.EmailAddress = ad.emailaddress
-
+                Me.ApplicationLocationID = If(ad.ApplicationLocationID Is Nothing, Guid.Empty, ad.ApplicationLocationID)
 
                 If ad.photoBinary IsNot Nothing Then _
                         PhotoBinary = ad.photoBinary.ToArray
@@ -88,7 +97,7 @@
                 .ApplicationID = ad.ApplicationID
                 .Notes = ad.Notes
                 .emailaddress = ad.EmailAddress
-
+                .ApplicationLocationID = ad.ApplicationLocationID
                 If ad.PhotoBinary Is Nothing Then
                     'get the "mysteryman" row
                     .photoBinary = SingletonAccess.FMSDataContextContignous.ApplicationDrivers.Where(Function(i) i.FirstName = "mysteryman").Single.photoBinary
@@ -118,7 +127,7 @@
                 .ApplicationID = ad.ApplicationID
                 .Notes = ad.Notes
                 .emailaddress = ad.EmailAddress
-
+                .ApplicationLocationID = ad.ApplicationLocationID
                 If ad.PhotoBinary IsNot Nothing Then .photoBinary = New System.Data.Linq.Binary(ad.PhotoBinary)
             End With
 
