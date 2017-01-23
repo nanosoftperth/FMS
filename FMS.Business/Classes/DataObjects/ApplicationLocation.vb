@@ -200,7 +200,22 @@ Namespace DataObjects
 
         End Function
 
+        Public Shared Function GetLocationVehicle(startdate As DateTime, enddate As DateTime, vehicleid As Guid, applicationId As Guid) As DataObjects.ApplicationLocation
 
+            Try
+                Dim avd = FMS.Business.DataObjects.ApplicationVehicleDriverTime.GetAllForApplicationAndDatePeriodIncludingDuds(applicationId, startdate, enddate)
+                Dim assigneddriver = (From x In avd Where x.VehicleID = vehicleid Select DataObjects.ApplicationDriver.GetDriverFromID(x.ApplicationDriverId)).FirstOrDefault
+                If assigneddriver.ApplicationLocationID Is Nothing Or assigneddriver.ApplicationLocationID = Guid.Empty Then
+                    Return GetFromID(DataObjects.Application.GetFromAppID(applicationId).DefaultBusinessLocationID)
+                Else
+                    Return GetFromID(assigneddriver.ApplicationLocationID)
+                End If
+            Catch ex As Exception
+                Return GetFromID(DataObjects.Application.GetFromAppID(applicationId).DefaultBusinessLocationID)
+            End Try
+
+
+        End Function
 #End Region
 
 

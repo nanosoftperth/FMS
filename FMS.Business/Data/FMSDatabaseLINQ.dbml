@@ -83,20 +83,6 @@
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ApplicationDriver" Member="ApplicationDrivers">
-    <Type Name="ApplicationDriver">
-      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="photo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="photoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="emailaddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationBookings" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationBooking" />
-    </Type>
-  </Table>
   <Table Name="dbo.ApplicationFeature" Member="ApplicationFeatures">
     <Type Name="ApplicationFeature">
       <Column Name="ApplicationFeatureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -615,6 +601,21 @@
       <Column Name="company" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="XMLResponse" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="DateLogged" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ApplicationDriver" Member="ApplicationDrivers">
+    <Type Name="ApplicationDriver">
+      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="photo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="photoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="emailaddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ApplicationLocationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationBookings" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationBooking" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

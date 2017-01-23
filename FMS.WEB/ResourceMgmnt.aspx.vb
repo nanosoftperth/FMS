@@ -272,4 +272,7 @@ Public Class ResourceMgmnt
     '    cbx.DataBind()
     'End Sub
 
+    Protected Sub pageControlMain_ActiveTabChanged(source As Object, e As TabControlEventArgs) Handles pageControlMain.ActiveTabChanged
+
+    End Sub
 End Class

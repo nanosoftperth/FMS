@@ -63,7 +63,7 @@
             <img style="width: 200px;" src="Content/Images/mC-settings.png" />
          </td>
          <td>
-            <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="3">
+            <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="1">
                <TabPages>
                   <dx:TabPage Text="Assign Drivers to Vehicles">
                      <ContentCollection>
@@ -290,6 +290,16 @@
                                                       </dx:ASPxLabel>
                                                    </td>
                                                 </tr>
+                                                 <tr>
+                                                   <td class="dataviewtd">
+                                                      <dx:ASPxLabel ID="ASPxLabel9" runat="server" Text="Business Loc.:">
+                                                      </dx:ASPxLabel>
+                                                   </td>
+                                                   <td class="dataviewtd" style="word-wrap: break-word;max-width:250px;width:250px" >
+                                                      <dx:ASPxLabel ID="ASPxLabel10" runat="server" Text='<%# Eval("ApplicationLocation")%>'>
+                                                      </dx:ASPxLabel>
+                                                   </td>
+                                                </tr>
                                              </table>
                                           </td>
                                           <td rowspan="4" class="dataviewtd">
@@ -322,6 +332,8 @@
                                     </dx:GridViewColumnLayoutItem>
                                     <dx:GridViewColumnLayoutItem ColumnName="Notes" Caption="Notes     ">
                                     </dx:GridViewColumnLayoutItem>
+                                    <dx:GridViewColumnLayoutItem ColumnName="ApplicationLocationID" Caption="Application Location     ">
+                                    </dx:GridViewColumnLayoutItem>
                                     <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right">
                                     </dx:EditModeCommandLayoutItem>
                                  </Items>
@@ -339,6 +351,12 @@
                                  </dx:GridViewDataTextColumn>
                                  <dx:GridViewDataTextColumn FieldName="PhotoLocation" ShowInCustomizationForm="True" VisibleIndex="7" Visible="False">
                                  </dx:GridViewDataTextColumn>
+                                  <dx:GridViewDataComboBoxColumn FieldName="ApplicationLocationID" ShowInCustomizationForm="True" VisibleIndex="8">
+                                    <PropertiesComboBox DataSourceID="odsApplicationLocation" TextField="Name" ValueField="ApplicationLocationID">
+                                       <ClearButton Visibility="Auto">
+                                       </ClearButton>
+                                    </PropertiesComboBox>
+                                 </dx:GridViewDataComboBoxColumn>
                                  <dx:GridViewDataBinaryImageColumn ShowInCustomizationForm="True" VisibleIndex="2" FieldName="PhotoBinary">
                                     <PropertiesBinaryImage EnableClientSideAPI="True">
                                        <EditingSettings Enabled="True">
@@ -360,6 +378,13 @@
                                  </dx:GridViewDataMemoColumn>
                               </Columns>
                            </dx:ASPxGridView>
+
+                            
+                           <asp:ObjectDataSource ID="odsApplicationLocation" runat="server" SelectMethod="GetAllIncludingInheritFromApplication" TypeName="FMS.Business.DataObjects.ApplicationLocation">
+                              <SelectParameters>
+                                 <asp:SessionParameter DbType="Guid" Name="ApplicationID" SessionField="ApplicationID" />
+                              </SelectParameters>
+                           </asp:ObjectDataSource>
                            <asp:ObjectDataSource ID="odsDrivers" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationDriver" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllDrivers" TypeName="FMS.Business.DataObjects.ApplicationDriver" UpdateMethod="Update">
                               <SelectParameters>
                                  <asp:SessionParameter DbType="Guid" Name="applicatoinid" SessionField="ApplicationID" />
