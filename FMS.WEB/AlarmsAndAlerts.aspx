@@ -33,6 +33,17 @@
             alert('save button pressed');
         }
 
+        function sendMsg(message) {
+
+            $('#aui-flag-container').hide();
+
+            $('#msg').text(message);
+
+            $('#aui-flag-container').toggle('slow'
+                    , function () {
+                        $(this).delay(2500).toggle('slow');
+                    });
+        }
     </script>
 
     <style type="text/css">
@@ -40,15 +51,25 @@
             float: right;
         }
     </style>
+     <link href="Content/Jira.css" rel="stylesheet" />
+    <div id="aui-flag-container" style="display: none;">
+            <div class="aui-flag" aria-hidden="false">
+                <div class="aui-message aui-message-success success closeable shadowed aui-will-close">
+                    <div id="msg">This is some example text</div>
+
+                    <span class="aui-icon icon-close" role="button" tabindex="0"></span>
 
 
+                </div>
+            </div>
+        </div>
     <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" Theme="SoftOrange" ActiveTabIndex="0" EnableTheming="True">
         <TabPages>
             <dx:TabPage Text="Geo-Fence Alert Configuration">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
 
-                        <dx:ASPxGridView ID="dgvApplicationAlerts"
+                        <dx:ASPxGridView ID="dgvApplicationAlerts" ClientInstanceName="dgvApplicationAlerts"
                                             KeyFieldName="ApplicationAlertTypeID"
                                             runat="server"
                                             AutoGenerateColumns="False"
@@ -57,7 +78,21 @@
                                             Theme="SoftOrange">
 
                             <Settings ShowGroupPanel="True" />
-
+                            <Templates>
+                                 <EditForm>
+                                            <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors"></dx:ASPxGridViewTemplateReplacement>
+                                            <div style="text-align: right">
+                                                <dx:ASPxHyperLink Style="text-decoration: underline" ID="lnkUpdate" runat="server" Text="Update" Theme="SoftOrange" NavigateUrl="javascript:void(0);">
+                                                    <ClientSideEvents Click="function (s, e) { 
+                                            dgvApplicationAlerts.UpdateEdit();
+                                             sendMsg('Record Saved!');
+                                            }" />
+                                                </dx:ASPxHyperLink>
+                                                <dx:ASPxGridViewTemplateReplacement ID="TemplateReplacementCancel" ReplacementType="EditFormCancelButton"
+                                                    runat="server"></dx:ASPxGridViewTemplateReplacement>
+                                            </div>
+                                        </EditForm>
+                            </Templates>
                             <Columns>
 
                                 <%--command column definition--%>
