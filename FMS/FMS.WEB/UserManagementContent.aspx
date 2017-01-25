@@ -159,7 +159,7 @@
                     <dx:TabPage Text="Users" Name="tab_Users">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="UserId" OnInitNewRow="dgvUsers_InitNewRow" OnBeforeGetCallbackResult="dgvUsers_BeforeGetCallbackResult" ID="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
+                                <dx:ASPxGridView KeyFieldName="UserId" OnInitNewRow="dgvUsers_InitNewRow" OnBeforeGetCallbackResult="dgvUsers_BeforeGetCallbackResult" ID="dgvUsers" ClientInstanceName="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <SettingsBehavior ConfirmDelete="true" />
@@ -171,6 +171,21 @@
 
                                             }
                                         }" />
+                                    <Templates>
+                                        <EditForm>
+                                            <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors"></dx:ASPxGridViewTemplateReplacement>
+                                            <div style="text-align: right">
+                                                <dx:ASPxHyperLink Style="text-decoration: underline" ID="lnkUpdate" runat="server" Text="Update" Theme="SoftOrange" NavigateUrl="javascript:void(0);">
+                                                    <ClientSideEvents Click="function (s, e) { 
+                                            dgvUsers.UpdateEdit();
+                                             sendMsg('User Record Saved!');
+                                            }" />
+                                                </dx:ASPxHyperLink>
+                                                <dx:ASPxGridViewTemplateReplacement ID="TemplateReplacementCancel" ReplacementType="EditFormCancelButton"
+                                                    runat="server"></dx:ASPxGridViewTemplateReplacement>
+                                            </div>
+                                        </EditForm>
+                                    </Templates>
                                     <Columns>
                                         <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="true" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                         </dx:GridViewCommandColumn>
@@ -237,7 +252,7 @@
                     <dx:TabPage Text="Roles" Name="tab_Roles">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="RoleID" ID="dgvRoles" runat="server" AutoGenerateColumns="False" DataSourceID="odsRolesRoles" EnableTheming="True" Theme="SoftOrange" Width="100%">
+                                <dx:ASPxGridView KeyFieldName="RoleID" ID="dgvRoles" ClientInstanceName="dgvRoles" runat="server" AutoGenerateColumns="False" DataSourceID="odsRolesRoles" EnableTheming="True" Theme="SoftOrange" Width="100%">
                                     <SettingsDetail ShowDetailRow="True" />
                                     <Templates>
                                         <DetailRow>
@@ -273,6 +288,19 @@
                                             </dx:ASPxGridView>
 
                                         </DetailRow>
+                                        <EditForm>
+                                    <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors">
+                                    </dx:ASPxGridViewTemplateReplacement>
+                                    <div style="text-align:right">
+                                    <dx:ASPxHyperLink style="text-decoration:underline" ID="lnkUpdate" runat="server" Text="Update" Theme="SoftOrange" NavigateUrl="javascript:void(0);">
+                                        <ClientSideEvents Click="function (s, e) { 
+                                            dgvRoles.UpdateEdit();
+                                             sendMsg('Record Saved!');
+                                            }" />
+                                    </dx:ASPxHyperLink>
+                                    <dx:ASPxGridViewTemplateReplacement ID="TemplateReplacementCancel" ReplacementType="EditFormCancelButton"
+                                          runat="server"></dx:ASPxGridViewTemplateReplacement></div>
+                                </EditForm>
                                     </Templates>
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
@@ -328,10 +356,25 @@
                     <dx:TabPage Text="Roles Access to Features" Name="tab_RolesAccessToFeatures">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="ApplicationFeatureRoleID" ID="dgvRoleAccessToFeatures" runat="server" AutoGenerateColumns="False" DataSourceID="odsApplicationFeatureRoles" Width="100%" Theme="SoftOrange">
+                                <dx:ASPxGridView KeyFieldName="ApplicationFeatureRoleID" ID="dgvRoleAccessToFeatures" ClientInstanceName="dgvRoleAccessToFeatures" runat="server" AutoGenerateColumns="False" DataSourceID="odsApplicationFeatureRoles" Width="100%" Theme="SoftOrange">
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <SettingsSearchPanel Visible="True" />
+                                    <Templates>
+                                        <EditForm>
+                                    <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors">
+                                    </dx:ASPxGridViewTemplateReplacement>
+                                    <div style="text-align:right">
+                                    <dx:ASPxHyperLink style="text-decoration:underline" ID="lnkUpdate" runat="server" Text="Update" Theme="SoftOrange" NavigateUrl="javascript:void(0);">
+                                        <ClientSideEvents Click="function (s, e) { 
+                                            dgvRoleAccessToFeatures.UpdateEdit();
+                                             sendMsg('Record Saved!');
+                                            }" />
+                                    </dx:ASPxHyperLink>
+                                    <dx:ASPxGridViewTemplateReplacement ID="TemplateReplacementCancel" ReplacementType="EditFormCancelButton"
+                                          runat="server"></dx:ASPxGridViewTemplateReplacement></div>
+                                </EditForm>
+                                    </Templates>
                                     <Columns>
                                         <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                         </dx:GridViewCommandColumn>
