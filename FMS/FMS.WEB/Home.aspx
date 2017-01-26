@@ -22,19 +22,18 @@
                                     <PanelCollection>
 
                 <dx:PanelContent runat="server">
-                    <div class="jumbotron">                        
-                        <table>
-                            <tr> <td>
-                            <img src="Content/Images/9051a7_7900e319de294aa4b0166540479978ea.png" /></td> 
-                                
-                                <td style="padding-left:14px;"><p class="lead">
+                    <div class="jumbotron" style="display:inline-flex;">                        
+                       <div style="margin:auto;">
+                            <img src="Content/Images/9051a7_7900e319de294aa4b0166540479978ea.png" /> 
+                            </div>    
+                        <div style="margin-left:20px;">
+                               <p class="lead">
                             Fleet Management Systems provides a very-tailored solution to the specific needs of the customer. 
                     This means the system changes to suit your needs, as opposed to you having to change your business, to suit the system.
                         </p>
                                 <p><a href="http://www.nanosoft.com.au" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-
-                         </td></tr>
-                        </table>           
+                            </div>
+                            
 
                     </div>
                 </dx:PanelContent>
