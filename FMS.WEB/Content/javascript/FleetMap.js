@@ -9,7 +9,7 @@
 
 var textSeparator = ";";
 var selectedItemString = '';
-
+var globaltrucks;
 var selectedTrucks;
 //MARKER INFOWINDOW
 
@@ -631,6 +631,10 @@ function cbSnapToRoad_CheckChanged(s, e) {
     //Snap to road ( as in do we use the google "road hug" option).
     drawPathTestFromGlobalObject();
 }
+function cbExcludeCars_CheckChanged(s, e) {
+    if (globaltrucks)
+        upsertMapTrucks(globaltrucks);
+}
 
 
 function btnHeatMapSearch_Click(s, e) {
@@ -750,6 +754,7 @@ function upsertMapTrucks(result) {
     
     var index;
     var trucks = result.d._Trucks;
+    globaltrucks = result;
     var truckArr = [];
     //console.log(result);
 
@@ -765,6 +770,7 @@ function upsertMapTrucks(result) {
         var labelContent = "{0}</br>({1})".format(truckDriver, truckName);
 
         //Find the truck if it exists in the markers array
+        debugger;
         markers.forEach(function (entry) {
             if (entry.ID == trucks[index].ID) {
                 trucksMarker = entry;
