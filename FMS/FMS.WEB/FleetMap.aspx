@@ -264,7 +264,7 @@
                                                     <td>
                                                         <dx:ASPxCheckBox ID="cbExcludeCars" runat="server" ClientInstanceName="cbExcludeCars" EnableTheming="True" Text="Hide vehicles not selected" Theme="SoftOrange">
                                                             <ClientSideEvents CheckedChanged="function(s, e) {
-	
+	cbExcludeCars_CheckChanged(s, e);
 }" />
                                                         </dx:ASPxCheckBox>
                                                     </td>
