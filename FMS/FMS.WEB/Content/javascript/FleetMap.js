@@ -770,7 +770,6 @@ function upsertMapTrucks(result) {
         var labelContent = "{0}</br>({1})".format(truckDriver, truckName);
 
         //Find the truck if it exists in the markers array
-        debugger;
         markers.forEach(function (entry) {
             if (entry.ID == trucks[index].ID) {
                 trucksMarker = entry;
