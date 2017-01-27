@@ -103,8 +103,9 @@
 
                                 <p class="MsoNormal">
                                     <b>
-                                        <span runat="server" id="header_companyName" class="headerCustom" style="color: #466289;">Company Name</span>
-                                        <span runat="server" id="header_applicationName" class="headerCustom" style="color: #FA6121;">&nbsp;&nbsp;Application Name</span>
+ 
+                                        <span runat="server" id="header_companyName" class="headerCustom" style="color: #466289; font-family:Helvetica;">Company Name</span>
+                                        <span runat="server" id="header_applicationName" class="headerCustom" style="color: #FA6121; font-family:Helvetica;">&nbsp;&nbsp;Application Name</span>
 
                                     </b>
                                 </p>
