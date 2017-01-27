@@ -1,4 +1,5 @@
 ﻿Imports System.Web.Security
+Imports FMS.Business
 
 Namespace DataObjects
 
@@ -71,6 +72,35 @@ Namespace DataObjects
 
         End Function
 #Region "CRUD"
+        'BY RYAN: BUSINESS LAYER CODE FOR SENDING EMAIL TO USER FOR PASSWORD CHANGE REQUEST
+        Public Shared Sub SendEmailToUserPasswordRequest(_UserID As Guid, _ApplicationID As Guid, _ApplicationName As String, _Email As String)
+            Dim TokenID As Guid = FMS.Business.DataObjects.AuthenticationToken.GetExistingTokenIdForUser(_UserID)
+
+            If TokenID = Nothing Then 'create new token
+                Dim t As New FMS.Business.DataObjects.AuthenticationToken
+
+                With t
+                    .ApplicationID = _ApplicationID
+                    .ExpiryDate = Now.AddDays(1)
+                    .StartDate = Now
+                    .TokenID = Guid.NewGuid
+                    .UserID = _UserID
+                    .TokenType = "CP"
+                    .isUsedForChangePassword = True
+                End With
+
+                TokenID = FMS.Business.DataObjects.AuthenticationToken.Create(t)
+
+            End If
+
+            Dim urlStrBase = "http://{0}.nanosoft.com.au/Account/ChangePassword.aspx?token={1}"
+
+            Dim URL = String.Format(urlStrBase, _ApplicationName, TokenID.ToString)
+
+            'Send Email
+            Business.BackgroundCalculations.EmailHelper.SendEmailChangePasswordRequest(_Email, _ApplicationName, URL)
+
+        End Sub
         Public Shared Sub Insert(u As User)
             'BY RYAN
             'create membership
