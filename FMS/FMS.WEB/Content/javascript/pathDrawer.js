@@ -20,15 +20,37 @@ var lineSymbol = {
     strokeOpacity: 1,
     scale: 2//was 4
 };
+var ArrowHeadSymbol = {
+    path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+    strokeOpacity: 1,
+    scale: 2
+};
+//by Ryan
+//declare read only variable
+var createArrow  = {
+    get d() { // will be called as createArrow.d
+        var iconsArrow = [{
+            icon: lineSymbol, // dotted line
+            offset: '0%', //start at the beginning of the line
+            repeat: '20px'// length is 20 px
+        }];
 
+        //add 20 the Arrow heads on the line
+        //position each heads with 1% offset in the lineSymbol
+        for (var i = 1; i <= 100; i ++) {// 1% also looks good
+            debugger;
+            iconsArrow.push({
+                icon: ArrowHeadSymbol,
+                offset: i + '%', // i(1) %
+            });
+        }
+        return iconsArrow; // return icon Array
+    }
+};
 var line = new google.maps.Polyline({
     path: [{ lat: 22.291, lng: 153.027 }, { lat: 18.291, lng: 153.027 }],
-    strokeOpacity: 0,
-    icons: [{
-        icon: lineSymbol,
-        offset: '0',
-        repeat: '20px'
-    }],
+    strokeOpacity: 0, 
+    icons: createArrow.d,
     map: map
 });
 
@@ -83,7 +105,6 @@ function drawPathTestFromGlobalObject() {
 
     HeatMapTrucksReturnedFromServer.forEach(function (item, index) {
         //console.log(item.ShowJourneyOnMap);
-
         var i = 0;
 
         //MANUALLY set limit here that you can only see up to 4 vehicles at any time.
@@ -99,11 +120,7 @@ function drawPathTestFromGlobalObject() {
 
             var thisPoly = new google.maps.Polyline({
                 strokeOpacity: 0,
-                icons: [{
-                    icon: lineSymbol,
-                    offset: '0',
-                    repeat: '10px'
-                }],
+                icons: createArrow.d,
                 strokeColor: Colors[i],
                 path: googlelatlngs
             })
@@ -205,11 +222,7 @@ function drawPathTestWithoutRoadSnap(p,indx) {
 
         PolyLines[indx] = new google.maps.Polyline({
             strokeOpacity: 0,
-            icons: [{
-                icon: lineSymbol,
-                offset: '0',
-                repeat: '10px'
-            }],
+            icons: createArrow.d,
             //path: p
             //geodesic: true,
             strokeColor: Colors[indx],
