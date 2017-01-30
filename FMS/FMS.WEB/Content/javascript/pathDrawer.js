@@ -25,7 +25,7 @@ var ArrowHeadSymbol = {
     strokeOpacity: 1,
     scale: 2
 };
-//by Ryan
+//by RYAN P.
 //declare read only variable
 var createArrow  = {
     get d() { // will be called as createArrow.d

@@ -644,6 +644,7 @@ function btnHeatMapSearch_Click(s, e) {
     autoUpdate.SetChecked(false);
     cbHeatmapAutoUpdate.SetChecked(false);
     cbAutoIncrement.SetChecked(false);
+    cbSnapToRoad.SetChecked(false); //BY RYAN : Set to False
     _viewMachineAtTime = true;
     _GetLatLongObjs = false;
 }
