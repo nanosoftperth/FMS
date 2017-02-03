@@ -10,7 +10,7 @@ Module Module1
     Public Sub LogMsg(msg As String, ByVal ParamArray args() As String)
 
         msg = String.Format(msg, args)
-        Console.WriteLine(msg)
+        'Console.WriteLine(msg)
 
         If String.IsNullOrEmpty(fileName) Then
             fileName = String.Format("c:\temp\logs\BackGroundCalcsLog_{0}.txt", Now.ToString("yyyyMMddHHmmss"))
