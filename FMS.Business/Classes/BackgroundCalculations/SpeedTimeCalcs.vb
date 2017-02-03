@@ -85,16 +85,14 @@ Namespace BackgroundCalculations
                 Dim afst As New OSIsoft.AF.Time.AFTime(tr.StartTime)
                 Dim afet As New OSIsoft.AF.Time.AFTime(tr.Endtime)
 
-                Console.WriteLine(String.Format("#Processing from {0} to {1} ",
-                                                afst.LocalTime.ToString("dd/MMM/yyyy HH:mm:ss"),
-                                                afet.LocalTime.ToString("dd/MMM/yyyy HH:mm:ss")))
+                'Console.WriteLine(String.Format("#Processing from {0} to {1} ", afst.LocalTime.ToString("dd/MMM/yyyy HH:mm:ss"), afet.LocalTime.ToString("dd/MMM/yyyy HH:mm:ss")))
 
 
                 For Each devicename As String In app.GetAllDevicesNames
 
                     Dim timerange As New OSIsoft.AF.Time.AFTimeRange(afst, afet)
 
-                    Console.WriteLine(String.Format("Device name: {0}{1}time:{2}", devicename, vbTab, Now.ToString("HH:mm:ss")))
+                    'Console.WriteLine(String.Format("Device name: {0}{1}time:{2}", devicename, vbTab, Now.ToString("HH:mm:ss")))
 
                     Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = devicename).SingleOrDefault
 
@@ -117,7 +115,7 @@ Namespace BackgroundCalculations
                     Try
                         attr_log.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", True)
                     Catch ex As Exception
-                        Console.WriteLine("Excaption caused: {0}", ex.Message)
+                        'Console.WriteLine("Excaption caused: {0}", ex.Message)
                         Continue For
                     End Try
 

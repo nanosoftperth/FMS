@@ -95,7 +95,7 @@
                 .ApplicationAlertTypeID = Guid.NewGuid
                 .ApplicationID = ad.ApplicationId
                 .DriverId = ad.ApplicationDriverID
-                .GeoFenceID = ad.GeofenceDestinationId
+                .GeoFenceID = ad.GeofenceLeaveId
                 .Timespan_seconds = 0
                 .Action = 0
                 .SubscriberNativeID = ad.ContactID

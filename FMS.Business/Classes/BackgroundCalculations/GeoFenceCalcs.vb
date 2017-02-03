@@ -325,8 +325,7 @@ Namespace BackgroundCalculations
 
                     Dim dateStrFormat As String = "dd/MMM/yyyy HH:mm:ss"
 
-                    Console.WriteLine("preforming calculation for ""{0}"" from {1} to {2} ",
-                                            devicename, st.ToString(dateStrFormat), et.ToString(dateStrFormat))
+                    'Console.WriteLine("preforming calculation for ""{0}"" from {1} to {2} ", devicename, st.ToString(dateStrFormat), et.ToString(dateStrFormat))
 
                     'Dim st As New OSIsoft.AF.Time.AFTime(thisLoopStartDate)
                     'Dim et As New OSIsoft.AF.Time.AFTime(Now.AddSeconds(-5))
@@ -353,7 +352,7 @@ Namespace BackgroundCalculations
                     'for each polygon, look at each point 
                     For Each geofence As FMS.Business.DataObjects.ApplicationGeoFence In geofences
 
-                        Console.WriteLine("geofence name " & geofence.Name)
+                        'Console.WriteLine("geofence name " & geofence.Name)
 
                         Dim lst As List(Of Loc) = _
                                 geofence.ApplicationGeoFenceSides.Select( _
