@@ -72,11 +72,8 @@ Namespace BackgroundCalculations
                     End If
 
                     'somewhere in here we will need to flag the alerttype as "sent" if it is a booking 
-
-                    'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
                     If alertDefn.isBooking And Not alertDefn.isSent Then
-                        alertDefn.isSent = True
-                        DataObjects.AlertType.Update(alertDefn)
+                        Dim x = ""
                     End If
 
 
@@ -94,8 +91,15 @@ Namespace BackgroundCalculations
                             'If the "start-time" has been fired longer than 6 hours ago, then we do not want to fire an alert.
                             Dim withinValidTimeFrame As Boolean = (rslt.StartTime + timeRequiredToBeInGeoFence) > Now - GEOFENCE_COLLISSION_VALID_REPORT_TIME
 
-                            If wasInGeoFenceLongEngough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then _
-                                            ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
+                            If wasInGeoFenceLongEngough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then
+                                'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
+                                If alertDefn.isBooking And Not alertDefn.isSent Then
+                                    alertDefn.isSent = True
+                                    DataObjects.AlertType.Update(alertDefn)
+                                End If
+                                ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
+
+                            End If
 
                         Case DataObjects.AlertType.ActionType.Leaves
 
@@ -112,8 +116,15 @@ Namespace BackgroundCalculations
                             Dim withinValidTimeFrame As Boolean = (rslt.EndTime + timeRequiredToBeOutsideOfGeoFence) > Now - GEOFENCE_COLLISSION_VALID_REPORT_TIME
 
 
-                            If hasBeenOutsideForLongEnough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then _
+                            If hasBeenOutsideForLongEnough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then
+
+                                'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
+                                If alertDefn.isBooking And Not alertDefn.isSent Then
+                                    alertDefn.isSent = True
+                                    DataObjects.AlertType.Update(alertDefn)
+                                End If
                                 ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
+                            End If
 
                     End Select
                 Next

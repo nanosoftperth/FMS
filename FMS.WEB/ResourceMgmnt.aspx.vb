@@ -236,6 +236,7 @@ Public Class ResourceMgmnt
         Dim ab = New FMS.Business.DataObjects.ApplicationGeoFence
         Dim x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress(location)
         ab.ApplicationID = ThisSession.ApplicationID
+        ab.Name = location
         ab.Description = location
         ab.IsCircular = True
         ab.CircleRadiusMetres = 2000 'Temp: must be 2 km
