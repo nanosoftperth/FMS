@@ -72,9 +72,7 @@ Namespace BackgroundCalculations
                     End If
 
                     'somewhere in here we will need to flag the alerttype as "sent" if it is a booking 
-                    If alertDefn.isBooking And Not alertDefn.isSent Then
-                        Dim x = ""
-                    End If
+                   
 
 
                     Select Case alertDefn.Action
