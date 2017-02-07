@@ -598,6 +598,13 @@
       <DependentUpon>ReportPopupTester.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Test_Forms\ReportScheduler_test.aspx.designer.vb">
+      <DependentUpon>ReportScheduler_test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\ReportScheduler_test.aspx.vb">
+      <DependentUpon>ReportScheduler_test.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\Test.aspx.designer.vb">
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
@@ -844,6 +851,7 @@
     <Content Include="Test_Forms\MileageTester.aspx" />
     <Content Include="Test_Forms\OdometerTest.aspx" />
     <Content Include="Test_Forms\ReportPopupTester.aspx" />
+    <Content Include="Test_Forms\ReportScheduler_test.aspx" />
     <Content Include="Test_Forms\test2.aspx" />
     <Content Include="Test_Forms\test3.aspx" />
     <Content Include="Test_Forms\TestRyan.aspx" />
