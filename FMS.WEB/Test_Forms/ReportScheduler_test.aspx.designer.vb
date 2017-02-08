@@ -68,24 +68,6 @@ Partial Public Class ReportScheduler_test
     Protected WithEvents dateEditReportTypeOeOffDate As Global.DevExpress.Web.ASPxDateEdit
 
     '''<summary>
-    '''ASPxLabel2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxLabel2 As Global.DevExpress.Web.ASPxLabel
-
-    '''<summary>
-    '''dateEditDaily control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dateEditDaily As Global.DevExpress.Web.ASPxDateEdit
-
-    '''<summary>
     '''ASPxLabel1 control.
     '''</summary>
     '''<remarks>
@@ -120,6 +102,33 @@ Partial Public Class ReportScheduler_test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents combo As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''lblTimeOfDay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTimeOfDay As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''teTkimeEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents teTkimeEdit As Global.DevExpress.Web.ASPxTimeEdit
+
+    '''<summary>
+    '''ASPxCallbackPanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxCallbackPanel1 As Global.DevExpress.Web.ASPxCallbackPanel
 
     '''<summary>
     '''odsReportTypes control.
