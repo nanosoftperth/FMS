@@ -179,7 +179,7 @@ Namespace BackgroundCalculations
                     .Timeout = 10000
                     .DeliveryMethod = SmtpDeliveryMethod.Network
                     .UseDefaultCredentials = False
-                    .Credentials = New System.Net.NetworkCredential("dave@nanosoft.com.au", "Placeb0!")
+                    .Credentials = New System.Net.NetworkCredential("no-reply@nanosoft.com.au", "notastrongpassword")
 
                     Dim mm As New MailMessage()
 
