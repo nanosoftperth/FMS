@@ -113,7 +113,8 @@
                         ValueField="VisibleReportName"
                         ID="comboSelectedReport"
                         runat="server"
-                        DataSourceID="odsReports">
+                        DataSourceID="odsReports"
+                        AutoPostBack="true">
                     </dx:ASPxComboBox>
 
                 </td>
@@ -144,7 +145,7 @@
                             <td>
                                 <dx:ASPxDateEdit TimeSectionProperties-Visible="true" DisplayFormatString="G" ID="dateEditReportTypeOeOffDate" runat="server" EditFormat="DateTime"></dx:ASPxDateEdit>
                             </td>
-                        </tr>                        
+                        </tr>
 
                         <tr class="reportType Weekly">
                             <td>
@@ -181,7 +182,20 @@
                 <%--PARAMATERS--%>
                 <td>
 
-                    <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" Width="200px"></dx:ASPxCallbackPanel>
+
+
+                    <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" Width="200px">
+
+                        <PanelCollection>
+                            <dx:PanelContent runat="server">
+
+
+
+
+                            </dx:PanelContent>
+                        </PanelCollection>
+
+                    </dx:ASPxCallbackPanel>
 
                 </td>
             </tr>
