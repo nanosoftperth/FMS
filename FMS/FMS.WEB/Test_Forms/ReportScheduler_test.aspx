@@ -9,8 +9,7 @@
         runat="server"
         AutoGenerateColumns="False"
         DataSourceID="odsReportSchedules"
-        Settings-ShowColumnHeaders="false"
-        Theme="SoftOrange">
+        Settings-ShowColumnHeaders="false">
 
         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
 
@@ -57,7 +56,7 @@
 
             function comboReportType_ValueChanged(s, e) {
 
-                $('.reportType').hide('slow');
+                $('.reportType').hide();
 
                 var reportType = comboReportType.GetValue();
                 console.log('selected value: ' + reportType);
@@ -73,7 +72,10 @@
                 comboSelectedReport
                 comboReportType
                 dateEditReportTypeOeOffDate
-                combodayOfWeek                          --%>
+                combodayOfWeek            
+                dateEditDaily    
+                teTkimeEdit
+        --%>
 
 
         <style type="text/css">
@@ -84,7 +86,7 @@
             }
 
             .reportType {
-                visibility: hidden;
+                display: none;
             }
         </style>
 
@@ -102,6 +104,8 @@
             </tr>
 
             <tr>
+
+                <%--REPORT--%>
                 <td>
 
                     <dx:ASPxComboBox
@@ -109,11 +113,11 @@
                         ValueField="VisibleReportName"
                         ID="comboSelectedReport"
                         runat="server"
-                        DataSourceID="odsReports"
-                        Theme="SoftOrange">
+                        DataSourceID="odsReports">
                     </dx:ASPxComboBox>
 
                 </td>
+                <%--SCHEDULE--%>
                 <td>
 
                     <table>
@@ -136,22 +140,11 @@
                         <tr class="reportType One-off">
                             <td>
                                 <dx:ASPxLabel runat="server" ID="lblOneOffDate" Text="Date:"></dx:ASPxLabel>
-
                             </td>
                             <td>
-                                <dx:ASPxDateEdit ID="dateEditReportTypeOeOffDate" runat="server" Theme="SoftOrange" EditFormat="DateTime"></dx:ASPxDateEdit>
+                                <dx:ASPxDateEdit TimeSectionProperties-Visible="true" DisplayFormatString="G" ID="dateEditReportTypeOeOffDate" runat="server" EditFormat="DateTime"></dx:ASPxDateEdit>
                             </td>
-                        </tr>
-
-                        <tr class="reportType Daily">
-                            <td>
-                                <dx:ASPxLabel runat="server" ID="ASPxLabel2" Text="Date:"></dx:ASPxLabel>
-
-                            </td>
-                            <td>
-                                <dx:ASPxDateEdit ID="dateEditDaily" runat="server" Theme="SoftOrange" EditFormat="DateTime"></dx:ASPxDateEdit>
-                            </td>
-                        </tr>
+                        </tr>                        
 
                         <tr class="reportType Weekly">
                             <td>
@@ -165,19 +158,30 @@
 
                         <tr class="reportType Monthly">
                             <td>
-                                <dx:ASPxLabel runat="server" ID="lblDOW" Text="Day of week:"></dx:ASPxLabel>
+                                <dx:ASPxLabel runat="server" ID="lblDOW" Text="Day of month:"></dx:ASPxLabel>
 
                             </td>
                             <td>
-                                <dx:ASPxComboBox ID="combo" runat="server" DataSourceID="odsDaysOfWeek"></dx:ASPxComboBox>
+                                <dx:ASPxComboBox ID="combo" runat="server" DataSourceID="odsDaysOfMonth"></dx:ASPxComboBox>
                             </td>
                         </tr>
 
 
-
+                        <tr class="reportType Daily Monthly Weekly">
+                            <td>
+                                <dx:ASPxLabel runat="server" ID="lblTimeOfDay" Text="Time of day:"></dx:ASPxLabel>
+                            </td>
+                            <td>
+                                <dx:ASPxTimeEdit ID="teTkimeEdit" runat="server"></dx:ASPxTimeEdit>
+                            </td>
+                        </tr>
                     </table>
 
+                </td>
+                <%--PARAMATERS--%>
+                <td>
 
+                    <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" Width="200px"></dx:ASPxCallbackPanel>
 
                 </td>
             </tr>
