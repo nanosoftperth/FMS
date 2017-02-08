@@ -23,6 +23,141 @@ Partial Public Class ReportScheduler_test
     Protected WithEvents ASPxGridView1 As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''comboSelectedReport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents comboSelectedReport As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''lblReportType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblReportType As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''comboReportType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents comboReportType As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''lblOneOffDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOneOffDate As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''dateEditReportTypeOeOffDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dateEditReportTypeOeOffDate As Global.DevExpress.Web.ASPxDateEdit
+
+    '''<summary>
+    '''ASPxLabel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel2 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''dateEditDaily control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dateEditDaily As Global.DevExpress.Web.ASPxDateEdit
+
+    '''<summary>
+    '''ASPxLabel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel1 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''combodayOfWeek control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents combodayOfWeek As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''lblDOW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDOW As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''combo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents combo As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''odsReportTypes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsReportTypes As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsDaysOfMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDaysOfMonth As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsDaysOfWeek control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDaysOfWeek As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsReports control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsReports As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsReportSchedules control.
     '''</summary>
     '''<remarks>
