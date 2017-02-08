@@ -81,7 +81,7 @@
     End Sub
 
 
-    Private Function GetReportFromName(reportName As String) As DevExpress.XtraReports.UI.XtraReport
+    Public Shared Function GetReportFromName(reportName As String) As DevExpress.XtraReports.UI.XtraReport
 
         Select Case reportName
             Case "VehicleReport"
