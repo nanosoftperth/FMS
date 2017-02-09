@@ -271,6 +271,13 @@
     <Compile Include="Content\FleetMapMarker.ashx.vb">
       <DependentUpon>FleetMapMarker.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NanoReportParam.ascx.designer.vb">
+      <DependentUpon>NanoReportParam.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NanoReportParam.ascx.vb">
+      <DependentUpon>NanoReportParam.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Debug.aspx.designer.vb">
       <DependentUpon>Debug.aspx</DependentUpon>
     </Compile>
@@ -812,6 +819,7 @@
     <Content Include="Content\Jira.css" />
     <Content Include="Content\notes.txt" />
     <Content Include="Content\Site.css" />
+    <Content Include="Controls\NanoReportParam.ascx" />
     <Content Include="Debug.aspx" />
     <Content Include="debugger.aspx" />
     <Content Include="Default.aspx" />
@@ -994,9 +1002,7 @@
       <Name>FMS.ServiceAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
