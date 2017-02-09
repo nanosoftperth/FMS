@@ -13,6 +13,18 @@ Module ExtentionModule
 
 #Region "dates & nullables"
 
+
+    <Extension()>
+    Public Function StartOfWeek(dt As Date, startDayOfWeek As DayOfWeek)
+
+        Dim diff As Integer = dt.DayOfWeek - startDayOfWeek
+
+        If diff < 0 Then diff += 7
+
+        Return dt.AddDays(-1 * diff).Date
+
+    End Function
+
     <Extension()>
     Public Function timezoneToPerth(ByVal d As Date?) As Date?
 
