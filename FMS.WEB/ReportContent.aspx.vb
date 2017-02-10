@@ -88,7 +88,7 @@
                 Return New VehicleReport
             Case "ServiceVehicleReport"
                 Return New ServiceVehicleReport
-            Case "ReportGeoFence_byDriver.vb"
+            Case "ReportGeoFence_byDriver", "ReportGeoFence_byDriver.vb"
                 Return New ReportGeoFence_byDriver
             Case Else
                 Return Nothing

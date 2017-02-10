@@ -278,6 +278,13 @@
       <DependentUpon>NanoReportParam.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Controls\NanoReportParamList.ascx.designer.vb">
+      <DependentUpon>NanoReportParamList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NanoReportParamList.ascx.vb">
+      <DependentUpon>NanoReportParamList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Debug.aspx.designer.vb">
       <DependentUpon>Debug.aspx</DependentUpon>
     </Compile>
@@ -820,6 +827,7 @@
     <Content Include="Content\notes.txt" />
     <Content Include="Content\Site.css" />
     <Content Include="Controls\NanoReportParam.ascx" />
+    <Content Include="Controls\NanoReportParamList.ascx" />
     <Content Include="Debug.aspx" />
     <Content Include="debugger.aspx" />
     <Content Include="Default.aspx" />

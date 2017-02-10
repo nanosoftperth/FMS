@@ -23,11 +23,20 @@ Partial Public Class ReportParameterTest
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''nrpTest control.
+    '''sourceDIV control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents nrpTest As Global.FMS.WEB.NanoReportParam
+    Protected WithEvents sourceDIV As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''NanoReportParamList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NanoReportParamList As Global.FMS.WEB.NanoReportParamList
 End Class

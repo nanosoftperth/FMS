@@ -175,6 +175,22 @@ Public Class ThisSession
 
         End Get
     End Property
+
+    Public Shared Property SelectedReportName As String
+        Get
+            Dim x As Object = HttpContext.Current.Session("SelectedReportName")
+
+            Return If(x Is Nothing, String.Empty, x)
+
+        End Get
+        Set(value As String)
+
+            HttpContext.Current.Session("SelectedReportName") = value
+
+        End Set
+    End Property
+
+
     Public Shared ReadOnly Property CachedServiceVehicleReports As List(Of CachedServiceVehicleReport)
         Get
 

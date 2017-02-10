@@ -23,6 +23,15 @@ Partial Public Class ReportScheduler_test
     Protected WithEvents ASPxGridView1 As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''ASPxLabel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel2 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
     '''comboSelectedReport control.
     '''</summary>
     '''<remarks>
@@ -30,6 +39,24 @@ Partial Public Class ReportScheduler_test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents comboSelectedReport As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''callbackREportEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents callbackREportEdit As Global.DevExpress.Web.ASPxCallbackPanel
+
+    '''<summary>
+    '''NanoReportParamList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NanoReportParamList As Global.FMS.WEB.NanoReportParamList
 
     '''<summary>
     '''lblReportType control.
@@ -122,13 +149,22 @@ Partial Public Class ReportScheduler_test
     Protected WithEvents teTkimeEdit As Global.DevExpress.Web.ASPxTimeEdit
 
     '''<summary>
-    '''ASPxCallbackPanel1 control.
+    '''comboSubscribers control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ASPxCallbackPanel1 As Global.DevExpress.Web.ASPxCallbackPanel
+    Protected WithEvents comboSubscribers As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''odsSubscribers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsSubscribers As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
     '''odsReportTypes control.

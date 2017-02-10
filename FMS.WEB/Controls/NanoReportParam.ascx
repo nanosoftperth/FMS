@@ -12,40 +12,41 @@
 
 </script>
 
-<table>
-    <tr>
-        <td style="padding: 2px;">
-            <dx:ASPxLabel ID="lblParameterName" runat="server" Text="this is a test"></dx:ASPxLabel>
-        </td>
-        <td>
+<%--THE TRs below are there as the NanoReportPArams collection will add a <table> wrapper--%>
+<tr>
 
-            <%--change below to div, not panel? -dg--%>
-            <dx:ASPxPanel ID="panelContent" runat="server" Width="200px">
-                <PanelCollection>
-                    <dx:PanelContent runat="server"></dx:PanelContent>
-                </PanelCollection>
-            </dx:ASPxPanel>
+    <td style="padding: 2px; vertical-align: top; text-align: left;">
+        <dx:ASPxLabel ID="lblParameterName" runat="server" Width="55px" Text="this is a test"></dx:ASPxLabel>
+    </td>
+    <td style="padding: 2px; vertical-align: top; text-align: left;">
 
-            <div id="dateTimeDIV" runat="server">
+        <%--change below to div, not panel? -dg--%>
+        <div id="panelContent" runat="server" >
+        </div>
+
+        <div id="dateTimeDIV" runat="server" >
 
 
-                <dx:ASPxComboBox ID="comboDateSelected"
-                    runat="server" DataSourceID="odsDateTypes">
-                </dx:ASPxComboBox>
+            <%-- <div style="padding: 2px;">--%>
+            <dx:ASPxComboBox ID="comboDateSelected" runat="server"></dx:ASPxComboBox>
+            <%--</div>--%>
 
+            <div    class=" <%=UniqueClientID%> specificDateEdit" 
+                    style="display: none;padding-top: 4px; padding-bottom: 0px;">
 
-                <asp:ObjectDataSource runat="server" ID="odsDateTypes"></asp:ObjectDataSource>
-                <dx:ASPxDateEdit    TimeSectionProperties-Visible="true" 
-                                    DisplayFormatString="G" 
-                                    ID="dateSpecificDate" 
-                                    runat="server" 
-                                    EditFormat="DateTime"></dx:ASPxDateEdit>
-
-
+                <dx:ASPxDateEdit TimeSectionProperties-Visible="true"
+                    DisplayFormatString="G"
+                    ID="dateSpecificDate"
+                    runat="server"
+                    EditFormat="DateTime">
+                </dx:ASPxDateEdit>
 
             </div>
 
-        </td>
-    </tr>
 
-</table>
+        </div>
+
+    </td>
+</tr>
+
+
