@@ -1,9 +1,14 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Light.master" CodeBehind="ReportScheduler_test.aspx.vb" Inherits="FMS.WEB.ReportScheduler_test" %>
 
+<%@ Register Src="~/Controls/NanoReportParamList.ascx" TagPrefix="uc1" TagName="NanoReportParamList" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
     <script src="../Content/javascript/jquery-3.1.0.min.js"></script>
+    <script src="../Content/javascript/page.js"></script>
+
 
     <dx:ASPxGridView ID="ASPxGridView1"
         runat="server"
@@ -63,7 +68,30 @@
 
                 $('.' + reportType).show('slow');
 
+                //callbackREportEdit.PerformCallback(reportType);
             }
+
+            function comboSelectedReport_ValueChanged(s, e) {
+
+                var reportName = comboSelectedReport.GetValue();
+                console.log('selected value: ' + reportName);
+
+                var param = {};
+
+                param.ReportName = reportName;
+
+                //SetSelectedReport(ReportName
+                ajaxMethod("../DefaultService.svc/" + 'SetSelectedReport',
+                        param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
+
+
+            }
+
+            function DefaultService_SuccessCallback(data) { callbackREportEdit.PerformCallback(''); }
+
+            function DefaultService_ErrorCallback(data) { }
+
+            function DefaultService_FinallyCallback(data) { }
 
         </script>
 
@@ -94,13 +122,9 @@
 
             <tr>
                 <td>Report</td>
-
+                <td></td>
                 <td>Schedule</td>
-
-                <td>Parameters</td>
-
                 <td>Destination</td>
-
             </tr>
 
             <tr>
@@ -108,23 +132,56 @@
                 <%--REPORT--%>
                 <td>
 
-                    <dx:ASPxComboBox
-                        TextField="VisibleReportName"
-                        ValueField="VisibleReportName"
-                        ID="comboSelectedReport"
-                        runat="server"
-                        DataSourceID="odsReports"
-                        AutoPostBack="true">
-                    </dx:ASPxComboBox>
+                    <table>
+                        <tr>
+                            <td ">
+                                <dx:ASPxLabel Width="55px" ID="ASPxLabel2" runat="server" Text="Type"></dx:ASPxLabel>
+                            </td>
+                            <td style="padding-left:4px;">
+                                <dx:ASPxComboBox
+                                    TextField="VisibleReportName"
+                                    ValueField="ActualReportNameToDisplay"
+                                    ID="comboSelectedReport"
+                                    runat="server"
+                                    DataSourceID="odsReports"
+                                    ClientInstanceName="comboSelectedReport"
+                                    AutoPostBack="false">
+
+                                    <ClientSideEvents ValueChanged="function(s,e){comboSelectedReport_ValueChanged(s,e);}" />
+
+                                </dx:ASPxComboBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <dx:ASPxCallbackPanel ID="callbackREportEdit"
+                                    ClientInstanceName="callbackREportEdit"
+                                    runat="server">
+
+                                    <PanelCollection>
+                                        <dx:PanelContent runat="server">
+
+                                            <uc1:NanoReportParamList runat="server" ID="NanoReportParamList" />
+
+                                        </dx:PanelContent>
+                                    </PanelCollection>
+
+                                </dx:ASPxCallbackPanel>
+                            </td>
+                        </tr>
+                    </table>
 
                 </td>
+
+                <%--PARAMATERS--%>
+                <td></td>
                 <%--SCHEDULE--%>
                 <td>
 
                     <table>
                         <tr>
                             <td>
-                                <dx:ASPxLabel ID="lblReportType" runat="server" Text="ReportType">
+                                <dx:ASPxLabel ID="lblReportType" runat="server" Text="Frequency">
                                 </dx:ASPxLabel>
                             </td>
                             <td>
@@ -179,33 +236,32 @@
                     </table>
 
                 </td>
-                <%--PARAMATERS--%>
+                <%--DESTINATION--%>
+
                 <td>
-
-
-
-                    <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" Width="200px">
-
-                        <PanelCollection>
-                            <dx:PanelContent runat="server">
-
-
-
-
-                            </dx:PanelContent>
-                        </PanelCollection>
-
-                    </dx:ASPxCallbackPanel>
-
+                    <dx:ASPxComboBox
+                        ValueField="NativeID"
+                        TextField="NameFormatted"
+                        ID="comboSubscribers"
+                        runat="server"
+                        DataSourceID="odsSubscribers">
+                    </dx:ASPxComboBox>
                 </td>
             </tr>
-            <tr>
-            </tr>
+
 
         </table>
 
     </div>
 
+
+
+
+    <asp:ObjectDataSource runat="server" ID="odsSubscribers" SelectMethod="GetAllforApplication" TypeName="FMS.Business.DataObjects.Subscriber">
+        <SelectParameters>
+            <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appid"></asp:SessionParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
     <asp:ObjectDataSource runat="server" ID="odsReportTypes" SelectMethod="GetReportTypes" TypeName="FMS.Business.DataObjects.ReportSchedule"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsDaysOfMonth" runat="server" SelectMethod="GetMonthDays" TypeName="FMS.Business.DataObjects.ReportSchedule"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsDaysOfWeek" runat="server" SelectMethod="GetDaysOfWeek" TypeName="FMS.Business.DataObjects.ReportSchedule"></asp:ObjectDataSource>

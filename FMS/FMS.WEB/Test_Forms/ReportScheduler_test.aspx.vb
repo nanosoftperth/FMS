@@ -4,14 +4,18 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
-        If Not IsPostBack Then Exit Sub
+    End Sub
 
-        Dim rc As New ReportContent
+    Private Sub callbackREportEdit_Callback(sender As Object, e As DevExpress.Web.CallbackEventArgsBase) Handles callbackREportEdit.Callback
 
-        Dim x As New ServiceVehicleReport
+        Dim param As String = e.Parameter
+
+        'NanoReportParamList = New NanoReportParamList With {.Report = ReportContent.GetReportFromName(param)}
+        'NanoReportParamList.Report = ReportContent.GetReportFromName(param)
 
 
 
     End Sub
+
 
 End Class

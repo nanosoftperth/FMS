@@ -6,23 +6,22 @@ Namespace DataObjects
 
         Private Const REPORT_TYPES As String = "One-off,Daily,Weekly,Monthly"
         Private Const DAYS_OF_WEEK As String = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
-        Private Const DATETIME_OPTIONS As String = "Now,Beginning of Day, Beginning of Week, Beginning of Year,Specific"
+        Private Const DATETIME_OPTIONS As String = "Now,Beginning of Day,Beginning of Week,Beginning of Year,Specific"
 
 
 #Region "Misc"
 
         Public Function GetDate(datetime_option As String)
 
-            Dim retDate
-
             Select Case datetime_option
 
                 Case "Now" : Return Now
                 Case "Beginning of Day" : Return New Date(Now.Year, Now.Month, Now.Day)
                 Case "Beginning of Week" : Return Now.StartOfWeek(DayOfWeek.Monday)
+                Case "Beginning of Month" : Return New Date(Now.Year, Now.Month, 1)
                 Case "Beginning of Year" : Return New Date(Now.Year, 1, 1)
 
-                Case Else: Throw New Exception (String.format("unexpected datetime_option option: {0}",datetime_option)
+                Case Else : Throw New Exception(String.Format("unexpected datetime_option option: {0}", datetime_option))
             End Select
 
         End Function
@@ -108,7 +107,7 @@ Namespace DataObjects
         End Function
 
 #End Region
-      
+
 
     End Class
 

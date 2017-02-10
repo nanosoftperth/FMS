@@ -27,6 +27,17 @@ Public Class DefaultService
         Return Now.ToString
     End Function
 
+    <OperationContract()>
+<WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
+    Public Function SetSelectedReport(ReportName As String) As String
+
+        ThisSession.SelectedReportName = ReportName
+
+        Return "message from server"
+
+    End Function
+
+
     'JAVASCRIPT CALLER
     'param.colour = selectedItem.colour;
     'param.desc = selectedItem.desc;

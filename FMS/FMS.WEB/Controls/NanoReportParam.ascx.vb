@@ -18,6 +18,13 @@
 
         lblParameterName.Text = ReportParameter.Description
 
+        'populate the comboDateSelected, object data sources do not seem to work for custom controls in markup
+        Business.DataObjects.ReportSchedule.GetDateTimeOptions.ForEach(Function(x) comboDateSelected.Items.Add(x))
+
+        'add the value changed event to javascript here as we need to know the new client ID at runtime
+        comboDateSelected.ClientSideEvents.ValueChanged = _
+                 " function(s,e) {comboDateSelected_ValueChanged(s, '" & UniqueClientID & "')}"
+
         Dim paramControl As System.Web.UI.Control
 
         'there is a lookup list to use here
@@ -39,6 +46,8 @@
             comboBox.ID = Guid.NewGuid.ToString
 
             paramControl = comboBox
+
+            dateTimeDIV.Visible = False
 
         End If
 

@@ -29,7 +29,7 @@ Partial Public Class NanoReportParam
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents panelContent As Global.DevExpress.Web.ASPxPanel
+    Protected WithEvents panelContent As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''dateTimeDIV control.
@@ -48,15 +48,6 @@ Partial Public Class NanoReportParam
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents comboDateSelected As Global.DevExpress.Web.ASPxComboBox
-
-    '''<summary>
-    '''odsDateTypes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsDateTypes As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
     '''dateSpecificDate control.
