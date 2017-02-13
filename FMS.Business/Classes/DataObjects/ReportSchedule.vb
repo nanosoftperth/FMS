@@ -42,7 +42,7 @@ Namespace DataObjects
 
             Dim retobj As New List(Of Integer)
 
-            For i As Integer = 0 To 31
+            For i As Integer = 1 To 31
                 retobj.Add(i)
             Next
 
