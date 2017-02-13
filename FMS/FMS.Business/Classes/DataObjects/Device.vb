@@ -66,15 +66,17 @@
         End Function
 
 
-        Public Shared Function GetFromDeviceID(deviceID As String) As DataObjects.Device
+        Public Shared Function GetFromDeviceID(deviceID As String) As Business.DataObjects.Device
 
             Dim retobj As DataObjects.Device
 
             With New LINQtoSQLClassesDataContext
 
 
-                retobj = (From x In .Devices Where x.DeviceID = deviceID _
-                            Select New DataObjects.Device(x)).SingleOrDefault
+                retobj = (From x In .Devices
+                          Where x.DeviceID = deviceID _
+                            Select New DataObjects.Device(x) _
+                                           ).SingleOrDefault
 
                 .Dispose()
             End With

@@ -6,16 +6,10 @@
 
     End Sub
 
-    Private Sub callbackREportEdit_Callback(sender As Object, e As DevExpress.Web.CallbackEventArgsBase) Handles callbackREportEdit.Callback
-
-        Dim param As String = e.Parameter
-
-        'NanoReportParamList = New NanoReportParamList With {.Report = ReportContent.GetReportFromName(param)}
-        'NanoReportParamList.Report = ReportContent.GetReportFromName(param)
+   
 
 
+    Private Sub gvreportScheduler_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles gvreportScheduler.RowInserting
 
     End Sub
-
-
 End Class

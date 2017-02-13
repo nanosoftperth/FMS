@@ -10,17 +10,175 @@
     <script src="../Content/javascript/page.js"></script>
 
 
-    <dx:ASPxGridView ID="ASPxGridView1"
+    <dx:ASPxGridView ID="gvreportScheduler"
         runat="server"
         AutoGenerateColumns="False"
         DataSourceID="odsReportSchedules"
+        ClientInstanceName="gvreportScheduler"
         Settings-ShowColumnHeaders="false">
+               
+        <SettingsEditing   Mode="PopupEditForm" />
+        <SettingsPopup EditForm-Modal="true" EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center"></SettingsPopup>
+        <Templates>
+            <EditForm>
+
+
+                 <table id="editTable">
+
+                        <tr>
+                            <td>Report</td>
+                            <td></td>
+                            <td>Schedule</td>
+                            <td>Destination</td>
+                        </tr>
+
+                        <tr>
+
+                            <%--REPORT--%>
+                            <td>
+
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxLabel Width="55px" ID="ASPxLabel2" runat="server" Text="Type"></dx:ASPxLabel>
+                                        </td>
+                                        <td style="padding-left:4px;">
+                                            <dx:ASPxComboBox
+                                                TextField="VisibleReportName"
+                                                ValueField="ActualReportNameToDisplay"
+                                                ID="comboSelectedReport"
+                                                runat="server"
+                                                DataSourceID="odsReports"
+                                                ClientInstanceName="comboSelectedReport"
+                                                AutoPostBack="false">
+
+                                                <ClientSideEvents ValueChanged="function(s,e){comboSelectedReport_ValueChanged(s,e);}" />
+
+                                            </dx:ASPxComboBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <dx:ASPxCallbackPanel ID="callbackREportEdit"
+                                                ClientInstanceName="callbackREportEdit"
+                                                runat="server">
+
+                                                <PanelCollection>
+                                                    <dx:PanelContent runat="server">
+                                                        <uc1:NanoReportParamList runat="server" ID="NanoReportParamList" />
+                                                    </dx:PanelContent>
+                                                </PanelCollection>
+
+                                            </dx:ASPxCallbackPanel>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+
+                            <%--PARAMATERS--%>
+                            <td></td>
+                            <%--SCHEDULE--%>
+                            <td>
+
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxLabel ID="lblReportType" runat="server" Text="Frequency">
+                                            </dx:ASPxLabel>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxComboBox ID="comboReportType"
+                                                runat="server"
+                                                DataSourceID="odsReportTypes"
+                                                ClientInstanceName="comboReportType">
+                                                <ClientSideEvents ValueChanged="function(s,e){comboReportType_ValueChanged(s,e);}" />
+
+                                            </dx:ASPxComboBox>
+
+                                        </td>
+                                    </tr>
+                                    <tr class="reportType One-off">
+                                        <td>
+                                            <dx:ASPxLabel runat="server" ID="lblOneOffDate" Text="Date:"></dx:ASPxLabel>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxDateEdit TimeSectionProperties-Visible="true" DisplayFormatString="G" ID="dateEditReportTypeOeOffDate" runat="server" EditFormat="DateTime"></dx:ASPxDateEdit>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="reportType Weekly">
+                                        <td>
+                                            <dx:ASPxLabel runat="server" ID="ASPxLabel1" Text="Day of week:"></dx:ASPxLabel>
+
+                                        </td>
+                                        <td>
+                                            <dx:ASPxComboBox ID="combodayOfWeek" runat="server" DataSourceID="odsDaysOfWeek"></dx:ASPxComboBox>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="reportType Monthly">
+                                        <td>
+                                            <dx:ASPxLabel runat="server" ID="lblDOW" Text="Day of month:"></dx:ASPxLabel>
+
+                                        </td>
+                                        <td>
+                                            <dx:ASPxComboBox ID="combo" runat="server" DataSourceID="odsDaysOfMonth"></dx:ASPxComboBox>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr class="reportType Daily Monthly Weekly">
+                                        <td>
+                                            <dx:ASPxLabel runat="server" ID="lblTimeOfDay" Text="Time of day:"></dx:ASPxLabel>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxTimeEdit ID="teTkimeEdit" runat="server"></dx:ASPxTimeEdit>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                            <%--DESTINATION--%>
+
+                            <td>
+                                <dx:ASPxComboBox
+                                    ValueField="NativeID"
+                                    TextField="NameFormatted"
+                                    ID="comboSubscribers"
+                                    runat="server"
+                                    DataSourceID="odsSubscribers">
+                                </dx:ASPxComboBox>
+                            </td>
+                        </tr>
+                </table>
+
+
+                <div style="text-align: right; padding: 2px">
+                    <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
+                        runat="server">
+                    </dx:ASPxGridViewTemplateReplacement>
+                    <dx:ASPxGridViewTemplateReplacement ID="CancelButton" ReplacementType="EditFormCancelButton"
+                        runat="server">
+                    </dx:ASPxGridViewTemplateReplacement>
+                </div>
+            </EditForm>
+        </Templates>
+<Settings ShowColumnHeaders="True"></Settings>
 
         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
 
         <Columns>
 
-            <dx:GridViewCommandColumn ShowDeleteButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowEditButton="True"></dx:GridViewCommandColumn>
+            <dx:GridViewCommandColumn ShowDeleteButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowEditButton="True">
+                    <HeaderCaptionTemplate>
+                                        <dx:ASPxHyperLink ID="btnNew" runat="server" Text="New">
+                                        <ClientSideEvents Click="function (s, e) { gvreportScheduler.AddNewRow();}" />
+                            </dx:ASPxHyperLink>
+                    </HeaderCaptionTemplate>
+
+
+            </dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn FieldName="ReportscheduleID" VisibleIndex="1"></dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="ApplicationId" VisibleIndex="2"></dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="ReportName" VisibleIndex="3"></dx:GridViewDataTextColumn>
@@ -58,6 +216,21 @@
     <div id="reportShcedulerEditDiv">
 
         <script type="text/javascript">
+
+
+            function comboDateSelected_ValueChanged(s, id) {
+
+                var selectedVal = s.GetValue();
+
+                $('.' + id).hide(id);
+
+                if (selectedVal == 'Specific') {
+                    $('.' + id + '.specificDateEdit').show('slow');
+                } else {
+                    //$('.specificTimeEdit').show();
+                }
+
+            }
 
             function comboReportType_ValueChanged(s, e) {
 
@@ -116,148 +289,11 @@
             .reportType {
                 display: none;
             }
-        </style>
-
-        <table id="editTable">
-
-            <tr>
-                <td>Report</td>
-                <td></td>
-                <td>Schedule</td>
-                <td>Destination</td>
-            </tr>
-
-            <tr>
-
-                <%--REPORT--%>
-                <td>
-
-                    <table>
-                        <tr>
-                            <td ">
-                                <dx:ASPxLabel Width="55px" ID="ASPxLabel2" runat="server" Text="Type"></dx:ASPxLabel>
-                            </td>
-                            <td style="padding-left:4px;">
-                                <dx:ASPxComboBox
-                                    TextField="VisibleReportName"
-                                    ValueField="ActualReportNameToDisplay"
-                                    ID="comboSelectedReport"
-                                    runat="server"
-                                    DataSourceID="odsReports"
-                                    ClientInstanceName="comboSelectedReport"
-                                    AutoPostBack="false">
-
-                                    <ClientSideEvents ValueChanged="function(s,e){comboSelectedReport_ValueChanged(s,e);}" />
-
-                                </dx:ASPxComboBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <dx:ASPxCallbackPanel ID="callbackREportEdit"
-                                    ClientInstanceName="callbackREportEdit"
-                                    runat="server">
-
-                                    <PanelCollection>
-                                        <dx:PanelContent runat="server">
-
-                                            <uc1:NanoReportParamList runat="server" ID="NanoReportParamList" />
-
-                                        </dx:PanelContent>
-                                    </PanelCollection>
-
-                                </dx:ASPxCallbackPanel>
-                            </td>
-                        </tr>
-                    </table>
-
-                </td>
-
-                <%--PARAMATERS--%>
-                <td></td>
-                <%--SCHEDULE--%>
-                <td>
-
-                    <table>
-                        <tr>
-                            <td>
-                                <dx:ASPxLabel ID="lblReportType" runat="server" Text="Frequency">
-                                </dx:ASPxLabel>
-                            </td>
-                            <td>
-                                <dx:ASPxComboBox ID="comboReportType"
-                                    runat="server"
-                                    DataSourceID="odsReportTypes"
-                                    ClientInstanceName="comboReportType">
-                                    <ClientSideEvents ValueChanged="function(s,e){comboReportType_ValueChanged(s,e);}" />
-
-                                </dx:ASPxComboBox>
-
-                            </td>
-                        </tr>
-                        <tr class="reportType One-off">
-                            <td>
-                                <dx:ASPxLabel runat="server" ID="lblOneOffDate" Text="Date:"></dx:ASPxLabel>
-                            </td>
-                            <td>
-                                <dx:ASPxDateEdit TimeSectionProperties-Visible="true" DisplayFormatString="G" ID="dateEditReportTypeOeOffDate" runat="server" EditFormat="DateTime"></dx:ASPxDateEdit>
-                            </td>
-                        </tr>
-
-                        <tr class="reportType Weekly">
-                            <td>
-                                <dx:ASPxLabel runat="server" ID="ASPxLabel1" Text="Day of week:"></dx:ASPxLabel>
-
-                            </td>
-                            <td>
-                                <dx:ASPxComboBox ID="combodayOfWeek" runat="server" DataSourceID="odsDaysOfWeek"></dx:ASPxComboBox>
-                            </td>
-                        </tr>
-
-                        <tr class="reportType Monthly">
-                            <td>
-                                <dx:ASPxLabel runat="server" ID="lblDOW" Text="Day of month:"></dx:ASPxLabel>
-
-                            </td>
-                            <td>
-                                <dx:ASPxComboBox ID="combo" runat="server" DataSourceID="odsDaysOfMonth"></dx:ASPxComboBox>
-                            </td>
-                        </tr>
-
-
-                        <tr class="reportType Daily Monthly Weekly">
-                            <td>
-                                <dx:ASPxLabel runat="server" ID="lblTimeOfDay" Text="Time of day:"></dx:ASPxLabel>
-                            </td>
-                            <td>
-                                <dx:ASPxTimeEdit ID="teTkimeEdit" runat="server"></dx:ASPxTimeEdit>
-                            </td>
-                        </tr>
-                    </table>
-
-                </td>
-                <%--DESTINATION--%>
-
-                <td>
-                    <dx:ASPxComboBox
-                        ValueField="NativeID"
-                        TextField="NameFormatted"
-                        ID="comboSubscribers"
-                        runat="server"
-                        DataSourceID="odsSubscribers">
-                    </dx:ASPxComboBox>
-                </td>
-            </tr>
-
-
-        </table>
+        </style>       
 
     </div>
 
-
-
-
-    <asp:ObjectDataSource runat="server" ID="odsSubscribers" SelectMethod="GetAllforApplication" TypeName="FMS.Business.DataObjects.Subscriber">
+        <asp:ObjectDataSource runat="server" ID="odsSubscribers" SelectMethod="GetAllforApplication" TypeName="FMS.Business.DataObjects.Subscriber">
         <SelectParameters>
             <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appid"></asp:SessionParameter>
         </SelectParameters>
