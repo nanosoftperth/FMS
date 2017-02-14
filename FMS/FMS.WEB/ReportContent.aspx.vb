@@ -8,7 +8,7 @@
 
         'BY RYAN: change column labels 
         If reportname = "ServiceVehicleReport" Then
-            With CType(ASPxDocumentViewer1.Report, ServiceVehicleReport)
+            With CType(ASPxDocumentViewer1.Report, DriverOperatingHours)
                 .ArrivalCell.Text = ThisSession.ApplicationName + " H.Q. Arrival"
                 .DepartureCell.Text = ThisSession.ApplicationName + " H.Q. Departure"
             End With
@@ -60,7 +60,7 @@
 
                 ASPxDocumentViewer1.ToolbarMode = DevExpress.XtraReports.Web.DocumentViewer.DocumentViewerToolbarMode.Ribbon
 
-                With CType(ASPxDocumentViewer1.Report, ServiceVehicleReport)
+                With CType(ASPxDocumentViewer1.Report, DriverOperatingHours)
                     .parameter1.Value = thisMorning
                     .parameter2.Value = midnightTonight
                     .Parameter3.Value = vehicleName
@@ -87,7 +87,7 @@
             Case "VehicleReport"
                 Return New VehicleReport
             Case "ServiceVehicleReport"
-                Return New ServiceVehicleReport
+                Return New DriverOperatingHours
             Case "ReportGeoFence_byDriver", "ReportGeoFence_byDriver.vb"
                 Return New ReportGeoFence_byDriver
             Case Else
