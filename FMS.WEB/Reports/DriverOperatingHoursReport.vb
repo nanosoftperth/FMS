@@ -1,4 +1,4 @@
-﻿Public Class ServiceVehicleReport
+﻿Public Class DriverOperatingHoursReport
     Inherits DevExpress.XtraReports.UI.XtraReport
 
 #Region " Designer generated code "
@@ -95,7 +95,7 @@
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ServiceVehicleReport))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DriverOperatingHoursReport))
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
