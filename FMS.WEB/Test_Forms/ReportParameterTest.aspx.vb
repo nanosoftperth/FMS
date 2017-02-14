@@ -9,7 +9,7 @@
         'nrpTest.ReportParameter = (New ServiceVehicleReport).Parameters(0)
 
 
-        Dim x As New ServiceVehicleReport
+        Dim x As New DriverOperatingHours
 
         NanoReportParamList.Report = x
 
@@ -21,7 +21,7 @@
         '    sourceDIV.Controls.Add(New NanoReportParam With {.ReportParameter = param})
         'Next
 
-       
+
 
         'sourceDIV.Controls.Add( New )
 
@@ -38,7 +38,7 @@
         '    '
         '    Dim nan As NanoReportParam = LoadControl("~\Controls\NanoReportParam.ascx")
 
-        NanoReportParamList.Report = New ServiceVehicleReport
+        NanoReportParamList.Report = New DriverOperatingHours
         '    sourceDIV.Controls.Add(New NanoReportParam With {.ReportParameter = param})
         'Next
     End Sub
