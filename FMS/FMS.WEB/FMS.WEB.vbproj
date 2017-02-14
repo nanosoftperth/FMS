@@ -360,7 +360,7 @@
     <Compile Include="Reports\VehicleReport.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\ServiceVehicleReport.vb">
+    <Compile Include="Reports\DriverOperatingHoursReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RoundRobinService.svc.vb">
@@ -726,8 +726,8 @@
     <EmbeddedResource Include="Reports\VehicleReport.resx">
       <DependentUpon>VehicleReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ServiceVehicleReport.resx">
-      <DependentUpon>ServiceVehicleReport.vb</DependentUpon>
+    <EmbeddedResource Include="Reports\DriverOperatingHoursReport.resx">
+      <DependentUpon>DriverOperatingHoursReport.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
