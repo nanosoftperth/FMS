@@ -356,27 +356,27 @@ Public Class CachedDriverOperatingHoursReport
     Public Sub CalculateSummaries()
 
 
-        'For i As Integer = 0 To LineValies.Count - 1
+        For i As Integer = 0 To Me.VehicleActivityReportLines.Count - 1
 
-        '    Dim thisLineValue As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine = LineValies(i)
+            Dim thisLineValue As FMS.Business.ReportGeneration.VehicleActivityReportLine = Me.VehicleActivityReportLines(i)
 
-        '    TotalStopDuration += thisLineValue.StopDuration
-        '    TotalIdleTime += thisLineValue.IdleDuration
-        '    NumberOfStops += 1
+            TotalStopDuration += thisLineValue.StopDuration
+            TotalIdleTime += thisLineValue.IdleDuration
+            NumberOfStops += 1
 
-        '    TotalDistanceTravelled += thisLineValue.DistanceKMs
+            TotalDistanceTravelled += thisLineValue.DistanceKMs
 
-        '    If thisLineValue.StopDuration.TotalHours < 6 Then AverageStopDuration += thisLineValue.StopDuration
+            If thisLineValue.StopDuration.TotalHours < 6 Then AverageStopDuration += thisLineValue.StopDuration
 
-        '    If thisLineValue.ArrivalTime.HasValue AndAlso thisLineValue.StartTime.HasValue Then _
-        '        TotalTravelDuration += (thisLineValue.ArrivalTime.Value - thisLineValue.StartTime.Value)
-        'Next
+            If thisLineValue.ArrivalTime.HasValue AndAlso thisLineValue.StartTime.HasValue Then _
+                TotalTravelDuration += (thisLineValue.ArrivalTime.Value - thisLineValue.StartTime.Value)
+        Next
 
-        'If NumberOfStops > 0 Then
-        '    AverageStopDuration = TimeSpan.FromSeconds(AverageStopDuration.TotalSeconds / NumberOfStops)
-        'Else
-        '    AverageStopDuration = TimeSpan.FromSeconds(0)
-        'End If
+        If NumberOfStops > 0 Then
+            AverageStopDuration = TimeSpan.FromSeconds(AverageStopDuration.TotalSeconds / NumberOfStops)
+        Else
+            AverageStopDuration = TimeSpan.FromSeconds(0)
+        End If
 
 
         formatted_AverageStopDuration = timespanFormatCust(AverageStopDuration)
@@ -403,6 +403,7 @@ Public Class CachedDriverOperatingHoursReport
 #End Region
 
     Public Property LineValies As List(Of Business.ReportGeneration.DriverOperatingReportHoursLine)
+    Public Property VehicleActivityReportLines As List(Of Business.ReportGeneration.VehicleActivityReportLine)
 
 End Class
 

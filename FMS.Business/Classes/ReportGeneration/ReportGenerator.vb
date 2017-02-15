@@ -184,7 +184,7 @@ Namespace ReportGeneration
 
         Public Shared Function GetDriverOperatingHours_ForVehicle(startDate As Date,
                                                                 endDate As Date,
-                                                                vehicleID As Guid?) As List(Of ReportGeneration.DriverOperatingReportHoursLine)
+                                                                vehicleID As Guid?) As ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours
 
             'Return ReportGeneration.DriverOperatingReportHoursLine.GetTestLines()
             Return ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleID, startDate, endDate)
