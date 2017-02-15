@@ -25,7 +25,7 @@ Public Class AvailableReport
                                            , .ReportDescription = "All journeys and stops for a specific vehicle" _
                                            , .VisibleReportName = "Vehicle report"})
 
-        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "DriverOperatingHoursToReport" _
+        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "DriverOperatingHoursReport" _
                                            , .ReportDescription = "Driver Operating Hours to Report" _
                                            , .VisibleReportName = "Driver Operating Hours to Report"})
 

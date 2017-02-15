@@ -31,7 +31,7 @@ Public Class ReportDataHandler
                     .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
 
-        'Find out if the report is alreaedy in the cache
+        'Find out if the report is already in the cache
         Dim rept As CachedVehicleReport = (From x In ThisSession.CachedVehicleReports _
                                             Where x.EndDate = endDate _
                                             AndAlso x.StartDate = startdate _
@@ -50,8 +50,6 @@ Public Class ReportDataHandler
                                                     , .EndDate = endDate _
                                                     , .LineValies = vehicleReportLines})
 
-            'TimeZoneHelper.AltertoHQTimeZone(rept) 'should n olonger be required, don eat business layer
-
             rept.CalculateSummaries()
 
             ThisSession.CachedVehicleReports.Add(rept)
@@ -65,14 +63,13 @@ Public Class ReportDataHandler
     End Function
 
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT
-    Public Shared Function GetServiceVehicleReportValues(startdate As Date _
+    Public Shared Function GetDriverOperatingReportValues(startdate As Date _
                                                   , endDate As Date _
-                                                  , vehicleName As String) As CachedServiceVehicleReport
+                                                  , vehicleName As String) As CachedDriverOperatingHoursReport
 
 
         startdate = startdate
         endDate = endDate.AddDays(1)
-
 
         'get the vehicleid (guid)
         Dim vehicleID As Guid = _
@@ -81,68 +78,31 @@ Public Class ReportDataHandler
 
 
         'Find out if the report is alreaedy in the cache
-        Dim rept As CachedServiceVehicleReport = (From x In ThisSession.CachedServiceVehicleReports _
-                                            Where x.EndDate = endDate _
-                                            AndAlso x.StartDate = startdate _
-                                            AndAlso x.VehicleID = vehicleID).SingleOrDefault
+        Dim rept As CachedDriverOperatingHoursReport = (From x In ThisSession.CachedDriveroperatingHoursReports _
+                                                            Where x.EndDate = endDate _
+                                                            AndAlso x.StartDate = startdate _
+                                                            AndAlso x.VehicleID = vehicleID).SingleOrDefault
 
         Dim GET_CAHCHED_REPORT As Boolean = True
 
         'MAKE the report and add it to the cache if it doesnt exist
         If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-            Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
-                    FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
+            Dim driverOperatingReportLines As List(Of FMS.Business.ReportGeneration.DriverOperatingReportHoursLine) = _
+                    FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID)
 
-            Dim c = New List(Of CachedServiceVehicleReportLine)
-
-            'from vehicleReportLines, get all distinct date
-            Dim ddate = (From x In vehicleReportLines Select If(x.StartTime Is Nothing, "", x.StartTime.Value.ToShortDateString())).Distinct.ToList
-
-            'get lat long of application
-            'Dim apsettings = Business.DataObjects.Setting.GetSettingsForApplication_withoutImages(ThisSession.ApplicationID)
-            'Dim aplat = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Lattitude").Value
-            'Dim aplog = apsettings.SingleOrDefault(Function(x) x.Name = "Business_Longitude").Value
-            'BY RYAN P. : GETS THE LONGITUDE AND LATITUDE PER DRIVER AND VEHICLE ASSIGNED
-            Dim appv = Business.DataObjects.ApplicationLocation.GetLocationVehicle(startdate, endDate, vehicleID, ThisSession.ApplicationID)
-            Dim aplat = appv.Lattitude
-            Dim aplog = appv.Longitude
-            Dim aploc = New Business.BackgroundCalculations.Loc(aplat, aplog)
-            For Each dateloop In ddate
-                ' group all activities in vehicleReportLines per date
-                Dim vrl = (From x In vehicleReportLines Where If(x.StartTime Is Nothing, "", x.StartTime.Value.ToShortDateString()) = dateloop Order By x.StartTime Select x).ToList
-                Dim i = New CachedServiceVehicleReportLine()
-
-                'in activity list for each date, get the first to enter the application with a 200m radius  
-                Dim vrl_floc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 200, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.FirstOrDefault
-                If vrl_floc IsNot Nothing Then
-                    i.Arrival = vrl_floc.ArrivalTime 'get the arrival 
-                End If
-                'in activity list for each date, get the lastentry to enter the application with a 200m radius  
-                Dim vrl_lloc = (From x In vrl Where Business.BackgroundCalculations.GeoFenceCalcs.isPointInCircle(aploc, 200, New Business.BackgroundCalculations.Loc(x.Lat, x.Lng)) = True Select x).ToList.LastOrDefault
-                'get the index oof last and add 1 to have the first 'out' in application
-                If vrl_lloc IsNot Nothing Then
-                    Dim cl = vrl(vrl.IndexOf(vrl_lloc) + 1)
-                    i.Departure = cl.StartTime 'Get departuere
-                End If
-                i.HomeStart = vrl.First.StartTime 'get start time from the first activity of the day
-                i.HomeStart_End = vrl.Last.ArrivalTime ' get start/end time from the last activity of the day
-                c.Add(i)
-            Next
-            'create the report source
-            rept = (New CachedServiceVehicleReport With {.VehicleID = vehicleID _
+            
+            rept = (New CachedDriverOperatingHoursReport With {.VehicleID = vehicleID _
                                                     , .StartDate = startdate _
                                                     , .EndDate = endDate _
-                                                    , .LineValies = vehicleReportLines _
-                                                    , .ServiceLineValies = c})
-
-            'TimeZoneHelper.AltertoHQTimeZone(rept) 'should n olonger be required, don eat business layer
-
+                                                    , .LineValies = driverOperatingReportLines _
+                                                    })
+       
             'compute the summaries
             rept.CalculateSummaries()
 
             'put in session
-            ThisSession.CachedVehicleReports.Add(rept)
+            ThisSession.CachedDriveroperatingHoursReports.Add(rept)
 
         End If
 

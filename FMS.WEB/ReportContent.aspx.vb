@@ -7,13 +7,14 @@
         Me.ASPxDocumentViewer1.Report = GetReportFromName(reportname)
 
         'BY RYAN: change column labels 
-        If reportname = "ServiceVehicleReport" Then
-            With CType(ASPxDocumentViewer1.Report, DriverOperatingHours)
+        If reportname = "DriverOperatingHoursReport" Then
+            With CType(ASPxDocumentViewer1.Report, DriverOperatingHoursReport)
                 .ArrivalCell.Text = ThisSession.ApplicationName + " H.Q. Arrival"
                 .DepartureCell.Text = ThisSession.ApplicationName + " H.Q. Departure"
             End With
         End If
 
+        'TODO: what was this for?
         'if this is not going to automatically fill parameters, then exit sub here 
         If String.IsNullOrEmpty(Request.QueryString("autoFillParams")) Then Exit Sub
 
@@ -49,7 +50,7 @@
                 ASPxDocumentViewer1.SettingsSplitter.ParametersPanelCollapsed = True
 
 
-            Case "ServiceVehicleReport"
+            Case "DriverOperatingHoursReport"
 
                 Dim vehicleIDStr As String = Request.QueryString("vehicleid")
                 'paramaters: startdate,enddate,vehicle
@@ -60,7 +61,7 @@
 
                 ASPxDocumentViewer1.ToolbarMode = DevExpress.XtraReports.Web.DocumentViewer.DocumentViewerToolbarMode.Ribbon
 
-                With CType(ASPxDocumentViewer1.Report, DriverOperatingHours)
+                With CType(ASPxDocumentViewer1.Report, DriverOperatingHoursReport)
                     .parameter1.Value = thisMorning
                     .parameter2.Value = midnightTonight
                     .Parameter3.Value = vehicleName
@@ -86,8 +87,8 @@
         Select Case reportName
             Case "VehicleReport"
                 Return New VehicleReport
-            Case "ServiceVehicleReport"
-                Return New DriverOperatingHours
+            Case "DriverOperatingHoursReport"
+                Return New DriverOperatingHoursReport
             Case "ReportGeoFence_byDriver", "ReportGeoFence_byDriver.vb"
                 Return New ReportGeoFence_byDriver
             Case Else

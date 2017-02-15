@@ -181,6 +181,16 @@ Namespace ReportGeneration
 
         End Function
 
+
+        Public Shared Function GetDriverOperatingHours_ForVehicle(startDate As Date,
+                                                                endDate As Date,
+                                                                vehicleID As Guid?) As List(Of ReportGeneration.DriverOperatingReportHoursLine)
+
+            'Return ReportGeneration.DriverOperatingReportHoursLine.GetTestLines()
+            Return ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleID, startDate, endDate)
+
+        End Function
+
         Public Shared Function GetActivityReportLines_ForVehicle(startDate As Date,
                                                                  endDate As Date,
                                                                  vehicleID As Guid?) As List(Of VehicleActivityReportLine)
@@ -202,6 +212,10 @@ Namespace ReportGeneration
                 l.ArrivalTime = l.ArrivalTime.timezoneToClient
                 l.DepartureTime = l.DepartureTime.timezoneToClient
                 l.StartTime = l.StartTime.timezoneToClient
+
+                If l.DepartureTime.HasValue AndAlso l.ArrivalTime.HasValue Then _
+                                l.StopDuration = l.DepartureTime.Value - l.ArrivalTime.Value
+
             Next
 
             'start time (earliest irst)

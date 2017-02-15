@@ -514,7 +514,7 @@
         Me.XrPictureBox2.Image = CType(resources.GetObject("XrPictureBox2.Image"), System.Drawing.Image)
         Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(566.5201!, 0.00001589457!)
         Me.XrPictureBox2.Name = "XrPictureBox2"
-        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(151.4799!, 146.0358!)
+        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(151.4799!, 115.8275!)
         Me.XrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
         '
         'XrTable3
