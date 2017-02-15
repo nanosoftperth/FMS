@@ -12,6 +12,16 @@ namespace FMS.TestConsole
         static void Main(string[] args)
         {
 
+            //BD720245-2F9F-4C2E-B3FB-6543C30070F0	1ESH-437
+
+            Guid vehicleGUID = Guid.Parse("BD720245-2F9F-4C2E-B3FB-6543C30070F0");
+            DateTime startDate = DateTime.Parse( "3 jan 2017");
+            DateTime endDate = DateTime.Parse( "4 jan 2017");
+
+
+            object retobbj =  Business.ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleGUID, startDate, endDate);
+
+            string x = ";";
 
             //var x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress("28 maidstone way, morley, 6062, australia");
 
@@ -28,7 +38,9 @@ namespace FMS.TestConsole
 
 
 
-            //return;
+
+            return;
+            
 
             sr1.Uniqco_IntegratorClient svr1 = new sr1.Uniqco_IntegratorClient();
 

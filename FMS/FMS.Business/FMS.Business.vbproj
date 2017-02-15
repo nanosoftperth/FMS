@@ -117,6 +117,7 @@
     <Compile Include="Classes\Extension Methods\ExtentionModule.vb" />
     <Compile Include="Classes\Interfaces\ITimezoneAware.vb" />
     <Compile Include="Classes\ReportGeneration\ActivityReportLine.vb" />
+    <Compile Include="Classes\ReportGeneration\DriverOperatingReportHoursLine.vb" />
     <Compile Include="Classes\ReportGeneration\GeoFenceReport_Simple.vb" />
     <Compile Include="Classes\ReportGeneration\ReportGenerator.vb" />
     <Compile Include="Classes\DataObjects\Role.vb" />

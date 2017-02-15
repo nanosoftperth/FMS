@@ -33,7 +33,6 @@
 
         End Sub
 
-
         Public Shared Function GetFromSpeedAndtimeStr(startDate As Date,
                                                     endDate As Date,
                                                     vehicleID As String) As List(Of ActivityReportLine)

@@ -352,7 +352,7 @@
       <DependentUpon>ReportContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\GeoFenceReport_ByDriver.vb" />
+    <Compile Include="Reports\Classes\GeoFenceReport_ByDriver.vb" />
     <Compile Include="Reports\ReportDataHandler.vb" />
     <Compile Include="Reports\ReportGeoFence_byDriver.vb">
       <SubType>Component</SubType>
@@ -838,7 +838,7 @@
     <Content Include="OdometerTester.aspx" />
     <Content Include="ProblemPage.aspx" />
     <Content Include="ReportContent.aspx" />
-    <Content Include="Reports\reporttocopy.png" />
+    <Content Include="Reports\report backup\reporttocopy.png" />
     <Content Include="RoundRobinService.svc" />
     <Content Include="DefaultService.svc" />
     <Content Include="DevExpress\ASPxSchedulerForms\AppointmentDragToolTip.ascx" />

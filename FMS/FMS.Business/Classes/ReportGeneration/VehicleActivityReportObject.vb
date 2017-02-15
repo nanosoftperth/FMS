@@ -24,17 +24,19 @@ Namespace ReportGeneration
         Public Property StopLocation As String
         Public Property Lat As Decimal 'BYRYAN
         Public Property Lng As Decimal 'BYRYAN
-
         Public Property StartTime As DateTime?
         Public Property ArrivalTime As New DateTime?
         Public Property DepartureTime As DateTime?
-
         Public Property IdleDuration As TimeSpan
         Public Property StopDuration As New TimeSpan
         Public Property EngineOffDuration As New TimeSpan
-
         Public Property DistanceKMs As Decimal
 
+        Public ReadOnly Property Loc As Business.BackgroundCalculations.Loc
+            Get
+                Return New Business.BackgroundCalculations.Loc(Me.Lat, Me.Lng)
+            End Get
+        End Property
 
 #Region "read only properties (mostly for formatting, dev express forms causing issues)"
 
