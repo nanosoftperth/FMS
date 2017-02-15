@@ -88,16 +88,17 @@ Public Class ReportDataHandler
         'MAKE the report and add it to the cache if it doesnt exist
         If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-            Dim driverOperatingReportLines As List(Of FMS.Business.ReportGeneration.DriverOperatingReportHoursLine) = _
+            Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours = _
                     FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID)
 
-            
+
             rept = (New CachedDriverOperatingHoursReport With {.VehicleID = vehicleID _
                                                     , .StartDate = startdate _
                                                     , .EndDate = endDate _
-                                                    , .LineValies = driverOperatingReportLines _
+                                                    , .LineValies = driverOperatingReport.LineValues _
+                                                    , .VehicleActivityReportLines = driverOperatingReport.VehicleActivityReportLines
                                                     })
-       
+
             'compute the summaries
             rept.CalculateSummaries()
 

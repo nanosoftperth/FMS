@@ -30,7 +30,7 @@ Namespace ReportGeneration
                 Dim randNum As Integer = (New Random).Next(30)
 
                 retobj.Add(New ReportGeneration.DriverOperatingReportHoursLine With {.DayDate = startDate.AddDays(i) _
-                                                                                        , .ArriveHome = .DayDate.AddHours(randNum) _
+                                                                                    , .ArriveHome = .DayDate.AddHours(randNum) _
                                                                                     , .HQArrival = startDate.AddHours(9) _
                                                                                     , .HQLeave = startDate.AddHours(17) _
                                                                                     , .TotalHours = TimeSpan.FromHours(10) _
@@ -44,12 +44,24 @@ Namespace ReportGeneration
         End Function
 
 
+        Public Class DriverOperatingReportHours
+
+            Public Property LineValues As New List(Of ReportGeneration.DriverOperatingReportHoursLine)
+
+            Public Property VehicleActivityReportLines As List(Of VehicleActivityReportLine)
+
+
+            Public Sub New()
+
+            End Sub
+        End Class
+
         Public Shared Function GetForVehicle(vehicleID As Guid,
-                                             startDate As Date, endDate As Date) As List(Of ReportGeneration.DriverOperatingReportHoursLine)
+                                             startDate As Date, endDate As Date) As DriverOperatingReportHours
 
             If startDate >= endDate Then Throw New Exception("The start date must be before the end date.")
 
-            Dim retlst As New List(Of ReportGeneration.DriverOperatingReportHoursLine)
+            Dim retobj As New DriverOperatingReportHours
 
             'get a list of days which will be a line item each in the report.
             Dim reportDays As New List(Of Date)
@@ -63,6 +75,9 @@ Namespace ReportGeneration
             Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
                                 FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle( _
                                                                                         startDate, endDate, vehicleID)
+
+            'this list is required for preforming summary cals in the web / report layer
+            retobj.VehicleActivityReportLines = vehicleReportLines
 
             'get the driver of the vehicle for that time, if there is none, then use the "base" of the logged in user. 
             Dim businessLocation As DataObjects.ApplicationLocation = _
@@ -121,11 +136,11 @@ Namespace ReportGeneration
                 Next
 
                 loopReptLine.TotalHours = loopReptLine.ArriveHome - loopReptLine.LeftHomeDate
-                retlst.Add(loopReptLine)
+                retobj.LineValues.Add(loopReptLine)
 
             Next
 
-            Return retlst
+            Return retobj
 
 
         End Function
