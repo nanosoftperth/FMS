@@ -30,4 +30,31 @@ Partial Public Class ReportScheduler
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvReports As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsReports control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsReports As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsReportList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsReportList As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsSchedule control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsSchedule As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
