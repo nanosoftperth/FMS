@@ -51,6 +51,38 @@
 
         End Function
 
+        Public Shared Function GetLatLongs(deviceid As String, dt As DateTime) As KeyValuePair(Of Decimal, Decimal)
+
+            Dim pipNameLat As String = String.Format("{0}_lat", deviceid)
+            Dim pipNameLng As String = String.Format("{0}_long", deviceid)
+
+            Dim pit As New PITimeServer.PITime With {.LocalDate = dt}
+
+            Dim lat = SingletonAccess.HistorianServer.PIPoints(pipNameLat).Data.ArcValue(pit, PISDK.RetrievalTypeConstants.rtInterpolated).Value
+            Dim lng = SingletonAccess.HistorianServer.PIPoints(pipNameLng).Data.ArcValue(pit, PISDK.RetrievalTypeConstants.rtInterpolated).Value
+
+            Return New KeyValuePair(Of Decimal, Decimal)(lat, lng)
+
+        End Function
+
+
+        Public Structure LogLatLng
+            Public Property LogEntry As String
+            Public Property Lat As String
+            Public Property Lng As String
+          
+        End Structure
+
+        Public Shared Function GetDeviceLogLatLng(deviceID As String, d As Date) As LogLatLng
+
+            Dim LogEntry As String = GetLastLogEntryForDeviceID(deviceID)
+            Dim latlng As KeyValuePair(Of Decimal, Decimal) = GetLatLongs(deviceID, d)
+
+            Return New LogLatLng With {.LogEntry = LogEntry, .Lat = latlng.Key, .Lng = latlng.Value}
+
+
+        End Function
+
 
         Public Shared Function GetLastLogEntryForDeviceID(deviceID As String) As String
 

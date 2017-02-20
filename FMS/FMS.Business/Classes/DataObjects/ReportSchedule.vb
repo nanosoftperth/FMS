@@ -131,7 +131,7 @@ Namespace DataObjects
             x.ReportParams = ""
             x.ReportTime = DateAndTime.Now
             x.SubscriberID = Guid.NewGuid
-            x.Schedule = rpt.Schedule 
+            'x.Schedule = rpt.Schedule 
 
 
             SingletonAccess.FMSDataContextContignous.ReportSchdeules.InsertOnSubmit(x)
