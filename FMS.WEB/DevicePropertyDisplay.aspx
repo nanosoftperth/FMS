@@ -71,33 +71,66 @@
 
                 param.DeviceID = deviceID;
                 
-                ajaxMethod("DefaultService.svc/" + 'GetLatestMessage',
+                ajaxMethod("DefaultService.svc/" + 'GetLatestMessageWithLatLong',
                                 param, getLog_SuccessCallback, sendMessage_ErrorCallback, sendMessage_FinallyCallback);
 
             }
 
+
+            function toRads(dec) { return dec * (Math.PI / 180); }
+            function toDegs(rad) { return rad / (Math.PI / 180); }
+
+            function getHeading(startLat, startLng, endLat, endLng) {
+
+                var r_startLat = toRads(startLat);
+                var r_startLng = toRads(startLng);
+                var r_endLat = toRads(endLat);
+                var r_endLng = toRads(endLng);
+
+                var deltaL = endLng - startLng;
+                var r_deltaL = toRads(deltaL);
+
+                var X = Math.cos(r_endLat) * Math.sin(r_deltaL);
+
+                var Y = Math.cos(r_startLat) * Math.sin(r_endLat)
+                        - Math.sin(r_startLat) * Math.cos(r_endLat) * Math.cos(r_deltaL);
+
+                var heading = Math.atan2((X), (Y));
+
+                return toDegs(heading);
+
+            }
+
+            var i = 0;
+
+            prevLat = 0;
+            prevLng = 0;
+
             function getLog_SuccessCallback(result) {
-                
+
                 var s = result.d._ReturnString.replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n');
 
-                //temp
-                //need improvements
-                try
-                {
+                try {
                     var x = result.d._ReturnString.split(",");
-                    var lat = x[1].replace("lat:", "");
-                    var lon = x[2].replace("lng", "");
+                    var lat = result.d._Lat;
+                    var lon = result.d._Lng;
+
+                    var heading = getHeading(prevLat, prevLng, lat, lon);
+
+                    prevLat = lat;
+                    prevLng = lon;
+
                     $('#streetView_image').show();
-                    $('#streetView_image').attr("src", "https://maps.googleapis.com/maps/api/streetview?size=150x100&location=" + lat + "," + lon + "&key=AIzaSyCeMLNUixkGRU-PwkiVbHTrMr5Foz07KWQ");
+                    $('#streetView_image').attr("src", "https://maps.googleapis.com/maps/api/streetview?size=150x100&location=" + lat + "," + lon + "&heading=" + heading + "&key=AIzaSyCeMLNUixkGRU-PwkiVbHTrMr5Foz07KWQ");
                 }
                 catch (err) {
-                    $('#streetView_image').hide();
+                    //  $('#streetView_image').hide();
                 }
 
                 logLabel.SetText(s);
                 setTimeout(function () {
                     getLastMessage();
-                }, 1000);
+                }, 2500);
 
             }
 

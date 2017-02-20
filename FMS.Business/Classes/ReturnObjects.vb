@@ -322,6 +322,10 @@ Public Class SendDriverMessage_ReturnObject
 
     Public Property ReturnString As String
 
+    Public Property Lat As String
+
+    Public Property Lng As String
+
     Public Sub New()
 
     End Sub
