@@ -371,6 +371,13 @@
     <Compile Include="Reports\ReportGeoFence_byDriver.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\ReportScheduler.aspx.designer.vb">
+      <DependentUpon>ReportScheduler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportScheduler.aspx.vb">
+      <DependentUpon>ReportScheduler.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\VehicleReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -710,6 +717,13 @@
       <DependentUpon>WebForm2.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="WebForm3.aspx.designer.vb">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm3.aspx.vb">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="WebServices\Classes\VehicleDistanceData.vb" />
     <Compile Include="WebServices\IUniqco_Integrator.vb" />
     <Compile Include="WebServices\Uniqco_Integrator.svc.vb">
@@ -854,6 +868,7 @@
     <Content Include="QueryParser.aspx" />
     <Content Include="ReportContent.aspx" />
     <Content Include="Reports\report backup\reporttocopy.png" />
+    <Content Include="Reports\ReportScheduler.aspx" />
     <Content Include="RoundRobinService.svc" />
     <Content Include="DefaultService.svc" />
     <Content Include="DevExpress\ASPxSchedulerForms\AppointmentDragToolTip.ascx" />
@@ -898,6 +913,7 @@
     <Content Include="Test_Forms\TimeZoneTester.aspx" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
+    <Content Include="WebForm3.aspx" />
     <Content Include="WebServices\Uniqco_Integrator.svc" />
     <Content Include="WebServices\VehicleLog.aspx" />
     <Content Include="WebService_Uniqco.svc" />
@@ -1061,7 +1077,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18399/</IISUrl>
+          <IISUrl>http://localhost:18398/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

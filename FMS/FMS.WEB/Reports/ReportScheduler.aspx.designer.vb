@@ -57,4 +57,31 @@ Partial Public Class ReportScheduler
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsSchedule As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsDaysOfWeek control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDaysOfWeek As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsDaysOfMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDaysOfMonth As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsAVDTVehicles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsAVDTVehicles As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
