@@ -75,8 +75,12 @@ Namespace DataObjects
         Public Property ScheduleDate As String
         Public Property ScheduleTime As String
         Public Property DayofWeek As String
-        Public Property DayofMonth As String   
-#End Region 
+        Public Property DayofMonth As String
+        Public Property StartDate As String
+        Public Property EndDate As String
+        Public Property Vehicle As String
+        Public Property Recipients As String
+#End Region
 
 
 #End Region
@@ -98,6 +102,8 @@ Namespace DataObjects
             Me.ReportType = x.ReportType
             Me.ReportTypeSpecific = x.ReportTypeSpecific
             Me.SubscriberID = x.SubscriberID
+            Me.Schedule = x.Schedule
+            Me.Recipients = x.Recipients
         End Sub
 
 #End Region

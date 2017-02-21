@@ -11817,6 +11817,10 @@ Partial Public Class ReportSchdeule
 	
 	Private _SubscriberID As System.Nullable(Of System.Guid)
 	
+	Private _Schedule As String
+	
+	Private _Recipients As String
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -11867,6 +11871,14 @@ Partial Public Class ReportSchdeule
     Partial Private Sub OnSubscriberIDChanging(value As System.Nullable(Of System.Guid))
     End Sub
     Partial Private Sub OnSubscriberIDChanged()
+    End Sub
+    Partial Private Sub OnScheduleChanging(value As String)
+    End Sub
+    Partial Private Sub OnScheduleChanged()
+    End Sub
+    Partial Private Sub OnRecipientsChanging(value As String)
+    End Sub
+    Partial Private Sub OnRecipientsChanged()
     End Sub
     #End Region
 	
@@ -12049,6 +12061,38 @@ Partial Public Class ReportSchdeule
 				Me._SubscriberID = value
 				Me.SendPropertyChanged("SubscriberID")
 				Me.OnSubscriberIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Schedule", DbType:="VarChar(MAX)")>  _
+	Public Property Schedule() As String
+		Get
+			Return Me._Schedule
+		End Get
+		Set
+			If (String.Equals(Me._Schedule, value) = false) Then
+				Me.OnScheduleChanging(value)
+				Me.SendPropertyChanging
+				Me._Schedule = value
+				Me.SendPropertyChanged("Schedule")
+				Me.OnScheduleChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Recipients", DbType:="VarChar(MAX)")>  _
+	Public Property Recipients() As String
+		Get
+			Return Me._Recipients
+		End Get
+		Set
+			If (String.Equals(Me._Recipients, value) = false) Then
+				Me.OnRecipientsChanging(value)
+				Me.SendPropertyChanging
+				Me._Recipients = value
+				Me.SendPropertyChanged("Recipients")
+				Me.OnRecipientsChanged
 			End If
 		End Set
 	End Property

@@ -128,6 +128,7 @@
     <Compile Include="Classes\SingletonAccess.vb" />
     <Compile Include="Class1.vb" />
     <Compile Include="Classes\TimeZoneHelper.vb" />
+    <Compile Include="Common\DictionarySerializer.vb" />
     <Compile Include="Data\FMSDatabaseLINQ.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
