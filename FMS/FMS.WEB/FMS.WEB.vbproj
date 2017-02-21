@@ -72,6 +72,10 @@
     </Reference>
     <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.1.Service, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -271,6 +275,9 @@
     <Compile Include="Content\FleetMapMarker.ashx.vb">
       <DependentUpon>FleetMapMarker.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Content\QueryParser.ashx.vb">
+      <DependentUpon>QueryParser.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\NanoReportParam.ascx.designer.vb">
       <DependentUpon>NanoReportParam.ascx</DependentUpon>
     </Compile>
@@ -343,6 +350,13 @@
     </Compile>
     <Compile Include="ProblemPage.aspx.vb">
       <DependentUpon>ProblemPage.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="QueryParser.aspx.designer.vb">
+      <DependentUpon>QueryParser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QueryParser.aspx.vb">
+      <DependentUpon>QueryParser.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ReportContent.aspx.designer.vb">
@@ -837,6 +851,7 @@
     <Content Include="NoAccessPage.aspx" />
     <Content Include="OdometerTester.aspx" />
     <Content Include="ProblemPage.aspx" />
+    <Content Include="QueryParser.aspx" />
     <Content Include="ReportContent.aspx" />
     <Content Include="Reports\report backup\reporttocopy.png" />
     <Content Include="RoundRobinService.svc" />
@@ -967,6 +982,7 @@
     <Content Include="Content\contextMenu\font\context-menu-icons.woff2" />
     <Content Include="Content\contextMenu\jquery.contextMenu.min.css.map" />
     <Content Include="Content\contextMenu\jquery.contextMenu.min.js.map" />
+    <Content Include="Content\QueryParser.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -985,6 +1001,7 @@
     <Content Include="UserManagementContent.aspx" />
     <Content Include="UserManagement.aspx" />
     <Content Include="Web.config" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
