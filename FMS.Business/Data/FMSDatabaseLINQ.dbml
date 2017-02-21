@@ -631,6 +631,8 @@
       <Column Name="Creator" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="ReportParams" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="SubscriberID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Schedule" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Recipients" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
