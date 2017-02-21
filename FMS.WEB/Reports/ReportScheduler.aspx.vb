@@ -8,8 +8,14 @@ Public Class ReportScheduler
         End Get
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-         
-         
+
+
+    End Sub
+    Private Sub dgvReports_InitNewRow(sender As Object, e As DevExpress.Web.Data.ASPxDataInitNewRowEventArgs) Handles dgvReports.InitNewRow
+
+
+        dgvReports.Columns("ScheduleDate").Visible = True
+        'Col.EditFormSettings.Visible = DefaultBoolean.True
     End Sub
     Private Sub dgvReports_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvReports.RowInserting
         e.NewValues.Add("ApplicationID", ThisSession.ApplicationID)
@@ -28,4 +34,5 @@ Public Class ReportScheduler
         FMS.Business.SingletonAccess.ClientSelected_TimeZone = If(Not String.IsNullOrEmpty(ThisSession.User.TimeZone.ID), _
                                                                         ThisSession.User.TimeZone, ThisSession.ApplicationObject.TimeZone)
     End Sub
+
 End Class
