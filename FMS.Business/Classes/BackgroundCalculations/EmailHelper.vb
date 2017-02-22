@@ -47,9 +47,8 @@ Namespace BackgroundCalculations
                 
                 messageBody = String.Format(EmailContent, companyName, driverName, enteredorexited, geofence_Name, EntryOrExitTime_formatted)
 
-
-
                 SendEmail(emailList, subject, messageBody)
+
             Catch ex As Exception
                 Dim x As String = ex.Message
             End Try

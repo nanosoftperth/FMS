@@ -21,12 +21,6 @@ Public Class BackgroundCalcs
     End Sub
 
 
-
-    
-
-
-
-
     '    bool IsPointInPolygon(List<Loc> poly, Loc point)
     '{
     '    int i, j;
