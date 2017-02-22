@@ -20,9 +20,7 @@
                     });
         }
         function Schedule_ValueChanged(s, e) {
-
-
-            $(".test").show();
+            dgvReports.PerformCallback(s.GetValue());
         }
     </script>
     <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" Width="100%" ActiveTabIndex="0" EnableTabScrolling="True">
@@ -61,48 +59,57 @@
                                             </dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="Creator" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataComboBoxColumn FieldName="ReportType" ShowInCustomizationForm="True" VisibleIndex="3" Caption="Report">
+                                            <dx:GridViewDataComboBoxColumn FieldName="ReportName" ShowInCustomizationForm="True" VisibleIndex="3" Caption="Report">
                                                 <PropertiesComboBox DataSourceID="odsReportList" TextField="VisibleReportName" ValueField="VisibleReportName">
                                                     <ClearButton Visibility="Auto">
                                                     </ClearButton>
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>
                                             <dx:GridViewDataTextColumn FieldName="Creator" ShowInCustomizationForm="True" VisibleIndex="4" Caption="Requestor">
-                                                <EditFormSettings Visible="false" />
+                                                <EditFormSettings Visible="false"  />
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataComboBoxColumn FieldName="Schedule" ShowInCustomizationForm="True" VisibleIndex="5" Caption="Schedule">
+                                            <dx:GridViewDataComboBoxColumn FieldName="ReportType" ShowInCustomizationForm="True" VisibleIndex="5" Caption="Report Type" Visible ="false">
+                                                <EditFormSettings VisibleIndex="5"  Visible ="true"/>
                                                 <PropertiesComboBox DataSourceID="odsSchedule">
                                                     <ClientSideEvents ValueChanged="function(s,e){Schedule_ValueChanged(s,e);}" />
                                                     <ClearButton Visibility="Auto">
                                                     </ClearButton>
                                                 </PropertiesComboBox>
-                                            </dx:GridViewDataComboBoxColumn>
-                                            <dx:GridViewDataDateColumn Caption="Date" FieldName="ScheduleDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="6">
-                                                <EditFormSettings VisibleIndex="6" />
+                                            </dx:GridViewDataComboBoxColumn> 
+                                             <dx:GridViewDataTextColumn FieldName="Schedule" ShowInCustomizationForm="True" Visible="true" VisibleIndex="6">
+                                                   <EditFormSettings VisibleIndex="6"  Visible ="false"/>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataDateColumn Caption="Date" FieldName="ScheduleDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="7">
+                                                <EditFormSettings VisibleIndex="7" />
                                             </dx:GridViewDataDateColumn>
-                                            <dx:GridViewDataDateColumn Caption="Time of the Day" FieldName="ScheduleTime" Visible="false" CellStyle-CssClass="test" VisibleIndex="7">
-                                                <EditFormSettings VisibleIndex="7" Visible="true" />
-                                            </dx:GridViewDataDateColumn>
-                                            <dx:GridViewDataComboBoxColumn FieldName="DayofWeek" ShowInCustomizationForm="True" VisibleIndex="8" Caption="Day of Week">
+                                            <dx:GridViewDataTimeEditColumn Caption="Time of the Day" FieldName="ScheduleTime" Visible="false" CellStyle-CssClass="test" VisibleIndex="8">                                                  
+                                                <EditFormSettings VisibleIndex="8" />
+                                            </dx:GridViewDataTimeEditColumn>                                        
+                                            <dx:GridViewDataComboBoxColumn FieldName="DayofWeek" ShowInCustomizationForm="True" VisibleIndex="9" Caption="Day of Week" Visible ="false">
+                                                   <EditFormSettings VisibleIndex="9" />
                                                 <PropertiesComboBox DataSourceID="odsDaysOfWeek">
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>
-                                            <dx:GridViewDataComboBoxColumn FieldName="DayofMonth" ShowInCustomizationForm="True" VisibleIndex="9" Caption="Day of Month">
+                                            <dx:GridViewDataComboBoxColumn FieldName="DayofMonth" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Day of Month" Visible ="false">
+                                                   <EditFormSettings VisibleIndex="10" />
                                                 <PropertiesComboBox DataSourceID="odsDaysOfMonth">
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>
-                                            <dx:GridViewDataDateColumn Caption="Start Date" FieldName="StartDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="10">
-                                                <EditFormSettings VisibleIndex="10" />
+                                            <dx:GridViewDataDateColumn Caption="Start Date" FieldName="StartDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="11">
+                                                <EditFormSettings VisibleIndex="11"  Visible ="true"/>
                                             </dx:GridViewDataDateColumn>
-                                            <dx:GridViewDataDateColumn Caption="End Date" FieldName="EndDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="11">
-                                                <EditFormSettings VisibleIndex="11" />
+                                            <dx:GridViewDataDateColumn Caption="End Date" FieldName="EndDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="12">
+                                                <EditFormSettings VisibleIndex="12" Visible ="true"  />
                                             </dx:GridViewDataDateColumn>
-                                            <dx:GridViewDataComboBoxColumn FieldName="Vehicle" ShowInCustomizationForm="True" VisibleIndex="12" Caption="Vehicle">
+                                            <dx:GridViewDataComboBoxColumn FieldName="Vehicle" ShowInCustomizationForm="True" VisibleIndex="13" Caption="Vehicle"  Visible ="false" >
+                                                  <EditFormSettings VisibleIndex="13" Visible ="true"  />
                                                 <PropertiesComboBox DataSourceID="odsAVDTVehicles" TextField="Name" ValueField="Name">
                                                 </PropertiesComboBox>
-                                            </dx:GridViewDataComboBoxColumn>
-
-                                            <dx:GridViewDataComboBoxColumn FieldName="Recipients" Caption="Message Destination" VisibleIndex="13">
+                                            </dx:GridViewDataComboBoxColumn>  
+                                            <dx:GridViewDataTextColumn FieldName="ReportParams" ShowInCustomizationForm="True" Visible="true" VisibleIndex="14">
+                                             <EditFormSettings VisibleIndex="14" Visible ="false"  />
+                                            </dx:GridViewDataTextColumn> 
+                                            <dx:GridViewDataComboBoxColumn FieldName="Recipients" Caption="Recipients" VisibleIndex="15">
                                                 <PropertiesComboBox DropDownStyle="DropDown" DataSourceID="odsSubscribers" TextField="NameFormatted" ValueField="NativeID">
                                                     <ClearButton Visibility="Auto"></ClearButton>
                                                 </PropertiesComboBox>
