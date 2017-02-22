@@ -31,9 +31,9 @@ Namespace BackgroundCalculations
             'NOT BOOKINGS
             'OR (are bookings and have not had an alert sent yet)
 
-            'Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid) '--ORI
+            'Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid) 
             'BY RYAN: 
-            Dim alertTypes = DataObjects.AlertType.GetAllOpenBookings(appid)
+            Dim alertTypes = DataObjects.AlertType.GetAllForApplicationWithOpenBookings(appid)
 
             'get all the subscribers
             Dim subscribers As List(Of DataObjects.Subscriber) = FMS.Business.DataObjects.Subscriber.GetAllforApplication(appid)
@@ -173,14 +173,20 @@ Namespace BackgroundCalculations
 
                 'send the emails, this returns nothing if there was an exception (dodgy)
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.Emails) Then
+
                     If alertDefn.isBooking Then
                         newAlertTypeOccurance.MessageContent = BackgroundCalculations.EmailHelper _
                             .SendEmail(newAlertTypeOccurance.Emails, applicationName, thisSubscriber.Name, rslt.Driver_Name, "2 km", rslt.Vehicle_Name, "")
+
                     Else
+
+                        Dim enterOrLeaveTime As Date = If(actnType = DataObjects.AlertType.ActionType.Enters, rslt.StartTime, rslt.EndTime)
+
                         newAlertTypeOccurance.MessageContent = BackgroundCalculations.EmailHelper _
-                            .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, rslt.StartTime, actnType)
+                            .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, enterOrLeaveTime, actnType)
 
                     End If
+
                 End If
 
                 'send SMS to subscribers with SMS messages

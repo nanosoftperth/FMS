@@ -5,8 +5,6 @@
 
         While True
 
-            ' LogMsg("Version 1.0.3 started")
-
             main_method()
 
             Dim SECONDS_TO_WAIT As Integer = 5

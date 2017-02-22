@@ -10,7 +10,7 @@ Module Module1
     Public Sub LogMsg(msg As String, ByVal ParamArray args() As String)
 
         msg = String.Format(msg, args)
-        'Console.WriteLine(msg)
+
 
         If String.IsNullOrEmpty(fileName) Then
             fileName = String.Format("c:\temp\logs\BackGroundCalcsLog_{0}.txt", Now.ToString("yyyyMMddHHmmss"))
@@ -19,6 +19,8 @@ Module Module1
 
         msg = Now.ToString("yyyyMMdd HH:mm:ss") & vbTab & msg
 
+
+        Console.WriteLine(msg)
         System.IO.File.AppendAllText(fileName, msg & vbNewLine)
 
     End Sub
@@ -36,7 +38,7 @@ Module Module1
                 Case "geoFenceTest" : geoFenceTest()
                 Case "sendSMSTest" : sendSMSTest()
                 Case "timeZoneList" : timeZoneList()
-                Case "main_method" : main_method()
+                Case "main_method" : While True : main_method() : End While
             End Select
 
             Console.ReadKey()
@@ -49,7 +51,7 @@ Module Module1
     End Sub
 
     Public Sub main_method()
-        'THIS IS RUN INFINITELY BY THE SERVICE - RYAN
+        'THIS IS RUN INFINITELY BY THE SERVICE 
 
         LogMsg("Version ""{0}"" ", version)
 
