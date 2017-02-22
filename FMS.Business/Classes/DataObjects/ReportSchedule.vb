@@ -2,10 +2,13 @@
 Imports System.Xml.Serialization
 Imports System.IO
 Imports System.Xml
+Imports System.Reflection
+Imports System.Linq.Expressions
+
 Namespace DataObjects
     Public Class ReportSchedule
 
-        Private Const REPORT_TYPES As String = "One-off,Daily,Weekly,Monthly"
+        Private Const REPORT_TYPES As String = "Oneoff,Daily,Weekly,Monthly"
         Private Const DAYS_OF_WEEK As String = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
         Private Const DATETIME_OPTIONS As String = "Now,Beginning of Day,Beginning of Week,Beginning of Year,Specific"
 #Region "Misc"
@@ -16,7 +19,7 @@ Namespace DataObjects
 
                 Case "Now" : Return Now
                 Case "Beginning of Day" : Return New Date(Now.Year, Now.Month, Now.Day)
-                Case "Beginning of Week" : Return Now.StartOfWeek(System.DayOfWeek.Monday) 
+                Case "Beginning of Week" : Return Now.StartOfWeek(System.DayOfWeek.Monday)
                 Case "Beginning of Month" : Return New Date(Now.Year, Now.Month, 1)
                 Case "Beginning of Year" : Return New Date(Now.Year, 1, 1)
 
@@ -104,6 +107,7 @@ Namespace DataObjects
             Me.SubscriberID = x.SubscriberID
             Me.Schedule = x.Schedule
             Me.Recipients = x.Recipients
+            Me.ScheduleDate = ""
         End Sub
 
 #End Region
@@ -113,10 +117,35 @@ Namespace DataObjects
 
         Public Shared Function GetAllForApplication(appID As Guid) As List(Of DataObjects.ReportSchedule)
 
-            Return (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _
+            Dim objDict As Dictionary(Of String, Object) = New Dictionary(Of String, Object)
+            Dim objList As New List(Of DataObjects.ReportSchedule)
+
+            Dim objResult = (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _
                      Where x.ApplicationID = appID _
                         Order By x.DateCreated
                         Select New DataObjects.ReportSchedule(x)).ToList()
+
+            If Not objList Is Nothing Then
+                For Each item In objResult
+
+                    objList.Add(New ReportSchedule() With
+                                {.ReportscheduleID = item.ReportscheduleID,
+                                 .ApplicationId = item.ApplicationId,
+                                 .ReportName = item.ReportName,
+                                 .ReportType = item.ReportType,
+                                 .ReportTypeSpecific = item.ReportTypeSpecific,
+                                 .Enabled = item.Enabled,
+                                 .DateCreated = item.DateCreated,
+                                 .Creator = item.Creator,
+                                 .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm"),
+                                 .SubscriberID = item.SubscriberID,
+                                 .Schedule = DeserializeCustomValues(item.Schedule, "Schedule"),
+                                 .Recipients = item.Recipients
+                                })
+               
+                Next
+            End If
+            Return objList
 
         End Function
 
@@ -129,7 +158,7 @@ Namespace DataObjects
 
             x.ReportScheduleID = Guid.NewGuid
             x.ApplicationID = rpt.ApplicationId
-            x.ReportType = rpt.ReportType
+            x.ReportType = rpt.ReportType 
             x.Enabled = True
             x.Creator = rpt.Creator
             x.DateCreated = DateAndTime.Now
@@ -137,38 +166,97 @@ Namespace DataObjects
             x.ReportParams = ""
             x.ReportTime = DateAndTime.Now
             x.SubscriberID = Guid.NewGuid
-            'x.Schedule = rpt.Schedule 
+            x.Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
+            x.ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
+            x.Recipients = rpt.Recipients
 
 
             SingletonAccess.FMSDataContextContignous.ReportSchdeules.InsertOnSubmit(x)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
 
         End Sub
-        Public Shared Function SerializeCustomValues(rptObj As DataObjects.ReportSchedule) As String
+        Public Function SerializeCustomValues(rptObj As DataObjects.ReportSchedule, reporttype As String, type As String) As String
             Dim result As String = String.Empty
 
+            Dim obj As Dictionary(Of String, Object) = New Dictionary(Of String, Object)
             If rptObj Is Nothing Then
-                Dim obj As Dictionary(Of Object, Object) = New Dictionary(Of Object, Object)
+                Return result
+            Else
+                If type = "Schedule" Then
+                    If reporttype = "Oneoff" Then
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleDate), rptObj.ScheduleDate)
+                    ElseIf reporttype = "Daily" Then
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
+                    ElseIf reporttype = "Weekly" Then
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
+                        obj.Add(GetPropertyName(Function() rptObj.DayofWeek), rptObj.DayofWeek)
+                    ElseIf reporttype = "Monthly" Then
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
+                        obj.Add(GetPropertyName(Function() rptObj.DayofMonth), rptObj.DayofMonth)
+                    End If
+                ElseIf type = "Parm" Then
+                    obj.Add(GetPropertyName(Function() rptObj.StartDate), rptObj.StartDate)
+                    obj.Add(GetPropertyName(Function() rptObj.EndDate), rptObj.EndDate)
+                    obj.Add(GetPropertyName(Function() rptObj.Vehicle), rptObj.Vehicle)
+                End If
 
-                obj.Add("Report", "Daily")
+                Dim ds = New DictionarySerializer(obj)
+                Dim xs = New XmlSerializer(GetType(DictionarySerializer))
+                Dim textWriter = New StringWriter
+                Dim xmlWriter1 = XmlWriter.Create(textWriter)
+                xs.Serialize(xmlWriter1, ds)
+                result = textWriter.ToString
+            End If
 
- 
+            Return result
+        End Function
+        'Public Shared Function GetPropertyName(propertyName As String) As String
+        '    Dim MyType As Type = Type.GetType("ReportSchedule")
+        '    Dim Mypropertyinfo As PropertyInfo = MyType.GetProperty(GetType ())
 
+        '    Return Mypropertyinfo.Name
+        'End Function
+        Public Shared Function GetPropertyName(Of T)(ByVal expression As Expressions.Expression(Of Func(Of T))) As String
+            Dim memberExpression As Expressions.MemberExpression = DirectCast(expression.Body, Expressions.MemberExpression)
+            Return memberExpression.Member.Name
+        End Function
+        Public Shared Function DeserializeCustomValues(ByVal customValuesXml As String, ByVal _type As String) As String
+            Dim returnString As String = String.Empty
 
+            If String.IsNullOrWhiteSpace(customValuesXml) Then
+                Return returnString
+            End If
+
+            Dim serializer = New XmlSerializer(GetType(DictionarySerializer))
+
+            Dim textReader = New StringReader(customValuesXml)
+            Dim xmlReaderobj = XmlReader.Create(textReader)
+
+            Dim ds = CType(serializer.Deserialize(xmlReaderobj), DictionarySerializer)
+
+            If _type = "Parm" Then
+                returnString = String.Empty
+
+                returnString = returnString + "Time  Period =" + Convert.ToString(ds.Dictionary.Item("StartDate")) + "to" + Convert.ToString(ds.Dictionary.Item("EndDate")) + Environment.NewLine
+
+                returnString = returnString + "Vehicle = " + Convert.ToString(ds.Dictionary.Item("Vehicle"))
+
+            ElseIf _type = "Schedule" Then
+
+                returnString = String.Empty
+
+                returnString = returnString + "" + String.Format("{0:HH:MM}", Convert.ToString(ds.Dictionary.Item("ScheduleTime")))
 
             End If
- 
 
-            'Dim ds = New DictionarySerializer(request)
-            'Dim xs = New XmlSerializer(GetType(DictionarySerializer))
-            'Dim textWriter = New StringWriter
-            'Dim xmlWriter = XmlWriter.Create(textWriter)
-            'xs.Serialize(xmlWriter, ds)
-            'Dim result = textWriter.ToString
-            'Return result
-            Return result
+            Return returnString
         End Function
 
     End Class
-  
+    Public Class ReportParam
+        Public Property StartDate As String
+        Public Property EndDate As String
+        Public Property Vehicle As String 
+    End Class
+
 End Namespace
