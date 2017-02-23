@@ -79,6 +79,7 @@
                 .CustomerEmail = ad.CustomerEmail
                 .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
                 .IsAlertLeaveForPickup = If(ad.IsAlertLeaveForPickup Is Nothing, False, ad.IsAlertLeaveForPickup)
+
             End With
 
             'create the booking in the DB 
@@ -94,7 +95,7 @@
                                 , .SubscriberNativeID = ad.ContactID _
                                 , .SendEmail = True _
                                 , .SendText = True _
-                                , .BookingID = ad.ApplicationBookingId _
+                                , .BookingID = booking.ApplicationBookingId _
                                 , .isBooking = True}
 
             'create "leaving from" alert (geo-fence alert)
@@ -160,7 +161,7 @@
             'Designed to cause exception if there is nothing in the DB matching
             Return (From x In SingletonAccess.FMSDataContextNew.ApplicationBookings _
                      Where x.ApplicationBookingId = Id
-                     Select New DataObjects.ApplicationBooking(x)).First
+                     Select New DataObjects.ApplicationBooking(x)).FirstOrDefault
 
 
         End Function

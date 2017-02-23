@@ -69,7 +69,8 @@
                 <ContentCollection>
                     <dx:ContentControl runat="server">
 
-                        <dx:ASPxGridView ID="dgvApplicationAlerts" ClientInstanceName="dgvApplicationAlerts"
+                        <dx:ASPxGridView ID="dgvApplicationAlerts" 
+                                            ClientInstanceName="dgvApplicationAlerts"
                                             KeyFieldName="ApplicationAlertTypeID"
                                             runat="server"
                                             AutoGenerateColumns="False"
@@ -147,7 +148,7 @@
                             </Columns>
                         </dx:ASPxGridView>
 
-                        <asp:ObjectDataSource ID="odsAlerts" runat="server" DataObjectTypeName="FMS.Business.DataObjects.AlertType" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetALLForApplication" TypeName="FMS.Business.DataObjects.AlertType" UpdateMethod="Update">
+                        <asp:ObjectDataSource ID="odsAlerts" runat="server" DataObjectTypeName="FMS.Business.DataObjects.AlertType" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetAllForApplicationWithoutBookings" TypeName="FMS.Business.DataObjects.AlertType" UpdateMethod="Update">
                             <SelectParameters>
                                 <asp:SessionParameter DbType="Guid" Name="appID" SessionField="ApplicationID" />
                             </SelectParameters>

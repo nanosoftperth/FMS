@@ -11,7 +11,7 @@ Namespace BackgroundCalculations
         End Property
 
 
-        Public Shared Sub  ProcessGeoFenceCollissionAlerts(appid As Guid, startDate As Date) As Boolean
+        Public Shared Sub ProcessGeoFenceCollissionAlerts(appid As Guid, startDate As Date)
 
             startDate = startDate.AddHours(-12) 'for "alert if left geofence for more than X" queries
             Dim applicationName As String = DataObjects.Application.GetFromAppID(appid).ApplicationName
@@ -69,6 +69,9 @@ Namespace BackgroundCalculations
                     Dim booking As DataObjects.ApplicationBooking = If(alertDefn.BookingID.HasValue, _
                                                                        DataObjects.ApplicationBooking.GetFromID(alertDefn.BookingID.Value), Nothing)
 
+
+                    'if this is a booking but the booking has since been deleted, then ignore forever (a bit inefficient)
+                    If alertDefn.isBooking AndAlso booking Is Nothing Then Continue For
 
                     'here we want to check that the booking is expected to happen within the next 2 hours. 
                     'If not then we want to ignore for now. This avoide people placing booking for a few days in 

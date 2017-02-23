@@ -78,11 +78,18 @@ Namespace DataObjects
             Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
                      Where (x.ApplicationID = appID And (x.isBooking = False Or (x.isBooking = True And x.isSent = False)))
                      Select New DataObjects.AlertType(x)).ToList
+           
+        End Function
 
-            'below: Ryans old code 
-            '                     Select New DataObjects.AlertType(x)).ToList().Where(Function(y) y.isBooking = False Or (y.isBooking = True And y.isSent = False))
+        Public Shared Function GetAllForApplicationWithoutBookings(appID As Guid) As List(Of DataObjects.AlertType)
+
+            Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
+                     Where x.ApplicationID = appID And x.isBooking = False _
+                     Select New DataObjects.AlertType(x)).ToList
 
         End Function
+
+
 #End Region
 
 #Region "CRUD"
