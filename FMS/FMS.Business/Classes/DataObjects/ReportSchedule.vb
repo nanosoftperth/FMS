@@ -137,9 +137,9 @@ Namespace DataObjects
                                  .Enabled = item.Enabled,
                                  .DateCreated = item.DateCreated,
                                  .Creator = item.Creator,
-                                 .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm"),
+                                 .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm", ""),
                                  .SubscriberID = item.SubscriberID,
-                                 .Schedule = DeserializeCustomValues(item.Schedule, "Schedule"),
+                                 .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType)),
                                  .Recipients = item.Recipients
                                 })
                
@@ -220,7 +220,7 @@ Namespace DataObjects
             Dim memberExpression As Expressions.MemberExpression = DirectCast(expression.Body, Expressions.MemberExpression)
             Return memberExpression.Member.Name
         End Function
-        Public Shared Function DeserializeCustomValues(ByVal customValuesXml As String, ByVal _type As String) As String
+        Public Shared Function DeserializeCustomValues(ByVal customValuesXml As String, ByVal _type As String, _reportType As String) As String
             Dim returnString As String = String.Empty
 
             If String.IsNullOrWhiteSpace(customValuesXml) Then
@@ -245,7 +245,13 @@ Namespace DataObjects
 
                 returnString = String.Empty
 
-                returnString = returnString + "" + String.Format("{0:HH:MM}", Convert.ToString(ds.Dictionary.Item("ScheduleTime")))
+                ' returnString = returnString + Convert.ToString(_reportType) + +"" + String.Format("{0:HH:MM}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToString(ds.Dictionary.Item("ScheduleTime")), ""))
+
+                'Dim KeyExist As String = String.Empty
+
+                'If ds.Dictionary.TryGetValue(ds.Dictionary.Item("ScheduleTime"), KeyExist) Then
+                '    returnString = returnString + "" + String.Format("{0:HH:MM}", Convert.ToString(ds.Dictionary.Item("ScheduleTime")))
+                'End If
 
             End If
 
