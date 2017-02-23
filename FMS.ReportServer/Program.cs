@@ -8,8 +8,7 @@ using Topshelf;
 
 namespace FMS.ReportServer
 {
-    class Program
-    {
+    
         public class TownCrier
         {
             readonly Timer _timer;
@@ -43,4 +42,4 @@ namespace FMS.ReportServer
             }
         }
     }
-}
+
