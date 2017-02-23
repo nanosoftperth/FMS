@@ -71,12 +71,18 @@ Namespace BackgroundCalculations
                         isCorrectDriver = rslt.ApplicationDriverID.Value = alertDriver.ApplicationDriverID
                     End If
 
-                    'somewhere in here we will need to flag the alerttype as "sent" if it is a booking 
-                   
+                    'IF the alert defenition has a booking refrerence, then grab that booking so we can grab the arrival time
+                    Dim booking As DataObjects.ApplicationBooking = If(alertDefn.BookingID.HasValue, _
+                                                                       DataObjects.ApplicationBooking.GetFromID(alertDefn.BookingID.Value), Nothing)
 
 
+                    'here we want to check that the booking is expected to happen within the next 2 hours. 
+                    'If not then we want to ignore for now. This avoide people placing booking for a few days in 
+                    'the future and then an alert being fired immediatley
+                    If booking IsNot Nothing AndAlso booking.ArrivalTime.Value > Now.AddHours(+2) Then Continue For
+
+                    'DEPENDING IF THIS ALERT WAS FIRED FOR AN "ENTRY" OR "EXIT" EVENT
                     Select Case alertDefn.Action
-
 
                         Case DataObjects.AlertType.ActionType.Enters
 
@@ -91,10 +97,13 @@ Namespace BackgroundCalculations
 
                             If wasInGeoFenceLongEngough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then
                                 'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
-                                If alertDefn.isBooking And Not alertDefn.isSent Then
+                                If booking IsNot Nothing AndAlso alertDefn.isSent = False Then
+
                                     alertDefn.isSent = True
                                     DataObjects.AlertType.Update(alertDefn)
+
                                 End If
+
                                 ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
 
                             End If
@@ -175,8 +184,15 @@ Namespace BackgroundCalculations
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.Emails) Then
 
                     If alertDefn.isBooking Then
+
+
                         newAlertTypeOccurance.MessageContent = BackgroundCalculations.EmailHelper _
-                            .SendEmail(newAlertTypeOccurance.Emails, applicationName, thisSubscriber.Name, rslt.Driver_Name, "2 km", rslt.Vehicle_Name, "")
+                            .SendCarBookingEmail(newAlertTypeOccurance.Emails,
+                                                 applicationName,
+                                                 thisSubscriber.Name,
+                                                 rslt.Driver_FirstName,
+                                                 rslt.Vehicle_Name,
+                                                 rslt.Driver_Number, actnType)
 
                     Else
 

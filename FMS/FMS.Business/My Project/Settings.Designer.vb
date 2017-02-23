@@ -85,31 +85,49 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=FMS;Integrated Security=True")>  _
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString), _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=FMS;Integrated Security=True")> _
         Public ReadOnly Property FMSConnectionString1() As String
             Get
-                Return CType(Me("FMSConnectionString1"),String)
+                Return CType(Me("FMSConnectionString1"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Default Truck")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("Default Truck")> _
         Public ReadOnly Property DefaultTruckImageName() As String
             Get
-                Return CType(Me("DefaultTruckImageName"),String)
+                Return CType(Me("DefaultTruckImageName"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Default Home")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("Default Home")> _
         Public ReadOnly Property DefaultHomeImageName() As String
             Get
-                Return CType(Me("DefaultHomeImageName"),String)
+                Return CType(Me("DefaultHomeImageName"), String)
+            End Get
+        End Property
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("1000")> _
+        Public ReadOnly Property BookingLeaveDistance_metres() As Integer
+            Get
+                Return CType(Me("BookingLeaveDistance_metres"), Integer)
+            End Get
+        End Property
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("2000")> _
+        Public ReadOnly Property BookingArriveDistance_metres() As String
+            Get
+                Return CType(Me("BookingArriveDistance_metres"), String)
             End Get
         End Property
     End Class
