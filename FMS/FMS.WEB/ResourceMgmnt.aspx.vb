@@ -211,26 +211,27 @@ Public Class ResourceMgmnt
     End Sub
 
     Protected Sub odsBooking_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
+
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationBooking)
+
         ab.ApplicationId = ThisSession.ApplicationID
+
         Dim gdes = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceDestination)
         Dim gleave = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceLeave)
-        If gdes IsNot Nothing Then
-            ab.GeofenceDestinationId = gdes.ApplicationGeoFenceID
-        Else
-            ab.GeofenceDestinationId = CreateBookingGeofence(ab.GeofenceDestination)
-        End If
-        If gleave IsNot Nothing Then
-            ab.GeofenceLeaveId = gdes.ApplicationGeoFenceID
-        Else
-            ab.GeofenceLeaveId = CreateBookingGeofence(ab.GeofenceLeave)
-        End If
+
+        ab.GeofenceDestinationId = If(gdes Is Nothing, gdes.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceDestination))
+        ab.GeofenceLeaveId = If(gleave Is Nothing, gleave.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceLeave))
+
     End Sub
 
     Protected Sub odsBookingContact_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.Contact)
         ab.ApplicationID = ThisSession.ApplicationID
     End Sub
+
+
+   
+
     'THIS IS FOR UPDATING DATA BEFORE INSERT
     Private Function CreateBookingGeofence(location As String) As Guid
         Dim ab = New FMS.Business.DataObjects.ApplicationGeoFence
@@ -276,4 +277,7 @@ Public Class ResourceMgmnt
     Protected Sub pageControlMain_ActiveTabChanged(source As Object, e As TabControlEventArgs) Handles pageControlMain.ActiveTabChanged
 
     End Sub
+
+   
+
 End Class
