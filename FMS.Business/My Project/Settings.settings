@@ -41,5 +41,11 @@ This is an automated alert
     <Setting Name="DefaultHomeImageName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Default Home</Value>
     </Setting>
+    <Setting Name="BookingLeaveDistance_metres" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="BookingArriveDistance_metres" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

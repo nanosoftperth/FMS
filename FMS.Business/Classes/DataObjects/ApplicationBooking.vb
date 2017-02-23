@@ -34,7 +34,8 @@
 
         Public Sub New(d As FMS.Business.ApplicationBooking)
 
-            With d
+            With Me
+                .ApplicationBookingId = d.ApplicationBookingId
                 .ApplicationDriverID = d.ApplicationDriverID
                 .ApplicationId = d.ApplicationId
                 .ArrivalTime = d.ArrivalTime
@@ -47,18 +48,24 @@
                 .CustomerEmail = d.CustomerEmail
                 .IsAlert5min = d.IsAlert5min
                 .IsAlertLeaveForPickup = d.IsAlertLeaveForPickup
-
+                .Driver = New DataObjects.ApplicationDriver(d.ApplicationDriver) 'inefficient! Ryan legacy
             End With
 
         End Sub
 
 #End Region
+
 #Region "CRUD"
 
+        ''' <summary>
+        ''' Normal CRUD create, this also creates two alerttypes for leaving and destination geofence-alerts
+        ''' </summary>
         Public Shared Sub Create(ad As DataObjects.ApplicationBooking)
 
-            Dim d As New FMS.Business.ApplicationBooking
-            With d
+            Dim booking As New FMS.Business.ApplicationBooking
+
+            'create a DB booking object 
+            With booking
                 .ApplicationBookingId = Guid.NewGuid
                 .ApplicationDriverID = ad.ApplicationDriverID
                 .ApplicationId = ad.ApplicationId
@@ -72,41 +79,35 @@
                 .CustomerEmail = ad.CustomerEmail
                 .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
                 .IsAlertLeaveForPickup = If(ad.IsAlertLeaveForPickup Is Nothing, False, ad.IsAlertLeaveForPickup)
-
-
             End With
 
-            Dim desti As New FMS.Business.AlertType
-            With desti
-                .ApplicationAlertTypeID = Guid.NewGuid
-                .ApplicationID = ad.ApplicationId
-                .DriverId = ad.ApplicationDriverID
-                .GeoFenceID = ad.GeofenceDestinationId
-                .Timespan_seconds = 0
-                .Action = 0
-                .SubscriberNativeID = ad.ContactID
-                .SendEmail = True
-                .SendText = True
-                .isBooking = True
-            End With
-
-            Dim le As New FMS.Business.AlertType
-            With le
-                .ApplicationAlertTypeID = Guid.NewGuid
-                .ApplicationID = ad.ApplicationId
-                .DriverId = ad.ApplicationDriverID
-                .GeoFenceID = ad.GeofenceLeaveId
-                .Timespan_seconds = 0
-                .Action = 0
-                .SubscriberNativeID = ad.ContactID
-                .SendEmail = True
-                .SendText = True
-                .isBooking = True
-            End With
-            SingletonAccess.FMSDataContextContignous.ApplicationBookings.InsertOnSubmit(d)
-            SingletonAccess.FMSDataContextContignous.AlertTypes.InsertOnSubmit(desti)
-            SingletonAccess.FMSDataContextContignous.AlertTypes.InsertOnSubmit(le)
+            'create the booking in the DB 
+            SingletonAccess.FMSDataContextContignous.ApplicationBookings.InsertOnSubmit(booking)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+            'create both the 
+            Dim alrt As New FMS.Business.DataObjects.AlertType _
+                            With {.ApplicationAlertTypeID = Guid.NewGuid _
+                                , .ApplicationID = ad.ApplicationId _
+                                , .DriverID = ad.ApplicationDriverID _
+                                , .Time_Period_mins = 0 _
+                                , .SubscriberNativeID = ad.ContactID _
+                                , .SendEmail = True _
+                                , .SendText = True _
+                                , .BookingID = ad.ApplicationBookingId _
+                                , .isBooking = True}
+
+            'create "leaving from" alert (geo-fence alert)
+            alrt.ApplicationAlertTypeID = Guid.NewGuid
+            alrt.Action = AlertType.ActionType.Leaves
+            alrt.GeoFenceId = ad.GeofenceLeaveId
+            Business.DataObjects.AlertType.Insert(alrt)
+
+            'create "arriving to" alert (geo-fence alert)
+            alrt.ApplicationAlertTypeID = Guid.NewGuid
+            alrt.Action = AlertType.ActionType.Enters
+            alrt.GeoFenceId = ad.GeofenceDestinationId
+            Business.DataObjects.AlertType.Insert(alrt)
 
         End Sub
 
@@ -154,27 +155,22 @@
 
 #Region "Get methods"
 
+        Public Shared Function GetFromID(Id As Guid) As DataObjects.ApplicationBooking
+
+            'Designed to cause exception if there is nothing in the DB matching
+            Return (From x In SingletonAccess.FMSDataContextNew.ApplicationBookings _
+                     Where x.ApplicationBookingId = Id
+                     Select New DataObjects.ApplicationBooking(x)).First
+
+
+        End Function
 
         Public Shared Function GetAllBookingsForApplication(applicationid As Guid) As List(Of DataObjects.ApplicationBooking)
 
-            Return SingletonAccess.FMSDataContextNew.ApplicationBookings. _
-                        Where(Function(y) y.ApplicationId = applicationid).Select(Function(d) _
-                                                            New DataObjects.ApplicationBooking() With {
-                                                                .ApplicationBookingId = d.ApplicationBookingId,
-                                                                .ApplicationDriverID = d.ApplicationDriverID,
-                                                                .ApplicationId = d.ApplicationId,
-                                                                .ArrivalTime = d.ArrivalTime,
-                                                                .GeofenceLeave = d.GeofenceLeave,
-                                                                .GeofenceDestination = d.GeofenceDestination,
-                                                                .GeofenceLeaveId = d.GeofenceLeaveId,
-                                                                .GeofenceDestinationId = d.GeofenceDestinationId,
-                                                                .ContactID = d.ContactID,
-                                                                .CustomerPhone = d.CustomerPhone,
-                                                                .CustomerEmail = d.CustomerEmail,
-                                                                .IsAlert5min = d.IsAlert5min,
-                                                                .IsAlertLeaveForPickup = d.IsAlertLeaveForPickup,
-                                                                .Driver = New DataObjects.ApplicationDriver(d.ApplicationDriver)}
-                                                            ).OrderByDescending(Function(f) f.ApplicationBookingId).ToList
+            Return (From x In SingletonAccess.FMSDataContextNew.ApplicationBookings _
+                     Where x.ApplicationId = applicationid _
+                     Select New DataObjects.ApplicationBooking(x)).ToList
+          
         End Function
 
 

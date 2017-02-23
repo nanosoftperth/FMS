@@ -67,6 +67,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
     End Sub
+  Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
+    End Sub
+  Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
+    End Sub
+  Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
+    End Sub
   Partial Private Sub InsertApplicationFeature(instance As ApplicationFeature)
     End Sub
   Partial Private Sub UpdateApplicationFeature(instance As ApplicationFeature)
@@ -283,6 +289,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletePaidFeature(instance As PaidFeature)
     End Sub
+  Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
+    End Sub
+  Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
+    End Sub
+  Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
+    End Sub
   Partial Private Sub InsertSetting(instance As Setting)
     End Sub
   Partial Private Sub UpdateSetting(instance As Setting)
@@ -300,18 +312,6 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdateWebServiceLog(instance As WebServiceLog)
     End Sub
   Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
-    End Sub
-  Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
-    End Sub
-  Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
-    End Sub
-  Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
-    End Sub
-  Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
-    End Sub
-  Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
-    End Sub
-  Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
     End Sub
   #End Region
 	
@@ -373,6 +373,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
 		Get
 			Return Me.GetTable(Of ApplicationBooking)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationBooking_20170222s() As System.Data.Linq.Table(Of ApplicationBooking_20170222)
+		Get
+			Return Me.GetTable(Of ApplicationBooking_20170222)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
+		Get
+			Return Me.GetTable(Of ApplicationDriver)
 		End Get
 	End Property
 	
@@ -622,6 +634,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
+		Get
+			Return Me.GetTable(Of ReportSchdeule)
+		End Get
+	End Property
+	
 	Public ReadOnly Property Settings() As System.Data.Linq.Table(Of Setting)
 		Get
 			Return Me.GetTable(Of Setting)
@@ -637,18 +655,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
 		Get
 			Return Me.GetTable(Of WebServiceLog)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
-		Get
-			Return Me.GetTable(Of ApplicationDriver)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
-		Get
-			Return Me.GetTable(Of ReportSchdeule)
 		End Get
 	End Property
 	
@@ -707,16 +713,16 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSubscribersForApplicationResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGeoFenceCollisions")>  _
-	Public Function usp_GetGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGeoFenceCollisionsResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGeoFenceCollisionsResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_CreateRole")>  _
 	Public Function aspnet_Roles_CreateRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleName", DbType:="NVarChar(256)")> ByVal roleName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Description", DbType:="NVarChar(256)")> ByVal description As String) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, roleName, description)
 		Return CType(result.ReturnValue,Integer)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGeoFenceCollisions")>  _
+	Public Function usp_GetGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGeoFenceCollisionsResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGeoFenceCollisionsResult))
 	End Function
 End Class
 
@@ -1140,6 +1146,8 @@ Partial Public Class AlertType
 	
 	Private _isSent As System.Nullable(Of Boolean)
 	
+	Private _BookingID As System.Nullable(Of System.Guid)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -1194,6 +1202,10 @@ Partial Public Class AlertType
     Partial Private Sub OnisSentChanging(value As System.Nullable(Of Boolean))
     End Sub
     Partial Private Sub OnisSentChanged()
+    End Sub
+    Partial Private Sub OnBookingIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnBookingIDChanged()
     End Sub
     #End Region
 	
@@ -1393,6 +1405,22 @@ Partial Public Class AlertType
 				Me._isSent = value
 				Me.SendPropertyChanged("isSent")
 				Me.OnisSentChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BookingID", DbType:="UniqueIdentifier")>  _
+	Public Property BookingID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._BookingID
+		End Get
+		Set
+			If (Me._BookingID.Equals(value) = false) Then
+				Me.OnBookingIDChanging(value)
+				Me.SendPropertyChanging
+				Me._BookingID = value
+				Me.SendPropertyChanged("BookingID")
+				Me.OnBookingIDChanged
 			End If
 		End Set
 	End Property
@@ -2281,6 +2309,485 @@ Partial Public Class ApplicationBooking
 					= false) Then
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationBooking_20170222")>  _
+Partial Public Class ApplicationBooking_20170222
+	
+	Private _ApplicationBookingId As System.Guid
+	
+	Private _ApplicationDriverID As System.Guid
+	
+	Private _ApplicationId As System.Guid
+	
+	Private _ArrivalTime As System.Nullable(Of Date)
+	
+	Private _GeofenceLeaveId As System.Guid
+	
+	Private _GeofenceDestinationId As System.Guid
+	
+	Private _IsAlert5min As System.Nullable(Of Boolean)
+	
+	Private _IsAlertLeaveForPickup As System.Nullable(Of Boolean)
+	
+	Private _ContactID As System.Guid
+	
+	Private _CustomerPhone As String
+	
+	Private _CustomerEmail As String
+	
+	Private _GeofenceLeave As String
+	
+	Private _GeofenceDestination As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationBookingId", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationBookingId() As System.Guid
+		Get
+			Return Me._ApplicationBookingId
+		End Get
+		Set
+			If ((Me._ApplicationBookingId = value)  _
+						= false) Then
+				Me._ApplicationBookingId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationDriverID() As System.Guid
+		Get
+			Return Me._ApplicationDriverID
+		End Get
+		Set
+			If ((Me._ApplicationDriverID = value)  _
+						= false) Then
+				Me._ApplicationDriverID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationId() As System.Guid
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If ((Me._ApplicationId = value)  _
+						= false) Then
+				Me._ApplicationId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArrivalTime", DbType:="DateTime")>  _
+	Public Property ArrivalTime() As System.Nullable(Of Date)
+		Get
+			Return Me._ArrivalTime
+		End Get
+		Set
+			If (Me._ArrivalTime.Equals(value) = false) Then
+				Me._ArrivalTime = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceLeaveId", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property GeofenceLeaveId() As System.Guid
+		Get
+			Return Me._GeofenceLeaveId
+		End Get
+		Set
+			If ((Me._GeofenceLeaveId = value)  _
+						= false) Then
+				Me._GeofenceLeaveId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceDestinationId", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property GeofenceDestinationId() As System.Guid
+		Get
+			Return Me._GeofenceDestinationId
+		End Get
+		Set
+			If ((Me._GeofenceDestinationId = value)  _
+						= false) Then
+				Me._GeofenceDestinationId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlert5min", DbType:="Bit")>  _
+	Public Property IsAlert5min() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAlert5min
+		End Get
+		Set
+			If (Me._IsAlert5min.Equals(value) = false) Then
+				Me._IsAlert5min = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlertLeaveForPickup", DbType:="Bit")>  _
+	Public Property IsAlertLeaveForPickup() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAlertLeaveForPickup
+		End Get
+		Set
+			If (Me._IsAlertLeaveForPickup.Equals(value) = false) Then
+				Me._IsAlertLeaveForPickup = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ContactID() As System.Guid
+		Get
+			Return Me._ContactID
+		End Get
+		Set
+			If ((Me._ContactID = value)  _
+						= false) Then
+				Me._ContactID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(MAX)")>  _
+	Public Property CustomerPhone() As String
+		Get
+			Return Me._CustomerPhone
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPhone, value) = false) Then
+				Me._CustomerPhone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerEmail", DbType:="NVarChar(MAX)")>  _
+	Public Property CustomerEmail() As String
+		Get
+			Return Me._CustomerEmail
+		End Get
+		Set
+			If (String.Equals(Me._CustomerEmail, value) = false) Then
+				Me._CustomerEmail = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceLeave", DbType:="NVarChar(MAX)")>  _
+	Public Property GeofenceLeave() As String
+		Get
+			Return Me._GeofenceLeave
+		End Get
+		Set
+			If (String.Equals(Me._GeofenceLeave, value) = false) Then
+				Me._GeofenceLeave = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceDestination", DbType:="NVarChar(MAX)")>  _
+	Public Property GeofenceDestination() As String
+		Get
+			Return Me._GeofenceDestination
+		End Get
+		Set
+			If (String.Equals(Me._GeofenceDestination, value) = false) Then
+				Me._GeofenceDestination = value
+			End If
+		End Set
+	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationDriver")>  _
+Partial Public Class ApplicationDriver
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationDriverID As System.Guid
+	
+	Private _FirstName As String
+	
+	Private _Surname As String
+	
+	Private _PhoneNumber As String
+	
+	Private _photo As String
+	
+	Private _photoBinary As System.Data.Linq.Binary
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Notes As String
+	
+	Private _emailaddress As String
+	
+	Private _ApplicationLocationID As System.Nullable(Of System.Guid)
+	
+	Private _ApplicationBookings As EntitySet(Of ApplicationBooking)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationDriverIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationDriverIDChanged()
+    End Sub
+    Partial Private Sub OnFirstNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnFirstNameChanged()
+    End Sub
+    Partial Private Sub OnSurnameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSurnameChanged()
+    End Sub
+    Partial Private Sub OnPhoneNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnPhoneNumberChanged()
+    End Sub
+    Partial Private Sub OnphotoChanging(value As String)
+    End Sub
+    Partial Private Sub OnphotoChanged()
+    End Sub
+    Partial Private Sub OnphotoBinaryChanging(value As System.Data.Linq.Binary)
+    End Sub
+    Partial Private Sub OnphotoBinaryChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnNotesChanged()
+    End Sub
+    Partial Private Sub OnemailaddressChanging(value As String)
+    End Sub
+    Partial Private Sub OnemailaddressChanged()
+    End Sub
+    Partial Private Sub OnApplicationLocationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationLocationIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._ApplicationBookings = New EntitySet(Of ApplicationBooking)(AddressOf Me.attach_ApplicationBookings, AddressOf Me.detach_ApplicationBookings)
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationDriverID() As System.Guid
+		Get
+			Return Me._ApplicationDriverID
+		End Get
+		Set
+			If ((Me._ApplicationDriverID = value)  _
+						= false) Then
+				Me.OnApplicationDriverIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationDriverID = value
+				Me.SendPropertyChanged("ApplicationDriverID")
+				Me.OnApplicationDriverIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FirstName", DbType:="VarChar(MAX)")>  _
+	Public Property FirstName() As String
+		Get
+			Return Me._FirstName
+		End Get
+		Set
+			If (String.Equals(Me._FirstName, value) = false) Then
+				Me.OnFirstNameChanging(value)
+				Me.SendPropertyChanging
+				Me._FirstName = value
+				Me.SendPropertyChanged("FirstName")
+				Me.OnFirstNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Surname", DbType:="VarChar(MAX)")>  _
+	Public Property Surname() As String
+		Get
+			Return Me._Surname
+		End Get
+		Set
+			If (String.Equals(Me._Surname, value) = false) Then
+				Me.OnSurnameChanging(value)
+				Me.SendPropertyChanging
+				Me._Surname = value
+				Me.SendPropertyChanged("Surname")
+				Me.OnSurnameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNumber", DbType:="VarChar(MAX)")>  _
+	Public Property PhoneNumber() As String
+		Get
+			Return Me._PhoneNumber
+		End Get
+		Set
+			If (String.Equals(Me._PhoneNumber, value) = false) Then
+				Me.OnPhoneNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._PhoneNumber = value
+				Me.SendPropertyChanged("PhoneNumber")
+				Me.OnPhoneNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photo", DbType:="VarChar(MAX)")>  _
+	Public Property photo() As String
+		Get
+			Return Me._photo
+		End Get
+		Set
+			If (String.Equals(Me._photo, value) = false) Then
+				Me.OnphotoChanging(value)
+				Me.SendPropertyChanging
+				Me._photo = value
+				Me.SendPropertyChanged("photo")
+				Me.OnphotoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property photoBinary() As System.Data.Linq.Binary
+		Get
+			Return Me._photoBinary
+		End Get
+		Set
+			If (Object.Equals(Me._photoBinary, value) = false) Then
+				Me.OnphotoBinaryChanging(value)
+				Me.SendPropertyChanging
+				Me._photoBinary = value
+				Me.SendPropertyChanged("photoBinary")
+				Me.OnphotoBinaryChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="VarChar(MAX)")>  _
+	Public Property Notes() As String
+		Get
+			Return Me._Notes
+		End Get
+		Set
+			If (String.Equals(Me._Notes, value) = false) Then
+				Me.OnNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._Notes = value
+				Me.SendPropertyChanged("Notes")
+				Me.OnNotesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_emailaddress", DbType:="VarChar(500)")>  _
+	Public Property emailaddress() As String
+		Get
+			Return Me._emailaddress
+		End Get
+		Set
+			If (String.Equals(Me._emailaddress, value) = false) Then
+				Me.OnemailaddressChanging(value)
+				Me.SendPropertyChanging
+				Me._emailaddress = value
+				Me.SendPropertyChanged("emailaddress")
+				Me.OnemailaddressChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationLocationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationLocationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationLocationID
+		End Get
+		Set
+			If (Me._ApplicationLocationID.Equals(value) = false) Then
+				Me.OnApplicationLocationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationLocationID = value
+				Me.SendPropertyChanged("ApplicationLocationID")
+				Me.OnApplicationLocationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ApplicationDriver_ApplicationBooking", Storage:="_ApplicationBookings", ThisKey:="ApplicationDriverID", OtherKey:="ApplicationDriverID")>  _
+	Public Property ApplicationBookings() As EntitySet(Of ApplicationBooking)
+		Get
+			Return Me._ApplicationBookings
+		End Get
+		Set
+			Me._ApplicationBookings.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_ApplicationBookings(ByVal entity As ApplicationBooking)
+		Me.SendPropertyChanging
+		entity.ApplicationDriver = Me
+	End Sub
+	
+	Private Sub detach_ApplicationBookings(ByVal entity As ApplicationBooking)
+		Me.SendPropertyChanging
+		entity.ApplicationDriver = Nothing
 	End Sub
 End Class
 
@@ -11052,6 +11559,333 @@ Partial Public Class PaidFeature
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ReportSchdeule")>  _
+Partial Public Class ReportSchdeule
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ReportScheduleID As System.Guid
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _ReportName As String
+	
+	Private _ReportType As String
+	
+	Private _ReportTypeSpecific As String
+	
+	Private _ReportTime As System.Nullable(Of Date)
+	
+	Private _Enabled As System.Nullable(Of Boolean)
+	
+	Private _DateCreated As System.Nullable(Of Date)
+	
+	Private _Creator As String
+	
+	Private _ReportParams As String
+	
+	Private _SubscriberID As System.Nullable(Of System.Guid)
+	
+	Private _Schedule As String
+	
+	Private _Recipients As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnReportScheduleIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnReportScheduleIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnReportNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportNameChanged()
+    End Sub
+    Partial Private Sub OnReportTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportTypeChanged()
+    End Sub
+    Partial Private Sub OnReportTypeSpecificChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportTypeSpecificChanged()
+    End Sub
+    Partial Private Sub OnReportTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnReportTimeChanged()
+    End Sub
+    Partial Private Sub OnEnabledChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnEnabledChanged()
+    End Sub
+    Partial Private Sub OnDateCreatedChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDateCreatedChanged()
+    End Sub
+    Partial Private Sub OnCreatorChanging(value As String)
+    End Sub
+    Partial Private Sub OnCreatorChanged()
+    End Sub
+    Partial Private Sub OnReportParamsChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportParamsChanged()
+    End Sub
+    Partial Private Sub OnSubscriberIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnSubscriberIDChanged()
+    End Sub
+    Partial Private Sub OnScheduleChanging(value As String)
+    End Sub
+    Partial Private Sub OnScheduleChanged()
+    End Sub
+    Partial Private Sub OnRecipientsChanging(value As String)
+    End Sub
+    Partial Private Sub OnRecipientsChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportScheduleID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ReportScheduleID() As System.Guid
+		Get
+			Return Me._ReportScheduleID
+		End Get
+		Set
+			If ((Me._ReportScheduleID = value)  _
+						= false) Then
+				Me.OnReportScheduleIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportScheduleID = value
+				Me.SendPropertyChanged("ReportScheduleID")
+				Me.OnReportScheduleIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportName", DbType:="VarChar(100)")>  _
+	Public Property ReportName() As String
+		Get
+			Return Me._ReportName
+		End Get
+		Set
+			If (String.Equals(Me._ReportName, value) = false) Then
+				Me.OnReportNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportName = value
+				Me.SendPropertyChanged("ReportName")
+				Me.OnReportNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportType", DbType:="VarChar(100)")>  _
+	Public Property ReportType() As String
+		Get
+			Return Me._ReportType
+		End Get
+		Set
+			If (String.Equals(Me._ReportType, value) = false) Then
+				Me.OnReportTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportType = value
+				Me.SendPropertyChanged("ReportType")
+				Me.OnReportTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTypeSpecific", DbType:="VarChar(100)")>  _
+	Public Property ReportTypeSpecific() As String
+		Get
+			Return Me._ReportTypeSpecific
+		End Get
+		Set
+			If (String.Equals(Me._ReportTypeSpecific, value) = false) Then
+				Me.OnReportTypeSpecificChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportTypeSpecific = value
+				Me.SendPropertyChanged("ReportTypeSpecific")
+				Me.OnReportTypeSpecificChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTime", DbType:="DateTime")>  _
+	Public Property ReportTime() As System.Nullable(Of Date)
+		Get
+			Return Me._ReportTime
+		End Get
+		Set
+			If (Me._ReportTime.Equals(value) = false) Then
+				Me.OnReportTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportTime = value
+				Me.SendPropertyChanged("ReportTime")
+				Me.OnReportTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Enabled", DbType:="Bit")>  _
+	Public Property Enabled() As System.Nullable(Of Boolean)
+		Get
+			Return Me._Enabled
+		End Get
+		Set
+			If (Me._Enabled.Equals(value) = false) Then
+				Me.OnEnabledChanging(value)
+				Me.SendPropertyChanging
+				Me._Enabled = value
+				Me.SendPropertyChanged("Enabled")
+				Me.OnEnabledChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime")>  _
+	Public Property DateCreated() As System.Nullable(Of Date)
+		Get
+			Return Me._DateCreated
+		End Get
+		Set
+			If (Me._DateCreated.Equals(value) = false) Then
+				Me.OnDateCreatedChanging(value)
+				Me.SendPropertyChanging
+				Me._DateCreated = value
+				Me.SendPropertyChanged("DateCreated")
+				Me.OnDateCreatedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Creator", DbType:="VarChar(500)")>  _
+	Public Property Creator() As String
+		Get
+			Return Me._Creator
+		End Get
+		Set
+			If (String.Equals(Me._Creator, value) = false) Then
+				Me.OnCreatorChanging(value)
+				Me.SendPropertyChanging
+				Me._Creator = value
+				Me.SendPropertyChanged("Creator")
+				Me.OnCreatorChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportParams", DbType:="VarChar(MAX)")>  _
+	Public Property ReportParams() As String
+		Get
+			Return Me._ReportParams
+		End Get
+		Set
+			If (String.Equals(Me._ReportParams, value) = false) Then
+				Me.OnReportParamsChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportParams = value
+				Me.SendPropertyChanged("ReportParams")
+				Me.OnReportParamsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubscriberID", DbType:="UniqueIdentifier")>  _
+	Public Property SubscriberID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._SubscriberID
+		End Get
+		Set
+			If (Me._SubscriberID.Equals(value) = false) Then
+				Me.OnSubscriberIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SubscriberID = value
+				Me.SendPropertyChanged("SubscriberID")
+				Me.OnSubscriberIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Schedule", DbType:="VarChar(MAX)")>  _
+	Public Property Schedule() As String
+		Get
+			Return Me._Schedule
+		End Get
+		Set
+			If (String.Equals(Me._Schedule, value) = false) Then
+				Me.OnScheduleChanging(value)
+				Me.SendPropertyChanging
+				Me._Schedule = value
+				Me.SendPropertyChanged("Schedule")
+				Me.OnScheduleChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Recipients", DbType:="VarChar(MAX)")>  _
+	Public Property Recipients() As String
+		Get
+			Return Me._Recipients
+		End Get
+		Set
+			If (String.Equals(Me._Recipients, value) = false) Then
+				Me.OnRecipientsChanging(value)
+				Me.SendPropertyChanging
+				Me._Recipients = value
+				Me.SendPropertyChanged("Recipients")
+				Me.OnRecipientsChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Setting")>  _
 Partial Public Class Setting
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -11506,616 +12340,6 @@ Partial Public Class WebServiceLog
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationDriver")>  _
-Partial Public Class ApplicationDriver
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ApplicationDriverID As System.Guid
-	
-	Private _FirstName As String
-	
-	Private _Surname As String
-	
-	Private _PhoneNumber As String
-	
-	Private _photo As String
-	
-	Private _photoBinary As System.Data.Linq.Binary
-	
-	Private _ApplicationID As System.Nullable(Of System.Guid)
-	
-	Private _Notes As String
-	
-	Private _emailaddress As String
-	
-	Private _ApplicationLocationID As System.Nullable(Of System.Guid)
-	
-	Private _ApplicationBookings As EntitySet(Of ApplicationBooking)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnApplicationDriverIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationDriverIDChanged()
-    End Sub
-    Partial Private Sub OnFirstNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnFirstNameChanged()
-    End Sub
-    Partial Private Sub OnSurnameChanging(value As String)
-    End Sub
-    Partial Private Sub OnSurnameChanged()
-    End Sub
-    Partial Private Sub OnPhoneNumberChanging(value As String)
-    End Sub
-    Partial Private Sub OnPhoneNumberChanged()
-    End Sub
-    Partial Private Sub OnphotoChanging(value As String)
-    End Sub
-    Partial Private Sub OnphotoChanged()
-    End Sub
-    Partial Private Sub OnphotoBinaryChanging(value As System.Data.Linq.Binary)
-    End Sub
-    Partial Private Sub OnphotoBinaryChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnNotesChanging(value As String)
-    End Sub
-    Partial Private Sub OnNotesChanged()
-    End Sub
-    Partial Private Sub OnemailaddressChanging(value As String)
-    End Sub
-    Partial Private Sub OnemailaddressChanged()
-    End Sub
-    Partial Private Sub OnApplicationLocationIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnApplicationLocationIDChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._ApplicationBookings = New EntitySet(Of ApplicationBooking)(AddressOf Me.attach_ApplicationBookings, AddressOf Me.detach_ApplicationBookings)
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ApplicationDriverID() As System.Guid
-		Get
-			Return Me._ApplicationDriverID
-		End Get
-		Set
-			If ((Me._ApplicationDriverID = value)  _
-						= false) Then
-				Me.OnApplicationDriverIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationDriverID = value
-				Me.SendPropertyChanged("ApplicationDriverID")
-				Me.OnApplicationDriverIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FirstName", DbType:="VarChar(MAX)")>  _
-	Public Property FirstName() As String
-		Get
-			Return Me._FirstName
-		End Get
-		Set
-			If (String.Equals(Me._FirstName, value) = false) Then
-				Me.OnFirstNameChanging(value)
-				Me.SendPropertyChanging
-				Me._FirstName = value
-				Me.SendPropertyChanged("FirstName")
-				Me.OnFirstNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Surname", DbType:="VarChar(MAX)")>  _
-	Public Property Surname() As String
-		Get
-			Return Me._Surname
-		End Get
-		Set
-			If (String.Equals(Me._Surname, value) = false) Then
-				Me.OnSurnameChanging(value)
-				Me.SendPropertyChanging
-				Me._Surname = value
-				Me.SendPropertyChanged("Surname")
-				Me.OnSurnameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNumber", DbType:="VarChar(MAX)")>  _
-	Public Property PhoneNumber() As String
-		Get
-			Return Me._PhoneNumber
-		End Get
-		Set
-			If (String.Equals(Me._PhoneNumber, value) = false) Then
-				Me.OnPhoneNumberChanging(value)
-				Me.SendPropertyChanging
-				Me._PhoneNumber = value
-				Me.SendPropertyChanged("PhoneNumber")
-				Me.OnPhoneNumberChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photo", DbType:="VarChar(MAX)")>  _
-	Public Property photo() As String
-		Get
-			Return Me._photo
-		End Get
-		Set
-			If (String.Equals(Me._photo, value) = false) Then
-				Me.OnphotoChanging(value)
-				Me.SendPropertyChanging
-				Me._photo = value
-				Me.SendPropertyChanged("photo")
-				Me.OnphotoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
-	Public Property photoBinary() As System.Data.Linq.Binary
-		Get
-			Return Me._photoBinary
-		End Get
-		Set
-			If (Object.Equals(Me._photoBinary, value) = false) Then
-				Me.OnphotoBinaryChanging(value)
-				Me.SendPropertyChanging
-				Me._photoBinary = value
-				Me.SendPropertyChanged("photoBinary")
-				Me.OnphotoBinaryChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
-	Public Property ApplicationID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If (Me._ApplicationID.Equals(value) = false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="VarChar(MAX)")>  _
-	Public Property Notes() As String
-		Get
-			Return Me._Notes
-		End Get
-		Set
-			If (String.Equals(Me._Notes, value) = false) Then
-				Me.OnNotesChanging(value)
-				Me.SendPropertyChanging
-				Me._Notes = value
-				Me.SendPropertyChanged("Notes")
-				Me.OnNotesChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_emailaddress", DbType:="VarChar(500)")>  _
-	Public Property emailaddress() As String
-		Get
-			Return Me._emailaddress
-		End Get
-		Set
-			If (String.Equals(Me._emailaddress, value) = false) Then
-				Me.OnemailaddressChanging(value)
-				Me.SendPropertyChanging
-				Me._emailaddress = value
-				Me.SendPropertyChanged("emailaddress")
-				Me.OnemailaddressChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationLocationID", DbType:="UniqueIdentifier")>  _
-	Public Property ApplicationLocationID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._ApplicationLocationID
-		End Get
-		Set
-			If (Me._ApplicationLocationID.Equals(value) = false) Then
-				Me.OnApplicationLocationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationLocationID = value
-				Me.SendPropertyChanged("ApplicationLocationID")
-				Me.OnApplicationLocationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ApplicationDriver_ApplicationBooking", Storage:="_ApplicationBookings", ThisKey:="ApplicationDriverID", OtherKey:="ApplicationDriverID")>  _
-	Public Property ApplicationBookings() As EntitySet(Of ApplicationBooking)
-		Get
-			Return Me._ApplicationBookings
-		End Get
-		Set
-			Me._ApplicationBookings.Assign(value)
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_ApplicationBookings(ByVal entity As ApplicationBooking)
-		Me.SendPropertyChanging
-		entity.ApplicationDriver = Me
-	End Sub
-	
-	Private Sub detach_ApplicationBookings(ByVal entity As ApplicationBooking)
-		Me.SendPropertyChanging
-		entity.ApplicationDriver = Nothing
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ReportSchdeule")>  _
-Partial Public Class ReportSchdeule
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ReportScheduleID As System.Guid
-	
-	Private _ApplicationID As System.Guid
-	
-	Private _ReportName As String
-	
-	Private _ReportType As String
-	
-	Private _ReportTypeSpecific As String
-	
-	Private _ReportTime As System.Nullable(Of Date)
-	
-	Private _Enabled As System.Nullable(Of Boolean)
-	
-	Private _DateCreated As System.Nullable(Of Date)
-	
-	Private _Creator As String
-	
-	Private _ReportParams As String
-	
-	Private _SubscriberID As System.Nullable(Of System.Guid)
-	
-	Private _Schedule As String
-	
-	Private _Recipients As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnReportScheduleIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnReportScheduleIDChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnReportNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportNameChanged()
-    End Sub
-    Partial Private Sub OnReportTypeChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportTypeChanged()
-    End Sub
-    Partial Private Sub OnReportTypeSpecificChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportTypeSpecificChanged()
-    End Sub
-    Partial Private Sub OnReportTimeChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnReportTimeChanged()
-    End Sub
-    Partial Private Sub OnEnabledChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnEnabledChanged()
-    End Sub
-    Partial Private Sub OnDateCreatedChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnDateCreatedChanged()
-    End Sub
-    Partial Private Sub OnCreatorChanging(value As String)
-    End Sub
-    Partial Private Sub OnCreatorChanged()
-    End Sub
-    Partial Private Sub OnReportParamsChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportParamsChanged()
-    End Sub
-    Partial Private Sub OnSubscriberIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnSubscriberIDChanged()
-    End Sub
-    Partial Private Sub OnScheduleChanging(value As String)
-    End Sub
-    Partial Private Sub OnScheduleChanged()
-    End Sub
-    Partial Private Sub OnRecipientsChanging(value As String)
-    End Sub
-    Partial Private Sub OnRecipientsChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportScheduleID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ReportScheduleID() As System.Guid
-		Get
-			Return Me._ReportScheduleID
-		End Get
-		Set
-			If ((Me._ReportScheduleID = value)  _
-						= false) Then
-				Me.OnReportScheduleIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportScheduleID = value
-				Me.SendPropertyChanged("ReportScheduleID")
-				Me.OnReportScheduleIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationID() As System.Guid
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If ((Me._ApplicationID = value)  _
-						= false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportName", DbType:="VarChar(100)")>  _
-	Public Property ReportName() As String
-		Get
-			Return Me._ReportName
-		End Get
-		Set
-			If (String.Equals(Me._ReportName, value) = false) Then
-				Me.OnReportNameChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportName = value
-				Me.SendPropertyChanged("ReportName")
-				Me.OnReportNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportType", DbType:="VarChar(100)")>  _
-	Public Property ReportType() As String
-		Get
-			Return Me._ReportType
-		End Get
-		Set
-			If (String.Equals(Me._ReportType, value) = false) Then
-				Me.OnReportTypeChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportType = value
-				Me.SendPropertyChanged("ReportType")
-				Me.OnReportTypeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTypeSpecific", DbType:="VarChar(100)")>  _
-	Public Property ReportTypeSpecific() As String
-		Get
-			Return Me._ReportTypeSpecific
-		End Get
-		Set
-			If (String.Equals(Me._ReportTypeSpecific, value) = false) Then
-				Me.OnReportTypeSpecificChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportTypeSpecific = value
-				Me.SendPropertyChanged("ReportTypeSpecific")
-				Me.OnReportTypeSpecificChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTime", DbType:="DateTime")>  _
-	Public Property ReportTime() As System.Nullable(Of Date)
-		Get
-			Return Me._ReportTime
-		End Get
-		Set
-			If (Me._ReportTime.Equals(value) = false) Then
-				Me.OnReportTimeChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportTime = value
-				Me.SendPropertyChanged("ReportTime")
-				Me.OnReportTimeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Enabled", DbType:="Bit")>  _
-	Public Property Enabled() As System.Nullable(Of Boolean)
-		Get
-			Return Me._Enabled
-		End Get
-		Set
-			If (Me._Enabled.Equals(value) = false) Then
-				Me.OnEnabledChanging(value)
-				Me.SendPropertyChanging
-				Me._Enabled = value
-				Me.SendPropertyChanged("Enabled")
-				Me.OnEnabledChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime")>  _
-	Public Property DateCreated() As System.Nullable(Of Date)
-		Get
-			Return Me._DateCreated
-		End Get
-		Set
-			If (Me._DateCreated.Equals(value) = false) Then
-				Me.OnDateCreatedChanging(value)
-				Me.SendPropertyChanging
-				Me._DateCreated = value
-				Me.SendPropertyChanged("DateCreated")
-				Me.OnDateCreatedChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Creator", DbType:="VarChar(500)")>  _
-	Public Property Creator() As String
-		Get
-			Return Me._Creator
-		End Get
-		Set
-			If (String.Equals(Me._Creator, value) = false) Then
-				Me.OnCreatorChanging(value)
-				Me.SendPropertyChanging
-				Me._Creator = value
-				Me.SendPropertyChanged("Creator")
-				Me.OnCreatorChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportParams", DbType:="VarChar(MAX)")>  _
-	Public Property ReportParams() As String
-		Get
-			Return Me._ReportParams
-		End Get
-		Set
-			If (String.Equals(Me._ReportParams, value) = false) Then
-				Me.OnReportParamsChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportParams = value
-				Me.SendPropertyChanged("ReportParams")
-				Me.OnReportParamsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubscriberID", DbType:="UniqueIdentifier")>  _
-	Public Property SubscriberID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._SubscriberID
-		End Get
-		Set
-			If (Me._SubscriberID.Equals(value) = false) Then
-				Me.OnSubscriberIDChanging(value)
-				Me.SendPropertyChanging
-				Me._SubscriberID = value
-				Me.SendPropertyChanged("SubscriberID")
-				Me.OnSubscriberIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Schedule", DbType:="VarChar(MAX)")>  _
-	Public Property Schedule() As String
-		Get
-			Return Me._Schedule
-		End Get
-		Set
-			If (String.Equals(Me._Schedule, value) = false) Then
-				Me.OnScheduleChanging(value)
-				Me.SendPropertyChanging
-				Me._Schedule = value
-				Me.SendPropertyChanged("Schedule")
-				Me.OnScheduleChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Recipients", DbType:="VarChar(MAX)")>  _
-	Public Property Recipients() As String
-		Get
-			Return Me._Recipients
-		End Get
-		Set
-			If (String.Equals(Me._Recipients, value) = false) Then
-				Me.OnRecipientsChanging(value)
-				Me.SendPropertyChanging
-				Me._Recipients = value
-				Me.SendPropertyChanged("Recipients")
-				Me.OnRecipientsChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -12541,6 +12765,10 @@ Partial Public Class usp_GetGeoFenceCollisionsResult
 	
 	Private _GeoFenceDeviceCollissionID As System.Guid
 	
+	Private _ApplictionID As System.Nullable(Of System.Guid)
+	
+	Private _PhoneNumber As String
+	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -12698,6 +12926,30 @@ Partial Public Class usp_GetGeoFenceCollisionsResult
 			If ((Me._GeoFenceDeviceCollissionID = value)  _
 						= false) Then
 				Me._GeoFenceDeviceCollissionID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplictionID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplictionID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplictionID
+		End Get
+		Set
+			If (Me._ApplictionID.Equals(value) = false) Then
+				Me._ApplictionID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNumber", DbType:="VarChar(MAX)")>  _
+	Public Property PhoneNumber() As String
+		Get
+			Return Me._PhoneNumber
+		End Get
+		Set
+			If (String.Equals(Me._PhoneNumber, value) = false) Then
+				Me._PhoneNumber = value
 			End If
 		End Set
 	End Property

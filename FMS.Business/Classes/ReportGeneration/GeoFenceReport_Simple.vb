@@ -11,11 +11,27 @@ Namespace ReportGeneration
         Public Property Vehicle_Name As String
         Public Property GeoFence_Name As String
         Public Property Driver_Name As String
+        Public Property Driver_Number As String
+
         Public Property ApplicationDriverID As Guid?
         Public Property ApplicationGeoFenceID As Guid?
         Public Property ApplicationVehicleID As Guid?
         Public Property GeoFenceDeviceCollissionID As Guid
         Public Property PK As Integer
+
+        ''' <summary>
+        ''' Is calculated from the drivers name which comes from SQL in the format below: 
+        '''d.Surname + ', ' + d.FirstName		AS	Driver_Name
+        ''' </summary>
+        Public ReadOnly Property Driver_FirstName As String
+            Get
+
+                Dim retStr = Driver_Name.Trim.Split(","c).ToList().LastOrDefault
+
+                Return If(String.IsNullOrEmpty(retStr), "unknown", retStr)
+
+            End Get
+        End Property
 
         Public ReadOnly Property TimeTakes As TimeSpan
             Get
@@ -42,12 +58,13 @@ Namespace ReportGeneration
                       .GeoFence_Description = x.GeoFence_Description,
                       .GeoFence_Name = x.GeoFence_Name,
                       .StartTime = x.StartTime,
+                      .Driver_Number = x.PhoneNumber,
                       .Vehicle_Name = x.Vehicle_Name,
                       .PK = x.id,
                       .ApplicationDriverID = x.ApplicationDriverID,
                       .ApplicationGeoFenceID = x.ApplicationGeoFenceID,
                       .ApplicationVehicleID = x.ApplicationVehicleID,
-                      .GeoFenceDeviceCollissionID = x.GeoFenceDeviceCollissionID
+                       .GeoFenceDeviceCollissionID = x.GeoFenceDeviceCollissionID
                      }).ToList
 
 

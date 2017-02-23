@@ -13,10 +13,19 @@ Namespace BackgroundCalculations
         "Driver ""{1}"" {2} location ""{3}"" at {4}. """
 
         'BY RYAN: 
-        Public Const BookingEmailContent As String = _
-        "dear {0}, " & vbNewLine & vbNewLine & _
-        "Your driver {1} is {2} away from your location now. They are driving a {3}." & vbNewLine & _
+        Public Const BookingEmailContent_Arriving As String = _
+        "Dear {0}, " & vbNewLine & vbNewLine & _
+        "Your driver is {1} away from your location now." & _
+        "Your drivers name is {2} and is driving a {3}." & vbNewLine & _
         "Their number is {4}, if you wish to contact them. " & vbNewLine & _
+        "Thank you," & vbNewLine & vbNewLine & _
+        "Nanosoft Automated Services"
+
+        Public Const BookingEmailContent_Leaving As String = _
+        "Dear {0}, " & vbNewLine & vbNewLine & _
+        "Your driver has left and is on their way." & _
+        "Your drivers name is {1} and is driving a {2}." & vbNewLine & _
+        "Their number is {3}, if you wish to contact them. " & vbNewLine & _
         "Thank you," & vbNewLine & vbNewLine & _
         "Nanosoft Automated Services"
 
@@ -43,8 +52,8 @@ Namespace BackgroundCalculations
                 messageBody = My.Settings.EmailMessage
                 Dim EntryOrExitTime_formatted As String = EntryOrExitTime.ToString("dd/MMM/yyyy HH:mm:ss")
                 Dim enteredorexited As String = If(typ = DataObjects.AlertType.ActionType.Enters, "entered", "exited")
-                Dim subject  = String.Format("geo-fence alert from {0}.nanosoft.com.au", companyName)
-                
+                Dim subject = String.Format("geo-fence alert from {0}.nanosoft.com.au", companyName)
+
                 messageBody = String.Format(EmailContent, companyName, driverName, enteredorexited, geofence_Name, EntryOrExitTime_formatted)
 
                 SendEmail(emailList, subject, messageBody)
@@ -58,24 +67,31 @@ Namespace BackgroundCalculations
         End Function
 
         'BY RYAN: Email for booking!
-        Friend Shared Function SendEmail(emailList As String, companyName As String, _
-                                  recipient As String, driverName As String, distance As String, cartype As String, number As String) As String
-
+        Friend Shared Function SendCarBookingEmail(emailList As String,
+                                         companyName As String,
+                                          recipient As String,
+                                          driverName As String,
+                                          cartype As String,
+                                          number As String,
+                                          actionType As Business.DataObjects.AlertType.ActionType) As String
 
             Dim messageBody As String = String.Empty
 
             Try
-                messageBody = My.Settings.EmailMessage
-                Dim subject As String
 
+                Dim subject As String = String.Format("Booking alert from {0}.nanosoft.com.au", companyName)
 
-                subject = String.Format("booking alert from {0}.nanosoft.com.au", companyName)
+                Select Case actionType
 
-                messageBody = String.Format(BookingEmailContent, recipient, driverName, distance, cartype, number)
+                    Case DataObjects.AlertType.ActionType.Leaves
+                        messageBody = String.Format(BookingEmailContent_Leaving, recipient, driverName, cartype, number)
 
-
+                    Case DataObjects.AlertType.ActionType.Enters
+                        messageBody = String.Format(BookingEmailContent_Arriving, recipient, "2 km", driverName, cartype, number)
+                End Select
 
                 SendEmail(emailList, subject, messageBody)
+
             Catch ex As Exception
                 Dim x As String = ex.Message
             End Try

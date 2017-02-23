@@ -53,6 +53,8 @@ Namespace DataObjects
         Public Property SendEmail As Boolean
         Public Property SendText As Boolean
 
+        Public Property BookingID As Guid?
+
         Public Property isBooking As Boolean
         Public Property isSent As Boolean
 
@@ -71,7 +73,7 @@ Namespace DataObjects
                      Select New DataObjects.AlertType(x)).ToList
 
         End Function
-        Public Shared Function GetAllForApplicationWithOpenBookings(appID As Guid)
+        Public Shared Function GetAllForApplicationWithOpenBookings(appID As Guid) As List(Of DataObjects.AlertType)
 
             Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
                      Where (x.ApplicationID = appID And (x.isBooking = False Or (x.isBooking = True And x.isSent = False)))
@@ -102,7 +104,7 @@ Namespace DataObjects
                     .GeoFenceID = at.GeoFenceId
                     .Timespan_seconds = at.Time_Period_mins * 60
                     .SubscriberNativeID = If(at.SubscriberNativeID.HasValue, at.SubscriberNativeID, Nothing)
-
+                    .BookingID = at.BookingID 'bookingID
                     .SendEmail = at.SendEmail
                     .SendText = at.SendText
                     .isBooking = at.isBooking
@@ -139,6 +141,8 @@ Namespace DataObjects
                 '.Email = at.Email
                 .GeoFenceID = at.GeoFenceId
                 .Timespan_seconds = at.Time_Period_mins * 60
+
+                .BookingID = at.BookingID
 
                 .SubscriberNativeID = If(at.SubscriberNativeID.HasValue, at.SubscriberNativeID, Nothing)
 
@@ -193,6 +197,7 @@ Namespace DataObjects
                 isBooking = If(.isBooking.HasValue, .isBooking.Value, False)
                 isSent = If(.isSent.HasValue, .isSent.Value, False)
 
+                Me.BookingID = dbobj.BookingID
 
                 GeoFenceId = .GeoFenceID
                 Time_Period_mins = .Timespan_seconds / 60

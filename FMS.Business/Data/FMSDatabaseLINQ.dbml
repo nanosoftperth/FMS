@@ -36,6 +36,7 @@
       <Column Name="SendText" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="isBooking" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="isSent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BookingID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.AlertTypeOccurance" Member="AlertTypeOccurances">
@@ -81,6 +82,38 @@
       <Column Name="GeofenceLeave" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="GeofenceDestination" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ApplicationBooking_20170222" Member="ApplicationBooking_20170222s">
+    <Type Name="ApplicationBooking_20170222">
+      <Column Name="ApplicationBookingId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ArrivalTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GeofenceLeaveId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GeofenceDestinationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IsAlert5min" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsAlertLeaveForPickup" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ContactID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomerEmail" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GeofenceLeave" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GeofenceDestination" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ApplicationDriver" Member="ApplicationDrivers">
+    <Type Name="ApplicationDriver">
+      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="photo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="photoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="emailaddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ApplicationLocationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationBookings" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationBooking" />
     </Type>
   </Table>
   <Table Name="dbo.ApplicationFeature" Member="ApplicationFeatures">
@@ -576,6 +609,23 @@
       <Column Name="PaidFeatureDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ReportSchdeule" Member="ReportSchdeules">
+    <Type Name="ReportSchdeule">
+      <Column Name="ReportScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ReportName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportTypeSpecific" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Enabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Creator" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ReportParams" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SubscriberID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Schedule" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Recipients" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Setting" Member="Settings">
     <Type Name="Setting">
       <Column Name="SettingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -601,38 +651,6 @@
       <Column Name="company" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="XMLResponse" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="DateLogged" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ApplicationDriver" Member="ApplicationDrivers">
-    <Type Name="ApplicationDriver">
-      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="photo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="photoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="emailaddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="ApplicationLocationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationBookings" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationBooking" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ReportSchdeule" Member="ReportSchdeules">
-    <Type Name="ReportSchdeule">
-      <Column Name="ReportScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ReportName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportTypeSpecific" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Enabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Creator" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="ReportParams" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="SubscriberID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Schedule" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Recipients" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
@@ -724,6 +742,12 @@
       <Column Name="Mobile" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.aspnet_Roles_CreateRole" Method="aspnet_Roles_CreateRole">
+    <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="RoleName" Parameter="roleName" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(256)" />
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.usp_GetGeoFenceCollisions" Method="usp_GetGeoFenceCollisions">
     <Parameter Name="ApplicationID" Parameter="applicationID" Type="System.Guid" DbType="UniqueIdentifier" />
     <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
@@ -742,12 +766,8 @@
       <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="GeoFenceDeviceCollissionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ApplictionID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.aspnet_Roles_CreateRole" Method="aspnet_Roles_CreateRole">
-    <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
-    <Parameter Name="RoleName" Parameter="roleName" Type="System.String" DbType="NVarChar(256)" />
-    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(256)" />
-    <Return Type="System.Int32" />
   </Function>
 </Database>
