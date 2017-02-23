@@ -44,6 +44,9 @@
                                             dgvReports.UpdateEdit();
                                              sendMsg('Record Saved!');
                                             }" />
+
+                                                        <%--TRY AND USE THE NANOREPORTPARAMLIST HERE IS POSSIBLE--%>
+                                                        <%--POSSIBLE ISSUES: SAVING AND RETREIVING THE VALUES SELECTED (MAYBE USE THE SESSION STATE)--%>
                                                     </dx:ASPxHyperLink>
                                                     <dx:ASPxGridViewTemplateReplacement ID="TemplateReplacementCancel" ReplacementType="EditFormCancelButton"
                                                         runat="server"></dx:ASPxGridViewTemplateReplacement>

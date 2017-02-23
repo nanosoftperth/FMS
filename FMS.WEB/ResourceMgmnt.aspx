@@ -92,7 +92,7 @@
                 <img style="width: 200px;" src="Content/Images/mC-settings.png" />
             </td>
             <td>
-                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="1">
+                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="3">
                     <TabPages>
                         <dx:TabPage Text="Assign Drivers to Vehicles">
                             <ContentCollection>
@@ -169,12 +169,12 @@
                                                                     <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right"></dx:EditModeCommandLayoutItem>
                                                                 </Items>
                                                             </EditFormLayoutProperties>
-                                                            <ClientSideEvents EndCallback="AssignEndCallback" BeginCallback="AssignBeginCallback"/>
+                                                            <ClientSideEvents EndCallback="AssignEndCallback" BeginCallback="AssignBeginCallback" />
                                                             <SettingsEditing Mode="Batch">
                                                                 <BatchEditSettings EditMode="Row"></BatchEditSettings>
                                                             </SettingsEditing>
                                                             <SettingsPager PageSize="20"></SettingsPager>
-                                                            
+
                                                             <Columns>
                                                                 <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="ApplicationVehicleDriverTimeID" VisibleIndex="2" Visible="False"></dx:GridViewDataTextColumn>
@@ -669,35 +669,14 @@
                                                 </PropertiesDateEdit>
                                             </dx:GridViewDataDateColumn>
 
-                                            <%--<dx:GridViewDataBinaryImageColumn FieldName="DriverPhotoBinary" VisibleIndex="4">
-                                    <PropertiesBinaryImage ImageWidth="50px" ImageHeight="50px"></PropertiesBinaryImage>
-                                </dx:GridViewDataBinaryImageColumn>--%>
+
                                             <dx:GridViewDataComboBoxColumn Width="200px" FieldName="ApplicationDriverID" Caption="Driver" ShowInCustomizationForm="True" VisibleIndex="5">
                                                 <PropertiesComboBox DataSourceID="odsBookingDriver" ImageUrlField="ImgUrl" TextField="NameFormatted" ValueField="ApplicationDriverID">
                                                     <ItemImage Height="44px" Width="43px" />
 
                                                     <ClearButton Visibility="Auto"></ClearButton>
                                                 </PropertiesComboBox>
-                                                <%-- <EditItemTemplate>
-                                       <dx:ASPxGridLookup ID="ASPxGridLookup1" Width="100%" runat="server" 
-                                          AutoGenerateColumns="False" Theme="SoftOrange" DataSourceID="odsBookingDriver" 
-                                          KeyFieldName="ApplicationDriverID" TextFormatString="{1}" 
-                                          Value='<%# Bind("ApplicationDriverID")%>' IncrementalFilteringMode="Contains">
-                                          <GridViewProperties>
-                                             <SettingsBehavior AllowFocusedRow="True" AllowSelectSingleRowOnly="True" />
-                                          </GridViewProperties>
-                                          <Columns>
-                                             <dx:GridViewDataTextColumn FieldName="ApplicationDriverID"  Visible="false" VisibleIndex="0">
-                                             </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="NameFormatted" Caption="Driver" VisibleIndex="2">
-                                             </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="PhoneNumber" VisibleIndex="3">
-                                             </dx:GridViewDataTextColumn>
-                                             <dx:GridViewDataTextColumn FieldName="EmailAddress" VisibleIndex="4">
-                                             </dx:GridViewDataTextColumn>
-                                          </Columns>
-                                       </dx:ASPxGridLookup>
-                                    </EditItemTemplate>--%>
+
                                             </dx:GridViewDataComboBoxColumn>
                                             <dx:GridViewDataTextColumn Width="200px" FieldName="GeofenceLeave" Caption="Geo-fence Leave" ShowInCustomizationForm="True" VisibleIndex="6" PropertiesTextEdit-ClientSideEvents-Init="initsearchlocation">
 
@@ -713,9 +692,7 @@
                                                 </PropertiesTextEdit>
 
                                             </dx:GridViewDataTextColumn>
-                                            <%-- <dx:GridViewDataTextColumn FieldName="GeofenceDestination" Caption="Geo-fence Destination"  ShowInCustomizationForm="True" VisibleIndex="6">
-                                    <PropertiesTextEdit ClientInstanceName="GeofenceDestination" ClientSideEvents-Init="initsearchlocation"></PropertiesTextEdit>
-                                    </dx:GridViewDataTextColumn>--%>
+
                                             <dx:GridViewDataComboBoxColumn Width="150px" FieldName="ContactID" Caption="Customer" ShowInCustomizationForm="True" VisibleIndex="8">
                                                 <PropertiesComboBox DataSourceID="odsBookingContact" TextField="NameFormatted" ValueField="ContactID" ValueType="System.Guid" IncrementalFilteringMode="Contains">
                                                     <ClearButton Visibility="Auto"></ClearButton>
