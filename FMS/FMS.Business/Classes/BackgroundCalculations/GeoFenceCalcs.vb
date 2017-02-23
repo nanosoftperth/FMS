@@ -11,7 +11,7 @@ Namespace BackgroundCalculations
         End Property
 
 
-        Public Shared Function ProcessGeoFenceCollissionAlerts(appid As Guid, startDate As Date) As Boolean
+        Public Shared Sub  ProcessGeoFenceCollissionAlerts(appid As Guid, startDate As Date) As Boolean
 
             startDate = startDate.AddHours(-12) 'for "alert if left geofence for more than X" queries
             Dim applicationName As String = DataObjects.Application.GetFromAppID(appid).ApplicationName
@@ -20,20 +20,14 @@ Namespace BackgroundCalculations
             Dim geofencecollissions As List(Of DataObjects.GeoFenceDeviceCollision) = _
                                 DataObjects.GeoFenceDeviceCollision.GetAllForApplication(appid, startDate)
 
-            If geofencecollissions.Count = 0 Then Return True
+            If geofencecollissions.Count = 0 Then Exit Sub
 
             'get all the alerts sent for the same time period
             'TODO: we should filter this by time , this will become slow eventually
             Dim alertTypeOccurances As List(Of DataObjects.AlertTypeOccurance) = DataObjects.AlertTypeOccurance.GetAllForApplication(appid)
 
-            'get all the alert defenitions for the application
-            'TODO: add a filter here which finds alert types which are 
-            'NOT BOOKINGS
-            'OR (are bookings and have not had an alert sent yet)
-
-            'Dim alertTypes As List(Of DataObjects.AlertType) = DataObjects.AlertType.GetALLForApplication(appid) 
-            'BY RYAN: 
-            Dim alertTypes = DataObjects.AlertType.GetAllForApplicationWithOpenBookings(appid)
+            'get all the alert defenitions for the application            
+            Dim alertTypes = DataObjects.AlertType.GetAllForApplicationIncludingOpenBookings(appid)
 
             'get all the subscribers
             Dim subscribers As List(Of DataObjects.Subscriber) = FMS.Business.DataObjects.Subscriber.GetAllforApplication(appid)
@@ -137,7 +131,7 @@ Namespace BackgroundCalculations
                 Next
             Next
 
-        End Function
+        End Sub
 
         Private Shared Sub ProcessAlertInstances(rslt As ReportGeneration.GeoFenceReport_Simple,
                                                          alertDefn As DataObjects.AlertType,
