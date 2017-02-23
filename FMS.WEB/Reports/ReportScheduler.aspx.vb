@@ -14,9 +14,9 @@ Public Class ReportScheduler
 
     End Sub
     Private Sub dgvReports_CellEditorInitialize(sender As Object, e As DevExpress.Web.ASPxGridViewEditorEventArgs) Handles dgvReports.CellEditorInitialize
-        If e.Column.FieldName = "ScheduleDate" Then
-            e.Column.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False
-        End If
+        'If e.Column.FieldName = "ScheduleDate" Then
+        '    e.Column.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False
+        'End If
     End Sub
     Private Sub dgvReports_CustomCallback(sender As Object, e As DevExpress.Web.ASPxGridViewCustomCallbackEventArgs) Handles dgvReports.CustomCallback
         If e.Parameters = "Oneoff" Then
