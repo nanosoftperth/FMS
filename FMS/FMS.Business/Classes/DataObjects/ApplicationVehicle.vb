@@ -125,7 +125,7 @@
 
         Public Shared Function GetAll(appplicationID As Guid) As List(Of ApplicationVehicle)
 
-            Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).Select( _
+            Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                             Function(x) New DataObjects.ApplicationVehicle(x)).ToList
 
             Return retobj
