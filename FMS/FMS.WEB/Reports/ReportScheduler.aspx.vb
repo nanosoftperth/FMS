@@ -19,17 +19,67 @@ Public Class ReportScheduler
         'End If
     End Sub
     Private Sub dgvReports_CustomCallback(sender As Object, e As DevExpress.Web.ASPxGridViewCustomCallbackEventArgs) Handles dgvReports.CustomCallback
-        If e.Parameters = "Oneoff" Then
-            CType(dgvReports.Columns("ScheduleDate"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
-        ElseIf e.Parameters = "Daily" Then
-            CType(dgvReports.Columns("ScheduleTime"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
-        ElseIf e.Parameters = "Weekly" Then
-            CType(dgvReports.Columns("ScheduleTime"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
-            CType(dgvReports.Columns("DayofWeek"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
-        ElseIf e.Parameters = "Monthly" Then
-            CType(dgvReports.Columns("ScheduleTime"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
-            CType(dgvReports.Columns("DayofMonth"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
-        End If
+    
+
+        'Dim panel As Object = CType(dgvReports.FindEditRowCellTemplateControl(dgvReports.DataColumns("Schedule"), "callbackREportEdit"), ASPxCallbackPanel)
+
+
+        Dim cp As ASPxCallbackPanel = CType(dgvReports.FindEditFormTemplateControl("callbackREportEdit"), ASPxCallbackPanel)
+         
+
+        Dim ctrl As UserControl = cp.FindControl("NanoReportParamList")
+    
+
+         
+        ' For Each item In ctrl.Controls
+
+
+        ' Dim st = item
+        For Each control As ASPxComboBox In cp.Controls
+            Dim txt As ASPxComboBox = TryCast(control, ASPxComboBox)
+            If txt IsNot Nothing Then
+                Dim ID = DirectCast(txt, ASPxComboBox).ID
+            End If
+        Next control
+        '  Dim ID = DirectCast(st, System.Web.UI.LiteralControl).ID
+
+
+        '  Next
+
+
+
+
+        'Dim btn As ASPxComboBox = CType(ctrl.FindControl(), ASPxComboBox)
+
+
+
+        ' Dim btn As ASPxComboBox = CType(ctrl.FindControl("ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_dgvReports_efnew_callbackREportEdit_NanoReportParamList_412a19314b2d4c39b0df34ed0d398c8d_StartDate_I"), ASPxComboBox)
+
+
+        'Dim pageControl As ASPxCallbackPanel = CType(dgvReports.FindEditRowCellTemplateControl("callbackREportEdit"), ASPxCallbackPanel)
+
+        'Dim ctrl As Control = ASPxCallbackPanel.FindControl("callbackREportEdit")
+
+
+
+        'Dim panel As ASPxCallbackPanel = CType(sender, ASPxCallbackPanel)
+
+        'Dim ctrl As Control = panel.FindControl("callbackREportEdit")
+
+
+
+        ThisSession.SelectedReportName = e.Parameters
+        'If e.Parameters = "Oneoff" Then
+        '    CType(dgvReports.Columns("ScheduleDate"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
+        'ElseIf e.Parameters = "Daily" Then
+        '    CType(dgvReports.Columns("ScheduleTime"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
+        'ElseIf e.Parameters = "Weekly" Then
+        '    CType(dgvReports.Columns("ScheduleTime"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
+        '    CType(dgvReports.Columns("DayofWeek"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
+        'ElseIf e.Parameters = "Monthly" Then
+        '    CType(dgvReports.Columns("ScheduleTime"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
+        '    CType(dgvReports.Columns("DayofMonth"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
+        'End If
     End Sub
     Private Sub dgvReports_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvReports.RowInserting
         e.NewValues.Add("ApplicationID", ThisSession.ApplicationID)
@@ -48,4 +98,9 @@ Public Class ReportScheduler
         FMS.Business.SingletonAccess.ClientSelected_TimeZone = If(Not String.IsNullOrEmpty(ThisSession.User.TimeZone.ID), _
                                                                         ThisSession.User.TimeZone, ThisSession.ApplicationObject.TimeZone)
     End Sub
+    Protected Sub ReportType_SelectedIndexChanged(sender As Object, e As EventArgs)
+        ThisSession.SelectedReportName = "VehicleReport"
+    End Sub
+
+    
 End Class
