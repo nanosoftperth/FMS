@@ -5,8 +5,6 @@
 <%@ Register Assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 <%@ Register Src="~/Controls/NanoReportParamList.ascx" TagPrefix="uc1" TagName="NanoReportParamList" %>
 
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="<%= Page.ResolveClientUrl("~/Content/Jira.css")%>" rel="stylesheet" />
@@ -38,13 +36,38 @@
             } 
         }
         function cboSelectedIndexChanged() 
-        {     
-            dgvReports.PerformCallback(s.GetValue());
+        {
+             
+            $.ajax({
+                type: 'POST',
+                url: 'ReportScheduler.aspx/setReportParameter',
+                data: "{city:" + JSON.stringify(city) + "}",
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (r) {
+                    alert(r.d.Name);
+                    alert(r.d.Population);
+                }
+            });
+
+
+            dgvReports.PerformCallback();
+           // alert(StartDate.GetValue())
+            //alert(EndDate.GetValue())
+            //alert(Vehicle.GetValue())
+            //txtStartDate
+
+           // dgvReports.PerformCallback(s.GetValue());
         } 
     </script>
+     
+    <!--  Report Script Section -->  
      <script type="text/javascript">
 
-
+         $(document).ready(function () { 
+        
+             $('#editTable .reportType').hide();
+         });
          function comboDateSelected_ValueChanged(s, id) {
 
              var selectedVal = s.GetValue();
@@ -107,22 +130,18 @@
                                         </SettingsPager>
                                         <SettingsSearchPanel Visible="True" />
                                         <Templates>
-                                            <EditForm> 
+                                      <EditForm> 
                                              
-                 <table id="editTable">
-
+                  <table id="editTable"> 
                         <tr>
                             <td>Report</td>
                             <td></td>
                             <td>Schedule</td>
                             <td>Destination</td>
-                        </tr> 
-
+                        </tr>  
                         <tr>
-
                             <%--REPORT--%>
                             <td>
-
                                 <table>
                                     <tr>
                                         <td>
@@ -137,9 +156,7 @@
                                                 DataSourceID="odsReport1"
                                                 ClientInstanceName="comboSelectedReport"
                                                 AutoPostBack="false"  Value='<%# Bind("ReportName") %>'>
-
                                                 <ClientSideEvents ValueChanged="function(s,e){comboSelectedReport_ValueChanged(s,e);}" />
-
                                             </dx:ASPxComboBox>
                                         </td>
                                     </tr>
@@ -148,6 +165,8 @@
                                             <dx:ASPxCallbackPanel ID="callbackREportEdit"
                                                 ClientInstanceName="callbackREportEdit"
                                                 runat="server"> 
+
+                                                   <%--<asp:PlaceHolder ID="mainDIV" runat="server"></asp:PlaceHolder>--%>
                                                 <PanelCollection>
                                                     <dx:PanelContent runat="server">
                                                         <uc1:NanoReportParamList runat="server" ID="NanoReportParamList" />
@@ -163,7 +182,7 @@
                             <td></td>
                             <%--SCHEDULE--%>
                             <td> 
-                                <table>
+                               <table>
                                     <tr>
                                         <td>
                                             <dx:ASPxLabel ID="lblReportType" runat="server" Text="Frequency">
@@ -173,29 +192,33 @@
                                             <dx:ASPxComboBox ID="comboReportType"
                                                 runat="server"
                                                 DataSourceID="odsReportTypes"
-                                                ClientInstanceName="comboReportType">
-                                                <ClientSideEvents ValueChanged="function(s,e){comboReportType_ValueChanged(s,e);}"  />
-
-                                            </dx:ASPxComboBox>
-
+                                                ClientInstanceName="comboReportType"  Value='<%# Bind("ReportType") %>'>
+                                                <ClientSideEvents   ValueChanged="function(s,e){comboReportType_ValueChanged(s,e);}"   /> 
+                                            </dx:ASPxComboBox> 
                                         </td>
                                     </tr>
-                                    <tr class="reportType One-off">
+                                    <tr class="reportType Oneoff">
                                         <td>
                                             <dx:ASPxLabel runat="server" ID="lblOneOffDate" Text="Date:"></dx:ASPxLabel>
                                         </td>
                                         <td>
-                                            <dx:ASPxDateEdit TimeSectionProperties-Visible="true" DisplayFormatString="G" ID="dateEditReportTypeOeOffDate" runat="server" EditFormat="DateTime"></dx:ASPxDateEdit>
+                                            <dx:ASPxDateEdit TimeSectionProperties-Visible="true"
+                                                 DisplayFormatString="G" ID="dateEditReportTypeOeOffDate" 
+                                                runat="server" EditFormat="DateTime"  Value ='<%# Bind("ScheduleDate")%>' >
+
+                                            </dx:ASPxDateEdit>
                                         </td>
                                     </tr>
 
                                     <tr class="reportType Weekly">
                                         <td>
                                             <dx:ASPxLabel runat="server" ID="ASPxLabel1" Text="Day of week:"></dx:ASPxLabel>
-
+                                            
                                         </td>
                                         <td>
-                                            <dx:ASPxComboBox ID="combodayOfWeek" runat="server" DataSourceID="odsDaysOfWeek"></dx:ASPxComboBox>
+                                            <dx:ASPxComboBox ID="combodayOfWeek" runat="server" DataSourceID="odsDaysOfWeek" Value ='<%# Bind("DayofWeek")%>' >
+
+                                            </dx:ASPxComboBox>
                                         </td>
                                     </tr>
 
@@ -205,31 +228,31 @@
 
                                         </td>
                                         <td>
-                                            <dx:ASPxComboBox ID="combo" runat="server" DataSourceID="odsDaysOfMonth"></dx:ASPxComboBox>
-                                        </td>
-                                    </tr>
+                                            <dx:ASPxComboBox ID="combo" runat="server" DataSourceID="odsDaysOfMonth" Value ='<%# Bind("DayofMonth")%>'>
 
+                                            </dx:ASPxComboBox>
+                                        </td>
+                                    </tr> 
 
                                     <tr class="reportType Daily Monthly Weekly">
                                         <td>
                                             <dx:ASPxLabel runat="server" ID="lblTimeOfDay" Text="Time of day:"></dx:ASPxLabel>
                                         </td>
                                         <td>
-                                            <dx:ASPxTimeEdit ID="teTkimeEdit" runat="server"></dx:ASPxTimeEdit>
+                                            <dx:ASPxTimeEdit ID="teTkimeEdit" runat="server" Value ='<%# Bind("ScheduleTime")%>'></dx:ASPxTimeEdit>
                                         </td>
                                     </tr>
                                 </table>
 
                             </td>
-                            <%--DESTINATION--%>
-
+                            <%--DESTINATION--%> 
                             <td>
                                 <dx:ASPxComboBox
                                     ValueField="NativeID"
                                     TextField="NameFormatted"
                                     ID="comboSubscribers"
                                     runat="server"
-                                    DataSourceID="odsSubscribers">
+                                    DataSourceID="odsSubscribers"   Value ='<%# Bind("Recipients")%>'> 
                                 </dx:ASPxComboBox>
                             </td>
                         </tr>
@@ -239,7 +262,7 @@
                                                 <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors"></dx:ASPxGridViewTemplateReplacement>
                                                 <div style="text-align: right">
                                                     <dx:ASPxHyperLink Style="text-decoration: underline" ID="lnkUpdate" runat="server" Text="Update" Theme="SoftOrange" NavigateUrl="javascript:void(0);">
-                                                        <ClientSideEvents Click="function (s, e) { dgvReports.PerformCallback();
+                                                        <ClientSideEvents Click="function (s, e) { cboSelectedIndexChanged();
                                             dgvReports.UpdateEdit();
                                              sendMsg('Record Saved!'); }" />  
 
@@ -252,14 +275,13 @@
                                             </EditForm>
                                         </Templates>
 
-                                        <Columns>
-                                        
+                                        <Columns> 
                                             <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                             </dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="ReportscheduleID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataColumn  FieldName ="Schedule">
-                                                 
+                                            <dx:GridViewDataColumn  FieldName ="Schedule" >
+                                                 <EditFormSettings Visible="false"  /> 
                                             </dx:GridViewDataColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
                                             </dx:GridViewDataTextColumn>
@@ -308,17 +330,17 @@
                                             <dx:GridViewDataDateColumn Caption="End Date" FieldName="EndDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="12">
                                                 <EditFormSettings VisibleIndex="12" Visible ="false"  />
                                             </dx:GridViewDataDateColumn>
-                                         <%--   <dx:GridViewDataComboBoxColumn FieldName="Vehicle" ShowInCustomizationForm="True" VisibleIndex="13" Caption="Vehicle"  Visible ="false" >
+                                            <%--   <dx:GridViewDataComboBoxColumn FieldName="Vehicle" ShowInCustomizationForm="True" VisibleIndex="13" Caption="Vehicle"  Visible ="false" >
                                                   <EditFormSettings VisibleIndex="13" Visible ="true"  />
                                                 <PropertiesComboBox DataSourceID="odsAVDTVehicles" TextField="Name" ValueField="Name">
                                                 </PropertiesComboBox>
-                                            </dx:GridViewDataComboBoxColumn>  --%>
+                                            </dx:GridViewDataComboBoxColumn> --%>
                                             <dx:GridViewDataTextColumn FieldName="ReportParams" ShowInCustomizationForm="True" Visible="true" VisibleIndex="14">
                                              <EditFormSettings VisibleIndex="14" Visible ="false"  />
                                             </dx:GridViewDataTextColumn> 
                                             <dx:GridViewDataTextColumn FieldName="Recipients" ShowInCustomizationForm="True" Visible="False" VisibleIndex="15">
                                             </dx:GridViewDataTextColumn>
-                                       <%--     <dx:GridViewDataComboBoxColumn FieldName="Recipients" Caption="Recipients" VisibleIndex="15">
+                                           <%--     <dx:GridViewDataComboBoxColumn FieldName="Recipients" Caption="Recipients" VisibleIndex="15">
                                                 <PropertiesComboBox DropDownStyle="DropDown" DataSourceID="odsSubscribers" TextField="NameFormatted" ValueField="NativeID">
                                                     <ClearButton Visibility="Auto"></ClearButton>
                                                 </PropertiesComboBox>

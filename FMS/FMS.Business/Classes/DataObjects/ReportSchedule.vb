@@ -167,7 +167,7 @@ Namespace DataObjects
             x.ReportTime = DateAndTime.Now
             x.SubscriberID = Guid.NewGuid
             x.Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
-            x.ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
+            x.ReportParams = "" 'rpt.SerializeCustomValues(rpt, "", "Parm")
             x.Recipients = rpt.Recipients
 
 

@@ -1,6 +1,13 @@
-﻿Imports FMS.Business
-Imports FMS.Business.DataObjects.FeatureListConstants
+﻿Imports System
+Imports System.Collections.Generic
+Imports System.Linq
+Imports System.Web
+Imports System.Web.UI
+Imports System.Web.UI.WebControls
+'Imports DevExpress.Web.ASPxEditors
+Imports DevExpress.Web.ASPxCallbackPanel
 Imports DevExpress.Web
+Imports FMS.Business.DataObjects
 
 Public Class ReportScheduler
     Inherits System.Web.UI.Page
@@ -16,38 +23,61 @@ Public Class ReportScheduler
     Private Sub dgvReports_CellEditorInitialize(sender As Object, e As DevExpress.Web.ASPxGridViewEditorEventArgs) Handles dgvReports.CellEditorInitialize
         'If e.Column.FieldName = "ScheduleDate" Then
         '    e.Column.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False
-        'End If
+        'End If 
+
+
+
+        'Dim cbp As UserControl = CType(LoadControl("~/CallbackPanel.ascx"), UserControl)
+        'cbp.ID = "cpUserControl"
+
+        'Dim button As ASPxButton = New ASPxButton
+        'button.ID = "Button1"
+        'button.Text = "Click Me"
+        'button.AutoPostBack = True
+
+        'cbp.Controls.Add(button)
+
+
+
+
     End Sub
     Private Sub dgvReports_CustomCallback(sender As Object, e As DevExpress.Web.ASPxGridViewCustomCallbackEventArgs) Handles dgvReports.CustomCallback
-    
+
 
         'Dim panel As Object = CType(dgvReports.FindEditRowCellTemplateControl(dgvReports.DataColumns("Schedule"), "callbackREportEdit"), ASPxCallbackPanel)
 
-
         Dim cp As ASPxCallbackPanel = CType(dgvReports.FindEditFormTemplateControl("callbackREportEdit"), ASPxCallbackPanel)
-         
 
         Dim ctrl As UserControl = cp.FindControl("NanoReportParamList")
-    
 
-         
+        ' lblParameterName()
+
+
+        For Each control In cp.Controls
+
+
+        Next
+
+
+
+
+        Dim lbl As ASPxTextBox = CType(ctrl.FindControl("t"), ASPxTextBox)
+
+
+        'Dim str As String = lbl.Text
+
         ' For Each item In ctrl.Controls
-
-
         ' Dim st = item
-        For Each control As ASPxComboBox In cp.Controls
-            Dim txt As ASPxComboBox = TryCast(control, ASPxComboBox)
-            If txt IsNot Nothing Then
-                Dim ID = DirectCast(txt, ASPxComboBox).ID
-            End If
-        Next control
+        'For Each control As ASPxComboBox In cp.Controls
+        '    Dim txt As ASPxComboBox = TryCast(control, ASPxComboBox)
+        '    If txt IsNot Nothing Then
+        '        Dim ID = DirectCast(txt, ASPxComboBox).ID
+        '    End If
+        'Next control
         '  Dim ID = DirectCast(st, System.Web.UI.LiteralControl).ID
 
 
         '  Next
-
-
-
 
         'Dim btn As ASPxComboBox = CType(ctrl.FindControl(), ASPxComboBox)
 
@@ -101,6 +131,18 @@ Public Class ReportScheduler
     Protected Sub ReportType_SelectedIndexChanged(sender As Object, e As EventArgs)
         ThisSession.SelectedReportName = "VehicleReport"
     End Sub
+    <System.Web.Services.WebMethod()> _
+    Public Shared Function setReportParameter(ByVal startDate As String, ByVal endDate As String, ByVal vehicle As String) As String
 
-    
+
+        Dim ObjList As New ReportParam()
+
+        ObjList.StartDate = startDate
+
+        ObjList.EndDate = endDate
+
+        ObjList.Vehicle = vehicle
+        Return ""
+    End Function
+
 End Class
