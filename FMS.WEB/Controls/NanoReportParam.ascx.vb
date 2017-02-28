@@ -21,9 +21,20 @@
         'populate the comboDateSelected, object data sources do not seem to work for custom controls in markup
         Business.DataObjects.ReportSchedule.GetDateTimeOptions.ForEach(Function(x) comboDateSelected.Items.Add(x))
 
+
+
         'add the value changed event to javascript here as we need to know the new client ID at runtime
         comboDateSelected.ClientSideEvents.ValueChanged = _
                  " function(s,e) {comboDateSelected_ValueChanged(s, '" & UniqueClientID & "')}"
+
+        If ReportParameter.Description.Contains("Start Date") Then
+            comboDateSelected.ClientInstanceName = "StartDate"
+            comboDateSelected.Text = ""
+
+        ElseIf ReportParameter.Description.Contains("End Date") Then
+            comboDateSelected.Text = ""
+            comboDateSelected.ClientInstanceName = "EndDate"
+        End If
 
         Dim paramControl As System.Web.UI.Control
 
@@ -32,6 +43,7 @@
 
             Dim lookupSettings = DirectCast(ReportParameter.LookUpSettings, 
                                             DevExpress.XtraReports.Parameters.DynamicListLookUpSettings)
+
 
             Dim comboBox As New DevExpress.Web.ASPxComboBox()
 
@@ -44,6 +56,15 @@
             comboBox.DataSource = ods
             comboBox.DataBind()
             comboBox.ID = Guid.NewGuid.ToString
+
+            If ReportParameter.Description.Contains("Vehicle") Then
+                comboBox.ClientInstanceName = "Vehicle"
+                comboBox.Value = ""
+
+
+            ElseIf ReportParameter.Description.Contains("Driver") Then
+                comboBox.ClientInstanceName = "Drivers"
+            End If
 
             paramControl = comboBox
 
