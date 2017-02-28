@@ -113,8 +113,6 @@ Namespace DataObjects
 #End Region
 
 #Region "GETS & SETS"
-
-
         Public Shared Function GetAllForApplication(appID As Guid) As List(Of DataObjects.ReportSchedule)
 
             Dim objDict As Dictionary(Of String, Object) = New Dictionary(Of String, Object)
@@ -142,15 +140,11 @@ Namespace DataObjects
                                  .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType)),
                                  .Recipients = item.Recipients
                                 })
-               
+
                 Next
             End If
             Return objList
-
         End Function
-
-
-
 #End Region
         Public Shared Sub insert(rpt As DataObjects.ReportSchedule)
 
@@ -158,7 +152,7 @@ Namespace DataObjects
 
             x.ReportScheduleID = Guid.NewGuid
             x.ApplicationID = rpt.ApplicationId
-            x.ReportType = rpt.ReportType 
+            x.ReportType = rpt.ReportType
             x.Enabled = True
             x.Creator = rpt.Creator
             x.DateCreated = DateAndTime.Now
@@ -167,9 +161,8 @@ Namespace DataObjects
             x.ReportTime = DateAndTime.Now
             x.SubscriberID = Guid.NewGuid
             x.Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
-            x.ReportParams = "" 'rpt.SerializeCustomValues(rpt, "", "Parm")
+            x.ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
             x.Recipients = rpt.Recipients
-
 
             SingletonAccess.FMSDataContextContignous.ReportSchdeules.InsertOnSubmit(x)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -195,9 +188,15 @@ Namespace DataObjects
                         obj.Add(GetPropertyName(Function() rptObj.DayofMonth), rptObj.DayofMonth)
                     End If
                 ElseIf type = "Parm" Then
-                    obj.Add(GetPropertyName(Function() rptObj.StartDate), rptObj.StartDate)
-                    obj.Add(GetPropertyName(Function() rptObj.EndDate), rptObj.EndDate)
-                    obj.Add(GetPropertyName(Function() rptObj.Vehicle), rptObj.Vehicle)
+                    obj.Add(GetPropertyName(Function() ReportParam.StartDate), ReportParam.StartDate)
+                    If ReportParam.StartDate.Contains("Specific") Then
+                        obj.Add(GetPropertyName(Function() ReportParam.StartDateSpecific), ReportParam.StartDateSpecific)
+                    End If
+                    obj.Add(GetPropertyName(Function() ReportParam.EndDate), ReportParam.EndDate)
+                    If ReportParam.EndDate.Contains("Specific") Then
+                        obj.Add(GetPropertyName(Function() ReportParam.EndDateSpecific), ReportParam.EndDateSpecific)
+                    End If
+                    obj.Add(GetPropertyName(Function() ReportParam.Vehicle), ReportParam.Vehicle)
                 End If
 
                 Dim ds = New DictionarySerializer(obj)
@@ -235,34 +234,46 @@ Namespace DataObjects
             Dim ds = CType(serializer.Deserialize(xmlReaderobj), DictionarySerializer)
 
             If _type = "Parm" Then
-                returnString = String.Empty
+                If ((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null") And (String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null") And (String.IsNullOrEmpty(ds.Dictionary.Item("Vehicle")) Or Convert.ToString(ds.Dictionary.Item("Vehicle")) = "null")) Then
+                    returnString = String.Empty
+                Else
 
-                returnString = returnString + "Time  Period =" + Convert.ToString(ds.Dictionary.Item("StartDate")) + "to" + Convert.ToString(ds.Dictionary.Item("EndDate")) + Environment.NewLine
+                    If (ds.Dictionary.Item("StartDate") = "Specific") Then
 
-                returnString = returnString + "Vehicle = " + Convert.ToString(ds.Dictionary.Item("Vehicle"))
+                    ElseIf (ds.Dictionary.Item("StartDate") = "Specific") Then
 
+                    End If 
+
+                    returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
+
+                    returnString = returnString + "Vehicle = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Vehicle")) Or Convert.ToString(ds.Dictionary.Item("Vehicle")) = "null"), "", ds.Dictionary.Item("Vehicle"))
+                End If
             ElseIf _type = "Schedule" Then
+                If _reportType = Utility.OneOff Then
+                    returnString = Convert.ToString(_reportType) + ":   " + String.Format("{0:d/M/yyyy HH:mm:ss}", If(ds.Dictionary.ContainsKey("ScheduleDate"), Convert.ToDateTime(ds.Dictionary.Item("ScheduleDate")), ""))
 
-                returnString = String.Empty
+                ElseIf _reportType = Utility.Daily Then
+                    returnString = returnString + Convert.ToString(_reportType) + ":  " + String.Format("{0:t}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToDateTime(ds.Dictionary.Item("ScheduleTime")), ""))
 
-                ' returnString = returnString + Convert.ToString(_reportType) + +"" + String.Format("{0:HH:MM}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToString(ds.Dictionary.Item("ScheduleTime")), ""))
+                ElseIf _reportType = Utility.Weekly Then
+                    'returnString = returnString + Convert.ToString(_reportType) + "" + String.Format("{0:HH:MM}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToString(ds.Dictionary.Item("ScheduleTime")), ""))
 
-                'Dim KeyExist As String = String.Empty
+                ElseIf _reportType = Utility.Monthly Then
+                    '  returnString = returnString + Convert.ToString(_reportType) + "" + String.Format("{0:HH:MM}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToString(ds.Dictionary.Item("ScheduleTime")), ""))
 
-                'If ds.Dictionary.TryGetValue(ds.Dictionary.Item("ScheduleTime"), KeyExist) Then
-                '    returnString = returnString + "" + String.Format("{0:HH:MM}", Convert.ToString(ds.Dictionary.Item("ScheduleTime")))
-                'End If
-
+                Else
+                    returnString = String.Empty
+                End If
             End If
-
             Return returnString
         End Function
 
     End Class
-    Public Class ReportParam
-        Public Property StartDate As String
-        Public Property EndDate As String
-        Public Property Vehicle As String 
+    Public NotInheritable Class ReportParam
+        Public Shared StartDate As String
+        Public Shared StartDateSpecific As String
+        Public Shared EndDate As String
+        Public Shared EndDateSpecific As String
+        Public Shared Vehicle As String
     End Class
-
 End Namespace

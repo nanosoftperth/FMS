@@ -1,9 +1,7 @@
 ﻿Public Class NanoReportParam
     Inherits System.Web.UI.UserControl
 
-
     Private _UniqueClientID As String
-
     Public ReadOnly Property UniqueClientID As String
         Get
             If String.IsNullOrEmpty(_UniqueClientID) Then _UniqueClientID = Guid.NewGuid.ToString.Replace("-"c, "")
@@ -12,8 +10,6 @@
     End Property
 
     Public Property ReportParameter As DevExpress.XtraReports.Parameters.Parameter
-
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         lblParameterName.Text = ReportParameter.Description
@@ -29,11 +25,15 @@
 
         If ReportParameter.Description.Contains("Start Date") Then
             comboDateSelected.ClientInstanceName = "StartDate"
+            'comboDateSelected.Attributes.AddAttributes()
             comboDateSelected.Text = ""
+            dateSpecificDate.ClientInstanceName = "StartDateSpecific"
 
         ElseIf ReportParameter.Description.Contains("End Date") Then
             comboDateSelected.Text = ""
             comboDateSelected.ClientInstanceName = "EndDate"
+
+            dateSpecificDate.ClientInstanceName = "EndDateSpecific"
         End If
 
         Dim paramControl As System.Web.UI.Control
@@ -70,19 +70,15 @@
 
             dateTimeDIV.Visible = False
 
-        End If
-
+        End If 
 
         If ReportParameter.Type.ToString.ToLower = "system.datetime" Then
 
             'relative time OR exact time
             Dim uniqcoID As String = Guid.NewGuid.ToString.Replace("-", "")
+             
 
-
-
-
-        End If
-
+        End If 
 
         If paramControl IsNot Nothing Then panelContent.Controls.Add(paramControl)
 

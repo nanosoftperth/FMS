@@ -18,54 +18,28 @@ Public Class ReportScheduler
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
     End Sub
     Private Sub dgvReports_CellEditorInitialize(sender As Object, e As DevExpress.Web.ASPxGridViewEditorEventArgs) Handles dgvReports.CellEditorInitialize
         'If e.Column.FieldName = "ScheduleDate" Then
         '    e.Column.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False
-        'End If 
-
-
-
+        'End If   
         'Dim cbp As UserControl = CType(LoadControl("~/CallbackPanel.ascx"), UserControl)
         'cbp.ID = "cpUserControl"
-
         'Dim button As ASPxButton = New ASPxButton
         'button.ID = "Button1"
         'button.Text = "Click Me"
         'button.AutoPostBack = True
-
-        'cbp.Controls.Add(button)
-
-
-
-
+        'cbp.Controls.Add(button)  
     End Sub
     Private Sub dgvReports_CustomCallback(sender As Object, e As DevExpress.Web.ASPxGridViewCustomCallbackEventArgs) Handles dgvReports.CustomCallback
-
-
         'Dim panel As Object = CType(dgvReports.FindEditRowCellTemplateControl(dgvReports.DataColumns("Schedule"), "callbackREportEdit"), ASPxCallbackPanel)
-
-        Dim cp As ASPxCallbackPanel = CType(dgvReports.FindEditFormTemplateControl("callbackREportEdit"), ASPxCallbackPanel)
-
-        Dim ctrl As UserControl = cp.FindControl("NanoReportParamList")
-
-        ' lblParameterName()
-
-
-        For Each control In cp.Controls
-
-
-        Next
-
-
-
-
-        Dim lbl As ASPxTextBox = CType(ctrl.FindControl("t"), ASPxTextBox)
-
-
+        'Dim cp As ASPxCallbackPanel = CType(dgvReports.FindEditFormTemplateControl("callbackREportEdit"), ASPxCallbackPanel)
+        'Dim ctrl As UserControl = cp.FindControl("NanoReportParamList")
+        'lblParameterName()
+        'For Each control In cp.Controls
+        'Next
+        'Dim lbl As ASPxTextBox = CType(ctrl.FindControl("t"), ASPxTextBox)
         'Dim str As String = lbl.Text
-
         ' For Each item In ctrl.Controls
         ' Dim st = item
         'For Each control As ASPxComboBox In cp.Controls
@@ -75,30 +49,15 @@ Public Class ReportScheduler
         '    End If
         'Next control
         '  Dim ID = DirectCast(st, System.Web.UI.LiteralControl).ID
-
-
         '  Next
-
         'Dim btn As ASPxComboBox = CType(ctrl.FindControl(), ASPxComboBox)
-
-
-
         ' Dim btn As ASPxComboBox = CType(ctrl.FindControl("ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_dgvReports_efnew_callbackREportEdit_NanoReportParamList_412a19314b2d4c39b0df34ed0d398c8d_StartDate_I"), ASPxComboBox)
 
-
         'Dim pageControl As ASPxCallbackPanel = CType(dgvReports.FindEditRowCellTemplateControl("callbackREportEdit"), ASPxCallbackPanel)
-
         'Dim ctrl As Control = ASPxCallbackPanel.FindControl("callbackREportEdit")
-
-
-
         'Dim panel As ASPxCallbackPanel = CType(sender, ASPxCallbackPanel)
-
         'Dim ctrl As Control = panel.FindControl("callbackREportEdit")
-
-
-
-        ThisSession.SelectedReportName = e.Parameters
+        'ThisSession.SelectedReportName = e.Parameters
         'If e.Parameters = "Oneoff" Then
         '    CType(dgvReports.Columns("ScheduleDate"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
         'ElseIf e.Parameters = "Daily" Then
@@ -132,17 +91,12 @@ Public Class ReportScheduler
         ThisSession.SelectedReportName = "VehicleReport"
     End Sub
     <System.Web.Services.WebMethod()> _
-    Public Shared Function setReportParameter(ByVal startDate As String, ByVal endDate As String, ByVal vehicle As String) As String
-
-
-        Dim ObjList As New ReportParam()
-
-        ObjList.StartDate = startDate
-
-        ObjList.EndDate = endDate
-
-        ObjList.Vehicle = vehicle
+    Public Shared Function setReportParameter(ByVal StartDate As String, ByVal EndDate As String, ByVal Vehicle As String, ByVal StartDateSpecific As String, ByVal EndDateSpecific As String) As String
+        ReportParam.StartDate = StartDate
+        ReportParam.EndDate = EndDate
+        ReportParam.Vehicle = Vehicle 
+        ReportParam.StartDateSpecific = StartDateSpecific
+        ReportParam.EndDateSpecific = EndDateSpecific  
         Return ""
     End Function
-
 End Class
