@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2.9.008")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2.9.009")>  _
         Public ReadOnly Property version() As String
             Get
                 Return CType(Me("version"),String)
@@ -97,7 +97,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("demo")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("uniqco")>  _
         Public ReadOnly Property debug_company_name() As String
             Get
                 Return CType(Me("debug_company_name"),String)
