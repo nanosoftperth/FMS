@@ -9,7 +9,17 @@
 
     <link href="<%= Page.ResolveClientUrl("~/Content/Jira.css")%>" rel="stylesheet" />
     <script src='<%= Page.ResolveClientUrl("~/Content/javascript/jquery-3.1.0.min.js")%>'></script>
-       
+
+    <style>
+        .clsEditForm {
+            width: 100%;
+        }
+
+            .clsEditForm tr {
+              margin-bottom: 5px;
+            }
+    </style>
+
     <script type="text/javascript">
         function sendMsg(message) {
             $('#aui-flag-container').hide();
@@ -18,7 +28,7 @@
                     , function () {
                         $(this).delay(2500).toggle('slow');
                     });
-        } 
+        }
         function comboDateSelected_ValueChanged(s, id) {
 
             var selectedVal = s.GetValue();
@@ -31,17 +41,23 @@
                 //$('.specificTimeEdit').show();
             }
         }
-        function cboSelectedIndexChanged() { 
-           
+        function cboSelectedIndexChanged() {
+            var ParmList = "";
+            if (comboSelectedReport.GetValue() == "ReportGeoFence_byDriver") {
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' }";
+            }
+            else {
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' }";
+            }
             $.ajax({
                 type: 'POST',
                 url: 'ReportScheduler.aspx/setReportParameter',
-                data: "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' }",
+                data: ParmList,
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function (r) {
                 }
-            }); 
+            });
         }
     </script>
 
@@ -50,53 +66,67 @@
  
         function comboDateSelected_ValueChanged(s, id) {
 
-            var selectedVal = s.GetValue();
+    var selectedVal = s.GetValue();
 
-            $('.' + id).hide(id);
+    $('.' + id).hide(id);
 
-            if (selectedVal == 'Specific') {
-                $('.' + id + '.specificDateEdit').show('slow');
-            } else {
-                //$('.specificTimeEdit').show();
-            } 
-        }
+    if (selectedVal == 'Specific') {
+        $('.' + id + '.specificDateEdit').show('slow');
+    } else {
+        //$('.specificTimeEdit').show();
+    } 
+}
 
-        function comboReportType_ValueChanged(s, e) {
+                                    function comboReportType_ValueChanged(s, e) {
 
-            $('.reportType').hide();
+                                        $('.reportType').hide();
 
-            var reportType = comboReportType.GetValue();
-            //console.log('selected value: ' + reportType);
+                                        var reportType = comboReportType.GetValue();
+                                        //console.log('selected value: ' + reportType);
 
-            $('.' + reportType).show('slow');
+                                        $('.' + reportType).show('slow');
 
-            //callbackREportEdit.PerformCallback(reportType);
-        }
+                                        //callbackREportEdit.PerformCallback(reportType);
+                                    }
 
-        function comboSelectedReport_ValueChanged(s, e) {
+                                    function comboSelectedReport_ValueChanged(s, e) {
 
-            var reportName = comboSelectedReport.GetValue();
-            console.log('selected value: ' + reportName);
+                                        var reportName = comboSelectedReport.GetValue();
+                                        console.log('selected value: ' + reportName);
 
-            var param = {};
+                                        var param = {};
 
-            param.ReportName = reportName;
+                                        param.ReportName = reportName;
 
-            //SetSelectedReport(ReportName
-            ajaxMethod("../DefaultService.svc/" + 'SetSelectedReport',
-                    param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
+                                        //SetSelectedReport(ReportName
+                                        ajaxMethod("../DefaultService.svc/" + 'SetSelectedReport',
+                                                param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
 
 
-        }
+                                    }
 
-        function DefaultService_SuccessCallback(data) { callbackREportEdit.PerformCallback(''); }
+                                    function DefaultService_SuccessCallback(data) { callbackREportEdit.PerformCallback(''); }
 
-        function DefaultService_ErrorCallback(data) { }
+                                    function DefaultService_ErrorCallback(data) { }
 
-        function DefaultService_FinallyCallback(data) { }
+                                    function DefaultService_FinallyCallback(data) { }
 
-    </script>
-    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" Width="100%" ActiveTabIndex="0" EnableTabScrolling="True">
+                                    function StartEditRow(s,e)
+                                    {
+                                        alert('asdasdasdasdasd');
+                                    }
+
+                                    function OnEditClick(sender, e) {
+
+                                        alert('Hello');
+                                    }
+        
+                                    function OnBatchStartEdit(s, e) {
+
+                                        alert("Eidt Start");
+                                    }
+                                    </script>
+                                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" Width="100%" ActiveTabIndex="0" EnableTabScrolling="True">
         <TabPages>
             <dx:TabPage Name="Tagb" Text="Report Schedule">
                 <ContentCollection>
@@ -104,13 +134,23 @@
                         <table>
                             <tr>
                                 <td>
-                                    <dx:ASPxGridView KeyFieldName="ReportscheduleID" ID="dgvReports" ClientInstanceName="dgvReports" runat="server" AutoGenerateColumns="False" Width="100%" Theme="SoftOrange" DataSourceID="odsReports">
+                                    <dx:ASPxGridView
+                                        KeyFieldName="ReportscheduleID"
+                                        ID="dgvReports"
+                                        ClientInstanceName="dgvReports"
+                                        runat="server"
+                                        AutoGenerateColumns="False"
+                                        Width="100%"
+                                        Theme="SoftOrange"
+                                        DataSourceID="odsReports"
+                                        SettingsBehavior-ConfirmDelete="true"
+                                        SettingsText-ConfirmDelete="Are you sure you wish to delete?">
                                         <SettingsPager PageSize="50">
                                         </SettingsPager>
                                         <SettingsSearchPanel Visible="True" />
                                         <Templates>
                                             <EditForm>
-                                                <table id="editTable">
+                                                <table id="editTable" class="clsEditForm">
                                                     <tr>
                                                         <td>Report</td>
                                                         <td></td>
@@ -119,13 +159,13 @@
                                                     </tr>
                                                     <tr>
                                                         <%--REPORT--%>
-                                                        <td>
-                                                            <table>
+                                                        <td style="padding-top: 5px;" valign="top">
+                                                            <table style="width: 100%">
                                                                 <tr>
                                                                     <td>
                                                                         <dx:ASPxLabel Width="55px" ID="ASPxLabel2" runat="server" Text="Type"></dx:ASPxLabel>
                                                                     </td>
-                                                                    <td style="padding-left: 4px;">
+                                                                    <td>
                                                                         <dx:ASPxComboBox
                                                                             TextField="VisibleReportName"
                                                                             ValueField="ActualReportNameToDisplay"
@@ -159,8 +199,8 @@
                                                         <%--PARAMATERS--%>
                                                         <td></td>
                                                         <%--SCHEDULE--%>
-                                                        <td>
-                                                            <table id="tblSchedule">
+                                                        <td valign="top" style="padding-top: 5px;">
+                                                            <table id="tblSchedule" class="OptionsTable" style="width: 100%" cellspacing="10">
                                                                 <tr>
                                                                     <td>
                                                                         <dx:ASPxLabel ID="lblReportType" runat="server" Text="Frequency">
@@ -175,18 +215,21 @@
                                                                         </dx:ASPxComboBox>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="reportType Oneoff" style="display: none" id="tdneOFF">
+                                                                <tr class="reportType Oneoff separator" style="display: none; padding-top: 5px;" id="tdneOFF">
                                                                     <td>
                                                                         <dx:ASPxLabel runat="server" ID="lblOneOffDate" Text="Date:"></dx:ASPxLabel>
                                                                     </td>
                                                                     <td>
                                                                         <dx:ASPxDateEdit TimeSectionProperties-Visible="true"
-                                                                            DisplayFormatString="G" ID="dateEditReportTypeOeOffDate"
-                                                                            runat="server" EditFormat="DateTime" Value='<%# Bind("ScheduleDate")%>'>
+                                                                            ID="dateEditReportTypeOeOffDate"
+                                                                            runat="server" Value='<%# Bind("ScheduleDate")%>'>
                                                                         </dx:ASPxDateEdit>
+
+                                                                        <%-- <dx:ASPxDateEdit runat="server" ID="edBirth" Value='<%# Bind("ScheduleDate") %>' Width="100%">
+                                                                               </dx:ASPxDateEdit>--%>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="reportType Weekly" style="display: none">
+                                                                <tr class="reportType Weekly separator" style="display: none">
                                                                     <td>
                                                                         <dx:ASPxLabel runat="server" ID="ASPxLabel1" Text="Day of week:"></dx:ASPxLabel>
                                                                     </td>
@@ -195,7 +238,7 @@
                                                                         </dx:ASPxComboBox>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="reportType Monthly" style="display: none">
+                                                                <tr class="reportType Monthly separator" style="display: none">
                                                                     <td>
                                                                         <dx:ASPxLabel runat="server" ID="lblDOW" Text="Day of month:"></dx:ASPxLabel>
                                                                     </td>
@@ -215,7 +258,7 @@
                                                             </table>
                                                         </td>
                                                         <%--DESTINATION--%>
-                                                        <td>
+                                                        <td valign="top" style="padding-top: 5px;">
                                                             <dx:ASPxComboBox
                                                                 ValueField="NativeID"
                                                                 TextField="NameFormatted"
@@ -225,7 +268,7 @@
                                                             </dx:ASPxComboBox>
                                                         </td>
                                                     </tr>
-                                                </table> 
+                                                </table>
                                                 <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors"></dx:ASPxGridViewTemplateReplacement>
                                                 <div style="text-align: right">
                                                     <dx:ASPxHyperLink Style="text-decoration: underline" ID="lnkUpdate" runat="server" Text="Update" Theme="SoftOrange" NavigateUrl="javascript:void(0);">
@@ -239,7 +282,7 @@
                                                     <dx:ASPxGridViewTemplateReplacement ID="TemplateReplacementCancel" ReplacementType="EditFormCancelButton"
                                                         runat="server"></dx:ASPxGridViewTemplateReplacement>
                                             </EditForm>
-                                        </Templates> 
+                                        </Templates>
 
                                         <Columns>
                                             <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
@@ -312,7 +355,7 @@
                                                     <ClearButton Visibility="Auto"></ClearButton>
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>--%>
-                                        </Columns> 
+                                        </Columns>
                                     </dx:ASPxGridView>
                                     <asp:ObjectDataSource ID="odsReports" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ReportSchedule" DeleteMethod="delete" InsertMethod="insert" SelectMethod="GetAllForApplication" TypeName="FMS.Business.DataObjects.ReportSchedule" UpdateMethod="update">
                                         <SelectParameters>
@@ -356,5 +399,5 @@
                 </ContentCollection>
             </dx:TabPage>
         </TabPages>
-    </dx:ASPxPageControl>  
+    </dx:ASPxPageControl>
 </asp:Content>
