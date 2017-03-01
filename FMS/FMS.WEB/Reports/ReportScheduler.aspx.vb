@@ -96,7 +96,8 @@ Public Class ReportScheduler
         ReportParam.EndDate = EndDate
         ReportParam.Vehicle = Vehicle 
         ReportParam.StartDateSpecific = StartDateSpecific
-        ReportParam.EndDateSpecific = EndDateSpecific  
+        ReportParam.EndDateSpecific = EndDateSpecific
+        ReportParam.Driver = Vehicle
         Return ""
     End Function
 End Class
