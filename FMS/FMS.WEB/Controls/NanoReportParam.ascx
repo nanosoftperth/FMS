@@ -13,7 +13,7 @@
 </script>
 
 <%--THE TRs below are there as the NanoReportPArams collection will add a <table> wrapper--%>
-<tr>
+<tr style="padding-left:10px">
 
     <td style="padding: 2px; vertical-align: top; text-align: left;">
         <dx:ASPxLabel ID="lblParameterName" runat="server" Width="55px" Text="this is a test"></dx:ASPxLabel>

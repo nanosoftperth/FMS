@@ -8,7 +8,7 @@ Imports System.Linq.Expressions
 Namespace DataObjects
     Public Class ReportSchedule
 
-        Private Const REPORT_TYPES As String = "Oneoff,Daily,Weekly,Monthly"
+        Private Const REPORT_TYPES As String = "OneOff,Daily,Weekly,Monthly"
         Private Const DAYS_OF_WEEK As String = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
         Private Const DATETIME_OPTIONS As String = "Now,Beginning of Day,Beginning of Week,Beginning of Year,Specific"
 #Region "Misc"
@@ -26,15 +26,12 @@ Namespace DataObjects
             End Select
 
         End Function
-
         Public Shared Function GetReportTypes() As List(Of String)
             Return REPORT_TYPES.Split(","c).ToList()
         End Function
-
         Public Shared Function GetDaysOfWeek() As List(Of String)
             Return DAYS_OF_WEEK.Split(","c).ToList()
         End Function
-
         Public Shared Function GetDateTimeOptions() As List(Of String)
             Return DATETIME_OPTIONS.Split(","c).ToList
         End Function
@@ -81,6 +78,7 @@ Namespace DataObjects
         Public Property StartDate As String
         Public Property EndDate As String
         Public Property Vehicle As String
+        Public Property Driver As String
         Public Property Recipients As String
 #End Region
 
@@ -116,7 +114,8 @@ Namespace DataObjects
 
             Dim objDict As Dictionary(Of String, Object) = New Dictionary(Of String, Object)
             Dim objList As New List(Of DataObjects.ReportSchedule)
-
+            Dim rpt As New DataObjects.ReportSchedule
+ 
             Dim objResult = (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _
                      Where x.ApplicationID = appID _
                         Order By x.DateCreated
@@ -124,7 +123,6 @@ Namespace DataObjects
 
             If Not objList Is Nothing Then
                 For Each item In objResult
-
                     objList.Add(New ReportSchedule() With
                                 {.ReportscheduleID = item.ReportscheduleID,
                                  .ApplicationId = item.ApplicationId,
@@ -137,10 +135,16 @@ Namespace DataObjects
                                  .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm", "", Convert.ToString(item.ReportName)),
                                  .SubscriberID = item.SubscriberID,
                                  .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType), ""),
-                                 .ScheduleDate = DateAndTime.Now,
+                                 .ScheduleDate = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleDate)),
+                                 .ScheduleTime = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleTime)),
+                                 .DayofWeek = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.DayofWeek)),
+                                 .DayofMonth = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.DayofMonth)),
+                                 .StartDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDate)),
+                                 .EndDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDate)),
+                                 .Vehicle = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Vehicle)),
+                                 .Driver = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Driver)),
                                  .Recipients = item.Recipients
                                 })
-
                 Next
             End If
             Return objList
@@ -166,10 +170,20 @@ Namespace DataObjects
 
             SingletonAccess.FMSDataContextContignous.ReportSchdeules.InsertOnSubmit(x)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
-
         End Sub
         Public Shared Sub update(rpt As DataObjects.ReportSchedule)
+            Dim uptrptShedule As FMS.Business.ReportSchdeule = SingletonAccess.FMSDataContextContignous.ReportSchdeules.Where(Function(x) x.ReportScheduleID = rpt.ReportscheduleID).Single()
 
+            With uptrptShedule
+                .ApplicationID = rpt.ApplicationId
+                .Creator = rpt.Creator
+                .ReportName = rpt.ReportName
+                .ReportType = rpt.ReportType
+                .Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
+                .ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
+                .Recipients = rpt.Recipients
+            End With   
+            SingletonAccess.FMSDataContextContignous.SubmitChanges() 
         End Sub
         Public Shared Sub delete(rpt As DataObjects.ReportSchedule)
             Dim rptShedule As FMS.Business.ReportSchdeule = SingletonAccess.FMSDataContextContignous.ReportSchdeules.Where(Function(x) x.ReportScheduleID = rpt.ReportscheduleID).Single()
@@ -186,7 +200,7 @@ Namespace DataObjects
             Else
                 If type = "Schedule" Then
                     If reporttype = Utility.OneOff Then
-                        obj.Add(GetPropertyName(Function() rptObj.ScheduleDate), rptObj.ScheduleDate)
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleDate), String.Format("{0:t}", Convert.ToDateTime(rptObj.ScheduleDate)))
                     ElseIf reporttype = Utility.Daily Then
                         obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
                     ElseIf reporttype = Utility.Weekly Then
@@ -211,7 +225,6 @@ Namespace DataObjects
                         obj.Add(GetPropertyName(Function() ReportParam.Vehicle), ReportParam.Vehicle)
                     End If
                 End If
-
 
                 Dim ds = New DictionarySerializer(obj)
                 Dim xs = New XmlSerializer(GetType(DictionarySerializer))
@@ -283,7 +296,32 @@ Namespace DataObjects
             End If
             Return returnString
         End Function
+        Public Shared Function GetScheduleParameter(ByVal customValuesXml As String, ByVal attributeName As String) As String
+            Dim rptObj As New DataObjects.ReportSchedule
+            Dim returnAttribute As String = String.Empty
+            Try
+                If String.IsNullOrWhiteSpace(customValuesXml) Then
+                    Return returnAttribute
+                End If
+                Dim serializer = New XmlSerializer(GetType(DictionarySerializer)) 
+                Dim textReader = New StringReader(customValuesXml)
+                Dim xmlReaderobj = XmlReader.Create(textReader)
 
+                Dim ds = CType(serializer.Deserialize(xmlReaderobj), DictionarySerializer)
+             
+
+                If ds.Dictionary.ContainsKey(attributeName) Then
+                    Return Convert.ToString(ds.Dictionary.Item(attributeName))
+                Else
+                    If attributeName = GetPropertyName(Function() rptObj.ScheduleTime) Then
+                        Return ("0001/01/01 00:00:00")
+                    End If
+                    Return returnAttribute
+                End If
+            Catch ex As Exception
+            End Try
+            Return returnAttribute
+        End Function
     End Class
     Public NotInheritable Class ReportParam
         Public Shared StartDate As String

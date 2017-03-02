@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="ReportScheduler.aspx.vb" Inherits="FMS.WEB.ReportScheduler" %>
-
+<%@ Import Namespace="FMS.Business" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
 <%@ Register Assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
@@ -15,8 +15,8 @@
             width: 100%;
         }
 
-            .clsEditForm tr {
-              margin-bottom: 5px;
+            .clsEditForm tr td {
+              padding-top:5px;
             }
     </style>
 
@@ -111,20 +111,8 @@
 
                                     function DefaultService_FinallyCallback(data) { }
 
-                                    function StartEditRow(s,e)
-                                    {
-                                        alert('asdasdasdasdasd');
-                                    }
-
-                                    function OnEditClick(sender, e) {
-
-                                        alert('Hello');
-                                    }
-        
-                                    function OnBatchStartEdit(s, e) {
-
-                                        alert("Eidt Start");
-                                    }
+                                   
+                                   
                                     </script>
                                     <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" Width="100%" ActiveTabIndex="0" EnableTabScrolling="True">
         <TabPages>
@@ -148,6 +136,16 @@
                                         <SettingsPager PageSize="50">
                                         </SettingsPager>
                                         <SettingsSearchPanel Visible="True" />
+                                         <clientsideevents EndCallback="function(s, e) {
+	if(s.cpIsEdit)
+    {    
+        StartEditRow();
+      }
+    else
+    {
+        
+    }
+}" />
                                         <Templates>
                                             <EditForm>
                                                 <table id="editTable" class="clsEditForm">
@@ -192,6 +190,8 @@
                                                                             </PanelCollection>
                                                                         </dx:ASPxCallbackPanel>
 
+
+                                                                        
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -200,7 +200,7 @@
                                                         <td></td>
                                                         <%--SCHEDULE--%>
                                                         <td valign="top" style="padding-top: 5px;">
-                                                            <table id="tblSchedule" class="OptionsTable" style="width: 100%" cellspacing="10">
+                                                            <table id="tblSchedule" class="clsEditForm" style="width: 100%" cellspacing="10">
                                                                 <tr>
                                                                     <td>
                                                                         <dx:ASPxLabel ID="lblReportType" runat="server" Text="Frequency">
@@ -215,7 +215,7 @@
                                                                         </dx:ASPxComboBox>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="reportType Oneoff separator" style="display: none; padding-top: 5px;" id="tdneOFF">
+                                                                <tr class="reportType OneOff separator" style="display: none; padding-top: 5px;" id="tdneOFF">
                                                                     <td>
                                                                         <dx:ASPxLabel runat="server" ID="lblOneOffDate" Text="Date:"></dx:ASPxLabel>
                                                                     </td>
@@ -252,7 +252,8 @@
                                                                         <dx:ASPxLabel runat="server" ID="lblTimeOfDay" Text="Time of day:"></dx:ASPxLabel>
                                                                     </td>
                                                                     <td>
-                                                                        <dx:ASPxTimeEdit ID="teTkimeEdit" runat="server" Value='<%# Bind("ScheduleTime")%>'></dx:ASPxTimeEdit>
+                                                                        <dx:ASPxTimeEdit ID="teTkimeEdit" runat="server" Value='<%# Bind("ScheduleTime")%>'  EditFormatString="h:mm tt" DisplayFormatString="h:mm tt" EditFormat="Custom"  DateTime ='<%# Bind("ScheduleTime")%>'  ></dx:ASPxTimeEdit>
+                                                                         
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -266,7 +267,13 @@
                                                                 runat="server"
                                                                 DataSourceID="odsSubscribers" Value='<%# Bind("Recipients")%>'>
                                                             </dx:ASPxComboBox>
-                                                        </td>
+
+                                                         <div style ="display:none">   
+                                                                           <dx:ASPxLabel ID ="ASPxLabel4"  runat ="server"    ClientInstanceName="lStartDate"  Value='<%# Bind("StartDate") %>' ></dx:ASPxLabel>
+                                                                           <dx:ASPxLabel ID ="ASPxLabel3"  runat ="server"    ClientInstanceName="lEndDate"  Value='<%# Bind("EndDate") %>' ></dx:ASPxLabel>
+                                                                           <dx:ASPxLabel ID ="ASPxLabel5"  runat ="server"    ClientInstanceName="lVehicle"  Value='<%# Bind("Vehicle") %>' ></dx:ASPxLabel>     
+                                                                           <dx:ASPxLabel ID ="ASPxLabel6"  runat ="server"   ClientInstanceName="lDriver"  Value='<%# Bind("Driver") %>' ></dx:ASPxLabel>  
+                                                            </div>  </td>
                                                     </tr>
                                                 </table>
                                                 <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors"></dx:ASPxGridViewTemplateReplacement>
@@ -275,15 +282,13 @@
                                                         <ClientSideEvents Click="function (s, e) { cboSelectedIndexChanged();
                                             dgvReports.UpdateEdit();
                                              sendMsg('Record Saved!'); }" />
-
                                                         <%--TRY AND USE THE NANOREPORTPARAMLIST HERE IS POSSIBLE--%>
                                                         <%--POSSIBLE ISSUES: SAVING AND RETREIVING THE VALUES SELECTED (MAYBE USE THE SESSION STATE)--%>
                                                     </dx:ASPxHyperLink>
                                                     <dx:ASPxGridViewTemplateReplacement ID="TemplateReplacementCancel" ReplacementType="EditFormCancelButton"
                                                         runat="server"></dx:ASPxGridViewTemplateReplacement>
                                             </EditForm>
-                                        </Templates>
-
+                                        </Templates> 
                                         <Columns>
                                             <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                                             </dx:GridViewCommandColumn>
@@ -400,4 +405,43 @@
             </dx:TabPage>
         </TabPages>
     </dx:ASPxPageControl>
+
+    <script type ="text/javascript"> 
+        function StartEditRow() { 
+            var reportName = comboSelectedReport.GetValue(); 
+            var param = {}; 
+            param.ReportName = reportName;
+            param.StartDate = lStartDate.GetValue();
+            param.EndDate = lEndDate.GetValue();
+            if (reportName = '<%=ReportNameList.ReportGeoFence_byDriver %>') {
+                param.Vehicle = lVehicle.GetValue();
+            }
+            else
+            {
+                param.Vehicle = lDriver.GetValue();
+            }
+            if (lStartDate.GetValue() == "Specific") 
+            {
+            
+            }
+
+
+            //SetSelectedReport(ReportName
+            ajaxMethod("ReportScheduler.aspx/" + 'SetSelectedReportEdit',
+                    param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
+
+            // Edit Mode for Schedule Fields
+            if (comboReportType.GetValue() == '<%=Utility.OneOff%>') {
+                                            $('.' + comboReportType.GetValue()).show('slow');
+                                        }
+                                        else if (comboReportType.GetValue() == '<%=Utility.Daily %>') {
+                                            $('.' + comboReportType.GetValue()).show('slow');
+                                        }
+                                        else if (comboReportType.GetValue() == '<%=Utility.Weekly %>')
+                                        { $('.' + comboReportType.GetValue()).show('slow'); }
+                                        else if (comboReportType.GetValue() == '<%=Utility.Monthly%>')
+                                        { $('.' + comboReportType.GetValue()).show('slow'); } 
+                                                                    
+     }
+    </script>
 </asp:Content>
