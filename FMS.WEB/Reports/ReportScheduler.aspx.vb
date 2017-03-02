@@ -70,6 +70,13 @@ Public Class ReportScheduler
         '    CType(dgvReports.Columns("DayofMonth"), GridViewDataColumn).EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.True
         'End If
     End Sub
+    Private Sub dgvReports_CustomJSProperties(sender As Object, e As ASPxGridViewClientJSPropertiesEventArgs) Handles dgvReports.CustomJSProperties
+        If CType(sender, ASPxGridView).IsEditing Then
+            e.Properties("cpIsEdit") = True
+        Else
+            e.Properties("cpIsEdit") = False
+        End If
+    End Sub
     Private Sub dgvReports_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvReports.RowInserting
         e.NewValues.Add("ApplicationID", ThisSession.ApplicationID)
         e.NewValues.Add("Creator", Membership.GetUser.UserName)
@@ -89,15 +96,30 @@ Public Class ReportScheduler
     End Sub
     Protected Sub ReportType_SelectedIndexChanged(sender As Object, e As EventArgs)
         ThisSession.SelectedReportName = "VehicleReport"
+
     End Sub
-    <System.Web.Services.WebMethod()> _
+    <System.Web.Services.WebMethod(EnableSession:=True)>
     Public Shared Function setReportParameter(ByVal StartDate As String, ByVal EndDate As String, ByVal Vehicle As String, ByVal StartDateSpecific As String, ByVal EndDateSpecific As String) As String
         ReportParam.StartDate = StartDate
         ReportParam.EndDate = EndDate
-        ReportParam.Vehicle = Vehicle 
+        ReportParam.Vehicle = Vehicle
         ReportParam.StartDateSpecific = StartDateSpecific
         ReportParam.EndDateSpecific = EndDateSpecific
         ReportParam.Driver = Vehicle
+        Return ""
+    End Function
+    <System.Web.Services.WebMethod(EnableSession:=True)>
+    Public Shared Function SetSelectedReportEdit(ReportName As String, StartDate As String, EndDate As String, Vehicle As String) As String
+        ThisSession.SelectedReportName = ReportName
+
+        HttpContext.Current.Session.Remove("StartDate")
+        HttpContext.Current.Session.Remove("EndDate")
+        HttpContext.Current.Session.Remove("Vehicle")
+
+
+        HttpContext.Current.Session("StartDate") = StartDate
+        HttpContext.Current.Session("EndDate") = EndDate
+        HttpContext.Current.Session("Vehicle") = Vehicle
         Return ""
     End Function
 End Class

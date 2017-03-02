@@ -1,4 +1,6 @@
-﻿Public Class NanoReportParam
+﻿Imports FMS.Business
+
+Public Class NanoReportParam
     Inherits System.Web.UI.UserControl
 
     Private _UniqueClientID As String
@@ -18,7 +20,6 @@
         Business.DataObjects.ReportSchedule.GetDateTimeOptions.ForEach(Function(x) comboDateSelected.Items.Add(x))
 
 
-
         'add the value changed event to javascript here as we need to know the new client ID at runtime
         comboDateSelected.ClientSideEvents.ValueChanged = _
                  " function(s,e) {comboDateSelected_ValueChanged(s, '" & UniqueClientID & "')}"
@@ -26,13 +27,12 @@
         If ReportParameter.Description.Contains("Start Date") Then
             comboDateSelected.ClientInstanceName = "StartDate"
             'comboDateSelected.Attributes.AddAttributes()
-            comboDateSelected.Text = ""
+            comboDateSelected.Value = HttpContext.Current.Session("StartDate")
             dateSpecificDate.ClientInstanceName = "StartDateSpecific"
 
         ElseIf ReportParameter.Description.Contains("End Date") Then
-            comboDateSelected.Text = ""
+            comboDateSelected.Value = HttpContext.Current.Session("EndDate")
             comboDateSelected.ClientInstanceName = "EndDate"
-
             dateSpecificDate.ClientInstanceName = "EndDateSpecific"
         End If
 
@@ -56,12 +56,10 @@
             comboBox.DataSource = ods
             comboBox.DataBind()
             comboBox.ID = Guid.NewGuid.ToString
-
+            comboBox.Value = HttpContext.Current.Session("Vehicle")
+           
             If ReportParameter.Description.Contains("Vehicle") Then
                 comboBox.ClientInstanceName = "Vehicle"
-                comboBox.Value = ""
-
-
             ElseIf ReportParameter.Description.Contains("Driver") Then
                 comboBox.ClientInstanceName = "Drivers"
             End If
@@ -70,15 +68,15 @@
 
             dateTimeDIV.Visible = False
 
-        End If 
+        End If
 
         If ReportParameter.Type.ToString.ToLower = "system.datetime" Then
 
             'relative time OR exact time
             Dim uniqcoID As String = Guid.NewGuid.ToString.Replace("-", "")
-             
 
-        End If 
+
+        End If
 
         If paramControl IsNot Nothing Then panelContent.Controls.Add(paramControl)
 
