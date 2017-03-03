@@ -29,8 +29,12 @@
                         $(this).delay(2500).toggle('slow');
                     });
         }
+
+        
         function comboDateSelected_ValueChanged(s, id) {
 
+
+            
             var selectedVal = s.GetValue();
 
             $('.' + id).hide(id);
@@ -137,15 +141,15 @@
                                         </SettingsPager>
                                         <SettingsSearchPanel Visible="True" />
                                          <clientsideevents EndCallback="function(s, e) {
-	if(s.cpIsEdit)
-    {    
-        StartEditRow();
-      }
-    else
-    {
+	                                                                                        if(s.cpIsEdit)
+                                                                                            {    
+                                                                                                StartEditRow(); 
+                                                                                            }
+                                                                                            else
+                                                                                            {
         
-    }
-}" />
+                                                                                            }
+                                                                                        }" />
                                         <Templates>
                                             <EditForm>
                                                 <table id="editTable" class="clsEditForm">
@@ -188,10 +192,7 @@
                                                                                     <uc1:NanoReportParamList runat="server" ID="NanoReportParamList" />
                                                                                 </dx:PanelContent>
                                                                             </PanelCollection>
-                                                                        </dx:ASPxCallbackPanel>
-
-
-                                                                        
+                                                                        </dx:ASPxCallbackPanel> 
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -222,7 +223,7 @@
                                                                     <td>
                                                                         <dx:ASPxDateEdit TimeSectionProperties-Visible="true"
                                                                             ID="dateEditReportTypeOeOffDate"
-                                                                            runat="server" Value='<%# Bind("ScheduleDate")%>'>
+                                                                            runat="server" Value='<%# Bind("ScheduleDate")%>' Date='<%# Bind("ScheduleDate")%>'  EditFormat="Custom" EditFormatString="MM/dd/yyyy hh:mm tt" >
                                                                         </dx:ASPxDateEdit>
 
                                                                         <%-- <dx:ASPxDateEdit runat="server" ID="edBirth" Value='<%# Bind("ScheduleDate") %>' Width="100%">
@@ -259,21 +260,22 @@
                                                             </table>
                                                         </td>
                                                         <%--DESTINATION--%>
-                                                        <td valign="top" style="padding-top: 5px;">
+                                                        <td valign="top" style="padding-top:10px;">
                                                             <dx:ASPxComboBox
                                                                 ValueField="NativeID"
                                                                 TextField="NameFormatted"
                                                                 ID="comboSubscribers"
                                                                 runat="server"
                                                                 DataSourceID="odsSubscribers" Value='<%# Bind("Recipients")%>'>
-                                                            </dx:ASPxComboBox>
-
+                                                            </dx:ASPxComboBox> 
                                                          <div style ="display:none">   
-                                                                           <dx:ASPxLabel ID ="ASPxLabel4"  runat ="server"    ClientInstanceName="lStartDate"  Value='<%# Bind("StartDate") %>' ></dx:ASPxLabel>
-                                                                           <dx:ASPxLabel ID ="ASPxLabel3"  runat ="server"    ClientInstanceName="lEndDate"  Value='<%# Bind("EndDate") %>' ></dx:ASPxLabel>
-                                                                           <dx:ASPxLabel ID ="ASPxLabel5"  runat ="server"    ClientInstanceName="lVehicle"  Value='<%# Bind("Vehicle") %>' ></dx:ASPxLabel>     
-                                                                           <dx:ASPxLabel ID ="ASPxLabel6"  runat ="server"   ClientInstanceName="lDriver"  Value='<%# Bind("Driver") %>' ></dx:ASPxLabel>  
-                                                            </div>  </td>
+                                                              <dx:ASPxLabel ID ="ASPxLabel4"  runat ="server" ClientInstanceName="lStartDate"  Value='<%# Bind("StartDate") %>' ></dx:ASPxLabel>
+                                                              <dx:ASPxLabel ID ="ASPxLabel3"  runat ="server" ClientInstanceName="lEndDate"  Value='<%# Bind("EndDate") %>' ></dx:ASPxLabel>
+                                                              <dx:ASPxLabel ID ="ASPxLabel5"  runat ="server" ClientInstanceName="lVehicle"  Value='<%# Bind("Vehicle") %>' ></dx:ASPxLabel>     
+                                                              <dx:ASPxLabel ID ="ASPxLabel6"  runat ="server" ClientInstanceName="lDriver"  Value='<%# Bind("Driver") %>' ></dx:ASPxLabel> 
+                                                              <dx:ASPxLabel ID ="ASPxLabel7"  runat ="server" ClientInstanceName="lStartDateSpecific"  Value='<%# Bind("StartDateSpecific") %>'></dx:ASPxLabel>  
+                                                              <dx:ASPxLabel ID ="ASPxLabel8"  runat ="server" ClientInstanceName="lEndDateSpecific"  Value='<%# Bind("EndDateSpecific") %>'></dx:ASPxLabel>
+                                                        </div></td>
                                                     </tr>
                                                 </table>
                                                 <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors"></dx:ASPxGridViewTemplateReplacement>
@@ -407,29 +409,41 @@
     </dx:ASPxPageControl>
 
     <script type ="text/javascript"> 
+
+        function BeginCallBackFUn()
+        {
+            alert(comboSelectedReport.GetValue());
+        }
         function StartEditRow() { 
             var reportName = comboSelectedReport.GetValue(); 
             var param = {}; 
             param.ReportName = reportName;
-            param.StartDate = lStartDate.GetValue();
-            param.EndDate = lEndDate.GetValue();
-            if (reportName = '<%=ReportNameList.ReportGeoFence_byDriver %>') {
-                param.Vehicle = lVehicle.GetValue();
-            }
+            param.PStartDate = lStartDate.GetValue();
+            param.PEndDate = lEndDate.GetValue();
+            if (reportName != '<%=ReportNameList.ReportGeoFence_byDriver %>') {
+                param.PVehicle = lVehicle.GetValue();  }
             else
-            {
-                param.Vehicle = lDriver.GetValue();
+            { 
+                param.PVehicle = lDriver.GetValue();
             }
-            if (lStartDate.GetValue() == "Specific") 
-            {
-            
+            if (lStartDate.GetValue() == "Specific") {
+                param.PStartDateSpecific = lStartDateSpecific.GetValue();
+            }
+            else {           
+                param.PStartDateSpecific = "";
+            }
+            if (lEndDate.GetValue() == "Specific") {
+                param.PEndDateSpecific = lEndDateSpecific.GetValue();
+            }
+            else {
+                param.PEndDateSpecific = "";
             }
 
-
+        
             //SetSelectedReport(ReportName
             ajaxMethod("ReportScheduler.aspx/" + 'SetSelectedReportEdit',
                     param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
-
+             
             // Edit Mode for Schedule Fields
             if (comboReportType.GetValue() == '<%=Utility.OneOff%>') {
                                             $('.' + comboReportType.GetValue()).show('slow');
@@ -440,8 +454,11 @@
                                         else if (comboReportType.GetValue() == '<%=Utility.Weekly %>')
                                         { $('.' + comboReportType.GetValue()).show('slow'); }
                                         else if (comboReportType.GetValue() == '<%=Utility.Monthly%>')
-                                        { $('.' + comboReportType.GetValue()).show('slow'); } 
-                                                                    
-     }
+
+
+                                        { $('.' + comboReportType.GetValue()).show('slow'); }
+ 
+        }
+          
     </script>
 </asp:Content>

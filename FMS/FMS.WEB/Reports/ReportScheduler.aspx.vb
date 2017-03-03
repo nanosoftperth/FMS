@@ -75,7 +75,7 @@ Public Class ReportScheduler
             e.Properties("cpIsEdit") = True
         Else
             e.Properties("cpIsEdit") = False
-        End If
+        End If 
     End Sub
     Private Sub dgvReports_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvReports.RowInserting
         e.NewValues.Add("ApplicationID", ThisSession.ApplicationID)
@@ -83,7 +83,8 @@ Public Class ReportScheduler
 
     End Sub
     Private Sub dgvReports_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles dgvReports.RowUpdating
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues.Add("ApplicationID", ThisSession.ApplicationID)
+        e.NewValues.Add("Creator", Membership.GetUser.UserName)
     End Sub
     Private Sub Page_Unload(sender As Object, e As EventArgs) Handles Me.Unload
         'this is a little hacky, update the users timezone every time visiting the page ( and a callback or postback happens)
@@ -109,7 +110,7 @@ Public Class ReportScheduler
         Return ""
     End Function
     <System.Web.Services.WebMethod(EnableSession:=True)>
-    Public Shared Function SetSelectedReportEdit(ReportName As String, StartDate As String, EndDate As String, Vehicle As String) As String
+    Public Shared Function SetSelectedReportEdit(ReportName As String, PStartDate As String, PEndDate As String, PVehicle As String, PStartDateSpecific As String, PEndDateSpecific As String) As String
         ThisSession.SelectedReportName = ReportName
 
         HttpContext.Current.Session.Remove("StartDate")
@@ -117,9 +118,12 @@ Public Class ReportScheduler
         HttpContext.Current.Session.Remove("Vehicle")
 
 
-        HttpContext.Current.Session("StartDate") = StartDate
-        HttpContext.Current.Session("EndDate") = EndDate
-        HttpContext.Current.Session("Vehicle") = Vehicle
+        HttpContext.Current.Session("StartDate") = PStartDate
+        HttpContext.Current.Session("EndDate") = PEndDate
+        HttpContext.Current.Session("Vehicle") = PVehicle
+        HttpContext.Current.Session("StartDateSpecific") = PStartDateSpecific
+        HttpContext.Current.Session("EndDateSpecific") = PEndDateSpecific
+
         Return ""
     End Function
 End Class
