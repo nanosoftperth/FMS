@@ -24,7 +24,7 @@
                 <dx:PanelContent runat="server">
                     <div class="jumbotron">                        
                        <div style="margin:auto;">
-                            <img src="Content/Images/9051a7_7900e319de294aa4b0166540479978ea.png" /> 
+                            <img height="70px;" src="Content/Images/nanosoft.png" /> 
                             </div>    
                         <div>
                                <p class="lead">
