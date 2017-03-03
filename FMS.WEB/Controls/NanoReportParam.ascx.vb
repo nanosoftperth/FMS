@@ -14,6 +14,7 @@ Public Class NanoReportParam
     Public Property ReportParameter As DevExpress.XtraReports.Parameters.Parameter
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+
         lblParameterName.Text = ReportParameter.Description
 
         'populate the comboDateSelected, object data sources do not seem to work for custom controls in markup
@@ -29,11 +30,20 @@ Public Class NanoReportParam
             'comboDateSelected.Attributes.AddAttributes()
             comboDateSelected.Value = HttpContext.Current.Session("StartDate")
             dateSpecificDate.ClientInstanceName = "StartDateSpecific"
+            If HttpContext.Current.Session("StartDate") = "Specific" Then
+                dateSpecificDate.Value = HttpContext.Current.Session("StartDateSpecific")
 
+
+            End If
+             
         ElseIf ReportParameter.Description.Contains("End Date") Then
             comboDateSelected.Value = HttpContext.Current.Session("EndDate")
             comboDateSelected.ClientInstanceName = "EndDate"
             dateSpecificDate.ClientInstanceName = "EndDateSpecific"
+
+            If HttpContext.Current.Session("EndDate") = "Specific" Then
+                dateSpecificDate.Value = HttpContext.Current.Session("EndDateSpecific")
+            End If
         End If
 
         Dim paramControl As System.Web.UI.Control
@@ -57,7 +67,7 @@ Public Class NanoReportParam
             comboBox.DataBind()
             comboBox.ID = Guid.NewGuid.ToString
             comboBox.Value = HttpContext.Current.Session("Vehicle")
-           
+
             If ReportParameter.Description.Contains("Vehicle") Then
                 comboBox.ClientInstanceName = "Vehicle"
             ElseIf ReportParameter.Description.Contains("Driver") Then

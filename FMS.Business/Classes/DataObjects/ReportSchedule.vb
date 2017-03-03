@@ -80,8 +80,9 @@ Namespace DataObjects
         Public Property Vehicle As String
         Public Property Driver As String
         Public Property Recipients As String
-#End Region
-
+        Public Property StartDateSpecific As String
+        Public Property EndDateSpecific As String 
+#End Region 
 
 #End Region
 
@@ -125,7 +126,6 @@ Namespace DataObjects
                 For Each item In objResult
                     objList.Add(New ReportSchedule() With
                                 {.ReportscheduleID = item.ReportscheduleID,
-                                 .ApplicationId = item.ApplicationId,
                                  .ReportName = item.ReportName,
                                  .ReportType = item.ReportType,
                                  .ReportTypeSpecific = item.ReportTypeSpecific,
@@ -143,7 +143,9 @@ Namespace DataObjects
                                  .EndDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDate)),
                                  .Vehicle = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Vehicle)),
                                  .Driver = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Driver)),
-                                 .Recipients = item.Recipients
+                                 .Recipients = item.Recipients,
+                                 .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
+                    .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific))
                                 })
                 Next
             End If
@@ -174,14 +176,14 @@ Namespace DataObjects
         Public Shared Sub update(rpt As DataObjects.ReportSchedule)
             Dim uptrptShedule As FMS.Business.ReportSchdeule = SingletonAccess.FMSDataContextContignous.ReportSchdeules.Where(Function(x) x.ReportScheduleID = rpt.ReportscheduleID).Single()
 
-            With uptrptShedule
-                .ApplicationID = rpt.ApplicationId
+            With uptrptShedule 
                 .Creator = rpt.Creator
                 .ReportName = rpt.ReportName
                 .ReportType = rpt.ReportType
                 .Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
                 .ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
                 .Recipients = rpt.Recipients
+                .Creator = rpt.Creator
             End With   
             SingletonAccess.FMSDataContextContignous.SubmitChanges() 
         End Sub
@@ -200,7 +202,7 @@ Namespace DataObjects
             Else
                 If type = "Schedule" Then
                     If reporttype = Utility.OneOff Then
-                        obj.Add(GetPropertyName(Function() rptObj.ScheduleDate), String.Format("{0:t}", Convert.ToDateTime(rptObj.ScheduleDate)))
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleDate), rptObj.ScheduleDate)
                     ElseIf reporttype = Utility.Daily Then
                         obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
                     ElseIf reporttype = Utility.Weekly Then
@@ -264,7 +266,7 @@ Namespace DataObjects
                     returnString = String.Empty
                 Else
                     If (ds.Dictionary.Item("StartDate") = "Specific") And (ds.Dictionary.Item("EndDate") = "Specific") Then
-                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
+                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("EndDateSpecific"))) + Environment.NewLine
                     ElseIf (ds.Dictionary.Item("StartDate") = "Specific") Then
                         returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
                     ElseIf (ds.Dictionary.Item("EndDate") = "Specific") Then
@@ -308,12 +310,11 @@ Namespace DataObjects
                 Dim xmlReaderobj = XmlReader.Create(textReader)
 
                 Dim ds = CType(serializer.Deserialize(xmlReaderobj), DictionarySerializer)
-             
-
-                If ds.Dictionary.ContainsKey(attributeName) Then
+              
+                If ds.Dictionary.ContainsKey(attributeName) Then 
                     Return Convert.ToString(ds.Dictionary.Item(attributeName))
                 Else
-                    If attributeName = GetPropertyName(Function() rptObj.ScheduleTime) Then
+                    If attributeName = GetPropertyName(Function() rptObj.ScheduleTime) Or attributeName = GetPropertyName(Function() rptObj.ScheduleDate) Then
                         Return ("0001/01/01 00:00:00")
                     End If
                     Return returnAttribute
