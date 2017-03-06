@@ -17,6 +17,7 @@
 
             .clsEditForm tr td {
               padding-top:5px;
+              padding-left:5px;
             }
     </style>
 
@@ -31,10 +32,7 @@
         }
 
         
-        function comboDateSelected_ValueChanged(s, id) {
-
-
-            
+        function comboDateSelected_ValueChanged(s, id) { 
             var selectedVal = s.GetValue();
 
             $('.' + id).hide(id);
@@ -45,6 +43,8 @@
                 //$('.specificTimeEdit').show();
             }
         }
+
+
         function cboSelectedIndexChanged() {
             var ParmList = "";
             if (comboSelectedReport.GetValue() == "ReportGeoFence_byDriver") {
@@ -106,14 +106,18 @@
                                         ajaxMethod("../DefaultService.svc/" + 'SetSelectedReport',
                                                 param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
 
-
                                     }
 
-                                    function DefaultService_SuccessCallback(data) { callbackREportEdit.PerformCallback(''); }
+                                    function DefaultService_SuccessCallback(data) {
+                                       
+                                        callbackREportEdit.PerformCallback('');                                     
+                                    }
 
                                     function DefaultService_ErrorCallback(data) { }
 
-                                    function DefaultService_FinallyCallback(data) { }
+                                    function DefaultService_FinallyCallback(data) {
+                                        
+                                    }
 
                                    
                                    
@@ -167,7 +171,7 @@
                                                                     <td>
                                                                         <dx:ASPxLabel Width="55px" ID="ASPxLabel2" runat="server" Text="Type"></dx:ASPxLabel>
                                                                     </td>
-                                                                    <td>
+                                                                    <td style ="padding-left:15px">
                                                                         <dx:ASPxComboBox
                                                                             TextField="VisibleReportName"
                                                                             ValueField="ActualReportNameToDisplay"
@@ -266,7 +270,7 @@
                                                                 TextField="NameFormatted"
                                                                 ID="comboSubscribers"
                                                                 runat="server"
-                                                                DataSourceID="odsSubscribers" Value='<%# Bind("Recipients")%>'>
+                                                                DataSourceID="odsSubscribers" Value='<%# Bind("Recipients")%>'  ValueType ="System.Guid"  ClientInstanceName ="comRecipients">
                                                             </dx:ASPxComboBox> 
                                                          <div style ="display:none">   
                                                               <dx:ASPxLabel ID ="ASPxLabel4"  runat ="server" ClientInstanceName="lStartDate"  Value='<%# Bind("StartDate") %>' ></dx:ASPxLabel>
@@ -354,9 +358,10 @@
                                             <dx:GridViewDataTextColumn FieldName="ReportParams" ShowInCustomizationForm="True" Visible="true" VisibleIndex="14">
                                                 <EditFormSettings VisibleIndex="14" Visible="false" />
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="Recipients" ShowInCustomizationForm="True" Visible="True" VisibleIndex="15">
+                                            <dx:GridViewDataTextColumn FieldName="RecipientName" ShowInCustomizationForm="True" Visible="True" VisibleIndex="15">
                                                 <EditFormSettings VisibleIndex="15" Visible="false" />
-                                            </dx:GridViewDataTextColumn>
+                                            </dx:GridViewDataTextColumn> 
+                                             
                                             <%--     <dx:GridViewDataComboBoxColumn FieldName="Recipients" Caption="Recipients" VisibleIndex="15">
                                                 <PropertiesComboBox DropDownStyle="DropDown" DataSourceID="odsSubscribers" TextField="NameFormatted" ValueField="NativeID">
                                                     <ClearButton Visibility="Auto"></ClearButton>
@@ -438,11 +443,13 @@
             else {
                 param.PEndDateSpecific = "";
             }
-
-        
-            //SetSelectedReport(ReportName
-            ajaxMethod("ReportScheduler.aspx/" + 'SetSelectedReportEdit',
-                    param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
+  
+            if (lStartDate.GetValue() != "null" && lEndDate.GetValue() != "null" && lVehicle.GetValue() != "null")
+            {
+                //SetSelectedReport(ReportName
+                ajaxMethod("ReportScheduler.aspx/" + 'SetSelectedReportEdit',
+                        param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
+            } 
              
             // Edit Mode for Schedule Fields
             if (comboReportType.GetValue() == '<%=Utility.OneOff%>') {
@@ -457,7 +464,12 @@
 
 
                                         { $('.' + comboReportType.GetValue()).show('slow'); }
- 
+
+
+            if (comRecipients.GetValue() == "00000000-0000-0000-0000-000000000000")
+            {
+                comRecipients.SetSelectedIndex(0);
+            } 
         }
           
     </script>

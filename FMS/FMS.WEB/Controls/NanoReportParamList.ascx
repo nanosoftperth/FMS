@@ -10,19 +10,19 @@
 
 <script type="text/javascript">
 
-    function comboDateSelected_ValueChanged(s, id) {
+    //function comboDateSelected_ValueChanged(s, id) {
 
-        var selectedVal = s.GetValue();
+    //    var selectedVal = s.GetValue();
 
-        $('.' + id).hide(id);
+    //    $('.' + id).hide(id);
 
-        if (selectedVal == 'Specific') {
-            $('.' + id + '.specificDateEdit').show('slow');
-        } else {
-            //$('.specificTimeEdit').show();
-        }
+    //    if (selectedVal == 'Specific') {
+    //        $('.' + id + '.specificDateEdit').show('slow');
+    //    } else {
+    //        //$('.specificTimeEdit').show();
+    //    }
 
-    }
+    //}
 
 
 </script>

@@ -609,23 +609,6 @@
       <Column Name="PaidFeatureDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ReportSchdeule" Member="ReportSchdeules">
-    <Type Name="ReportSchdeule">
-      <Column Name="ReportScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ReportName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportTypeSpecific" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Enabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Creator" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="ReportParams" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="SubscriberID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Schedule" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Recipients" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Setting" Member="Settings">
     <Type Name="Setting">
       <Column Name="SettingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -651,6 +634,23 @@
       <Column Name="company" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="XMLResponse" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="DateLogged" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReportSchdeule" Member="ReportSchdeules">
+    <Type Name="ReportSchdeule">
+      <Column Name="ReportScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ReportName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportTypeSpecific" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Enabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Creator" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ReportParams" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SubscriberID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Schedule" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Recipients" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
