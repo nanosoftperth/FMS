@@ -1,4 +1,5 @@
 ﻿Imports FMS.Business
+Imports System.Globalization
 
 Public Class NanoReportParam
     Inherits System.Web.UI.UserControl
@@ -42,10 +43,17 @@ Public Class NanoReportParam
             End If
             dateSpecificDate.ClientInstanceName = "StartDateSpecific"
             If HttpContext.Current.Session("StartDate") = "Specific" Then
-                dateSpecificDate.Date = String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(HttpContext.Current.Session("StartDateSpecific")))
-                dateSpecificDate.Value = String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(HttpContext.Current.Session("StartDateSpecific")))
+                'dateSpecificDate.Date = String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(HttpContext.Current.Session("StartDateSpecific"), CultureInfo.InvariantCulture))
+                'dateSpecificDate.Value = Convert.ToDateTime(HttpContext.Current.Session("StartDateSpecific"), CultureInfo.InvariantCulture) 'String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(HttpContext.Current.Session("StartDateSpecific"), CultureInfo.InvariantCulture))
+
+                If Not HttpContext.Current.Session("StartDateSpecific") Is Nothing And Not HttpContext.Current.Session("StartDateSpecific") = "null" Then
+                    dateSpecificDate.Value = Convert.ToDateTime(HttpContext.Current.Session("StartDateSpecific"), CultureInfo.InvariantCulture)
+                End If
+                dateSpecificDate.EditFormatString = "MM/dd/yyyy hh:mm tt"
+
                 ISDisplay = "block"
             Else
+
                 ISDisplay = "none"
             End If
         ElseIf ReportParameter.Description.Contains("End Date") Then
@@ -56,8 +64,11 @@ Public Class NanoReportParam
             dateSpecificDate.ClientInstanceName = "EndDateSpecific"
             If HttpContext.Current.Session("EndDate") = "Specific" Then
                 'If Not HttpContext.Current.Session("EndDate") Is Nothing Then
-                dateSpecificDate.Value = String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(HttpContext.Current.Session("EndDateSpecific")))
-                dateSpecificDate.Date = String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(HttpContext.Current.Session("EndDateSpecific")))
+                If Not HttpContext.Current.Session("EndDateSpecific") Is Nothing And Not HttpContext.Current.Session("EndDateSpecific") = "null" Then
+                    dateSpecificDate.Value = Convert.ToDateTime(HttpContext.Current.Session("EndDateSpecific"), CultureInfo.InvariantCulture)
+                End If 
+                'dateSpecificDate.Date = String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(HttpContext.Current.Session("EndDateSpecific"), CultureInfo.InvariantCulture))
+                dateSpecificDate.EditFormatString = "MM/dd/yyyy hh:mm tt"
                 ISDisplay = "block"
             Else
                 ISDisplay = "none"
