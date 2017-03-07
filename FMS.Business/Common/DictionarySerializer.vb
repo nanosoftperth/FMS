@@ -12,7 +12,6 @@ Public Class DictionarySerializer
     ''' Dictonary serializer
     ''' </summary>
     Public Dictionary As Dictionary(Of String, Object)
-
     Public Sub New()
         MyBase.New()
         Me.Dictionary = New Dictionary(Of String, Object)
@@ -30,8 +29,6 @@ Public Class DictionarySerializer
         If wasEmpty Then
             Return
         End If
-
-
         While (reader.NodeType <> XmlNodeType.EndElement)
             reader.ReadStartElement("item")
             Dim key As String = reader.ReadElementString("key")
@@ -39,7 +36,6 @@ Public Class DictionarySerializer
             Me.Dictionary.Add(key, value)
             reader.ReadEndElement()
             reader.MoveToContent()
-
         End While
         reader.ReadEndElement()
     End Sub

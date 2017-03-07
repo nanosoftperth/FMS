@@ -209,7 +209,7 @@
             </dx:GridViewDataDateColumn>
             <dx:GridViewDataTextColumn FieldName="Creator" VisibleIndex="9"></dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="ReportParams" VisibleIndex="10"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="SunbscriberID" VisibleIndex="11"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="SubscriberID" VisibleIndex="11"></dx:GridViewDataTextColumn>
         </Columns>
     </dx:ASPxGridView>
 
