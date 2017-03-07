@@ -70,7 +70,7 @@
     Friend WithEvents XrTableCell36 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell37 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents Parameter3 As DevExpress.XtraReports.Parameters.Parameter
+    Public WithEvents Parameter3 As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents ObjectDataSource2 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel

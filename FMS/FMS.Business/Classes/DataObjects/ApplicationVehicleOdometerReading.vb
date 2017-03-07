@@ -112,7 +112,7 @@
 
 
             Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicleOdometerReadings _
-                     Where x.ApplicationVehicleID = appVehicleID _
+                     Where x.ApplicationVehicleID = appVehicleID _ 
                      Select New DataObjects.ApplicationVehicleOdometerReading(x)).ToList
 
         End Function

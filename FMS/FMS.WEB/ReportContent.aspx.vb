@@ -80,8 +80,6 @@
         End Select
 
     End Sub
-
-
     Public Shared Function GetReportFromName(reportName As String) As DevExpress.XtraReports.UI.XtraReport
 
         Select Case reportName
