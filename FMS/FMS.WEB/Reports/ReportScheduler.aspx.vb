@@ -92,8 +92,8 @@ Public Class ReportScheduler
 
         'Set the timezone for the business layer to be = to the user (the user timezone is taken from the application
         'timezone if they havent explicitly defined one)
-        FMS.Business.SingletonAccess.ClientSelected_TimeZone = If(Not String.IsNullOrEmpty(ThisSession.User.TimeZone.ID), _
-                                                                        ThisSession.User.TimeZone, ThisSession.ApplicationObject.TimeZone)
+        'FMS.Business.SingletonAccess.ClientSelected_TimeZone = If(Not String.IsNullOrEmpty(ThisSession.User.TimeZone.ID), _
+        '                                                                ThisSession.User.TimeZone, ThisSession.ApplicationObject.TimeZone)
     End Sub
     Protected Sub ReportType_SelectedIndexChanged(sender As Object, e As EventArgs)
         ThisSession.SelectedReportName = "VehicleReport"
@@ -125,5 +125,14 @@ Public Class ReportScheduler
         HttpContext.Current.Session("EndDateSpecific") = PEndDateSpecific
 
         Return ""
+    End Function
+    Protected Function GetScheduleDate(schDate As String) As String
+        Dim dt As DateTime = DateAndTime.Now
+        If (String.IsNullOrEmpty(schDate)) Or schDate = "0001/01/01 00:00:00" Then
+            Return dt
+        Else
+            dt = DateTime.ParseExact(schDate, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture)
+            Return dt
+        End If
     End Function
 End Class

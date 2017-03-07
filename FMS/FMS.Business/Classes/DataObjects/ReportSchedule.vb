@@ -171,8 +171,7 @@ Namespace DataObjects
 #End Region
         Public Shared Sub insert(rpt As DataObjects.ReportSchedule)
 
-            Dim x As New FMS.Business.ReportSchdeule
-
+            Dim x As New FMS.Business.ReportSchdeule  
             x.ReportScheduleID = Guid.NewGuid
             x.ApplicationID = rpt.ApplicationId
             x.ReportType = rpt.ReportType
@@ -187,23 +186,30 @@ Namespace DataObjects
             x.ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
             x.Recipients = rpt.Recipients
 
-            SingletonAccess.FMSDataContextContignous.ReportSchdeules.InsertOnSubmit(x)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            If Not Convert.ToString(rpt.ReportType) Is Nothing And Not Convert.ToString(rpt.ReportName) Is Nothing And Not Convert.ToString(ReportParam.StartDate) Is Nothing And Not Convert.ToString(ReportParam.EndDate) Is Nothing Then
+                SingletonAccess.FMSDataContextContignous.ReportSchdeules.InsertOnSubmit(x)
+                SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            End If
 
         End Sub
         Public Shared Sub update(rpt As DataObjects.ReportSchedule)
             Dim uptrptShedule As FMS.Business.ReportSchdeule = SingletonAccess.FMSDataContextContignous.ReportSchdeules.Where(Function(x) x.ReportScheduleID = rpt.ReportscheduleID).Single()
+            Try
 
-            With uptrptShedule
-                .Creator = rpt.Creator
-                .ReportName = rpt.ReportName
-                .ReportType = rpt.ReportType
-                .Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
-                .ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
-                .Recipients = rpt.Recipients
-                .Creator = rpt.Creator
-            End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                With uptrptShedule
+                    .Creator = rpt.Creator
+                    .ReportName = rpt.ReportName
+                    .ReportType = rpt.ReportType
+                    .Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
+                    .ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
+                    .Recipients = rpt.Recipients
+                    .Creator = rpt.Creator
+                End With
+                SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Catch ex As Exception
+                Throw ex
+            End Try
+         
         End Sub
         Public Shared Sub delete(rpt As DataObjects.ReportSchedule)
             Dim rptShedule As FMS.Business.ReportSchdeule = SingletonAccess.FMSDataContextContignous.ReportSchdeules.Where(Function(x) x.ReportScheduleID = rpt.ReportscheduleID).Single()
@@ -220,29 +226,37 @@ Namespace DataObjects
             Else
                 If type = "Schedule" Then
                     If reporttype = Utility.OneOff Then
-                        obj.Add(GetPropertyName(Function() rptObj.ScheduleDate), rptObj.ScheduleDate)
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleDate), If(String.IsNullOrEmpty(rptObj.ScheduleDate), "", rptObj.ScheduleDate))
                     ElseIf reporttype = Utility.Daily Then
-                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), If(String.IsNullOrEmpty(rptObj.ScheduleTime), "", rptObj.ScheduleTime))
                     ElseIf reporttype = Utility.Weekly Then
-                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
-                        obj.Add(GetPropertyName(Function() rptObj.DayofWeek), rptObj.DayofWeek)
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), If(String.IsNullOrEmpty(rptObj.ScheduleTime), "", rptObj.ScheduleTime))
+                        obj.Add(GetPropertyName(Function() rptObj.DayofWeek), If(String.IsNullOrEmpty(rptObj.DayofWeek), "", rptObj.DayofWeek))
                     ElseIf reporttype = Utility.Monthly Then
-                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), rptObj.ScheduleTime)
-                        obj.Add(GetPropertyName(Function() rptObj.DayofMonth), rptObj.DayofMonth)
+                        obj.Add(GetPropertyName(Function() rptObj.ScheduleTime), If(String.IsNullOrEmpty(rptObj.ScheduleTime), "", rptObj.ScheduleTime))
+                        obj.Add(GetPropertyName(Function() rptObj.DayofMonth), If(String.IsNullOrEmpty(rptObj.DayofMonth), "", rptObj.DayofMonth))
                     End If
                 ElseIf type = "Parm" Then
-                    obj.Add(GetPropertyName(Function() ReportParam.StartDate), ReportParam.StartDate)
+                    obj.Add(GetPropertyName(Function() ReportParam.StartDate), If(String.IsNullOrEmpty(ReportParam.StartDate), "", ReportParam.StartDate))
                     If ReportParam.StartDate.Contains("Specific") Then
-                        obj.Add(GetPropertyName(Function() ReportParam.StartDateSpecific), ReportParam.StartDateSpecific.Replace("GMT+0800 (W. Australia Standard Time)", ""))
+                        Dim index As Int32 = ReportParam.StartDateSpecific.IndexOf("GMT")
+                        If (index > 0) Then
+                            ReportParam.StartDateSpecific = ReportParam.StartDateSpecific.Substring(0, index)
+                        End If 
+                        obj.Add(GetPropertyName(Function() ReportParam.StartDateSpecific), If(String.IsNullOrEmpty(ReportParam.StartDateSpecific), "", ReportParam.StartDateSpecific))
                     End If
-                    obj.Add(GetPropertyName(Function() ReportParam.EndDate), ReportParam.EndDate)
+                    obj.Add(GetPropertyName(Function() ReportParam.EndDate), If(String.IsNullOrEmpty(ReportParam.EndDate), "", ReportParam.EndDate))
                     If ReportParam.EndDate.Contains("Specific") Then
-                        obj.Add(GetPropertyName(Function() ReportParam.EndDateSpecific), ReportParam.EndDateSpecific.Replace("GMT+0800 (W. Australia Standard Time)", ""))
+                        Dim index As Int32 = ReportParam.EndDateSpecific.IndexOf("GMT")
+                        If (index > 0) Then
+                            ReportParam.EndDateSpecific = ReportParam.EndDateSpecific.Substring(0, index)
+                        End If
+                        obj.Add(GetPropertyName(Function() ReportParam.EndDateSpecific), If(String.IsNullOrEmpty(ReportParam.EndDateSpecific), "", ReportParam.EndDateSpecific))
                     End If
                     If rptObj.ReportName = ReportNameList.ReportGeoFence_byDriver Then
-                        obj.Add(GetPropertyName(Function() ReportParam.Driver), ReportParam.Driver)
+                        obj.Add(GetPropertyName(Function() ReportParam.Driver), If(String.IsNullOrEmpty(ReportParam.Driver), "", ReportParam.Driver))
                     Else
-                        obj.Add(GetPropertyName(Function() ReportParam.Vehicle), ReportParam.Vehicle)
+                        obj.Add(GetPropertyName(Function() ReportParam.Vehicle), If(String.IsNullOrEmpty(ReportParam.Vehicle), "", ReportParam.Vehicle))
                     End If
                 End If
 
@@ -284,11 +298,11 @@ Namespace DataObjects
                     returnString = String.Empty
                 Else
                     If (ds.Dictionary.Item("StartDate") = "Specific") And (ds.Dictionary.Item("EndDate") = "Specific") Then
-                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("EndDateSpecific"))) + Environment.NewLine
+                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:MM/dd/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDateSpecific")) Or Convert.ToString(ds.Dictionary.Item("EndDateSpecific")) = "null"), "", String.Format("{0:MM/dd/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("EndDateSpecific")))) + Environment.NewLine
                     ElseIf (ds.Dictionary.Item("StartDate") = "Specific") Then
-                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
+                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:MM/dd/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
                     ElseIf (ds.Dictionary.Item("EndDate") = "Specific") Then
-                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + "  " + String.Format("{0:d/M/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("EndDateSpecific"))) + Environment.NewLine
+                        returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDateSpecific")) Or Convert.ToString(ds.Dictionary.Item("EndDateSpecific")) = "null"), "", String.Format("{0:MM/dd/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("EndDateSpecific")))) + Environment.NewLine
                     Else
                         returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
                     End If
@@ -300,16 +314,26 @@ Namespace DataObjects
                 End If
             ElseIf _type = "Schedule" Then
                 If _reportType = Utility.OneOff Then
-                    returnString = Convert.ToString(_reportType) + ":  " + String.Format("{0:d/M/yyyy HH:mm:ss}", If(ds.Dictionary.ContainsKey("ScheduleDate"), Convert.ToDateTime(ds.Dictionary.Item("ScheduleDate")), ""))
-
+                    If Not Convert.ToString(ds.Dictionary.Item("ScheduleDate")) = "" And Not Convert.ToString(ds.Dictionary.Item("ScheduleDate")) = "01/01/0001 00:00:00" Then
+                        returnString = Convert.ToString(_reportType) + ":  " + String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(ds.Dictionary.Item("ScheduleDate"), System.Globalization.CultureInfo.InvariantCulture))
+                    Else
+                        returnString = Convert.ToString(_reportType)
+                    End If
                 ElseIf _reportType = Utility.Daily Then
-                    returnString = returnString + Convert.ToString(_reportType) + ":  " + String.Format("{0:t}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToDateTime(ds.Dictionary.Item("ScheduleTime")), ""))
-
+                    If (Convert.ToString(ds.Dictionary.ContainsKey("ScheduleTime"))) Then
+                        If Not Convert.ToString(ds.Dictionary.Item("ScheduleTime")) = "" Then
+                            returnString = returnString + Convert.ToString(_reportType) + ":  " + String.Format("{0:t}", Convert.ToDateTime(ds.Dictionary.Item("ScheduleTime"), System.Globalization.CultureInfo.InvariantCulture))
+                        Else
+                            returnString = returnString + Convert.ToString(_reportType)
+                        End If
+                    Else
+                        returnString = returnString + Convert.ToString(_reportType)
+                    End If
                 ElseIf _reportType = Utility.Weekly Then
-                    returnString = returnString + Convert.ToString(_reportType) + ":  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("DayofWeek")) Or Convert.ToString(ds.Dictionary.Item("DayofWeek")) = "null"), "", ds.Dictionary.Item("DayofWeek")) + "  " + String.Format("{0:t}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToDateTime(ds.Dictionary.Item("ScheduleTime")), ""))
+                    returnString = returnString + Convert.ToString(_reportType) + ":  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("DayofWeek")) Or Convert.ToString(ds.Dictionary.Item("DayofWeek")) = "null"), "", ds.Dictionary.Item("DayofWeek")) + "  " + If(String.IsNullOrEmpty(Convert.ToString(ds.Dictionary.ContainsKey("ScheduleTime")) And Not Convert.ToString(ds.Dictionary.Item("ScheduleTime")) = ""), "", String.Format("{0:t}", Convert.ToDateTime(ds.Dictionary.Item("ScheduleTime"), System.Globalization.CultureInfo.InvariantCulture)))
 
                 ElseIf _reportType = Utility.Monthly Then
-                    returnString = returnString + Convert.ToString(_reportType) + ":  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("DayofMonth")) Or Convert.ToString(ds.Dictionary.Item("DayofMonth")) = "null"), "", ds.Dictionary.Item("DayofMonth")) + "  " + String.Format("{0:t}", If(ds.Dictionary.ContainsKey("ScheduleTime"), Convert.ToDateTime(ds.Dictionary.Item("ScheduleTime")), ""))
+                    returnString = returnString + Convert.ToString(_reportType) + ":  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("DayofMonth")) Or Convert.ToString(ds.Dictionary.Item("DayofMonth")) = "null"), "", ds.Dictionary.Item("DayofMonth")) + "  " + If(String.IsNullOrEmpty(Convert.ToString(ds.Dictionary.ContainsKey("ScheduleTime")) And Not Convert.ToString(ds.Dictionary.Item("ScheduleTime")) = ""), "", String.Format("{0:t}", Convert.ToDateTime(ds.Dictionary.Item("ScheduleTime"), System.Globalization.CultureInfo.InvariantCulture)))
                 Else
                     returnString = String.Empty
                 End If
@@ -330,7 +354,7 @@ Namespace DataObjects
                 Dim ds = CType(serializer.Deserialize(xmlReaderobj), DictionarySerializer)
 
                 If ds.Dictionary.ContainsKey(attributeName) Then
-                    Return Convert.ToString(ds.Dictionary.Item(attributeName))
+                    Return Convert.ToString(ds.Dictionary.Item(attributeName)) 
                 Else
                     If attributeName = GetPropertyName(Function() rptObj.ScheduleTime) Or attributeName = GetPropertyName(Function() rptObj.ScheduleDate) Then
                         Return ("0001/01/01 00:00:00")

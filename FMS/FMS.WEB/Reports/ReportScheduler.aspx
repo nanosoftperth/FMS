@@ -227,7 +227,7 @@
                                                                     <td>
                                                                         <dx:ASPxDateEdit TimeSectionProperties-Visible="true"
                                                                             ID="dateEditReportTypeOeOffDate"
-                                                                            runat="server" Value='<%# Bind("ScheduleDate")%>' Date='<%# Bind("ScheduleDate")%>'  EditFormat="Custom" EditFormatString="MM/dd/yyyy hh:mm tt" >
+                                                                            runat="server" Value='<%# Bind("ScheduleDate")%>' Date='<%# GetScheduleDate(If(Eval("ScheduleDate") is Nothing , "" , Eval("ScheduleDate")))%>' EditFormatString="MM/dd/yyyy hh:mm:ss" DisplayFormatString="MM/dd/yyyy hh:mm:ss" >
                                                                         </dx:ASPxDateEdit>
 
                                                                         <%-- <dx:ASPxDateEdit runat="server" ID="edBirth" Value='<%# Bind("ScheduleDate") %>' Width="100%">
