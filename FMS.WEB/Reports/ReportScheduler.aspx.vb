@@ -8,6 +8,8 @@ Imports System.Web.UI.WebControls
 Imports DevExpress.Web.ASPxCallbackPanel
 Imports DevExpress.Web
 Imports FMS.Business.DataObjects
+Imports FMS.Business
+
 
 Public Class ReportScheduler
     Inherits System.Web.UI.Page
@@ -17,7 +19,7 @@ Public Class ReportScheduler
         End Get
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        
     End Sub
     Private Sub dgvReports_CellEditorInitialize(sender As Object, e As DevExpress.Web.ASPxGridViewEditorEventArgs) Handles dgvReports.CellEditorInitialize
         'If e.Column.FieldName = "ScheduleDate" Then
@@ -75,7 +77,7 @@ Public Class ReportScheduler
             e.Properties("cpIsEdit") = True
         Else
             e.Properties("cpIsEdit") = False
-        End If 
+        End If
     End Sub
     Private Sub dgvReports_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvReports.RowInserting
         e.NewValues.Add("ApplicationID", ThisSession.ApplicationID)
