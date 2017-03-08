@@ -219,8 +219,8 @@ Public Class ResourceMgmnt
         Dim gdes = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceDestination)
         Dim gleave = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceLeave)
 
-        ab.GeofenceDestinationId = If(gdes IsNot Nothing, gdes.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceDestination))
-        ab.GeofenceLeaveId = If(gleave IsNot Nothing, gleave.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceLeave))
+        ab.GeofenceDestinationId = If(gdes Is Nothing, gdes.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceDestination))
+        ab.GeofenceLeaveId = If(gleave Is Nothing, gleave.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceLeave))
 
     End Sub
 

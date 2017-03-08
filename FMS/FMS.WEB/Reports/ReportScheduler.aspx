@@ -19,6 +19,9 @@
               padding-top:5px;
               padding-left:5px;
             }
+        .clsReport {
+        min-width:120px;
+        }
     </style>
 
     <script type="text/javascript">
@@ -120,7 +123,6 @@
                                     }
 
                                    
-                                   
                                     </script>
                                     <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" Width="100%" ActiveTabIndex="0" EnableTabScrolling="True">
         <TabPages>
@@ -171,7 +173,7 @@
                                                                     <td>
                                                                         <dx:ASPxLabel Width="55px" ID="ASPxLabel2" runat="server" Text="Type"></dx:ASPxLabel>
                                                                     </td>
-                                                                    <td style ="padding-left:15px">
+                                                                    <td>
                                                                         <dx:ASPxComboBox
                                                                             TextField="VisibleReportName"
                                                                             ValueField="ActualReportNameToDisplay"
@@ -179,7 +181,7 @@
                                                                             runat="server"
                                                                             DataSourceID="odsReport1"
                                                                             ClientInstanceName="comboSelectedReport"
-                                                                            AutoPostBack="false" Value='<%# Bind("ReportName") %>'>
+                                                                            AutoPostBack="false" Value='<%# Bind("ReportName") %>' CssClass ="clsReport">
                                                                             <ClientSideEvents ValueChanged="function(s,e){comboSelectedReport_ValueChanged(s,e);}" />
                                                                         </dx:ASPxComboBox>
                                                                     </td>

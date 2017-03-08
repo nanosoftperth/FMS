@@ -19,7 +19,7 @@
     <td style="padding: 2px; vertical-align: top; text-align: left;">
         <dx:ASPxLabel ID="lblParameterName" runat="server" Width="55px" Text="this is a test"></dx:ASPxLabel>
     </td>
-    <td style="padding-left:11px; vertical-align: top; text-align: left;">
+    <td style="vertical-align: top; text-align: left;">
 
         <%--change below to div, not panel? -dg--%>
         <div id="panelContent" runat="server" >
