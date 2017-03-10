@@ -171,7 +171,7 @@
                                                             <table style="width: 100%">
                                                                 <tr>
                                                                     <td>
-                                                                        <dx:ASPxLabel Width="55px" ID="ASPxLabel2" runat="server" Text="Type"></dx:ASPxLabel>
+                                                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Type"  Width="38px"></dx:ASPxLabel>
                                                                     </td>
                                                                     <td>
                                                                         <dx:ASPxComboBox
