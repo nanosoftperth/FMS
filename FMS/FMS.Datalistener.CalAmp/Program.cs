@@ -39,18 +39,14 @@ namespace FMS.Datalistener.CalAmp
 
     public class CalAMP_Receiver
     {
-        readonly Timer _timer;
 
         System.Threading.Thread t;
 
         public CalAMP_Receiver()
         {
-            _timer = new Timer(5000) { AutoReset = true };
-            //_timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
         }
         public void Start()
         {
-            _timer.Start();
             StartListener();
             t = new System.Threading.Thread(StartListener);
             t.Start();
@@ -58,7 +54,6 @@ namespace FMS.Datalistener.CalAmp
         }
         public void Stop()
         {
-            _timer.Stop();
             t.Abort();
         }
 
@@ -91,7 +86,7 @@ namespace FMS.Datalistener.CalAmp
 
                     //listener (and gets data from LMU devices)
                     byte[] bytes = listener.Receive(ref groupEP);
-                   
+
                     //write to console if dta found
                     string hex = BitHelper.ByteArrayToString(bytes);
                     Console.WriteLine("Received broadcast from {0} :\n {1}\n", groupEP.ToString(), hex);
@@ -108,7 +103,7 @@ namespace FMS.Datalistener.CalAmp
                     string xml = recevied_telegram.GetXML();
                     System.IO.File.AppendAllText(logFilePath, hex + Environment.NewLine + xml);
                     //byte[] responseBytes =  System.Text.Encoding.ASCII.GetBytes(xml);
-                    
+
                     //create a response message 
 
                     recevied_telegram.MessageHeader.MessageType = MessageTypeEnum.ACK_NAK_Message;
@@ -121,7 +116,7 @@ namespace FMS.Datalistener.CalAmp
                     string hexResponse = BitConverter.ToString(responseBytes, 0).Replace("-", " ");
 
 
-                    System.IO.File.AppendAllText(logFilePath,  "hex response" + hexResponse);
+                    System.IO.File.AppendAllText(logFilePath, "hex response" + hexResponse);
 
                     //parse the message here, then send a response
                     Send(responseBytes, groupEP.Address.ToString(), groupEP.Port);
@@ -137,7 +132,7 @@ namespace FMS.Datalistener.CalAmp
             }
         }
 
-       
+
 
         static void Send(byte[] Message, string ipaddr, int port)
         {
