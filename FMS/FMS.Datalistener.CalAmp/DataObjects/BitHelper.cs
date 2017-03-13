@@ -48,7 +48,7 @@ namespace FMS.Datalistener.CalAmp.DataObjects
             int len = b.Length;
             //do we need to reverse these?
 
-            Array.Reverse(hexBytes);
+            //Array.Reverse(hexBytes);
 
             Array.Resize(ref b, b.Length + hexBytes.Length);
             

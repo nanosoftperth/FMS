@@ -103,6 +103,7 @@
     <Compile Include="Classes\DataObjects\customEvent.vb" />
     <Compile Include="Classes\DataObjects\CustomResource.vb" />
     <Compile Include="Classes\DataObjects\Device.vb" />
+    <Compile Include="Classes\DataObjects\ErrorLog.vb" />
     <Compile Include="Classes\DataObjects\Feature.vb" />
     <Compile Include="Classes\DataObjects\ApplicationFeatureRole.vb" />
     <Compile Include="Classes\DataObjects\FleetMapMarker.vb" />
