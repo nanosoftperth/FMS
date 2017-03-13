@@ -785,7 +785,11 @@
     <Content Include="Content\Images\markers\truck_62x38.png" />
     <Content Include="Content\Images\markers\van_48.png" />
     <Content Include="Content\Images\mC-settings.png" />
+    <Content Include="Content\Images\nanosoft.jpg" />
     <Content Include="Content\Images\nanosoft.png" />
+    <Content Include="Content\Images\nanosoft.svg" />
+    <Content Include="Content\Images\nanosoft2.png" />
+    <Content Include="Content\Images\nanosoft_unifleet.png" />
     <Content Include="Content\Images\pi case.jpg" />
     <Content Include="Content\Images\PlasticBlueHeader.jpg" />
     <Content Include="Content\Images\ppjs.png" />
@@ -794,6 +798,7 @@
     <Content Include="Content\Images\report designer.png" />
     <Content Include="Content\Images\report viewer.png" />
     <Content Include="Content\Images\rightimage.png" />
+    <Content Include="Content\Images\unifleet.png" />
     <Content Include="Content\Images\user-management.png" />
     <Content Include="Content\Images\wnR_pIsl_normal.png" />
     <Content Include="Content\javascript\accordian.js" />

@@ -21,4 +21,22 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ASPxRoundPanel1 As Global.DevExpress.Web.ASPxRoundPanel
+
+    '''<summary>
+    '''home_logo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents home_logo As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
+    '''home_message control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents home_message As Global.System.Web.UI.WebControls.Literal
 End Class

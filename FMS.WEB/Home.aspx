@@ -24,13 +24,28 @@
                 <dx:PanelContent runat="server">
                     <div class="jumbotron">                        
                        <div style="margin:auto;">
-                            <img height="70px;" src="Content/Images/nanosoft.png" /> 
+
+                           <asp:Literal runat="server" ID="home_logo">
+
+                            </asp:Literal>
+
+                            
+
                             </div>    
                         <div>
-                               <p class="lead">
+
+                            
+                               <%--<p class="lead">
                             Fleet Management Systems provides a very-tailored solution to the specific needs of the customer. 
                     This means the system changes to suit your needs, as opposed to you having to change your business, to suit the system.
-                        </p>
+                        </p>--%>
+
+                              <p   class="lead">
+
+
+                                  <asp:Literal runat="server" ID="home_message"></asp:Literal>
+
+                            
                                 
                             </div>
                             <div align="right">

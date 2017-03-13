@@ -88,7 +88,8 @@ Namespace My
             "tring>/Account/Login.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/ProblemPage.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <str"& _ 
             "ing>/Account/Register.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/Account/RegisterSuccess.aspx</st"& _ 
             "ring>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/Account/ForgotPassword.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/Account/Chang"& _ 
-            "ePassword.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/Account/ChangePasswordSuccess.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/NoAccessPage.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"</ArrayOfString>")>  _
+            "ePassword.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/Account/ChangePasswordSuccess.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/NoAccessPage.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>/Home.aspx</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"</ArrayOf"& _ 
+            "String>")>  _
         Public ReadOnly Property NoAuthenticationRequiredURLs() As Global.System.Collections.Specialized.StringCollection
             Get
                 Return CType(Me("NoAuthenticationRequiredURLs"),Global.System.Collections.Specialized.StringCollection)
