@@ -22,6 +22,7 @@
   &lt;string&gt;/Account/ChangePassword.aspx&lt;/string&gt;
   &lt;string&gt;/Account/ChangePasswordSuccess.aspx&lt;/string&gt;
   &lt;string&gt;/NoAccessPage.aspx&lt;/string&gt;
+  &lt;string&gt;/Home.aspx&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="debug_company_name" Type="System.String" Scope="Application">
