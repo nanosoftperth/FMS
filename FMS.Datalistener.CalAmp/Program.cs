@@ -9,6 +9,9 @@ using System.Timers;
 using Topshelf;
 using FMS.Datalistener.CalAmp.DataObjects;
 using System.Configuration;
+using System.Diagnostics;
+using Microsoft.Owin.Hosting;
+using Owin;
 
 
 namespace FMS.Datalistener.CalAmp
@@ -39,22 +42,26 @@ namespace FMS.Datalistener.CalAmp
 
     public class CalAMP_Receiver
     {
-
         System.Threading.Thread t;
+
+        private IDisposable _webApplication;
 
         public CalAMP_Receiver()
         {
         }
         public void Start()
         {
-            StartListener();
+           // StartListener();
             t = new System.Threading.Thread(StartListener);
             t.Start();
+
+            _webApplication = WebApp.Start<API.OwinConfiguration>(@"http://*:8089");
 
         }
         public void Stop()
         {
             t.Abort();
+            _webApplication.Dispose();
         }
 
         private const int listenPort = 11000;
@@ -73,6 +80,8 @@ namespace FMS.Datalistener.CalAmp
 
             UdpClient listener = new UdpClient(listenPort);
             IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
+
+            API.DataAccessController dac = new API.DataAccessController();
 
             try
             {
@@ -115,11 +124,18 @@ namespace FMS.Datalistener.CalAmp
 
                     string hexResponse = BitConverter.ToString(responseBytes, 0).Replace("-", " ");
 
+                    listener.Send(responseBytes, responseBytes.Count(), groupEP);
+
+                    recevied_telegram.MessageBody.Updatetime += TimeSpan.FromHours(8);//make perth time
+
+                    dac.Get(recevied_telegram.OptionsHeader.MobileID, 
+                                recevied_telegram.MessageBody.Lattitude, 
+                                recevied_telegram.MessageBody.Longtiude, 
+                                recevied_telegram.MessageBody.Updatetime.ToString("dd/MMM/yyyy HH:mm:ss"));                                  
+
 
                     System.IO.File.AppendAllText(logFilePath, "hex response" + hexResponse);
 
-                    //parse the message here, then send a response
-                    Send(responseBytes, groupEP.Address.ToString(), groupEP.Port);
                 }
             }
             catch (Exception e)
@@ -133,15 +149,6 @@ namespace FMS.Datalistener.CalAmp
         }
 
 
-
-        static void Send(byte[] Message, string ipaddr, int port)
-        {
-            Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            IPAddress broadcast = IPAddress.Parse(ipaddr);
-            //byte[] sendbuf = Encoding.ASCII.GetBytes(Message);
-            IPEndPoint ep = new IPEndPoint(broadcast, port);
-            s.SendTo(Message, ep);
-        }
 
 
     }
