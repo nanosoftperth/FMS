@@ -174,7 +174,7 @@ Namespace DataObjects
                     Return Convert.ToString(Result.SubcriberType + ":" + Result.Name)
                 End If
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex)
+                'ErrorLog.WriteErrorLog(ex)
                 Return ""
             End Try  
         End Function
@@ -203,7 +203,7 @@ Namespace DataObjects
                 End If
 
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex)
+                'ErrorLog.WriteErrorLog(ex)
             End Try 
         End Sub
         Public Shared Sub update(rpt As DataObjects.ReportSchedule)
@@ -231,7 +231,7 @@ Namespace DataObjects
                 SingletonAccess.FMSDataContextContignous.ReportSchdeules.DeleteOnSubmit(rptShedule)
                 SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex)
+                'ErrorLog.WriteErrorLog(ex)
             End Try 
         End Sub
         Public Function SerializeCustomValues(rptObj As DataObjects.ReportSchedule, reporttype As String, type As String) As String
@@ -287,7 +287,7 @@ Namespace DataObjects
                 End If
 
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex) 
+                'ErrorLog.WriteErrorLog(ex) 
             End Try 
             Return result
         End Function
@@ -302,7 +302,7 @@ Namespace DataObjects
                 Dim memberExpression As Expressions.MemberExpression = DirectCast(expression.Body, Expressions.MemberExpression)
                 Return memberExpression.Member.Name
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex)
+                'ErrorLog.WriteErrorLog(ex)
                 Return "" 
             End Try 
         End Function
@@ -370,7 +370,7 @@ Namespace DataObjects
                 End If
 
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex)
+                'ErrorLog.WriteErrorLog(ex)
             End Try 
              
             Return returnString
@@ -397,7 +397,7 @@ Namespace DataObjects
                     Return returnAttribute
                 End If
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex)
+                'ErrorLog.WriteErrorLog(ex)
             End Try  
             Return returnAttribute
         End Function
