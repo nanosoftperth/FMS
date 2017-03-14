@@ -13,15 +13,17 @@ Public Class Home
 
         'sort out the logo for the user (dependant on if the user is uniqco)
         Dim img_src As String = "<img height=""70px;"" src=""Content/Images/{0}.png"" /> "
-        Me.home_logo.Text = String.Format(img_src, If(isUniqco, "nanosoft_unifleet", "nanosoft2"))
+        Me.home_logo.Text = String.Format(img_src, If(isUniqco, "nanosoft_uniqco", "nanosoft2"))
 
         'sort out the message to the user
         Dim normal_msg As String = " Fleet Management Systems provides a very-tailored solution to the specific needs of the customer. " & vbNewLine & _
                                     "This means the system changes to suit your needs, as opposed to you having to change your business, to suit the system."
+        Dim uniqco_msg As String = _
+                    "Nanosoft GPS is the preferred supplier for Uniqco's cloud reporting tool Unifleet" & vbNewLine & _
+                    "We provide full integration with the Unifleet system meaning we can show your assets from within the Unifleet app. " & vbNewLine & _
+                    "Please contact us and ask about the Unifleet partner discount <a href=""https://www.nanosoft.com.au/"" type=""text/html"">here</a>" & vbNewLine & _
+                    "Should you wish to enable your own choice of GPS provider please contact Uniqco direct who will arrange a direct link with your supplier"
 
-        Dim uniqco_msg As String = "Nanosoft GPS is the preferred GPS supplier for unifleet! <br /> " & vbNewLine & _
-                                 "We provide full integration with the unifleet system meaning we can show your assets from within the unifleet app. <br />" & vbNewLine & _
-                                 "Please contact us and ask about the unifleet partner discount <a href=""https://www.nanosoft.com.au/"" type=""text/html"">here</a>"
 
         Me.home_message.Text = If(isUniqco, uniqco_msg, normal_msg)
 

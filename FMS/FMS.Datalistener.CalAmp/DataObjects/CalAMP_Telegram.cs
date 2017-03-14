@@ -146,8 +146,8 @@ namespace FMS.Datalistener.CalAmp.DataObjects
             BitHelper.AddBytes(ref retByteArr, (int)MessageHeader.ServiceType, 1);
             BitHelper.AddBytes(ref retByteArr, (int)MessageHeader.MessageType, 1);
 
-            BitHelper.AddBytes(ref retByteArr, 0, 2);//MessageHeader.SequenceNumber this can be the sequenc number, but just for testing well do a 0
-
+            BitHelper.AddBytes(ref retByteArr, MessageHeader.SequenceNumber, 2);//MessageHeader.SequenceNumber this can be the sequenc number, but just for testing well do a 0
+            
             BitHelper.AddBytes(ref retByteArr, 2, 1); //Message type being ACKd
 
             BitHelper.AddBytes(ref retByteArr, 0, 1); //ACK = 0 means ok
