@@ -96,7 +96,7 @@ namespace FMS.Datalistener.CalAmp
                     //listener (and gets data from LMU devices)
                     byte[] bytes = listener.Receive(ref groupEP);
 
-                    //write to console if dta found
+                    //write to console if data found
                     string hex = BitHelper.ByteArrayToString(bytes);
                     Console.WriteLine("Received broadcast from {0} :\n {1}\n", groupEP.ToString(), hex);
 
@@ -116,7 +116,6 @@ namespace FMS.Datalistener.CalAmp
                     //create a response message 
 
                     recevied_telegram.MessageHeader.MessageType = MessageTypeEnum.ACK_NAK_Message;
-
                     recevied_telegram.MessageHeader.ServiceType = ServiceTypeEnum.ResponseToAcklowlegedRequest;
 
                     //get the binary representing the response message 

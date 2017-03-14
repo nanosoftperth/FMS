@@ -790,6 +790,7 @@
     <Content Include="Content\Images\nanosoft.svg" />
     <Content Include="Content\Images\nanosoft2.png" />
     <Content Include="Content\Images\nanosoft_unifleet.png" />
+    <Content Include="Content\Images\nanosoft_uniqco.png" />
     <Content Include="Content\Images\pi case.jpg" />
     <Content Include="Content\Images\PlasticBlueHeader.jpg" />
     <Content Include="Content\Images\ppjs.png" />
