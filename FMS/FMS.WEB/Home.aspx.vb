@@ -19,10 +19,11 @@ Public Class Home
         Dim normal_msg As String = " Fleet Management Systems provides a very-tailored solution to the specific needs of the customer. " & vbNewLine & _
                                     "This means the system changes to suit your needs, as opposed to you having to change your business, to suit the system."
         Dim uniqco_msg As String = _
-                    "Nanosoft GPS is the preferred supplier for Uniqco's cloud reporting tool Unifleet" & vbNewLine & _
-                    "We provide full integration with the Unifleet system meaning we can show your assets from within the Unifleet app. " & vbNewLine & _
-                    "Please contact us and ask about the Unifleet partner discount <a href=""https://www.nanosoft.com.au/"" type=""text/html"">here</a>" & vbNewLine & _
-                    "Should you wish to enable your own choice of GPS provider please contact Uniqco direct who will arrange a direct link with your supplier"
+                    "Nanosoft GPS is the preferred supplier for Uniqco's cloud reporting tool Unifleet.</BR>" & vbNewLine & _
+                    "We provide full integration with the Unifleet system meaning we can show your assets from within the Unifleet app.</BR>" & vbNewLine & _
+                    "Please contact us and ask about the Unifleet partner discount <a href=""https://www.nanosoft.com.au/"" type=""text/html"">here</a></BR>" & vbNewLine & _
+                    ""
+        '"Should you wish to enable your own choice of GPS provider please contact Uniqco direct who will arrange a direct link with your supplier"
 
 
         Me.home_message.Text = If(isUniqco, uniqco_msg, normal_msg)
