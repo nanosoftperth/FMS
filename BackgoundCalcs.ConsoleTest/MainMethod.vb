@@ -5,18 +5,23 @@
 
         While True
 
-            main_method()
+            Try
 
-            Dim SECONDS_TO_WAIT As Integer = 5
+                main_method()
 
-            Dim s As String = "============================================================" & vbNewLine & _
-                              "    LOOP COMPLETE, STARTING NEW LOOP IN {0} SECONDS         " & vbNewLine & _
-                              "============================================================"
+                Dim SECONDS_TO_WAIT As Integer = 5
 
-            LogMsg(s & vbNewLine, SECONDS_TO_WAIT)
+                Dim s As String = "============================================================" & vbNewLine & _
+                                  "    LOOP COMPLETE, STARTING NEW LOOP IN {0} SECONDS         " & vbNewLine & _
+                                  "============================================================"
 
-            Threading.Thread.Sleep(TimeSpan.FromSeconds(SECONDS_TO_WAIT))
+                LogMsg(s & vbNewLine, SECONDS_TO_WAIT)
 
+                Threading.Thread.Sleep(TimeSpan.FromSeconds(SECONDS_TO_WAIT))
+
+            Catch ex As Exception
+
+            End Try
         End While
 
     End Sub

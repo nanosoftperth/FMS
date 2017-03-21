@@ -136,6 +136,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BackgoundCalcs.ConsoleTest\FMS.BackgroundCalcs.ConsoleApp.vbproj">
+      <Project>{615cea30-9231-4982-8e5e-ad472db27b07}</Project>
+      <Name>FMS.BackgroundCalcs.ConsoleApp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
