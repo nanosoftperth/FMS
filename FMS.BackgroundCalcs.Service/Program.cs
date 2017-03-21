@@ -21,6 +21,7 @@ namespace FMS.BackgroundCalcs.Service
                     s.WhenStarted(tc => tc.Start());
                     s.WhenStopped(tc => tc.Stop());
                 });
+
                 x.RunAsLocalSystem();
 
                 x.SetDescription("FMS background calculations");
@@ -35,9 +36,7 @@ namespace FMS.BackgroundCalcs.Service
     public class BackgroundCalcs
     {
         System.Threading.Thread t;
-
-
-
+        
         public BackgroundCalcs()
         {
         }

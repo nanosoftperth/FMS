@@ -105,6 +105,7 @@
     <Compile Include="DataObjects\BitHelper.cs" />
     <Compile Include="DataObjects\CalAMP_Telegram.cs" />
     <Compile Include="DataObjects\EventReportMessage.cs" />
+    <Compile Include="DataObjects\LogFileProcessor.cs" />
     <Compile Include="DataObjects\MessageBody.cs" />
     <Compile Include="DataObjects\MessageHeader.cs" />
     <Compile Include="DataObjects\OptionsHeader.cs" />

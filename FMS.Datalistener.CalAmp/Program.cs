@@ -44,6 +44,8 @@ namespace FMS.Datalistener.CalAmp
     {
         System.Threading.Thread t;
 
+        private System.Threading.Thread t_ProcessLogs;
+
         private IDisposable _webApplication;
 
         public CalAMP_Receiver()
@@ -55,7 +57,8 @@ namespace FMS.Datalistener.CalAmp
             t = new System.Threading.Thread(StartListener);
             t.Start();
 
-            
+            t_ProcessLogs = new System.Threading.Thread(DataObjects.LogFileProcessor.ProcessLogs);
+            t_ProcessLogs.Start();
 
             string urlLocation = string.Format(@"http://*:{0}", Properties.Settings.Default.web_url_port);
 
@@ -65,6 +68,7 @@ namespace FMS.Datalistener.CalAmp
         public void Stop()
         {
             t.Abort();
+            t_ProcessLogs.Abort();
             _webApplication.Dispose();
         }
 
