@@ -25,20 +25,20 @@ namespace FMS.ReportServer
         {
             public static void Main()
             {
-                HostFactory.Run(x =>                                 //1
+                HostFactory.Run(x =>                                
                 {
-                    x.Service<TownCrier>(s =>                        //2
+                    x.Service<TownCrier>(s =>                       
                     {
-                        s.ConstructUsing(name => new TownCrier());     //3
-                        s.WhenStarted(tc => tc.Start());              //4
-                        s.WhenStopped(tc => tc.Stop());               //5
+                        s.ConstructUsing(name => new TownCrier());  
+                        s.WhenStarted(tc => tc.Start());            
+                        s.WhenStopped(tc => tc.Stop());             
                     });
-                    x.RunAsLocalSystem();                            //6
+                    x.RunAsLocalSystem();                           
 
-                    x.SetDescription("Sample Topshelf Host");        //7
-                    x.SetDisplayName("Stuff");                       //8
-                    x.SetServiceName("Stuff");                       //9
-                });                                                  //10
+                    x.SetDescription("Sample Topshelf Host");       
+                    x.SetDisplayName("Stuff");                      
+                    x.SetServiceName("Stuff");                      
+                });                                                 
             }
         }
     }
