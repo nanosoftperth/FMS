@@ -55,7 +55,11 @@ namespace FMS.Datalistener.CalAmp
             t = new System.Threading.Thread(StartListener);
             t.Start();
 
-            _webApplication = WebApp.Start<API.OwinConfiguration>(@"http://*:8089");
+            
+
+            string urlLocation = string.Format(@"http://*:{0}", Properties.Settings.Default.web_url_port);
+
+            _webApplication = WebApp.Start<API.OwinConfiguration>(urlLocation);
 
         }
         public void Stop()
@@ -127,7 +131,8 @@ namespace FMS.Datalistener.CalAmp
 
                     recevied_telegram.MessageBody.Updatetime += TimeSpan.FromHours(8);//make perth time
 
-                    dac.Get(recevied_telegram.OptionsHeader.MobileID, 
+                    if (recevied_telegram.MessageBody.Lattitude > 0 )
+                            dac.Get(recevied_telegram.OptionsHeader.MobileID, 
                                 recevied_telegram.MessageBody.Lattitude, 
                                 recevied_telegram.MessageBody.Longtiude, 
                                 recevied_telegram.MessageBody.Updatetime.ToString("dd/MMM/yyyy HH:mm:ss"));                                  

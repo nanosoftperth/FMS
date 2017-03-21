@@ -31,5 +31,14 @@ namespace FMS.Datalistener.CalAmp.Properties {
                 return ((string)(this["LogDirectory"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8082")]
+        public string web_url_port {
+            get {
+                return ((string)(this["web_url_port"]));
+            }
+        }
     }
 }
