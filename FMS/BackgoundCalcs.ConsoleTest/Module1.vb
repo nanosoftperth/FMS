@@ -57,7 +57,10 @@ Module Module1
 
         Dim lst As List(Of FMS.Business.DataObjects.Application) = FMS.Business.DataObjects.Application.GetAllApplications()
 
-        For Each o As FMS.Business.DataObjects.Application In lst.Where(Function(x) x.ApplicationName <> "test app")
+        LogMsg("approved apps: {0}", My.Settings.ApprovedCalcList)
+
+        For Each o As FMS.Business.DataObjects.Application In lst.Where(Function(x) _
+                                                    My.Settings.ApprovedCalcList.ToLower.Contains(x.ApplicationName.ToLower))
 
             LogMsg("Processing ""{0}"" at {1}", o.ApplicationName, Now.ToLongDateString)
 
