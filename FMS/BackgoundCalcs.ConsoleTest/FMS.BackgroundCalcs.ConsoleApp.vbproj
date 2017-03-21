@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{615CEA30-9231-4982-8E5E-AD472DB27B07}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>BackgroundCalcs.ConsoleApp.Module1</StartupObject>
-    <RootNamespace>BackgroundCalcs.ConsoleApp</RootNamespace>
-    <AssemblyName>BackgroundCalcs.ConsoleApp</AssemblyName>
+    <StartupObject>FMS.BackgroundCalcs.ConsoleApp.Module1</StartupObject>
+    <RootNamespace>FMS.BackgroundCalcs.ConsoleApp</RootNamespace>
+    <AssemblyName>FMS.BackgroundCalcs.ConsoleApp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -36,7 +36,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>BackgroundCalcs.ConsoleApp.xml</DocumentationFile>
+    <DocumentationFile>FMS.BackgroundCalcs.ConsoleApp.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -46,7 +46,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>BackgroundCalcs.ConsoleApp.xml</DocumentationFile>
+    <DocumentationFile>FMS.BackgroundCalcs.ConsoleApp.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -141,10 +141,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BackgroundCalcs\BackgroundCalcs.ClassLib.vbproj">
-      <Project>{d57d2dcf-a6fc-456f-a2e0-b0a24ff65784}</Project>
-      <Name>BackgroundCalcs.ClassLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FMS.Business\FMS.Business.vbproj">
       <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
       <Name>FMS.Business</Name>
