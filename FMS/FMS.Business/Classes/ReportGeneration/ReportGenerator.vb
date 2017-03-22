@@ -14,8 +14,7 @@ Namespace ReportGeneration
 
         Public Property TimeSpansWithVals As New List(Of TimeSpanWithVals)
 
-        Public Sub New()
-
+        Public Sub New() 
 
         End Sub
 
@@ -248,7 +247,7 @@ Namespace ReportGeneration
             Dim pitEnd As New PITimeServer.PITime With {.LocalDate = lastGoodValue}
 
 
-            Dim pivs As PISDK.PIValues = SingletonAccess.HistorianServer.PIPoints(tagName).Data.InterpolatedValues(pitStart, pitEnd, 75)
+            Dim pivs As PISDK.PIValues = SingletonAccess.HistorianServer.PIPoints(tagName).Data.Snapshot
 
             '.Data.RecordedValues(pitStart, pitEnd, PISDK.BoundaryTypeConstants.btOutside)
             '.Data.RecordedValues(pitStart, pitEnd)

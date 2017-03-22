@@ -119,6 +119,8 @@ namespace FMS.Datalistener.CalAmp.API
 
 
         // POST api/values 
+        //[Route("Post/{solution}/{answer}")]
+        [HttpPost]
         public string Post([FromBody]string value)
         {
             try
