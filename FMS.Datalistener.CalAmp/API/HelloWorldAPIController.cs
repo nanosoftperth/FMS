@@ -27,6 +27,11 @@ namespace FMS.Datalistener.CalAmp.API
         public static HttpConfiguration Register()
         {
             var config = new HttpConfiguration();
+
+
+            config.Formatters.Add(new System.Net.Http.Formatting.JsonMediaTypeFormatter());
+            config.Formatters.Add(new TextMediaTypeFormatter());//);
+
             config.Routes.MapHttpRoute("DefaultApi",
                 "api/{controller}/{id}",
                 new { id = RouteParameter.Optional });

@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="API\DataAccessController.cs" />
     <Compile Include="API\HelloWorldAPIController.cs" />
+    <Compile Include="API\TextMediaTypeFormatter.cs" />
     <Compile Include="DataObjects\BitHelper.cs" />
     <Compile Include="DataObjects\CalAMP_Telegram.cs" />
     <Compile Include="DataObjects\EventReportMessage.cs" />

@@ -9,7 +9,23 @@
 
     Private Shared Property synclock_HistorianServer As New Object
 
-    Friend Shared ReadOnly Property HistorianServer As PISDK.Server
+    'Friend Shared ReadOnly Property HistorianServer As PISDK.Server
+    '    Get
+
+    '        SyncLock synclock_HistorianServer
+
+    '            If _HistorianServerSDK Is Nothing Then _HistorianServerSDK = New PISDK.PISDK
+    '            If _HistorianServer Is Nothing Then _HistorianServer = _HistorianServerSDK.Servers.DefaultServer
+
+
+    '            Return _HistorianServer
+
+    '        End SyncLock
+
+    '    End Get
+    'End Property
+
+    Public Shared ReadOnly Property HistorianServer As PISDK.Server
         Get
 
             SyncLock synclock_HistorianServer
@@ -27,9 +43,7 @@
 
     Public Shared Function CreateLatLongTagsForDevice(deviceid As String) As Boolean
 
-        Try
-
-
+        Try 
 
             Dim tagnameLat As String = String.Format("{0}_lat", deviceid)
             Dim tagnameLong As String = String.Format("{0}_long", deviceid)
