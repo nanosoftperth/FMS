@@ -75,10 +75,7 @@ Namespace ReportGeneration
             Return retobj
 
         End Function
-
-
-       
-
+         
 
         Public Shared Function gettValsFromPIValsAsDict(pivs As PISDK.PIValues,
                                                  Optional totalize As Boolean = False,
@@ -222,81 +219,81 @@ Namespace ReportGeneration
 
         End Function
 
-        Public Shared Function GetVehicleSpeedAndDistance_ForGraph(vehicleID As Guid,
-                                                                   startDate As Date,
-                                                                   endDate As Date) As VehicleSpeedRetObj
+        'Public Shared Function GetVehicleSpeedAndDistance_ForGraph(vehicleID As Guid,
+        '                                                           startDate As Date,
+        '                                                           endDate As Date) As VehicleSpeedRetObj
 
-            startDate = startDate.timezoneToPerth
-            endDate = endDate.timezoneToPerth
+        '    startDate = startDate.timezoneToPerth
+        '    endDate = endDate.timezoneToPerth
 
-            Dim retobj As New VehicleSpeedRetObj
+        '    Dim retobj As New VehicleSpeedRetObj
 
-            Dim dateObjects As New List(Of Date)
-            If endDate > Now Then endDate = Now
-
-
-            'get the vehicle
-            Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetForID(vehicleID)
-
-            'GET THE DATA FOR SPEED
-            Dim tagName = vehicle.DeviceID & "_speed"
-
-            Dim lastGoodValue As Date = SingletonAccess.HistorianServer.PIPoints(tagName).Data.Snapshot().TimeStamp.LocalDate
-
-            Dim pitStart As New PITimeServer.PITime With {.LocalDate = startDate}
-            Dim pitEnd As New PITimeServer.PITime With {.LocalDate = lastGoodValue}
+        '    Dim dateObjects As New List(Of Date)
+        '    If endDate > Now Then endDate = Now
 
 
-            Dim pivs As PISDK.PIValues = SingletonAccess.HistorianServer.PIPoints(tagName).Data.Snapshot
+        '    'get the vehicle
+        '    Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetForID(vehicleID)
 
-            '.Data.RecordedValues(pitStart, pitEnd, PISDK.BoundaryTypeConstants.btOutside)
-            '.Data.RecordedValues(pitStart, pitEnd)
+        '    'GET THE DATA FOR SPEED
+        '    Dim tagName = vehicle.DeviceID & "_speed"
 
-            retobj.SpeedVals = TimeSeriesFloat.getForSpeedVals(pivs, False, True)
+        '    Dim lastGoodValue As Date = SingletonAccess.HistorianServer.PIPoints(tagName).Data.Snapshot().TimeStamp.LocalDate
 
-            'GET THE DATA FOR DISTANCE
-            Dim tagnameDist As String = vehicle.DeviceID & "_DistanceSinceLastVal"
+        '    Dim pitStart As New PITimeServer.PITime With {.LocalDate = startDate}
+        '    Dim pitEnd As New PITimeServer.PITime With {.LocalDate = lastGoodValue}
 
-            Dim firstiteration As Boolean = True
-            Dim prevVal As PISDK.PIValue = Nothing
-            Dim distVals As New List(Of TimeSeriesFloat)
 
-            Dim pit As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagnameDist)
-            'Dim totalizer As Decimal = 0
-            Dim startpitime As New PITimeServer.PITime
+        '    Dim pivs As PISDK.PIValues = SingletonAccess.HistorianServer.PIPoints(tagName).Data.InterpolatedValues(pitStart, pitEnd, 75)
 
-            Dim recordedvals As PISDK.PIValues = pit.Data.RecordedValues(pitStart, pitEnd)
+        '    '.Data.RecordedValues(pitStart, pitEnd, PISDK.BoundaryTypeConstants.btOutside)
+        '    '.Data.RecordedValues(pitStart, pitEnd)
 
-            distVals = TimeSeriesFloat.gettValsFromPIVals(recordedvals)
-            Dim retdistances As New List(Of TimeSeriesFloat)
+        '    retobj.SpeedVals = TimeSeriesFloat.getForSpeedVals(pivs, False, True)
 
-            For Each tsv In retobj.SpeedVals
+        '    'GET THE DATA FOR DISTANCE
+        '    Dim tagnameDist As String = vehicle.DeviceID & "_DistanceSinceLastVal"
 
-                Dim newval As New TimeSeriesFloat With {.DateVal = tsv.DateVal}
+        '    Dim firstiteration As Boolean = True
+        '    Dim prevVal As PISDK.PIValue = Nothing
+        '    Dim distVals As New List(Of TimeSeriesFloat)
 
-                Dim newVal_Val As Double = (From x In distVals
-                                            Where x.DateVal <= tsv.DateVal _
-                                            And x.Val >= 0.007
-                                            Select x.Val).Sum
+        '    Dim pit As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagnameDist)
+        '    'Dim totalizer As Decimal = 0
+        '    Dim startpitime As New PITimeServer.PITime
 
-                newval.Val = newVal_Val
+        '    Dim recordedvals As PISDK.PIValues = pit.Data.RecordedValues(pitStart, pitEnd)
 
-                retdistances.Add(newval)
+        '    distVals = TimeSeriesFloat.gettValsFromPIVals(recordedvals)
+        '    Dim retdistances As New List(Of TimeSeriesFloat)
 
-            Next
+        '    For Each tsv In retobj.SpeedVals
 
-            retobj.DistanceVals = retdistances
+        '        Dim newval As New TimeSeriesFloat With {.DateVal = tsv.DateVal}
 
-            retobj.VehicleName = vehicle.Name
+        '        Dim newVal_Val As Double = (From x In distVals
+        '                                    Where x.DateVal <= tsv.DateVal _
+        '                                    And x.Val >= 0.007
+        '                                    Select x.Val).Sum
 
-            'i mean, this "should" be moved somewhere else 
-            For Each x In retobj.DistanceVals : x.DateVal = x.DateVal.timezoneToClient : Next
-            For Each x In retobj.Latitudes : x.DateVal = x.DateVal.timezoneToClient : Next
-            For Each x In retobj.Longitudes : x.DateVal = x.DateVal.timezoneToClient : Next
-            For Each x In retobj.SpeedVals : x.DateVal = x.DateVal.timezoneToClient : Next
+        '        newval.Val = newVal_Val
 
-            Return retobj
-        End Function
+        '        retdistances.Add(newval)
+
+        '    Next
+
+        '    retobj.DistanceVals = retdistances
+
+        '    retobj.VehicleName = vehicle.Name
+
+        '    'i mean, this "should" be moved somewhere else 
+        '    For Each x In retobj.DistanceVals : x.DateVal = x.DateVal.timezoneToClient : Next
+        '    For Each x In retobj.Latitudes : x.DateVal = x.DateVal.timezoneToClient : Next
+        '    For Each x In retobj.Longitudes : x.DateVal = x.DateVal.timezoneToClient : Next
+        '    For Each x In retobj.SpeedVals : x.DateVal = x.DateVal.timezoneToClient : Next
+
+        '    Return retobj
+        'End Function
 
         Friend Shared Function GetVehicleSpeedAndDistance(vehicleID As Guid,
                                                                startDate As Date,
