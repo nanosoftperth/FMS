@@ -1,6 +1,7 @@
 ﻿Imports DevExpress.XtraCharts.Web
 Imports DevExpress.XtraCharts
 Imports FMS.Business.DataObjects.FeatureListConstants
+Imports FMS.ReportLogic
 
 Public Class ReportGenerator
     Inherits System.Web.UI.Page
@@ -36,7 +37,8 @@ Public Class ReportGenerator
         Dim enddate As Date = CDate(Me.deTimeTo.Value)
 
         Dim objs As FMS.Business.ReportGeneration.VehicleSpeedRetObj = _
-                    FMS.Business.ReportGeneration.ReportGenerator.GetVehicleSpeedAndDistance_ForGraph(vehicleid, startdate, enddate)
+                    FMS.ReportLogic.ReportsGenerators.GetVehicleSpeedAndDistance_ForGraph(vehicleid, startdate, enddate)
+        'FMS.Business.ReportGeneration.ReportGenerator.GetVehicleSpeedAndDistance_ForGraph(vehicleid, startdate, enddate)
 
 
         Dim series1 As Series = chartSpeed.Series(1)
