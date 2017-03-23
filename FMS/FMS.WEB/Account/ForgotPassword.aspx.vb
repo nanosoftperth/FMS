@@ -14,7 +14,7 @@
                 Dim t As New FMS.Business.DataObjects.AuthenticationToken
 
                 With t
-                    .ApplicationID = ThisSession.ApplicationID
+                    .ApplicationID = FMS.Business.ThisSession.ApplicationID
                     .ExpiryDate = Now.AddDays(1)
                     .StartDate = Now
                     .TokenID = Guid.NewGuid
@@ -29,10 +29,10 @@
 
             Dim urlStrBase = "http://{0}.nanosoft.com.au/Account/ChangePassword.aspx?token={1}"
 
-            Dim URL = String.Format(urlStrBase, ThisSession.ApplicationName, TokenID.ToString)
+            Dim URL = String.Format(urlStrBase, FMS.Business.ThisSession.ApplicationName, TokenID.ToString)
 
             'Send Email
-            Business.BackgroundCalculations.EmailHelper.SendEmailChangePasswordRequest(user.Email, ThisSession.ApplicationName, URL)
+            Business.BackgroundCalculations.EmailHelper.SendEmailChangePasswordRequest(user.Email, FMS.Business.ThisSession.ApplicationName, URL)
             Dim h = user.Email.Split("@")
             lblEmail.Text = h(0)(0) & "**************@" & h(1)
             ASPxPanel1.Visible = False

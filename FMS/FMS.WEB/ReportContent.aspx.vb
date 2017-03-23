@@ -9,8 +9,8 @@
         'BY RYAN: change column labels 
         If reportname = "DriverOperatingHoursReport" Then
             With CType(ASPxDocumentViewer1.Report, DriverOperatingHoursReport)
-                .ArrivalCell.Text = ThisSession.ApplicationName + " H.Q. Arrival"
-                .DepartureCell.Text = ThisSession.ApplicationName + " H.Q. Departure"
+                .ArrivalCell.Text = FMS.Business.ThisSession.ApplicationName + " H.Q. Arrival"
+                .DepartureCell.Text = FMS.Business.ThisSession.ApplicationName + " H.Q. Departure"
             End With
         End If
 

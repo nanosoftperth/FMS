@@ -15,7 +15,7 @@ Public Class test_Settings
             'show the binary image, if it exists:
 
             Dim thisapp As DataObjects.Application = _
-                                   DataObjects.Application.GetFromAppID(ThisSession.ApplicationID)
+                                   DataObjects.Application.GetFromAppID(FMS.Business.ThisSession.ApplicationID)
 
             Dim Settings As List(Of DataObjects.Setting) = DataObjects.Setting.GetSettingsForApplication(thisapp.ApplicationName)
 
@@ -46,7 +46,7 @@ Public Class test_Settings
         Dim logoBytes() As Byte = Me.imgCompanylogo.ContentBytes
 
         Dim thisapp As DataObjects.Application = _
-                                  DataObjects.Application.GetFromAppID(ThisSession.ApplicationID)
+                                  DataObjects.Application.GetFromAppID(FMS.Business.ThisSession.ApplicationID)
 
         Dim s As DataObjects.Setting = DataObjects.Setting.GetSettingsForApplication(thisapp.ApplicationName) _
                                                                         .Where(Function(itm) itm.Name = "Logo").Single

@@ -31,7 +31,7 @@ Public Class Test1
         'Dim enddate As Date = ASPxScheduler1.ran'
 
         For Each x In
-                FMS.Business.DataObjects.CustomEvent.GetFortimeRange(ThisSession.ApplicationID, Now.AddDays(-10), Now.AddDays(10))
+                FMS.Business.DataObjects.CustomEvent.GetFortimeRange(FMS.Business.ThisSession.ApplicationID, Now.AddDays(-10), Now.AddDays(10))
             events.Add(x)
         Next
 
@@ -63,7 +63,7 @@ Public Class Test1
             resources = New CustomResourceList()
 
             Dim custresourcelist As List(Of FMS.Business.DataObjects.CustomResource) = _
-                        FMS.Business.DataObjects.ApplicationVehicle.GetAllAsScheduleResources(ThisSession.ApplicationID)
+                        FMS.Business.DataObjects.ApplicationVehicle.GetAllAsScheduleResources(FMS.Business.ThisSession.ApplicationID)
 
             resources.AddRange(custresourcelist)
             'ResourceHelper.FillObjectDataSourceWithResources(resources, 3)

@@ -38,7 +38,7 @@ Public Class Register
             Dim user As MembershipUser = Membership.CreateUser(tbUserName.Text, tbPassword.Text, tbEmail.Text)
 
             ' we need to assign the new user to the "generl" role (by default)
-            FMS.Business.DataObjects.User.AssignUSerToGeneralRole(user.UserName, user.ProviderUserKey, ThisSession.ApplicationID)
+            FMS.Business.DataObjects.User.AssignUSerToGeneralRole(user.UserName, user.ProviderUserKey, FMS.Business.ThisSession.ApplicationID)
 
             Response.Redirect(If(Request.QueryString("ReturnUrl"), "~/Account/RegisterSuccess.aspx"))
         Catch exc As MembershipCreateUserException

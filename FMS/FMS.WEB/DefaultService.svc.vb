@@ -22,7 +22,7 @@ Public Class DefaultService
     Public Function SaveDefaultBusinessLocation(newBusinessLocation As String) As String
 
         Dim id As Guid = Guid.Parse(newBusinessLocation)
-        ThisSession.ApplicationObject.SaveDefaultBusinessLocation(id)
+        FMS.Business.ThisSession.ApplicationObject.SaveDefaultBusinessLocation(id)
 
         Return Now.ToString
     End Function
@@ -31,7 +31,7 @@ Public Class DefaultService
 <WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
     Public Function SetSelectedReport(ReportName As String) As String
 
-        ThisSession.SelectedReportName = ReportName
+        FMS.Business.ThisSession.SelectedReportName = ReportName
 
         Return "message from server"
 
@@ -41,9 +41,9 @@ Public Class DefaultService
 <WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
     Public Function SetSelectedReportEdit(ReportName As String, StartDate As String, EndDate As String, Vehicle As String) As String
 
-        ThisSession.SelectedReportName = ReportName
+        FMS.Business.ThisSession.SelectedReportName = ReportName
 
-         
+
 
         Return "message from server"
 
@@ -185,7 +185,7 @@ Public Class DefaultService
 
             Dim driver = Business.DataObjects.ApplicationDriver.GetDriverFromID(did)
 
-            Dim fromStr As String = String.Format("Message sent from nanosoft-FMS by {0} ", ThisSession.User.UserName)
+            Dim fromStr As String = String.Format("Message sent from nanosoft-FMS by {0} ", FMS.Business.ThisSession.User.UserName)
 
 
             If driver Is Nothing Then
@@ -255,7 +255,7 @@ Public Class DefaultService
 
         Try
 
-            Dim thisappid As Guid = ThisSession.ApplicationID
+            Dim thisappid As Guid = FMS.Business.ThisSession.ApplicationID
 
             retobj.GeoFences = FMS.Business.DataObjects.ApplicationGeoFence.GetAllApplicationGeoFences(thisappid)
 
@@ -286,8 +286,8 @@ Public Class DefaultService
             geofence.Name = Name
             geofence.Description = Description
             geofence.Colour = Colour
-            geofence.ApplicationID = ThisSession.ApplicationID
-            geofence.UserID = ThisSession.User.UserId
+            geofence.ApplicationID = FMS.Business.ThisSession.ApplicationID
+            geofence.UserID = FMS.Business.ThisSession.User.UserId
             geofence.CircleCentre = CircleLatLngStr
             geofence.CircleRadiusMetres = CircleRadius
             geofence.IsCircular = CircleOrPolygon.ToLower = "circle"
@@ -307,7 +307,7 @@ Public Class DefaultService
 
             'Check if there is already a geofence with that name
             'by ryan
-            Dim alreadyExists As Boolean = FMS.Business.DataObjects.ApplicationGeoFence.IfApplicationGeoFencesAlreadyExist(ThisSession.ApplicationID, Name)
+            Dim alreadyExists As Boolean = FMS.Business.DataObjects.ApplicationGeoFence.IfApplicationGeoFencesAlreadyExist(FMS.Business.ThisSession.ApplicationID, Name)
 
             retobj.IsCircular = geofence.IsCircular
 

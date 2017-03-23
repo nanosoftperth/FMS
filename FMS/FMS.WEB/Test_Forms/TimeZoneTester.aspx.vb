@@ -8,10 +8,10 @@
         CType(Me.Master, FMS.WEB.MainLightMaster).HeaderText = "Time-Zone Test Page"
 
         dgvTimezoneSettings.DataSourceID = Nothing
-        dgvTimezoneSettings.DataSource = ThisSession.GetTimeZoneValues
+        dgvTimezoneSettings.DataSource = FMS.Business.ThisSession.GetTimeZoneValues
         dgvTimezoneSettings.DataBind()
 
-        cboPossibleTimeZones.Value = ThisSession.ApplicationObject.TimeZone.ID
+        cboPossibleTimeZones.Value = FMS.Business.ThisSession.ApplicationObject.TimeZone.ID
 
     End Sub
 
@@ -22,15 +22,15 @@
         Dim tz As Business.DataObjects.TimeZone
 
         If String.IsNullOrEmpty(timeZoneID) Then
-            tz = ThisSession.ApplicationObject.GetTimezoneFromLatLong()
+            tz = FMS.Business.ThisSession.ApplicationObject.GetTimezoneFromLatLong()
         Else
             tz = FMS.Business.DataObjects.TimeZone.GettimeZoneFromID(timeZoneID)
         End If
 
-        ThisSession.ApplicationObject.SaveTimeZone(tz)
+        FMS.Business.ThisSession.ApplicationObject.SaveTimeZone(tz)
 
         dgvTimezoneSettings.DataSourceID = Nothing
-        dgvTimezoneSettings.DataSource = ThisSession.GetTimeZoneValues
+        dgvTimezoneSettings.DataSource = FMS.Business.ThisSession.GetTimeZoneValues
         dgvTimezoneSettings.DataBind()
 
     End Sub

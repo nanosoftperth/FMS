@@ -187,7 +187,7 @@
         'ObjectDataSource2
         '
         Me.ObjectDataSource2.DataMember = "GetThisApplicationsVehicleList"
-        Me.ObjectDataSource2.DataSource = GetType(FMS.WEB.ReportDataHandler)
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
         'Detail
@@ -813,7 +813,6 @@
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
-        Me.DetailReport.DataMember = "LineValies"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
@@ -827,7 +826,7 @@
         'ObjectDataSource1
         '
         Me.ObjectDataSource1.DataMember = "GetVehicleReportValues"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.WEB.ReportDataHandler)
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         Parameter4.Name = "startdate"
         Parameter4.Type = GetType(DevExpress.DataAccess.Expression)

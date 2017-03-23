@@ -268,7 +268,6 @@
     <Compile Include="Classes\LatLong.vb" />
     <Compile Include="Classes\ReportList.vb" />
     <Compile Include="Classes\ResourceHelper.vb" />
-    <Compile Include="Classes\ThisSession.vb" />
     <Compile Include="Content\DriverImages.ashx.vb">
       <DependentUpon>DriverImages.ashx</DependentUpon>
     </Compile>
@@ -366,8 +365,6 @@
       <DependentUpon>ReportContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\Classes\GeoFenceReport_ByDriver.vb" />
-    <Compile Include="Reports\ReportDataHandler.vb" />
     <Compile Include="Reports\ReportGeoFence_byDriver.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -1021,14 +1018,20 @@
       <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
       <Name>FMS.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FMS.ReportLogic\FMS.ReportLogic.vbproj">
+      <Project>{07682610-d796-4b97-ac1b-9c03c1715944}</Project>
+      <Name>FMS.ReportLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMS.ServiceAccess\FMS.ServiceAccess.vbproj">
       <Project>{d44020a7-8bd2-4ab3-925b-ff4a76ec620a}</Project>
       <Name>FMS.ServiceAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\Classes\" />
   </ItemGroup>
   <!--<ItemGroup>
     <Folder Include="App_Data\" />

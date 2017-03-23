@@ -219,7 +219,7 @@ Namespace ReportGeneration
 
         End Function
 
-        'Public Shared Function GetVehicleSpeedAndDistance_ForGraph(vehicleID As Guid,
+        'Friend Shared Function GetVehicleSpeedAndDistance_ForGraph(vehicleID As Guid,
         '                                                           startDate As Date,
         '                                                           endDate As Date) As VehicleSpeedRetObj
 

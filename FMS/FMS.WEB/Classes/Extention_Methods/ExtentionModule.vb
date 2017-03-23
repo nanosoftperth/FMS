@@ -27,7 +27,7 @@ Module ExtentionModule
         If thisPage.IsPostBack Then Exit Function
 
         'check if the user has access to the page
-        If Not ThisSession.User.GetIfAccessToFeature(fml) Then _
+        If Not FMS.Business.ThisSession.User.GetIfAccessToFeature(fml) Then _
                         thisPage.Response.Redirect("NoAccessPage.aspx")
 
         Return True

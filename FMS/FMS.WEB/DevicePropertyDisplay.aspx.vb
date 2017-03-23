@@ -18,7 +18,7 @@
 
         If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
-        Dim truckLst As List(Of Business.Truck) = Business.Truck.GetExampleFleetNow(ThisSession.ApplicationID)
+        Dim truckLst As List(Of Business.Truck) = Business.Truck.GetExampleFleetNow(FMS.Business.ThisSession.ApplicationID)
 
         Dim selectedTruck As Business.Truck = truckLst.Where(Function(x) x.ID = DeviceID).Single
 

@@ -6,7 +6,7 @@
 
         CType(Me.Master, FMS.WEB.MainLightMaster).HeaderText = "Oops, there was a problem"
 
-        lblProblemMessage.Text = ThisSession.ProblemPageMessage
+        lblProblemMessage.Text = FMS.Business.ThisSession.ProblemPageMessage
 
     End Sub
 

@@ -23,7 +23,7 @@ Public Class FleetMapMarker
                     Dim img = DataObjects.ApplicationImage.GetImageFromID(id)
 
                     'check if this imate is associated with the applicationId
-                    Dim appIsAllowedAccess As Boolean = img.ApplicationID Is Nothing OrElse img.ApplicationID.Value = ThisSession.ApplicationID
+                    Dim appIsAllowedAccess As Boolean = img.ApplicationID Is Nothing OrElse img.ApplicationID.Value = FMS.Business.ThisSession.ApplicationID
                     'if it is not, then return to default.
                     If Not appIsAllowedAccess Then img = DataObjects.ApplicationImage.GetDefaultHomeImage
 

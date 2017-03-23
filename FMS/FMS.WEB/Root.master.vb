@@ -100,7 +100,7 @@ Public Class RootMaster
 
             End If
 
-            ThisSession.ProblemPageMessage = tokenErrorMsg
+            FMS.Business.ThisSession.ProblemPageMessage = tokenErrorMsg
 
             If Not String.IsNullOrEmpty(tokenErrorMsg) Then Response.Redirect("~/ProblemPage.aspx", True)
 
@@ -127,23 +127,23 @@ Public Class RootMaster
 
         Dim uName = Membership.GetUser.UserName
 
-        ThisSession.User = FMS.Business.DataObjects.User.GetAllUsersForApplication _
-                        (ThisSession.ApplicationID).Where(Function(x) x.UserName.ToLower = uName.ToLower).Single
+        FMS.Business.ThisSession.User = FMS.Business.DataObjects.User.GetAllUsersForApplication _
+                        (FMS.Business.ThisSession.ApplicationID).Where(Function(x) x.UserName.ToLower = uName.ToLower).Single
 
         'SET the userid in the session parameters
-        ThisSession.UserID = ThisSession.User.UserId
+        FMS.Business.ThisSession.UserID = FMS.Business.ThisSession.User.UserId
     End Sub
 
 
     Private Sub SetApplicationSessionVars()
         'Set the application based data in the session state
-        ThisSession.ApplicationName = Membership.ApplicationName
-        ThisSession.ApplicationObject = FMS.Business.DataObjects.Application.GetFromApplicationName(Membership.ApplicationName)
-        ThisSession.ApplicationID = ThisSession.ApplicationObject.ApplicationID
+        FMS.Business.ThisSession.ApplicationName = Membership.ApplicationName
+        FMS.Business.ThisSession.ApplicationObject = FMS.Business.DataObjects.Application.GetFromApplicationName(Membership.ApplicationName)
+        FMS.Business.ThisSession.ApplicationID = FMS.Business.ThisSession.ApplicationObject.ApplicationID
     End Sub
 
     Protected Sub btnUniqco_Click(sender As Object, e As EventArgs) Handles btnUniqco.Click
-        Response.Redirect(ThisSession.ReturnToUniqcoURL)
+        Response.Redirect(FMS.Business.ThisSession.ReturnToUniqcoURL)
     End Sub
 
     Private Sub binaryImageLogo_Init(sender As Object, e As EventArgs) Handles binaryImageLogo.Init
@@ -152,7 +152,7 @@ Public Class RootMaster
 
         If Not IsPostBack Then
 
-            btnUniqco.ClientVisible = ThisSession.ShowReturnToUniqcoButton
+            btnUniqco.ClientVisible = FMS.Business.ThisSession.ShowReturnToUniqcoButton
 
             Dim settings As List(Of FMS.Business.DataObjects.Setting) = _
                  FMS.Business.DataObjects.Setting.GetSettingsForApplication(Membership.ApplicationName)
@@ -160,34 +160,34 @@ Public Class RootMaster
             With settings.Where(Function(s) s.Name = "Logo").Single()
 
                 If .ValueObj IsNot Nothing Then
-                    ThisSession.header_logoBinary = .ValueObj
+                    FMS.Business.ThisSession.header_logoBinary = .ValueObj
                 End If
             End With
 
-            ThisSession.header_companyName = settings.Where(Function(y) y.Name = "CompanyName").Single.Value & " - "
-            ThisSession.header_applicationName = "   " & settings.Where(Function(y) y.Name = "ApplicationName").Single.Value
+            FMS.Business.ThisSession.header_companyName = settings.Where(Function(y) y.Name = "CompanyName").Single.Value & " - "
+            FMS.Business.ThisSession.header_applicationName = "   " & settings.Where(Function(y) y.Name = "ApplicationName").Single.Value
 
             'Get the latest data from google about the time-zone which was initially auto-detected.
-            ThisSession.ApplicationObject.UpdateTimeZoneData()
+            FMS.Business.ThisSession.ApplicationObject.UpdateTimeZoneData()
 
             'Set the timezone for the business layer to be = to the user (the user timezone is taken from the application
             'timezone if they havent explicitly defined one)
 
-            If ThisSession.User IsNot Nothing Then
+            If FMS.Business.ThisSession.User IsNot Nothing Then
 
                 FMS.Business.SingletonAccess.ClientSelected_TimeZone = _
-                    If(String.IsNullOrEmpty(ThisSession.User.TimeZone.ID), ThisSession.ApplicationObject.TimeZone, ThisSession.User.TimeZone)
+                    If(String.IsNullOrEmpty(FMS.Business.ThisSession.User.TimeZone.ID), FMS.Business.ThisSession.ApplicationObject.TimeZone, FMS.Business.ThisSession.User.TimeZone)
             Else
-                FMS.Business.SingletonAccess.ClientSelected_TimeZone = ThisSession.ApplicationObject.TimeZone
+                FMS.Business.SingletonAccess.ClientSelected_TimeZone = FMS.Business.ThisSession.ApplicationObject.TimeZone
             End If
 
         End If
 
-        Me.binaryImageLogo.ContentBytes = ThisSession.header_logoBinary
+        Me.binaryImageLogo.ContentBytes = FMS.Business.ThisSession.header_logoBinary
         Me.binaryImageLogo.DataBind()
 
-        header_companyName.InnerText = ThisSession.header_companyName
-        header_applicationName.InnerText = ThisSession.header_applicationName
+        header_companyName.InnerText = FMS.Business.ThisSession.header_companyName
+        header_applicationName.InnerText = FMS.Business.ThisSession.header_applicationName
     End Sub
 
 

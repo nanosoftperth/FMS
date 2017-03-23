@@ -9,14 +9,14 @@
 
         'ThisSession.SelectedReportName = "VehicleReport"
 
-        If String.IsNullOrEmpty(ThisSession.SelectedReportName) Then Exit Sub
+        If String.IsNullOrEmpty(FMS.Business.ThisSession.SelectedReportName) Then Exit Sub
 
         ' System.Threading.Thread.Sleep(1000)
 
-        Report = ReportContent.GetReportFromName(ThisSession.SelectedReportName)
+        Report = ReportContent.GetReportFromName(FMS.Business.ThisSession.SelectedReportName)
 
 
-        For Each p In Report.Parameters 
+        For Each p In Report.Parameters
 
             Dim x As NanoReportParam = Page.LoadControl("~\Controls\NanoReportParam.ascx")
 
@@ -25,9 +25,9 @@
 
             mainDIV.Controls.Add(x)
 
-        Next 
+        Next
 
-        ThisSession.SelectedReportName = String.Empty
+        FMS.Business.ThisSession.SelectedReportName = String.Empty
 
     End Sub
 
