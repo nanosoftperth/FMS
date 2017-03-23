@@ -131,6 +131,7 @@
     <Compile Include="Classes\ReturnObjects.vb" />
     <Compile Include="Classes\SingletonAccess.vb" />
     <Compile Include="Class1.vb" />
+    <Compile Include="Classes\ThisSession.vb" />
     <Compile Include="Classes\TimeZoneHelper.vb" />
     <Compile Include="Common\DictionarySerializer.vb" />
     <Compile Include="Common\Utility.vb" />
