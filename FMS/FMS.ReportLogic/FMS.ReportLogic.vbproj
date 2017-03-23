@@ -72,6 +72,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\GeoFenceReport_ByDriver.vb" />
+    <Compile Include="Classes\ReportDataHandler.vb" />
     <Compile Include="Classes\ReportsGenerators.vb" />
     <Compile Include="ExtentionModule.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
