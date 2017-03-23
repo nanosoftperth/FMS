@@ -8,18 +8,18 @@ Public Class OdometerTest
     End Sub
 
     Public Sub dgvDetailOdometerReadings_BeforePerformDataSelect(sender As Object, e As System.EventArgs)
-        ThisSession.ApplicationVehicleID = CType(sender, ASPxGridView).GetMasterRowKeyValue()
+        FMS.Business.ThisSession.ApplicationVehicleID = CType(sender, ASPxGridView).GetMasterRowKeyValue()
     End Sub
 
     Private Sub odsOdometerReadings_Deleting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsOdometerReadings.Deleting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = ThisSession.ApplicationVehicleID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = FMS.Business.ThisSession.ApplicationVehicleID
     End Sub
 
     Private Sub odsOdometerReadings_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsOdometerReadings.Inserting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = ThisSession.ApplicationVehicleID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = FMS.Business.ThisSession.ApplicationVehicleID
     End Sub
 
     Private Sub odsOdometerReadings_Updating(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsOdometerReadings.Updating
-        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = ThisSession.ApplicationVehicleID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = FMS.Business.ThisSession.ApplicationVehicleID
     End Sub
 End Class

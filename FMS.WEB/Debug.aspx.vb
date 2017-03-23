@@ -12,7 +12,7 @@
 
         'below run if first time page is loaded OR if the button is pressed
         Session("asd") = FMS.Business.DataObjects.LogEntry.GetAllBetweenDates( _
-                                Me.dateStart.Value, Me.dateEnd.Value, ThisSession.ApplicationID)
+                                Me.dateStart.Value, Me.dateEnd.Value, FMS.Business.ThisSession.ApplicationID)
 
         Me.ASPxGridView1.DataSource = Session("asd")
         ASPxGridView1.DataBind()

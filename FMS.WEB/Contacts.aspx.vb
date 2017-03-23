@@ -19,7 +19,7 @@ Public Class Contacts
     End Sub
 
     Private Sub dgvConteact_RowDeleting(sender As Object, e As DevExpress.Web.Data.ASPxDataDeletingEventArgs) Handles dgvConteact.RowDeleting
-        If Not ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Contact_Management__Edit) Then
+        If Not FMS.Business.ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Contact_Management__Edit) Then
             Throw New Exception("You do not have ""edit"" access to this page.")
             e.Cancel = True
         End If
@@ -27,22 +27,22 @@ Public Class Contacts
 
     Private Sub dgvConteact_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvConteact.RowInserting
 
-        If Not ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Contact_Management__Edit) Then
+        If Not FMS.Business.ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Contact_Management__Edit) Then
             Throw New Exception("You do not have ""edit"" access to this page.")
             e.Cancel = True
         End If
 
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
 
     Private Sub dgvConteact_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles dgvConteact.RowUpdating
 
-        If Not ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Contact_Management__Edit) Then
+        If Not FMS.Business.ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Contact_Management__Edit) Then
             Throw New Exception("You do not have ""edit"" access to this page.")
             e.Cancel = True
         End If
 
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
 
 #End Region

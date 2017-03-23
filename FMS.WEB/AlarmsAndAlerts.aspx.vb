@@ -42,25 +42,25 @@ Public Class AlarmsAndAlerts
         dgvGeoFences.DataBind()
     End Sub
     Private Sub odsAlerts_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsAlerts.Inserting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.AlertType).ApplicationID = ThisSession.ApplicationID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.AlertType).ApplicationID = FMS.Business.ThisSession.ApplicationID
     End Sub
 
     Private Sub odsAlerts_Deleting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsAlerts.Deleting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.AlertType).ApplicationID = ThisSession.ApplicationID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.AlertType).ApplicationID = FMS.Business.ThisSession.ApplicationID
     End Sub
 
     Private Sub odsAlerts_Updating(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsAlerts.Updating
-        CType(e.InputParameters(0), FMS.Business.DataObjects.AlertType).ApplicationID = ThisSession.ApplicationID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.AlertType).ApplicationID = FMS.Business.ThisSession.ApplicationID
     End Sub
 
 #Region "GROUP DATA LOGIC"
 
     Private Sub dgvGroups_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvGroups.RowInserting
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
 
     Private Sub dgvGroups_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles dgvGroups.RowUpdating
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
 
     Private Sub dgvGroupMembers_BatchUpdate(sender As Object, e As DevExpress.Web.Data.ASPxDataBatchUpdateEventArgs) Handles dgvGroupMembers.BatchUpdate
@@ -73,7 +73,7 @@ Public Class AlarmsAndAlerts
             Dim mobile As String = o.NewValues("Mobile")
             Dim sendEmail As Boolean = o.NewValues("SendEmail")
             Dim sendText As Boolean = o.NewValues("SendText")
-            Dim groupID As Guid = ThisSession.CurrentSelectedGroup
+            Dim groupID As Guid = FMS.Business.ThisSession.CurrentSelectedGroup
 
             'do something with this data here
             FMS.Business.DataObjects.Subscriber.ChangeSettingForGroup(groupID, nativeid, sendEmail, sendText)
@@ -81,7 +81,7 @@ Public Class AlarmsAndAlerts
         Next
 
         dgvGroupMembers.DataSourceID = Nothing
-        dgvGroupMembers.DataSource = FMS.Business.DataObjects.Subscriber.GetAllForGroup(ThisSession.CurrentSelectedGroup)
+        dgvGroupMembers.DataSource = FMS.Business.DataObjects.Subscriber.GetAllForGroup(FMS.Business.ThisSession.CurrentSelectedGroup)
         dgvGroupMembers.DataBind()
 
         e.Handled = True
@@ -108,19 +108,19 @@ Public Class AlarmsAndAlerts
                         Exit Sub
                     End If
 
-                    ThisSession.CurrentSelectedGroup = keyAsGUID
+                    FMS.Business.ThisSession.CurrentSelectedGroup = keyAsGUID
 
                 Case "add"
 
                     Dim subscriberNativeIDs As List(Of Guid) = command_val.Split(",").Select(Function(x) New Guid(x)).ToList
 
-                    FMS.Business.DataObjects.Group.AddSubscribersByIDs(ThisSession.CurrentSelectedGroup, subscriberNativeIDs)
+                    FMS.Business.DataObjects.Group.AddSubscribersByIDs(FMS.Business.ThisSession.CurrentSelectedGroup, subscriberNativeIDs)
 
                 Case "remove"
 
                     Dim subscriberNativeIDs As List(Of Guid) = command_val.Split(",").Select(Function(x) New Guid(x)).ToList
 
-                    FMS.Business.DataObjects.Group.RemoveSubscribersByIDs(ThisSession.CurrentSelectedGroup, subscriberNativeIDs)
+                    FMS.Business.DataObjects.Group.RemoveSubscribersByIDs(FMS.Business.ThisSession.CurrentSelectedGroup, subscriberNativeIDs)
 
                 Case Else
                     'do nothing 
@@ -128,7 +128,7 @@ Public Class AlarmsAndAlerts
 
             'refresh the data in the grid view (after the above operations)
             dgvGroupMembers.DataSourceID = Nothing
-            dgvGroupMembers.DataSource = FMS.Business.DataObjects.Subscriber.GetAllForGroup(ThisSession.CurrentSelectedGroup)
+            dgvGroupMembers.DataSource = FMS.Business.DataObjects.Subscriber.GetAllForGroup(FMS.Business.ThisSession.CurrentSelectedGroup)
             dgvGroupMembers.DataBind()
 
 

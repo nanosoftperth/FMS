@@ -95,8 +95,8 @@ Public Class RoundRobinService
 
             'if this is the first call to the round robin service from the page, then update the session object
             'it doesnt matter if this is called from another page in the same session. 
-            If isFirstCall Then ThisSession.BusinessLocations = DataObjects.ApplicationLocation.GetAll(ThisSession.ApplicationID)
-            retobj.BusinessLocations = ThisSession.BusinessLocations
+            If isFirstCall Then FMS.Business.ThisSession.BusinessLocations = DataObjects.ApplicationLocation.GetAll(FMS.Business.ThisSession.ApplicationID)
+            retobj.BusinessLocations = FMS.Business.ThisSession.BusinessLocations
 
             retobj.activityViewerAutoUpdateToNow = activityViewerAutoUpdateToNow
             retobj.activityViewer_autoincrement_selected = activityViewer_autoincrement_selected
@@ -137,7 +137,7 @@ Public Class RoundRobinService
             retObj.queryDate = CDate(EndTime)
 
             'return the list of trucks
-            retObj.Trucks = Truck.GetFleetAtTime(EndTime, ThisSession.ApplicationID)
+            retObj.Trucks = Truck.GetFleetAtTime(EndTime, FMS.Business.ThisSession.ApplicationID)
 
             'for each truck we wish to process, find the journey lat and longs.
             For Each truckID As String In selectedTruckIds
@@ -167,7 +167,7 @@ Public Class RoundRobinService
         Dim retObj As New ClientServerRoundRobin_ReturnObject
 
         Try
-            retObj.Trucks = Truck.GetFleetAtTime(Now.timezoneToClient, ThisSession.ApplicationID)
+            retObj.Trucks = Truck.GetFleetAtTime(Now.timezoneToClient, FMS.Business.ThisSession.ApplicationID)
         Catch ex As Exception
             Dim x As String = ""
         End Try
@@ -193,7 +193,7 @@ Public Class RoundRobinService
 
             theDate = browserDate
             Dim std As Date = CDate(theDate)
-            retObj.Trucks = Truck.GetFleetAtTime(std, ThisSession.ApplicationID)
+            retObj.Trucks = Truck.GetFleetAtTime(std, FMS.Business.ThisSession.ApplicationID)
             retObj.queryDate = std
 
             Return retObj

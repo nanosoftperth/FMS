@@ -8,7 +8,7 @@
 
         'nrpTest.ReportParameter = (New ServiceVehicleReport).Parameters(0)
 
-        ThisSession.SelectedReportName = "ReportGeoFence_byDriver"
+        FMS.Business.ThisSession.SelectedReportName = "ReportGeoFence_byDriver"
         Dim x As New DriverOperatingHoursReport
 
         NanoReportParamList.Report = x

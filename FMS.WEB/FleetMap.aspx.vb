@@ -18,7 +18,7 @@ Public Class FleetMap
 
         Dim lst As List(Of FMS.Business.DataObjects.ApplicationGeoFence) = _
                                             FMS.Business.DataObjects.ApplicationGeoFence. _
-                                                     GetAllApplicationGeoFences(ThisSession.ApplicationID).ToList
+                                                     GetAllApplicationGeoFences(FMS.Business.ThisSession.ApplicationID).ToList
 
         dgvGeoFenceSummary.DataSource = lst
         cbGeoEditGeoFences.DataSource = lst
@@ -48,9 +48,9 @@ Public Class FleetMap
 
         'settingstoSendtoCLient.AddRange(ThisSession.ApplicationObject.Settings)
 
-        Dim appLocationID As Guid = If(ThisSession.User.ApplicationLocationID = Guid.Empty, _
-                                       ThisSession.ApplicationObject.DefaultBusinessLocationID, _
-                                       ThisSession.User.ApplicationLocationID)
+        Dim appLocationID As Guid = If(FMS.Business.ThisSession.User.ApplicationLocationID = Guid.Empty, _
+                                       FMS.Business.ThisSession.ApplicationObject.DefaultBusinessLocationID, _
+                                       FMS.Business.ThisSession.User.ApplicationLocationID)
 
         Dim defaultBusinessLocation As DataObjects.ApplicationLocation = DataObjects.ApplicationLocation.GetFromID(appLocationID)
 
@@ -66,7 +66,7 @@ Public Class FleetMap
             loopStr &= String.Format(str, s.Name, s.Value, vbNewLine)
         Next
 
-        Dim userCanManageGeoFences As Boolean = ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Fleet_Map__GeoFence_Edit)
+        Dim userCanManageGeoFences As Boolean = FMS.Business.ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Fleet_Map__GeoFence_Edit)
 
         'for use with javascript (if the user has access to manage geofences)
         loopStr &= String.Format(str, "Fleet_Management_Page_Manage_geofences", userCanManageGeoFences, vbNewLine)
@@ -100,10 +100,10 @@ Public Class FleetMap
         If CBool(vehicleautoRept_Requested) Then
             Try
 
-                ThisSession.ShowReturnToUniqcoButton = True
-                ThisSession.ReturnToUniqcoURL = Request.QueryString("returnURL")
+                FMS.Business.ThisSession.ShowReturnToUniqcoButton = True
+                FMS.Business.ThisSession.ReturnToUniqcoURL = Request.QueryString("returnURL")
 
-                Dim v = DataObjects.ApplicationVehicle.GetFromVINNumber(vehicleautoRept_VINNumber, ThisSession.ApplicationID)
+                Dim v = DataObjects.ApplicationVehicle.GetFromVINNumber(vehicleautoRept_VINNumber, FMS.Business.ThisSession.ApplicationID)
 
                 vehicleautoRept_VehicleID = v.ApplicationVehileID.ToString
                 vehicleautoRept_VehicleName = v.Name
@@ -128,7 +128,7 @@ Public Class FleetMap
     Private Sub dgvGeoFenceSummary_CustomCallback(sender As Object, e As DevExpress.Web.ASPxGridViewCustomCallbackEventArgs) Handles dgvGeoFenceSummary.CustomCallback
 
         dgvGeoFenceSummary.DataSource = FMS.Business.DataObjects.ApplicationGeoFence. _
-                                            GetAllApplicationGeoFences(ThisSession.ApplicationID)
+                                            GetAllApplicationGeoFences(FMS.Business.ThisSession.ApplicationID)
 
         dgvGeoFenceSummary.DataSourceID = Nothing
         dgvGeoFenceSummary.DataBind()
@@ -139,7 +139,7 @@ Public Class FleetMap
 
         Dim lst As List(Of FMS.Business.DataObjects.ApplicationGeoFence) = _
                                            FMS.Business.DataObjects.ApplicationGeoFence. _
-                                                    GetAllApplicationGeoFences(ThisSession.ApplicationID).ToList
+                                                    GetAllApplicationGeoFences(FMS.Business.ThisSession.ApplicationID).ToList
 
         cbGeoEditGeoFences.DataSource = lst
         cbGeoEditGeoFences.DataSourceID = Nothing
@@ -151,7 +151,7 @@ Public Class FleetMap
 
         '*******************        POPULATE THE TRUCK DROP DOWN LIST (FOR MULTI-SELECT)      ******************
 
-        Dim truckLst As List(Of Truck) = Truck.GetExampleFleetNow(ThisSession.ApplicationID)
+        Dim truckLst As List(Of Truck) = Truck.GetExampleFleetNow(FMS.Business.ThisSession.ApplicationID)
         Dim lb As DevExpress.Web.ASPxListBox = ddlTrucks.FindControl("listBox")
 
         truckLst.Insert(0, New Truck With {.ComboBoxDisplay = "Select All"})

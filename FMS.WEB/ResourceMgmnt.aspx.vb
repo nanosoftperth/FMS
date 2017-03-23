@@ -9,36 +9,36 @@ Public Class ResourceMgmnt
 
 
     Public Sub dgvDetailOdometerReadings_BeforePerformDataSelect(sender As Object, e As System.EventArgs)
-        ThisSession.ApplicationVehicleID = CType(sender, ASPxGridView).GetMasterRowKeyValue()
+        FMS.Business.ThisSession.ApplicationVehicleID = CType(sender, ASPxGridView).GetMasterRowKeyValue()
     End Sub
 
     Private Sub odsOdometerReadings_Deleting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsOdometerReadings.Deleting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = ThisSession.ApplicationVehicleID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = FMS.Business.ThisSession.ApplicationVehicleID
     End Sub
 
     Private Sub odsOdometerReadings_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsOdometerReadings.Inserting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = ThisSession.ApplicationVehicleID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = FMS.Business.ThisSession.ApplicationVehicleID
     End Sub
 
     Private Sub odsOdometerReadings_Updating(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsOdometerReadings.Updating
-        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = ThisSession.ApplicationVehicleID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationVehicleOdometerReading).ApplicationVehicleID = FMS.Business.ThisSession.ApplicationVehicleID
     End Sub
 
 #End Region
 
     Private Sub ASPxGridView2_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles ASPxGridView2.RowInserting
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
 
     Private Sub ASPxGridView2_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles ASPxGridView2.RowUpdating
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
     Private Sub dgvVehicles_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs) Handles dgvVehicles.RowInserting
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
 
     Private Sub dgvVehicles_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs) Handles dgvVehicles.RowUpdating
-        e.NewValues("ApplicationID") = ThisSession.ApplicationID
+        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     End Sub
 
 
@@ -77,10 +77,10 @@ Public Class ResourceMgmnt
 
         Dim retlst As List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime) = _
                                     FMS.Business.DataObjects.ApplicationVehicleDriverTime. _
-                                            GetAllForApplicationAndDatePeriodIncludingDuds(ThisSession.ApplicationID, Me.dateEditDay.Date, Me.timeEditTo.DateTime)
-       
+                                            GetAllForApplicationAndDatePeriodIncludingDuds(FMS.Business.ThisSession.ApplicationID, Me.dateEditDay.Date, Me.timeEditTo.DateTime)
+
         Try
-            pageControlMain.TabPages(3).Visible = ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Vehicle_and_Driver_Management__Bookings)  'ByRyan: Will determine if Application has access to Feature
+            pageControlMain.TabPages(3).Visible = FMS.Business.ThisSession.User.GetIfAccessToFeature(FeatureListAccess.Vehicle_and_Driver_Management__Bookings)  'ByRyan: Will determine if Application has access to Feature
 
         Catch ex As Exception
 
@@ -91,19 +91,19 @@ Public Class ResourceMgmnt
     Public Shared Function GetApplicationVehicleDriverTimes(startdate As Date, enddate As Date) As List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime)
 
 
-        If ThisSession.rm_ApplicationDriverVehicleTimes Is Nothing Or ThisSession.rm_DriverVehicleTimeReload Then
+        If FMS.Business.ThisSession.rm_ApplicationDriverVehicleTimes Is Nothing Or FMS.Business.ThisSession.rm_DriverVehicleTimeReload Then
 
             Dim retlst As List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime) = _
                                FMS.Business.DataObjects.ApplicationVehicleDriverTime. _
-                                    GetAllForApplicationAndDatePeriodIncludingDuds(ThisSession.ApplicationID, startdate, enddate)
+                                    GetAllForApplicationAndDatePeriodIncludingDuds(FMS.Business.ThisSession.ApplicationID, startdate, enddate)
 
-            ThisSession.rm_ApplicationDriverVehicleTimes = retlst
+            FMS.Business.ThisSession.rm_ApplicationDriverVehicleTimes = retlst
 
-            ThisSession.rm_DriverVehicleTimeReload = False
+            FMS.Business.ThisSession.rm_DriverVehicleTimeReload = False
 
         End If
 
-        Return ThisSession.rm_ApplicationDriverVehicleTimes
+        Return FMS.Business.ThisSession.rm_ApplicationDriverVehicleTimes
 
     End Function
 
@@ -141,7 +141,7 @@ Public Class ResourceMgmnt
                 .VehicleID = VehicleID
                 .ApplicationDriverId = ApplicationDriverID
                 .PassengerID = PassengerID
-                .ApplicationID = ThisSession.ApplicationID
+                .ApplicationID = FMS.Business.ThisSession.ApplicationID
             End With
 
             FMS.Business.DataObjects.ApplicationVehicleDriverTime.Insert(driverVehicleTime)
@@ -168,14 +168,14 @@ Public Class ResourceMgmnt
                 If passengerID <> Guid.Empty Then .PassengerID = passengerID
 
                 .ApplicationVehicleDriverTimeID = ApplicationVehicleDriverTimeID
-                .ApplicationID = ThisSession.ApplicationID
+                .ApplicationID = FMS.Business.ThisSession.ApplicationID
 
             End With
 
             FMS.Business.DataObjects.ApplicationVehicleDriverTime.Update(driverVehicleTime)
         Next
 
-        ThisSession.rm_DriverVehicleTimeReload = True
+        FMS.Business.ThisSession.rm_DriverVehicleTimeReload = True
 
         e.Handled = True
 
@@ -190,12 +190,12 @@ Public Class ResourceMgmnt
         Dim startTime As DateTime = CDate(strs(1).Split(" ")(1))
         Dim endtime As DateTime = CDate(strs(2).Split(" ")(1))
 
-        Dim appID As Guid = ThisSession.ApplicationID
+        Dim appID As Guid = FMS.Business.ThisSession.ApplicationID
 
         startTime = editDate + startTime.TimeOfDay
         endtime = editDate + endtime.TimeOfDay
 
-        ThisSession.rm_DriverVehicleTimeReload = True
+        FMS.Business.ThisSession.rm_DriverVehicleTimeReload = True
 
         Dim retlst As List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime) = GetApplicationVehicleDriverTimes(startTime, endtime)
 
@@ -214,10 +214,10 @@ Public Class ResourceMgmnt
 
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationBooking)
 
-        ab.ApplicationId = ThisSession.ApplicationID
+        ab.ApplicationId = FMS.Business.ThisSession.ApplicationID
 
-        Dim gdes = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceDestination)
-        Dim gleave = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(ThisSession.ApplicationID, ab.GeofenceLeave)
+        Dim gdes = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(FMS.Business.ThisSession.ApplicationID, ab.GeofenceDestination)
+        Dim gleave = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(FMS.Business.ThisSession.ApplicationID, ab.GeofenceLeave)
 
         ab.GeofenceDestinationId = If(gdes Is Nothing, gdes.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceDestination))
         ab.GeofenceLeaveId = If(gleave Is Nothing, gleave.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceLeave))
@@ -226,24 +226,24 @@ Public Class ResourceMgmnt
 
     Protected Sub odsBookingContact_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.Contact)
-        ab.ApplicationID = ThisSession.ApplicationID
+        ab.ApplicationID = FMS.Business.ThisSession.ApplicationID
     End Sub
 
 
-   
+
 
     'THIS IS FOR UPDATING DATA BEFORE INSERT
     Private Function CreateBookingGeofence(location As String) As Guid
         Dim ab = New FMS.Business.DataObjects.ApplicationGeoFence
         Dim x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress(location)
-        ab.ApplicationID = ThisSession.ApplicationID
+        ab.ApplicationID = FMS.Business.ThisSession.ApplicationID
         ab.Name = location
         ab.Description = location
         ab.IsCircular = True
         ab.CircleRadiusMetres = 2000 'Temp: must be 2 km
         ab.CircleCentre = x.lat + "|" + x.lng
         ab.isBooking = True
-        ab.UserID = ThisSession.User.UserId
+        ab.UserID = FMS.Business.ThisSession.User.UserId
         ab.DateCreated = DateTime.Now
 
         ab.ApplicationGeoFenceSides.Add(New Business.DataObjects.ApplicationGeoFenceSide() With {

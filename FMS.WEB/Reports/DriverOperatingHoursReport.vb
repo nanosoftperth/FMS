@@ -189,7 +189,7 @@
         'ObjectDataSource2
         '
         Me.ObjectDataSource2.DataMember = "GetThisApplicationsVehicleList"
-        Me.ObjectDataSource2.DataSource = GetType(FMS.WEB.ReportDataHandler)
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
         'Detail
@@ -831,7 +831,7 @@
         'ObjectDataSource1
         '
         Me.ObjectDataSource1.DataMember = "GetDriverOperatingReportValues"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.WEB.ReportDataHandler)
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         Parameter4.Name = "startdate"
         Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
