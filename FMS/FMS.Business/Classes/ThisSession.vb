@@ -310,9 +310,7 @@ Public Class CachedVehicleReport
 
     Public Property LineValies As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine)
 
-
-
-
+     
     Public Sub New()
 
         TotalStopDuration = TimeSpan.FromSeconds(0)

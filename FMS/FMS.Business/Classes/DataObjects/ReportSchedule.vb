@@ -79,8 +79,8 @@ Namespace DataObjects
         Public Property EndDate As String
         Public Property Vehicle As String
         Public Property Driver As String
-        Public Property Recipients As Guid
-
+        Public Property Recipients As Guid 
+        Public Property RecipientEmail As String
         Public Property NativeID As String
         Public Property RecipientName As String
         Public Property StartDateSpecific As String
@@ -149,34 +149,39 @@ Namespace DataObjects
                                      .EndDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDate)),
                                      .Vehicle = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Vehicle)),
                                      .Driver = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Driver)),
-                                     .RecipientName = GetRecipientsforApplication(item.ApplicationId, item.Recipients),
+                                     .RecipientName = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientName)),
                                      .NativeID = Convert.ToString(item.Recipients),
                                      .Recipients = item.Recipients,
                                      .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
-                        .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific))
+                                     .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific)),
+                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail))
                                     })
                     Next
                 End If
             Catch ex As Exception 
-                ErrorLog.WriteErrorLog(ex)
+                ' ErrorLog.WriteErrorLog(ex)
             End Try
           
             Return objList
         End Function
-        Public Shared Function GetRecipientsforApplication(appid As Guid, NativeId As Guid) As String
-            Try 
+        Public Shared Function GetRecipientsforApplication(appid As Guid, NativeId As Guid, attributeName As String) As String
+            Try
                 Dim Result = (From x In SingletonAccess.FMSDataContextNew.usp_GetSubscribersForApplication(appid) _
                    Where (x.NativeID = NativeId)).FirstOrDefault
 
                 If Result Is Nothing Then
                     Return String.Empty
-                Else
-                    Return Convert.ToString(Result.SubcriberType + ":" + Result.Name)
+                Else 
+                    If attributeName = "RecipientName" Then
+                        Return Convert.ToString(Result.SubcriberType + ":" + Result.Name)
+                    Else
+                        Return Convert.ToString(Result.Email)
+                    End If 
                 End If
             Catch ex As Exception
                 'ErrorLog.WriteErrorLog(ex)
                 Return ""
-            End Try  
+            End Try
         End Function
 #End Region
         Public Shared Sub insert(rpt As DataObjects.ReportSchedule)
