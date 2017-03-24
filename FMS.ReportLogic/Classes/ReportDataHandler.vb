@@ -8,8 +8,6 @@ Public Class ReportDataHandler
     Public Shared Function GetThisApplicationsDriverList() As List(Of FMS.Business.DataObjects.ApplicationDriver)
         Return FMS.Business.DataObjects.ApplicationDriver.GetAllDriversIncludingEveryone(ThisSession.ApplicationID)
     End Function
-
-
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -59,7 +57,6 @@ Public Class ReportDataHandler
         Return rept
 
     End Function
-
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT
     Public Shared Function GetDriverOperatingReportValues(startdate As Date _
                                                   , endDate As Date _

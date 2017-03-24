@@ -665,6 +665,13 @@
       <DependentUpon>test3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Test_Forms\TestEmail.aspx.designer.vb">
+      <DependentUpon>TestEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\TestEmail.aspx.vb">
+      <DependentUpon>TestEmail.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\TestRyan.aspx.designer.vb">
       <DependentUpon>TestRyan.aspx</DependentUpon>
     </Compile>
@@ -891,6 +898,7 @@
     <Content Include="Test_Forms\ReportScheduler_test.aspx" />
     <Content Include="Test_Forms\test2.aspx" />
     <Content Include="Test_Forms\test3.aspx" />
+    <Content Include="Test_Forms\TestEmail.aspx" />
     <Content Include="Test_Forms\TestRyan.aspx" />
     <Content Include="Test_Forms\test_Settings.aspx" />
     <Content Include="Test_Forms\TimeZoneTester.aspx" />
@@ -1021,6 +1029,10 @@
     <ProjectReference Include="..\FMS.ReportLogic\FMS.ReportLogic.vbproj">
       <Project>{07682610-d796-4b97-ac1b-9c03c1715944}</Project>
       <Name>FMS.ReportLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS.ReportService\FMS.ReportService.csproj">
+      <Project>{31c24d4c-059a-47a8-a570-2ea143952986}</Project>
+      <Name>FMS.ReportService</Name>
     </ProjectReference>
     <ProjectReference Include="..\FMS.ServiceAccess\FMS.ServiceAccess.vbproj">
       <Project>{d44020a7-8bd2-4ab3-925b-ff4a76ec620a}</Project>
