@@ -164,6 +164,59 @@ Namespace DataObjects
           
             Return objList
         End Function
+        Public Shared Function GetAllForApplication() As List(Of DataObjects.ReportSchedule)
+
+            Dim objList As New List(Of DataObjects.ReportSchedule)
+            Try
+
+                Dim objDict As Dictionary(Of String, Object) = New Dictionary(Of String, Object)
+
+                Dim rpt As New DataObjects.ReportSchedule
+
+                Dim objResult = (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _
+                            Order By x.DateCreated
+                            Select New DataObjects.ReportSchedule(x)).ToList()
+
+
+                If Not objList Is Nothing Then
+                    For Each item In objResult
+                        objList.Add(New ReportSchedule() With
+                                    {.ApplicationId = item.ApplicationId,
+                                     .ReportscheduleID = item.ReportscheduleID,
+                                     .ReportName = item.ReportName,
+                                     .ReportType = item.ReportType,
+                                     .ReportTypeSpecific = item.ReportTypeSpecific,
+                                     .Enabled = item.Enabled,
+                                     .DateCreated = item.DateCreated,
+                                     .Creator = item.Creator,
+                                     .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm", "", Convert.ToString(item.ReportName)),
+                                     .SubscriberID = item.SubscriberID,
+                                     .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType), ""),
+                                     .ScheduleDate = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleDate)),
+                                     .ScheduleTime = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleTime)),
+                                     .DayofWeek = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.DayofWeek)),
+                                     .DayofMonth = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.DayofMonth)),
+                                     .StartDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDate)),
+                                     .EndDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDate)),
+                                     .Vehicle = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Vehicle)),
+                                     .Driver = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Driver)),
+                                     .RecipientName = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientName)),
+                                     .NativeID = Convert.ToString(item.Recipients),
+                                     .Recipients = item.Recipients,
+                                     .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
+                                     .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific)),
+                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail))
+                                    })
+                    Next
+                End If
+            Catch ex As Exception
+                ' ErrorLog.WriteErrorLog(ex)
+            End Try
+
+            Return objList
+        End Function
+
+
         Public Shared Function GetRecipientsforApplication(appid As Guid, NativeId As Guid, attributeName As String) As String
             Try
                 Dim Result = (From x In SingletonAccess.FMSDataContextNew.usp_GetSubscribersForApplication(appid) _
