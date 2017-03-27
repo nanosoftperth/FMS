@@ -38,36 +38,76 @@ using FMS.ReportLogic;
         {
             //_timer.Stop();
             //Console.WriteLine("Stopping the service ...");
-        }
+        } 
 
         public void GetSchedule() 
         {
+            DateTime startDate = DateTime.Now;
+            DateTime endDate = DateTime.Now;
+            string VehicleName = string.Empty;
             try
             {
-                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
+                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();  
 
-                Guid appID = new Guid("176225F3-3AC6-404C-B191-0B4F69CC651A");
-
-                objScheduleList = ReportSchedule.GetAllForApplication(appID);
-
-          
-
-                string te = ThisSession.ApplicationID.ToString ();
+                objScheduleList = ReportSchedule.GetAllForApplication();                   
 
                 if (objScheduleList != null)
                 {
                     foreach (var Items in objScheduleList)
                     {
+                        // startDate 
+                        if (Convert.ToString(Items.StartDate) == "Now")
+                        {
+                            startDate = DateTime.Now;
+                        }
+                        else if (Convert.ToString(Items.StartDate) == "Beginning of Day")
+                        {
+                            startDate = ClsExtention.BeginingOftheDay(DateTime.Now);
+                        }
+                        else if (Convert.ToString(Items.StartDate) == "Beginning of Week")
+                        {
+                            startDate = ClsExtention.BeginingOfWeek(DateTime.Now, DayOfWeek.Monday);
+                        }
+                        else if (Convert.ToString(Items.StartDate) == "Beginning of Year")
+                        {
+                            startDate = ClsExtention.BeginingOfYear(DateTime.Now);
+                        }
+                        else if (Convert.ToString(Items.StartDate) == "Specific")
+                        {
+                            startDate = Convert.ToDateTime(Items.StartDateSpecific);
+                        }
+
+                        // endDate
+                        if (Convert.ToString(Items.EndDate) == "Now")
+                        {
+                            endDate  = DateTime.Now;
+                        }
+                        else if (Convert.ToString(Items.EndDate) == "Beginning of Day")
+                        {
+                            endDate = ClsExtention.BeginingOftheDay(DateTime.Now);
+                        }
+                        else if (Convert.ToString(Items.EndDate) == "Beginning of Week")
+                        {
+                            endDate = ClsExtention.BeginingOfWeek(DateTime.Now, DayOfWeek.Monday);
+                        }
+                        else if (Convert.ToString(Items.EndDate) == "Beginning of Year")
+                        {
+                            endDate = ClsExtention.BeginingOfYear(DateTime.Now);
+                        }
+                        else if (Convert.ToString(Items.EndDate) == "Specific")
+                        {
+                            endDate = Convert.ToDateTime(Items.StartDateSpecific);
+                        } 
+
+                        // End Block
+
                         if (Convert.ToString(Items.ReportName) ==  ReportNameList.VehicleReport) 
                         {
                             CachedVehicleReport rept = new CachedVehicleReport();
-
-
-
-                            rept = ReportDataHandler.GetVehicleReportValues(Convert.ToDateTime("3/1/2016"), Convert.ToDateTime("3/1/2016"), "Uniqco02");
-                        }
+                            rept = ReportDataHandler.GetVehicleReportValues(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
+                         }
                         else if (Convert.ToString(Items.ReportName) == ReportNameList.DriverOperatingHoursReport) 
-                        {
+                        {     
 
                         }
                         else if (Convert.ToString(Items.ReportName) == ReportNameList.ReportGeoFence_byDriver)
@@ -101,27 +141,28 @@ using FMS.ReportLogic;
 
                 mm.From = new MailAddress("no-reply@nanosoft.com.au");
                 mm.Subject = "Test Email"; //subject.Replace(Constants.vbNewLine, ". ");
-                mm.Body = "Body Content"; 
+                mm.Body = "Body Content";
 
-                mm.To.Add(new System.Net.Mail.MailAddress(ReceiverEmailID));
-                //Attachment data = new Attachment(
-                //         HttpContext.Current.Server.MapPath("~/Report_scheduler_requirements.docx"),
-                //         MediaTypeNames.Application.Octet);
-                //mm.Attachments.Add(data); 
+                if (!string.IsNullOrEmpty(ReceiverEmailID))
+                {
+                    mm.To.Add(new System.Net.Mail.MailAddress(ReceiverEmailID));
+                }
+                else
+                {
+                    mm.To.Add(new System.Net.Mail.MailAddress(ReceiverEmailID));
+                }
 
-                //string FileName = Path.GetFileName(fuAttachment.PostedFile.FileName);
+                //string AppLocation = "";
+                //AppLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+                //AppLocation = AppLocation.Replace("file:\\", "");
+                //string file = AppLocation + "\\email\\Report_scheduler_requirements.docx";
+      
 
-                //  string _FileName = HttpContext.Current.Server.MapPath("~/Report_scheduler_requirements.docx");
-
-                //string filePath = Path.Combine(HttpRuntime.AppDomainAppPath, "email/Report_scheduler_requirements.docx");
-
-
-                //mm.Attachments.Add(new Attachment(filePath, "Test"));
-
-                //foreach (string s in recipient.Split(";").ToList)
-                //{
-                //    mm.To.Add(new Net.Mail.MailAddress(s));
-                //}
+                System.Net.Mail.Attachment attachment;
+                attachment = new System.Net.Mail.Attachment(@"C:\\Users\aman\Desktop\Code\FMS\FMS.ReportService\email\Report_scheduler_requirements.docx"); //Attaching File to Mail  
+                mm.Attachments.Add(attachment); 
+                 
+               
 
                 mm.BodyEncoding = UTF8Encoding.UTF8;
                 mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure; 
