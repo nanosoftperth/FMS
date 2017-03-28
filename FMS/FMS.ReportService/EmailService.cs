@@ -11,7 +11,9 @@ using System.IO;
 using FMS.Business.DataObjects;
 using FMS.Business;
 using FMS.ReportLogic;
- 
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraReports.Parameters;
+
  namespace FMS.ReportService
 {
     public class EmailService : IService
@@ -104,8 +106,10 @@ using FMS.ReportLogic;
                         if (Convert.ToString(Items.ReportName) ==  ReportNameList.VehicleReport) 
                         {
                             CachedVehicleReport rept = new CachedVehicleReport();
-                            rept = ReportDataHandler.GetVehicleReportValues(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
+                           // rept = ReportDataHandler.GetVehicleReportValues(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
                              
+
+
                         }
                         else if (Convert.ToString(Items.ReportName) == ReportNameList.DriverOperatingHoursReport) 
                         {     
@@ -117,18 +121,31 @@ using FMS.ReportLogic;
                             rept = ReportDataHandler.GetGeoCacheReportByDrivers(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
                         }
                         // Check the email ID 
-                        sendEmail(Convert.ToString(Items.RecipientEmail), Convert.ToString(Items.RecipientName ), Convert.ToString (Items .ReportName));
+                        sendEmail(Convert.ToString(Items.RecipientEmail), Convert.ToString(Items.RecipientName ), Convert.ToString (Items .ReportName), Convert .ToString (Items .ApplicationId ));
                     }
                 }
             }
             catch (Exception ex) { throw ex; }
             finally { }         
         }
-        public bool sendEmail(string receiverEmailID, string receiverName, string  reportName)
+        public bool sendEmail(string receiverEmailID, string receiverName, string  reportName, string appID)
         {
             try
             {
                 ////Command line argument must the the SMTP host.
+                VehicleReport report = new VehicleReport();
+                report.Parameters[0].Value = "03/01/2016";
+                report.Parameters[1].Value = "03/30/2017";
+                report.Parameters[2].Value = "Uniqco02";
+                //report.Parameters[3].Value = new Guid(appID);
+
+                MemoryStream mem = new MemoryStream();
+                report.ExportToPdf(mem);
+
+                // Create a new attachment and put the PDF report into it.
+                mem.Seek(0, System.IO.SeekOrigin.Begin);
+                Attachment att = new Attachment(mem, "TestReport.pdf", "application/pdf");
+
                  var _with1 = new SmtpClient();
 
                 _with1.Port = 587;
@@ -141,7 +158,7 @@ using FMS.ReportLogic;
 
                 
                 MailMessage mm = new MailMessage();
-
+                mm.Attachments.Add(att);
                 mm.From = new MailAddress("no-reply@nanosoft.com.au");
                 mm.Subject = "Schedule Report"; //subject.Replace(Constants.vbNewLine, ". ");
                 mm.IsBodyHtml = true;

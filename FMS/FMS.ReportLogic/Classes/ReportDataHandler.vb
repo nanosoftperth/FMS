@@ -14,7 +14,7 @@ Public Class ReportDataHandler
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
     ''' </summary>
-    Public Shared Function GetVehicleReportValues(startdate As Date _
+    Public Shared Function GetVehicleReportValue(startdate As Date _
                                                   , endDate As Date _
                                                   , vehicleName As String) As CachedVehicleReport
 
@@ -51,7 +51,7 @@ Public Class ReportDataHandler
             rept.CalculateSummaries()
 
             ThisSession.CachedVehicleReports.Add(rept)
-             
+
 
         End If
 
@@ -62,11 +62,14 @@ Public Class ReportDataHandler
     End Function
     Public Shared Function GetVehicleReportValues(startdate As Date _
                                                     , endDate As Date _
-                                                    , vehicleName As String, appID As Guid) As CachedVehicleReport
+                                                    , vehicleName As String) As CachedVehicleReport
 
         startdate = startdate
         endDate = endDate.AddDays(1)
 
+
+        Dim appID As Guid
+        appID = New Guid("176225F3-3AC6-404C-B191-0B4F69CC651A")
 
         'get the vehicleid (guid)
         Dim vehicleID As Guid = _
@@ -100,12 +103,13 @@ Public Class ReportDataHandler
         End If
 
         'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
-        Dim xts As New XtraReport() 
+        Dim xts As New XtraReport()
 
 
-        Return rept 
+        Return rept
 
     End Function
+      
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
     Public Shared Function GetDriverOperatingReportValues(startdate As Date _
                                                   , endDate As Date _
