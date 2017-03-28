@@ -47,15 +47,15 @@ using FMS.ReportLogic;
             string VehicleName = string.Empty;
             try
             {
-                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();  
-
+                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>(); 
+ 
                 objScheduleList = ReportSchedule.GetAllForApplication();                   
 
                 if (objScheduleList != null)
                 {
                     foreach (var Items in objScheduleList)
                     {
-                        // startDate 
+                        //  to get the start date  
                         if (Convert.ToString(Items.StartDate) == "Now")
                         {
                             startDate = DateTime.Now;
@@ -77,7 +77,7 @@ using FMS.ReportLogic;
                             startDate = Convert.ToDateTime(Items.StartDateSpecific);
                         }
 
-                        // endDate
+                        //  to get the end date
                         if (Convert.ToString(Items.EndDate) == "Now")
                         {
                             endDate  = DateTime.Now;
@@ -96,37 +96,39 @@ using FMS.ReportLogic;
                         }
                         else if (Convert.ToString(Items.EndDate) == "Specific")
                         {
-                            endDate = Convert.ToDateTime(Items.StartDateSpecific);
+                            endDate = Convert.ToDateTime(Items.EndDateSpecific);
                         } 
-
                         // End Block
 
+                         
                         if (Convert.ToString(Items.ReportName) ==  ReportNameList.VehicleReport) 
                         {
                             CachedVehicleReport rept = new CachedVehicleReport();
                             rept = ReportDataHandler.GetVehicleReportValues(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
-                         }
+                             
+                        }
                         else if (Convert.ToString(Items.ReportName) == ReportNameList.DriverOperatingHoursReport) 
                         {     
 
                         }
                         else if (Convert.ToString(Items.ReportName) == ReportNameList.ReportGeoFence_byDriver)
                         {
-
+                            ClientSide_GeoFenceReport_ByDriver rept = new ClientSide_GeoFenceReport_ByDriver();
+                            rept = ReportDataHandler.GetGeoCacheReportByDrivers(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
                         }
                         // Check the email ID 
-                        sendEmail(Convert.ToString(Items.RecipientEmail));
+                        sendEmail(Convert.ToString(Items.RecipientEmail), Convert.ToString(Items.RecipientName ), Convert.ToString (Items .ReportName));
                     }
                 }
             }
             catch (Exception ex) { throw ex; }
             finally { }         
         }
-        public bool sendEmail(string ReceiverEmailID)
+        public bool sendEmail(string receiverEmailID, string receiverName, string  reportName)
         {
             try
             {
-                //Command line argument must the the SMTP host.
+                ////Command line argument must the the SMTP host.
                  var _with1 = new SmtpClient();
 
                 _with1.Port = 587;
@@ -137,21 +139,45 @@ using FMS.ReportLogic;
                 _with1.UseDefaultCredentials = false;
                 _with1.Credentials = new System.Net.NetworkCredential("no-reply@nanosoft.com.au", "notastrongpassword");
 
+                
                 MailMessage mm = new MailMessage();
 
                 mm.From = new MailAddress("no-reply@nanosoft.com.au");
-                mm.Subject = "Test Email"; //subject.Replace(Constants.vbNewLine, ". ");
-                mm.Body = "Body Content";
+                mm.Subject = "Schedule Report"; //subject.Replace(Constants.vbNewLine, ". ");
+                mm.IsBodyHtml = true;
 
-                if (!string.IsNullOrEmpty(ReceiverEmailID))
+                StringBuilder strContentBody = new StringBuilder();
+                strContentBody.Append("<table style ='width:100%'>");
+                strContentBody.Append("<tr>");
+                if (receiverName.Contains(":"))
                 {
-                    mm.To.Add(new System.Net.Mail.MailAddress(ReceiverEmailID));
+                    string[] strName = receiverName.Split(':');
+                    if (strName != null)
+                    {
+                        receiverName = strName[1];
+                    }
                 }
-                else
-                {
-                    mm.To.Add(new System.Net.Mail.MailAddress(ReceiverEmailID));
-                }
-
+                strContentBody.Append("<td>Dear,   " + receiverName + "</td><td></td>");
+                strContentBody.Append("</tr>");
+                strContentBody.Append("<tr>");
+                strContentBody.Append("<td>Please find attached the " + reportName  + " report generated on  "+  DateTime.Now.ToString ("dd/MMM/yyyy HH:mm:ss") +" </td><td></td>");
+                strContentBody.Append("</tr>");
+                strContentBody.Append("<tr>");
+                strContentBody.Append("<td>This was generated by the Nanosoft GPS report generator, if you would like to view more then please <a href ='http://demo.nanosoft.com.au/Home.aspx'>click here: </a></td><td></td>");
+                strContentBody.Append("</tr>");
+                strContentBody.Append("<tr>");
+                strContentBody.Append("<td></td><td></td>");
+                strContentBody.Append("</tr>");
+                strContentBody.Append("<tr>");
+                strContentBody.Append("<td>Thank you</td><td></td>");
+                strContentBody.Append("</tr>"); 
+                strContentBody.Append("</tr>");
+                strContentBody.Append("</table>"); 
+                mm.Body = Convert.ToString(strContentBody);
+                  
+                mm.To.Add(new System.Net.Mail.MailAddress(receiverEmailID));
+                
+                 
                 //string AppLocation = "";
                 //AppLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
                 //AppLocation = AppLocation.Replace("file:\\", "");
