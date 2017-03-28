@@ -1,5 +1,6 @@
 ﻿Imports FMS.Business
 Imports System.Web
+Imports DevExpress.XtraReports.UI
 
 Public Class ReportDataHandler
 
@@ -15,7 +16,7 @@ Public Class ReportDataHandler
     ''' </summary>
     Public Shared Function GetVehicleReportValues(startdate As Date _
                                                   , endDate As Date _
-                                                  , vehicleName As String) As CachedVehicleReport 
+                                                  , vehicleName As String) As CachedVehicleReport
 
         startdate = startdate
         endDate = endDate.AddDays(1)
@@ -50,6 +51,7 @@ Public Class ReportDataHandler
             rept.CalculateSummaries()
 
             ThisSession.CachedVehicleReports.Add(rept)
+             
 
         End If
 
@@ -98,8 +100,10 @@ Public Class ReportDataHandler
         End If
 
         'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        Dim xts As New XtraReport() 
 
-        Return rept
+
+        Return rept 
 
     End Function
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
@@ -152,7 +156,6 @@ Public Class ReportDataHandler
         Return rept
 
     End Function
-
     Public Shared Function GetGeoCacheReportByDriver(startDate As Date, endDate As Date, driverID As String) As ClientSide_GeoFenceReport_ByDriver
 
         Dim retobj As New ClientSide_GeoFenceReport_ByDriver
@@ -179,7 +182,6 @@ Public Class ReportDataHandler
         Return retobj
 
     End Function
-     
     Public Shared Function GetGeoCacheReportByDrivers(startDate As Date, endDate As Date, driverID As String, appID As Guid) As ClientSide_GeoFenceReport_ByDriver
 
         Dim retobj As New ClientSide_GeoFenceReport_ByDriver
@@ -196,7 +198,6 @@ Public Class ReportDataHandler
                                                                       AndAlso c.ApplicationDriverID.Value = New Guid(driverID)).ToList
         End If
 
-
         retobj.CalculateSummaryValues(startDate, endDate, driverID)
 
         'retobj.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
@@ -210,5 +211,4 @@ Public Class ReportDataHandler
     Public Sub New()
 
     End Sub
-
 End Class
