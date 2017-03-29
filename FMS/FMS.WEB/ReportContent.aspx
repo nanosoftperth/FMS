@@ -21,23 +21,17 @@
                 SettingsSplitter-SidePanePosition="Left"
                 StylesSplitter-SidePaneWidth="230px">
             </dx:ASPxDocumentViewer>
-        </div>
+        </div> 
 
-
-        <script type="text/javascript">
-
-
+        <script type="text/javascript">  
             function Reportcontent_ControlsInitialised() {
 
                 window.onload = window.onresize = function () {
 
                     var window_height = window.innerHeight; 
                     mainReport.SetHeight(window_height - 20);
-                }
-
-            }
-
-
+                } 
+            }  
         </script>
 
         <dx:ASPxGlobalEvents ID="ASPxGlobalEvents1" runat="server">

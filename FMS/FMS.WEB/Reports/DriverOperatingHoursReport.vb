@@ -114,6 +114,7 @@
         Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ifNoDataTheninvisible = New DevExpress.XtraReports.UI.FormattingRule()
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -178,7 +179,6 @@
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.ifNoDataTheninvisible = New DevExpress.XtraReports.UI.FormattingRule()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,6 +230,16 @@
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StyleName = "DataField"
         Me.XrTableCell10.Weight = 23.278111812845985R
+        '
+        'ifNoDataTheninvisible
+        '
+        Me.ifNoDataTheninvisible.Condition = "[ContainsData] == False"
+        Me.ifNoDataTheninvisible.DataMember = "LineValies"
+        '
+        '
+        '
+        Me.ifNoDataTheninvisible.Formatting.Visible = DevExpress.Utils.DefaultBoolean.[False]
+        Me.ifNoDataTheninvisible.Name = "ifNoDataTheninvisible"
         '
         'XrTableCell14
         '
@@ -289,6 +299,7 @@
         'PageHeaderBand1
         '
         Me.PageHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.PageHeaderBand1.Expanded = False
         Me.PageHeaderBand1.HeightF = 34.375!
         Me.PageHeaderBand1.Name = "PageHeaderBand1"
         '
@@ -819,6 +830,7 @@
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
         Me.DetailReport.DataMember = "LineValies"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
+        Me.DetailReport.Expanded = False
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
         '
@@ -843,16 +855,6 @@
         Parameter6.Type = GetType(DevExpress.DataAccess.Expression)
         Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter3]", GetType(String))
         Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter4, Parameter5, Parameter6})
-        '
-        'ifNoDataTheninvisible
-        '
-        Me.ifNoDataTheninvisible.Condition = "[ContainsData] == False"
-        Me.ifNoDataTheninvisible.DataMember = "LineValies"
-        '
-        '
-        '
-        Me.ifNoDataTheninvisible.Formatting.Visible = DevExpress.Utils.DefaultBoolean.[False]
-        Me.ifNoDataTheninvisible.Name = "ifNoDataTheninvisible"
         '
         'DriverOperatingHoursReport
         '

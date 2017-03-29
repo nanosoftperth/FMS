@@ -7,146 +7,167 @@ using System.Timers;
 using System.Net.Mail;
 using System.Web;
 using System.Net.Mime;
-using System.IO; 
+using System.IO;
 using FMS.Business.DataObjects;
 using FMS.Business;
 using FMS.ReportLogic;
-using DevExpress.XtraReports.UI;
-using DevExpress.XtraReports.Parameters;
+//using DevExpress.XtraReports.UI;
+//using DevExpress.XtraReports.Parameters;
+using System.Collections.Generic;
 
- namespace FMS.ReportService
+namespace FMS.ReportService
 {
     public class EmailService : IService
     {
         readonly Timer _timer;
-        public EmailService()
-        {    
 
+        public EmailService()
+        {
+
+            _timer = new Timer(10000) { AutoReset = true };
+            _timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
         } 
+
+        //public void Start()
+        //{     
+        //    try
+        //    {
+        //        GetSchedule();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string message = ex.Message;
+        //    } 
+        //    //_timer.Start();
+        //    //Console.WriteLine("Starting Service ...");
+        //} 
+
         public void Start()
-        {     
-            try
-            {
-                GetSchedule();
-            }
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-            } 
-            //_timer.Start();
-            //Console.WriteLine("Starting Service ...");
+        {
+            _timer.Start();
+            GetSchedule();
         }
         public void Stop()
         {
-            //_timer.Stop();
-            //Console.WriteLine("Stopping the service ...");
-        } 
+            _timer.Stop();
+        }
 
-        public void GetSchedule() 
+
+        public void GetSchedule()
         {
             DateTime startDate = DateTime.Now;
             DateTime endDate = DateTime.Now;
+
             string VehicleName = string.Empty;
             try
-            {
-                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>(); 
- 
-                objScheduleList = ReportSchedule.GetAllForApplication();                   
+            {    
+                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
+
+                objScheduleList = ReportSchedule.GetAllForApplication();
+                dynamic GenericObj = null;
 
                 if (objScheduleList != null)
                 {
-                    foreach (var Items in objScheduleList)
-                    {
+                    foreach (var Item in objScheduleList)
+                    { 
+                        #region Get Report Parameter
                         //  to get the start date  
-                        if (Convert.ToString(Items.StartDate) == "Now")
+                        if (Convert.ToString(Item.StartDate) == "Now")
                         {
                             startDate = DateTime.Now;
                         }
-                        else if (Convert.ToString(Items.StartDate) == "Beginning of Day")
+                        else if (Convert.ToString(Item.StartDate) == "Beginning of Day")
                         {
                             startDate = ClsExtention.BeginingOftheDay(DateTime.Now);
                         }
-                        else if (Convert.ToString(Items.StartDate) == "Beginning of Week")
+                        else if (Convert.ToString(Item.StartDate) == "Beginning of Week")
                         {
                             startDate = ClsExtention.BeginingOfWeek(DateTime.Now, DayOfWeek.Monday);
                         }
-                        else if (Convert.ToString(Items.StartDate) == "Beginning of Year")
+                        else if (Convert.ToString(Item.StartDate) == "Beginning of Year")
                         {
                             startDate = ClsExtention.BeginingOfYear(DateTime.Now);
                         }
-                        else if (Convert.ToString(Items.StartDate) == "Specific")
+                        else if (Convert.ToString(Item.StartDate) == "Specific")
                         {
-                            startDate = Convert.ToDateTime(Items.StartDateSpecific);
+                            startDate = Convert.ToDateTime(Item.StartDateSpecific);
                         }
 
                         //  to get the end date
-                        if (Convert.ToString(Items.EndDate) == "Now")
+                        if (Convert.ToString(Item.EndDate) == "Now")
                         {
-                            endDate  = DateTime.Now;
+                            endDate = DateTime.Now;
                         }
-                        else if (Convert.ToString(Items.EndDate) == "Beginning of Day")
+                        else if (Convert.ToString(Item.EndDate) == "Beginning of Day")
                         {
                             endDate = ClsExtention.BeginingOftheDay(DateTime.Now);
                         }
-                        else if (Convert.ToString(Items.EndDate) == "Beginning of Week")
+                        else if (Convert.ToString(Item.EndDate) == "Beginning of Week")
                         {
                             endDate = ClsExtention.BeginingOfWeek(DateTime.Now, DayOfWeek.Monday);
                         }
-                        else if (Convert.ToString(Items.EndDate) == "Beginning of Year")
+                        else if (Convert.ToString(Item.EndDate) == "Beginning of Year")
                         {
                             endDate = ClsExtention.BeginingOfYear(DateTime.Now);
                         }
-                        else if (Convert.ToString(Items.EndDate) == "Specific")
+                        else if (Convert.ToString(Item.EndDate) == "Specific")
                         {
-                            endDate = Convert.ToDateTime(Items.EndDateSpecific);
-                        } 
-                        // End Block
+                            endDate = Convert.ToDateTime(Item.EndDateSpecific);
+                        }
+                        #endregion 
+   
+                        #region
+                        string ParmType = string.Empty;
+                          switch (Convert.ToString(Item.ReportName))
+                          { 
+                              case ReportNameList.VehicleReport:
+                                  GenericObj = new VehicleReport();
+                                  ParmType = Convert.ToString(Item.Vehicle);
+                                  break;
 
+                              case ReportNameList.DriverOperatingHoursReport :
+                                  GenericObj = new DriverOperatingHoursReport();
+                                  ParmType = Convert.ToString(Item.Vehicle);
+                                  break;
+
+                              case ReportNameList.ReportGeoFence_byDriver:
+                                  GenericObj = new ReportGeoFence_byDriver();
+                                  ParmType = Convert.ToString(Item.Driver );
+                                  break;  
+                          } 
+                          MemoryStream mem = new MemoryStream();
+
+                          GenericObj.Parameters[0].Value = startDate;
+                          GenericObj.Parameters[1].Value = endDate;
+                          GenericObj.Parameters[2].Value = ParmType;
+                          GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
+                          GenericObj.ExportToPdf(mem); 
                          
-                        if (Convert.ToString(Items.ReportName) ==  ReportNameList.VehicleReport) 
-                        {
-                            CachedVehicleReport rept = new CachedVehicleReport();
-                           // rept = ReportDataHandler.GetVehicleReportValues(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
-                             
-
-
-                        }
-                        else if (Convert.ToString(Items.ReportName) == ReportNameList.DriverOperatingHoursReport) 
-                        {     
-
-                        }
-                        else if (Convert.ToString(Items.ReportName) == ReportNameList.ReportGeoFence_byDriver)
-                        {
-                            ClientSide_GeoFenceReport_ByDriver rept = new ClientSide_GeoFenceReport_ByDriver();
-                            rept = ReportDataHandler.GetGeoCacheReportByDrivers(Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), Convert.ToString(Items.Vehicle), new Guid(Convert.ToString(Items.ApplicationId)));
-                        }
-                        // Check the email ID 
-                        sendEmail(Convert.ToString(Items.RecipientEmail), Convert.ToString(Items.RecipientName ), Convert.ToString (Items .ReportName), Convert .ToString (Items .ApplicationId ));
+                          sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
+                        #endregion 
                     }
                 }
             }
             catch (Exception ex) { throw ex; }
-            finally { }         
+            finally { }
         }
-        public bool sendEmail(string receiverEmailID, string receiverName, string  reportName, string appID)
+        public static T Factory<T>() where T : new()
+        {
+            return new T();
+        }
+        public bool sendEmail(string ReceiverEmail, string ReceiverName, string ReportName, MemoryStream attachment)
         {
             try
             {
-                ////Command line argument must the the SMTP host.
-                VehicleReport report = new VehicleReport();
-                report.Parameters[0].Value = "03/01/2016";
-                report.Parameters[1].Value = "03/30/2017";
-                report.Parameters[2].Value = "Uniqco02";
-                //report.Parameters[3].Value = new Guid(appID);
+                
+                string pdfFileName = string.Empty; 
 
-                MemoryStream mem = new MemoryStream();
-                report.ExportToPdf(mem);
-
+                pdfFileName = ReportName + DateTime.Now.ToString("yyyyMMdd");
                 // Create a new attachment and put the PDF report into it.
-                mem.Seek(0, System.IO.SeekOrigin.Begin);
-                Attachment att = new Attachment(mem, "TestReport.pdf", "application/pdf");
+                attachment.Seek(0, System.IO.SeekOrigin.Begin);
+                Attachment att = new Attachment(attachment, pdfFileName, "application/pdf");
 
-                 var _with1 = new SmtpClient();
+                var _with1 = new SmtpClient();
 
                 _with1.Port = 587;
                 _with1.Host = "smtp.zoho.com";
@@ -156,7 +177,7 @@ using DevExpress.XtraReports.Parameters;
                 _with1.UseDefaultCredentials = false;
                 _with1.Credentials = new System.Net.NetworkCredential("no-reply@nanosoft.com.au", "notastrongpassword");
 
-                
+
                 MailMessage mm = new MailMessage();
                 mm.Attachments.Add(att);
                 mm.From = new MailAddress("no-reply@nanosoft.com.au");
@@ -164,20 +185,20 @@ using DevExpress.XtraReports.Parameters;
                 mm.IsBodyHtml = true;
 
                 StringBuilder strContentBody = new StringBuilder();
-                strContentBody.Append("<table style ='width:100%'>");
+                strContentBody.Append("<table style ='width:100%; cellspacing=10'>");
                 strContentBody.Append("<tr>");
-                if (receiverName.Contains(":"))
+                if (ReceiverName.Contains(":"))
                 {
-                    string[] strName = receiverName.Split(':');
+                    string[] strName = ReceiverName.Split(':');
                     if (strName != null)
                     {
-                        receiverName = strName[1];
+                        ReceiverName = strName[1];
                     }
                 }
-                strContentBody.Append("<td>Dear,   " + receiverName + "</td><td></td>");
+                strContentBody.Append("<td>Dear,   " + ReceiverName + "</td><td></td>");
                 strContentBody.Append("</tr>");
                 strContentBody.Append("<tr>");
-                strContentBody.Append("<td>Please find attached the " + reportName  + " report generated on  "+  DateTime.Now.ToString ("dd/MMM/yyyy HH:mm:ss") +" </td><td></td>");
+                strContentBody.Append("<td>Please find attached the " + ReportName + " report generated on  " + DateTime.Now.ToString("dd/MMM/yyyy HH:mm:ss") + " </td><td></td>");
                 strContentBody.Append("</tr>");
                 strContentBody.Append("<tr>");
                 strContentBody.Append("<td>This was generated by the Nanosoft GPS report generator, if you would like to view more then please <a href ='http://demo.nanosoft.com.au/Home.aspx'>click here: </a></td><td></td>");
@@ -187,35 +208,30 @@ using DevExpress.XtraReports.Parameters;
                 strContentBody.Append("</tr>");
                 strContentBody.Append("<tr>");
                 strContentBody.Append("<td>Thank you</td><td></td>");
-                strContentBody.Append("</tr>"); 
                 strContentBody.Append("</tr>");
-                strContentBody.Append("</table>"); 
+                strContentBody.Append("</tr>");
+                strContentBody.Append("</table>");
                 mm.Body = Convert.ToString(strContentBody);
-                  
-                mm.To.Add(new System.Net.Mail.MailAddress(receiverEmailID));
-                
-                 
-                //string AppLocation = "";
-                //AppLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-                //AppLocation = AppLocation.Replace("file:\\", "");
-                //string file = AppLocation + "\\email\\Report_scheduler_requirements.docx";
-      
+                mm.To.Add(new System.Net.Mail.MailAddress(ReceiverEmail));
 
-                System.Net.Mail.Attachment attachment;
-                attachment = new System.Net.Mail.Attachment(@"C:\\Users\aman\Desktop\Code\FMS\FMS.ReportService\email\Report_scheduler_requirements.docx"); //Attaching File to Mail  
-                mm.Attachments.Add(attachment); 
-                 
-               
 
                 mm.BodyEncoding = UTF8Encoding.UTF8;
-                mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure; 
-                _with1.Send(mm); 
+                mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+                _with1.Send(mm);
             }
             catch (Exception ex) { return false; }
-            finally { } 
-            return true; 
-        } 
+            finally { }
+            return true;
+        }
+         
     }
 
+    //public class EmailDetails
+    //{
+    //    public string ReceiverEmailID { get; set; }
+    //    public string ReceiverName { get; set; }
+    //    public string ReportName { get; set; }
+      
+    //}
 
 }

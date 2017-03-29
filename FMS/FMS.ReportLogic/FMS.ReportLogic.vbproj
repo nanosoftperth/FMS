@@ -135,6 +135,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reports\DriverOperatingHoursReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportGeoFence_byDriver.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\VehicleReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -146,6 +152,12 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriverOperatingHoursReport.resx">
+      <DependentUpon>DriverOperatingHoursReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportGeoFence_byDriver.resx">
+      <DependentUpon>ReportGeoFence_byDriver.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VehicleReport.resx">
       <DependentUpon>VehicleReport.vb</DependentUpon>

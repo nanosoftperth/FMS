@@ -91,9 +91,7 @@
                 Return New ReportGeoFence_byDriver
             Case Else
                 Return Nothing
-        End Select
-
-
+        End Select  
     End Function
 
 End Class

@@ -19,7 +19,7 @@ Public Class ReportScheduler
         End Get
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        
+        Dim str As String = Convert.ToString(ThisSession.ApplicationID)
     End Sub
     Private Sub dgvReports_CellEditorInitialize(sender As Object, e As DevExpress.Web.ASPxGridViewEditorEventArgs) Handles dgvReports.CellEditorInitialize
         'If e.Column.FieldName = "ScheduleDate" Then
