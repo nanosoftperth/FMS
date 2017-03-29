@@ -1,9 +1,7 @@
-﻿Public Class VehicleReport
+﻿Public Class DriverOperatingHoursReport
     Inherits DevExpress.XtraReports.UI.XtraReport
 
 #Region " Designer generated code "
-
-    Dim Parameter7 As Object
 
     Public Sub New()
         MyBase.New()
@@ -27,9 +25,7 @@
     Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents ObjectDataSource1 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
@@ -72,7 +68,7 @@
     Friend WithEvents XrTableCell36 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell37 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
-    Public WithEvents Parameter3 As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents Parameter3 As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents ObjectDataSource2 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
@@ -81,16 +77,19 @@
     Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Public WithEvents ArrivalCell As DevExpress.XtraReports.UI.XRTableCell
+    Public WithEvents DepartureCell As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
-    Friend WithEvents parameter4 As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents ifNoDataTheninvisible As DevExpress.XtraReports.UI.FormattingRule
+    Friend WithEvents Parameter4 As DevExpress.XtraReports.Parameters.Parameter
 
     'Required by the Designer
     Private components As System.ComponentModel.IContainer
@@ -102,7 +101,7 @@
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VehicleReport))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DriverOperatingHoursReport))
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
@@ -117,11 +116,12 @@
         Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ifNoDataTheninvisible = New DevExpress.XtraReports.UI.FormattingRule()
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageHeaderBand1 = New DevExpress.XtraReports.UI.PageHeaderBand()
@@ -129,11 +129,11 @@
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ArrivalCell = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.DepartureCell = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -181,7 +181,7 @@
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.parameter4 = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.Parameter4 = New DevExpress.XtraReports.Parameters.Parameter()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,7 +197,6 @@
         '
         'Detail
         '
-        Me.Detail.Expanded = False
         Me.Detail.HeightF = 0.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -205,76 +204,86 @@
         '
         'XrTable2
         '
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(3.000132!, 10.00001!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(711.9999!, 63.62496!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(714.9999!, 28.20829!)
         Me.XrTable2.StylePriority.UseTextAlignment = False
         Me.XrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrTableRow4
         '
-        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell8, Me.XrTableCell10, Me.XrTableCell12, Me.XrTableCell14, Me.XrTableCell16, Me.XrTableCell18, Me.XrTableCell20})
+        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell8, Me.XrTableCell10, Me.XrTableCell14, Me.XrTableCell18, Me.XrTableCell13, Me.XrTableCell20, Me.XrTableCell16})
         Me.XrTableRow4.Name = "XrTableRow4"
         Me.XrTableRow4.Weight = 1.0R
         '
         'XrTableCell8
         '
         Me.XrTableCell8.CanGrow = False
-        Me.XrTableCell8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.formatted_StartTime")})
+        Me.XrTableCell8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.DayDate", "{0:dd/MM/yyyy}")})
         Me.XrTableCell8.Name = "XrTableCell8"
         Me.XrTableCell8.StyleName = "DataField"
-        Me.XrTableCell8.Weight = 18.371321434200759R
+        Me.XrTableCell8.Weight = 17.853417099743695R
         '
         'XrTableCell10
         '
         Me.XrTableCell10.CanGrow = False
-        Me.XrTableCell10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.DistanceKMs", "{0:#.00}")})
+        Me.XrTableCell10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.LeftHomeDate", "{0:hh:mm tt}")})
+        Me.XrTableCell10.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StyleName = "DataField"
-        Me.XrTableCell10.Weight = 12.797547430211361R
+        Me.XrTableCell10.Weight = 23.278111812845985R
         '
-        'XrTableCell12
+        'ifNoDataTheninvisible
         '
-        Me.XrTableCell12.CanGrow = False
-        Me.XrTableCell12.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.StopLocation")})
-        Me.XrTableCell12.KeepTogether = True
-        Me.XrTableCell12.Multiline = True
-        Me.XrTableCell12.Name = "XrTableCell12"
-        Me.XrTableCell12.StyleName = "DataField"
-        Me.XrTableCell12.Weight = 34.559021929437264R
+        Me.ifNoDataTheninvisible.Condition = "[ContainsData] == False"
+        Me.ifNoDataTheninvisible.DataMember = "LineValies"
+        '
+        '
+        '
+        Me.ifNoDataTheninvisible.Formatting.Visible = DevExpress.Utils.DefaultBoolean.[False]
+        Me.ifNoDataTheninvisible.Name = "ifNoDataTheninvisible"
         '
         'XrTableCell14
         '
         Me.XrTableCell14.CanGrow = False
-        Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.formatted_ArrivalTime")})
+        Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.HQArrival", "{0:hh:mm tt}")})
+        Me.XrTableCell14.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell14.Name = "XrTableCell14"
         Me.XrTableCell14.StyleName = "DataField"
-        Me.XrTableCell14.Weight = 18.317054664371369R
-        '
-        'XrTableCell16
-        '
-        Me.XrTableCell16.CanGrow = False
-        Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.formatted_IdleDuration")})
-        Me.XrTableCell16.Name = "XrTableCell16"
-        Me.XrTableCell16.StyleName = "DataField"
-        Me.XrTableCell16.Weight = 18.136960668647546R
+        Me.XrTableCell14.Weight = 19.261013100151914R
         '
         'XrTableCell18
         '
         Me.XrTableCell18.CanGrow = False
-        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.formatted_StopDuation")})
+        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.HQLeave", "{0:hh:mm tt}")})
+        Me.XrTableCell18.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell18.Name = "XrTableCell18"
         Me.XrTableCell18.StyleName = "DataField"
-        Me.XrTableCell18.Weight = 18.136991097764383R
+        Me.XrTableCell18.Weight = 22.085472401000661R
+        '
+        'XrTableCell13
+        '
+        Me.XrTableCell13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.StopTime")})
+        Me.XrTableCell13.FormattingRules.Add(Me.ifNoDataTheninvisible)
+        Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.Weight = 15.550470054675696R
         '
         'XrTableCell20
         '
         Me.XrTableCell20.CanGrow = False
-        Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.formatted_DpartureTime")})
+        Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.ArriveHome", "{0:hh:mm tt}")})
+        Me.XrTableCell20.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell20.Name = "XrTableCell20"
         Me.XrTableCell20.StyleName = "DataField"
-        Me.XrTableCell20.Weight = 20.963343320357154R
+        Me.XrTableCell20.Weight = 20.682513653644868R
+        '
+        'XrTableCell16
+        '
+        Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.TotalHours", "{0}")})
+        Me.XrTableCell16.FormattingRules.Add(Me.ifNoDataTheninvisible)
+        Me.XrTableCell16.Name = "XrTableCell16"
+        Me.XrTableCell16.Weight = 23.166572789307224R
         '
         'TopMargin
         '
@@ -293,7 +302,8 @@
         'PageHeaderBand1
         '
         Me.PageHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-        Me.PageHeaderBand1.HeightF = 25.0!
+        Me.PageHeaderBand1.Expanded = False
+        Me.PageHeaderBand1.HeightF = 34.375!
         Me.PageHeaderBand1.Name = "PageHeaderBand1"
         '
         'XrTable1
@@ -306,7 +316,7 @@
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(715.0!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(715.0001!, 25.0!)
         Me.XrTable1.StylePriority.UseBackColor = False
         Me.XrTable1.StylePriority.UseBorderColor = False
         Me.XrTable1.StylePriority.UseBorders = False
@@ -317,51 +327,51 @@
         '
         'XrTableRow3
         '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.XrTableCell9, Me.XrTableCell11, Me.XrTableCell13, Me.XrTableCell15, Me.XrTableCell17, Me.XrTableCell19})
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.XrTableCell9, Me.ArrivalCell, Me.DepartureCell, Me.XrTableCell11, Me.XrTableCell15, Me.XrTableCell12})
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.Weight = 1.0R
         '
         'XrTableCell7
         '
         Me.XrTableCell7.Name = "XrTableCell7"
-        Me.XrTableCell7.Text = "Start Time"
+        Me.XrTableCell7.Text = "Date"
         Me.XrTableCell7.Weight = 0.43809151875107821R
         '
         'XrTableCell9
         '
         Me.XrTableCell9.Name = "XrTableCell9"
-        Me.XrTableCell9.Text = "Distance"
-        Me.XrTableCell9.Weight = 0.30517651530846446R
+        Me.XrTableCell9.Text = "Home/Start"
+        Me.XrTableCell9.Weight = 0.552771923094167R
+        '
+        'ArrivalCell
+        '
+        Me.ArrivalCell.Name = "ArrivalCell"
+        Me.ArrivalCell.Text = "H.Q. Arrival"
+        Me.ArrivalCell.Weight = 0.45738023607038614R
+        '
+        'DepartureCell
+        '
+        Me.DepartureCell.Name = "DepartureCell"
+        Me.DepartureCell.Text = "H.Q. Departure"
+        Me.DepartureCell.Weight = 0.51031422409814287R
         '
         'XrTableCell11
         '
         Me.XrTableCell11.Name = "XrTableCell11"
-        Me.XrTableCell11.Text = "Stop Location"
-        Me.XrTableCell11.Weight = 0.82411143459210767R
-        '
-        'XrTableCell13
-        '
-        Me.XrTableCell13.Name = "XrTableCell13"
-        Me.XrTableCell13.Text = "Arrival Time"
-        Me.XrTableCell13.Weight = 0.4367971707761989R
+        Me.XrTableCell11.Text = "Stop Time"
+        Me.XrTableCell11.Weight = 0.36926826876186203R
         '
         'XrTableCell15
         '
         Me.XrTableCell15.Name = "XrTableCell15"
-        Me.XrTableCell15.Text = "Idle Duration"
-        Me.XrTableCell15.Weight = 0.4325031395967408R
+        Me.XrTableCell15.Text = "Home/End"
+        Me.XrTableCell15.Weight = 0.49113559568939169R
         '
-        'XrTableCell17
+        'XrTableCell12
         '
-        Me.XrTableCell17.Name = "XrTableCell17"
-        Me.XrTableCell17.Text = "Stop Duration"
-        Me.XrTableCell17.Weight = 0.4325031395967408R
-        '
-        'XrTableCell19
-        '
-        Me.XrTableCell19.Name = "XrTableCell19"
-        Me.XrTableCell19.Text = "Departure Time"
-        Me.XrTableCell19.Weight = 0.49990242340950397R
+        Me.XrTableCell12.Name = "XrTableCell12"
+        Me.XrTableCell12.Text = "Total Hrs"
+        Me.XrTableCell12.Weight = 0.55012369109113268R
         '
         'XrTableRow1
         '
@@ -414,7 +424,6 @@
         'PageFooterBand1
         '
         Me.PageFooterBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1, Me.XrPageInfo2})
-        Me.PageFooterBand1.Expanded = False
         Me.PageFooterBand1.HeightF = 29.0!
         Me.PageFooterBand1.Name = "PageFooterBand1"
         '
@@ -475,14 +484,16 @@
         '
         'XrLabel13
         '
+        Me.XrLabel13.Font = New System.Drawing.Font("Arial", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel13.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 10.00001!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(9.99999!, 20.41667!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel13.SizeF = New System.Drawing.SizeF(263.0!, 43.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(536.9583!, 43.0!)
         Me.XrLabel13.StyleName = "Title"
+        Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseForeColor = False
-        Me.XrLabel13.Text = "Vehicle Report"
+        Me.XrLabel13.Text = "Driver Operating Hours Report"
         '
         'XrLabel16
         '
@@ -499,9 +510,9 @@
         Me.Parameter3.Description = "Vehicle"
         DynamicListLookUpSettings1.DataAdapter = Nothing
         DynamicListLookUpSettings1.DataMember = Nothing
-        DynamicListLookUpSettings1.DataSource = Nothing
-        DynamicListLookUpSettings1.DisplayMember = Nothing
-        DynamicListLookUpSettings1.ValueMember = Nothing
+        DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource2
+        DynamicListLookUpSettings1.DisplayMember = "Name"
+        DynamicListLookUpSettings1.ValueMember = "Name"
         Me.Parameter3.LookUpSettings = DynamicListLookUpSettings1
         Me.Parameter3.Name = "Parameter3"
         '
@@ -521,7 +532,7 @@
         Me.XrPictureBox2.Image = CType(resources.GetObject("XrPictureBox2.Image"), System.Drawing.Image)
         Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(566.5201!, 0.00001589457!)
         Me.XrPictureBox2.Name = "XrPictureBox2"
-        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(151.4799!, 115.8275!)
+        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(151.4799!, 103.2083!)
         Me.XrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
         '
         'XrTable3
@@ -820,19 +831,21 @@
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
+        Me.DetailReport.DataMember = "LineValies"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
+        Me.DetailReport.Expanded = False
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
         '
         'Detail1
         '
         Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
-        Me.Detail1.HeightF = 73.62497!
+        Me.Detail1.HeightF = 28.20829!
         Me.Detail1.Name = "Detail1"
         '
         'ObjectDataSource1
         '
-        Me.ObjectDataSource1.DataMember = "GetVehicleReportValues"
+        Me.ObjectDataSource1.DataMember = "GetDriverOperatingReportValue"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         Parameter5.Name = "startdate"
@@ -840,27 +853,27 @@
         Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter1]", GetType(Date))
         Parameter6.Name = "endDate"
         Parameter6.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter2]", GetType(Date))
+        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter2]", GetType(Date)) 
         Parameter7.Name = "vehicleName"
         Parameter7.Type = GetType(DevExpress.DataAccess.Expression)
         Parameter7.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter3]", GetType(String))
         Parameter8.Name = "appID"
         Parameter8.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter4]", GetType(String))
+        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter4]", GetType(String))
         Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter5, Parameter6, Parameter7, Parameter8})
         '
-        'parameter4
+        'Parameter4
         '
-        Me.parameter4.Description = "appID"
-        Me.parameter4.Name = "parameter4"
+        Me.Parameter4.Name = "Parameter4"
         '
-        'VehicleReport
+        'DriverOperatingHoursReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeaderBand1, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
         Me.DataSource = Me.ObjectDataSource1
+        Me.FormattingRuleSheet.AddRange(New DevExpress.XtraReports.UI.FormattingRule() {Me.ifNoDataTheninvisible})
         Me.Margins = New System.Drawing.Printing.Margins(57, 75, 32, 100)
-        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.parameter1, Me.parameter2, Me.Parameter3, Me.parameter4})
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.parameter1, Me.parameter2, Me.Parameter3, Me.Parameter4})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
@@ -878,4 +891,7 @@
 
 #End Region
 
+    Private Sub XrTableCell10_BeforePrint(sender As Object, e As Drawing.Printing.PrintEventArgs) Handles XrTableCell10.BeforePrint
+
+    End Sub
 End Class

@@ -93,7 +93,7 @@
 
                                 </td>
                             </tr>
-                        </table>
+                        </table> 
 
                         <iframe id="frmContent" src="" style="width: 100%; bottom: 10px; border: none; overflow-y: visible;" class="row"></iframe>
                     </dx:ContentControl>
@@ -119,12 +119,9 @@
                                                         <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appplicationID"></asp:SessionParameter>
                                                     </SelectParameters>
                                                 </asp:ObjectDataSource>
-                                            </td>
-
-
+                                            </td>  
                                         </tr>
-                                        <tr>
-
+                                        <tr> 
                                             <td class="paddedcell">
                                                 <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Time From:"></dx:ASPxLabel>
                                             </td>

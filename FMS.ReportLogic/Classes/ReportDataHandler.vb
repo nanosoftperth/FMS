@@ -1,6 +1,8 @@
 ﻿Imports FMS.Business
+Imports FMS.Business.DataObjects
 Imports System.Web
 Imports DevExpress.XtraReports.UI
+
 
 Public Class ReportDataHandler
 
@@ -62,18 +64,18 @@ Public Class ReportDataHandler
     End Function
     Public Shared Function GetVehicleReportValues(startdate As Date _
                                                     , endDate As Date _
-                                                    , vehicleName As String) As CachedVehicleReport
+                                                    , vehicleName As String, appID As String) As CachedVehicleReport
 
         startdate = startdate
         endDate = endDate.AddDays(1)
 
 
-        Dim appID As Guid
-        appID = New Guid("176225F3-3AC6-404C-B191-0B4F69CC651A")
+        'Dim appID As Guid
+        'appID = New Guid("176225F3-3AC6-404C-B191-0B4F69CC651A")
 
         'get the vehicleid (guid)
         Dim vehicleID As Guid = _
-            FMS.Business.DataObjects.ApplicationVehicle.GetAll(appID) _
+            FMS.Business.DataObjects.ApplicationVehicle.GetAll(New Guid(appID)) _
                     .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
 
@@ -96,18 +98,13 @@ Public Class ReportDataHandler
                                                     , .EndDate = endDate _
                                                     , .LineValies = vehicleReportLines})
 
-            rept.CalculateSummaries()
-
+            rept.CalculateSummaries() 
             'ThisSession.CachedVehicleReports.Add(rept)
 
         End If
 
-        'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
-        Dim xts As New XtraReport()
-
-
-        Return rept
-
+        'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary 
+        Return rept 
     End Function
       
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
@@ -125,7 +122,7 @@ Public Class ReportDataHandler
                     .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
 
-        'Find out if the report is alreaedy in the cache
+        'Find out if the report is alreaedy in the cache 
         Dim rept As CachedDriverOperatingHoursReport = (From x In ThisSession.CachedDriveroperatingHoursReports _
                                                             Where x.EndDate = endDate _
                                                             AndAlso x.StartDate = startdate _
@@ -212,6 +209,89 @@ Public Class ReportDataHandler
 
     End Function
 
+    ' functions for emailing based on schedule 
+    Public Shared Function GetDriverOperatingReportValue(startdate As Date _
+                                                , endDate As Date _
+                                                , vehicleName As String, appID As String) As CachedDriverOperatingHoursReport
+
+        startdate = startdate
+        endDate = endDate.AddDays(1)
+
+        'get the vehicleid (guid)
+        Dim vehicleID As Guid = _
+            FMS.Business.DataObjects.ApplicationVehicle.GetAll(New Guid(appID)) _
+                    .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
+
+
+        'Find out if the report is alreaedy in the cache
+        Dim rept As CachedDriverOperatingHoursReport
+        'Dim rept As CachedDriverOperatingHoursReport = (From x In ThisSession.CachedDriveroperatingHoursReports _
+        '                                                    Where x.EndDate = endDate _
+        '                                                    AndAlso x.StartDate = startdate _
+        '                                                    AndAlso x.VehicleID = vehicleID).SingleOrDefault
+
+        Dim GET_CAHCHED_REPORT As Boolean = True
+
+        'MAKE the report and add it to the cache if it doesnt exist
+        If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
+
+            Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours = _
+                    FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID)
+
+
+            rept = (New CachedDriverOperatingHoursReport With {.VehicleID = vehicleID _
+                                                    , .StartDate = startdate _
+                                                    , .EndDate = endDate _
+                                                    , .LineValies = driverOperatingReport.LineValues _
+                                                    , .VehicleActivityReportLines = driverOperatingReport.VehicleActivityReportLines
+                                                    })
+
+            'compute the summaries
+            rept.CalculateSummaries()
+
+            'put in session
+            'ThisSession.CachedDriveroperatingHoursReports.Add(rept)
+
+        End If
+
+        'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+
+        Return rept
+
+    End Function
+    Public Shared Function GetGeoCacheReportByDriverforEmail(startDate As Date, endDate As Date, driverID As String, appID As String) As ClientSide_GeoFenceReport_ByDriver
+
+        Dim retobj As New ClientSide_GeoFenceReport_ByDriver
+
+        startDate = startDate.timezoneToClient
+        endDate = endDate.timezoneToClient.AddDays(1)
+         
+        Dim driveID As String = FMS.Business.DataObjects.ApplicationDriver.GetDriverID(driverID)
+         
+         
+        If Not String.IsNullOrEmpty(driveID) Then
+            retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple. _
+                                            GetReport(New Guid(appID), startDate, endDate)
+
+            If FMS.Business.DataObjects.ApplicationDriver.DriverREpresentingEveryone.ApplicationDriverID <> New Guid(driveID) Then
+
+                retobj.ReportLines = retobj.ReportLines.Where(Function(c) c.ApplicationDriverID.HasValue _
+                                                                          AndAlso c.ApplicationDriverID.Value = New Guid(driveID)).ToList
+            End If
+
+
+            retobj.CalculateSummaryValues(startDate, endDate, driveID)
+
+            'retobj.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+
+            'TimeZoneHelper.AltertoHQTimeZone(retobj) 'should no longer be required
+        End If
+
+
+        Return retobj
+
+    End Function
+    
     Public Sub New()
 
     End Sub

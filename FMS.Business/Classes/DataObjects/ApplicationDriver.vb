@@ -206,8 +206,18 @@
                         Where(Function(y) y.ApplicationDriverID = applicationdriverid).Select(Function(x) _
                                                             New DataObjects.ApplicationDriver(x)).SingleOrDefault
         End Function
+        Public Shared Function GetDriverID(driverName As String) As String
+            Dim retobj = SingletonAccess.FMSDataContextNew.ApplicationDrivers. _
+                            Where(Function(y) y.FirstName.StartsWith(driverName)).Select(Function(x) _
+                                                                New DataObjects.ApplicationDriver(x) _
+                                                                ).FirstOrDefault
 
-
+            If Not retobj Is Nothing Then
+                Return Convert.ToString(retobj.ApplicationDriverID)
+            Else
+                Return ""
+            End If
+        End Function
 #End Region
 
     End Class

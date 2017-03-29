@@ -14,8 +14,7 @@
         .clsEditForm {
             width: 100%;
         }
-
-            .clsEditForm tr td {
+        .clsEditForm tr td {
               padding-top:5px;
               padding-left:5px;
             }
