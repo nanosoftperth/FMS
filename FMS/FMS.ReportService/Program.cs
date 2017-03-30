@@ -22,9 +22,9 @@ namespace FMS.ReportService
                 });
                 x.RunAsLocalSystem();
 
-                x.SetDescription("Sample Topshelf Host");
-                x.SetDisplayName("Stuff");
-                x.SetServiceName("Stuff");
+                x.SetDescription("FMSReportService for Email Scheduler");
+                x.SetDisplayName("FMSReportService");
+                x.SetServiceName("FMSReportService");
             });
         }
     }
