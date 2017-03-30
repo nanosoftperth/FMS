@@ -207,8 +207,11 @@
                                                             New DataObjects.ApplicationDriver(x)).SingleOrDefault
         End Function
         Public Shared Function GetDriverID(driverName As String) As String
+
+            Dim strFirstName As String() = driverName.Split(New Char(-1) {}) 
+
             Dim retobj = SingletonAccess.FMSDataContextNew.ApplicationDrivers. _
-                            Where(Function(y) y.FirstName.StartsWith(driverName)).Select(Function(x) _
+                            Where(Function(y) y.FirstName = Convert.ToString(strFirstName(0))).Select(Function(x) _
                                                                 New DataObjects.ApplicationDriver(x) _
                                                                 ).FirstOrDefault
 

@@ -13,14 +13,15 @@ using FMS.Business;
 using FMS.ReportLogic;
 //using DevExpress.XtraReports.UI;
 //using DevExpress.XtraReports.Parameters;
-using System.Collections.Generic;
+using NLog;
+using NLog.Fluent; 
 
 namespace FMS.ReportService
 {
     public class EmailService : IService
     {
         readonly Timer _timer;
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public EmailService()
         {
 
@@ -44,21 +45,22 @@ namespace FMS.ReportService
 
         public void Start()
         {
-            _timer.Start();
             GetSchedule();
+            _timer.Start();
+            Start();           
         }
         public void Stop()
         {
             _timer.Stop();
         }
-
-
+         
         public void GetSchedule()
-        {
+        {  
             DateTime startDate = DateTime.Now;
-            DateTime endDate = DateTime.Now;
-
+            DateTime endDate = DateTime.Now; 
             string VehicleName = string.Empty;
+
+            bool IsEmail = false;
             try
             {    
                 List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
@@ -69,7 +71,8 @@ namespace FMS.ReportService
                 if (objScheduleList != null)
                 {
                     foreach (var Item in objScheduleList)
-                    { 
+                    {
+                        logger.Info("Getting Report for " + Item .RecipientName  + " "); 
                         #region Get Report Parameter
                         //  to get the start date  
                         if (Convert.ToString(Item.StartDate) == "Now")
@@ -137,13 +140,44 @@ namespace FMS.ReportService
                           } 
                           MemoryStream mem = new MemoryStream();
 
-                          GenericObj.Parameters[0].Value = startDate;
-                          GenericObj.Parameters[1].Value = endDate;
-                          GenericObj.Parameters[2].Value = ParmType;
-                          GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
-                          GenericObj.ExportToPdf(mem); 
-                         
-                          sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
+
+                          //Region to check the Schedule  
+                         #region
+                         if(Convert.ToString (Item.ReportType) == Utility.OneOff)
+                         {
+                             if (DateTime.Now != Convert.ToDateTime(Item.ScheduleDate))
+                             {
+                                 
+                             } 
+                         }
+                         else if (Convert.ToString(Item.ReportType) == Utility.Daily)
+                         {
+                             if (DateTime.Now.ToString("HH:mm") == Convert.ToDateTime(Item.ScheduleTime).ToString("HH:mm")) 
+                             {
+                                 IsEmail = true;
+                             } 
+                         }
+                         else if (Convert.ToString(Item.ReportType) == Utility.Weekly)
+                         {
+
+                         }
+                         else if (Convert.ToString(Item.ReportType) == Utility.Monthly)
+                         {
+
+                         }
+
+                         #endregion
+
+                         if (IsEmail) 
+                         { 
+                           GenericObj.Parameters[0].Value = startDate;
+                           GenericObj.Parameters[1].Value = endDate;
+                           GenericObj.Parameters[2].Value = ParmType;
+                           GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
+                           GenericObj.ExportToPdf(mem); 
+                           
+                           sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
+                         }
                         #endregion 
                     }
                 }
@@ -218,20 +252,14 @@ namespace FMS.ReportService
                 mm.BodyEncoding = UTF8Encoding.UTF8;
                 mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
                 _with1.Send(mm);
+                logger.Info("Email has been send successfully to " + ReceiverEmail + " ");
             }
             catch (Exception ex) { return false; }
             finally { }
             return true;
         }
-         
-    }
 
-    //public class EmailDetails
-    //{
-    //    public string ReceiverEmailID { get; set; }
-    //    public string ReceiverName { get; set; }
-    //    public string ReportName { get; set; }
-      
-    //}
+ 
+    } 
 
 }
