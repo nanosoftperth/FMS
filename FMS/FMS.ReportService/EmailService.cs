@@ -14,45 +14,35 @@ using FMS.ReportLogic;
 //using DevExpress.XtraReports.UI;
 //using DevExpress.XtraReports.Parameters;
 using NLog;
-using NLog.Fluent; 
+using NLog.Fluent;
+using System.Globalization;
+using System.Configuration;
+ 
 
 namespace FMS.ReportService
 {
     public class EmailService : IService
     {
-        readonly Timer _timer;
+        readonly System.Timers.Timer _timer;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public EmailService()
         {
-
-            _timer = new Timer(10000) { AutoReset = true };
+            int miliSecond = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
+            _timer = new Timer(miliSecond) { AutoReset = true };
             _timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
-        } 
-
-        //public void Start()
-        //{     
-        //    try
-        //    {
-        //        GetSchedule();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string message = ex.Message;
-        //    } 
-        //    //_timer.Start();
-        //    //Console.WriteLine("Starting Service ...");
-        //} 
+        }
 
         public void Start()
         {
             GetSchedule();
             _timer.Start();
-            Start();           
+            Start();
         }
         public void Stop()
         {
             _timer.Stop();
         }
+         
          
         public void GetSchedule()
         {  
@@ -85,7 +75,7 @@ namespace FMS.ReportService
                         }
                         else if (Convert.ToString(Item.StartDate) == "Beginning of Week")
                         {
-                            startDate = ClsExtention.BeginingOfWeek(DateTime.Now, DayOfWeek.Monday);
+                            startDate = ClsExtention.BeginingOfWeek(DateTime.Now, DateTime.Now.DayOfWeek);
                         }
                         else if (Convert.ToString(Item.StartDate) == "Beginning of Year")
                         {
@@ -119,8 +109,9 @@ namespace FMS.ReportService
                         }
                         #endregion 
    
-                        #region
-                        string ParmType = string.Empty;
+                        
+                        #region to create the instance of report
+                          string ParmType = string.Empty; 
                           switch (Convert.ToString(Item.ReportName))
                           { 
                               case ReportNameList.VehicleReport:
@@ -136,40 +127,65 @@ namespace FMS.ReportService
                               case ReportNameList.ReportGeoFence_byDriver:
                                   GenericObj = new ReportGeoFence_byDriver();
                                   ParmType = Convert.ToString(Item.Driver );
-                                  break;  
-                          } 
-                          MemoryStream mem = new MemoryStream();
+                                  break;
+                          }
+                         #endregion                        
+                        MemoryStream mem = new MemoryStream();
 
-
-                          //Region to check the Schedule  
-                         #region
-                         if(Convert.ToString (Item.ReportType) == Utility.OneOff)
+                       
+                       
+                        #region Region to check the Schedule
+                          if (Convert.ToString (Item.ReportType) == Utility.OneOff)
                          {
-                             if (DateTime.Now != Convert.ToDateTime(Item.ScheduleDate))
+                             if (IsOneOffSendEmail(Convert.ToDateTime(Item.ScheduleDate)))
                              {
-                                 
-                             } 
+                                 IsEmail = true;
+                             }
+                             else { IsEmail = false; }  
                          }
                          else if (Convert.ToString(Item.ReportType) == Utility.Daily)
                          {
-                             if (DateTime.Now.ToString("HH:mm") == Convert.ToDateTime(Item.ScheduleTime).ToString("HH:mm")) 
+                             if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
                              {
                                  IsEmail = true;
+                             }
+                             else
+                             {
+                                 IsEmail = false;
                              } 
                          }
                          else if (Convert.ToString(Item.ReportType) == Utility.Weekly)
                          {
-
+                             if (Convert.ToString(DateTime.Now.DayOfWeek) == Convert.ToString(Item.DayofWeek))
+                             { 
+                                 if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                                 {
+                                     IsEmail = true;
+                                 }
+                                 else
+                                 {
+                                     IsEmail = false;
+                                 } 
+                             }
                          }
                          else if (Convert.ToString(Item.ReportType) == Utility.Monthly)
                          {
+                             if (System.DateTime.Now.ToString("dd") == Convert.ToString(Item.DayofMonth))
+                             {
+                                 if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                                 {
+                                     IsEmail = true;
+                                 }
+                                 else
+                                 {
+                                     IsEmail = false;
+                                 } 
+                             } 
+                         } 
+                        #endregion                         
 
-                         }
-
-                         #endregion
-
-                         if (IsEmail) 
-                         { 
+                        if (IsEmail) 
+                        { 
                            GenericObj.Parameters[0].Value = startDate;
                            GenericObj.Parameters[1].Value = endDate;
                            GenericObj.Parameters[2].Value = ParmType;
@@ -177,12 +193,14 @@ namespace FMS.ReportService
                            GenericObj.ExportToPdf(mem); 
                            
                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
-                         }
-                        #endregion 
+                        } 
                     }
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            { 
+                logger.Error("Error with query {0} {1} {2}", "Error in generating report", ex.Message, ex.StackTrace);
+            }
             finally { }
         }
         public static T Factory<T>() where T : new()
@@ -192,8 +210,7 @@ namespace FMS.ReportService
         public bool sendEmail(string ReceiverEmail, string ReceiverName, string ReportName, MemoryStream attachment)
         {
             try
-            {
-                
+            {  
                 string pdfFileName = string.Empty; 
 
                 pdfFileName = ReportName + DateTime.Now.ToString("yyyyMMdd");
@@ -254,12 +271,31 @@ namespace FMS.ReportService
                 _with1.Send(mm);
                 logger.Info("Email has been send successfully to " + ReceiverEmail + " ");
             }
-            catch (Exception ex) { return false; }
+            catch (Exception ex) 
+            {
+                logger.Error("Error with query {0} {1} {2}", "Error in sending Email Receipient", ex.Message, ex.StackTrace);
+                return false;
+            }
             finally { }
             return true;
         }
 
- 
+        public static bool IsOneOffSendEmail(DateTime ScheduleDate)
+        {
+            if (Convert.ToDateTime(ScheduleDate) >= DateTime.Now && Convert.ToDateTime(ScheduleDate) <= DateTime.Now.AddSeconds(Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"])))
+            {
+                return true;
+            }
+            else { return false; }
+        }
+        public static bool IsScheduleTimeEmail(DateTime scheduleTime)
+        {
+            DateTime ScheduleTime = Convert.ToDateTime(scheduleTime);
+            if (ScheduleTime.TimeOfDay >= DateTime.Now.TimeOfDay && ScheduleTime.TimeOfDay <= DateTime.Now.AddSeconds(Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"])).TimeOfDay)
+            { return true; }
+            else { return false; }
+        }
+   
     } 
 
 }
