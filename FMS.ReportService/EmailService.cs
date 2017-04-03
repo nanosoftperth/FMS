@@ -11,48 +11,85 @@ using System.IO;
 using FMS.Business.DataObjects;
 using FMS.Business;
 using FMS.ReportLogic;
+using System.Diagnostics;
 //using DevExpress.XtraReports.UI;
 //using DevExpress.XtraReports.Parameters;
 using NLog;
 using NLog.Fluent;
 using System.Globalization;
 using System.Configuration;
+ //using System.Threading;
  
 
 namespace FMS.ReportService
 {
     public class EmailService : IService
     {
-        readonly System.Timers.Timer _timer;
+        private System.Timers.Timer _timer;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
+     
         public EmailService()
         {
-            int miliSecond = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
+             int miliSecond = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
             _timer = new Timer(miliSecond) { AutoReset = true };
             _timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
+
+
+
+            //_timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
+            //_timer.Interval = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
+            //_timer.Enabled = true;
+            
         }
+        //private void Process()
+        //{
+        //    _timer.Start();
+        //    Start();
+        //    //ExtractProcess.Start();
+        //    //TransformProcess.Start();
+        //}
+        //public void Start()
+        //{
+        //    try
+        //    { 
+        //        GetSchedule();
+        //        System.Threading.Thread.Sleep(10000);
+        //     // _timer.Start();
+        //     Start();
+        //    }
+        //    catch (Exception ex) { logger.Error("Error with query {0} {1} {2}", "Timeout", ex.Message, ex.StackTrace); }
+         
+
+        //}
 
         public void Start()
         {
-            GetSchedule();
-            _timer.Start();
-            Start();
-        }
+            
+           //System.Threading.ThreadStart myThreadDelegate = new System.Threading.ThreadStart(GetSchedule);
+           //System.Threading.Thread myThread = new System.Threading.Thread(myThreadDelegate);
+           //myThread.Start();
+           GetSchedule();
+           _timer.Start();
+           
+         }
+
         public void Stop()
         {
             _timer.Stop();
         }
          
-         
         public void GetSchedule()
-        {  
+        {
+           logger.Info("Start Method to getting the schedule ");     
             DateTime startDate = DateTime.Now;
-            DateTime endDate = DateTime.Now; 
+            DateTime endDate = DateTime.Now;
             string VehicleName = string.Empty;
 
             bool IsEmail = false;
+
             try
-            {    
+            {
                 List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
 
                 objScheduleList = ReportSchedule.GetAllForApplication();
@@ -62,7 +99,7 @@ namespace FMS.ReportService
                 {
                     foreach (var Item in objScheduleList)
                     {
-                        logger.Info("Getting Report for " + Item .RecipientName  + " "); 
+                        logger.Info("Getting Report for " + Item.RecipientName + " ");
                         #region Get Report Parameter
                         //  to get the start date  
                         if (Convert.ToString(Item.StartDate) == "Now")
@@ -107,98 +144,105 @@ namespace FMS.ReportService
                         {
                             endDate = Convert.ToDateTime(Item.EndDateSpecific);
                         }
-                        #endregion 
-   
-                        
+                        #endregion
+
+
                         #region to create the instance of report
-                          string ParmType = string.Empty; 
-                          switch (Convert.ToString(Item.ReportName))
-                          { 
-                              case ReportNameList.VehicleReport:
-                                  GenericObj = new VehicleReport();
-                                  ParmType = Convert.ToString(Item.Vehicle);
-                                  break;
+                        string ParmType = string.Empty;
+                        switch (Convert.ToString(Item.ReportName))
+                        {
+                            case ReportNameList.VehicleReport:
+                                GenericObj = new VehicleReport();
+                                ParmType = Convert.ToString(Item.Vehicle);
+                                break;
 
-                              case ReportNameList.DriverOperatingHoursReport :
-                                  GenericObj = new DriverOperatingHoursReport();
-                                  ParmType = Convert.ToString(Item.Vehicle);
-                                  break;
+                            case ReportNameList.DriverOperatingHoursReport:
+                                GenericObj = new DriverOperatingHoursReport();
+                                ParmType = Convert.ToString(Item.Vehicle);
+                                break;
 
-                              case ReportNameList.ReportGeoFence_byDriver:
-                                  GenericObj = new ReportGeoFence_byDriver();
-                                  ParmType = Convert.ToString(Item.Driver );
-                                  break;
-                          }
-                         #endregion                        
+                            case ReportNameList.ReportGeoFence_byDriver:
+                                GenericObj = new ReportGeoFence_byDriver();
+                                ParmType = Convert.ToString(Item.Driver);
+                                break;
+                        }
+                        #endregion
                         MemoryStream mem = new MemoryStream();
 
-                       
-                       
-                        #region Region to check the Schedule
-                          if (Convert.ToString (Item.ReportType) == Utility.OneOff)
-                         {
-                             if (IsOneOffSendEmail(Convert.ToDateTime(Item.ScheduleDate)))
-                             {
-                                 IsEmail = true;
-                             }
-                             else { IsEmail = false; }  
-                         }
-                         else if (Convert.ToString(Item.ReportType) == Utility.Daily)
-                         {
-                             if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
-                             {
-                                 IsEmail = true;
-                             }
-                             else
-                             {
-                                 IsEmail = false;
-                             } 
-                         }
-                         else if (Convert.ToString(Item.ReportType) == Utility.Weekly)
-                         {
-                             if (Convert.ToString(DateTime.Now.DayOfWeek) == Convert.ToString(Item.DayofWeek))
-                             { 
-                                 if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
-                                 {
-                                     IsEmail = true;
-                                 }
-                                 else
-                                 {
-                                     IsEmail = false;
-                                 } 
-                             }
-                         }
-                         else if (Convert.ToString(Item.ReportType) == Utility.Monthly)
-                         {
-                             if (System.DateTime.Now.ToString("dd") == Convert.ToString(Item.DayofMonth))
-                             {
-                                 if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
-                                 {
-                                     IsEmail = true;
-                                 }
-                                 else
-                                 {
-                                     IsEmail = false;
-                                 } 
-                             } 
-                         } 
-                        #endregion                         
 
-                        if (IsEmail) 
-                        { 
-                           GenericObj.Parameters[0].Value = startDate;
-                           GenericObj.Parameters[1].Value = endDate;
-                           GenericObj.Parameters[2].Value = ParmType;
-                           GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
-                           GenericObj.ExportToPdf(mem); 
-                           
-                           sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
-                        } 
+
+                        #region Region to check the Schedule
+                        if (Convert.ToString(Item.ReportType) == Utility.OneOff)
+                        {
+                            if (IsOneOffSendEmail(Convert.ToDateTime(Item.ScheduleDate)))
+                            {
+                                IsEmail = true;
+                            }
+                            else { IsEmail = false; }
+                        }
+                        else if (Convert.ToString(Item.ReportType) == Utility.Daily)
+                        {
+                            if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                            {
+                                IsEmail = true;
+                            }
+                            else
+                            {
+                                IsEmail = false;
+                            }
+                        }
+                        else if (Convert.ToString(Item.ReportType) == Utility.Weekly)
+                        {
+                            if (Convert.ToString(DateTime.Now.DayOfWeek) == Convert.ToString(Item.DayofWeek))
+                            {
+                                if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                                {
+                                    IsEmail = true;
+                                }
+                                else
+                                {
+                                    IsEmail = false;
+                                }
+                            }
+                        }
+                        else if (Convert.ToString(Item.ReportType) == Utility.Monthly)
+                        {
+                            if (System.DateTime.Now.ToString("dd") == Convert.ToString(Item.DayofMonth))
+                            {
+                                if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                                {
+                                    IsEmail = true;
+                                }
+                                else
+                                {
+                                    IsEmail = false;
+                                }
+                            }
+                        }
+                        #endregion
+
+                        if (true)
+                        {
+                            logger.Info("email method  called for sending " + Convert.ToString(Item.ApplicationId) + " ");
+
+                            GenericObj.Parameters[0].Value = startDate;
+                            GenericObj.Parameters[1].Value = endDate;
+                            GenericObj.Parameters[2].Value = ParmType;
+                            GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
+                            GenericObj.ExportToPdf(mem);
+
+                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
+                        }
                     }
+
+                }
+                else
+                { 
+                    logger.Info("No record found from database");
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {  
                 logger.Error("Error with query {0} {1} {2}", "Error in generating report", ex.Message, ex.StackTrace);
             }
             finally { }
