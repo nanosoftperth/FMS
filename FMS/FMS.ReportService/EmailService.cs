@@ -27,73 +27,47 @@ namespace FMS.ReportService
     {
         private System.Timers.Timer _timer;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
-     
+        
+         
         public EmailService()
         {
-             int miliSecond = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
+            int miliSecond = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
             _timer = new Timer(miliSecond) { AutoReset = true };
-            _timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
-
-
-
-            //_timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
-            //_timer.Interval = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
-            //_timer.Enabled = true;
-            
-        }
-        //private void Process()
-        //{
-        //    _timer.Start();
-        //    Start();
-        //    //ExtractProcess.Start();
-        //    //TransformProcess.Start();
-        //}
-        //public void Start()
-        //{
-        //    try
-        //    { 
-        //        GetSchedule();
-        //        System.Threading.Thread.Sleep(10000);
-        //     // _timer.Start();
-        //     Start();
-        //    }
-        //    catch (Exception ex) { logger.Error("Error with query {0} {1} {2}", "Timeout", ex.Message, ex.StackTrace); }
-         
-
-        //}
-
-        public void Start()
+            _timer.Elapsed += timer_Elapsed; 
+        } 
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            
-           //System.Threading.ThreadStart myThreadDelegate = new System.Threading.ThreadStart(GetSchedule);
-           //System.Threading.Thread myThread = new System.Threading.Thread(myThreadDelegate);
-           //myThread.Start();
-           GetSchedule();
-           _timer.Start();
-           
-         }
-
+            GetSchedule();
+        } 
+        public void Start()
+        {   
+            _timer.Enabled = true;
+            _timer.Start(); 
+        } 
         public void Stop()
         {
-            _timer.Stop();
+            if (_timer != null)
+            {
+                _timer.Enabled = false;
+                _timer.Stop();
+                _timer.Dispose();
+                _timer = null;
+            }
         }
-         
+       
         public void GetSchedule()
-        {
-           logger.Info("Start Method to getting the schedule ");     
+        {  
             DateTime startDate = DateTime.Now;
             DateTime endDate = DateTime.Now;
             string VehicleName = string.Empty;
-
             bool IsEmail = false;
 
             try
-            {
-                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
+            { 
+                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();  
 
-                objScheduleList = ReportSchedule.GetAllForApplication();
-                dynamic GenericObj = null;
+                objScheduleList = ReportSchedule.GetScheduleForApplication();
+                dynamic GenericObj = null; 
 
                 if (objScheduleList != null)
                 {
@@ -170,7 +144,6 @@ namespace FMS.ReportService
                         MemoryStream mem = new MemoryStream();
 
 
-
                         #region Region to check the Schedule
                         if (Convert.ToString(Item.ReportType) == Utility.OneOff)
                         {
@@ -221,7 +194,7 @@ namespace FMS.ReportService
                         }
                         #endregion
 
-                        if (true)
+                        if (IsEmail)
                         {
                             logger.Info("email method  called for sending " + Convert.ToString(Item.ApplicationId) + " ");
 
@@ -231,10 +204,10 @@ namespace FMS.ReportService
                             GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
                             GenericObj.ExportToPdf(mem);
 
-                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
+                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem); 
+                             
                         }
                     }
-
                 }
                 else
                 { 
@@ -245,13 +218,10 @@ namespace FMS.ReportService
             {  
                 logger.Error("Error with query {0} {1} {2}", "Error in generating report", ex.Message, ex.StackTrace);
             }
-            finally { }
+            finally {   }
         }
-        public static T Factory<T>() where T : new()
-        {
-            return new T();
-        }
-        public bool sendEmail(string ReceiverEmail, string ReceiverName, string ReportName, MemoryStream attachment)
+       
+        public static bool sendEmail(string ReceiverEmail, string ReceiverName, string ReportName, MemoryStream attachment)
         {
             try
             {  
@@ -322,8 +292,7 @@ namespace FMS.ReportService
             }
             finally { }
             return true;
-        }
-
+        } 
         public static bool IsOneOffSendEmail(DateTime ScheduleDate)
         {
             if (Convert.ToDateTime(ScheduleDate) >= DateTime.Now && Convert.ToDateTime(ScheduleDate) <= DateTime.Now.AddSeconds(Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"])))
@@ -339,7 +308,7 @@ namespace FMS.ReportService
             { return true; }
             else { return false; }
         }
-   
+          
     } 
 
 }
