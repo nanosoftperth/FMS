@@ -16,7 +16,7 @@ namespace FMS.ReportService
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public static void Main()
         {
-            logger.Info("Application Start main constructor"); 
+            //logger.Info("Application Start main constructor"); 
             try
             {
                 HostFactory.Run(x =>
