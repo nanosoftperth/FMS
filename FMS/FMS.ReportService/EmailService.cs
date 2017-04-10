@@ -18,7 +18,7 @@ using NLog;
 using NLog.Fluent;
 using System.Globalization;
 using System.Configuration;
- //using System.Threading;
+//using System.Threading;
  
 
 namespace FMS.ReportService
@@ -27,7 +27,6 @@ namespace FMS.ReportService
     {
         private System.Timers.Timer _timer;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        
          
         public EmailService()
         {
@@ -108,7 +107,7 @@ namespace FMS.ReportService
                         }
                         else if (Convert.ToString(Item.EndDate) == "Beginning of Week")
                         {
-                            endDate = ClsExtention.BeginingOfWeek(DateTime.Now, DayOfWeek.Monday);
+                            endDate = ClsExtention.BeginingOfWeek(DateTime.Now, DateTime.Now.DayOfWeek);
                         }
                         else if (Convert.ToString(Item.EndDate) == "Beginning of Year")
                         {
@@ -196,7 +195,7 @@ namespace FMS.ReportService
 
                         if (IsEmail)
                         {
-                            logger.Info("email method  called for sending " + Convert.ToString(Item.ApplicationId) + " ");
+                            logger.Info("email method called for sending " + Convert.ToString(Item.ApplicationId) + " ");
 
                             GenericObj.Parameters[0].Value = startDate;
                             GenericObj.Parameters[1].Value = endDate;
@@ -204,8 +203,7 @@ namespace FMS.ReportService
                             GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
                             GenericObj.ExportToPdf(mem);
 
-                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem); 
-                             
+                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);                              
                         }
                     }
                 }
