@@ -26,13 +26,16 @@ namespace FMS.ReportService
     public class EmailService : IService
     {
         private System.Timers.Timer _timer;
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-         
+        private static Logger logger = LogManager.GetCurrentClassLogger();         
         public EmailService()
         {
-            int miliSecond = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
-            _timer = new Timer(miliSecond) { AutoReset = true };
-            _timer.Elapsed += timer_Elapsed; 
+            try
+            {
+                int miliSecond = 2000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
+                _timer = new Timer(miliSecond) { AutoReset = true };
+                _timer.Elapsed += timer_Elapsed;
+            }
+            catch (Exception ex) {   }            
         } 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -52,21 +55,21 @@ namespace FMS.ReportService
                 _timer.Dispose();
                 _timer = null;
             }
-        }
-       
+        }       
         public void GetSchedule()
         {  
             DateTime startDate = DateTime.Now;
             DateTime endDate = DateTime.Now;
             string VehicleName = string.Empty;
             bool IsEmail = false;
+            //Console.WriteLine(DateTime.Now);
 
             try
-            { 
-                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();  
+            {
+                List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
 
                 objScheduleList = ReportSchedule.GetScheduleForApplication();
-                dynamic GenericObj = null; 
+                dynamic GenericObj = null;
 
                 if (objScheduleList != null)
                 {
@@ -203,22 +206,21 @@ namespace FMS.ReportService
                             GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
                             GenericObj.ExportToPdf(mem);
 
-                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);                              
+                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
                         }
                     }
                 }
                 else
-                { 
+                {
                     logger.Info("No record found from database");
                 }
             }
             catch (Exception ex)
-            {  
-                logger.Error("Error with query {0} {1} {2}", "Error in generating report", ex.Message, ex.StackTrace);
+            {
+                logger.Error("Error with query {0} {1} {2}", "Error in generating report", ex.Message, ex.StackTrace); 
             }
-            finally {   }
-        }
-       
+            finally { }
+        }       
         public static bool sendEmail(string ReceiverEmail, string ReceiverName, string ReportName, MemoryStream attachment)
         {
             try
@@ -239,8 +241,7 @@ namespace FMS.ReportService
                 _with1.DeliveryMethod = SmtpDeliveryMethod.Network;
                 _with1.UseDefaultCredentials = false;
                 _with1.Credentials = new System.Net.NetworkCredential("no-reply@nanosoft.com.au", "notastrongpassword");
-
-
+                
                 MailMessage mm = new MailMessage();
                 mm.Attachments.Add(att);
                 mm.From = new MailAddress("no-reply@nanosoft.com.au");

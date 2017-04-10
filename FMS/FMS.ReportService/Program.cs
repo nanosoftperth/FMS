@@ -31,7 +31,10 @@ namespace FMS.ReportService
 
                     x.SetDescription("FMSReportService for Email Scheduler");
                     x.SetDisplayName("FMSReportService");
-                    x.SetServiceName("FMSReportService");
+                    //// For Production 
+                    x.SetServiceName("FMSReportService1");
+                    //// For Development 
+                    //x.SetServiceName("FMSReportService");
                 });
             }
             catch (Exception ex) 
