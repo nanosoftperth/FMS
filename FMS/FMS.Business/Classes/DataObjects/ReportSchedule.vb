@@ -164,7 +164,7 @@ Namespace DataObjects
           
             Return objList
         End Function
-        Public Shared Function GetAllForApplication() As List(Of DataObjects.ReportSchedule)
+        Public Shared Function GetScheduleForApplication() As List(Of DataObjects.ReportSchedule)
 
             Dim objList As New List(Of DataObjects.ReportSchedule)
             Try
@@ -215,8 +215,6 @@ Namespace DataObjects
 
             Return objList
         End Function
-
-
         Public Shared Function GetRecipientsforApplication(appid As Guid, NativeId As Guid, attributeName As String) As String
             Try
                 Dim Result = (From x In SingletonAccess.FMSDataContextNew.usp_GetSubscribersForApplication(appid) _
@@ -458,6 +456,15 @@ Namespace DataObjects
                 'ErrorLog.WriteErrorLog(ex)
             End Try  
             Return returnAttribute
+        End Function
+
+
+        Public Shared Function GetData() As List(Of DataObjects.ReportSchedule)
+
+            Return (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _
+                        Order By x.DateCreated
+                        Select New DataObjects.ReportSchedule(x)).ToList()
+
         End Function
     End Class
     Public NotInheritable Class ReportParam
