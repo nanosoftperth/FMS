@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\CAN_Receiver.cs" />
     <Compile Include="API\DataAccessController.cs" />
     <Compile Include="API\HelloWorldAPIController.cs" />
     <Compile Include="API\TextMediaTypeFormatter.cs" />
