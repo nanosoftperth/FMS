@@ -104,6 +104,9 @@ namespace FMS.Datalistener.CalAmp.API
 
                 System.IO.File.WriteAllText(fileNameAndloc, value);
 
+                
+                
+                
                 //look to see if the PI point exists, if not CREATE IT
 
                 //int64 data type (8 bytes)
