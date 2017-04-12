@@ -387,6 +387,13 @@
       <DependentUpon>ReportScheduler.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Reports\ReportScheduler_old.aspx.designer.vb">
+      <DependentUpon>ReportScheduler_old.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportScheduler_old.aspx.vb">
+      <DependentUpon>ReportScheduler_old.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\VehicleReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -871,6 +878,7 @@
     <Content Include="ReportContent.aspx" />
     <Content Include="Reports\report backup\reporttocopy.png" />
     <Content Include="Reports\ReportScheduler.aspx" />
+    <Content Include="Reports\ReportScheduler_old.aspx" />
     <Content Include="RoundRobinService.svc" />
     <Content Include="DefaultService.svc" />
     <Content Include="DevExpress\ASPxSchedulerForms\AppointmentDragToolTip.ascx" />
@@ -1087,7 +1095,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18350/</IISUrl>
+          <IISUrl>http://localhost:18351/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,14 +1,19 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="ReportScheduler.aspx.vb" Inherits="FMS.WEB.ReportScheduler" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="ReportScheduler.aspx.vb" Inherits="FMS.WEB.ReportScheduler" %>
 <%@ Import Namespace="FMS.Business" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
 <%@ Register Assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 <%@ Register Src="~/Controls/NanoReportParamList.ascx" TagPrefix="uc1" TagName="NanoReportParamList" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<!DOCTYPE html>
 
-    <link href="<%= Page.ResolveClientUrl("~/Content/Jira.css")%>" rel="stylesheet" />
-    <script src='<%= Page.ResolveClientUrl("~/Content/javascript/jquery-3.1.0.min.js")%>'></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+     <link href="../Content/Jira.css" rel="stylesheet" />
+    <script src='../Content/javascript/jquery-3.1.0.min.js'></script>
+    <script src="../Content/javascript/page.js"></script>
 
     <style>
         .clsEditForm {
@@ -16,11 +21,12 @@
         }
         .clsEditForm tr td {
               padding-top:5px;
-              padding-left:5px;
+              padding-left:13px;
             }
-        .clsReport {
-        min-width:120px;
-        }
+
+        /*.clsReport {
+        min-width:120px; margin-right:-15px;
+        }*/
     </style>
 
     <script type="text/javascript">
@@ -33,8 +39,8 @@
                     });
         }
 
-        
-        function comboDateSelected_ValueChanged(s, id) { 
+
+        function comboDateSelected_ValueChanged(s, id) {
             var selectedVal = s.GetValue();
 
             $('.' + id).hide(id);
@@ -68,67 +74,65 @@
     </script>
 
     <!--  Report Script Section -->
-    <script type="text/javascript"> 
- 
+    <script type="text/javascript">
+
         function comboDateSelected_ValueChanged(s, id) {
 
-    var selectedVal = s.GetValue();
+            var selectedVal = s.GetValue();
 
-    $('.' + id).hide(id);
+            $('.' + id).hide(id);
 
-    if (selectedVal == 'Specific') {
-        $('.' + id + '.specificDateEdit').show('slow');
-    } else {
-        //$('.specificTimeEdit').show();
-    } 
-}
+            if (selectedVal == 'Specific') {
+                $('.' + id + '.specificDateEdit').show('slow');
+            } else {
+                //$('.specificTimeEdit').show();
+            }
+        }
 
-                                    function comboReportType_ValueChanged(s, e) {
+        function comboReportType_ValueChanged(s, e) {
 
-                                        $('.reportType').hide();
+            $('.reportType').hide();
 
-                                        var reportType = comboReportType.GetValue();
-                                        //console.log('selected value: ' + reportType);
+            var reportType = comboReportType.GetValue();
+            //console.log('selected value: ' + reportType);
 
-                                        $('.' + reportType).show('slow');
+            $('.' + reportType).show('slow');
 
-                                        //callbackREportEdit.PerformCallback(reportType);
-                                    }
+            //callbackREportEdit.PerformCallback(reportType);
+        }
 
-                                    function comboSelectedReport_ValueChanged(s, e) {
+        function comboSelectedReport_ValueChanged(s, e) {
 
-                                        var reportName = comboSelectedReport.GetValue();
-                                        console.log('selected value: ' + reportName);
+            var reportName = comboSelectedReport.GetValue();
+            console.log('selected value: ' + reportName);
 
-                                        var param = {};
+            var param = {};
 
-                                        param.ReportName = reportName;
+            param.ReportName = reportName;
 
-                                        //SetSelectedReport(ReportName
-                                        ajaxMethod("../DefaultService.svc/" + 'SetSelectedReport',
-                                                param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
+            //SetSelectedReport(ReportName
+            ajaxMethod("../DefaultService.svc/" + 'SetSelectedReport',
+                    param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
 
-                                    }
+        }
 
-                                    function DefaultService_SuccessCallback(data) {
-                                       
-                                        callbackREportEdit.PerformCallback('');                                     
-                                    }
+        function DefaultService_SuccessCallback(data) {
 
-                                    function DefaultService_ErrorCallback(data) { }
+            callbackREportEdit.PerformCallback('');
+        }
 
-                                    function DefaultService_FinallyCallback(data) {
-                                        
-                                    }
+        function DefaultService_ErrorCallback(data) { }
 
-                                   
+        function DefaultService_FinallyCallback(data) {
+
+        }
+
                                     </script>
-                                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" Width="100%" ActiveTabIndex="0" EnableTabScrolling="True">
-        <TabPages>
-            <dx:TabPage Name="Tagb" Text="Report Schedule">
-                <ContentCollection>
-                    <dx:ContentControl runat="server">
-                        <table>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+                         <table>
                             <tr>
                                 <td>
                                     <dx:ASPxGridView
@@ -170,7 +174,7 @@
                                                             <table style="width: 100%">
                                                                 <tr>
                                                                     <td>
-                                                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Type"  Width="38px"></dx:ASPxLabel>
+                                                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Type"  Width="65px"></dx:ASPxLabel>
                                                                     </td>
                                                                     <td>
                                                                         <dx:ASPxComboBox
@@ -394,48 +398,32 @@
                                 </td>
                             </tr>
                         </table>
-                    </dx:ContentControl>
-                </ContentCollection>
-            </dx:TabPage>
-            <dx:TabPage Text="Graphs">
-                <ContentCollection>
-                    <dx:ContentControl runat="server">
-                        Graphs Content
-                    </dx:ContentControl>
-                </ContentCollection>
-            </dx:TabPage>
-            <dx:TabPage Text="Report">
-                <ContentCollection>
-                    <dx:ContentControl runat="server">
-                        Report Schedule  Content
-                    </dx:ContentControl>
-                </ContentCollection>
-            </dx:TabPage>
-        </TabPages>
-    </dx:ASPxPageControl>
 
-    <script type ="text/javascript"> 
+    
+    </div>
+    </form>
 
-        function BeginCallBackFUn()
-        {
-            alert(comboSelectedReport.GetValue());
-        }
-        function StartEditRow() { 
-            var reportName = comboSelectedReport.GetValue(); 
-            var param = {}; 
-            param.ReportName = reportName;
-            param.PStartDate = lStartDate.GetValue();
-            param.PEndDate = lEndDate.GetValue();
-            if (reportName != '<%=ReportNameList.ReportGeoFence_byDriver %>') {
-                param.PVehicle = lVehicle.GetValue();  }
-            else
-            { 
+      <script type ="text/javascript">
+
+          function BeginCallBackFUn() {
+              alert(comboSelectedReport.GetValue());
+          }
+          function StartEditRow() {
+              var reportName = comboSelectedReport.GetValue();
+              var param = {};
+              param.ReportName = reportName;
+              param.PStartDate = lStartDate.GetValue();
+              param.PEndDate = lEndDate.GetValue();
+              if (reportName != '<%=ReportNameList.ReportGeoFence_byDriver %>') {
+                param.PVehicle = lVehicle.GetValue();
+            }
+            else {
                 param.PVehicle = lDriver.GetValue();
             }
             if (lStartDate.GetValue() == "Specific") {
                 param.PStartDateSpecific = lStartDateSpecific.GetValue();
             }
-            else {           
+            else {
                 param.PStartDateSpecific = "";
             }
             if (lEndDate.GetValue() == "Specific") {
@@ -444,22 +432,21 @@
             else {
                 param.PEndDateSpecific = "";
             }
-  
-            if (lStartDate.GetValue() != "null" && lEndDate.GetValue() != "null" && lVehicle.GetValue() != "null")
-            {
+
+            if (lStartDate.GetValue() != "null" && lEndDate.GetValue() != "null" && lVehicle.GetValue() != "null") {
                 //SetSelectedReport(ReportName
                 ajaxMethod("ReportScheduler.aspx/" + 'SetSelectedReportEdit',
                         param, DefaultService_SuccessCallback, DefaultService_ErrorCallback, DefaultService_FinallyCallback);
-            } 
-             
+            }
+
             // Edit Mode for Schedule Fields
             if (comboReportType.GetValue() == '<%=Utility.OneOff%>') {
-                                            $('.' + comboReportType.GetValue()).show('slow');
-                                        }
-                                        else if (comboReportType.GetValue() == '<%=Utility.Daily %>') {
-                                            $('.' + comboReportType.GetValue()).show('slow');
-                                        }
-                                        else if (comboReportType.GetValue() == '<%=Utility.Weekly %>')
+                $('.' + comboReportType.GetValue()).show('slow');
+            }
+            else if (comboReportType.GetValue() == '<%=Utility.Daily %>') {
+                $('.' + comboReportType.GetValue()).show('slow');
+            }
+            else if (comboReportType.GetValue() == '<%=Utility.Weekly %>')
                                         { $('.' + comboReportType.GetValue()).show('slow'); }
                                         else if (comboReportType.GetValue() == '<%=Utility.Monthly%>')
 
@@ -467,11 +454,11 @@
                                         { $('.' + comboReportType.GetValue()).show('slow'); }
 
 
-            if (comRecipients.GetValue() == "00000000-0000-0000-0000-000000000000")
-            {
-                comRecipients.SetSelectedIndex(0);
-            } 
-        }
-          
+                                if (comRecipients.GetValue() == "00000000-0000-0000-0000-000000000000") {
+                                    comRecipients.SetSelectedIndex(0);
+                                }
+                            }
+
     </script>
-</asp:Content>
+</body>
+</html>
