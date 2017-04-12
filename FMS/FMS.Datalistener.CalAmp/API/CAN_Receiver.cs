@@ -16,29 +16,14 @@ namespace FMS.Datalistener.CalAmp.API
         public static PISDK.Server pis = x.Servers.DefaultServer;
 
 
+        const string FILELOCATION = @"c:\temp\rodlogs\";
+
         public string Get(string truckid, string msg)
         {
             try
             {
 
-                string filename = DateTime.Now.ToString("yyyyMMddHH");
-                //filename = string.Format(@"",filename)
-                File.AppendAllText(@"c:\temp\" + filename + ".log", string.Format("{0} truckid:{1},msg:{2}{3},"
-                               , DateTime.Now.ToString("yyyyMMdd HH:mm:ss"), truckid, msg, Environment.NewLine));
 
-                // System.Diagnostics.Debugger.Launch();
-                //System.Diagnostics.Debugger.Log(1, "", time);               
-                PISDK.PIPoint messagepip = pis.PIPoints["MessagesFromDevices"];
-                string newmsg = string.Format("{0}: {1}", truckid, msg);
-
-                PITimeServer.PITime pit = new PITimeServer.PITime();
-
-                pit.LocalDate = DateTime.Now;
-
-                messagepip.Data.UpdateValue(newmsg, pit, PISDK.DataMergeConstants.dmInsertDuplicates);
-
-                PISDK.PIPoint logmsg = pis.PIPoints[String.Format("{0}_log", truckid)];
-                logmsg.Data.UpdateValue(newmsg, pit, PISDK.DataMergeConstants.dmInsertDuplicates);
 
                 return "success";
 
@@ -55,45 +40,7 @@ namespace FMS.Datalistener.CalAmp.API
             {
 
 
-                string filename = DateTime.Now.ToString("yyyyMMddHH");
 
-                File.AppendAllText(@"c:\temp\" + filename + ".log", string.Format("{0} truckid:{1},lat:{2},long:{3},time:{4}{5}", DateTime.Now.ToString("yyyyMMdd HH:mm:ss"), truckid, lat, lng, time, Environment.NewLine));
-
-                string latTagStr = string.Format("{0}_lat", truckid);
-                string lngTagStr = string.Format("{0}_long", truckid);
-
-                DateTime evntDate = DateTime.Parse(time);
-
-                PISDK.PIPoint piTagLat = pis.PIPoints[latTagStr];
-                PISDK.PIPoint piTagLng = pis.PIPoints[lngTagStr];
-
-                PITimeServer.PITime pitime = new PITimeServer.PITime();
-
-                pitime.LocalDate = evntDate;
-
-                PISDK.PIValue piValLat = new PISDK.PIValue();
-                piValLat.Value = lat;
-                piValLat.TimeStamp = pitime;
-
-                PISDK.PIValue piValLong = new PISDK.PIValue();
-                piValLong.Value = lng;
-                piValLong.TimeStamp = pitime;
-
-                piTagLat.Data.UpdateValue(piValLat, pitime);
-                piTagLng.Data.UpdateValue(piValLong, pitime);
-
-                string msg = string.Format("time:{0},lat:{1},lng{2}", pitime.LocalDate.ToString("dd/MMM/yyyy HH:mm:ss"), lat, lng);
-
-                PISDK.PIPoint messagepip = pis.PIPoints["MessagesFromDevices"];
-                string newmsg = string.Format("{0}: {1}", truckid, msg);
-
-                PITimeServer.PITime pit = new PITimeServer.PITime();
-
-                pit.LocalDate = DateTime.Now;
-                messagepip.Data.UpdateValue(newmsg, pit, PISDK.DataMergeConstants.dmInsertDuplicates);
-
-                PISDK.PIPoint logmsg = pis.PIPoints[String.Format("{0}_log", truckid)];
-                logmsg.Data.UpdateValue(newmsg, pit, PISDK.DataMergeConstants.dmInsertDuplicates);
 
                 return "success";
 
@@ -107,13 +54,36 @@ namespace FMS.Datalistener.CalAmp.API
         // GET api/values 
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            List<string> arr = new List<string>();
+
+            try
+            {
+
+                List<string> lst = System.IO.Directory.GetFiles(FILELOCATION, "*.txt")
+                                                .ToList().OrderByDescending(x => x).Take(20).ToList();
+
+                foreach (string fileLoc in lst)
+                {
+
+                    string fileContents = System.IO.File.ReadAllText(fileLoc);
+                    arr.Add(fileContents);
+                }
+
+                return arr;
+
+            }
+            catch (Exception e)
+            {
+
+                return new string[] { @"Exception fired: " + e.Message };
+            }
         }
 
         // GET api/values/5 
         public string Get(int id)
         {
-            return "value";
+            return "jonathan";
         }
 
 
@@ -125,63 +95,20 @@ namespace FMS.Datalistener.CalAmp.API
         {
             try
             {
-                string filename = DateTime.Now.ToString("yyyyMMddHHmmss");
+                //data packet needs to contain: canbus data (multiple rows or however you get it working)
+                //other fields: "usrname, password, companyname
 
+                //receive canbus data 
 
-                if (value.Length > 5000)
-                {
+                string fileNameAndloc = FILELOCATION + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";               
 
-                    //send email saying that a latge dataset was received to admin@nanosoft.com.au                       
+                System.IO.File.WriteAllText(fileNameAndloc, value);
 
-                    File.AppendAllText(@"C:\temp\logs\devicedata\" + filename + ".log",
-                                        string.Format("{0}{1}", value, Environment.NewLine));
-                    return "success";
-                }
+                //look to see if the PI point exists, if not CREATE IT
 
+                //int64 data type (8 bytes)
 
-
-                File.AppendAllText(@"C:\temp\" + DateTime.Now.ToString("yyyyMMddHH") + "_POST_.log",
-                                            string.Format("{0}{1}", value, Environment.NewLine));
-
-                foreach (string s in value.Split(','))
-                {
-
-                    string truckid = null;
-                    decimal lat = 0, lng = 0;
-                    DateTime time = new DateTime();
-                    bool wasPArsedOK = false;
-
-                    try
-                    {
-
-                        string qryStrs = s.Split('?')[1];
-                        Dictionary<string, string> dict = new Dictionary<string, string>();
-
-                        foreach (string s2 in qryStrs.Split('&'))
-                        {
-                            string[] stArr = s2.Split('=');
-                            dict.Add(stArr[0], stArr[1]);
-                            Console.WriteLine(s2);
-                        }
-
-                        truckid = dict["truckid"];
-                        lat = decimal.Parse(dict["lat"]);
-                        lng = decimal.Parse(dict["lng"]);
-                        time = DateTime.Parse(dict["time"].Replace("%20", " "));
-
-                        wasPArsedOK = true;
-                    }
-
-                    catch (Exception ex)
-                    {
-                        //if it wont parse, then ignore (who cares, could be anything), just log locally
-                        //we dont want the reaspberry pi stalling. It has done its job.
-                    }
-
-                    if (wasPArsedOK == true && truckid.ToLower() != "should never = this")
-                    { this.Get(truckid, lat, lng, time.ToString("dd/MMM/yyyy HH:mm:ss")); }
-
-                }
+                //save the RAW data into PI 
 
                 return "success";
 
