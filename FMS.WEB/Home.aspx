@@ -33,14 +33,12 @@
 
                             </div>    
                         <div>
-
                             
                                <%--<p class="lead">
                             Fleet Management Systems provides a very-tailored solution to the specific needs of the customer. 
                     This means the system changes to suit your needs, as opposed to you having to change your business, to suit the system.
                         </p>--%>
-
-                              <p   class="lead">
+                                                          <p   class="lead">
 
 
                                   <asp:Literal runat="server" ID="home_message"></asp:Literal>
