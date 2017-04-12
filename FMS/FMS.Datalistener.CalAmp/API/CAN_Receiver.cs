@@ -104,16 +104,36 @@ namespace FMS.Datalistener.CalAmp.API
 
                 System.IO.File.WriteAllText(fileNameAndloc, value);
 
-                
-                
-                
-                //look to see if the PI point exists, if not CREATE IT
+                List<string> cmdList = value.Split('\n').ToList();
 
-                //int64 data type (8 bytes)
+                //get the deviceid
+                string deviceID = cmdList[0].Trim().Replace("deviceid:",string.Empty);
 
-                //save the RAW data into PI 
+                string tag_format = "CAN_{0}_{1}";
 
-                return "success";
+                for(int i = 1; 1 < cmdList.Count; i++){
+
+                    string[] cmds = cmdList[i].Split(' ');
+
+                    int dataLength = int.Parse(cmds[6].Substring(1, 1));
+                    string arb_id = cmds[4];
+
+                    string tagName = string.Format(tag_format, deviceID, arb_id);
+
+                    //the idea here is to get the data and then save it as an int64 (after being conveted to hex) into PI as 
+                    // either a new tag or an existing one. 
+
+                }
+
+                //for (int i = 0; i <  )
+
+                    //look to see if the PI point exists, if not CREATE IT
+
+                    //int64 data type (8 bytes)
+
+                    //save the RAW data into PI 
+
+                    return "success";
 
             }
             catch (Exception ex) { return "Exception" + ex.Message; }
