@@ -392,7 +392,6 @@
     </Compile>
     <Compile Include="Reports\ReportScheduler_old.aspx.vb">
       <DependentUpon>ReportScheduler_old.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Reports\VehicleReport.vb">
       <SubType>Component</SubType>
