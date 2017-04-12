@@ -32,7 +32,7 @@ namespace FMS.Datalistener.CalAmp
                 x.RunAsLocalSystem();
 
                 x.SetDescription("FMS data receiver for CalAMP products");
-                x.SetDisplayName("FMS Calamp Data Receiver");
+                x.SetDisplayName("FMS Calamp Data Receiver" );
                 x.SetServiceName("FMS.Calamp.Receiver");
             });
         }
@@ -67,9 +67,11 @@ namespace FMS.Datalistener.CalAmp
         }
         public void Stop()
         {
+            _webApplication.Dispose();
+            
             t.Abort();
             t_ProcessLogs.Abort();
-            _webApplication.Dispose();
+            throw new Exception("breaks on purpose");
         }
 
         private const int listenPort = 11000;

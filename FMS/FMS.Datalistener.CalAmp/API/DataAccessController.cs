@@ -135,6 +135,7 @@ namespace FMS.Datalistener.CalAmp.API
 
                     File.AppendAllText(@"C:\temp\logs\devicedata\" + filename + ".log",
                                         string.Format("{0}{1}", value, Environment.NewLine));
+
                     return "success";
                 }
 
