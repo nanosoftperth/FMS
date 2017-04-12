@@ -10,7 +10,6 @@ Imports DevExpress.Web
 Imports FMS.Business.DataObjects
 Imports FMS.Business
 
-
 Public Class ReportScheduler
     Inherits System.Web.UI.Page
     Public ReadOnly Property AppVersion As String
