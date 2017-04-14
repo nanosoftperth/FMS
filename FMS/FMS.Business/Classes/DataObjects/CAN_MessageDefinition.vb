@@ -18,14 +18,21 @@ Namespace DataObjects
 
             With x
 
-                Me.Standard = .Standard
-                Me.PGN = .Standard
-                Me.SPN = .Standard
-                Me.PGN_Length = .Standard
-                Me.Acronym = .Standard
-                Me.Description = .Standard
-                Me.Resolution = .Standard
-                Me.Units = .Standard
+                Try
+                    If .Standard IsNot Nothing Then Me.Standard = .Standard
+                    If .PGN IsNot Nothing Then Me.PGN = .PGN
+                    If .SPN IsNot Nothing Then Me.SPN = .SPN
+                    If .PGN_Length IsNot Nothing Then Me.PGN_Length = .PGN_Length
+                    If .Acronym IsNot Nothing Then Me.Acronym = .Acronym
+                    If .Description IsNot Nothing Then Me.Description = .Description
+                    If .Resolution IsNot Nothing Then Me.Resolution = .Resolution
+                    If .Units IsNot Nothing Then Me.Units = .Units
+                Catch ex As Exception
+
+                    Dim msg As String = "asd"
+                End Try
+
+               
 
             End With
 
@@ -34,6 +41,23 @@ Namespace DataObjects
         Public Sub New()
 
         End Sub
+
+        Public Shared Function GetForSPN(spn As Integer) As List(Of Business.DataObjects.CAN_MessageDefinition)
+
+            Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
+
+            With New LINQtoSQLClassesDataContext
+                .SubmitChanges()
+                retobj = (From x In .CAN_MessageDefinitions
+                          Where x.SPN.HasValue AndAlso x.SPN = spn
+                          Select New DataObjects.CAN_MessageDefinition(x)).ToList
+
+                .Dispose()
+            End With
+
+            Return retobj
+
+        End Function
 
         Public Shared Function GetAll() As List(Of Business.DataObjects.CAN_MessageDefinition)
 

@@ -133,10 +133,11 @@ namespace FMS.Datalistener.CalAmp.API
                     if (!foundDate) continue;
 
                     //get the required data from the posted line (we can only presume this is a CANbus entry at this point)
-                    string arb_id = cmds[0];
+                    string arb_id_ = cmds[0];
+                    int arb_id_int = hex2integer(arb_id_);
                     string hexData = cmds[1];
 
-                    string tagName = string.Format(FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT, deviceID, arb_id);
+                    string tagName = string.Format(FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT, deviceID, arb_id_int);
 
                     //store the data as a double precision floating point as that is 8 bytes (same as float64 in pi)
                     double valueForHistorizing = hex2double(hexData);
@@ -196,6 +197,17 @@ namespace FMS.Datalistener.CalAmp.API
             {
                 double val = (double)System.Convert.ToInt32(c.ToString(), 16);
                 result = result * 16.0 + val;
+            }
+            return result;
+        }
+
+        int hex2integer(string hex)
+        {
+            int result = 0;
+            foreach (char c in hex)
+            {
+                int val = System.Convert.ToInt32(c.ToString(), 16);
+                result = result * 16 + val;
             }
             return result;
         }
