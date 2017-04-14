@@ -289,6 +289,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletePaidFeature(instance As PaidFeature)
     End Sub
+  Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
+    End Sub
+  Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
+    End Sub
+  Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
+    End Sub
   Partial Private Sub InsertSetting(instance As Setting)
     End Sub
   Partial Private Sub UpdateSetting(instance As Setting)
@@ -306,12 +312,6 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdateWebServiceLog(instance As WebServiceLog)
     End Sub
   Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
-    End Sub
-  Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
-    End Sub
-  Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
-    End Sub
-  Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
     End Sub
   #End Region
 	
@@ -556,6 +556,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property CAN_MessageDefinitions() As System.Data.Linq.Table(Of CAN_MessageDefinition)
+		Get
+			Return Me.GetTable(Of CAN_MessageDefinition)
+		End Get
+	End Property
+	
 	Public ReadOnly Property CannonDatas() As System.Data.Linq.Table(Of CannonData)
 		Get
 			Return Me.GetTable(Of CannonData)
@@ -628,9 +634,21 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property j1939s() As System.Data.Linq.Table(Of j1939)
+		Get
+			Return Me.GetTable(Of j1939)
+		End Get
+	End Property
+	
 	Public ReadOnly Property PaidFeatures() As System.Data.Linq.Table(Of PaidFeature)
 		Get
 			Return Me.GetTable(Of PaidFeature)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
+		Get
+			Return Me.GetTable(Of ReportSchdeule)
 		End Get
 	End Property
 	
@@ -649,12 +667,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
 		Get
 			Return Me.GetTable(Of WebServiceLog)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
-		Get
-			Return Me.GetTable(Of ReportSchdeule)
 		End Get
 	End Property
 	
@@ -2672,7 +2684,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4316,7 +4328,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4705,7 +4717,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -9013,6 +9025,434 @@ Partial Public Class CAN_Data
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CAN_MessageDefinitions")>  _
+Partial Public Class CAN_MessageDefinition
+	
+	Private _Standard As String
+	
+	Private _PGN As System.Nullable(Of Double)
+	
+	Private _Parameter_Group_Label As String
+	
+	Private _PGN_Length As String
+	
+	Private _Transmission_Rate As String
+	
+	Private _Acronym As String
+	
+	Private _pos As String
+	
+	Private _SPN_length As System.Nullable(Of Double)
+	
+	Private _SPN As System.Nullable(Of Double)
+	
+	Private __51_CAT_793F_Haul_Trucks As String
+	
+	Private __0_CAT_16M_Grader As String
+	
+	Private __0_Komatsu_1200_Wheel_Loaders As String
+	
+	Private __0_Liebherr_R9400_Excavators As String
+	
+	Private __0_Liebherr_R996B_Excavators As String
+	
+	Private __0_Atlas_Copco_PV271_Drills As String
+	
+	Private __0_Atlas_Copco_D65_Drills As String
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _Data_Range As String
+	
+	Private _Operational_Range As String
+	
+	Private _Resolution As String
+	
+	Private _Offset As System.Nullable(Of Double)
+	
+	Private _Units As String
+	
+	Private _Date_SPN_was_added_to_PGN As System.Nullable(Of Date)
+	
+	Private _Status_of_SPN_addition_to_PGN As String
+	
+	Private _Date_SPN_was_added_modified As System.Nullable(Of Date)
+	
+	Private _Status_of_SPN As String
+	
+	Private _SPN_Doc As String
+	
+	Private _PGN_Doc As String
+	
+	Private _F30 As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Standard", DbType:="NVarChar(255)")>  _
+	Public Property Standard() As String
+		Get
+			Return Me._Standard
+		End Get
+		Set
+			If (String.Equals(Me._Standard, value) = false) Then
+				Me._Standard = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PGN", DbType:="Float")>  _
+	Public Property PGN() As System.Nullable(Of Double)
+		Get
+			Return Me._PGN
+		End Get
+		Set
+			If (Me._PGN.Equals(value) = false) Then
+				Me._PGN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Parameter Group Label]", Storage:="_Parameter_Group_Label", DbType:="NVarChar(255)")>  _
+	Public Property Parameter_Group_Label() As String
+		Get
+			Return Me._Parameter_Group_Label
+		End Get
+		Set
+			If (String.Equals(Me._Parameter_Group_Label, value) = false) Then
+				Me._Parameter_Group_Label = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[PGN Length]", Storage:="_PGN_Length", DbType:="NVarChar(255)")>  _
+	Public Property PGN_Length() As String
+		Get
+			Return Me._PGN_Length
+		End Get
+		Set
+			If (String.Equals(Me._PGN_Length, value) = false) Then
+				Me._PGN_Length = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Transmission Rate]", Storage:="_Transmission_Rate", DbType:="NVarChar(255)")>  _
+	Public Property Transmission_Rate() As String
+		Get
+			Return Me._Transmission_Rate
+		End Get
+		Set
+			If (String.Equals(Me._Transmission_Rate, value) = false) Then
+				Me._Transmission_Rate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Acronym", DbType:="NVarChar(255)")>  _
+	Public Property Acronym() As String
+		Get
+			Return Me._Acronym
+		End Get
+		Set
+			If (String.Equals(Me._Acronym, value) = false) Then
+				Me._Acronym = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_pos", DbType:="NVarChar(255)")>  _
+	Public Property pos() As String
+		Get
+			Return Me._pos
+		End Get
+		Set
+			If (String.Equals(Me._pos, value) = false) Then
+				Me._pos = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[SPN length]", Storage:="_SPN_length", DbType:="Float")>  _
+	Public Property SPN_length() As System.Nullable(Of Double)
+		Get
+			Return Me._SPN_length
+		End Get
+		Set
+			If (Me._SPN_length.Equals(value) = false) Then
+				Me._SPN_length = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SPN", DbType:="Float")>  _
+	Public Property SPN() As System.Nullable(Of Double)
+		Get
+			Return Me._SPN
+		End Get
+		Set
+			If (Me._SPN.Equals(value) = false) Then
+				Me._SPN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[51 CAT 793F Haul Trucks]", Storage:="__51_CAT_793F_Haul_Trucks", DbType:="NVarChar(255)")>  _
+	Public Property _51_CAT_793F_Haul_Trucks() As String
+		Get
+			Return Me.__51_CAT_793F_Haul_Trucks
+		End Get
+		Set
+			If (String.Equals(Me.__51_CAT_793F_Haul_Trucks, value) = false) Then
+				Me.__51_CAT_793F_Haul_Trucks = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 CAT 16M Grader]", Storage:="__0_CAT_16M_Grader", DbType:="NVarChar(255)")>  _
+	Public Property _0_CAT_16M_Grader() As String
+		Get
+			Return Me.__0_CAT_16M_Grader
+		End Get
+		Set
+			If (String.Equals(Me.__0_CAT_16M_Grader, value) = false) Then
+				Me.__0_CAT_16M_Grader = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Komatsu 1200 Wheel Loaders]", Storage:="__0_Komatsu_1200_Wheel_Loaders", DbType:="NVarChar(255)")>  _
+	Public Property _0_Komatsu_1200_Wheel_Loaders() As String
+		Get
+			Return Me.__0_Komatsu_1200_Wheel_Loaders
+		End Get
+		Set
+			If (String.Equals(Me.__0_Komatsu_1200_Wheel_Loaders, value) = false) Then
+				Me.__0_Komatsu_1200_Wheel_Loaders = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Liebherr R9400 Excavators]", Storage:="__0_Liebherr_R9400_Excavators", DbType:="NVarChar(255)")>  _
+	Public Property _0_Liebherr_R9400_Excavators() As String
+		Get
+			Return Me.__0_Liebherr_R9400_Excavators
+		End Get
+		Set
+			If (String.Equals(Me.__0_Liebherr_R9400_Excavators, value) = false) Then
+				Me.__0_Liebherr_R9400_Excavators = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Liebherr R996B Excavators]", Storage:="__0_Liebherr_R996B_Excavators", DbType:="NVarChar(255)")>  _
+	Public Property _0_Liebherr_R996B_Excavators() As String
+		Get
+			Return Me.__0_Liebherr_R996B_Excavators
+		End Get
+		Set
+			If (String.Equals(Me.__0_Liebherr_R996B_Excavators, value) = false) Then
+				Me.__0_Liebherr_R996B_Excavators = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Atlas Copco PV271 Drills]", Storage:="__0_Atlas_Copco_PV271_Drills", DbType:="NVarChar(255)")>  _
+	Public Property _0_Atlas_Copco_PV271_Drills() As String
+		Get
+			Return Me.__0_Atlas_Copco_PV271_Drills
+		End Get
+		Set
+			If (String.Equals(Me.__0_Atlas_Copco_PV271_Drills, value) = false) Then
+				Me.__0_Atlas_Copco_PV271_Drills = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Atlas Copco D65 Drills]", Storage:="__0_Atlas_Copco_D65_Drills", DbType:="NVarChar(255)")>  _
+	Public Property _0_Atlas_Copco_D65_Drills() As String
+		Get
+			Return Me.__0_Atlas_Copco_D65_Drills
+		End Get
+		Set
+			If (String.Equals(Me.__0_Atlas_Copco_D65_Drills, value) = false) Then
+				Me.__0_Atlas_Copco_D65_Drills = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(255)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me._Description = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Data Range]", Storage:="_Data_Range", DbType:="NVarChar(255)")>  _
+	Public Property Data_Range() As String
+		Get
+			Return Me._Data_Range
+		End Get
+		Set
+			If (String.Equals(Me._Data_Range, value) = false) Then
+				Me._Data_Range = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Operational Range]", Storage:="_Operational_Range", DbType:="NVarChar(255)")>  _
+	Public Property Operational_Range() As String
+		Get
+			Return Me._Operational_Range
+		End Get
+		Set
+			If (String.Equals(Me._Operational_Range, value) = false) Then
+				Me._Operational_Range = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Resolution", DbType:="NVarChar(255)")>  _
+	Public Property Resolution() As String
+		Get
+			Return Me._Resolution
+		End Get
+		Set
+			If (String.Equals(Me._Resolution, value) = false) Then
+				Me._Resolution = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Offset", DbType:="Float")>  _
+	Public Property Offset() As System.Nullable(Of Double)
+		Get
+			Return Me._Offset
+		End Get
+		Set
+			If (Me._Offset.Equals(value) = false) Then
+				Me._Offset = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Units", DbType:="NVarChar(255)")>  _
+	Public Property Units() As String
+		Get
+			Return Me._Units
+		End Get
+		Set
+			If (String.Equals(Me._Units, value) = false) Then
+				Me._Units = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Date SPN was added to PGN]", Storage:="_Date_SPN_was_added_to_PGN", DbType:="DateTime")>  _
+	Public Property Date_SPN_was_added_to_PGN() As System.Nullable(Of Date)
+		Get
+			Return Me._Date_SPN_was_added_to_PGN
+		End Get
+		Set
+			If (Me._Date_SPN_was_added_to_PGN.Equals(value) = false) Then
+				Me._Date_SPN_was_added_to_PGN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Status of SPN addition to PGN]", Storage:="_Status_of_SPN_addition_to_PGN", DbType:="NVarChar(255)")>  _
+	Public Property Status_of_SPN_addition_to_PGN() As String
+		Get
+			Return Me._Status_of_SPN_addition_to_PGN
+		End Get
+		Set
+			If (String.Equals(Me._Status_of_SPN_addition_to_PGN, value) = false) Then
+				Me._Status_of_SPN_addition_to_PGN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Date SPN was added/modified]", Storage:="_Date_SPN_was_added_modified", DbType:="DateTime")>  _
+	Public Property Date_SPN_was_added_modified() As System.Nullable(Of Date)
+		Get
+			Return Me._Date_SPN_was_added_modified
+		End Get
+		Set
+			If (Me._Date_SPN_was_added_modified.Equals(value) = false) Then
+				Me._Date_SPN_was_added_modified = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Status of SPN]", Storage:="_Status_of_SPN", DbType:="NVarChar(255)")>  _
+	Public Property Status_of_SPN() As String
+		Get
+			Return Me._Status_of_SPN
+		End Get
+		Set
+			If (String.Equals(Me._Status_of_SPN, value) = false) Then
+				Me._Status_of_SPN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[SPN Doc]", Storage:="_SPN_Doc", DbType:="NVarChar(255)")>  _
+	Public Property SPN_Doc() As String
+		Get
+			Return Me._SPN_Doc
+		End Get
+		Set
+			If (String.Equals(Me._SPN_Doc, value) = false) Then
+				Me._SPN_Doc = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[PGN Doc]", Storage:="_PGN_Doc", DbType:="NVarChar(255)")>  _
+	Public Property PGN_Doc() As String
+		Get
+			Return Me._PGN_Doc
+		End Get
+		Set
+			If (String.Equals(Me._PGN_Doc, value) = false) Then
+				Me._PGN_Doc = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_F30", DbType:="NVarChar(255)")>  _
+	Public Property F30() As String
+		Get
+			Return Me._F30
+		End Get
+		Set
+			If (String.Equals(Me._F30, value) = false) Then
+				Me._F30 = value
+			End If
+		End Set
+	End Property
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CannonData")>  _
 Partial Public Class CannonData
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -11452,6 +11892,420 @@ Partial Public Class GroupSubscriber
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.j1939")>  _
+Partial Public Class j1939
+	
+	Private _PGN As System.Nullable(Of Double)
+	
+	Private _Parameter_Group_Label As String
+	
+	Private _PGN_Length As String
+	
+	Private _Transmission_Rate As String
+	
+	Private _Acronym As String
+	
+	Private _pos As String
+	
+	Private _SPN_length As System.Nullable(Of Double)
+	
+	Private _SPN As System.Nullable(Of Double)
+	
+	Private __51_CAT_793F_Haul_Trucks As String
+	
+	Private __0_CAT_16M_Grader As String
+	
+	Private __0_Komatsu_1200_Wheel_Loaders As String
+	
+	Private __0_Liebherr_R9400_Excavators As String
+	
+	Private __0_Liebherr_R996B_Excavators As String
+	
+	Private __0_Atlas_Copco_PV271_Drills As String
+	
+	Private __0_Atlas_Copco_D65_Drills As String
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _Data_Range As String
+	
+	Private _Operational_Range As String
+	
+	Private _Resolution As String
+	
+	Private _Offset As System.Nullable(Of Double)
+	
+	Private _Units As String
+	
+	Private _Date_SPN_was_added_to_PGN As System.Nullable(Of Date)
+	
+	Private _Status_of_SPN_addition_to_PGN As String
+	
+	Private _Date_SPN_was_added_modified As System.Nullable(Of Date)
+	
+	Private _Status_of_SPN As String
+	
+	Private _SPN_Doc As String
+	
+	Private _PGN_Doc As String
+	
+	Private _F29 As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PGN", DbType:="Float")>  _
+	Public Property PGN() As System.Nullable(Of Double)
+		Get
+			Return Me._PGN
+		End Get
+		Set
+			If (Me._PGN.Equals(value) = false) Then
+				Me._PGN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Parameter Group Label]", Storage:="_Parameter_Group_Label", DbType:="NVarChar(255)")>  _
+	Public Property Parameter_Group_Label() As String
+		Get
+			Return Me._Parameter_Group_Label
+		End Get
+		Set
+			If (String.Equals(Me._Parameter_Group_Label, value) = false) Then
+				Me._Parameter_Group_Label = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[PGN Length]", Storage:="_PGN_Length", DbType:="NVarChar(255)")>  _
+	Public Property PGN_Length() As String
+		Get
+			Return Me._PGN_Length
+		End Get
+		Set
+			If (String.Equals(Me._PGN_Length, value) = false) Then
+				Me._PGN_Length = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Transmission Rate]", Storage:="_Transmission_Rate", DbType:="NVarChar(255)")>  _
+	Public Property Transmission_Rate() As String
+		Get
+			Return Me._Transmission_Rate
+		End Get
+		Set
+			If (String.Equals(Me._Transmission_Rate, value) = false) Then
+				Me._Transmission_Rate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Acronym", DbType:="NVarChar(255)")>  _
+	Public Property Acronym() As String
+		Get
+			Return Me._Acronym
+		End Get
+		Set
+			If (String.Equals(Me._Acronym, value) = false) Then
+				Me._Acronym = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_pos", DbType:="NVarChar(255)")>  _
+	Public Property pos() As String
+		Get
+			Return Me._pos
+		End Get
+		Set
+			If (String.Equals(Me._pos, value) = false) Then
+				Me._pos = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[SPN length]", Storage:="_SPN_length", DbType:="Float")>  _
+	Public Property SPN_length() As System.Nullable(Of Double)
+		Get
+			Return Me._SPN_length
+		End Get
+		Set
+			If (Me._SPN_length.Equals(value) = false) Then
+				Me._SPN_length = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SPN", DbType:="Float")>  _
+	Public Property SPN() As System.Nullable(Of Double)
+		Get
+			Return Me._SPN
+		End Get
+		Set
+			If (Me._SPN.Equals(value) = false) Then
+				Me._SPN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[51 CAT 793F Haul Trucks]", Storage:="__51_CAT_793F_Haul_Trucks", DbType:="NVarChar(255)")>  _
+	Public Property _51_CAT_793F_Haul_Trucks() As String
+		Get
+			Return Me.__51_CAT_793F_Haul_Trucks
+		End Get
+		Set
+			If (String.Equals(Me.__51_CAT_793F_Haul_Trucks, value) = false) Then
+				Me.__51_CAT_793F_Haul_Trucks = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 CAT 16M Grader]", Storage:="__0_CAT_16M_Grader", DbType:="NVarChar(255)")>  _
+	Public Property _0_CAT_16M_Grader() As String
+		Get
+			Return Me.__0_CAT_16M_Grader
+		End Get
+		Set
+			If (String.Equals(Me.__0_CAT_16M_Grader, value) = false) Then
+				Me.__0_CAT_16M_Grader = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Komatsu 1200 Wheel Loaders]", Storage:="__0_Komatsu_1200_Wheel_Loaders", DbType:="NVarChar(255)")>  _
+	Public Property _0_Komatsu_1200_Wheel_Loaders() As String
+		Get
+			Return Me.__0_Komatsu_1200_Wheel_Loaders
+		End Get
+		Set
+			If (String.Equals(Me.__0_Komatsu_1200_Wheel_Loaders, value) = false) Then
+				Me.__0_Komatsu_1200_Wheel_Loaders = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Liebherr R9400 Excavators]", Storage:="__0_Liebherr_R9400_Excavators", DbType:="NVarChar(255)")>  _
+	Public Property _0_Liebherr_R9400_Excavators() As String
+		Get
+			Return Me.__0_Liebherr_R9400_Excavators
+		End Get
+		Set
+			If (String.Equals(Me.__0_Liebherr_R9400_Excavators, value) = false) Then
+				Me.__0_Liebherr_R9400_Excavators = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Liebherr R996B Excavators]", Storage:="__0_Liebherr_R996B_Excavators", DbType:="NVarChar(255)")>  _
+	Public Property _0_Liebherr_R996B_Excavators() As String
+		Get
+			Return Me.__0_Liebherr_R996B_Excavators
+		End Get
+		Set
+			If (String.Equals(Me.__0_Liebherr_R996B_Excavators, value) = false) Then
+				Me.__0_Liebherr_R996B_Excavators = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Atlas Copco PV271 Drills]", Storage:="__0_Atlas_Copco_PV271_Drills", DbType:="NVarChar(255)")>  _
+	Public Property _0_Atlas_Copco_PV271_Drills() As String
+		Get
+			Return Me.__0_Atlas_Copco_PV271_Drills
+		End Get
+		Set
+			If (String.Equals(Me.__0_Atlas_Copco_PV271_Drills, value) = false) Then
+				Me.__0_Atlas_Copco_PV271_Drills = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[0 Atlas Copco D65 Drills]", Storage:="__0_Atlas_Copco_D65_Drills", DbType:="NVarChar(255)")>  _
+	Public Property _0_Atlas_Copco_D65_Drills() As String
+		Get
+			Return Me.__0_Atlas_Copco_D65_Drills
+		End Get
+		Set
+			If (String.Equals(Me.__0_Atlas_Copco_D65_Drills, value) = false) Then
+				Me.__0_Atlas_Copco_D65_Drills = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(255)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me._Description = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Data Range]", Storage:="_Data_Range", DbType:="NVarChar(255)")>  _
+	Public Property Data_Range() As String
+		Get
+			Return Me._Data_Range
+		End Get
+		Set
+			If (String.Equals(Me._Data_Range, value) = false) Then
+				Me._Data_Range = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Operational Range]", Storage:="_Operational_Range", DbType:="NVarChar(255)")>  _
+	Public Property Operational_Range() As String
+		Get
+			Return Me._Operational_Range
+		End Get
+		Set
+			If (String.Equals(Me._Operational_Range, value) = false) Then
+				Me._Operational_Range = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Resolution", DbType:="NVarChar(255)")>  _
+	Public Property Resolution() As String
+		Get
+			Return Me._Resolution
+		End Get
+		Set
+			If (String.Equals(Me._Resolution, value) = false) Then
+				Me._Resolution = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Offset", DbType:="Float")>  _
+	Public Property Offset() As System.Nullable(Of Double)
+		Get
+			Return Me._Offset
+		End Get
+		Set
+			If (Me._Offset.Equals(value) = false) Then
+				Me._Offset = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Units", DbType:="NVarChar(255)")>  _
+	Public Property Units() As String
+		Get
+			Return Me._Units
+		End Get
+		Set
+			If (String.Equals(Me._Units, value) = false) Then
+				Me._Units = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Date SPN was added to PGN]", Storage:="_Date_SPN_was_added_to_PGN", DbType:="DateTime")>  _
+	Public Property Date_SPN_was_added_to_PGN() As System.Nullable(Of Date)
+		Get
+			Return Me._Date_SPN_was_added_to_PGN
+		End Get
+		Set
+			If (Me._Date_SPN_was_added_to_PGN.Equals(value) = false) Then
+				Me._Date_SPN_was_added_to_PGN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Status of SPN addition to PGN]", Storage:="_Status_of_SPN_addition_to_PGN", DbType:="NVarChar(255)")>  _
+	Public Property Status_of_SPN_addition_to_PGN() As String
+		Get
+			Return Me._Status_of_SPN_addition_to_PGN
+		End Get
+		Set
+			If (String.Equals(Me._Status_of_SPN_addition_to_PGN, value) = false) Then
+				Me._Status_of_SPN_addition_to_PGN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Date SPN was added/modified]", Storage:="_Date_SPN_was_added_modified", DbType:="DateTime")>  _
+	Public Property Date_SPN_was_added_modified() As System.Nullable(Of Date)
+		Get
+			Return Me._Date_SPN_was_added_modified
+		End Get
+		Set
+			If (Me._Date_SPN_was_added_modified.Equals(value) = false) Then
+				Me._Date_SPN_was_added_modified = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Status of SPN]", Storage:="_Status_of_SPN", DbType:="NVarChar(255)")>  _
+	Public Property Status_of_SPN() As String
+		Get
+			Return Me._Status_of_SPN
+		End Get
+		Set
+			If (String.Equals(Me._Status_of_SPN, value) = false) Then
+				Me._Status_of_SPN = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[SPN Doc]", Storage:="_SPN_Doc", DbType:="NVarChar(255)")>  _
+	Public Property SPN_Doc() As String
+		Get
+			Return Me._SPN_Doc
+		End Get
+		Set
+			If (String.Equals(Me._SPN_Doc, value) = false) Then
+				Me._SPN_Doc = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[PGN Doc]", Storage:="_PGN_Doc", DbType:="NVarChar(255)")>  _
+	Public Property PGN_Doc() As String
+		Get
+			Return Me._PGN_Doc
+		End Get
+		Set
+			If (String.Equals(Me._PGN_Doc, value) = false) Then
+				Me._PGN_Doc = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_F29", DbType:="NVarChar(255)")>  _
+	Public Property F29() As String
+		Get
+			Return Me._F29
+		End Get
+		Set
+			If (String.Equals(Me._F29, value) = false) Then
+				Me._F29 = value
+			End If
+		End Set
+	End Property
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.PaidFeatures")>  _
 Partial Public Class PaidFeature
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -11536,6 +12390,333 @@ Partial Public Class PaidFeature
 				Me._PaidFeatureDescription = value
 				Me.SendPropertyChanged("PaidFeatureDescription")
 				Me.OnPaidFeatureDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ReportSchdeule")>  _
+Partial Public Class ReportSchdeule
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ReportScheduleID As System.Guid
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _ReportName As String
+	
+	Private _ReportType As String
+	
+	Private _ReportTypeSpecific As String
+	
+	Private _ReportTime As System.Nullable(Of Date)
+	
+	Private _Enabled As System.Nullable(Of Boolean)
+	
+	Private _DateCreated As System.Nullable(Of Date)
+	
+	Private _Creator As String
+	
+	Private _ReportParams As String
+	
+	Private _SubscriberID As System.Nullable(Of System.Guid)
+	
+	Private _Schedule As String
+	
+	Private _Recipients As System.Nullable(Of System.Guid)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnReportScheduleIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnReportScheduleIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnReportNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportNameChanged()
+    End Sub
+    Partial Private Sub OnReportTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportTypeChanged()
+    End Sub
+    Partial Private Sub OnReportTypeSpecificChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportTypeSpecificChanged()
+    End Sub
+    Partial Private Sub OnReportTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnReportTimeChanged()
+    End Sub
+    Partial Private Sub OnEnabledChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnEnabledChanged()
+    End Sub
+    Partial Private Sub OnDateCreatedChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDateCreatedChanged()
+    End Sub
+    Partial Private Sub OnCreatorChanging(value As String)
+    End Sub
+    Partial Private Sub OnCreatorChanged()
+    End Sub
+    Partial Private Sub OnReportParamsChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportParamsChanged()
+    End Sub
+    Partial Private Sub OnSubscriberIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnSubscriberIDChanged()
+    End Sub
+    Partial Private Sub OnScheduleChanging(value As String)
+    End Sub
+    Partial Private Sub OnScheduleChanged()
+    End Sub
+    Partial Private Sub OnRecipientsChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnRecipientsChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportScheduleID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ReportScheduleID() As System.Guid
+		Get
+			Return Me._ReportScheduleID
+		End Get
+		Set
+			If ((Me._ReportScheduleID = value)  _
+						= false) Then
+				Me.OnReportScheduleIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportScheduleID = value
+				Me.SendPropertyChanged("ReportScheduleID")
+				Me.OnReportScheduleIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportName", DbType:="VarChar(100)")>  _
+	Public Property ReportName() As String
+		Get
+			Return Me._ReportName
+		End Get
+		Set
+			If (String.Equals(Me._ReportName, value) = false) Then
+				Me.OnReportNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportName = value
+				Me.SendPropertyChanged("ReportName")
+				Me.OnReportNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportType", DbType:="VarChar(100)")>  _
+	Public Property ReportType() As String
+		Get
+			Return Me._ReportType
+		End Get
+		Set
+			If (String.Equals(Me._ReportType, value) = false) Then
+				Me.OnReportTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportType = value
+				Me.SendPropertyChanged("ReportType")
+				Me.OnReportTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTypeSpecific", DbType:="VarChar(100)")>  _
+	Public Property ReportTypeSpecific() As String
+		Get
+			Return Me._ReportTypeSpecific
+		End Get
+		Set
+			If (String.Equals(Me._ReportTypeSpecific, value) = false) Then
+				Me.OnReportTypeSpecificChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportTypeSpecific = value
+				Me.SendPropertyChanged("ReportTypeSpecific")
+				Me.OnReportTypeSpecificChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTime", DbType:="DateTime")>  _
+	Public Property ReportTime() As System.Nullable(Of Date)
+		Get
+			Return Me._ReportTime
+		End Get
+		Set
+			If (Me._ReportTime.Equals(value) = false) Then
+				Me.OnReportTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportTime = value
+				Me.SendPropertyChanged("ReportTime")
+				Me.OnReportTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Enabled", DbType:="Bit")>  _
+	Public Property Enabled() As System.Nullable(Of Boolean)
+		Get
+			Return Me._Enabled
+		End Get
+		Set
+			If (Me._Enabled.Equals(value) = false) Then
+				Me.OnEnabledChanging(value)
+				Me.SendPropertyChanging
+				Me._Enabled = value
+				Me.SendPropertyChanged("Enabled")
+				Me.OnEnabledChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime")>  _
+	Public Property DateCreated() As System.Nullable(Of Date)
+		Get
+			Return Me._DateCreated
+		End Get
+		Set
+			If (Me._DateCreated.Equals(value) = false) Then
+				Me.OnDateCreatedChanging(value)
+				Me.SendPropertyChanging
+				Me._DateCreated = value
+				Me.SendPropertyChanged("DateCreated")
+				Me.OnDateCreatedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Creator", DbType:="VarChar(500)")>  _
+	Public Property Creator() As String
+		Get
+			Return Me._Creator
+		End Get
+		Set
+			If (String.Equals(Me._Creator, value) = false) Then
+				Me.OnCreatorChanging(value)
+				Me.SendPropertyChanging
+				Me._Creator = value
+				Me.SendPropertyChanged("Creator")
+				Me.OnCreatorChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportParams", DbType:="VarChar(MAX)")>  _
+	Public Property ReportParams() As String
+		Get
+			Return Me._ReportParams
+		End Get
+		Set
+			If (String.Equals(Me._ReportParams, value) = false) Then
+				Me.OnReportParamsChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportParams = value
+				Me.SendPropertyChanged("ReportParams")
+				Me.OnReportParamsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubscriberID", DbType:="UniqueIdentifier")>  _
+	Public Property SubscriberID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._SubscriberID
+		End Get
+		Set
+			If (Me._SubscriberID.Equals(value) = false) Then
+				Me.OnSubscriberIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SubscriberID = value
+				Me.SendPropertyChanged("SubscriberID")
+				Me.OnSubscriberIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Schedule", DbType:="VarChar(MAX)")>  _
+	Public Property Schedule() As String
+		Get
+			Return Me._Schedule
+		End Get
+		Set
+			If (String.Equals(Me._Schedule, value) = false) Then
+				Me.OnScheduleChanging(value)
+				Me.SendPropertyChanging
+				Me._Schedule = value
+				Me.SendPropertyChanged("Schedule")
+				Me.OnScheduleChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Recipients", DbType:="UniqueIdentifier")>  _
+	Public Property Recipients() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._Recipients
+		End Get
+		Set
+			If (Me._Recipients.Equals(value) = false) Then
+				Me.OnRecipientsChanging(value)
+				Me.SendPropertyChanging
+				Me._Recipients = value
+				Me.SendPropertyChanged("Recipients")
+				Me.OnRecipientsChanged
 			End If
 		End Set
 	End Property
@@ -12013,333 +13194,6 @@ Partial Public Class WebServiceLog
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ReportSchdeule")>  _
-Partial Public Class ReportSchdeule
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ReportScheduleID As System.Guid
-	
-	Private _ApplicationID As System.Guid
-	
-	Private _ReportName As String
-	
-	Private _ReportType As String
-	
-	Private _ReportTypeSpecific As String
-	
-	Private _ReportTime As System.Nullable(Of Date)
-	
-	Private _Enabled As System.Nullable(Of Boolean)
-	
-	Private _DateCreated As System.Nullable(Of Date)
-	
-	Private _Creator As String
-	
-	Private _ReportParams As String
-	
-	Private _SubscriberID As System.Nullable(Of System.Guid)
-	
-	Private _Schedule As String
-	
-	Private _Recipients As System.Nullable(Of System.Guid)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnReportScheduleIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnReportScheduleIDChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnReportNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportNameChanged()
-    End Sub
-    Partial Private Sub OnReportTypeChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportTypeChanged()
-    End Sub
-    Partial Private Sub OnReportTypeSpecificChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportTypeSpecificChanged()
-    End Sub
-    Partial Private Sub OnReportTimeChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnReportTimeChanged()
-    End Sub
-    Partial Private Sub OnEnabledChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnEnabledChanged()
-    End Sub
-    Partial Private Sub OnDateCreatedChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnDateCreatedChanged()
-    End Sub
-    Partial Private Sub OnCreatorChanging(value As String)
-    End Sub
-    Partial Private Sub OnCreatorChanged()
-    End Sub
-    Partial Private Sub OnReportParamsChanging(value As String)
-    End Sub
-    Partial Private Sub OnReportParamsChanged()
-    End Sub
-    Partial Private Sub OnSubscriberIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnSubscriberIDChanged()
-    End Sub
-    Partial Private Sub OnScheduleChanging(value As String)
-    End Sub
-    Partial Private Sub OnScheduleChanged()
-    End Sub
-    Partial Private Sub OnRecipientsChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnRecipientsChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportScheduleID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ReportScheduleID() As System.Guid
-		Get
-			Return Me._ReportScheduleID
-		End Get
-		Set
-			If ((Me._ReportScheduleID = value)  _
-						= false) Then
-				Me.OnReportScheduleIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportScheduleID = value
-				Me.SendPropertyChanged("ReportScheduleID")
-				Me.OnReportScheduleIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationID() As System.Guid
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If ((Me._ApplicationID = value)  _
-						= false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportName", DbType:="VarChar(100)")>  _
-	Public Property ReportName() As String
-		Get
-			Return Me._ReportName
-		End Get
-		Set
-			If (String.Equals(Me._ReportName, value) = false) Then
-				Me.OnReportNameChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportName = value
-				Me.SendPropertyChanged("ReportName")
-				Me.OnReportNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportType", DbType:="VarChar(100)")>  _
-	Public Property ReportType() As String
-		Get
-			Return Me._ReportType
-		End Get
-		Set
-			If (String.Equals(Me._ReportType, value) = false) Then
-				Me.OnReportTypeChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportType = value
-				Me.SendPropertyChanged("ReportType")
-				Me.OnReportTypeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTypeSpecific", DbType:="VarChar(100)")>  _
-	Public Property ReportTypeSpecific() As String
-		Get
-			Return Me._ReportTypeSpecific
-		End Get
-		Set
-			If (String.Equals(Me._ReportTypeSpecific, value) = false) Then
-				Me.OnReportTypeSpecificChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportTypeSpecific = value
-				Me.SendPropertyChanged("ReportTypeSpecific")
-				Me.OnReportTypeSpecificChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportTime", DbType:="DateTime")>  _
-	Public Property ReportTime() As System.Nullable(Of Date)
-		Get
-			Return Me._ReportTime
-		End Get
-		Set
-			If (Me._ReportTime.Equals(value) = false) Then
-				Me.OnReportTimeChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportTime = value
-				Me.SendPropertyChanged("ReportTime")
-				Me.OnReportTimeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Enabled", DbType:="Bit")>  _
-	Public Property Enabled() As System.Nullable(Of Boolean)
-		Get
-			Return Me._Enabled
-		End Get
-		Set
-			If (Me._Enabled.Equals(value) = false) Then
-				Me.OnEnabledChanging(value)
-				Me.SendPropertyChanging
-				Me._Enabled = value
-				Me.SendPropertyChanged("Enabled")
-				Me.OnEnabledChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime")>  _
-	Public Property DateCreated() As System.Nullable(Of Date)
-		Get
-			Return Me._DateCreated
-		End Get
-		Set
-			If (Me._DateCreated.Equals(value) = false) Then
-				Me.OnDateCreatedChanging(value)
-				Me.SendPropertyChanging
-				Me._DateCreated = value
-				Me.SendPropertyChanged("DateCreated")
-				Me.OnDateCreatedChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Creator", DbType:="VarChar(500)")>  _
-	Public Property Creator() As String
-		Get
-			Return Me._Creator
-		End Get
-		Set
-			If (String.Equals(Me._Creator, value) = false) Then
-				Me.OnCreatorChanging(value)
-				Me.SendPropertyChanging
-				Me._Creator = value
-				Me.SendPropertyChanged("Creator")
-				Me.OnCreatorChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportParams", DbType:="VarChar(MAX)")>  _
-	Public Property ReportParams() As String
-		Get
-			Return Me._ReportParams
-		End Get
-		Set
-			If (String.Equals(Me._ReportParams, value) = false) Then
-				Me.OnReportParamsChanging(value)
-				Me.SendPropertyChanging
-				Me._ReportParams = value
-				Me.SendPropertyChanged("ReportParams")
-				Me.OnReportParamsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubscriberID", DbType:="UniqueIdentifier")>  _
-	Public Property SubscriberID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._SubscriberID
-		End Get
-		Set
-			If (Me._SubscriberID.Equals(value) = false) Then
-				Me.OnSubscriberIDChanging(value)
-				Me.SendPropertyChanging
-				Me._SubscriberID = value
-				Me.SendPropertyChanged("SubscriberID")
-				Me.OnSubscriberIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Schedule", DbType:="VarChar(MAX)")>  _
-	Public Property Schedule() As String
-		Get
-			Return Me._Schedule
-		End Get
-		Set
-			If (String.Equals(Me._Schedule, value) = false) Then
-				Me.OnScheduleChanging(value)
-				Me.SendPropertyChanging
-				Me._Schedule = value
-				Me.SendPropertyChanged("Schedule")
-				Me.OnScheduleChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Recipients", DbType:="UniqueIdentifier")>  _
-	Public Property Recipients() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._Recipients
-		End Get
-		Set
-			If (Me._Recipients.Equals(value) = false) Then
-				Me.OnRecipientsChanging(value)
-				Me.SendPropertyChanging
-				Me._Recipients = value
-				Me.SendPropertyChanged("Recipients")
-				Me.OnRecipientsChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -12631,7 +13485,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

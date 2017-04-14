@@ -459,6 +459,40 @@
       <Column Name="DeviceID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.CAN_MessageDefinitions" Member="CAN_MessageDefinitions">
+    <Type Name="CAN_MessageDefinition">
+      <Column Name="Standard" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PGN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Parameter Group Label]" Member="Parameter_Group_Label" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[PGN Length]" Member="PGN_Length" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Transmission Rate]" Member="Transmission_Rate" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Acronym" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="pos" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[SPN length]" Member="SPN_length" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SPN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[51 CAT 793F Haul Trucks]" Member="_51_CAT_793F_Haul_Trucks" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 CAT 16M Grader]" Member="_0_CAT_16M_Grader" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Komatsu 1200 Wheel Loaders]" Member="_0_Komatsu_1200_Wheel_Loaders" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Liebherr R9400 Excavators]" Member="_0_Liebherr_R9400_Excavators" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Liebherr R996B Excavators]" Member="_0_Liebherr_R996B_Excavators" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Atlas Copco PV271 Drills]" Member="_0_Atlas_Copco_PV271_Drills" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Atlas Copco D65 Drills]" Member="_0_Atlas_Copco_D65_Drills" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[Data Range]" Member="Data_Range" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Operational Range]" Member="Operational_Range" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Resolution" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Offset" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Units" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Date SPN was added to PGN]" Member="Date_SPN_was_added_to_PGN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Status of SPN addition to PGN]" Member="Status_of_SPN_addition_to_PGN" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Date SPN was added/modified]" Member="Date_SPN_was_added_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Status of SPN]" Member="Status_of_SPN" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[SPN Doc]" Member="SPN_Doc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[PGN Doc]" Member="PGN_Doc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="F30" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.CannonData" Member="CannonDatas">
     <Type Name="CannonData">
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
@@ -602,11 +636,61 @@
       <Column Name="NativeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.j1939" Member="j1939s">
+    <Type Name="j1939">
+      <Column Name="PGN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Parameter Group Label]" Member="Parameter_Group_Label" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[PGN Length]" Member="PGN_Length" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Transmission Rate]" Member="Transmission_Rate" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Acronym" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="pos" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[SPN length]" Member="SPN_length" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SPN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[51 CAT 793F Haul Trucks]" Member="_51_CAT_793F_Haul_Trucks" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 CAT 16M Grader]" Member="_0_CAT_16M_Grader" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Komatsu 1200 Wheel Loaders]" Member="_0_Komatsu_1200_Wheel_Loaders" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Liebherr R9400 Excavators]" Member="_0_Liebherr_R9400_Excavators" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Liebherr R996B Excavators]" Member="_0_Liebherr_R996B_Excavators" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Atlas Copco PV271 Drills]" Member="_0_Atlas_Copco_PV271_Drills" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[0 Atlas Copco D65 Drills]" Member="_0_Atlas_Copco_D65_Drills" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[Data Range]" Member="Data_Range" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Operational Range]" Member="Operational_Range" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Resolution" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Offset" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Units" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Date SPN was added to PGN]" Member="Date_SPN_was_added_to_PGN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Status of SPN addition to PGN]" Member="Status_of_SPN_addition_to_PGN" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Date SPN was added/modified]" Member="Date_SPN_was_added_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Status of SPN]" Member="Status_of_SPN" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[SPN Doc]" Member="SPN_Doc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[PGN Doc]" Member="PGN_Doc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="F29" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.PaidFeatures" Member="PaidFeatures">
     <Type Name="PaidFeature">
       <Column Name="ApplicationPaidFeaturesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="PaidFeatureDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReportSchdeule" Member="ReportSchdeules">
+    <Type Name="ReportSchdeule">
+      <Column Name="ReportScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ReportName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportTypeSpecific" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReportTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Enabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Creator" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ReportParams" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SubscriberID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Schedule" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Recipients" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Setting" Member="Settings">
@@ -634,23 +718,6 @@
       <Column Name="company" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="XMLResponse" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="DateLogged" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ReportSchdeule" Member="ReportSchdeules">
-    <Type Name="ReportSchdeule">
-      <Column Name="ReportScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ReportName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportTypeSpecific" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ReportTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Enabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Creator" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="ReportParams" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="SubscriberID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Schedule" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Recipients" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
