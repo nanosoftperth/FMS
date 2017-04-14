@@ -12,8 +12,8 @@ namespace FMS.Datalistener.CalAmp.API
     public class CANReceiverController : ApiController
     {
 
-        public static PISDK.PISDK x = new PISDK.PISDK();
-        public static PISDK.Server pis = x.Servers.DefaultServer;
+        public static PISDK.PISDK pisdk = new PISDK.PISDK();
+        public static PISDK.Server piserver = pisdk.Servers.DefaultServer;
 
 
         const string FILELOCATION = @"c:\temp\rodlogs\";
@@ -83,7 +83,7 @@ namespace FMS.Datalistener.CalAmp.API
         // GET api/values/5 
         public string Get(int id)
         {
-            return "jonathan";
+            return "you send through id " + id;
         }
 
 
@@ -95,50 +95,106 @@ namespace FMS.Datalistener.CalAmp.API
         {
             try
             {
-                //data packet needs to contain: canbus data (multiple rows or however you get it working)
-                //other fields: "usrname, password, companyname
+                //example format for data to be received
+                //deviceid:ABC
+                //time:1492136660
+                //183 69EFFF0F
+                //286 000000006B000000
+                //206 80
 
-                //receive canbus data 
-
-                string fileNameAndloc = FILELOCATION + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";               
-
+                //save the content of the post to a file (for the first few months whilst we test etc)
+                string fileNameAndloc = FILELOCATION + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";
                 System.IO.File.WriteAllText(fileNameAndloc, value);
 
+                //grab a list of all the commands seperatley
                 List<string> cmdList = value.Split('\n').ToList();
 
                 //get the deviceid
-                string deviceID = cmdList[0].Trim().Replace("deviceid:",string.Empty);
+                string deviceID = cmdList[0].Trim().Replace("deviceid:", string.Empty);
 
-                string tag_format = "CAN_{0}_{1}";
+                DateTime currentDatetime;//this is used in the loop and updated when the datetime lineitem is found.
 
-                for(int i = 1; 1 < cmdList.Count; i++){
+                for (int i = 1; 1 < cmdList.Count; i++)
+                {
 
                     string[] cmds = cmdList[i].Split(' ');
+                    string itmRow = cmdList[i];
 
-                    int dataLength = int.Parse(cmds[6].Substring(1, 1));
-                    string arb_id = cmds[4];
+                    if (itmRow.StartsWith("time:"))
+                    {
+                        string newTimeUTCstr = itmRow.Remove(0, 5);
+                        currentDatetime = UnixTimeStampToDateTime(newTimeUTCstr);
+                        continue;
+                    }
 
-                    string tagName = string.Format(tag_format, deviceID, arb_id);
+                    //get the required data from the posted line (we can only presume this is a CANbus entry at this point)
+                    string arb_id = cmds[1];
+                    string hexData = cmds[2];
 
-                    //the idea here is to get the data and then save it as an int64 (after being conveted to hex) into PI as 
-                    // either a new tag or an existing one. 
+                    string tagName = string.Format("CAN_{0}_{1}", deviceID, arb_id);
+
+                    //store the data as a double precision floating point as that is 8 bytes (same as float64 in pi)
+                    double valueForHistorizing = hex2double(hexData);
+
+                    //does tag name exist?
+                    PISDK.PointList lst = piserver.GetPoints(string.Format("tag = '{0}'", tagName));
+
+                    //if the tag does not exist, then create it
+                    if (lst.Count < 1)
+                    {
+                        PISDKCommon.NamedValues namedValues = new PISDKCommon.NamedValues();
+                        namedValues.Add("compressing", 0);
+                        namedValues.Add("pointsource", "CANBus");
+
+                        //create the pi point if it does not exist
+                        piserver.PIPoints.Add(tagName, "classic", PISDK.PointTypeConstants.pttypFloat64, namedValues);
+                    }
+
+                    //get the pipoint, if we didnt already have it found initially
+                    PISDK.PIPoint foundPiPoint = lst.Count < 1 ? piserver.PIPoints[tagName] : lst[1];
+
+                    foundPiPoint.Data.UpdateValue(valueForHistorizing, DateTime.Now);
+                    int count = lst.Count;
 
                 }
 
-                //for (int i = 0; i <  )
-
-                    //look to see if the PI point exists, if not CREATE IT
-
-                    //int64 data type (8 bytes)
-
-                    //save the RAW data into PI 
-
-                    return "success";
-
+                return "success";
+            
             }
-            catch (Exception ex) { return "Exception" + ex.Message; }
+            catch (Exception ex)
+            {
+                //we will need to log the issue, NOT stop the device from sending.
+                return "success";
+            }
 
         }
+
+
+        public static DateTime UnixTimeStampToDateTime(string unixTimeStamp)
+        {
+            double d = Convert.ToDouble(unixTimeStamp);
+            return UnixTimeStampToDateTime(d);
+        }
+
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
+        }
+
+        double hex2double(string hex)
+        {
+            double result = 0.0;
+            foreach (char c in hex)
+            {
+                double val = (double)System.Convert.ToInt32(c.ToString(), 16);
+                result = result * 16.0 + val;
+            }
+            return result;
+        }
+
 
         // PUT api/values/5 
         public void Put(int id, [FromBody]string value)
