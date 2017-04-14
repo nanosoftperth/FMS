@@ -33,6 +33,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FMS.ReportLogic", "FMS.Repo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMS.ReportService", "FMS.ReportService\FMS.ReportService.csproj", "{31C24D4C-059A-47A8-A570-2EA143952986}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMS.WEB.API", "FMS.WEB.API\FMS.WEB.API.csproj", "{547A9886-19DC-49BD-8816-907B5AF7099D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{31C24D4C-059A-47A8-A570-2EA143952986}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C24D4C-059A-47A8-A570-2EA143952986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C24D4C-059A-47A8-A570-2EA143952986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547A9886-19DC-49BD-8816-907B5AF7099D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547A9886-19DC-49BD-8816-907B5AF7099D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547A9886-19DC-49BD-8816-907B5AF7099D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547A9886-19DC-49BD-8816-907B5AF7099D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -144,6 +144,10 @@
       <Project>{615cea30-9231-4982-8e5e-ad472db27b07}</Project>
       <Name>FMS.BackgroundCalcs.ConsoleApp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FMS.Business\FMS.Business.vbproj">
+      <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
+      <Name>FMS.Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
