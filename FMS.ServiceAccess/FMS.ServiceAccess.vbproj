@@ -197,6 +197,10 @@
       <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
       <Name>FMS.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FMS.ReportLogic\FMS.ReportLogic.vbproj">
+      <Project>{07682610-d796-4b97-ac1b-9c03c1715944}</Project>
+      <Name>FMS.ReportLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

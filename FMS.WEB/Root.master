@@ -104,8 +104,8 @@
                                 <p class="MsoNormal">
                                     <b>
  
-                                        <span runat="server" id="header_companyName" class="headerCustom" style="color: #466289;">Company Name</span>
-                                        <span runat="server" id="header_applicationName" class="headerCustom" style="color: #FA6121;">&nbsp;&nbsp;Application Name</span>
+                                        <span runat="server" id="header_companyName" class="headerCustom" style="color: #466289;">Nanosoft</span>
+                                        <span runat="server" id="header_applicationName" class="headerCustom" style="color: #FA6121;">&nbsp;&nbsp;Vehicle Monitoring Platform API</span>
 
                                     </b>
                                 </p>
