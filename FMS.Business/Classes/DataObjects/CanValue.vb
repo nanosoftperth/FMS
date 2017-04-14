@@ -25,11 +25,11 @@
 
             Select Case spn
 
-                Case 242
+                Case 578
 
                     Select Case desc
 
-                        Case "Speed" : Me.Value = _242_speed(Me.RawValue)
+                        Case "Speed" : Me.Value = _578_speed(Me.RawValue)
                         Case "Parking Break"
                         Case "Horn"
                         Case "Beacon Operatio:"
@@ -45,9 +45,9 @@
 
 
 
-        Private Function _242_speed(val As Decimal) As Object
+        Private Function _578_speed(val As Decimal) As Object
 
-
+            Return Nothing
 
         End Function
 

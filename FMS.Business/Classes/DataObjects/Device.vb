@@ -48,12 +48,22 @@
 
             For Each p As PISDK.PIPoint In plst
 
-                Dim ppName As String = p.Name
 
-                'get the SPN number
-                Dim replaceStr As String = String.Format("CAN_{0}", deviceid)
-                Dim spn As Integer = ppName.Replace(replaceStr, "")
+                Try
 
+                    Dim ppName As String = p.Name
+
+                    'get the SPN number
+                    Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
+                    Dim spn As Integer = ppName.Replace(replaceStr, "")
+
+                    lst.AddRange(CAN_MessageDefinition.GetForSPN(spn))
+                Catch ex As Exception
+
+                    Dim msg As String = ex.Message
+
+                End Try
+               
 
 
             Next
@@ -96,7 +106,7 @@
             Public Property LogEntry As String
             Public Property Lat As String
             Public Property Lng As String
-          
+
         End Structure
 
         Public Shared Function GetDeviceLogLatLng(deviceID As String, d As Date) As LogLatLng
