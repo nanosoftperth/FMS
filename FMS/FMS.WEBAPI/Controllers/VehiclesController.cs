@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using FMS.Business.DataObjects;
 using System.Web.Http;
 
 namespace FMS.WEBAPI.Controllers
@@ -16,9 +17,9 @@ namespace FMS.WEBAPI.Controllers
         }
 
         // GET api/vehicles/5
-        public string Get(string  vehicleID)
+        public List<CAN_MessageDefinition> Get(string  vehicleID)
         {
-            return "value";
+            return FMS.Business.DataObjects.Device.GetAvailableCANTags(vehicleID);
         }
 
         // POST api/vehicles

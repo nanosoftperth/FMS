@@ -98,7 +98,9 @@
     <Compile Include="Classes\DataObjects\ApplicationVehicleDriverTime.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicleOdometerReading.vb" />
     <Compile Include="Classes\DataObjects\AuthenticationToken.vb" />
-    <Compile Include="Classes\DataObjects\CANData.vb" />
+    <Compile Include="Classes\DataObjects\CanValue.vb" />
+    <Compile Include="Classes\DataObjects\CAN_MessageDefinition.vb" />
+    <Compile Include="Classes\DataObjects\CanDataPoint.vb" />
     <Compile Include="Classes\DataObjects\Contact.vb" />
     <Compile Include="Classes\DataObjects\customEvent.vb" />
     <Compile Include="Classes\DataObjects\CustomResource.vb" />

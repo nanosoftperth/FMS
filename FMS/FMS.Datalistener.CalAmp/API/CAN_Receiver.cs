@@ -112,7 +112,8 @@ namespace FMS.Datalistener.CalAmp.API
                 //get the deviceid
                 string deviceID = cmdList[0].Trim().Replace("deviceid:", string.Empty);
 
-                DateTime currentDatetime;//this is used in the loop and updated when the datetime lineitem is found.
+                DateTime currentDatetime = DateTime.Now;//this is used in the loop and updated when the datetime lineitem is found.
+                bool foundDate = false;
 
                 for (int i = 1; 1 < cmdList.Count; i++)
                 {
@@ -124,14 +125,18 @@ namespace FMS.Datalistener.CalAmp.API
                     {
                         string newTimeUTCstr = itmRow.Remove(0, 5);
                         currentDatetime = UnixTimeStampToDateTime(newTimeUTCstr);
+                        foundDate = true;
                         continue;
                     }
 
-                    //get the required data from the posted line (we can only presume this is a CANbus entry at this point)
-                    string arb_id = cmds[1];
-                    string hexData = cmds[2];
+                    //skip the line if there is no value for "currentDatetime" , this should never happen
+                    if (!foundDate) continue;
 
-                    string tagName = string.Format("CAN_{0}_{1}", deviceID, arb_id);
+                    //get the required data from the posted line (we can only presume this is a CANbus entry at this point)
+                    string arb_id = cmds[0];
+                    string hexData = cmds[1];
+
+                    string tagName = string.Format(FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT, deviceID, arb_id);
 
                     //store the data as a double precision floating point as that is 8 bytes (same as float64 in pi)
                     double valueForHistorizing = hex2double(hexData);
@@ -153,7 +158,7 @@ namespace FMS.Datalistener.CalAmp.API
                     //get the pipoint, if we didnt already have it found initially
                     PISDK.PIPoint foundPiPoint = lst.Count < 1 ? piserver.PIPoints[tagName] : lst[1];
 
-                    foundPiPoint.Data.UpdateValue(valueForHistorizing, DateTime.Now);
+                    foundPiPoint.Data.UpdateValue(valueForHistorizing, currentDatetime);
                     int count = lst.Count;
 
                 }
