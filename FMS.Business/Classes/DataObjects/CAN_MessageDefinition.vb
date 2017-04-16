@@ -42,15 +42,30 @@ Namespace DataObjects
 
         End Sub
 
-        Public Shared Function GetForSPN(spn As Integer) As List(Of Business.DataObjects.CAN_MessageDefinition)
+        Public Shared Function GetForSPN(spn As Integer, _
+                                        standard As String, _
+                                        Optional description As String = "") _
+                                                        As List(Of Business.DataObjects.CAN_MessageDefinition)
 
             Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
 
+
+
             With New LINQtoSQLClassesDataContext
                 .SubmitChanges()
-                retobj = (From x In .CAN_MessageDefinitions
+
+                If String.IsNullOrEmpty(description) Then
+
+                    retobj = (From x In .CAN_MessageDefinitions
                           Where x.SPN.HasValue AndAlso x.SPN = spn
                           Select New DataObjects.CAN_MessageDefinition(x)).ToList
+                Else
+                    retobj = (From x In .CAN_MessageDefinitions
+                          Where x.SPN.HasValue AndAlso x.SPN = spn AndAlso x.Description = description
+                          Select New DataObjects.CAN_MessageDefinition(x)).ToList
+                End If
+
+
 
                 .Dispose()
             End With
@@ -76,7 +91,7 @@ Namespace DataObjects
         End Function
 
 
-        
+
 
     End Class
 
