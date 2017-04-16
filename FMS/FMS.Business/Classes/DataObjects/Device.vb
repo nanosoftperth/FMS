@@ -36,7 +36,7 @@
         End Sub
 #End Region
 
-        Public Shared Function GetAvailableCANTags(deviceid As String) As List(Of DataObjects.CAN_MessageDefinition)
+        Public Shared Function GetAvailableCANTags(deviceid As String, standard As String) As List(Of DataObjects.CAN_MessageDefinition)
 
             Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
 
@@ -48,7 +48,6 @@
 
             For Each p As PISDK.PIPoint In plst
 
-
                 Try
 
                     Dim ppName As String = p.Name
@@ -57,15 +56,12 @@
                     Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
                     Dim spn As Integer = ppName.Replace(replaceStr, "")
 
-                    lst.AddRange(CAN_MessageDefinition.GetForSPN(spn))
+                    lst.AddRange(CAN_MessageDefinition.GetForSPN(spn, standard))
+
                 Catch ex As Exception
 
                     Dim msg As String = ex.Message
-
                 End Try
-               
-
-
             Next
 
             Return lst
