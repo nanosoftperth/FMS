@@ -16,7 +16,7 @@
 <%--THE TRs below are there as the NanoReportPArams collection will add a <table> wrapper--%>
 <tr style="padding-left:10px">
 
-    <td style="vertical-align: top; text-align: left; padding:0px;">
+    <td style="text-align: left; padding:0px; vertical-align: middle;" >
         <dx:ASPxLabel ID="lblParameterName" runat="server" Width="70px" Text="this is a test"></dx:ASPxLabel>
     </td>
     <td style="vertical-align: top; text-align: left;">

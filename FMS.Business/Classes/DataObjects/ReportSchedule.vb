@@ -11,6 +11,7 @@ Namespace DataObjects
         Private Const REPORT_TYPES As String = "OneOff,Daily,Weekly,Monthly"
         Private Const DAYS_OF_WEEK As String = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
         Private Const DATETIME_OPTIONS As String = "Now,Beginning of Day,Beginning of Week,Beginning of Year,Specific"
+        Private Const ENDDATETIME_OPTIONS As String = "Now,End of Day,End of Week,End of Year,Specific"
 #Region "Misc"
 
         Public Function GetDate(datetime_option As String)
@@ -35,7 +36,9 @@ Namespace DataObjects
         Public Shared Function GetDateTimeOptions() As List(Of String)
             Return DATETIME_OPTIONS.Split(","c).ToList
         End Function
-
+        Public Shared Function GetEndDateTimeOptions() As List(Of String)
+            Return ENDDATETIME_OPTIONS.Split(","c).ToList
+        End Function
         Public Shared Function GetMonthDays() As List(Of Integer)
 
             Dim retobj As New List(Of Integer)
