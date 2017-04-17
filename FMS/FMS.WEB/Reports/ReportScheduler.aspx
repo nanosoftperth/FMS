@@ -163,9 +163,9 @@
                                             <EditForm>
                                                 <table id="editTable" class="clsEditForm">
                                                     <tr>
-                                                        <td>Report</td>
                                                         <td></td>
-                                                        <td>Schedule</td>
+                                                        <td></td>
+                                                        <td></td>
                                                         <td>Destination</td>
                                                     </tr>
                                                     <tr>
@@ -173,10 +173,10 @@
                                                         <td style="padding-top: 5px;" valign="top">
                                                             <table style="width: 100%">
                                                                 <tr>
-                                                                    <td>
+                                                                    <td style="width:83px;">
                                                                         <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Type"  Width="65px"></dx:ASPxLabel>
                                                                     </td>
-                                                                    <td>
+                                                                    <td style="padding-left:0px!important;">
                                                                         <dx:ASPxComboBox
                                                                             TextField="VisibleReportName"
                                                                             ValueField="ActualReportNameToDisplay"

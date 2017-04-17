@@ -29,8 +29,12 @@ Public Class NanoReportParam
         lblParameterName.Text = ReportParameter.Description
 
         'populate the comboDateSelected, object data sources do not seem to work for custom controls in markup
-        Business.DataObjects.ReportSchedule.GetDateTimeOptions.ForEach(Function(x) comboDateSelected.Items.Add(x))
-
+        '' for Start Date on 20170417  
+        If ReportParameter.Description.Contains("Start Date") Then
+            Business.DataObjects.ReportSchedule.GetDateTimeOptions.ForEach(Function(x) comboDateSelected.Items.Add(x))
+        ElseIf ReportParameter.Description.Contains("End Date") Then
+            Business.DataObjects.ReportSchedule.GetEndDateTimeOptions.ForEach(Function(x) comboDateSelected.Items.Add(x))
+        End If 
 
         'add the value changed event to javascript here as we need to know the new client ID at runtime
         comboDateSelected.ClientSideEvents.ValueChanged = _
@@ -111,16 +115,13 @@ Public Class NanoReportParam
 
             End If
 
-            If ReportParameter.Type.ToString.ToLower = "system.datetime" Then
-
+            If ReportParameter.Type.ToString.ToLower = "system.datetime" Then 
                 'relative time OR exact time
-                Dim uniqcoID As String = Guid.NewGuid.ToString.Replace("-", "")
-
+                Dim uniqcoID As String = Guid.NewGuid.ToString.Replace("-", "") 
 
             End If
 
-            If paramControl IsNot Nothing Then panelContent.Controls.Add(paramControl)
-
+            If paramControl IsNot Nothing Then panelContent.Controls.Add(paramControl) 
 
     End Sub
 
