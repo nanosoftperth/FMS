@@ -124,7 +124,8 @@ namespace FMS.Datalistener.CalAmp.API
                     if (itmRow.StartsWith("time:"))
                     {
                         string newTimeUTCstr = itmRow.Remove(0, 5);
-                        currentDatetime = UnixTimeStampToDateTime(newTimeUTCstr);
+                        //if the datetime is set to 0, then use the current date/time, else this is a UTC timestamp so convert
+                        currentDatetime = newTimeUTCstr.Trim() == "0" ? DateTime.Now : UnixTimeStampToDateTime(newTimeUTCstr);
                         foundDate = true;
                         continue;
                     }
