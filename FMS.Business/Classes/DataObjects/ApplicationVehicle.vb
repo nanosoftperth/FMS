@@ -12,9 +12,7 @@
         Public Property ApplicationImageID As Guid?
         Public Property VINNumber As String
         Public Property CurrentDriver As FMS.Business.DataObjects.ApplicationDriver
-
         Public Property QueryTime As Date
-
         Public Property CAN_Protocol_Type As String
 
 
@@ -57,6 +55,25 @@
 #End Region
 
 #Region "CRUD"
+
+        Public Class CanStandard
+            Public Property Name As String
+            Public Property ID As String
+
+            Public Shared Function GetAllCANPRotocols() As List(Of CanStandard)
+
+                Dim protocols As String = "j1939,Zagro,CANopen - EN 50325-4,EnergyBus - CiA 454"
+
+                Return (From x In protocols.Split(","c) Select New CanStandard With {.ID = x, .Name = x}).ToList
+
+            End Function
+
+            Public Sub New()
+
+            End Sub
+        End Class
+
+       
 
         Public Shared Sub Create(av As FMS.Business.DataObjects.ApplicationVehicle)
 
@@ -128,6 +145,14 @@
         Public Shared Function GetFromName(name As String, appid As Guid) As ApplicationVehicle
 
             Return GetAll(appid).Where(Function(x) x.Name.ToLower.Trim = name.ToLower.Trim).SingleOrDefault
+
+        End Function
+
+        Public Shared Function GetFromName(name As String) As ApplicationVehicle
+
+            Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicles _
+                    Where x.Name = name _
+                    Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
 
         End Function
 

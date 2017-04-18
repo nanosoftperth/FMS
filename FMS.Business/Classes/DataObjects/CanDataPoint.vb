@@ -17,16 +17,19 @@
 #End Region
 
 
-        Public Shared Function GetPoint(SPN As Integer, standard As String, deviceid As String, _
+        Public Shared Function GetPoint(SPN As Integer, vehicleid As String, _
                                                 Optional description As String = "") As DataObjects.CanDataPoint
 
             Dim retobj As New CanDataPoint
 
+            Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromName(vehicleid)
+
+
             'get the MessageDefinition
-            retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard, description).First
+            retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, vehicle.CAN_Protocol_Type, description).First
 
             'get the pi point 
-            Dim tagName As String = String.Format(DataObjects.CanDataPoint.TAG_STRING_FORMAT, deviceid, SPN)
+            Dim tagName As String = String.Format(DataObjects.CanDataPoint.TAG_STRING_FORMAT, vehicle.DeviceID, SPN)
 
             Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
 
