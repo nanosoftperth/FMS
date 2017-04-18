@@ -2684,7 +2684,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4328,7 +4328,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4717,7 +4717,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -4958,6 +4958,8 @@ Partial Public Class ApplicationVehicle
 	
 	Private _ApplicationImageID As System.Nullable(Of System.Guid)
 	
+	Private _CAN_Protocol_Type As String
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -4996,6 +4998,10 @@ Partial Public Class ApplicationVehicle
     Partial Private Sub OnApplicationImageIDChanging(value As System.Nullable(Of System.Guid))
     End Sub
     Partial Private Sub OnApplicationImageIDChanged()
+    End Sub
+    Partial Private Sub OnCAN_Protocol_TypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnCAN_Protocol_TypeChanged()
     End Sub
     #End Region
 	
@@ -5130,6 +5136,22 @@ Partial Public Class ApplicationVehicle
 				Me._ApplicationImageID = value
 				Me.SendPropertyChanged("ApplicationImageID")
 				Me.OnApplicationImageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_Protocol_Type", DbType:="VarChar(100)")>  _
+	Public Property CAN_Protocol_Type() As String
+		Get
+			Return Me._CAN_Protocol_Type
+		End Get
+		Set
+			If (String.Equals(Me._CAN_Protocol_Type, value) = false) Then
+				Me.OnCAN_Protocol_TypeChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_Protocol_Type = value
+				Me.SendPropertyChanged("CAN_Protocol_Type")
+				Me.OnCAN_Protocol_TypeChanged
 			End If
 		End Set
 	End Property
@@ -9296,7 +9318,7 @@ Partial Public Class CAN_MessageDefinition
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(255)")>  _
 	Public Property Description() As String
 		Get
 			Return Me._Description
@@ -13485,7 +13507,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

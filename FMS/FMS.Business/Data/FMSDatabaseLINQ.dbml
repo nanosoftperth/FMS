@@ -257,6 +257,7 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="VINNumber" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ApplicationImageID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CAN_Protocol_Type" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ApplicationVehicleDriverTime" Member="ApplicationVehicleDriverTimes">
@@ -478,7 +479,7 @@
       <Column Name="[0 Atlas Copco PV271 Drills]" Member="_0_Atlas_Copco_PV271_Drills" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="[0 Atlas Copco D65 Drills]" Member="_0_Atlas_Copco_D65_Drills" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="[Data Range]" Member="Data_Range" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="[Operational Range]" Member="Operational_Range" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Resolution" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />

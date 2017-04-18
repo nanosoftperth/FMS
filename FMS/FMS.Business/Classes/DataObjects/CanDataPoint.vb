@@ -51,7 +51,7 @@
             Next
 
             'Calculate the actual value from the raw values
-            retobj.CanValues.CalculateValues(SPN)
+            retobj.CanValues.CalculateValues(SPN, description)
 
             'get the value 
             Return retobj
@@ -63,10 +63,10 @@
         Public Class CanValueList
             Inherits List(Of CanValue)
 
-            Public Sub CalculateValues(SPN As Integer)
+            Public Sub CalculateValues(SPN As Integer, Optional desc As String = "")
 
                 For Each cv As CanValue In Me
-                    cv.CalculateValue(SPN)
+                    cv.CalculateValue(SPN, desc)
                 Next
 
             End Sub
