@@ -42,14 +42,37 @@ Namespace DataObjects
 
         End Sub
 
+        Public Shared Function GetForPGN(pgn As Integer, _
+                                         standard As String, _
+                                         Optional description As String = "") _
+                                                         As List(Of Business.DataObjects.CAN_MessageDefinition)
+
+            Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
+
+
+
+            With New LINQtoSQLClassesDataContext
+                .SubmitChanges()
+
+                retobj = (From x In .CAN_MessageDefinitions
+                          Where x.PGN.HasValue AndAlso x.PGN = pgn
+                          Select New DataObjects.CAN_MessageDefinition(x)).ToList
+
+
+                .Dispose()
+            End With
+
+            Return retobj
+
+
+        End Function
+
         Public Shared Function GetForSPN(spn As Integer, _
                                         standard As String, _
                                         Optional description As String = "") _
                                                         As List(Of Business.DataObjects.CAN_MessageDefinition)
 
             Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
-
-
 
             With New LINQtoSQLClassesDataContext
                 .SubmitChanges()
