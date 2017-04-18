@@ -15,6 +15,8 @@
 
         Public Property QueryTime As Date
 
+        Public Property CAN_Protocol_Type As String
+
 
 #End Region
 
@@ -36,6 +38,9 @@
                 Else
                     Me.ApplicationImageID = av.ApplicationImageID
                 End If
+
+                Me.CAN_Protocol_Type = If(String.IsNullOrEmpty(av.CAN_Protocol_Type), "j1939", av.CAN_Protocol_Type)
+
                
             End With
 
@@ -66,6 +71,7 @@
                 .ApplicationID = av.ApplicationID
                 .VINNumber = av.VINNumber
                 .ApplicationImageID = av.ApplicationImageID
+                .CAN_Protocol_Type = av.CAN_Protocol_Type
 
             End With
 
@@ -88,7 +94,9 @@
                 .DeviceID = av.DeviceID
                 .ApplicationID = av.ApplicationID
                 .VINNumber = av.VINNumber
-                
+
+                .CAN_Protocol_Type = av.CAN_Protocol_Type
+
                 .ApplicationImageID = av.ApplicationImageID
             End With
 
