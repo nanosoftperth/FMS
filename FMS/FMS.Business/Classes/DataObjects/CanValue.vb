@@ -4,7 +4,7 @@
 
 #Region "property definitions & constructors"
 
-        Public Property RawValue As Double
+        Public Property RawValue As Int64
         Public Property Time As DateTime
         Public Property Value As Object
 
@@ -21,20 +21,20 @@
 #End Region
 
 
-        Public Sub CalculateValue(spn As Integer, Optional desc As String = "")
+        Public Sub CalculateValue(spn As Integer, standard As String)
 
             Select Case spn
 
-                Case 578
+                Case 1 : Me.Value = _zagro_1(Me.RawValue)
+                Case 2 : Me.Value = _zagro_1(Me.RawValue)
+                Case 3 : Me.Value = _zagro_1(Me.RawValue)
+                Case 4 : Me.Value = _zagro_1(Me.RawValue)
+                Case 5 : Me.Value = _zagro_1(Me.RawValue)
+                Case 6 : Me.Value = _zagro_1(Me.RawValue)
+                Case 7 : Me.Value = _zagro_1(Me.RawValue)
 
-                    Select Case desc
 
-                        Case "Speed" : Me.Value = _578_speed(Me.RawValue)
-                        Case "Parking Break"
-                        Case "Horn"
-                        Case "Beacon Operatio:"
-
-                    End Select
+                Case 190 : Me.Value = _zagro_1(Me.RawValue)
 
                 Case Else : Value = "not implemented"
 
@@ -42,8 +42,13 @@
 
         End Sub
 
+        Private Function _190(val As Int64) As Object
 
-        Private Function _578_speed(val As Int64) As Object
+            Return False
+
+        End Function
+
+        Private Function _zagro_1(val As Int64) As Object
 
             Dim b() As Byte = BitConverter.GetBytes(val)
 

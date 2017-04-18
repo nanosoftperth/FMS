@@ -36,38 +36,7 @@
         End Sub
 #End Region
 
-        Public Shared Function GetAvailableCANTags(deviceid As String, standard As String) As List(Of DataObjects.CAN_MessageDefinition)
-
-            Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
-
-            'search for all the pi points which exist for the device
-            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
-                                                        String.Format("tag = 'CAN*{0}*'", deviceid))
-
-            Dim cnt As Integer = plst.Count
-
-            For Each p As PISDK.PIPoint In plst
-
-                Try
-
-                    Dim ppName As String = p.Name
-
-                    'get the SPN number
-                    Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
-                    Dim spn As Integer = ppName.Replace(replaceStr, "")
-
-                    lst.AddRange(CAN_MessageDefinition.GetForSPN(spn, standard))
-
-                Catch ex As Exception
-
-                    Dim msg As String = ex.Message
-                End Try
-            Next
-
-            Return lst
-
-        End Function
-
+    
 
         Public Function GetLatLongs(dt As DateTime) As KeyValuePair(Of Decimal, Decimal)
 
