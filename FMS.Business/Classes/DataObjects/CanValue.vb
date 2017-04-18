@@ -43,11 +43,16 @@
         End Sub
 
 
+        Private Function _578_speed(val As Int64) As Object
+
+            Dim b() As Byte = BitConverter.GetBytes(val)
+
+            Dim bytes = b.Reverse()
 
 
-        Private Function _578_speed(val As Decimal) As Object
-
-            Return Nothing
+            Dim int1 As Single = Convert.ToSingle(bytes(0))
+            Dim int2 As Single = Convert.ToSingle(bytes(1))
+            Return int1 + (int2 * 256)
 
         End Function
 
