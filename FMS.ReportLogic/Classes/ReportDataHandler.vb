@@ -291,7 +291,54 @@ Public Class ReportDataHandler
         Return retobj
 
     End Function
-    
+    ''Get List  
+
+    Public Shared Function GetVehicleReport() As CacheVehicle 
+        Dim rept As New CacheVehicle
+        Dim retobj = FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID).ToList()
+
+        Dim objList As New List(Of Vehicle)
+        For Each item In retobj
+            objList.Add(New Vehicle() With
+                                 {.Name = item.Name,
+                                  .VINNumber = item.VINNumber, .Registration = item.Registration, .Notes = item.Notes, .DeviceID = item.DeviceID, .ApplicationImageID = item.ApplicationImageID})
+        Next
+        rept.LineValies = objList 
+
+        Return rept
+    End Function
+
+    Public Shared Function GetFDriverListReport() As CacheDriver
+        Dim rept As New CacheDriver
+        Dim retobj = FMS.Business.DataObjects.ApplicationDriver.GetAllDrivers(ThisSession.ApplicationID).ToList() 
+        Dim objList As New List(Of Driver)
+        For Each item In retobj
+            objList.Add(New Driver() With
+                                 {.FirstName = item.FirstName,
+                                  .Surname = item.Surname, .PhoneNumber = item.PhoneNumber, .EmailAddress = item.EmailAddress, .PhotoBinary = item.PhotoBinary, .Notes = item.Notes})
+        Next
+        rept.LineValies = objList
+
+        Return rept
+    End Function
+    Public Shared Function GetUsersListReport() As CacheUsers
+        Dim rept As New CacheUsers
+        Dim retobj = FMS.Business.DataObjects.User.GetAllUsersForApplication(ThisSession.ApplicationID).ToList()
+        Dim objList As New List(Of Users)
+        For Each item In retobj
+            objList.Add(New Users() With
+                                 {.UserName = item.UserName,
+                                  .Email = item.Email,
+                                  .Mobile = item.Mobile,
+                                  .TimeZone = item.TimeZone,
+                                  .RoleID = item.RoleID
+                                  })
+        Next
+        rept.LineValies = objList
+
+        Return rept
+    End Function
+
     Public Sub New()
 
     End Sub
