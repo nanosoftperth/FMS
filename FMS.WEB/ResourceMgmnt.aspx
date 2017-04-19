@@ -92,7 +92,7 @@
                 <img style="width: 200px;" src="Content/Images/mC-settings.png" />
             </td>
             <td>
-                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="3">
+                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="2">
                     <TabPages>
                         <dx:TabPage Text="Assign Drivers to Vehicles">
                             <ContentCollection>
@@ -555,8 +555,14 @@
                                             </dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="Notes" ShowInCustomizationForm="True" VisibleIndex="7">
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataComboBoxColumn FieldName="DeviceID" ShowInCustomizationForm="True" VisibleIndex="7">
+                                            <dx:GridViewDataComboBoxColumn FieldName="DeviceID" ShowInCustomizationForm="True" VisibleIndex="8">
                                                 <PropertiesComboBox DataSourceID="odsVehiclesDevices" TextField="DeviceID" ValueField="DeviceID">
+                                                    <ClearButton Visibility="Auto">
+                                                    </ClearButton>
+                                                </PropertiesComboBox>
+                                            </dx:GridViewDataComboBoxColumn>
+                                            <dx:GridViewDataComboBoxColumn Caption="CANbus standard" ShowInCustomizationForm="True" VisibleIndex="9" FieldName="CAN_Protocol_Type">
+                                                <PropertiesComboBox DataSourceID="odsCanStandards" TextField="ID" ValueField="Name">
                                                     <ClearButton Visibility="Auto">
                                                     </ClearButton>
                                                 </PropertiesComboBox>
@@ -569,6 +575,12 @@
                                             <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
                                         </SelectParameters>
                                     </asp:ObjectDataSource>
+
+                                    <asp:ObjectDataSource ID="odsCanStandards"
+                                        runat="server"
+                                        SelectMethod="GetAllCANPRotocols"
+                                        TypeName="FMS.Business.DataObjects.ApplicationVehicle+CanStandard"></asp:ObjectDataSource>
+
                                     <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />

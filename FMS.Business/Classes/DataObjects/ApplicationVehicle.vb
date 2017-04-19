@@ -137,7 +137,7 @@
 #Region "CANbus specific"
 
 
-        Public Function GetAvailableCANTags(deviceid As String, standard As String) As List(Of DataObjects.CAN_MessageDefinition)
+        Public Function GetAvailableCANTags() As List(Of DataObjects.CAN_MessageDefinition)
 
             Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
 
@@ -155,9 +155,9 @@
 
                     'get the SPN number
                     Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
-                    Dim spn As Integer = ppName.Replace(replaceStr, "")
+                    Dim pgn As Integer = ppName.Replace(replaceStr, "")
 
-                    lst.AddRange(CAN_MessageDefinition.GetForPGN(spn, standard))
+                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, Me.CAN_Protocol_Type))
 
                 Catch ex As Exception
 

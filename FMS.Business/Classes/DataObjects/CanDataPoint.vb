@@ -35,19 +35,14 @@
 
             'get data from pi for the time period
             Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
-                                                                 PISDK.BoundaryTypeConstants.btInside)
+                                                                 PISDK.BoundaryTypeConstants.btInside, )
 
             For Each p As PISDK.PIValue In pivds
 
                 Try
-                    Dim dbl As Double
 
-                    If Double.TryParse(p.Value, dbl) Then
-
-                        retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
-                                                                                .RawValue = p.Value})
-
-                    End If
+                    retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
+                                                                            .RawValue = p.Value})
 
                 Catch ex As Exception
                 End Try
@@ -67,14 +62,14 @@
             Inherits List(Of CanValue)
 
 
-            Public Delegate Function doCalcDelegate(ByRef cv As CanValue, msg_def As CAN_MessageDefinition) As Object
+            Public Delegate Sub doCalcDelegate(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
 
             Public Sub CalculateValues(SPN As Integer, msg_def As CAN_MessageDefinition)
 
                 Dim calcMethod As doCalcDelegate = Nothing
 
                 If msg_def.Standard = "Zagro" AndAlso SPN = 1 Then calcMethod = AddressOf zagro_1
-                If msg_def.Standard = "j1939" AndAlso SPN = 190 Then calcMethod = AddressOf j1939_190
+                If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
 
                 For Each cv As CanValue In Me
                     calcMethod(cv, msg_def)
@@ -83,35 +78,51 @@
             End Sub
 
 
-            Public Function unknown_calc(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                Return "not implemented standard / SPN combination"
-            End Function
+            Public Sub unknown_calc(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                cv.Value = "not implemented standard / SPN combination"
+            End Sub
 
-            Public Function zagro_1(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+            Public Sub zagro_1(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
 
-                Dim b() As Byte = BitConverter.GetBytes(cv.RawValue)
+                Dim rawValue As Int64 = Convert.ToInt64(cv.RawValue, 16)
 
-                Dim bytes = b.Reverse()
-
-                Dim int1 As Single = Convert.ToSingle(bytes(0))
-                Dim int2 As Single = Convert.ToSingle(bytes(1))
-
-                Return int1 + (int2 * 256)
-
-            End Function
-
-            Public Function j1939_190(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-
-                Dim b() As Byte = BitConverter.GetBytes(cv.RawValue)
+                Dim b() As Byte = BitConverter.GetBytes(rawValue)
 
                 Dim bytes = b.Reverse()
 
                 Dim int1 As Single = Convert.ToSingle(bytes(0))
                 Dim int2 As Single = Convert.ToSingle(bytes(1))
 
-                Return int1 + (int2 * 256)
+                cv.Value = int1 + (int2 * 256)
 
+            End Sub
+
+
+            Public Shared Function StringToByteArray(hex As String) As Byte()
+                Return Enumerable.Range(0, hex.Length).Where(Function(x) x Mod 2 = 0).[Select](Function(x) Convert.ToByte(hex.Substring(x, 2), 16)).ToArray()
             End Function
+
+
+            Public Sub j1939(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+                Dim b() As Byte = StringToByteArray(cv.RawValue)
+
+                Dim startByte As Integer = msg_def.pos_start
+
+                Dim indx As Integer = 0
+                Dim runningtotal As Double = 0
+
+                For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
+
+                    runningtotal += CInt(b(i)) * Math.Pow(256, indx)
+                    indx += 1
+                Next
+
+                runningtotal = msg_def.offset + (runningtotal * msg_def.Resolution_Multiplier)
+
+                cv.Value = runningtotal
+
+            End Sub
 
 
         End Class
