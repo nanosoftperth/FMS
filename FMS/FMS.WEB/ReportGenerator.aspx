@@ -62,7 +62,7 @@
                                 </td>
 
                                 <td style="padding: 4px;">
-
+                                     
                                     <dx:ASPxHyperLink ID="ASPxHyperLink1"
                                         runat="server"
                                         Text="load report"

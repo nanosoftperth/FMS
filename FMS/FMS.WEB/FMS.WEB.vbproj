@@ -393,6 +393,20 @@
     <Compile Include="Reports\DriverOperatingHoursReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ResourceMgmtReport.aspx.designer.vb">
+      <DependentUpon>ResourceMgmtReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceMgmtReport.aspx.vb">
+      <DependentUpon>ResourceMgmtReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ResourseMgmtRptContent.aspx.designer.vb">
+      <DependentUpon>ResourseMgmtRptContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourseMgmtRptContent.aspx.vb">
+      <DependentUpon>ResourseMgmtRptContent.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="RoundRobinService.svc.vb">
       <DependentUpon>RoundRobinService.svc</DependentUpon>
     </Compile>
@@ -871,6 +885,8 @@
     <Content Include="ReportContent.aspx" />
     <Content Include="Reports\report backup\reporttocopy.png" />
     <Content Include="Reports\ReportScheduler.aspx" />
+    <Content Include="ResourceMgmtReport.aspx" />
+    <Content Include="ResourseMgmtRptContent.aspx" />
     <Content Include="RoundRobinService.svc" />
     <Content Include="DefaultService.svc" />
     <Content Include="DevExpress\ASPxSchedulerForms\AppointmentDragToolTip.ascx" />
@@ -1087,7 +1103,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18351/</IISUrl>
+          <IISUrl>http://localhost:18350/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

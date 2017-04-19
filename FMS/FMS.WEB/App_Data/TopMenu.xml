@@ -10,4 +10,5 @@
   <item Text="Vehicle &amp; Driver Management" NavigateUrl="ResourceMgmnt.aspx"   />
   <item Text="Contacts" NavigateUrl="Contacts.aspx"   />
   <item Text="Feature Requests" NavigateUrl="Debug.aspx"  />
+  <item Text="Resource Report" NavigateUrl="ResourceMgmtReport.aspx"  />
 </items>
