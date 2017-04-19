@@ -141,7 +141,7 @@ namespace FMS.Datalistener.CalAmp.API
                     string tagName = string.Format(FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT, deviceID, arb_id_int);
 
                     //store the data as a double precision floating point as that is 8 bytes (same as float64 in pi)
-                    double valueForHistorizing = hex2double(hexData);
+                    string valueForHistorizing = hexData.Replace(" ", "");
 
                     //does tag name exist?
                     PISDK.PointList lst = piserver.GetPoints(string.Format("tag = '{0}'", tagName));
@@ -154,7 +154,7 @@ namespace FMS.Datalistener.CalAmp.API
                         namedValues.Add("pointsource", "CANBus");
 
                         //create the pi point if it does not exist
-                        piserver.PIPoints.Add(tagName, "classic", PISDK.PointTypeConstants.pttypFloat64, namedValues);
+                        piserver.PIPoints.Add(tagName, "classic", PISDK.PointTypeConstants.pttypString, namedValues);
                     }
 
                     //get the pipoint, if we didnt already have it found initially

@@ -17,22 +17,26 @@ namespace FMS.WEBAPI.Controllers
         }
 
         // GET api/vehicles/5
-        public List<CAN_MessageDefinition> Get(string  vehicleID)
+        public List<CAN_MessageDefinition> Get(string vehicleID)
         {
-            return FMS.Business.DataObjects.Device.GetAvailableCANTags(vehicleID,"zagro");
+
+            return FMS.Business.DataObjects.ApplicationVehicle
+                                .GetFromName(vehicleID).GetAvailableCANTags();            
+            
         }
 
         /// <summary>
         /// returns the last 10 mintes worth of data for an specific SPN
         /// </summary>
         /// <param name="vehicleID"></param>
-        /// <param name="SPN">The Canbus protocol SPN</param>
-        /// <param name="desc">the "flavor" of the SPN you require (matches the description of the "getAll" method
         /// this is used for custom CanOpen implementation a dn if you are expecting j1939 for instance , please ignore.</param>
         /// <returns></returns>    
-        public CanDataPoint Get(string vehicleID, int SPN, string desc)
+        public CanDataPoint Get(string vehicleID, int SPN)
         {
-            CanDataPoint cdp = FMS.Business.DataObjects.CanDataPoint.GetPoint(SPN, "zagro", vehicleID, desc);
+            //the standard of canbus is infered from the vehicleID.
+
+            CanDataPoint cdp = FMS.Business.DataObjects.CanDataPoint.GetPoint(SPN, vehicleID,
+                                                                    DateTime.Now.AddDays(-10), DateTime.Now);
             return cdp;
         }
 
