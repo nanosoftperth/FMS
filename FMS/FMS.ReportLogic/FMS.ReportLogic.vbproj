@@ -116,9 +116,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AvailableReport.vb" />
+    <Compile Include="Classes\Users.vb" />
+    <Compile Include="Classes\Drivers.vb" />
     <Compile Include="Classes\GeoFenceReport_ByDriver.vb" />
     <Compile Include="Classes\ReportDataHandler.vb" />
     <Compile Include="Classes\ReportsGenerators.vb" />
+    <Compile Include="Classes\vehicle.vb" />
     <Compile Include="ExtentionModule.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -138,7 +142,16 @@
     <Compile Include="Reports\DriverOperatingHoursReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\UsersListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ReportGeoFence_byDriver.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DriversListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VehicleListReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\VehicleReport.vb">
@@ -156,8 +169,17 @@
     <EmbeddedResource Include="Reports\DriverOperatingHoursReport.resx">
       <DependentUpon>DriverOperatingHoursReport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\UsersListReport.resx">
+      <DependentUpon>UsersListReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportGeoFence_byDriver.resx">
       <DependentUpon>ReportGeoFence_byDriver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriversListReport.resx">
+      <DependentUpon>DriversListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleListReport.resx">
+      <DependentUpon>VehicleListReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VehicleReport.resx">
       <DependentUpon>VehicleReport.vb</DependentUpon>
