@@ -39,7 +39,7 @@
 
                 Me.CAN_Protocol_Type = If(String.IsNullOrEmpty(av.CAN_Protocol_Type), "j1939", av.CAN_Protocol_Type)
 
-               
+
             End With
 
         End Sub
@@ -73,7 +73,7 @@
             End Sub
         End Class
 
-       
+
 
         Public Shared Sub Create(av As FMS.Business.DataObjects.ApplicationVehicle)
 
