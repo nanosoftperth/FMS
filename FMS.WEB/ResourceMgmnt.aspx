@@ -79,10 +79,7 @@
         <div class="aui-flag" aria-hidden="false">
             <div class="aui-message aui-message-success success closeable shadowed aui-will-close">
                 <div id="msg">This is some example text</div>
-
                 <span class="aui-icon icon-close" role="button" tabindex="0"></span>
-
-
             </div>
         </div>
     </div>

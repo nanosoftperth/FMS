@@ -197,7 +197,7 @@
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="Email" ShowInCustomizationForm="True" VisibleIndex="4">
                                         </dx:GridViewDataTextColumn>
-
+                                        
                                         <dx:GridViewDataComboBoxColumn FieldName="RoleID" ShowInCustomizationForm="True" VisibleIndex="8" Caption="Role">
                                             <PropertiesComboBox DataSourceID="odsRoles" TextField="Name" ValueField="RoleID">
                                                 <ClearButton Visibility="Auto">

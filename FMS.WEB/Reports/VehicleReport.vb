@@ -825,7 +825,7 @@
         '
         'ObjectDataSource1
         '
-        Me.ObjectDataSource1.DataMember = "GetVehicleReportValues"
+        Me.ObjectDataSource1.DataMember = "GetVehicleReportValue"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         Parameter4.Name = "startdate"

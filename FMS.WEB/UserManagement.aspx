@@ -47,11 +47,6 @@
         </PanelCollection>
 
     </dx:ASPxRoundPanel>
-
       
     </div>
-
-
-    
-
 </asp:Content>

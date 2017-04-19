@@ -60,10 +60,9 @@
                                 OnClick="btnCreateUser_Click">
                             </dx:ASPxButton>
                         </td>
-                        <td valign="bottom">
-
-                            <img style="float: right;" src="../Content/Images/rightimage.png" /></td>
-                        </td>
+                        <td valign="bottom"> 
+                            <img style="float: right;" src="../Content/Images/rightimage.png" /> 
+                        </td> 
                     </tr>
                 </table>
 
