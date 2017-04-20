@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMS.WEB.API", "FMS.WEB.API\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMS.WEBAPI", "FMS.WEBAPI\FMS.WEBAPI.csproj", "{A12BAEB6-557A-4202-A947-1A254B5F14C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMS.Datalistener.Owin.CalAmp", "FMS.Datalistener.Owin.CalAmp\FMS.Datalistener.Owin.CalAmp.csproj", "{8CB280DB-41B5-4786-AEFB-1308A1859493}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMS.Datalistener.CalAmp.Web", "FMS.Datalistener.CalAmp.Web\FMS.Datalistener.CalAmp.Web.csproj", "{F02AB8CA-A0E6-4446-A775-103FF9E1BE39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +112,14 @@ Global
 		{A12BAEB6-557A-4202-A947-1A254B5F14C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A12BAEB6-557A-4202-A947-1A254B5F14C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A12BAEB6-557A-4202-A947-1A254B5F14C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CB280DB-41B5-4786-AEFB-1308A1859493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CB280DB-41B5-4786-AEFB-1308A1859493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CB280DB-41B5-4786-AEFB-1308A1859493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CB280DB-41B5-4786-AEFB-1308A1859493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F02AB8CA-A0E6-4446-A775-103FF9E1BE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F02AB8CA-A0E6-4446-A775-103FF9E1BE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F02AB8CA-A0E6-4446-A775-103FF9E1BE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F02AB8CA-A0E6-4446-A775-103FF9E1BE39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
