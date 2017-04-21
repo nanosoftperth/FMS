@@ -72,6 +72,7 @@
 
             Public Delegate Sub doCalcDelegate(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
 
+            'Zagro125:
             'PGN    name                        SPN_#
             '578	Speed						1
             '578	Parking Break				2
@@ -81,18 +82,28 @@
             '646	Pressure Values				6
             '1090	Battery Voltage				7
 
+
+
             Public Sub CalculateValues(SPN As Integer, msg_def As CAN_MessageDefinition)
 
                 Dim calcMethod As doCalcDelegate = Nothing
 
                 If msg_def.Standard = "Zagro125" Then
-                    If SPN = 1 Then calcMethod = AddressOf zagro_1
-                    If SPN = 2 Then calcMethod = AddressOf zagro_1
+                    If SPN = 1 Then calcMethod = AddressOf zagro125_1
+                    If SPN = 2 Then calcMethod = AddressOf zagro125_2
+                    If SPN = 3 Then calcMethod = AddressOf zagro125_3
+                    If SPN = 4 Then calcMethod = AddressOf zagro125_4
+                    If SPN = 5 Then calcMethod = AddressOf zagro125_5
+                    'If SPN = 6 Then calcMethod = AddressOf zagro125_6
+                    If SPN = 7 Then calcMethod = AddressOf zagro125_7
+
+                    If SPN >= 8 AndAlso SPN <= 11 Then calcMethod = AddressOf zagro125_pressureVals
+
+
                 End If
 
                 If msg_def.Standard = "Zagro500" Then
-                    If SPN = 1 Then calcMethod = AddressOf zagro_1
-                    If SPN = 2 Then calcMethod = AddressOf zagro_1
+                    'fill in here after we get the message definitions
                 End If
 
 
@@ -109,20 +120,92 @@
                 cv.Value = "not implemented standard / SPN combination"
             End Sub
 
-            Public Sub zagro_1(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+#Region "Zagro 125K" 'Contains all the Zagro 125K methods. We will need to add for 500K when we get the logic.
 
-                Dim rawValue As Int64 = Convert.ToInt64(cv.RawValue, 16)
+            '1090	Battery Voltage				7
+            Public Sub zagro125_7(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                j1939(cv, msg_def) 'uses same logic as j1939
+            End Sub
 
-                Dim b() As Byte = BitConverter.GetBytes(rawValue)
+            '646	Pressure Values				8,9,10,11
+            Public Sub zagro125_pressurevals(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                j1939(cv, msg_def) 'uses same logic as j1939
+            End Sub
 
-                Dim bytes = b.Reverse()
 
-                Dim int1 As Single = Convert.ToSingle(bytes(0))
-                Dim int2 As Single = Convert.ToSingle(bytes(1))
+            '645	Horn						5
+            Public Sub zagro125_5(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
 
-                cv.Value = int1 + (int2 * 256)
+                Dim i As Decimal = StringToByteArray(cv.RawValue)(0)
+
+                i /= 2 'divide by 2 apparently?
+                cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
 
             End Sub
+
+            '578	Fault Codes					4
+            Public Sub zagro125_4(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+                Dim b() As Byte = StringToByteArray(cv.RawValue)
+
+                Dim startByte As Integer = msg_def.pos_start
+
+                Dim indx As Integer = 0
+                Dim runningtotal As Double = 0
+
+                For i As Integer = 5 To 4
+
+                    runningtotal += CInt(b(i)) * Math.Pow(256, indx)
+                    indx += 1
+                Next
+
+                Dim faultMode As Integer = CInt(b(3))
+
+                cv.Value = String.Format("FaultCode:{0}, FaultMode:{1}", runningtotal, faultMode)
+
+            End Sub
+
+            '578	Beacon Operation			3
+            Public Sub zagro125_3(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+                Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(6))
+                cv.Value = If(i Mod 2 = 0, "Beacon is OFF", "Beacon is ON")
+
+            End Sub
+
+            '578	Parking Break				2
+            Public Sub zagro125_2(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+                Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(7))
+                cv.Value = If(i Mod 2 = 0, "Parking Break OFF", "Parking Break ON")
+
+            End Sub
+
+
+            '578	Speed						1
+            Public Sub zagro125_1(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+                Dim b() As Byte = StringToByteArray(cv.RawValue)
+
+                Dim startByte As Integer = msg_def.pos_start
+
+                Dim indx As Integer = 0
+                Dim runningtotal As Double = 0
+
+                For i As Integer = 0 To 1
+
+                    runningtotal += CInt(b(i)) * Math.Pow(256, indx)
+                    indx += 1
+                Next
+
+                runningtotal /= 100
+
+                cv.Value = runningtotal
+
+            End Sub
+#End Region
+
+
 
 
             Public Shared Function StringToByteArray(hex As String) As Byte()

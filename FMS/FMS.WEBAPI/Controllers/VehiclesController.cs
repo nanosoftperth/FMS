@@ -21,14 +21,13 @@ namespace FMS.WEBAPI.Controllers
         {
 
             return FMS.Business.DataObjects.ApplicationVehicle
-                                .GetFromName(vehicleID).GetAvailableCANTags();            
-            
+                                .GetFromName(vehicleID).GetAvailableCANTags();
+
         }
 
-       
 
 
-        public CanDataPoint Get(string vehicleID, string standard, int SPN,string startdate, string enddate)
+        public CanDataPoint Get(string vehicleID, string standard, int SPN, string startdate, string enddate)
         {
             //the standard of canbus is infered from the vehicleID.
 
@@ -36,6 +35,7 @@ namespace FMS.WEBAPI.Controllers
             DateTime ed = DateTime.Parse(enddate);
 
             CanDataPoint cdp = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(SPN, vehicleID, standard, sd, ed);
+
             return cdp;
         }
 
