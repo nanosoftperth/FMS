@@ -114,6 +114,8 @@ namespace FMS.Datalistener.CalAmp.API
 
                 DateTime currentDatetime = DateTime.Now;//this is used in the loop and updated when the datetime lineitem is found.
                 bool foundDate = false;
+                string currentStandard = "j1939";//the default standard, if not defined then this is presumed
+
 
                 for (int i = 1; 1 < cmdList.Count; i++)
                 {
@@ -130,6 +132,13 @@ namespace FMS.Datalistener.CalAmp.API
                         continue;
                     }
 
+                    if (itmRow.StartsWith("can:"))
+                    {
+                        string newCurrentStandard = itmRow.Remove(0, 4);
+                        currentStandard = newCurrentStandard.Trim();
+                        continue;
+                    }
+
                     //skip the line if there is no value for "currentDatetime" , this should never happen
                     if (!foundDate) continue;
 
@@ -138,35 +147,43 @@ namespace FMS.Datalistener.CalAmp.API
                     int arb_id_int = hex2integer(arb_id_);
                     string hexData = cmds[1];
 
-                    string tagName = string.Format(FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT, deviceID, arb_id_int);
-
-                    //store the data as a double precision floating point as that is 8 bytes (same as float64 in pi)
-                    string valueForHistorizing = hexData.Replace(" ", "");
-
-                    //does tag name exist?
-                    PISDK.PointList lst = piserver.GetPoints(string.Format("tag = '{0}'", tagName));
-
-                    //if the tag does not exist, then create it
-                    if (lst.Count < 1)
+                    try
                     {
-                        PISDKCommon.NamedValues namedValues = new PISDKCommon.NamedValues();
-                        namedValues.Add("compressing", 0);
-                        namedValues.Add("pointsource", "CANBus");
 
-                        //create the pi point if it does not exist
-                        piserver.PIPoints.Add(tagName, "classic", PISDK.PointTypeConstants.pttypString, namedValues);
+                        string tagName = FMS.Business.DataObjects.CanDataPoint.GetTagName(deviceID, currentStandard, arb_id_int);// string.Format(FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT, deviceID, arb_id_int);
+
+                        //store the data as a double precision floating point as that is 8 bytes (same as float64 in pi)
+                        //we no longer fo this, just store as a string representing the HEX values, could be done better but were
+                        //after reliability and speed of coding unfortunatley.
+                        string valueForHistorizing = hexData.Replace(" ", "");
+
+                        //does tag name exist?
+                        PISDK.PointList lst = piserver.GetPoints(string.Format("tag = '{0}'", tagName));
+
+                        //if the tag does not exist, then create it
+                        if (lst.Count < 1)
+                        {
+                            PISDKCommon.NamedValues namedValues = new PISDKCommon.NamedValues();
+                            namedValues.Add("compressing", 0);
+                            namedValues.Add("pointsource", "CANBus");
+
+                            //create the pi point if it does not exist
+                            piserver.PIPoints.Add(tagName, "classic", PISDK.PointTypeConstants.pttypString, namedValues);
+                        }
+
+                        //get the pipoint, if we didnt already have it found initially
+                        PISDK.PIPoint foundPiPoint = lst.Count < 1 ? piserver.PIPoints[tagName] : lst[1];
+
+                        foundPiPoint.Data.UpdateValue(valueForHistorizing, currentDatetime);
                     }
-
-                    //get the pipoint, if we didnt already have it found initially
-                    PISDK.PIPoint foundPiPoint = lst.Count < 1 ? piserver.PIPoints[tagName] : lst[1];
-
-                    foundPiPoint.Data.UpdateValue(valueForHistorizing, currentDatetime);
-                    int count = lst.Count;
-
+                    catch (Exception)
+                    {
+                        throw;
+                    }
                 }
 
                 return "success";
-            
+
             }
             catch (Exception ex)
             {

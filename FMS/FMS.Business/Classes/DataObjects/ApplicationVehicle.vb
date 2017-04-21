@@ -62,7 +62,7 @@
 
             Public Shared Function GetAllCANPRotocols() As List(Of CanStandard)
 
-                Dim protocols As String = "j1939,Zagro,CANopen - EN 50325-4,EnergyBus - CiA 454"
+                Dim protocols As String = "j1939,Zagro125,Zagro500,CANopen - EN 50325-4,EnergyBus - CiA 454"
 
                 Return (From x In protocols.Split(","c) Select New CanStandard With {.ID = x, .Name = x}).ToList
 
