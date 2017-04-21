@@ -14,7 +14,9 @@ Namespace DataObjects
         Public Property TimeZoneID As String
         Public Property LastLoggedInDate As Date
         Public Property RoleID As Guid
-        Public Property SendEmailtoUserWithDefPass As Boolean
+        Public Property SendEmailtoUserWithDefPass As Boolean 
+        Public Property RoleName As String
+
 
         ''' <summary>
         ''' If this has a null value in the DB backend, then this will return an empty GUID
@@ -213,7 +215,33 @@ Namespace DataObjects
             Return retobj
 
         End Function
+        'Public Shared Function GetAllUsers(applicationid As Guid) As List(Of DataObjects.User)
 
+        '    Dim retobj = (From Users In SingletonAccess.FMSDataContextNew.aspnet_Users Join UserRoles In SingletonAccess.FMSDataContextNew.aspnet_UsersInRoles
+        '                  On Users.UserId Equals UserRoles.UserId Join aspRoles In SingletonAccess.FMSDataContextNew.aspnet_Roles On aspRoles.RoleId Equals UserRoles.RoleId
+        '                  Where Users.ApplicationId = ApplicationID
+        '                  Select New User() With { _
+        '                                .UserName = Users.UserName, _
+        '                                .RoleName = aspRoles.RoleName, _
+        '                                .TimeZoneID = Users.TimeZoneID
+        '                                 })
+
+        '    Dim obj As New List(Of DataObjects.User)
+
+
+        '    For Each item In retobj 
+        '        obj.Add(New User() With
+        '                        {.UserName = item.UserName,
+        '                         .Email = item.Email,
+        '                         .Mobile = item.Mobile,
+        '                         .TimeZone = item.TimeZone,
+        '                         .RoleID = item.RoleID})
+
+        '    Next
+
+        '    Return obj
+
+        ' End Function
     End Class
 
 End Namespace
