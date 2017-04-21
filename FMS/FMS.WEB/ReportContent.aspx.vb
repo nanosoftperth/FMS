@@ -8,7 +8,7 @@
 
         'BY RYAN: change column labels 
         If reportname = "DriverOperatingHoursReport" Then
-            With CType(ASPxDocumentViewer1.Report, DriverOperatingHoursReport)
+            With CType(ASPxDocumentViewer1.Report, FMS.ReportLogic.DriverOperatingHoursReport)
                 .ArrivalCell.Text = FMS.Business.ThisSession.ApplicationName + " H.Q. Arrival"
                 .DepartureCell.Text = FMS.Business.ThisSession.ApplicationName + " H.Q. Departure"
             End With
@@ -33,7 +33,7 @@
 
                 ASPxDocumentViewer1.ToolbarMode = DevExpress.XtraReports.Web.DocumentViewer.DocumentViewerToolbarMode.Ribbon
 
-                With CType(ASPxDocumentViewer1.Report, VehicleReport)
+                With CType(ASPxDocumentViewer1.Report, FMS.ReportLogic.VehicleReport)
                     .parameter1.Value = thisMorning
                     .parameter2.Value = midnightTonight
                     .Parameter3.Value = vehicleName
@@ -61,7 +61,7 @@
 
                 ASPxDocumentViewer1.ToolbarMode = DevExpress.XtraReports.Web.DocumentViewer.DocumentViewerToolbarMode.Ribbon
 
-                With CType(ASPxDocumentViewer1.Report, DriverOperatingHoursReport)
+                With CType(ASPxDocumentViewer1.Report, FMS.ReportLogic.DriverOperatingHoursReport)
                     .parameter1.Value = thisMorning
                     .parameter2.Value = midnightTonight
                     .Parameter3.Value = vehicleName
@@ -84,11 +84,27 @@
 
         Select Case reportName
             Case "VehicleReport"
-                Return New VehicleReport
+                Return New FMS.ReportLogic.VehicleReport
             Case "DriverOperatingHoursReport"
-                Return New DriverOperatingHoursReport
+                Return New FMS.ReportLogic.DriverOperatingHoursReport
             Case "ReportGeoFence_byDriver", "ReportGeoFence_byDriver.vb"
-                Return New ReportGeoFence_byDriver
+                Return New FMS.ReportLogic.ReportGeoFence_byDriver
+            Case "VehicleListReport"
+                Return New FMS.ReportLogic.VehicleListReport
+            Case "DriversListReport"
+                Return New FMS.ReportLogic.DriversListReport
+            Case "UsersListReport"
+                Return New FMS.ReportLogic.UsersListReport
+            Case "ContactListReport"
+                Return New FMS.ReportLogic.ContactsListReport
+            Case "RoleListReport"
+                Return New FMS.ReportLogic.RoleListReport
+            Case "FeatureAccessListReport"
+                Return New FMS.ReportLogic.FeatureAccessListReport
+            Case "BusinessLocationListReport"
+                Return New FMS.ReportLogic.BusinessLocationListReport
+            Case "VehicletoDriversListReport"
+                Return New FMS.ReportLogic.ApplicationVehicleDriver
             Case Else
                 Return Nothing
         End Select  
