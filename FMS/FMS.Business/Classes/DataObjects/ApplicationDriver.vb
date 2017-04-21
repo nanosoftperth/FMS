@@ -221,6 +221,19 @@
                 Return ""
             End If
         End Function
+        Public Shared Function GetDriverNameFromID(applicationdriverid As Guid) As String
+             
+
+            Dim result = SingletonAccess.FMSDataContextContignous.ApplicationDrivers. _
+                        Where(Function(y) y.ApplicationDriverID = applicationdriverid).Select(Function(x) _
+                                                            New DataObjects.ApplicationDriver(x)).SingleOrDefault
+
+            If Not result Is Nothing Then
+                Return result.FirstName + "  " + result.Surname
+            Else
+                Return ""
+            End If
+        End Function
 #End Region
 
     End Class

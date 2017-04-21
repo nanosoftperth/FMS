@@ -22,9 +22,7 @@
 
         End Sub
 
-#End Region
-
-
+#End Region 
         Public Shared Function GetPointWithData(SPN As Integer, vehicleid As String, _
                                                 standard As String, startDate As Date, endDate As Date) As DataObjects.CanDataPoint
 

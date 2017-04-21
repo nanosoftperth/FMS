@@ -838,4 +838,17 @@
       <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetAssignedVehiclestoDrivers" Method="usp_GetAssignedVehiclestoDrivers">
+    <Parameter Name="ApplicationID" Parameter="applicationID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetAssignedVehiclestoDriversResult">
+      <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="DeviceID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ApplicationVehicleDriverTimeID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ApplicationDriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PassengerID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="StartDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

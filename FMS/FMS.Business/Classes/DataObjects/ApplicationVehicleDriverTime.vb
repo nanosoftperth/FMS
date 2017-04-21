@@ -157,6 +157,56 @@
             Return retobj
 
         End Function
+        Public Shared Function GetAllForApplicationAndDatePeriodIncludingDuds(applicationid As Guid
+                   ) As List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime)
+
+
+            'get all of the vehicle driver entries which  fall within the timeframe 
+            Dim lst As List(Of FMS.Business.usp_GetAssignedVehiclestoDriversResult) = _
+                        SingletonAccess.FMSDataContextNew.usp_GetAssignedVehiclestoDrivers(applicationid).ToList
+
+
+            Dim retobj As New List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime)
+
+            'merge the two result sets (like a left join) and return the results to the server 
+            For Each o As usp_GetAssignedVehiclestoDriversResult In lst
+
+                Dim objToAdd As New FMS.Business.DataObjects.ApplicationVehicleDriverTime
+
+                With objToAdd
+
+                    .ApplicationID = applicationid
+                    .VehicleID = o.ApplicationVehicleID
+
+                    If o.ApplicationDriverID.HasValue Then .ApplicationDriverId = o.ApplicationDriverID
+
+                    If o.ApplicationVehicleDriverTimeID.HasValue Then
+                        .ApplicationVehicleDriverTimeID = o.ApplicationVehicleDriverTimeID
+                    Else
+                        .ApplicationVehicleDriverTimeID = Guid.NewGuid
+                    End If
+
+                    .StartDate = If(o.StartDateTime.HasValue, o.StartDateTime.Value.timezoneToClient, DateTime.Now.timezoneToClient)
+                    .EndDate = If(o.EndDateTime.HasValue, o.EndDateTime.Value.timezoneToClient, DateTime.Now.timezoneToClient)
+
+                    .PassengerID = o.PassengerID
+                    .VehicleName = o.Name
+
+                    If IsNothing(o.ApplicationDriverID) Then
+                        .DriverName = ""
+                    Else 
+                        .DriverName = ApplicationDriver.GetDriverNameFromID(o.ApplicationDriverID)
+                    End If
+
+                End With
+
+                retobj.Add(objToAdd)
+            Next
+
+            Return retobj
+
+        End Function
+
 
         Public Shared Function GetAllForApplication(applicationID As Guid, queryDateTime As Date) _
                                                 As List(Of FMS.Business.DataObjects.ApplicationVehicleDriverTime)

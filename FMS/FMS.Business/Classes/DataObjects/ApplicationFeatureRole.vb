@@ -7,18 +7,16 @@ Namespace DataObjects
         Public Property ApplicationID As Guid
         Public Property FeatureID As Guid
         Public Property RoleID As Guid
-
+        Public Property FetaureName As String
+        Public Property RoleName As String
         Public Sub New(apr As FMS.Business.ApplicationFeatureRole)
-
             With apr
                 Me.ApplicationFeatureRoleID = .ApplicationFeatureRoledID
                 Me.ApplicationID = .ApplicationID
                 Me.FeatureID = .FeatureID
                 Me.RoleID = .RoleID
             End With
-
         End Sub
-
         Public Sub New()
 
         End Sub
@@ -71,7 +69,28 @@ Namespace DataObjects
 
 
         End Function
+        Public Shared Function GetAllApplicationFeatureRole(appid As Guid) As List(Of ApplicationFeatureRole)
 
+            Dim retlst As New List(Of ApplicationFeatureRole)
+
+            Dim retobj = _
+                    (From alt In SingletonAccess.FMSDataContextContignous.ApplicationFeatureRoles _
+                      Join ato In SingletonAccess.FMSDataContextContignous.Features _
+                      On alt.FeatureID Equals ato.FeatureID _
+                      Join rols In SingletonAccess.FMSDataContextContignous.aspnet_Roles _
+                      On alt.RoleID Equals rols.RoleId
+                      Where alt.ApplicationID = appid _
+                      Select alt)
+
+            For Each Item In retobj
+                retlst.Add(New ApplicationFeatureRole() With
+                                 {.FetaureName = Item.Feature.FeatureName,
+                                   .RoleName = Item.aspnet_Role.RoleName
+                                  })
+            Next 
+            Return retlst 
+
+        End Function
     End Class
 
 End Namespace

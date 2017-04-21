@@ -736,6 +736,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGeoFenceCollisionsResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAssignedVehiclestoDrivers")>  _
+	Public Function usp_GetAssignedVehiclestoDrivers(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetAssignedVehiclestoDriversResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAssignedVehiclestoDriversResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -13826,6 +13832,126 @@ Partial Public Class usp_GetGeoFenceCollisionsResult
 		Set
 			If (String.Equals(Me._PhoneNumber, value) = false) Then
 				Me._PhoneNumber = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetAssignedVehiclestoDriversResult
+	
+	Private _ApplicationVehicleID As System.Guid
+	
+	Private _Name As String
+	
+	Private _DeviceID As String
+	
+	Private _ApplicationVehicleDriverTimeID As System.Nullable(Of System.Guid)
+	
+	Private _ApplicationDriverID As System.Nullable(Of System.Guid)
+	
+	Private _PassengerID As System.Nullable(Of System.Guid)
+	
+	Private _StartDateTime As System.Nullable(Of Date)
+	
+	Private _EndDateTime As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationVehicleID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationVehicleID() As System.Guid
+		Get
+			Return Me._ApplicationVehicleID
+		End Get
+		Set
+			If ((Me._ApplicationVehicleID = value)  _
+						= false) Then
+				Me._ApplicationVehicleID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(500)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(10)")>  _
+	Public Property DeviceID() As String
+		Get
+			Return Me._DeviceID
+		End Get
+		Set
+			If (String.Equals(Me._DeviceID, value) = false) Then
+				Me._DeviceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationVehicleDriverTimeID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationVehicleDriverTimeID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationVehicleDriverTimeID
+		End Get
+		Set
+			If (Me._ApplicationVehicleDriverTimeID.Equals(value) = false) Then
+				Me._ApplicationVehicleDriverTimeID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationDriverID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationDriverID
+		End Get
+		Set
+			If (Me._ApplicationDriverID.Equals(value) = false) Then
+				Me._ApplicationDriverID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PassengerID", DbType:="UniqueIdentifier")>  _
+	Public Property PassengerID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._PassengerID
+		End Get
+		Set
+			If (Me._PassengerID.Equals(value) = false) Then
+				Me._PassengerID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StartDateTime", DbType:="DateTime")>  _
+	Public Property StartDateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._StartDateTime
+		End Get
+		Set
+			If (Me._StartDateTime.Equals(value) = false) Then
+				Me._StartDateTime = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EndDateTime", DbType:="DateTime")>  _
+	Public Property EndDateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._EndDateTime
+		End Get
+		Set
+			If (Me._EndDateTime.Equals(value) = false) Then
+				Me._EndDateTime = value
 			End If
 		End Set
 	End Property
