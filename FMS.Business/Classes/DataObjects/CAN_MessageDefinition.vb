@@ -89,8 +89,7 @@ Namespace DataObjects
         End Sub
 
         Public Shared Function GetForPGN(pgn As Integer, _
-                                         standard As String, _
-                                         Optional description As String = "") _
+                                         standard As String) _
                                                          As List(Of Business.DataObjects.CAN_MessageDefinition)
 
             Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
@@ -113,30 +112,21 @@ Namespace DataObjects
 
         End Function
 
-        Public Shared Function GetForSPN(spn As Integer, _
-                                        standard As String, _
-                                        Optional description As String = "") _
-                                                        As List(Of Business.DataObjects.CAN_MessageDefinition)
+        Public Shared Function GetForSPN(spn As Integer, standard As String) As Business.DataObjects.CAN_MessageDefinition
 
-            Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
+            Dim retobj As DataObjects.CAN_MessageDefinition
 
             With New LINQtoSQLClassesDataContext
+
                 .SubmitChanges()
 
-                If String.IsNullOrEmpty(description) Then
 
-                    retobj = (From x In .CAN_MessageDefinitions
-                          Where x.SPN.HasValue AndAlso x.SPN = spn
-                          Select New DataObjects.CAN_MessageDefinition(x)).ToList
-                Else
-                    retobj = (From x In .CAN_MessageDefinitions
-                          Where x.SPN.HasValue AndAlso x.SPN = spn AndAlso x.Description = description
-                          Select New DataObjects.CAN_MessageDefinition(x)).ToList
-                End If
-
-
+                retobj = (From x In .CAN_MessageDefinitions
+                      Where x.SPN.HasValue AndAlso x.SPN = spn AndAlso x.Standard = standard
+                      Select New DataObjects.CAN_MessageDefinition(x)).FirstOrDefault
 
                 .Dispose()
+
             End With
 
             Return retobj

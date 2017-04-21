@@ -25,18 +25,17 @@ namespace FMS.WEBAPI.Controllers
             
         }
 
-        /// <summary>
-        /// returns the last 10 mintes worth of data for an specific SPN
-        /// </summary>
-        /// <param name="vehicleID"></param>
-        /// this is used for custom CanOpen implementation a dn if you are expecting j1939 for instance , please ignore.</param>
-        /// <returns></returns>    
-        public CanDataPoint Get(string vehicleID, int SPN)
+       
+
+
+        public CanDataPoint Get(string vehicleID, string standard, int SPN,string startdate, string enddate)
         {
             //the standard of canbus is infered from the vehicleID.
 
-            CanDataPoint cdp = FMS.Business.DataObjects.CanDataPoint.GetPoint(SPN, vehicleID,
-                                                                    DateTime.Now.AddDays(-10), DateTime.Now);
+            DateTime sd = DateTime.Parse(startdate);
+            DateTime ed = DateTime.Parse(enddate);
+
+            CanDataPoint cdp = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(SPN, vehicleID, standard, sd, ed);
             return cdp;
         }
 

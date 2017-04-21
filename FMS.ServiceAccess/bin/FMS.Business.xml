@@ -214,6 +214,11 @@ d.Surname + ', ' + d.FirstName		AS	Driver_Name
  for serialization purposes only
  </summary>
 	<remarks></remarks>
+</member><member name="F:FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT">
+	<summary>
+ Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
+ </summary>
+	<remarks></remarks>
 </member><member name="M:FMS.Business.DataObjects.Setting.#ctor">
 	<summary>
  for serialisation only
