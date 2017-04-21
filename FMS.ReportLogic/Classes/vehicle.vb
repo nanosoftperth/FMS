@@ -1,7 +1,7 @@
 ﻿Public Class CacheVehicle
     Public Property ID As Int32
     Public Property LineValies As List(Of Vehicle) 
- 
+    Public Property LogoBinary() As Byte()
 End Class
 Public Class Vehicle
     Public Property ApplicationVehileID As Guid

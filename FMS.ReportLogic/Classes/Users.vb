@@ -2,6 +2,7 @@
 Public Class CacheUsers
     Public Property ID As Int32
     Public Property LineValies As List(Of Users)
+    Public Property LogoBinary() As Byte()
 End Class
 Public Class Users
     Public Property ApplicationID As Guid

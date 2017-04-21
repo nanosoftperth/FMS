@@ -1,6 +1,7 @@
 ﻿Public Class CacheDriver
     Public Property ID As Int32
     Public Property LineValies As List(Of Driver)
+    Public Property LogoBinary() As Byte()
 End Class
 Public Class Driver
     Public Property ApplicationID As Guid

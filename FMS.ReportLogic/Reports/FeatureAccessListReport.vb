@@ -1,4 +1,4 @@
-﻿Public Class VehicleListReport
+﻿Public Class FeatureAccessListReport
     Inherits DevExpress.XtraReports.UI.XtraReport
 
 #Region " Designer generated code "
@@ -24,10 +24,6 @@
     Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents PageHeaderBand1 As DevExpress.XtraReports.UI.PageHeaderBand
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
@@ -51,13 +47,11 @@
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents ObjectDataSource1 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell21 As DevExpress.XtraReports.UI.XRTableCell
 
     'Required by the Designer
     Private components As System.ComponentModel.IContainer
@@ -68,25 +62,19 @@
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VehicleListReport))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FeatureAccessListReport))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageHeaderBand1 = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -117,7 +105,7 @@
         '
         'Detail
         '
-        Me.Detail.HeightF = 0.0!
+        Me.Detail.HeightF = 1.041667!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -127,57 +115,35 @@
         Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(766.9999!, 36.54162!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(727.0001!, 53.62496!)
         Me.XrTable2.StylePriority.UseTextAlignment = False
         Me.XrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrTableRow4
         '
-        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell10, Me.XrTableCell12, Me.XrTableCell14, Me.XrTableCell16, Me.XrTableCell18})
+        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19, Me.XrTableCell10})
         Me.XrTableRow4.Name = "XrTableRow4"
         Me.XrTableRow4.Weight = 1.0R
+        '
+        'XrTableCell19
+        '
+        Me.XrTableCell19.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.FeatureName")})
+        Me.XrTableCell19.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell19.Name = "XrTableCell19"
+        Me.XrTableCell19.StylePriority.UseFont = False
+        Me.XrTableCell19.StylePriority.UseTextAlignment = False
+        Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleJustify
+        Me.XrTableCell19.Weight = 65.352758394536636R
         '
         'XrTableCell10
         '
         Me.XrTableCell10.CanGrow = False
-        Me.XrTableCell10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.Name", "{0:#.00}")})
+        Me.XrTableCell10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.RoleName")})
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StyleName = "DataField"
-        Me.XrTableCell10.Weight = 26.70024287912576R
-        '
-        'XrTableCell12
-        '
-        Me.XrTableCell12.CanGrow = False
-        Me.XrTableCell12.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.VINNumber")})
-        Me.XrTableCell12.KeepTogether = True
-        Me.XrTableCell12.Multiline = True
-        Me.XrTableCell12.Name = "XrTableCell12"
-        Me.XrTableCell12.StyleName = "DataField"
-        Me.XrTableCell12.Weight = 28.090296286652578R
-        '
-        'XrTableCell14
-        '
-        Me.XrTableCell14.CanGrow = False
-        Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.Registration")})
-        Me.XrTableCell14.Name = "XrTableCell14"
-        Me.XrTableCell14.StyleName = "DataField"
-        Me.XrTableCell14.Weight = 33.279360323042944R
-        '
-        'XrTableCell16
-        '
-        Me.XrTableCell16.CanGrow = False
-        Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.Notes")})
-        Me.XrTableCell16.Name = "XrTableCell16"
-        Me.XrTableCell16.StyleName = "DataField"
-        Me.XrTableCell16.Weight = 40.74062541803066R
-        '
-        'XrTableCell18
-        '
-        Me.XrTableCell18.CanGrow = False
-        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.DeviceID")})
-        Me.XrTableCell18.Name = "XrTableCell18"
-        Me.XrTableCell18.StyleName = "DataField"
-        Me.XrTableCell18.Weight = 25.552745468651704R
+        Me.XrTableCell10.StylePriority.UseTextAlignment = False
+        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell10.Weight = 78.905933082313638R
         '
         'TopMargin
         '
@@ -209,7 +175,7 @@
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(766.9999!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(726.9999!, 25.0!)
         Me.XrTable1.StylePriority.UseBackColor = False
         Me.XrTable1.StylePriority.UseBorderColor = False
         Me.XrTable1.StylePriority.UseBorders = False
@@ -220,39 +186,21 @@
         '
         'XrTableRow3
         '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell9, Me.XrTableCell11, Me.XrTableCell13, Me.XrTableCell15, Me.XrTableCell17})
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21, Me.XrTableCell9})
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.Weight = 1.0R
+        '
+        'XrTableCell21
+        '
+        Me.XrTableCell21.Name = "XrTableCell21"
+        Me.XrTableCell21.Text = "Feature "
+        Me.XrTableCell21.Weight = 1.5518953740731902R
         '
         'XrTableCell9
         '
         Me.XrTableCell9.Name = "XrTableCell9"
-        Me.XrTableCell9.Text = "Name"
-        Me.XrTableCell9.Weight = 0.63403545092712144R
-        '
-        'XrTableCell11
-        '
-        Me.XrTableCell11.Name = "XrTableCell11"
-        Me.XrTableCell11.Text = "VIN Number"
-        Me.XrTableCell11.Weight = 0.66704439119667225R
-        '
-        'XrTableCell13
-        '
-        Me.XrTableCell13.Name = "XrTableCell13"
-        Me.XrTableCell13.Text = "Registration "
-        Me.XrTableCell13.Weight = 0.78038109873074191R
-        '
-        'XrTableCell15
-        '
-        Me.XrTableCell15.Name = "XrTableCell15"
-        Me.XrTableCell15.Text = "Notes"
-        Me.XrTableCell15.Weight = 0.97732959065390912R
-        '
-        'XrTableCell17
-        '
-        Me.XrTableCell17.Name = "XrTableCell17"
-        Me.XrTableCell17.Text = "Device ID"
-        Me.XrTableCell17.Weight = 0.55531956801186833R
+        Me.XrTableCell9.Text = "Role"
+        Me.XrTableCell9.Weight = 1.8737340629664629R
         '
         'XrTableRow1
         '
@@ -342,7 +290,7 @@
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(433.8333!, 50.29166!)
         Me.XrLabel13.StyleName = "Title"
         Me.XrLabel13.StylePriority.UseForeColor = False
-        Me.XrLabel13.Text = "Vehicle Report"
+        Me.XrLabel13.Text = "Feature Access Report"
         '
         'XrPictureBox2
         '
@@ -405,12 +353,12 @@
         'Detail1
         '
         Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
-        Me.Detail1.HeightF = 37.58329!
+        Me.Detail1.HeightF = 63.62496!
         Me.Detail1.Name = "Detail1"
         '
         'ObjectDataSource1
         '
-        Me.ObjectDataSource1.DataMember = "GetVehicleReport"
+        Me.ObjectDataSource1.DataMember = "GetFeaturesAccessListReport"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         '
@@ -420,12 +368,12 @@
         Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
-        'VehicleListReport
+        'FeatureAccessListReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeaderBand1, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource2, Me.ObjectDataSource1})
         Me.DataSource = Me.ObjectDataSource1
-        Me.Margins = New System.Drawing.Printing.Margins(57, 16, 32, 100)
+        Me.Margins = New System.Drawing.Printing.Margins(57, 66, 32, 100)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
