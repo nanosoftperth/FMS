@@ -9,7 +9,7 @@
         'nrpTest.ReportParameter = (New ServiceVehicleReport).Parameters(0)
 
         FMS.Business.ThisSession.SelectedReportName = "ReportGeoFence_byDriver"
-        Dim x As New DriverOperatingHoursReport
+        Dim x As New FMS.ReportLogic.DriverOperatingHoursReport
 
         NanoReportParamList.Report = x
 
@@ -38,7 +38,7 @@
         '    '
         '    Dim nan As NanoReportParam = LoadControl("~\Controls\NanoReportParam.ascx")
 
-        NanoReportParamList.Report = New DriverOperatingHoursReport
+        NanoReportParamList.Report = New FMS.ReportLogic.DriverOperatingHoursReport
         '    sourceDIV.Controls.Add(New NanoReportParam With {.ReportParameter = param})
         'Next
     End Sub
