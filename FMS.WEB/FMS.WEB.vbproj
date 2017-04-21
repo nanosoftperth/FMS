@@ -377,21 +377,12 @@
       <DependentUpon>ReportContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\ReportGeoFence_byDriver.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\ReportScheduler.aspx.designer.vb">
       <DependentUpon>ReportScheduler.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportScheduler.aspx.vb">
       <DependentUpon>ReportScheduler.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Reports\VehicleReport.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\DriverOperatingHoursReport.vb">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ResourceMgmtReport.aspx.designer.vb">
       <DependentUpon>ResourceMgmtReport.aspx</DependentUpon>
@@ -757,15 +748,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ReportGeoFence_byDriver.resx">
-      <DependentUpon>ReportGeoFence_byDriver.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\VehicleReport.resx">
-      <DependentUpon>VehicleReport.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\DriverOperatingHoursReport.resx">
-      <DependentUpon>DriverOperatingHoursReport.vb</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Account.css" />
@@ -1103,7 +1085,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18350/</IISUrl>
+          <IISUrl>http://localhost:18351/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

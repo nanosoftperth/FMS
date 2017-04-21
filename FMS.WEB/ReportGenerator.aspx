@@ -58,7 +58,7 @@
 
                                     <asp:ObjectDataSource runat="server" ID="odsReports"
                                         SelectMethod="GetAllReports"
-                                        TypeName="FMS.WEB.AvailableReport"></asp:ObjectDataSource>
+                                        TypeName="FMS.ReportLogic.AvailableReport"></asp:ObjectDataSource>
                                 </td>
 
                                 <td style="padding: 4px;">

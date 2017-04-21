@@ -13,7 +13,7 @@
         <div>
             <dx:ASPxDocumentViewer ID="ASPxDocumentViewer1"
                 runat="server"
-                ReportTypeName="FMS.WEB.VehicleReport"
+                ReportTypeName="FMS.ReportLogic.VehicleReport"
                 Width="98%"
                 Theme="SoftOrange"
                 ClientInstanceName="mainReport"
