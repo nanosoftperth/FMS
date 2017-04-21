@@ -303,7 +303,8 @@ Public Class ReportDataHandler
                                  {.Name = item.Name,
                                   .VINNumber = item.VINNumber, .Registration = item.Registration, .Notes = item.Notes, .DeviceID = item.DeviceID, .ApplicationImageID = item.ApplicationImageID})
         Next
-        rept.LineValies = objList 
+        rept.LineValies = objList
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
 
         Return rept
     End Function
@@ -319,6 +320,8 @@ Public Class ReportDataHandler
         Next
         rept.LineValies = objList
 
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+
         Return rept
     End Function
     Public Shared Function GetUsersListReport() As CacheUsers
@@ -331,14 +334,123 @@ Public Class ReportDataHandler
                                   .Email = item.Email,
                                   .Mobile = item.Mobile,
                                   .TimeZone = item.TimeZone,
-                                  .RoleID = item.RoleID
+                                  .RoleID = item.RoleID})
+        Next
+        rept.LineValies = objList
+
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        Return rept
+    End Function
+    '' Report to get the drivers assigned drivers to vehicles
+    Public Shared Function GetAssignedReport() As CacheAssignVehicletoDriver
+
+        Dim rept As New CacheAssignVehicletoDriver
+        'Dim retobj = FMS.Business.DataObjects.User.GetAllUsersForApplication(ThisSession.ApplicationID).ToList()
+        'Dim objList As New List(Of Users)
+        'For Each item In retobj
+        '    objList.Add(New Users() With
+        '                         {.UserName = item.UserName,
+        '                          .Email = item.Email,
+        '                          .Mobile = item.Mobile,
+        '                          .TimeZone = item.TimeZone,
+        '                          .RoleID = item.RoleID})
+        'Next
+        'rept.LineValies = objList
+
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        Return rept
+    End Function
+
+    '' to get list of Contacts
+    Public Shared Function GetConactListReport() As CacheContact
+        Dim rept As New CacheContact
+        Dim retobj = FMS.Business.DataObjects.Contact.GetAllForApplication(ThisSession.ApplicationID).ToList()
+        Dim objList As New List(Of Contact)
+        For Each item In retobj
+            objList.Add(New Contact() With
+                                 {.Forname = item.Forname,
+                                  .Surname = item.Surname,
+                                  .EmailAddress = item.EmailAddress,
+                                  .MobileNumber = item.MobileNumber,
+                                  .CompanyName = item.CompanyName})
+        Next
+        rept.LineValies = objList
+
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        Return rept
+    End Function
+
+    Public Shared Function GetRolesListReport() As CacheRoles
+        Dim rept As New CacheRoles
+        Dim retobj = FMS.Business.DataObjects.Role.GetAllRolesforApplication(ThisSession.ApplicationID).ToList()
+        Dim objList As New List(Of Roles)
+        For Each item In retobj
+            objList.Add(New Roles() With
+                                 {.Name = item.Name,
+                                  .Description = item.Description
+                                  })
+        Next
+        rept.LineValies = objList 
+         
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        Return rept
+    End Function
+    Public Shared Function GetFeaturesAccessListReport() As CacheRole
+        Dim rept As New CacheRole
+        Dim retobj = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRole(ThisSession.ApplicationID)
+        Dim objList As New List(Of Role)
+        For Each item In retobj
+            objList.Add(New Role() With
+                                 {.FeatureName = item.FetaureName,
+                                  .RoleName = item.RoleName
+                                  })
+        Next
+        rept.LineValies = objList 
+
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        Return rept
+    End Function
+    'To get the report for business location 
+    Public Shared Function GetBusinessLocationListReport() As CacheBusinessLocation
+        Dim rept As New CacheBusinessLocation
+        Dim retobj = FMS.Business.DataObjects.ApplicationLocation.GetAllIncludingDefault(ThisSession.ApplicationID)
+        Dim objList As New List(Of BusinessLocation) 
+
+        For Each item In retobj
+            objList.Add(New BusinessLocation() With
+                                 {.Name = item.Name,
+                                  .Address = item.Address,
+                                  .Longitude = item.Longitude,
+                                  .Lattitude = item.Lattitude,
+                                  .ApplicationImage = item.ApplicationImage
                                   })
         Next
         rept.LineValies = objList
 
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        Return rept
+    End Function
+    Public Shared Function GetVehicletoDriversListReport() As CacheAssignVehicletoDriver
+        Dim rept As New CacheAssignVehicletoDriver
+        Dim retobj = FMS.Business.DataObjects.ApplicationVehicleDriverTime.GetAllForApplicationAndDatePeriodIncludingDuds(ThisSession.ApplicationID)
+        Dim objList As New List(Of AssignVehicletoDriver)
+
+        For Each item In retobj
+            objList.Add(New AssignVehicletoDriver() With
+                                 {.VehicleName = item.VehicleName,
+                                  .StartDate = item.StartDate,
+                                  .EndDate = item.EndDate,
+                                  .DriverName = item.DriverName
+                                 })
+        Next
+
+        rept.LineValies = objList
+
+        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
         Return rept
     End Function
 
+    '  CacheAssignVehicletoDriver
     Public Sub New()
 
     End Sub

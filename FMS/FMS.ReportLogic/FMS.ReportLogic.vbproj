@@ -116,7 +116,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AssignVehicletoDriver.vb" />
     <Compile Include="Classes\AvailableReport.vb" />
+    <Compile Include="Classes\BusinessLocation.vb" />
+    <Compile Include="Classes\Contact.vb" />
+    <Compile Include="Classes\RoleAccess.vb" />
+    <Compile Include="Classes\SystemRoles.vb" />
     <Compile Include="Classes\Users.vb" />
     <Compile Include="Classes\Drivers.vb" />
     <Compile Include="Classes\GeoFenceReport_ByDriver.vb" />
@@ -139,7 +144,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reports\ContactsListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BusinessLocationListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\FeatureAccessListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RoleListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\DriverOperatingHoursReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ContactListReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\UsersListReport.vb">
@@ -149,6 +169,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\DriversListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ApplicationVehicleDriver.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\VehicleListReport.vb">
@@ -166,8 +189,23 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ContactsListReport.resx">
+      <DependentUpon>ContactsListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\BusinessLocationListReport.resx">
+      <DependentUpon>BusinessLocationListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FeatureAccessListReport.resx">
+      <DependentUpon>FeatureAccessListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RoleListReport.resx">
+      <DependentUpon>RoleListReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\DriverOperatingHoursReport.resx">
       <DependentUpon>DriverOperatingHoursReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ContactListReport.resx">
+      <DependentUpon>ContactListReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\UsersListReport.resx">
       <DependentUpon>UsersListReport.vb</DependentUpon>
@@ -177,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DriversListReport.resx">
       <DependentUpon>DriversListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ApplicationVehicleDriver.resx">
+      <DependentUpon>ApplicationVehicleDriver.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VehicleListReport.resx">
       <DependentUpon>VehicleListReport.vb</DependentUpon>

@@ -56,11 +56,8 @@
     Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents ObjectDataSource1 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents XrTableCell21 As DevExpress.XtraReports.UI.XRTableCell
@@ -78,6 +75,8 @@
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -88,13 +87,12 @@
         Me.PageHeaderBand1 = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -115,12 +113,8 @@
         Me.DataField = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,7 +123,7 @@
         '
         'Detail
         '
-        Me.Detail.HeightF = 0.0!
+        Me.Detail.HeightF = 1.041667!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -139,15 +133,30 @@
         Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(668.7599!, 63.62496!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(717.0!, 53.62496!)
         Me.XrTable2.StylePriority.UseTextAlignment = False
         Me.XrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrTableRow4
         '
-        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19, Me.XrTableCell10, Me.XrTableCell12, Me.XrTableCell20, Me.XrTableCell14, Me.XrTableCell16, Me.XrTableCell18})
+        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19, Me.XrTableCell10, Me.XrTableCell12, Me.XrTableCell20, Me.XrTableCell14, Me.XrTableCell16})
         Me.XrTableRow4.Name = "XrTableRow4"
         Me.XrTableRow4.Weight = 1.0R
+        '
+        'XrTableCell19
+        '
+        Me.XrTableCell19.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1})
+        Me.XrTableCell19.Name = "XrTableCell19"
+        Me.XrTableCell19.Weight = 16.365334644926641R
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Image", Nothing, "LineValies.PhotoBinary")})
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(94.85931!, 63.62496!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
         '
         'XrTableCell10
         '
@@ -155,7 +164,7 @@
         Me.XrTableCell10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.FirstName")})
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StyleName = "DataField"
-        Me.XrTableCell10.Weight = 12.797547430211361R
+        Me.XrTableCell10.Weight = 21.946180778021454R
         '
         'XrTableCell12
         '
@@ -165,25 +174,25 @@
         Me.XrTableCell12.Multiline = True
         Me.XrTableCell12.Name = "XrTableCell12"
         Me.XrTableCell12.StyleName = "DataField"
-        Me.XrTableCell12.Weight = 34.559021929437264R
+        Me.XrTableCell12.Weight = 27.368842590291372R
         '
         'XrTableCell20
         '
         Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.PhoneNumber")})
         Me.XrTableCell20.Name = "XrTableCell20"
-        Me.XrTableCell20.Weight = 18.136991097764383R
+        Me.XrTableCell20.Weight = 22.389514403287134R
         '
         'XrTableCell14
         '
         Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.EmailAddress")})
         Me.XrTableCell14.Name = "XrTableCell14"
-        Me.XrTableCell14.Weight = 18.136991097764383R
+        Me.XrTableCell14.Weight = 26.495219550718645R
         '
         'XrTableCell16
         '
         Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.Notes")})
         Me.XrTableCell16.Name = "XrTableCell16"
-        Me.XrTableCell16.Weight = 18.136991097764383R
+        Me.XrTableCell16.Weight = 27.70927709609618R
         '
         'TopMargin
         '
@@ -215,7 +224,7 @@
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(764.2759!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(717.0!, 25.0!)
         Me.XrTable1.StylePriority.UseBackColor = False
         Me.XrTable1.StylePriority.UseBorderColor = False
         Me.XrTable1.StylePriority.UseBorders = False
@@ -226,49 +235,45 @@
         '
         'XrTableRow3
         '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21, Me.XrTableCell9, Me.XrTableCell11, Me.XrTableCell13, Me.XrTableCell15, Me.XrTableCell17, Me.XrTableCell7, Me.XrTableCell8})
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21, Me.XrTableCell9, Me.XrTableCell11, Me.XrTableCell13, Me.XrTableCell15, Me.XrTableCell17})
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.Weight = 1.0R
+        '
+        'XrTableCell21
+        '
+        Me.XrTableCell21.Name = "XrTableCell21"
+        Me.XrTableCell21.Text = "Image"
+        Me.XrTableCell21.Weight = 0.388618332435286R
         '
         'XrTableCell9
         '
         Me.XrTableCell9.Name = "XrTableCell9"
         Me.XrTableCell9.Text = "ForName"
-        Me.XrTableCell9.Weight = 0.30517651530846446R
+        Me.XrTableCell9.Weight = 0.5211436242687183R
         '
         'XrTableCell11
         '
         Me.XrTableCell11.Name = "XrTableCell11"
         Me.XrTableCell11.Text = "SurName"
-        Me.XrTableCell11.Weight = 0.82411143459210767R
+        Me.XrTableCell11.Weight = 0.64991266991241492R
         '
         'XrTableCell13
         '
         Me.XrTableCell13.Name = "XrTableCell13"
         Me.XrTableCell13.Text = "Phone #"
-        Me.XrTableCell13.Weight = 0.4367971707761989R
+        Me.XrTableCell13.Weight = 0.53167144510832065R
         '
         'XrTableCell15
         '
         Me.XrTableCell15.Name = "XrTableCell15"
         Me.XrTableCell15.Text = "Email"
-        Me.XrTableCell15.Weight = 0.4325031395967408R
+        Me.XrTableCell15.Weight = 0.62916698538188431R
         '
         'XrTableCell17
         '
         Me.XrTableCell17.Name = "XrTableCell17"
         Me.XrTableCell17.Text = "Notes"
-        Me.XrTableCell17.Weight = 0.4325031395967408R
-        '
-        'XrTableCell7
-        '
-        Me.XrTableCell7.Name = "XrTableCell7"
-        Me.XrTableCell7.Weight = 0.4325031395967408R
-        '
-        'XrTableCell8
-        '
-        Me.XrTableCell8.Name = "XrTableCell8"
-        Me.XrTableCell8.Weight = 0.4325031395967408R
+        Me.XrTableCell17.Weight = 0.65799654974157151R
         '
         'XrTableRow1
         '
@@ -358,7 +363,7 @@
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(433.8333!, 50.29166!)
         Me.XrLabel13.StyleName = "Title"
         Me.XrLabel13.StylePriority.UseForeColor = False
-        Me.XrLabel13.Text = "Drivers List Report"
+        Me.XrLabel13.Text = "Drivers Report"
         '
         'XrPictureBox2
         '
@@ -421,13 +426,8 @@
         'Detail1
         '
         Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
-        Me.Detail1.HeightF = 73.62497!
+        Me.Detail1.HeightF = 63.62496!
         Me.Detail1.Name = "Detail1"
-        '
-        'XrTableCell18
-        '
-        Me.XrTableCell18.Name = "XrTableCell18"
-        Me.XrTableCell18.Weight = 18.136991097764383R
         '
         'ObjectDataSource1
         '
@@ -441,33 +441,12 @@
         Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
-        'XrTableCell19
-        '
-        Me.XrTableCell19.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1})
-        Me.XrTableCell19.Name = "XrTableCell19"
-        Me.XrTableCell19.Weight = 12.797547430211361R
-        '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Image", Nothing, "LineValies.PhotoBinary")})
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(94.85931!, 63.62496!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
-        '
-        'XrTableCell21
-        '
-        Me.XrTableCell21.Name = "XrTableCell21"
-        Me.XrTableCell21.Text = "Image"
-        Me.XrTableCell21.Weight = 0.30517651530846446R
-        '
         'DriversListReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeaderBand1, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource2, Me.ObjectDataSource1})
         Me.DataSource = Me.ObjectDataSource1
-        Me.Margins = New System.Drawing.Printing.Margins(57, 75, 32, 100)
+        Me.Margins = New System.Drawing.Printing.Margins(57, 66, 32, 100)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
