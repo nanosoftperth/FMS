@@ -6,7 +6,7 @@
 @model Collection<ApiDescription>
 
 @{
-    ViewBag.Title = "ASP.NET Web API Help Page";
+    ViewBag.Title = "Vehicle Monitoring WebAPI Help Page";
 
     // Group APIs by controller
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
@@ -29,7 +29,7 @@
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
-        @foreach (var group in apiGroups)
+        @foreach (var group in apiGroups.Where(x=>x.Key.ControllerName != "Account" && x.Key.ControllerName != "Home" && x.Key.ControllerName != "Values"))
         {
             @Html.DisplayFor(m => group, "ApiGroup")
         }
