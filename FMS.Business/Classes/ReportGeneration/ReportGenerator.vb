@@ -14,7 +14,7 @@ Namespace ReportGeneration
 
         Public Property TimeSpansWithVals As New List(Of TimeSpanWithVals)
 
-        Public Sub New() 
+        Public Sub New()
 
         End Sub
 
@@ -75,7 +75,7 @@ Namespace ReportGeneration
             Return retobj
 
         End Function
-         
+
 
         Public Shared Function gettValsFromPIValsAsDict(pivs As PISDK.PIValues,
                                                  Optional totalize As Boolean = False,
@@ -337,26 +337,49 @@ Namespace ReportGeneration
 
             For i As Integer = 0 To retobj.SpeedVals.Count - 1
 
-                Dim curr_SpeedVal As TimeSeriesFloat = retobj.SpeedVals(i)
-                Dim x As New TimeSpanWithVals
+                Try
+                    Dim curr_SpeedVal As TimeSeriesFloat = retobj.SpeedVals(i)
+                    Dim x As New TimeSpanWithVals
 
-                x.speed = curr_SpeedVal.Val
-                x.EndDate = curr_SpeedVal.DateVal
+                    x.speed = curr_SpeedVal.Val
+                    x.EndDate = curr_SpeedVal.DateVal
 
-                'get the lat and long values
-                x.distance = If(DistanceValsDict.ContainsKey(curr_SpeedVal.DateVal), DistanceValsDict.Item(curr_SpeedVal.DateVal), 0)
-                x.end_lat = LatitudesDict.Item(curr_SpeedVal.DateVal)
-                x.end_long = LongitudesDict.Item(curr_SpeedVal.DateVal)
+                    'not happy about this but was causing issues in very few instances
+                    If Not LatitudesDict.ContainsKey(curr_SpeedVal.DateVal) Then Continue For
+                    If Not LongitudesDict.ContainsKey(curr_SpeedVal.DateVal) Then Continue For
 
-                If i > 0 Then
-                    Dim prev_SpeedVal As TimeSeriesFloat = retobj.SpeedVals(i - 1)
-                    x.StartDate = prev_SpeedVal.DateVal
-                    x.start_lat = LatitudesDict.Item(prev_SpeedVal.DateVal)
-                    x.start_long = LongitudesDict.Item(prev_SpeedVal.DateVal)
-                End If
+                    'get the lat and long values
+                    x.distance = If(DistanceValsDict.ContainsKey(curr_SpeedVal.DateVal), DistanceValsDict.Item(curr_SpeedVal.DateVal), 0)
 
-                retobj.TimeSpansWithVals.Add(x)
+                    x.end_lat = LatitudesDict.Item(curr_SpeedVal.DateVal)
+                    x.end_long = LongitudesDict.Item(curr_SpeedVal.DateVal)
+
+                    If i > 0 Then
+                        Dim prev_SpeedVal As TimeSeriesFloat = retobj.SpeedVals(i - 1)
+                        x.StartDate = prev_SpeedVal.DateVal
+
+                        If Not LatitudesDict.ContainsKey(prev_SpeedVal.DateVal) OrElse Not LongitudesDict.ContainsKey(prev_SpeedVal.DateVal) Then
+                            Continue For
+                        End If
+
+
+                        x.start_lat = LatitudesDict.Item(prev_SpeedVal.DateVal)
+                        x.start_long = LongitudesDict.Item(prev_SpeedVal.DateVal)
+                    End If
+
+                    retobj.TimeSpansWithVals.Add(x)
+
+
+                Catch ex As Exception
+                    Throw
+                End Try
+
             Next
+
+
+
+
+
 
 
             Return retobj
