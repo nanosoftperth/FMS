@@ -145,6 +145,10 @@ namespace FMS.Datalistener.CalAmp.API
                     //get the required data from the posted line (we can only presume this is a CANbus entry at this point)
                     string arb_id_ = cmds[0];
                     int arb_id_int = hex2integer(arb_id_);
+
+                    //if there is no data to parse, then dont do anything
+                    if (cmds.Length < 2) continue;
+
                     string hexData = cmds[1];
 
                     try
