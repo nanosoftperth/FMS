@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using FMS.Business.DataObjects;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace FMS.WEBAPI.Controllers
 {
@@ -17,7 +18,14 @@ namespace FMS.WEBAPI.Controllers
         /// <returns>List of string</returns>
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            string userName = "jonathanq";
+            string password = "password";
+            if (Membership.ValidateUser(userName, password))
+            {
+                return new string[] { "Passed" };
+            }else{
+                return new string[] { "FAILED"};
+            }
         }
 
         // GET api/vehicles/5
