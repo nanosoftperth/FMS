@@ -7,6 +7,7 @@ using Topshelf;
 using System.Timers;
 using NLog;
 using NLog.Fluent;
+using System.IO;
 
 
 namespace FMS.ReportService
@@ -16,7 +17,7 @@ namespace FMS.ReportService
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public static void Main()
         {
-            //logger.Info("Application Start main constructor"); 
+            logger.Info("Application Start main constructor"); 
             try
             {
                 HostFactory.Run(x =>
@@ -32,7 +33,7 @@ namespace FMS.ReportService
                     x.SetDescription("FMSReportService for Email Scheduler");
                     x.SetDisplayName("FMSReportService");
                     //// For Production 
-                    x.SetServiceName("FMSReportService1");
+                    x.SetServiceName("FMSReportService");
                     //// For Development 
                     //x.SetServiceName("FMSReportService");
                 });
