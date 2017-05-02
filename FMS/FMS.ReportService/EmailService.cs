@@ -18,8 +18,7 @@ using NLog;
 using NLog.Fluent;
 using System.Globalization;
 using System.Configuration;
-//using System.Threading;
- 
+//using System.Threading; 
 
 namespace FMS.ReportService
 {
@@ -31,7 +30,7 @@ namespace FMS.ReportService
         {
             try
             {
-                int miliSecond = 2000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
+                int miliSecond = 1000 * Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"]);
                 _timer = new Timer(miliSecond) { AutoReset = true };
                 _timer.Elapsed += timer_Elapsed;
             }
@@ -68,6 +67,7 @@ namespace FMS.ReportService
             {
                 List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
 
+                
                 objScheduleList = ReportSchedule.GetScheduleForApplication();
                 dynamic GenericObj = null;
 
@@ -121,31 +121,29 @@ namespace FMS.ReportService
                             endDate = Convert.ToDateTime(Item.EndDateSpecific);
                         }
                         #endregion
-
-
+                         
                         #region to create the instance of report
                         string ParmType = string.Empty;
                         switch (Convert.ToString(Item.ReportName))
                         {
                             case ReportNameList.VehicleReport:
-                                GenericObj = new VehicleReport();
+                                GenericObj = new FMS.ReportLogic.VehicleReportPDF();
                                 ParmType = Convert.ToString(Item.Vehicle);
                                 break;
 
                             case ReportNameList.DriverOperatingHoursReport:
-                                GenericObj = new DriverOperatingHoursReport();
+                                GenericObj = new FMS.ReportLogic.DriverOperatingHoursReportPDF();
                                 ParmType = Convert.ToString(Item.Vehicle);
                                 break;
 
                             case ReportNameList.ReportGeoFence_byDriver:
-                                GenericObj = new ReportGeoFence_byDriver();
+                                GenericObj = new FMS.ReportLogic.ReportGeoFence_byDriverPDF();
                                 ParmType = Convert.ToString(Item.Driver);
                                 break;
                         }
                         #endregion
                         MemoryStream mem = new MemoryStream();
-
-
+                          
                         #region Region to check the Schedule
                         if (Convert.ToString(Item.ReportType) == Utility.OneOff)
                         {
@@ -204,7 +202,7 @@ namespace FMS.ReportService
                             GenericObj.Parameters[1].Value = endDate;
                             GenericObj.Parameters[2].Value = ParmType;
                             GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
-                            GenericObj.ExportToPdf(mem);
+                            GenericObj.ExportToPdf(mem); 
 
                             sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
                         }

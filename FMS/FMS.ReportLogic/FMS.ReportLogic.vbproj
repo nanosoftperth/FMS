@@ -150,7 +150,13 @@
     <Compile Include="Reports\BusinessLocationListReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\DriverOperatingHoursReportPDF.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\FeatureAccessListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportGeoFence_byDriverPDF.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RoleListReport.vb">
@@ -180,6 +186,9 @@
     <Compile Include="Reports\VehicleReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\VehicleReportPDF.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\licenses.licx" />
@@ -195,8 +204,14 @@
     <EmbeddedResource Include="Reports\BusinessLocationListReport.resx">
       <DependentUpon>BusinessLocationListReport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriverOperatingHoursReportPDF.resx">
+      <DependentUpon>DriverOperatingHoursReportPDF.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\FeatureAccessListReport.resx">
       <DependentUpon>FeatureAccessListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportGeoFence_byDriverPDF.resx">
+      <DependentUpon>ReportGeoFence_byDriverPDF.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RoleListReport.resx">
       <DependentUpon>RoleListReport.vb</DependentUpon>
@@ -224,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VehicleReport.resx">
       <DependentUpon>VehicleReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleReportPDF.resx">
+      <DependentUpon>VehicleReportPDF.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
