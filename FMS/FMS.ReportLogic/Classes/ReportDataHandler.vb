@@ -20,44 +20,53 @@ Public Class ReportDataHandler
                                                   , endDate As Date _
                                                   , vehicleName As String) As CachedVehicleReport
 
-        startdate = startdate
-        endDate = endDate.AddDays(1)
+        Dim rept As CachedVehicleReport = Nothing
+
+        Try
+
+            startdate = startdate
+            endDate = endDate.AddDays(1)
 
 
-        'get the vehicleid (guid)
-        Dim vehicleID As Guid = _
-            FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
-                    .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
+            'get the vehicleid (guid)
+            Dim vehicleID As Guid = _
+                FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
+                        .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
 
-        'Find out if the report is already in the cache
-        Dim rept As CachedVehicleReport = (From x In ThisSession.CachedVehicleReports _
+            'Find out if the report is already in the cache
+            rept = (From x In ThisSession.CachedVehicleReports _
                                            Where x.EndDate = endDate _
                                             AndAlso x.StartDate = startdate _
                                            AndAlso x.VehicleID = vehicleID).SingleOrDefault
 
 
-        Dim GET_CAHCHED_REPORT As Boolean = True
+            Dim GET_CAHCHED_REPORT As Boolean = True
 
-        'MAKE the report and add it to the cache if it doesnt exist
-        If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
+            'MAKE the report and add it to the cache if it doesnt exist
+            If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-            Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
-                    FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
+                Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
+                        FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
 
-            rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
-                                                    , .StartDate = startdate _
-                                                    , .EndDate = endDate _
-                                                    , .LineValies = vehicleReportLines})
+                rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
+                                                        , .StartDate = startdate _
+                                                        , .EndDate = endDate _
+                                                        , .LineValies = vehicleReportLines})
 
-            rept.CalculateSummaries()
+                rept.CalculateSummaries()
 
-            ThisSession.CachedVehicleReports.Add(rept)
+                ThisSession.CachedVehicleReports.Add(rept)
 
 
-        End If
+            End If
 
-        rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+            rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+
+        Catch ex As Exception
+            Throw
+        End Try
+
 
         Return rept
 
@@ -98,15 +107,15 @@ Public Class ReportDataHandler
                                                     , .EndDate = endDate _
                                                     , .LineValies = vehicleReportLines})
 
-            rept.CalculateSummaries() 
+            rept.CalculateSummaries()
             'ThisSession.CachedVehicleReports.Add(rept)
 
         End If
 
         'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary 
-        Return rept 
+        Return rept
     End Function
-      
+
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
     Public Shared Function GetDriverOperatingReportValues(startdate As Date _
                                                   , endDate As Date _
@@ -204,7 +213,7 @@ Public Class ReportDataHandler
         'retobj.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
 
         'TimeZoneHelper.AltertoHQTimeZone(retobj) 'should no longer be required
-         
+
         Return retobj
 
     End Function
@@ -265,10 +274,10 @@ Public Class ReportDataHandler
 
         startDate = startDate.timezoneToClient
         endDate = endDate.timezoneToClient.AddDays(1)
-         
+
         Dim driveID As String = FMS.Business.DataObjects.ApplicationDriver.GetDriverID(driverID)
-         
-         
+
+
         If Not String.IsNullOrEmpty(driveID) Then
             retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple. _
                                             GetReport(New Guid(appID), startDate, endDate)
@@ -293,7 +302,7 @@ Public Class ReportDataHandler
     End Function
     ''Get List  
 
-    Public Shared Function GetVehicleReport() As CacheVehicle 
+    Public Shared Function GetVehicleReport() As CacheVehicle
         Dim rept As New CacheVehicle
         Dim retobj = FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID).ToList()
 
@@ -311,7 +320,7 @@ Public Class ReportDataHandler
 
     Public Shared Function GetFDriverListReport() As CacheDriver
         Dim rept As New CacheDriver
-        Dim retobj = FMS.Business.DataObjects.ApplicationDriver.GetAllDrivers(ThisSession.ApplicationID).ToList() 
+        Dim retobj = FMS.Business.DataObjects.ApplicationDriver.GetAllDrivers(ThisSession.ApplicationID).ToList()
         Dim objList As New List(Of Driver)
         For Each item In retobj
             objList.Add(New Driver() With
@@ -390,8 +399,8 @@ Public Class ReportDataHandler
                                   .Description = item.Description
                                   })
         Next
-        rept.LineValies = objList 
-         
+        rept.LineValies = objList
+
         rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
         Return rept
     End Function
@@ -405,7 +414,7 @@ Public Class ReportDataHandler
                                   .RoleName = item.RoleName
                                   })
         Next
-        rept.LineValies = objList 
+        rept.LineValies = objList
 
         rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
         Return rept
@@ -414,7 +423,7 @@ Public Class ReportDataHandler
     Public Shared Function GetBusinessLocationListReport() As CacheBusinessLocation
         Dim rept As New CacheBusinessLocation
         Dim retobj = FMS.Business.DataObjects.ApplicationLocation.GetAllIncludingDefault(ThisSession.ApplicationID)
-        Dim objList As New List(Of BusinessLocation) 
+        Dim objList As New List(Of BusinessLocation)
 
         For Each item In retobj
             objList.Add(New BusinessLocation() With

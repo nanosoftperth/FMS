@@ -30,6 +30,14 @@ odsWebService control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:FMS.ServiceAccess._Default.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="P:FMS.ServiceAccess.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
@@ -72,14 +80,6 @@ To modify move field declaration from designer file to code-behind file.
 	<summary>
  for serialization purposed only.
  </summary>
-</member><member name="F:FMS.ServiceAccess._Default.form1">
-	<summary>
-form1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 </members>
 </doc>

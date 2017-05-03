@@ -28,6 +28,7 @@
                             SettingsDocumentMap-EnableAnimation="true"
                             SettingsSplitter-SidePanePosition="Left"
                             StylesSplitter-SidePaneWidth="230px">
+
         </dx:ASPxDocumentViewer> 
 
         <script type="text/javascript">

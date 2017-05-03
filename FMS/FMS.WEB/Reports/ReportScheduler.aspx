@@ -374,7 +374,8 @@
                                             </dx:GridViewDataComboBoxColumn>--%>
                                         </Columns>
                                     </dx:ASPxGridView>
-                                    <asp:ObjectDataSource ID="odsReports" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ReportSchedule" DeleteMethod="delete" InsertMethod="insert" SelectMethod="GetAllForApplication" TypeName="FMS.Business.DataObjects.ReportSchedule" UpdateMethod="update">
+                                    <asp:ObjectDataSource ID="odsReports" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ReportSchedule"
+                                         DeleteMethod="delete" InsertMethod="insert" SelectMethod="GetAllForApplication" TypeName="FMS.Business.DataObjects.ReportSchedule" UpdateMethod="update">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="appid" SessionField="ApplicationID" />
                                         </SelectParameters>
