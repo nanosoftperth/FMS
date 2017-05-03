@@ -8,7 +8,7 @@
         ''' This needs to be short enough to detect stopping at the shops
         ''' but long enough to not detect stopping at a set of lights!
         ''' </summary>
-        Public Const STOP_TIME_MIN_MINUTES As Integer = 5
+        Public Const STOP_TIME_MIN_MINUTES As Integer = 10
 
         Public Enum ActivityReportLineType
             Stopped_EngineOff = 0

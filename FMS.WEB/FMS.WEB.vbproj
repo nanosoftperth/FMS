@@ -86,6 +86,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -1040,10 +1041,6 @@
       <Project>{07682610-d796-4b97-ac1b-9c03c1715944}</Project>
       <Name>FMS.ReportLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FMS.ReportService\FMS.ReportService.csproj">
-      <Project>{31c24d4c-059a-47a8-a570-2ea143952986}</Project>
-      <Name>FMS.ReportService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FMS.ServiceAccess\FMS.ServiceAccess.vbproj">
       <Project>{d44020a7-8bd2-4ab3-925b-ff4a76ec620a}</Project>
       <Name>FMS.ServiceAccess</Name>
@@ -1085,7 +1082,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18351/</IISUrl>
+          <IISUrl>http://localhost:18352/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -81,7 +81,7 @@
                                         ClientInstanceName="btnViewReport">
                                     </dx:ASPxButton>--%>
 
-                                </td>
+                                <%--</td>--%>
                                 <td style="width: 100%; padding-left: 50px;" align="left">
 
                                     <dx:ASPxLabel CssClass="descriptionlabel_nomore"
