@@ -56,10 +56,10 @@
         function cboSelectedIndexChanged() {
             var ParmList = "";
             if (comboSelectedReport.GetValue() == "ReportGeoFence_byDriver") {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' }";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "'}";
             }
             else {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' }";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "'}";
             }
             $.ajax({
                 type: 'POST',
@@ -284,6 +284,9 @@
                                                               <dx:ASPxLabel ID ="ASPxLabel6"  runat ="server" ClientInstanceName="lDriver"  Value='<%# Bind("Driver") %>' ></dx:ASPxLabel> 
                                                               <dx:ASPxLabel ID ="ASPxLabel7"  runat ="server" ClientInstanceName="lStartDateSpecific"  Value='<%# Bind("StartDateSpecific") %>'></dx:ASPxLabel>  
                                                               <dx:ASPxLabel ID ="ASPxLabel8"  runat ="server" ClientInstanceName="lEndDateSpecific"  Value='<%# Bind("EndDateSpecific") %>'></dx:ASPxLabel>
+                                                              <dx:ASPxLabel ID ="ASPxLabel9"  runat ="server" ClientInstanceName="lEndDateSpecific"  Value='<%# Bind("EndDateSpecific") %>'></dx:ASPxLabel>
+                                                              <dx:ASPxLabel ID ="ASPxLabel10"  runat ="server" ClientInstanceName="IBusinessLocation"  Value='<%# Bind("BusinessLocation") %>' ></dx:ASPxLabel>
+                                                              
                                                         </div></td>
                                                     </tr>
                                                 </table>
@@ -433,6 +436,15 @@
             else {
                 param.PEndDateSpecific = "";
             }
+            //if (lEndDate.GetValue() == "Specific") {
+            //    param.PBusinessLocation = lEndDateSpecific.GetValue();
+            //}
+            //else {
+            //    param.PBusinessLocation = "";
+            //}
+            param.PBusinessLocation = IBusinessLocation.GetValue();
+            
+
 
             if (lStartDate.GetValue() != "null" && lEndDate.GetValue() != "null" && lVehicle.GetValue() != "null") {
                 //SetSelectedReport(ReportName

@@ -78,49 +78,57 @@ Public Class NanoReportParam
                 ISDisplay = "none"
             End If
         End If
+         
 
             Dim paramControl As System.Web.UI.Control
 
             'there is a lookup list to use here
-            If TypeOf ReportParameter.LookUpSettings Is DevExpress.XtraReports.Parameters.DynamicListLookUpSettings Then
+        If TypeOf ReportParameter.LookUpSettings Is DevExpress.XtraReports.Parameters.DynamicListLookUpSettings Then
 
-                Dim lookupSettings = DirectCast(ReportParameter.LookUpSettings, 
+            Dim lookupSettings = DirectCast(ReportParameter.LookUpSettings, 
                                                 DevExpress.XtraReports.Parameters.DynamicListLookUpSettings)
 
 
-                Dim comboBox As New DevExpress.Web.ASPxComboBox()
+            Dim comboBox As New DevExpress.Web.ASPxComboBox()
 
-                comboBox.ValueField = lookupSettings.ValueMember
-                comboBox.TextField = lookupSettings.DisplayMember
+            comboBox.ValueField = lookupSettings.ValueMember
+            comboBox.TextField = lookupSettings.DisplayMember
 
-                Dim ods As DevExpress.DataAccess.ObjectBinding.ObjectDataSource = lookupSettings.DataSource
-                ods.Fill()
+            Dim ods As DevExpress.DataAccess.ObjectBinding.ObjectDataSource = lookupSettings.DataSource
+            ods.Fill()
 
-                comboBox.DataSource = ods
-                comboBox.DataBind()
-                comboBox.ID = Guid.NewGuid.ToString
-            If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
-                comboBox.Value = HttpContext.Current.Session("Vehicle")
-            End If
+            comboBox.DataSource = ods
+            comboBox.DataBind()
+            comboBox.ID = Guid.NewGuid.ToString
+            If lookupSettings.ValueMember.Contains("Name") Then
 
-                If ReportParameter.Description.Contains("Vehicle") Then
-                    comboBox.ClientInstanceName = "Vehicle"
-                ElseIf ReportParameter.Description.Contains("Driver") Then
-                    comboBox.ClientInstanceName = "Drivers"
-                End If
+                If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
+                    comboBox.Value = HttpContext.Current.Session("Vehicle")
+                End If 
+            Else
+                If Not HttpContext.Current.Session("BusinessLocation") Is Nothing And Not HttpContext.Current.Session("BusinessLocation") = "null" Then
+                    comboBox.Value = HttpContext.Current.Session("BusinessLocation")
+                End If 
+            End If 
+            If ReportParameter.Description.Contains("Vehicle") Then
+                comboBox.ClientInstanceName = "Vehicle"
+            ElseIf ReportParameter.Description.Contains("Driver") Then
+                comboBox.ClientInstanceName = "Drivers"
+            ElseIf ReportParameter.Description.Contains("Business Location") Then
+                comboBox.ClientInstanceName = "BusinessLocation"
+            End If 
 
-                paramControl = comboBox
+            paramControl = comboBox
 
-                dateTimeDIV.Visible = False
+            dateTimeDIV.Visible = False  
+        End If
 
-            End If
+
 
             If ReportParameter.Type.ToString.ToLower = "system.datetime" Then 
                 'relative time OR exact time
-                Dim uniqcoID As String = Guid.NewGuid.ToString.Replace("-", "") 
-
-            End If
-
+            Dim uniqcoID As String = Guid.NewGuid.ToString.Replace("-", "")
+            End If 
             If paramControl IsNot Nothing Then panelContent.Controls.Add(paramControl) 
 
     End Sub

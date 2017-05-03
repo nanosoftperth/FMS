@@ -61,7 +61,7 @@ namespace FMS.ReportService
             DateTime endDate = DateTime.Now;
             string VehicleName = string.Empty;
             bool IsEmail = false;
-            //Console.WriteLine(DateTime.Now);
+            Console.WriteLine(DateTime.Now);
 
             try
             {
@@ -193,6 +193,7 @@ namespace FMS.ReportService
                             }
                         }
                         #endregion
+
 
                         if (IsEmail)
                         {

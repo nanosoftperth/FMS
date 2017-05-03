@@ -332,6 +332,7 @@ Public Class CachedDriverOperatingHoursReport
     Public Property StartDate As DateTime
     Public Property EndDate As DateTime
     Public Property VehicleID As Guid
+    Public Property BusinessLocationID As Guid
     Public Property LogoBinary() As Byte()
 
 

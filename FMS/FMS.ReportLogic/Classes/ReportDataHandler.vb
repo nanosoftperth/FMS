@@ -3,11 +3,13 @@ Imports FMS.Business.DataObjects
 Imports System.Web
 Imports DevExpress.XtraReports.UI
 
-
 Public Class ReportDataHandler
 
     Public Shared Function GetThisApplicationsVehicleList() As List(Of FMS.Business.DataObjects.ApplicationVehicle)
         Return FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID)
+    End Function
+    Public Shared Function GetThisApplicationLocationList() As List(Of FMS.Business.DataObjects.ApplicationLocation)
+        Return FMS.Business.DataObjects.ApplicationLocation.GetAll(ThisSession.ApplicationID)
     End Function
     Public Shared Function GetThisApplicationsDriverList() As List(Of FMS.Business.DataObjects.ApplicationDriver)
         Return FMS.Business.DataObjects.ApplicationDriver.GetAllDriversIncludingEveryone(ThisSession.ApplicationID)
@@ -119,7 +121,7 @@ Public Class ReportDataHandler
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
     Public Shared Function GetDriverOperatingReportValues(startdate As Date _
                                                   , endDate As Date _
-                                                  , vehicleName As String) As CachedDriverOperatingHoursReport
+                                                  , vehicleName As String, businessLocation As String) As CachedDriverOperatingHoursReport
 
 
         startdate = startdate

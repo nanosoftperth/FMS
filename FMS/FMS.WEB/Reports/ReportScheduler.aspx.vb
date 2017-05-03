@@ -101,29 +101,30 @@ Public Class ReportScheduler
 
     End Sub
     <System.Web.Services.WebMethod(EnableSession:=True)>
-    Public Shared Function setReportParameter(ByVal StartDate As String, ByVal EndDate As String, ByVal Vehicle As String, ByVal StartDateSpecific As String, ByVal EndDateSpecific As String) As String
+    Public Shared Function setReportParameter(ByVal StartDate As String, ByVal EndDate As String, ByVal Vehicle As String, ByVal StartDateSpecific As String, ByVal EndDateSpecific As String, ByVal BusinessLocation As String) As String
         ReportParam.StartDate = StartDate
         ReportParam.EndDate = EndDate
         ReportParam.Vehicle = Vehicle
         ReportParam.StartDateSpecific = StartDateSpecific
         ReportParam.EndDateSpecific = EndDateSpecific
         ReportParam.Driver = Vehicle
+        ReportParam.BusinessLocation = BusinessLocation
         Return ""
     End Function
     <System.Web.Services.WebMethod(EnableSession:=True)>
-    Public Shared Function SetSelectedReportEdit(ReportName As String, PStartDate As String, PEndDate As String, PVehicle As String, PStartDateSpecific As String, PEndDateSpecific As String) As String
+    Public Shared Function SetSelectedReportEdit(ReportName As String, PStartDate As String, PEndDate As String, PVehicle As String, PStartDateSpecific As String, PEndDateSpecific As String, PBusinessLocation As String) As String
         FMS.Business.ThisSession.SelectedReportName = ReportName
 
         HttpContext.Current.Session.Remove("StartDate")
         HttpContext.Current.Session.Remove("EndDate")
         HttpContext.Current.Session.Remove("Vehicle")
 
-
         HttpContext.Current.Session("StartDate") = PStartDate
         HttpContext.Current.Session("EndDate") = PEndDate
         HttpContext.Current.Session("Vehicle") = PVehicle
         HttpContext.Current.Session("StartDateSpecific") = PStartDateSpecific
         HttpContext.Current.Session("EndDateSpecific") = PEndDateSpecific
+        HttpContext.Current.Session("BusinessLocation") = PBusinessLocation
 
         Return ""
     End Function
