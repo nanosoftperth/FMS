@@ -813,6 +813,7 @@
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
+        Me.DetailReport.DataMember = "LineValies"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
