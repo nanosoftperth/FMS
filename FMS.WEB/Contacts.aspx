@@ -13,15 +13,13 @@
                    });
        }
    </script>
-    <link href="Content/Jira.css" rel="stylesheet" />
-    <div id="aui-flag-container" style="display: none;">
+
+   <link href="Content/Jira.css" rel="stylesheet" />
+   <div id="aui-flag-container" style="display: none;">
             <div class="aui-flag" aria-hidden="false">
                 <div class="aui-message aui-message-success success closeable shadowed aui-will-close">
-                    <div id="msg">This is some example text</div>
-
-                    <span class="aui-icon icon-close" role="button" tabindex="0"></span>
-
-
+                    <div id="msg">This is some example text</div> 
+                    <span class="aui-icon icon-close" role="button" tabindex="0"></span>                       
                 </div>
             </div>
         </div>
@@ -32,8 +30,7 @@
     </asp:ObjectDataSource>
     <dx:ASPxGridView ID="dgvConteact" ClientInstanceName="dgvConteact" KeyFieldName="ContactID" runat="server" AutoGenerateColumns="False" DataSourceID="odsContacts">
         <SettingsSearchPanel Visible="True" />
-        <Templates>
-            
+        <Templates>            
  <EditForm>
                                             <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors"></dx:ASPxGridViewTemplateReplacement>
                                             <div style="text-align: right">

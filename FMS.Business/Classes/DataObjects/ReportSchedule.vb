@@ -88,6 +88,7 @@ Namespace DataObjects
         Public Property RecipientName As String
         Public Property StartDateSpecific As String
         Public Property EndDateSpecific As String
+        Public Property BusinessLocation As String
 #End Region
 
 #End Region
@@ -157,7 +158,8 @@ Namespace DataObjects
                                      .Recipients = item.Recipients,
                                      .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
                                      .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific)),
-                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail))
+                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail)),
+                                     .BusinessLocation = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() item.BusinessLocation))
                                     })
                     Next
                 End If
@@ -208,7 +210,8 @@ Namespace DataObjects
                                      .Recipients = item.Recipients,
                                      .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
                                      .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific)),
-                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail))
+                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail)),
+                                     .BusinessLocation = item.BusinessLocation
                                     })
                     Next
                 End If
@@ -335,6 +338,7 @@ Namespace DataObjects
                         Else
                             obj.Add(GetPropertyName(Function() ReportParam.Vehicle), If(String.IsNullOrEmpty(ReportParam.Vehicle), "", ReportParam.Vehicle))
                         End If
+                        obj.Add(GetPropertyName(Function() ReportParam.BusinessLocation), If(String.IsNullOrEmpty(ReportParam.BusinessLocation), "", ReportParam.BusinessLocation))
                     End If
 
                     Dim ds = New DictionarySerializer(obj)
@@ -477,5 +481,6 @@ Namespace DataObjects
         Public Shared EndDateSpecific As String
         Public Shared Vehicle As String
         Public Shared Driver As String
+        Public Shared BusinessLocation As String
     End Class
 End Namespace
