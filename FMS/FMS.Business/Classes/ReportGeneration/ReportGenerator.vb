@@ -180,10 +180,10 @@ Namespace ReportGeneration
 
         Public Shared Function GetDriverOperatingHours_ForVehicle(startDate As Date,
                                                                 endDate As Date,
-                                                                vehicleID As Guid?) As ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours
+                                                                vehicleID As Guid?, businessLocation As Guid?) As ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours
 
             'Return ReportGeneration.DriverOperatingReportHoursLine.GetTestLines()
-            Return ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleID, startDate, endDate)
+            Return ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleID, startDate, endDate, businessLocation)
 
         End Function
 
@@ -375,16 +375,8 @@ Namespace ReportGeneration
                 End Try
 
             Next
-
-
-
-
-
-
-
             Return retobj
-        End Function
-
+        End Function 
     End Class
 
 End Namespace

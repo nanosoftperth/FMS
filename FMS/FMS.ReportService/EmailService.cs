@@ -124,18 +124,18 @@ namespace FMS.ReportService
                          
                         #region to create the instance of report
                         string ParmType = string.Empty;
+                        string BusinessLocation  = string.Empty;
                         switch (Convert.ToString(Item.ReportName))
                         {
                             case ReportNameList.VehicleReport:
                                 GenericObj = new FMS.ReportLogic.VehicleReportPDF();
                                 ParmType = Convert.ToString(Item.Vehicle);
-                                break;
-
+                                break; 
                             case ReportNameList.DriverOperatingHoursReport:
                                 GenericObj = new FMS.ReportLogic.DriverOperatingHoursReportPDF();
                                 ParmType = Convert.ToString(Item.Vehicle);
-                                break;
-
+                                BusinessLocation = Convert.ToString(BusinessLocation);
+                                break; 
                             case ReportNameList.ReportGeoFence_byDriver:
                                 GenericObj = new FMS.ReportLogic.ReportGeoFence_byDriverPDF();
                                 ParmType = Convert.ToString(Item.Driver);
@@ -203,8 +203,12 @@ namespace FMS.ReportService
                             GenericObj.Parameters[1].Value = endDate;
                             GenericObj.Parameters[2].Value = ParmType;
                             GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
+                            if (Convert.ToString(Item.ReportName) == ReportNameList.DriverOperatingHoursReport)
+                            {
+                                GenericObj.Parameters[4].Value = Convert.ToString(Item.BusinessLocation);
+                            }
                             GenericObj.ExportToPdf(mem); 
-
+                             
                             sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
                         }
                     }

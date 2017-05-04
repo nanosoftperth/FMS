@@ -211,7 +211,7 @@ Namespace DataObjects
                                      .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
                                      .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific)),
                                      .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail)),
-                                     .BusinessLocation = item.BusinessLocation
+                                     .BusinessLocation = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.BusinessLocation))
                                     })
                     Next
                 End If

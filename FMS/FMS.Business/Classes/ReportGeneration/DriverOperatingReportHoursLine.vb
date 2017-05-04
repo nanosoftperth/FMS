@@ -57,7 +57,7 @@ Namespace ReportGeneration
         End Class
 
         Public Shared Function GetForVehicle(vehicleID As Guid,
-                                             startDate As Date, endDate As Date) As DriverOperatingReportHours
+                                             startDate As Date, endDate As Date, businessLocation As Guid) As DriverOperatingReportHours
 
             If startDate >= endDate Then Throw New Exception("The start date must be before the end date.")
 
@@ -80,10 +80,15 @@ Namespace ReportGeneration
             retobj.VehicleActivityReportLines = vehicleReportLines
 
             'get the driver of the vehicle for that time, if there is none, then use the "base" of the logged in user. 
-            Dim businessLocation As DataObjects.ApplicationLocation = _
-                                DataObjects.ApplicationLocation.GetLocationFromVehicle(startDate, endDate, vehicleID)
+            '' Edited by Aman on 20170504  
+            'Dim businessLocation As DataObjects.ApplicationLocation = _
+            '                    DataObjects.ApplicationLocation.GetLocationFromVehicle(startDate, endDate, vehicleID) 
 
-            Dim businessLocLatLng As New BackgroundCalculations.Loc(businessLocation.Lattitude, businessLocation.Longitude)
+            Dim BusinessLocationDetail As DataObjects.ApplicationLocation = _
+                DataObjects.ApplicationLocation.GetFromID(businessLocation)  
+
+            Dim businessLocLatLng As New BackgroundCalculations.Loc(BusinessLocationDetail.Lattitude, BusinessLocationDetail.Longitude)
+
 
             'fiter out any values without a start time (so we can do below filtering between startdate and enddate)
             vehicleReportLines = (From x In vehicleReportLines Where x.StartTime.HasValue Select x).ToList()

@@ -20,7 +20,7 @@ Public Class ReportDataHandler
     ''' </summary>
     Public Shared Function GetVehicleReportValue(startdate As Date _
                                                   , endDate As Date _
-                                                  , vehicleName As String) As CachedVehicleReport
+                                                  , vehicleName As String, businessLocation As String) As CachedVehicleReport
 
         Dim rept As CachedVehicleReport = Nothing
 
@@ -145,7 +145,7 @@ Public Class ReportDataHandler
         If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
             Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours = _
-                    FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID)
+                    FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID, New Guid(businessLocation))
 
 
             rept = (New CachedDriverOperatingHoursReport With {.VehicleID = vehicleID _
@@ -223,7 +223,7 @@ Public Class ReportDataHandler
     ' functions for emailing based on schedule 
     Public Shared Function GetDriverOperatingReportValue(startdate As Date _
                                                 , endDate As Date _
-                                                , vehicleName As String, appID As String) As CachedDriverOperatingHoursReport
+                                                , vehicleName As String, appID As String, businessLocation As String) As CachedDriverOperatingHoursReport
 
         startdate = startdate
         endDate = endDate.AddDays(1)
@@ -241,13 +241,14 @@ Public Class ReportDataHandler
         '                                                    AndAlso x.StartDate = startdate _
         '                                                    AndAlso x.VehicleID = vehicleID).SingleOrDefault
 
+
         Dim GET_CAHCHED_REPORT As Boolean = True
 
         'MAKE the report and add it to the cache if it doesnt exist
         If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
             Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours = _
-                    FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID)
+                    FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID, New Guid(businessLocation))
 
 
             rept = (New CachedDriverOperatingHoursReport With {.VehicleID = vehicleID _
