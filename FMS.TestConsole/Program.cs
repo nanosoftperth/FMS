@@ -19,7 +19,8 @@ namespace FMS.TestConsole
             DateTime endDate = DateTime.Parse( "4 jan 2017");
 
 
-            object retobbj =  Business.ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleGUID, startDate, endDate);
+
+            object retobbj = Business.ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleGUID, startDate, endDate, new Guid(""));
 
             string x = ";";
 
