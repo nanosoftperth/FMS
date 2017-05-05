@@ -12,14 +12,14 @@
     <form id="form1" runat="server">
         <div>
             <dx:ASPxDocumentViewer ID="ASPxDocumentViewer1"
-                runat="server"
-                ReportTypeName="FMS.ReportLogic.VehicleReport"
+                runat="server"              
                 Width="98%"
                 Theme="SoftOrange"
                 ClientInstanceName="mainReport"
                 SettingsDocumentMap-EnableAnimation="true"
                 SettingsSplitter-SidePanePosition="Left"
                 StylesSplitter-SidePaneWidth="230px">
+                 <SettingsReportViewer UseIFrame="false" />
             </dx:ASPxDocumentViewer>
         </div> 
 

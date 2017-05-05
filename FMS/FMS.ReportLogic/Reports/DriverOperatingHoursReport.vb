@@ -274,9 +274,11 @@
         '
         'XrTableCell13
         '
-        Me.XrTableCell13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.StopTime")})
+        Me.XrTableCell13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Me.ObjectDataSource1, "LineValies.StopTime")})
+        Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.XrTableCell13.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.StylePriority.UseFont = False
         Me.XrTableCell13.Weight = 15.550470054675696R
         '
         'XrTableCell20
@@ -291,8 +293,10 @@
         'XrTableCell16
         '
         Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.TotalHours", "{0}")})
+        Me.XrTableCell16.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.XrTableCell16.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell16.Name = "XrTableCell16"
+        Me.XrTableCell16.StylePriority.UseFont = False
         Me.XrTableCell16.Weight = 23.166572789307224R
         '
         'TopMargin
