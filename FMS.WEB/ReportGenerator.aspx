@@ -16,6 +16,12 @@
             padding: 3px;
         }
         .dxtc-content{ height:500px;}
+        .dropdown {
+    
+        }
+        .dxeListBox_SoftOrange div.dxlbd {
+            height: auto !important;
+        }
     </style>
        
 
@@ -37,8 +43,7 @@
 
                                 </td>
 
-                                <td style="padding: 2px;">
-
+                                <td style="padding: 2px; height:auto;"> 
                                     <dx:ASPxComboBox ID="ASPxComboBox2"
                                         runat="server"
                                         Theme="SoftOrange"
@@ -46,16 +51,12 @@
                                         EnableTheming="True"
                                         ClientInstanceName="cboSlectedReport"
                                         ValueField="DataforJavascript"
-                                        TextField="VisibleReportName">
-
+                                        TextField="VisibleReportName"  CssClass ="dropdown"> 
                                         <ClientSideEvents KeyDown="function(s,e){return false;}" SelectedIndexChanged="function(s, e) {
 	cboSlectedReport_SelectedIndexChanged(s,e)
-}"></ClientSideEvents>
-
-<ClearButton Visibility="Auto"></ClearButton>
-
-                                    </dx:ASPxComboBox>
-
+}"></ClientSideEvents> 
+<ClearButton Visibility="Auto"></ClearButton> 
+                                    </dx:ASPxComboBox> 
                                     <asp:ObjectDataSource runat="server" ID="odsReports"
                                         SelectMethod="GetAllReports"
                                         TypeName="FMS.ReportLogic.AvailableReport"></asp:ObjectDataSource>

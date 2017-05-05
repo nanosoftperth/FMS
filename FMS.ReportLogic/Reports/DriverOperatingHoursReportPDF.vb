@@ -269,8 +269,10 @@
         'XrTableCell13
         '
         Me.XrTableCell13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.StopTime")})
+        Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.XrTableCell13.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.StylePriority.UseFont = False
         Me.XrTableCell13.Weight = 15.550470054675696R
         '
         'XrTableCell20
@@ -285,8 +287,10 @@
         'XrTableCell16
         '
         Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.TotalHours", "{0}")})
+        Me.XrTableCell16.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.XrTableCell16.FormattingRules.Add(Me.ifNoDataTheninvisible)
         Me.XrTableCell16.Name = "XrTableCell16"
+        Me.XrTableCell16.StylePriority.UseFont = False
         Me.XrTableCell16.Weight = 23.166572789307224R
         '
         'TopMargin
@@ -837,7 +841,6 @@
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
         Me.DetailReport.DataMember = "LineValies"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
-        Me.DetailReport.Expanded = False
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
         '

@@ -20,7 +20,7 @@ Public Class ReportDataHandler
     ''' </summary>
     Public Shared Function GetVehicleReportValue(startdate As Date _
                                                   , endDate As Date _
-                                                  , vehicleName As String, businessLocation As String) As CachedVehicleReport
+                                                  , vehicleName As String) As CachedVehicleReport
 
         Dim rept As CachedVehicleReport = Nothing
 

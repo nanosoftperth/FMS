@@ -2,6 +2,7 @@
 Imports DevExpress.XtraCharts
 Imports FMS.Business.DataObjects.FeatureListConstants
 Imports FMS.ReportLogic
+Imports FMS.Business
 
 Public Class ReportGenerator
     Inherits System.Web.UI.Page
@@ -23,6 +24,9 @@ Public Class ReportGenerator
 
             Me.chartSpeed.DataSource = Nothing
             Me.chartSpeed.DataSourceID = Nothing
+
+            'Dim rept As CachedVehicleReport = Nothing
+            'ThisSession.CachedVehicleReports.Add(rept)
 
         End If
 
