@@ -114,6 +114,27 @@
                      Select New Subscriber(x)).ToList
 
         End Function
+        Public Shared Function GetAllforApplicationDestination(appid As Guid) As List(Of DataObjects.Subscriber)
+
+            Dim ObjList As New List(Of DataObjects.Subscriber)
+            Dim resultString = (From x In SingletonAccess.FMSDataContextNew.usp_GetSubscribersForApplication(appid) _
+                       Select New Subscriber(x)).ToList
+
+
+            ObjList.Add(New Subscriber() With
+                                 {.Name = "Select All",
+                                  .NativeID = New Guid()})
+            For Each listItem In resultString 
+
+                ObjList.Add(New Subscriber() With
+                                  {.Name = listItem.NameFormatted,
+                                   .NativeID = listItem.NativeID})
+            Next
+
+            Return ObjList
+
+        End Function
+
 
         Public Shared Function GetAllForGroup(groupid As Guid) As List(Of DataObjects.Subscriber)
 

@@ -19,6 +19,7 @@ Public Class ReportScheduler
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim str As String = Convert.ToString(ThisSession.ApplicationID)
+
     End Sub
     Private Sub dgvReports_CellEditorInitialize(sender As Object, e As DevExpress.Web.ASPxGridViewEditorEventArgs) Handles dgvReports.CellEditorInitialize
         'If e.Column.FieldName = "ScheduleDate" Then
@@ -101,7 +102,7 @@ Public Class ReportScheduler
 
     End Sub
     <System.Web.Services.WebMethod(EnableSession:=True)>
-    Public Shared Function setReportParameter(ByVal StartDate As String, ByVal EndDate As String, ByVal Vehicle As String, ByVal StartDateSpecific As String, ByVal EndDateSpecific As String, ByVal BusinessLocation As String) As String
+    Public Shared Function setReportParameter(ByVal StartDate As String, ByVal EndDate As String, ByVal Vehicle As String, ByVal StartDateSpecific As String, ByVal EndDateSpecific As String, ByVal BusinessLocation As String, NativeId As String) As String
         ReportParam.StartDate = StartDate
         ReportParam.EndDate = EndDate
         ReportParam.Vehicle = Vehicle
@@ -109,6 +110,7 @@ Public Class ReportScheduler
         ReportParam.EndDateSpecific = EndDateSpecific
         ReportParam.Driver = Vehicle
         ReportParam.BusinessLocation = BusinessLocation
+        ReportParam.NativeID = NativeId
         Return ""
     End Function
     <System.Web.Services.WebMethod(EnableSession:=True)>
