@@ -117,7 +117,6 @@ Public Class ReportDataHandler
         'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary 
         Return rept
     End Function
-
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
     Public Shared Function GetDriverOperatingReportValues(startdate As Date _
                                                   , endDate As Date _
@@ -219,7 +218,6 @@ Public Class ReportDataHandler
         Return retobj
 
     End Function
-
     ' functions for emailing based on schedule 
     Public Shared Function GetDriverOperatingReportValue(startdate As Date _
                                                 , endDate As Date _
@@ -304,7 +302,6 @@ Public Class ReportDataHandler
 
     End Function
     ''Get List  
-
     Public Shared Function GetVehicleReport() As CacheVehicle
         Dim rept As New CacheVehicle
         Dim retobj = FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID).ToList()
@@ -320,7 +317,6 @@ Public Class ReportDataHandler
 
         Return rept
     End Function
-
     Public Shared Function GetFDriverListReport() As CacheDriver
         Dim rept As New CacheDriver
         Dim retobj = FMS.Business.DataObjects.ApplicationDriver.GetAllDrivers(ThisSession.ApplicationID).ToList()
@@ -372,7 +368,6 @@ Public Class ReportDataHandler
         rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
         Return rept
     End Function
-
     '' to get list of Contacts
     Public Shared Function GetConactListReport() As CacheContact
         Dim rept As New CacheContact
@@ -391,7 +386,6 @@ Public Class ReportDataHandler
         rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
         Return rept
     End Function
-
     Public Shared Function GetRolesListReport() As CacheRoles
         Dim rept As New CacheRoles
         Dim retobj = FMS.Business.DataObjects.Role.GetAllRolesforApplication(ThisSession.ApplicationID).ToList()
@@ -461,7 +455,6 @@ Public Class ReportDataHandler
         rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
         Return rept
     End Function
-
     '  CacheAssignVehicletoDriver
     Public Sub New()
 

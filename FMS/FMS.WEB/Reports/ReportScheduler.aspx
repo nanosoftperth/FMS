@@ -11,7 +11,7 @@
 <head runat="server">
     <title></title>
 
-     <link href="../Content/Jira.css" rel="stylesheet" />
+    <link href="../Content/Jira.css" rel="stylesheet" />
     <script src='../Content/javascript/jquery-3.1.0.min.js'></script>
     <script src="../Content/javascript/page.js"></script>
 
@@ -38,8 +38,7 @@
                         $(this).delay(2500).toggle('slow');
                     });
         }
-
-
+        
         function comboDateSelected_ValueChanged(s, id) {
             var selectedVal = s.GetValue();
 
@@ -56,10 +55,14 @@
         function cboSelectedIndexChanged() {
             var ParmList = "";
             if (comboSelectedReport.GetValue() == "ReportGeoFence_byDriver") {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "'}";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
+            }
+            else if (comboSelectedReport.GetValue() == "DriverOperatingHoursReport")
+            {
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "',   NativeId:'" + IRecepients.GetValue() + "'}";
             }
             else {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "'}";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
             }
             $.ajax({
                 type: 'POST',
@@ -67,7 +70,8 @@
                 data: ParmList,
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                success: function (r) {
+                success: function (r)
+                {
                 }
             });
         }
@@ -127,7 +131,55 @@
 
         }
 
-                                    </script>
+    </script>
+
+    <script type="text/javascript">
+        var textSeparator = ";";
+        function OnListBoxSelectionChanged(listBox, args) {
+            if (args.index == 0)
+                args.isSelected ? listBox.SelectAll() : listBox.UnselectAll();
+            UpdateSelectAllItemState();
+            UpdateText();
+        }
+        function UpdateSelectAllItemState() {
+            IsAllSelected() ? checkListBox.SelectIndices([0]) : checkListBox.UnselectIndices([0]);
+        }
+        function IsAllSelected() {
+            var selectedDataItemCount = checkListBox.GetItemCount() - (checkListBox.GetItem(0).selected ? 0 : 1);
+            return checkListBox.GetSelectedItems().length == selectedDataItemCount;
+        }
+        function UpdateText() {
+            var selectedItems = checkListBox.GetSelectedItems();
+            checkComboBox.SetText(GetSelectedItemsText(selectedItems));
+            IRecepients.SetText(GetValuesByTexts(selectedItems));
+        }
+        function SynchronizeListBoxValues(dropDown, args) {
+            checkListBox.UnselectAll();
+            var texts = dropDown.GetText().split(textSeparator);
+            var values = GetValuesByTexts(texts);
+            checkListBox.SelectValues(values);
+            UpdateSelectAllItemState();
+            UpdateText(); // for remove non-existing texts
+        }
+        function GetSelectedItemsText(items) {
+            var texts = [];
+            for (var i = 0; i < items.length; i++)
+                if (items[i].index != 0)
+                    texts.push(items[i].text);
+            return texts.join(textSeparator);
+        }
+        function GetValuesByTexts(texts) {
+            var actualValues = [];
+            var item;
+            for (var i = 0; i < texts.length; i++) {
+                //item = checkListBox.FindItemByText(texts[i]);
+                //if (item != null)
+                //    actualValues.push(item.value); 
+                actualValues.push(texts[i].value);
+            }
+            return actualValues;
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -193,8 +245,7 @@
                                                                     <td colspan="2">
                                                                         <dx:ASPxCallbackPanel ID="callbackREportEdit"
                                                                             ClientInstanceName="callbackREportEdit"
-                                                                            runat="server">
-
+                                                                            runat="server"> 
                                                                             <%--<asp:PlaceHolder ID="mainDIV" runat="server"></asp:PlaceHolder>--%>
                                                                             <PanelCollection>
                                                                                 <dx:PanelContent runat="server">
@@ -270,13 +321,38 @@
                                                         </td>
                                                         <%--DESTINATION--%>
                                                         <td valign="top" style="padding-top:10px;">
-                                                            <dx:ASPxComboBox
+                                                      <%--      <dx:ASPxComboBox
                                                                 ValueField="NativeID"
                                                                 TextField="NameFormatted"
                                                                 ID="comboSubscribers"
                                                                 runat="server"
                                                                 DataSourceID="odsSubscribers" Value='<%# Bind("Recipients")%>'  ValueType ="System.Guid"  ClientInstanceName ="comRecipients">
-                                                            </dx:ASPxComboBox> 
+                                                            </dx:ASPxComboBox> --%>
+
+           <dx:ASPxDropDownEdit ClientInstanceName="checkComboBox" ID="ASPxDropDownEdit1" Width="210px" runat="server" AnimationType="None">
+             <DropDownWindowStyle BackColor="#EDEDED" />
+             <DropDownWindowTemplate>
+            <dx:ASPxListBox Width="100%" ID="listBox" ClientInstanceName="checkListBox" SelectionMode="CheckColumn"
+                runat="server" DataSourceID="odsSubscribers" TextField="Name" ValueField="NativeID" ValueType ="System.Guid" >
+                <Border BorderStyle="None" />
+                <BorderBottom BorderStyle="Solid" BorderWidth="1px" BorderColor="#DCDCDC" />
+                <Items>  
+                </Items>
+                <ClientSideEvents SelectedIndexChanged="OnListBoxSelectionChanged" />
+            </dx:ASPxListBox>
+            <table style="width: 100%">
+                <tr>
+                    <td style="padding: 4px">
+                        <dx:ASPxButton ID="ASPxButton1" AutoPostBack="False" runat="server" Text="Close" style="float: right">
+                            <ClientSideEvents Click="function(s, e){ checkComboBox.HideDropDown(); }" />
+                        </dx:ASPxButton>
+                    </td>
+                </tr>
+            </table>
+        </DropDownWindowTemplate>
+        <ClientSideEvents TextChanged="SynchronizeListBoxValues" DropDown="SynchronizeListBoxValues" />
+     </dx:ASPxDropDownEdit>
+
                                                          <div style ="display:none">   
                                                               <dx:ASPxLabel ID ="ASPxLabel4"  runat ="server" ClientInstanceName="lStartDate"  Value='<%# Bind("StartDate") %>' ></dx:ASPxLabel>
                                                               <dx:ASPxLabel ID ="ASPxLabel3"  runat ="server" ClientInstanceName="lEndDate"  Value='<%# Bind("EndDate") %>' ></dx:ASPxLabel>
@@ -286,7 +362,7 @@
                                                               <dx:ASPxLabel ID ="ASPxLabel8"  runat ="server" ClientInstanceName="lEndDateSpecific"  Value='<%# Bind("EndDateSpecific") %>'></dx:ASPxLabel>
                                                               <dx:ASPxLabel ID ="ASPxLabel9"  runat ="server" ClientInstanceName="lEndDateSpecific"  Value='<%# Bind("EndDateSpecific") %>'></dx:ASPxLabel>
                                                               <dx:ASPxLabel ID ="ASPxLabel10"  runat ="server" ClientInstanceName="IBusinessLocation"  Value='<%# Bind("BusinessLocation") %>' ></dx:ASPxLabel>
-                                                              
+                                                              <dx:ASPxLabel ID ="ASPxLabel11"  runat ="server" ClientInstanceName="IRecepients"  Value='<%# Bind("Recipients") %>' ></dx:ASPxLabel>
                                                         </div></td>
                                                     </tr>
                                                 </table>
@@ -358,7 +434,7 @@
                                             <dx:GridViewDataDateColumn Caption="End Date" FieldName="EndDate" Visible="false" CellStyle-CssClass="test" VisibleIndex="12">
                                                 <EditFormSettings VisibleIndex="12" Visible="false" />
                                             </dx:GridViewDataDateColumn>
-                                            <%--   <dx:GridViewDataComboBoxColumn FieldName="Vehicle" ShowInCustomizationForm="True" VisibleIndex="13" Caption="Vehicle"  Visible ="false" >
+                                            <%--<dx:GridViewDataComboBoxColumn FieldName="Vehicle" ShowInCustomizationForm="True" VisibleIndex="13" Caption="Vehicle"  Visible ="false" >
                                                   <EditFormSettings VisibleIndex="13" Visible ="true"  />
                                                 <PropertiesComboBox DataSourceID="odsAVDTVehicles" TextField="Name" ValueField="Name">
                                                 </PropertiesComboBox>
@@ -368,9 +444,8 @@
                                             </dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="RecipientName" ShowInCustomizationForm="True" Visible="True" VisibleIndex="15">
                                                 <EditFormSettings VisibleIndex="15" Visible="false" />
-                                            </dx:GridViewDataTextColumn> 
-                                             
-                                            <%--     <dx:GridViewDataComboBoxColumn FieldName="Recipients" Caption="Recipients" VisibleIndex="15">
+                                            </dx:GridViewDataTextColumn>                                             
+                                            <%--<dx:GridViewDataComboBoxColumn FieldName="Recipients" Caption="Recipients" VisibleIndex="15">
                                                 <PropertiesComboBox DropDownStyle="DropDown" DataSourceID="odsSubscribers" TextField="NameFormatted" ValueField="NativeID">
                                                     <ClearButton Visibility="Auto"></ClearButton>
                                                 </PropertiesComboBox>
@@ -392,7 +467,7 @@
                                             <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appplicationID"></asp:SessionParameter>
                                         </SelectParameters>
                                     </asp:ObjectDataSource>
-                                    <asp:ObjectDataSource ID="odsSubscribers" runat="server" SelectMethod="GetAllforApplication" TypeName="FMS.Business.DataObjects.Subscriber">
+                                    <asp:ObjectDataSource ID="odsSubscribers" runat="server" SelectMethod="GetAllforApplicationDestination" TypeName="FMS.Business.DataObjects.Subscriber">
                                         <SelectParameters>
                                             <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appid"></asp:SessionParameter>
                                         </SelectParameters>
@@ -406,7 +481,6 @@
     
     </div>
     </form>
-
       <script type ="text/javascript">
 
           function BeginCallBackFUn() {
@@ -460,17 +534,38 @@
                 $('.' + comboReportType.GetValue()).show('slow');
             }
             else if (comboReportType.GetValue() == '<%=Utility.Weekly %>')
-                                        { $('.' + comboReportType.GetValue()).show('slow'); }
-                                        else if (comboReportType.GetValue() == '<%=Utility.Monthly%>')
+            { $('.' + comboReportType.GetValue()).show('slow'); }
+            else if (comboReportType.GetValue() == '<%=Utility.Monthly%>')
+            { $('.' + comboReportType.GetValue()).show('slow'); }
+              
+            var ReceiptIds = IRecepients.GetValue().split(',');
+            if (ReceiptIds.length > 0) {
+                for (var i = 0; i < ReceiptIds.length; i++)
+                { 
+                    for (var i = 0; i < checkListBox.GetItemCount() ; i++) {
+                        var item = checkListBox.GetItem(i);
 
+                        if (item.value =  ReceiptIds[i]) {
+                            //item.selected = true;
+                            checkListBox.SelectValues(ReceiptIds[i]);
 
-                                        { $('.' + comboReportType.GetValue()).show('slow'); }
+                            checkComboBox.SetText(ReceiptIds[i]);
+                        } 
+                    }
+                }
+            }
+            else
+            {
 
+            }  
+             //for (var i = 0; i < items.length; i++)
+             // {
 
-                                if (comRecipients.GetValue() == "00000000-0000-0000-0000-000000000000") {
-                                    comRecipients.SetSelectedIndex(0);
-                                }
-                            }
+             // }
+                                //if (comRecipients.GetValue() == "00000000-0000-0000-0000-000000000000") {
+                                //    comRecipients.SetSelectedIndex(0);
+                                //}
+            }
 
     </script>
 </body>

@@ -82,13 +82,15 @@ Namespace DataObjects
         Public Property EndDate As String
         Public Property Vehicle As String
         Public Property Driver As String
-        Public Property Recipients As Guid 
+        Public Property Recipients As String
         Public Property RecipientEmail As String
         Public Property NativeID As String
         Public Property RecipientName As String
         Public Property StartDateSpecific As String
         Public Property EndDateSpecific As String
         Public Property BusinessLocation As String
+
+
 #End Region
 
 #End Region
@@ -111,7 +113,7 @@ Namespace DataObjects
             Me.ReportTypeSpecific = x.ReportTypeSpecific
             Me.SubscriberID = x.SubscriberID
             Me.Schedule = x.Schedule
-            Me.Recipients = x.Recipients
+            Me.Recipients = x.Recipients 
             Me.ScheduleDate = ""
         End Sub
 
@@ -153,13 +155,13 @@ Namespace DataObjects
                                      .EndDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDate)),
                                      .Vehicle = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Vehicle)),
                                      .Driver = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Driver)),
-                                     .RecipientName = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientName)),
                                      .NativeID = Convert.ToString(item.Recipients),
                                      .Recipients = item.Recipients,
                                      .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
                                      .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific)),
-                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail)),
-                                     .BusinessLocation = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() item.BusinessLocation))
+                                     .BusinessLocation = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() item.BusinessLocation)),
+                                     .RecipientName = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientName)),
+                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail))
                                     })
                     Next
                 End If
@@ -205,13 +207,13 @@ Namespace DataObjects
                                      .EndDate = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDate)),
                                      .Vehicle = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Vehicle)),
                                      .Driver = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.Driver)),
-                                     .RecipientName = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientName)),
                                      .NativeID = Convert.ToString(item.Recipients),
                                      .Recipients = item.Recipients,
                                      .StartDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.StartDateSpecific)),
                                      .EndDateSpecific = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.EndDateSpecific)),
-                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail)),
-                                     .BusinessLocation = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.BusinessLocation))
+                                     .BusinessLocation = GetScheduleParameter(item.ReportParams, GetPropertyName(Function() rpt.BusinessLocation)),
+                                     .RecipientName = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientName)),
+                                     .RecipientEmail = GetRecipientsforApplication(item.ApplicationId, item.Recipients, GetPropertyName(Function() rpt.RecipientEmail))
                                     })
                     Next
                 End If
@@ -221,20 +223,37 @@ Namespace DataObjects
 
             Return objList
         End Function
-        Public Shared Function GetRecipientsforApplication(appid As Guid, NativeId As Guid, attributeName As String) As String
-            Try
-                Dim Result = (From x In SingletonAccess.FMSDataContextNew.usp_GetSubscribersForApplication(appid) _
-                   Where (x.NativeID = NativeId)).FirstOrDefault
+        Public Shared Function GetRecipientsforApplication(appid As Guid, NativeIds As String, attributeName As String) As String
+            Try 
+                Dim RecipientNames As String = String.Empty
+                Dim RecipientEmails As String = String.Empty
+                Dim RecipientIds = NativeIds.Split(",")
 
-                If Result Is Nothing Then
-                    Return String.Empty
-                Else 
+                If RecipientIds.Count > 0 Then
+
+                    For Each Id In RecipientIds
+                        Dim Result = (From x In SingletonAccess.FMSDataContextNew.usp_GetSubscribersForApplication(appid) _
+                         Where (x.NativeID = New Guid(Id))).FirstOrDefault
+                        If attributeName = "RecipientName" Then
+                            RecipientNames = RecipientNames + Convert.ToString(Result.SubcriberType + ":" + Result.Name) + ","
+                        Else
+                            RecipientEmails = RecipientNames + Convert.ToString(Result.Email) + ","
+                        End If
+                    Next 
                     If attributeName = "RecipientName" Then
-                        Return Convert.ToString(Result.SubcriberType + ":" + Result.Name)
+                        If Not String.IsNullOrEmpty(RecipientNames) Then
+                            RecipientNames = RecipientNames.Remove(RecipientNames.Length - 1)
+                        End If
+                        Return RecipientNames
                     Else
-                        Return Convert.ToString(Result.Email)
-                    End If 
-                End If
+                        If Not String.IsNullOrEmpty(RecipientEmails) Then
+                            RecipientEmails = RecipientEmails.Remove(RecipientEmails.Length - 1)
+                        End If
+                        Return RecipientEmails
+                    End If
+                Else
+                    Return "" 
+                End If 
             Catch ex As Exception
                 'ErrorLog.WriteErrorLog(ex)
                 Return ""
@@ -257,7 +276,8 @@ Namespace DataObjects
                 x.SubscriberID = Guid.NewGuid
                 x.Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
                 x.ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
-                x.Recipients = rpt.Recipients
+                x.Recipients = ReportParam.NativeID
+
 
                 If Not Convert.ToString(rpt.ReportType) Is Nothing And Not Convert.ToString(rpt.ReportName) Is Nothing And Not Convert.ToString(ReportParam.StartDate) Is Nothing And Not Convert.ToString(ReportParam.EndDate) Is Nothing Then
                     SingletonAccess.FMSDataContextContignous.ReportSchdeules.InsertOnSubmit(x)
@@ -278,7 +298,7 @@ Namespace DataObjects
                     .ReportType = rpt.ReportType
                     .Schedule = rpt.SerializeCustomValues(rpt, rpt.ReportType, "Schedule")
                     .ReportParams = rpt.SerializeCustomValues(rpt, "", "Parm")
-                    .Recipients = rpt.Recipients
+                    .Recipients = ReportParam.NativeID
                     .Creator = rpt.Creator
                 End With
                 SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -482,5 +502,6 @@ Namespace DataObjects
         Public Shared Vehicle As String
         Public Shared Driver As String
         Public Shared BusinessLocation As String
+        Public Shared NativeID As String
     End Class
 End Namespace
