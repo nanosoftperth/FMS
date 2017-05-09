@@ -55,11 +55,11 @@
         function cboSelectedIndexChanged() {
             var ParmList = "";
             if (comboSelectedReport.GetValue() == "ReportGeoFence_byDriver") {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
             }
             else if (comboSelectedReport.GetValue() == "DriverOperatingHoursReport")
             {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetText() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "',   NativeId:'" + IRecepients.GetValue() + "'}";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "',   NativeId:'" + IRecepients.GetValue() + "'}";
             }
             else {
                 ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
@@ -135,7 +135,7 @@
 
     <script type="text/javascript">
         var textSeparator = ";";
-        function OnListBoxSelectionChanged(listBox, args) {
+        function OnListBoxSelectionChanged(listBox, args) { 
             if (args.index == 0)
                 args.isSelected ? listBox.SelectAll() : listBox.UnselectAll();
             UpdateSelectAllItemState();
@@ -149,23 +149,24 @@
             return checkListBox.GetSelectedItems().length == selectedDataItemCount;
         }
         function UpdateText() {
-            var selectedItems = checkListBox.GetSelectedItems();
+            var selectedItems = checkListBox.GetSelectedItems(); 
             checkComboBox.SetText(GetSelectedItemsText(selectedItems));
-            IRecepients.SetText(GetValuesByTexts(selectedItems));
+            IRecepients.SetText(GetValuesByTexts(selectedItems)); 
         }
-        function SynchronizeListBoxValues(dropDown, args) {
-            checkListBox.UnselectAll();
-            var texts = dropDown.GetText().split(textSeparator);
-            var values = GetValuesByTexts(texts);
-            checkListBox.SelectValues(values);
-            UpdateSelectAllItemState();
-            UpdateText(); // for remove non-existing texts
+        function SynchronizeListBoxValues(dropDown, args) { 
+            //checkListBox.UnselectAll();
+            //var texts = dropDown.GetText().split(textSeparator);
+            //var values = GetValuesByTexts(texts);
+            //checkListBox.SelectValues(values);
+            //UpdateSelectAllItemState();
+            //UpdateText(); // for remove non-existing texts
         }
         function GetSelectedItemsText(items) {
             var texts = [];
             for (var i = 0; i < items.length; i++)
                 if (items[i].index != 0)
                     texts.push(items[i].text);
+            //alert(items);
             return texts.join(textSeparator);
         }
         function GetValuesByTexts(texts) {
@@ -175,7 +176,11 @@
                 //item = checkListBox.FindItemByText(texts[i]);
                 //if (item != null)
                 //    actualValues.push(item.value); 
-                actualValues.push(texts[i].value);
+                if (texts[i].value != "00000000-0000-0000-0000-000000000000")
+                {
+                    actualValues.push(texts[i].value);
+                }
+               
             }
             return actualValues;
         }
@@ -484,7 +489,7 @@
       <script type ="text/javascript">
 
           function BeginCallBackFUn() {
-              alert(comboSelectedReport.GetValue());
+              //alert(comboSelectedReport.GetValue());
           }
           function StartEditRow() {
               var reportName = comboSelectedReport.GetValue();
@@ -514,7 +519,7 @@
             //    param.PBusinessLocation = lEndDateSpecific.GetValue();
             //}
             //else {
-            //    param.PBusinessLocation = "";
+              //    param.PBusinessLocation = "";
             //}
             param.PBusinessLocation = IBusinessLocation.GetValue();
             
@@ -539,20 +544,22 @@
             { $('.' + comboReportType.GetValue()).show('slow'); }
               
             var ReceiptIds = IRecepients.GetValue().split(',');
+            var RecepientsName ='';
             if (ReceiptIds.length > 0) {
-                for (var i = 0; i < ReceiptIds.length; i++)
-                { 
-                    for (var i = 0; i < checkListBox.GetItemCount() ; i++) {
-                        var item = checkListBox.GetItem(i);
-
-                        if (item.value =  ReceiptIds[i]) {
-                            //item.selected = true;
-                            checkListBox.SelectValues(ReceiptIds[i]);
-
-                            checkComboBox.SetText(ReceiptIds[i]);
-                        } 
+                for (var i = 0; i < ReceiptIds.length; i++) {
+                    for (var m = 0; m < checkListBox.GetItemCount() - 1 ; m++) {
+                        var item = checkListBox.GetItem(m);
+                        if (item.value != null) {
+                            if (item.value == ReceiptIds[i]) {
+                                RecepientsName = RecepientsName + (item.text)  
+                            }
+                        }
                     }
+                    //var item = checkListBox.FindItemByValue(ReceiptIds[i]);
+                    //checkListBox.SetSelectedItem(item, true);
                 }
+                checkComboBox.SetText(RecepientsName);
+                SetProductListCheckBox(IRecepients.GetValue());
             }
             else
             {
@@ -565,8 +572,11 @@
                                 //if (comRecipients.GetValue() == "00000000-0000-0000-0000-000000000000") {
                                 //    comRecipients.SetSelectedIndex(0);
                                 //}
-            }
-
+          }
+          function SetProductListCheckBox(Items) {
+              var SelectedIndexVals = Items.split(',');
+              checkListBox.SelectValues(SelectedIndexVals);
+          }
     </script>
 </body>
 </html>
