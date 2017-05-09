@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0,minimum-scale=1.0" />
     <title></title>
     <script>
-        var divider = 0;
+        var divider = 0; 
     </script>
 
     <style type="text/css">
@@ -30,6 +30,7 @@
         .headerMenu {
         }
     </style>
+ 
 </head>
 <body runat="server" id="Body">
     <form id="form1" runat="server">
@@ -242,8 +243,7 @@
                 </dx:PanelContent>
             </PanelCollection>
         </dx:ASPxPanel>
-
-
+         
 
         <%-- DXCOMMENT: Configure a datasource for the header menu --%>
         <asp:XmlDataSource ID="XmlDataSourceHeader" runat="server" DataFile="~/App_Data/TopMenu.xml"

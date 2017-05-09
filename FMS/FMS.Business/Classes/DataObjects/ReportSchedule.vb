@@ -13,7 +13,6 @@ Namespace DataObjects
         Private Const DATETIME_OPTIONS As String = "Now,Beginning of Day,Beginning of Week,Beginning of Year,Specific"
         Private Const ENDDATETIME_OPTIONS As String = "Now,End of Day,End of Week,End of Year,Specific"
 #Region "Misc"
-
         Public Function GetDate(datetime_option As String)
 
             Select Case datetime_option
@@ -303,7 +302,7 @@ Namespace DataObjects
                 End With
                 SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Catch ex As Exception
-                ErrorLog.WriteErrorLog(ex)
+                'ErrorLog.WriteErrorLog(ex)
             End Try
         End Sub
         Public Shared Sub delete(rpt As DataObjects.ReportSchedule)
@@ -484,8 +483,6 @@ Namespace DataObjects
             End Try  
             Return returnAttribute
         End Function
-
-
         Public Shared Function GetData() As List(Of DataObjects.ReportSchedule)
 
             Return (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _

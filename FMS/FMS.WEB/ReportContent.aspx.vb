@@ -8,6 +8,10 @@
         Dim reportname As String = Request.QueryString("Report")
         Me.ASPxDocumentViewer1.Report = GetReportFromName(reportname)
 
+        '((ReportToolbarButton)this.ReportToolbar1.Items[2]).Enabled = false;
+
+
+
         'BY RYAN: change column labels 
         If reportname = "DriverOperatingHoursReport" Then
             With CType(ASPxDocumentViewer1.Report, FMS.ReportLogic.DriverOperatingHoursReport)
