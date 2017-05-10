@@ -236,7 +236,7 @@ Namespace DataObjects
                         If attributeName = "RecipientName" Then
                             RecipientNames = RecipientNames + Convert.ToString(Result.SubcriberType + ":" + Result.Name) + ","
                         Else
-                            RecipientEmails = RecipientNames + Convert.ToString(Result.Email) + ","
+                            RecipientEmails = RecipientEmails + Convert.ToString(Result.Email) + ","
                         End If
                     Next 
                     If attributeName = "RecipientName" Then

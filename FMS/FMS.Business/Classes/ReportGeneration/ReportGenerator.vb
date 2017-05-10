@@ -177,7 +177,6 @@ Namespace ReportGeneration
 
         End Function
 
-
         Public Shared Function GetDriverOperatingHours_ForVehicle(startDate As Date,
                                                                 endDate As Date,
                                                                 vehicleID As Guid?, businessLocation As Guid?) As ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours
