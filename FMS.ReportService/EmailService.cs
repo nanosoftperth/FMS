@@ -66,7 +66,6 @@ namespace FMS.ReportService
             try
             {
                 List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
-
                 
                 objScheduleList = ReportSchedule.GetScheduleForApplication();
                 dynamic GenericObj = null;
@@ -192,8 +191,7 @@ namespace FMS.ReportService
                                 }
                             }
                         }
-                        #endregion
-
+                        #endregion 
 
                         if (IsEmail)
                         {
@@ -208,8 +206,20 @@ namespace FMS.ReportService
                                 GenericObj.Parameters[4].Value = Convert.ToString(Item.BusinessLocation);
                             }
                             GenericObj.ExportToPdf(mem); 
-                             
-                            sendEmail(Convert.ToString(Item.RecipientEmail), Convert.ToString(Item.RecipientName), Convert.ToString(Item.ReportName), mem);
+
+                            //Email to multiple recipients edited on 20170510                             
+                            if (!string.IsNullOrEmpty(Convert.ToString(Item.RecipientEmail)))
+                            {
+                                string[] strIds = Convert.ToString(Item.RecipientEmail).Split(',');
+                                int index = 0;
+                                string[] strReceiverName  = Convert.ToString(Item.RecipientName).Split(',');  
+
+                                foreach (string email in strIds)
+                                {
+                                    sendEmail(email, Convert.ToString(strReceiverName[index]), Convert.ToString(Item.ReportName), mem);
+                                    index++;
+                                }  
+                            } 
                         }
                     }
                 }
@@ -262,6 +272,7 @@ namespace FMS.ReportService
                         ReceiverName = strName[1];
                     }
                 }
+
                 strContentBody.Append("<td>Dear,   " + ReceiverName + "</td><td></td>");
                 strContentBody.Append("</tr>");
                 strContentBody.Append("<tr>");
