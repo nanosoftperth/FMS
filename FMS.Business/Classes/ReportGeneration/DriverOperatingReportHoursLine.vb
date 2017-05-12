@@ -7,6 +7,20 @@ Namespace ReportGeneration
         Public Property DayDate As Date
         Public Property LeftHomeDate As Date
         Public Property HQArrival As Date
+
+        Public ReadOnly Property HQArrival_Fromatted As String
+            Get
+                Return If(HQArrival = Date.MinValue, "N/A", HQArrival.ToString("HH:mm tt"))
+            End Get
+        End Property
+
+        Public ReadOnly Property HQLeave_Formatted As String
+            Get
+                Return If(HQLeave = Date.MinValue, "N/A", HQLeave.ToString("HH:mm tt"))
+            End Get
+        End Property
+
+
         Public Property HQLeave As Date
         Public Property ArriveHome As Date
         Public Property StopTime As TimeSpan
@@ -85,7 +99,7 @@ Namespace ReportGeneration
             '                    DataObjects.ApplicationLocation.GetLocationFromVehicle(startDate, endDate, vehicleID) 
 
             Dim BusinessLocationDetail As DataObjects.ApplicationLocation = _
-                DataObjects.ApplicationLocation.GetFromID(businessLocation)  
+                DataObjects.ApplicationLocation.GetFromID(businessLocation)
 
             Dim businessLocLatLng As New BackgroundCalculations.Loc(BusinessLocationDetail.Lattitude, BusinessLocationDetail.Longitude)
 
