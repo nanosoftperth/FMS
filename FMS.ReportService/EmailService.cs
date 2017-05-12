@@ -123,11 +123,12 @@ namespace FMS.ReportService
                          
                         #region to create the instance of report
                         string ParmType = string.Empty;
-                        string BusinessLocation  = string.Empty;
+                        string BusinessLocation  = string.Empty; 
                         switch (Convert.ToString(Item.ReportName))
                         {
                             case ReportNameList.VehicleReport:
-                                GenericObj = new FMS.ReportLogic.VehicleReportPDF();
+                                 
+                                  GenericObj = new FMS.ReportLogic.VehicleReportPDF();
                                 ParmType = Convert.ToString(Item.Vehicle);
                                 break; 
                             case ReportNameList.DriverOperatingHoursReport:
@@ -213,10 +214,10 @@ namespace FMS.ReportService
                                 string[] strIds = Convert.ToString(Item.RecipientEmail).Split(',');
                                 int index = 0;
                                 string[] strReceiverName  = Convert.ToString(Item.RecipientName).Split(',');  
-
+                                 
                                 foreach (string email in strIds)
-                                {
-                                    sendEmail(email, Convert.ToString(strReceiverName[index]), Convert.ToString(Item.ReportName), mem);
+                                { 
+                                    sendEmail(email, Convert.ToString(strReceiverName[index]), Convert.ToString(Item.ReportName) , mem);
                                     index++;
                                 }  
                             } 
@@ -233,18 +234,21 @@ namespace FMS.ReportService
                 logger.Error("Error with query {0} {1} {2}", "Error in generating report", ex.Message, ex.StackTrace); 
             }
             finally { }
-        }       
+        } 
+     
         public static bool sendEmail(string ReceiverEmail, string ReceiverName, string ReportName, MemoryStream attachment)
         {
             try
             {  
-                string pdfFileName = string.Empty; 
+                string pdfFileName = string.Empty;
 
-                pdfFileName = ReportName + DateTime.Now.ToString("yyyyMMdd");
+                pdfFileName = ReportName + DateTime.Now.ToString("yyyyMMdd") + ".pdf";
                 // Create a new attachment and put the PDF report into it.
                 attachment.Seek(0, System.IO.SeekOrigin.Begin);
-                Attachment att = new Attachment(attachment, pdfFileName, "application/pdf");
-
+ 
+                Attachment att = new Attachment(attachment, pdfFileName);
+                          
+                
                 var _with1 = new SmtpClient();
 
                 _with1.Port = 587;
@@ -261,6 +265,7 @@ namespace FMS.ReportService
                 mm.Subject = "Schedule Report"; //subject.Replace(Constants.vbNewLine, ". ");
                 mm.IsBodyHtml = true;
 
+                  
                 StringBuilder strContentBody = new StringBuilder();
                 strContentBody.Append("<table style ='width:100%; cellspacing=10'>");
                 strContentBody.Append("<tr>");
@@ -289,17 +294,22 @@ namespace FMS.ReportService
                 strContentBody.Append("</tr>");
                 strContentBody.Append("</tr>");
                 strContentBody.Append("</table>");
+                 
                 mm.Body = Convert.ToString(strContentBody);
                 mm.To.Add(new System.Net.Mail.MailAddress(ReceiverEmail));
 
 
-                mm.BodyEncoding = UTF8Encoding.UTF8;
+                //mm.BodyEncoding = UTF8Encoding.UTF8;
                 mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
                 _with1.Send(mm);
                 logger.Info("Email has been send successfully to " + ReceiverEmail + " ");
+
+                attachment.Close();
+                attachment.Flush();
+
             }
             catch (Exception ex) 
-            {
+            { 
                 logger.Error("Error with query {0} {1} {2}", "Error in sending Email Receipient", ex.Message, ex.StackTrace);
                 return false;
             }
@@ -308,8 +318,9 @@ namespace FMS.ReportService
         } 
         public static bool IsOneOffSendEmail(DateTime ScheduleDate)
         {
+
             if (Convert.ToDateTime(ScheduleDate) >= DateTime.Now && Convert.ToDateTime(ScheduleDate) <= DateTime.Now.AddSeconds(Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationInterval"])))
-            {
+            {  
                 return true;
             }
             else { return false; }

@@ -102,7 +102,7 @@
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VehicleReport))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VehicleReportPDF))
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
@@ -271,7 +271,7 @@
         'XrTableCell20
         '
         Me.XrTableCell20.CanGrow = False
-        Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.formatted_DpartureTime")})
+        Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.DepartureTime")})
         Me.XrTableCell20.Name = "XrTableCell20"
         Me.XrTableCell20.StyleName = "DataField"
         Me.XrTableCell20.Weight = 20.963343320357154R
@@ -820,6 +820,7 @@
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
+        Me.DetailReport.DataMember = "LineValies"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
@@ -854,7 +855,7 @@
         Me.parameter4.Description = "appID"
         Me.parameter4.Name = "parameter4"
         '
-        'VehicleReport
+        'VehicleReportPDF
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeaderBand1, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})

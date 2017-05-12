@@ -151,7 +151,8 @@
         function UpdateText() {
             var selectedItems = checkListBox.GetSelectedItems(); 
             checkComboBox.SetText(GetSelectedItemsText(selectedItems));
-            IRecepients.SetText(GetValuesByTexts(selectedItems)); 
+            IRecepients.SetText(GetValuesByTexts(selectedItems));
+             
         }
         function SynchronizeListBoxValues(dropDown, args) { 
             //checkListBox.UnselectAll();
