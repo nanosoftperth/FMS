@@ -114,7 +114,7 @@ Public Class ReportDataHandler
 
         End If
 
-        'rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary 
+        '  rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
         Return rept
     End Function
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
