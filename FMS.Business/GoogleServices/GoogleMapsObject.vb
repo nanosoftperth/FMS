@@ -30,7 +30,7 @@ Public Class GoogleGeoCodeResponse
             '    lng = "115.832794"
             'End If
 
-            Dim url As String = "http://maps.google.com/maps/api/geocode/json?address={0},{1}&sensor=false"
+            Dim url As String = "https://maps.google.com/maps/api/geocode/json?address={0},{1}&sensor=false&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
             url = String.Format(url, lat, lng)
 
             Dim webRequest As Net.HttpWebRequest = Net.WebRequest.Create(url)
