@@ -78,7 +78,6 @@
     Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents Parameter4 As DevExpress.XtraReports.Parameters.Parameter
 
     'Required by the Designer
     Private components As System.ComponentModel.IContainer
@@ -93,11 +92,10 @@
         Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary4 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportGeoFence_byDriverPDF))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportGeoFence_byDriver))
+        Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter5 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter6 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
-        Dim Parameter7 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
-        Dim Parameter8 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
@@ -159,7 +157,6 @@
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Parameter3 = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.Parameter4 = New DevExpress.XtraReports.Parameters.Parameter()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -717,22 +714,19 @@
         '
         'ObjectDataSource1
         '
-        Me.ObjectDataSource1.DataMember = "GetGeoCacheReportByDriverforEmail"
+        Me.ObjectDataSource1.DataMember = "GetGeoCacheReportByDriver"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
-        Parameter5.Name = "startDate"
+        Parameter4.Name = "startDate"
+        Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter1]", GetType(Date))
+        Parameter5.Name = "endDate"
         Parameter5.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter1]", GetType(Date))
-        Parameter6.Name = "endDate"
+        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter2]", GetType(Date))
+        Parameter6.Name = "driverID"
         Parameter6.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.parameter2]", GetType(Date))
-        Parameter7.Name = "driverID"
-        Parameter7.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter7.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter3]", GetType(String))
-        Parameter8.Name = "appID"
-        Parameter8.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter4]", GetType(String))
-        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter5, Parameter6, Parameter7, Parameter8})
+        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter3]", GetType(String))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter4, Parameter5, Parameter6})
         '
         'Parameter3
         '
@@ -745,18 +739,13 @@
         Me.Parameter3.LookUpSettings = DynamicListLookUpSettings1
         Me.Parameter3.Name = "Parameter3"
         '
-        'Parameter4
-        '
-        Me.Parameter4.Description = "appID"
-        Me.Parameter4.Name = "Parameter4"
-        '
         'ReportGeoFence_byDriver
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeaderBand1, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource2, Me.ObjectDataSource1})
         Me.DataSource = Me.ObjectDataSource1
         Me.Margins = New System.Drawing.Printing.Margins(43, 36, 65, 100)
-        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.parameter1, Me.parameter2, Me.Parameter3, Me.Parameter4})
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.parameter1, Me.parameter2, Me.Parameter3})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"

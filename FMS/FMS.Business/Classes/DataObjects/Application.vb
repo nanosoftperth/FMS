@@ -15,7 +15,6 @@ Namespace DataObjects
                 Return Setting.GetSettingsForApplication(Me.ApplicationName.ToLower)
             End Get
         End Property
-       
         Public ReadOnly Property GetLogoBinary() As Byte()
             Get
 
@@ -25,7 +24,18 @@ Namespace DataObjects
 
             End Get
         End Property
+        Public Shared Function GetCompanyLogo(appID As Guid) As Byte()
 
+            Dim ObjSetting As New List(Of FMS.Business.DataObjects.Setting)
+
+            Dim appDetails = SingletonAccess.FMSDataContextContignous.aspnet_Applications.Where(Function(x) x.ApplicationId = appID).SingleOrDefault()
+
+            ObjSetting = Setting.GetSettingsForApplication(appDetails.ApplicationName)
+
+            Dim stng As Setting = (From x In ObjSetting Where x.Name = "Logo").Single
+
+            Return stng.ValueObj
+        End Function
         Public Function GetAllDevicesNames() As List(Of String)
 
             Return SingletonAccess.FMSDataContextNew.Devices.Where(Function(x) x.ApplicationID = Me.ApplicationID) _

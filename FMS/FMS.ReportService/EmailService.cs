@@ -304,8 +304,8 @@ namespace FMS.ReportService
                 _with1.Send(mm);
                 logger.Info("Email has been send successfully to " + ReceiverEmail + " ");
 
-                attachment.Close();
-                attachment.Flush();
+                //attachment.Close();
+                //attachment.Flush();
 
             }
             catch (Exception ex) 

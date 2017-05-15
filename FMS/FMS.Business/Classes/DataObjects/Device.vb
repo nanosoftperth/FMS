@@ -158,6 +158,8 @@
 
             Dim dvce As FMS.Business.Device = SingletonAccess.FMSDataContextContignous.Devices.Where(Function(x) x.DeviceID = deviceid).Single()
 
+
+
             SingletonAccess.FMSDataContextContignous.Devices.DeleteOnSubmit(dvce)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub

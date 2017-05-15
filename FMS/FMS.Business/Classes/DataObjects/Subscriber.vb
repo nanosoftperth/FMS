@@ -153,12 +153,16 @@
 
                 Dim foundSubscriber As DataObjects.Subscriber
 
-                foundSubscriber = allSubscribers.Where(Function(x) x.NativeID = m.NativeID).Single
+                foundSubscriber = allSubscribers.Where(Function(x) x.NativeID = m.NativeID).FirstOrDefault
 
-                foundSubscriber.SendEmail = m.SendEmail
-                foundSubscriber.SendText = m.SendText
+                If Not foundSubscriber Is Nothing Then
 
-                retlst.Add(foundSubscriber)
+                    foundSubscriber.SendEmail = m.SendEmail
+                    foundSubscriber.SendText = m.SendText
+
+                    retlst.Add(foundSubscriber)
+                End If 
+
 
             Next
 
