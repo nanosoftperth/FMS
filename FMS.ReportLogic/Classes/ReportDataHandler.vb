@@ -63,6 +63,8 @@ Public Class ReportDataHandler
 
             End If
 
+
+
             rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
 
         Catch ex As Exception
@@ -112,9 +114,10 @@ Public Class ReportDataHandler
             rept.CalculateSummaries()
             'ThisSession.CachedVehicleReports.Add(rept)
 
-        End If
+        End If 
 
-        '  rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+        rept.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(New Guid(appID))
+
         Return rept
     End Function
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
@@ -212,6 +215,10 @@ Public Class ReportDataHandler
         retobj.CalculateSummaryValues(startDate, endDate, driverID)
 
         'retobj.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+ 
+
+        retobj.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(appID)
+
 
         'TimeZoneHelper.AltertoHQTimeZone(retobj) 'should no longer be required
 
@@ -293,6 +300,11 @@ Public Class ReportDataHandler
             retobj.CalculateSummaryValues(startDate, endDate, driveID)
 
             'retobj.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+
+            Dim objApplication As New FMS.Business.DataObjects.Application
+
+            retobj.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(New Guid(appID))
+
 
             'TimeZoneHelper.AltertoHQTimeZone(retobj) 'should no longer be required
         End If
