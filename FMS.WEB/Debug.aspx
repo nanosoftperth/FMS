@@ -1,15 +1,12 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="Debug.aspx.vb" Inherits="FMS.WEB.Debug" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-    
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">  
     <style type="text/css">
         .debugtabletd {
             padding-left: 5px;
             padding-bottom: 20px;
         }
-    </style>
-
+    </style> 
 
     <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0">
         <TabPages>
@@ -18,12 +15,10 @@
                     <dx:ContentControl runat="server">
                         <table class="debugtable">
                             <tr>
-
                                 <td class="debugtabletd">StartDate</td>
                                 <td class="debugtabletd">
                                     <dx:ASPxDateEdit ID="dateStart" runat="server" EditFormat="DateTime" Theme="SoftOrange"></dx:ASPxDateEdit>
                                 </td>
-
                                 <td class="debugtabletd">EndDate</td>
                                 <td class="debugtabletd">
                                     <dx:ASPxDateEdit ID="dateEnd" runat="server" EditFormat="DateTime" Theme="SoftOrange"></dx:ASPxDateEdit>
@@ -32,13 +27,12 @@
                                     <%--<div style="position: absolute; top: 45px; right: 75px;">--%>
                                     <div>
                                         <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Query Logs" Theme="SoftOrange"></dx:ASPxButton>
-                                    </div>
+                                    </div> 
                                 </td>
                             </tr>
-                        </table>
-
-
-                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="odsAuditObjs">
+                        </table> 
+                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="odsAuditObjs" 
+                             OnCustomUnboundColumnData="ASPxGridView1_CustomUnboundColumnData1"   OnCustomSummaryCalculate ="ASPxGridView1_CustomSummaryCalculate">
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
                             <SettingsPager PageSize="1000"></SettingsPager>
@@ -65,6 +59,13 @@
                                     </PropertiesDateEdit>
                                 </dx:GridViewDataDateColumn>
                             </Columns>
+                            <Settings ShowFooter="True" />
+                            <TotalSummary>
+                               <dx:ASPxSummaryItem FieldName="DeviceID" SummaryType="Count"/>             
+                            </TotalSummary>
+<%--                            <TotalSummary>
+                               <dx:ASPxSummaryItem FieldName="DeviceID" SummaryType="Count" /> 
+                          </TotalSummary>--%>
                         </dx:ASPxGridView>
 
 

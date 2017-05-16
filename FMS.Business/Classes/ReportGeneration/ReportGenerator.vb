@@ -209,9 +209,12 @@ Namespace ReportGeneration
                 l.StartTime = l.StartTime.timezoneToClient
 
                 If l.DepartureTime.HasValue AndAlso l.ArrivalTime.HasValue Then _
-                                l.StopDuration = l.DepartureTime.Value - l.ArrivalTime.Value
-
+                                l.StopDuration = l.DepartureTime.Value - l.ArrivalTime.Value 
             Next
+
+            ' Edited by Aman on 20170516 to validate minimum stop duration (5 Min)             
+            lst.RemoveAll(Function(x) x.StopDuration < TimeSpan.FromMinutes(5))
+         
 
             'start time (earliest irst)
             Return lst.OrderBy(Function(u) u.StartTime).ToList
