@@ -188,7 +188,9 @@ Namespace ReportGeneration
                     loopVARL.DepartureTime = s_next.StartTime
 
                     'Add the object, then set the current object to NEW (as in to start again)
+
                     retobjs.Add(loopVARL)
+
                     loopVARL = New VehicleActivityReportLine
 
                 Else
@@ -210,7 +212,9 @@ Namespace ReportGeneration
 
                             loopVARL.StopDuration = loopVARL.DepartureTime - loopVARL.ArrivalTime
 
+
                             retobjs.Add(loopVARL)
+
 
                         End If
 

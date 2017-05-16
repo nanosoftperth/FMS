@@ -24,6 +24,32 @@
     Protected Sub ASPxButton1_Click(sender As Object, e As EventArgs) Handles ASPxButton1.Click
         'logic in the page load method
     End Sub
+    'Private Sub ASPxGridView1_OnCustomUnboundColumnData(sender As Object, e As DevExpress.Web.ASPxGridViewColumnDataEventArgs) Handles ASPxGridView1.CustomUnboundColumnData
 
-   
+
+    '    If e.Column.FieldName = "DeviceID" Then
+
+    '        e.Value = 10
+    '    End If
+
+
+    '    '  if(e.Column.FieldName == "Total") {
+    '    '    decimal price = (decimal)e.GetListSourceFieldValue("UnitPrice");
+    '    '    int quantity = Convert.ToInt32(e.GetListSourceFieldValue("Quantity"));
+    '    '    e.Value = price * quantity;
+    '    '}
+
+
+    'End Sub
+     
+    Protected Sub ASPxGridView1_CustomUnboundColumnData1(sender As Object, e As DevExpress.Web.ASPxGridViewColumnDataEventArgs)
+        If e.Column.FieldName = "DeviceID" Then 
+            e.Value = 10
+        End If
+    End Sub
+
+
+    Protected Sub ASPxGridView1_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs)
+
+    End Sub
 End Class

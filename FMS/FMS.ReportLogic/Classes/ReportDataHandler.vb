@@ -29,43 +29,42 @@ Public Class ReportDataHandler
             startdate = startdate
             endDate = endDate.AddDays(1)
 
-
-            'get the vehicleid (guid)
-            Dim vehicleID As Guid = _
-                FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
-                        .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
-
-
-            'Find out if the report is already in the cache
-            rept = (From x In ThisSession.CachedVehicleReports _
-                                           Where x.EndDate = endDate _
-                                            AndAlso x.StartDate = startdate _
-                                           AndAlso x.VehicleID = vehicleID).SingleOrDefault
+ 
+            If Not ThisSession.ApplicationID = Guid.Empty Then
+                'get the vehicleid (guid)
+                Dim vehicleID As Guid = _
+                    FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
+                            .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
 
-            Dim GET_CAHCHED_REPORT As Boolean = True
+                'Find out if the report is already in the cache
+                rept = (From x In ThisSession.CachedVehicleReports _
+                                               Where x.EndDate = endDate _
+                                                AndAlso x.StartDate = startdate _
+                                               AndAlso x.VehicleID = vehicleID).SingleOrDefault 
+                Dim GET_CAHCHED_REPORT As Boolean = True
 
-            'MAKE the report and add it to the cache if it doesnt exist
-            If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
+                'MAKE the report and add it to the cache if it doesnt exist
+                If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-                Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
-                        FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
+                    Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
+                            FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
 
-                rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
-                                                        , .StartDate = startdate _
-                                                        , .EndDate = endDate _
-                                                        , .LineValies = vehicleReportLines})
+                    rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
+                                                            , .StartDate = startdate _
+                                                            , .EndDate = endDate _
+                                                            , .LineValies = vehicleReportLines})
 
-                rept.CalculateSummaries()
+                    rept.CalculateSummaries()
 
-                ThisSession.CachedVehicleReports.Add(rept)
-
-
-            End If
+                    ThisSession.CachedVehicleReports.Add(rept)
 
 
+                End If 
 
-            rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+                rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+
+            End If 
 
         Catch ex As Exception
             Throw
