@@ -614,7 +614,7 @@
                                         EnableTheming="True"
                                         Theme="SoftOrange"
                                         DataSourceID="odsBooking"
-                                        KeyFieldName="ApplicationBookingId" Settings-HorizontalScrollBarMode="Auto" Width="900px">
+                                        KeyFieldName="ApplicationBookingId" Settings-HorizontalScrollBarMode="Auto" Width="900px" OnRowValidating ="dgvDetailBookings_RowValidating">
                                         <Settings HorizontalScrollBarMode="Auto"></Settings>
                                         <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
                                         <SettingsPopup>
@@ -639,7 +639,7 @@
                                             <Items>
                                                 <dx:GridViewColumnLayoutItem ColumnName="ApplicationDriverID">
                                                 </dx:GridViewColumnLayoutItem>
-                                                <dx:GridViewColumnLayoutItem ColumnName="ContactID">
+                                                <dx:GridViewColumnLayoutItem ColumnName="ContactID"> 
                                                 </dx:GridViewColumnLayoutItem>
                                                 <dx:GridViewColumnLayoutItem ColumnName="ArrivalTime">
                                                 </dx:GridViewColumnLayoutItem>
