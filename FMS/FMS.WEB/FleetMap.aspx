@@ -5,8 +5,7 @@
 
 
 <asp:Content ID="ContentLeft" ContentPlaceHolderID="ContentLeft" runat="server">
-
-
+    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
 
 
@@ -29,7 +28,7 @@
                     CssClass="leftPane" 
                     Collapsible="True">
 
-        <SettingsAdaptivity CollapseAtWindowInnerWidth="1023" />
+     <SettingsAdaptivity CollapseAtWindowInnerWidth="1023" />
         <Styles>
             <Panel CssClass="panel"></Panel>
         </Styles>

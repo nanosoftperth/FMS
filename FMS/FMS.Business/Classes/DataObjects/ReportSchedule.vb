@@ -10,8 +10,8 @@ Namespace DataObjects
 
         Private Const REPORT_TYPES As String = "OneOff,Daily,Weekly,Monthly"
         Private Const DAYS_OF_WEEK As String = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
-        Private Const DATETIME_OPTIONS As String = "Now,Beginning of Day,Beginning of Week,Beginning of Year,Specific"
-        Private Const ENDDATETIME_OPTIONS As String = "Now,End of Day,End of Week,End of Year,Specific"
+        Private Const DATETIME_OPTIONS As String = "Specific,Beginning of Day,Beginning of Week,Beginning of Year"
+        Private Const ENDDATETIME_OPTIONS As String = "Specific,End of Day,End of Week,End of Year"
 #Region "Misc"
         Public Function GetDate(datetime_option As String)
 

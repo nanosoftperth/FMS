@@ -45,13 +45,18 @@ Namespace ReportGeneration
 
         Private Function timespanFormatCust(t As TimeSpan) As String
 
-            Dim hours As Integer = t.TotalHours
-            Dim minutes As Integer = t.Minutes
-            Dim seconds As Integer = t.Seconds
+            ' '' Edit by Aman  On 20170517
+            ''Dim hours As Integer = t.TotalHours
+            'Dim ddays As Integer = t.Days
+            'Dim hours As Integer = t.Hours
+            'Dim minutes As Integer = t.Minutes
+            'Dim seconds As Integer = t.Seconds
 
-            Dim formatStr As String = "{0:00}:{1:00}:{2:00}"
+            'Dim formatStr As String = "{0:00}:{1:00}:{2:00}"
 
-            Return String.Format(formatStr, hours, minutes, seconds)
+            'Return String.Format(formatStr, hours, minutes, seconds)
+
+            Return t.ToString("dd\.hh\:mm\:ss")
 
         End Function
 

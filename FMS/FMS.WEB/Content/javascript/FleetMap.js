@@ -30,8 +30,7 @@ function showInfoWindow(event) {
         google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
         infoWindowVehicle.close();
         infoWindowVehicle = null;
-    }
-
+    } 
 
 
     var content = '<div id="iw-container">' +
@@ -614,7 +613,6 @@ function cbAutoIncrement_CheckedChanged(s, e) {
     //viewMachineAtTime();
 }
 
-
 function cbHeatmapAutoUpdate_CheckChanged(s, e) {
 
     if (cbHeatmapAutoUpdate.GetChecked() == true) {
@@ -636,9 +634,8 @@ function cbExcludeCars_CheckChanged(s, e) {
         upsertMapTrucks(globaltrucks);
 }
 
-
 function btnHeatMapSearch_Click(s, e) {
-    //
+  
     selectedTrucks = checkListBox.GetSelectedItems();
     //alert(selectedTrucks[0].value);
     autoUpdate.SetChecked(false);
@@ -681,8 +678,6 @@ function logthis(latlng) {
 
 }
 
-
-
 function successCallBack(result) {
     //alert(JSON.stringify(result));
     upsertMapTrucks(result);
@@ -721,11 +716,9 @@ function getLabelInvisibleMarker(location, text) {
 
     return marker;//
 }
-
-
 // Adds a marker to the map and push to the array.
 function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {
-    //alert(vehicleName);
+   //alert(vehicleName);
     var marker = new MarkerWithLabel({
         position: location,
         icon: icon_truck + '&Id=' + applicationImageID,
@@ -746,8 +739,6 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
 
     marker.setMap(map);
 }
-
-
 var alreadyRan = false;
 
 function upsertMapTrucks(result) {
@@ -816,9 +807,6 @@ function upsertMapTrucks(result) {
         $('.labels:not(.labels-hidden)').show();
     }
 }
-
-
-
 var numDeltas = 3000 / 100;
 var delay = 100;
 
@@ -970,7 +958,6 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
 
 
 
-
     function getInfo() {
 
         //alert($('#contentdiv').text());
@@ -1064,7 +1051,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
                 }
             });
             map.fitBounds(bounds);
-            map.setZoom(15);
+            map.setZoom(11);// Aman
         });
 
         var pac_input = document.getElementById('pac-input');
@@ -1200,7 +1187,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
     var HeatMapTrucksReturnedFromServer = {};
 
     function heatMap_successCallBack(result) {
-
+         
         //alert('Success!: \n' + JSON.stringify(result));
 
         if (result.d._WasError == true) {
@@ -1237,7 +1224,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
 
         thisHeatmap = new google.maps.visualization.HeatmapLayer({
             data: googlelatlngs,
-            map: map
+            map: map           
         });
 
         applyActionViewerOptions();

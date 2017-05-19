@@ -1,6 +1,8 @@
 ﻿Imports DevExpress.Web
 Imports FMS.Business.DataObjects.FeatureListConstants
 
+
+
 Public Class ResourceMgmnt
     Inherits System.Web.UI.Page
 
@@ -209,7 +211,6 @@ Public Class ResourceMgmnt
 
         If e.ErrorText = "Nullable object must have a value." Then e.ErrorText = "You cannot have a passenger without a driver."
     End Sub
-
     Protected Sub odsBooking_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
 
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.ApplicationBooking)
@@ -219,19 +220,18 @@ Public Class ResourceMgmnt
         Dim gdes = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(FMS.Business.ThisSession.ApplicationID, ab.GeofenceDestination)
         Dim gleave = FMS.Business.DataObjects.ApplicationGeoFence.FindApplicationGeoFence(FMS.Business.ThisSession.ApplicationID, ab.GeofenceLeave)
 
-        ab.GeofenceDestinationId = If(gdes Is Nothing, gdes.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceDestination))
-        ab.GeofenceLeaveId = If(gleave Is Nothing, gleave.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceLeave))
+        'ab.GeofenceDestinationId = If(gdes Is Nothing, gdes.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceDestination))
+        'ab.GeofenceLeaveId = If(gleave Is Nothing, gleave.ApplicationGeoFenceID, CreateBookingGeofence(ab.GeofenceLeave))
+
+        ' Edit by Aman on 20170519
+        ab.GeofenceDestinationId = If(gdes Is Nothing, CreateBookingGeofence(ab.GeofenceDestination), gdes.ApplicationGeoFenceID)
+        ab.GeofenceLeaveId = If(gleave Is Nothing, CreateBookingGeofence(ab.GeofenceLeave), gleave.ApplicationGeoFenceID)
 
     End Sub
-
     Protected Sub odsBookingContact_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
         Dim ab = CType(e.InputParameters(0), FMS.Business.DataObjects.Contact)
         ab.ApplicationID = FMS.Business.ThisSession.ApplicationID
     End Sub
-
-
-
-
     'THIS IS FOR UPDATING DATA BEFORE INSERT
     Private Function CreateBookingGeofence(location As String) As Guid
         Dim ab = New FMS.Business.DataObjects.ApplicationGeoFence
@@ -277,7 +277,24 @@ Public Class ResourceMgmnt
     Protected Sub pageControlMain_ActiveTabChanged(source As Object, e As TabControlEventArgs) Handles pageControlMain.ActiveTabChanged
 
     End Sub
-
-   
-
+    Protected Sub dgvDetailBookings_RowValidating(sender As Object, e As Data.ASPxDataValidationEventArgs)
+        For Each column As GridViewColumn In dgvDetailBookings.Columns 
+            Dim dataColumn As GridViewDataColumn = TryCast(column, GridViewDataColumn)
+            If dataColumn Is Nothing Then
+                Continue For
+            Else
+                If dataColumn.FieldName = "ContactID" Or dataColumn.FieldName = "ArrivalTime" Or dataColumn.FieldName = "GeofenceLeave" Or dataColumn.FieldName = "GeofenceDestination" Or dataColumn.FieldName = "ApplicationDriverID" Then
+                    If String.IsNullOrEmpty(Convert.ToString(e.NewValues(dataColumn.FieldName))) Then
+                        e.Errors(dataColumn) = "Value can't be null."
+                    End If
+                End If
+            End If  
+        Next column 
+    End Sub
+    Private Sub AddError(ByVal errors As Dictionary(Of GridViewColumn, String), ByVal column As GridViewColumn, ByVal errorText As String)
+        If errors.ContainsKey(column) Then
+            Return
+        End If
+        errors(column) = errorText
+    End Sub 
 End Class
