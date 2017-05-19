@@ -55,7 +55,7 @@
 
 
                         <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="odsAuditObjs">
-                            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowGroupFooter="VisibleAlways"></Settings>
                             <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
                             <SettingsPager PageSize="1000"></SettingsPager>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -82,8 +82,12 @@
                                 </dx:GridViewDataDateColumn>
                             </Columns>
                             <GroupSummary>
-                                <dx:ASPxSummaryItem FieldName="DeviceID" ShowInColumn="Device ID" SummaryType="Count" />
+                                <dx:ASPxSummaryItem FieldName="DeviceID" ShowInColumn="Device ID" SummaryType="Count" ShowInGroupFooterColumn="Device ID" />
                             </GroupSummary>
+                            <Styles>
+                                <GroupFooter HorizontalAlign="Right">
+                                </GroupFooter>
+                            </Styles>
                         </dx:ASPxGridView>
 
 

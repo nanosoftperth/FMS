@@ -12,39 +12,12 @@ namespace FMS.TestConsole
         static void Main(string[] args)
         {
 
-            //BD720245-2F9F-4C2E-B3FB-6543C30070F0	1ESH-437
-
-            Guid vehicleGUID = Guid.Parse("BD720245-2F9F-4C2E-B3FB-6543C30070F0");
-            DateTime startDate = DateTime.Parse( "3 jan 2017");
-            DateTime endDate = DateTime.Parse( "4 jan 2017");
-
-
-
-            object retobbj = Business.ReportGeneration.DriverOperatingReportHoursLine.GetForVehicle(vehicleGUID, startDate, endDate, new Guid(""));
-
-            string x = ";";
-
-            //var x = FMS.Business.GoogleGeoCodeResponse.GetLatLongFromAddress("28 maidstone way, morley, 6062, australia");
-
-            //var y = new Business.DataObjects.ApplicationGeoFence();
-
-            //y.ApplicationGeoFenceSides = x.ApplicationGeoFenceSides;
-
-            //y.CircleCentreLat = (decimal)x.lat;
-            //y.CircleCentreLong = x.lng;
-
-            
-
-           // Guid newID = FMS.Business.DataObjects.ApplicationGeoFence.Create(y);
-
-
-
-
-            return;
-            
+                     
 
             sr1.Uniqco_IntegratorClient svr1 = new sr1.Uniqco_IntegratorClient();
+            
 
+ 
 
             ServiceAccess.WebServices.VINNumberRequest vnr = new ServiceAccess.WebServices.VINNumberRequest();
 
@@ -52,13 +25,13 @@ namespace FMS.TestConsole
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
 
-            DateTime startdate = DateTime.Parse("01 aug 2015");
+            DateTime startdate = DateTime.Parse("7 May 2017");
 
             vnr.StartDate = startdate;
             vnr.EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
 
-            vnr.VINNumber = "WVWZZZ6RZGU025834";
+            vnr.VINNumber = @"WDD2452072J277009";
 
            // int i = 0;
 
@@ -75,10 +48,12 @@ namespace FMS.TestConsole
 
 
             ServiceAccess.WebServices.VINNumberRequest[] vnrs = lst.ToArray();
-
+            svr1.Endpoint.Binding.SendTimeout = new TimeSpan(0, 30, 0);
             object o = svr1.GetVehicleData(vnrs, username, pwd);
 
 
+
+            string x = "asd";
 
             //while (true)
             //{
