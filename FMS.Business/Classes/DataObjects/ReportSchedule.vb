@@ -181,7 +181,7 @@ Namespace DataObjects
 
                 Dim objResult = (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _
                             Order By x.DateCreated
-                            Select New DataObjects.ReportSchedule(x)).ToList 
+                            Select New DataObjects.ReportSchedule(x)).ToList
 
 
                 If Not objList Is Nothing Then
