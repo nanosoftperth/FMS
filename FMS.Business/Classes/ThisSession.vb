@@ -267,6 +267,7 @@ Public Class CachedVehicleReport
             Dim thisLineValue As FMS.Business.ReportGeneration.VehicleActivityReportLine = LineValies(i)
 
             TotalStopDuration += thisLineValue.StopDuration
+
             TotalIdleTime += thisLineValue.IdleDuration
             NumberOfStops += 1
 
@@ -296,13 +297,15 @@ Public Class CachedVehicleReport
 
     Private Function timespanFormatCust(t As TimeSpan) As String
 
-        Dim hours As Integer = Math.Floor(t.TotalHours)
-        Dim minutes As Integer = Math.Floor(t.Minutes)
-        Dim seconds As Integer = Math.Floor(t.Seconds)
+        'Dim hours As Integer = Math.Floor(t.TotalHours)
+        'Dim minutes As Integer = Math.Floor(t.Minutes)
+        'Dim seconds As Integer = Math.Floor(t.Seconds)
 
-        Dim formatStr As String = "{0:00}:{1:00}:{2:00}"
+        'Dim formatStr As String = "{0:00}:{1:00}:{2:00}"
 
-        Return String.Format(formatStr, hours, minutes, seconds)
+        'Return String.Format(formatStr, hours, minutes, seconds)
+
+        Return t.ToString("dd\.hh\:mm\:ss")
 
     End Function
 
