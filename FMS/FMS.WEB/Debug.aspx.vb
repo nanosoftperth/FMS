@@ -24,32 +24,17 @@
     Protected Sub ASPxButton1_Click(sender As Object, e As EventArgs) Handles ASPxButton1.Click
         'logic in the page load method
     End Sub
-    'Private Sub ASPxGridView1_OnCustomUnboundColumnData(sender As Object, e As DevExpress.Web.ASPxGridViewColumnDataEventArgs) Handles ASPxGridView1.CustomUnboundColumnData
 
 
-    '    If e.Column.FieldName = "DeviceID" Then
-
-    '        e.Value = 10
-    '    End If
+    Private Sub ASPxGridView1_CustomSummaryCalculate1(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles ASPxGridView1.CustomSummaryCalculate
 
 
-    '    '  if(e.Column.FieldName == "Total") {
-    '    '    decimal price = (decimal)e.GetListSourceFieldValue("UnitPrice");
-    '    '    int quantity = Convert.ToInt32(e.GetListSourceFieldValue("Quantity"));
-    '    '    e.Value = price * quantity;
-    '    '}
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
 
+            Dim list As List(Of Business.DataObjects.LogEntry) = ASPxGridView1.DataSource
+            e.TotalValue = String.Format("device count: {0}", (From y In list Select y.DeviceID).Distinct.Count)
 
-    'End Sub
-     
-    Protected Sub ASPxGridView1_CustomUnboundColumnData1(sender As Object, e As DevExpress.Web.ASPxGridViewColumnDataEventArgs)
-        If e.Column.FieldName = "DeviceID" Then 
-            e.Value = 10
         End If
-    End Sub
-
-
-    Protected Sub ASPxGridView1_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs)
 
     End Sub
 End Class

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    
+
     <style type="text/css">
         .debugtabletd {
             padding-left: 5px;
@@ -22,26 +22,26 @@
                                 <td class="debugtabletd">StartDate</td>
                                 <td class="debugtabletd">
                                     <dx:ASPxDateEdit ID="dateStart" runat="server" EditFormat="DateTime" Theme="SoftOrange">
-<TimeSectionProperties>
-<TimeEditProperties>
-<ClearButton Visibility="Auto"></ClearButton>
-</TimeEditProperties>
-</TimeSectionProperties>
+                                        <TimeSectionProperties>
+                                            <TimeEditProperties>
+                                                <ClearButton Visibility="Auto"></ClearButton>
+                                            </TimeEditProperties>
+                                        </TimeSectionProperties>
 
-<ClearButton Visibility="Auto"></ClearButton>
+                                        <ClearButton Visibility="Auto"></ClearButton>
                                     </dx:ASPxDateEdit>
                                 </td>
 
                                 <td class="debugtabletd">EndDate</td>
                                 <td class="debugtabletd">
                                     <dx:ASPxDateEdit ID="dateEnd" runat="server" EditFormat="DateTime" Theme="SoftOrange">
-<TimeSectionProperties>
-<TimeEditProperties>
-<ClearButton Visibility="Auto"></ClearButton>
-</TimeEditProperties>
-</TimeSectionProperties>
+                                        <TimeSectionProperties>
+                                            <TimeEditProperties>
+                                                <ClearButton Visibility="Auto"></ClearButton>
+                                            </TimeEditProperties>
+                                        </TimeSectionProperties>
 
-<ClearButton Visibility="Auto"></ClearButton>
+                                        <ClearButton Visibility="Auto"></ClearButton>
                                     </dx:ASPxDateEdit>
                                 </td>
                                 <td>
@@ -82,7 +82,7 @@
                                 </dx:GridViewDataDateColumn>
                             </Columns>
                             <GroupSummary>
-                                <dx:ASPxSummaryItem FieldName="DeviceID" ShowInColumn="Device ID" SummaryType="Count" ShowInGroupFooterColumn="Device ID" />
+                                <dx:ASPxSummaryItem FieldName="DeviceID" SummaryType="Custom" />
                             </GroupSummary>
                             <Styles>
                                 <GroupFooter HorizontalAlign="Right">
@@ -106,12 +106,12 @@
                     <dx:ContentControl Width="100%" Height="100%" runat="server">
 
                         <iframe marginwidth="0" marginheight="0" frameborder="0" overflow-y="scroll" overflow-x="hidden" id="bugtrackerIframe"
-                             width="50px" height="50px" >please wait...</iframe>
+                            width="50px" height="50px">please wait...</iframe>
 
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
         </TabPages>
     </dx:ASPxPageControl>
-    
+
 </asp:Content>
