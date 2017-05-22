@@ -248,7 +248,7 @@
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
-            <dx:TabPage Text="report scheduler">
+            <dx:TabPage Text="Report Scheduler">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
                         <iframe id="frmContent" src="Reports/ReportScheduler.aspx" style="width: 100%; height:100%; bottom: 10px; border: none; overflow-y: visible; margin-left:0px;" class="row"></iframe>
