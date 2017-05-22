@@ -38,7 +38,7 @@ var createArrow  = {
         //add 20 the Arrow heads on the line
         //position each heads with 1% offset in the lineSymbol
         for (var i = 1; i <= 100; i ++) {// 1% also looks good
-            debugger;
+            ////debugger;
             iconsArrow.push({
                 icon: ArrowHeadSymbol,
                 offset: i + '%', // i(1) %
@@ -63,17 +63,14 @@ var flightPath;
 //cbOpiacyToggle
 //cbGradientToggle.valueChecked
 
-
 var infoWindow = new google.maps.InfoWindow();
 var apiKey = 'AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g';
-
 
 var flightPaths = [];
 var PolyLines = [];
 
 //red>black>blue>unknown
-var Colors = ["#FF0000",,"#FFFFFF","#FFFF00","#000000","#0000FF","#00FF00","#0000FF","#000000","#FFFF00","#00FFFF","#FF00FF"];
-
+var Colors = ["#FF0000","#FFFF00", "#000000", "#0000FF", "#00FF00", "#0000FF", "#000000", "#FFFF00", "#00FFFF", "#FF00FF"];
 
 
 function showJourneyTogle() {
