@@ -54,12 +54,12 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("uniqco,mainroads,partners")> _
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("uniqco,mainroads,partners,demo")>  _
         Public ReadOnly Property ApprovedCalcList() As String
             Get
-                Return CType(Me("ApprovedCalcList"), String)
+                Return CType(Me("ApprovedCalcList"),String)
             End Get
         End Property
     End Class
