@@ -111,6 +111,8 @@
                 Return New FMS.ReportLogic.BusinessLocationListReport
             Case "VehicletoDriversListReport"
                 Return New FMS.ReportLogic.ApplicationVehicleDriver
+            Case "VehicleDumpReport"
+                Return New FMS.ReportLogic.VehicleDumpReport
             Case Else
                 Return Nothing
         End Select  

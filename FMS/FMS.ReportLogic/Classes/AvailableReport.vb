@@ -13,10 +13,7 @@
     Public Sub New()
 
     End Sub
-
     Public Shared Function GetAllReports() As List(Of AvailableReport)
-
-
         Dim repts As New List(Of AvailableReport)
 
 
@@ -41,7 +38,7 @@
         repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "DriversListReport" _
                                            , .ReportDescription = "list of all drivers" _
                                            , .VisibleReportName = "Driver List Report"})
-         
+
         repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "UsersListReport" _
                                          , .ReportDescription = "list of all Users" _
                                          , .VisibleReportName = "Users List Report"})
@@ -61,11 +58,15 @@
         repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "BusinessLocationListReport" _
                           , .ReportDescription = " Business location list" _
                           , .VisibleReportName = "Business location List Report"})
-
-
+         
         repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "VehicletoDriversListReport" _
                       , .ReportDescription = "Assign Vehicles to drivers list" _
                       , .VisibleReportName = "Assign Vehicles to drivers Report"})
+
+        repts.Add(New AvailableReport With {.ActualReportNameToDisplay = "VehicleDumpReport" _
+                    , .ReportDescription = "Vehicle dump report list" _
+                    , .VisibleReportName = "Vehicle dump report list"})
+         
 
         Return repts
 

@@ -114,19 +114,17 @@ Public Class Truck
         Try
 
             Dim piplat As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(id & "_lat")
+
             Dim pilng As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(id & "_long")
 
             Me.lat = piplat.Data.ArcValue(New PITimeServer.PITime With {.LocalDate = queryDate},
                                                                     PISDK.RetrievalTypeConstants.rtInterpolated).Value
-
             Me.lng = pilng.Data.ArcValue(New PITimeServer.PITime With {.LocalDate = queryDate},
                                                                     PISDK.RetrievalTypeConstants.rtInterpolated).Value
 
         Catch ex As Exception
-
             Dim exceptionmsg As String = ex.Message
         End Try
-
 
     End Sub
 

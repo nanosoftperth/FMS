@@ -348,7 +348,9 @@ function getGeoFencesFromDBAndShow_successCallback(result) {
 
         item.ApplicationGeoFenceSides.forEach(function (itm, indx) {
 
-            var goolLatLng = new google.maps.LatLng(itm.Latitude, itm.Longitude);
+            var gool
+
+= new google.maps.LatLng(itm.Latitude, itm.Longitude);
             loopCoords.push(goolLatLng);
         });
 

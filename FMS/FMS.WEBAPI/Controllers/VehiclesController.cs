@@ -18,7 +18,7 @@ namespace FMS.WEBAPI.Controllers
         /// <returns>List of string</returns>
         public IEnumerable<string> Get()
         {
-            string userName = "jonathanq";
+            string userName = "jonathan";
             string password = "password";
             if (Membership.ValidateUser(userName, password))
             {
@@ -36,12 +36,9 @@ namespace FMS.WEBAPI.Controllers
         /// <returns>List of Can message definition</returns>
         public List<CAN_MessageDefinition> Get(string vehicleID)
         {
-
             return FMS.Business.DataObjects.ApplicationVehicle
                                 .GetFromName(vehicleID).GetAvailableCANTags();
-
         }
-
 
         /// <summary>
         /// Get CAN data point by vehicleID, standard, SPN, startdate and enddate
@@ -61,14 +58,19 @@ namespace FMS.WEBAPI.Controllers
 
             CanDataPoint cdp = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(SPN, vehicleID, standard, sd, ed);
 
-            return cdp;
-        }
+            return cdp; 
+        } 
+
+        public string Get(string value, string t)
+        {
+            return "Test";
+        } 
 
         // POST api/vehicles
         /// <summary>
         /// Post vehicles
         /// </summary>
-        /// <param name="value">Values posted</param>
+        /// <param name="value">Values posted</param> 
         public void Post([FromBody]string value)
         {
         }
