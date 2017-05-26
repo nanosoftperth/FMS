@@ -378,7 +378,47 @@ Namespace ReportGeneration
 
             Next
             Return retobj
-        End Function 
+        End Function
+
+
+        '' Get Details for vehicle Dump 
+
+        Public Shared Function GetActivityReportLines_ForVehicleDump(startDate As Date,
+                                                                endDate As Date,
+                                                                vehicleID As Guid?) As List(Of VehicleDumpActivityReportLine)
+
+
+            startDate = startDate.timezoneToPerth
+            endDate = endDate.timezoneToPerth
+
+            'basically, run the GetActivityReportLines_ForDevice for each period the driver was driving that vehicle
+            'make sure though that there is a seperate line item when there is vehicle change.
+            'REQUIRED COLUMNS: 'Start Time,Distance & Duration,Stop Location,Arrival Time,Idle Duration,Stop Duration,Departure Time
+            Dim speedTimes As List(Of ActivityReportLine) = ActivityReportLine.GetFromSpeedAndtime(startDate, endDate, vehicleID)
+
+            Dim lst As List(Of VehicleDumpActivityReportLine) = _
+                            FMS.Business.ReportGeneration.VehicleDumpActivityReportLine.GetFromSpeedTimes(speedTimes)
+
+            'change the timezone to the client timezone (for each entry)
+            For Each l In lst
+                l.ArrivalTime = l.ArrivalTime.timezoneToClient
+                l.DepartureTime = l.DepartureTime.timezoneToClient
+                l.StartTime = l.StartTime.timezoneToClient
+
+                If l.DepartureTime.HasValue AndAlso l.ArrivalTime.HasValue Then _
+                                l.StopDuration = l.DepartureTime.Value - l.ArrivalTime.Value
+            Next
+
+            ' Edited by Aman on 20170516 to validate minimum stop duration (5 Min)             
+            lst.RemoveAll(Function(x) x.StopDuration < TimeSpan.FromMinutes(5))
+
+
+            'start time (earliest irst)
+            Return lst.OrderBy(Function(u) u.StartTime).ToList
+
+        End Function
+
+
     End Class
 
 End Namespace

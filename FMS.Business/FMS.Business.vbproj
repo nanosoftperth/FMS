@@ -167,6 +167,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="Classes\ReportGeneration\VehicleDumpActivityReport.vb" />
     <None Include="Data\FMSDatabaseLINQ.dbml.layout">
       <DependentUpon>FMSDatabaseLINQ.dbml</DependentUpon>
     </None>

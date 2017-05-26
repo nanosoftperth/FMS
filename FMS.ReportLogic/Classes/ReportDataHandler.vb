@@ -467,6 +467,58 @@ Public Class ReportDataHandler
         Return rept
     End Function
     '  CacheAssignVehicletoDriver
+
+    'to get the data for vehicle bump Report
+    Public Shared Function GetVehicleDumpReportValue(startdate As Date _
+                                                 , endDate As Date _
+                                                 , vehicleName As String) As CachedVehicleDumpReport
+
+        Dim rept As CachedVehicleDumpReport = Nothing
+        Try
+            startdate = startdate
+            endDate = endDate.AddDays(1)
+
+
+            If Not ThisSession.ApplicationID = Guid.Empty Then
+                'get the vehicleid (guid)
+                Dim vehicleID As Guid = _
+                    FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
+                            .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
+
+
+
+                ' Find out if the report is already in the cache
+                rept = (From x In ThisSession.CachedVehicleDumpReports _
+                                               Where x.EndDate = endDate _
+                                                AndAlso x.StartDate = startdate _
+                                               AndAlso x.VehicleID = vehicleID).SingleOrDefault
+
+                Dim GET_CAHCHED_REPORT As Boolean = True
+
+                'MAKE the report and add it to the cache if it doesnt exist
+                If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
+
+                    Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleDumpActivityReportLine) = _
+                            FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicleDump(startdate, endDate, vehicleID)
+
+                    rept = (New CachedVehicleDumpReport With {.VehicleID = vehicleID _
+                                                            , .StartDate = startdate _
+                                                            , .EndDate = endDate _
+                                                            , .LineValies = vehicleReportLines})
+
+                    rept.CalculateSummaries()
+
+                    ThisSession.CachedVehicleDumpReports.Add(rept)
+                End If
+
+                rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

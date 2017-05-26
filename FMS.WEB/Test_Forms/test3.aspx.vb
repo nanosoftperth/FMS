@@ -5,6 +5,12 @@
 
 
 
+
+        Dim iDate As String = "12/20/2005"
+        Dim oDate As DateTime = Convert.ToDateTime(iDate)
+        Response.Write(oDate)
+
+
         If Not IsPostBack Then
 
             With Now

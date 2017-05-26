@@ -629,6 +629,7 @@ function cbSnapToRoad_CheckChanged(s, e) {
     //Snap to road ( as in do we use the google "road hug" option).
     drawPathTestFromGlobalObject();
 }
+
 function cbExcludeCars_CheckChanged(s, e) {
     if (globaltrucks)
         upsertMapTrucks(globaltrucks);
@@ -645,7 +646,6 @@ function btnHeatMapSearch_Click(s, e) {
     _viewMachineAtTime = true;
     _GetLatLongObjs = false;
 }
-
 
 function btnGo_Click() {
 
@@ -679,7 +679,7 @@ function logthis(latlng) {
 }
 
 function successCallBack(result) {
-    //alert(JSON.stringify(result));
+  // alert(JSON.stringify(result));
     upsertMapTrucks(result);
 }
 
@@ -741,6 +741,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
 }
 var alreadyRan = false;
 
+
 function upsertMapTrucks(result) {
 
     
@@ -749,6 +750,7 @@ function upsertMapTrucks(result) {
     globaltrucks = result;
     var truckArr = [];
     //console.log(result);
+
 
     for (index = 0; index < trucks.length; ++index) {
 
@@ -810,7 +812,7 @@ function upsertMapTrucks(result) {
 var numDeltas = 3000 / 100;
 var delay = 100;
 
-function moveMarker(marker, markerPosn) {
+     function moveMarker(marker, markerPosn) {
 
     var oldLat = marker.getPosition().lat();
     var oldLng = marker.getPosition().lng();
@@ -830,7 +832,7 @@ function moveMarker(marker, markerPosn) {
 }
 
 
-function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaLat, deltaLng) {
+    function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaLat, deltaLng) {
 
     var newLat = oldLat - (deltaLat * itrn);
     var newLng = oldLng - (deltaLng * itrn);
@@ -861,6 +863,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
     }
 
     function setMapOnAll(map) {
+        
         for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(map);
         }
@@ -915,12 +918,9 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
     //    });
 
     //    marker.setMap(map);
-    //}
-
-
+    //} 
 
     function initialize() {
-
 
         var lat = parseFloat(serverSetting_Business_Lattitude);
         var lng = parseFloat(serverSetting_Business_Longitude);
@@ -950,13 +950,11 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
         //also performs the "auto-update" logic.
         //autoUpdateAjaxStart();    
 
-        instansiateDefaultService();
+       instansiateDefaultService();
 
 
     }
-
-
-
+ 
 
     function getInfo() {
 
@@ -1195,6 +1193,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
             return null;
         }
 
+        ///alert(result.d._Trucks);
         HeatMapTrucksReturnedFromServer = result.d._Trucks;
 
         var ll = result.d._LatLongs;
@@ -1276,6 +1275,7 @@ function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaL
                 foundMarker = entry;
             }
         })
+
 
         try {
             var latlng = foundMarker.getPosition();

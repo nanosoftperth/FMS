@@ -183,6 +183,9 @@
     <Compile Include="Reports\VehicleListReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\VehicleDumpReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\VehicleReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -236,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VehicleListReport.resx">
       <DependentUpon>VehicleListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleDumpReport.resx">
+      <DependentUpon>VehicleDumpReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VehicleReport.resx">
       <DependentUpon>VehicleReport.vb</DependentUpon>
