@@ -53,15 +53,17 @@ namespace FMS.Datalistener.CalAmp
         }
         public void Start()
         {
-           // StartListener();
+           // calamp data receiver thread method
             t = new System.Threading.Thread(StartListener);
             t.Start();
 
+            // log file processor
             t_ProcessLogs = new System.Threading.Thread(DataObjects.LogFileProcessor.ProcessLogs);
             t_ProcessLogs.Start();
 
             string urlLocation = string.Format(@"http://*:{0}", Properties.Settings.Default.web_url_port);
 
+            //web application (API) 
             _webApplication = WebApp.Start<API.OwinConfiguration>(urlLocation);
 
         }

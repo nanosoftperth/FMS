@@ -91,13 +91,16 @@
                         </dx:ASPxGridView>
 
 
-                        <asp:ObjectDataSource runat="server" ID="odsAuditObjs" SelectMethod="GetAllBetweenDates" TypeName="FMS.Business.DataObjects.LogEntry">
+                        <asp:ObjectDataSource runat="server" ID="odsAuditObjs" 
+                                                                SelectMethod="GetAllBetweenDates" 
+                                                                TypeName="FMS.Business.DataObjects.LogEntry">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="dateStart" PropertyName="Value" Name="startdtae" Type="DateTime"></asp:ControlParameter>
                                 <asp:ControlParameter ControlID="dateEnd" PropertyName="Value" Name="enddate" Type="DateTime"></asp:ControlParameter>
                                 <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
+
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
