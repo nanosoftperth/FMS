@@ -56,7 +56,7 @@ namespace FMS.BackgroundCalcs.Service
 
         private static void StartCalcs()
         {
-            //FMS.BackgroundCalcs.ConsoleApp
+            //FMS.BackgroundCalcs.ConsoleApp           
             FMS.BackgroundCalcs.ConsoleApp.MainMethod.ExecuteInfinateLoop();
 
         }

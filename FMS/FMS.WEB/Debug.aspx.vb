@@ -5,8 +5,8 @@
 
         'of the first time the page is loaded
         If Not IsPostBack Then
-            Me.dateStart.Value = Now.AddHours(-1) 'New Date(Now.Year, Now.Month, Now.Day)
-            Me.dateEnd.Value = Now
+            Me.dateStart.Value = Now.timezoneToClient.AddHours(-1) 'New Date(Now.Year, Now.Month, Now.Day)
+            Me.dateEnd.Value = Now.timezoneToClient
             Me.ASPxGridView1.DataSourceID = Nothing
         End If
 
