@@ -5,8 +5,7 @@
 #map-canvas img {
 	max-width: none !important;
 }
-.custom-iw {
-	
+.custom-iw { 
 	/*top: 15px !important;*/
     width:280px !Important;
 	/*left: 0px !important;*/
@@ -15,8 +14,13 @@
 	border: 1px solid rgba(72, 181, 233, 0.6);
 	border-radius: 2px 2px 10px 10px;
 }
+
+.iconposition {
+
+top: -32px !important;
+}
 #iw-container {
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
 }
 
 .leftarrow{

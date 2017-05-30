@@ -55,8 +55,10 @@ function showInfoWindow(event) {
 }
 
 function infoWindowCSS(w) {
-
+     
     $('#iw-container').closest('.gm-style-iw').parent().addClass('custom-iw');
+
+    $('.custom-iw').parent().addClass('iconposition');
 
     // Reference to s DIV that wraps the bottom of infowindow
     var iwOuter = $('#iw-container').closest('.gm-style-iw');
@@ -725,7 +727,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         labelContent: lblContent,
         labelAnchor: new google.maps.Point(22, 0),
         labelClass: "labels", // the CSS class for the label
-        //labelStyle: { opacity: 0.75 },       
+        //labelStyle: { opacity: 0.75 },   
     });
 
     marker.DeviceID = markerID;

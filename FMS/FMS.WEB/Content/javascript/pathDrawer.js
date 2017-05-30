@@ -70,9 +70,8 @@ var flightPaths = [];
 var PolyLines = [];
 
 //red>black>blue>unknown
-//var Colors = ["#FF0000","#FFFF00", "#000000", "#0000FF", "#00FF00", "#0000FF", "#000000", "#FFFF00", "#00FFFF", "#FF00FF"];
-
- var Colors = ["#880015","#000000","#FF7F27", "#FFF200", "#3F48CC", "#ED1C24"];
+//[BLACK, RED, BLUE, MAROON, YELLOW, ORANGE]  edited on 20170529 Aman
+var Colors = ["#000000", "#FF0000", "#3f48cc", "#800000", "#fff200", "#ff7f27"];
 
 
  
