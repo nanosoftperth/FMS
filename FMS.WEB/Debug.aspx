@@ -8,6 +8,13 @@
             padding-left: 5px;
             padding-bottom: 20px;
         }
+
+        div.dxb {
+            padding-bottom: 2px !important;
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+            padding-top: 0px !important;
+        }
     </style>
 
 
@@ -46,8 +53,8 @@
                                 </td>
                                 <td>
                                     <%--<div style="position: absolute; top: 45px; right: 75px;">--%>
-                                    <div>
-                                        <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Query Logs" Theme="SoftOrange"></dx:ASPxButton>
+                                    <div style="padding-left: 15px; margin-top: -22px;">
+                                        <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Query Logs" Theme="SoftOrange" ></dx:ASPxButton>
                                     </div>
                                 </td>
                             </tr>
@@ -55,7 +62,7 @@
 
 
                         <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="odsAuditObjs">
-                            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowGroupFooter="VisibleAlways"></Settings>
+                            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
                             <SettingsPager PageSize="1000"></SettingsPager>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -84,33 +91,24 @@
                             <GroupSummary>
                                 <dx:ASPxSummaryItem FieldName="DeviceID" SummaryType="Custom" />
                             </GroupSummary>
-                            <Styles>
-                                <GroupFooter HorizontalAlign="Right">
-                                </GroupFooter>
-                            </Styles>
                         </dx:ASPxGridView>
-
-
-                        <asp:ObjectDataSource runat="server" ID="odsAuditObjs" 
-                                                                SelectMethod="GetAllBetweenDates" 
-                                                                TypeName="FMS.Business.DataObjects.LogEntry">
+                        <asp:ObjectDataSource runat="server" ID="odsAuditObjs"
+                            SelectMethod="GetAllBetweenDates"
+                            TypeName="FMS.Business.DataObjects.LogEntry">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="dateStart" PropertyName="Value" Name="startdtae" Type="DateTime"></asp:ControlParameter>
                                 <asp:ControlParameter ControlID="dateEnd" PropertyName="Value" Name="enddate" Type="DateTime"></asp:ControlParameter>
                                 <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
-
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
             <dx:TabPage Text="External bug tracker access">
                 <ContentCollection>
                     <dx:ContentControl Width="100%" Height="100%" runat="server">
-
                         <iframe marginwidth="0" marginheight="0" frameborder="0" overflow-y="scroll" overflow-x="hidden" id="bugtrackerIframe"
                             width="50px" height="50px">please wait...</iframe>
-
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>

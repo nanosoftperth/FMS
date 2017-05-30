@@ -20,14 +20,10 @@
         CType(Me.Master, FMS.WEB.MainLightMaster).HeaderText = "Feature Requests"
 
     End Sub
-
     Protected Sub ASPxButton1_Click(sender As Object, e As EventArgs) Handles ASPxButton1.Click
         'logic in the page load method
     End Sub
-
-
     Private Sub ASPxGridView1_CustomSummaryCalculate1(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles ASPxGridView1.CustomSummaryCalculate
-
 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
 
@@ -37,4 +33,6 @@
         End If
 
     End Sub
+
+    
 End Class
