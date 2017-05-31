@@ -82,10 +82,10 @@ function infoWindowCSS(w) {
     iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
 
     // Moves the infowindow 115px to the right.
-    iwOuter.parent().parent().css({ left: '115px' });
+ 
+   iwOuter.parent().parent().css({ left: '115px' });
 
     iwOuter.parent().parent().css({ width: '115px' });
-
     // Moves the shadow of the arrow 76px to the left margin.
     //iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
     // Moves the arrow 76px to the left margin.
@@ -712,22 +712,30 @@ function getLabelInvisibleMarker(location, text) {
         labelContent: text,
         labelAnchor: new google.maps.Point(22, 0),
         labelClass: "labelsPloygon", // the CSS class for the label
-        //labelStyle: { opacity: 0.75 },
+        labelStyle: { opacity: 0.75 },
         map: map
     });
 
     return marker;//
 }
 // Adds a marker to the map and push to the array.
-function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {
+function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {  
+    var icon = {
+        url: icon_truck + '&Id=' + applicationImageID, // url
+        scaledSize: new google.maps.Size(60, 60), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+    };
+
    //alert(vehicleName);
     var marker = new MarkerWithLabel({
-        position: location,
-        icon: icon_truck + '&Id=' + applicationImageID,
+        position: location ,
+        icon: icon,
         labelContent: lblContent,
         labelAnchor: new google.maps.Point(22, 0),
-        labelClass: "labels", // the CSS class for the label
-        //labelStyle: { opacity: 0.75 },   
+        labelClass: "labelVehicle", // the CSS class for the label
+        labelStyle: { opacity: 0.75 }, 
+        Zindex: 99999999
     });
 
     marker.DeviceID = markerID;

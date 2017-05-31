@@ -405,6 +405,8 @@ Namespace ReportGeneration
                 l.DepartureTime = l.DepartureTime.timezoneToClient
                 l.StartTime = l.StartTime.timezoneToClient
 
+                l.EndTime = l.EndTime.timezoneToClient
+
                 If l.DepartureTime.HasValue AndAlso l.ArrivalTime.HasValue Then _
                                 l.StopDuration = l.DepartureTime.Value - l.ArrivalTime.Value
             Next

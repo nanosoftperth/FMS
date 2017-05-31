@@ -1,8 +1,4 @@
-﻿
-
-
-
-#map-canvas img {
+﻿#map-canvas img {
 	max-width: none !important;
 }
 .custom-iw { 
@@ -16,15 +12,14 @@
 }
 
 .iconposition {
-
-top: -32px !important;
+top: 6px !important;
 }
 #iw-container {
 	/*margin-bottom: 10px;*/
 }
 
 .leftarrow{
-    left:74px !Important;
+    left:85px !Important;
 }
 
 .custom-iw>.gm-style-iw{
@@ -866,3 +861,5 @@ html, body {
         font-size: 13px;
         font-weight: 300;
     }
+
+ 

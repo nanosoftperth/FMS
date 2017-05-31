@@ -205,6 +205,9 @@ Namespace ReportGeneration
 
                     loopVARL.ArrivalTime = s_prev.EndTime
                     loopVARL.StartTime = s_prev.StartTime
+
+                    loopVARL.EndTime = s_prev.EndTime
+
                 End If
 
                 'if the next value is travelling, then that is when we leave, so this is the departure time.
@@ -227,6 +230,8 @@ Namespace ReportGeneration
                                                 Or s_next.ActivityReportType = ActivityReportLineType.Stoipped_Idling Then
 
                             loopVARL.StartTime = s_current.StartTime
+
+                            loopVARL.EndTime = s_current.EndTime
                             loopVARL.StopLocation = FMS.Business.GoogleGeoCodeResponse.GetForLatLong(s_next.Lat, s_next.Lng)
                             'BY RYAN
                             loopVARL.Lat = s_next.Lat
