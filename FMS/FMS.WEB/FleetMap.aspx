@@ -6,6 +6,7 @@
 
 <asp:Content ID="ContentLeft" ContentPlaceHolderID="ContentLeft" runat="server">
     
+ 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
 
 
@@ -873,6 +874,26 @@
             border: 2px solid black;
             white-space: nowrap;
             opacity: 0.7 !Important;
+        }
+         
+        
+        .labelVehicle {
+            color: black;
+            background-color: white;
+            font-family: "Lucida Grande", "Arial", sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid black;
+            white-space: nowrap;
+            opacity: 0.7 !Important;
+             margin-top:39px !important;
+        }
+
+        .labelVehicle:hover {
+            opacity: 0.1 !Important;
+           
+            background-color:none !Important;
         }
 
         .labels:hover {

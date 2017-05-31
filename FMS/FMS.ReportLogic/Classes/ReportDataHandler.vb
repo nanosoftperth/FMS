@@ -5,6 +5,9 @@ Imports DevExpress.XtraReports.UI
 
 Public Class ReportDataHandler
 
+    Public Shared Function GetApplicationGeoFence() As List(Of FMS.Business.DataObjects.ApplicationGeoFence)
+        Return FMS.Business.DataObjects.ApplicationGeoFence.GetAllApplicationGeoFences(ThisSession.ApplicationID)
+    End Function
     Public Shared Function GetThisApplicationsVehicleList() As List(Of FMS.Business.DataObjects.ApplicationVehicle)
         Return FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID)
     End Function
@@ -29,7 +32,7 @@ Public Class ReportDataHandler
             startdate = startdate
             endDate = endDate.AddDays(1)
 
- 
+
             If Not ThisSession.ApplicationID = Guid.Empty Then
                 'get the vehicleid (guid)
                 Dim vehicleID As Guid = _
@@ -41,7 +44,7 @@ Public Class ReportDataHandler
                 rept = (From x In ThisSession.CachedVehicleReports _
                                                Where x.EndDate = endDate _
                                                 AndAlso x.StartDate = startdate _
-                                               AndAlso x.VehicleID = vehicleID).SingleOrDefault 
+                                               AndAlso x.VehicleID = vehicleID).SingleOrDefault
                 Dim GET_CAHCHED_REPORT As Boolean = True
 
                 'MAKE the report and add it to the cache if it doesnt exist
@@ -60,11 +63,11 @@ Public Class ReportDataHandler
                     ThisSession.CachedVehicleReports.Add(rept)
 
 
-                End If 
+                End If
 
                 rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
 
-            End If 
+            End If
 
         Catch ex As Exception
             Throw
@@ -113,7 +116,7 @@ Public Class ReportDataHandler
             rept.CalculateSummaries()
             'ThisSession.CachedVehicleReports.Add(rept)
 
-        End If 
+        End If
 
         rept.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(New Guid(appID))
 
@@ -214,7 +217,7 @@ Public Class ReportDataHandler
         retobj.CalculateSummaryValues(startDate, endDate, driverID)
 
         'retobj.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
- 
+
 
         retobj.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(appID)
 
@@ -473,7 +476,7 @@ Public Class ReportDataHandler
                                                  , endDate As Date _
                                                  , vehicleName As String) As CachedVehicleDumpReport
 
-        Dim rept As CachedVehicleDumpReport = Nothing
+        Dim rept As New CachedVehicleDumpReport()
         Try
             startdate = startdate
             endDate = endDate.AddDays(1)
@@ -487,29 +490,43 @@ Public Class ReportDataHandler
 
 
 
-                ' Find out if the report is already in the cache
-                rept = (From x In ThisSession.CachedVehicleDumpReports _
-                                               Where x.EndDate = endDate _
-                                                AndAlso x.StartDate = startdate _
-                                               AndAlso x.VehicleID = vehicleID).SingleOrDefault
+                '' Find out if the report is already in the cache
+                'rept = (From x In ThisSession.CachedVehicleDumpReports _
+                '                               Where x.EndDate = endDate _
+                '                                AndAlso x.StartDate = startdate _
+                '                               AndAlso x.VehicleID = vehicleID).SingleOrDefault
 
-                Dim GET_CAHCHED_REPORT As Boolean = True
+                'Dim GET_CAHCHED_REPORT As Boolean = True
 
-                'MAKE the report and add it to the cache if it doesnt exist
-                If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
+                ''MAKE the report and add it to the cache if it doesnt exist
+                'If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-                    Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleDumpActivityReportLine) = _
-                            FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicleDump(startdate, endDate, vehicleID)
+                '    Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleDumpActivityReportLine) = _
+                '            FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicleDump(startdate, endDate, vehicleID)
 
-                    rept = (New CachedVehicleDumpReport With {.VehicleID = vehicleID _
-                                                            , .StartDate = startdate _
-                                                            , .EndDate = endDate _
-                                                            , .LineValies = vehicleReportLines})
+                '    rept = (New CachedVehicleDumpReport With {.VehicleID = vehicleID _
+                '                                            , .StartDate = startdate _
+                '                                            , .EndDate = endDate _
+                '                                            , .LineValies = vehicleReportLines})
 
-                    rept.CalculateSummaries()
+                '    rept.CalculateSummaries()
 
-                    ThisSession.CachedVehicleDumpReports.Add(rept)
-                End If
+                '    ThisSession.CachedVehicleDumpReports.Add(rept)
+                'End If
+
+                Dim vehicleReportLines As New List(Of FMS.Business.ReportGeneration.VehicleDumpActivityReportLine)
+
+                vehicleReportLines.Add(New FMS.Business.ReportGeneration.VehicleDumpActivityReportLine() With
+                               {.StartTime = DateTime.Now.timezoneToClient,
+                                .EndTime = DateTime.Now.AddHours(12).timezoneToClient,
+                                .NoofLoads = 15,
+                                .AvgLoadToDump = DateTime.Now.timezoneToClient.TimeOfDay,
+                                .AvgDumpToLoad = DateTime.Now.timezoneToClient.TimeOfDay,
+                                .AvgLoadTime = DateTime.Now.timezoneToClient.TimeOfDay,
+                                .AvgDumpTime = DateTime.Now.timezoneToClient.TimeOfDay
+                               })
+
+                rept.LineValies = vehicleReportLines
 
                 rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
             End If

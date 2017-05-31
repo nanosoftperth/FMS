@@ -83,9 +83,17 @@ Namespace DataObjects
 
         Public Shared Function GetAllForApplicationWithoutBookings(appID As Guid) As List(Of DataObjects.AlertType)
 
-            Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
-                     Where x.ApplicationID = appID And x.isBooking = False _
+
+            If appID = New Guid() Then
+                Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
+                     Where x.ApplicationID = ThisSession.ApplicationID And x.isBooking = False _
                      Select New DataObjects.AlertType(x)).ToList
+
+            Else
+                Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
+                                   Where x.ApplicationID = appID And x.isBooking = False _
+                                   Select New DataObjects.AlertType(x)).ToList
+            End If 
 
         End Function
 
