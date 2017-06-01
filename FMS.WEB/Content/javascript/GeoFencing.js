@@ -334,9 +334,7 @@ function DefalutserverInstantiate_anycallback(result) {
     //alert(JSON.stringify(result));
 }
 
-function getGeoFencesFromDBAndShow_successCallback(result) {
-
-    alert(result);
+function getGeoFencesFromDBAndShow_successCallback(result) { 
     destroyAllGeoFencesAndLabels();
 
     result.d._GeoFences.forEach(function (item, index) {
@@ -348,9 +346,7 @@ function getGeoFencesFromDBAndShow_successCallback(result) {
 
         item.ApplicationGeoFenceSides.forEach(function (itm, indx) {
 
-            var gool
-
-= new google.maps.LatLng(itm.Latitude, itm.Longitude);
+            var goolLatLng = new google.maps.LatLng(itm.Latitude, itm.Longitude);
             loopCoords.push(goolLatLng);
         });
 

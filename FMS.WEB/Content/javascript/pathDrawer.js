@@ -37,8 +37,7 @@ var createArrow  = {
 
         //add 20 the Arrow heads on the line
         //position each heads with 1% offset in the lineSymbol
-        for (var i = 1; i <= 100; i ++) {// 1% also looks good
-            ////debugger;
+        for (var i = 1; i <= 100; i ++) {// 1% also looks good         
             iconsArrow.push({
                 icon: ArrowHeadSymbol,
                 offset: i + '%', // i(1) %
