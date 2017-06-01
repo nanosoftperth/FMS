@@ -5,11 +5,9 @@
 
 
 <asp:Content ID="ContentLeft" ContentPlaceHolderID="ContentLeft" runat="server">
-    
- 
+     
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
-
-
+    
     <script src="Content/javascript/firstRun.js?version=<%=WebVersion%>"></script>
     <script src="Content/javascript/accordian.js?version=<%=WebVersion%>"></script>
     <script src="Content/javascript/markerWithLabel.js?version=<%=WebVersion%>"></script>
@@ -158,10 +156,7 @@
                                                 ValueType="System.String"
                                                 DataSourceID="odsTrucks"
                                                 Theme="Metropolis">
-
                                                 <ClearButton Visibility="Auto"></ClearButton>
-
-
                                             </dx:ASPxComboBox>
                                         </td>
                                     </tr>--%>
@@ -859,11 +854,7 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" style="float: left;" runat="server">
-
-
-
-    <style type="text/css">
-
+      <style type="text/css">
         .labels {
             color: black;
             background-color: white;
@@ -874,34 +865,13 @@
             border: 2px solid black;
             white-space: nowrap;
             opacity: 0.7 !Important;
-        }
-         
-        
-        .labelVehicle {
-            color: black;
-            background-color: white;
-            font-family: "Lucida Grande", "Arial", sans-serif;
-            font-size: 10px;
-            font-weight: bold;
-            text-align: center;
-            border: 2px solid black;
-            white-space: nowrap;
-            opacity: 0.7 !Important;
-             margin-top:39px !important;
-        }
-
-        .labelVehicle:hover {
-            opacity: 0.1 !Important;
-           
-            background-color:none !Important;
-        }
+            /*margin-top:39px !important;*/
+        }        
 
         .labels:hover {
-            opacity: 0.1 !Important;
-           
+            opacity: 0.1 !Important;           
             background-color:none !Important;
-        }
-       
+        }      
 
         .labelsPloygon {
             color: black;
@@ -915,8 +885,7 @@
             white-space: nowrap;
         }
     </style>
-
-
+    
     <div style="position: absolute; top: 159px; right: 15px; z-index: 99;" id="viewInRealTimeCheckbox">
         <dx:ASPxCheckBox ID="autoUpdate" runat="server"
             EnableTheming="True"

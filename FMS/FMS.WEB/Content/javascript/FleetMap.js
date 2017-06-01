@@ -83,7 +83,7 @@ function infoWindowCSS(w) {
 
     // Moves the infowindow 115px to the right.
  
-   iwOuter.parent().parent().css({ left: '115px' });
+    iwOuter.parent().parent().css({ left: '115px' });
 
     iwOuter.parent().parent().css({ width: '115px' });
     // Moves the shadow of the arrow 76px to the left margin.
@@ -114,8 +114,7 @@ function infoWindowCSS(w) {
     // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
     iwCloseBtn.mouseout(function () {
         $(this).css({ opacity: '1' });
-    });
-
+    }); 
 }
 
 function GenericKeyDown(s, e) {
@@ -723,7 +722,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     var icon = {
         url: icon_truck + '&Id=' + applicationImageID, // url
         scaledSize: new google.maps.Size(60, 60), // scaled size
-        origin: new google.maps.Point(0, 0), // origin
+        //origin: new google.maps.Point(0, 0), // origin
         anchor: new google.maps.Point(0, 0) // anchor
     };
 
@@ -732,10 +731,10 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         position: location ,
         icon: icon,
         labelContent: lblContent,
-        labelAnchor: new google.maps.Point(22, 0),
-        labelClass: "labelVehicle", // the CSS class for the label
+        labelAnchor: new google.maps.Point(20, -50),
+        labelClass: "labels", // the CSS class for the label
         labelStyle: { opacity: 0.75 }, 
-        Zindex: 99999999
+        zIndex: 9999999
     });
 
     marker.DeviceID = markerID;
@@ -1003,8 +1002,8 @@ var delay = 100;
 
             searchBox.setBounds(map.getBounds());
             if (map.getZoom() <= 11) {
-                $('.labels').hide('slow');
-            }
+                $('.labels').hide('slow'); 
+            } 
             else { 
                 //By Ryan
                 $('.labels:not(.labels-hidden)').show('slow');
@@ -1059,7 +1058,7 @@ var delay = 100;
                 }
             });
             map.fitBounds(bounds);
-            map.setZoom(11);// Aman
+            map.setZoom(15);// Aman
         });
 
         var pac_input = document.getElementById('pac-input');
