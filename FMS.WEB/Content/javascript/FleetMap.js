@@ -54,6 +54,44 @@ function showInfoWindow(event) {
 
 }
 
+function showInfoWindow2(event) {
+
+    //var vertices = '<br><br>' + this.getPath();
+    var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
+    //iw-title 
+    var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.truckName;
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 600px;\' ></iframe>';
+    //style=\'height: 280px; width: 245px\
+    contentString = '<div class=\'iw-content\'>' + contentString + '</div>';
+
+    if (infoWindowVehicle !== null) {
+        google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
+        infoWindowVehicle.close();
+        infoWindowVehicle = null;
+    }
+
+
+    var content = '<div id="iw-container">' +
+                  '<div class="iw-title"> ' + this.Name + ':Test Page </div>' +
+                  '<div class="iw-content">' +
+                    contentString
+    '</div>' +
+    '<div class="iw-bottom-gradient"></div>' +
+  '</div>';
+
+
+    infoWindowVehicle = new google.maps.InfoWindow();
+
+    //infoWindowVehicle.setContent(contentString);
+    infoWindowVehicle.setPosition(event.latLng);
+    infoWindowVehicle.setContent(content);
+
+    google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSS(infoWindowVehicle) });
+
+    infoWindowVehicle.open(map);
+
+}
+
 function infoWindowCSS(w) {
      
     $('#iw-container').closest('.gm-style-iw').parent().addClass('custom-iw');
@@ -734,13 +772,16 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         labelAnchor: new google.maps.Point(-2, -58),
         labelClass: "labels", // the CSS class for the label
         labelStyle: { opacity: 0.75 }, 
-        zIndex: 9999999
+        zIndex: 9999999,
+        truckName:vehicleName
     });
 
     marker.DeviceID = markerID;
     marker.Name = lblContent.replace('\n', ' ');
+    marker.TruckName = vehicleName;
 
     marker.addListener('click', showInfoWindow);//DeviceID
+    marker.addListener('rightclick', showInfoWindow2);
 
     marker.ID = markerID;
     markers.push(marker);

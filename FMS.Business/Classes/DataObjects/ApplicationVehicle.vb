@@ -154,8 +154,9 @@
                     Dim ppName As String = p.Name
 
                     'get the SPN number
-                    Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
-                    Dim pgn As Integer = ppName.Replace(replaceStr, "")
+                    'Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
+                    'Dim pgn As Integer = ppName.Replace(replaceStr, "")
+                    Dim pgn As Integer = ppName.Split("_").Reverse()(0)
 
                     lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, Me.CAN_Protocol_Type))
 
