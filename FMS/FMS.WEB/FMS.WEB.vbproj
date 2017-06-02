@@ -287,6 +287,13 @@
       <DependentUpon>AlarmsAndAlerts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CanBusPropertyDisplay.aspx.designer.vb">
+      <DependentUpon>CanBusPropertyDisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanBusPropertyDisplay.aspx.vb">
+      <DependentUpon>CanBusPropertyDisplay.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Classes\DriverAppointmentFormClass.vb" />
     <Compile Include="Classes\DriverAppointmentFormController.vb" />
     <Compile Include="Classes\DriverAppointmentSaveCallbackCommand.vb" />
@@ -778,6 +785,7 @@
     <Content Include="App_Data\ReportService.mdf" />
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
+    <Content Include="CanBusPropertyDisplay.aspx" />
     <Content Include="Content\Accoridan.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\contextMenu\jquery.contextMenu.css" />

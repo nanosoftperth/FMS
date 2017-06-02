@@ -34,6 +34,8 @@ namespace FMS.WEBAPI.Controllers
         /// </summary>
         /// <param name="vehicleID">The Vehicle Id</param>
         /// <returns>List of Can message definition</returns>
+
+        [Route("api/vehicles/{vehicleID}")]
         public List<CAN_MessageDefinition> Get(string vehicleID)
         {
             return FMS.Business.DataObjects.ApplicationVehicle
@@ -49,6 +51,7 @@ namespace FMS.WEBAPI.Controllers
         /// <param name="startdate">The startdate for the time period</param>
         /// <param name="enddate">The enddate for the time period</param>
         /// <returns>CanDataPoint</returns>
+        //[Route("api/vehicles/{vehicleID}/{standard}/{SPN}/{startdate}/{enddate}")]
         public CanDataPoint Get(string vehicleID, string standard, int SPN, string startdate, string enddate)
         {
             //the standard of canbus is infered from the vehicleID.

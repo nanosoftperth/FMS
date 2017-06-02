@@ -54,6 +54,7 @@ Namespace Controllers
         ''' <param name="startdate">The startdate for the time period</param>
         ''' <param name="enddate">The enddate for the time period</param>
         ''' <returns>CanDataPoint</returns>
+        
         Public Function [Get](vehicleID As String, standard As String, SPN As Integer, startdate As String, enddate As String) As CanDataPoint
             'the standard of canbus is infered from the vehicleID.
 

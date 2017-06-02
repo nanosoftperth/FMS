@@ -15,6 +15,11 @@ Public Class Global_asax
                                        defaults:=New With { _
                                              Key .id = System.Web.Http.RouteParameter.[Optional] _
                                          })
+        RouteTable.Routes.MapHttpRoute(name:="MyAPI2",
+                                       routeTemplate:="api/{controller}/{vehicleID}/{standard}/{SPN}/{startdate}/{enddate}",
+                                       defaults:=New With { _
+                                             Key .id = System.Web.Http.RouteParameter.[Optional] _
+                                         })
 
     End Sub
 
