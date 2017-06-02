@@ -731,7 +731,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         position: location ,
         icon: icon,
         labelContent: lblContent,
-        labelAnchor: new google.maps.Point(20, -50),
+        labelAnchor: new google.maps.Point(-2, -58),
         labelClass: "labels", // the CSS class for the label
         labelStyle: { opacity: 0.75 }, 
         zIndex: 9999999
