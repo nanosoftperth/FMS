@@ -72,7 +72,7 @@ function showInfoWindow2(event) {
 
 
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title"> ' + this.Name + ':Test Page </div>' +
+                  '<div class="iw-title"> ' + this.Name + ' </div>' +
                   '<div class="iw-content">' +
                     contentString
     '</div>' +
