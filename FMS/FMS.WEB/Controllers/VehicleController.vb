@@ -44,6 +44,19 @@ Namespace Controllers
 
         End Function
 
+        ' GET api/vehicles/GetCanMessge/5
+        ''' <summary>
+        ''' Get available CAN tags by deviceID
+        ''' </summary>
+        ''' <param name="deviceID">The device Id</param>
+        ''' <returns>List of Can message definition</returns>
+        <HttpGet>
+        Public Function GetCanMessage(deviceID As String) As List(Of CAN_MessageDefinition)
+
+            Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTags()
+
+        End Function
+
 
         ''' <summary>
         ''' Get CAN data point by vehicleID, standard, SPN, startdate and enddate
@@ -61,7 +74,31 @@ Namespace Controllers
             Dim sd As DateTime = DateTime.Parse(startdate)
             Dim ed As DateTime = DateTime.Parse(enddate)
 
+
             Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(SPN, vehicleID, standard, sd, ed)
+
+            Return cdp
+        End Function
+
+        ''' <summary>
+        ''' Get CAN data point by deviceID, standard, SPN, startdate and enddate
+        ''' </summary>
+        ''' <param name="deviceID"></param>
+        ''' <param name="standard"></param>
+        ''' <param name="SPN"></param>
+        ''' <param name="startdate"></param>
+        ''' <param name="enddate"></param>
+        ''' <returns>CanDataPoint</returns>
+        ''' <remarks></remarks>
+        <HttpGet>
+        Public Function GetCanMessage(deviceID As String, standard As String, SPN As Integer, startdate As String, enddate As String) As CanDataPoint
+            'the standard of canbus is infered from the vehicleID.
+
+            Dim sd As DateTime = DateTime.Parse(startdate)
+            Dim ed As DateTime = DateTime.Parse(enddate)
+
+
+            Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithDataByDeviceId(SPN, deviceID, standard, sd, ed)
 
             Return cdp
         End Function
