@@ -536,8 +536,8 @@
                                             <dx:GridViewDataTextColumn FieldName="ApplicationVehileID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
                                             </dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataComboBoxColumn ShowInCustomizationForm="True" VisibleIndex="3" Caption="Icon" FieldName="ApplicationImageID">
+                                            </dx:GridViewDataTextColumn> 
+                                                  <dx:GridViewDataComboBoxColumn ShowInCustomizationForm="True" VisibleIndex="3" Caption="Icon" FieldName="ApplicationImageID">
                                                 <PropertiesComboBox ImageUrlField="ImgUrl" DataSourceID="odsMapMarker" TextField="Name" ValueField="ApplicationImageID">
                                                     <ItemImage Height="24px" Width="23px" />
                                                     <ClearButton Visibility="Auto">

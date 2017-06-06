@@ -194,6 +194,33 @@ Partial Public Class FleetMap
     Protected WithEvents ASPxCheckBox4 As Global.DevExpress.Web.ASPxCheckBox
 
     '''<summary>
+    '''dgvVehicles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dgvVehicles As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsMapMarker control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsMapMarker As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsVehicles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsVehicles As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsTrucks control.
     '''</summary>
     '''<remarks>
