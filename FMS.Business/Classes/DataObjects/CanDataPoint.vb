@@ -66,6 +66,49 @@
 
         End Function
 
+        Public Shared Function GetPointWithDataByDeviceId(SPN As Integer, deviceID As String, _
+                                                standard As String, startDate As Date, endDate As Date) As DataObjects.CanDataPoint
+
+            Dim retobj As New CanDataPoint
+
+            Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID)
+
+            'get the MessageDefinition
+            retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard)
+
+            ' Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
+            Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
+                                                                                retobj.MessageDefinition.PGN)
+            Try
+
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
+
+                'get data from pi for the time period
+                Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
+                                                                     PISDK.BoundaryTypeConstants.btInside)
+
+                For Each p As PISDK.PIValue In pivds
+
+                    Try
+
+                        retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
+                                                                                .RawValue = p.Value})
+
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                'Calculate the actual value from the raw values
+                retobj.CanValues.CalculateValues(SPN, retobj.MessageDefinition)
+            Catch ex As Exception
+                retobj.MessageDefinition = New FMS.Business.DataObjects.CAN_MessageDefinition()
+            End Try
+
+            'get the value 
+            Return retobj
+
+        End Function
+
 
 
         Public Class CanValueList

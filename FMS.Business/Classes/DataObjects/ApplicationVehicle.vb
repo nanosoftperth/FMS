@@ -195,6 +195,14 @@
 
         End Function
 
+        Public Shared Function GetFromDeviceID(deviceID As String) As ApplicationVehicle
+
+            Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicles _
+                    Where x.DeviceID = deviceID _
+                    Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
+
+        End Function
+
         Public Shared Function GetAll(appplicationID As Guid) As List(Of ApplicationVehicle)
 
             Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
