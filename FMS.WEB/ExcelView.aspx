@@ -16,8 +16,7 @@
                 left.style.height = window_height - 130 + "px";
 
             } else { }
-        }
-
+        } 
 
     </script>
 

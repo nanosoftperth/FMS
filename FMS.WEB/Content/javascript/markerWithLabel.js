@@ -188,8 +188,8 @@ MarkerLabel_.prototype.onAdd = function () {
  */
 MarkerLabel_.prototype.onRemove = function () {
     var i;
-    this.labelDiv_.parentNode.removeChild(this.labelDiv_);
-    this.eventDiv_.parentNode.removeChild(this.eventDiv_);
+    //this.labelDiv_.parentNode.removeChild(this.labelDiv_);
+    //this.eventDiv_.parentNode.removeChild(this.eventDiv_);
 
     // Remove event listeners:
     for (i = 0; i < this.listeners_.length; i++) {

@@ -5,9 +5,9 @@
 
 
 <asp:Content ID="ContentLeft" ContentPlaceHolderID="ContentLeft" runat="server">
-     
+
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
-    
+
     <script src="Content/javascript/firstRun.js?version=<%=WebVersion%>"></script>
     <script src="Content/javascript/accordian.js?version=<%=WebVersion%>"></script>
     <script src="Content/javascript/markerWithLabel.js?version=<%=WebVersion%>"></script>
@@ -19,15 +19,17 @@
 
     <link href="Content/Accoridan.css" rel="stylesheet" />
 
-    <dx:ASPxPanel DefaultButton="ASPxButton1" 
-                    ID="LeftPane" 
-                    runat="server" 
-                    FixedPosition="WindowLeft" 
-                    ClientInstanceName="leftPane" 
-                    CssClass="leftPane" 
-                    Collapsible="True">
+   
 
-     <SettingsAdaptivity CollapseAtWindowInnerWidth="1023" />
+    <dx:ASPxPanel DefaultButton="ASPxButton1"
+        ID="LeftPane"
+        runat="server"
+        FixedPosition="WindowLeft"
+        ClientInstanceName="leftPane"
+        CssClass="leftPane"
+        Collapsible="True">
+
+        <SettingsAdaptivity CollapseAtWindowInnerWidth="1023" />
         <Styles>
             <Panel CssClass="panel"></Panel>
         </Styles>
@@ -70,9 +72,8 @@
                                     <ClientSideEvents DateChanged="function(s, e) {
 	dateedit_Click(s,e);
 }"
-                                        CalendarCustomDisabledDate="function(s, e) {  }" 
-                                        KeyDown="function(s,e){dateedit_Click(s,e);e.returnValue = false;e.cancel = true;}"
-                                        />
+                                        CalendarCustomDisabledDate="function(s, e) {  }"
+                                        KeyDown="function(s,e){dateedit_Click(s,e);e.returnValue = false;e.cancel = true;}" />
 
                                     <Buttons>
                                         <dx:EditButton Visible="false" Text="view on map">
@@ -113,7 +114,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <dx:ASPxDropDownEdit AutoPostBack="false"  ClientInstanceName="checkComboBox" ID="ddlTrucks" Height="22px" Width="198px" runat="server" AnimationType="None">
+                                            <dx:ASPxDropDownEdit AutoPostBack="false" ClientInstanceName="checkComboBox" ID="ddlTrucks" Height="22px" Width="198px" runat="server" AnimationType="None">
 
                                                 <DropDownWindowStyle BackColor="#EDEDED" />
                                                 <DropDownWindowTemplate>
@@ -137,9 +138,8 @@
                                                     </table>
                                                 </DropDownWindowTemplate>
 
-                                                <ClientSideEvents   TextChanged="SynchronizeListBoxValues" 
-                                                                    DropDown="SynchronizeListBoxValues" 
-                                                                     />
+                                                <ClientSideEvents TextChanged="SynchronizeListBoxValues"
+                                                    DropDown="SynchronizeListBoxValues" />
                                             </dx:ASPxDropDownEdit>
                                         </td>
                                     </tr>
@@ -200,7 +200,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <dx:ASPxDateEdit 
+                                            <dx:ASPxDateEdit
                                                 AutoPostBack="false"
                                                 ID="heatMapEndTime"
                                                 ClientInstanceName="heatMapEndTime"
@@ -245,10 +245,10 @@
                                             <table id="tblHeatMapOptions" style="float: right;">
                                                 <tr>
                                                     <td style="padding: 2px;">
-                                                        <dx:ASPxButton ID="btnHeatMapSearch" 
-                                                            ClientInstanceName="btnHeatMapSearch" 
+                                                        <dx:ASPxButton ID="btnHeatMapSearch"
+                                                            ClientInstanceName="btnHeatMapSearch"
                                                             runat="server"
-                                                             AutoPostBack="false" 
+                                                            AutoPostBack="false"
                                                             Text="View Activity">
 
                                                             <ClientSideEvents Click="function(){btnHeatMapSearch_Click();}" />
@@ -396,8 +396,63 @@
                             <br />
                         </article>
                     </div>
+                    <!--- Vehicle Viewer tab  -->
+                    <div>
+                        <input class="chkbox" type="checkbox" id="check-5" />
 
+                        <label class="accordianTitle" for="check-5">Vehicle Viewer</label>
 
+                        <article>
+                            <dx:ASPxGridView ID="dgvVehicles"
+                                ClientInstanceName="dgvVehicles"
+                                runat="server"
+                                AutoGenerateColumns="False"
+                                DataSourceID="odsVehicles"
+                                EnableTheming="True"
+                                KeyFieldName="ApplicationVehileID"
+                                SettingsBehavior-ConfirmDelete="true" 
+                                Theme="SoftOrange">
+                                   <Columns>
+                                           <dx:GridViewDataTextColumn FieldName="ApplicationVehileID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
+                                            </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="DeviceID" ShowInCustomizationForm="True" Visible="False" >
+                                            </dx:GridViewDataTextColumn>
+                                       <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0"  Caption="Hide">  
+                                       </dx:GridViewCommandColumn>
+                                        <dx:GridViewDataComboBoxColumn ShowInCustomizationForm="True" VisibleIndex="3" Caption="Icon" FieldName="ApplicationImageID">
+                                                <PropertiesComboBox ImageUrlField="ImgUrl" DataSourceID="odsMapMarker" TextField="Name" ValueField="ApplicationImageID">
+                                                    <ItemImage Height="24px" Width="23px" />
+                                                    <ClearButton Visibility="Auto">
+                                                    </ClearButton>
+                                                </PropertiesComboBox>
+                                            </dx:GridViewDataComboBoxColumn>
+                                       <dx:GridViewDataTextColumn FieldName="Name" ShowInCustomizationForm="True">
+                                       </dx:GridViewDataTextColumn>
+                                          <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
+                                            </dx:GridViewDataTextColumn>
+                                       <dx:GridViewDataTextColumn FieldName="Registration" ShowInCustomizationForm="True" VisibleIndex="6">
+                                       </dx:GridViewDataTextColumn>
+                                  </Columns>
+                                <ClientSideEvents SelectionChanged="dgvVehicles_SelectionChanged" />
+                            </dx:ASPxGridView>
+                        </article>
+
+                        <!-- DataSource  -->
+                          <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
+                                            <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
+
+                          <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
+                                        </SelectParameters>
+                          </asp:ObjectDataSource>
+                    </div>  
+
+                    <!---End Vehicle Viewer tab  -->
                     <asp:ObjectDataSource ID="odsTrucks"
                         runat="server"
                         SelectMethod="GetExampleFleetNow"
@@ -854,7 +909,7 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" style="float: left;" runat="server">
-      <style type="text/css">
+    <style type="text/css">
         .labels {
             color: black;
             background-color: white;
@@ -866,12 +921,12 @@
             white-space: nowrap;
             opacity: 0.7 !Important;
             /*margin-top:39px !important;*/
-        }        
+        }
 
-        .labels:hover {
-            opacity: 0.1 !Important;           
-            background-color:none !Important;
-        }      
+            .labels:hover {
+                opacity: 0.1 !Important;
+                background-color: none !Important;
+            }
 
         .labelsPloygon {
             color: black;
@@ -885,7 +940,7 @@
             white-space: nowrap;
         }
     </style>
-    
+
     <div style="position: absolute; top: 159px; right: 15px; z-index: 99;" id="viewInRealTimeCheckbox">
         <dx:ASPxCheckBox ID="autoUpdate" runat="server"
             EnableTheming="True"
@@ -1014,4 +1069,6 @@
 
     </dx:ASPxGlobalEvents>
 
+ 
+        
 </asp:Content>

@@ -30,7 +30,7 @@ function showInfoWindow(event) {
         google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
         infoWindowVehicle.close();
         infoWindowVehicle = null;
-    } 
+    }
 
 
     var content = '<div id="iw-container">' +
@@ -93,7 +93,7 @@ function showInfoWindow2(event) {
 }
 
 function infoWindowCSS(w) {
-     
+
     $('#iw-container').closest('.gm-style-iw').parent().addClass('custom-iw');
 
     $('.custom-iw').parent().addClass('iconposition');
@@ -120,7 +120,7 @@ function infoWindowCSS(w) {
     iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
 
     // Moves the infowindow 115px to the right.
- 
+
     iwOuter.parent().parent().css({ left: '115px' });
 
     iwOuter.parent().parent().css({ width: '115px' });
@@ -152,7 +152,7 @@ function infoWindowCSS(w) {
     // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
     iwCloseBtn.mouseout(function () {
         $(this).css({ opacity: '1' });
-    }); 
+    });
 }
 
 function GenericKeyDown(s, e) {
@@ -427,6 +427,7 @@ var _isAutoUpdating = true;
 
 var _viewMachineAtTime = false;
 var _GetLatLongObjs = false;
+var _vehicleViewer = false;
 
 function clientServerroundRobin() {
 
@@ -464,6 +465,7 @@ function clientServerroundRobin() {
 
     param.isFirstCall = firstTimeRunningRoundRobin;
     //isFirstCall, firstTimeRunningRoundRobin
+    param.IsVehicleViewer = _vehicleViewer;
 
     ajaxMethod("RoundRobinService.svc/" + 'ClientServerRoundRobin',
           param, clientServerroundRobin_SuccessCallback, clientServerroundRobin_ErrorCallback, clientServerroundRobin_FinallyCallback);
@@ -530,15 +532,14 @@ function showBusinessLocations(businessLocations) {
 
 function clientServerroundRobin_SuccessCallback(result) {
 
-    
     //if this is not he first time running the round robin, then add the business locatoins to the map
-    if (firstTimeRunningRoundRobin ) {
-       
+    if (firstTimeRunningRoundRobin) {
+
         showBusinessLocations(result.d._BusinessLocations);
         firstTimeRunningRoundRobin = false;
     }
 
-   
+
     try {
 
         var updatetime = false;
@@ -566,6 +567,7 @@ function clientServerroundRobin_SuccessCallback(result) {
         }
 
         if (result.d._viewMachineAtTime == true) {
+
             //the button is pressed
             heatMap_successCallBack(result);
             _viewMachineAtTime = false;
@@ -579,6 +581,14 @@ function clientServerroundRobin_SuccessCallback(result) {
             showJourneyTogle();
             toggleHeatmap();
         }
+        if (result.d._vehicleViewer == true) {
+
+            upsertMapTrucks(result);
+            updatetime = true;
+            _vehicleViewer = false;
+        }
+
+
 
 
         //if we have not had to do anything, do not update the clock
@@ -675,9 +685,8 @@ function cbExcludeCars_CheckChanged(s, e) {
 }
 
 function btnHeatMapSearch_Click(s, e) {
-  
+
     selectedTrucks = checkListBox.GetSelectedItems();
-    //alert(selectedTrucks[0].value);
     autoUpdate.SetChecked(false);
     cbHeatmapAutoUpdate.SetChecked(false);
     cbAutoIncrement.SetChecked(false);
@@ -718,7 +727,7 @@ function logthis(latlng) {
 }
 
 function successCallBack(result) {
-  // alert(JSON.stringify(result));
+    // alert(JSON.stringify(result));
     upsertMapTrucks(result);
 }
 
@@ -756,7 +765,7 @@ function getLabelInvisibleMarker(location, text) {
     return marker;//
 }
 // Adds a marker to the map and push to the array.
-function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {  
+function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {
     var icon = {
         url: icon_truck + '&Id=' + applicationImageID, // url
         scaledSize: new google.maps.Size(60, 60), // scaled size
@@ -764,14 +773,14 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         anchor: new google.maps.Point(0, 0) // anchor
     };
 
-   //alert(vehicleName);
+    //alert(vehicleName);
     var marker = new MarkerWithLabel({
-        position: location ,
+        position: location,
         icon: icon,
         labelContent: lblContent,
         labelAnchor: new google.maps.Point(-2, -58),
         labelClass: "labels", // the CSS class for the label
-        labelStyle: { opacity: 0.75 }, 
+        labelStyle: { opacity: 0.75 },
         zIndex: 9999999,
         truckName:vehicleName
     });
@@ -794,7 +803,6 @@ var alreadyRan = false;
 
 function upsertMapTrucks(result) {
 
-    
     var index;
     var trucks = result.d._Trucks;
     globaltrucks = result;
@@ -862,7 +870,7 @@ function upsertMapTrucks(result) {
 var numDeltas = 3000 / 100;
 var delay = 100;
 
-     function moveMarker(marker, markerPosn) {
+function moveMarker(marker, markerPosn) {
 
     var oldLat = marker.getPosition().lat();
     var oldLng = marker.getPosition().lng();
@@ -871,7 +879,7 @@ var delay = 100;
 
     var deltaLat = (oldLat - newLat) / numDeltas;
     var deltaLng = (oldLng - newLng) / numDeltas;
-  
+
 
     marker.setPosition(markerPosn);
 
@@ -882,7 +890,7 @@ var delay = 100;
 }
 
 
-    function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaLat, deltaLng) {
+function moveMarkerSelfIterative(marker, numDeltas, itrn, oldLat, oldLng, deltaLat, deltaLng) {
 
     var newLat = oldLat - (deltaLat * itrn);
     var newLng = oldLng - (deltaLng * itrn);
@@ -895,547 +903,577 @@ var delay = 100;
     }
 }
 
-    // Deletes all markers in the array by removing references to them.
-    function deleteMarkers() {
-        clearMarkers();
-        markers = [];
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+    clearMarkers();
+    markers = [];
+}
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+    setMapOnAll(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+    setMapOnAll(map);
+}
+
+function setMapOnAll(map) {
+
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
     }
+}
 
 
-    // Removes the markers from the map, but keeps them in the array.
-    function clearMarkers() {
-        setMapOnAll(null);
-    }
+var map;
 
-    // Shows any markers currently in the array.
-    function showMarkers() {
-        setMapOnAll(map);
-    }
 
-    function setMapOnAll(map) {
-        
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(map);
+window.mobileAndTabletcheck = function () {
+    var check = false;
+    (function (a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true })(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
+}
+
+window.onload = window.onresize = function () {
+
+    //var left = document.getElementById('googleMap');
+
+    $('#googleMap').height($('#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane').height() + 14);
+
+    if (window.mobileAndTabletcheck()) { $('#viewInRealTimeCheckbox').css({ top: '70px' }); }
+
+    //var window_height = window.innerHeight;
+    ////console.log(left.offsetHeight);
+    ////console.log(window_height);
+    //if (left.offsetHeight < window_height) {
+    //    left.style.height = window_height - 70 + "px";
+
+    //} else { }
+
+
+}
+
+//function addPPJSMarker(lat, lng, companyName) {
+
+//    //var lat = parseFloat(serverSetting_Business_Lattitude);
+//    //var lng = parseFloat(serverSetting_Business_Longitude);
+//    var markerPosn = new google.maps.LatLng(lat, lng);
+
+//    //var companyName = serverSetting_CompanyName;
+
+//    var marker = new MarkerWithLabel({
+//        position: markerPosn,
+//        icon: icon_home,
+//        labelContent: companyName,
+//        labelAnchor: new google.maps.Point(22, 0),
+//        labelClass: "labels", // the CSS class for the label
+//        labelStyle: { opacity: 0.75 },
+//        map: map
+//    });
+
+//    marker.setMap(map);
+//} 
+
+function initialize() {
+
+    var lat = parseFloat(serverSetting_Business_Lattitude);
+    var lng = parseFloat(serverSetting_Business_Longitude);
+
+
+    //center: new google.maps.LatLng(-32.052925, 115.930010),
+
+    var mapProp = {
+        center: new google.maps.LatLng(lat, lng),
+        zoom: 11,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+    //addPPJSMarker(lat, lng, serverSetting_CompanyName);
+
+
+    google.maps.event.addListener(map, 'click', function (event) {
+        logthis(event.latLng);
+    });
+
+
+    initAutocomplete();
+
+    //this will "keep alive" the connection to the server if the browser is left open.
+    //also performs the "auto-update" logic.
+    //autoUpdateAjaxStart();    
+
+    instansiateDefaultService();
+
+
+}
+
+
+function getInfo() {
+
+    //alert($('#contentdiv').text());
+    GetLatLongObjs();
+}
+
+var retobj;
+
+function updateMarkers(result) {
+
+    retobj = result;
+}
+
+// This example adds a search box to a map, using the Google Place Autocomplete
+// feature. People can enter geographical searches. The search box will return a
+// pick list containing a mix of places and predicted search terms.
+
+function initAutocomplete() {
+
+    //var map = new google.maps.Map(document.getElementById('map'), {
+    //    center: { lat: -33.8688, lng: 151.2195 },
+    //    zoom: 13,
+    //    mapTypeId: google.maps.MapTypeId.ROADMAP
+    //});
+
+    // Create the search box and link it to the UI element.
+    var search_input_box = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(search_input_box);
+    //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function () {
+
+        searchBox.setBounds(map.getBounds());
+        if (map.getZoom() <= 11) {
+            $('.labels').hide('slow');
         }
-    }
+        else {
+            //By Ryan
+            $('.labels:not(.labels-hidden)').show('slow');
+        }
+
+    });
 
 
-    var map;
 
 
-    window.mobileAndTabletcheck = function () {
-        var check = false;
-        (function (a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true })(navigator.userAgent || navigator.vendor || window.opera);
-        return check;
-    }
+    var markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function () {
+        var places = searchBox.getPlaces();
 
-    window.onload = window.onresize = function () {
+        if (places.length == 0) {
+            return;
+        }
 
-        //var left = document.getElementById('googleMap');
-
-        $('#googleMap').height($('#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane').height() + 14);
-
-        if (window.mobileAndTabletcheck()) { $('#viewInRealTimeCheckbox').css({ top: '70px' }); }
-
-        //var window_height = window.innerHeight;
-        ////console.log(left.offsetHeight);
-        ////console.log(window_height);
-        //if (left.offsetHeight < window_height) {
-        //    left.style.height = window_height - 70 + "px";
-
-        //} else { }
-
-
-    }
-
-
-    //function addPPJSMarker(lat, lng, companyName) {
-
-    //    //var lat = parseFloat(serverSetting_Business_Lattitude);
-    //    //var lng = parseFloat(serverSetting_Business_Longitude);
-    //    var markerPosn = new google.maps.LatLng(lat, lng);
-
-    //    //var companyName = serverSetting_CompanyName;
-
-    //    var marker = new MarkerWithLabel({
-    //        position: markerPosn,
-    //        icon: icon_home,
-    //        labelContent: companyName,
-    //        labelAnchor: new google.maps.Point(22, 0),
-    //        labelClass: "labels", // the CSS class for the label
-    //        labelStyle: { opacity: 0.75 },
-    //        map: map
-    //    });
-
-    //    marker.setMap(map);
-    //} 
-
-    function initialize() {
-
-        var lat = parseFloat(serverSetting_Business_Lattitude);
-        var lng = parseFloat(serverSetting_Business_Longitude);
-
-
-        //center: new google.maps.LatLng(-32.052925, 115.930010),
-
-        var mapProp = {
-            center: new google.maps.LatLng(lat, lng),
-            zoom: 11,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
-        //addPPJSMarker(lat, lng, serverSetting_CompanyName);
-
-
-        google.maps.event.addListener(map, 'click', function (event) {
-            logthis(event.latLng);
+        // Clear out the old markers.
+        markers.forEach(function (marker) {
+            marker.setMap(null);
         });
+        markers = [];
 
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
 
-        initAutocomplete();
+        places.forEach(function (place) {
+            var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
 
-        //this will "keep alive" the connection to the server if the browser is left open.
-        //also performs the "auto-update" logic.
-        //autoUpdateAjaxStart();    
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+            }));
 
-       instansiateDefaultService();
-
-
-    }
- 
-
-    function getInfo() {
-
-        //alert($('#contentdiv').text());
-        GetLatLongObjs();
-    }
-
-    var retobj;
-
-    function updateMarkers(result) {
-
-        retobj = result;
-
-      
-    }
-
-    // This example adds a search box to a map, using the Google Place Autocomplete
-    // feature. People can enter geographical searches. The search box will return a
-    // pick list containing a mix of places and predicted search terms.
-
-    function initAutocomplete() {
-
-        //var map = new google.maps.Map(document.getElementById('map'), {
-        //    center: { lat: -33.8688, lng: 151.2195 },
-        //    zoom: 13,
-        //    mapTypeId: google.maps.MapTypeId.ROADMAP
-        //});
-    
-        // Create the search box and link it to the UI element.
-        var search_input_box = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(search_input_box);
-        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function () {
-
-            searchBox.setBounds(map.getBounds());
-            if (map.getZoom() <= 11) {
-                $('.labels').hide('slow'); 
-            } 
-            else { 
-                //By Ryan
-                $('.labels:not(.labels-hidden)').show('slow');
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
             }
-
         });
+        map.fitBounds(bounds);
+        map.setZoom(15);// Aman
+    });
 
-      
+    var pac_input = document.getElementById('pac-input');
 
+    (function pacSelectFirst(input) {
+        // store the original event binding function
+        var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
 
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function () {
-            var places = searchBox.getPlaces();
+        function addEventListenerWrapper(type, listener) {
+            // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+            // and then trigger the original listener.
+            if (type == "keydown") {
+                var orig_listener = listener;
+                listener = function (event) {
+                    var suggestion_selected = $(".pac-item-selected").length > 0;
+                    if (event.which == 13 && !suggestion_selected) {
+                        var simulated_downarrow = $.Event("keydown", {
+                            keyCode: 40,
+                            which: 40
+                        });
 
-            if (places.length == 0) {
-                return;
-            }
+                        orig_listener.apply(input, [simulated_downarrow]);
+                    }
 
-            // Clear out the old markers.
-            markers.forEach(function (marker) {
-                marker.setMap(null);
-            });
-            markers = [];
+                    if (event.which == 13) {
+                        event.returnValue = false;
+                        event.cancel = true;
+                        //return false;
+                    }
 
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
-
-            places.forEach(function (place) {
-                var icon = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25)
+                    orig_listener.apply(input, [event]);
                 };
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    icon: icon,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
-
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-            });
-            map.fitBounds(bounds);
-            map.setZoom(15);// Aman
-        });
-
-        var pac_input = document.getElementById('pac-input');
-
-        (function pacSelectFirst(input) {
-            // store the original event binding function
-            var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
-
-            function addEventListenerWrapper(type, listener) {
-                // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
-                // and then trigger the original listener.
-                if (type == "keydown") {
-                    var orig_listener = listener;
-                    listener = function (event) {
-                        var suggestion_selected = $(".pac-item-selected").length > 0;
-                        if (event.which == 13 && !suggestion_selected) {
-                            var simulated_downarrow = $.Event("keydown", {
-                                keyCode: 40,
-                                which: 40
-                            });
-
-                            orig_listener.apply(input, [simulated_downarrow]);
-                        }
-
-                        if (event.which == 13) {
-                            event.returnValue = false;
-                            event.cancel = true;
-                            //return false;
-                        }
-
-                        orig_listener.apply(input, [event]);
-                    };
-                }
-
-                _addEventListener.apply(input, [type, listener]);
             }
 
-            input.addEventListener = addEventListenerWrapper;
-            input.attachEvent = addEventListenerWrapper;
+            _addEventListener.apply(input, [type, listener]);
+        }
 
-            var autocomplete = new google.maps.places.Autocomplete(input);
+        input.addEventListener = addEventListenerWrapper;
+        input.attachEvent = addEventListenerWrapper;
 
-        })(pac_input);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+    })(pac_input);
 
 
+}
+
+//########################################################################################################################
+//########################                                                              ##################################
+//########################                                                              ##################################
+//########################                 HEAT MAP SECTION                             ##################################
+//########################                                                              ##################################
+//########################                                                              ##################################
+//########################################################################################################################
+
+var autoUpdateHeatMap = false;
+var heatMapIsAutoUpdating = false;
+var thisHeatmap;
+
+// cbAutoIncrement, btnIncrement, comboTimeSecondsMultiplier,  btnIncrement_Click
+///heatMapStartTime, cboSelectedTruck, heatMapEndTime, 
+//cbShowjourney,cbShowHeatmap,cdRadiusToggle,cbOpiacyToggle,cbGradientToggle.valueChecked
+//var autoUpdateHeatMap = false;
+//var heatMapIsAutoUpdating = false;
+//var thisHeatmap;
+
+
+
+
+
+thisHeatmap = new google.maps.visualization.HeatmapLayer({
+    data: getPoints(),
+    map: map
+});
+
+function UpdateHeatMapEndTime(setToNow) {
+
+    var secondCount = spinTimeSeconds.GetValue();
+    var secondMultiplier = parseInt(comboTimeSecondsMultiplier.GetValue());
+    var secondsToAdd = secondCount * secondMultiplier;
+    var newEndDate = new Date(heatMapEndTime.GetValue().setSeconds(secondsToAdd));
+
+    if (setToNow) { newEndDate = new Date(); }
+
+    heatMapEndTime.SetValue(newEndDate);
+    showPopupWithDate(newEndDate);
+
+}
+
+
+//function btnHeatMapSearch_Click_old() {
+
+//    var selectedTruck = cboSelectedTruck.GetValueString();
+//    var startTime = String(heatMapStartTime.date);
+//    var endTime = String(heatMapEndTime.date);
+//    //alert(selectedTruck + ', ' + startTime + ', ' + endTime)
+
+//    if (!heatMapIsAutoUpdating) {
+//        HeatMap(selectedTruck, startTime, endTime, true);
+//    } else {
+
+//        alert('You cannot view an activity whilst auto-update is ticked!')
+//    }
+
+//    //toggleHeatmap();
+//    //heatMapStartTime, cboSelectedTruck, heatMapEndTime, 
+//}
+
+
+
+
+
+//function HeatMap(selectedTruck, startTime, endTime, forceUpdate) {
+
+//    if (heatMapIsAutoUpdating || forceUpdate) {
+
+//        var param = {};
+//        param.SelectedTruck = selectedTruck;
+//        param.StartTime = startTime;
+//        param.EndTime = endTime;
+
+//        ajaxMethod("DefaultService.svc/" + 'GetHeatMapCoords',
+//                    param, heatMap_successCallBack, heatMapErrorCallback, heatMapfinallyCallback);
+
+//    } else {
+//    }
+
+//}
+
+
+var pointLLs = [];
+
+var HeatMapTrucksReturnedFromServer = {};
+
+function heatMap_successCallBack(result) {
+
+    //alert('Success!: \n' + JSON.stringify(result));
+
+    if (result.d._WasError == true) {
+        alert(result.d.ErrorMessage);
+        return null;
     }
 
-    //########################################################################################################################
-    //########################                                                              ##################################
-    //########################                                                              ##################################
-    //########################                 HEAT MAP SECTION                             ##################################
-    //########################                                                              ##################################
-    //########################                                                              ##################################
-    //########################################################################################################################
+    ///alert(result.d._Trucks);
+    HeatMapTrucksReturnedFromServer = result.d._Trucks;
 
-    var autoUpdateHeatMap = false;
-    var heatMapIsAutoUpdating = false;
-    var thisHeatmap;
+    var ll = result.d._LatLongs;
+    var googlelatlngs = [];
 
-    // cbAutoIncrement, btnIncrement, comboTimeSecondsMultiplier,  btnIncrement_Click
-    ///heatMapStartTime, cboSelectedTruck, heatMapEndTime, 
-    //cbShowjourney,cbShowHeatmap,cdRadiusToggle,cbOpiacyToggle,cbGradientToggle.valueChecked
-    //var autoUpdateHeatMap = false;
-    //var heatMapIsAutoUpdating = false;
-    //var thisHeatmap;
+    if (thisHeatmap != null) { thisHeatmap.setMap(null) };
+    thisHeatmap = null;
 
+    pointLLs = [];
 
+    //heatmap.data.length = 0;    
 
+    var googlelatlngs = [];
+
+    HeatMapTrucksReturnedFromServer.forEach(function (item, index) {
+
+        if (item.ShowJourneyOnMap) {
+
+            item.JourneyLatLngs.forEach(function (entry, index) {
+
+                googlelatlngs.push(new google.maps.LatLng(entry.Lat, entry.Lng));
+                // console.debug(entry.Lat);
+            })
+        }
+    });
 
 
     thisHeatmap = new google.maps.visualization.HeatmapLayer({
-        data: getPoints(),
+        data: googlelatlngs,
         map: map
     });
 
-    function UpdateHeatMapEndTime(setToNow) {
+    applyActionViewerOptions();
 
-        var secondCount = spinTimeSeconds.GetValue();
-        var secondMultiplier = parseInt(comboTimeSecondsMultiplier.GetValue());
-        var secondsToAdd = secondCount * secondMultiplier;
-        var newEndDate = new Date(heatMapEndTime.GetValue().setSeconds(secondsToAdd));
-
-        if (setToNow) { newEndDate = new Date(); }
-
-        heatMapEndTime.SetValue(newEndDate);
-        showPopupWithDate(newEndDate);
-
-    }
-
-
-    function btnHeatMapSearch_Click_old() {
-
-        var selectedTruck = cboSelectedTruck.GetValueString();
-        var startTime = String(heatMapStartTime.date);
-        var endTime = String(heatMapEndTime.date);
-        //alert(selectedTruck + ', ' + startTime + ', ' + endTime)
-
-        if (!heatMapIsAutoUpdating) {
-            HeatMap(selectedTruck, startTime, endTime, true);
-        } else {
-
-            alert('You cannot view an activity whilst auto-update is ticked!')
-        }
-
-        //toggleHeatmap();
-        //heatMapStartTime, cboSelectedTruck, heatMapEndTime, 
-    }
-
-
-
-
-
-    //function HeatMap(selectedTruck, startTime, endTime, forceUpdate) {
-
-    //    if (heatMapIsAutoUpdating || forceUpdate) {
-
-    //        var param = {};
-    //        param.SelectedTruck = selectedTruck;
-    //        param.StartTime = startTime;
-    //        param.EndTime = endTime;
-
-    //        ajaxMethod("DefaultService.svc/" + 'GetHeatMapCoords',
-    //                    param, heatMap_successCallBack, heatMapErrorCallback, heatMapfinallyCallback);
-
-    //    } else {
-    //    }
-
+    //from fleetmap.js
+    //
+    //var arrayLength = selectedTrucks.length;
+    //for (var i = 0; i < arrayLength; i++) {
+    //    alert(selectedTrucks[i].value);
+    //    //Do something
     //}
-
-
-    var pointLLs = [];
-
-    var HeatMapTrucksReturnedFromServer = {};
-
-    function heatMap_successCallBack(result) {
-         
-        //alert('Success!: \n' + JSON.stringify(result));
-
-        if (result.d._WasError == true) {
-            alert(result.d.ErrorMessage);
-            return null;
-        }
-
-        ///alert(result.d._Trucks);
-        HeatMapTrucksReturnedFromServer = result.d._Trucks;
-
-        var ll = result.d._LatLongs;
-        var googlelatlngs = [];
-
-        if (thisHeatmap != null) { thisHeatmap.setMap(null) };
-        thisHeatmap = null;
-
-        pointLLs = [];
-
-        //heatmap.data.length = 0;    
-
-        var googlelatlngs = [];
-       
-        HeatMapTrucksReturnedFromServer.forEach(function (item, index) {
-
-            if (item.ShowJourneyOnMap) {
-
-                item.JourneyLatLngs.forEach(function (entry, index) {
-
-                    googlelatlngs.push(new google.maps.LatLng(entry.Lat, entry.Lng));
-                    // console.debug(entry.Lat);
-                })
+    var r = { d: { _Trucks: [] } };
+    var arrayLength = result.d._Trucks.length;
+    for (var i = 0; i < arrayLength; i++) {
+        //alert(result.d._Trucks[i].ID);
+        var arrayLengthx = selectedTrucks.length;
+        var flagdelete = "1";
+        for (var j = 0; j < arrayLengthx; j++) {
+            //alert(selectedTrucks[i].value);
+            if (result.d._Trucks[i].ID == selectedTrucks[j].value) {
+                flagdelete = '0';
+                break;
             }
-        });
-
-
-        thisHeatmap = new google.maps.visualization.HeatmapLayer({
-            data: googlelatlngs,
-            map: map           
-        });
-
-        applyActionViewerOptions();
-
-        //from fleetmap.js
-        //
-        //var arrayLength = selectedTrucks.length;
-        //for (var i = 0; i < arrayLength; i++) {
-        //    alert(selectedTrucks[i].value);
-        //    //Do something
-        //}
-        var r = { d: { _Trucks: [] } };
-        var arrayLength = result.d._Trucks.length;
-        for (var i = 0; i < arrayLength; i++) {
-            //alert(result.d._Trucks[i].ID);
-            var arrayLengthx = selectedTrucks.length;
-            var flagdelete = "1";
-            for (var j = 0; j < arrayLengthx; j++) {
-                //alert(selectedTrucks[i].value);
-                if(result.d._Trucks[i].ID==selectedTrucks[j].value){
-                    flagdelete = '0';
-                    break;
-                }
-                //Do something
-            }
-            $.extend(result.d._Trucks[i], { isHidden: flagdelete });
-            //if (flagdelete == 1) {
-            //    //delete result.d._Trucks[i];
-            //    //result.d._Trucks[i].lat = '0.0';
-            //    //result.d._Trucks[i].lng = '0.0';
-            //}
             //Do something
         }
-        
-        upsertMapTrucks(result);
-        
-        //centre on the truck were concentrating on 
-        var centreOnVan = cbFollowTruck.GetChecked();
-        //if (centreOnVan) centreInOnTruck(result.d._DeviceID);
+        $.extend(result.d._Trucks[i], { isHidden: flagdelete });
+        //if (flagdelete == 1) {
+        //    //delete result.d._Trucks[i];
+        //    //result.d._Trucks[i].lat = '0.0';
+        //    //result.d._Trucks[i].lng = '0.0';
+        //}
+        //Do something
     }
 
-    function centreInOnTruck(ID) {
+    upsertMapTrucks(result);
 
-        var foundMarker = {};
+    //centre on the truck were concentrating on 
+    var centreOnVan = cbFollowTruck.GetChecked();
+    //if (centreOnVan) centreInOnTruck(result.d._DeviceID);
+}
 
-        //Find the truck if it exists in the markers array
-        markers.forEach(function (entry) {
-            if (entry.ID == ID) {
-                foundMarker = entry;
+function centreInOnTruck(ID) {
+
+    var foundMarker = {};
+
+    //Find the truck if it exists in the markers array
+    markers.forEach(function (entry) {
+        if (entry.ID == ID) {
+            foundMarker = entry;
+        }
+    })
+
+
+    try {
+        var latlng = foundMarker.getPosition();
+        map.setCenter(latlng);
+    }
+    catch (e) {
+        //TODO: swallows exception here, should bubble up or show user
+    }
+}
+
+function heatMapErrorCallback(result) {
+    alert('ERROR\n' + JSON.stringify(result));
+}
+
+function heatMapfinallyCallback(result) {
+
+    //alert('finally');
+}
+
+function applyActionViewerOptions() {
+
+    toggleHeatmap();
+    drawPathTestFromGlobalObject();
+    changeRadius();
+    changeOpacity();
+
+}
+
+//cbShowjourney
+//cbShowHeatmap
+//cdRadiusToggle
+//cbOpiacyToggle
+//cbGradientToggle.valueChecked
+
+function toggleHeatmap() {
+    //alert('toggles');
+    if (thisHeatmap == null) return null;
+
+    if (cbShowHeatmap.GetChecked() == true) {
+        thisHeatmap.setMap(map);
+    } else {
+        thisHeatmap.setMap(null);
+    }
+
+    //thisHeatmap.setMap(cbShowHeatmap.valueChecked == false ? null : map);
+}
+
+function changeGradient() {
+
+    if (thisHeatmap == null) return null;
+
+    var gradient = [
+     'rgba(0, 255, 255, 0)',
+     'rgba(0, 255, 255, 1)',
+     'rgba(0, 191, 255, 1)',
+     'rgba(0, 127, 255, 1)',
+     'rgba(0, 63, 255, 1)',
+     'rgba(0, 0, 255, 1)',
+     'rgba(0, 0, 223, 1)',
+     'rgba(0, 0, 191, 1)',
+     'rgba(0, 0, 159, 1)',
+     'rgba(0, 0, 127, 1)',
+     'rgba(63, 0, 91, 1)',
+     'rgba(127, 0, 63, 1)',
+     'rgba(191, 0, 31, 1)',
+     'rgba(255, 0, 0, 1)'
+    ]
+    thisHeatmap.set('gradient', !cbGradientToggle.GetChecked() ? null : gradient);
+}
+
+
+
+function changeRadius() {
+
+    if (thisHeatmap == null) return null;
+
+    thisHeatmap.set('radius', !cdRadiusToggle.GetChecked() ? null : 20);
+}
+
+function changeOpacity() {
+
+    if (thisHeatmap == null) return null;
+
+    thisHeatmap.set('opacity', !cbOpiacyToggle.GetChecked() ? null : 1);
+}
+
+
+
+// Heatmap data (test): 500 Points
+function getPoints() {
+    return [
+      new google.maps.LatLng(37.782551, -122.445368),
+      new google.maps.LatLng(37.782745, -122.444586),
+      new google.maps.LatLng(37.782842, -122.443688),
+      new google.maps.LatLng(37.782919, -122.442815)
+    ];
+}
+
+
+//########################################################################################################################
+//########################                                                              ##################################
+//########################                                                              ##################################
+//########################                 initialization                               ##################################
+//########################                                                              ##################################
+//########################                                                              ##################################
+//########################################################################################################################
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+//$(document).ready(function () { initialize(); })
+
+// Vehicle viewer on Map  
+function dgvVehicles_SelectionChanged(s, e) {
+    s.GetSelectedFieldValues("DeviceID", GetSelectedFieldValuesCallback);
+}
+function GetSelectedFieldValuesCallback(IDs) { 
+    if (IDs != "") {
+        var len = Object.keys(IDs).length;
+        if (len > 0) { 
+
+            for (var i = 0; i < markers.length; i++) {
+                if (IDs.indexOf(markers[i].ID) ==  -1)
+                {
+                    markers[i].setMap(map);
+                } 
+                for (var m = 0; m < IDs.length; m++) {
+                    if (markers[i].ID == IDs[m]) {
+                        markers[i].setMap(null);
+                        //markers[i].set('labelContent', null);
+                        //markers[i].set('labelAnchor', null);
+                    } 
+                }
             }
-        })
-
-
-        try {
-            var latlng = foundMarker.getPosition();
-            map.setCenter(latlng);
-        }
-        catch (e) {
-            //TODO: swallows exception here, should bubble up or show user
+        } 
+    } 
+    else {
+        for (var k = 0; k < markers.length; k++) {
+            markers[k].setMap(map);
         }
     }
 
-    function heatMapErrorCallback(result) {
-        alert('ERROR\n' + JSON.stringify(result));
-    }
-
-    function heatMapfinallyCallback(result) {
-
-        //alert('finally');
-    }
-
-    function applyActionViewerOptions() {
-
-        toggleHeatmap();
-        drawPathTestFromGlobalObject();
-        changeRadius();
-        changeOpacity();
-
-    }
-
-    //cbShowjourney
-    //cbShowHeatmap
-    //cdRadiusToggle
-    //cbOpiacyToggle
-    //cbGradientToggle.valueChecked
-
-    function toggleHeatmap() {
-        //alert('toggles');
-        if (thisHeatmap == null) return null;
-
-        if (cbShowHeatmap.GetChecked() == true) {
-            thisHeatmap.setMap(map);
-        } else {
-            thisHeatmap.setMap(null);
-        }
-
-        //thisHeatmap.setMap(cbShowHeatmap.valueChecked == false ? null : map);
-    }
-
-    function changeGradient() {
-
-        if (thisHeatmap == null) return null;
-
-        var gradient = [
-         'rgba(0, 255, 255, 0)',
-         'rgba(0, 255, 255, 1)',
-         'rgba(0, 191, 255, 1)',
-         'rgba(0, 127, 255, 1)',
-         'rgba(0, 63, 255, 1)',
-         'rgba(0, 0, 255, 1)',
-         'rgba(0, 0, 223, 1)',
-         'rgba(0, 0, 191, 1)',
-         'rgba(0, 0, 159, 1)',
-         'rgba(0, 0, 127, 1)',
-         'rgba(63, 0, 91, 1)',
-         'rgba(127, 0, 63, 1)',
-         'rgba(191, 0, 31, 1)',
-         'rgba(255, 0, 0, 1)'
-        ]
-        thisHeatmap.set('gradient', !cbGradientToggle.GetChecked() ? null : gradient);
-    }
 
 
-
-    function changeRadius() {
-
-        if (thisHeatmap == null) return null;
-
-        thisHeatmap.set('radius', !cdRadiusToggle.GetChecked() ? null : 20);
-    }
-
-    function changeOpacity() {
-
-        if (thisHeatmap == null) return null;
-
-        thisHeatmap.set('opacity', !cbOpiacyToggle.GetChecked() ? null : 1);
-    }
-
-
-
-    // Heatmap data (test): 500 Points
-    function getPoints() {
-        return [
-          new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782745, -122.444586),
-          new google.maps.LatLng(37.782842, -122.443688),
-          new google.maps.LatLng(37.782919, -122.442815)
-        ];
-    }
-
-
-    //########################################################################################################################
-    //########################                                                              ##################################
-    //########################                                                              ##################################
-    //########################                 initialization                               ##################################
-    //########################                                                              ##################################
-    //########################                                                              ##################################
-    //########################################################################################################################
-
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-
-    //$(document).ready(function () { initialize(); })
-
+}
