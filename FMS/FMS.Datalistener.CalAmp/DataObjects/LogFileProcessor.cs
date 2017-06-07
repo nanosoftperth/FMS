@@ -29,6 +29,8 @@ namespace FMS.Datalistener.CalAmp.DataObjects
                     try
                     {
 
+                        Console.WriteLine("file:{0}", filename);
+
                         string filecontents = System.IO.File.ReadAllText(filename);
 
                         List<string> geoCoords = filecontents.Split(',').ToList();
@@ -60,7 +62,7 @@ namespace FMS.Datalistener.CalAmp.DataObjects
                                 {
                                     string[] stArr = s2.Split('=');
                                     dict.Add(stArr[0], stArr[1]);
-                                    Console.WriteLine(s2);
+                                    //Console.WriteLine(s2);
                                 }
 
                                 truckid = dict["truckid"];
@@ -69,10 +71,15 @@ namespace FMS.Datalistener.CalAmp.DataObjects
                                 time = DateTime.Parse(dict["time"].Replace("%20", " "));
 
                                 wasPArsedOK = true;
+
+
+
                             }
 
                             catch (Exception ex)
                             {
+
+                                Console.WriteLine("exceptoin caused:{0}", ex.Message);
                                 //if it wont parse, then ignore (who cares, could be anything), just log locally
                                 //we dont want the reaspberry pi stalling. It has done its job.
                             }
@@ -80,14 +87,18 @@ namespace FMS.Datalistener.CalAmp.DataObjects
                             if (wasPArsedOK == true && truckid.ToLower() != "should never = this")
                             { apiController.Get(truckid, lat, lng, time.ToString("dd/MMM/yyyy HH:mm:ss")); }
 
-                            System.IO.File.Move(filename, filename + ".processed");
+
 
                         }
 
-                    }
-                    catch (Exception)
-                    {
 
+                        System.IO.File.Move(filename, filename + ".processed");
+                    }
+
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("exception: {0}", ex.Message);
                         //nop
                     }
                 }
