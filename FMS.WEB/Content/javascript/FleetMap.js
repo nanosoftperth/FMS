@@ -1446,6 +1446,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 // Vehicle viewer on Map  
 function dgvVehicles_SelectionChanged(s, e) {
+
     s.GetSelectedFieldValues("DeviceID", GetSelectedFieldValuesCallback);
 }
 function GetSelectedFieldValuesCallback(IDs) { 

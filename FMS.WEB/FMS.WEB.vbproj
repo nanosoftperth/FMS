@@ -356,6 +356,9 @@
       <DependentUpon>DevicePropertyDisplay.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="ImageHandler.ashx.vb">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="IWebService_Uniqco.vb" />
     <Compile Include="Main_Test.aspx.designer.vb">
       <DependentUpon>Main_Test.aspx</DependentUpon>
@@ -1021,6 +1024,7 @@
     <Content Include="Content\contextMenu\jquery.contextMenu.min.css.map" />
     <Content Include="Content\contextMenu\jquery.contextMenu.min.js.map" />
     <Content Include="Content\QueryParser.ashx" />
+    <Content Include="ImageHandler.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

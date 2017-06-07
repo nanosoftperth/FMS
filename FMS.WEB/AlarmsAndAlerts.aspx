@@ -115,9 +115,7 @@
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
                                     </PropertiesComboBox>
-                                </dx:GridViewDataComboBoxColumn>
-
-
+                                </dx:GridViewDataComboBoxColumn>  
                                 <dx:GridViewDataTextColumn FieldName="ApplicationAlertTypeID" VisibleIndex="10" Visible="False">
                                 </dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="11" Visible="False">
@@ -439,7 +437,6 @@
                             Theme="SoftOrange">
 
                             <SettingsPager Visible="False"></SettingsPager>
-
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
 
                             <SettingsDataSecurity AllowDelete="False" AllowInsert="False" AllowEdit="False"></SettingsDataSecurity>

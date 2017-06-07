@@ -75,6 +75,10 @@ Public Class FleetMap
 
         If Not ClientScript.IsClientScriptBlockRegistered("1") Then ClientScript.RegisterStartupScript(Me.[GetType](), "1", loopStr)
 
+        dgvVehicles.Selection.SelectAll()
+
+
+
     End Sub
 
     ''' <summary>
@@ -159,5 +163,16 @@ Public Class FleetMap
         lb.TextField = "ComboBoxDisplay"
         lb.ValueField = "ID"
         lb.DataSource = truckLst
+    End Sub
+    Protected Sub dgvVehicles_DataBound(sender As Object, e As EventArgs)
+         
+        'For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+        '    Dim isSelected As Boolean = Convert.ToBoolean(dgvVehicles.GetRowValues(i, "IsSelected"))
+        '    If isSelected Then
+        '        dgvVehicles.Selection.SelectRow(i)
+        '    End If
+
+        'Next
+         
     End Sub
 End Class

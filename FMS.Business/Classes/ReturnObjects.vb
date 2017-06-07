@@ -293,6 +293,8 @@ Public Class ClientServerRoundRobin_ReturnObject
     Public Property getAllTrucksAtSpecificTime As Boolean
 
 
+    Public Property vehicleViewer As Boolean
+
     ''' <summary>
     ''' for serialization only
     ''' </summary>
