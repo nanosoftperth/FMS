@@ -52,11 +52,19 @@ Namespace Controllers
         ''' <returns>List of Can message definition</returns>
         <HttpGet>
         Public Function GetCanMessage(deviceID As String) As List(Of CAN_MessageDefinition)
-
             Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTags()
-
         End Function
 
+        ' GET api/vehicles/GetCanMessageValue/5
+        ''' <summary>
+        ''' Get available CAN Message Value by deviceID
+        ''' </summary>
+        ''' <param name="deviceID">The device Id</param>
+        ''' <returns>List of Can values and message definition</returns>
+        <HttpGet>
+        Public Function GetCanMessageValue(deviceID As String) As List(Of CanValueMessageDefinition)
+            Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValue()
+        End Function
 
         ''' <summary>
         ''' Get CAN data point by vehicleID, standard, SPN, startdate and enddate

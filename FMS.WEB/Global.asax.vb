@@ -10,6 +10,12 @@ Public Class Global_asax
     Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
         AddHandler DevExpress.Web.ASPxWebControl.CallbackError, AddressOf Application_Error
 
+
+        RouteTable.Routes.MapHttpRoute(name:="MyAPIDefault",
+                                       routeTemplate:="api/{controller}/{Action}",
+                                       defaults:=New With { _
+                                             Key .id = System.Web.Http.RouteParameter.[Optional] _
+                                         })
         RouteTable.Routes.MapHttpRoute(name:="MyAPI",
                                        routeTemplate:="api/{controller}/{id}",
                                        defaults:=New With { _
@@ -20,6 +26,8 @@ Public Class Global_asax
                                        defaults:=New With { _
                                              Key .id = System.Web.Http.RouteParameter.[Optional] _
                                          })
+
+
 
     End Sub
 

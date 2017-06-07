@@ -1,6 +1,7 @@
 ﻿Imports System.Net.Http
 Imports System.Net.Http.Headers
 Imports Newtonsoft.Json
+Imports FMS.Business.DataObjects
 
 Public Class CanBusPropertyDisplay
     Inherits System.Web.UI.Page
@@ -28,7 +29,7 @@ Public Class CanBusPropertyDisplay
         Dim response As HttpResponseMessage = client.GetAsync(url).Result
 
         If response.IsSuccessStatusCode Then
-            Dim canMessDef As CanMessageDefinition = JsonConvert.DeserializeObject(Of CanMessageDefinition)(response.Content.ReadAsStringAsync.Result().ToString())
+            Dim canMessDef As CanValueMessageDefinition = JsonConvert.DeserializeObject(Of CanValueMessageDefinition)(response.Content.ReadAsStringAsync.Result().ToString())
             txtStandard.Text = canMessDef.MessageDefinition.Standard
             txtPGN.Text = canMessDef.MessageDefinition.PGN
             txtSPN.Text = canMessDef.MessageDefinition.SPN
@@ -46,26 +47,4 @@ Public Class CanBusPropertyDisplay
         End If
     End Sub
 
-End Class
-Public Class MessageDefinition
-    Public Property Standard As String
-    Public Property PGN As String
-    Public Property SPN As Integer
-    Public Property Acronym As Object
-    Public Property Description As String
-    Public Property Resolution As Object
-    Public Property Units As Object
-    Public Property offset As Integer
-    Public Property pos As String
-    Public Property SPN_Length As String
-    Public Property PGN_Length As Integer
-    Public Property Data_Range As Object
-    Public Property Resolution_Multiplier As Double
-    Public Property pos_start As Double
-    Public Property pos_end As Double
-End Class
-
-Public Class CanMessageDefinition
-    Public Property MessageDefinition As MessageDefinition
-    Public Property CanValues As Object()
 End Class
