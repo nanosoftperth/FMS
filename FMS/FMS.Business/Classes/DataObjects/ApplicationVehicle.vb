@@ -170,6 +170,46 @@
 
         End Function
 
+        Public Function GetAvailableCANTagsValue() As List(Of DataObjects.CanValueMessageDefinition)
+
+            Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
+            Dim lstNew As New List(Of DataObjects.CanValueMessageDefinition)
+
+            'search for all the pi points which exist for the device
+            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
+                                                        String.Format("tag = 'can*{0}*'", DeviceID))
+            Dim cnt As Integer = plst.Count
+
+            For Each p As PISDK.PIPoint In plst
+
+                Try
+
+                    Dim ppname As String = p.Name
+
+                    'get the spn number
+                    'dim replacestr as string = string.format("can_{0}_", deviceid)
+                    'dim pgn as integer = ppname.replace(replacestr, "")
+                    Dim pgn As Integer = ppname.Split("_").Reverse()(0)
+                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, Me.CAN_Protocol_Type))
+
+                Catch ex As Exception
+                    Dim msg As String = ex.Message
+                End Try
+            Next
+
+            Dim sd As DateTime = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
+            Dim ed As DateTime = Date.Now.ToString("MM/dd/yyyy")
+            For Each canmessdef As CAN_MessageDefinition In lst
+                Dim canValue As New CanValueMessageDefinition()
+                Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithDataByDeviceId(canmessdef.SPN, DeviceID, canmessdef.Standard, sd, ed)
+                CanValue.MessageDefinition = canmessdef
+                canValue.CanValues = PointWithData.CanValues
+                lstNew.Add(canValue)
+            Next
+
+            Return lstNew
+
+        End Function
 
 #End Region
 
