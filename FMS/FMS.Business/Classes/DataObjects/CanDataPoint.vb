@@ -37,7 +37,7 @@
             Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
                                                                                 retobj.MessageDefinition.PGN)
             Try
-            
+
                 Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
 
                 'get data from pi for the time period

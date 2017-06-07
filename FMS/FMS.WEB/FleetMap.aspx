@@ -19,7 +19,12 @@
 
     <link href="Content/Accoridan.css" rel="stylesheet" />
 
-   
+
+    <style  type ="text/css">  
+        .dxgvSelectedRow_SoftOrange {
+        background:#EBEBEB !important;
+        } 
+    </style>
 
     <dx:ASPxPanel DefaultButton="ASPxButton1"
         ID="LeftPane"
@@ -410,47 +415,54 @@
                                 DataSourceID="odsVehicles"
                                 EnableTheming="True"
                                 KeyFieldName="ApplicationVehileID"
-                                SettingsBehavior-ConfirmDelete="true" 
-                                Theme="SoftOrange">
-                                   <Columns>
-                                           <dx:GridViewDataTextColumn FieldName="ApplicationVehileID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
-                                            </dx:GridViewDataTextColumn>
-                                           <dx:GridViewDataTextColumn FieldName="DeviceID" ShowInCustomizationForm="True" Visible="False" >
-                                            </dx:GridViewDataTextColumn>
-                                       <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0"  Caption="Hide">  
-                                       </dx:GridViewCommandColumn>
-                                        <dx:GridViewDataComboBoxColumn ShowInCustomizationForm="True" VisibleIndex="3" Caption="Icon" FieldName="ApplicationImageID">
-                                                <PropertiesComboBox ImageUrlField="ImgUrl" DataSourceID="odsMapMarker" TextField="Name" ValueField="ApplicationImageID">
-                                                    <ItemImage Height="24px" Width="23px" />
-                                                    <ClearButton Visibility="Auto">
-                                                    </ClearButton>
-                                                </PropertiesComboBox>
-                                            </dx:GridViewDataComboBoxColumn>
-                                       <dx:GridViewDataTextColumn FieldName="Name" ShowInCustomizationForm="True">
-                                       </dx:GridViewDataTextColumn>
-                                          <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
-                                            </dx:GridViewDataTextColumn>
-                                       <dx:GridViewDataTextColumn FieldName="Registration" ShowInCustomizationForm="True" VisibleIndex="6">
-                                       </dx:GridViewDataTextColumn>
-                                  </Columns>
+                                SettingsBehavior-ConfirmDelete="true"
+                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width:100%">
+                                <Settings ShowFilterRow="True" />
+                                 <SettingsPager PageSize="15"></SettingsPager>
+                                <Columns>
+                                    <dx:GridViewDataTextColumn FieldName="ApplicationVehileID" ShowInCustomizationForm="True" Visible="False">
+                                        <Settings AllowAutoFilter="False" />
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="DeviceID" ShowInCustomizationForm="True" Visible="False">
+                                        <Settings AllowAutoFilter="False" />
+                                    </dx:GridViewDataTextColumn>  
+                                 
+                                    <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption="Show"  >
+                                    </dx:GridViewCommandColumn>
+                                    <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle">
+                                        <DataItemTemplate>
+                                            <div style="width: 100%">
+                                                <div style="width: 30%; display:inline;">
+                                                     <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="22px" Width="22px" /> 
+                                                </div>
+                                                <div style="width: 75%; float: right; line-height:22px;">
+                                                    <%#Eval("Name")%>
+                                                </div>
+                                            </div> 
+                                        </DataItemTemplate>
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False">
+                                        <Settings AllowAutoFilter="False" />
+                                    </dx:GridViewDataTextColumn>
+                                </Columns>
                                 <ClientSideEvents SelectionChanged="dgvVehicles_SelectionChanged" />
                             </dx:ASPxGridView>
                         </article>
 
                         <!-- DataSource  -->
-                          <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
-                                        <SelectParameters>
-                                            <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
-                                            <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
-                                        </SelectParameters>
-                                    </asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
+                            <SelectParameters>
+                                <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
+                                <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
 
-                          <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
-                                        <SelectParameters>
-                                            <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
-                                        </SelectParameters>
-                          </asp:ObjectDataSource>
-                    </div>  
+                        <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
+                            <SelectParameters>
+                                <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </div>
 
                     <!---End Vehicle Viewer tab  -->
                     <asp:ObjectDataSource ID="odsTrucks"
@@ -625,10 +637,8 @@
                                             AutoGenerateColumns="False"
                                             DataSourceID="odsGeoFences"
                                             ClientInstanceName="dgvGeoFenceSummary">
-
                                             <ClientSideEvents
                                                 CustomButtonClick="function(s,e){dgvGeoFenceSummary_CustomButtonClick(s,e);}" />
-
                                             <SettingsPager PageSize="6">
                                             </SettingsPager>
 
@@ -1069,6 +1079,21 @@
 
     </dx:ASPxGlobalEvents>
 
- 
-        
+
+    <script>
+
+        function Get(id)
+        {
+            if ($("#" + id).is(':checked')) {
+                alert('Checked');
+                 
+
+            }
+            else
+            {
+                alert("UnChecked!");
+            }
+        }
+    </script>
+
 </asp:Content>

@@ -101,6 +101,12 @@
 
 #Region "Get methods"
 
+ 
+        Public Shared Function GetVehicleImageFromID(applicationImageid As Guid) As DataObjects.ApplicationImage  
+            Return SingletonAccess.FMSDataContextNew.ApplicationImages. _
+                        Where(Function(y) y.ApplicationImageID = applicationImageid).Select(Function(x) _
+                                                            New DataObjects.ApplicationImage(x)).SingleOrDefault
+        End Function
 
 
         Public Shared Function GetAllImages(applicationid As Guid, type As String)
