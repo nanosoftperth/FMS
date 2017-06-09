@@ -197,11 +197,9 @@
                 End Try
             Next
 
-            Dim sd As DateTime = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
-            Dim ed As DateTime = Date.Now.ToString("MM/dd/yyyy")
             For Each canmessdef As CAN_MessageDefinition In lst
                 Dim canValue As New CanValueMessageDefinition()
-                Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithDataByDeviceId(canmessdef.SPN, DeviceID, canmessdef.Standard, sd, ed)
+                Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceIdBy(canmessdef.SPN, DeviceID, canmessdef.Standard)
                 CanValue.MessageDefinition = canmessdef
                 canValue.CanValues = PointWithData.CanValues
                 lstNew.Add(canValue)
