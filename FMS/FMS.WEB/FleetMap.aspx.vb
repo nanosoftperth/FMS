@@ -1,5 +1,7 @@
 ﻿Imports FMS.Business.DataObjects.FeatureListConstants
 Imports FMS.Business
+Imports DevExpress.Web
+
 Public Class FleetMap
     Inherits System.Web.UI.Page
 
@@ -75,7 +77,7 @@ Public Class FleetMap
 
         If Not ClientScript.IsClientScriptBlockRegistered("1") Then ClientScript.RegisterStartupScript(Me.[GetType](), "1", loopStr)
 
-        dgvVehicles.Selection.SelectAll()
+
 
 
 
@@ -165,14 +167,42 @@ Public Class FleetMap
         lb.DataSource = truckLst
     End Sub
     Protected Sub dgvVehicles_DataBound(sender As Object, e As EventArgs)
-         
-        'For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
-        '    Dim isSelected As Boolean = Convert.ToBoolean(dgvVehicles.GetRowValues(i, "IsSelected"))
-        '    If isSelected Then
-        '        dgvVehicles.Selection.SelectRow(i)
-        '    End If
 
+        'For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+        '    'If dgvVehicles.Selection.IsRowSelected(i) Then
+        '    dgvVehicles.Selection.SelectRow(i)
+        '    'End If
+        'Next 
+
+        'Dim gridView As ASPxGridView = TryCast(sender, ASPxGridView)
+        'Dim i As Integer = 0
+        'Do While i < gridView.VisibleRowCount
+        '    'If Not Convert.ToString(gridView.KeyFieldName) = "ApplicationVehileID" Then
+        '    Dim id As Integer = Convert.ToInt32(gridView.GetRowValues(i, Convert.ToString(gridView.KeyFieldName)))
+        '    If id Mod 2 = 0 Then
+        '        gridView.Selection.SelectRow(i)
+        '    End If
+        '    i += 1
+        '    'End If 
+        'Loop
+
+        'For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+
+        'Dim keyValue As Integer = Convert.ToInt32(dgvVehicles.GetRowValues(i, dgvVehicles.KeyFieldName))
+        'Dim visibleIndex As Integer = dgvVehicles.FindVisibleIndexByKeyValue(keyValue)
+
+        'If visibleIndex = 1 Then
+        '    dgvVehicles.Selection.SelectRow(visibleIndex)
+        'End If
+        'dgvVehicles.Selection.SetSelection(i, True)
         'Next
-         
+    End Sub
+    Protected Sub dgvVehicles_PreRender(sender As Object, e As EventArgs)
+
+        For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+            'If dgvVehicles.Selection.IsRowSelected(i) Then
+            dgvVehicles.Selection.SelectRow(i)
+            'End If
+        Next
     End Sub
 End Class

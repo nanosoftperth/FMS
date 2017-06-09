@@ -782,7 +782,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         labelClass: "labels", // the CSS class for the label
         labelStyle: { opacity: 0.75 },
         zIndex: 9999999,
-        truckName:vehicleName
+        truckName: vehicleName
     });
 
     marker.DeviceID = markerID;
@@ -1437,44 +1437,92 @@ function getPoints() {
 //########################                                                              ##################################
 //########################                                                              ##################################
 //########################################################################################################################
-
-
+ 
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
 //$(document).ready(function () { initialize(); })
 
 // Vehicle viewer on Map  
-function dgvVehicles_SelectionChanged(s, e) {
-
+function dgvVehicles_SelectionChanged(s, e) {  
     s.GetSelectedFieldValues("DeviceID", GetSelectedFieldValuesCallback);
 }
-function GetSelectedFieldValuesCallback(IDs) { 
-    if (IDs != "") {
-        var len = Object.keys(IDs).length;
-        if (len > 0) { 
 
-            for (var i = 0; i < markers.length; i++) {
-                if (IDs.indexOf(markers[i].ID) ==  -1)
-                {
-                    markers[i].setMap(map);
-                } 
-                for (var m = 0; m < IDs.length; m++) {
-                    if (markers[i].ID == IDs[m]) {
-                        markers[i].setMap(null);
-                        //markers[i].set('labelContent', null);
-                        //markers[i].set('labelAnchor', null);
-                    } 
-                }
+function GetSelectedFieldValuesCallback(IDs)
+{  
+        if (IDs == "") {
+            for (var k = 0; k < markers.length; k++) {
+                markers[k].setMap(null);
             }
-        } 
-    } 
-    else {
-        for (var k = 0; k < markers.length; k++) {
-            markers[k].setMap(map);
         }
-    }
-
-
-
+        else { 
+            var len = Object.keys(IDs).length;
+            if (len > 0) {
+                for (var i = 0; i < markers.length; i++) { 
+                    if (IDs.indexOf(markers[i].ID) == -1) { 
+                        markers[i].setMap(null);
+                    }
+                    for (var m = 0; m < IDs.length; m++) {
+                        if (markers[i].ID == IDs[m]) {
+                            markers[i].setMap(map);
+                        }
+                    }
+                }
+        }
+    }  
 }
+ 
+    //function GetSelectedFieldValuesCallback(IDs) {
+
+    //    if (IDs == "") {
+    //        for (var k = 0; k < markers.length; k++) {
+    //            markers[k].setMap(null);
+    //        }
+    //    }
+    //    else {
+    //        alert(IDs);
+    //        var len = Object.keys(IDs).length;
+    //        if (len > 0) {
+    //            for (var i = 0; i < markers.length; i++) {
+    //                if (IDs.indexOf(markers[i].ID) == -1) {
+                     
+    //                    markers[i].setMap(null);
+    //                }
+    //                for (var m = 0; m < IDs.length; m++) {
+    //                    if (markers[i].ID == IDs[m]) {
+    //                        markers[i].setMap(map);
+    //                    }
+    //                }
+    //            }
+    //    }
+    //}
+
+    //alert(IDs);
+    //if (IDs != "") {
+    //    var len = Object.keys(IDs).length;
+    //    if (len > 0) {  
+    //        for (var i = 0; i < markers.length; i++) {
+    //            if (IDs.indexOf(markers[i].ID) ==  -1)
+    //            {
+    //                markers[i].setMap(map);
+    //            } 
+    //            for (var m = 0; m < IDs.length; m++) {
+    //                if (markers[i].ID == IDs[m]) {
+    //                    markers[i].setMap(null);                       
+    //                } 
+    //            }
+    //        }
+    //    } 
+    //} 
+    //else {
+    //    for (var k = 0; k < markers.length; k++) {
+    //        markers[k].setMap(map);
+    //    }
+    //} 
+    //}
+
+    //function OnGetSelectedFieldValues(selectedValues) {
+    //    alert(selectedValues);
+    //} 
+ 
+ 

@@ -22,8 +22,12 @@
 
     <style  type ="text/css">  
         .dxgvSelectedRow_SoftOrange {
+        background:#FFFFFF !important;
+        }
+
+        .dxgvInlineEditRow_SoftOrange, .dxgvDataRow_SoftOrange {
         background:#EBEBEB !important;
-        } 
+        }
     </style>
 
     <dx:ASPxPanel DefaultButton="ASPxButton1"
@@ -180,7 +184,7 @@
                                                         </ClearButton>
                                                     </TimeEditProperties>
                                                 </TimeSectionProperties>
-                                                <ClientSideEvents ButtonClick="function(s, e) {
+                              <ClientSideEvents ButtonClick="function(s, e) {
 	dateedit_Click(s,e);
 }"
                                                     CalendarCustomDisabledDate="function(s, e) {
@@ -263,7 +267,7 @@
                                                 <tr>
                                                     <td>
                                                         <dx:ASPxCheckBox ID="cbExcludeCars" runat="server" ClientInstanceName="cbExcludeCars" EnableTheming="True" Text="Hide vehicles not selected" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
+  <ClientSideEvents CheckedChanged="function(s, e) {
 	cbExcludeCars_CheckChanged(s, e);
 }" />
                                                         </dx:ASPxCheckBox>
@@ -386,27 +390,20 @@
 
                                                         </dx:ASPxCheckBox>
                                                     </td>
-                                                </tr>
-
-
-                                            </table>
-
+                                                </tr>  
+                                            </table> 
                                         </td>
-
+                                        sni
                                     </tr>
-                                </table>
-
-                            </div>
-
+                                </table> 
+                            </div> 
                             <br />
                         </article>
                     </div>
                     <!--- Vehicle Viewer tab  -->
                     <div>
                         <input class="chkbox" type="checkbox" id="check-5" />
-
-                        <label class="accordianTitle" for="check-5">Vehicle Viewer</label>
-
+                        <label class="accordianTitle showHide" for="check-5" onclick ="GetIcon(this);" id ="lblVehicle">Vehicle Viewer</label>
                         <article>
                             <dx:ASPxGridView ID="dgvVehicles"
                                 ClientInstanceName="dgvVehicles"
@@ -416,39 +413,31 @@
                                 EnableTheming="True"
                                 KeyFieldName="ApplicationVehileID"
                                 SettingsBehavior-ConfirmDelete="true"
-                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width:100%">
+                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width:100%"  OnPreRender="dgvVehicles_PreRender" > 
                                 <Settings ShowFilterRow="True" />
-                                 <SettingsPager PageSize="15"></SettingsPager>
-                                <Columns>
-                                    <dx:GridViewDataTextColumn FieldName="ApplicationVehileID" ShowInCustomizationForm="True" Visible="False">
-                                        <Settings AllowAutoFilter="False" />
-                                    </dx:GridViewDataTextColumn>
+                                 <SettingsPager PageSize="15"></SettingsPager> 
+                                <Columns> 
                                     <dx:GridViewDataTextColumn FieldName="DeviceID" ShowInCustomizationForm="True" Visible="False">
                                         <Settings AllowAutoFilter="False" />
                                     </dx:GridViewDataTextColumn>  
-                                 
-                                    <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption="Show"  >
-                                    </dx:GridViewCommandColumn>
+                                    <dx:GridViewCommandColumn ShowSelectCheckbox="True"  VisibleIndex="0" Caption="Show">
+                                    </dx:GridViewCommandColumn>  
                                     <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle">
                                         <DataItemTemplate>
                                             <div style="width: 100%">
                                                 <div style="width: 30%; display:inline;">
-                                                     <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="22px" Width="22px" /> 
+                                                     <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" /> 
                                                 </div>
                                                 <div style="width: 75%; float: right; line-height:22px;">
                                                     <%#Eval("Name")%>
                                                 </div>
                                             </div> 
                                         </DataItemTemplate>
-                                    </dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False">
-                                        <Settings AllowAutoFilter="False" />
-                                    </dx:GridViewDataTextColumn>
+                                    </dx:GridViewDataTextColumn> 
                                 </Columns>
-                                <ClientSideEvents SelectionChanged="dgvVehicles_SelectionChanged" />
+                                <ClientSideEvents  SelectionChanged="dgvVehicles_SelectionChanged"  />
                             </dx:ASPxGridView>
-                        </article>
-
+                        </article> 
                         <!-- DataSource  -->
                         <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
                             <SelectParameters>
@@ -457,7 +446,7 @@
                             </SelectParameters>
                         </asp:ObjectDataSource>
 
-                        <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
+                        <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll"  TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
                             <SelectParameters>
                                 <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
                             </SelectParameters>
@@ -1062,10 +1051,8 @@
         PopupAnimationType="Fade"
         CloseAnimationType="Fade"
         PopupHorizontalAlign="LeftSides"
-        PopupVerticalAlign="Below">
-
-        <ClientSideEvents />
-
+        PopupVerticalAlign="Below"> 
+        <ClientSideEvents /> 
 
     </dx:ASPxPopupControl>
 
@@ -1078,22 +1065,18 @@
         <ClientSideEvents ControlsInitialized="function(s,e){FleetMap_ControlsInitialized();}" />
 
     </dx:ASPxGlobalEvents>
+     
 
+    <script  type="text/javascript">
 
-    <script>
-
-        function Get(id)
-        {
-            if ($("#" + id).is(':checked')) {
-                alert('Checked');
-                 
-
+        function GetIcon(id) {
+            if ($("#lblVehicle").hasClass("showHide")) {
+                $("#lblVehicle").removeClass("showHide");
             }
-            else
-            {
-                alert("UnChecked!");
+            else {
+                $("#lblVehicle").addClass("showHide");
             }
-        }
+        } 
+     
     </script>
-
 </asp:Content>
