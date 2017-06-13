@@ -109,7 +109,7 @@
 
         End Function
 
-        Public Shared Function GetPointWithLatestDataByDeviceIdBy(SPN As Integer, deviceID As String, _
+        Public Shared Function GetPointWithLatestDataByDeviceId(SPN As Integer, deviceID As String, _
                                                standard As String) As DataObjects.CanDataPoint
 
             Dim retobj As New CanDataPoint
@@ -126,8 +126,8 @@
 
                 Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
 
-                Dim startDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
-                Dim endDate As Date = Date.Now.ToString("MM/dd/yyyy")
+                Dim startDate As Date = Date.Now.ToString("MM/dd/yyyy")
+                Dim endDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
@@ -135,8 +135,8 @@
                 'get the latest data from pi from current date backwards up to 30 counts/days to avoid infinity
                 While pivds.Count = 0
                     intCount += 1
-                    Dim sDate As Date = startDate.AddDays(-intCount).ToString("MM/dd/yyyy")
-                    pivds = pp.Data.RecordedValues(sDate, endDate, PISDK.BoundaryTypeConstants.btInside)
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("MM/dd/yyyy")
+                    pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
                     If intCount = 30 Then Exit While
                 End While
 
@@ -146,7 +146,7 @@
 
                         retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
                                                                                 .RawValue = p.Value})
-
+                        Exit For
                     Catch ex As Exception
                     End Try
                 Next

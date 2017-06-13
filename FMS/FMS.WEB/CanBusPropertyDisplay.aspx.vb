@@ -15,6 +15,7 @@ Public Class CanBusPropertyDisplay
     Public Property DriverID As String
     Public Property DriverName As String
     Public Property VehicleName As String
+    Dim canBusDef As New List(Of CanBusDefinitionValues)
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
@@ -25,26 +26,31 @@ Public Class CanBusPropertyDisplay
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
         Dim id = DeviceID
-        Dim url = "api/vehicle?vehicleID=" + id + "&standard=" + standard + "&spn=" + spn + "&startdate=" + Date.Now.ToString("dd/MM/yyyy") + "&enddate=" + Date.Now.ToString("dd/MM/yyyy")
+        'Dim url = "api/vehicle?vehicleID=" + id + "&standard=" + standard + "&spn=" + spn + "&startdate=" + Date.Now.ToString("dd/MM/yyyy") + "&enddate=" + Date.Now.ToString("dd/MM/yyyy")
+        Dim url = "api/vehicle/GetCanMessageValue?deviceid=" + id
         Dim response As HttpResponseMessage = client.GetAsync(url).Result
 
         If response.IsSuccessStatusCode Then
-            Dim canMessDef As CanValueMessageDefinition = JsonConvert.DeserializeObject(Of CanValueMessageDefinition)(response.Content.ReadAsStringAsync.Result().ToString())
-            txtStandard.Text = canMessDef.MessageDefinition.Standard
-            txtPGN.Text = canMessDef.MessageDefinition.PGN
-            txtSPN.Text = canMessDef.MessageDefinition.SPN
-            txtDescription.Text = canMessDef.MessageDefinition.Description
-            txtResolution.Text = canMessDef.MessageDefinition.Resolution
-            txtUnits.Text = canMessDef.MessageDefinition.Units
-            txtOffset.Text = canMessDef.MessageDefinition.offset
-            txtPos.Text = canMessDef.MessageDefinition.pos
-            txtSPN_Length.Text = canMessDef.MessageDefinition.SPN_Length
-            txtPGN_Length.Text = canMessDef.MessageDefinition.PGN_Length
-            txtData_Range.Text = canMessDef.MessageDefinition.Data_Range
-            txtResolution_Multiplier.Text = canMessDef.MessageDefinition.Resolution_Multiplier
-            txtPos_start.Text = canMessDef.MessageDefinition.pos_start
-            txtPos_end.Text = canMessDef.MessageDefinition.pos_end
+            Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
+            For Each messageValue As CanValueMessageDefinition In canMessDef
+                Dim cbd As New CanBusDefinitionValues()
+                cbd.label = messageValue.MessageDefinition.Description
+                cbd.description = messageValue.CanValues(0).Value
+                canBusDef.Add(cbd)
+            Next
+            
+            grid.DataBind()
         End If
     End Sub
 
+    Protected Sub grid_DataBinding(ByVal sender As Object, ByVal e As EventArgs)
+        ' Assign the data source in grid_DataBinding
+        grid.DataSource = canBusDef
+    End Sub
+
+End Class
+
+Public Class CanBusDefinitionValues
+    Public Property label As String
+    Public Property description As String
 End Class
