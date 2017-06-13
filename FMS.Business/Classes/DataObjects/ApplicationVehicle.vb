@@ -197,10 +197,10 @@
                 End Try
             Next
 
-            For Each canmessdef As CAN_MessageDefinition In lst
+            For Each canmessdef As CAN_MessageDefinition In lst.Where(Function(x) x.Standard.ToLower.Equals("zagro125"))
                 Dim canValue As New CanValueMessageDefinition()
-                Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceIdBy(canmessdef.SPN, DeviceID, canmessdef.Standard)
-                CanValue.MessageDefinition = canmessdef
+                Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(canmessdef.SPN, DeviceID, canmessdef.Standard)
+                canValue.MessageDefinition = canmessdef
                 canValue.CanValues = PointWithData.CanValues
                 lstNew.Add(canValue)
             Next
