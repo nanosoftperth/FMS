@@ -6,8 +6,7 @@
 //var thisHeatmap;
 //checkComboBox <= the new list box 
 //selectedItemString <= the ; delimited string of deviceIDs (i.e. demo1;demo2;demo3)
-
-var textSeparator = ";";
+localStorage.setItem('IsHiddenVehcile', 'false'); var textSeparator = ";";
 var selectedItemString = '';
 var globaltrucks;
 var selectedTrucks;
@@ -1437,92 +1436,123 @@ function getPoints() {
 //########################                                                              ##################################
 //########################                                                              ##################################
 //########################################################################################################################
- 
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
 //$(document).ready(function () { initialize(); })
 
 // Vehicle viewer on Map  
-function dgvVehicles_SelectionChanged(s, e) {  
+function dgvVehicles_SelectionChanged(s, e) { 
     s.GetSelectedFieldValues("DeviceID", GetSelectedFieldValuesCallback);
 }
 
-function GetSelectedFieldValuesCallback(IDs)
-{  
-        if (IDs == "") {
-            for (var k = 0; k < markers.length; k++) {
-                markers[k].setMap(null);
-            }
+function GetSelectedFieldValuesCallback(IDs) {
+    console.log(IDs);
+    if (IDs == "") {
+        localStorage.setItem('IsHiddenVehcile', 'true');
+        for (var k = 0; k < markers.length; k++) {
+            markers[k].setMap(null);
         }
-        else { 
-            var len = Object.keys(IDs).length;
-            if (len > 0) {
-                for (var i = 0; i < markers.length; i++) { 
-                    if (IDs.indexOf(markers[i].ID) == -1) { 
-                        markers[i].setMap(null);
-                    }
-                    for (var m = 0; m < IDs.length; m++) {
-                        if (markers[i].ID == IDs[m]) {
-                            markers[i].setMap(map);
-                        }
+    }
+    else {
+        var len = Object.keys(IDs).length;
+        if (len > 0) {
+            if (len == IDs.length)
+            {
+                localStorage.setItem('IsHiddenVehcile', 'false');
+            }
+            for (var i = 0; i < markers.length; i++) {
+                if (IDs.indexOf(markers[i].ID) == -1) {
+                    markers[i].setMap(null);
+                    localStorage.setItem('IsHiddenVehcile', 'true');
+                }
+                for (var m = 0; m < IDs.length; m++) {
+                    if (markers[i].ID == IDs[m]) {
+                        markers[i].setMap(map);
                     }
                 }
+            }
         }
-    }  
+    }
+}
+function GetIcon(id)
+{
+    if ($("#lblVehicle").hasClass("showHide"))
+    {
+        $("#lblVehicle").removeClass("showHide");
+        $("#img").attr("src", "Content/image.png");
+        $("#img").removeClass("clsImageShow");
+        $("#img").addClass("clsImageHide");
+    }
+    else
+    { 
+        $("#lblVehicle").addClass("showHide");
+        if (localStorage.getItem('IsHiddenVehcile') == "true")
+        {
+            $("#img").attr("src", "Content/image.png");
+            $("#img").removeClass("clsImageHide");
+            $("#img").addClass("clsImageShow");
+            
+        }
+        else
+        {
+            $("#img").attr("src", "");
+            $("#img").removeClass("clsImageShow");
+            $("#img").addClass("clsImageHide");
+        }
+    } 
 }
  
-    //function GetSelectedFieldValuesCallback(IDs) {
+//function GetSelectedFieldValuesCallback(IDs) {
+//    if (IDs == "") {
+//        for (var k = 0; k < markers.length; k++) {
+//            markers[k].setMap(null);
+//        }
+//    }
+//    else {
+//        alert(IDs);
+//        var len = Object.keys(IDs).length;
+//        if (len > 0) {
+//            for (var i = 0; i < markers.length; i++) {
+//                if (IDs.indexOf(markers[i].ID) == -1) {
 
-    //    if (IDs == "") {
-    //        for (var k = 0; k < markers.length; k++) {
-    //            markers[k].setMap(null);
-    //        }
-    //    }
-    //    else {
-    //        alert(IDs);
-    //        var len = Object.keys(IDs).length;
-    //        if (len > 0) {
-    //            for (var i = 0; i < markers.length; i++) {
-    //                if (IDs.indexOf(markers[i].ID) == -1) {
-                     
-    //                    markers[i].setMap(null);
-    //                }
-    //                for (var m = 0; m < IDs.length; m++) {
-    //                    if (markers[i].ID == IDs[m]) {
-    //                        markers[i].setMap(map);
-    //                    }
-    //                }
-    //            }
-    //    }
-    //}
+//                    markers[i].setMap(null);
+//                }
+//                for (var m = 0; m < IDs.length; m++) {
+//                    if (markers[i].ID == IDs[m]) {
+//                        markers[i].setMap(map);
+//                    }
+//                }
+//            }
+//    }
+//}
 
-    //alert(IDs);
-    //if (IDs != "") {
-    //    var len = Object.keys(IDs).length;
-    //    if (len > 0) {  
-    //        for (var i = 0; i < markers.length; i++) {
-    //            if (IDs.indexOf(markers[i].ID) ==  -1)
-    //            {
-    //                markers[i].setMap(map);
-    //            } 
-    //            for (var m = 0; m < IDs.length; m++) {
-    //                if (markers[i].ID == IDs[m]) {
-    //                    markers[i].setMap(null);                       
-    //                } 
-    //            }
-    //        }
-    //    } 
-    //} 
-    //else {
-    //    for (var k = 0; k < markers.length; k++) {
-    //        markers[k].setMap(map);
-    //    }
-    //} 
-    //}
+//alert(IDs);
+//if (IDs != "") {
+//    var len = Object.keys(IDs).length;
+//    if (len > 0) {  
+//        for (var i = 0; i < markers.length; i++) {
+//            if (IDs.indexOf(markers[i].ID) ==  -1)
+//            {
+//                markers[i].setMap(map);
+//            } 
+//            for (var m = 0; m < IDs.length; m++) {
+//                if (markers[i].ID == IDs[m]) {
+//                    markers[i].setMap(null);                       
+//                } 
+//            }
+//        }
+//    } 
+//} 
+//else {
+//    for (var k = 0; k < markers.length; k++) {
+//        markers[k].setMap(map);
+//    }
+//} 
+//}
 
-    //function OnGetSelectedFieldValues(selectedValues) {
-    //    alert(selectedValues);
-    //} 
- 
- 
+//function OnGetSelectedFieldValues(selectedValues) {
+//    alert(selectedValues);
+//} 
+

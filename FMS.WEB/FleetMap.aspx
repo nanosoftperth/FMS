@@ -19,17 +19,26 @@
 
     <link href="Content/Accoridan.css" rel="stylesheet" />
 
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+   
 
-    <style  type ="text/css">  
+    <style type ="text/css">  
         .dxgvSelectedRow_SoftOrange {
         background:#FFFFFF !important;
         }
 
         .dxgvInlineEditRow_SoftOrange, .dxgvDataRow_SoftOrange {
         background:#EBEBEB !important;
+        } 
+        .clsImageShow {        
+           width:25px;
+           float:right; 
         }
-    </style>
-
+        .clsImageHide {
+         display:none;
+        }
+    </style> 
+     
     <dx:ASPxPanel DefaultButton="ASPxButton1"
         ID="LeftPane"
         runat="server"
@@ -393,7 +402,7 @@
                                                 </tr>  
                                             </table> 
                                         </td>
-                                        sni
+                                       
                                     </tr>
                                 </table> 
                             </div> 
@@ -401,9 +410,12 @@
                         </article>
                     </div>
                     <!--- Vehicle Viewer tab  -->
-                    <div>
+                    <div> 
                         <input class="chkbox" type="checkbox" id="check-5" />
-                        <label class="accordianTitle showHide" for="check-5" onclick ="GetIcon(this);" id ="lblVehicle">Vehicle Viewer</label>
+                        <label class="accordianTitle showHide" for="check-5" onclick ="GetIcon(this)" id ="lblVehicle"> 
+                             Vehicle Viewer
+                                 <img  title="Hello Nanosoft one of our vehicles has disappeared" id ="img" class="clsImageHide" /> 
+                        </label>
                         <article>
                             <dx:ASPxGridView ID="dgvVehicles"
                                 ClientInstanceName="dgvVehicles"
@@ -415,7 +427,7 @@
                                 SettingsBehavior-ConfirmDelete="true"
                                 Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width:100%"  OnPreRender="dgvVehicles_PreRender" > 
                                 <Settings ShowFilterRow="True" />
-                                 <SettingsPager PageSize="15"></SettingsPager> 
+                                <SettingsPager PageSize="15"></SettingsPager> 
                                 <Columns> 
                                     <dx:GridViewDataTextColumn FieldName="DeviceID" ShowInCustomizationForm="True" Visible="False">
                                         <Settings AllowAutoFilter="False" />
@@ -429,14 +441,14 @@
                                                      <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" /> 
                                                 </div>
                                                 <div style="width: 75%; float: right; line-height:22px;">
-                                                    <%#Eval("Name")%>
+                                                    <%#Eval("Name")%>'
                                                 </div>
                                             </div> 
                                         </DataItemTemplate>
                                     </dx:GridViewDataTextColumn> 
                                 </Columns>
-                                <ClientSideEvents  SelectionChanged="dgvVehicles_SelectionChanged"  />
-                            </dx:ASPxGridView>
+                                <ClientSideEvents  SelectionChanged="dgvVehicles_SelectionChanged" BeginCallback="function(){document.getElementById('lblVehicle').style.pointerEvents = 'none';}"  EndCallback="function(){document.getElementById('lblVehicle').style.pointerEvents = 'auto'; }" /> 
+                             </dx:ASPxGridView>
                         </article> 
                         <!-- DataSource  -->
                         <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
@@ -445,13 +457,13 @@
                                 <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
-
                         <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll"  TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
                             <SelectParameters>
                                 <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
                     </div>
+
 
                     <!---End Vehicle Viewer tab  -->
                     <asp:ObjectDataSource ID="odsTrucks"
@@ -1066,17 +1078,6 @@
 
     </dx:ASPxGlobalEvents>
      
-
-    <script  type="text/javascript">
-
-        function GetIcon(id) {
-            if ($("#lblVehicle").hasClass("showHide")) {
-                $("#lblVehicle").removeClass("showHide");
-            }
-            else {
-                $("#lblVehicle").addClass("showHide");
-            }
-        } 
-     
-    </script>
+  
+      
 </asp:Content>
