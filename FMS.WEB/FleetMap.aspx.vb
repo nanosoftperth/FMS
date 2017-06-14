@@ -199,10 +199,52 @@ Public Class FleetMap
     End Sub
     Protected Sub dgvVehicles_PreRender(sender As Object, e As EventArgs)
 
+        Dim gridView As ASPxGridView = TryCast(sender, ASPxGridView)
+
         For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+
+            Dim column1 As GridViewDataColumn = dgvVehicles.Columns("DeviceID")
+            ''HtmlInputCheckBox ckBox = gvLoc.FindRowCellTemplateControl(1, gvLoc.Columns["IsSel"] as GridViewDataColumn, "cbISSel") as HtmlInputCheckBox;
+            Dim chk As HtmlInputCheckBox = TryCast(dgvVehicles.FindRowCellTemplateControl(i, column1, "chkShow"), HtmlInputCheckBox)
+            If Not chk Is Nothing Then
+
+                chk.Checked = True
+            End If
+
+
+
+
+            'For j As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+
+            'Next
+
+            'for (int j = 0; j < dsLoc.Tables[0].Rows.Count; j++)
+            '                               {
+            '                                   if (gvLoc.GetRowValues(i, "PartnerLocationID").ToString().Equals(dsLoc.Tables[0].Rows[j]["PartnerLocationID"].ToString()))
+            '                                   {
+            '                                       HtmlInputCheckBox ckBox = gvLoc.FindRowCellTemplateControl(1, gvLoc.Columns["IsSel"] as GridViewDataColumn, "cbISSel") as HtmlInputCheckBox;
+            '                                       ckBox.Checked = true;
+            '                                       break;
+            '                                   }
+
+            ''chk.Checked = True
             'If dgvVehicles.Selection.IsRowSelected(i) Then
-            dgvVehicles.Selection.SelectRow(i)
+            'dgvVehicles.Selection.SelectRow(i)
             'End If
         Next
+    End Sub
+
+ 
+    Protected Sub chkShow_Init(sender As Object, e As EventArgs)
+        Dim c As GridViewDataItemTemplateContainer = TryCast((CType(sender, ASPxCheckBox)).NamingContainer, GridViewDataItemTemplateContainer)
+        Dim index As Integer = c.VisibleIndex
+        Dim key As String = c.KeyValue.ToString()
+        Dim ownerGridClientInstanceName As String = c.Grid.ClientInstanceName
+
+        CType(sender, ASPxCheckBox).ClientSideEvents.CheckedChanged = "function(s,e){ProcessSelection(" & ownerGridClientInstanceName & "," & index & ",s," & key & ",detailSelection);}"
+
+        If c.Grid.Selection.IsRowSelected(index) Then
+            CType(sender, ASPxCheckBox).Checked = True
+        End If
     End Sub
 End Class

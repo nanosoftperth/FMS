@@ -768,16 +768,17 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     var icon = {
         url: icon_truck + '&Id=' + applicationImageID, // url
         scaledSize: new google.maps.Size(60, 60), // scaled size
-        //origin: new google.maps.Point(0, 0), // origin
+        origin: new google.maps.Point(0, 0), // origin
         anchor: new google.maps.Point(0, 0) // anchor
     };
 
     //alert(vehicleName);
     var marker = new MarkerWithLabel({
         position: location,
-        icon: icon,
+        icon: icon_truck + '&Id=' + applicationImageID,
         labelContent: lblContent,
-        labelAnchor: new google.maps.Point(-2, -58),
+        labelAnchor: new google.maps.Point(22, 0),
+        //labelAnchor: new google.maps.Point(22, 0),
         labelClass: "labels", // the CSS class for the label
         labelStyle: { opacity: 0.75 },
         zIndex: 9999999,
@@ -1443,66 +1444,40 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //$(document).ready(function () { initialize(); })
 
 // Vehicle viewer on Map  
-function dgvVehicles_SelectionChanged(s, e) { 
-    s.GetSelectedFieldValues("DeviceID", GetSelectedFieldValuesCallback);
-}
+//function dgvVehicles_SelectionChanged(s, e) { 
+//    s.GetSelectedFieldValues("DeviceID", GetSelectedFieldValuesCallback);
+//}
 
-function GetSelectedFieldValuesCallback(IDs) {
-    console.log(IDs);
-    if (IDs == "") {
-        localStorage.setItem('IsHiddenVehcile', 'true');
-        for (var k = 0; k < markers.length; k++) {
-            markers[k].setMap(null);
-        }
-    }
-    else {
-        var len = Object.keys(IDs).length;
-        if (len > 0) {
-            if (len == IDs.length)
-            {
-                localStorage.setItem('IsHiddenVehcile', 'false');
-            }
-            for (var i = 0; i < markers.length; i++) {
-                if (IDs.indexOf(markers[i].ID) == -1) {
-                    markers[i].setMap(null);
-                    localStorage.setItem('IsHiddenVehcile', 'true');
-                }
-                for (var m = 0; m < IDs.length; m++) {
-                    if (markers[i].ID == IDs[m]) {
-                        markers[i].setMap(map);
-                    }
-                }
-            }
-        }
-    }
-}
-function GetIcon(id)
-{
-    if ($("#lblVehicle").hasClass("showHide"))
-    {
-        $("#lblVehicle").removeClass("showHide");
-        $("#img").attr("src", "Content/image.png");
-        $("#img").removeClass("clsImageShow");
-        $("#img").addClass("clsImageHide");
-    }
-    else
-    { 
-        $("#lblVehicle").addClass("showHide");
-        if (localStorage.getItem('IsHiddenVehcile') == "true")
-        {
-            $("#img").attr("src", "Content/image.png");
-            $("#img").removeClass("clsImageHide");
-            $("#img").addClass("clsImageShow");
-            
-        }
-        else
-        {
-            $("#img").attr("src", "");
-            $("#img").removeClass("clsImageShow");
-            $("#img").addClass("clsImageHide");
-        }
-    } 
-}
+//function GetSelectedFieldValuesCallback(IDs) {
+//    console.log(IDs);
+//    if (IDs == "") {
+//        localStorage.setItem('IsHiddenVehcile', 'true');
+//        for (var k = 0; k < markers.length; k++) {
+//            markers[k].setMap(null);
+//        }
+//    }
+//    else {
+//        var len = Object.keys(IDs).length;
+//        if (len > 0) {
+//            if (len == IDs.length)
+//            {
+//                localStorage.setItem('IsHiddenVehcile', 'false');
+//            }
+//            for (var i = 0; i < markers.length; i++) {
+//                if (IDs.indexOf(markers[i].ID) == -1) {
+//                    markers[i].setMap(null);
+//                    localStorage.setItem('IsHiddenVehcile', 'true');
+//                }
+//                for (var m = 0; m < IDs.length; m++) {
+//                    if (markers[i].ID == IDs[m]) {
+//                        markers[i].setMap(map);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//} 
+ 
  
 //function GetSelectedFieldValuesCallback(IDs) {
 //    if (IDs == "") {

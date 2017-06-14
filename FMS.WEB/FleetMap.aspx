@@ -19,16 +19,14 @@
 
     <link href="Content/Accoridan.css" rel="stylesheet" />
 
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
-   
-
+       
     <style type ="text/css">  
         .dxgvSelectedRow_SoftOrange {
-        background:#FFFFFF !important;
+       background:#EBEBEB !important;
         }
-
-        .dxgvInlineEditRow_SoftOrange, .dxgvDataRow_SoftOrange {
-        background:#EBEBEB !important;
+         
+        .dxgvInlineEditRow_SoftOrange, .dxgvDataRow_SoftOrange {       
+          background:#FFFFFF !important;
         } 
         .clsImageShow {        
            width:25px;
@@ -412,7 +410,7 @@
                     <!--- Vehicle Viewer tab  -->
                     <div> 
                         <input class="chkbox" type="checkbox" id="check-5" />
-                        <label class="accordianTitle showHide" for="check-5" onclick ="GetIcon(this)" id ="lblVehicle"> 
+                        <label class="accordianTitle showHide" for="check-5" onclick ="GetIcon(this);" id ="lblVehicle"> 
                              Vehicle Viewer
                                  <img  title="Hello Nanosoft one of our vehicles has disappeared" id ="img" class="clsImageHide" /> 
                         </label>
@@ -425,15 +423,18 @@
                                 EnableTheming="True"
                                 KeyFieldName="ApplicationVehileID"
                                 SettingsBehavior-ConfirmDelete="true"
-                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width:100%"  OnPreRender="dgvVehicles_PreRender" > 
+                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width:100%"  OnPreRender="dgvVehicles_PreRender"> 
                                 <Settings ShowFilterRow="True" />
                                 <SettingsPager PageSize="15"></SettingsPager> 
-                                <Columns> 
-                                    <dx:GridViewDataTextColumn FieldName="DeviceID" ShowInCustomizationForm="True" Visible="False">
-                                        <Settings AllowAutoFilter="False" />
-                                    </dx:GridViewDataTextColumn>  
-                                    <dx:GridViewCommandColumn ShowSelectCheckbox="True"  VisibleIndex="0" Caption="Show">
-                                    </dx:GridViewCommandColumn>  
+                                <Columns>  
+                                     <dx:GridViewDataColumn  FieldName="DeviceID" VisibleIndex="0" Caption="Show" >
+                                        <DataItemTemplate>
+                                            <div>  
+                                                 <input type="checkbox" id="chkShow" class="chk"  value='<%# Eval("DeviceID")%>'  onchange="GetID(this.value, this)" runat="server"  /> 
+                                            </div> 
+                                            </DataItemTemplate>
+                                          <Settings AllowAutoFilter="False" />  
+                                         </dx:GridViewDataColumn> 
                                     <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle">
                                         <DataItemTemplate>
                                             <div style="width: 100%">
@@ -447,8 +448,8 @@
                                         </DataItemTemplate>
                                     </dx:GridViewDataTextColumn> 
                                 </Columns>
-                                <ClientSideEvents  SelectionChanged="dgvVehicles_SelectionChanged" BeginCallback="function(){document.getElementById('lblVehicle').style.pointerEvents = 'none';}"  EndCallback="function(){document.getElementById('lblVehicle').style.pointerEvents = 'auto'; }" /> 
-                             </dx:ASPxGridView>
+                                <%--  <ClientSideEvents BeginCallback="OnCallbackStart"  />--%>
+                             </dx:ASPxGridView> 
                         </article> 
                         <!-- DataSource  -->
                         <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
@@ -1077,7 +1078,74 @@
         <ClientSideEvents ControlsInitialized="function(s,e){FleetMap_ControlsInitialized();}" />
 
     </dx:ASPxGlobalEvents>
-     
-  
+      
+  <script type="text/javascript">  
+
+
+//.dxgvSelectedRow_SoftOrange {
+//background:#EBEBEB !important;
+    //  }
+         
+     // .dxgvInlineEditRow_SoftOrange, .dxgvDataRow_SoftOrange {  
+       
+      function GetID(_Value, element) {
+          if (element.checked) {
+              // To Show vehicle on Map
+              $(element).parent().parent().parent().removeClass("dxgvSelectedRow_SoftOrange");
+              $(element).parent().parent().parent().addClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
+             
+              for (var i = 0; i < markers.length; i++) {
+                  if (markers[i].ID == _Value) {
+                      markers[i].setMap(map);
+                      localStorage.setItem('IsHiddenVehcile', 'false');
+                  } 
+              } 
+          }
+          else {     
+              $(element).parent().parent().parent().removeClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
+              $(element).parent().parent().parent().addClass("dxgvSelectedRow_SoftOrange");
+              // To hide vehicle on Map
+              for (var i = 0; i < markers.length; i++) {
+                  if (markers[i].ID == _Value) {
+                      markers[i].setMap(null);
+                      localStorage.setItem('IsHiddenVehcile', 'true');
+                  }
+              }
+
+          } 
+      }
+
+      function GetIcon(id) { 
+          if ($("#lblVehicle").hasClass("showHide")) { 
+              $("#lblVehicle").removeClass("showHide");
+              $("#img").attr("src", "Content/image.png");
+              $("#img").removeClass("clsImageShow");
+              $("#img").addClass("clsImageHide");
+          }
+          else {
+             
+              $("#lblVehicle").addClass("showHide");
+              if (localStorage.getItem('IsHiddenVehcile') == "true") {
+                  $("#img").attr("src", "Content/image.png");
+                  $("#img").removeClass("clsImageHide");
+                  $("#img").addClass("clsImageShow");
+
+              }
+              else {
+                  $("#img").attr("src", "");
+                  $("#img").removeClass("clsImageShow");
+                  $("#img").addClass("clsImageHide");
+              }
+          }
+      }
+
+       
+      function OnCallbackStart(s, e)
+      {
+          if (e.command == "APPLYCOLUMNFILTER") {
+              alert('filetr')
+          }
+      }
+  </script> 
       
 </asp:Content>
