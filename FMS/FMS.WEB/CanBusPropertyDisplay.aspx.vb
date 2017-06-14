@@ -38,7 +38,7 @@ Public Class CanBusPropertyDisplay
                 cbd.description = messageValue.CanValues(0).Value
                 canBusDef.Add(cbd)
             Next
-            
+
             grid.DataBind()
         End If
     End Sub
