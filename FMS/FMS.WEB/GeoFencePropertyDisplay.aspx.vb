@@ -18,14 +18,14 @@
             Exit Sub
         End If
 
-        Dim uName = Membership.GetUser.UserName
+        'Dim uName = Membership.GetUser.UserName
 
 
-        FMS.Business.ThisSession.User = FMS.Business.DataObjects.User.GetAllUsersForApplication _
-                        (FMS.Business.ThisSession.ApplicationID).Where(Function(x) x.UserName = uName).Single
+        'FMS.Business.ThisSession.User = FMS.Business.DataObjects.User.GetAllUsersForApplication _
+        '                (FMS.Business.ThisSession.ApplicationID).Where(Function(x) x.UserName = uName).Single
 
         'SET the userid in the session parameters
-        FMS.Business.ThisSession.UserID = FMS.Business.ThisSession.User.UserId
+        'FMS.Business.ThisSession.UserID = FMS.Business.ThisSession.User.UserId
     End Sub
 
     Private Sub dgvGeoFenceProperty_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvGeoFenceProperty.RowInserting
