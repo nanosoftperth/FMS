@@ -26,7 +26,6 @@ Public Class CanBusPropertyDisplay
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
         Dim id = DeviceID
-        'Dim url = "api/vehicle?vehicleID=" + id + "&standard=" + standard + "&spn=" + spn + "&startdate=" + Date.Now.ToString("dd/MM/yyyy") + "&enddate=" + Date.Now.ToString("dd/MM/yyyy")
         Dim url = "api/vehicle/GetCanMessageValue?deviceid=" + id
         Dim response As HttpResponseMessage = client.GetAsync(url).Result
 
@@ -35,11 +34,14 @@ Public Class CanBusPropertyDisplay
             For Each messageValue As CanValueMessageDefinition In canMessDef
                 Dim cbd As New CanBusDefinitionValues()
                 cbd.label = messageValue.MessageDefinition.Description
-                cbd.description = messageValue.CanValues(0).Value
+                If Not messageValue.CanValues.Count.Equals(0) Then
+                    cbd.description = messageValue.CanValues(0).Value
+                End If
                 canBusDef.Add(cbd)
             Next
 
             grid.DataBind()
+           
         End If
     End Sub
 
