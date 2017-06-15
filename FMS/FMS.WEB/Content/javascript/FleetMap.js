@@ -6,7 +6,9 @@
 //var thisHeatmap;
 //checkComboBox <= the new list box 
 //selectedItemString <= the ; delimited string of deviceIDs (i.e. demo1;demo2;demo3)
-localStorage.setItem('IsHiddenVehcile', 'false'); var textSeparator = ";";
+localStorage.setItem('IsHiddenVehcile', 'false');
+var VehicleSelectedArr = [];
+var textSeparator = ";";
 var selectedItemString = '';
 var globaltrucks;
 var selectedTrucks;
@@ -794,9 +796,11 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
 
     marker.ID = markerID;
     markers.push(marker);
-
-
+     
     marker.setMap(map);
+
+    //  insert vehicle ID in Array
+    VehicleSelectedArr.push(markerID);
 }
 var alreadyRan = false;
 

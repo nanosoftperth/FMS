@@ -206,32 +206,26 @@ Public Class FleetMap
             Dim column1 As GridViewDataColumn = dgvVehicles.Columns("DeviceID")
             ''HtmlInputCheckBox ckBox = gvLoc.FindRowCellTemplateControl(1, gvLoc.Columns["IsSel"] as GridViewDataColumn, "cbISSel") as HtmlInputCheckBox;
             Dim chk As HtmlInputCheckBox = TryCast(dgvVehicles.FindRowCellTemplateControl(i, column1, "chkShow"), HtmlInputCheckBox)
-            If Not chk Is Nothing Then
-
+            If Not chk Is Nothing Then 
                 chk.Checked = True
             End If
 
 
 
 
-            'For j As Integer = 0 To dgvVehicles.VisibleRowCount - 1
-
-            'Next
-
-            'for (int j = 0; j < dsLoc.Tables[0].Rows.Count; j++)
-            '                               {
-            '                                   if (gvLoc.GetRowValues(i, "PartnerLocationID").ToString().Equals(dsLoc.Tables[0].Rows[j]["PartnerLocationID"].ToString()))
-            '                                   {
-            '                                       HtmlInputCheckBox ckBox = gvLoc.FindRowCellTemplateControl(1, gvLoc.Columns["IsSel"] as GridViewDataColumn, "cbISSel") as HtmlInputCheckBox;
-            '                                       ckBox.Checked = true;
-            '                                       break;
-            '                                   }
-
-            ''chk.Checked = True
-            'If dgvVehicles.Selection.IsRowSelected(i) Then
-            'dgvVehicles.Selection.SelectRow(i)
-            'End If
+ 
         Next
+
+        Dim column2 As GridViewDataColumn = dgvVehicles.Columns("DeviceID")
+
+
+        Dim headerChk As HtmlInputCheckBox = TryCast(dgvVehicles.FindFilterCellTemplateControl(column2, "chkHeaderShow"), HtmlInputCheckBox)
+
+
+        If Not headerChk Is Nothing Then
+            headerChk.Checked = True
+        End If
+
     End Sub
 
  
