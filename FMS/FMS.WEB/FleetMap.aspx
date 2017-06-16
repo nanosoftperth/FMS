@@ -19,24 +19,26 @@
 
     <link href="Content/Accoridan.css" rel="stylesheet" />
     <script src="Content/javascript/numtowords.js"></script>
-       
-    <style type ="text/css">  
+
+    <style type="text/css">
         .dxgvSelectedRow_SoftOrange {
-       background:#EBEBEB !important;
+            background: #EBEBEB !important;
         }
-         
-        .dxgvInlineEditRow_SoftOrange, .dxgvDataRow_SoftOrange {       
-          background:#FFFFFF !important;
-        } 
-        .clsImageShow {        
-           width:25px;
-           float:right; 
+
+        .dxgvInlineEditRow_SoftOrange, .dxgvDataRow_SoftOrange {
+            background: #FFFFFF !important;
         }
+
+        .clsImageShow {
+            width: 25px;
+            float: right;
+        }
+
         .clsImageHide {
-         display:none;
+            display: none;
         }
-    </style> 
-     
+    </style>
+
     <dx:ASPxPanel DefaultButton="ASPxButton1"
         ID="LeftPane"
         runat="server"
@@ -66,7 +68,6 @@
                             <br />
                             <div style="padding-left: 15px; font-weight: bold;">
                                 <span class="dateTimePicker" style="margin-left: 2px;">Enter the time you wish to view:</span>
-
                                 <dx:ASPxDateEdit ID="ASPxDateEdit1"
                                     runat="server"
                                     Date="01/20/2016 00:06:00"
@@ -78,7 +79,6 @@
                                     padding-right="10px"
                                     Theme="MetropolisBlue"
                                     Width="198px">
-
                                     <TimeSectionProperties Visible="True">
                                         <TimeEditProperties>
                                             <ClearButton Visibility="Auto">
@@ -191,7 +191,7 @@
                                                         </ClearButton>
                                                     </TimeEditProperties>
                                                 </TimeSectionProperties>
-                              <ClientSideEvents ButtonClick="function(s, e) {
+                                                <ClientSideEvents ButtonClick="function(s, e) {
 	dateedit_Click(s,e);
 }"
                                                     CalendarCustomDisabledDate="function(s, e) {
@@ -274,7 +274,7 @@
                                                 <tr>
                                                     <td>
                                                         <dx:ASPxCheckBox ID="cbExcludeCars" runat="server" ClientInstanceName="cbExcludeCars" EnableTheming="True" Text="Hide vehicles not selected" Theme="SoftOrange">
-  <ClientSideEvents CheckedChanged="function(s, e) {
+                                                            <ClientSideEvents CheckedChanged="function(s, e) {
 	cbExcludeCars_CheckChanged(s, e);
 }" />
                                                         </dx:ASPxCheckBox>
@@ -397,22 +397,22 @@
 
                                                         </dx:ASPxCheckBox>
                                                     </td>
-                                                </tr>  
-                                            </table> 
+                                                </tr>
+                                            </table>
                                         </td>
-                                       
+
                                     </tr>
-                                </table> 
-                            </div> 
+                                </table>
+                            </div>
                             <br />
                         </article>
                     </div>
                     <!--- Vehicle Viewer tab  -->
-                    <div> 
+                    <div>
                         <input class="chkbox" type="checkbox" id="check-5" />
-                        <label class="accordianTitle showHide" for="check-5" onclick ="GetIcon(this);" id ="lblVehicle"> 
-                             Vehicle Viewer
-                                 <img  id ="img" class="clsImageHide" /> 
+                        <label class="accordianTitle showHide" for="check-5" onclick="GetIcon(this);" id="lblVehicle">
+                            Vehicle Viewer
+                                 <img id="img" class="clsImageHide" />
                         </label>
                         <article>
                             <dx:ASPxGridView ID="dgvVehicles"
@@ -423,41 +423,40 @@
                                 EnableTheming="True"
                                 KeyFieldName="ApplicationVehileID"
                                 SettingsBehavior-ConfirmDelete="true"
-                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width:100%"  OnPreRender="dgvVehicles_PreRender"> 
-                                <Settings ShowFilterRow="True"  />
-                              <%--  <SettingsPager PageSize="5"></SettingsPager> --%>
-                                <Columns>  
-                                     <dx:GridViewDataColumn  FieldName="DeviceID" VisibleIndex="0" Caption="Show" >
-                                         
-                                         <FilterTemplate>
-                                             <div style="margin-left:5px">  
-                                                 <input type="checkbox" id="chkHeaderShow" onchange="GetAllSelected(this);" class="chkHead"  /> 
-                                            </div> 
-                                         </FilterTemplate> 
-
+                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width: 100%" OnPreRender="dgvVehicles_PreRender">
+                                <Settings ShowFilterRow="True" />
+                                <SettingsPager PageSize="15"></SettingsPager>
+                                <Columns>
+                                    <dx:GridViewDataColumn FieldName="DeviceID" VisibleIndex="0" Caption="Show"> 
+                                        <FilterTemplate>
+                                            <div style="margin-left: 5px">
+                                                <input type="checkbox" id="chkHeaderShow" onchange="GetAllSelected(this);" class="chkHead" />
+                                            </div>
+                                        </FilterTemplate> 
                                         <DataItemTemplate>
-                                            <div>  
-                                                 <input type="checkbox" id="chkShow" class="chk"  value='<%# Eval("DeviceID")%>'  onchange="GetID(this.value, this)" runat="server"  /> 
-                                            </div> 
-                                            </DataItemTemplate>
-                                          <Settings AllowAutoFilter="False" />  
-                                          
-                                         </dx:GridViewDataColumn> 
+                                            <div>
+                                                <input type="checkbox" id="chkShow" class="chk" value='<%# Eval("DeviceID")%>' onchange="GetID(this.value, this)" runat="server" />
+                                            </div>
+                                        </DataItemTemplate>
+                                        <Settings AllowAutoFilter="False" />
+                                         
+                                    </dx:GridViewDataColumn>
                                     <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle">
                                         <DataItemTemplate>
                                             <div style="width: 100%">
-                                                <div style="width: 30%; display:inline;">
-                                                     <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" /> 
+                                                <div style="width: 30%; display: inline;">
+                                                    <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" />
                                                 </div>
-                                                <div style="width: 75%; float: right; line-height:22px;">
+                                                <div style="width: 75%; float: right; line-height: 22px;">
                                                     <%#Eval("Name")%>'
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </DataItemTemplate>
-                                    </dx:GridViewDataTextColumn> 
-                                 </Columns> 
-                             </dx:ASPxGridView> 
-                        </article> 
+                                    </dx:GridViewDataTextColumn>
+                                </Columns>
+                                <ClientSideEvents EndCallback="function(s, e) { GetSelectedRows(s,e);}" />
+                            </dx:ASPxGridView>
+                        </article>
                         <!-- DataSource  -->
                         <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
                             <SelectParameters>
@@ -465,14 +464,12 @@
                                 <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
-                        <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll"  TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
+                        <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
                             <SelectParameters>
                                 <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
                     </div>
-
-
                     <!---End Vehicle Viewer tab  -->
                     <asp:ObjectDataSource ID="odsTrucks"
                         runat="server"
@@ -1071,8 +1068,8 @@
         PopupAnimationType="Fade"
         CloseAnimationType="Fade"
         PopupHorizontalAlign="LeftSides"
-        PopupVerticalAlign="Below"> 
-        <ClientSideEvents /> 
+        PopupVerticalAlign="Below">
+        <ClientSideEvents />
 
     </dx:ASPxPopupControl>
 
@@ -1084,133 +1081,167 @@
         runat="server">
         <ClientSideEvents ControlsInitialized="function(s,e){FleetMap_ControlsInitialized();}" />
 
-  </dx:ASPxGlobalEvents>
-       
-  <script type="text/javascript">   
-      // Get All Selected Vehicles
-      $(document).ready(function () {
-          $('.chkHead').prop('checked', true);
-      }); 
+    </dx:ASPxGlobalEvents>
 
-      function GetID(_Value, element) {  
-          if (element.checked) {
-              // To Show vehicle on Map
-              $(element).parent().parent().parent().removeClass("dxgvSelectedRow_SoftOrange");
-              $(element).parent().parent().parent().addClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
-             
-              for (var i = 0; i < markers.length; i++) {
-                  if (markers[i].ID == _Value) {
-                      markers[i].setMap(map);
-                      //localStorage.setItem('IsHiddenVehcile', 'false');
-                  } 
-              }
-              VehicleSelectedArr.push(_Value);
-              if (markers.length == VehicleSelectedArr.length)
-              {
-                  $('.chkHead').prop('checked', true);
-              }
-          }
-          else {     
-              $(element).parent().parent().parent().removeClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
-              $(element).parent().parent().parent().addClass("dxgvSelectedRow_SoftOrange");
-              // To hide vehicle on Map
-              for (var i = 0; i < markers.length; i++) {
-                  if (markers[i].ID == _Value) {
-                      markers[i].setMap(null);
-                      //localStorage.setItem('IsHiddenVehcile', 'true');
-                  }
-              }
-              var i = VehicleSelectedArr.indexOf(_Value);
-              if (i != -1) {
-                  VehicleSelectedArr.splice(i, 1);
-              } 
-               
-              $('.chkHead').prop('checked', false);               
-          } 
-      }
-      function GetIcon(id) { 
-          if ($("#lblVehicle").hasClass("showHide"))
-          { 
-              $("#lblVehicle").removeClass("showHide");
-              $("#img").attr("src", ""); 
-              $("#img").removeClass("clsImageShow");
-              $("#img").addClass("clsImageHide");
-          }
-          else
-          { 
-              $("#lblVehicle").addClass("showHide");              
-              if (markers.length > VehicleSelectedArr.length)
-              {
-                  $("#img").attr("src", "Content/image.png");
-                  $("#img").removeClass("clsImageHide");
-                  $("#img").addClass("clsImageShow");
-                   
-                  $("#img").attr("title", "Warning! " + numinwrd(markers.length - VehicleSelectedArr.length) + " Cannon Vehicle has been hidden.");
-              }
-              else
-              {
-                  $("#img").attr("src", "");
-                  $("#img").removeClass("clsImageShow");
-                  $("#img").addClass("clsImageHide");
-              } 
-             
-              //if (localStorage.getItem('IsHiddenVehcile') == "true") {
-              //    $("#img").attr("src", "Content/image.png");
-              //    $("#img").removeClass("clsImageHide");
-              //    $("#img").addClass("clsImageShow");
+    <script type="text/javascript">
+        // Get All Selected Vehicles
+        $(document).ready(function () {
+            $('.chkHead').prop('checked', true);
+        });
 
-              //}
-              //else {
-              //    $("#img").attr("src", "");
-              //    $("#img").removeClass("clsImageShow");
-              //    $("#img").addClass("clsImageHide");
-              //}
-          }
-      }
-       
-      function GetAllSelected(element)
-      {
-          if (element.checked)
-          {
-              var index=0;
-              $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function () {
-                  if (index > 1) {
-                      $(this).removeClass("dxgvDataRow_SoftOrange");
-                      $(this).addClass("dxgvInlineEditRow_SoftOrange dxgvSelectedRow_SoftOrange");
-                  }
-                  index = index + 1;
-              }); 
-              $('.chk').prop('checked', true);
-              for (var i = 0; i < markers.length; i++)
-              {
-                  markers[i].setMap(map);
+        function GetID(_Value, element) {
 
-                  VehicleSelectedArr.push(markers[i].ID);
+            if (element.checked) {
+                // To Show vehicle on Map
+                $(element).parent().parent().parent().removeClass("dxgvSelectedRow_SoftOrange");
+                $(element).parent().parent().parent().addClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
 
-              }
-          }
-          else
-          {
-              var index = 0;
-              $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function () {
-                  if (index > 1) {
-                      $(this).removeClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
-                      $(this).addClass("dxgvSelectedRow_SoftOrange");
-                  }
-                  index = index + 1;
-              }); 
-              $('.chk').prop('checked', false);  
-              for (var i = 0; i < markers.length; i++) {
-                  markers[i].setMap(null);
+                for (var i = 0; i < markers.length; i++) {
+                    if (markers[i].ID == _Value) {
+                        markers[i].setMap(map);
+                        //localStorage.setItem('IsHiddenVehcile', 'false');
+                    }  
+                }
 
-                  var item = VehicleSelectedArr.indexOf(markers[i].ID);
-                  if (item != -1) {
-                      VehicleSelectedArr.splice(item, 1);
-                  }
+                var isFind = VehicleSelectedArr.filter(function (name) { return name == _Value });
+                if (isFind == '')
+                    VehicleSelectedArr.push(_Value);
+                //VehicleSelectedArr.push(_Value);
+                //debugger;
+                //if ($.inArray(markers[i].ID, VehicleSelectedArr) > -1) {
+                //    //do something    
+                //}
+                //else {
+                //    VehicleSelectedArr.push(markers[i].ID);
+                //}
 
-              } 
-          }
-      }  
-  </script> 
-      
+                if (markers.length == VehicleSelectedArr.length) {
+                    $('.chkHead').prop('checked', true);
+                }
+            }
+            else {
+                $(element).parent().parent().parent().removeClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
+                $(element).parent().parent().parent().addClass("dxgvSelectedRow_SoftOrange");
+                // To hide vehicle on Map
+                for (var i = 0; i < markers.length; i++) {
+                    if (markers[i].ID == _Value) {
+                        markers[i].setMap(null);
+                        //localStorage.setItem('IsHiddenVehcile', 'true');
+                    } 
+                     
+                } 
+                var i = VehicleSelectedArr.indexOf(_Value);
+                if (i != -1) {
+                    VehicleSelectedArr.splice(i, 1);
+                }
+
+                $('.chkHead').prop('checked', false);
+            }
+
+            console.log(VehicleSelectedArr);
+        }
+        function GetIcon(id) {
+            if ($("#lblVehicle").hasClass("showHide")) {
+                $("#lblVehicle").removeClass("showHide");
+                $("#img").attr("src", "");
+                $("#img").removeClass("clsImageShow");
+                $("#img").addClass("clsImageHide");
+            }
+            else {
+                $("#lblVehicle").addClass("showHide");
+                if (markers.length > VehicleSelectedArr.length) {
+                    $("#img").attr("src", "Content/image.png");
+                    $("#img").removeClass("clsImageHide");
+                    $("#img").addClass("clsImageShow");
+
+                    $("#img").attr("title", "Warning! " + numinwrd(markers.length - VehicleSelectedArr.length) + " Cannon Vehicle has been hidden.");
+                }
+                else {
+                    $("#img").attr("src", "");
+                    $("#img").removeClass("clsImageShow");
+                    $("#img").addClass("clsImageHide");
+                }
+
+                //if (localStorage.getItem('IsHiddenVehcile') == "true") {
+                //    $("#img").attr("src", "Content/image.png");
+                //    $("#img").removeClass("clsImageHide");
+                //    $("#img").addClass("clsImageShow");
+
+                //}
+                //else {
+                //    $("#img").attr("src", "");
+                //    $("#img").removeClass("clsImageShow");
+                //    $("#img").addClass("clsImageHide");
+                //}
+            }
+        }
+
+        function GetAllSelected(element) {
+            if (element.checked) {
+                var index = 0;
+                $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function () {
+                    if (index > 1) {
+                        $(this).removeClass("dxgvDataRow_SoftOrange");
+                        $(this).addClass("dxgvInlineEditRow_SoftOrange dxgvSelectedRow_SoftOrange");
+                    }
+                    index = index + 1;
+                });
+                $('.chk').prop('checked', true);
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(map);
+
+                    var isFind = VehicleSelectedArr.filter(function (name) { return name == markers[i].ID });
+                    if (isFind == '')
+                        VehicleSelectedArr.push(markers[i].ID);
+
+                    //if ($.inArray(markers[i].ID, VehicleSelectedArr) > -1) {
+                    //    //do something    
+                    //}
+                    //else {
+                    //    VehicleSelectedArr.push(markers[i].ID);
+                    //}
+                }
+            }
+            else {
+                var index = 0;
+                $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function () {
+                    if (index > 1) {
+                        $(this).removeClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
+                        $(this).addClass("dxgvSelectedRow_SoftOrange");
+                    }
+                    index = index + 1;
+                });
+                $('.chk').prop('checked', false);
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(null);
+
+                    var item = VehicleSelectedArr.indexOf(markers[i].ID);
+                    if (item != -1) {
+                        VehicleSelectedArr.splice(item, 1);
+                    }
+
+                }
+            }
+            console.log(VehicleSelectedArr);
+        }
+
+        function GetSelectedRows(s, e) {
+            //var count = { checked: 0, row: 0 };
+            $.each($("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr"), function (index, element) {
+                if (index > 1) {
+                    //count.row++;
+                    var item = $(element.children[0]).find('div').children()[0];
+                    var isFind = VehicleSelectedArr.filter(function (name) { return name == item.value });
+                    if (isFind != '') {
+                       // count.checked++;
+                        $(item).prop('checked', true);
+                    }
+                }
+            });
+            if (markers.length == VehicleSelectedArr.length)
+                $('.chkHead').prop('checked', true);
+          
+        }
+    </script>
+
 </asp:Content>
