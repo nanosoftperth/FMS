@@ -241,4 +241,28 @@ Public Class FleetMap
             CType(sender, ASPxCheckBox).Checked = True
         End If
     End Sub
+     Protected Sub dgvVehicles_PageIndexChanged(sender As Object, e As EventArgs)
+         For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+            Dim column1 As GridViewDataColumn = dgvVehicles.Columns("DeviceID")
+            Dim chk As HtmlInputCheckBox = TryCast(dgvVehicles.FindRowCellTemplateControl(i, column1, "chkShow"), HtmlInputCheckBox)
+            If Not chk Is Nothing Then
+                chk.Checked = True
+            End If
+        Next
+    End Sub
+    Protected Sub dgvVehicles_ProcessColumnAutoFilter(sender As Object, e As ASPxGridViewAutoFilterEventArgs)
+
+        Dim grid As ASPxGridView = TryCast(sender, ASPxGridView)
+
+
+
+        ' For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
+        '    Dim column1 As GridViewDataColumn = dgvVehicles.Columns("DeviceID")
+        '    Dim chk As HtmlInputCheckBox = TryCast(dgvVehicles.FindRowCellTemplateControl(i, column1, "chkShow"), HtmlInputCheckBox)
+        '    If Not chk Is Nothing Then
+        '        chk.Checked = True
+        '    End If
+        'Next
+    End Sub
+
 End Class
