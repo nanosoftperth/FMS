@@ -61,10 +61,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:11</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>06/15/2017 18:29:08</publishTime>
+      <publishTime>06/16/2017 20:55:34</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>06/15/2017 18:29:08</publishTime>
+      <publishTime>06/16/2017 20:55:34</publishTime>
     </File>
     <File Include="bin/de/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -334,19 +334,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/30/2016 14:18:19</publishTime>
     </File>
     <File Include="bin/FMS.Business.dll">
-      <publishTime>06/15/2017 18:20:08</publishTime>
+      <publishTime>06/16/2017 20:55:25</publishTime>
     </File>
     <File Include="bin/FMS.ReportLogic.dll">
-      <publishTime>06/15/2017 18:28:59</publishTime>
+      <publishTime>06/16/2017 20:55:26</publishTime>
     </File>
     <File Include="bin/FMS.ServiceAccess.dll">
-      <publishTime>06/15/2017 18:29:00</publishTime>
+      <publishTime>06/16/2017 20:55:27</publishTime>
     </File>
     <File Include="bin/FMS.WEB.dll">
-      <publishTime>06/15/2017 18:29:01</publishTime>
+      <publishTime>06/16/2017 20:55:28</publishTime>
     </File>
     <File Include="bin/FMS.WEB.xml">
-      <publishTime>06/15/2017 18:29:01</publishTime>
+      <publishTime>06/16/2017 20:55:28</publishTime>
     </File>
     <File Include="bin/ja/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -517,7 +517,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2017 00:00:51</publishTime>
     </File>
     <File Include="CanBusPropertyDisplay.aspx">
-      <publishTime>06/15/2017 17:51:26</publishTime>
+      <publishTime>06/16/2017 20:37:41</publishTime>
     </File>
     <File Include="Contacts.aspx">
       <publishTime>05/09/2017 20:44:22</publishTime>
@@ -928,7 +928,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:10</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap.js">
-      <publishTime>06/14/2017 19:14:57</publishTime>
+      <publishTime>06/16/2017 19:39:16</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap_ClockLogic.js">
       <publishTime>04/11/2017 20:08:10</publishTime>
@@ -1036,7 +1036,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:09</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>06/14/2017 19:14:57</publishTime>
+      <publishTime>06/16/2017 20:46:18</publishTime>
     </File>
     <File Include="Controls/NanoReportParam.ascx">
       <publishTime>04/19/2017 19:36:06</publishTime>
@@ -1105,7 +1105,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:09</publishTime>
     </File>
     <File Include="FleetMap.aspx">
-      <publishTime>06/14/2017 19:14:57</publishTime>
+      <publishTime>06/16/2017 20:52:26</publishTime>
     </File>
     <File Include="GeoFencePropertyDisplay.aspx">
       <publishTime>04/11/2017 20:08:11</publishTime>
@@ -1141,7 +1141,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2017 09:04:11</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>06/15/2017 18:29:05</publishTime>
+      <publishTime>06/16/2017 20:55:31</publishTime>
     </File>
     <File Include="ProblemPage.aspx">
       <publishTime>04/11/2017 20:08:09</publishTime>
@@ -1237,7 +1237,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2017 19:36:06</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/15/2017 18:29:03</publishTime>
+      <publishTime>06/16/2017 20:55:30</publishTime>
     </File>
     <File Include="WebServices/Uniqco_Integrator.svc">
       <publishTime>04/11/2017 20:08:09</publishTime>

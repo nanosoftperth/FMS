@@ -35,13 +35,16 @@ Public Class CanBusPropertyDisplay
                 Dim cbd As New CanBusDefinitionValues()
                 cbd.label = messageValue.MessageDefinition.Description
                 If Not messageValue.CanValues.Count.Equals(0) Then
-                    cbd.description = messageValue.CanValues(0).Value
+                    If Not messageValue.CanValues(0).Value Is Nothing Then
+                        cbd.description = messageValue.CanValues(0).Value.ToString()
+                    End If
+                    cbd.dtTime = messageValue.CanValues(0).Time.ToString("HH:mm")
                 End If
                 canBusDef.Add(cbd)
             Next
 
             grid.DataBind()
-           
+
         End If
     End Sub
 
@@ -55,4 +58,5 @@ End Class
 Public Class CanBusDefinitionValues
     Public Property label As String
     Public Property description As String
+    Public Property dtTime As String
 End Class
