@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="refresh" content="30" />
+    <%--<meta http-equiv="refresh" content="30" />--%>
     <title></title>
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
     <script src="Content/javascript/page.js"></script>
@@ -19,13 +19,16 @@
     <div>
 
         <dx:ASPxGridView ID="grid" Settings-ShowColumnHeaders="false" ClientInstanceName="grid" runat="server" Width="250px"
-        AutoGenerateColumns="False" OnDataBinding="grid_DataBinding">
-            <SettingsPager Visible="False" >
+        AutoGenerateColumns="False" OnDataBinding="grid_DataBinding" Settings-UseFixedTableLayout="true"  >
+            <SettingsPager Visible="False"  >
             </SettingsPager>
             <Columns>
-                <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1">
+                <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1" Width="100">
+                    <%--<CellStyle Wrap="True"></CellStyle>--%>
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="description" VisibleIndex="1">
+                <dx:GridViewDataTextColumn FieldName="description" VisibleIndex="1" Width="150">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="40">
                 </dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
