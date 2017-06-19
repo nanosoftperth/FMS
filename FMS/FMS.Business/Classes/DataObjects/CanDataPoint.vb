@@ -221,12 +221,13 @@
 
             '1090	Battery Voltage				7
             Public Sub zagro125_7(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                j1939(cv, msg_def) 'uses same logic as j1939
+                j1939BatteryVoltage(cv, msg_def) 'uses same logic as j1939
             End Sub
 
             '646	Pressure Values				8,9,10,11
             Public Sub zagro125_pressurevals(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                j1939(cv, msg_def) 'uses same logic as j1939
+                j1939New(cv, msg_def) 'uses same logic as j1939
+
             End Sub
 
 
@@ -332,6 +333,54 @@
 
                 cv.Value = runningtotal
 
+            End Sub
+
+            Public Sub j1939New(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+                Dim b() As Byte = StringToByteArray(cv.RawValue)
+
+                Dim startByte As Integer = msg_def.pos_start
+
+                Dim indx As Integer = 0
+                Dim runningtotal As Double = 0
+                Dim startTotal As Double = 0
+
+                For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
+                    If indx.Equals(0) Then
+                        startTotal = CInt(b(i))
+                    Else
+                        runningtotal += startTotal + (CInt(b(i)) * Math.Pow(256, indx))
+                    End If
+
+                    indx += 1
+                Next
+
+                cv.Value = runningtotal
+
+            End Sub
+
+            Public Sub j1939BatteryVoltage(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Dim b() As Byte = StringToByteArray(cv.RawValue)
+
+                Dim startByte As Integer = msg_def.pos_start
+
+                Dim indx As Integer = 0
+                Dim runningtotal As Double = 0
+                Dim startTotal As Double = 0
+
+                For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
+                    If indx.Equals(0) Then
+                        startTotal = CInt(b(i))
+                    Else
+                        runningtotal += startTotal + (CInt(b(i)) * Math.Pow(256, indx))
+                    End If
+
+                    indx += 1
+                Next
+
+                runningtotal /= 100
+
+                cv.Value = runningtotal
             End Sub
 
 
