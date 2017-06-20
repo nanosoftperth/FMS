@@ -129,8 +129,8 @@
 
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
                 'date format for local is MM/dd/yyyy
-                Dim startDate As Date = Date.Now.AddDays(1).ToString("MM/dd/yyyy")
-                Dim endDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
+                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
+                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
@@ -138,7 +138,7 @@
                 'get the latest data from pi from current date backwards up to 30 counts/days to avoid infinity
                 While pivds.Count = 0
                     intCount += 1                    
-                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("MM/dd/yyyy")
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("dd/MM/yyyy")
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
                     If intCount = 30 Then Exit While
                 End While
@@ -283,24 +283,13 @@
 
             '578	Speed						1
             Public Sub zagro125_1(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-
-                Dim b() As Byte = StringToByteArray(cv.RawValue)
-
-                Dim startByte As Integer = msg_def.pos_start
-
-                Dim indx As Integer = 0
-                Dim runningtotal As Double = 0
-
-                For i As Integer = 0 To 1
-
-                    runningtotal += CInt(b(i)) * Math.Pow(256, indx)
-                    indx += 1
-                Next
-
-                runningtotal /= 100
-
-                cv.Value = runningtotal
-
+                Dim J1939Value = GetJ1939(cv, msg_def)
+                '32768 fix value from the excel file CANBUS_Analysis_125KbData
+                If J1939Value < 32768 Then
+                    cv.Value = J1939Value / 100
+                Else
+                    cv.Value = -Convert.ToInt32(Right(Hex(-J1939Value), 4), 16) / 100
+                End If
             End Sub
 #End Region
 
