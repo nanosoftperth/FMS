@@ -119,6 +119,7 @@
             'get the MessageDefinition
             retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard)
 
+
             ' Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
             Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
                                                                                 retobj.MessageDefinition.PGN)
@@ -128,8 +129,8 @@
 
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
                 'date format for local is MM/dd/yyyy
-                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
-                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+                Dim startDate As Date = Date.Now.AddDays(1).ToString("MM/dd/yyyy")
+                Dim endDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
@@ -137,7 +138,7 @@
                 'get the latest data from pi from current date backwards up to 30 counts/days to avoid infinity
                 While pivds.Count = 0
                     intCount += 1                    
-                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("dd/MM/yyyy")
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("MM/dd/yyyy")
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
                     If intCount = 30 Then Exit While
                 End While
@@ -195,7 +196,7 @@
                     'If SPN = 6 Then calcMethod = AddressOf zagro125_6
                     If SPN = 7 Then calcMethod = AddressOf zagro125_7
 
-                    If SPN >= 8 AndAlso SPN <= 11 Then calcMethod = AddressOf zagro125_pressureVals
+                    If SPN >= 8 AndAlso SPN <= 11 Then calcMethod = AddressOf zagro125_pressurevals
 
 
                 End If
@@ -221,12 +222,12 @@
 
             '1090	Battery Voltage				7
             Public Sub zagro125_7(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                j1939BatteryVoltage(cv, msg_def) 'uses same logic as j1939
+                cv.Value = GetJ1939(cv, msg_def) / 100 'uses same logic as j1939
             End Sub
 
             '646	Pressure Values				8,9,10,11
             Public Sub zagro125_pressurevals(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                j1939New(cv, msg_def) 'uses same logic as j1939
+                cv.Value = GetJ1939(cv, msg_def) / 10000 * 250 'uses same logic as j1939
 
             End Sub
 
@@ -307,8 +308,6 @@
 
 #End Region
 
-
-
             Public Shared Function StringToByteArray(hex As String) As Byte()
                 Return Enumerable.Range(0, hex.Length).Where(Function(x) x Mod 2 = 0).[Select](Function(x) Convert.ToByte(hex.Substring(x, 2), 16)).ToArray()
             End Function
@@ -335,7 +334,7 @@
 
             End Sub
 
-            Public Sub j1939New(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+            Public Function GetJ1939(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
 
                 Dim b() As Byte = StringToByteArray(cv.RawValue)
 
@@ -355,38 +354,10 @@
                     indx += 1
                 Next
 
-                cv.Value = runningtotal
-
-            End Sub
-
-            Public Sub j1939BatteryVoltage(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                Dim b() As Byte = StringToByteArray(cv.RawValue)
-
-                Dim startByte As Integer = msg_def.pos_start
-
-                Dim indx As Integer = 0
-                Dim runningtotal As Double = 0
-                Dim startTotal As Double = 0
-
-                For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
-                    If indx.Equals(0) Then
-                        startTotal = CInt(b(i))
-                    Else
-                        runningtotal += startTotal + (CInt(b(i)) * Math.Pow(256, indx))
-                    End If
-
-                    indx += 1
-                Next
-
-                runningtotal /= 100
-
-                cv.Value = runningtotal
-            End Sub
-
+                Return runningtotal
+            End Function
 
         End Class
-
-
     End Class
 
 End Namespace
