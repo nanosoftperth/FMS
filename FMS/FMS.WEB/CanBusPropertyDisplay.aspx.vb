@@ -34,18 +34,23 @@ Public Class CanBusPropertyDisplay
             For Each messageValue As CanValueMessageDefinition In canMessDef
                 Dim cbd As New CanBusDefinitionValues()
                 cbd.label = messageValue.MessageDefinition.Description
+                cbd.spn = messageValue.MessageDefinition.SPN
                 If Not messageValue.CanValues.Count.Equals(0) Then
                     If Not messageValue.CanValues(0).Value Is Nothing Then
                         If Not messageValue.MessageDefinition.Units Is Nothing And _
                             Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
-                            cbd.description = messageValue.CanValues(0).Value.ToString() + " " + messageValue.MessageDefinition.Units
+                            cbd.description = Format(messageValue.CanValues(0).Value, "##.#").ToString() + " " + messageValue.MessageDefinition.Units
                         Else
-                            cbd.description = messageValue.CanValues(0).Value.ToString()
+                            If messageValue.MessageDefinition.SPN = 5 Then
+                                cbd.description = messageValue.CanValues(messageValue.CanValues.Count - 1).Value.ToString()
+                            Else
+                                cbd.description = messageValue.CanValues(0).Value.ToString()
+                            End If
                         End If
                     End If
-                    cbd.dtTime = messageValue.CanValues(0).Time.ToString("HH:mm")
+                    cbd.dtTime = messageValue.CanValues(0).Time.ToString("HH:mm:ss")
                 End If
-                canBusDef.Add(cbd)
+                If Not canBusDef.Where(Function(x) x.spn.Equals(cbd.spn)).Count > 0 Then canBusDef.Add(cbd)
             Next
 
             grid.DataBind()
@@ -64,4 +69,5 @@ Public Class CanBusDefinitionValues
     Public Property label As String
     Public Property description As String
     Public Property dtTime As String
+    Public Property spn As Integer
 End Class
