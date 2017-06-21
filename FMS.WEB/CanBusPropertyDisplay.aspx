@@ -19,16 +19,17 @@
     <div>
 
         <dx:ASPxGridView ID="grid" Settings-ShowColumnHeaders="false" ClientInstanceName="grid" runat="server" Width="250px"
-        AutoGenerateColumns="False" OnDataBinding="grid_DataBinding" Settings-UseFixedTableLayout="true"  >
-            <SettingsPager Visible="False"  >
+        AutoGenerateColumns="False" OnDataBinding="grid_DataBinding" Settings-UseFixedTableLayout="true" >
+            <SettingsPager Visible="False" PageSize="12" >
             </SettingsPager>
             <Columns>
-                <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1" Width="100">
-                    <%--<CellStyle Wrap="True"></CellStyle>--%>
+                <dx:GridViewDataTextColumn FieldName="spn" VisibleIndex="0" SortOrder="Ascending">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="description" VisibleIndex="1" Width="150">
+                <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1" Width="97">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="40">
+                <dx:GridViewDataTextColumn FieldName="description" VisibleIndex="1" Width="147">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="54">
                 </dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>

@@ -149,7 +149,7 @@
 
                         retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
                                                                                 .RawValue = p.Value})
-                        Exit For
+                        If Not SPN.Equals(5) Then Exit For
                     Catch ex As Exception
                     End Try
                 Next
@@ -168,6 +168,7 @@
         Public Class CanValueList
             Inherits List(Of CanValue)
 
+            Public Property IntHornPressed As Integer
 
             Public Delegate Sub doCalcDelegate(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
 
@@ -238,8 +239,11 @@
                 Dim i As Decimal = StringToByteArray(cv.RawValue)(0)
 
                 i /= 2 'divide by 2 apparently?
-                cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
-
+                'cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
+                If (i Mod 2 > 0) Then
+                    IntHornPressed += 1
+                End If
+                cv.Value = IntHornPressed
             End Sub
 
             '578	Fault Codes					4
