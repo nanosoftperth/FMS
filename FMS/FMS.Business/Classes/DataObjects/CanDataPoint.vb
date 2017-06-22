@@ -135,9 +135,10 @@
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
                                                                      PISDK.BoundaryTypeConstants.btInside)
+
                 'get the latest data from pi from current date backwards up to 30 counts/days to avoid infinity
                 While pivds.Count = 0
-                    intCount += 1                    
+                    intCount += 1
                     Dim eDate As Date = startDate.AddDays(-intCount).ToString("dd/MM/yyyy")
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
                     If intCount = 30 Then Exit While
@@ -149,7 +150,8 @@
 
                         retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
                                                                                 .RawValue = p.Value})
-                        If Not SPN.Equals(5) Then Exit For
+                        'If Not SPN.Equals(5) Then Exit For
+                        Exit For
                     Catch ex As Exception
                     End Try
                 Next
@@ -239,11 +241,11 @@
                 Dim i As Decimal = StringToByteArray(cv.RawValue)(0)
 
                 i /= 2 'divide by 2 apparently?
-                'cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
-                If (i Mod 2 > 0) Then
-                    IntHornPressed += 1
-                End If
-                cv.Value = IntHornPressed
+                cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
+                'If (i Mod 2 > 0) Then
+                '    IntHornPressed += 1
+                'End If
+                'cv.Value = IntHornPressed
             End Sub
 
             '578	Fault Codes					4

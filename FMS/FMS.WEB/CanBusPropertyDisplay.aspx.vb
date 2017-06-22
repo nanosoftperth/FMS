@@ -39,13 +39,13 @@ Public Class CanBusPropertyDisplay
                     If Not messageValue.CanValues(0).Value Is Nothing Then
                         If Not messageValue.MessageDefinition.Units Is Nothing And _
                             Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
-                            cbd.description = Format(messageValue.CanValues(0).Value, "##.#").ToString() + " " + messageValue.MessageDefinition.Units
-                        Else
-                            If messageValue.MessageDefinition.SPN = 5 Then
-                                cbd.description = messageValue.CanValues(messageValue.CanValues.Count - 1).Value.ToString()
+                            If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
+                                cbd.description = Format(messageValue.CanValues(0).Value, "##.#").ToString() + " " + messageValue.MessageDefinition.Units
                             Else
-                                cbd.description = messageValue.CanValues(0).Value.ToString()
+                                cbd.description = "0"
                             End If
+                        Else
+                            cbd.description = messageValue.CanValues(0).Value.ToString()
                         End If
                     End If
                     cbd.dtTime = messageValue.CanValues(0).Time.ToString("HH:mm:ss")
