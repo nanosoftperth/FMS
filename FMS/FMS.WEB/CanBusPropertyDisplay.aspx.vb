@@ -34,7 +34,13 @@ Public Class CanBusPropertyDisplay
             For Each messageValue As CanValueMessageDefinition In canMessDef
                 Dim cbd As New CanBusDefinitionValues()
                 cbd.label = messageValue.MessageDefinition.Description
-                cbd.spn = messageValue.MessageDefinition.SPN
+                'this is for temporary only
+                If messageValue.MessageDefinition.Standard.ToLower.Equals("zagro500") Then
+                    cbd.spn = 10 + messageValue.MessageDefinition.SPN
+                Else
+                    cbd.spn = messageValue.MessageDefinition.SPN
+                End If
+
                 If Not messageValue.CanValues.Count.Equals(0) Then
                     If Not messageValue.CanValues(0).Value Is Nothing Then
                         If Not messageValue.MessageDefinition.Units Is Nothing And _
@@ -50,7 +56,7 @@ Public Class CanBusPropertyDisplay
                     End If
                     cbd.dtTime = messageValue.CanValues(0).Time.ToString("HH:mm:ss")
                 End If
-                If Not canBusDef.Where(Function(x) x.spn.Equals(cbd.spn)).Count > 0 Then canBusDef.Add(cbd)
+                canBusDef.Add(cbd)
             Next
 
             grid.DataBind()

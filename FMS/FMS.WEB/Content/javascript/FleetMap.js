@@ -101,7 +101,7 @@ function showInfoWindow2(event) {
     var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID;
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 600px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
-    contentString = '<div class=\'iw-content\'>' + contentString + '</div>';
+    contentString = '<div class=\'iw-content2\'>' + contentString + '</div>';
 
     if (infoWindowVehicle !== null) {
         google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
@@ -112,7 +112,7 @@ function showInfoWindow2(event) {
 
     var content = '<div id="iw-container">' +
                   '<div class="iw-title2"> ' + this.Name + ' </div>' +
-                  '<div class="iw-content">' +
+                  '<div class="iw-content2">' +
                     contentString
     '</div>' +
     '<div class="iw-bottom-gradient"></div>' +

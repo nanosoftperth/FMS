@@ -197,7 +197,7 @@
                 End Try
             Next
 
-            For Each canmessdef As CAN_MessageDefinition In lst.Where(Function(x) x.Standard.ToLower.Equals("zagro125")).Distinct().ToList()
+            For Each canmessdef As CAN_MessageDefinition In lst.Where(Function(x) x.Standard.ToLower.Equals("zagro125") Or x.Standard.ToLower.Equals("zagro500")).Distinct().ToList()
                 Dim canValue As New CanValueMessageDefinition()
                 Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(canmessdef.SPN, DeviceID, canmessdef.Standard)
                 canValue.MessageDefinition = canmessdef
@@ -205,7 +205,7 @@
                 Dim bool As Boolean = False
                 If Not lstNew.Count.Equals(0) Then
                     For Each filterDuplicate In lstNew
-                        If Not canValue.CanValues.Count.Equals(0) Then
+                        If Not canValue.CanValues.Count.Equals(0) And Not filterDuplicate.CanValues.Count.Equals(0) Then
                             If filterDuplicate.MessageDefinition.SPN = canValue.MessageDefinition.SPN And _
                             filterDuplicate.CanValues(filterDuplicate.CanValues.Count - 1).RawValue = canValue.CanValues(canValue.CanValues.Count - 1).RawValue Then
                                 bool = True
