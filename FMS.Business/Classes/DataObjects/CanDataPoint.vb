@@ -129,8 +129,8 @@
 
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
                 'date format for local is MM/dd/yyyy
-                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
-                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+                Dim startDate As Date = Date.Now.AddDays(1).ToString("MM/dd/yyyy")
+                Dim endDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
@@ -139,7 +139,7 @@
                 'get the latest data from pi from current date backwards up to 30 counts/days to avoid infinity
                 While pivds.Count = 0
                     intCount += 1
-                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("dd/MM/yyyy")
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("MM/dd/yyyy")
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
                     If intCount = 30 Then Exit While
                 End While
@@ -205,7 +205,8 @@
                 End If
 
                 If msg_def.Standard = "Zagro500" Then
-                    'fill in here after we get the message definitions
+                    If SPN = 7 Then calcMethod = AddressOf zagro500_7
+                    If SPN = 3 Then calcMethod = AddressOf zagro500_3
                 End If
 
 
@@ -299,8 +300,16 @@
             End Sub
 #End Region
 
-#Region ""
+#Region "Zagro 500K"
+            Public Sub zagro500_7(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                cv.Value = GetJ1939(cv, msg_def) / 100
+            End Sub
 
+            Public Sub zagro500_3(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Dim i As Array = cv.RawValue.ToCharArray
+                Dim val As String = i(2).ToString + i(3).ToString
+                cv.Value = IIf(val.Equals("06"), "Diagonal mode road", IIf(val.Equals("08"), "Circle mode road", IIf(val.Equals("10"), "rail mode", "Stationary")))
+            End Sub
 #End Region
 
             Public Shared Function StringToByteArray(hex As String) As Byte()
