@@ -19,6 +19,16 @@
 	border: 1px solid rgba(72, 181, 233, 0.6);
 	border-radius: 2px 2px 10px 10px;
 }
+/*For Dashboard*/
+.custom-iw2_dash { 
+	/*top: 15px !important;*/
+    width:540px !Important;
+	/*left: 0px !important;*/
+	background-color: #fff;
+	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+	border: 1px solid rgba(72, 181, 233, 0.6);
+	border-radius: 2px 2px 10px 10px;
+}
 
 .iconposition {
 top: -42px !important;
@@ -28,6 +38,11 @@ left: 94px !important;
 	/*margin-bottom: 10px;*/
 }
 #iw-container2 {
+	/*margin-bottom: 10px;*/
+}
+
+/*For Dashboard*/
+#iw-container_dash {
 	/*margin-bottom: 10px;*/
 }
 
@@ -71,6 +86,32 @@ left: 94px !important;
 	margin: 0;
 	border-radius: 2px 2px 0 0;
 }
+
+/*For Dashboard*/
+#iw-container_dash .iw-content_dash {
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: 400;
+	margin-right: 1px;
+	padding: 5px 5px 20px 5px;
+    height:150px;
+	/*//max-height: 140px;*/
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+ .iw-title_dash {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 22px;
+	font-weight: 400;
+    width:510px;
+	padding: 10px;
+	background-color: #48b5e9;
+	color: white;
+	margin: 0;
+	border-radius: 2px 2px 0 0;
+}
+
+
 #iw-container .iw-content {
 	font-size: 13px;
 	line-height: 18px;
@@ -82,6 +123,7 @@ left: 94px !important;
 	overflow-y: hidden;
 	overflow-x: hidden;
 }
+
 #iw-container2 .iw-content {
 	font-size: 13px;
 	line-height: 18px;
