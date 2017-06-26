@@ -6,22 +6,45 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Topshelf;
+using Topshelf.Logging;
 
 namespace FMS.SimulatorService
 {
 
-    public class TownCrier
+    public class TownCrier : ServiceControl
     {
         readonly Timer _timer;
+
+        private readonly LogWriter logWriter;
+
         public TownCrier()
         {
-            _timer = new Timer(1000) { AutoReset = true };
-            _timer.Elapsed += (sender, eventArgs) => Console.WriteLine("It is {0} and all is well", DateTime.Now);
+            logWriter = HostLogger.Get<TownCrier>();
 
-           // Classes.MyLogManager.Instance.GetCurrentClassLogger().Debug(Console.WriteLine("It is {0} and all is well", DateTime.Now));
+            _timer = new Timer(1000) { AutoReset = true };
+            _timer.Elapsed += (sender, eventArgs) => writeMessages(String.Format("It is {0} and all is well", DateTime.Now));
+            
+            //Classes.MyLogManager.Instance.GetCurrentClassLogger().Debug(Console.WriteLine("It is {0} and all is well", DateTime.Now));
         }
-        public void Start() { _timer.Start(); }
-        public void Stop() { _timer.Stop(); }
+
+        private void writeMessages(string msg)
+        {
+            Console.WriteLine("It is {0} and all is well", DateTime.Now);
+            logWriter.Debug("Tick:" + DateTime.Now.ToLongTimeString());
+
+        }
+
+        public bool Start(HostControl hostControl)
+        {
+            _timer.Start();
+            return true;
+        }
+
+        public bool Stop(HostControl hostControl)
+        {
+            _timer.Stop();
+            return false;
+        }
     }
 
 
@@ -29,28 +52,22 @@ namespace FMS.SimulatorService
     {
 
 
-
         static void Main(string[] args)
-        {          
+        {
 
 
             HostFactory.Run(x =>
             {
-                x.Service<TownCrier>(s =>
-                {
-                    s.ConstructUsing(name => new TownCrier());
-                    s.WhenStarted(tc => tc.Start());
-                    s.WhenStopped(tc => tc.Stop());
-                });
+                x.Service<TownCrier>();
 
-
-                x.UseNLog(FMS.SimulatorService.Classes.MyLogManager.Instance);
-
-                x.RunAsLocalSystem();
+                //x.UseNLog(FMS.SimulatorService.Classes.MyLogManager.Instance);
+                x.UseNLog(Classes.MyLogManager.Instance);
 
                 x.SetDescription("Sample Topshelf Host");
                 x.SetDisplayName("Stuff");
                 x.SetServiceName("Stuff");
+
+                x.RunAsLocalSystem();
             });
 
         }
