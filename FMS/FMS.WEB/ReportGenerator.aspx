@@ -8,7 +8,7 @@
 
 
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
-
+      
 
 
     <style type="text/css">
@@ -310,5 +310,7 @@
     <dx:ASPxGlobalEvents ID="ASPxGlobalEvents2" runat="server">
         <ClientSideEvents ControlsInitialized="ReportGenerator_ControlsInitialised" />
     </dx:ASPxGlobalEvents>
+
+
 
 </asp:Content>

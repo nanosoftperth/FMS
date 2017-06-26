@@ -142,16 +142,16 @@
             UpdateText();
         }
         function UpdateSelectAllItemState() {
-            IsAllSelected() ? checkListBox.SelectIndices([0]) : checkListBox.UnselectIndices([0]);
+            IsAllSelected1() ? checkListBox.SelectIndices([0]) : checkListBox.UnselectIndices([0]);
         }
-        function IsAllSelected() {
+        function IsAllSelected1() {
             var selectedDataItemCount = checkListBox.GetItemCount() - (checkListBox.GetItem(0).selected ? 0 : 1);
             return checkListBox.GetSelectedItems().length == selectedDataItemCount;
         }
         function UpdateText() {
-            var selectedItems = checkListBox.GetSelectedItems(); 
+            var selectedItems = checkListBox.GetSelectedItems();
             checkComboBox.SetText(GetSelectedItemsText(selectedItems));
-            IRecepients.SetText(GetValuesByTexts(selectedItems));
+            //IRecepients.SetText(GetValuesByTexts(selectedItems));
              
         }
         function SynchronizeListBoxValues(dropDown, args) { 
@@ -185,6 +185,76 @@
             }
             return actualValues;
         }
+    </script>
+ 
+   <!--  Vehicle section start script -->  
+    <script type="text/javascript">
+        var textSeparator = ";";
+        function OnListBoxSelectionChangedValue(listBox, args, clientInsName) {
+            //console.log(s);
+            //console.log(listBox);
+            //console.log(args);
+            //var clientInstanceName = csGetClientInstanceName(listBox);
+            console.log(listBox.GetText());
+            if (args.index == 0)
+                args.isSelected ? listBox.SelectAll() : listBox.UnselectAll();
+            UpdateSelectAllItemState1();
+            UpdateText1();
+        }
+        function UpdateSelectAllItemState1() {
+            IsAllSelected1() ? vehiclecheckListBox.SelectIndices([0]) : vehiclecheckListBox.UnselectIndices([0]);
+        }
+        function IsAllSelected1() {
+            var selectedDataItemCount = vehiclecheckListBox.GetItemCount() - (vehiclecheckListBox.GetItem(0).selected ? 0 : 1);
+            return vehiclecheckListBox.GetSelectedItems().length == selectedDataItemCount;
+        }
+        function UpdateText1() {
+            var selectedItems = vehiclecheckListBox.GetSelectedItems();
+            checkComboBox1.SetText(GetSelectedItemsText1(selectedItems));
+           // IRecepients.SetText(GetValuesByTexts(selectedItems));
+
+        }
+        function SynchronizeListBoxValues(dropDown, args) {
+            //checkListBox.UnselectAll();
+            //var texts = dropDown.GetText().split(textSeparator);
+            //var values = GetValuesByTexts(texts);
+            //checkListBox.SelectValues(values);
+            //UpdateSelectAllItemState();
+            //UpdateText(); // for remove non-existing texts
+        }
+        function GetSelectedItemsText1(items) {
+            var texts = [];
+            for (var i = 0; i < items.length; i++)
+                if (items[i].index != 0)
+                    texts.push(items[i].text);
+            //alert(items);
+            return texts.join(textSeparator);
+        }
+        function GetValuesByTexts(texts) {
+            var actualValues = [];
+            var item;
+            for (var i = 0; i < texts.length; i++) {
+                //item = checkListBox.FindItemByText(texts[i]);
+                //if (item != null)
+                //    actualValues.push(item.value); 
+                if (texts[i].value != "00000000-0000-0000-0000-000000000000") {
+                    actualValues.push(texts[i].value);
+                }
+
+            }
+            return actualValues;
+        }
+
+        //function csGetClientInstanceName(editorControl) {
+        //    var clientInstanceName = null;
+        //    if (typeof (editorControl) !== 'undefined') {
+        //        var parts = editorControl.name.split('.');
+        //        if (parts != null)
+        //            clientInstanceName = parts[parts.length - 1];
+        //    }
+
+        //    return clientInstanceName;
+        //}
     </script>
 </head>
 <body>
