@@ -10,6 +10,7 @@
         // alert(uniqueClientID);
          
     })
+   
 
 </script>
 
@@ -22,9 +23,10 @@
     <td style="vertical-align: top; text-align: left;">
 
         <%--change below to div, not panel? -dg--%>
-        <div id="panelContent" runat="server" >
+        <div id="panelContent" runat="server">
+             
         </div>
-
+       
         <div id="dateTimeDIV" runat="server" >
 
 
