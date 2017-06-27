@@ -1,19 +1,103 @@
 ﻿body {
 }
-.BlinkPanelImg {
-    animation: blinker 1s linear infinite;
+.div_dashboard {
+    
+    width: 700px;
+   
 }
-@keyframes blinker {  
-  50% { opacity: 0; }
+.imgmax {
+    max-height: 100%;
+    max-width: 100%;
 }
-.imgOverlay {
-    /*width: 240px; 
-    height: 240px;*/ 
-    width: 100%;
-    height: 100%;
-    background: url("Content/Images/Dashboard1.png") no-repeat; 
 
-} 
-/*.imgOverlay:hover { 
-    background: url(img/flower.png) no-repeat;
-}*/ 
+.div_break {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+    left: 36px;
+}
+
+.div_steer {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 33px;
+    left: 77px;
+}
+
+.div_drive {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 32px;
+    left: 117px;
+}
+
+.div_ifm {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 33px;
+    left: 153px;
+}
+
+.div_can {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 32px;
+    left: 193px;
+}
+
+.div_can {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 32px;
+    left: 193px;
+}
+
+.div_align {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 32px;
+    left: 235px;
+}
+
+.div_warning {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 76px;
+    left: 66px;
+}
+
+.div_stop {
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    top: 76px;
+    left: 125px;
+}
+
+.div_speed {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 76px;
+    left: 207px;
+}
+
+.div_battery {
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: 35px;
+    left: 296px;
+}
+
+.pnlimgHide {
+    display:none;
+}
