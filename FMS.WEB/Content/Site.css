@@ -13,7 +13,7 @@
 .custom-iw2 { 
 	/*top: 15px !important;*/
     height:450px !Important;
-    width:330px !Important;
+    width:430px !Important;
 	/*left: 0px !important;*/
 	background-color: #fff;
 	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
@@ -61,7 +61,7 @@ left: 94px !important;
 
     top:0px !Important;
     left:0px !Important;
-    width:328px !Important;
+    width:428px !Important;
 }
 
 #iw-container .iw-title {
@@ -80,7 +80,7 @@ left: 94px !important;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 22px;
 	font-weight: 400;
-    width:330px;
+    width:430px;
 	padding: 10px;
 	background-color: #48b5e9;
 	color: white;

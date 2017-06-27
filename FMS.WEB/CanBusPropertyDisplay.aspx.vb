@@ -31,22 +31,23 @@ Public Class CanBusPropertyDisplay
 
         If response.IsSuccessStatusCode Then
             Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
-            For Each messageValue As CanValueMessageDefinition In canMessDef
+            For Each messageValue As CanValueMessageDefinition In canMessDef.Where(Function(x) Not x.MessageDefinition.SPN.Equals(6))
                 Dim cbd As New CanBusDefinitionValues()
-                cbd.label = messageValue.MessageDefinition.Description
-                'this is for temporary only
-                If messageValue.MessageDefinition.Standard.ToLower.Equals("zagro500") Then
-                    cbd.spn = 10 + messageValue.MessageDefinition.SPN
-                Else
-                    cbd.spn = messageValue.MessageDefinition.SPN
-                End If
-
                 If Not messageValue.CanValues.Count.Equals(0) Then
+                    cbd.label = messageValue.MessageDefinition.Description
+                    'this is for temporary only
+                    If messageValue.MessageDefinition.Standard.ToLower.Equals("zagro500") And Not messageValue.MessageDefinition.SPN = 7 Then
+                        cbd.spn = 10 + messageValue.MessageDefinition.SPN
+                    Else
+                        cbd.spn = messageValue.MessageDefinition.SPN
+                    End If
+
+
                     If Not messageValue.CanValues(0).Value Is Nothing Then
                         If Not messageValue.MessageDefinition.Units Is Nothing And _
                             Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
                             If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
-                                cbd.description = Format(messageValue.CanValues(0).Value, "##.#").ToString() + " " + messageValue.MessageDefinition.Units
+                                cbd.description = Format(messageValue.CanValues(0).Value, "0#.#").ToString() + " " + messageValue.MessageDefinition.Units
                             Else
                                 cbd.description = "0"
                             End If
@@ -54,10 +55,23 @@ Public Class CanBusPropertyDisplay
                             cbd.description = messageValue.CanValues(0).Value.ToString()
                         End If
                     End If
-                    cbd.dtTime = messageValue.CanValues(0).Time.ToString("HH:mm:ss")
+                    cbd.dtTime = messageValue.CanValues(0).Time.ToString("MM/dd/yy HH:mm:ss")
+                    canBusDef.Add(cbd)
                 End If
-                canBusDef.Add(cbd)
             Next
+
+            Dim batVolt = canBusDef.Where(Function(xx) xx.spn = 7).ToList()
+            Dim intMyIndex As Integer
+            If batVolt.Count > 1 Then
+                If batVolt(0).dtTime < batVolt(1).dtTime Then
+                    intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(0).dtTime))
+                    canBusDef.RemoveAt(intMyIndex)
+                Else
+                    intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(1).dtTime))
+                    canBusDef.RemoveAt(intMyIndex)
+                End If
+                
+            End If
 
             grid.DataBind()
 

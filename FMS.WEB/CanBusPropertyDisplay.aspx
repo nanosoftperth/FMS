@@ -18,18 +18,18 @@
     <form id="form1" runat="server">
     <div>
 
-        <dx:ASPxGridView ID="grid" Settings-ShowColumnHeaders="false" ClientInstanceName="grid" runat="server" Width="250px"
+        <dx:ASPxGridView ID="grid" Settings-ShowColumnHeaders="false" ClientInstanceName="grid" runat="server" Width="400px"
         AutoGenerateColumns="False" OnDataBinding="grid_DataBinding" Settings-UseFixedTableLayout="true" >
             <SettingsPager Visible="False" PageSize="15" >
             </SettingsPager>
             <Columns>
-                <dx:GridViewDataTextColumn FieldName="spn" VisibleIndex="0" SortOrder="Ascending">
+                <dx:GridViewDataTextColumn FieldName="spn" Visible="false" VisibleIndex="0" SortOrder="Ascending" Width="20">
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1" Width="97">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="description" VisibleIndex="1" Width="147">
+                <dx:GridViewDataTextColumn FieldName="description" VisibleIndex="1" Width="140">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="54">
+                <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="105">
                 </dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
