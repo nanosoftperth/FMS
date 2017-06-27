@@ -311,6 +311,7 @@
       <DependentUpon>QueryParser.ashx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\UsersController.vb" />
+    <Compile Include="Controls\DropDownListBoxTemplate.vb" />
     <Compile Include="Controls\NanoReportParam.ascx.designer.vb">
       <DependentUpon>NanoReportParam.ascx</DependentUpon>
     </Compile>
@@ -871,6 +872,7 @@
     <Content Include="Content\javascript\jquery-ui\LICENSE.txt" />
     <Content Include="Content\javascript\markerWithLabel.js" />
     <Content Include="Content\javascript\modernizr-2.6.2.js" />
+    <Content Include="Content\javascript\numtowords.js" />
     <Content Include="Content\javascript\page.js" />
     <Content Include="Content\javascript\pathDrawer.js" />
     <Content Include="Content\javascript\respond.min.js" />

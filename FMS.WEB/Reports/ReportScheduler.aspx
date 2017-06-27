@@ -59,10 +59,10 @@
             }
             else if (comboSelectedReport.GetValue() == "DriverOperatingHoursReport")
             {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "',   NativeId:'" + IRecepients.GetValue() + "'}";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + lVehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + BusinessLocation.GetValue() + "',   NativeId:'" + IRecepients.GetValue() + "'}";
             }
             else {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Vehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + lVehicle.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
             }
             $.ajax({
                 type: 'POST',
@@ -142,16 +142,16 @@
             UpdateText();
         }
         function UpdateSelectAllItemState() {
-            IsAllSelected1() ? checkListBox.SelectIndices([0]) : checkListBox.UnselectIndices([0]);
+            IsAllSelected() ? checkListBox.SelectIndices([0]) : checkListBox.UnselectIndices([0]);
         }
-        function IsAllSelected1() {
+        function IsAllSelected() {
             var selectedDataItemCount = checkListBox.GetItemCount() - (checkListBox.GetItem(0).selected ? 0 : 1);
             return checkListBox.GetSelectedItems().length == selectedDataItemCount;
         }
         function UpdateText() {
             var selectedItems = checkListBox.GetSelectedItems();
             checkComboBox.SetText(GetSelectedItemsText(selectedItems));
-            //IRecepients.SetText(GetValuesByTexts(selectedItems));
+            IRecepients.SetText(GetValuesByTexts(selectedItems));
              
         }
         function SynchronizeListBoxValues(dropDown, args) { 
@@ -190,28 +190,48 @@
    <!--  Vehicle section start script -->  
     <script type="text/javascript">
         var textSeparator = ";";
-        function OnListBoxSelectionChangedValue(listBox, args, clientInsName) {
+        function OnListBoxSelectionChangedValue(s, e, _ClientIntanceName) {
+
+           console.log("Called");
             //console.log(s);
             //console.log(listBox);
             //console.log(args);
-            //var clientInstanceName = csGetClientInstanceName(listBox);
-            console.log(listBox.GetText());
-            if (args.index == 0)
-                args.isSelected ? listBox.SelectAll() : listBox.UnselectAll();
-            UpdateSelectAllItemState1();
-            UpdateText1();
+            //var clientInstanceName = csGetClientInstanceName(listBox); 
+            if (e.index == 0)
+                e.isSelected ? s.SelectAll() : s.UnselectAll();
+            UpdateSelectAllItemState1(_ClientIntanceName);
+            UpdateText1(_ClientIntanceName);
         }
-        function UpdateSelectAllItemState1() {
-            IsAllSelected1() ? vehiclecheckListBox.SelectIndices([0]) : vehiclecheckListBox.UnselectIndices([0]);
+        function UpdateSelectAllItemState1(_ClientIntanceName) {
+            if (_ClientIntanceName == "Vehicle") {
+                IsAllSelected1(_ClientIntanceName) ? Vehicle.SelectIndices([0]) : Vehicle.UnselectIndices([0]);
+            }
+            else { IsAllSelected1(_ClientIntanceName) ? Drivers.SelectIndices([0]) : Drivers.UnselectIndices([0]); }
+            
         }
-        function IsAllSelected1() {
-            var selectedDataItemCount = vehiclecheckListBox.GetItemCount() - (vehiclecheckListBox.GetItem(0).selected ? 0 : 1);
-            return vehiclecheckListBox.GetSelectedItems().length == selectedDataItemCount;
+        function IsAllSelected1(_ClientIntanceName) {
+            if (_ClientIntanceName == "Vehicle")
+            {
+                var selectedDataItemCount = Vehicle.GetItemCount() - (Vehicle.GetItem(0).selected ? 0 : 1);
+                return Vehicle.GetSelectedItems().length == selectedDataItemCount;
+            }
+            else {
+                var selectedDataItemCount = Drivers.GetItemCount() - (Drivers.GetItem(0).selected ? 0 : 1);
+                return Drivers.GetSelectedItems().length == selectedDataItemCount;
+            }
+           
         }
-        function UpdateText1() {
-            var selectedItems = vehiclecheckListBox.GetSelectedItems();
-            checkComboBox1.SetText(GetSelectedItemsText1(selectedItems));
-           // IRecepients.SetText(GetValuesByTexts(selectedItems));
+        function UpdateText1(_ClientIntanceName) {
+            if (_ClientIntanceName == "Vehicle") {
+                var selectedItems = Vehicle.GetSelectedItems();
+                checkComboBox1.SetText(GetSelectedItemsText1(selectedItems));
+            }
+            else {
+                var selectedItems = Drivers.GetSelectedItems();
+                checkComboBox1.SetText(GetSelectedItemsText1(selectedItems));
+            }
+           
+            lVehicle.SetText(GetValuesByTexts(selectedItems));
 
         }
         function SynchronizeListBoxValues(dropDown, args) {
@@ -569,7 +589,8 @@
               param.PStartDate = lStartDate.GetValue();
               param.PEndDate = lEndDate.GetValue();
               if (reportName != '<%=ReportNameList.ReportGeoFence_byDriver %>') {
-                param.PVehicle = lVehicle.GetValue();
+                  param.PVehicle = lVehicle.GetValue(); 
+                 
             }
             else {
                 param.PVehicle = lDriver.GetValue();
@@ -593,8 +614,7 @@
               //    param.PBusinessLocation = "";
             //}
             param.PBusinessLocation = IBusinessLocation.GetValue();
-            
-
+             
 
             if (lStartDate.GetValue() != "null" && lEndDate.GetValue() != "null" && lVehicle.GetValue() != "null") {
                 //SetSelectedReport(ReportName
@@ -632,21 +652,33 @@
                 checkComboBox.SetText(RecepientsName);
                 SetProductListCheckBox(IRecepients.GetValue());
             }
-            else
-            {
 
-            }  
-             //for (var i = 0; i < items.length; i++)
-             // {
+            //var VehicleNames = lVehicle.GetValue().split(',');
+            //var sName = '';
+            //if (VehicleNames.length > 0) {
+            //    for (var i = 0; i < VehicleNames.length; i++) {
+            //        for (var m = 0; m < Vehicle.GetItemCount() - 1 ; m++) {
+            //            var item = Vehicle.GetItem(m);
+            //            if (item.value != null) {
+            //                if (item.value == VehicleNames[i]) {
+            //                    sName = sName + (item.text)
+            //                }
+            //            }
+            //        }
+            //    }
+            //    checkComboBox1.SetText(sName);
+            //    SetProductListCheckBox1(lVehicle.GetValue());
+            //}
+          } 
 
-             // }
-                                //if (comRecipients.GetValue() == "00000000-0000-0000-0000-000000000000") {
-                                //    comRecipients.SetSelectedIndex(0);
-                                //}
-          }
           function SetProductListCheckBox(Items) {
               var SelectedIndexVals = Items.split(',');
               checkListBox.SelectValues(SelectedIndexVals);
+          }
+
+          function SetProductListCheckBox1(Items) {
+              var SelectedIndexVals = Items.split(',');
+              checkListBox1.SelectValues(SelectedIndexVals);
           }
     </script>
 </body>
