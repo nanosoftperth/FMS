@@ -66,6 +66,10 @@ Namespace DataObjects
         ''' </summary>
         Public Property ReportTypeSpecific As String
         Public Property ReportTime As Date
+
+
+
+
         Public Property Enabled As Boolean
         Public Property DateCreated As Date
         Public Property Creator As String
@@ -419,7 +423,7 @@ Namespace DataObjects
                             returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
                         End If
                         If _reportName = ReportNameList.ReportGeoFence_byDriver Then
-                            returnString = returnString + "Driver = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Driver")) Or Convert.ToString(ds.Dictionary.Item("Driver")) = "null"), "", ds.Dictionary.Item("Driver"))
+                            returnString = returnString + "Driver = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Driver")) Or Convert.ToString(ds.Dictionary.Item("Driver")) = "null"), "", GetDriversName(ds.Dictionary.Item("Driver")))
                         Else
                             returnString = returnString + "Vehicle = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Vehicle")) Or Convert.ToString(ds.Dictionary.Item("Vehicle")) = "null"), "", ds.Dictionary.Item("Vehicle"))
                         End If
@@ -490,6 +494,18 @@ Namespace DataObjects
                         Select New DataObjects.ReportSchedule(x)).ToList()
 
         End Function
+        Public Shared Function GetDriversName(ByVal driversID As String) As String
+            Try
+                Dim appDrivers As FMS.Business.ApplicationDriver = SingletonAccess.FMSDataContextContignous.ApplicationDrivers.FirstOrDefault(Function(x) x.ApplicationDriverID = New Guid(driversID))
+                If Not appDrivers Is Nothing Then
+                    Return (appDrivers.FirstName + "  " + appDrivers.Surname)
+                Else
+                    Return ""
+                End If 
+            Catch ex As Exception 
+            End Try
+        End Function
+
     End Class
     Public NotInheritable Class ReportParam
         Public Shared StartDate As String
