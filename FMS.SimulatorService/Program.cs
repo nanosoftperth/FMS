@@ -11,38 +11,34 @@ using Topshelf.Logging;
 namespace FMS.SimulatorService
 {
 
-    public class TownCrier : ServiceControl
+    public class ServiceObject : ServiceControl
     {
-        readonly Timer _timer;
+
+        private System.Threading.Thread _t;
 
         private readonly LogWriter logWriter;
 
-        public TownCrier()
+        public ServiceObject()
         {
-            logWriter = HostLogger.Get<TownCrier>();
+            logWriter = HostLogger.Get<ServiceObject>();
 
-            _timer = new Timer(1000) { AutoReset = true };
-            _timer.Elapsed += (sender, eventArgs) => writeMessages(String.Format("It is {0} and all is well", DateTime.Now));
-            
+            logWriter.Debug("starting application:" + DateTime.Now.ToLongTimeString());
+
+            _t = new System.Threading.Thread(new System.Threading.ThreadStart(FMS.SimulatorService.Classes.Worker.DoWork));
+
             //Classes.MyLogManager.Instance.GetCurrentClassLogger().Debug(Console.WriteLine("It is {0} and all is well", DateTime.Now));
         }
 
-        private void writeMessages(string msg)
-        {
-            Console.WriteLine("It is {0} and all is well", DateTime.Now);
-            logWriter.Debug("Tick:" + DateTime.Now.ToLongTimeString());
-
-        }
 
         public bool Start(HostControl hostControl)
         {
-            _timer.Start();
+            _t.Start();
             return true;
         }
 
         public bool Stop(HostControl hostControl)
         {
-            _timer.Stop();
+            _t.Abort();
             return false;
         }
     }
@@ -58,7 +54,7 @@ namespace FMS.SimulatorService
 
             HostFactory.Run(x =>
             {
-                x.Service<TownCrier>();
+                x.Service<ServiceObject>();
 
                 //x.UseNLog(FMS.SimulatorService.Classes.MyLogManager.Instance);
                 x.UseNLog(Classes.MyLogManager.Instance);

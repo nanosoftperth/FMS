@@ -11,11 +11,13 @@ namespace FMS.SimulatorService.Classes
     public class Worker
     {
 
+        private static Topshelf.Logging.LogWriter logger = Topshelf.Logging.HostLogger.Get<Worker>();
 
         public static void DoWork()
         {
 
-            Console.WriteLine(Environment.NewLine + "FLEET MANAGEMENT \"DEMO\" SIMULATOR " + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine);
+
+            logger.Info( "\nFLEET MANAGEMENT \"DEMO\" SIMULATOR \n\n\n");
 
 
             List<FMS.Business.DataObjects.SimulatorSetting> settings = FMS.Business.DataObjects.SimulatorSetting.GetAll();
@@ -24,10 +26,14 @@ namespace FMS.SimulatorService.Classes
 
             List<TimeIterator> timeiterators = new List<TimeIterator>();
 
-
+            
 
             foreach (FMS.Business.DataObjects.SimulatorSetting Setting in settings)
             {
+
+
+                logger.Info(Setting);
+
                 TimeIterator ti = new TimeIterator { settingObj = Setting };
 
                 FMS.Business.DataObjects.Device sourceDevice = (from x in FMS.Business.DataObjects.Device.GetAllDevices()
@@ -50,7 +56,6 @@ namespace FMS.SimulatorService.Classes
                     ll.longitude = _with1.Value;
 
                     ti.latlongs.Add(ll);
-
                     st = st + ts;
 
                 }
@@ -60,7 +65,7 @@ namespace FMS.SimulatorService.Classes
             }
 
 
-            string baseURL = "http://ppjs.nanosoft.com.au:9000/api/dataaccess?truckid={0}&lat={1}&lng={2}&time={3}";
+            string baseURL = @"http://{0}.nanosoft.com.au:9000/api/dataaccess?truckid={1}&lat={2}&lng={3}&time={4}";
 
 
             while (true)
@@ -79,7 +84,13 @@ namespace FMS.SimulatorService.Classes
 
                         LatLongDate lld = x.GetNext();
 
-                        string url = string.Format(baseURL, x.settingObj.DestinationDeviceID, lld.latitude, lld.longitude, DateTime.Now.ToString("dd/MMM/yyyy HH:mm:ss"));
+                        string url = string.Format(baseURL, Properties.Settings.Default.destination_server
+                                                            , x.settingObj.DestinationDeviceID
+                                                            , lld.latitude
+                                                            , lld.longitude
+                                                            , DateTime.Now.ToString("dd/MMM/yyyy HH:mm:ss"));
+
+                        logger.Debug(url);
 
                         string s = client.DownloadString(url);
                     }
@@ -106,6 +117,12 @@ namespace FMS.SimulatorService.Classes
         public FMS.Business.DataObjects.SimulatorSetting settingObj { get; set; }
 
         public List<LatLongDate> latlongs { get; set; }
+
+        public TimeIterator()
+        {
+
+            latlongs = new List<LatLongDate>();
+        }
 
         /// <summary>
         /// The direction which the list iterates, this should be set to either +1 or -1
