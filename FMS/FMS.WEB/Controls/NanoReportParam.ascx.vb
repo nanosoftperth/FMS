@@ -91,44 +91,66 @@ Public Class NanoReportParam
 
             Dim lookupSettings = DirectCast(ReportParameter.LookUpSettings, 
                                                 DevExpress.XtraReports.Parameters.DynamicListLookUpSettings)
+             
+           
+            If lookupSettings.Parameter.Description.Contains("Vehicle") Then
+
+                Dim editor As New ASPxDropDownEdit() 
+
+                editor.ClientIDMode = ClientIDMode.Static
+
+                Dim controlIndex As Integer = 1
+                editor.ID = String.Format("ASPxDropDownEdit{0}", controlIndex)
+                Dim container As New Control
+                'Dim tet = DirectCast(ReportParameter.LookUpSettings, 
+                '                                    DevExpress.XtraReports.Parameters.DynamicListLookUpSettings)
+                editor.ClientInstanceName = "checkComboBox1"
+                editor.DropDownWindowTemplate = New CustomTemplate(DirectCast(ReportParameter.LookUpSettings, 
+                                                    DevExpress.XtraReports.Parameters.DynamicListLookUpSettings))
+                If lookupSettings.ValueMember.Contains("Name") Then
+                    If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
+                        editor.Value = HttpContext.Current.Session("Vehicle")
+                    End If
+                End If
+
+                paramControl = editor
+
+            Else
+                Dim comboBox1 As New DevExpress.Web.ASPxComboBox()
+                comboBox1.ID = Guid.NewGuid.ToString
+
+                comboBox1.ValueField = lookupSettings.ValueMember
+                comboBox1.TextField = lookupSettings.DisplayMember
+
+                Dim ods As DevExpress.DataAccess.ObjectBinding.ObjectDataSource = lookupSettings.DataSource
+                ods.Fill()
+
+                comboBox1.DataSource = ods
+                comboBox1.DataBind()
 
 
-            ' Dim comboBox As New DevExpress.Web.ASPxListBox()
+                If lookupSettings.Parameter.Description.Contains("Driver") Then
+                    comboBox1.ClientInstanceName = "Drivers"
+                ElseIf lookupSettings.Parameter.Description.Contains("Business Location") Then
+                    comboBox1.ClientInstanceName = "BusinessLocation"
+                End If
 
+                If lookupSettings.ValueMember.Contains("Name") Then
+                    If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
+                        comboBox1.Value = HttpContext.Current.Session("Vehicle")
+                    End If
+                Else
+                    If Not HttpContext.Current.Session("BusinessLocation") Is Nothing And Not HttpContext.Current.Session("BusinessLocation") = "null" Then
+                        comboBox1.Value = HttpContext.Current.Session("BusinessLocation")
+                    End If
+                End If
+                If lookupSettings.ValueMember.Contains("ApplicationDriverIDAsString") Then
+                    comboBox1.Value = HttpContext.Current.Session("Vehicle")
+                End If
 
-            'Dim comboBox As New DevExpress.Web.ASPxListBox()
-            'comboBox.ID = Guid.NewGuid.ToString
-            'comboBox.SelectionMode = DevExpress.Web.ListEditSelectionMode.CheckColumn
+                paramControl = comboBox1
 
-
-            'comboBox.ValueField = lookupSettings.ValueMember
-            'comboBox.TextField = lookupSettings.DisplayMember
-            ''comboBox.ValueType = GetType(System.Int32)
-
-            'Dim ods As DevExpress.DataAccess.ObjectBinding.ObjectDataSource = lookupSettings.DataSource
-            'ods.Fill()
-
-            'comboBox.DataSource = ods
-            'comboBox.DataBind()
-
-            Dim editor As New ASPxDropDownEdit()
-
-
-            editor.ClientIDMode = ClientIDMode.Static
-
-            Dim controlIndex As Integer = 1
-            editor.ID = String.Format("ASPxDropDownEdit{0}", controlIndex)
-            Dim container As New Control
-            'Dim tet = DirectCast(ReportParameter.LookUpSettings, 
-            '                                    DevExpress.XtraReports.Parameters.DynamicListLookUpSettings)
-            editor.ClientInstanceName = "checkComboBox1" 
-            editor.DropDownWindowTemplate = New CustomTemplate(DirectCast(ReportParameter.LookUpSettings, 
-                                                DevExpress.XtraReports.Parameters.DynamicListLookUpSettings))
-
-
-          
-
-            paramControl = editor
+            End If
 
             dateTimeDIV.Visible = False
         End If
@@ -166,41 +188,42 @@ Public Class CustomTemplate
    
         comboBox.ValueField = _lookupsSettings.ValueMember
         comboBox.TextField = _lookupsSettings.DisplayMember
-        'comboBox.ValueType = GetType(System.Int32)
+        'comboBox.ValueType = GetType(System.Int32) 
+        'comboBox.Items.Insert(0, New ListEditItem("-Select ALL-", "0"))
+
+        comboBox.Items.Add("Select All", "0")
 
         Dim ods As DevExpress.DataAccess.ObjectBinding.ObjectDataSource = _lookupsSettings.DataSource
         ods.Fill()
 
+     
         comboBox.DataSource = ods
         comboBox.DataBind()
         comboBox.SelectionMode = ListEditSelectionMode.CheckColumn
-        comboBox.ClientInstanceName = "vehiclecheckListBox"
-         
-
-        'function(s, e) { OnListBoxSelectionChangedValue(s, e); }"
-
+        'comboBox.ClientInstanceName = "vehiclecheckListBox"  
+        'comboBox.Items.Insert(0, New ListEditItem("-Select ALL-", "0"))
 
         If _lookupsSettings.ValueMember.Contains("Name") Then
             If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
-                comboBox.Value = HttpContext.Current.Session("Vehicle")
-            End If
-        Else
-            If Not HttpContext.Current.Session("BusinessLocation") Is Nothing And Not HttpContext.Current.Session("BusinessLocation") = "null" Then
-                comboBox.Value = HttpContext.Current.Session("BusinessLocation")
-            End If
-        End If 
+                Dim strVehicles = Convert.ToString(HttpContext.Current.Session("Vehicle")).Split(",")
+                If Not strVehicles Is Nothing Then
+                    Dim i As Integer = 0
+                    For Each item As ListEditItem In comboBox.Items
+                        For Each strVal As String In strVehicles
+                            If strVal = Convert.ToString(item.Value) Then
+                                item.Selected = True
+                            End If
+                        Next 
+                        i = i + 1
+                    Next
+                End If
+            End If 
+        End If
 
         If _lookupsSettings.Parameter.Description.Contains("Vehicle") Then
             comboBox.ClientInstanceName = "Vehicle"
-            comboBox.ClientSideEvents.SelectedIndexChanged = String.Format("function (s, e) {{ OnListBoxSelectionChangedValue(s, e, {0}); }}", "Vehicle")
-        ElseIf _lookupsSettings.Parameter.Description.Contains("Driver") Then
-            comboBox.ClientInstanceName = "Drivers"
-            comboBox.ClientSideEvents.SelectedIndexChanged = String.Format("function (s, e) {{ OnListBoxSelectionChangedValue(s, e, {0}); }}", "Drivers")
-        ElseIf _lookupsSettings.Parameter.Description.Contains("Business Location") Then
-            comboBox.ClientInstanceName = "BusinessLocation"
-            comboBox.ClientSideEvents.SelectedIndexChanged = String.Format("function (s, e) {{ OnListBoxSelectionChangedValue(s, e, {0}); }}", "BusinessLocation")
+            comboBox.ClientSideEvents.SelectedIndexChanged = "function (s, e) { OnListBoxSelectionChangedValue(s, e, 'Vehicle')}"
         End If
-         
 
         container.Controls.Add(comboBox)
     End Sub
