@@ -321,6 +321,26 @@
             Return retobjs
 
         End Function
+        Public Shared Function GetApplicationsVehicleList(appID As Guid) As List(Of FMS.Business.DataObjects.ApplicationVehicle)
+
+
+            Dim ObjList As New List(Of DataObjects.ApplicationVehicle)
+            Dim resultString = FMS.Business.DataObjects.ApplicationVehicle.GetAll(appID)
+
+
+            ObjList.Add(New FMS.Business.DataObjects.ApplicationVehicle() With
+                                 {.Name = "Select All"})
+
+            For Each listItem In resultString
+
+                ObjList.Add(New FMS.Business.DataObjects.ApplicationVehicle() With
+                                  {.Name = listItem.Name})
+
+            Next
+
+            Return ObjList
+            '  Return FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID)
+        End Function
 
 #End Region
 

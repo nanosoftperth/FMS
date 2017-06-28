@@ -272,9 +272,13 @@
         //        if (parts != null)
         //            clientInstanceName = parts[parts.length - 1];
         //    }
-
         //    return clientInstanceName;
         //}
+        function AddItem(s,e)
+        {
+            console.log('called');
+            Vehicle.InsertItem(0, "Select ALL");
+        }
     </script>
 </head>
 <body>
