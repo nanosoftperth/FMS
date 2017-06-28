@@ -298,8 +298,8 @@ function infoWindowCSSForDashboard(w) {
     // Moves the arrow 76px to the left margin.
     //iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
 
-    iwBackground.children(':nth-child(1)').addClass('leftarrow');
-    iwBackground.children(':nth-child(3)').addClass('leftarrow');
+    iwBackground.children(':nth-child(1)').addClass('leftarrow_dash');
+    iwBackground.children(':nth-child(3)').addClass('leftarrow_dash');
     //iwBackground.children(':nth-child(3)').css('left','76px');
     //iwBackground.children(':nth-child(3)').css('left','76px');
 
