@@ -55,13 +55,14 @@ function showInfoWindow(event) {
 
 }
 
+//This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function ShowDashboard(event) {
 
     //var vertices = '<br><br>' + this.getPath();
     var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
     var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 150px; width:500px\' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 5000px; width:700px\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
 
@@ -74,7 +75,7 @@ function ShowDashboard(event) {
 
     var content = '<div id="iw-container_dash">' +
                   '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
-                  '<div class="iw-content">' +
+                  '<div class="iw-content_dash">' +
                     contentString
     '</div>' +
     '<div class="iw-bottom-gradient"></div>' +
@@ -88,8 +89,10 @@ function ShowDashboard(event) {
     infoWindowVehicle.setContent(content);
 
     google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForDashboard(infoWindowVehicle) });
-
+    
     infoWindowVehicle.open(map);
+
+    //document.getElementById("idLiveData").addEventListener("click", Run_infoWindowCSSForCanBus);
 
 }
 
@@ -257,6 +260,7 @@ function infoWindowCSSForCanBus(w) {
     });
 }
 
+//This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function infoWindowCSSForDashboard(w) {
 
     $('#iw-container_dash').closest('.gm-style-iw').parent().addClass('custom-iw2_dash');
@@ -265,7 +269,7 @@ function infoWindowCSSForDashboard(w) {
 
     // Reference to s DIV that wraps the bottom of infowindow
     var iwOuter = $('#iw-container_dash').closest('.gm-style-iw');
-
+    
     /* Since this div is in a position prior to .gm-div style-iw.
      * We use jQuery and create a iwBackground variable,
      * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
@@ -307,7 +311,7 @@ function infoWindowCSSForDashboard(w) {
     var iwCloseBtn = iwOuter.next();
 
     // Apply the desired effect to the close button
-    iwCloseBtn.css({ opacity: '1', left: '520px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+    iwCloseBtn.css({ opacity: '1', left: '660px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
     // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
     if ($('.iw-content').height() < 140) {
@@ -318,6 +322,15 @@ function infoWindowCSSForDashboard(w) {
     iwCloseBtn.mouseout(function () {
         $(this).css({ opacity: '1' });
     });
+    
+}
+
+function Run_infoWindowCSSForCanBus()
+{
+    window.open(
+              'https://www.google.com/',
+              '_blank'
+            );
 }
 
 function GenericKeyDown(s, e) {
@@ -956,8 +969,8 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     marker.TruckName = vehicleName;
 
     marker.addListener('click', showInfoWindow);//DeviceID
-    marker.addListener('rightclick', showInfoWindow2);
-    //marker.addListener('rightclick', ShowDashboard);
+    //marker.addListener('rightclick', showInfoWindow2);
+    marker.addListener('rightclick', ShowDashboard);
 
     marker.ID = markerID;
     markers.push(marker);
@@ -966,6 +979,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
 
     //  insert vehicle ID in Array
     VehicleSelectedArr.push(markerID);
+
 }
 var alreadyRan = false;
 
