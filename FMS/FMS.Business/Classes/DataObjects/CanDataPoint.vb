@@ -119,10 +119,10 @@
             'get the MessageDefinition
             retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard)
 
-
             ' Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
             Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
                                                                                 retobj.MessageDefinition.PGN)
+
             Try
 
                 Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
@@ -207,8 +207,15 @@
                 If msg_def.Standard = "Zagro500" Then
                     If SPN = 7 Then calcMethod = AddressOf zagro500_7
                     If SPN = 3 Then calcMethod = AddressOf zagro500_3
+                    If SPN = 8 Then calcMethod = AddressOf zagro500_8
                 End If
 
+                'Temporary
+                If msg_def.Standard = "Zagro5001" Then
+                    If SPN = 9 Then calcMethod = AddressOf zagro500_9
+                    If SPN = 10 Then calcMethod = AddressOf zagro500_10
+                    If SPN = 11 Then calcMethod = AddressOf zagro500_11
+                End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
 
@@ -310,6 +317,18 @@
                 Dim val As String = i(2).ToString + i(3).ToString
                 cv.Value = IIf(val.Equals("06"), "Diagonal mode road", IIf(val.Equals("08"), "Circle mode road", IIf(val.Equals("10"), "rail mode", IIf(val.Equals("00"), "Undefined", "Stationary"))))
             End Sub
+            Public Sub zagro500_8(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)                
+                cv.Value = GetMotorTemperature(cv, msg_def)
+            End Sub
+            Public Sub zagro500_9(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+            End Sub
+            Public Sub zagro500_10(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+            End Sub
+            Public Sub zagro500_11(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+
+            End Sub
 #End Region
 
             Public Shared Function StringToByteArray(hex As String) As Byte()
@@ -359,6 +378,51 @@
                 Next
 
                 Return runningtotal
+            End Function
+
+            Public Function GetMotorTemperature(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
+                Dim objValue As Object = ""
+                Dim i As Array = cv.RawValue.ToCharArray
+                Dim val As String = i(8).ToString + i(9).ToString
+                Dim outVal As Integer
+                Dim convertedValue As Integer
+                Dim tempList = GetTemperatureList()
+                Integer.TryParse(val, outVal)
+                outVal = outVal * 2
+                convertedValue = Convert.ToInt64(outVal, 16)
+                Dim intListCount As Integer = tempList.Count
+                For iVal As Integer = 0 To intListCount - 2
+                    If convertedValue > tempList(iVal).Key And convertedValue < tempList(iVal + 1).Key Then
+                        Dim outTempValue As Integer
+                        Dim outTempValue2 As Integer
+                        Dim outTempValue3 As Integer
+                        Integer.TryParse(tempList(iVal + 1).Value.Split(",")(0), outTempValue2)
+                        Integer.TryParse(tempList(iVal).Value.Split(",")(1), outTempValue)
+                        Integer.TryParse(tempList(iVal).Value.Split(",")(2), outTempValue3)
+                        objValue = (outTempValue + ((convertedValue - tempList(iVal).Key) / outTempValue2) * outTempValue3) / 10
+                        Exit For
+                    End If
+                Next
+                Return objValue
+            End Function
+
+            Public Shared Function GetTemperatureList() As List(Of KeyValuePair(Of Integer, String))
+                Return New List(Of KeyValuePair(Of Integer, String)) _
+                    From
+                    {
+                        New KeyValuePair(Of Integer, String)(97, "0,-500,0"),
+                        New KeyValuePair(Of Integer, String)(127, "31,-200,300"),
+                        New KeyValuePair(Of Integer, String)(150, "23,0,200"),
+                        New KeyValuePair(Of Integer, String)(174, "24,200,200"),
+                        New KeyValuePair(Of Integer, String)(203, "29,400,200"),
+                        New KeyValuePair(Of Integer, String)(234, "31,600,200"),
+                        New KeyValuePair(Of Integer, String)(268, "34,800,200"),
+                        New KeyValuePair(Of Integer, String)(305, "37,1000,200"),
+                        New KeyValuePair(Of Integer, String)(344, "39,1200,200"),
+                        New KeyValuePair(Of Integer, String)(386, "42,1400,200"),
+                        New KeyValuePair(Of Integer, String)(431, "45,1600,200"),
+                        New KeyValuePair(Of Integer, String)(467, "36,1750,150")
+                        }
             End Function
 
         End Class
