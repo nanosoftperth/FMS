@@ -8,6 +8,7 @@
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
     <script src="Content/javascript/page.js"></script>
     <link href="Content/DashBoard.css" rel="stylesheet" />
+    <script src="Content/javascript/FleetMap.js"></script>
 
     <script type="text/javascript">
         var bln_blink = false;
@@ -190,7 +191,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="div_dashboard">    
-        <img id="dashboard" src="Content/Images/Dashboard1.png" class="imgmax"/>
+        <img id="dashboard" src="Content/Images/Dashboard1.png" class="imgDash"/>
     </div>
     <div class="div_break">
         <img src="Content/Images/break.png" id="ibreak" class="pnlimgHide"/>
@@ -221,6 +222,14 @@
     </div>
     <div class="div_battery">
         <img src="Content/Images/battery_100.png" id="ibattery_100" class="pnlimgHide"/>
+    </div>
+    <div class="div_LCD">
+        <img src="Content/Images/Nanosoft_scroll.png" id="iLCD" class="imgmax"/>
+    </div>
+    <div id="idLiveData" class="div_vwlivedta" onclick="Run_infoWindowCSSForCanBus()">
+        <asp:Label ID="Label1" runat="server" Text="view live data"></asp:Label>
+        <%--<asp:HyperLink ID="lnkLiveData" runat="server">view live data</asp:HyperLink>--%>
+        <%--<asp:Label ID="hlLiveDt" runat="server" Text="view live data" ></asp:Label>--%>
     </div>
     </form>
 </body>
