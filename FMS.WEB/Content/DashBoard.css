@@ -3,11 +3,27 @@
 .div_dashboard {
     
     width: 700px;
-   
 }
+
+.imgDash {
+    max-height: 100%;
+    max-width: 100%;
+
+}
+
 .imgmax {
     max-height: 100%;
     max-width: 100%;
+}
+
+.div_vwlivedta {
+    width: 100px;
+    font-style:normal;
+    color: blue;
+    top: 145px;
+    left: 480px;
+    position:absolute;
+    cursor: pointer;
 }
 
 .div_break {
@@ -92,4 +108,54 @@
 
 .pnlimgHide {
     display:none;
+}
+
+.div_LCD {
+    width: 172px;
+    height: 88px;
+    background-color: white;
+    position: absolute;
+    overflow: hidden;
+    top: 29px;
+    left: 443px;
+
+}
+.div_LCD img {
+ font-size: 3em;
+ color: limegreen;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);	
+ transform:translateX(100%);
+ /* Apply animation to this element */	
+ -moz-animation: example1 15s linear infinite;
+ -webkit-animation: example1 15s linear infinite;
+ animation: example1 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes example1 {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes example1 {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes example1 {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%); 
+ }
 }
