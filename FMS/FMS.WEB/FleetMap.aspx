@@ -1138,7 +1138,7 @@
                 $('.chkHead').prop('checked', false);
             }
 
-            console.log(VehicleSelectedArr);
+          //  console.log(VehicleSelectedArr);
         }
         function GetIcon(id) {
             if ($("#lblVehicle").hasClass("showHide")) {
@@ -1222,7 +1222,7 @@
 
                 }
             }
-            console.log(VehicleSelectedArr);
+            //console.log(VehicleSelectedArr);
         }
 
         function GetSelectedRows(s, e) {
