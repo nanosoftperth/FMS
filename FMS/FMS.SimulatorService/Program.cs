@@ -39,7 +39,7 @@ namespace FMS.SimulatorService
         public bool Stop(HostControl hostControl)
         {
             _t.Abort();
-            return false;
+            return true;
         }
     }
 
@@ -59,9 +59,9 @@ namespace FMS.SimulatorService
                 //x.UseNLog(FMS.SimulatorService.Classes.MyLogManager.Instance);
                 x.UseNLog(Classes.MyLogManager.Instance);
 
-                x.SetDescription("Sample Topshelf Host");
-                x.SetDisplayName("Stuff");
-                x.SetServiceName("Stuff");
+                x.SetDescription("Nanosofts simulation service. This service can take an old journey and repeat it for many different vehicles.");
+                x.SetDisplayName("FMS.Simulator");
+                x.SetServiceName("FMS.Simulator");
 
                 x.RunAsLocalSystem();
             });
