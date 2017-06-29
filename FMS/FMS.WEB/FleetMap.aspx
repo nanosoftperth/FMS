@@ -448,7 +448,7 @@
                                                     <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" />
                                                 </div>
                                                 <div style="width: 75%; float: right; line-height: 22px;">
-                                                    <%#Eval("Name")%>'
+                                                    <%#Eval("Name")%>
                                                 </div>
                                             </div>
                                         </DataItemTemplate>
