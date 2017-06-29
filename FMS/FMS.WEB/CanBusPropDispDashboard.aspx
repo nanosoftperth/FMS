@@ -9,9 +9,12 @@
     <script src="Content/javascript/page.js"></script>
     <link href="Content/DashBoard.css" rel="stylesheet" />
     <script src="Content/javascript/FleetMap.js"></script>
+   <%-- <script src="Content/javascript/page.js"></script>--%>
 
     <script type="text/javascript">
         var bln_blink = false;
+
+        //GetDashboardData();
 
         function blinkbreak() {
             var imgCls = document.getElementById('ibreak');
@@ -231,6 +234,12 @@
         <%--<asp:HyperLink ID="lnkLiveData" runat="server">view live data</asp:HyperLink>--%>
         <%--<asp:Label ID="hlLiveDt" runat="server" Text="view live data" ></asp:Label>--%>
     </div>
+        <%--<div style="position:absolute; top: 150px; left: 300px">
+            <asp:Label ID="lblVehicleID" runat="server" Text="Vehicle ID"></asp:Label>
+        </div>--%>
+        
     </form>
+
+
 </body>
 </html>
