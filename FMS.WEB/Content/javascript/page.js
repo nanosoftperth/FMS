@@ -350,6 +350,41 @@ function ajaxMethodOnError(error) {
     }
 }
 
+
+function ajaxGetMethod(url, parameters, successCallback, errorCallback, finallyCallback) {
+
+    if (errorCallback == null)
+        errorCallback = ajaxMethodOnError;
+
+    convertDatesToJson(parameters);
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        //data: JSON.stringify(parameters),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        cache: false,
+
+        success: function (result) {
+            convertJsonToDates(result);
+            successCallback(result);
+
+            if (finallyCallback != null)
+                finallyCallback();
+        },
+
+        error: function (error) {
+            errorCallback(error);
+
+            if (finallyCallback != null)
+                finallyCallback();
+        }
+    });
+}
+
+
 function pageMethod(url, parameters, successCallback, errorCallback, finallyCallback) {
     if (errorCallback == null)
         errorCallback = pageMethodOnError;
