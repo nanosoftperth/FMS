@@ -55,6 +55,22 @@ Namespace Controllers
             Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTags()
         End Function
 
+        ' GET api/vehicles/GetCanMessge/5
+        ''' <summary>
+        ''' Get available CAN tags by deviceID for dashboard
+        ''' </summary>
+        ''' <param name="vehicleID">The device Id</param>
+        ''' <returns>List of Can message definition</returns>
+        <HttpGet>
+        Public Function GetDashboardData(vehicleID As String) As Boolean
+
+            'Return FMS.Business.DataObjects.ApplicationVehicle.GetFromName(vehicleID).GetAvailableCANTags()
+            ' Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(vehicleID)
+            Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard()
+
+
+        End Function
+
         ' GET api/vehicles/GetCanMessageValue/5
         ''' <summary>
         ''' Get available CAN Message Value by deviceID
