@@ -52,18 +52,12 @@
             <Panel CssClass="panel"></Panel>
         </Styles>
 
-        <PanelCollection>
-
-            <dx:PanelContent runat="server" ID="test1" SupportsDisabledAttribute="True" Width="100%">
-
-
-                <section id="accordion">
-
-                    <div>
-
+        <PanelCollection> 
+            <dx:PanelContent runat="server" ID="test1" SupportsDisabledAttribute="True" Width="100%"> 
+                <section id="accordion"> 
+                    <div> 
                         <input type="checkbox" class="chkbox" id="check-1" />
-                        <label class="accordianTitle" for="check-1">Show specific date/time</label>
-
+                        <label class="accordianTitle" for="check-1">Show specific date/time</label> 
                         <article>
                             <br />
                             <div style="padding-left: 15px; font-weight: bold;">
@@ -73,12 +67,9 @@
                                     Date="01/20/2016 00:06:00"
                                     EditFormat="DateTime"
                                     ClientInstanceName="dateViewThisDateTime"
-                                    EnableTheming="True"
-                                    Height="22px"
-                                    Paddings-PaddingLeft="10px"
-                                    padding-right="10px"
+                                    EnableTheming="True" 
                                     Theme="MetropolisBlue"
-                                    Width="198px">
+                                     >
                                     <TimeSectionProperties Visible="True">
                                         <TimeEditProperties>
                                             <ClearButton Visibility="Auto">
@@ -407,6 +398,7 @@
                             <br />
                         </article>
                     </div>
+
                     <!--- Vehicle Viewer tab  -->
                     <div>
                         <input class="chkbox" type="checkbox" id="check-5" />
@@ -1083,7 +1075,8 @@
 
     </dx:ASPxGlobalEvents>
 
-    <script type="text/javascript">
+    <script type="text/javascript"> 
+        var VehicleSelectedArrfilter = [];
         // Get All Selected Vehicles
         $(document).ready(function () {
             $('.chkHead').prop('checked', true);
@@ -1140,6 +1133,7 @@
 
           //  console.log(VehicleSelectedArr);
         }
+
         function GetIcon(id) {
             if ($("#lblVehicle").hasClass("showHide")) {
                 $("#lblVehicle").removeClass("showHide");
@@ -1176,56 +1170,71 @@
             }
         }
 
-        function GetAllSelected(element) {
+        function GetAllSelected(element) { 
+            //console.log("Before Filter" + VehicleSelectedArr);
+            VehicleSelectedArrfilter = [];
             if (element.checked) {
-                var index = 0;
-                $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function () {
+                //var index = 0;
+                $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function (index, element) {
                     if (index > 1) {
                         $(this).removeClass("dxgvDataRow_SoftOrange");
                         $(this).addClass("dxgvInlineEditRow_SoftOrange dxgvSelectedRow_SoftOrange");
+
+                        var item = $(element.children[0]).find('div').children()[0];
+                        
+                        VehicleSelectedArrfilter.push(item.value);
                     }
-                    index = index + 1;
+                    //index = index + 1;
                 });
                 $('.chk').prop('checked', true);
                 for (var i = 0; i < markers.length; i++) {
-                    markers[i].setMap(map);
 
-                    var isFind = VehicleSelectedArr.filter(function (name) { return name == markers[i].ID });
-                    if (isFind == '')
-                        VehicleSelectedArr.push(markers[i].ID);
+                    var IsSelected = VehicleSelectedArrfilter.filter(function (name) { return name == markers[i].ID });
 
-                    //if ($.inArray(markers[i].ID, VehicleSelectedArr) > -1) {
-                    //    //do something    
-                    //}
-                    //else {
-                    //    VehicleSelectedArr.push(markers[i].ID);
-                    //}
+                    if (IsSelected != '')
+                    {
+                        markers[i].setMap(map);
+
+                        var isFind = VehicleSelectedArr.filter(function (name) { return name == markers[i].ID });
+                        if (isFind == '')
+                            VehicleSelectedArr.push(markers[i].ID);
+                    }  
                 }
             }
             else {
-                var index = 0;
-                $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function () {
+                //var index = 0;
+                $("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr").each(function (index, element) {
                     if (index > 1) {
                         $(this).removeClass("dxgvInlineEditRow_SoftOrange dxgvDataRow_SoftOrange");
                         $(this).addClass("dxgvSelectedRow_SoftOrange");
+
+                        var item = $(element.children[0]).find('div').children()[0];
+
+                        VehicleSelectedArrfilter.push(item.value);
                     }
-                    index = index + 1;
+                    //index = index + 1;
                 });
                 $('.chk').prop('checked', false);
                 for (var i = 0; i < markers.length; i++) {
-                    markers[i].setMap(null);
 
-                    var item = VehicleSelectedArr.indexOf(markers[i].ID);
-                    if (item != -1) {
-                        VehicleSelectedArr.splice(item, 1);
-                    }
+                    var IsUnSelected = VehicleSelectedArrfilter.filter(function (name) { return name == markers[i].ID });
 
+                    if (IsUnSelected != '')
+                    {
+                        markers[i].setMap(null);
+
+                        var item = VehicleSelectedArr.indexOf(markers[i].ID);
+                        if (item != -1) {
+                            VehicleSelectedArr.splice(item, 1);
+                        } 
+                    } 
                 }
             }
-            //console.log(VehicleSelectedArr);
+           
         }
 
-        function GetSelectedRows(s, e) {
+        function GetSelectedRows(s, e)
+        {
             //var count = { checked: 0, row: 0 };
             $.each($("table#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane_dgvVehicles_DXMainTable > tbody > tr"), function (index, element) {
                 if (index > 1) {
