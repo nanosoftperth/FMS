@@ -24,8 +24,8 @@ namespace FMS.BackgroundCalcs.Service
 
                 x.RunAsLocalSystem();
 
-                x.SetDescription("FMS background calculations");
-                x.SetDisplayName("FMS background calculations");
+                x.SetDescription("FMS Background Calculations");
+                x.SetDisplayName("FMS Background Calculations");
                 x.SetServiceName("FMS.Background.Calculations");
             });
         }

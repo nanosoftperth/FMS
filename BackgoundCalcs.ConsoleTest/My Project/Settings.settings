@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ApprovedCalcList" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">uniqco,mainroads,partners,demo</Value>
+      <Value Profile="(Default)">uniqco</Value>
     </Setting>
   </Settings>
 </SettingsFile>

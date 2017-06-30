@@ -8,20 +8,36 @@ Namespace ReportGeneration
 
         Public Property ID As Integer
         Public Property DeviceID As String
-        Public Property StartTime As Date
-        Public Property EndTime As Date
+        Public Property StartTime As Date?
+        Public Property EndTime As Date?
         Public Property GeoFence_Description As String
         Public Property Vehicle_Name As String
         Public Property GeoFence_Name As String
         Public Property ApplicationGeoFenceID As Guid
         Public Property ApplicationVehicleID As Guid
-        Public Property ApplicationDriverID As Guid
+        Public Property ApplicationDriverID As Guid?
         Public Property GeoFenceCollissoinID As Guid
         Public Property ApplicationID As Guid
         Public Property PhoneNumber As String
         Public Property Emails As String
         Public Property DriverName As String
         Public Property MessageContent As String
+
+
+        '======     DRIVER DETAILS  ===========
+        Public Property Driver_PhoneNumber As String
+        Public Property Driver_FristName As String
+        Public Property Driver_Surname As String
+
+
+        'CALCULATED PROPERTIES
+        Public ReadOnly Property TimeTakes As TimeSpan
+            Get
+
+                Dim thisEndtime As Date = If(EndTime.HasValue, EndTime.Value, Now)
+                Return thisEndtime - StartTime
+            End Get
+        End Property
 
 
 #End Region
@@ -41,13 +57,13 @@ Namespace ReportGeneration
 
             With db_obj
 
-                Me.ApplicationID = appid
+                Me.ApplicationDriverID = .ApplictionID
 
                 Me.ApplicationDriverID = .ApplicationDriverID
                 Me.ApplicationGeoFenceID = .ApplicationGeoFenceID
                 Me.ApplicationVehicleID = .ApplicationVehicleID
                 Me.DeviceID = .DeviceID
-                Me.DriverName = .DriverName
+                Me.DriverName = .Driver_Name
                 Me.Emails = .Emails
                 Me.EndTime = .EndTime
                 Me.GeoFence_Description = .GeoFence_Description
@@ -58,6 +74,12 @@ Namespace ReportGeneration
                 Me.PhoneNumber = .PhoneNumber
                 Me.StartTime = .StartTime
                 Me.Vehicle_Name = .Vehicle_Name
+
+                'driver details
+                Me.Driver_FristName = .Driver_FristName
+                Me.Driver_PhoneNumber = .Driver_PhoneNumber
+                Me.Driver_Surname = .Driver_Surname
+
 
             End With
 

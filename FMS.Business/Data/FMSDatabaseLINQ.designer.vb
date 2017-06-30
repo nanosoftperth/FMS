@@ -13981,6 +13981,12 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 	
 	Private _Driver_Name As String
 	
+	Private _Driver_FristName As String
+	
+	Private _Driver_Surname As String
+	
+	Private _Driver_PhoneNumber As String
+	
 	Private _GeoFence_Name1 As String
 	
 	Private _ApplicationGeoFenceID As System.Nullable(Of System.Guid)
@@ -14101,6 +14107,42 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 		Set
 			If (String.Equals(Me._Driver_Name, value) = false) Then
 				Me._Driver_Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver_FristName", DbType:="VarChar(MAX)")>  _
+	Public Property Driver_FristName() As String
+		Get
+			Return Me._Driver_FristName
+		End Get
+		Set
+			If (String.Equals(Me._Driver_FristName, value) = false) Then
+				Me._Driver_FristName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver_Surname", DbType:="VarChar(MAX)")>  _
+	Public Property Driver_Surname() As String
+		Get
+			Return Me._Driver_Surname
+		End Get
+		Set
+			If (String.Equals(Me._Driver_Surname, value) = false) Then
+				Me._Driver_Surname = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver_PhoneNumber", DbType:="VarChar(MAX)")>  _
+	Public Property Driver_PhoneNumber() As String
+		Get
+			Return Me._Driver_PhoneNumber
+		End Get
+		Set
+			If (String.Equals(Me._Driver_PhoneNumber, value) = false) Then
+				Me._Driver_PhoneNumber = value
 			End If
 		End Set
 	End Property

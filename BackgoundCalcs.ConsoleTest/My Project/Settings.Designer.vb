@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("uniqco,mainroads,partners,demo")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("uniqco")>  _
         Public ReadOnly Property ApprovedCalcList() As String
             Get
                 Return CType(Me("ApprovedCalcList"),String)

@@ -37,13 +37,19 @@ Namespace BackgroundCalculations
 
 
             'REAPLACE THE CODE BELOW AND ADD IT TO THE BELOW LOOP WITH THE NEW STORED PROCEDURE
-
             'get all the geofence collissions
-            Dim geoReportRslts As List(Of ReportGeneration.GeoFenceReport_Simple) = _
-                                       ReportGeneration.GeoFenceReport_Simple.GetReport(appid, startDate, Now)
+            'Dim geoReportRslts As List(Of ReportGeneration.GeoFenceReport_Simple) = _
+            '                           ReportGeneration.GeoFenceReport_Simple.GetReport(appid, startDate, Now)
 
             'for each alert type, get all of the geofence collissions whch have not already been processed
             For Each alertDefn In alertTypes
+
+
+                'Finds geofence collissions which have not been processed yet for this alert type 
+                Dim geoReportRslts As List(Of ReportGeneration.AlertTypeUnprocessedCollission_Report) = _
+                                                ReportGeneration.AlertTypeUnprocessedCollission_Report.GetForAlertType( _
+                                                                                    alertDefn.ApplicationAlertTypeID, startDate)
+
 
                 'get the geo-fence COLLISIONS which we are interested in 
                 Dim results = geoReportRslts.Where(Function(x) x.ApplicationGeoFenceID = alertDefn.GeoFenceId).ToList
@@ -54,12 +60,12 @@ Namespace BackgroundCalculations
                 'if the driver has been deleted, then we cannot process this alert
                 If alertDriver Is Nothing Then Continue For
 
-                For Each rslt As ReportGeneration.GeoFenceReport_Simple In results
+                For Each rslt As ReportGeneration.AlertTypeUnprocessedCollission_Report In results
 
                     'determine what type of geo-fence result happened
                     Dim timeperiod_mins As Decimal = alertDefn.Time_Period_mins
 
-                    If Not rslt.ApplicationDriverID.HasValue Then rslt.Driver_Name = "unknown"
+                    If Not rslt.ApplicationDriverID.HasValue Then rslt.DriverName = "unknown"
 
                     'check that we are looking for the correct driver
                     Dim isCorrectDriver As Boolean = alertDriver.RepresentsEveryone
@@ -140,7 +146,7 @@ Namespace BackgroundCalculations
 
         End Sub
 
-        Private Shared Sub ProcessAlertInstances(rslt As ReportGeneration.GeoFenceReport_Simple,
+        Private Shared Sub ProcessAlertInstances(rslt As ReportGeneration.AlertTypeUnprocessedCollission_Report,
                                                          alertDefn As DataObjects.AlertType,
                                                          alertTypeOccurances As List(Of DataObjects.AlertTypeOccurance),
                                                          subscribers As List(Of DataObjects.Subscriber),
@@ -150,7 +156,7 @@ Namespace BackgroundCalculations
 
             'find out if there have already been alerts send out for this geo-fence collision
             Dim alreadyFiredAlert = alertTypeOccurances _
-                                    .Where(Function(a) a.GeoFenceCollisionID = rslt.GeoFenceDeviceCollissionID _
+                                    .Where(Function(a) a.GeoFenceCollisionID = rslt.GeoFenceCollissoinID _
                                                 And a.AlertTypeID = alertDefn.ApplicationAlertTypeID).Count > 0
 
             Dim thisSubscriber As DataObjects.Subscriber = _
@@ -172,14 +178,14 @@ Namespace BackgroundCalculations
                     .AlertTypeOccuranceID = Guid.NewGuid
                     .DateSent = Now
                     .Emails = emailAndTextList.Emails
-                    .GeoFenceCollisionID = rslt.GeoFenceDeviceCollissionID
+                    .GeoFenceCollisionID = rslt.GeoFenceCollissoinID
                     .SubscriberNativeID = thisSubscriber.NativeID
                     .SubscriberTypeName = thisSubscriber.NameFormatted
                     .SubscriberTypeStr = thisSubscriber.SubscriberType_Str
                     .Texts = emailAndTextList.Texts
                     .ApplicationGeoFenceID = rslt.ApplicationGeoFenceID
                     .ApplicationGeoFenceName = rslt.GeoFence_Name
-                    .DriverName = If(String.IsNullOrEmpty(rslt.Driver_Name), "Unknown", rslt.Driver_Name)
+                    .DriverName = If(String.IsNullOrEmpty(rslt.DriverName), "Unknown", rslt.DriverName)
                 End With
 
 
@@ -193,16 +199,16 @@ Namespace BackgroundCalculations
                             .SendCarBookingEmail(newAlertTypeOccurance.Emails,
                                                  applicationName,
                                                  thisSubscriber.Name,
-                                                 rslt.Driver_FirstName,
+                                                 rslt.Driver_FristName,
                                                  rslt.Vehicle_Name,
-                                                 rslt.Driver_Number, actnType)
+                                                 rslt.Driver_PhoneNumber, actnType)
 
                     Else
 
                         Dim enterOrLeaveTime As Date = If(actnType = DataObjects.AlertType.ActionType.Enters, rslt.StartTime, rslt.EndTime)
 
                         newAlertTypeOccurance.MessageContent = BackgroundCalculations.EmailHelper _
-                            .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, enterOrLeaveTime, actnType)
+                            .SendEmail(newAlertTypeOccurance.Emails, applicationName, rslt.DriverName, rslt.GeoFence_Name, enterOrLeaveTime, actnType)
 
                     End If
 
@@ -211,7 +217,7 @@ Namespace BackgroundCalculations
                 'send SMS to subscribers with SMS messages
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.Texts) Then _
                     newAlertTypeOccurance.MessageContent &= BackgroundCalculations.EmailHelper _
-                        .SendSMS(newAlertTypeOccurance.Texts, applicationName, rslt.Driver_Name, rslt.GeoFence_Name, rslt.StartTime, actnType)
+                        .SendSMS(newAlertTypeOccurance.Texts, applicationName, rslt.DriverName, rslt.GeoFence_Name, rslt.StartTime, actnType)
 
                 'if the email / texts were sent correctly (without exception) , then log the result in the DB
                 If Not String.IsNullOrEmpty(newAlertTypeOccurance.MessageContent) Then DataObjects.AlertTypeOccurance.Create(newAlertTypeOccurance)
