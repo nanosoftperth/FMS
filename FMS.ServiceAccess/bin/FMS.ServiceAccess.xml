@@ -6,7 +6,52 @@ FMS.ServiceAccess
 </name>
 </assembly>
 <members>
-<member name="P:FMS.ServiceAccess.My.MyWebExtension.Computer">
+<member name="P:FMS.ServiceAccess.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:FMS.ServiceAccess.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:FMS.ServiceAccess.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:FMS.ServiceAccess._Default.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.ServiceAccess.UniqcoWebServiceLog.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.ServiceAccess.UniqcoWebServiceLog.ASPxGridView1">
+	<summary>
+ASPxGridView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:FMS.ServiceAccess.UniqcoWebServiceLog.odsWebService">
+	<summary>
+odsWebService control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:FMS.ServiceAccess.My.MyWebExtension.Computer">
 	<summary>
  Returns information about the host computer.
  </summary>
@@ -35,51 +80,6 @@ FMS.ServiceAccess
 	<summary>
  for serialization purposed only.
  </summary>
-</member><member name="P:FMS.ServiceAccess.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:FMS.ServiceAccess.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="T:FMS.ServiceAccess.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="F:FMS.ServiceAccess.UniqcoWebServiceLog.form1">
-	<summary>
-form1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.ServiceAccess.UniqcoWebServiceLog.ASPxGridView1">
-	<summary>
-ASPxGridView1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.ServiceAccess.UniqcoWebServiceLog.odsWebService">
-	<summary>
-odsWebService control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:FMS.ServiceAccess._Default.form1">
-	<summary>
-form1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 </members>
 </doc>

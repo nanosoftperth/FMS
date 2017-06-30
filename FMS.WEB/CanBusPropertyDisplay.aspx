@@ -20,7 +20,7 @@
 
         <dx:ASPxGridView ID="grid" Settings-ShowColumnHeaders="false" ClientInstanceName="grid" runat="server" Width="400px"
         AutoGenerateColumns="False" OnDataBinding="grid_DataBinding" Settings-UseFixedTableLayout="true" >
-            <SettingsPager Visible="False" PageSize="15" >
+            <SettingsPager Visible="False" PageSize="18" >
             </SettingsPager>
             <Columns>
                 <dx:GridViewDataTextColumn FieldName="spn" Visible="false" VisibleIndex="0" SortOrder="Ascending" Width="20">
