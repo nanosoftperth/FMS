@@ -143,11 +143,23 @@
 
         End Sub
 
+
+        ''' <summary>
+        ''' deletes the booking AND the alerts which were creted 
+        ''' </summary>
+        ''' <param name="ad"></param>
+        ''' <remarks></remarks>
         Public Shared Sub Delete(ad As DataObjects.ApplicationBooking)
 
             Dim d As FMS.Business.ApplicationBooking = (From i In SingletonAccess.FMSDataContextContignous.ApplicationBookings
                                             Where i.ApplicationBookingId = ad.ApplicationBookingId).Single
 
+            'find all of the related alert types and delete them 
+            Dim alertTypes As List(Of Business.AlertType) = (From x In SingletonAccess.FMSDataContextContignous.AlertTypes
+                                                              Where x.BookingID = ad.ApplicationBookingId).ToList
+
+            'send the changes to the database
+            SingletonAccess.FMSDataContextContignous.AlertTypes.DeleteAllOnSubmit(alertTypes)
             SingletonAccess.FMSDataContextContignous.ApplicationBookings.DeleteOnSubmit(d)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
