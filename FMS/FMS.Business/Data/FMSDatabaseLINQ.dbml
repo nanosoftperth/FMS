@@ -864,6 +864,9 @@
       <Column Name="Vehicle_Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="GeoFence_Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Driver_Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Driver_FristName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Driver_Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Driver_PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="GeoFence_Name1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="ApplicationGeoFenceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />

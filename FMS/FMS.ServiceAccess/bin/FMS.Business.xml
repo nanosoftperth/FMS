@@ -6,16 +6,87 @@ FMS.Business
 </name>
 </assembly>
 <members>
-<member name="M:FMS.Business.DataObjects.Device.#ctor">
+<member name="M:FMS.Business.DataObjects.ActionEnumOption.#ctor">
 	<summary>
- retain for serialization purposes
+ for serialization only
  </summary>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.FleetMapMarker.#ctor">
+</member><member name="T:FMS.Business.DataObjects.ActionEnumOption">
 	<summary>
- for serialization 
+ this class ihas been specifically created for binding purposes with the aspxGridView on the alerts page
  </summary>
 	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.Application.#ctor">
+	<summary>
+ for serialization only
+ </summary>
+	<remarks></remarks>
+</member><member name="P:FMS.Business.DataObjects.ApplicationLocation.ImageBinary">
+	<summary>
+ for binding to devexpress controls, just gets the image from the applicationimage object
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.ApplicationLocation.GetAll(System.Guid,System.Boolean)">
+	<summary>
+ Normal "get all", with  few caveats
+ </summary>
+	<param name="ApplicationID"></param>
+	<param name="IncludeDefault">If there are 0 ApplicationLocations, then add
+ the "old style" application (lat/long/name) settings as a applictionLocation object </param>
+</member><member name="M:FMS.Business.DataObjects.GeoFenceDeviceCollision.#ctor">
+	<summary>
+ serialization only
+ </summary>
+	<remarks></remarks>
+</member><member name="F:FMS.Business.ReportGeneration.ActivityReportLine.STOP_TIME_MIN_MINUTES">
+	<summary>
+ The minimum amount of time a vehicle can be stopped before 
+ it is classed as having actually STOPPED.
+ This needs to be short enough to detect stopping at the shops
+ but long enough to not detect stopping at a set of lights!
+ </summary>
+</member><member name="M:FMS.Business.BackgroundCalculations.CustTimeRange.#ctor">
+	<summary>
+ for serialization only
+ </summary>
+	<remarks></remarks>
+</member><member name="M:FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(System.Guid,System.Nullable{System.DateTime})">
+	<summary>
+ Processes the geofence collisons, return the earliest date for us 
+ to calcluate the new geo-fence alerts
+ </summary>
+	<returns>Returns the earliest data which any device still had no data for </returns>
+	<remarks></remarks>
+</member><member name="P:FMS.Business.DataObjects.User.ApplicationLocationID">
+	<summary>
+ If this has a null value in the DB backend, then this will return an empty GUID
+ this is for binding in the devexpress controlls where it will expect a deault option 
+ to be in the list with an ID of guid.empty for "use application default".
+ </summary>
+</member><member name="P:FMS.Business.ReportGeneration.VehicleDumpActivityReportLine.IsNew">
+	<summary>
+ internal property used whilst doing calculations, please ignore outside of this context
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.ApplicationGeoFenceProperty.#ctor">
+	<summary>
+ for serialization
+ </summary>
+</member><member name="P:FMS.Business.DataObjects.ReportSchedule.ReportType">
+	<summary>
+ Daily, weekly etc
+ </summary>
+</member><member name="P:FMS.Business.DataObjects.ReportSchedule.ReportTypeSpecific">
+	<summary>
+ 1 or Wendesday etc
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.Setting.#ctor">
+	<summary>
+ for serialisation only
+ </summary>
+	<remarks></remarks>
+</member><member name="F:FMS.Business.DictionarySerializer.Dictionary">
+	<summary>
+ Dictonary serializer
+ </summary>
 </member><member name="M:FMS.Business.DataObjects.AlertTypeOccurance.#ctor">
 	<summary>
  for serialisation purposes
@@ -30,15 +101,25 @@ FMS.Business
 	<summary>
  Normal CRUD create, this also creates two alerttypes for leaving and destination geofence-alerts
  </summary>
-</member><member name="M:FMS.Business.DataObjects.AuthenticationToken.#ctor">
+</member><member name="M:FMS.Business.DataObjects.ApplicationImage.#ctor">
 	<summary>
- for serialisation only
- </summary>
-</member><member name="M:FMS.Business.DataObjects.Application.#ctor">
-	<summary>
- for serialization only
+ for serialization 
  </summary>
 	<remarks></remarks>
+</member><member name="F:FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT">
+	<summary>
+ Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
+ </summary>
+	<remarks></remarks>
+</member><member name="M:FMS.Business.DataObjects.WorkRequest.#ctor">
+	<summary>
+ for serialization purposes only
+ </summary>
+	<remarks></remarks>
+</member><member name="P:FMS.Business.ReportGeneration.VehicleActivityReportLine.IsNew">
+	<summary>
+ internal property used whilst doing calculations, please ignore outside of this context
+ </summary>
 </member><member name="P:FMS.Business.DataObjects.ApplicationDriver.RepresentsEveryone">
 	<summary>
  For when bound to a cotnrol which needs the "everyone" option
@@ -51,56 +132,37 @@ FMS.Business
  for serialization 
  </summary>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.ActionEnumOption.#ctor">
+</member><member name="M:FMS.Business.DataObjects.AuthenticationToken.#ctor">
 	<summary>
- for serialization only
+ for serialisation only
+ </summary>
+</member><member name="P:FMS.Business.DataObjects.TimeZone.SerializedTimezoneObject">
+	<summary>
+ this object can be created from either a Google web api call
+ or a microsoft system timezone. If it was made from a microsoft timezone, 
+ then the following string can be used to SAVE what timezone were talking about.
+ Pretty much just for reference.
+ </summary>
+</member><member name="P:FMS.Business.DataObjects.TimeZone.Offset_FromPerthToHQ">
+	<summary>
+ 'the devcies return GMT + 8, we have to reverse this
+ </summary>
+</member><member name="P:FMS.Business.DataObjects.TimeZone.Offset_FromHQToPerth">
+	<summary>
+ 'the devcies return GMT + 8, we have to reverse this
+ </summary>
+</member><member name="M:FMS.Business.DataObjects.TimeZone.#ctor">
+	<summary>
+ for serialization purposes only
  </summary>
 	<remarks></remarks>
-</member><member name="T:FMS.Business.DataObjects.ActionEnumOption">
+</member><member name="P:FMS.Business.SingletonAccess.ClientSelected_TimeZone">
 	<summary>
- this class ihas been specifically created for binding purposes with the aspxGridView on the alerts page
+ Singleton object which  holds the time-zone of the applications
+ this is is actually the time-zone of the user, if that is not defined, then that of the application
+ If THAT is not defined, then is auto-assigns Perth as the timezone for the appcliation 
+ this can be altered by the user via the website if theyhave privilages.
  </summary>
-	<remarks></remarks>
-</member><member name="F:FMS.Business.ReportGeneration.ActivityReportLine.STOP_TIME_MIN_MINUTES">
-	<summary>
- The minimum amount of time a vehicle can be stopped before 
- it is classed as having actually STOPPED.
- This needs to be short enough to detect stopping at the shops
- but long enough to not detect stopping at a set of lights!
- </summary>
-</member><member name="P:FMS.Business.ReportGeneration.GeoFenceReport_Simple.Driver_FirstName">
-	<summary>
- Is calculated from the drivers name which comes from SQL in the format below: 
-d.Surname + ', ' + d.FirstName		AS	Driver_Name
- </summary>
-</member><member name="P:FMS.Business.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:FMS.Business.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="T:FMS.Business.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="M:FMS.Business.DataObjects.ApplicationGeoFenceProperty.#ctor">
-	<summary>
- for serialization
- </summary>
-</member><member name="M:FMS.Business.DataObjects.GeoFenceDeviceCollision.#ctor">
-	<summary>
- serialization only
- </summary>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.Role.GetFeaturesBitwise">
-	<summary>
- bitwise operation from object "FeatureListConstants"
- </summary>
-	<returns></returns>
-	<remarks></remarks>
 </member><member name="M:FMS.Business.GetListOfItemsWithPositions_ReturnObject.#ctor">
 	<summary>
  for serialization purposes only 
@@ -124,23 +186,16 @@ d.Surname + ', ' + d.FirstName		AS	Driver_Name
  for serialization only
  </summary>
 	<remarks></remarks>
-</member><member name="P:FMS.Business.SingletonAccess.ClientSelected_TimeZone">
-	<summary>
- Singleton object which  holds the time-zone of the applications
- this is is actually the time-zone of the user, if that is not defined, then that of the application
- If THAT is not defined, then is auto-assigns Perth as the timezone for the appcliation 
- this can be altered by the user via the website if theyhave privilages.
- </summary>
-</member><member name="M:FMS.Business.BackgroundCalculations.CustTimeRange.#ctor">
-	<summary>
- for serialization only
- </summary>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.ApplicationImage.#ctor">
+</member><member name="M:FMS.Business.DataObjects.FleetMapMarker.#ctor">
 	<summary>
  for serialization 
  </summary>
 	<remarks></remarks>
+</member><member name="P:FMS.Business.ReportGeneration.GeoFenceReport_Simple.Driver_FirstName">
+	<summary>
+ Is calculated from the drivers name which comes from SQL in the format below: 
+d.Surname + ', ' + d.FirstName		AS	Driver_Name
+ </summary>
 </member><member name="M:FMS.Business.DataObjects.ApplicationVehicle.#ctor">
 	<summary>
  for serialization only
@@ -154,101 +209,46 @@ d.Surname + ', ' + d.FirstName		AS	Driver_Name
 	<param name="appid"></param>
 	<returns></returns>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(System.Guid,System.Nullable{System.DateTime})">
-	<summary>
- Processes the geofence collisons, return the earliest date for us 
- to calcluate the new geo-fence alerts
- </summary>
-	<returns>Returns the earliest data which any device still had no data for </returns>
-	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.WorkRequest.#ctor">
-	<summary>
- for serialization purposes only
- </summary>
-	<remarks></remarks>
-</member><member name="P:FMS.Business.ReportGeneration.VehicleActivityReportLine.IsNew">
-	<summary>
- internal property used whilst doing calculations, please ignore outside of this context
- </summary>
-</member><member name="P:FMS.Business.DataObjects.ApplicationLocation.ImageBinary">
-	<summary>
- for binding to devexpress controls, just gets the image from the applicationimage object
- </summary>
-</member><member name="M:FMS.Business.DataObjects.ApplicationLocation.GetAll(System.Guid,System.Boolean)">
-	<summary>
- Normal "get all", with  few caveats
- </summary>
-	<param name="ApplicationID"></param>
-	<param name="IncludeDefault">If there are 0 ApplicationLocations, then add
- the "old style" application (lat/long/name) settings as a applictionLocation object </param>
-</member><member name="P:FMS.Business.DataObjects.ReportSchedule.ReportType">
-	<summary>
- Daily, weekly etc
- </summary>
-</member><member name="P:FMS.Business.DataObjects.ReportSchedule.ReportTypeSpecific">
-	<summary>
- 1 or Wendesday etc
- </summary>
-</member><member name="P:FMS.Business.DataObjects.User.ApplicationLocationID">
-	<summary>
- If this has a null value in the DB backend, then this will return an empty GUID
- this is for binding in the devexpress controlls where it will expect a deault option 
- to be in the list with an ID of guid.empty for "use application default".
- </summary>
-</member><member name="F:FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT">
-	<summary>
- Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
- </summary>
-	<remarks></remarks>
 </member><member name="M:FMS.Business.BackgroundCalculations.EmailHelper.SendSMS(System.String,System.String,System.String,System.String,System.DateTime,FMS.Business.DataObjects.AlertType.ActionType)">
 	<summary>
  Sends SMS messages using the paid-for SMS gateway
  which converts emails to SMS's
  </summary>
 	<param name="textList">a semi-colon seperated list of SMS numbers</param>
+</member><member name="M:FMS.Business.DataObjects.Device.#ctor">
+	<summary>
+ retain for serialization purposes
+ </summary>
+	<remarks></remarks>
 </member><member name="M:FMS.Business.DataObjects.Subscriber.update(FMS.Business.DataObjects.Subscriber)">
 	<summary>
  left empty but required for the object data source in group.aspx
  </summary>
 	<param name="x"></param>
 	<remarks></remarks>
-</member><member name="M:FMS.Business.DataObjects.Setting.#ctor">
-	<summary>
- for serialisation only
- </summary>
-	<remarks></remarks>
-</member><member name="F:FMS.Business.DictionarySerializer.Dictionary">
-	<summary>
- Dictonary serializer
- </summary>
 </member><member name="M:FMS.Business.DataObjects.SimulatorSetting.#ctor">
 	<summary>
  for serialization purposes only
  </summary>
-</member><member name="P:FMS.Business.DataObjects.TimeZone.SerializedTimezoneObject">
+</member><member name="M:FMS.Business.DataObjects.Role.GetFeaturesBitwise">
 	<summary>
- this object can be created from either a Google web api call
- or a microsoft system timezone. If it was made from a microsoft timezone, 
- then the following string can be used to SAVE what timezone were talking about.
- Pretty much just for reference.
+ bitwise operation from object "FeatureListConstants"
  </summary>
-</member><member name="P:FMS.Business.DataObjects.TimeZone.Offset_FromPerthToHQ">
-	<summary>
- 'the devcies return GMT + 8, we have to reverse this
- </summary>
-</member><member name="P:FMS.Business.DataObjects.TimeZone.Offset_FromHQToPerth">
-	<summary>
- 'the devcies return GMT + 8, we have to reverse this
- </summary>
-</member><member name="M:FMS.Business.DataObjects.TimeZone.#ctor">
-	<summary>
- for serialization purposes only
- </summary>
+	<returns></returns>
 	<remarks></remarks>
-</member><member name="P:FMS.Business.ReportGeneration.VehicleDumpActivityReportLine.IsNew">
+</member><member name="P:FMS.Business.My.Resources.Resources.ResourceManager">
 	<summary>
- internal property used whilst doing calculations, please ignore outside of this context
- </summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:FMS.Business.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:FMS.Business.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
 </member>
 </members>
 </doc>
