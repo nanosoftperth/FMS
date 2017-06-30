@@ -744,8 +744,8 @@ Partial Public Class LINQtoSQLClassesDataContext
 	End Function
 	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUnprocessedCollissionsForAlertType")>  _
-	Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate, alertTypeID)
+	Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), alertTypeID, startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult))
 	End Function
 End Class
@@ -14003,6 +14003,8 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 	
 	Private _MessageContent As String
 	
+	Private _ApplictionID1 As System.Nullable(Of System.Guid)
+	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -14231,6 +14233,18 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 		Set
 			If (String.Equals(Me._MessageContent, value) = false) Then
 				Me._MessageContent = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplictionID1", DbType:="UniqueIdentifier")>  _
+	Public Property ApplictionID1() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplictionID1
+		End Get
+		Set
+			If (Me._ApplictionID1.Equals(value) = false) Then
+				Me._ApplictionID1 = value
 			End If
 		End Set
 	End Property
