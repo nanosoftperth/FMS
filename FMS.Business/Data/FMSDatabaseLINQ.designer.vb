@@ -742,6 +742,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAssignedVehiclestoDriversResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUnprocessedCollissionsForAlertType")>  _
+	Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate, alertTypeID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -13952,6 +13958,279 @@ Partial Public Class usp_GetAssignedVehiclestoDriversResult
 		Set
 			If (Me._EndDateTime.Equals(value) = false) Then
 				Me._EndDateTime = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
+	
+	Private _id As System.Nullable(Of Long)
+	
+	Private _DeviceID As String
+	
+	Private _StartTime As System.Nullable(Of Date)
+	
+	Private _EndTime As System.Nullable(Of Date)
+	
+	Private _GeoFence_Description As String
+	
+	Private _Vehicle_Name As String
+	
+	Private _GeoFence_Name As String
+	
+	Private _Driver_Name As String
+	
+	Private _GeoFence_Name1 As String
+	
+	Private _ApplicationGeoFenceID As System.Nullable(Of System.Guid)
+	
+	Private _ApplicationVehicleID As System.Nullable(Of System.Guid)
+	
+	Private _ApplicationDriverID As System.Nullable(Of System.Guid)
+	
+	Private _GeoFenceDeviceCollissionID As System.Nullable(Of System.Guid)
+	
+	Private _ApplictionID As System.Nullable(Of System.Guid)
+	
+	Private _PhoneNumber As String
+	
+	Private _Emails As String
+	
+	Private _DriverName As String
+	
+	Private _DateSend As System.Nullable(Of Date)
+	
+	Private _MessageContent As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id", DbType:="BigInt")>  _
+	Public Property id() As System.Nullable(Of Long)
+		Get
+			Return Me._id
+		End Get
+		Set
+			If (Me._id.Equals(value) = false) Then
+				Me._id = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(10)")>  _
+	Public Property DeviceID() As String
+		Get
+			Return Me._DeviceID
+		End Get
+		Set
+			If (String.Equals(Me._DeviceID, value) = false) Then
+				Me._DeviceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StartTime", DbType:="DateTime")>  _
+	Public Property StartTime() As System.Nullable(Of Date)
+		Get
+			Return Me._StartTime
+		End Get
+		Set
+			If (Me._StartTime.Equals(value) = false) Then
+				Me._StartTime = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EndTime", DbType:="DateTime")>  _
+	Public Property EndTime() As System.Nullable(Of Date)
+		Get
+			Return Me._EndTime
+		End Get
+		Set
+			If (Me._EndTime.Equals(value) = false) Then
+				Me._EndTime = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeoFence_Description", DbType:="VarChar(MAX)")>  _
+	Public Property GeoFence_Description() As String
+		Get
+			Return Me._GeoFence_Description
+		End Get
+		Set
+			If (String.Equals(Me._GeoFence_Description, value) = false) Then
+				Me._GeoFence_Description = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Vehicle_Name", DbType:="VarChar(500)")>  _
+	Public Property Vehicle_Name() As String
+		Get
+			Return Me._Vehicle_Name
+		End Get
+		Set
+			If (String.Equals(Me._Vehicle_Name, value) = false) Then
+				Me._Vehicle_Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeoFence_Name", DbType:="VarChar(MAX)")>  _
+	Public Property GeoFence_Name() As String
+		Get
+			Return Me._GeoFence_Name
+		End Get
+		Set
+			If (String.Equals(Me._GeoFence_Name, value) = false) Then
+				Me._GeoFence_Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver_Name", DbType:="VarChar(MAX)")>  _
+	Public Property Driver_Name() As String
+		Get
+			Return Me._Driver_Name
+		End Get
+		Set
+			If (String.Equals(Me._Driver_Name, value) = false) Then
+				Me._Driver_Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeoFence_Name1", DbType:="VarChar(MAX)")>  _
+	Public Property GeoFence_Name1() As String
+		Get
+			Return Me._GeoFence_Name1
+		End Get
+		Set
+			If (String.Equals(Me._GeoFence_Name1, value) = false) Then
+				Me._GeoFence_Name1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationGeoFenceID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationGeoFenceID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationGeoFenceID
+		End Get
+		Set
+			If (Me._ApplicationGeoFenceID.Equals(value) = false) Then
+				Me._ApplicationGeoFenceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationVehicleID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationVehicleID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationVehicleID
+		End Get
+		Set
+			If (Me._ApplicationVehicleID.Equals(value) = false) Then
+				Me._ApplicationVehicleID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationDriverID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationDriverID
+		End Get
+		Set
+			If (Me._ApplicationDriverID.Equals(value) = false) Then
+				Me._ApplicationDriverID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeoFenceDeviceCollissionID", DbType:="UniqueIdentifier")>  _
+	Public Property GeoFenceDeviceCollissionID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._GeoFenceDeviceCollissionID
+		End Get
+		Set
+			If (Me._GeoFenceDeviceCollissionID.Equals(value) = false) Then
+				Me._GeoFenceDeviceCollissionID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplictionID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplictionID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplictionID
+		End Get
+		Set
+			If (Me._ApplictionID.Equals(value) = false) Then
+				Me._ApplictionID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNumber", DbType:="VarChar(MAX)")>  _
+	Public Property PhoneNumber() As String
+		Get
+			Return Me._PhoneNumber
+		End Get
+		Set
+			If (String.Equals(Me._PhoneNumber, value) = false) Then
+				Me._PhoneNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Emails", DbType:="VarChar(MAX)")>  _
+	Public Property Emails() As String
+		Get
+			Return Me._Emails
+		End Get
+		Set
+			If (String.Equals(Me._Emails, value) = false) Then
+				Me._Emails = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverName", DbType:="VarChar(500)")>  _
+	Public Property DriverName() As String
+		Get
+			Return Me._DriverName
+		End Get
+		Set
+			If (String.Equals(Me._DriverName, value) = false) Then
+				Me._DriverName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateSend", DbType:="DateTime")>  _
+	Public Property DateSend() As System.Nullable(Of Date)
+		Get
+			Return Me._DateSend
+		End Get
+		Set
+			If (Me._DateSend.Equals(value) = false) Then
+				Me._DateSend = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MessageContent", DbType:="VarChar(MAX)")>  _
+	Public Property MessageContent() As String
+		Get
+			Return Me._MessageContent
+		End Get
+		Set
+			If (String.Equals(Me._MessageContent, value) = false) Then
+				Me._MessageContent = value
 			End If
 		End Set
 	End Property
