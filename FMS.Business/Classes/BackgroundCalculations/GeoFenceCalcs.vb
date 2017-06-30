@@ -35,6 +35,9 @@ Namespace BackgroundCalculations
             'get all drivers
             Dim drivers As List(Of DataObjects.ApplicationDriver) = DataObjects.ApplicationDriver.GetAllDriversIncludingEveryone(appid)
 
+
+            'REAPLACE THE CODE BELOW AND ADD IT TO THE BELOW LOOP WITH THE NEW STORED PROCEDURE
+
             'get all the geofence collissions
             Dim geoReportRslts As List(Of ReportGeneration.GeoFenceReport_Simple) = _
                                        ReportGeneration.GeoFenceReport_Simple.GetReport(appid, startDate, Now)
@@ -48,7 +51,7 @@ Namespace BackgroundCalculations
                 Dim alertDriver As DataObjects.ApplicationDriver = drivers.Where( _
                                                                 Function(d) d.ApplicationDriverID = alertDefn.DriverID).SingleOrDefault
 
-                'if the driver has been delted, then we cannot process this alert
+                'if the driver has been deleted, then we cannot process this alert
                 If alertDriver Is Nothing Then Continue For
 
                 For Each rslt As ReportGeneration.GeoFenceReport_Simple In results
@@ -93,6 +96,7 @@ Namespace BackgroundCalculations
                             Dim withinValidTimeFrame As Boolean = (rslt.StartTime + timeRequiredToBeInGeoFence) > Now - GEOFENCE_COLLISSION_VALID_REPORT_TIME
 
                             If wasInGeoFenceLongEngough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then
+
                                 'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
                                 If booking IsNot Nothing AndAlso alertDefn.isSent = False Then
 
@@ -156,6 +160,8 @@ Namespace BackgroundCalculations
             Dim emailAndTextList = getEmailListFromSubscriber(thisSubscriber, subscribers)
 
             If Not alreadyFiredAlert Then
+
+
 
                 'create the new alert occurance, then send the email/text
                 Dim newAlertTypeOccurance As New DataObjects.AlertTypeOccurance
