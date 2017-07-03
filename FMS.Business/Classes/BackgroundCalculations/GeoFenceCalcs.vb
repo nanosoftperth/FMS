@@ -54,11 +54,23 @@ Namespace BackgroundCalculations
                 'get the geo-fence COLLISIONS which we are interested in 
                 Dim results = geoReportRslts.Where(Function(x) x.ApplicationGeoFenceID = alertDefn.GeoFenceId).ToList
 
+
+                'if there are no geofence collissions to process, then go to the next iteration of this for loop
+                If results.Count = 0 Then Continue For
+
+                'grab the driver
                 Dim alertDriver As DataObjects.ApplicationDriver = drivers.Where( _
                                                                 Function(d) d.ApplicationDriverID = alertDefn.DriverID).SingleOrDefault
 
                 'if the driver has been deleted, then we cannot process this alert
                 If alertDriver Is Nothing Then Continue For
+
+
+                'if this alert type is a booking, we do not want multiple instances being sent in this loop.
+                'this means that once we have processed one, then we will exit the loop immediatley.
+                'to ensure that we process the most recent, we will order the results accordingly
+                If alertDefn.Action = DataObjects.AlertType.ActionType.Enters Then results = results.OrderByDescending(Function(x) x.StartTime).ToList
+                If alertDefn.Action = DataObjects.AlertType.ActionType.Leaves Then results = results.OrderByDescending(Function(x) x.EndTime).ToList
 
                 For Each rslt As ReportGeneration.AlertTypeUnprocessedCollission_Report In results
 
@@ -103,15 +115,17 @@ Namespace BackgroundCalculations
 
                             If wasInGeoFenceLongEngough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then
 
+
+                                ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
+
                                 'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
                                 If booking IsNot Nothing AndAlso alertDefn.isSent = False Then
 
                                     alertDefn.isSent = True
                                     DataObjects.AlertType.Update(alertDefn)
-
+                                    Exit For
                                 End If
 
-                                ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
 
                             End If
 
@@ -132,12 +146,15 @@ Namespace BackgroundCalculations
 
                             If hasBeenOutsideForLongEnough AndAlso isCorrectDriver AndAlso withinValidTimeFrame Then
 
+                                ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
+
                                 'BY RYAN: if booking, mark as sent to ensure that booking is only ever fired ONCE
                                 If alertDefn.isBooking And Not alertDefn.isSent Then
                                     alertDefn.isSent = True
                                     DataObjects.AlertType.Update(alertDefn)
+                                    Exit For
                                 End If
-                                ProcessAlertInstances(rslt, alertDefn, alertTypeOccurances, subscribers, applicationName, alertDefn.Action)
+
                             End If
 
                     End Select

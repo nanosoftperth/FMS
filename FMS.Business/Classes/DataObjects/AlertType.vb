@@ -68,9 +68,11 @@ Namespace DataObjects
         Public Shared Function GetALLForApplication(appID As Guid) As List(Of DataObjects.AlertType)
 
 
-            Return (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
+            Dim q = (From x In SingletonAccess.FMSDataContextNew.AlertTypes _
                      Where x.ApplicationID = appID _
                      Select New DataObjects.AlertType(x)).ToList
+
+            Return q
 
         End Function
         Public Shared Function GetAllForApplicationIncludingOpenBookings(appID As Guid) As List(Of DataObjects.AlertType)
