@@ -15,15 +15,23 @@
         Public Property CustomerEmail As String
         Public Property IsAlert5min As System.Nullable(Of Boolean)
         Public Property IsAlertLeaveForPickup As System.Nullable(Of Boolean)
+
+        ''' <summary>
+        ''' This will be set to 01/jan/2970 if there is a NULL in the database for 
+        ''' legacy reasons (cannot delete older data)
+        ''' </summary>
+        Public Property DateCreated As Date
+
         Public ReadOnly Property DriverPhotoBinary() As Byte()
             Get
                 Return Driver.PhotoBinary
             End Get
         End Property
-        Public Property Driver As ApplicationDriver
+        Public Property Driver As DataObjects.ApplicationDriver
 #End Region
 
 #Region "constructors"
+
         ''' <summary>
         ''' for serialization 
         ''' </summary>
@@ -48,7 +56,10 @@
                 .CustomerEmail = d.CustomerEmail
                 .IsAlert5min = d.IsAlert5min
                 .IsAlertLeaveForPickup = d.IsAlertLeaveForPickup
+
                 .Driver = New DataObjects.ApplicationDriver(d.ApplicationDriver) 'inefficient! Ryan legacy
+
+                .DateCreated = If(d.DateCreated.HasValue, d.DateCreated.Value, CDate("01 jan 1970"))
             End With
 
         End Sub
@@ -79,7 +90,7 @@
                 .CustomerEmail = ad.CustomerEmail
                 .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
                 .IsAlertLeaveForPickup = If(ad.IsAlertLeaveForPickup Is Nothing, False, ad.IsAlertLeaveForPickup)
-
+                .DateCreated = Now
             End With
 
             'create the booking in the DB 
@@ -133,6 +144,7 @@
                     .CustomerEmail = ad.CustomerEmail
                     .IsAlert5min = If(ad.IsAlert5min Is Nothing, False, ad.IsAlert5min)
                     .IsAlertLeaveForPickup = If(ad.IsAlertLeaveForPickup Is Nothing, False, ad.IsAlertLeaveForPickup)
+                    .DateCreated = If(d.DateCreated.HasValue, d.DateCreated, CDate("01 jan 1970"))
                 End With
 
                 .SubmitChanges()
@@ -183,7 +195,7 @@
             Return (From x In SingletonAccess.FMSDataContextNew.ApplicationBookings _
                      Where x.ApplicationId = applicationid _
                      Select New DataObjects.ApplicationBooking(x)).ToList
-          
+
         End Function
 
 
