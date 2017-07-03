@@ -89,7 +89,7 @@
                 <img style="width: 200px;" src="Content/Images/mC-settings.png" />
             </td>
             <td>
-                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="2">
+                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="3">
                     <TabPages>
                         <dx:TabPage Text="Assign Drivers to Vehicles">
                             <ContentCollection>
@@ -758,12 +758,7 @@
                                             </dx:GridViewDataCheckColumn>
                                         </Columns>
                                     </dx:ASPxGridView>
-                                    <asp:ObjectDataSource ID="odsBookingContact" OnInserting="odsBookingContact_Inserting" runat="server" DataObjectTypeName="FMS.Business.DataObjects.Contact" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllForApplication" TypeName="FMS.Business.DataObjects.Contact" UpdateMethod="Update">
-                                        <SelectParameters>
-                                            <asp:SessionParameter DbType="Guid" Name="appidd" SessionField="ApplicationID" />
-                                        </SelectParameters>
-                                    </asp:ObjectDataSource>
-                                    <asp:ObjectDataSource ID="odsBookingDriver" runat="server" SelectMethod="GetAllDriversWithImageUrl" TypeName="FMS.Business.DataObjects.ApplicationDriver">
+                                    alarm<asp:ObjectDataSource ID="odsBookingDriver" runat="server" SelectMethod="GetAllDriversWithImageUrl" TypeName="FMS.Business.DataObjects.ApplicationDriver">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="applicatoinid" SessionField="ApplicationID" />
                                         </SelectParameters>

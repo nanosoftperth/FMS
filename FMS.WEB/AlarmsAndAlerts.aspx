@@ -146,7 +146,8 @@
                             </Columns>
                         </dx:ASPxGridView>
 
-                        <asp:ObjectDataSource ID="odsAlerts" runat="server" DataObjectTypeName="FMS.Business.DataObjects.AlertType" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetAllForApplicationWithoutBookings" TypeName="FMS.Business.DataObjects.AlertType" UpdateMethod="Update">
+                        <asp:ObjectDataSource ID="odsAlerts" runat="server" DataObjectTypeName="FMS.Business.DataObjects.AlertType" 
+                            DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="b" TypeName="FMS.Business.DataObjects.AlertType" UpdateMethod="Update">
                             <SelectParameters>
                                 <asp:SessionParameter DbType="Guid" Name="appID" SessionField="ApplicationID" />
                             </SelectParameters>
