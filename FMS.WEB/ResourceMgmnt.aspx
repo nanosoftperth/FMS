@@ -536,8 +536,8 @@
                                             <dx:GridViewDataTextColumn FieldName="ApplicationVehileID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
                                             </dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
-                                            </dx:GridViewDataTextColumn> 
-                                                  <dx:GridViewDataComboBoxColumn ShowInCustomizationForm="True" VisibleIndex="3" Caption="Icon" FieldName="ApplicationImageID">
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataComboBoxColumn ShowInCustomizationForm="True" VisibleIndex="3" Caption="Icon" FieldName="ApplicationImageID">
                                                 <PropertiesComboBox ImageUrlField="ImgUrl" DataSourceID="odsMapMarker" TextField="Name" ValueField="ApplicationImageID">
                                                     <ItemImage Height="24px" Width="23px" />
                                                     <ClearButton Visibility="Auto">
@@ -614,7 +614,7 @@
                                         EnableTheming="True"
                                         Theme="SoftOrange"
                                         DataSourceID="odsBooking"
-                                        KeyFieldName="ApplicationBookingId" Settings-HorizontalScrollBarMode="Auto" Width="900px" OnRowValidating ="dgvDetailBookings_RowValidating">
+                                        KeyFieldName="ApplicationBookingId" Settings-HorizontalScrollBarMode="Auto" Width="900px" OnRowValidating="dgvDetailBookings_RowValidating">
                                         <Settings HorizontalScrollBarMode="Auto"></Settings>
                                         <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
                                         <SettingsPopup>
@@ -639,7 +639,7 @@
                                             <Items>
                                                 <dx:GridViewColumnLayoutItem ColumnName="ApplicationDriverID">
                                                 </dx:GridViewColumnLayoutItem>
-                                                <dx:GridViewColumnLayoutItem ColumnName="ContactID"> 
+                                                <dx:GridViewColumnLayoutItem ColumnName="ContactID">
                                                 </dx:GridViewColumnLayoutItem>
                                                 <dx:GridViewColumnLayoutItem ColumnName="ArrivalTime">
                                                 </dx:GridViewColumnLayoutItem>
@@ -758,7 +758,7 @@
                                             </dx:GridViewDataCheckColumn>
                                         </Columns>
                                     </dx:ASPxGridView>
-                                    alarm<asp:ObjectDataSource ID="odsBookingDriver" runat="server" SelectMethod="GetAllDriversWithImageUrl" TypeName="FMS.Business.DataObjects.ApplicationDriver">
+                                    <asp:ObjectDataSource ID="odsBookingDriver" runat="server" SelectMethod="GetAllDriversWithImageUrl" TypeName="FMS.Business.DataObjects.ApplicationDriver">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="applicatoinid" SessionField="ApplicationID" />
                                         </SelectParameters>
