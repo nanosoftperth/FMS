@@ -566,7 +566,7 @@
                                                                                 New KeyValuePair(Of Integer, String)(8, "")
                                                                             }
                                                                         })
-                
+
                 Return lstFaultCodes
 
             End Function
