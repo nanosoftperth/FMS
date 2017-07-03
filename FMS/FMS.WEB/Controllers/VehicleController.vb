@@ -66,7 +66,7 @@ Namespace Controllers
 
             'Return FMS.Business.DataObjects.ApplicationVehicle.GetFromName(vehicleID).GetAvailableCANTags()
             ' Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(vehicleID)
-            Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard()
+            Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(vehicleID)
 
 
         End Function
