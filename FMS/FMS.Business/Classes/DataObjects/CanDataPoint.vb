@@ -260,6 +260,7 @@
                     If SPN = 9 Then calcMethod = AddressOf zagro500_9
                     If SPN = 10 Then calcMethod = AddressOf zagro500_10
                     If SPN = 11 Then calcMethod = AddressOf zagro500_11
+                    If SPN = 12 Then calcMethod = AddressOf zagro500_12
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
@@ -374,6 +375,22 @@
             Public Sub zagro500_11(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
                 cv.Value = GetMotorTemperature(cv, msg_def)
             End Sub
+            Public Sub zagro500_12(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Dim byte0 As Object = GetFaultCodes(cv, msg_def, 0, 1, 0)
+                Dim byte1 As Object = GetFaultCodes(cv, msg_def, 2, 3, 1)
+                Dim byte2 As Object = GetFaultCodes(cv, msg_def, 4, 5, 2)
+                Dim byte3 As Object = GetFaultCodes(cv, msg_def, 6, 7, 3)
+                Dim byte4 As Object = GetFaultCodes(cv, msg_def, 8, 9, 4)
+                Dim byte5 As Object = GetFaultCodes(cv, msg_def, 10, 11, 5)
+                Dim byte6 As Object = GetFaultCodes(cv, msg_def, 12, 13, 6)
+                Dim byte7 As Object = GetFaultCodes(cv, msg_def, 14, 15, 7)
+                Dim cvVal As String = IIf(Not byte0.Equals(""), byte0 & ",", "") + IIf(Not byte1.Equals(""), byte1 & ",", "") + _
+                    IIf(Not byte2.Equals(""), byte2 & ",", "") + IIf(Not byte3.Equals(""), byte3 & ",", "") + _
+                    IIf(Not byte4.Equals(""), byte4 & ",", "") + If(Not byte5.Equals(""), byte5 & ",", "") + _
+                    IIf(Not byte6.Equals(""), byte6 & ",", "") + IIf(Not byte7.Equals(""), byte7 & ",", "")
+                cv.Value = cvVal.Trim(",")
+
+            End Sub
 #End Region
 
             Public Shared Function StringToByteArray(hex As String) As Byte()
@@ -446,6 +463,27 @@
                     End If
                 Next
                 Return objValue
+            End Function
+            Public Function GetFaultCodes(ByVal cv As CanValue, msg_def As CAN_MessageDefinition, bitStart As Integer, bitEnd As Integer, byteCol As String) As Object
+                Dim i As Array = cv.RawValue.ToCharArray
+                Dim bit0 = Convert.ToString(Convert.ToInt32(i(bitStart), 16), 2).PadLeft(4, "0")
+                Dim bit1 = Convert.ToString(Convert.ToInt32(i(bitEnd), 16), 2).PadLeft(4, "0")
+                Dim byteVal As String = StrReverse((bit0 + bit1).ToString())
+                Dim faultCodeValues As String = ""
+                Dim intCounter As Integer = 1
+                For Each bVal As Char In byteVal.ToCharArray
+                    If Convert.ToInt16(bVal.ToString()) Then
+                        Dim faultList = GetFaultCodeList().Where(Function(xy) xy.byteCode.Equals(byteCol)).ToList()
+                        Dim faultCode = faultList.Select(Function(blist) blist.byteList.Where(Function(xy) xy.Key = intCounter)).ToList()
+
+                        If Not faultCode(0)(0).Value.ToString().Equals("") Then
+                            faultCodeValues &= faultCode(0)(0).Value.ToString + ","
+                        End If
+
+                    End If
+                    intCounter += 1
+                Next
+                Return faultCodeValues.Trim(",")
             End Function
 
             Public Shared Function GetTemperatureList() As List(Of KeyValuePair(Of Integer, String))

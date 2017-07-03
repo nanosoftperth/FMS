@@ -221,6 +221,15 @@ Partial Public Class ResourceMgmnt
     Protected WithEvents dgvDetailBookings As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''odsBookingContact control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsBookingContact As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsBookingDriver control.
     '''</summary>
     '''<remarks>
