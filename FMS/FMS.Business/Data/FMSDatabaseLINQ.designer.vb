@@ -61,12 +61,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
     End Sub
-  Partial Private Sub InsertApplicationBooking(instance As ApplicationBooking)
-    End Sub
-  Partial Private Sub UpdateApplicationBooking(instance As ApplicationBooking)
-    End Sub
-  Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
-    End Sub
   Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
     End Sub
   Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
@@ -313,6 +307,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
     End Sub
+  Partial Private Sub InsertApplicationBooking(instance As ApplicationBooking)
+    End Sub
+  Partial Private Sub UpdateApplicationBooking(instance As ApplicationBooking)
+    End Sub
+  Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -367,12 +367,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property AlertTypeSubscriber_deletemes() As System.Data.Linq.Table(Of AlertTypeSubscriber_deleteme)
 		Get
 			Return Me.GetTable(Of AlertTypeSubscriber_deleteme)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
-		Get
-			Return Me.GetTable(Of ApplicationBooking)
 		End Get
 	End Property
 	
@@ -667,6 +661,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
 		Get
 			Return Me.GetTable(Of ReportSchdeule)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
+		Get
+			Return Me.GetTable(Of ApplicationBooking)
 		End Get
 	End Property
 	
@@ -1948,371 +1948,6 @@ Partial Public Class AlertTypeSubscriber_deleteme
 				Me._NativeID = value
 				Me.SendPropertyChanged("NativeID")
 				Me.OnNativeIDChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationBooking")>  _
-Partial Public Class ApplicationBooking
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ApplicationBookingId As System.Guid
-	
-	Private _ApplicationDriverID As System.Guid
-	
-	Private _ApplicationId As System.Guid
-	
-	Private _ArrivalTime As System.Nullable(Of Date)
-	
-	Private _GeofenceLeaveId As System.Guid
-	
-	Private _GeofenceDestinationId As System.Guid
-	
-	Private _IsAlert5min As System.Nullable(Of Boolean)
-	
-	Private _IsAlertLeaveForPickup As System.Nullable(Of Boolean)
-	
-	Private _ContactID As System.Guid
-	
-	Private _CustomerPhone As String
-	
-	Private _CustomerEmail As String
-	
-	Private _GeofenceLeave As String
-	
-	Private _GeofenceDestination As String
-	
-	Private _ApplicationDriver As EntityRef(Of ApplicationDriver)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnApplicationBookingIdChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationBookingIdChanged()
-    End Sub
-    Partial Private Sub OnApplicationDriverIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationDriverIDChanged()
-    End Sub
-    Partial Private Sub OnApplicationIdChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnApplicationIdChanged()
-    End Sub
-    Partial Private Sub OnArrivalTimeChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnArrivalTimeChanged()
-    End Sub
-    Partial Private Sub OnGeofenceLeaveIdChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnGeofenceLeaveIdChanged()
-    End Sub
-    Partial Private Sub OnGeofenceDestinationIdChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnGeofenceDestinationIdChanged()
-    End Sub
-    Partial Private Sub OnIsAlert5minChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnIsAlert5minChanged()
-    End Sub
-    Partial Private Sub OnIsAlertLeaveForPickupChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnIsAlertLeaveForPickupChanged()
-    End Sub
-    Partial Private Sub OnContactIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnContactIDChanged()
-    End Sub
-    Partial Private Sub OnCustomerPhoneChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerPhoneChanged()
-    End Sub
-    Partial Private Sub OnCustomerEmailChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerEmailChanged()
-    End Sub
-    Partial Private Sub OnGeofenceLeaveChanging(value As String)
-    End Sub
-    Partial Private Sub OnGeofenceLeaveChanged()
-    End Sub
-    Partial Private Sub OnGeofenceDestinationChanging(value As String)
-    End Sub
-    Partial Private Sub OnGeofenceDestinationChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._ApplicationDriver = CType(Nothing, EntityRef(Of ApplicationDriver))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationBookingId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ApplicationBookingId() As System.Guid
-		Get
-			Return Me._ApplicationBookingId
-		End Get
-		Set
-			If ((Me._ApplicationBookingId = value)  _
-						= false) Then
-				Me.OnApplicationBookingIdChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationBookingId = value
-				Me.SendPropertyChanged("ApplicationBookingId")
-				Me.OnApplicationBookingIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationDriverID() As System.Guid
-		Get
-			Return Me._ApplicationDriverID
-		End Get
-		Set
-			If ((Me._ApplicationDriverID = value)  _
-						= false) Then
-				If Me._ApplicationDriver.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnApplicationDriverIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationDriverID = value
-				Me.SendPropertyChanged("ApplicationDriverID")
-				Me.OnApplicationDriverIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationId() As System.Guid
-		Get
-			Return Me._ApplicationId
-		End Get
-		Set
-			If ((Me._ApplicationId = value)  _
-						= false) Then
-				Me.OnApplicationIdChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationId = value
-				Me.SendPropertyChanged("ApplicationId")
-				Me.OnApplicationIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArrivalTime", DbType:="DateTime")>  _
-	Public Property ArrivalTime() As System.Nullable(Of Date)
-		Get
-			Return Me._ArrivalTime
-		End Get
-		Set
-			If (Me._ArrivalTime.Equals(value) = false) Then
-				Me.OnArrivalTimeChanging(value)
-				Me.SendPropertyChanging
-				Me._ArrivalTime = value
-				Me.SendPropertyChanged("ArrivalTime")
-				Me.OnArrivalTimeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceLeaveId", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property GeofenceLeaveId() As System.Guid
-		Get
-			Return Me._GeofenceLeaveId
-		End Get
-		Set
-			If ((Me._GeofenceLeaveId = value)  _
-						= false) Then
-				Me.OnGeofenceLeaveIdChanging(value)
-				Me.SendPropertyChanging
-				Me._GeofenceLeaveId = value
-				Me.SendPropertyChanged("GeofenceLeaveId")
-				Me.OnGeofenceLeaveIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceDestinationId", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property GeofenceDestinationId() As System.Guid
-		Get
-			Return Me._GeofenceDestinationId
-		End Get
-		Set
-			If ((Me._GeofenceDestinationId = value)  _
-						= false) Then
-				Me.OnGeofenceDestinationIdChanging(value)
-				Me.SendPropertyChanging
-				Me._GeofenceDestinationId = value
-				Me.SendPropertyChanged("GeofenceDestinationId")
-				Me.OnGeofenceDestinationIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlert5min", DbType:="Bit")>  _
-	Public Property IsAlert5min() As System.Nullable(Of Boolean)
-		Get
-			Return Me._IsAlert5min
-		End Get
-		Set
-			If (Me._IsAlert5min.Equals(value) = false) Then
-				Me.OnIsAlert5minChanging(value)
-				Me.SendPropertyChanging
-				Me._IsAlert5min = value
-				Me.SendPropertyChanged("IsAlert5min")
-				Me.OnIsAlert5minChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlertLeaveForPickup", DbType:="Bit")>  _
-	Public Property IsAlertLeaveForPickup() As System.Nullable(Of Boolean)
-		Get
-			Return Me._IsAlertLeaveForPickup
-		End Get
-		Set
-			If (Me._IsAlertLeaveForPickup.Equals(value) = false) Then
-				Me.OnIsAlertLeaveForPickupChanging(value)
-				Me.SendPropertyChanging
-				Me._IsAlertLeaveForPickup = value
-				Me.SendPropertyChanged("IsAlertLeaveForPickup")
-				Me.OnIsAlertLeaveForPickupChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ContactID() As System.Guid
-		Get
-			Return Me._ContactID
-		End Get
-		Set
-			If ((Me._ContactID = value)  _
-						= false) Then
-				Me.OnContactIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ContactID = value
-				Me.SendPropertyChanged("ContactID")
-				Me.OnContactIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(MAX)")>  _
-	Public Property CustomerPhone() As String
-		Get
-			Return Me._CustomerPhone
-		End Get
-		Set
-			If (String.Equals(Me._CustomerPhone, value) = false) Then
-				Me.OnCustomerPhoneChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerPhone = value
-				Me.SendPropertyChanged("CustomerPhone")
-				Me.OnCustomerPhoneChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerEmail", DbType:="NVarChar(MAX)")>  _
-	Public Property CustomerEmail() As String
-		Get
-			Return Me._CustomerEmail
-		End Get
-		Set
-			If (String.Equals(Me._CustomerEmail, value) = false) Then
-				Me.OnCustomerEmailChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerEmail = value
-				Me.SendPropertyChanged("CustomerEmail")
-				Me.OnCustomerEmailChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceLeave", DbType:="NVarChar(MAX)")>  _
-	Public Property GeofenceLeave() As String
-		Get
-			Return Me._GeofenceLeave
-		End Get
-		Set
-			If (String.Equals(Me._GeofenceLeave, value) = false) Then
-				Me.OnGeofenceLeaveChanging(value)
-				Me.SendPropertyChanging
-				Me._GeofenceLeave = value
-				Me.SendPropertyChanged("GeofenceLeave")
-				Me.OnGeofenceLeaveChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceDestination", DbType:="NVarChar(MAX)")>  _
-	Public Property GeofenceDestination() As String
-		Get
-			Return Me._GeofenceDestination
-		End Get
-		Set
-			If (String.Equals(Me._GeofenceDestination, value) = false) Then
-				Me.OnGeofenceDestinationChanging(value)
-				Me.SendPropertyChanging
-				Me._GeofenceDestination = value
-				Me.SendPropertyChanged("GeofenceDestination")
-				Me.OnGeofenceDestinationChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ApplicationDriver_ApplicationBooking", Storage:="_ApplicationDriver", ThisKey:="ApplicationDriverID", OtherKey:="ApplicationDriverID", IsForeignKey:=true)>  _
-	Public Property ApplicationDriver() As ApplicationDriver
-		Get
-			Return Me._ApplicationDriver.Entity
-		End Get
-		Set
-			Dim previousValue As ApplicationDriver = Me._ApplicationDriver.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._ApplicationDriver.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._ApplicationDriver.Entity = Nothing
-					previousValue.ApplicationBookings.Remove(Me)
-				End If
-				Me._ApplicationDriver.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.ApplicationBookings.Add(Me)
-					Me._ApplicationDriverID = value.ApplicationDriverID
-				Else
-					Me._ApplicationDriverID = CType(Nothing, System.Guid)
-				End If
-				Me.SendPropertyChanged("ApplicationDriver")
 			End If
 		End Set
 	End Property
@@ -13205,6 +12840,393 @@ Partial Public Class ReportSchdeule
 				Me._Recipients = value
 				Me.SendPropertyChanged("Recipients")
 				Me.OnRecipientsChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ApplicationBooking")>  _
+Partial Public Class ApplicationBooking
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationBookingId As System.Guid
+	
+	Private _ApplicationDriverID As System.Guid
+	
+	Private _ApplicationId As System.Guid
+	
+	Private _ArrivalTime As System.Nullable(Of Date)
+	
+	Private _GeofenceLeaveId As System.Guid
+	
+	Private _GeofenceDestinationId As System.Guid
+	
+	Private _IsAlert5min As System.Nullable(Of Boolean)
+	
+	Private _IsAlertLeaveForPickup As System.Nullable(Of Boolean)
+	
+	Private _ContactID As System.Guid
+	
+	Private _CustomerPhone As String
+	
+	Private _CustomerEmail As String
+	
+	Private _GeofenceLeave As String
+	
+	Private _GeofenceDestination As String
+	
+	Private _DateCreated As System.Nullable(Of Date)
+	
+	Private _ApplicationDriver As EntityRef(Of ApplicationDriver)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationBookingIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationBookingIdChanged()
+    End Sub
+    Partial Private Sub OnApplicationDriverIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationDriverIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnApplicationIdChanged()
+    End Sub
+    Partial Private Sub OnArrivalTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnArrivalTimeChanged()
+    End Sub
+    Partial Private Sub OnGeofenceLeaveIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnGeofenceLeaveIdChanged()
+    End Sub
+    Partial Private Sub OnGeofenceDestinationIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnGeofenceDestinationIdChanged()
+    End Sub
+    Partial Private Sub OnIsAlert5minChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsAlert5minChanged()
+    End Sub
+    Partial Private Sub OnIsAlertLeaveForPickupChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsAlertLeaveForPickupChanged()
+    End Sub
+    Partial Private Sub OnContactIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnContactIDChanged()
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanged()
+    End Sub
+    Partial Private Sub OnCustomerEmailChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerEmailChanged()
+    End Sub
+    Partial Private Sub OnGeofenceLeaveChanging(value As String)
+    End Sub
+    Partial Private Sub OnGeofenceLeaveChanged()
+    End Sub
+    Partial Private Sub OnGeofenceDestinationChanging(value As String)
+    End Sub
+    Partial Private Sub OnGeofenceDestinationChanged()
+    End Sub
+    Partial Private Sub OnDateCreatedChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDateCreatedChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._ApplicationDriver = CType(Nothing, EntityRef(Of ApplicationDriver))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationBookingId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ApplicationBookingId() As System.Guid
+		Get
+			Return Me._ApplicationBookingId
+		End Get
+		Set
+			If ((Me._ApplicationBookingId = value)  _
+						= false) Then
+				Me.OnApplicationBookingIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationBookingId = value
+				Me.SendPropertyChanged("ApplicationBookingId")
+				Me.OnApplicationBookingIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationDriverID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationDriverID() As System.Guid
+		Get
+			Return Me._ApplicationDriverID
+		End Get
+		Set
+			If ((Me._ApplicationDriverID = value)  _
+						= false) Then
+				If Me._ApplicationDriver.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnApplicationDriverIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationDriverID = value
+				Me.SendPropertyChanged("ApplicationDriverID")
+				Me.OnApplicationDriverIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationId() As System.Guid
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If ((Me._ApplicationId = value)  _
+						= false) Then
+				Me.OnApplicationIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationId = value
+				Me.SendPropertyChanged("ApplicationId")
+				Me.OnApplicationIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArrivalTime", DbType:="DateTime")>  _
+	Public Property ArrivalTime() As System.Nullable(Of Date)
+		Get
+			Return Me._ArrivalTime
+		End Get
+		Set
+			If (Me._ArrivalTime.Equals(value) = false) Then
+				Me.OnArrivalTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._ArrivalTime = value
+				Me.SendPropertyChanged("ArrivalTime")
+				Me.OnArrivalTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceLeaveId", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property GeofenceLeaveId() As System.Guid
+		Get
+			Return Me._GeofenceLeaveId
+		End Get
+		Set
+			If ((Me._GeofenceLeaveId = value)  _
+						= false) Then
+				Me.OnGeofenceLeaveIdChanging(value)
+				Me.SendPropertyChanging
+				Me._GeofenceLeaveId = value
+				Me.SendPropertyChanged("GeofenceLeaveId")
+				Me.OnGeofenceLeaveIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceDestinationId", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property GeofenceDestinationId() As System.Guid
+		Get
+			Return Me._GeofenceDestinationId
+		End Get
+		Set
+			If ((Me._GeofenceDestinationId = value)  _
+						= false) Then
+				Me.OnGeofenceDestinationIdChanging(value)
+				Me.SendPropertyChanging
+				Me._GeofenceDestinationId = value
+				Me.SendPropertyChanged("GeofenceDestinationId")
+				Me.OnGeofenceDestinationIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlert5min", DbType:="Bit")>  _
+	Public Property IsAlert5min() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAlert5min
+		End Get
+		Set
+			If (Me._IsAlert5min.Equals(value) = false) Then
+				Me.OnIsAlert5minChanging(value)
+				Me.SendPropertyChanging
+				Me._IsAlert5min = value
+				Me.SendPropertyChanged("IsAlert5min")
+				Me.OnIsAlert5minChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAlertLeaveForPickup", DbType:="Bit")>  _
+	Public Property IsAlertLeaveForPickup() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAlertLeaveForPickup
+		End Get
+		Set
+			If (Me._IsAlertLeaveForPickup.Equals(value) = false) Then
+				Me.OnIsAlertLeaveForPickupChanging(value)
+				Me.SendPropertyChanging
+				Me._IsAlertLeaveForPickup = value
+				Me.SendPropertyChanged("IsAlertLeaveForPickup")
+				Me.OnIsAlertLeaveForPickupChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ContactID() As System.Guid
+		Get
+			Return Me._ContactID
+		End Get
+		Set
+			If ((Me._ContactID = value)  _
+						= false) Then
+				Me.OnContactIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ContactID = value
+				Me.SendPropertyChanged("ContactID")
+				Me.OnContactIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(MAX)")>  _
+	Public Property CustomerPhone() As String
+		Get
+			Return Me._CustomerPhone
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPhone, value) = false) Then
+				Me.OnCustomerPhoneChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerPhone = value
+				Me.SendPropertyChanged("CustomerPhone")
+				Me.OnCustomerPhoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerEmail", DbType:="NVarChar(MAX)")>  _
+	Public Property CustomerEmail() As String
+		Get
+			Return Me._CustomerEmail
+		End Get
+		Set
+			If (String.Equals(Me._CustomerEmail, value) = false) Then
+				Me.OnCustomerEmailChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerEmail = value
+				Me.SendPropertyChanged("CustomerEmail")
+				Me.OnCustomerEmailChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceLeave", DbType:="NVarChar(MAX)")>  _
+	Public Property GeofenceLeave() As String
+		Get
+			Return Me._GeofenceLeave
+		End Get
+		Set
+			If (String.Equals(Me._GeofenceLeave, value) = false) Then
+				Me.OnGeofenceLeaveChanging(value)
+				Me.SendPropertyChanging
+				Me._GeofenceLeave = value
+				Me.SendPropertyChanged("GeofenceLeave")
+				Me.OnGeofenceLeaveChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeofenceDestination", DbType:="NVarChar(MAX)")>  _
+	Public Property GeofenceDestination() As String
+		Get
+			Return Me._GeofenceDestination
+		End Get
+		Set
+			If (String.Equals(Me._GeofenceDestination, value) = false) Then
+				Me.OnGeofenceDestinationChanging(value)
+				Me.SendPropertyChanging
+				Me._GeofenceDestination = value
+				Me.SendPropertyChanged("GeofenceDestination")
+				Me.OnGeofenceDestinationChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime")>  _
+	Public Property DateCreated() As System.Nullable(Of Date)
+		Get
+			Return Me._DateCreated
+		End Get
+		Set
+			If (Me._DateCreated.Equals(value) = false) Then
+				Me.OnDateCreatedChanging(value)
+				Me.SendPropertyChanging
+				Me._DateCreated = value
+				Me.SendPropertyChanged("DateCreated")
+				Me.OnDateCreatedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ApplicationDriver_ApplicationBooking", Storage:="_ApplicationDriver", ThisKey:="ApplicationDriverID", OtherKey:="ApplicationDriverID", IsForeignKey:=true)>  _
+	Public Property ApplicationDriver() As ApplicationDriver
+		Get
+			Return Me._ApplicationDriver.Entity
+		End Get
+		Set
+			Dim previousValue As ApplicationDriver = Me._ApplicationDriver.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._ApplicationDriver.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._ApplicationDriver.Entity = Nothing
+					previousValue.ApplicationBookings.Remove(Me)
+				End If
+				Me._ApplicationDriver.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.ApplicationBookings.Add(Me)
+					Me._ApplicationDriverID = value.ApplicationDriverID
+				Else
+					Me._ApplicationDriverID = CType(Nothing, System.Guid)
+				End If
+				Me.SendPropertyChanged("ApplicationDriver")
 			End If
 		End Set
 	End Property
