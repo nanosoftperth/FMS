@@ -94,10 +94,24 @@ Namespace BackgroundCalculations
                     'if this is a booking but the booking has since been deleted, then ignore forever (a bit inefficient)
                     If alertDefn.isBooking AndAlso booking Is Nothing Then Continue For
 
-                    'here we want to check that the booking is expected to happen within the next 2 hours. 
+                    'here we want to check that the booking is expected to happen within the next 3 hours. 
                     'If not then we want to ignore for now. This avoide people placing booking for a few days in 
                     'the future and then an alert being fired immediatley
-                    If booking IsNot Nothing AndAlso booking.ArrivalTime.Value > Now.AddHours(+2) Then Continue For
+                    If booking IsNot Nothing AndAlso booking.ArrivalTime.Value > Now.AddHours(+3) Then Continue For
+
+
+                    'This is to check that the alert type accurance was not BEFORE the date/time the booking was created.
+                    'This stops bookings firing from events that happened since before the booking took place. 
+                    '(this is an edge case which pretty much only happens during testing)
+                    If booking IsNot Nothing Then
+
+                        If alertDefn.Action = DataObjects.AlertType.ActionType.Enters AndAlso rslt.StartTime.HasValue _
+                                                                            AndAlso booking.DateCreated > rslt.StartTime.Value Then Continue For
+
+                        If alertDefn.Action = DataObjects.AlertType.ActionType.Leaves AndAlso rslt.EndTime.HasValue _
+                                                                            AndAlso booking.DateCreated > rslt.EndTime.Value Then Continue For
+
+                    End If
 
                     'DEPENDING IF THIS ALERT WAS FIRED FOR AN "ENTRY" OR "EXIT" EVENT
                     Select Case alertDefn.Action
