@@ -23,8 +23,8 @@
 /*For Dashboard*/
 .custom-iw2_dash { 
 	/*top: 15px !important;*/
-    width:690px !Important;
-    height:300px !Important;
+    width:500px !Important;
+    height:200px !Important;
 	/*left: 0px !important;*/
 	background-color: #fff;
 	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
@@ -68,6 +68,12 @@ left: 94px !important;
     left:0px !Important;
     width:428px !Important;
 }
+.custom-iw2_dash>.gm-style-iw{
+
+    top:0px !Important;
+    left:0px !Important;
+    width:500px !Important;
+}
 
 #iw-container .iw-title {
 	font-family: 'Open Sans Condensed', sans-serif;
@@ -100,11 +106,12 @@ left: 94px !important;
 	font-weight: 400;
 	margin-right: 1px;
 	padding: 5px 5px 20px 5px;
-    height:210px;
-    border-bottom-left-radius: 40px;
+    height:200px;
+    /*width: 400px;*/
+    /*border-bottom-left-radius: 40px;
     border-bottom-right-radius: 30px;
     border-top-left-radius: 35px;
-    border-top-right-radius: 25px;
+    border-top-right-radius: 25px;*/
     /*border-radius: 20px 20px 20px 20px;*/
 	/*//max-height: 140px;*/
 	overflow-y: hidden;
@@ -114,7 +121,7 @@ left: 94px !important;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 22px;
 	font-weight: 400;
-    width:654px;
+    width:400px;
 	padding: 10px;
 	background-color: #48b5e9;
 	color: white;
