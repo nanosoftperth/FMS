@@ -67,48 +67,20 @@
         End Function
 
         'Public Shared Function GetPointWithDataForDashboard(vehicleid As String) As Boolean
-        Public Shared Function GetPointWithDataForDashboard() As Boolean
-            'Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromName(vehicleid)
+        Public Shared Function GetPointWithDataForDashboard(vehicleID As String) As Boolean
 
-
-
-
-
-            'Dim retobj As New CanDataPoint
-
-            'Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromName(vehicleid)
-
-            ''get the MessageDefinition
-            ''retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard)
-
-            '' Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
-            '' Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
-            ''                                                                    retobj.MessageDefinition.PGN)
+            Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromName(vehicleID)
+           
             Try
 
-                Return True
+                If vehicle Is Nothing Then
+                    Return False
+                Else
+                    Return True
+                End If
 
-
-                '    Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
-
-                '    'get data from pi for the time period
-                '    Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
-                '                                                         PISDK.BoundaryTypeConstants.btInside)
-
-                '    For Each p As PISDK.PIValue In pivds
-
-                '        Try
-
-                '            retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
-                '                                                                    .RawValue = p.Value})
-
-                '        Catch ex As Exception
-                '        End Try
-                '    Next
-
-                '    'Calculate the actual value from the raw values
-                '    retobj.CanValues.CalculateValues(SPN, retobj.MessageDefinition)
             Catch ex As Exception
+                Throw ex
                 'retobj.MessageDefinition = New FMS.Business.DataObjects.CAN_MessageDefinition()
             End Try
 
