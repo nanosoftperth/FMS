@@ -23,7 +23,7 @@ function showInfoWindow(event) {
     var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
     var newURL = 'DevicePropertyDisplay.aspx?DeviceID=' + this.DeviceID;
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 300px;\' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 200px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content\'>' + contentString + '</div>';
 
@@ -56,6 +56,12 @@ function showInfoWindow(event) {
 }
 
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
+
+function ShowDashBoard2(event)
+{
+
+}
+
 function ShowDashboard(event) {
 
     var param = {};
@@ -75,7 +81,7 @@ function ShowDashboard(event) {
     //iw-title 
     //var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
     var newURL = 'CanBusPropDispDashboard.aspx';
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 100px; width:750px\' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 100%; width:100%; \' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
 
@@ -85,13 +91,10 @@ function ShowDashboard(event) {
         infoWindowVehicle = null;
     }
 
-    var content = '<div id="iw-container_dash">' +
-                 '<div class="iw-content_dash">' +
-                   contentString
-    '</div>' +
-    '<div class="iw-bottom-gradient"></div>' +
-  '</div>';
+    var content = '<div  id="iw-container_dash">' + contentString + '</div>'
 
+    //var content = contentString
+    
     //  var content = '<div id="iw-container_dash">' +
     //                '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
     //                '<div class="iw-content_dash">' +
@@ -282,65 +285,67 @@ function infoWindowCSSForCanBus(w) {
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function infoWindowCSSForDashboard(w) {
 
-    $('#iw-container_dash').closest('.gm-style-iw').parent().addClass('custom-iw2_dash');
+    $('#iw-container_dash').addClass('custom-iw2_dash');
 
-    $('.custom-iw2_dash').parent().addClass('iconposition');
+    //$('#iw-container_dash').closest('.gm-style-iw').parent().addClass('custom-iw2_dash');
 
-    // Reference to s DIV that wraps the bottom of infowindow
-    var iwOuter = $('#iw-container_dash').closest('.gm-style-iw');
+    //$('.custom-iw2_dash').parent().addClass('iconposition');
 
-    /* Since this div is in a position prior to .gm-div style-iw.
-     * We use jQuery and create a iwBackground variable,
-     * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
-    */
-    var iwBackground = iwOuter.prev();
+    //// Reference to s DIV that wraps the bottom of infowindow
+    //var iwOuter = $('#iw-container_dash').closest('.gm-style-iw');
 
-    //iwOuter.css('width', '200px !Important');
+    ///* Since this div is in a position prior to .gm-div style-iw.
+    // * We use jQuery and create a iwBackground variable,
+    // * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+    //*/
+    //var iwBackground = iwOuter.prev();
 
-    $('#iw-container_dash').parent().parent().parent().parent().width('300px');
+    ////iwOuter.css('width', '200px !Important');
 
-    //iwBackground.css({ 'width': '280px' });
-    //iwOuter.css({ 'width': '280px' });
-    // Removes background shadow DIV
-    iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
+    //$('#iw-container_dash').parent().parent().parent().parent().width('300px');
 
-    // Removes white background DIV
-    iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
+    ////iwBackground.css({ 'width': '280px' });
+    ////iwOuter.css({ 'width': '280px' });
+    //// Removes background shadow DIV
+    //iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
 
-    // Moves the infowindow 115px to the right.
+    //// Removes white background DIV
+    //iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
 
-    iwOuter.parent().parent().css({ left: '115px' });
+    //// Moves the infowindow 115px to the right.
 
-    iwOuter.parent().parent().css({ width: '115px' });
-    // Moves the shadow of the arrow 76px to the left margin.
-    //iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
-    // Moves the arrow 76px to the left margin.
-    //iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
+    //iwOuter.parent().parent().css({ left: '115px' });
 
-    iwBackground.children(':nth-child(1)').addClass('leftarrow_dash');
-    iwBackground.children(':nth-child(3)').addClass('leftarrow_dash');
-    //iwBackground.children(':nth-child(3)').css('left','76px');
-    //iwBackground.children(':nth-child(3)').css('left','76px');
+    //iwOuter.parent().parent().css({ width: '115px' });
+    //// Moves the shadow of the arrow 76px to the left margin.
+    ////iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
+    //// Moves the arrow 76px to the left margin.
+    ////iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
+
+    //iwBackground.children(':nth-child(1)').addClass('leftarrow_dash');
+    //iwBackground.children(':nth-child(3)').addClass('leftarrow_dash');
+    ////iwBackground.children(':nth-child(3)').css('left','76px');
+    ////iwBackground.children(':nth-child(3)').css('left','76px');
 
 
-    // Changes the desired tail shadow color.
-    iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1' });
+    //// Changes the desired tail shadow color.
+    //iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1' });
 
-    // Reference to the div that groups the close button elements.
-    var iwCloseBtn = iwOuter.next();
+    //// Reference to the div that groups the close button elements.
+    //var iwCloseBtn = iwOuter.next();
 
-    // Apply the desired effect to the close button
-    iwCloseBtn.css({ opacity: '1', left: '800px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+    //// Apply the desired effect to the close button
+    //iwCloseBtn.css({ opacity: '1', left: '800px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
-    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
-    if ($('.iw-content').height() < 140) {
-        $('.iw-bottom-gradient').css({ display: 'none' });
-    }
+    //// If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+    //if ($('.iw-content').height() < 140) {
+    //    $('.iw-bottom-gradient').css({ display: 'none' });
+    //}
 
-    // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
-    iwCloseBtn.mouseout(function () {
-        $(this).css({ opacity: '1' });
-    });
+    //// The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+    //iwCloseBtn.mouseout(function () {
+    //    $(this).css({ opacity: '1' });
+    //});
     
 }
 
@@ -1001,9 +1006,9 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     marker.TruckName = vehicleName;
 
     marker.addListener('click', showInfoWindow);//DeviceID
-    marker.addListener('dblclick', showInfoWindow2);
-    marker.addListener('rightclick', showInfoWindow2);
-    //marker.addListener('rightclick', ShowDashboard);
+    //marker.addListener('dblclick', showInfoWindow2);
+    //marker.addListener('rightclick', showInfoWindow2);
+    marker.addListener('rightclick', ShowDashboard);
 
     marker.ID = markerID;
     markers.push(marker);

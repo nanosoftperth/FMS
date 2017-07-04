@@ -1,12 +1,12 @@
 ﻿body {
 }
 .div_dashboard {
-    width: 480px;
+    width: 580px;
     height: 200px;
-    background-image: url('../Content/Images/Dashboard/Display-Grey.png');
+    background-image: url('../Content/Images/Dashboard/Display-Grey_blank.png');
     background-size: 100%;
     background-repeat: no-repeat;
-    /*background-position: center;*/ 
+    background-position: center; 
 }
 
 .imgDash {
@@ -30,90 +30,131 @@
     cursor: pointer;
 }
 
+/*Panel*/
 .div_break {
-    width: 28px;
-    height: 28px;
+    width: 23px;
+    height: 23px;
     position: absolute;
-    top: 47px;
-    left: 62px;
+    top: 49px;
+    left: 44px;
 }
 
 .div_steer {
-    width: 48px;
-    height: 48px;
+    width: 19px;
+    height: 19px;
     position: absolute;
-    top: 25px;
-    left: 70px;
+    top: 49px;
+    left: 77px;
 }
 
 .div_drive {
-    width: 48px;
-    height: 48px;
+    width: 19px;
+    height: 19px;
     position: absolute;
-    top: 24px;
-    left: 108px;
+    top: 49px;
+    left: 107px;
 }
 
 .div_ifm {
-    width: 48px;
-    height: 48px;
+    width: 19px;
+    height: 19px;
     position: absolute;
-    top: 24px;
-    left: 146px;
+    top: 50px;
+    left: 136px;
 }
 
 .div_can {
-    width: 48px;
-    height: 48px;
+    width: 29px;
+    height: 29px;
     position: absolute;
-    top: 23px;
-    left: 185px;
+    top: 50px;
+    left: 162px;
 }
 
 .div_align {
-    width: 48px;
-    height: 48px;
+    width: 19px;
+    height: 19px;
     position: absolute;
-    top: 23px;
-    left: 227px;
+    top: 49px;
+    left: 197px;
 }
 
 .div_warning {
-    width: 48px;
-    height: 48px;
+    width: 28px;
+    height: 28px;
     position: absolute;
-    top: 69px;
-    left: 58px;
+    top: 81px;
+    left: 57px;
 }
 
 .div_stop {
-    width: 65px;
-    height: 65px;
+    width: 50px;
+    height: 50px;
     position: absolute;
-    top: 69px;
-    left: 119px;
+    top: 86px;
+    left: 102px;
 }
 
 .div_speed {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    top: 69px;
-    left: 200px;
+    top: 85px;
+    left: 166px;
 }
 
+/*Battery*/
 .div_battery {
-    width: 125px;
-    height: 125px;
+    width: 85px;
+    height: 85px;
     position: absolute;
-    top: 26px;
-    left: 288px;
+    top: 47px;
+    left: 251px;
 }
 
 .pnlimgHide {
     display:none;
 }
+/*Buttons*/
+.div_plus {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 33px;
+}
+.div_minus {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 85px;
+}
+.div_ex {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 138px;
+}
+.div_tick {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 189px;
+}
+.div_bottomlogo {
+    width: 115px;
+    height: 50px;
+    position: absolute;
+    top: 146px;
+    left: 448px;
+}
 
+
+
+/*LCD*/
 .div_LCD {
     width: 172px;
     height: 88px;
