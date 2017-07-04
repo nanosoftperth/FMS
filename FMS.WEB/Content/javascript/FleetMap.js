@@ -58,11 +58,24 @@ function showInfoWindow(event) {
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function ShowDashboard(event) {
 
+    var param = {};
+    param.vehicleID = '1';
+
+    var strName = this.Name.toString();
+    var nStart = strName.indexOf('</br>') + 4;
+    var nEnd = strName.length;
+    var varName = strName.substring(nStart, nEnd);
+    //var varName = 'RIO E-maxi';
+    //var varName = 'NONE';
+
+    ajaxGetMethod("api/vehicle/GetDashboardData?vehicleid=" + varName, param, successCallBack_Dashboard, errorCallback_Dashboard, finallyCallback_Dashboard);
+
     //var vertices = '<br><br>' + this.getPath();
     var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
-    var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 5000px; width:700px\' ></iframe>';
+    //var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
+    var newURL = 'CanBusPropDispDashboard.aspx';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 100px; width:750px\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
 
@@ -72,14 +85,20 @@ function ShowDashboard(event) {
         infoWindowVehicle = null;
     }
 
-
     var content = '<div id="iw-container_dash">' +
-                  '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
-                  '<div class="iw-content_dash">' +
-                    contentString
+                 '<div class="iw-content_dash">' +
+                   contentString
     '</div>' +
     '<div class="iw-bottom-gradient"></div>' +
   '</div>';
+
+    //  var content = '<div id="iw-container_dash">' +
+    //                '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
+    //                '<div class="iw-content_dash">' +
+    //                  contentString
+    //  '</div>' +
+    //  '<div class="iw-bottom-gradient"></div>' +
+    //'</div>';
 
 
     infoWindowVehicle = new google.maps.InfoWindow();
@@ -89,7 +108,7 @@ function ShowDashboard(event) {
     infoWindowVehicle.setContent(content);
 
     google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForDashboard(infoWindowVehicle) });
-    
+
     infoWindowVehicle.open(map);
 
     //document.getElementById("idLiveData").addEventListener("click", Run_infoWindowCSSForCanBus);
