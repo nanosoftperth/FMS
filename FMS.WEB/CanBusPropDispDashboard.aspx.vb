@@ -18,6 +18,10 @@ Public Class CanBusPropDispDashboard
         If IsPostBack = False Then
             'lblVehicleID.Text = vehicleID
 
+            'Dim scriptKey As String = "UniqueKeyForThisScript"
+            'Dim javaScript As String = "<script type='text/javascript'>GetDashboardData();</script>"
+            'ClientScript.RegisterStartupScript(Me.GetType(), scriptKey, javaScript)
+
         End If
         'If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
