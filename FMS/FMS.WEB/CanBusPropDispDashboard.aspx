@@ -14,6 +14,7 @@
     <script type="text/javascript">
         var bln_blink = false;
 
+
         //GetDashboardData();
 
         //function blinkbreak() {
