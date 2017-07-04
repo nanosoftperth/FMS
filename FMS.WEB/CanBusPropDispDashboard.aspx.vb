@@ -14,7 +14,6 @@ Public Class CanBusPropDispDashboard
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
         If IsPostBack = False Then
             'lblVehicleID.Text = vehicleID
 
