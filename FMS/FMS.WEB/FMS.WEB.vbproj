@@ -287,6 +287,13 @@
       <DependentUpon>AlarmsAndAlerts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CanBusPropDispDashboard.aspx.designer.vb">
+      <DependentUpon>CanBusPropDispDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanBusPropDispDashboard.aspx.vb">
+      <DependentUpon>CanBusPropDispDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="CanBusPropertyDisplay.aspx.designer.vb">
       <DependentUpon>CanBusPropertyDisplay.aspx</DependentUpon>
     </Compile>
@@ -789,6 +796,7 @@
     <Content Include="App_Data\ReportService.mdf" />
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
+    <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
     <Content Include="Content\Accoridan.css" />
     <Content Include="Content\bootstrap.css" />
@@ -798,6 +806,7 @@
     <Content Include="Content\contextMenu\jquery.contextMenu.min.js" />
     <Content Include="Content\contextMenu\jquery.ui.position.js" />
     <Content Include="Content\contextMenu\jquery.ui.position.min.js" />
+    <Content Include="Content\DashBoard.css" />
     <Content Include="Content\Images\9051a7_7900e319de294aa4b0166540479978ea.png" />
     <Content Include="Content\Images\account_access_1.jpg" />
     <Content Include="Content\Images\AquaHeader.jpg" />
@@ -806,6 +815,34 @@
     <Content Include="Content\Images\close_icon.png" />
     <Content Include="Content\Images\cloud.jpg" />
     <Content Include="Content\Images\cloud_web.jpg" />
+    <Content Include="Content\Images\Dashboard\Alignment_color.png" />
+    <Content Include="Content\Images\Dashboard\Alignment_gray.png" />
+    <Content Include="Content\Images\Dashboard\Battery_100.png" />
+    <Content Include="Content\Images\Dashboard\battery_gray.png" />
+    <Content Include="Content\Images\Dashboard\Break_color.png" />
+    <Content Include="Content\Images\Dashboard\break_gray.png" />
+    <Content Include="Content\Images\Dashboard\CAN_color.png" />
+    <Content Include="Content\Images\Dashboard\CAN_gray.png" />
+    <Content Include="Content\Images\Dashboard\Display-Grey.png" />
+    <Content Include="Content\Images\Dashboard\Display-Grey_blank.png" />
+    <Content Include="Content\Images\Dashboard\drive_color.png" />
+    <Content Include="Content\Images\Dashboard\drive_gray.png" />
+    <Content Include="Content\Images\Dashboard\Error_color.png" />
+    <Content Include="Content\Images\Dashboard\error_gray.png" />
+    <Content Include="Content\Images\Dashboard\Ex_Button_Normal.png" />
+    <Content Include="Content\Images\Dashboard\FullDashboard_Clear.png" />
+    <Content Include="Content\Images\Dashboard\IFM_color.png" />
+    <Content Include="Content\Images\Dashboard\IFM_gray.png" />
+    <Content Include="Content\Images\Dashboard\Minus_Button_Normal.png" />
+    <Content Include="Content\Images\Dashboard\NanoSoft_BW.png" />
+    <Content Include="Content\Images\Dashboard\Plus_Button_Normal.png" />
+    <Content Include="Content\Images\Dashboard\Speed_color.png" />
+    <Content Include="Content\Images\Dashboard\speed_gray.png" />
+    <Content Include="Content\Images\Dashboard\steering_color.png" />
+    <Content Include="Content\Images\Dashboard\steering_gray.png" />
+    <Content Include="Content\Images\Dashboard\Tick_Normal.png" />
+    <Content Include="Content\Images\Dashboard\Warning_color.png" />
+    <Content Include="Content\Images\Dashboard\warning_gray.png" />
     <Content Include="Content\Images\download.jpg" />
     <Content Include="Content\Images\flow_chart_2.png" />
     <Content Include="Content\Images\GlassHeader.jpg" />

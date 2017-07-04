@@ -14,6 +14,29 @@
     <script type="text/javascript">
         var bln_blink = false;
 
+        function blinkbreak() {
+            if (bln_blink == false) {
+                $('#ibreak').removeClass('imgmax');
+                $('#ibreak').removeClass('pnlimgHide')
+                $('#ibreak').addClass('imgmax')
+
+                $('#ibreak_blink').removeClass('imgmax');
+                $('#ibreak_blink').removeClass('pnlimgHide')
+                $('#ibreak_blink').addClass('pnlimgHide')
+                bln_blink = true;
+            }
+            else {
+                $('#ibreak').removeClass('imgmax');
+                $('#ibreak').removeClass('pnlimgHide')
+                $('#ibreak').addClass('pnlimgHide')
+
+                $('#ibreak_blink').removeClass('imgmax');
+                $('#ibreak_blink').removeClass('pnlimgHide')
+                $('#ibreak_blink').addClass('imgmax')
+                bln_blink = false;
+            }
+        }
+
 
         //GetDashboardData();
 
@@ -148,8 +171,9 @@
         //    }
         //}
 
-        //setTimeout('blinkbreak()', 500);
-        //setTimeout('blinkbreak()', 1000);
+        setTimeout('blinkbreak()', 200);
+        setTimeout('blinkbreak()', 400);
+        setTimeout('blinkbreak()', 600);
         //setTimeout('blinksteer()', 1500);
         //setTimeout('blinksteer()', 2000);
         //setTimeout('blinkdrive()', 2500);
@@ -180,42 +204,57 @@
     <div class="div_break">
         <img src="Content/Images/Dashboard/break_gray.png" id="ibreak" class="imgmax"/>
     </div>
+    <div class="div_break">
+        <img src="Content/Images/Dashboard/Break_color.png" id="ibreak_blink" class="pnlimgHide"/>
+    </div>
+    <div class="div_steer">
+        <img src="Content/Images/Dashboard/steering_gray.png" id="isteer" class="imgmax"/>
+    </div>
+    <div class="div_drive">
+        <img src="Content/Images/Dashboard/drive_gray.png" id="idrive" class="imgmax"/>
+    </div>
+    <div class="div_ifm">
+        <img src="Content/Images/Dashboard/ifm_gray.png" id="iifm" class="imgmax"/>
+    </div>
+    <div class="div_can">
+        <img src="Content/Images/Dashboard/can_gray.png" id="ican" class="imgmax"/>
+    </div>
+    <div class="div_align">
+        <img src="Content/Images/Dashboard/alignment_gray.png" id="ialign" class="imgmax"/>
+    </div>
+    <div class="div_warning">
+        <img src="Content/Images/Dashboard/warning_gray.png" id="iwarning" class="imgmax"/>
+    </div>
+    <div class="div_stop">
+        <img src="Content/Images/Dashboard/error_gray.png" id="istop" class="imgmax"/>
+    </div>
+    <div class="div_speed">
+        <img src="Content/Images/Dashboard/speed_gray.png" id="ispeed" class="imgmax"/>
+    </div>
+    <div class="div_battery">
+        <img src="Content/Images/Dashboard/battery_gray.png" id="ibattery_100" class="imgmax"/>
+    </div>
+    <div class="div_plus">
+        <img src="Content/Images/Dashboard/Plus_Button_Normal.png" id="iPlus" class="imgmax"/>
+    </div>
+    <div class="div_minus">
+        <img src="Content/Images/Dashboard/Minus_Button_Normal.png" id="iMinus" class="imgmax"/>
+    </div>
+    <div class="div_ex">
+        <img src="Content/Images/Dashboard/Ex_Button_Normal.png" id="iEx" class="imgmax"/>
+    </div>
+    <div class="div_tick">
+        <img src="Content/Images/Dashboard/tick_Normal.png" id="iTick" class="imgmax"/>
+    </div>
+    <div class="div_bottomlogo">
+        <img src="Content/Images/Dashboard/NanoSoft_BW.png" id="iBottomNanosoft" class="imgmax"/>
+    </div>
+
+
     <%--<div class="div_break_blink">
         <img src="Images/FixingBreak_.png" id="ibreak_blink" class="pnlimgHide"/>
     </div>--%>
-    <%--<div class="div_dashboard">    
-        <img id="dashboard" src="Content/Images/Dashboard1.png" class="imgDash"/>
-    </div>
-    <div class="div_break">
-        <img src="Content/Images/break.png" id="ibreak" class="pnlimgHide"/>
-    </div>
-    <div class="div_steer">
-        <img src="Content/Images/steer.png" id="isteer" class="pnlimgHide"/>
-    </div>
-    <div class="div_drive">
-        <img src="Content/Images/drive.png" id="idrive" class="pnlimgHide"/>
-    </div>
-    <div class="div_ifm">
-        <img src="Content/Images/ifm.png" id="iifm" class="pnlimgHide"/>
-    </div>
-    <div class="div_can">
-        <img src="Content/Images/can.png" id="ican" class="pnlimgHide"/>
-    </div>
-    <div class="div_align">
-        <img src="Content/Images/align.png" id="ialign" class="pnlimgHide"/>
-    </div>
-    <div class="div_warning">
-        <img src="Content/Images/warning.png" id="iwarning" class="pnlimgHide"/>
-    </div>
-    <div class="div_stop">
-        <img src="Content/Images/stop.png" id="istop" class="pnlimgHide"/>
-    </div>
-    <div class="div_speed">
-        <img src="Content/Images/speed.png" id="ispeed" class="pnlimgHide"/>
-    </div>
-    <div class="div_battery">
-        <img src="Content/Images/battery_100.png" id="ibattery_100" class="pnlimgHide"/>
-    </div>
+    <%--
     <div class="div_LCD">
         <img src="Content/Images/Nanosoft_scroll.png" id="iLCD" class="imgmax"/>
     </div>
