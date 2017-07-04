@@ -16,177 +16,157 @@
 
         //GetDashboardData();
 
-        function blinkbreak() {
-            var imgCls = document.getElementById('ibreak');
+        //function blinkbreak() {
+        //    var imgCls = $('#ibreak');
+        //    //var imgCls = document.getElementById('ibreak');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinksteer() {
-            var imgCls = document.getElementById('isteer');
+        //function blinksteer() {
+        //    var imgCls = document.getElementById('isteer');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkdrive() {
-            var imgCls = document.getElementById('idrive');
+        //function blinkdrive() {
+        //    var imgCls = document.getElementById('idrive');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkifm() {
-            var imgCls = document.getElementById('iifm');
+        //function blinkifm() {
+        //    var imgCls = document.getElementById('iifm');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkcan() {
-            var imgCls = document.getElementById('ican');
+        //function blinkcan() {
+        //    var imgCls = document.getElementById('ican');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkalign() {
-            var imgCls = document.getElementById('ialign');
+        //function blinkalign() {
+        //    var imgCls = document.getElementById('ialign');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkwarning() {
-            var imgCls = document.getElementById('iwarning');
+        //function blinkwarning() {
+        //    var imgCls = document.getElementById('iwarning');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkstop() {
-            var imgCls = document.getElementById('istop');
+        //function blinkstop() {
+        //    var imgCls = document.getElementById('istop');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkspeed() {
-            var imgCls = document.getElementById('ispeed');
+        //function blinkspeed() {
+        //    var imgCls = document.getElementById('ispeed');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        function blinkbattery() {
-            var imgCls = document.getElementById('ibattery_100');
+        //function blinkbattery() {
+        //    var imgCls = document.getElementById('ibattery_100');
 
-            if (bln_blink == false) {
-                imgCls.className = "imgmax";
-                bln_blink = true;
-            }
-            else {
-                imgCls.className = "pnlimgHide";
-                bln_blink = false;
-            }
-        }
+        //    if (bln_blink == false) {
+        //        imgCls.className = "imgmax";
+        //        bln_blink = true;
+        //    }
+        //    else {
+        //        imgCls.className = "pnlimgHide";
+        //        bln_blink = false;
+        //    }
+        //}
 
-        setTimeout('blinkbreak()', 500);
-        setTimeout('blinkbreak()', 1000);
-        setTimeout('blinksteer()', 1500);
-        setTimeout('blinksteer()', 2000);
-        setTimeout('blinkdrive()', 2500);
-        setTimeout('blinkdrive()', 3000);
-        setTimeout('blinkifm()', 3500);
-        setTimeout('blinkifm()', 4000);
-        setTimeout('blinkcan()', 4500);
-        setTimeout('blinkcan()', 5000);
-        setTimeout('blinkalign()', 5500);
-        setTimeout('blinkalign()', 6000);
-        setTimeout('blinkwarning()', 6500);
-        setTimeout('blinkwarning()', 7000);
-        setTimeout('blinkstop()', 7500);
-        setTimeout('blinkstop()', 8000);
-        setTimeout('blinkspeed()', 8500);
-        setTimeout('blinkspeed()', 9000);
-        setTimeout('blinkbattery()', 9500);
-        setTimeout('blinkbattery()', 10000);
-
+        //setTimeout('blinkbreak()', 500);
         //setTimeout('blinkbreak()', 1000);
-        //setTimeout('blinkbreak()', 2000);
-        //setTimeout('blinksteer()', 3000);
-        //setTimeout('blinksteer()', 4000);
-        //setTimeout('blinkdrive()', 5000);
-        //setTimeout('blinkdrive()', 6000);
-        //setTimeout('blinkifm()', 7000);
-        //setTimeout('blinkifm()', 8000);
-        //setTimeout('blinkcan()', 9000);
-        //setTimeout('blinkcan()', 10000);
-        //setTimeout('blinkalign()', 11000);
-        //setTimeout('blinkalign()', 12000);
-        //setTimeout('blinkwarning()', 13000);
-        //setTimeout('blinkwarning()', 14000);
-        //setTimeout('blinkstop()', 15000);
-        //setTimeout('blinkstop()', 16000);
-        //setTimeout('blinkspeed()', 17000);
-        //setTimeout('blinkspeed()', 18000);
-        //setTimeout('blinkbattery()', 19000);
-        //setTimeout('blinkbattery()', 20000);
+        //setTimeout('blinksteer()', 1500);
+        //setTimeout('blinksteer()', 2000);
+        //setTimeout('blinkdrive()', 2500);
+        //setTimeout('blinkdrive()', 3000);
+        //setTimeout('blinkifm()', 3500);
+        //setTimeout('blinkifm()', 4000);
+        //setTimeout('blinkcan()', 4500);
+        //setTimeout('blinkcan()', 5000);
+        //setTimeout('blinkalign()', 5500);
+        //setTimeout('blinkalign()', 6000);
+        //setTimeout('blinkwarning()', 6500);
+        //setTimeout('blinkwarning()', 7000);
+        //setTimeout('blinkstop()', 7500);
+        //setTimeout('blinkstop()', 8000);
+        //setTimeout('blinkspeed()', 8500);
+        //setTimeout('blinkspeed()', 9000);
+        //setTimeout('blinkbattery()', 9500);
+        //setTimeout('blinkbattery()', 10000);
 
     </script>
 
@@ -194,6 +174,15 @@
 <body>
     <form id="form1" runat="server">
     <div class="div_dashboard">    
+
+    </div>
+    <div class="div_break">
+        <img src="Content/Images/Dashboard/break_gray.png" id="ibreak" class="imgmax"/>
+    </div>
+    <%--<div class="div_break_blink">
+        <img src="Images/FixingBreak_.png" id="ibreak_blink" class="pnlimgHide"/>
+    </div>--%>
+    <%--<div class="div_dashboard">    
         <img id="dashboard" src="Content/Images/Dashboard1.png" class="imgDash"/>
     </div>
     <div class="div_break">
@@ -231,13 +220,13 @@
     </div>
     <div id="idLiveData" class="div_vwlivedta" onclick="Run_infoWindowCSSForCanBus()">
         <asp:Label ID="Label1" runat="server" Text="view live data"></asp:Label>
-        <%--<asp:HyperLink ID="lnkLiveData" runat="server">view live data</asp:HyperLink>--%>
-        <%--<asp:Label ID="hlLiveDt" runat="server" Text="view live data" ></asp:Label>--%>
+        <asp:HyperLink ID="lnkLiveData" runat="server">view live data</asp:HyperLink>
+        <asp:Label ID="hlLiveDt" runat="server" Text="view live data" ></asp:Label>
     </div>
-        <%--<div style="position:absolute; top: 150px; left: 300px">
-            <asp:Label ID="lblVehicleID" runat="server" Text="Vehicle ID"></asp:Label>
-        </div>--%>
-        
+    <div style="position:absolute; top: 150px; left: 300px">
+        <asp:Label ID="lblVehicleID" runat="server" Text="Vehicle ID"></asp:Label>
+    </div>--%>
+
     </form>
 
 
