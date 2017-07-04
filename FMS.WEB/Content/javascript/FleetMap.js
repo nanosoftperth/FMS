@@ -288,7 +288,7 @@ function infoWindowCSSForDashboard(w) {
 
     // Reference to s DIV that wraps the bottom of infowindow
     var iwOuter = $('#iw-container_dash').closest('.gm-style-iw');
-    
+
     /* Since this div is in a position prior to .gm-div style-iw.
      * We use jQuery and create a iwBackground variable,
      * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
@@ -297,7 +297,7 @@ function infoWindowCSSForDashboard(w) {
 
     //iwOuter.css('width', '200px !Important');
 
-    $('#iw-container_dash').parent().parent().parent().parent().width('100px');
+    $('#iw-container_dash').parent().parent().parent().parent().width('300px');
 
     //iwBackground.css({ 'width': '280px' });
     //iwOuter.css({ 'width': '280px' });
@@ -330,7 +330,7 @@ function infoWindowCSSForDashboard(w) {
     var iwCloseBtn = iwOuter.next();
 
     // Apply the desired effect to the close button
-    iwCloseBtn.css({ opacity: '1', left: '660px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+    iwCloseBtn.css({ opacity: '1', left: '800px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
     // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
     if ($('.iw-content').height() < 140) {
