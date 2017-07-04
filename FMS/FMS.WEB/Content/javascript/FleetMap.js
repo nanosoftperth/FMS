@@ -923,6 +923,19 @@ function logthis(latlng) {
 
 }
 
+function successCallBack_Dashboard(result) {
+    // alert(JSON.stringify(result));
+
+}
+
+function errorCallback_Dashboard(result) {
+    alert('ERROR\n' + JSON.stringify(result));
+}
+
+function finallyCallback_Dashboard(result) {
+    //alert('finally');
+}
+
 function successCallBack(result) {
     // alert(JSON.stringify(result));
     upsertMapTrucks(result);
