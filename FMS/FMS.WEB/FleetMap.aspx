@@ -55,7 +55,7 @@
         <PanelCollection> 
             <dx:PanelContent runat="server" ID="test1" SupportsDisabledAttribute="True" Width="100%"> 
                 <section id="accordion"> 
-                    <div> 
+                    <div class="sidebartop1"> 
                         <input type="checkbox" class="chkbox" id="check-1" />
                         <label class="accordianTitle" for="check-1">Show specific date/time</label> 
                         <article>
@@ -95,7 +95,8 @@
                             <br />
                         </article>
                     </div>
-                    <div>
+
+                    <div class="sidebartop1">
                         <input type="checkbox" class="chkbox" id="check-2" />
                         <label class="accordianTitle" for="check-2">Address search</label>
                         <article>
@@ -105,15 +106,16 @@
                             </p>
                         </article>
                     </div>
-                    <div>
+
+                    <div class="sidebartop1">
                         <input class="chkbox" type="checkbox" id="check-3" />
 
                         <label class="accordianTitle" for="check-3">Activity Viewer</label>
 
                         <article>
                             <br />
-                            <div style="padding-left: 15px; font-weight: bold;">
-                                <table>
+                            <div style="font-weight: bold;">
+                                <table style="width:100% !important;display:table-cell !important;">
                                     <tr>
                                         <td>
                                             <span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">Vehicle / Driver:</span>
@@ -121,7 +123,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <dx:ASPxDropDownEdit AutoPostBack="false" ClientInstanceName="checkComboBox" ID="ddlTrucks" Height="22px" Width="198px" runat="server" AnimationType="None">
+                                            <dx:ASPxDropDownEdit AutoPostBack="false" ClientInstanceName="checkComboBox" ID="ddlTrucks" runat="server" AnimationType="None">
 
                                                 <DropDownWindowStyle BackColor="#EDEDED" />
                                                 <DropDownWindowTemplate>
@@ -174,8 +176,7 @@
                                         <td>
                                             <dx:ASPxDateEdit ID="heatMapStartTime" AutoPostBack="false" ClientInstanceName="heatMapStartTime" ClientIDMode="Predictable" ClientEnabled="true" runat="server" Date="01/20/2016 00:06:00" EditFormat="DateTime"
                                                 EnableTheming="True" Height="22px" Paddings-PaddingLeft="10px" padding-right="10px"
-                                                Theme="MetropolisBlue"
-                                                Width="198px">
+                                                Theme="MetropolisBlue">
                                                 <TimeSectionProperties Visible="True">
                                                     <TimeEditProperties>
                                                         <ClearButton Visibility="Auto">
@@ -221,7 +222,7 @@
                                                 Paddings-PaddingLeft="10px"
                                                 padding-right="10px"
                                                 Theme="MetropolisBlue"
-                                                Width="198px">
+                                                >
 
                                                 <TimeSectionProperties Visible="True">
                                                     <TimeEditProperties>
@@ -415,8 +416,8 @@
                                 EnableTheming="True"
                                 KeyFieldName="ApplicationVehileID"
                                 SettingsBehavior-ConfirmDelete="true"
-                                Theme="SoftOrange" OnDataBound="dgvVehicles_DataBound" Style="width: 100%" OnPreRender="dgvVehicles_PreRender">
-                                <Settings ShowFilterRow="True" />
+                                Theme="SoftOrange" OnDataBound ="dgvVehicles_DataBound" Style="width: 100%" OnPreRender="dgvVehicles_PreRender">
+                            <Settings ShowFilterRow="True"  />
                                 <SettingsPager PageSize="15"></SettingsPager>
                                 <Columns>
                                     <dx:GridViewDataColumn FieldName="DeviceID" VisibleIndex="0" Caption="Show"> 
@@ -433,13 +434,13 @@
                                         <Settings AllowAutoFilter="False" />
                                          
                                     </dx:GridViewDataColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle">
+                                    <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle" >
                                         <DataItemTemplate>
                                             <div style="width: 100%">
-                                                <div style="width: 30%; display: inline;">
+                                                <div style="width: 30px;float: left;">
                                                     <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" />
                                                 </div>
-                                                <div style="width: 75%; float: right; line-height: 22px;">
+                                                <div style="width: 70%;padding-top: 5px;font-size: 12px;float: left;">
                                                     <%#Eval("Name")%>
                                                 </div>
                                             </div>
@@ -447,6 +448,7 @@
                                     </dx:GridViewDataTextColumn>
                                 </Columns>
                                 <ClientSideEvents EndCallback="function(s, e) { GetSelectedRows(s,e);}" />
+                                 
                             </dx:ASPxGridView>
                         </article>
                         <!-- DataSource  -->
@@ -1148,7 +1150,7 @@
                     $("#img").removeClass("clsImageHide");
                     $("#img").addClass("clsImageShow");
 
-                    $("#img").attr("title", "Warning! " + numinwrd(markers.length - VehicleSelectedArr.length) + " Cannon Vehicle has been hidden.");
+                    $("#img").attr("title", "Warning! " + numinwrd(markers.length - VehicleSelectedArr.length) +  " <%= GetCompanyName()%>" + " vehicle(s) is hidden.");
                 }
                 else {
                     $("#img").attr("src", "");

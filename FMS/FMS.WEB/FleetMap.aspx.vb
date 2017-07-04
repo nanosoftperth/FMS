@@ -11,7 +11,6 @@ Public Class FleetMap
             Return My.Settings.version
         End Get
     End Property
-
     Private Sub FleetMap_Init(sender As Object, e As EventArgs) Handles Me.Init
 
         If IsPostBack Then Exit Sub
@@ -29,10 +28,8 @@ Public Class FleetMap
         cbGeoEditGeoFences.DataSourceID = Nothing : cbGeoEditGeoFences.DataBind()
 
     End Sub
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-
+         
         If Not UserAuthorisationCheck(FeatureListAccess.Fleet_Map) Then Exit Sub
 
         Dim clientDate As Date = Now.timezoneToClient
@@ -76,11 +73,7 @@ Public Class FleetMap
         loopStr = String.Format("<script type=""text/javascript"">{0}{1}{0}</script>", vbNewLine, loopStr)
 
         If Not ClientScript.IsClientScriptBlockRegistered("1") Then ClientScript.RegisterStartupScript(Me.[GetType](), "1", loopStr)
-
-
-
-
-
+         
     End Sub
 
     ''' <summary>
@@ -208,27 +201,17 @@ Public Class FleetMap
             Dim chk As HtmlInputCheckBox = TryCast(dgvVehicles.FindRowCellTemplateControl(i, column1, "chkShow"), HtmlInputCheckBox)
             If Not chk Is Nothing Then 
                 chk.Checked = True
-            End If
-
-
-
-
- 
+            End If 
         Next
 
-        Dim column2 As GridViewDataColumn = dgvVehicles.Columns("DeviceID")
-
-
-        Dim headerChk As HtmlInputCheckBox = TryCast(dgvVehicles.FindFilterCellTemplateControl(column2, "chkHeaderShow"), HtmlInputCheckBox)
-
+        Dim column2 As GridViewDataColumn = dgvVehicles.Columns("DeviceID") 
+        Dim headerChk As HtmlInputCheckBox = TryCast(dgvVehicles.FindFilterCellTemplateControl(column2, "chkHeaderShow"), HtmlInputCheckBox) 
 
         If Not headerChk Is Nothing Then
             headerChk.Checked = True
         End If
 
     End Sub
-
- 
     Protected Sub chkShow_Init(sender As Object, e As EventArgs)
         Dim c As GridViewDataItemTemplateContainer = TryCast((CType(sender, ASPxCheckBox)).NamingContainer, GridViewDataItemTemplateContainer)
         Dim index As Integer = c.VisibleIndex
@@ -251,11 +234,7 @@ Public Class FleetMap
         Next
     End Sub
     Protected Sub dgvVehicles_ProcessColumnAutoFilter(sender As Object, e As ASPxGridViewAutoFilterEventArgs)
-
         Dim grid As ASPxGridView = TryCast(sender, ASPxGridView)
-
-
-
         ' For i As Integer = 0 To dgvVehicles.VisibleRowCount - 1
         '    Dim column1 As GridViewDataColumn = dgvVehicles.Columns("DeviceID")
         '    Dim chk As HtmlInputCheckBox = TryCast(dgvVehicles.FindRowCellTemplateControl(i, column1, "chkShow"), HtmlInputCheckBox)
@@ -264,5 +243,14 @@ Public Class FleetMap
         '    End If
         'Next
     End Sub
+
+    Protected Function GetCompanyName() As String
+        If Not ThisSession.ApplicationName Is Nothing Then
+            Return ThisSession.ApplicationName
+        Else
+            Return ""
+        End If 
+    End Function
+
 
 End Class

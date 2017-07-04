@@ -49,7 +49,7 @@ h2 {
     cursor: pointer;
     display: block;
     margin-bottom: .125em;
-    padding: .25em 1em;
+    /*padding: .25em 1em;*/
     z-index: 20;
 }
 
