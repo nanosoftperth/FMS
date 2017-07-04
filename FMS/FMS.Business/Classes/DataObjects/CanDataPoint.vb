@@ -489,19 +489,19 @@
                                                                                 New KeyValuePair(Of Integer, String)(5, ""),
                                                                                 New KeyValuePair(Of Integer, String)(6, ""),
                                                                                 New KeyValuePair(Of Integer, String)(7, ""),
-                                                                                New KeyValuePair(Of Integer, String)(8, "CAN 31")
+                                                                                New KeyValuePair(Of Integer, String)(8, "Can 31")
                                                                             }
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 1, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
                                                                         From {
-                                                                                New KeyValuePair(Of Integer, String)(1, "CAN 1"),
-                                                                                New KeyValuePair(Of Integer, String)(2, "CAN 2"),
-                                                                                New KeyValuePair(Of Integer, String)(3, "CAN 3"),
-                                                                                New KeyValuePair(Of Integer, String)(4, "CAN 4"),
-                                                                                New KeyValuePair(Of Integer, String)(5, "CAN 5"),
-                                                                                New KeyValuePair(Of Integer, String)(6, "CAN 6"),
-                                                                                New KeyValuePair(Of Integer, String)(7, "CAN 7"),
-                                                                                New KeyValuePair(Of Integer, String)(8, "CAN 8")
+                                                                                New KeyValuePair(Of Integer, String)(1, "Canopen 1"),
+                                                                                New KeyValuePair(Of Integer, String)(2, "Canopen 2"),
+                                                                                New KeyValuePair(Of Integer, String)(3, "Canopen 3"),
+                                                                                New KeyValuePair(Of Integer, String)(4, "Canopen 4"),
+                                                                                New KeyValuePair(Of Integer, String)(5, "Canopen 5"),
+                                                                                New KeyValuePair(Of Integer, String)(6, "Canopen 6"),
+                                                                                New KeyValuePair(Of Integer, String)(7, "Canopen 7"),
+                                                                                New KeyValuePair(Of Integer, String)(8, "Canopen 8")
                                                                             }
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 2, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
@@ -586,6 +586,55 @@
                 Public Property byteList As New List(Of KeyValuePair(Of Integer, String))
             End Class
 
+        End Class
+
+        Public Class CanBusFaultDefinition
+            Public Shared Function GetFaultCodeList() As List(Of KeyValuePair(Of String, String))
+                Return New List(Of KeyValuePair(Of String, String)) _
+                    From {
+                        New KeyValuePair(Of String, String)("S 1", "E,Emergency stop"),
+                        New KeyValuePair(Of String, String)("S 4", "E,Limit end position. Acknowledgment by key switch"),
+                        New KeyValuePair(Of String, String)("S 4", "W,Incorrect start after and active faults. First joystick in the rest position"),
+                        New KeyValuePair(Of String, String)("Can 31", "E,Timeout vehicle plc CR0020 A12 (from V4.0.8)"),
+                        New KeyValuePair(Of String, String)("Canopen 1", "W,Timeout position transmitter B1,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Canopen 2", "W,Timeout position transmitter B2,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Canopen 3", "W,Timeout position transmitter B3,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Canopen 4", "W,Timeout position transmitter B4,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Canopen 5", "E,Timeout radio control A11"),
+                        New KeyValuePair(Of String, String)("Canopen 6", "W,Timeout hydraulic module CR2032 A10,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Canopen 7", "W,Timeout WBA module CR2032 A40,only option 'WBA'"),
+                        New KeyValuePair(Of String, String)("Canopen 8", "W,Timeout additional hydraulic module CR2032 A37,only option 'addional hydraulic'"),
+                        New KeyValuePair(Of String, String)("Can 1", "E,Timeout AC Inverter A1 (drive)"),
+                        New KeyValuePair(Of String, String)("Can 2", "E,Timeout AC Inverter A2 (drive)"),
+                        New KeyValuePair(Of String, String)("Can 3", "E,Timeout AC Inverter A3 (drive)"),
+                        New KeyValuePair(Of String, String)("Can 4", "E,Timeout AC Inverter A4 (drive)"),
+                        New KeyValuePair(Of String, String)("Can 5", "E,Timeout AC Inverter A5 (steering),not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 6", "E,Timeout AC Inverter A6 (steering),not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 7", "E,Timeout AC Inverter A7 (steering),not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 8", "E,Timeout AC Inverter A8 (steering),not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 8", "E,Timeout vehicle plc CR0020 A12 (till V4.0.8)"),
+                        New KeyValuePair(Of String, String)("Can 101", "E,Timeout AC Inverter A1 (drive) <br> no message reception since emergency stop or switching on"),
+                        New KeyValuePair(Of String, String)("Can 102", "E,Timeout AC Inverter A2 (drive) <br> no message reception since emergency stop or switching on"),
+                        New KeyValuePair(Of String, String)("Can 103", "E,Timeout AC Inverter A3 (drive) <br> no message reception since emergency stop or switching on"),
+                        New KeyValuePair(Of String, String)("Can 104", "E,Timeout AC Inverter A4 (drive) <br> no message reception since emergency stop or switching on"),
+                        New KeyValuePair(Of String, String)("Can 105", "E,Timeout AC Inverter A5 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 106", "E,Timeout AC Inverter A6 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 107", "E,Timeout AC Inverter A7 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 108", "E,Timeout AC Inverter A8 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 205", "E,Timeout boot up message AC Inverter A5,not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 206", "E,Timeout boot up message AC Inverter A6,not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 207", "E,Timeout boot up message AC Inverter A7,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("Can 208", "E,Timeout boot up message AC Inverter A8,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("MS 1", "E,no steering control is online"),
+                        New KeyValuePair(Of String, String)("MS 11", "E,Error position transmitter B1,not for E-Maxi S"),
+                        New KeyValuePair(Of String, String)("MS 12", "E,Error AC inverter A5,not for E-Maxi S"),
+                        New KeyValuePair(Of String, String)("MS 14", "E,Position discrepancy between axle 1 and 4 is too large. <br> Reset via emergency stop,not for E-Maxi S"),
+                        New KeyValuePair(Of String, String)("MS 21", "E,Error position transmitter B2,not for E-Maxi S"),
+                        New KeyValuePair(Of String, String)("MS 22", "E,Error AC inverter A6,not for E-Maxi S"),
+                        New KeyValuePair(Of String, String)("MS 23", "E,Position discrepancy between axle 2 and 3 is too large. <br> Reset via emergency stop,not for E-Maxi S"),
+                        New KeyValuePair(Of String, String)("MS 31", "E,Error position transmitter B3")
+                        }
+            End Function
         End Class
     End Class
 

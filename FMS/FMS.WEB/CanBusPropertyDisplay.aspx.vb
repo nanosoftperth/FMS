@@ -29,6 +29,9 @@ Public Class CanBusPropertyDisplay
         Dim url = "api/vehicle/GetCanMessageValue?deviceid=" + id
         Dim response As HttpResponseMessage = client.GetAsync(url).Result
 
+        'Dim xxx = FMS.Business.DataObjects.CanDataPoint.CanBusFaultDefinition.GetFaultCodeList()
+        'Dim yyy = xxx.Where(Function(canDef) canDef.Key.Equals("S4")).ToList
+
         If response.IsSuccessStatusCode Then
             Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
             For Each messageValue As CanValueMessageDefinition In canMessDef.Where(Function(x) Not x.MessageDefinition.SPN.Equals(6))
