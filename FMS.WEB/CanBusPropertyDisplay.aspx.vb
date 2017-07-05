@@ -2,6 +2,7 @@
 Imports System.Net.Http.Headers
 Imports Newtonsoft.Json
 Imports FMS.Business.DataObjects
+Imports DevExpress.Web
 
 Public Class CanBusPropertyDisplay
     Inherits System.Web.UI.Page
@@ -73,7 +74,7 @@ Public Class CanBusPropertyDisplay
                     intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(1).dtTime))
                     canBusDef.RemoveAt(intMyIndex)
                 End If
-                
+
             End If
 
             grid.DataBind()
@@ -86,6 +87,30 @@ Public Class CanBusPropertyDisplay
         grid.DataSource = canBusDef
     End Sub
 
+    Protected Sub hyperLink_Init(ByVal sender As Object, ByVal e As EventArgs)
+        Dim link As ASPxHyperLink = CType(sender, ASPxHyperLink)
+
+        Dim templateContainer As GridViewDataItemTemplateContainer = CType(link.NamingContainer, GridViewDataItemTemplateContainer)
+
+        Dim rVI As Integer = templateContainer.VisibleIndex
+        Dim getDescription As String = templateContainer.Grid.GetRowValues(rVI, "description").ToString()
+        Dim contentUrl As String = String.Format("{0}", getDescription)
+
+
+        link.NavigateUrl = "javascript:void(0);"
+        link.Text = String.Format(getDescription)
+        link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
+    End Sub
+
+    Protected Sub grid_HtmlDataCellPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewTableDataCellEventArgs) Handles grid.HtmlDataCellPrepared
+        Dim getLabelName As String = (TryCast(sender, ASPxGridView)).GetRowValues(e.VisibleIndex, "label").ToString()
+        If Not getLabelName.Equals("Fault Codes") Then
+            If e.DataColumn.FieldName = "description" Then
+                e.Cell.Enabled = False
+            End If
+        End If
+
+    End Sub
 End Class
 
 Public Class CanBusDefinitionValues
