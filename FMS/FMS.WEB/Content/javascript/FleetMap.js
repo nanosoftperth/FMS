@@ -56,12 +56,6 @@ function showInfoWindow(event) {
 }
 
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
-
-function ShowDashBoard2(event)
-{
-
-}
-
 function ShowDashboard(event) {
 
     var param = {};
