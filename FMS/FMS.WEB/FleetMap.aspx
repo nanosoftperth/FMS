@@ -124,10 +124,8 @@
                                     <tr>
                                         <td>
                                             <dx:ASPxDropDownEdit AutoPostBack="false" ClientInstanceName="checkComboBox" ID="ddlTrucks" runat="server" AnimationType="None">
-
                                                 <DropDownWindowStyle BackColor="#EDEDED" />
                                                 <DropDownWindowTemplate>
-
                                                     <dx:ASPxListBox Width="100%" ID="listBox" ClientInstanceName="checkListBox" SelectionMode="CheckColumn" runat="server">
                                                         <Border BorderStyle="None" />
                                                         <BorderBottom BorderStyle="Solid" BorderWidth="1px" BorderColor="#DCDCDC" />
@@ -146,7 +144,6 @@
                                                         </tr>
                                                     </table>
                                                 </DropDownWindowTemplate>
-
                                                 <ClientSideEvents TextChanged="SynchronizeListBoxValues"
                                                     DropDown="SynchronizeListBoxValues" />
                                             </dx:ASPxDropDownEdit>
@@ -445,6 +442,7 @@
                                                 </div>
                                             </div>
                                         </DataItemTemplate>
+                                          <Settings AutoFilterCondition="Contains" />
                                     </dx:GridViewDataTextColumn>
                                 </Columns>
                                 <ClientSideEvents EndCallback="function(s, e) { GetSelectedRows(s,e);}" />
