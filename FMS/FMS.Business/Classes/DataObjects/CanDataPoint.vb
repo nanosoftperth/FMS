@@ -632,7 +632,27 @@
                         New KeyValuePair(Of String, String)("MS 21", "E,Error position transmitter B2,not for E-Maxi S"),
                         New KeyValuePair(Of String, String)("MS 22", "E,Error AC inverter A6,not for E-Maxi S"),
                         New KeyValuePair(Of String, String)("MS 23", "E,Position discrepancy between axle 2 and 3 is too large. <br> Reset via emergency stop,not for E-Maxi S"),
-                        New KeyValuePair(Of String, String)("MS 31", "E,Error position transmitter B3")
+                        New KeyValuePair(Of String, String)("MS 31", "E,Error position transmitter B3"),
+                        New KeyValuePair(Of String, String)("MS 32", "E,Error AC inverter A7"),
+                        New KeyValuePair(Of String, String)("MS 34", "E,Position discrepancy between axle 3 and 4 is too large. <br> Reset via emergency stop,only E-Maxi S"),
+                        New KeyValuePair(Of String, String)("MS 41", "E,Error position transmitter B4"),
+                        New KeyValuePair(Of String, String)("MS 42", "E,Error AC inverter A8"),
+                        New KeyValuePair(Of String, String)("M1 1", "E,Drive/Engine axle 1.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                        New KeyValuePair(Of String, String)("M1 2", "E,Drive/Engine axle 1.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                        New KeyValuePair(Of String, String)("M1 4", "E,Drive/Engine axle 1.Temperature of the drive engine Mx is above break-off shaft."),
+                        New KeyValuePair(Of String, String)("M2 1", "E,Drive/Engine axle 2.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                        New KeyValuePair(Of String, String)("M2 2", "E,Drive/Engine axle 2.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                        New KeyValuePair(Of String, String)("M2 4", "E,Drive/Engine axle 2.Temperature of the drive engine Mx is above break-off shaft."),
+                        New KeyValuePair(Of String, String)("M3 1", "E,Drive/Engine axle 3.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                        New KeyValuePair(Of String, String)("M3 2", "E,Drive/Engine axle 3.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                        New KeyValuePair(Of String, String)("M3 4", "E,Drive/Engine axle 3.Temperature of the drive engine Mx is above break-off shaft."),
+                        New KeyValuePair(Of String, String)("M4 1", "E,Drive/Engine axle 4.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                        New KeyValuePair(Of String, String)("M4 2", "E,Drive/Engine axle 4.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                        New KeyValuePair(Of String, String)("M4 4", "E,Drive/Engine axle 4.Temperature of the drive engine Mx is above break-off shaft."),
+                        New KeyValuePair(Of String, String)("IO 1", "W,Cable break battery supervision."),
+                        New KeyValuePair(Of String, String)("IO 4", "W,Battery empty <br> speed reduction"),
+                        New KeyValuePair(Of String, String)("IO 20", "E,Invalid steering program,not for E-Maxi with option 'no steering'"),
+                        New KeyValuePair(Of String, String)("IO 40", "W,Cable break current sensor.")
                         }
             End Function
         End Class
