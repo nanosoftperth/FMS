@@ -434,7 +434,7 @@
                         Exit For
                     End If
                 Next
-                Return objValue
+                Return IIf(objValue.Equals(""), 0, objValue)
             End Function
             Public Function GetFaultCodes(ByVal cv As CanValue, msg_def As CAN_MessageDefinition, bitStart As Integer, bitEnd As Integer, byteCol As String) As Object
                 Dim i As Array = cv.RawValue.ToCharArray

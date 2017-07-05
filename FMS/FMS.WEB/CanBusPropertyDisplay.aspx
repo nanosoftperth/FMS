@@ -11,8 +11,30 @@
     <style type="text/css">
         .auto-style1 {
             height: 10px;
-        }
+        }    
+        span.info{
+            margin-left: 10px;
+            display:block;
+            color: #b1b1b1;
+            font-size: 11px;
+            font-style: italic;
+            font-weight:bold;
+        }  
     </style>
+    
+    <script type="text/javascript" language="javascript">
+        function OnFaultCodesClick(contentUrl) {
+            alert(contentUrl);          
+            //ShowLoginWindow();
+            
+            /*clientPopupControl.SetContentUrl(contentUrl);
+            clientPopupControl.Show();*/
+        }
+        function ShowLoginWindow() {
+            pcLogin.Show();
+        }
+        
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,15 +49,37 @@
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1" Width="97">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="description" VisibleIndex="1" Width="140">
+                <dx:GridViewDataTextColumn  FieldName="description" VisibleIndex="1" Width="140">
+                    <DataItemTemplate>
+                        <dx:ASPxHyperLink ForeColor="Black" ID="hyperLink" runat="server" OnInit="hyperLink_Init">
+                        </dx:ASPxHyperLink>
+                    </DataItemTemplate>
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="105">
                 </dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
-
+        
              
     </div>
+        <dx:ASPxPopupControl ID="pcLogin" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin"
+        HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False">        
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
+                    <PanelCollection>
+                        <dx:PanelContent runat="server">
+                            <span class="info"></span>                            
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>                
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ContentStyle>
+            <Paddings PaddingBottom="5px" />
+        </ContentStyle>
+    </dx:ASPxPopupControl>
     </form>
 </body>
 </html>
