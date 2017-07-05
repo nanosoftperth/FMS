@@ -156,13 +156,13 @@
 
 /*LCD*/
 .div_LCD {
-    width: 172px;
-    height: 88px;
-    background-color: white;
+    width: 145px;
+    height: 30px;
+    background-color: none;
     position: absolute;
     overflow: hidden;
-    top: 29px;
-    left: 443px;
+    top: 68px;
+    left: 361px;
 
 }
 .div_LCD img {
@@ -179,9 +179,12 @@
  -webkit-transform:translateX(100%);	
  transform:translateX(100%);
  /* Apply animation to this element */	
- -moz-animation: example1 15s linear infinite;
+ /*-moz-animation: example1 15s linear infinite;
  -webkit-animation: example1 15s linear infinite;
- animation: example1 15s linear infinite;
+ animation: example1 15s linear infinite;*/
+ -moz-animation: example1 2.5s linear;
+ -webkit-animation: example1 2.5s linear;
+ animation: example1 2.5s linear;
 }
 /* Move it (define the animation) */
 @-moz-keyframes example1 {
