@@ -152,8 +152,8 @@
 
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
                 'date format for local is MM/dd/yyyy
-                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
-                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+                Dim startDate As Date = Date.Now.AddDays(1).ToString("MM/dd/yyyy")
+                Dim endDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
@@ -162,7 +162,7 @@
                 'get the latest data from pi from current date backwards up to 30 counts/days to avoid infinity
                 While pivds.Count = 0
                     intCount += 1
-                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("dd/MM/yyyy")
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("MM/dd/yyyy")
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
                     If intCount = 30 Then Exit While
                 End While
@@ -423,7 +423,7 @@
                 convertedValue = b(4) * 2
                 Dim intListCount As Integer = tempList.Count
                 For iVal As Integer = 0 To intListCount - 2
-                    If convertedValue > tempList(iVal).Key And convertedValue < tempList(iVal + 1).Key Then
+                    If convertedValue >= tempList(iVal).Key And convertedValue <= tempList(iVal + 1).Key Then
                         Dim outTempValue As Integer
                         Dim outTempValue2 As Integer
                         Dim outTempValue3 As Integer
