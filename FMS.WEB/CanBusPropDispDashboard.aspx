@@ -13,7 +13,7 @@
 
     <script type="text/javascript">
         var bln_blink = true;
-        var bln_blinkBottom = true;
+        var bln_blinkBottom = false;
 
         function blinkTop()
         {
@@ -214,263 +214,124 @@
             if (bln_blinkBottom == false)
             {
                 //--- plus sign on gray
-                $('#iPlus').removeClass('imgmax');
-                $('#iPlus').removeClass('pnlimgHide')
-                $('#iPlus').addClass('imgmax')
-
-                $('#iPlus_hover').removeClass('imgmax');
-                $('#iPlus_hover').removeClass('pnlimgHide')
-                $('#iPlus_hover').addClass('pnlimgHide')
-
+                $('#iPlus').removeClass('div_plus_blink');
+                $('#iPlus').removeClass('div_plus');
+                $('#iPlus').addClass('div_plus');
+                
                 //--- minus sign on gray
-                $('#iMinus').removeClass('imgmax');
-                $('#iMinus').removeClass('pnlimgHide')
-                $('#iMinus').addClass('imgmax')
-
-                $('#iMinus_hover').removeClass('imgmax');
-                $('#iMinus_hover').removeClass('pnlimgHide')
-                $('#iMinus_hover').addClass('pnlimgHide')
+                $('#iMinus').removeClass('div_minus_blink');
+                $('#iMinus').removeClass('div_minus')
+                $('#iMinus').addClass('div_minus')
 
                 //--- Ex sign on gray
-                $('#iEx').removeClass('imgmax');
-                $('#iEx').removeClass('pnlimgHide')
-                $('#iEx').addClass('imgmax')
-
-                $('#iEx_hover').removeClass('imgmax');
-                $('#iEx_hover').removeClass('pnlimgHide')
-                $('#iEx_hover').addClass('pnlimgHide')
+                $('#iEx').removeClass('div_ex_blink');
+                $('#iEx').removeClass('div_ex')
+                $('#iEx').addClass('div_ex')
 
                 //--- tick sign on gray
-                $('#iTick').removeClass('imgmax');
-                $('#iTick').removeClass('pnlimgHide')
-                $('#iTick').addClass('imgmax')
-
-                $('#iTick_hover').removeClass('imgmax');
-                $('#iTick_hover').removeClass('pnlimgHide')
-                $('#iTick_hover').addClass('pnlimgHide')
+                $('#iTick').removeClass('div_tick_blink');
+                $('#iTick').removeClass('div_tick')
+                $('#iTick').addClass('div_tick')
 
                 bln_blinkBottom = true;
             }
             else
             {
                 //--- battery on hover
-                $('#iPlus').removeClass('imgmax');
-                $('#iPlus').removeClass('pnlimgHide')
-                $('#iPlus').addClass('pnlimgHide')
-
-                $('#iPlus_hover').removeClass('imgmax');
-                $('#iPlus_hover').removeClass('pnlimgHide')
-                $('#iPlus_hover').addClass('imgmax')
+                $('#iPlus').removeClass('div_plus');
+                $('#iPlus').removeClass('div_plus_blink');
+                $('#iPlus').addClass('div_plus_blink');
 
                 //--- minus on hover
-                $('#iMinus').removeClass('imgmax');
-                $('#iMinus').removeClass('pnlimgHide')
-                $('#iMinus').addClass('pnlimgHide')
-
-                $('#iMinus_hover').removeClass('imgmax');
-                $('#iMinus_hover').removeClass('pnlimgHide')
-                $('#iMinus_hover').addClass('imgmax')
+                $('#iMinus').removeClass('div_minus');
+                $('#iMinus').removeClass('div_minus_blink')
+                $('#iMinus').addClass('div_minus_blink')
 
                 //--- Ex on hover
-                $('#iEx').removeClass('imgmax');
-                $('#iEx').removeClass('pnlimgHide')
-                $('#iEx').addClass('pnlimgHide')
-
-                $('#iEx_hover').removeClass('imgmax');
-                $('#iEx_hover').removeClass('pnlimgHide')
-                $('#iEx_hover').addClass('imgmax')
-
+                $('#iEx').removeClass('div_ex');
+                $('#iEx').removeClass('div_ex_blink')
+                $('#iEx').addClass('div_ex_blink')
 
                 //--- tick on hover
-                $('#iTick').removeClass('imgmax');
-                $('#iTick').removeClass('pnlimgHide')
-                $('#iTick').addClass('pnlimgHide')
+                $('#iTick').removeClass('div_tick');
+                $('#iTick').removeClass('div_tick_blink')
+                $('#iTick').addClass('div_tick_blink')
 
-                $('#iTick_hover').removeClass('imgmax');
-                $('#iTick_hover').removeClass('pnlimgHide')
-                $('#iTick_hover').addClass('imgmax')
                 bln_blinkBottom = false;
             }
         }
-
-        setTimeout('blinkTop()', 0);
-        setTimeout('blinkTop()', 500);
-        setTimeout('blinkBottom()', 500);
-        setTimeout('blinkTop()', 1000);
-        setTimeout('blinkBottom()', 1000);
-        setTimeout('blinkTop()', 1500);
-        setTimeout('blinkBottom()', 1500);
-        setTimeout('blinkBottom()', 2000);
+        //setTimeout('blinkBottom()', 0);
+        //setTimeout('blinkTop()', 0);
+        //setTimeout('blinkTop()', 500);
+        //setTimeout('blinkBottom()', 500);
+        //setTimeout('blinkTop()', 1000);
+        //setTimeout('blinkBottom()', 1000);
         //setTimeout('blinkTop()', 1500);
         //setTimeout('blinkBottom()', 1500);
         //setTimeout('blinkBottom()', 2000);
 
-        //setTimeout('blinkbreak()', 400);
-        //setTimeout('blinkbreak()', 600);
+        setTimeout('blinkBottom()', 0);
+        setTimeout('blinkTop()', 0);
+        setTimeout('blinkTop()', 1000);
+        setTimeout('blinkBottom()', 1000);
+        setTimeout('blinkTop()', 2000);
+        setTimeout('blinkBottom()', 2000);
+        setTimeout('blinkTop()', 3000);
+        setTimeout('blinkBottom()', 3000);
+        setTimeout('blinkBottom()', 4000);
 
-        //var bln_blinkbreak = false;
-        //var bln_blinksteer = false;
-        //var bln_blinkdrive = false;
-        //var bln_blinkifm = false;
-        //var bln_blinkcan = false;
-        //var bln_blinkalign = false;
+        function iPlusMouseOver()
+        {
+            $("#iPlus").attr("src", "Content/Images/Dashboard/Plus_Button_hover.png");
+        }
 
-        //function blinkbreak() {
-        //    if (bln_blinkbreak == false) {
-        //        $('#ibreak').removeClass('imgmax');
-        //        $('#ibreak').removeClass('pnlimgHide')
-        //        $('#ibreak').addClass('imgmax')
-
-        //        $('#ibreak_blink').removeClass('imgmax');
-        //        $('#ibreak_blink').removeClass('pnlimgHide')
-        //        $('#ibreak_blink').addClass('pnlimgHide')
-        //        bln_blinkbreak = true;
-        //    }
-        //    else {
-        //        $('#ibreak').removeClass('imgmax');
-        //        $('#ibreak').removeClass('pnlimgHide')
-        //        $('#ibreak').addClass('pnlimgHide')
-
-        //        $('#ibreak_blink').removeClass('imgmax');
-        //        $('#ibreak_blink').removeClass('pnlimgHide')
-        //        $('#ibreak_blink').addClass('imgmax')
-        //        bln_blinkbreak = false;
-        //    }
-        //}
-
-        //function blinksteer() {
-        //    if (bln_blinksteer == false) {
-        //        $('#isteer').removeClass('imgmax');
-        //        $('#isteer').removeClass('pnlimgHide')
-        //        $('#isteer').addClass('imgmax')
-
-        //        $('#isteer_blink').removeClass('imgmax');
-        //        $('#isteer_blink').removeClass('pnlimgHide')
-        //        $('#isteer_blink').addClass('pnlimgHide')
-        //        bln_blinksteer = true;
-        //    }
-        //    else {
-        //        $('#isteer').removeClass('imgmax');
-        //        $('#isteer').removeClass('pnlimgHide')
-        //        $('#isteer').addClass('pnlimgHide')
-
-        //        $('#isteer_blink').removeClass('imgmax');
-        //        $('#isteer_blink').removeClass('pnlimgHide')
-        //        $('#isteer_blink').addClass('imgmax')
-        //        bln_blinksteer = false;
-        //    }
-        //}
+        function iPlusMouseOut() {
+            $("#iPlus").attr("src", "Content/Images/Dashboard/Plus_Button_normal.png");
+        }
         
-        //function blinkdrive() {
-        //    if (bln_blinkdrive == false) {
-        //        $('#idrive').removeClass('imgmax');
-        //        $('#idrive').removeClass('pnlimgHide')
-        //        $('#idrive').addClass('imgmax')
+        function iPlusMouseDown() {
+            $("#iPlus").attr("src", "Content/Images/Dashboard/Plus_Button_press.png");
+        }
 
-        //        $('#idrive_blink').removeClass('imgmax');
-        //        $('#idrive_blink').removeClass('pnlimgHide')
-        //        $('#idrive_blink').addClass('pnlimgHide')
-        //        bln_blinkdrive = true;
-        //    }
-        //    else {
-        //        $('#idrive').removeClass('imgmax');
-        //        $('#idrive').removeClass('pnlimgHide')
-        //        $('#idrive').addClass('pnlimgHide')
+        function iMinusMouseOver() {
+            $("#iMinus").attr("src", "Content/Images/Dashboard/Minus_Button_Hover.png");
+        }
 
-        //        $('#idrive_blink').removeClass('imgmax');
-        //        $('#idrive_blink').removeClass('pnlimgHide')
-        //        $('#idrive_blink').addClass('imgmax')
-        //        bln_blinkdrive = false;
-        //    }
-        //}
+        function iMinusMouseOut() {
+            $("#iMinus").attr("src", "Content/Images/Dashboard/Minus_Button_Normal.png");
+        }
 
-        //function blinkifm() {
-        //    if (bln_blinkifm == false) {
-        //        $('#iifm').removeClass('imgmax');
-        //        $('#iifm').removeClass('pnlimgHide')
-        //        $('#iifm').addClass('imgmax')
+        function iMinusMouseDown() {
+            $("#iMinus").attr("src", "Content/Images/Dashboard/Minus_Button_Press.png");
+        }
 
-        //        $('#iifm_blink').removeClass('imgmax');
-        //        $('#iifm_blink').removeClass('pnlimgHide')
-        //        $('#iifm_blink').addClass('pnlimgHide')
-        //        bln_blinkifm = true;
-        //    }
-        //    else {
-        //        $('#iifm').removeClass('imgmax');
-        //        $('#iifm').removeClass('pnlimgHide')
-        //        $('#iifm').addClass('pnlimgHide')
+        function iExMouseOver() {
+            $("#iEx").attr("src", "Content/Images/Dashboard/Ex_Button_Hover.png");
+        }
 
-        //        $('#iifm_blink').removeClass('imgmax');
-        //        $('#iifm_blink').removeClass('pnlimgHide')
-        //        $('#iifm_blink').addClass('imgmax')
-        //        bln_blinkifm = false;
-        //    }
-        //}
+        function iMinusMouseOut() {
+            $("#iEx").attr("src", "Content/Images/Dashboard/Ex_Button_normal.png");
+        }
 
-        //function blinkcan() {
-        //    if (bln_blinkcan == false) {
-        //        $('#ican').removeClass('imgmax');
-        //        $('#ican').removeClass('pnlimgHide')
-        //        $('#ican').addClass('imgmax')
+        function iExMouseDown() {
+            $("#iEx").attr("src", "Content/Images/Dashboard/Ex_Button_press.png");
+        }
 
-        //        $('#ican_blink').removeClass('imgmax');
-        //        $('#ican_blink').removeClass('pnlimgHide')
-        //        $('#ican_blink').addClass('pnlimgHide')
-        //        bln_blinkcan = true;
-        //    }
-        //    else {
-        //        $('#ican').removeClass('imgmax');
-        //        $('#ican').removeClass('pnlimgHide')
-        //        $('#ican').addClass('pnlimgHide')
+        //$(function () {
+        //    $("#iPlus")
+        //        .mouseover(function () {
+        //            //var src = $(this).attr("src").match(/[^\.]+/) + "over.gif";
+        //            $(this).attr("src", "Content/Images/Dashboard/Plus_Button_Hover.png");
+        //        })
+        //        .mouseout(function () {
+        //            //var src = $(this).attr("src").replace("over.gif", ".gif");
+        //            $(this).attr("src", "Content/Images/Dashboard/Plus_Button_Normal.png");
+        //        });
+        //});
 
-        //        $('#ican_blink').removeClass('imgmax');
-        //        $('#ican_blink').removeClass('pnlimgHide')
-        //        $('#ican_blink').addClass('imgmax')
-        //        bln_blinkcan = false;
-        //    }
-        //}
 
-        //function blinkalign() {
-        //    if (bln_blinkalign == false) {
-        //        $('#ialign').removeClass('imgmax');
-        //        $('#ialign').removeClass('pnlimgHide')
-        //        $('#ialign').addClass('imgmax')
 
-        //        $('#ialign_blink').removeClass('imgmax');
-        //        $('#ialign_blink').removeClass('pnlimgHide')
-        //        $('#ialign_blink').addClass('pnlimgHide')
-        //        bln_blinkalign = true;
-        //    }
-        //    else {
-        //        $('#ialign').removeClass('imgmax');
-        //        $('#ialign').removeClass('pnlimgHide')
-        //        $('#ialign').addClass('pnlimgHide')
-
-        //        $('#ialign_blink').removeClass('imgmax');
-        //        $('#ialign_blink').removeClass('pnlimgHide')
-        //        $('#ialign_blink').addClass('imgmax')
-        //        bln_blinkalign = false;
-        //    }
-        //}
-
-        //setTimeout('blinkbreak()', 200);
-        //setTimeout('blinkbreak()', 400);
-        //setTimeout('blinkbreak()', 600);
-        //setTimeout('blinksteer()', 800);
-        //setTimeout('blinksteer()', 1000);
-        //setTimeout('blinksteer()', 1200);
-        //setTimeout('blinkdrive()', 1400);
-        //setTimeout('blinkdrive()', 1600);
-        //setTimeout('blinkdrive()', 1800);
-        //setTimeout('blinkifm()', 2000);
-        //setTimeout('blinkifm()', 2200);
-        //setTimeout('blinkifm()', 2400);
-        //setTimeout('blinkcan()', 2600);
-        //setTimeout('blinkcan()', 2800);
-        //setTimeout('blinkcan()', 3000);
-        //setTimeout('blinkalign()', 3200);
-        //setTimeout('blinkalign()', 3400);
-        //setTimeout('blinkalign()', 3600);
+        
         
 
     </script>
@@ -541,30 +402,24 @@
     <div class="div_battery">
         <img src="Content/Images/Dashboard/battery_100.png" id="ibattery_100_blink" class="pnlimgHide"/>
     </div>
-    <div class="div_plus">
+   <%-- <div class="div_plus">
         <img src="Content/Images/Dashboard/Plus_Button_Normal.png" id="iPlus" class="imgmax"/>
     </div>
     <div class="div_plus">
-        <img src="Content/Images/Dashboard/Plus_Button_Hover.png" id="iPlus_hover" class="pnlimgHide"/>
+        <img src="Content/Images/Dashboard/Plus_Button_hover.png" id="iPlus_hover" class="pnlimgHide"/>
+    </div>--%>
+
+    <div id="iPlus">
     </div>
-    <div class="div_minus">
-        <img src="Content/Images/Dashboard/Minus_Button_Normal.png" id="iMinus" class="imgmax"/>
+    <div id="iMinus">
     </div>
-    <div class="div_minus">
-        <img src="Content/Images/Dashboard/Minus_Button_hover.png" id="iMinus_hover" class="pnlimgHide"/>
+    <div id="iEx">
     </div>
-    <div class="div_ex">
-        <img src="Content/Images/Dashboard/Ex_Button_Normal.png" id="iEx" class="imgmax"/>
+    <div id="iTick">
     </div>
-    <div class="div_ex">
-        <img src="Content/Images/Dashboard/Ex_Button_hover.png" id="iEx_hover" class="pnlimgHide"/>
-    </div>
-    <div class="div_tick">
-        <img src="Content/Images/Dashboard/tick_Normal.png" id="iTick" class="imgmax"/>
-    </div>
-    <div class="div_tick">
+    <%--<div class="div_tick">
         <img src="Content/Images/Dashboard/tick_hover.png" id="iTick_hover" class="pnlimgHide"/>
-    </div>
+    </div>--%>
     <div class="div_bottomlogo">
         <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iBottomNanosoft" class="imgmax"/>
     </div>
