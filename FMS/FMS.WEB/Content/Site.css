@@ -4,14 +4,14 @@
 	margin-bottom: 10px;
     height: 200px;
     width: 600px;
-    background-color:white;
+    /*background-color:white;*/
 }
 
 #iw-container_dashboard .iw-content_dashboard {
     max-width: 600px;
     max-height: 200px;
     overflow: hidden;
-    background-color:white;
+    /*background-color:white;*/
 	/*font-size: 13px;
 	line-height: 18px;
 	font-weight: 400;
@@ -25,9 +25,10 @@
 #iw-container_dashboard .gm-style-iw {
 	width: 700px !important;
     height: 200px !important;
-	top: 15px !important;
-	left: 0px !important;
-    background-color:white;
+	position:absolute;
+    top: 0px !important;
+    left: 0px !important;
+    /*background-color:white;*/
     box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
 	border: 1px solid rgba(72, 181, 233, 0.6);
 	border-radius: 2px 2px 10px 10px;
