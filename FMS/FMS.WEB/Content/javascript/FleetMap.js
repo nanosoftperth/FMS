@@ -288,7 +288,7 @@ function infoWindowCSSForCanBus(w) {
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function infoWindowCSSForDashboard(w) {
     // Reference to the DIV that wraps the bottom of infowindow
-    var iwOuter = $('.gm-style-iw_dashboard');
+    var iwOuter = $('.gm-style-iw');
 
     /* Since this div is in a position prior to .gm-div style-iw.
      * We use jQuery and create a iwBackground variable,
