@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="refresh" content="5" />
+    <%--<meta http-equiv="refresh" content="5" />--%>
     <title></title>
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
     <script src="Content/javascript/page.js"></script>
@@ -24,8 +24,15 @@
     
     <script type="text/javascript" language="javascript">
         function OnFaultCodesClick(contentUrl) {
-            alert(contentUrl);          
-            //ShowLoginWindow();
+            //alert(contentUrl);     
+            var textVal = "";
+            var content = contentUrl.split(',');
+            for (i = 0; i < content.length; i++) {
+                textVal += content[i] + "<br>";
+            }
+            
+            document.getElementById("pMessage").innerHTML = textVal;
+            ShowLoginWindow();
             
             /*clientPopupControl.SetContentUrl(contentUrl);
             clientPopupControl.Show();*/
@@ -64,13 +71,13 @@
     </div>
         <dx:ASPxPopupControl ID="pcLogin" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin"
-        HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False">        
+        HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="300px" Top="10">        
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
                     <PanelCollection>
-                        <dx:PanelContent runat="server">
-                            <span class="info"></span>                            
+                        <dx:PanelContent runat="server">             
+                            <p id="pMessage"></p>
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>                

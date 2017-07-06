@@ -50,11 +50,16 @@ Public Class CanBusPropertyDisplay
                     If Not messageValue.CanValues(0).Value Is Nothing Then
                         If Not messageValue.MessageDefinition.Units Is Nothing And _
                             Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
-                            If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
-                                cbd.description = Format(messageValue.CanValues(0).Value, "0#.#").ToString() + " " + messageValue.MessageDefinition.Units
+                            If Not messageValue.CanValues(0).Value.ToString().Equals("") Then
+                                If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
+                                    cbd.description = Format(messageValue.CanValues(0).Value, "0#.#").ToString() + " " + messageValue.MessageDefinition.Units
+                                Else
+                                    cbd.description = "0"
+                                End If
                             Else
                                 cbd.description = "0"
                             End If
+                            
                         Else
                             cbd.description = messageValue.CanValues(0).Value.ToString()
                         End If
@@ -95,7 +100,6 @@ Public Class CanBusPropertyDisplay
         Dim rVI As Integer = templateContainer.VisibleIndex
         Dim getDescription As String = templateContainer.Grid.GetRowValues(rVI, "description").ToString()
         Dim contentUrl As String = String.Format("{0}", getDescription)
-
 
         link.NavigateUrl = "javascript:void(0);"
         link.Text = String.Format(getDescription)
