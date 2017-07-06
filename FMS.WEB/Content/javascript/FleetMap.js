@@ -1049,9 +1049,9 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     marker.TruckName = vehicleName;
 
     marker.addListener('click', showInfoWindow);//DeviceID
-    //marker.addListener('dblclick', showInfoWindow2);
-    //marker.addListener('rightclick', showInfoWindow2);
-    marker.addListener('rightclick', ShowDashboard);
+    marker.addListener('dblclick', showInfoWindow2);
+    marker.addListener('rightclick', showInfoWindow2);
+    //marker.addListener('rightclick', ShowDashboard);
 
     marker.ID = markerID;
     markers.push(marker);

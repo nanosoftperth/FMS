@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <%--<meta http-equiv="refresh" content="5" />--%>
+    <meta http-equiv="refresh" content="5" />
     <title></title>
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
     <script src="Content/javascript/page.js"></script>
@@ -30,17 +30,18 @@
             for (i = 0; i < content.length; i++) {
                 textVal += content[i] + "<br>";
             }
-            
+
             document.getElementById("pMessage").innerHTML = textVal;
             ShowLoginWindow();
-            
+
             /*clientPopupControl.SetContentUrl(contentUrl);
             clientPopupControl.Show();*/
         }
         function ShowLoginWindow() {
+            pcLogin.ShowAtPos(10, 10);
             pcLogin.Show();
         }
-        
+
     </script>
 </head>
 <body>
@@ -71,7 +72,7 @@
     </div>
         <dx:ASPxPopupControl ID="pcLogin" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin"
-        HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="300px" Top="10">        
+        HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
