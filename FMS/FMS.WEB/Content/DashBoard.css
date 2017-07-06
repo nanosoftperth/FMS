@@ -122,28 +122,176 @@
     position: absolute;
     top: 119px;
     left: 33px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Plus_Button_Normal.png');
+    background-repeat: no-repeat;
 }
+
+.div_plus_blink {
+    width: 39px;
+    height: 39px;
+    background-image: url('../Content/Images/Dashboard/Plus_Button_Hover.png');
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 119px;
+    left: 33px;
+    background-size:100%;
+}
+
+#iPlus:hover {
+    width: 39px;
+    height: 39px;
+    background-image: url('../Content/Images/Dashboard/Plus_Button_Hover.png');
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 119px;
+    left: 33px;
+    background-size:100%;
+}
+
+#iPlus:active {
+    width: 39px;
+    height: 39px;
+    background-image: url('../Content/Images/Dashboard/Plus_Button_press.png');
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 119px;
+    left: 33px;
+    background-size:100%;
+}
+
 .div_minus {
     width: 39px;
     height: 39px;
     position: absolute;
     top: 119px;
     left: 85px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Minus_Button_Normal.png');
+    background-repeat: no-repeat;
 }
+
+.div_minus_blink {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 85px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Minus_Button_hover.png');
+    background-repeat: no-repeat;
+}
+
+.div_minus:hover {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 85px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Minus_Button_hover.png');
+    background-repeat: no-repeat;
+}
+
+.div_minus:active {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 85px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Minus_Button_press.png');
+    background-repeat: no-repeat;
+}
+
 .div_ex {
     width: 39px;
     height: 39px;
     position: absolute;
     top: 119px;
     left: 138px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Ex_Button_Normal.png');
+    background-repeat: no-repeat;
 }
+
+.div_ex_blink {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 138px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Ex_Button_hover.png');
+    background-repeat: no-repeat;
+}
+
+.div_ex:hover {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 138px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Ex_Button_hover.png');
+    background-repeat: no-repeat;
+}
+
+.div_ex:active {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 138px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Ex_Button_press.png');
+    background-repeat: no-repeat;
+}
+
 .div_tick {
     width: 39px;
     height: 39px;
     position: absolute;
     top: 119px;
     left: 189px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Tick_Normal.png');
+    background-repeat: no-repeat;
 }
+
+.div_tick_blink {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 189px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Tick_Hover.png');
+    background-repeat: no-repeat;
+}
+
+.div_tick:hover {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 189px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Tick_Hover.png');
+    background-repeat: no-repeat;
+}
+
+.div_tick:active {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: 119px;
+    left: 189px;
+    background-size:100%;
+    background-image: url('../Content/Images/Dashboard/Tick_press.png');
+    background-repeat: no-repeat;
+}
+
 .div_bottomlogo {
     width: 115px;
     height: 50px;
@@ -182,9 +330,9 @@
  /*-moz-animation: example1 15s linear infinite;
  -webkit-animation: example1 15s linear infinite;
  animation: example1 15s linear infinite;*/
- -moz-animation: example1 2.5s linear;
- -webkit-animation: example1 2.5s linear;
- animation: example1 2.5s linear;
+ -moz-animation: example1 4.5s linear;
+ -webkit-animation: example1 4.5s linear;
+ animation: example1 4.5s linear;
 }
 /* Move it (define the animation) */
 @-moz-keyframes example1 {
