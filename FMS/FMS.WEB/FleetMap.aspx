@@ -1133,7 +1133,6 @@
 
           //  console.log(VehicleSelectedArr);
         }
-
         function GetIcon(id) {
             if ($("#lblVehicle").hasClass("showHide")) {
                 $("#lblVehicle").removeClass("showHide");
@@ -1147,26 +1146,19 @@
                     $("#img").attr("src", "Content/image.png");
                     $("#img").removeClass("clsImageHide");
                     $("#img").addClass("clsImageShow");
-
-                    $("#img").attr("title", "Warning! " + numinwrd(markers.length - VehicleSelectedArr.length) +  " <%= GetCompanyName()%>" + " vehicle(s) is hidden.");
+                    if ((markers.length - VehicleSelectedArr.length) == 1) {
+                        $("#img").attr("title", "Warning! " + numinwrd(markers.length - VehicleSelectedArr.length) + " <%= GetCompanyName()%>" + " vehicle is hidden.");
+                    }
+                    else
+                    {
+                        $("#img").attr("title", "Warning! " + numinwrd(markers.length - VehicleSelectedArr.length) + " <%= GetCompanyName()%>" + " vehicles are hidden.");
+                    }                   
                 }
                 else {
                     $("#img").attr("src", "");
                     $("#img").removeClass("clsImageShow");
                     $("#img").addClass("clsImageHide");
-                }
-
-                //if (localStorage.getItem('IsHiddenVehcile') == "true") {
-                //    $("#img").attr("src", "Content/image.png");
-                //    $("#img").removeClass("clsImageHide");
-                //    $("#img").addClass("clsImageShow");
-
-                //}
-                //else {
-                //    $("#img").attr("src", "");
-                //    $("#img").removeClass("clsImageShow");
-                //    $("#img").addClass("clsImageHide");
-                //}
+                } 
             }
         }
 
