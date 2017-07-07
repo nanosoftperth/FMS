@@ -269,6 +269,8 @@ Public Class CachedVehicleReport
     Public Sub CalculateSummaries()
 
 
+
+
         For i As Integer = 0 To LineValies.Count - 1
 
             Dim thisLineValue As FMS.Business.ReportGeneration.VehicleActivityReportLine = LineValies(i)
@@ -300,6 +302,44 @@ Public Class CachedVehicleReport
         formatted_TotalStopDuration = timespanFormatCust(TotalStopDuration)
         formatted_TotalTravelDuration = timespanFormatCust(TotalTravelDuration)
 
+    End Sub
+    Public Sub CalculateSummariesPDF(ObjPdf As List(Of CachedVehicleReport))
+
+        For Each item In ObjPdf
+             
+
+            For i As Integer = 0 To item.LineValies.Count - 1
+
+                Dim thisLineValue As FMS.Business.ReportGeneration.VehicleActivityReportLine = item.LineValies(i)
+
+                TotalStopDuration += thisLineValue.StopDuration
+
+                TotalIdleTime += thisLineValue.IdleDuration
+                NumberOfStops += 1
+
+                TotalDistanceTravelled += thisLineValue.DistanceKMs
+
+                If thisLineValue.StopDuration.TotalHours < 6 Then AverageStopDuration += thisLineValue.StopDuration
+
+                If thisLineValue.ArrivalTime.HasValue AndAlso thisLineValue.StartTime.HasValue Then _
+                    TotalTravelDuration += (thisLineValue.ArrivalTime.Value - thisLineValue.StartTime.Value)
+            Next
+        Next
+
+        If NumberOfStops > 0 Then
+            AverageStopDuration = TimeSpan.FromSeconds(AverageStopDuration.TotalSeconds / NumberOfStops)
+        Else
+            AverageStopDuration = TimeSpan.FromSeconds(0)
+        End If
+
+
+        formatted_AverageStopDuration = timespanFormatCust(AverageStopDuration)
+        formatted_NumberOfStops = NumberOfStops
+        formatted_TotalDistanceTravelled = TotalDistanceTravelled.ToString("#.##")
+        formatted_TotalIdleTime = timespanFormatCust(TotalIdleTime)
+        formatted_TotalStopDuration = timespanFormatCust(TotalStopDuration)
+        formatted_TotalTravelDuration = timespanFormatCust(TotalTravelDuration)
+         
     End Sub
 
     Private Function timespanFormatCust(t As TimeSpan) As String
