@@ -68,19 +68,16 @@ function ShowDashboard(event) {
     //var varName = 'RIO E-maxi';
     //var varName = 'NONE';
 
-    ajaxGetMethod("api/vehicle/GetDashboardData?vehicleid=" + varName, param, successCallBack_Dashboard, errorCallback_Dashboard, finallyCallback_Dashboard);
+    //ajaxGetMethod("api/vehicle/GetDashboardData?vehicleid=" + varName, param, successCallBack_Dashboard, errorCallback_Dashboard, finallyCallback_Dashboard);
 
+    //var vertices = '<br><br>' + this.getPath();
+    var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
+    //iw-title 
+    //var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
     var newURL = 'CanBusPropDispDashboard.aspx';
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 200px; width:100%; \' ></iframe>';
-
-    ////var vertices = '<br><br>' + this.getPath();
-    //var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
-    ////iw-title 
-    ////var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
-    //var newURL = 'CanBusPropDispDashboard.aspx';
-    //contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 100%; width:100%; \' ></iframe>';
-    ////style=\'height: 280px; width: 245px\
-    //contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:190px;width:750px\' ></iframe>';
+    //style=\'height: 280px; width: 245px\
+    contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
 
     if (infoWindowVehicle !== null) {
         google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
@@ -88,28 +85,25 @@ function ShowDashboard(event) {
         infoWindowVehicle = null;
     }
 
-    var content = '<div  id="iw-container_dashboard">' +
-                    '<div class="iw-content_dashboard">' + contentString + '</div>';
-                    '</div>'
+    var content = '<div id="iw-container_dash">' +
+                 '<div class="iw-content_dash">' +
+                   contentString
+    '</div>' +
+    '<div class="iw-bottom-gradient"></div>' +
+  '</div>';
 
-    ////var content = contentString
-    
-    ////  var content = '<div id="iw-container_dash">' +
-    ////                '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
-    ////                '<div class="iw-content_dash">' +
-    ////                  contentString
-    ////  '</div>' +
-    ////  '<div class="iw-bottom-gradient"></div>' +
-    ////'</div>';
+    //  var content = '<div id="iw-container_dash">' +
+    //                '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
+    //                '<div class="iw-content_dash">' +
+    //                  contentString
+    //  '</div>' +
+    //  '<div class="iw-bottom-gradient"></div>' +
+    //'</div>';
 
-    //var infoWindowVehicle = new google.maps.InfoWindow({
-    //    maxWidth: 800
-        
-    //});
 
     infoWindowVehicle = new google.maps.InfoWindow();
 
-    ////infoWindowVehicle.setContent(contentString);
+    //infoWindowVehicle.setContent(contentString);
     infoWindowVehicle.setPosition(event.latLng);
     infoWindowVehicle.setContent(content);
 
@@ -117,8 +111,7 @@ function ShowDashboard(event) {
 
     infoWindowVehicle.open(map);
 
-    ////document.getElementById("idLiveData").addEventListener("click", Run_infoWindowCSSForCanBus);
-
+    //document.getElementById("idLiveData").addEventListener("click", Run_infoWindowCSSForCanBus);
 }
 
 function showInfoWindow2(event) {
@@ -287,8 +280,13 @@ function infoWindowCSSForCanBus(w) {
 
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function infoWindowCSSForDashboard(w) {
-    // Reference to the DIV that wraps the bottom of infowindow
-    var iwOuter = $('.gm-style-iw');
+
+    $('#iw-container_dash').closest('.gm-style-iw').parent().addClass('custom-iw2_dash');
+
+    $('.custom-iw2_dash').parent().addClass('iconposition');
+
+    // Reference to s DIV that wraps the bottom of infowindow
+    var iwOuter = $('#iw-container_dash').closest('.gm-style-iw');
 
     /* Since this div is in a position prior to .gm-div style-iw.
      * We use jQuery and create a iwBackground variable,
@@ -296,6 +294,12 @@ function infoWindowCSSForDashboard(w) {
     */
     var iwBackground = iwOuter.prev();
 
+    //iwOuter.css('width', '200px !Important');
+
+    $('#iw-container_dash').parent().parent().parent().parent().width('300px');
+
+    //iwBackground.css({ 'width': '280px' });
+    //iwOuter.css({ 'width': '280px' });
     // Removes background shadow DIV
     iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
 
@@ -303,98 +307,43 @@ function infoWindowCSSForDashboard(w) {
     iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
 
     // Moves the infowindow 115px to the right.
-    iwOuter.parent().parent().css({ left: '115px' });
-    
-    // Moves the shadow of the arrow 76px to the left margin.
-    iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 76px !important;' });
 
+    iwOuter.parent().parent().css({ left: '115px' });
+
+    iwOuter.parent().parent().css({ width: '115px' });
+    // Moves the shadow of the arrow 76px to the left margin.
+    //iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
     // Moves the arrow 76px to the left margin.
-    iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 200px !important; top: 10px;' });
+    //iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
+
+    iwBackground.children(':nth-child(1)').addClass('leftarrow_dash');
+    iwBackground.children(':nth-child(3)').addClass('leftarrow_dash');
+    //iwBackground.children(':nth-child(3)').css('left','76px');
+    //iwBackground.children(':nth-child(3)').css('left','76px');
+
 
     // Changes the desired tail shadow color.
-    iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1', 'top': '300px' });
-    //iwBackground.children(':nth-child(6)').find('div').children().css({ 'top': '300px' });
+    iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1' });
 
     // Reference to the div that groups the close button elements.
     var iwCloseBtn = iwOuter.next();
 
     // Apply the desired effect to the close button
-    iwCloseBtn.css({ opacity: '1', right: '25px', top: '10px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+    iwCloseBtn.css({ opacity: '1', left: '565px', top: '0px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
     // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
-    //if ($('.iw-content').height() < 140) {
-    //    $('.iw-bottom-gradient').css({ display: 'none' });
-    //}
+    if ($('.iw-content').height() < 140) {
+        $('.iw-bottom-gradient').css({ display: 'none' });
+    }
 
     // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
     iwCloseBtn.mouseout(function () {
         $(this).css({ opacity: '1' });
     });
 
-    //$('#iw-container_dash').closest('.gm-style-iw').parent().addClass('custom-iw2_dash');
-
-    //$('.custom-iw2_dash').parent().addClass('iconposition');
-
-    //// Reference to s DIV that wraps the bottom of infowindow
-    //var iwOuter = $('#iw-container_dash').closest('.gm-style-iw');
-
-    ///* Since this div is in a position prior to .gm-div style-iw.
-    // * We use jQuery and create a iwBackground variable,
-    // * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
-    //*/
-    //var iwBackground = iwOuter.prev();
-
-    ////iwOuter.css('width', '200px !Important');
-
-    //$('#iw-container_dash').parent().parent().parent().parent().width('300px');
-
-    ////iwBackground.css({ 'width': '280px' });
-    ////iwOuter.css({ 'width': '280px' });
-    //// Removes background shadow DIV
-    //iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
-
-    //// Removes white background DIV
-    //iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
-
-    //// Moves the infowindow 115px to the right.
-
-    //iwOuter.parent().parent().css({ left: '115px' });
-
-    //iwOuter.parent().parent().css({ width: '115px' });
-    //// Moves the shadow of the arrow 76px to the left margin.
-    ////iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
-    //// Moves the arrow 76px to the left margin.
-    ////iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 0px !important;' });
-
-    //iwBackground.children(':nth-child(1)').addClass('leftarrow_dash');
-    //iwBackground.children(':nth-child(3)').addClass('leftarrow_dash');
-    ////iwBackground.children(':nth-child(3)').css('left','76px');
-    ////iwBackground.children(':nth-child(3)').css('left','76px');
-
-
-    //// Changes the desired tail shadow color.
-    //iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1' });
-
-    //// Reference to the div that groups the close button elements.
-    //var iwCloseBtn = iwOuter.next();
-
-    //// Apply the desired effect to the close button
-    //iwCloseBtn.css({ opacity: '1', left: '800px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
-
-    //// If the content of infowindow not exceed the set maximum height, then the gradient is removed.
-    //if ($('.iw-content').height() < 140) {
-    //    $('.iw-bottom-gradient').css({ display: 'none' });
-    //}
-
-    //// The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
-    //iwCloseBtn.mouseout(function () {
-    //    $(this).css({ opacity: '1' });
-    //});
-    
 }
 
-function Run_infoWindowCSSForCanBus()
-{
+function Run_infoWindowCSSForCanBus() {
     window.open(
               'https://www.google.com/',
               '_blank'
@@ -1051,12 +1000,12 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
 
     marker.addListener('click', showInfoWindow);//DeviceID
     marker.addListener('dblclick', showInfoWindow2);
-    marker.addListener('rightclick', showInfoWindow2);
-    //marker.addListener('rightclick', ShowDashboard);
+    //marker.addListener('rightclick', showInfoWindow2);
+    marker.addListener('rightclick', ShowDashboard);
 
     marker.ID = markerID;
     markers.push(marker);
-     
+
     marker.setMap(map);
 
     //  insert vehicle ID in Array
@@ -1742,8 +1691,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //        }
 //    }
 //} 
- 
- 
+
+
 //function GetSelectedFieldValuesCallback(IDs) {
 //    if (IDs == "") {
 //        for (var k = 0; k < markers.length; k++) {
