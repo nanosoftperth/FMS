@@ -15,6 +15,11 @@ Public Class CanBusPropDispDashboard
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If IsPostBack = False Then
+
+            'Page.ClientScript.RegisterStartupScript(Me.[GetType](), "CallMyFunction", "MyFunction()", True)
+
+            'Page.ClientScript.RegisterStartupScript(Me.GetType(), "CallGMInit", "<script>initialize()</script>", False)
+
             'lblVehicleID.Text = vehicleID
 
             'Dim scriptKey As String = "UniqueKeyForThisScript"

@@ -505,3 +505,9 @@ function setControlWidths(controls, minWidth) {
     var dateButtonWidth = $(".ui-datepicker-trigger:first").outerWidth();
     $(".datePicker").width(newWidth - dateButtonWidth);
 }
+
+//--for dashboard
+function CallInfoWindow()
+{
+    alert("test");
+}

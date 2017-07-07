@@ -8,331 +8,256 @@
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
     <script src="Content/javascript/page.js"></script>
     <link href="Content/DashBoard.css" rel="stylesheet" />
-    <script src="Content/javascript/FleetMap.js"></script>
-   <%-- <script src="Content/javascript/page.js"></script>--%>
+
+    <%--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>--%>
+    <%--<script src="Content/javascript/FleetMap.js"></script>--%>
+    <script src="Content/javascript/page.js"></script>
 
     <script type="text/javascript">
         var bln_blink = true;
         var bln_blinkBottom = false;
+        var blink_ctr = 0;
 
-        function blinkTop()
+        function blink()
         {
-            if (bln_blink == false) {
+            if (bln_blink == true) {
 
-                //--- break on gray
-                $('#ibreak').removeClass('imgmax');
-                $('#ibreak').removeClass('pnlimgHide')
-                $('#ibreak').addClass('imgmax')
+                if (blink_ctr < 4)
+                {
+                    //--- break on gray
+                    $('#ibreak').removeClass('imgmax');
+                    $('#ibreak').removeClass('pnlimgHide')
+                    $('#ibreak').addClass('pnlimgHide')
 
-                $('#ibreak_blink').removeClass('imgmax');
-                $('#ibreak_blink').removeClass('pnlimgHide')
-                $('#ibreak_blink').addClass('pnlimgHide')
+                    $('#ibreak_blink').removeClass('imgmax');
+                    $('#ibreak_blink').removeClass('pnlimgHide')
+                    $('#ibreak_blink').addClass('imgmax')
 
-                //--- steer on gray
-                $('#isteer').removeClass('imgmax');
-                $('#isteer').removeClass('pnlimgHide')
-                $('#isteer').addClass('imgmax')
+                    //--- steer on gray
+                    $('#isteer').removeClass('imgmax');
+                    $('#isteer').removeClass('pnlimgHide')
+                    $('#isteer').addClass('pnlimgHide')
 
-                $('#isteer_blink').removeClass('imgmax');
-                $('#isteer_blink').removeClass('pnlimgHide')
-                $('#isteer_blink').addClass('pnlimgHide')
+                    $('#isteer_blink').removeClass('imgmax');
+                    $('#isteer_blink').removeClass('pnlimgHide')
+                    $('#isteer_blink').addClass('imgmax')
 
-                //--- drive on gray
-                $('#idrive').removeClass('imgmax');
-                $('#idrive').removeClass('pnlimgHide')
-                $('#idrive').addClass('imgmax')
+                    //--- drive on gray
+                    $('#idrive').removeClass('imgmax');
+                    $('#idrive').removeClass('pnlimgHide')
+                    $('#idrive').addClass('pnlimgHide')
 
-                $('#idrive_blink').removeClass('imgmax');
-                $('#idrive_blink').removeClass('pnlimgHide')
-                $('#idrive_blink').addClass('pnlimgHide')
+                    $('#idrive_blink').removeClass('imgmax');
+                    $('#idrive_blink').removeClass('pnlimgHide')
+                    $('#idrive_blink').addClass('imgmax')
 
-                //--- ifm on gray
-                $('#iifm').removeClass('imgmax');
-                $('#iifm').removeClass('pnlimgHide')
-                $('#iifm').addClass('imgmax')
+                    //--- ifm on gray
+                    $('#iifm').removeClass('imgmax');
+                    $('#iifm').removeClass('pnlimgHide')
+                    $('#iifm').addClass('pnlimgHide')
 
-                $('#iifm_blink').removeClass('imgmax');
-                $('#iifm_blink').removeClass('pnlimgHide')
-                $('#iifm_blink').addClass('pnlimgHide')
+                    $('#iifm_blink').removeClass('imgmax');
+                    $('#iifm_blink').removeClass('pnlimgHide')
+                    $('#iifm_blink').addClass('imgmax')
 
-                //--- can on gray
-                $('#ican').removeClass('imgmax');
-                $('#ican').removeClass('pnlimgHide')
-                $('#ican').addClass('imgmax')
+                    //--- can on gray
+                    $('#ican').removeClass('imgmax');
+                    $('#ican').removeClass('pnlimgHide')
+                    $('#ican').addClass('pnlimgHide')
 
-                $('#ican_blink').removeClass('imgmax');
-                $('#ican_blink').removeClass('pnlimgHide')
-                $('#ican_blink').addClass('pnlimgHide')
+                    $('#ican_blink').removeClass('imgmax');
+                    $('#ican_blink').removeClass('pnlimgHide')
+                    $('#ican_blink').addClass('imgmax')
 
-                //--- alignment on gray
-                $('#ialign').removeClass('imgmax');
-                $('#ialign').removeClass('pnlimgHide')
-                $('#ialign').addClass('imgmax')
+                    //--- alignment on gray
+                    $('#ialign').removeClass('imgmax');
+                    $('#ialign').removeClass('pnlimgHide')
+                    $('#ialign').addClass('pnlimgHide')
 
-                $('#ialign_blink').removeClass('imgmax');
-                $('#ialign_blink').removeClass('pnlimgHide')
-                $('#ialign_blink').addClass('pnlimgHide')
+                    $('#ialign_blink').removeClass('imgmax');
+                    $('#ialign_blink').removeClass('pnlimgHide')
+                    $('#ialign_blink').addClass('imgmax')
 
-                //--- warning on gray
-                $('#iwarning').removeClass('imgmax');
-                $('#iwarning').removeClass('pnlimgHide')
-                $('#iwarning').addClass('imgmax')
+                    //--- warning on gray
+                    $('#iwarning').removeClass('imgmax');
+                    $('#iwarning').removeClass('pnlimgHide')
+                    $('#iwarning').addClass('imgmax')
 
-                $('#iwarning_blink').removeClass('imgmax');
-                $('#iwarning_blink').removeClass('pnlimgHide')
-                $('#iwarning_blink').addClass('pnlimgHide')
+                    $('#iwarning_blink').removeClass('imgmax');
+                    $('#iwarning_blink').removeClass('pnlimgHide')
+                    $('#iwarning_blink').addClass('pnlimgHide')
 
-                //--- error on gray
-                $('#istop').removeClass('imgmax');
-                $('#istop').removeClass('pnlimgHide')
-                $('#istop').addClass('imgmax')
+                    //--- error on gray
+                    $('#istop').removeClass('imgmax');
+                    $('#istop').removeClass('pnlimgHide')
+                    $('#istop').addClass('imgmax')
 
-                $('#istop_blink').removeClass('imgmax');
-                $('#istop_blink').removeClass('pnlimgHide')
-                $('#istop_blink').addClass('pnlimgHide')
+                    $('#istop_blink').removeClass('imgmax');
+                    $('#istop_blink').removeClass('pnlimgHide')
+                    $('#istop_blink').addClass('pnlimgHide')
 
-                //--- speed on gray
-                $('#ispeed').removeClass('imgmax');
-                $('#ispeed').removeClass('pnlimgHide')
-                $('#ispeed').addClass('imgmax')
+                    //--- speed on gray
+                    $('#ispeed').removeClass('imgmax');
+                    $('#ispeed').removeClass('pnlimgHide')
+                    $('#ispeed').addClass('imgmax')
 
-                $('#ispeed_blink').removeClass('imgmax');
-                $('#ispeed_blink').removeClass('pnlimgHide')
-                $('#ispeed_blink').addClass('pnlimgHide')
+                    $('#ispeed_blink').removeClass('imgmax');
+                    $('#ispeed_blink').removeClass('pnlimgHide')
+                    $('#ispeed_blink').addClass('pnlimgHide')
 
-                //--- battery 100% on gray
-                $('#ibattery_100').removeClass('imgmax');
-                $('#ibattery_100').removeClass('pnlimgHide')
-                $('#ibattery_100').addClass('imgmax')
+                    //--- battery 100% on gray
+                    $('#ibattery_100').removeClass('imgmax');
+                    $('#ibattery_100').removeClass('pnlimgHide')
+                    $('#ibattery_100').addClass('pnlimgHide')
 
-                $('#ibattery_100_blink').removeClass('imgmax');
-                $('#ibattery_100_blink').removeClass('pnlimgHide')
-                $('#ibattery_100_blink').addClass('pnlimgHide')
+                    $('#ibattery_100_blink').removeClass('imgmax');
+                    $('#ibattery_100_blink').removeClass('pnlimgHide')
+                    $('#ibattery_100_blink').addClass('imgmax')
+                }
 
-                bln_blink = true;
+                if (blink_ctr == 4) {
+                    //--- warining on color
+                    $('#iwarning').removeClass('imgmax');
+                    $('#iwarning').removeClass('pnlimgHide')
+                    $('#iwarning').addClass('imgmax')
 
-            }
-            else
-            {
-                //--- break on color
-                $('#ibreak').removeClass('imgmax');
-                $('#ibreak').removeClass('pnlimgHide')
-                $('#ibreak').addClass('pnlimgHide')
+                    $('#iwarning_blink').removeClass('imgmax');
+                    $('#iwarning_blink').removeClass('pnlimgHide')
+                    $('#iwarning_blink').addClass('pnlimgHide')
 
-                $('#ibreak_blink').removeClass('imgmax');
-                $('#ibreak_blink').removeClass('pnlimgHide')
-                $('#ibreak_blink').addClass('imgmax')
+                    //--- error on color
+                    $('#istop').removeClass('imgmax');
+                    $('#istop').removeClass('pnlimgHide')
+                    $('#istop').addClass('imgmax')
 
-                //--- steer on color
-                $('#isteer').removeClass('imgmax');
-                $('#isteer').removeClass('pnlimgHide')
-                $('#isteer').addClass('pnlimgHide')
+                    $('#istop_blink').removeClass('imgmax');
+                    $('#istop_blink').removeClass('pnlimgHide')
+                    $('#istop_blink').addClass('pnlimgHide')
 
-                $('#isteer_blink').removeClass('imgmax');
-                $('#isteer_blink').removeClass('pnlimgHide')
-                $('#isteer_blink').addClass('imgmax')
+                    //--- speed on color
+                    $('#ispeed').removeClass('imgmax');
+                    $('#ispeed').removeClass('pnlimgHide')
+                    $('#ispeed').addClass('imgmax')
 
-                //--- drive on color
-                $('#idrive').removeClass('imgmax');
-                $('#idrive').removeClass('pnlimgHide')
-                $('#idrive').addClass('pnlimgHide')
+                    $('#ispeed_blink').removeClass('imgmax');
+                    $('#ispeed_blink').removeClass('pnlimgHide')
+                    $('#ispeed_blink').addClass('pnlimgHide')
 
-                $('#idrive_blink').removeClass('imgmax');
-                $('#idrive_blink').removeClass('pnlimgHide')
-                $('#idrive_blink').addClass('imgmax')
-
-                //--- ifm on color
-                $('#iifm').removeClass('imgmax');
-                $('#iifm').removeClass('pnlimgHide')
-                $('#iifm').addClass('pnlimgHide')
-
-                $('#iifm_blink').removeClass('imgmax');
-                $('#iifm_blink').removeClass('pnlimgHide')
-                $('#iifm_blink').addClass('imgmax')
-
-                //--- can on color
-                $('#ican').removeClass('imgmax');
-                $('#ican').removeClass('pnlimgHide')
-                $('#ican').addClass('pnlimgHide')
-
-                $('#ican_blink').removeClass('imgmax');
-                $('#ican_blink').removeClass('pnlimgHide')
-                $('#ican_blink').addClass('imgmax')
-
-                //--- alignment on color
-                $('#ialign').removeClass('imgmax');
-                $('#ialign').removeClass('pnlimgHide')
-                $('#ialign').addClass('pnlimgHide')
-
-                $('#ialign_blink').removeClass('imgmax');
-                $('#ialign_blink').removeClass('pnlimgHide')
-                $('#ialign_blink').addClass('imgmax')
-
-                //--- warining on color
-                $('#iwarning').removeClass('imgmax');
-                $('#iwarning').removeClass('pnlimgHide')
-                $('#iwarning').addClass('pnlimgHide')
-
-                $('#iwarning_blink').removeClass('imgmax');
-                $('#iwarning_blink').removeClass('pnlimgHide')
-                $('#iwarning_blink').addClass('imgmax')
-
-                //--- error on color
-                $('#istop').removeClass('imgmax');
-                $('#istop').removeClass('pnlimgHide')
-                $('#istop').addClass('pnlimgHide')
-
-                $('#istop_blink').removeClass('imgmax');
-                $('#istop_blink').removeClass('pnlimgHide')
-                $('#istop_blink').addClass('imgmax')
-
-                //--- speed on color
-                $('#ispeed').removeClass('imgmax');
-                $('#ispeed').removeClass('pnlimgHide')
-                $('#ispeed').addClass('pnlimgHide')
-
-                $('#ispeed_blink').removeClass('imgmax');
-                $('#ispeed_blink').removeClass('pnlimgHide')
-                $('#ispeed_blink').addClass('imgmax')
-
-                //--- battery on color
-                $('#ibattery_100').removeClass('imgmax');
-                $('#ibattery_100').removeClass('pnlimgHide')
-                $('#ibattery_100').addClass('pnlimgHide')
-
-                $('#ibattery_100_blink').removeClass('imgmax');
-                $('#ibattery_100_blink').removeClass('pnlimgHide')
-                $('#ibattery_100_blink').addClass('imgmax')
+                }
 
                 bln_blink = false;
 
-            }
-        }
+                blink_ctr = blink_ctr + 1;
 
-        function blinkBottom()
-        {
-            if (bln_blinkBottom == false)
-            {
-                //--- plus sign on gray
-                $('#iPlus').removeClass('div_plus_blink');
-                $('#iPlus').removeClass('div_plus');
-                $('#iPlus').addClass('div_plus');
-                
-                //--- minus sign on gray
-                $('#iMinus').removeClass('div_minus_blink');
-                $('#iMinus').removeClass('div_minus')
-                $('#iMinus').addClass('div_minus')
-
-                //--- Ex sign on gray
-                $('#iEx').removeClass('div_ex_blink');
-                $('#iEx').removeClass('div_ex')
-                $('#iEx').addClass('div_ex')
-
-                //--- tick sign on gray
-                $('#iTick').removeClass('div_tick_blink');
-                $('#iTick').removeClass('div_tick')
-                $('#iTick').addClass('div_tick')
-
-                bln_blinkBottom = true;
             }
             else
             {
-                //--- battery on hover
-                $('#iPlus').removeClass('div_plus');
-                $('#iPlus').removeClass('div_plus_blink');
-                $('#iPlus').addClass('div_plus_blink');
+                if (blink_ctr < 4) {
+                    //--- break on color
+                    $('#ibreak').removeClass('imgmax');
+                    $('#ibreak').removeClass('pnlimgHide')
+                    $('#ibreak').addClass('imgmax')
 
-                //--- minus on hover
-                $('#iMinus').removeClass('div_minus');
-                $('#iMinus').removeClass('div_minus_blink')
-                $('#iMinus').addClass('div_minus_blink')
+                    $('#ibreak_blink').removeClass('imgmax');
+                    $('#ibreak_blink').removeClass('pnlimgHide')
+                    $('#ibreak_blink').addClass('pnlimgHide')
 
-                //--- Ex on hover
-                $('#iEx').removeClass('div_ex');
-                $('#iEx').removeClass('div_ex_blink')
-                $('#iEx').addClass('div_ex_blink')
+                    //--- steer on color
+                    $('#isteer').removeClass('imgmax');
+                    $('#isteer').removeClass('pnlimgHide')
+                    $('#isteer').addClass('imgmax')
 
-                //--- tick on hover
-                $('#iTick').removeClass('div_tick');
-                $('#iTick').removeClass('div_tick_blink')
-                $('#iTick').addClass('div_tick_blink')
+                    $('#isteer_blink').removeClass('imgmax');
+                    $('#isteer_blink').removeClass('pnlimgHide')
+                    $('#isteer_blink').addClass('pnlimgHide')
 
-                bln_blinkBottom = false;
+                    //--- drive on color
+                    $('#idrive').removeClass('imgmax');
+                    $('#idrive').removeClass('pnlimgHide')
+                    $('#idrive').addClass('imgmax')
+
+                    $('#idrive_blink').removeClass('imgmax');
+                    $('#idrive_blink').removeClass('pnlimgHide')
+                    $('#idrive_blink').addClass('pnlimgHide')
+
+                    //--- ifm on color
+                    $('#iifm').removeClass('imgmax');
+                    $('#iifm').removeClass('pnlimgHide')
+                    $('#iifm').addClass('imgmax')
+
+                    $('#iifm_blink').removeClass('imgmax');
+                    $('#iifm_blink').removeClass('pnlimgHide')
+                    $('#iifm_blink').addClass('pnlimgHide')
+
+                    //--- can on color
+                    $('#ican').removeClass('imgmax');
+                    $('#ican').removeClass('pnlimgHide')
+                    $('#ican').addClass('imgmax')
+
+                    $('#ican_blink').removeClass('imgmax');
+                    $('#ican_blink').removeClass('pnlimgHide')
+                    $('#ican_blink').addClass('pnlimgHide')
+
+                    //--- alignment on color
+                    $('#ialign').removeClass('imgmax');
+                    $('#ialign').removeClass('pnlimgHide')
+                    $('#ialign').addClass('imgmax')
+
+                    $('#ialign_blink').removeClass('imgmax');
+                    $('#ialign_blink').removeClass('pnlimgHide')
+                    $('#ialign_blink').addClass('pnlimgHide')
+
+                    //--- warining on color
+                    $('#iwarning').removeClass('imgmax');
+                    $('#iwarning').removeClass('pnlimgHide')
+                    $('#iwarning').addClass('pnlimgHide')
+
+                    $('#iwarning_blink').removeClass('imgmax');
+                    $('#iwarning_blink').removeClass('pnlimgHide')
+                    $('#iwarning_blink').addClass('imgmax')
+
+                    //--- error on color
+                    $('#istop').removeClass('imgmax');
+                    $('#istop').removeClass('pnlimgHide')
+                    $('#istop').addClass('pnlimgHide')
+
+                    $('#istop_blink').removeClass('imgmax');
+                    $('#istop_blink').removeClass('pnlimgHide')
+                    $('#istop_blink').addClass('imgmax')
+
+                    //--- speed on color
+                    $('#ispeed').removeClass('imgmax');
+                    $('#ispeed').removeClass('pnlimgHide')
+                    $('#ispeed').addClass('pnlimgHide')
+
+                    $('#ispeed_blink').removeClass('imgmax');
+                    $('#ispeed_blink').removeClass('pnlimgHide')
+                    $('#ispeed_blink').addClass('imgmax')
+
+                    //--- battery on color
+                    $('#ibattery_100').removeClass('imgmax');
+                    $('#ibattery_100').removeClass('pnlimgHide')
+                    $('#ibattery_100').addClass('imgmax')
+
+                    $('#ibattery_100_blink').removeClass('imgmax');
+                    $('#ibattery_100_blink').removeClass('pnlimgHide')
+                    $('#ibattery_100_blink').addClass('pnlimgHide')
+
+                }
+                
+
+                bln_blink = true;
+
+                blink_ctr = blink_ctr + 1;
+
             }
         }
-        //setTimeout('blinkBottom()', 0);
-        //setTimeout('blinkTop()', 0);
-        //setTimeout('blinkTop()', 500);
-        //setTimeout('blinkBottom()', 500);
-        //setTimeout('blinkTop()', 1000);
-        //setTimeout('blinkBottom()', 1000);
-        //setTimeout('blinkTop()', 1500);
-        //setTimeout('blinkBottom()', 1500);
-        //setTimeout('blinkBottom()', 2000);
 
-        setTimeout('blinkBottom()', 0);
-        setTimeout('blinkTop()', 0);
-        setTimeout('blinkTop()', 1000);
-        setTimeout('blinkBottom()', 1000);
-        setTimeout('blinkTop()', 2000);
-        setTimeout('blinkBottom()', 2000);
-        setTimeout('blinkTop()', 3000);
-        setTimeout('blinkBottom()', 3000);
-        setTimeout('blinkBottom()', 4000);
-
-        function iPlusMouseOver()
-        {
-            $("#iPlus").attr("src", "Content/Images/Dashboard/Plus_Button_hover.png");
-        }
-
-        function iPlusMouseOut() {
-            $("#iPlus").attr("src", "Content/Images/Dashboard/Plus_Button_normal.png");
-        }
-        
-        function iPlusMouseDown() {
-            $("#iPlus").attr("src", "Content/Images/Dashboard/Plus_Button_press.png");
-        }
-
-        function iMinusMouseOver() {
-            $("#iMinus").attr("src", "Content/Images/Dashboard/Minus_Button_Hover.png");
-        }
-
-        function iMinusMouseOut() {
-            $("#iMinus").attr("src", "Content/Images/Dashboard/Minus_Button_Normal.png");
-        }
-
-        function iMinusMouseDown() {
-            $("#iMinus").attr("src", "Content/Images/Dashboard/Minus_Button_Press.png");
-        }
-
-        function iExMouseOver() {
-            $("#iEx").attr("src", "Content/Images/Dashboard/Ex_Button_Hover.png");
-        }
-
-        function iMinusMouseOut() {
-            $("#iEx").attr("src", "Content/Images/Dashboard/Ex_Button_normal.png");
-        }
-
-        function iExMouseDown() {
-            $("#iEx").attr("src", "Content/Images/Dashboard/Ex_Button_press.png");
-        }
-
-        //$(function () {
-        //    $("#iPlus")
-        //        .mouseover(function () {
-        //            //var src = $(this).attr("src").match(/[^\.]+/) + "over.gif";
-        //            $(this).attr("src", "Content/Images/Dashboard/Plus_Button_Hover.png");
-        //        })
-        //        .mouseout(function () {
-        //            //var src = $(this).attr("src").replace("over.gif", ".gif");
-        //            $(this).attr("src", "Content/Images/Dashboard/Plus_Button_Normal.png");
-        //        });
-        //});
-
-
-
-        
-        
+        setTimeout('blink()', 0);
+        setTimeout('blink()', 1000);
+        setTimeout('blink()', 2000);
+        setTimeout('blink()', 3000);
+        setTimeout('blink()', 4000);
 
     </script>
 
@@ -402,20 +327,13 @@
     <div class="div_battery">
         <img src="Content/Images/Dashboard/battery_100.png" id="ibattery_100_blink" class="pnlimgHide"/>
     </div>
-   <%-- <div class="div_plus">
-        <img src="Content/Images/Dashboard/Plus_Button_Normal.png" id="iPlus" class="imgmax"/>
+    <div id="iPlus" class="div_plus">
     </div>
-    <div class="div_plus">
-        <img src="Content/Images/Dashboard/Plus_Button_hover.png" id="iPlus_hover" class="pnlimgHide"/>
-    </div>--%>
-
-    <div id="iPlus">
+    <div id="iMinus" class="div_minus">
     </div>
-    <div id="iMinus">
+    <div id="iEx" class="div_ex">
     </div>
-    <div id="iEx">
-    </div>
-    <div id="iTick">
+    <div id="iTick" class="div_tick">
     </div>
     <%--<div class="div_tick">
         <img src="Content/Images/Dashboard/tick_hover.png" id="iTick_hover" class="pnlimgHide"/>
@@ -424,9 +342,12 @@
         <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iBottomNanosoft" class="imgmax"/>
     </div>
     <div class="div_LCD">
-        <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iLCD" class="imgmax"/>
+        <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iLCD" class="imgLCD"/>
     </div>
-
+    <div id="idLiveData" class="div_vwLiveData" onclick="CallInfoWindow()">
+        <asp:Label ID="Label1" runat="server" Text="view live data"></asp:Label>
+       
+    </div>
 
     <%--<div class="div_break_blink">
         <img src="Images/FixingBreak_.png" id="ibreak_blink" class="pnlimgHide"/>
