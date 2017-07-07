@@ -344,7 +344,7 @@
     <div class="div_LCD">
         <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iLCD" class="imgLCD"/>
     </div>
-    <div id="idLiveData" class="div_vwLiveData" onclick="CallInfoWindow()">
+    <div id="idLiveData" class="div_vwLiveData">
         <asp:Label ID="Label1" runat="server" Text="view live data"></asp:Label>
        
     </div>

@@ -30,6 +30,20 @@
     cursor: pointer;
 }
 
+.div_vwLiveData {
+    width: 100px;
+    font-style: normal;
+    /*font-size: 0px;
+    font-weight: bold;*/
+    color: blue;
+    top: 125px;
+    left: 385px;
+    position:absolute;
+    cursor: pointer;
+    /*Position:static;*/
+    /*z-index: 1000000;*/
+}
+
 /*Panel*/
 .div_break {
     width: 23px;
