@@ -2,7 +2,7 @@
 }
 .div_dashboard {
     width: 580px;
-    height: 200px;
+    height: 190px;
     background-image: url('../Content/Images/Dashboard/Display-Grey_blank.png');
     background-size: 100%;
     background-repeat: no-repeat;
@@ -35,7 +35,7 @@
     width: 23px;
     height: 23px;
     position: absolute;
-    top: 49px;
+    top: 43px;
     left: 44px;
 }
 
@@ -43,7 +43,7 @@
     width: 19px;
     height: 19px;
     position: absolute;
-    top: 49px;
+    top: 43px;
     left: 77px;
 }
 
@@ -51,7 +51,7 @@
     width: 19px;
     height: 19px;
     position: absolute;
-    top: 49px;
+    top: 43px;
     left: 107px;
 }
 
@@ -59,7 +59,7 @@
     width: 19px;
     height: 19px;
     position: absolute;
-    top: 50px;
+    top: 44px;
     left: 136px;
 }
 
@@ -67,7 +67,7 @@
     width: 29px;
     height: 29px;
     position: absolute;
-    top: 50px;
+    top: 44px;
     left: 162px;
 }
 
@@ -75,7 +75,7 @@
     width: 19px;
     height: 19px;
     position: absolute;
-    top: 49px;
+    top: 43px;
     left: 197px;
 }
 
@@ -83,7 +83,7 @@
     width: 28px;
     height: 28px;
     position: absolute;
-    top: 81px;
+    top: 75px;
     left: 57px;
 }
 
@@ -91,7 +91,7 @@
     width: 50px;
     height: 50px;
     position: absolute;
-    top: 86px;
+    top: 80px;
     left: 102px;
 }
 
@@ -99,7 +99,7 @@
     width: 32px;
     height: 32px;
     position: absolute;
-    top: 85px;
+    top: 79px;
     left: 166px;
 }
 
@@ -108,7 +108,7 @@
     width: 85px;
     height: 85px;
     position: absolute;
-    top: 47px;
+    top: 41px;
     left: 251px;
 }
 
@@ -296,29 +296,34 @@
     width: 115px;
     height: 50px;
     position: absolute;
-    top: 146px;
+    top: 140px;
     left: 448px;
 }
 
-
-
 /*LCD*/
+.imgLCD {
+    max-height: 60px;
+    max-width: 240px;
+
+}
+
 .div_LCD {
     width: 145px;
-    height: 30px;
+    height: 60px;
     background-color: none;
     position: absolute;
     overflow: hidden;
-    top: 68px;
+    top: 51px;
     left: 361px;
 
 }
+
 .div_LCD img {
  font-size: 3em;
  color: limegreen;
  position: absolute;
- width: 100%;
- height: 100%;
+ width: 240px;
+ height: 50px;
  margin: 0;
  line-height: 50px;
  text-align: center;
@@ -326,13 +331,15 @@
  -moz-transform:translateX(100%);
  -webkit-transform:translateX(100%);	
  transform:translateX(100%);
+  -moz-animation: example1 4.5s linear;
+ -webkit-animation: example1 4.5s linear;
+ animation: example1 4.5s linear;
+
  /* Apply animation to this element */	
  /*-moz-animation: example1 15s linear infinite;
  -webkit-animation: example1 15s linear infinite;
  animation: example1 15s linear infinite;*/
- -moz-animation: example1 4.5s linear;
- -webkit-animation: example1 4.5s linear;
- animation: example1 4.5s linear;
+
 }
 /* Move it (define the animation) */
 @-moz-keyframes example1 {
