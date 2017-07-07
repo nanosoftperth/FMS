@@ -126,8 +126,7 @@ namespace FMS.ReportService
                         string BusinessLocation  = string.Empty; 
                         switch (Convert.ToString(Item.ReportName))
                         {
-                            case ReportNameList.VehicleReport:
-                                 
+                            case ReportNameList.VehicleReport:                                 
                                   GenericObj = new FMS.ReportLogic.VehicleReportPDF();
                                 ParmType = Convert.ToString(Item.Vehicle);
                                 break; 

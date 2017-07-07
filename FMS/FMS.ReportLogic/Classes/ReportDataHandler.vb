@@ -80,47 +80,68 @@ Public Class ReportDataHandler
     Public Shared Function GetVehicleReportValues(startdate As Date _
                                                     , endDate As Date _
                                                     , vehicleName As String, appID As String) As CachedVehicleReport
-
         startdate = startdate
         endDate = endDate.AddDays(1)
+        Dim rept As New List(Of CachedVehicleReport)
+        Dim reptobj As New CachedVehicleReport
+        Dim vehicleReportLine As New List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine)
+
+        If Not String.IsNullOrEmpty(vehicleName) Then
+
+            Dim arrVehicle = vehicleName.Split(",")
+
+            If arrVehicle.Length > 0 Then
+                For Each vehName As String In arrVehicle
+
+                    'get the vehicleid (guid)
+                    Dim vehicleID As Guid = _
+                        FMS.Business.DataObjects.ApplicationVehicle.GetAll(New Guid(appID)) _
+                                .Where(Function(x) x.Name.ToLower = vehName.ToLower).Single.ApplicationVehileID
+
+                    Dim GET_CAHCHED_REPORT As Boolean = True
+
+                    Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
+                            FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
+
+                    For Each Item In vehicleReportLines
+                        vehicleReportLine.Add(New FMS.Business.ReportGeneration.VehicleActivityReportLine With {.ArrivalTime = Item.ArrivalTime _
+                                                                , .DepartureTime = Item.DepartureTime _
+                                                                , .DistanceKMs = Item.DistanceKMs _
+                                                                , .DriverName = Item.DriverName _
+                                                                , .EngineOffDuration = Item.EngineOffDuration _
+                                                                , .StopDuration = Item.StopDuration _
+                                                                , .StopLocation = Item.StopLocation _
+                                                                , .IdleDuration = Item.IdleDuration _
+                                                                , .Lat = Item.Lat _
+                                                                , .Lng = Item.Lng _
+                                                                , .StartTime = Item.StartTime _
+                                                               })
+                    Next
 
 
-        'Dim appID As Guid
-        'appID = New Guid("176225F3-3AC6-404C-B191-0B4F69CC651A")
-
-        'get the vehicleid (guid)
-        Dim vehicleID As Guid = _
-            FMS.Business.DataObjects.ApplicationVehicle.GetAll(New Guid(appID)) _
-                    .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
-
-
-        'Find out if the report is already in the cache
-        'Dim rept As CachedVehicleReport = (From x In ThisSession.CachedVehicleReports _
-        '                                    Where x.EndDate = endDate _
-        '                                    AndAlso x.StartDate = startdate _
-        '                                  AndAlso x.VehicleID = vehicleID).SingleOrDefault
-        Dim rept As CachedVehicleReport
-        Dim GET_CAHCHED_REPORT As Boolean = True
-
-        'MAKE the report and add it to the cache if it doesnt exist
-        If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
-
-            Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
-                    FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
-
-            rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
-                                                    , .StartDate = startdate _
+                    'rept.Add(New CachedVehicleReport With {.VehicleID = vehicleID _
+                    '                                        , .StartDate = startdate _
+                    '                                        , .EndDate = endDate _
+                    '                                        , .LineValies = vehicleReportLines
+                    '                                      }) 
+                    'rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
+                    '                                        , .StartDate = startdate _
+                    '                                        , .EndDate = endDate _
+                    '                                        , .LineValies = vehicleReportLines}) 
+ 
+                Next
+                reptobj = (New CachedVehicleReport With {.StartDate = startdate _
                                                     , .EndDate = endDate _
-                                                    , .LineValies = vehicleReportLines})
+                                                     , .LineValies = vehicleReportLine})
 
-            rept.CalculateSummaries()
-            'ThisSession.CachedVehicleReports.Add(rept)
 
+                reptobj.CalculateSummaries()
+            End If
         End If
 
-        rept.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(New Guid(appID))
+        reptobj.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(New Guid(appID))
 
-        Return rept
+        Return reptobj
     End Function
     'BY RYAN FUNCTION USED TO CALL SERVICE VEHICLE REPORT 
     Public Shared Function GetDriverOperatingReportValues(startdate As Date _
