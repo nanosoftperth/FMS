@@ -3,6 +3,7 @@ Imports System.Net.Http.Headers
 Imports Newtonsoft.Json
 Imports FMS.Business.DataObjects
 Imports DevExpress.Web
+Imports System.Net
 
 Public Class CanBusPropertyDisplay
     Inherits System.Web.UI.Page
@@ -21,17 +22,15 @@ Public Class CanBusPropertyDisplay
         If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
         Dim client As HttpClient = New HttpClient()
-        Dim baseAddress As String = ConfigurationManager.AppSettings("BaseAddressURI")
+        Dim baseAddress As String = ""
         Dim standard As String = ConfigurationManager.AppSettings("Standard")
         Dim spn As String = ConfigurationManager.AppSettings("SPN")
+        baseAddress = "http://" + HttpContext.Current.Request.Url.Authority + "/"
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
         Dim id = DeviceID
         Dim url = "api/vehicle/GetCanMessageValue?deviceid=" + id
         Dim response As HttpResponseMessage = client.GetAsync(url).Result
-
-        'Dim xxx = FMS.Business.DataObjects.CanDataPoint.CanBusFaultDefinition.GetFaultCodeList()
-        'Dim yyy = xxx.Where(Function(canDef) canDef.Key.Equals("S4")).ToList
 
         If response.IsSuccessStatusCode Then
             Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
@@ -59,7 +58,7 @@ Public Class CanBusPropertyDisplay
                             Else
                                 cbd.description = "0"
                             End If
-                            
+
                         Else
                             cbd.description = messageValue.CanValues(0).Value.ToString()
                         End If
@@ -98,8 +97,24 @@ Public Class CanBusPropertyDisplay
         Dim templateContainer As GridViewDataItemTemplateContainer = CType(link.NamingContainer, GridViewDataItemTemplateContainer)
 
         Dim rVI As Integer = templateContainer.VisibleIndex
+        Dim getLabel As String = templateContainer.Grid.GetRowValues(rVI, "label").ToString()
         Dim getDescription As String = templateContainer.Grid.GetRowValues(rVI, "description").ToString()
-        Dim contentUrl As String = String.Format("{0}", getDescription)
+        Dim desc As String = ""
+
+        If getLabel.Equals("Fault Codes") Then
+            Dim getCodeDescription As String = getDescription
+            For Each arr In getDescription.Split(",")
+                Dim canBusFaultDef = FMS.Business.DataObjects.CanDataPoint.CanBusFaultDefinition.GetFaultCodeList()
+                Dim canDescription = canBusFaultDef.Where(Function(canDef) canDef.Key.Equals(arr)).ToList()
+                If Not canDescription.Count.Equals(0) Then
+                    For Each arr2 In canDescription
+                        desc &= arr2.Key + " = " + arr2.Value.Split(",")(1) + ","
+                    Next
+                End If
+            Next
+        End If
+
+        Dim contentUrl As String = String.Format("{0}", desc)
 
         link.NavigateUrl = "javascript:void(0);"
         link.Text = String.Format(getDescription)

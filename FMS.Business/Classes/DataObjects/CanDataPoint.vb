@@ -506,62 +506,62 @@
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 2, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
                                                                         From {
-                                                                                New KeyValuePair(Of Integer, String)(1, "Can  1, Can  101"),
-                                                                                New KeyValuePair(Of Integer, String)(2, "Can  2, Can  102"),
-                                                                                New KeyValuePair(Of Integer, String)(3, "Can  3, Can  103"),
-                                                                                New KeyValuePair(Of Integer, String)(4, "Can  4, Can  104"),
-                                                                                New KeyValuePair(Of Integer, String)(5, "Can  5, Can  105"),
-                                                                                New KeyValuePair(Of Integer, String)(6, "Can  6, Can  106"),
-                                                                                New KeyValuePair(Of Integer, String)(7, "Can  7, Can  107"),
-                                                                                New KeyValuePair(Of Integer, String)(8, "Can  8, Can  108")
+                                                                                New KeyValuePair(Of Integer, String)(1, "Can 1, Can 101"),
+                                                                                New KeyValuePair(Of Integer, String)(2, "Can 2, Can 102"),
+                                                                                New KeyValuePair(Of Integer, String)(3, "Can 3, Can 103"),
+                                                                                New KeyValuePair(Of Integer, String)(4, "Can 4, Can 104"),
+                                                                                New KeyValuePair(Of Integer, String)(5, "Can 5, Can 105"),
+                                                                                New KeyValuePair(Of Integer, String)(6, "Can 6, Can 106"),
+                                                                                New KeyValuePair(Of Integer, String)(7, "Can 7, Can 107"),
+                                                                                New KeyValuePair(Of Integer, String)(8, "Can 8, Can 108")
                                                                             }
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 3, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
                                                                         From {
-                                                                                New KeyValuePair(Of Integer, String)(1, "Can  201"),
-                                                                                New KeyValuePair(Of Integer, String)(2, "Can  202"),
-                                                                                New KeyValuePair(Of Integer, String)(3, "Can  203"),
-                                                                                New KeyValuePair(Of Integer, String)(4, "Can  204"),
-                                                                                New KeyValuePair(Of Integer, String)(5, "Can  205"),
-                                                                                New KeyValuePair(Of Integer, String)(6, "Can  206"),
-                                                                                New KeyValuePair(Of Integer, String)(7, "Can  207"),
-                                                                                New KeyValuePair(Of Integer, String)(8, "Can  208")
+                                                                                New KeyValuePair(Of Integer, String)(1, "Can 201"),
+                                                                                New KeyValuePair(Of Integer, String)(2, "Can 202"),
+                                                                                New KeyValuePair(Of Integer, String)(3, "Can 203"),
+                                                                                New KeyValuePair(Of Integer, String)(4, "Can 204"),
+                                                                                New KeyValuePair(Of Integer, String)(5, "Can 205"),
+                                                                                New KeyValuePair(Of Integer, String)(6, "Can 206"),
+                                                                                New KeyValuePair(Of Integer, String)(7, "Can 207"),
+                                                                                New KeyValuePair(Of Integer, String)(8, "Can 208")
                                                                             }
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 4, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
                                                                         From {
-                                                                                New KeyValuePair(Of Integer, String)(1, "MS  1"),
-                                                                                New KeyValuePair(Of Integer, String)(2, "MS  11"),
-                                                                                New KeyValuePair(Of Integer, String)(3, "MS  12"),
-                                                                                New KeyValuePair(Of Integer, String)(4, "MS  14"),
-                                                                                New KeyValuePair(Of Integer, String)(5, "MS  21"),
-                                                                                New KeyValuePair(Of Integer, String)(6, "MS  22"),
-                                                                                New KeyValuePair(Of Integer, String)(7, "MS  23"),
-                                                                                New KeyValuePair(Of Integer, String)(8, "MS  31")
+                                                                                New KeyValuePair(Of Integer, String)(1, "MS 1"),
+                                                                                New KeyValuePair(Of Integer, String)(2, "MS 11"),
+                                                                                New KeyValuePair(Of Integer, String)(3, "MS 12"),
+                                                                                New KeyValuePair(Of Integer, String)(4, "MS 14"),
+                                                                                New KeyValuePair(Of Integer, String)(5, "MS 21"),
+                                                                                New KeyValuePair(Of Integer, String)(6, "MS 22"),
+                                                                                New KeyValuePair(Of Integer, String)(7, "MS 23"),
+                                                                                New KeyValuePair(Of Integer, String)(8, "MS 31")
                                                                             }
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 5, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
                                                                         From {
-                                                                                New KeyValuePair(Of Integer, String)(1, "MS  32"),
-                                                                                New KeyValuePair(Of Integer, String)(2, "MS  34"),
-                                                                                New KeyValuePair(Of Integer, String)(3, "MS  41"),
-                                                                                New KeyValuePair(Of Integer, String)(4, "MS  42"),
-                                                                                New KeyValuePair(Of Integer, String)(5, "M1  1"),
-                                                                                New KeyValuePair(Of Integer, String)(6, "M1  2"),
-                                                                                New KeyValuePair(Of Integer, String)(7, "M1  4"),
-                                                                                New KeyValuePair(Of Integer, String)(8, "M2  1")
+                                                                                New KeyValuePair(Of Integer, String)(1, "MS 32"),
+                                                                                New KeyValuePair(Of Integer, String)(2, "MS 34"),
+                                                                                New KeyValuePair(Of Integer, String)(3, "MS 41"),
+                                                                                New KeyValuePair(Of Integer, String)(4, "MS 42"),
+                                                                                New KeyValuePair(Of Integer, String)(5, "M1 1"),
+                                                                                New KeyValuePair(Of Integer, String)(6, "M1 2"),
+                                                                                New KeyValuePair(Of Integer, String)(7, "M1 4"),
+                                                                                New KeyValuePair(Of Integer, String)(8, "M2 1")
                                                                             }
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 6, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
                                                                         From {
-                                                                                New KeyValuePair(Of Integer, String)(1, "M2  2"),
-                                                                                New KeyValuePair(Of Integer, String)(2, "M2  4"),
-                                                                                New KeyValuePair(Of Integer, String)(3, "M3  1"),
-                                                                                New KeyValuePair(Of Integer, String)(4, "M3  2"),
-                                                                                New KeyValuePair(Of Integer, String)(5, "M3  4"),
-                                                                                New KeyValuePair(Of Integer, String)(6, "M4  1"),
-                                                                                New KeyValuePair(Of Integer, String)(7, "M4  2"),
-                                                                                New KeyValuePair(Of Integer, String)(8, "M4  4")
+                                                                                New KeyValuePair(Of Integer, String)(1, "M2 2"),
+                                                                                New KeyValuePair(Of Integer, String)(2, "M2 4"),
+                                                                                New KeyValuePair(Of Integer, String)(3, "M3 1"),
+                                                                                New KeyValuePair(Of Integer, String)(4, "M3 2"),
+                                                                                New KeyValuePair(Of Integer, String)(5, "M3 4"),
+                                                                                New KeyValuePair(Of Integer, String)(6, "M4 1"),
+                                                                                New KeyValuePair(Of Integer, String)(7, "M4 2"),
+                                                                                New KeyValuePair(Of Integer, String)(8, "M4 4")
                                                                             }
                                                                         })
                 lstFaultCodes.Add(New FaultCodes() With {.byteCode = 7, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
