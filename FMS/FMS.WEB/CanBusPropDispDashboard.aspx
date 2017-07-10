@@ -345,7 +345,7 @@
         <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iLCD" class="imgLCD"/>
     </div>
     <div id="idLiveData" class="div_vwLiveData">
-        <asp:Label ID="Label1" runat="server" Text="view live data"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Launch NanoSoft Display" Font-Size="11px" Width="150px" Font-Names="arial"></asp:Label>
        
     </div>
 

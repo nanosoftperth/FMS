@@ -1,9 +1,9 @@
 ﻿body {
 }
 .div_dashboard {
-    width: 580px;
-    height: 190px;
-    background-image: url('../Content/Images/Dashboard/Display-Grey_blank.png');
+    width: 650px;
+    height: 200px;
+    background-image: url('../Content/Images/Dashboard/Display-Grey_blank_withTail.png');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center; 
@@ -20,110 +20,101 @@
     max-width: 100%;
 }
 
-.div_vwlivedta {
-    width: 100px;
-    font-style:normal;
-    color: blue;
-    top: 145px;
-    left: 480px;
-    position:absolute;
-    cursor: pointer;
-}
-
 .div_vwLiveData {
-    width: 100px;
+    width: 150px;
     font-style: normal;
-    /*font-size: 0px;
-    font-weight: bold;*/
+    font-size: 11px;
+    font-weight: bold;
     color: blue;
-    top: 125px;
-    left: 385px;
+    top: 113px;
+    left: 418px;
     position:absolute;
     cursor: pointer;
     /*Position:static;*/
     /*z-index: 1000000;*/
+ 
 }
 
 /*Panel*/
 .div_break {
-    width: 23px;
-    height: 23px;
+    width: 25px;
+    height: 25px;
     position: absolute;
-    top: 43px;
-    left: 44px;
+    top: 34px;
+    left: 50px;
 }
 
 .div_steer {
-    width: 19px;
-    height: 19px;
+    width: 21px;
+    height: 21px;
     position: absolute;
-    top: 43px;
-    left: 77px;
+    top: 34px;
+    left: 86px;
 }
 
 .div_drive {
-    width: 19px;
-    height: 19px;
+    width: 20px;
+    height: 20px;
     position: absolute;
-    top: 43px;
-    left: 107px;
+    top: 34px;
+    left: 120px;
 }
 
 .div_ifm {
-    width: 19px;
-    height: 19px;
+    width: 21px;
+    height: 21px;
     position: absolute;
-    top: 44px;
-    left: 136px;
+    top: 34px;
+    left: 152px;
 }
 
 .div_can {
-    width: 29px;
-    height: 29px;
+    width: 33px;
+    height: 33px;
     position: absolute;
-    top: 44px;
-    left: 162px;
+    top: 37px;
+    left: 181px;
 }
 
 .div_align {
-    width: 19px;
-    height: 19px;
+    width: 21px;
+    height: 21px;
     position: absolute;
-    top: 43px;
-    left: 197px;
+    top: 33px;
+    left: 220px;
 }
 
 .div_warning {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    top: 75px;
-    left: 57px;
+    top: 67px;
+    left: 65px;
 }
 
 .div_stop {
     width: 50px;
     height: 50px;
     position: absolute;
-    top: 80px;
-    left: 102px;
+    top: 73px;
+    left: 117px;
 }
 
 .div_speed {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     position: absolute;
-    top: 79px;
-    left: 166px;
+    top: 71px;
+    left: 186px;
 }
 
 /*Battery*/
 .div_battery {
-    width: 85px;
-    height: 85px;
+    width: 100px;
+    height: 100px;
     position: absolute;
-    top: 41px;
-    left: 251px;
+    top: 30px;
+    left: 280px;
 }
 
 .pnlimgHide {
@@ -131,204 +122,207 @@
 }
 /*Buttons*/
 .div_plus {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 33px;
+    top: 107px;
+    left: 37px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Plus_Button_Normal.png');
     background-repeat: no-repeat;
 }
 
 .div_plus_blink {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
+    position: absolute;
+    top: 107px;
+    left: 37px;
     background-image: url('../Content/Images/Dashboard/Plus_Button_Hover.png');
     position: absolute;
     background-repeat: no-repeat;
-    top: 119px;
-    left: 33px;
     background-size:100%;
 }
 
 #iPlus:hover {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
+    position: absolute;
+    top: 107px;
+    left: 37px;
     background-image: url('../Content/Images/Dashboard/Plus_Button_Hover.png');
     position: absolute;
     background-repeat: no-repeat;
-    top: 119px;
-    left: 33px;
     background-size:100%;
 }
 
 #iPlus:active {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
+    position: absolute;
+    top: 107px;
+    left: 37px;
     background-image: url('../Content/Images/Dashboard/Plus_Button_press.png');
     position: absolute;
     background-repeat: no-repeat;
-    top: 119px;
-    left: 33px;
     background-size:100%;
 }
 
 .div_minus {
-    width: 39px;
-    height: 39px;
-    position: absolute;
-    top: 119px;
-    left: 85px;
+    width: 41px;
+    height: 41px;
+    top: 107px;
+    left: 96px;
+    position: absolute; 
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_Normal.png');
     background-repeat: no-repeat;
 }
 
 .div_minus_blink {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
+    top: 107px;
+    left: 96px;
     position: absolute;
-    top: 119px;
-    left: 85px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_hover.png');
     background-repeat: no-repeat;
 }
 
 .div_minus:hover {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
+    top: 107px;
+    left: 96px;
     position: absolute;
-    top: 119px;
-    left: 85px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_hover.png');
     background-repeat: no-repeat;
 }
 
 .div_minus:active {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
+    top: 107px;
+    left: 96px;
     position: absolute;
-    top: 119px;
-    left: 85px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_press.png');
     background-repeat: no-repeat;
 }
 
 .div_ex {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 138px;
+    top: 107px;
+    left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_Normal.png');
     background-repeat: no-repeat;
 }
 
 .div_ex_blink {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 138px;
+    top: 107px;
+    left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_hover.png');
     background-repeat: no-repeat;
 }
 
 .div_ex:hover {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 138px;
+    top: 107px;
+    left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_hover.png');
     background-repeat: no-repeat;
 }
 
 .div_ex:active {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 138px;
+    top: 107px;
+    left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_press.png');
     background-repeat: no-repeat;
 }
 
 .div_tick {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 189px;
+    top: 107px;
+    left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_Normal.png');
     background-repeat: no-repeat;
 }
 
 .div_tick_blink {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 189px;
+    top: 107px;
+    left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_Hover.png');
     background-repeat: no-repeat;
 }
 
 .div_tick:hover {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 189px;
+    top: 107px;
+    left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_Hover.png');
     background-repeat: no-repeat;
 }
 
 .div_tick:active {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     position: absolute;
-    top: 119px;
-    left: 189px;
+    top: 107px;
+    left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_press.png');
     background-repeat: no-repeat;
 }
 
 .div_bottomlogo {
-    width: 115px;
+    width: 131px;
     height: 50px;
     position: absolute;
-    top: 140px;
-    left: 448px;
+    top: 133px;
+    left: 499px;
 }
 
 /*LCD*/
 .imgLCD {
     max-height: 60px;
-    max-width: 240px;
+    max-width: 280px;
 
 }
 
 .div_LCD {
-    width: 145px;
-    height: 60px;
+    width: 161px;
+    height: 65px;
     background-color: none;
     position: absolute;
     overflow: hidden;
-    top: 51px;
-    left: 361px;
+    top: 40px;
+    left: 405px;
 
 }
 
@@ -336,8 +330,8 @@
  font-size: 3em;
  color: limegreen;
  position: absolute;
- width: 240px;
- height: 50px;
+ width: 280px;
+ height: 60px;
  margin: 0;
  line-height: 50px;
  text-align: center;
