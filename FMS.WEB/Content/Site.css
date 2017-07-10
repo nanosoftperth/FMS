@@ -20,6 +20,18 @@
 	border: 1px solid rgba(72, 181, 233, 0.6);
 	border-radius: 2px 2px 10px 10px;
 }
+
+button {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    /*optional*/
+    font-family: arial,sans-serif; /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: point;
+}
+
 /*For Dashboard*/
 .custom-iw2_dash { 
 	/*top: 15px !important;*/

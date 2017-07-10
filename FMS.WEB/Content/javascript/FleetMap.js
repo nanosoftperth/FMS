@@ -113,7 +113,7 @@ function ShowDashboard(event) {
 
     //document.getElementById("idLiveData").addEventListener("click", Run_infoWindowCSSForCanBus);
 }
-
+var evnt = null;
 function showInfoWindow2(event) {
 
     //var vertices = '<br><br>' + this.getPath();
@@ -130,9 +130,9 @@ function showInfoWindow2(event) {
         infoWindowVehicle = null;
     }
 
-
+    evnt = event;
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title2"> ' + this.Name + ' </div>' +
+                  '<div class="iw-title2"> ' + this.Name + '<button type="button" style="width:200px; text-align:right;" onclick="getDashboard()">View Dashboard</button> </div>' +
                   '<div class="iw-content2">' +
                     contentString
     '</div>' +
@@ -142,11 +142,39 @@ function showInfoWindow2(event) {
 
     infoWindowVehicle = new google.maps.InfoWindow();
 
-    //infoWindowVehicle.setContent(contentString);
     infoWindowVehicle.setPosition(event.latLng);
     infoWindowVehicle.setContent(content);
 
     google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForCanBus(infoWindowVehicle) });
+
+    infoWindowVehicle.open(map);
+
+}
+
+function getDashboard() {
+    var newURL = 'CanBusPropDispDashboard.aspx';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:190px;width:750px\' ></iframe>';
+    contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
+
+    if (infoWindowVehicle !== null) {
+        google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
+        infoWindowVehicle.close();
+        infoWindowVehicle = null;
+    }
+
+    var content = '<div id="iw-container_dash">' +
+                 '<div class="iw-content_dash">' +
+                   contentString
+    '</div>' +
+    '<div class="iw-bottom-gradient"></div>' +
+  '</div>';
+
+    infoWindowVehicle = new google.maps.InfoWindow();
+
+    infoWindowVehicle.setPosition(evnt.latLng);
+    infoWindowVehicle.setContent(content);
+
+    google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForDashboard(infoWindowVehicle) });
 
     infoWindowVehicle.open(map);
 
@@ -999,8 +1027,8 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     marker.TruckName = vehicleName;
 
     marker.addListener('click', showInfoWindow);//DeviceID
-    marker.addListener('dblclick', showInfoWindow2);
-    //marker.addListener('rightclick', showInfoWindow2);
+    //marker.addListener('dblclick', showInfoWindow2);
+    marker.addListener('rightclick', showInfoWindow2);
    // marker.addListener('rightclick', ShowDashboard);
     marker.addListener('dblclick', ShowDashboard);
 
