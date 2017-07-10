@@ -825,6 +825,8 @@
     <Content Include="Content\Images\Dashboard\CAN_gray.png" />
     <Content Include="Content\Images\Dashboard\Display-Grey.png" />
     <Content Include="Content\Images\Dashboard\Display-Grey_blank.png" />
+    <Content Include="Content\Images\Dashboard\Display-Grey_blank_withTail.png" />
+    <Content Include="Content\Images\Dashboard\Display-Grey_withTail.png" />
     <Content Include="Content\Images\Dashboard\drive_color.png" />
     <Content Include="Content\Images\Dashboard\drive_gray.png" />
     <Content Include="Content\Images\Dashboard\Error_color.png" />
@@ -896,6 +898,7 @@
     <Content Include="Content\javascript\FleetMap_ClockLogic.js" />
     <Content Include="Content\javascript\GeoFencing.js" />
     <Content Include="Content\javascript\heatMap.js" />
+    <Content Include="Content\javascript\Inforbox.js" />
     <Content Include="Content\javascript\jquery-1.10.2.min.js" />
     <Content Include="Content\javascript\jquery-3.1.0.min.js" />
     <Content Include="Content\javascript\jquery-ui\AUTHORS.txt" />
@@ -1159,7 +1162,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18356/</IISUrl>
+          <IISUrl>http://localhost:18357/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

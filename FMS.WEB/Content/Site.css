@@ -15,7 +15,7 @@
     height:540px !Important;
     width:430px !Important;
 	/*left: 0px !important;*/
-	background-color: #fff;
+	/*background-color: #fff;*/
 	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
 	border: 1px solid rgba(72, 181, 233, 0.6);
 	border-radius: 2px 2px 10px 10px;
@@ -33,15 +33,29 @@ button {
 }
 
 /*For Dashboard*/
-.custom-iw2_dash { 
-	/*top: 15px !important;*/
-    width:580px !Important;
-    height:190px !Important;
-	/*left: 0px !important;*/
-	/*background-color: #fff;
+.custom-iw2_dash {
+    /*top: 15px !important;*/
+    width: 700px !Important;
+    height: 220px !Important;
+    /*background-color: blue;*/
+    /*left: 0px !important;*/
+    /*background-color: #fff;
 	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);*/
-	border: 1px solid rgba(255, 255, 255, 0.15);
-	/*border-radius: 2px 2px 10px 10px;*/
+    /*border: 1px solid rgba(255, 255, 255, 0.15);*/
+    /*border-radius: 2px 2px 10px 10px;*/
+}}
+.dash_tail {
+    background-color: blue;
+    display: block;
+    /*display: block;
+    top: 10px;
+    width: 0; 
+    height: 0; 
+    position: absolute;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #f00;
+    z-index: 1000000;*/
 }
 
 .iconposition {
@@ -66,7 +80,8 @@ left: 94px !important;
 
 .leftarrow_dash{
     top:190px !Important;
-    left:220px !Important;    
+    left:220px !Important;   
+    
 }
 
 .custom-iw>.gm-style-iw{
@@ -83,10 +98,11 @@ left: 94px !important;
 }
 .custom-iw2_dash>.gm-style-iw{
 
-    top:15px !Important;
+    top:35px !Important;
     left:0px !Important;
-    width:580px !Important;
-    height:190px !Important;
+    width:700px !Important;
+    height:200px !Important;
+
 }
 
 #iw-container .iw-title {
@@ -142,6 +158,18 @@ left: 94px !important;
 	color: white;
 	margin: 0;
 	border-radius: 2px 2px 0 0;
+}
+
+ .infoBox:before{
+  content : " ";
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  position:absolute;
+  top:-10px;
+  left:130px;
 }
 
 
