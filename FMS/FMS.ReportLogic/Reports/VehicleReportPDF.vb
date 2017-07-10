@@ -271,7 +271,7 @@
         'XrTableCell20
         '
         Me.XrTableCell20.CanGrow = False
-        Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.DepartureTime")})
+        Me.XrTableCell20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValies.formatted_DpartureTime")})
         Me.XrTableCell20.Name = "XrTableCell20"
         Me.XrTableCell20.StyleName = "DataField"
         Me.XrTableCell20.Weight = 20.963343320357154R
@@ -491,7 +491,7 @@
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(109.0!, 74.99997!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(348.7498!, 28.20834!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(440.4165!, 28.20834!)
         Me.XrLabel16.StylePriority.UseFont = False
         '
         'Parameter3

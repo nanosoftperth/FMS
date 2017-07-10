@@ -10,7 +10,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-
     <link href="../Content/Jira.css" rel="stylesheet" />
     <script src='../Content/javascript/jquery-3.1.0.min.js'></script>
     <script src="../Content/javascript/page.js"></script>
@@ -22,13 +21,22 @@
         .clsEditForm tr td {
               padding-top:5px;
               padding-left:13px;
-            }
+        } 
+        .clsVehicle {
+         width:100%;
+        }
+        .closebtn {
+           float: right;
+           width: 60px !Important;
+           margin: 5px;
+           margin-top:0 !important;
+             } 
 
-        /*.clsReport {
-        min-width:120px; margin-right:-15px;
-        }*/
-    </style>
-
+        .clsVehicle  .dxlbd
+        {
+            width:100% !important;
+        }
+    </style> 
     <script type="text/javascript">
         function sendMsg(message) {
             $('#aui-flag-container').hide();
@@ -37,8 +45,7 @@
                     , function () {
                         $(this).delay(2500).toggle('slow');
                     });
-        }
-        
+        } 
         function comboDateSelected_ValueChanged(s, id) {
             var selectedVal = s.GetValue();
 
@@ -49,9 +56,7 @@
             } else {
                 //$('.specificTimeEdit').show();
             }
-        }
-
-
+        } 
         function cboSelectedIndexChanged() {
             var ParmList = "";
             if (comboSelectedReport.GetValue() == "ReportGeoFence_byDriver") {
@@ -75,11 +80,9 @@
                 }
             });
         }
-    </script>
-
+    </script> 
     <!--  Report Script Section -->
-    <script type="text/javascript">
-
+    <script type="text/javascript"> 
         function comboDateSelected_ValueChanged(s, id) {
 
             var selectedVal = s.GetValue();

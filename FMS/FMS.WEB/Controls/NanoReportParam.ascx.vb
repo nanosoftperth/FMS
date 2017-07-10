@@ -29,7 +29,6 @@ Public Class NanoReportParam
     Public Property ReportParameter As DevExpress.XtraReports.Parameters.Parameter
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
         lblParameterName.Text = ReportParameter.Description
 
         'populate the comboDateSelected, object data sources do not seem to work for custom controls in markup
@@ -91,8 +90,6 @@ Public Class NanoReportParam
 
             Dim lookupSettings = DirectCast(ReportParameter.LookUpSettings, 
                                                 DevExpress.XtraReports.Parameters.DynamicListLookUpSettings)
-             
-
 
 
             If lookupSettings.Parameter.Description.Contains("Vehicle") Then
@@ -111,7 +108,7 @@ Public Class NanoReportParam
                                                     DevExpress.XtraReports.Parameters.DynamicListLookUpSettings))
                 If lookupSettings.ValueMember.Contains("Name") Then
                     If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
-                        editor.Value = HttpContext.Current.Session("Vehicle")
+                        editor.Value = Convert.ToString(HttpContext.Current.Session("Vehicle")).Replace("Select All,", "")
                     End If
                 End If
 
@@ -128,8 +125,7 @@ Public Class NanoReportParam
                 ods.Fill()
 
                 comboBox1.DataSource = ods
-                comboBox1.DataBind()
-
+                comboBox1.DataBind() 
 
                 If lookupSettings.Parameter.Description.Contains("Driver") Then
                     comboBox1.ClientInstanceName = "Drivers"
@@ -151,13 +147,9 @@ Public Class NanoReportParam
                 End If
 
                 paramControl = comboBox1
-
             End If
-
             dateTimeDIV.Visible = False
         End If
-
-
 
         If ReportParameter.Type.ToString.ToLower = "system.datetime" Then
             'relative time OR exact time
@@ -187,22 +179,9 @@ Public Class CustomTemplate
         Dim comboBox As New DevExpress.Web.ASPxListBox()
         comboBox.ID = Guid.NewGuid.ToString
         comboBox.SelectionMode = DevExpress.Web.ListEditSelectionMode.CheckColumn
-   
-        'comboBox.ValueField = _lookupsSettings.ValueMember
-        'comboBox.TextField = _lookupsSettings.DisplayMember
-
-
-
-        'Dim ods As DevExpress.DataAccess.ObjectBinding.ObjectDataSource = _lookupsSettings.DataSource
-        'ods.Fill()
-
-        'Dim dt As DataTable = DirectCast(_lookupsSettings.DataSource, DataTable)
-
 
         Dim objList As New List(Of FMS.Business.DataObjects.ApplicationVehicle)
         objList = FMS.Business.DataObjects.ApplicationVehicle.GetApplicationsVehicleList(ThisSession.ApplicationID)
-         
-
 
         comboBox.ValueField = "Name"
         comboBox.TextField = "Name"
@@ -211,8 +190,7 @@ Public Class CustomTemplate
         comboBox.DataBind() 
 
         comboBox.SelectionMode = ListEditSelectionMode.CheckColumn
-   
-         
+
         If _lookupsSettings.ValueMember.Contains("Name") Then
             If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
                 Dim strVehicles = Convert.ToString(HttpContext.Current.Session("Vehicle")).Split(",")
@@ -232,11 +210,30 @@ Public Class CustomTemplate
 
         If _lookupsSettings.Parameter.Description.Contains("Vehicle") Then
             comboBox.ClientInstanceName = "Vehicle"
+            comboBox.CssClass = "clsVehicle"
             comboBox.ClientSideEvents.SelectedIndexChanged = "function (s, e) { OnListBoxSelectionChangedValue(s, e, 'Vehicle')}"
             comboBox.ClientSideEvents.EndCallback = "function (s, e) { AddItem(s, e)}"
-        End If
-
- 
+        End If 
         container.Controls.Add(comboBox)
+
+        ' Close Button
+        Dim strClose As New StringBuilder()
+        Dim tabTable As New Table()
+        tabTable.CssClass = "clsVehicle"
+        Dim row As New TableRow()
+        Dim cell As New TableCell()
+        cell.Controls.Add(BuildTestButton())
+        row.Cells.Add(cell)
+        tabTable.Rows.Add(row) 
+
+        container.Controls.Add(tabTable)
     End Sub
+    Protected Overridable Function BuildTestButton() As ASPxButton
+        Dim button As ASPxButton = New ASPxButton 
+        button.Text = "Close"
+        button.AutoPostBack = False
+        button.CssClass = "closebtn"
+        button.ClientSideEvents.Click = "function(s, e){ checkComboBox1.HideDropDown(); }"
+        Return button
+    End Function
 End Class

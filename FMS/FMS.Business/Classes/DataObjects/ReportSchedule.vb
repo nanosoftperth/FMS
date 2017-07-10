@@ -134,7 +134,7 @@ Namespace DataObjects
 
                 Dim objResult = (From x In SingletonAccess.FMSDataContextNew.ReportSchdeules _
                          Where x.ApplicationID = appID _
-                            Order By x.DateCreated
+                            Order By x.DateCreated Descending
                             Select New DataObjects.ReportSchedule(x)).ToList()
 
                 If Not objList Is Nothing Then
@@ -425,7 +425,7 @@ Namespace DataObjects
                         If _reportName = ReportNameList.ReportGeoFence_byDriver Then
                             returnString = returnString + "Driver = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Driver")) Or Convert.ToString(ds.Dictionary.Item("Driver")) = "null"), "", GetDriversName(ds.Dictionary.Item("Driver")))
                         Else
-                            returnString = returnString + "Vehicle = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Vehicle")) Or Convert.ToString(ds.Dictionary.Item("Vehicle")) = "null"), "", ds.Dictionary.Item("Vehicle"))
+                            returnString = returnString + "Vehicle = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Vehicle")) Or Convert.ToString(ds.Dictionary.Item("Vehicle")) = "null"), "", ds.Dictionary.Item("Vehicle").Replace("Select All,", ""))
                         End If
                     End If
                 ElseIf _type = "Schedule" Then
