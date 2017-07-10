@@ -43,8 +43,7 @@
                     EditFormat="DateTime" CssClass ="<%=UniqueClientID%> specificDateEdit">
                 </dx:ASPxDateEdit>
 
-            </div>
-
+            </div> 
 
         </div>
 

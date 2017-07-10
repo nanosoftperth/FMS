@@ -97,7 +97,7 @@ Public Class ReportDataHandler
                     Dim vehicleID As Guid = _
                         FMS.Business.DataObjects.ApplicationVehicle.GetAll(New Guid(appID)) _
                                 .Where(Function(x) x.Name.ToLower = vehName.ToLower).Single.ApplicationVehileID
-
+ 
                     Dim GET_CAHCHED_REPORT As Boolean = True
 
                     Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
@@ -128,7 +128,7 @@ Public Class ReportDataHandler
                     '                                        , .StartDate = startdate _
                     '                                        , .EndDate = endDate _
                     '                                        , .LineValies = vehicleReportLines}) 
- 
+
                 Next
                 reptobj = (New CachedVehicleReport With {.StartDate = startdate _
                                                     , .EndDate = endDate _

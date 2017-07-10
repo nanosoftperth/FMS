@@ -128,7 +128,7 @@ namespace FMS.ReportService
                         {
                             case ReportNameList.VehicleReport:                                 
                                   GenericObj = new FMS.ReportLogic.VehicleReportPDF();
-                                ParmType = Convert.ToString(Item.Vehicle);
+                                ParmType = Convert.ToString(Item.Vehicle).Replace ("Select All,", "");
                                 break; 
                             case ReportNameList.DriverOperatingHoursReport:
                                 GenericObj = new FMS.ReportLogic.DriverOperatingHoursReportPDF();
