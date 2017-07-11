@@ -57,13 +57,16 @@ function showInfoWindow(event) {
 
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 var priDeviceID = '';
+var priDeviceName = '';
 var priDashEvent = null;
+
 function ShowDashboard(event) {
 
     var param = {};
     param.vehicleID = '1';
 
     priDeviceID = this.DeviceID;
+    priDeviceName = this.Name;
     var strName = this.Name.toString();
     var nStart = strName.indexOf('</br>') + 4;
     var nEnd = strName.length;
@@ -190,7 +193,7 @@ function getDashboard() {
 function getInfoWindow2() {
     
     //var vertices = '<br><br>' + this.getPath();
-    var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>';
+    var s = '<div id=\'iw-container\'>' + priDeviceName + '</div>';//'<b>' + this.Name + '</b><br>';
     //iw-title 
     //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID;
     var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + priDeviceID;
@@ -205,7 +208,7 @@ function getInfoWindow2() {
     }
 
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title2"> ' + this.Name + '<button type="button" style="width:200px; text-align:right;" onclick="getDashboard()">View Dashboard</button> </div>' +
+                  '<div class="iw-title2"> ' + priDeviceName + '<button type="button" style="width:200px; text-align:right;" onclick="getDashboard()">View Dashboard</button> </div>' +
                   '<div class="iw-content2">' +
                     contentString
     '</div>' +
