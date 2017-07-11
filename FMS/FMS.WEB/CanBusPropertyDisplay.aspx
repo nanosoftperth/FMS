@@ -4,7 +4,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="refresh" content="5" />
     <title></title>
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
     <script src="Content/javascript/page.js"></script>
@@ -22,9 +21,10 @@
         }  
     </style>
     
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">    
+        var timeout = setTimeout("location.reload(true);", 5000);        
         function OnFaultCodesClick(contentUrl) {
-            //alert(contentUrl);     
+            clearTimeout(timeout);
             var textVal = "";
             var content = contentUrl.split(',');
             for (i = 0; i < content.length; i++) {
@@ -33,9 +33,7 @@
 
             document.getElementById("pMessage").innerHTML = textVal;
             ShowLoginWindow();
-
-            /*clientPopupControl.SetContentUrl(contentUrl);
-            clientPopupControl.Show();*/
+            
         }
         function ShowLoginWindow() {
             pcLogin.ShowAtPos(10, 10);
@@ -72,7 +70,10 @@
     </div>
         <dx:ASPxPopupControl ID="pcLogin" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin"
-        HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
+        HeaderText="Fault Code Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
+           <ClientSideEvents Closing="function(s, e) {
+                window.location.reload(true);
+	;}"/>
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">

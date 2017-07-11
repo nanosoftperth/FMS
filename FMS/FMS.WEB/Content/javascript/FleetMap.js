@@ -141,7 +141,7 @@ function showInfoWindow2(event) {
 
     evnt = event;
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title2"> ' + this.Name + '<button type="button" style="width:200px; text-align:right;" onclick="getDashboard()">View Dashboard</button> </div>' +
+                  '<div class="iw-title2"> ' + this.Name + '<button type="button" style="float:right; width:110px; text-align:right; font-size:15px;" onclick="getDashboard()">View Dashboard</button> </div>' +
                   '<div class="iw-content2">' +
                     contentString
     '</div>' +
@@ -170,9 +170,9 @@ function getDashboard() {
         infoWindowVehicle.close();
         infoWindowVehicle = null;
     }
-
+    evnt = priDashEvent;
     var content = '<div id="iw-container_dash">' +
-                 '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="showInfoWindow2()">Launch NanoSoft Display</button></div>' +
+                 '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
                  '<div class="iw-content_dash">' +
                    contentString
     '</div>' +
@@ -207,8 +207,9 @@ function getInfoWindow2() {
         infoWindowVehicle = null;
     }
 
+    evnt = priDashEvent;
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title2"> ' + priDeviceName + '<button type="button" style="width:200px; text-align:right;" onclick="getDashboard()">View Dashboard</button> </div>' +
+                  '<div class="iw-title2"> ' + priDeviceName + '<button type="button" style="float:right; width:110px; text-align:right; font-size:15px;" onclick="getDashboard()">View Dashboard</button> </div>' +
                   '<div class="iw-content2">' +
                     contentString
     '</div>' +
