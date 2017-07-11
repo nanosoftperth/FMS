@@ -344,10 +344,10 @@
     <div class="div_LCD">
         <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iLCD" class="imgLCD"/>
     </div>
-    <div id="idLiveData" class="div_vwLiveData">
+    <%--<div id="idLiveData" class="div_vwLiveData">
         <asp:Label ID="Label1" runat="server" Text="Launch NanoSoft Display" Font-Size="11px" Width="150px" Font-Names="arial"></asp:Label>
        
-    </div>
+    </div>--%>
 
     <%--<div class="div_break_blink">
         <img src="Images/FixingBreak_.png" id="ibreak_blink" class="pnlimgHide"/>

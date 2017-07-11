@@ -56,14 +56,14 @@ function showInfoWindow(event) {
 }
 
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
+var priDeviceID = '';
+var priDashEvent = null;
 function ShowDashboard(event) {
-
-    
-    
 
     var param = {};
     param.vehicleID = '1';
 
+    priDeviceID = this.DeviceID;
     var strName = this.Name.toString();
     var nStart = strName.indexOf('</br>') + 4;
     var nEnd = strName.length;
@@ -88,7 +88,9 @@ function ShowDashboard(event) {
         infoWindowVehicle = null;
     }
 
+    priDashEvent = event;
     var content = '<div id="iw-container_dash">' +
+                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
         
@@ -167,6 +169,7 @@ function getDashboard() {
     }
 
     var content = '<div id="iw-container_dash">' +
+                 '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="showInfoWindow2()">Launch NanoSoft Display</button></div>' +
                  '<div class="iw-content_dash">' +
                    contentString
     '</div>' +
@@ -182,6 +185,42 @@ function getDashboard() {
 
     infoWindowVehicle.open(map);
 
+}
+
+function getInfoWindow2() {
+    
+    //var vertices = '<br><br>' + this.getPath();
+    var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>';
+    //iw-title 
+    //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID;
+    var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + priDeviceID;
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 600px; width: 400px;\' ></iframe>';
+    //style=\'height: 280px; width: 245px\
+    contentString = '<div class=\'iw-content2\'>' + contentString + '</div>';
+
+    if (infoWindowVehicle !== null) {
+        google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
+        infoWindowVehicle.close();
+        infoWindowVehicle = null;
+    }
+
+    var content = '<div id="iw-container">' +
+                  '<div class="iw-title2"> ' + this.Name + '<button type="button" style="width:200px; text-align:right;" onclick="getDashboard()">View Dashboard</button> </div>' +
+                  '<div class="iw-content2">' +
+                    contentString
+    '</div>' +
+    '<div class="iw-bottom-gradient"></div>' +
+  '</div>';
+
+
+    infoWindowVehicle = new google.maps.InfoWindow();
+
+    infoWindowVehicle.setPosition(priDashEvent.latLng);
+    infoWindowVehicle.setContent(content);
+
+    google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForCanBus(infoWindowVehicle) });
+
+    infoWindowVehicle.open(map);
 }
 
 function infoWindowCSS(w) {
@@ -363,9 +402,15 @@ function infoWindowCSSForDashboard(w) {
 
     // Reference to the div that groups the close button elements.
     var iwCloseBtn = iwOuter.next();
-
+    
     // Apply the desired effect to the close button
-    iwCloseBtn.css({ opacity: '1', left: '650px', top: '30px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+    //iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', border: '2px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+
+    iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', 'border-radius': '13px', 'box-shadow': '0 0 30px #3990B9' });
+
+    //iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9', border: '7px solid #847F7C' });
+    //iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', 'border-radius': '13px', 'box-shadow': '0 0 5px black', border: '7px solid #847F7C' });
+    //iwCloseBtn.css({ opacity: '1', left: '415px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
     // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
     if ($('.iw-content').height() < 140) {
@@ -1035,10 +1080,10 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     marker.TruckName = vehicleName;
 
     marker.addListener('click', showInfoWindow);//DeviceID
-    //marker.addListener('dblclick', showInfoWindow2);
-    marker.addListener('rightclick', showInfoWindow2);
-    //marker.addListener('rightclick', ShowDashboard);
-    marker.addListener('dblclick', ShowDashboard);
+    marker.addListener('dblclick', showInfoWindow2);
+    //marker.addListener('rightclick', showInfoWindow2);
+    marker.addListener('rightclick', ShowDashboard);
+    //marker.addListener('dblclick', ShowDashboard);
 
     marker.ID = markerID;
     markers.push(marker);
