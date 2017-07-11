@@ -60,7 +60,7 @@
         function cboSelectedIndexChanged() {
             var ParmList = "";
             if (comboSelectedReport.GetValue() == "ReportGeoFence_byDriver") {
-                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + Drivers.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
+                ParmList = "{StartDate:'" + StartDate.GetValue() + "',EndDate:'" + EndDate.GetValue() + "',Vehicle:'" + lDriver.GetValue() + "', StartDateSpecific:'" + StartDateSpecific.GetValue() + "', EndDateSpecific:'" + EndDateSpecific.GetValue() + "' , BusinessLocation:'" + "" + "',   NativeId:'" + IRecepients.GetValue() + "'}";
             }
             else if (comboSelectedReport.GetValue() == "DriverOperatingHoursReport")
             {
@@ -234,8 +234,13 @@
                 checkComboBox1.SetText(GetSelectedItemsText1(selectedItems));
             }
            
-            lVehicle.SetText(GetValuesByTexts(selectedItems));
-
+            if (_ClientIntanceName == "Vehicle") {
+                lVehicle.SetText(GetValuesByTexts(selectedItems));               
+            }
+            else {
+                lDriver.SetText(GetValuesByTexts(selectedItems));
+            }
+           
         }
         function SynchronizeListBoxValues(dropDown, args) {
             //checkListBox.UnselectAll();
@@ -277,11 +282,11 @@
         //    }
         //    return clientInstanceName;
         //}
-        function AddItem(s,e)
-        {
-            console.log('called');
-            Vehicle.InsertItem(0, "Select ALL");
-        }
+        //function AddItem(s,e)
+        //{
+        //    console.log('called');
+        //    Vehicle.InsertItem(0, "Select ALL");
+        //}
     </script>
 </head>
 <body>

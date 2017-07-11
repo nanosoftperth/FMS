@@ -147,9 +147,9 @@ Namespace DataObjects
                                      .Enabled = item.Enabled,
                                      .DateCreated = item.DateCreated,
                                      .Creator = item.Creator,
-                                     .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm", "", Convert.ToString(item.ReportName)),
+                                     .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm", "", Convert.ToString(item.ReportName), item.ApplicationId),
                                      .SubscriberID = item.SubscriberID,
-                                     .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType), ""),
+                                     .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType), "", item.ApplicationId),
                                      .ScheduleDate = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleDate)),
                                      .ScheduleTime = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleTime)),
                                      .DayofWeek = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.DayofWeek)),
@@ -199,9 +199,9 @@ Namespace DataObjects
                                      .Enabled = item.Enabled,
                                      .DateCreated = item.DateCreated,
                                      .Creator = item.Creator,
-                                     .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm", "", Convert.ToString(item.ReportName)),
+                                     .ReportParams = DeserializeCustomValues(item.ReportParams, "Parm", "", Convert.ToString(item.ReportName), item.ApplicationId),
                                      .SubscriberID = item.SubscriberID,
-                                     .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType), ""),
+                                     .Schedule = DeserializeCustomValues(item.Schedule, "Schedule", Convert.ToString(item.ReportType), "", item.ApplicationId),
                                      .ScheduleDate = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleDate)),
                                      .ScheduleTime = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.ScheduleTime)),
                                      .DayofWeek = GetScheduleParameter(item.Schedule, GetPropertyName(Function() rpt.DayofWeek)),
@@ -392,7 +392,7 @@ Namespace DataObjects
                 Return "" 
             End Try 
         End Function
-        Public Shared Function DeserializeCustomValues(ByVal customValuesXml As String, ByVal _type As String, ByVal _reportType As String, ByVal _reportName As String) As String
+        Public Shared Function DeserializeCustomValues(ByVal customValuesXml As String, ByVal _type As String, ByVal _reportType As String, ByVal _reportName As String, appId As Guid) As String
             Dim returnString As String = String.Empty
             Try
                 If String.IsNullOrWhiteSpace(customValuesXml) Then
@@ -418,12 +418,12 @@ Namespace DataObjects
                                 returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "   " + String.Format("{0:MM/dd/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("StartDateSpecific"))) + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
                             End If
                         ElseIf (ds.Dictionary.Item("EndDate") = "Specific") Then
-                               returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDateSpecific")) Or Convert.ToString(ds.Dictionary.Item("EndDateSpecific")) = "null"), "", String.Format("{0:MM/dd/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("EndDateSpecific")))) + Environment.NewLine
+                            returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDateSpecific")) Or Convert.ToString(ds.Dictionary.Item("EndDateSpecific")) = "null"), "", String.Format("{0:MM/dd/yyyy HH:mm:ss}", Convert.ToDateTime(ds.Dictionary.Item("EndDateSpecific")))) + Environment.NewLine
                         Else
                             returnString = returnString + "Time Period =" + If((String.IsNullOrEmpty(ds.Dictionary.Item("StartDate")) Or Convert.ToString(ds.Dictionary.Item("StartDate")) = "null"), "", ds.Dictionary.Item("StartDate")) + "  " + "to" + "  " + If((String.IsNullOrEmpty(ds.Dictionary.Item("EndDate")) Or Convert.ToString(ds.Dictionary.Item("EndDate")) = "null"), "", ds.Dictionary.Item("EndDate")) + Environment.NewLine
                         End If
                         If _reportName = ReportNameList.ReportGeoFence_byDriver Then
-                            returnString = returnString + "Driver = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Driver")) Or Convert.ToString(ds.Dictionary.Item("Driver")) = "null"), "", GetDriversName(ds.Dictionary.Item("Driver")))
+                            returnString = returnString + "Driver = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Driver")) Or Convert.ToString(ds.Dictionary.Item("Driver")) = "null"), "", ApplicationDriver.GetDriverNameID(ds.Dictionary.Item("Driver"), appId))
                         Else
                             returnString = returnString + "Vehicle = " + If((String.IsNullOrEmpty(ds.Dictionary.Item("Vehicle")) Or Convert.ToString(ds.Dictionary.Item("Vehicle")) = "null"), "", ds.Dictionary.Item("Vehicle").Replace("Select All,", ""))
                         End If
@@ -457,8 +457,8 @@ Namespace DataObjects
 
             Catch ex As Exception
                 'ErrorLog.WriteErrorLog(ex)
-            End Try 
-             
+            End Try
+
             Return returnString
         End Function
         Public Shared Function GetScheduleParameter(ByVal customValuesXml As String, ByVal attributeName As String) As String
@@ -494,17 +494,31 @@ Namespace DataObjects
                         Select New DataObjects.ReportSchedule(x)).ToList()
 
         End Function
-        Public Shared Function GetDriversName(ByVal driversID As String) As String
-            Try
-                Dim appDrivers As FMS.Business.ApplicationDriver = SingletonAccess.FMSDataContextContignous.ApplicationDrivers.FirstOrDefault(Function(x) x.ApplicationDriverID = New Guid(driversID))
-                If Not appDrivers Is Nothing Then
-                    Return (appDrivers.FirstName + "  " + appDrivers.Surname)
-                Else
-                    Return ""
-                End If 
-            Catch ex As Exception 
-            End Try
-        End Function
+        'Public Shared Function GetDriversName(ByVal driversID As String, appID As Guid) As String
+        '    Dim driversString As String = String.Empty
+        '    If Not String.IsNullOrEmpty(driversID) Then
+        '        Dim ObjList As List(Of DataObjects.ApplicationDriver) = ApplicationDriver.GetAllDrivers(appID)
+        '        Dim drivers = driversID.Split(",")
+        '        If drivers.Length > 0 Then
+        '            Dim index As Integer = 0
+        '            For Each Item In ObjList
+        '                If drivers.Contains(Convert.ToString(Item.ApplicationDriverIDAsString)) Then
+        '                    If index = 0 Then
+        '                        driversString = String.Format("{0} {1}", Item.FirstName, Item.Surname) + ","
+        '                    Else
+        '                        driversString = driversString + String.Format("{0} {1}", Item.FirstName, Item.Surname) + ","
+        '                    End If
+        '                    index = index + 1
+        '                End If
+        '            Next
+        '            Return driversString.Remove(driversString.Length - 1)
+        '        Else
+        '            Return ""
+        '        End If
+        '    Else
+        '        Return ""
+        '    End If
+        'End Function
 
     End Class
     Public NotInheritable Class ReportParam

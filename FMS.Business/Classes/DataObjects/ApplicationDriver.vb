@@ -159,8 +159,8 @@
         Public Shared ReadOnly Property DriverREpresentingEveryone As DataObjects.ApplicationDriver
             Get
                 Return New ApplicationDriver() With {.ApplicationDriverID = New Guid("d44c2063-d241-49b8-92c1-623dfc23ddcc") _
-                                                    , .Surname = "Anyone" _
-                                                    , .RepresentsEveryone = True}
+                                                     , .Surname = "Anyone" _
+                                                     , .RepresentsEveryone = True}
             End Get
         End Property
 
@@ -177,8 +177,6 @@
             Return retSet
 
         End Function
-
-
         Public Shared Function GetAllDrivers(applicatoinid As Guid) As List(Of DataObjects.ApplicationDriver)
 
             Return SingletonAccess.FMSDataContextNew.ApplicationDrivers. _
@@ -186,7 +184,17 @@
                                                             New DataObjects.ApplicationDriver(x) _
                                                             ).ToList
         End Function
+        Public Shared Function GetApplicationDrivers(applicatoinid As Guid) As List(Of DataObjects.ApplicationDriver)
 
+            Dim ObjList As List(Of DataObjects.ApplicationDriver) = GetAllDrivers(applicatoinid)
+
+            ObjList = ObjList.OrderBy(Function(x) x.Surname).ToList
+
+            ObjList.Insert(0, New FMS.Business.DataObjects.ApplicationDriver() With {.Surname = "Select All", .ApplicationDriverID = New Guid()})            '    
+
+            Return ObjList
+
+        End Function
         Public Shared Function GetAllDriversWithImageUrl(applicatoinid As Guid)
 
             Return (From y In SingletonAccess.FMSDataContextNew.ApplicationDrivers _
@@ -221,9 +229,33 @@
                 Return ""
             End If
         End Function
-        Public Shared Function GetDriverNameFromID(applicationdriverid As Guid) As String
-             
+        Public Shared Function GetDriverNameID(appdriverid As String, appID As Guid) As String
+            Dim driversString As String = String.Empty
 
+            If Not String.IsNullOrEmpty(appdriverid) Then
+                Dim ObjList As List(Of DataObjects.ApplicationDriver) = GetAllDrivers(appID)
+                Dim drivers = appdriverid.Split(",")
+                If drivers.Length > 0 Then
+                    Dim index As Integer = 0
+                    For Each Item In ObjList
+                        If drivers.Contains(Convert.ToString(Item.ApplicationDriverIDAsString)) Then
+                            If index = 0 Then
+                                driversString = String.Format("{0} {1}", Item.FirstName, Item.Surname) + ","
+                            Else
+                                driversString = driversString + String.Format("{0} {1}", Item.FirstName, Item.Surname) + ","
+                            End If
+                            index = index + 1
+                        End If
+                    Next
+                    Return driversString.Remove(driversString.Length - 1)
+                Else
+                    Return ""
+                End If
+            Else
+                Return ""
+            End If
+        End Function
+        Public Shared Function GetDriverNameFromID(applicationdriverid As Guid) As String
             Dim result = SingletonAccess.FMSDataContextContignous.ApplicationDrivers. _
                         Where(Function(y) y.ApplicationDriverID = applicationdriverid).Select(Function(x) _
                                                             New DataObjects.ApplicationDriver(x)).SingleOrDefault
@@ -234,7 +266,7 @@
                 Return ""
             End If
         End Function
-#End Region
+#End Region 
 
     End Class
 End Namespace

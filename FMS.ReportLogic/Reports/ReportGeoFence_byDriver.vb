@@ -93,11 +93,10 @@
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary4 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportGeoFence_byDriver))
+        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter5 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter6 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
-        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -155,20 +154,15 @@
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Parameter3 = New DevExpress.XtraReports.Parameters.Parameter()
-        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
-        '
-        'ObjectDataSource2
-        '
-        Me.ObjectDataSource2.DataMember = "GetThisApplicationsDriverList"
-        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
         'Detail
         '
@@ -712,6 +706,17 @@
         Me.XrTableCell4.Name = "XrTableCell4"
         Me.XrTableCell4.Weight = 0.72538938464337155R
         '
+        'Parameter3
+        '
+        Me.Parameter3.Description = "Driver"
+        DynamicListLookUpSettings1.DataAdapter = Nothing
+        DynamicListLookUpSettings1.DataMember = Nothing
+        DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource2
+        DynamicListLookUpSettings1.DisplayMember = "NameFormatted"
+        DynamicListLookUpSettings1.ValueMember = "ApplicationDriverIDAsString"
+        Me.Parameter3.LookUpSettings = DynamicListLookUpSettings1
+        Me.Parameter3.Name = "Parameter3"
+        '
         'ObjectDataSource1
         '
         Me.ObjectDataSource1.DataMember = "GetGeoCacheReportByDriver"
@@ -728,16 +733,11 @@
         Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.Parameter3]", GetType(String))
         Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter4, Parameter5, Parameter6})
         '
-        'Parameter3
+        'ObjectDataSource2
         '
-        Me.Parameter3.Description = "Driver"
-        DynamicListLookUpSettings1.DataAdapter = Nothing
-        DynamicListLookUpSettings1.DataMember = Nothing
-        DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource2
-        DynamicListLookUpSettings1.DisplayMember = "NameFormatted"
-        DynamicListLookUpSettings1.ValueMember = "ApplicationDriverIDAsString"
-        Me.Parameter3.LookUpSettings = DynamicListLookUpSettings1
-        Me.Parameter3.Name = "Parameter3"
+        Me.ObjectDataSource2.DataMember = "GetThisApplicationsDriverList"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
         'ReportGeoFence_byDriver
         '
@@ -749,11 +749,11 @@
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
-        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
