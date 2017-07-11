@@ -62,171 +62,201 @@ namespace FMS.ReportService
             string VehicleName = string.Empty;
             bool IsEmail = false;
             Console.WriteLine(DateTime.Now);
-
+            string[] VehicleDriverList = {};  
             try
             {
                 List<FMS.Business.DataObjects.ReportSchedule> objScheduleList = new List<FMS.Business.DataObjects.ReportSchedule>();
-                
+ 
                 objScheduleList = ReportSchedule.GetScheduleForApplication();
                 dynamic GenericObj = null;
 
                 if (objScheduleList != null)
                 {
                     foreach (var Item in objScheduleList)
-                    {
-                        logger.Info("Getting Report for " + Item.RecipientName + " ");
-                        #region Get Report Parameter
-                        //  to get the start date  
-                        if (Convert.ToString(Item.StartDate) == "Now")
+                    { 
+                        //IsEmail = false;
+                        if (Convert.ToString(Item.ReportName) == ReportNameList.ReportGeoFence_byDriver)
                         {
-                            startDate = DateTime.Now;
+                            VehicleDriverList = Convert.ToString(Item.Driver).Replace("Select All,", "").Split(',');
                         }
-                        else if (Convert.ToString(Item.StartDate) == "Beginning of Day")
-                        {
-                            startDate = ClsExtention.BeginingOftheDay(DateTime.Now);
-                        }
-                        else if (Convert.ToString(Item.StartDate) == "Beginning of Week")
-                        {
-                            startDate = ClsExtention.BeginingOfWeek(DateTime.Now, DateTime.Now.DayOfWeek);
-                        }
-                        else if (Convert.ToString(Item.StartDate) == "Beginning of Year")
-                        {
-                            startDate = ClsExtention.BeginingOfYear(DateTime.Now);
-                        }
-                        else if (Convert.ToString(Item.StartDate) == "Specific")
-                        {
-                            startDate = Convert.ToDateTime(Item.StartDateSpecific);
+                        else 
+                        { 
+                            VehicleDriverList = Convert.ToString(Item.Vehicle).Replace("Select All,", "").Split(',');
                         }
 
-                        //  to get the end date
-                        if (Convert.ToString(Item.EndDate) == "Now")
+                        if (VehicleDriverList.Length > 0)
                         {
-                            endDate = DateTime.Now;
-                        }
-                        else if (Convert.ToString(Item.EndDate) == "Beginning of Day")
-                        {
-                            endDate = ClsExtention.BeginingOftheDay(DateTime.Now);
-                        }
-                        else if (Convert.ToString(Item.EndDate) == "Beginning of Week")
-                        {
-                            endDate = ClsExtention.BeginingOfWeek(DateTime.Now, DateTime.Now.DayOfWeek);
-                        }
-                        else if (Convert.ToString(Item.EndDate) == "Beginning of Year")
-                        {
-                            endDate = ClsExtention.BeginingOfYear(DateTime.Now);
-                        }
-                        else if (Convert.ToString(Item.EndDate) == "Specific")
-                        {
-                            endDate = Convert.ToDateTime(Item.EndDateSpecific);
-                        }
-                        #endregion
-                         
-                        #region to create the instance of report
-                        string ParmType = string.Empty;
-                        string BusinessLocation  = string.Empty; 
-                        switch (Convert.ToString(Item.ReportName))
-                        {
-                            case ReportNameList.VehicleReport:                                 
-                                  GenericObj = new FMS.ReportLogic.VehicleReportPDF();
-                                ParmType = Convert.ToString(Item.Vehicle).Replace ("Select All,", "");
-                                break; 
-                            case ReportNameList.DriverOperatingHoursReport:
-                                GenericObj = new FMS.ReportLogic.DriverOperatingHoursReportPDF();
-                                ParmType = Convert.ToString(Item.Vehicle);
-                                BusinessLocation = Convert.ToString(BusinessLocation);
-                                break; 
-                            case ReportNameList.ReportGeoFence_byDriver:
-                                GenericObj = new FMS.ReportLogic.ReportGeoFence_byDriverPDF();
-                                ParmType = Convert.ToString(Item.Driver);
-                                break;
-                        }
-                        #endregion
-                        MemoryStream mem = new MemoryStream();
-                          
-                        #region Region to check the Schedule
-                        if (Convert.ToString(Item.ReportType) == Utility.OneOff)
-                        {
-                            if (IsOneOffSendEmail(Convert.ToDateTime(Item.ScheduleDate)))
-                            {
-                                IsEmail = true;
-                            }
-                            else { IsEmail = false; }
-                        }
-                        else if (Convert.ToString(Item.ReportType) == Utility.Daily)
-                        {
-                            if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
-                            {
-                                IsEmail = true;
-                            }
-                            else
-                            {
-                                IsEmail = false;
-                            }
-                        }
-                        else if (Convert.ToString(Item.ReportType) == Utility.Weekly)
-                        {
-                            if (Convert.ToString(DateTime.Now.DayOfWeek) == Convert.ToString(Item.DayofWeek))
-                            {
-                                if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
-                                {
-                                    IsEmail = true;
-                                }
-                                else
-                                {
-                                    IsEmail = false;
-                                }
-                            }
-                        }
-                        else if (Convert.ToString(Item.ReportType) == Utility.Monthly)
-                        {
-                            if (System.DateTime.Now.ToString("dd") == Convert.ToString(Item.DayofMonth))
-                            {
-                                if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
-                                {
-                                    IsEmail = true;
-                                }
-                                else
-                                {
-                                    IsEmail = false;
-                                }
-                            }
-                        }
-                        #endregion 
 
-                        if (IsEmail)
-                        {
-                            logger.Info("email method called for sending " + Convert.ToString(Item.ApplicationId) + " ");
-
-                            GenericObj.Parameters[0].Value = startDate;
-                            GenericObj.Parameters[1].Value = endDate;
-                            GenericObj.Parameters[2].Value = ParmType;
-                            GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
-                            if (Convert.ToString(Item.ReportName) == ReportNameList.DriverOperatingHoursReport)
+                            int Isindex = 0;
+                            foreach (string driverVehicleName in VehicleDriverList)
                             {
-                                GenericObj.Parameters[4].Value = Convert.ToString(Item.BusinessLocation);
-                            }
-                            GenericObj.ExportToPdf(mem); 
+                                logger.Info("Getting Report for " + Item.RecipientName + " ");
+                                if (Isindex == 0)
+                                {
+                                    #region Get Report Parameter
+                                    //  to get the start date  
+                                    if (Convert.ToString(Item.StartDate) == "Now")
+                                    {
+                                        startDate = DateTime.Now;
+                                    }
+                                    else if (Convert.ToString(Item.StartDate) == "Beginning of Day")
+                                    {
+                                        startDate = ClsExtention.BeginingOftheDay(DateTime.Now);
+                                    }
+                                    else if (Convert.ToString(Item.StartDate) == "Beginning of Week")
+                                    {
+                                        startDate = ClsExtention.BeginingOfWeek(DateTime.Now, DateTime.Now.DayOfWeek);
+                                    }
+                                    else if (Convert.ToString(Item.StartDate) == "Beginning of Year")
+                                    {
+                                        startDate = ClsExtention.BeginingOfYear(DateTime.Now);
+                                    }
+                                    else if (Convert.ToString(Item.StartDate) == "Specific")
+                                    {
+                                        startDate = Convert.ToDateTime(Item.StartDateSpecific);
+                                    }
 
-                            //Email to multiple recipients edited on 20170510                             
-                            if (!string.IsNullOrEmpty(Convert.ToString(Item.RecipientEmail)))
-                            {
-                                string[] strIds = Convert.ToString(Item.RecipientEmail).Split(',');
-                                int index = 0;
-                                string[] strReceiverName  = Convert.ToString(Item.RecipientName).Split(',');  
+                                    //  to get the end date
+                                    if (Convert.ToString(Item.EndDate) == "Now")
+                                    {
+                                        endDate = DateTime.Now;
+                                    }
+                                    else if (Convert.ToString(Item.EndDate) == "Beginning of Day")
+                                    {
+                                        endDate = ClsExtention.BeginingOftheDay(DateTime.Now);
+                                    }
+                                    else if (Convert.ToString(Item.EndDate) == "Beginning of Week")
+                                    {
+                                        endDate = ClsExtention.BeginingOfWeek(DateTime.Now, DateTime.Now.DayOfWeek);
+                                    }
+                                    else if (Convert.ToString(Item.EndDate) == "Beginning of Year")
+                                    {
+                                        endDate = ClsExtention.BeginingOfYear(DateTime.Now);
+                                    }
+                                    else if (Convert.ToString(Item.EndDate) == "Specific")
+                                    {
+                                        endDate = Convert.ToDateTime(Item.EndDateSpecific);
+                                    }
+                                    #endregion  
+                                }
+
+                                #region to create the instance of report
+                                string ParmType = string.Empty;
+                                string BusinessLocation = string.Empty;
+                                switch (Convert.ToString(Item.ReportName))
+                                {     
+                                    case ReportNameList.VehicleReport:                                        
+                                        GenericObj = new FMS.ReportLogic.VehicleReportPDF();
+                                        ParmType = Convert.ToString(driverVehicleName);
+                                        break;
+                                    case ReportNameList.DriverOperatingHoursReport:
+                                        GenericObj = new FMS.ReportLogic.DriverOperatingHoursReportPDF();
+                                        ParmType = Convert.ToString(driverVehicleName);
+                                        BusinessLocation = Convert.ToString(Item.BusinessLocation);
+                                        break;
+                                    case ReportNameList.ReportGeoFence_byDriver:
+                                        GenericObj = new FMS.ReportLogic.ReportGeoFence_byDriverPDF();
+                                        ParmType = Convert.ToString(driverVehicleName);
+                                        break;
+                                }
+                                #endregion
+                                MemoryStream mem = new MemoryStream();
+
+                                if (Isindex == 0)
+                                {
+                                    #region Region to check the Schedule
+                                    if (Convert.ToString(Item.ReportType) == Utility.OneOff)
+                                    {
+                                        if (IsOneOffSendEmail(Convert.ToDateTime(Item.ScheduleDate)))
+                                        {
+                                            IsEmail = true;
+                                        }
+                                        else { IsEmail = false; }
+                                    }
+                                    else if (Convert.ToString(Item.ReportType) == Utility.Daily)
+                                    {
+                                        if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                                        {
+                                            IsEmail = true;
+                                        }
+                                        else
+                                        {
+                                            IsEmail = false;
+                                        }
+                                    }
+                                    else if (Convert.ToString(Item.ReportType) == Utility.Weekly)
+                                    {
+                                        if (Convert.ToString(DateTime.Now.DayOfWeek) == Convert.ToString(Item.DayofWeek))
+                                        {
+                                            if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                                            {
+                                                IsEmail = true;
+                                            }
+                                            else
+                                            {
+                                                IsEmail = false;
+                                            }
+                                        }
+                                    }
+                                    else if (Convert.ToString(Item.ReportType) == Utility.Monthly)
+                                    {
+                                        if (System.DateTime.Now.ToString("dd") == Convert.ToString(Item.DayofMonth))
+                                        {
+                                            if (IsScheduleTimeEmail(Convert.ToDateTime(Item.ScheduleTime)))
+                                            {
+                                                IsEmail = true;
+                                            }
+                                            else
+                                            {
+                                                IsEmail = false;
+                                            }
+                                        }
+                                    }
+                                    #endregion
+                                }
                                  
-                                foreach (string email in strIds)
-                                { 
-                                    sendEmail(email, Convert.ToString(strReceiverName[index]), Convert.ToString(Item.ReportName) , mem);
-                                    index++;
-                                }  
+
+                                #region mail section
+
+                                if (IsEmail)
+                                {
+                                    logger.Info("email method called for sending " + Convert.ToString(Item.ApplicationId) + " ");
+
+                                    GenericObj.Parameters[0].Value = startDate;
+                                    GenericObj.Parameters[1].Value = endDate;
+                                    GenericObj.Parameters[2].Value = ParmType;
+                                    GenericObj.Parameters[3].Value = Convert.ToString(Item.ApplicationId);
+                                    if (Convert.ToString(Item.ReportName) == ReportNameList.DriverOperatingHoursReport)
+                                    {
+                                        GenericObj.Parameters[4].Value = Convert.ToString(Item.BusinessLocation);
+                                    }
+                                    GenericObj.ExportToPdf(mem);
+
+                                    //Email to multiple recipients edited on 20170510                             
+                                    if (!string.IsNullOrEmpty(Convert.ToString(Item.RecipientEmail)))
+                                    {
+                                        string[] strIds = Convert.ToString(Item.RecipientEmail).Split(',');
+                                        int index = 0;
+                                        string[] strReceiverName = Convert.ToString(Item.RecipientName).Split(',');
+
+                                        foreach (string email in strIds)
+                                        {
+                                            sendEmail(email, Convert.ToString(strReceiverName[index]), Convert.ToString(Item.ReportName), mem);
+                                            index++;
+                                        }
+                                    }
+                                }
+                                #endregion 
+
+                                Isindex = Isindex +1;
                             } 
-                        }
-                    }
+                        }  
+                    }  
                 }
                 else
                 {
                     logger.Info("No record found from database");
-                }
+                } 
             }
             catch (Exception ex)
             {

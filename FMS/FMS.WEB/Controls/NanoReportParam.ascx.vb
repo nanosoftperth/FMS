@@ -91,10 +91,9 @@ Public Class NanoReportParam
             Dim lookupSettings = DirectCast(ReportParameter.LookUpSettings, 
                                                 DevExpress.XtraReports.Parameters.DynamicListLookUpSettings)
 
+            If lookupSettings.Parameter.Description.Contains("Vehicle") Or lookupSettings.Parameter.Description.Contains("Driver") Then
 
-            If lookupSettings.Parameter.Description.Contains("Vehicle") Then
-
-                Dim editor As New ASPxDropDownEdit() 
+                Dim editor As New ASPxDropDownEdit()
 
                 editor.ClientIDMode = ClientIDMode.Static
 
@@ -106,11 +105,20 @@ Public Class NanoReportParam
                 editor.ClientInstanceName = "checkComboBox1"
                 editor.DropDownWindowTemplate = New CustomTemplate(DirectCast(ReportParameter.LookUpSettings, 
                                                     DevExpress.XtraReports.Parameters.DynamicListLookUpSettings))
-                If lookupSettings.ValueMember.Contains("Name") Then
+                If lookupSettings.ValueMember.Contains("Name") Or lookupSettings.ValueMember.Contains("ApplicationDriverIDAsString") Then
                     If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
                         editor.Value = Convert.ToString(HttpContext.Current.Session("Vehicle")).Replace("Select All,", "")
                     End If
                 End If
+
+                If lookupSettings.ValueMember.Contains("ApplicationDriverIDAsString") Then
+                    If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
+                        editor.Value = FMS.Business.DataObjects.ApplicationDriver.GetDriverNameID(Convert.ToString(HttpContext.Current.Session("Vehicle")), ThisSession.ApplicationID)
+                    End If
+                End If
+
+
+                ' GetDriverNameFromID()
 
                 paramControl = editor
 
@@ -125,26 +133,18 @@ Public Class NanoReportParam
                 ods.Fill()
 
                 comboBox1.DataSource = ods
-                comboBox1.DataBind() 
-
-                If lookupSettings.Parameter.Description.Contains("Driver") Then
-                    comboBox1.ClientInstanceName = "Drivers"
-                ElseIf lookupSettings.Parameter.Description.Contains("Business Location") Then
+                comboBox1.DataBind()
+  
+                If lookupSettings.Parameter.Description.Contains("Business Location") Then
                     comboBox1.ClientInstanceName = "BusinessLocation"
-                End If
+                End If  
 
                 If lookupSettings.ValueMember.Contains("Name") Then
-                    If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
-                        comboBox1.Value = HttpContext.Current.Session("Vehicle")
-                    End If
-                Else
                     If Not HttpContext.Current.Session("BusinessLocation") Is Nothing And Not HttpContext.Current.Session("BusinessLocation") = "null" Then
                         comboBox1.Value = HttpContext.Current.Session("BusinessLocation")
                     End If
                 End If
-                If lookupSettings.ValueMember.Contains("ApplicationDriverIDAsString") Then
-                    comboBox1.Value = HttpContext.Current.Session("Vehicle")
-                End If
+             
 
                 paramControl = comboBox1
             End If
@@ -156,6 +156,7 @@ Public Class NanoReportParam
             Dim uniqcoID As String = Guid.NewGuid.ToString.Replace("-", "")
         End If
         If paramControl IsNot Nothing Then panelContent.Controls.Add(paramControl)
+
 
     End Sub 
 
@@ -180,40 +181,70 @@ Public Class CustomTemplate
         comboBox.ID = Guid.NewGuid.ToString
         comboBox.SelectionMode = DevExpress.Web.ListEditSelectionMode.CheckColumn
 
-        Dim objList As New List(Of FMS.Business.DataObjects.ApplicationVehicle)
-        objList = FMS.Business.DataObjects.ApplicationVehicle.GetApplicationsVehicleList(ThisSession.ApplicationID)
+        If _lookupsSettings.Parameter.Description.Contains("Vehicle") Then
+            'To Populate Vehicle drop down
+            Dim objList As New List(Of FMS.Business.DataObjects.ApplicationVehicle)
+            objList = FMS.Business.DataObjects.ApplicationVehicle.GetApplicationsVehicleList(ThisSession.ApplicationID)
 
-        comboBox.ValueField = "Name"
-        comboBox.TextField = "Name"
+            comboBox.ValueField = "Name"
+            comboBox.TextField = "Name"
 
-        comboBox.DataSource = objList
-        comboBox.DataBind() 
-
-        comboBox.SelectionMode = ListEditSelectionMode.CheckColumn
-
-        If _lookupsSettings.ValueMember.Contains("Name") Then
-            If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
-                Dim strVehicles = Convert.ToString(HttpContext.Current.Session("Vehicle")).Split(",")
-                If Not strVehicles Is Nothing Then
-                    Dim i As Integer = 0
-                    For Each item As ListEditItem In comboBox.Items 
-                        For Each strVal As String In strVehicles
-                            If strVal = Convert.ToString(item.Value) Then
-                                item.Selected = True
-                            End If
+            comboBox.DataSource = objList
+            comboBox.DataBind() 
+            If _lookupsSettings.ValueMember.Contains("Name") Then
+                If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" Then
+                    Dim strVehicles = Convert.ToString(HttpContext.Current.Session("Vehicle")).Split(",")
+                    If Not strVehicles Is Nothing Then
+                        Dim i As Integer = 0
+                        For Each item As ListEditItem In comboBox.Items
+                            For Each strVal As String In strVehicles
+                                If strVal = Convert.ToString(item.Value) Then
+                                    item.Selected = True
+                                End If
+                            Next
+                            i = i + 1
                         Next
-                        i = i + 1
-                    Next
+                    End If
                 End If
             End If
+        ElseIf _lookupsSettings.Parameter.Description.Contains("Driver") Then
+            'To Populate driver drop down
+            Dim objDriversList As New List(Of FMS.Business.DataObjects.ApplicationDriver)
+            objDriversList = FMS.Business.DataObjects.ApplicationDriver.GetApplicationDrivers(ThisSession.ApplicationID)
+
+            comboBox.ValueField = "ApplicationDriverIDAsString"
+            comboBox.TextField = "NameFormatted"
+
+            comboBox.DataSource = objDriversList
+            comboBox.DataBind()
+
+            If _lookupsSettings.ValueMember.Contains("ApplicationDriverIDAsString") Then
+                If Not HttpContext.Current.Session("Vehicle") Is Nothing And Not HttpContext.Current.Session("Vehicle") = "null" And Not HttpContext.Current.Session("Vehicle") = "" Then
+                    Dim strVehicles = Convert.ToString(HttpContext.Current.Session("Vehicle")).Split(",")
+                    If Not strVehicles Is Nothing Then
+                        Dim i As Integer = 0
+                        For Each item As ListEditItem In comboBox.Items
+                            For Each strVal As String In strVehicles
+                                If strVal = Convert.ToString(item.Value) Then
+                                    item.Selected = True
+                                End If
+                            Next
+                            i = i + 1
+                        Next
+                    End If
+                End If
+            End If 
         End If
 
         If _lookupsSettings.Parameter.Description.Contains("Vehicle") Then
             comboBox.ClientInstanceName = "Vehicle"
             comboBox.CssClass = "clsVehicle"
             comboBox.ClientSideEvents.SelectedIndexChanged = "function (s, e) { OnListBoxSelectionChangedValue(s, e, 'Vehicle')}"
-            comboBox.ClientSideEvents.EndCallback = "function (s, e) { AddItem(s, e)}"
-        End If 
+        ElseIf _lookupsSettings.Parameter.Description.Contains("Driver") Then
+            comboBox.ClientInstanceName = "Drivers"
+            comboBox.CssClass = "clsVehicle"
+            comboBox.ClientSideEvents.SelectedIndexChanged = "function (s, e) { OnListBoxSelectionChangedValue(s, e, 'Drivers')}"
+        End If
         container.Controls.Add(comboBox)
 
         ' Close Button
@@ -224,9 +255,10 @@ Public Class CustomTemplate
         Dim cell As New TableCell()
         cell.Controls.Add(BuildTestButton())
         row.Cells.Add(cell)
-        tabTable.Rows.Add(row) 
+        tabTable.Rows.Add(row)
 
         container.Controls.Add(tabTable)
+
     End Sub
     Protected Overridable Function BuildTestButton() As ASPxButton
         Dim button As ASPxButton = New ASPxButton 
