@@ -71,7 +71,7 @@
 
                 param.DeviceID = deviceID;
                 
-                ajaxMethod("DefaultService.svc/" + 'GetLatestMessageWithLatLong',
+                ajaxMethod("DefaultService.svc/" + 'GetLatest2MessageWithLatLong',
                                 param, getLog_SuccessCallback, sendMessage_ErrorCallback, sendMessage_FinallyCallback);
 
             }

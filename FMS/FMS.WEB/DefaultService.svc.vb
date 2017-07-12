@@ -249,6 +249,29 @@ Public Class DefaultService
 
     <OperationContract()>
 <WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
+    Public Function GetLatest2MessageWithLatLong(DeviceID As String) As SendDriverMessage_ReturnObject
+
+        Dim retval As New SendDriverMessage_ReturnObject
+
+        Try
+
+            With Business.DataObjects.Device.GetDeviceLast2LogLatLng(DeviceID, Date.Now)
+                retval.Lat = .Lat
+                retval.Lng = .Lng
+                retval.ReturnString = .LogEntry
+            End With
+
+        Catch ex As Exception
+            retval.ReturnString = String.Format("EXCEPTION:{0}{1}{2}", ex.Message, vbNewLine, ex.StackTrace)
+        End Try
+
+        Return retval
+    End Function
+
+
+
+    <OperationContract()>
+<WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
     Public Function GetAllGeoFences() As GetAllGeoReferences_ReturnObject
 
         Dim retobj As New GetAllGeoReferences_ReturnObject
