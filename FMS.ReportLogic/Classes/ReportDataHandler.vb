@@ -122,7 +122,7 @@ Public Class ReportDataHandler
             'End If
 
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
         Return rept
 
