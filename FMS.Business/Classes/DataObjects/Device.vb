@@ -74,6 +74,46 @@
 
         End Structure
 
+        Public Shared Function GetDeviceLast2LogLatLng(deviceID As String, d As Date) As LogLatLng
+
+            Dim LogEntry As String = GetLast2LogEntryForDeviceID(deviceID)
+            Dim latlng As KeyValuePair(Of Decimal, Decimal) = GetLatLongs(deviceID, d)
+
+            Return New LogLatLng With {.LogEntry = LogEntry, .Lat = latlng.Key, .Lng = latlng.Value}
+
+
+        End Function
+
+        Public Shared Function GetLast2LogEntryForDeviceID(deviceID As String) As Object
+
+            'date format for demo.nanosoft.com.au is dd/MM/yyyy
+            'date format for local is MM/dd/yyyy
+            Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
+            Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+
+            Dim pipName As String = deviceID & "_log"
+
+            Dim pit As New PITimeServer.PITime With {.LocalDate = Now}
+
+            Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(pipName)
+
+            Dim pivds = SingletonAccess.HistorianServer.PIPoints(pipName).Data.RecordedValues(startDate, endDate, PISDK.BoundaryTypeConstants.btInside)
+
+            Dim valReturn As String = ""
+            Dim intCounter As Integer = 1
+            For Each p As PISDK.PIValue In pivds
+                If intCounter <= 2 Then
+                    valReturn &= p.Value + ","
+                Else
+                    Exit For
+                End If
+                intCounter += 1
+            Next
+            Dim retVal = valReturn.TrimEnd(",")
+            Return retVal
+
+        End Function
+
         Public Shared Function GetDeviceLogLatLng(deviceID As String, d As Date) As LogLatLng
 
             Dim LogEntry As String = GetLastLogEntryForDeviceID(deviceID)
