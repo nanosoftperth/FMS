@@ -45,8 +45,11 @@ Public Class Worker
 
         Next
 
+        Dim baseURL As String = String.Format("http://{0}.nanosoft.com.au:9000", _
+                                                    My.Settings.destination_nanosoft_instance)
 
-        Dim baseURL As String = "http://ppjs.nanosoft.com.au:9000/api/dataaccess?truckid={0}&lat={1}&lng={2}&time={3}"
+        baseURL &= "/api/dataaccess?truckid={0}&lat={1}&lng={2}&time={3}"
+
 
         While True
 
