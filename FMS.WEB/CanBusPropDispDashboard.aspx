@@ -72,7 +72,17 @@
             //alert('result:' + JSON.stringify(dataCache));
             var obj = JSON.parse(dataCache);
 
-            alert(obj.CanValueMessageDefinition.MessageDefinition)
+            //str = JSON.parse(str);
+            $.each(obj.CanValueMessageDefinition.MessageDefinition, function (i, item) {
+                if (item.Description == 'Parking Break')
+                {
+                    alert('test');
+                }
+                //$(".result1").append(item.username);
+                //$(".result2").append(item.uid);
+            });
+
+            //alert(obj.CanValueMessageDefinition.MessageDefinition)
             //document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
 
            
