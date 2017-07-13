@@ -62,11 +62,11 @@ Namespace Controllers
         ''' <param name="vehicleID">The device Id</param>
         ''' <returns>List of Can message definition</returns>
         <HttpGet>
-        Public Function GetDashboardData(vehicleID As String) As Boolean
+        Public Function GetDashboardData(DashVehicleID As String) As Boolean
 
             'Return FMS.Business.DataObjects.ApplicationVehicle.GetFromName(vehicleID).GetAvailableCANTags()
             ' Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(vehicleID)
-            Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(vehicleID)
+            Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(DashVehicleID)
 
 
         End Function
