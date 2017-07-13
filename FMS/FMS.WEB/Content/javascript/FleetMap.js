@@ -22,7 +22,7 @@ function showInfoWindow(event) {
     var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
     var newURL = 'DevicePropertyDisplay.aspx?DeviceID=' + this.DeviceID;
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 200px;\' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 100%;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content\'>' + contentString + '</div>';
 
