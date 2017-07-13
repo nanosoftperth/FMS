@@ -16,16 +16,12 @@ var selectedTrucks;
 
 var infoWindowVehicle = new google.maps.InfoWindow();
 //function showInfoWindow(event)
-function showInfoWindow(event, name, deviceID) {
-    var strName = name;
-    var strDeviceID = deviceID;
-
+function showInfoWindow(event) {
+    
     //var vertices = '<br><br>' + this.getPath();
-    //var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
-    var s = '<div id=\'iw-container\'>' + strName + '</div>';//'<b>' + this.Name + '</b><br>'
+    var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
-    //var newURL = 'DevicePropertyDisplay.aspx?DeviceID=' + this.DeviceID;
-    var newURL = 'DevicePropertyDisplay.aspx?DeviceID=' + strDeviceID;
+    var newURL = 'DevicePropertyDisplay.aspx?DeviceID=' + this.DeviceID;
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 200px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content\'>' + contentString + '</div>';
@@ -38,8 +34,7 @@ function showInfoWindow(event, name, deviceID) {
 
 
     var content = '<div id="iw-container">' +
-                  //'<div class="iw-title"> ' + this.Name + ' </div>' +
-                  '<div class="iw-title"> ' + strName + ' </div>' +
+                  '<div class="iw-title"> ' + this.Name + ' </div>' +
                   '<div class="iw-content">' +
                     contentString
     '</div>' +
@@ -64,10 +59,10 @@ var priDeviceID = '';
 var priDeviceName = '';
 var priDashEvent = null;
 
-function ShowDashboard(event, name, deviceID) {
+function ShowDashboard(event) {
     var strDashName = name;
-    priDeviceID = deviceID;
-    priDeviceName = name;
+    priDeviceID = this.DeviceID;
+    priDeviceName = this.Name;
     priDashEvent = event;
     
     var param = {};
@@ -86,11 +81,10 @@ function ShowDashboard(event, name, deviceID) {
     //ajaxGetMethod("api/vehicle/GetDashboardData?vehicleid=" + varName, param, successCallBack_Dashboard, errorCallback_Dashboard, finallyCallback_Dashboard);
 
     //var vertices = '<br><br>' + this.getPath();
-    //var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
-    var s = '<div id=\'iw-container_dash\'>' + strDashName + '</div>';//'<b>' + this.Name + '</b><br>'
+    var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
-    //var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
-    var newURL = 'CanBusPropDispDashboard.aspx';
+    var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
+    //var newURL = 'CanBusPropDispDashboard.aspx';
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:220px;width:700px\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
@@ -107,70 +101,6 @@ function ShowDashboard(event, name, deviceID) {
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
         
-    '</div>' +
-    '<div class="iw-bottom-gradient"></div>' +
-  '</div>';
-
-    //  var content = '<div id="iw-container_dash">' +
-    //                '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
-    //                '<div class="iw-content_dash">' +
-    //                  contentString
-    //  '</div>' +
-    //  '<div class="iw-bottom-gradient"></div>' +
-    //'</div>';
-
-
-    infoWindowVehicle = new google.maps.InfoWindow();
-
-    //infoWindowVehicle.setContent(contentString);
-    infoWindowVehicle.setPosition(event.latLng);
-    infoWindowVehicle.setContent(content);
-
-    google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForDashboard(infoWindowVehicle) });
-
-    infoWindowVehicle.open(map);
-
-    //document.getElementById("idLiveData").addEventListener("click", Run_infoWindowCSSForCanBus);
-}
-
-function ShowDashboard2(event) {
-    var param = {};
-    param.vehicleID = '1';
-
-    priDeviceID = this.DeviceID;
-    priDeviceName = this.Name;
-    var strName = this.Name.toString();
-    //var strName = priDeviceName;
-    var nStart = strName.indexOf('</br>') + 4;
-    var nEnd = strName.length;
-    var varName = strName.substring(nStart, nEnd);
-    //var varName = 'RIO E-maxi';
-    //var varName = 'NONE';
-
-    //ajaxGetMethod("api/vehicle/GetDashboardData?vehicleid=" + varName, param, successCallBack_Dashboard, errorCallback_Dashboard, finallyCallback_Dashboard);
-
-    //var vertices = '<br><br>' + this.getPath();
-    var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
-    //var s = '<div id=\'iw-container_dash\'>' + strDashName + '</div>';//'<b>' + this.Name + '</b><br>'
-    //iw-title 
-    //var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
-    var newURL = 'CanBusPropDispDashboard.aspx';
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:220px;width:700px\' ></iframe>';
-    //style=\'height: 280px; width: 245px\
-    contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
-
-    if (infoWindowVehicle !== null) {
-        google.maps.event.clearInstanceListeners(infoWindowVehicle);  // just in case handlers continue to stick around
-        infoWindowVehicle.close();
-        infoWindowVehicle = null;
-    }
-
-    priDashEvent = event;
-    var content = '<div id="iw-container_dash">' +
-                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
-                   contentString + '</div>' +
-                   '<div id="idDashTail" class="dash_tail">' + '</div>'
-
     '</div>' +
     '<div class="iw-bottom-gradient"></div>' +
   '</div>';
@@ -1159,35 +1089,37 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     marker.Name = lblContent.replace('\n', ' ');
     marker.TruckName = vehicleName;
 
-    marker.addListener('rightclick', ShowDashboard2);
-    marker.addListener('click', function (event) {
-
-        if (touchtime == 0) {
-            //set first click
-            touchtime = new Date().getTime();
-            showInfoWindow(event, marker.Name, marker.DeviceID); 
-                        
-        } else {
-            //compare first click to this click and see if they occurred within double click threshold
-            if (((new Date().getTime()) - touchtime) < 800) {
-                //double click occurred
-                ShowDashboard(event, marker.Name, marker.DeviceID)
-                touchtime = 0;
-            } else {
-                //not a double click so set as a new first click
-                touchtime = new Date().getTime();
-                showInfoWindow(event, marker.Name, marker.DeviceID);
-                
-            }
-        }
- 
-    });
-
-    //marker.addListener('click', showInfoWindow);//DeviceID
-    //marker.addListener('dblclick', showInfoWindow2);
+    marker.addListener('click', showInfoWindow);//DeviceID
+    marker.addListener('rightclick', ShowDashboard);
+    marker.addListener('dblclick', ShowDashboard);
+    marker.addListener('mousedown', ShowDashboard);
     //marker.addListener('rightclick', showInfoWindow2);
     //marker.addListener('rightclick', ShowDashboard);
     //marker.addListener('dblclick', ShowDashboard);
+    //marker.addListener('click', function (event) {
+
+    //    if (touchtime == 0) {
+    //        //set first click
+    //        touchtime = new Date().getTime();
+    //        showInfoWindow(event, marker.Name, marker.DeviceID); 
+                        
+    //    } else {
+    //        //compare first click to this click and see if they occurred within double click threshold
+    //        if (((new Date().getTime()) - touchtime) < 800) {
+    //            //double click occurred
+    //            ShowDashboard(event, marker.Name, marker.DeviceID)
+    //            touchtime = 0;
+    //        } else {
+    //            //not a double click so set as a new first click
+    //            touchtime = new Date().getTime();
+    //            showInfoWindow(event, marker.Name, marker.DeviceID);
+                
+    //        }
+    //    }
+ 
+    //});
+
+    
 
     marker.ID = markerID;
     markers.push(marker);
