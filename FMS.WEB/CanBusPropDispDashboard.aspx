@@ -18,26 +18,69 @@
 
     <script type="text/javascript">
 
+        var priDeviceID = '';
+
+        //$(document).ready(function () { getDataFromServer() })
+
+        //$(document).ready(function () { CheckData() })
+
+        //function CheckData()
+        //{
+        //    priDeviceID = GetQueryStringParams('DeviceID');
+                     
+        //}
+
+        $(document).ready(function () {  
+            priDeviceID = GetParameterValues('DeviceID');
+
+            getDataFromServer();
+
+            timeout();
+            
+            function GetParameterValues(param) {  
+                var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                //alert(url);
+                for (var i = 0; i < url.length; i++) {  
+                    var urlparam = url[i].split('=');  
+                    if (urlparam[0] == param) {  
+                        return urlparam[1];  
+                    }  
+                }  
+            }
+
+            
+        });  
+
+        function timeout() {
+            setTimeout(function () {
+                // Do Something Here
+                // Then recall the parent function to
+                // create a recursive loop.
+                getDataFromServer();
+                //timeout();
+            }, 5000);
+        }
+
         function getDataFromServer() {
-
-
-
-            var uri = '../api/Vehicle/GetDashboardData?vehicleid=RIO%20E-maxi';
-
+            var uri = '../api/Vehicle/GetCanMessageValue?deviceID=' + priDeviceID;
 
             $.getJSON(uri).done(function (data) { receivedData(data); });
 
         }
 
-
-
         function receivedData(dataCache) {
+            //alert('result:' + JSON.stringify(dataCache));
+            var obj = JSON.parse(dataCache);
 
-            alert('result:' + JSON.stringify(dataCache));
+            alert(obj.CanValueMessageDefinition.MessageDefinition)
+            //document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+
+           
         }
 
+        
 
-        $(document).ready(function () { getDataFromServer() })
+        
 
     </script>
 
