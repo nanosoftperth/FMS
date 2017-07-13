@@ -6,9 +6,9 @@ Imports FMS.Business.DataObjects
 Public Class CanBusPropDispDashboard
     Inherits System.Web.UI.Page
 
-    Public ReadOnly Property vehicleID As String
+    Public ReadOnly Property deviceID As String
         Get
-            Return Request.QueryString("vehicleID")
+            Return Request.QueryString("deviceID")
         End Get
     End Property
 
