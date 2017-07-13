@@ -85,31 +85,37 @@
         End Function
 
         Public Shared Function GetLast2LogEntryForDeviceID(deviceID As String) As Object
+            Dim retVal As String = ""
+            Try
 
-            'date format for demo.nanosoft.com.au is dd/MM/yyyy
-            'date format for local is MM/dd/yyyy
-            Dim startDate As Date = Date.Now.AddDays(1).ToString("MM/dd/yyyy")
-            Dim endDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
 
-            Dim pipName As String = deviceID & "_log"
+                'date format for demo.nanosoft.com.au is dd/MM/yyyy
+                'date format for local is MM/dd/yyyy
+                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
+                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
 
-            Dim pit As New PITimeServer.PITime With {.LocalDate = Now}
+                Dim pipName As String = deviceID & "_log"
 
-            Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(pipName)
+                Dim pit As New PITimeServer.PITime With {.LocalDate = Now}
 
-            Dim pivds = SingletonAccess.HistorianServer.PIPoints(pipName).Data.RecordedValues(startDate, endDate, PISDK.BoundaryTypeConstants.btInside)
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(pipName)
 
-            Dim valReturn As String = ""
-            Dim intCounter As Integer = 1
-            For Each p As PISDK.PIValue In pivds
-                If intCounter <= 2 Then
-                    valReturn &= p.Value + ","
-                Else
-                    Exit For
-                End If
-                intCounter += 1
-            Next
-            Dim retVal = valReturn.TrimEnd(",")
+                Dim pivds = SingletonAccess.HistorianServer.PIPoints(pipName).Data.RecordedValues(startDate, endDate, PISDK.BoundaryTypeConstants.btInside)
+
+                Dim valReturn As String = ""
+                Dim intCounter As Integer = 1
+                For Each p As PISDK.PIValue In pivds
+                    If intCounter <= 2 Then
+                        valReturn &= p.Value + ","
+                    Else
+                        Exit For
+                    End If
+                    intCounter += 1
+                Next
+                retVal = valReturn.TrimEnd(",")
+            Catch ex As Exception
+                retVal = ex.Message.ToString
+            End Try
             Return retVal
 
         End Function
