@@ -88,8 +88,8 @@
 
             'date format for demo.nanosoft.com.au is dd/MM/yyyy
             'date format for local is MM/dd/yyyy
-            Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
-            Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+            Dim startDate As Date = Date.Now.AddDays(1).ToString("MM/dd/yyyy")
+            Dim endDate As Date = Date.Now.AddDays(-1).ToString("MM/dd/yyyy")
 
             Dim pipName As String = deviceID & "_log"
 
