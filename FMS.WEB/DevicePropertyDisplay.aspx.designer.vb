@@ -68,6 +68,15 @@ Partial Public Class DriverPropertyDisplay
     Protected WithEvents lblDriver As Global.DevExpress.Web.ASPxLabel
 
     '''<summary>
+    '''ASPxPageControl1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxPageControl1 As Global.DevExpress.Web.ASPxPageControl
+
+    '''<summary>
     '''ASPxLabel3 control.
     '''</summary>
     '''<remarks>
@@ -84,6 +93,15 @@ Partial Public Class DriverPropertyDisplay
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents logLabel As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''ASPxCheckBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxCheckBox1 As Global.DevExpress.Web.ASPxCheckBox
 
     '''<summary>
     '''ASPxLabel1 control.

@@ -18,6 +18,15 @@
 
         <script type="text/javascript">
 
+            function cbHideImage_Click(s, e) {
+                var hideImage = cbHideImage.GetChecked();
+                if (hideImage) {
+                    $('#streetView_image').hide();
+                } else {
+                    $('#streetView_image').show();
+                }
+            }
+
             function btnSendMessageToDriver_Click(s, e) {
 
                 //cbSendText, cbSendEmail, btnSendMessageToDriver,memMessageToSend
@@ -107,7 +116,7 @@
             prevLng = 0;
 
             function getLog_SuccessCallback(result) {
-
+                var hideImage = cbHideImage.GetChecked();
                 var s = result.d._ReturnString.replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n').replace(',', '\n');
 
                 try {
@@ -120,7 +129,12 @@
                     prevLat = lat;
                     prevLng = lon;
 
-                    $('#streetView_image').show();
+                    if (hideImage) {
+                        $('#streetView_image').hide();
+                    } else {
+                        $('#streetView_image').show();
+                    }
+                    
                     $('#streetView_image').attr("src", "https://maps.googleapis.com/maps/api/streetview?size=150x100&location=" + lat + "," + lon + "&heading=" + heading + "&key=AIzaSyCeMLNUixkGRU-PwkiVbHTrMr5Foz07KWQ");
                 }
                 catch (err) {
@@ -167,7 +181,7 @@
             }
         </style>
 
-        <div style="width: 243px;">
+        <div style="width: 305px;">
 
             <table>
                 <tr>
@@ -204,51 +218,68 @@
                 </tr>
 
             </table>
-
-
-
             <hr />
-            <%--<div id="container" style="width: 200px; height: 200px; margin: 0 auto"></div>--%>
-            <dx:ASPxLabel ID="ASPxLabel3" CssClass="boldme" runat="server" Text="Last message from vehicle:"></dx:ASPxLabel>
-            <br />
-            <dx:ASPxLabel ClientInstanceName="logLabel" ID="logLabel" runat="server" Text="loading..."></dx:ASPxLabel>
-            <img src="#" id="streetView_image" style ="width:100%;height:100px"/>
-            <hr />
-            <table>
-                <tr>
-                    <td>
-                        <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Write message to driver"></dx:ASPxLabel>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <dx:ASPxMemo ClientInstanceName="memMessageToSend" ID="memMessageToSend" runat="server" Height="71px" Width="234px"></dx:ASPxMemo>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table style="width: 100%">
-                            <td>
-                                <dx:ASPxCheckBox ClientInstanceName="cbSendText" CssClass="checkboxCSS" ID="cbSendText" runat="server" Text="text" Checked="true"></dx:ASPxCheckBox>
-                                <dx:ASPxCheckBox ClientInstanceName="cbSendEmail" CssClass="checkboxCSS" ID="cbSendEmail" runat="server" Text="email" Checked="false">
-                                </dx:ASPxCheckBox>
-                            </td>
-                            <td>
-                                <div style="float: right; padding-top: 5px;">
-                                    <dx:ASPxButton ClientInstanceName="btnSendMessageToDriver"
-                                        ID="btnSendMessageToDriver"
-                                        AutoPostBack="false"
-                                        runat="server"
-                                        Text="Send Message">
+            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0">
+                <TabPages>
+                    <dx:TabPage Text="Last Message">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                 <%--<div id="container" style="width: 200px; height: 200px; margin: 0 auto"></div>--%>
+                                <dx:ASPxLabel ID="ASPxLabel3" CssClass="boldme" runat="server" Text="Last message from vehicle:"></dx:ASPxLabel>
+                                <br />
+                                <dx:ASPxLabel ClientInstanceName="logLabel" ID="logLabel" runat="server" Text="loading..."></dx:ASPxLabel>
+                                <img src="#" id="streetView_image" style ="width:100%;height:100px"/>
+                                <hr />              
+                                <dx:ASPxCheckBox ClientInstanceName="cbHideImage" CssClass="checkboxCSS" ID="ASPxCheckBox1" runat="server" Text="Suppress Image" Checked="false">
+                                    <ClientSideEvents CheckedChanged="function(s,e) {cbHideImage_Click(s,e);}" />
+                                </dx:ASPxCheckBox>                  
+                            </dx:ContentControl>
+                        </ContentCollection>
 
-                                        <ClientSideEvents Click="function(s,e) {btnSendMessageToDriver_Click(s,e);}" />
-                                    </dx:ASPxButton>
-                                </div>
-                            </td>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+                    </dx:TabPage>
+                    <dx:TabPage Text="Write Message">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                 <table>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Write message to driver"></dx:ASPxLabel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxMemo ClientInstanceName="memMessageToSend" ID="memMessageToSend" runat="server" Height="71px" Width="280px"></dx:ASPxMemo>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table style="width: 280px">
+                                                <td>
+                                                    <dx:ASPxCheckBox ClientInstanceName="cbSendText" CssClass="checkboxCSS" ID="cbSendText" runat="server" Text="text" Checked="true"></dx:ASPxCheckBox>
+                                                    <dx:ASPxCheckBox ClientInstanceName="cbSendEmail" CssClass="checkboxCSS" ID="cbSendEmail" runat="server" Text="email" Checked="false">
+                                                    </dx:ASPxCheckBox>
+                                                </td>
+                                                <td>
+                                                    <div style="float: right; padding-top: 5px;">
+                                                        <dx:ASPxButton ClientInstanceName="btnSendMessageToDriver"
+                                                            ID="btnSendMessageToDriver"
+                                                            AutoPostBack="false"
+                                                            runat="server"
+                                                            Text="Send Message">
+
+                                                            <ClientSideEvents Click="function(s,e) {btnSendMessageToDriver_Click(s,e);}" />
+                                                        </dx:ASPxButton>
+                                                    </div>
+                                                </td>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                </TabPages>
+            </dx:ASPxPageControl>
         </div>
     </form>
 </body>
