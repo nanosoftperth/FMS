@@ -91,8 +91,18 @@
 
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
                 'date format for local is MM/dd/yyyy
-                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
-                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+                'I needed to test the date format because the demo server and the local server are having different date format
+                Dim strFormat1 As String = "dd/MM/yyyy"
+                Dim strFormat2 As String = "MM/dd/yyyy"
+                Dim startDate As Date
+                If Not Date.TryParse(Date.Now.AddDays(1).ToString(strFormat1), startDate) Then
+                    Date.TryParse(Date.Now.AddDays(1).ToString(strFormat2), startDate)
+                End If
+
+                Dim endDate As Date
+                If Not Date.TryParse(Date.Now.AddDays(-1).ToString(strFormat1), endDate) Then
+                    Date.TryParse(Date.Now.AddDays(-1).ToString(strFormat2), endDate)
+                End If
 
                 Dim pipName As String = deviceID & "_log"
 

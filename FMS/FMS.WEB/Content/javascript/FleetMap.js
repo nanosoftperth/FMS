@@ -22,7 +22,7 @@ function showInfoWindow(event) {
     var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
     var newURL = 'DevicePropertyDisplay.aspx?DeviceID=' + this.DeviceID;
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 100%;\' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 370px;width:305px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content\'>' + contentString + '</div>';
 
@@ -282,7 +282,7 @@ function infoWindowCSS(w) {
     var iwCloseBtn = iwOuter.next();
 
     // Apply the desired effect to the close button
-    iwCloseBtn.css({ opacity: '1', left: '270px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+    iwCloseBtn.css({ opacity: '1', left: '310px', top: '3px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
     // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
     if ($('.iw-content').height() < 140) {
