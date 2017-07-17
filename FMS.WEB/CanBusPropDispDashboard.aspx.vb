@@ -12,6 +12,12 @@ Public Class CanBusPropDispDashboard
         End Get
     End Property
 
+    Public ReadOnly Property VehicleName As String
+        Get
+            Return Request.QueryString("VehicleName")
+        End Get
+    End Property
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If IsPostBack = False Then

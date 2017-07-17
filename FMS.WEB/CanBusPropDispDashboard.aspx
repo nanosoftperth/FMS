@@ -14,42 +14,33 @@
     <script src="Content/javascript/page.js"></script>
     <script src="Content/javascript/jquery-3.1.0.min.js"></script>
 
-
-
     <script type="text/javascript">
-
+        var bln_blink = true;
+        var bln_blinkBottom = false;
+        var blink_ctr = 0;
         var priDeviceID = '';
+        var priVehicleName = '';
 
-        //$(document).ready(function () { getDataFromServer() })
-
-        //$(document).ready(function () { CheckData() })
-
-        //function CheckData()
-        //{
-        //    priDeviceID = GetQueryStringParams('DeviceID');
-                     
-        //}
-
-        $(document).ready(function () {  
+        $(document).ready(function () {
             priDeviceID = GetParameterValues('DeviceID');
+            priVehicleName = GetParameterValues('VehicleName');
 
-            getDataFromServer();
+            //getDataFromServer();
+            //timeout();
 
-            timeout();
-            
-            function GetParameterValues(param) {  
+            function GetParameterValues(param) {
                 var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
                 //alert(url);
-                for (var i = 0; i < url.length; i++) {  
-                    var urlparam = url[i].split('=');  
-                    if (urlparam[0] == param) {  
-                        return urlparam[1];  
-                    }  
-                }  
+                for (var i = 0; i < url.length; i++) {
+                    var urlparam = url[i].split('=');
+                    if (urlparam[0] == param) {
+                        return urlparam[1];
+                    }
+                }
             }
 
-            
-        });  
+
+        });
 
         function timeout() {
             setTimeout(function () {
@@ -57,7 +48,7 @@
                 // Then recall the parent function to
                 // create a recursive loop.
                 getDataFromServer();
-                //timeout();
+                timeout();
             }, 5000);
         }
 
@@ -69,35 +60,198 @@
         }
 
         function receivedData(dataCache) {
-            //alert('result:' + JSON.stringify(dataCache));
-            var obj = JSON.parse(dataCache);
+            var obj = dataCache;
 
-            //str = JSON.parse(str);
-            $.each(obj.CanValueMessageDefinition.MessageDefinition, function (i, item) {
-                if (item.Description == 'Parking Break')
+            if (obj.length > 0) {
+                var oCtr = obj.length;
+                var cvCtr = 0;
+                var strDesc = '';
+                var strCV_Value = '';
+
+                if (obj[0].CanValues.length == 0)
                 {
-                    alert('test');
+                    //alert('No data to fetch for this vehicle!');
+                    return;                   
                 }
-                //$(".result1").append(item.username);
-                //$(".result2").append(item.uid);
-            });
 
-            //alert(obj.CanValueMessageDefinition.MessageDefinition)
-            //document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+                for (i = 0; i < oCtr; i++) {
 
-           
+                    //strDesc = obj[i].MessageDefinition.Description;
+                    //strCV_Value = obj[i].CanValues[0].Value;
+
+                    // for tesing fault codes only. Will delete when deployed to demo/live
+                    strDesc = 'Fault Codes';
+                    strCV_Value = 'S 1,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4';
+
+                    switch (strDesc) {
+                        case 'Parking Break':
+                            SetStatus(strDesc, strCV_Value);
+                            //break;
+
+                        case 'Fault Codes':
+                            var fltCtr = (strCV_Value.match(/,/g) || []).length + 1;
+                            var arr = strCV_Value.split(',');
+                            var oMS = '';
+                            var oMNum = '';
+
+                            for (var i = 0; i < fltCtr; i++) {
+
+                                if (arr[i].substring(0, 2).trim() == 'MS') {
+                                    
+                                    if (oMS.length == 0)
+                                    {
+                                        SetStatus('Steer', 'Err');
+                                        oMS = arr[i];
+                                    }
+                                    
+                                }
+
+                                if (arr[i].substring(0, 2).trim() == 'M1' || arr[i].substring(0, 2).trim() == 'M2' || arr[i].substring(0, 2).trim() == 'M3' || arr[i].substring(0, 2).trim() == 'M4') {
+
+                                    if (oMNum.length == 0) {
+                                        SetStatus('Drive', 'Err');
+                                        oMNum = arr[i];
+                                    }
+
+                                }
+                            }
+
+                            break;
+                        
+                    }
+
+                    // for tesing fault codes only. Will delete when deployed to demo/live
+                    if (strDesc == 'Fault Codes')
+                    {
+                        break;
+                    }
+
+                }
+
+                //str = JSON.parse(str);
+                //$.each(obj.Object.MessageDefinition, function (i, item) {
+                //    if (item.Description == 'Parking Break')
+                //    {
+                //        alert('test');
+                //    }
+                //    //$(".result1").append(item.username);
+                //    //$(".result2").append(item.uid);
+                //});
+
+                //alert(obj.CanValueMessageDefinition.MessageDefinition)
+                //document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+
+            }
+
         }
 
-        
+        function SetStatus(indicatorDescription, indicatorStatus)
+        {
+            var elementID_Blink = '';
+            var elementID_NoBlink = '';
+            var blnIndicatorOn = false;
 
-        
+            //alert('Inside SetStatus...');
 
-    </script>
+            switch (indicatorDescription) {
+                case 'Parking Break':
+                    //alert('Inside parking break...');
 
-    <script type="text/javascript">
-        var bln_blink = true;
-        var bln_blinkBottom = false;
-        var blink_ctr = 0;
+                    if (indicatorStatus == 'Parking Break ON') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#ibreak_blink', '#ibreak');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#ibreak_blink', '#ibreak');
+                    }
+
+                    break;
+
+                case 'Steer':
+                    if (indicatorStatus == 'Err') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#isteer_blink', '#isteer');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#isteer_blink', '#isteer');
+                    }
+                    
+                    break;
+
+                case 'Drive':
+                    if (indicatorStatus == 'Err') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#idrive_blink', '#idrive');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#idrive_blink', '#idrive');
+                    }
+
+                    break;
+            }
+
+        }
+
+        function makeIndicatorBlink(MakeBlink, elementID_Blink, elementID_NoBlink)
+        {
+            //alert('result : ' + MakeBlink + '; ' + elementID_Blink + '; ' + elementID_NoBlink)
+
+            if (MakeBlink == true) {
+                $(elementID_NoBlink).removeClass('imgmax');
+                $(elementID_NoBlink).removeClass('pnlimgHide');
+                $(elementID_NoBlink).addClass('pnlimgHide');
+
+                $(elementID_Blink).removeClass('imgmax');
+                $(elementID_Blink).removeClass('pnlimgHide');
+                $(elementID_Blink).addClass('imgmax');
+
+            }
+            else {
+                $(elementID_NoBlink).removeClass('imgmax');
+                $(elementID_NoBlink).removeClass('pnlimgHide');
+                $(elementID_NoBlink).addClass('imgmax');
+
+                $(elementID_Blink).removeClass('imgmax');
+                $(elementID_Blink).removeClass('pnlimgHide');
+                $(elementID_Blink).addClass('pnlimgHide');
+            }
+        }
+
+        function setStopStatus(StopStatus)
+        {
+            //alert('Stop Status : ' + StopStatus);
+
+            if (StopStatus == true) {
+                //alert('Stop Status : ' + StopStatus);
+                $('#istop').removeClass('imgmax');
+                $('#istop').removeClass('pnlimgHide')
+                $('#istop').addClass('pnlimgHide')
+
+                $('#istop_blink').removeClass('imgmax');
+                $('#istop_blink').removeClass('pnlimgHide')
+                $('#istop_blink').addClass('imgmax')
+            }
+            else
+            {
+                //alert('Stop Status : ' + StopStatus);
+                $('#istop').removeClass('imgmax');
+                $('#istop').removeClass('pnlimgHide')
+                $('#istop').addClass('imgmax')
+
+                $('#istop_blink').removeClass('imgmax');
+                $('#istop_blink').removeClass('pnlimgHide')
+                $('#istop_blink').addClass('pnlimgHide')
+            }
+            
+        }
+
+        function setLCDTitle(strText)
+        {
+            $('#spanLCDTitle').text(strText);
+        }
 
         function blink() {
             if (bln_blink == true) {
@@ -336,6 +490,11 @@
         setTimeout('blink()', 2000);
         setTimeout('blink()', 3000);
         setTimeout('blink()', 4000);
+        //setTimeout(function () {
+        //    setLCDTitle(priVehicleName);
+        //}, 4000)
+        setTimeout('getDataFromServer()', 4000);
+        //setTimeout('timeout()', 4000);
 
     </script>
 
@@ -412,15 +571,15 @@
         </div>
         <div id="iTick" class="div_tick">
         </div>
-        <%--<div class="div_tick">
-        <img src="Content/Images/Dashboard/tick_hover.png" id="iTick_hover" class="pnlimgHide"/>
-    </div>--%>
         <div class="div_bottomlogo">
             <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iBottomNanosoft" class="imgmax" />
         </div>
         <div class="div_LCD">
             <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iLCD" class="imgLCD" />
         </div>
+        <%--<div id="LCDTitle" class="div_LCDTitle">
+            <span id="spanLCDTitle"></span>
+        </div>--%>
         <%--<div id="idLiveData" class="div_vwLiveData">
         <asp:Label ID="Label1" runat="server" Text="Launch NanoSoft Display" Font-Size="11px" Width="150px" Font-Names="arial"></asp:Label>
        
