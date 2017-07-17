@@ -83,7 +83,7 @@ function ShowDashboard(event) {
     //var vertices = '<br><br>' + this.getPath();
     var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
-    var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID;
+    var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID + '&VehicleName=' + varName;
     //var newURL = 'CanBusPropDispDashboard.aspx';
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:220px;width:700px\' ></iframe>';
     //style=\'height: 280px; width: 245px\
