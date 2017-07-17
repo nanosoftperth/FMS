@@ -25,6 +25,130 @@ Namespace BackgroundCalculations
 
     Public Class SpeedTimeCalcs
 
+        Public Shared Sub RecalcDistanceValues(devicename As String, startdate As Date, endDate As Date)
+
+            'get the device 
+            Dim device = DataObjects.Device.GetFromDeviceID(devicename)
+
+            startdate = startdate.AddHours(-8)
+            endDate = endDate.AddHours(-8)
+
+            'get the AF elements
+            'Hook up to AF (this could be moved elsewhere)
+            Dim myPISystem As PISystem = New PISystems().DefaultPISystem
+            myPISystem.Connect()
+            Dim afdb As AFDatabase = myPISystem.Databases("FMS")
+
+            Dim afst As New OSIsoft.AF.Time.AFTime(startdate)
+            Dim afet As New OSIsoft.AF.Time.AFTime(endDate)
+
+
+            'Get ALL devices from AF (for all applications)
+            Dim afnamedcoll As AFNamedCollection(Of Asset.AFElement) =
+                OSIsoft.AF.Asset.AFElement.FindElements(afdb, Nothing, "device", _
+                            AFSearchField.Template, True, AFSortField.Name, AFSortOrder.Ascending, 1000)
+
+
+            Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = devicename).SingleOrDefault
+
+            If afe Is Nothing Then Exit Sub
+
+            Dim attr_DistancesinceLastVal As Asset.AFAttribute = afe.Attributes("DistanceSinceLastVal")
+            Dim attr_distance As Asset.AFAttribute = afe.Attributes("distance")
+            Dim attr_EngineState As Asset.AFAttribute = afe.Attributes("EngineState")
+            Dim attr_Lat As Asset.AFAttribute = afe.Attributes("lat")
+            Dim attr_Long As Asset.AFAttribute = afe.Attributes("long")
+            Dim attr_Speed As Asset.AFAttribute = afe.Attributes("speed")
+            Dim attr_TotalDistanceTravelled As Asset.AFAttribute = afe.Attributes("TotalDistanceTravelled")
+            Dim attr_log As Asset.AFAttribute = afe.Attributes("log")
+            Dim attr_LastGeoFenceCalc As Asset.AFAttribute = afe.Attributes("LastGeoFenceCalc")
+
+            Dim timerange As New OSIsoft.AF.Time.AFTimeRange(afst, afet)
+
+
+            Dim latVals As Asset.AFValues = attr_Lat.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", True)
+            Dim longVals As Asset.AFValues = attr_Long.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", True)
+
+            Dim distValstoInsert As New Asset.AFValues
+            Dim speedValsToinsert As New Asset.AFValues
+
+            For i As Integer = 1 To latVals.Count - 1
+
+                Dim thisTime As DateTime = latVals(i).Timestamp.LocalTime
+                Dim prevTime As DateTime = latVals(i - 1).Timestamp.LocalTime
+
+
+                'go to the next value if there is a system state returned
+                If latVals(i - 1).ValueTypeCode <> TypeCode.Double Then Continue For
+                If latVals(i).ValueTypeCode <> TypeCode.Double Then Continue For
+                If longVals(i - 1).ValueTypeCode <> TypeCode.Double Then Continue For
+                If longVals(i).ValueTypeCode <> TypeCode.Double Then Continue For
+
+                'get the lattitude and longitude values as decimals for calculation
+                Dim Lat1 As Decimal = latVals(i - 1).Value
+                Dim Lat2 As Decimal = latVals(i).Value
+                Dim Lon1 As Decimal = longVals(i - 1).Value
+                Dim Lon2 As Decimal = longVals(i).Value
+
+                'calculate the distance and speed
+                Dim distance As Decimal = DistanceCalc(Lat1, Lat2, Lon1, Lon2)
+                Dim kmph As Double = distance / (thisTime - prevTime).TotalHours
+
+                'add to their respective lists
+                distValstoInsert.Add(New Asset.AFValue(distance, thisTime))
+                speedValsToinsert.Add(New Asset.AFValue(kmph, thisTime))
+
+            Next
+
+            Dim distValuesAlreadyThere = attr_distance.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", False, 0)
+            If distValuesAlreadyThere IsNot Nothing AndAlso distValuesAlreadyThere.Count > 0 Then attr_distance.PIPoint.UpdateValues(distValuesAlreadyThere, Data.AFUpdateOption.Remove)
+
+            Dim speedValsAlreadyThere = attr_Speed.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", False, 0)
+            If speedValsAlreadyThere IsNot Nothing AndAlso speedValsAlreadyThere.Count > 0 Then attr_Speed.PIPoint.UpdateValues(speedValsAlreadyThere, Data.AFUpdateOption.Remove)
+
+
+
+            'Dim distCount As Integer = distValstoInsert.Count
+
+            'Dim i As integer = 
+
+            'While True
+
+            '    Dim x = distValstoInsert.GetRange(Integer, IAFCategories + 50)
+
+            'End While
+
+            'insert things in batches here
+
+
+            If distValstoInsert.Count > 0 Then attr_distance.PIPoint.UpdateValues(distValstoInsert, Data.AFUpdateOption.Insert)
+            If speedValsToinsert.Count > 0 Then attr_Speed.PIPoint.UpdateValues(speedValsToinsert, Data.AFUpdateOption.Insert)
+
+
+        End Sub
+
+        Private Shared Function DistanceCalc(lat1 As Decimal, lat2 As Decimal, lon1 As Decimal, lon2 As Decimal) As Decimal
+
+            Dim R As Decimal = 6371
+
+            Dim dLat As Decimal = (lat2 - lat1) * (Math.PI / 180)
+            Dim dLon As Decimal = (lon2 - lon1) * (Math.PI / 180)
+
+            Dim a As Decimal = _
+                                Math.Sin(dLat / 2) * Math.Sin(dLat / 2) + _
+                                Math.Cos(lat1 / (Math.PI * 180)) * Math.Cos(lat2 * (Math.PI / 180)) * _
+                                Math.Sin(dLon / 2) * Math.Sin(dLon / 2)
+
+            Dim c As Decimal = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a))
+
+            Dim d As Decimal = R * c
+
+            Return d
+
+        End Function
+
+
+
 
         Public Shared Function ProcessSpeedtimeVals(appid As Guid,
                                                     Optional startDate As Date? = Nothing,
@@ -159,6 +283,7 @@ Namespace BackgroundCalculations
                     End If
 
                     If Not isRecalc Then timerange.StartTime = earliestValue
+
 
                     Dim distVals As Asset.AFValues = attr_distance.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", True)
 
