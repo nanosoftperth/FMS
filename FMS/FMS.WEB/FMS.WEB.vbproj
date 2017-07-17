@@ -287,6 +287,13 @@
       <DependentUpon>AlarmsAndAlerts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="AlarmsAndEvents.aspx.designer.vb">
+      <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlarmsAndEvents.aspx.vb">
+      <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="CanBusPropDispDashboard.aspx.designer.vb">
       <DependentUpon>CanBusPropDispDashboard.aspx</DependentUpon>
     </Compile>
@@ -789,6 +796,7 @@
     <Content Include="Account\ForgotPassword.aspx" />
     <Content Include="Account\Web.config" />
     <Content Include="AlarmsAndAlerts.aspx" />
+    <Content Include="AlarmsAndEvents.aspx" />
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="App_Data\NWind_log.ldf">
       <DependentUpon>NWind.mdf</DependentUpon>
