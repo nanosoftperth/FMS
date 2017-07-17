@@ -6,9 +6,16 @@ using System.Net.Http;
 using FMS.Business.DataObjects;
 using System.Web.Http;
 using System.Web.Security;
+using System.Threading.Tasks;
+using FMS.WEBAPI.Models; 
+using Splunk.Logging;  
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure; 
+using System.Web.Http.Description;
+
 
 namespace FMS.WEBAPI.Controllers
-{
+{    
     public class VehiclesController : ApiController
     {
         // GET api/vehicles
@@ -63,12 +70,7 @@ namespace FMS.WEBAPI.Controllers
 
             return cdp; 
         } 
-
-        public string Get(string value, string t)
-        {
-            return "Test";
-        } 
-
+  
         // POST api/vehicles
         /// <summary>
         /// Post vehicles
@@ -95,6 +97,7 @@ namespace FMS.WEBAPI.Controllers
         /// <param name="id">Vehicle Id</param>
         public void Delete(int id)
         {
-        }
+        } 
+
     }
 }
