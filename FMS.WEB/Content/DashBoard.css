@@ -350,6 +350,7 @@
 
 }
 /* Move it (define the animation) */
+/* For LCD Text and Logo Scroll*/
 @-moz-keyframes example1 {
  0%   { -moz-transform: translateX(100%); }
  100% { -moz-transform: translateX(-100%); }
@@ -369,4 +370,16 @@
  -webkit-transform: translateX(-100%); /* Firefox bug fix */
  transform: translateX(-100%); 
  }
+}
+
+/*LCD Indicators*/
+.div_LCDTitle {
+    background-color: black;
+    position: absolute;
+    top: 40px;
+    left: 405px;
+    width: 280px;
+    height: 10px;
+    font-family: 'Courier New';
+    color: white;
 }
