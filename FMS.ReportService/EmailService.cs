@@ -202,25 +202,37 @@ namespace FMS.ReportService
                                     }
 
                                     #region to create the instance of report
+
                                     string ParmType = string.Empty;
                                     string BusinessLocation = string.Empty;
+
+                                    //set the timezone here?
+                                    
+
                                     switch (Convert.ToString(Item.ReportName))
                                     {
                                         case ReportNameList.VehicleReport:
+
                                             GenericObj = new FMS.ReportLogic.VehicleReportPDF();
                                             ParmType = Convert.ToString(driverVehicleName);
                                             break;
+
                                         case ReportNameList.DriverOperatingHoursReport:
+
                                             GenericObj = new FMS.ReportLogic.DriverOperatingHoursReportPDF();
                                             ParmType = Convert.ToString(driverVehicleName);
                                             BusinessLocation = Convert.ToString(Item.BusinessLocation);
                                             break;
+
                                         case ReportNameList.ReportGeoFence_byDriver:
+
                                             GenericObj = new FMS.ReportLogic.ReportGeoFence_byDriverPDF();
                                             ParmType = Convert.ToString(driverVehicleName);
                                             break;
                                     }
+
                                     #endregion
+
                                     MemoryStream mem = new MemoryStream();
 
 
@@ -237,6 +249,7 @@ namespace FMS.ReportService
                                     {
                                         GenericObj.Parameters[4].Value = Convert.ToString(Item.BusinessLocation);
                                     }
+
                                     GenericObj.ExportToPdf(mem);
 
                                     //Email to multiple recipients edited on 20170510                             
