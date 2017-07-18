@@ -117,7 +117,7 @@ namespace FMS.Datalistener.CalAmp.DataObjects
 
                             if (wasPArsedOK == true && truckid.ToLower() != "should never = this")
                             {
-                                //apiController.Get(truckid, lat, lng, time.ToString("dd/MMM/yyyy HH:mm:ss")); 
+                                apiController.Get(truckid, lat, lng, time.ToString("dd/MMM/yyyy HH:mm:ss")); 
                             }
 
                         }
