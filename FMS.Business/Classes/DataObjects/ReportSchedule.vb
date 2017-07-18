@@ -126,6 +126,7 @@ Namespace DataObjects
         Public Shared Function GetAllForApplication(appID As Guid) As List(Of DataObjects.ReportSchedule)
 
             Dim objList As New List(Of DataObjects.ReportSchedule)
+
             Try
 
                 Dim objDict As Dictionary(Of String, Object) = New Dictionary(Of String, Object)

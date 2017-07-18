@@ -143,7 +143,7 @@
 
             'search for all the pi points which exist for the device
             Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
-                                                        String.Format("tag = 'CAN*{0}*'", deviceid))
+                                                        String.Format("tag = 'CAN*{0}*'", DeviceID))
 
             Dim cnt As Integer = plst.Count
 
@@ -264,6 +264,29 @@
 
         End Function
 
+
+        Public Function GetCurrentTimeZoneOffsetFromPerth() As Double
+
+            Try
+
+                Dim latlng As KeyValuePair(Of Decimal, Decimal) = _
+                                FMS.Business.DataObjects.Device.GetFromDeviceID(DeviceID).GetLatLongs(Now)
+
+                Dim tzr As GoogleAPI.TimeZoneResponse = FMS.Business.GoogleAPI.GetCurrentTimeZoneOffset(latlng.Key, latlng.Value)
+
+                Dim tz As DataObjects.TimeZone = New DataObjects.TimeZone(tzr)
+
+                Return tz.Offset_FromPerthToHQ
+
+            Catch ex As Exception
+                'nop
+            End Try
+
+            Return 0
+
+        End Function
+
+
         Public Shared Function GetForID(Id As Guid) As ApplicationVehicle
 
             Return SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(
@@ -271,6 +294,8 @@
                             Function(x) New DataObjects.ApplicationVehicle(x)).Single
 
         End Function
+
+
 
         Public Shared Function GetAllWithDrivers(appid As Guid, querydate As Date) As List(Of ApplicationVehicle)
 
