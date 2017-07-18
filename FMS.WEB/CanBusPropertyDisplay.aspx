@@ -65,8 +65,6 @@
                 </dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
-        
-             
     </div>
         <dx:ASPxPopupControl ID="pcLogin" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin"
