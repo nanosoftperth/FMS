@@ -16,6 +16,7 @@ Public Class ReportDataHandler
     Public Shared Function GetThisApplicationsDriverList() As List(Of FMS.Business.DataObjects.ApplicationDriver)
         Return FMS.Business.DataObjects.ApplicationDriver.GetAllDriversIncludingEveryone(ThisSession.ApplicationID)
     End Function
+
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -31,8 +32,8 @@ Public Class ReportDataHandler
             startdate = startdate
             endDate = endDate.AddDays(1)
 
-
             If Not ThisSession.ApplicationID = Guid.Empty Then
+
                 'get the vehicleid (guid)
                 Dim vehicleID As Guid = _
                     FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
@@ -61,7 +62,6 @@ Public Class ReportDataHandler
 
                     ThisSession.CachedVehicleReports.Add(rept)
 
-
                 End If
 
                 rept.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary
@@ -78,7 +78,8 @@ Public Class ReportDataHandler
     End Function
     Public Shared Function GetVehicleReportValues(startdate As Date _
                                                     , endDate As Date _
-                                                    , vehicleName As String, appID As String) As CachedVehicleReport
+                                                    , vehicleName As String _
+                                                        , appID As String) As CachedVehicleReport
         Dim rept As CachedVehicleReport = Nothing
 
         Try
@@ -112,17 +113,10 @@ Public Class ReportDataHandler
 
             rept.CalculateSummaries()
 
-            'ThisSession.CachedVehicleReports.Add(rept)
-
-
-            'End If
-
             rept.LogoBinary = FMS.Business.DataObjects.Application.GetCompanyLogo(New Guid(appID))
 
-            'End If
-
         Catch ex As Exception
-            Throw ex
+            Throw
         End Try
         Return rept
 
