@@ -38,6 +38,8 @@ Module Module1
                 Case "geoFenceTest" : geoFenceTest()
                 Case "sendSMSTest" : sendSMSTest()
                 Case "timeZoneList" : timeZoneList()
+                Case "distancecalc" : distancecalc()
+
                 Case "main_method" : While True : main_method() : End While
             End Select
 
@@ -47,6 +49,14 @@ Module Module1
 
 
         MainMethod.ExecuteInfinateLoop()
+
+    End Sub
+
+
+    Private Sub distancecalc()
+
+        'FMS.Business.BackgroundCalculations.SpeedTimeCalcs.RecalcDistanceValues("cannon038", CDate("14 july 2017 07:10:00"), CDate("14 july 2017 07:47:00"))
+
 
     End Sub
 
@@ -71,7 +81,7 @@ Module Module1
 
             LogMsg("Processing Speed/Time values")
             Dim wasSpeedtimeValsSuccess As Boolean = _
-                    FMS.Business.BackgroundCalculations.SpeedTimeCalcs.ProcessSpeedtimeVals(o.ApplicationID)
+                    FMS.Business.BackgroundCalculations.SpeedTimeCalcs.ProcessSpeedtimeVals(o.ApplicationID) ', CDate("13/07/2017"), True)
 
             GeoFenceCollissionEarliestStartDate = Now.AddMonths(-1)
 
