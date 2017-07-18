@@ -16,7 +16,7 @@
             Dim intValue As Integer = 0
             If Comparison = Nothing Then Comparison = ""
             If TextSearch = Nothing Then TextSearch = ""
-            Dim obj = DataObjects.ApplicationVehicle.GetFromName(VehicleName).GetAvailableCANTagsValue() _
+            Dim obj = DataObjects.ApplicationVehicle.GetFromName(VehicleName).GetAvailableCANTags() _
                             .Where(Function(res) + _
                                IIf(Comparison.Equals("<"), res.SPN < IIf(Integer.TryParse(IIf(TextSearch.Equals(""), "0", TextSearch), intValue), intValue, 0), + _
                                IIf(Comparison.Equals(">"), res.SPN > IIf(Integer.TryParse(IIf(TextSearch.Equals(""), "0", TextSearch), intValue), intValue, 0), + _
