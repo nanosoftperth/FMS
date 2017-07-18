@@ -75,15 +75,17 @@ function ShowDashboard(event) {
     var nStart = strName.indexOf('</br>') + 4;
     var nEnd = strName.length;
     var varName = strName.substring(nStart, nEnd);
+    var VehicleName = varName.replace(/[^a-zA-Z ]/g, "");
     //var varName = 'RIO E-maxi';
     //var varName = 'NONE';
+    //alert('strName : ' + strName + '; nStart: ' + nStart + '; nEnd: ' + nEnd + '; varName: ' + varName);
 
     //ajaxGetMethod("api/vehicle/GetDashboardData?vehicleid=" + varName, param, successCallBack_Dashboard, errorCallback_Dashboard, finallyCallback_Dashboard);
 
     //var vertices = '<br><br>' + this.getPath();
     var s = '<div id=\'iw-container_dash\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
-    var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID + '&VehicleName=' + varName;
+    var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID + '&VehicleName=' + VehicleName;
     //var newURL = 'CanBusPropDispDashboard.aspx';
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:220px;width:700px\' ></iframe>';
     //style=\'height: 280px; width: 245px\
