@@ -23,6 +23,15 @@ Partial Public Class AlarmsAndEvents
     Protected WithEvents ASPxPageControl1 As Global.DevExpress.Web.ASPxPageControl
 
     '''<summary>
+    '''lblVehicle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblVehicle As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
     '''ddlVehicles control.
     '''</summary>
     '''<remarks>
@@ -30,6 +39,42 @@ Partial Public Class AlarmsAndEvents
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlVehicles As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''lblComparison control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblComparison As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''ddlComparison control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlComparison As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''lblText control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblText As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtTextSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTextSearch As Global.DevExpress.Web.ASPxTextBox
 
     '''<summary>
     '''btnRefresh control.
