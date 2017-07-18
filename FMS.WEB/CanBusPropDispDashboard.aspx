@@ -63,7 +63,8 @@
             var obj = dataCache;
 
             if (obj.length > 0) {
-                var oCtr = obj.length;
+                //var oCtr = obj.length;
+                var oCtr = 3; // change to 'var oCtr = obj.length;' before deploy
                 var cvCtr = 0;
                 var strDesc = '';
                 var strCV_Value = '';
@@ -75,38 +76,59 @@
                 }
 
                 for (i = 0; i < oCtr; i++) {
-
-                    //strDesc = obj[i].MessageDefinition.Description;
-                    //strCV_Value = obj[i].CanValues[0].Value;
-
-                    // for tesing fault codes only. Will delete when deployed to demo/live
-                    strDesc = 'Fault Codes';
-                    strCV_Value = 'S 1,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4';
-
+                    
+                    // For testing only of fault codes, Battery Voltage. Will delete when deployed to demo/live. Remove or remarks before deploy
+                    if (i == 0)
+                    {
+                        strDesc = 'Parking Break';
+                        strCV_Value = 'Parking Break ON';
+                    }
+                    if (i == 1) {
+                        strDesc = 'Battery Voltage';
+                        strCV_Value = '83.4';
+                    }
+                    if (i == 2) {
+                        strDesc = 'Fault Codes';
+                        strCV_Value = 'S 1,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4,Canopen 3,Canopen 1,Can 101,Can 203';
+                    }
+                    // End of testing data
+                    
+                    //alert('before switch = '+ strDesc + ' : ' + strCV_Value);
                     switch (strDesc) {
                         case 'Parking Break':
                             SetStatus(strDesc, strCV_Value);
-                            //break;
+                            break;
+                        case 'Battery Voltage':
+                            SetStatus(strDesc, strCV_Value);
+                            break;
+
 
                         case 'Fault Codes':
                             var fltCtr = (strCV_Value.match(/,/g) || []).length + 1;
                             var arr = strCV_Value.split(',');
+                            var ndx = 0;
+                            var strCode = '';
+
                             var oMS = '';
                             var oMNum = '';
+                            var oCan = '';
 
                             for (var i = 0; i < fltCtr; i++) {
 
-                                if (arr[i].substring(0, 2).trim() == 'MS') {
-                                    
-                                    if (oMS.length == 0)
-                                    {
-                                        SetStatus('Steer', 'Err');
-                                        oMS = arr[i];
-                                    }
-                                    
+                                ndx = arr[i].indexOf(' ');
+                                strCode = arr[i].substring(0, ndx).trim()
+                                //alert(strCode);
+
+                                if (strCode == 'MS')
+                                {
+                                        if (oMS.length == 0)
+                                        {
+                                            SetStatus('Steer', 'Err');
+                                            oMS = arr[i];
+                                        }
                                 }
 
-                                if (arr[i].substring(0, 2).trim() == 'M1' || arr[i].substring(0, 2).trim() == 'M2' || arr[i].substring(0, 2).trim() == 'M3' || arr[i].substring(0, 2).trim() == 'M4') {
+                                if (strCode == 'M1' || strCode == 'M2' || strCode == 'M3' || strCode == 'M4') {
 
                                     if (oMNum.length == 0) {
                                         SetStatus('Drive', 'Err');
@@ -114,17 +136,28 @@
                                     }
 
                                 }
+
+                                if (strCode == 'Can' || strCode == 'Canopen') {
+
+
+                                    if (oCan.length == 0) {
+                                        SetStatus('Can', 'Err');
+                                        oCan = arr[i];
+                                    }
+                                }
+
                             }
 
                             break;
                         
                     }
 
-                    // for tesing fault codes only. Will delete when deployed to demo/live
-                    if (strDesc == 'Fault Codes')
-                    {
-                        break;
-                    }
+                    // for tesing. Will delete when deployed to demo/live
+                    //if (strDesc == 'Fault Codes' || strDesc == 'Battery Voltage')
+                    //{
+                    //    //setLCDTitle(priVehicleName);
+                    //    break;
+                    //}
 
                 }
 
@@ -151,12 +184,10 @@
             var elementID_NoBlink = '';
             var blnIndicatorOn = false;
 
-            //alert('Inside SetStatus...');
+            //alert('Inside SetStatus...' + indicatorDescription + ' : ' + indicatorStatus);
 
             switch (indicatorDescription) {
                 case 'Parking Break':
-                    //alert('Inside parking break...');
-
                     if (indicatorStatus == 'Parking Break ON') {
                         setStopStatus(true);
                         makeIndicatorBlink(true, '#ibreak_blink', '#ibreak');
@@ -190,6 +221,43 @@
                         makeIndicatorBlink(false, '#idrive_blink', '#idrive');
                     }
 
+                    break;
+
+                case 'Can':
+                    if (indicatorStatus == 'Err') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#ican_blink', '#ican');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#ican_blink', '#ican');
+                    }
+
+                    break;
+
+                case 'Battery Voltage':
+                    if (indicatorStatus >= 86)
+                    {
+                        makeIndicatorBlink(true, '#ibattery_100_blink', '#ibattery_100');
+                    }
+                    if (indicatorStatus >= 72 && indicatorStatus <= 85) {
+                        makeIndicatorBlink(true, '#ibattery_85', '#ibattery_100');
+                    }
+                    if (indicatorStatus >= 58 && indicatorStatus <= 71) {
+                        makeIndicatorBlink(true, '#ibattery_71', '#ibattery_100');
+                    }
+                    if (indicatorStatus >= 44 && indicatorStatus <=57) {
+                        makeIndicatorBlink(true, '#ibattery_57', '#ibattery_100');
+                    }
+                    if (indicatorStatus >= 29 && indicatorStatus <= 43) {
+                        makeIndicatorBlink(true, '#ibattery_43', '#ibattery_100');
+                    }
+                    if (indicatorStatus >= 15 && indicatorStatus <= 28) {
+                        makeIndicatorBlink(true, '#ibattery_28', '#ibattery_100');
+                    }
+                    if (indicatorStatus >= 0 && indicatorStatus <= 14) {
+                        makeIndicatorBlink(true, '#ibattery_14', '#ibattery_100');
+                    }
                     break;
             }
 
@@ -250,7 +318,14 @@
 
         function setLCDTitle(strText)
         {
-            $('#spanLCDTitle').text(strText);
+            $('#div_LCD').removeClass('LCDCont_Hide')
+            $('#div_LCD').addClass('div_LCDCont')
+            $('#spanLCDTitle').text(strText.replace(/%20/g, " "));
+
+            $('#spanLine1').text(' Zagro GmbH ');
+            $('#spanLine2').text('');
+            $('#spanLine3').text('');
+            $('#spanLine4').text('SOFTWARE 2.00.00');
         }
 
         function blink() {
@@ -490,9 +565,9 @@
         setTimeout('blink()', 2000);
         setTimeout('blink()', 3000);
         setTimeout('blink()', 4000);
-        //setTimeout(function () {
-        //    setLCDTitle(priVehicleName);
-        //}, 4000)
+        setTimeout(function () {
+            setLCDTitle(priVehicleName);
+        }, 4000)
         setTimeout('getDataFromServer()', 4000);
         //setTimeout('timeout()', 4000);
 
@@ -563,6 +638,24 @@
         <div class="div_battery">
             <img src="Content/Images/Dashboard/battery_100.png" id="ibattery_100_blink" class="pnlimgHide" />
         </div>
+        <div class="div_battery">
+            <img src="Content/Images/Dashboard/battery_85.png" id="ibattery_85" class="pnlimgHide" />
+        </div>
+        <div class="div_battery">
+            <img src="Content/Images/Dashboard/battery_71.png" id="ibattery_71" class="pnlimgHide" />
+        </div>
+        <div class="div_battery">
+            <img src="Content/Images/Dashboard/battery_57.png" id="ibattery_57" class="pnlimgHide" />
+        </div>
+        <div class="div_battery">
+            <img src="Content/Images/Dashboard/battery_43.png" id="ibattery_43" class="pnlimgHide" />
+        </div>
+        <div class="div_battery">
+            <img src="Content/Images/Dashboard/battery_28.png" id="ibattery_28" class="pnlimgHide" />
+        </div>
+        <div class="div_battery">
+            <img src="Content/Images/Dashboard/battery_14.png" id="ibattery_14" class="pnlimgHide" />
+        </div>
         <div id="iPlus" class="div_plus">
         </div>
         <div id="iMinus" class="div_minus">
@@ -577,9 +670,24 @@
         <div class="div_LCD">
             <img src="Content/Images/Dashboard/NanoSoft_Colour.png" id="iLCD" class="imgLCD" />
         </div>
-        <%--<div id="LCDTitle" class="div_LCDTitle">
-            <span id="spanLCDTitle"></span>
-        </div>--%>
+        <div id="div_LCD" class="LCDCont_Hide">
+            <div id="LCDTitle" class="div_LCDTitle">
+                <span id="spanLCDTitle"></span>                
+            </div>
+            <div id="LCDLine1" class="div_LCDLine">
+                <span id="spanLine1"></span>
+            </div>
+            <div id="LCDLine2" class="div_LCDLine">
+                <span id="spanLine2"></span>
+            </div>
+            <div id="LCDLine3" class="div_LCDLine">
+                <span id="spanLine3"></span>
+            </div>
+            <div id="LCDLine4" class="div_LCDLine">
+                <span id="spanLine4"></span>
+            </div>
+        </div>
+        
         <%--<div id="idLiveData" class="div_vwLiveData">
         <asp:Label ID="Label1" runat="server" Text="Launch NanoSoft Display" Font-Size="11px" Width="150px" Font-Names="arial"></asp:Label>
        
