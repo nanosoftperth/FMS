@@ -240,7 +240,7 @@ Public Class ThisSession
 
 
 End Class
-  
+
 Public Class CachedVehicleReport
 
     Public Property StartDate As DateTime
@@ -267,8 +267,6 @@ Public Class CachedVehicleReport
 
 
     Public Sub CalculateSummaries()
-
-
 
 
         For i As Integer = 0 To LineValies.Count - 1
@@ -302,6 +300,26 @@ Public Class CachedVehicleReport
         formatted_TotalStopDuration = timespanFormatCust(TotalStopDuration)
         formatted_TotalTravelDuration = timespanFormatCust(TotalTravelDuration)
 
+
+        Try
+
+            'Figure out the timezone for the vehicle
+            Dim offset As Double = FMS.Business.DataObjects.ApplicationVehicle.GetForID(VehicleID).GetCurrentTimeZoneOffsetFromPerth
+
+
+            For Each lv In LineValies
+
+                If lv.ArrivalTime.HasValue Then lv.ArrivalTime = lv.ArrivalTime.Value.AddHours(offset)
+                If lv.DepartureTime.HasValue Then lv.DepartureTime = lv.DepartureTime.Value.AddHours(offset)
+                If lv.StartTime.HasValue Then lv.StartTime = lv.StartTime.Value.AddHours(offset)
+
+            Next
+
+        Catch ex As Exception
+
+        End Try
+
+
     End Sub
     Private Function timespanFormatCust(t As TimeSpan) As String
 
@@ -321,7 +339,9 @@ Public Class CachedVehicleReport
 
     Public Property LineValies As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine)
 
-     
+   
+
+
     Public Sub New()
 
         TotalStopDuration = TimeSpan.FromSeconds(0)
@@ -333,7 +353,7 @@ Public Class CachedVehicleReport
     End Sub
 
 End Class
- 
+
 'BY RYAN 
 'only difference is LineValies
 Public Class CachedDriverOperatingHoursReport
@@ -449,7 +469,7 @@ Public Class CachedDriverOperatingHoursReportLine
     End Function
 
 End Class
- 
+
 'Get report content for vehicle dump details 
 Public Class CachedVehicleDumpReport
 
@@ -509,6 +529,10 @@ Public Class CachedVehicleDumpReport
         formatted_TotalIdleTime = timespanFormatCust(TotalIdleTime)
         formatted_TotalStopDuration = timespanFormatCust(TotalStopDuration)
         formatted_TotalTravelDuration = timespanFormatCust(TotalTravelDuration)
+
+
+
+
 
     End Sub
 
