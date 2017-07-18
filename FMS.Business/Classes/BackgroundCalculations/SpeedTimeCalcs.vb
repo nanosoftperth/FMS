@@ -25,7 +25,14 @@ Namespace BackgroundCalculations
 
     Public Class SpeedTimeCalcs
 
-        Public Shared Sub RecalcDistanceValues(devicename As String, startdate As Date, endDate As Date)
+        ''' <summary>
+        ''' Takes a device and deletes the speed and distance  values for a specific time period. 
+        ''' The recalculates both of these. This logic is required as there is no real way for analysis to recalculate a 
+        ''' specific time period of time programatically. Eventually, we want this logic to replace the AF analysis logic. 
+        ''' There is a fair bit of code replication with this method and ProcessSpeedtimeVals. When we replace AF analytics, this replication 
+        ''' should also be removed. 
+        ''' </summary>
+        Public Shared Sub RecalcSpeedAndDistValues(devicename As String, startdate As Date, endDate As Date)
 
             'get the device 
             Dim device = DataObjects.Device.GetFromDeviceID(devicename)
@@ -91,7 +98,7 @@ Namespace BackgroundCalculations
                 Dim Lon2 As Decimal = longVals(i).Value
 
                 'calculate the distance and speed
-                Dim distance As Decimal = DistanceCalc(Lat1, Lat2, Lon1, Lon2)
+                Dim distance As Double = DistanceCalc(Lat1, Lat2, Lon1, Lon2)
                 Dim kmph As Double = distance / (thisTime - prevTime).TotalHours
 
                 'add to their respective lists
@@ -100,30 +107,51 @@ Namespace BackgroundCalculations
 
             Next
 
+            'DELETE the distance values whic hare already in AF 
             Dim distValuesAlreadyThere = attr_distance.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", False, 0)
             If distValuesAlreadyThere IsNot Nothing AndAlso distValuesAlreadyThere.Count > 0 Then attr_distance.PIPoint.UpdateValues(distValuesAlreadyThere, Data.AFUpdateOption.Remove)
-
+            'DELETE the speed values whic hare already in AF 
             Dim speedValsAlreadyThere = attr_Speed.PIPoint.RecordedValues(timerange, Data.AFBoundaryType.Inside, "", False, 0)
             If speedValsAlreadyThere IsNot Nothing AndAlso speedValsAlreadyThere.Count > 0 Then attr_Speed.PIPoint.UpdateValues(speedValsAlreadyThere, Data.AFUpdateOption.Remove)
 
 
+            'to avoid timeout, the "update values" will be done in batches of 100 values at a time 
+            'we can safeley assume that there are the same amount of distance and speed values.
+            Dim j As Integer = 0
+            Dim maxCount As Integer = distValstoInsert.Count - 1
+            Dim BATCH_SIZE As Integer = 100
+            Dim iterationCount As Integer = maxCount \ BATCH_SIZE
 
-            'Dim distCount As Integer = distValstoInsert.Count
+            If maxCount >= 0 Then
 
-            'Dim i As integer = 
+                While True
 
-            'While True
+                    Console.WriteLine("PROCESSING BATCH {0} OF {1}", j / BATCH_SIZE, iterationCount)
 
-            '    Dim x = distValstoInsert.GetRange(Integer, IAFCategories + 50)
+                    If j > maxCount Then j = maxCount
 
-            'End While
+                    Dim thisBatchCount As Integer = maxCount - j
+                    If thisBatchCount > BATCH_SIZE Then thisBatchCount = BATCH_SIZE
 
-            'insert things in batches here
+                    If thisBatchCount = 0 Then Exit While
 
+                    Dim distancesBatch = distValstoInsert.GetRange(j, thisBatchCount)
+                    Dim speedsBatch = speedValsToinsert.GetRange(j, thisBatchCount)
 
-            If distValstoInsert.Count > 0 Then attr_distance.PIPoint.UpdateValues(distValstoInsert, Data.AFUpdateOption.Insert)
-            If speedValsToinsert.Count > 0 Then attr_Speed.PIPoint.UpdateValues(speedValsToinsert, Data.AFUpdateOption.Insert)
+                    Console.WriteLine("adding {0} distance values ", thisBatchCount)
+                    attr_distance.PIPoint.UpdateValues(distancesBatch, Data.AFUpdateOption.Insert)
+                    Console.WriteLine("adding {0} speed values ", thisBatchCount)
+                    attr_Speed.PIPoint.UpdateValues(speedsBatch, Data.AFUpdateOption.Insert)
+                    Console.WriteLine("complete....{0}{0}", vbNewLine)
 
+                    If j >= maxCount Then Exit While
+
+                    j += BATCH_SIZE
+                End While
+
+            End If
+
+            Console.WriteLine("{0}recalculation complete{0}", vbNewLine)
 
         End Sub
 
