@@ -21,6 +21,9 @@ namespace FMS.Datalistener.CalAmp
         static void Main(string[] args)
         {
 
+          //  DataObjects.LogFileProcessor.ProcessLogs();
+
+
             HostFactory.Run(x =>
             {
                 x.Service<CalAMP_Receiver>(s =>

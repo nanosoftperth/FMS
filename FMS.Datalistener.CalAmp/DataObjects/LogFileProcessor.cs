@@ -9,6 +9,22 @@ namespace FMS.Datalistener.CalAmp.DataObjects
     class LogFileProcessor
     {
 
+
+        public class DeviceWithTimes
+        {
+
+            public string DeviceID { get; set; }
+            public DateTime EarliestDate { get; set; }
+            public DateTime LatestDate { get; set; }
+
+            public DeviceWithTimes()
+            {
+            }
+        }
+
+
+
+
         public static void ProcessLogs()
         {
 
@@ -36,6 +52,9 @@ namespace FMS.Datalistener.CalAmp.DataObjects
                         List<string> geoCoords = filecontents.Split(',').ToList();
 
                         bool sendWarningEmail = false;
+
+                        var decicesWithTimes = new List<DeviceWithTimes>();
+
 
                         if (sendWarningEmail)
                         {
@@ -70,8 +89,20 @@ namespace FMS.Datalistener.CalAmp.DataObjects
                                 lng = decimal.Parse(dict["lng"]);
                                 time = DateTime.Parse(dict["time"].Replace("%20", " "));
 
-                                wasPArsedOK = true;
 
+                                DeviceWithTimes foundDevice = decicesWithTimes.Where(x => x.DeviceID == truckid).SingleOrDefault();
+
+                                if (foundDevice == null)
+                                {
+                                    decicesWithTimes.Add(new DeviceWithTimes() { DeviceID = truckid, EarliestDate = time, LatestDate = time });
+                                    foundDevice = decicesWithTimes.Where(x => x.DeviceID == truckid).SingleOrDefault();
+                                }
+
+
+                                if (time < foundDevice.EarliestDate) foundDevice.EarliestDate = time;
+                                if (time > foundDevice.LatestDate) foundDevice.LatestDate = time;
+
+                                wasPArsedOK = true;
 
 
                             }
@@ -85,9 +116,20 @@ namespace FMS.Datalistener.CalAmp.DataObjects
                             }
 
                             if (wasPArsedOK == true && truckid.ToLower() != "should never = this")
-                            { apiController.Get(truckid, lat, lng, time.ToString("dd/MMM/yyyy HH:mm:ss")); }
+                            {
+                                //apiController.Get(truckid, lat, lng, time.ToString("dd/MMM/yyyy HH:mm:ss")); 
+                            }
 
                         }
+
+                        foreach (DeviceWithTimes d in decicesWithTimes)
+                        {
+
+                            Console.WriteLine("Processing  device \"{0}\" from {1} to {2}", d.DeviceID, d.EarliestDate, d.LatestDate);
+
+                            FMS.Business.BackgroundCalculations.SpeedTimeCalcs.RecalcSpeedAndDistValues(d.DeviceID, d.EarliestDate, d.LatestDate);
+                        }
+
 
 
                         System.IO.File.Move(filename, filename + ".processed");
