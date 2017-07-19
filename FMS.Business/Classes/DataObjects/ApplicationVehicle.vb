@@ -201,25 +201,11 @@
                 Dim canValue As New CanValueMessageDefinition()
                 Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(canmessdef.SPN, DeviceID, canmessdef.Standard)
                 canValue.MessageDefinition = canmessdef
-                canValue.CanValues = PointWithData.CanValues
-                Dim bool As Boolean = False
-                If Not lstNew.Count.Equals(0) Then
-                    For Each filterDuplicate In lstNew
-                        If Not canValue.CanValues.Count.Equals(0) And Not filterDuplicate.CanValues.Count.Equals(0) Then
-                            If filterDuplicate.MessageDefinition.SPN = canValue.MessageDefinition.SPN And _
-                            filterDuplicate.CanValues(filterDuplicate.CanValues.Count - 1).RawValue = canValue.CanValues(canValue.CanValues.Count - 1).RawValue Then
-                                bool = True
-                                Exit For
-                            End If
-                        End If
-                    Next
-                    If Not bool Then lstNew.Add(canValue)
-                Else
-                    lstNew.Add(canValue)
-                End If
-            Next
-
-            Return lstNew
+                canValue.CanValues = PointWithData.CanValues                
+                lstNew.Add(canValue)
+            Next            
+            'Use group by standard and spn to eliminate duplicate
+            Return lstNew.ToList().ToList().GroupBy(Function(xx) New With {Key xx.MessageDefinition.Standard, Key xx.MessageDefinition.PGN, Key xx.MessageDefinition.SPN}).ToList().Select(Function(xxx) xxx.First()).ToList()
 
         End Function
 

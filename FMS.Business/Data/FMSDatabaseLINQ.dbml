@@ -722,6 +722,43 @@
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.CAN_EventDefinition" Member="CAN_EventDefinitions">
+    <Type Name="CAN_EventDefinition">
+      <Column Name="CAN_EventDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Standard" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PGN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SPN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TriggerConditoinQualifier" Type="System.String" DbType="NChar(1000)" CanBeNull="true" />
+      <Column Name="TriggerConditionText" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="LastDateChecked" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAN_AlertDefinition" Member="CAN_AlertDefinitions">
+    <Type Name="CAN_AlertDefinition">
+      <Column Name="CAN_AlertDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CAN_EventDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SubscriberNativeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SendEmail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SendText" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAN_EventOccuranceAlert" Member="CAN_EventOccuranceAlerts">
+    <Type Name="CAN_EventOccuranceAlert">
+      <Column Name="CAN_EventOccuranceAlertID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CAN_EventOccuranceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CAN_AlertDefinition" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DateSent" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAN_EventOccurance" Member="CAN_EventOccurances">
+    <Type Name="CAN_EventOccurance">
+      <Column Name="CAN_EventOccuranceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CAN_EventDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DateOccured" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TriggerCondition" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />

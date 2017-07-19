@@ -100,6 +100,10 @@
     <Compile Include="Classes\DataObjects\AuthenticationToken.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanValue.vb" />
+    <Compile Include="Classes\DataObjects\Can_AlertDefinition.vb" />
+    <Compile Include="Classes\DataObjects\Can_EventDefinition.vb" />
+    <Compile Include="Classes\DataObjects\Can_EventOccurance.vb" />
+    <Compile Include="Classes\DataObjects\Can_EventOccuranceAlert.vb" />
     <Compile Include="Classes\DataObjects\CAN_MessageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanDataPoint.vb" />
     <Compile Include="Classes\DataObjects\Contact.vb" />

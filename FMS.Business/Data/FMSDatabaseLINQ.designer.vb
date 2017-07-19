@@ -313,6 +313,30 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
     End Sub
+  Partial Private Sub InsertCAN_EventDefinition(instance As CAN_EventDefinition)
+    End Sub
+  Partial Private Sub UpdateCAN_EventDefinition(instance As CAN_EventDefinition)
+    End Sub
+  Partial Private Sub DeleteCAN_EventDefinition(instance As CAN_EventDefinition)
+    End Sub
+  Partial Private Sub InsertCAN_AlertDefinition(instance As CAN_AlertDefinition)
+    End Sub
+  Partial Private Sub UpdateCAN_AlertDefinition(instance As CAN_AlertDefinition)
+    End Sub
+  Partial Private Sub DeleteCAN_AlertDefinition(instance As CAN_AlertDefinition)
+    End Sub
+  Partial Private Sub InsertCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+    End Sub
+  Partial Private Sub UpdateCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+    End Sub
+  Partial Private Sub DeleteCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+    End Sub
+  Partial Private Sub InsertCAN_EventOccurance(instance As CAN_EventOccurance)
+    End Sub
+  Partial Private Sub UpdateCAN_EventOccurance(instance As CAN_EventOccurance)
+    End Sub
+  Partial Private Sub DeleteCAN_EventOccurance(instance As CAN_EventOccurance)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -667,6 +691,30 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
 		Get
 			Return Me.GetTable(Of ApplicationBooking)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_EventDefinitions() As System.Data.Linq.Table(Of CAN_EventDefinition)
+		Get
+			Return Me.GetTable(Of CAN_EventDefinition)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_AlertDefinitions() As System.Data.Linq.Table(Of CAN_AlertDefinition)
+		Get
+			Return Me.GetTable(Of CAN_AlertDefinition)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_EventOccuranceAlerts() As System.Data.Linq.Table(Of CAN_EventOccuranceAlert)
+		Get
+			Return Me.GetTable(Of CAN_EventOccuranceAlert)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_EventOccurances() As System.Data.Linq.Table(Of CAN_EventOccurance)
+		Get
+			Return Me.GetTable(Of CAN_EventOccurance)
 		End Get
 	End Property
 	
@@ -13227,6 +13275,638 @@ Partial Public Class ApplicationBooking
 					Me._ApplicationDriverID = CType(Nothing, System.Guid)
 				End If
 				Me.SendPropertyChanged("ApplicationDriver")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CAN_EventDefinition")>  _
+Partial Public Class CAN_EventDefinition
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CAN_EventDefinitionID As System.Guid
+	
+	Private _Standard As String
+	
+	Private _PGN As System.Nullable(Of Double)
+	
+	Private _SPN As System.Nullable(Of Double)
+	
+	Private _TriggerConditoinQualifier As String
+	
+	Private _TriggerConditionText As String
+	
+	Private _LastDateChecked As System.Nullable(Of Date)
+	
+	Private _deleted As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCAN_EventDefinitionIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_EventDefinitionIDChanged()
+    End Sub
+    Partial Private Sub OnStandardChanging(value As String)
+    End Sub
+    Partial Private Sub OnStandardChanged()
+    End Sub
+    Partial Private Sub OnPGNChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnPGNChanged()
+    End Sub
+    Partial Private Sub OnSPNChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnSPNChanged()
+    End Sub
+    Partial Private Sub OnTriggerConditoinQualifierChanging(value As String)
+    End Sub
+    Partial Private Sub OnTriggerConditoinQualifierChanged()
+    End Sub
+    Partial Private Sub OnTriggerConditionTextChanging(value As String)
+    End Sub
+    Partial Private Sub OnTriggerConditionTextChanged()
+    End Sub
+    Partial Private Sub OnLastDateCheckedChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnLastDateCheckedChanged()
+    End Sub
+    Partial Private Sub OndeletedChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OndeletedChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_EventDefinitionID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CAN_EventDefinitionID() As System.Guid
+		Get
+			Return Me._CAN_EventDefinitionID
+		End Get
+		Set
+			If ((Me._CAN_EventDefinitionID = value)  _
+						= false) Then
+				Me.OnCAN_EventDefinitionIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_EventDefinitionID = value
+				Me.SendPropertyChanged("CAN_EventDefinitionID")
+				Me.OnCAN_EventDefinitionIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Standard", DbType:="NVarChar(255)")>  _
+	Public Property Standard() As String
+		Get
+			Return Me._Standard
+		End Get
+		Set
+			If (String.Equals(Me._Standard, value) = false) Then
+				Me.OnStandardChanging(value)
+				Me.SendPropertyChanging
+				Me._Standard = value
+				Me.SendPropertyChanged("Standard")
+				Me.OnStandardChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PGN", DbType:="Float")>  _
+	Public Property PGN() As System.Nullable(Of Double)
+		Get
+			Return Me._PGN
+		End Get
+		Set
+			If (Me._PGN.Equals(value) = false) Then
+				Me.OnPGNChanging(value)
+				Me.SendPropertyChanging
+				Me._PGN = value
+				Me.SendPropertyChanged("PGN")
+				Me.OnPGNChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SPN", DbType:="Float")>  _
+	Public Property SPN() As System.Nullable(Of Double)
+		Get
+			Return Me._SPN
+		End Get
+		Set
+			If (Me._SPN.Equals(value) = false) Then
+				Me.OnSPNChanging(value)
+				Me.SendPropertyChanging
+				Me._SPN = value
+				Me.SendPropertyChanged("SPN")
+				Me.OnSPNChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TriggerConditoinQualifier", DbType:="NChar(1000)")>  _
+	Public Property TriggerConditoinQualifier() As String
+		Get
+			Return Me._TriggerConditoinQualifier
+		End Get
+		Set
+			If (String.Equals(Me._TriggerConditoinQualifier, value) = false) Then
+				Me.OnTriggerConditoinQualifierChanging(value)
+				Me.SendPropertyChanging
+				Me._TriggerConditoinQualifier = value
+				Me.SendPropertyChanged("TriggerConditoinQualifier")
+				Me.OnTriggerConditoinQualifierChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TriggerConditionText", DbType:="NChar(10)")>  _
+	Public Property TriggerConditionText() As String
+		Get
+			Return Me._TriggerConditionText
+		End Get
+		Set
+			If (String.Equals(Me._TriggerConditionText, value) = false) Then
+				Me.OnTriggerConditionTextChanging(value)
+				Me.SendPropertyChanging
+				Me._TriggerConditionText = value
+				Me.SendPropertyChanged("TriggerConditionText")
+				Me.OnTriggerConditionTextChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LastDateChecked", DbType:="Date")>  _
+	Public Property LastDateChecked() As System.Nullable(Of Date)
+		Get
+			Return Me._LastDateChecked
+		End Get
+		Set
+			If (Me._LastDateChecked.Equals(value) = false) Then
+				Me.OnLastDateCheckedChanging(value)
+				Me.SendPropertyChanging
+				Me._LastDateChecked = value
+				Me.SendPropertyChanged("LastDateChecked")
+				Me.OnLastDateCheckedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_deleted", DbType:="Bit NOT NULL")>  _
+	Public Property deleted() As Boolean
+		Get
+			Return Me._deleted
+		End Get
+		Set
+			If ((Me._deleted = value)  _
+						= false) Then
+				Me.OndeletedChanging(value)
+				Me.SendPropertyChanging
+				Me._deleted = value
+				Me.SendPropertyChanged("deleted")
+				Me.OndeletedChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CAN_AlertDefinition")>  _
+Partial Public Class CAN_AlertDefinition
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CAN_AlertDefinitionID As System.Guid
+	
+	Private _CAN_EventDefinitionID As System.Guid
+	
+	Private _SubscriberNativeID As System.Guid
+	
+	Private _SendEmail As Boolean
+	
+	Private _SendText As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCAN_AlertDefinitionIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_AlertDefinitionIDChanged()
+    End Sub
+    Partial Private Sub OnCAN_EventDefinitionIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_EventDefinitionIDChanged()
+    End Sub
+    Partial Private Sub OnSubscriberNativeIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnSubscriberNativeIDChanged()
+    End Sub
+    Partial Private Sub OnSendEmailChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnSendEmailChanged()
+    End Sub
+    Partial Private Sub OnSendTextChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnSendTextChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_AlertDefinitionID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CAN_AlertDefinitionID() As System.Guid
+		Get
+			Return Me._CAN_AlertDefinitionID
+		End Get
+		Set
+			If ((Me._CAN_AlertDefinitionID = value)  _
+						= false) Then
+				Me.OnCAN_AlertDefinitionIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_AlertDefinitionID = value
+				Me.SendPropertyChanged("CAN_AlertDefinitionID")
+				Me.OnCAN_AlertDefinitionIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_EventDefinitionID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property CAN_EventDefinitionID() As System.Guid
+		Get
+			Return Me._CAN_EventDefinitionID
+		End Get
+		Set
+			If ((Me._CAN_EventDefinitionID = value)  _
+						= false) Then
+				Me.OnCAN_EventDefinitionIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_EventDefinitionID = value
+				Me.SendPropertyChanged("CAN_EventDefinitionID")
+				Me.OnCAN_EventDefinitionIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubscriberNativeID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property SubscriberNativeID() As System.Guid
+		Get
+			Return Me._SubscriberNativeID
+		End Get
+		Set
+			If ((Me._SubscriberNativeID = value)  _
+						= false) Then
+				Me.OnSubscriberNativeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SubscriberNativeID = value
+				Me.SendPropertyChanged("SubscriberNativeID")
+				Me.OnSubscriberNativeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SendEmail", DbType:="Bit NOT NULL")>  _
+	Public Property SendEmail() As Boolean
+		Get
+			Return Me._SendEmail
+		End Get
+		Set
+			If ((Me._SendEmail = value)  _
+						= false) Then
+				Me.OnSendEmailChanging(value)
+				Me.SendPropertyChanging
+				Me._SendEmail = value
+				Me.SendPropertyChanged("SendEmail")
+				Me.OnSendEmailChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SendText", DbType:="Bit NOT NULL")>  _
+	Public Property SendText() As Boolean
+		Get
+			Return Me._SendText
+		End Get
+		Set
+			If ((Me._SendText = value)  _
+						= false) Then
+				Me.OnSendTextChanging(value)
+				Me.SendPropertyChanging
+				Me._SendText = value
+				Me.SendPropertyChanged("SendText")
+				Me.OnSendTextChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CAN_EventOccuranceAlert")>  _
+Partial Public Class CAN_EventOccuranceAlert
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CAN_EventOccuranceAlertID As System.Guid
+	
+	Private _CAN_EventOccuranceID As System.Guid
+	
+	Private _CAN_AlertDefinition As System.Guid
+	
+	Private _DateSent As Date
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCAN_EventOccuranceAlertIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_EventOccuranceAlertIDChanged()
+    End Sub
+    Partial Private Sub OnCAN_EventOccuranceIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_EventOccuranceIDChanged()
+    End Sub
+    Partial Private Sub OnCAN_AlertDefinitionChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_AlertDefinitionChanged()
+    End Sub
+    Partial Private Sub OnDateSentChanging(value As Date)
+    End Sub
+    Partial Private Sub OnDateSentChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_EventOccuranceAlertID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CAN_EventOccuranceAlertID() As System.Guid
+		Get
+			Return Me._CAN_EventOccuranceAlertID
+		End Get
+		Set
+			If ((Me._CAN_EventOccuranceAlertID = value)  _
+						= false) Then
+				Me.OnCAN_EventOccuranceAlertIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_EventOccuranceAlertID = value
+				Me.SendPropertyChanged("CAN_EventOccuranceAlertID")
+				Me.OnCAN_EventOccuranceAlertIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_EventOccuranceID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property CAN_EventOccuranceID() As System.Guid
+		Get
+			Return Me._CAN_EventOccuranceID
+		End Get
+		Set
+			If ((Me._CAN_EventOccuranceID = value)  _
+						= false) Then
+				Me.OnCAN_EventOccuranceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_EventOccuranceID = value
+				Me.SendPropertyChanged("CAN_EventOccuranceID")
+				Me.OnCAN_EventOccuranceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_AlertDefinition", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property CAN_AlertDefinition() As System.Guid
+		Get
+			Return Me._CAN_AlertDefinition
+		End Get
+		Set
+			If ((Me._CAN_AlertDefinition = value)  _
+						= false) Then
+				Me.OnCAN_AlertDefinitionChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_AlertDefinition = value
+				Me.SendPropertyChanged("CAN_AlertDefinition")
+				Me.OnCAN_AlertDefinitionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateSent", DbType:="Date NOT NULL")>  _
+	Public Property DateSent() As Date
+		Get
+			Return Me._DateSent
+		End Get
+		Set
+			If ((Me._DateSent = value)  _
+						= false) Then
+				Me.OnDateSentChanging(value)
+				Me.SendPropertyChanging
+				Me._DateSent = value
+				Me.SendPropertyChanged("DateSent")
+				Me.OnDateSentChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CAN_EventOccurance")>  _
+Partial Public Class CAN_EventOccurance
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CAN_EventOccuranceID As System.Guid
+	
+	Private _CAN_EventDefinitionID As System.Guid
+	
+	Private _DateOccured As Date
+	
+	Private _TriggerCondition As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCAN_EventOccuranceIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_EventOccuranceIDChanged()
+    End Sub
+    Partial Private Sub OnCAN_EventDefinitionIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCAN_EventDefinitionIDChanged()
+    End Sub
+    Partial Private Sub OnDateOccuredChanging(value As Date)
+    End Sub
+    Partial Private Sub OnDateOccuredChanged()
+    End Sub
+    Partial Private Sub OnTriggerConditionChanging(value As String)
+    End Sub
+    Partial Private Sub OnTriggerConditionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_EventOccuranceID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CAN_EventOccuranceID() As System.Guid
+		Get
+			Return Me._CAN_EventOccuranceID
+		End Get
+		Set
+			If ((Me._CAN_EventOccuranceID = value)  _
+						= false) Then
+				Me.OnCAN_EventOccuranceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_EventOccuranceID = value
+				Me.SendPropertyChanged("CAN_EventOccuranceID")
+				Me.OnCAN_EventOccuranceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CAN_EventDefinitionID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property CAN_EventDefinitionID() As System.Guid
+		Get
+			Return Me._CAN_EventDefinitionID
+		End Get
+		Set
+			If ((Me._CAN_EventDefinitionID = value)  _
+						= false) Then
+				Me.OnCAN_EventDefinitionIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CAN_EventDefinitionID = value
+				Me.SendPropertyChanged("CAN_EventDefinitionID")
+				Me.OnCAN_EventDefinitionIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOccured", DbType:="Date NOT NULL")>  _
+	Public Property DateOccured() As Date
+		Get
+			Return Me._DateOccured
+		End Get
+		Set
+			If ((Me._DateOccured = value)  _
+						= false) Then
+				Me.OnDateOccuredChanging(value)
+				Me.SendPropertyChanging
+				Me._DateOccured = value
+				Me.SendPropertyChanged("DateOccured")
+				Me.OnDateOccuredChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TriggerCondition", DbType:="NChar(10)")>  _
+	Public Property TriggerCondition() As String
+		Get
+			Return Me._TriggerCondition
+		End Get
+		Set
+			If (String.Equals(Me._TriggerCondition, value) = false) Then
+				Me.OnTriggerConditionChanging(value)
+				Me.SendPropertyChanging
+				Me._TriggerCondition = value
+				Me.SendPropertyChanged("TriggerCondition")
+				Me.OnTriggerConditionChanged
 			End If
 		End Set
 	End Property
