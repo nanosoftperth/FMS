@@ -2,10 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-            //$("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_ddlVehicles").change(function () {
-            //    var start = this.value;
-            //    $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_btnRefresh").click();
-            //});
+            $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_ddlVehicles").change(function () {                
+                $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_btnRefresh").click();
+            });
         })
     </script>
     <style>
@@ -114,8 +113,9 @@
                             <dx:GridViewDataTextColumn FieldName="Resolution_Multiplier" ReadOnly="True" VisibleIndex="12"></dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="pos_start" ReadOnly="True" VisibleIndex="13"></dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="pos_end" ReadOnly="True" VisibleIndex="14"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataCheckColumn FieldName="SendMail" Caption="Email" VisibleIndex="15"></dx:GridViewDataCheckColumn>
-                            <dx:GridViewDataCheckColumn FieldName="SendText" Caption="Text" VisibleIndex="16"></dx:GridViewDataCheckColumn>
+                            <dx:GridViewDataTextColumn FieldName="CanValue" ReadOnly="True" VisibleIndex="15"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataCheckColumn FieldName="SendMail" Caption="Email" VisibleIndex="16"></dx:GridViewDataCheckColumn>
+                            <dx:GridViewDataCheckColumn FieldName="SendText" Caption="Text" VisibleIndex="17"></dx:GridViewDataCheckColumn>
                         </Columns>
                     </dx:ASPxGridView>
                         <asp:ObjectDataSource ID="odsEvents" runat="server" SelectMethod="GetAllForVehicleSPN" TypeName="FMS.Business.DataObjects.EventType">
