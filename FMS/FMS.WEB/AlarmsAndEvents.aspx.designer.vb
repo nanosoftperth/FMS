@@ -23,92 +23,38 @@ Partial Public Class AlarmsAndEvents
     Protected WithEvents ASPxPageControl1 As Global.DevExpress.Web.ASPxPageControl
 
     '''<summary>
-    '''lblVehicle control.
+    '''dgvEventConfiguration control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblVehicle As Global.DevExpress.Web.ASPxLabel
+    Protected WithEvents dgvEventConfiguration As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
-    '''ddlVehicles control.
+    '''odsEventConfiguration control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlVehicles As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents odsEventConfiguration As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''lblComparison control.
+    '''odsVehicles control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblComparison As Global.DevExpress.Web.ASPxLabel
+    Protected WithEvents odsVehicles As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''ddlComparison control.
+    '''odsMetric control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlComparison As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''lblText control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblText As Global.DevExpress.Web.ASPxLabel
-
-    '''<summary>
-    '''txtTextSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtTextSearch As Global.DevExpress.Web.ASPxTextBox
-
-    '''<summary>
-    '''btnRefresh control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnRefresh As Global.DevExpress.Web.ASPxButton
-
-    '''<summary>
-    '''dgvEvents control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dgvEvents As Global.DevExpress.Web.ASPxGridView
-
-    '''<summary>
-    '''odsEvents control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsEvents As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
-    '''odsGetAllVehicleNames control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsGetAllVehicleNames As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsMetric As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
