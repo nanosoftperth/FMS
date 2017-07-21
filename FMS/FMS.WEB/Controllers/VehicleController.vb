@@ -59,21 +59,20 @@ Namespace Controllers
         ''' <summary>
         ''' Get available CAN tags by deviceID for dashboard
         ''' </summary>
-        ''' <param name="vehicleID">The device Id</param>
+        ''' <param name="DashVehicleID">The device Id</param>
         ''' <returns>List of dashboard values</returns>
         <HttpGet>
-        Public Function GetDashboardData(DashVehicleID As String) As List(Of CanValueMessageDefinition)
-            Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashVehicleID).GetAvailableCANTagsValue()
+        Public Function GetDashboardData(DashVehicleID As String) As List(Of DashboardValues)
+
+            'Dim tagvalues = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashVehicleID).GetAvailableCANTagsValue()
+            'Dim tagvalues = FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashVehicleID)
+            'Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(DashVehicleID)
+            Return FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashVehicleID)
+
+            'Dim objDashValues = New List(Of DashboardValues)
+
+
         End Function
-        'Public Function GetDashboardData(DashVehicleID As String) As List(of DashboardValues)
-
-        '    Dim tagvalues = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashVehicleID).GetAvailableCANTagsValue()
-
-        '    Dim objDashValues = New List(Of DashboardValues)
-
-        '    Return objDashValues
-
-        'End Function
 
         ' GET api/vehicles/GetCanMessageValue/5
         ''' <summary>
