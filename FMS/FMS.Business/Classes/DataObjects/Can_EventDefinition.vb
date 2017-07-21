@@ -12,21 +12,23 @@
         Public Property VehicleID As String
         Public Property Metric As String
         Public Property Comparison As String
-        Public Property TextValueField As String
+        Public Property QueryType As String
+        Public Property TextValue As String
+        Public Property MetricValue As String
 #End Region
 
 #Region "CRUD"
-        Public Shared Sub Create(eventDef As DataObjects.Can_EventDefinition)
+        Public Shared Sub Insert(eventDef As DataObjects.Can_EventDefinition)
+
             Dim canEventDef As New FMS.Business.CAN_EventDefinition
             With canEventDef
                 .CAN_EventDefinitionID = Guid.NewGuid
-                .Standard = eventDef.Standard
-                .PGN = eventDef.PGN
-                .SPN = eventDef.SPN
-                .TriggerConditoinQualifier = eventDef.TriggerConditoinQualifier
-                .TriggerConditionText = eventDef.TriggerConditionText
-                .LastDateChecked = eventDef.LastDateChecked
-                .deleted = eventDef.deleted
+                .Standard = eventDef.Metric.Split(":")(0)
+                .PGN = Int(eventDef.Metric.Split(":")(1))
+                .SPN = Int(eventDef.Metric.Split(":")(2))
+                .TriggerConditoinQualifier = eventDef.QueryType
+                .TriggerConditionText = eventDef.TextValue
+                .LastDateChecked = Date.Now
                 .VehicleID = eventDef.VehicleID
             End With
 
@@ -38,13 +40,18 @@
                                                                    Where i.CAN_EventDefinitionID = eventDef.CAN_EventDefinitionID).Single
             With canEventDef
                 .CAN_EventDefinitionID = eventDef.CAN_EventDefinitionID
-                .Standard = eventDef.Standard
-                .PGN = eventDef.PGN
-                .SPN = eventDef.SPN
-                .TriggerConditoinQualifier = eventDef.TriggerConditoinQualifier
-                .TriggerConditionText = eventDef.TriggerConditionText
-                .LastDateChecked = eventDef.LastDateChecked
-                .deleted = eventDef.deleted
+                If eventDef.Metric.Split(":").Length.Equals(1) Then
+                    .Standard = eventDef.MetricValue.Split(":")(0)
+                    .PGN = Int(eventDef.MetricValue.Split(":")(1))
+                    .SPN = Int(eventDef.MetricValue.Split(":")(2))
+                Else
+                    .Standard = eventDef.Metric.Split(":")(0)
+                    .PGN = Int(eventDef.Metric.Split(":")(1))
+                    .SPN = Int(eventDef.Metric.Split(":")(2))
+                End If
+                .TriggerConditoinQualifier = eventDef.QueryType
+                .TriggerConditionText = eventDef.TextValue
+                .LastDateChecked = Date.Now
                 .VehicleID = eventDef.VehicleID
             End With
 
@@ -53,7 +60,10 @@
         Public Shared Sub Delete(eventDef As DataObjects.Can_EventDefinition)
             Dim canEventDef As FMS.Business.CAN_EventDefinition = (From i In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions
                                                                    Where i.CAN_EventDefinitionID = eventDef.CAN_EventDefinitionID).Single
-            SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions.DeleteOnSubmit(canEventDef)
+            With canEventDef
+                .CAN_EventDefinitionID = eventDef.CAN_EventDefinitionID
+                .deleted = True
+            End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
 #End Region
@@ -63,7 +73,8 @@
             Dim objEventDefinitions = (From eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions _
                                        Join canMessageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
                                        canMessageDef.Standard Equals eventDef.Standard And canMessageDef.PGN Equals eventDef.PGN _
-                                       And canMessageDef.SPN Equals eventDef.SPN
+                                       And canMessageDef.SPN Equals eventDef.SPN _
+                                       Where Not eventDef.deleted.Equals(True)
                     Select New DataObjects.Can_EventDefinition() With {.CAN_EventDefinitionID = eventDef.CAN_EventDefinitionID, _
                                                                        .deleted = eventDef.deleted, .LastDateChecked = eventDef.LastDateChecked, _
                                                                        .Metric = eventDef.Standard + "-" + canMessageDef.Parameter_Group_Label, _
@@ -72,15 +83,18 @@
                                                                        .TriggerConditoinQualifier = eventDef.TriggerConditoinQualifier, _
                                                                        .VehicleID = eventDef.VehicleID, _
                                                                        .Comparison = eventDef.TriggerConditoinQualifier + " " + eventDef.TriggerConditionText, _
-                                                                       .TextValueField = ""}).ToList()
+                                                                       .MetricValue = canMessageDef.Standard.ToString() + " : " & canMessageDef.PGN.ToString() + " : " & canMessageDef.SPN.ToString()}).ToList()
 
             Return objEventDefinitions
         End Function
         Public Shared Function GetCanMessageList() As List(Of DataObjects.Can_EventDefinition.CanMessage)
             Dim objCanMess = (From i In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions _
-                             Select New DataObjects.Can_EventDefinition.CanMessage() With {.CanMetric = i.Standard + " " + i.Parameter_Group_Label}).Distinct().ToList()
+                             Select New DataObjects.Can_EventDefinition.CanMessage() _
+                             With {.CanMetricText = i.Standard + " " + i.Parameter_Group_Label, _
+                                   .CanMetricValue = i.Standard.ToString() + " : " & i.PGN.ToString() + " : " & i.SPN.ToString()}).Distinct().ToList()
             Return objCanMess
         End Function
+
         
 #End Region
 
@@ -104,8 +118,10 @@
 #End Region
 
         Public Class CanMessage
-            Public Property CanMetric As String
+            Public Property CanMetricText As String
+            Public Property CanMetricValue As String
         End Class
+
         
     End Class
 

@@ -23,13 +23,13 @@ Partial Public Class AlarmsAndEvents
     Protected WithEvents ASPxPageControl1 As Global.DevExpress.Web.ASPxPageControl
 
     '''<summary>
-    '''dgvEventConfiguration control.
+    '''ASPxGridView1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dgvEventConfiguration As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents ASPxGridView1 As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
     '''odsEventConfiguration control.
