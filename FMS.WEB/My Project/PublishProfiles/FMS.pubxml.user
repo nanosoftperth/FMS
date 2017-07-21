@@ -37,10 +37,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:11</publishTime>
     </File>
     <File Include="AlarmsAndAlerts.aspx">
-      <publishTime>07/05/2017 14:34:48</publishTime>
+      <publishTime>07/21/2017 11:09:20</publishTime>
     </File>
     <File Include="AlarmsAndEvents.aspx">
-      <publishTime>07/19/2017 16:52:04</publishTime>
+      <publishTime>07/21/2017 18:52:53</publishTime>
     </File>
     <File Include="App_Data/NWind.mdf">
       <publishTime>07/19/2017 17:03:45</publishTime>
@@ -64,10 +64,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:11</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>07/19/2017 18:20:32</publishTime>
+      <publishTime>07/21/2017 19:23:01</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>07/19/2017 18:20:32</publishTime>
+      <publishTime>07/21/2017 19:23:01</publishTime>
     </File>
     <File Include="bin/de/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -337,19 +337,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/30/2016 14:18:19</publishTime>
     </File>
     <File Include="bin/FMS.Business.dll">
-      <publishTime>07/19/2017 18:20:23</publishTime>
+      <publishTime>07/21/2017 19:22:52</publishTime>
     </File>
     <File Include="bin/FMS.ReportLogic.dll">
-      <publishTime>07/19/2017 18:20:24</publishTime>
+      <publishTime>07/21/2017 19:22:53</publishTime>
     </File>
     <File Include="bin/FMS.ServiceAccess.dll">
-      <publishTime>07/19/2017 18:20:25</publishTime>
+      <publishTime>07/21/2017 19:22:53</publishTime>
     </File>
     <File Include="bin/FMS.WEB.dll">
-      <publishTime>07/19/2017 18:20:26</publishTime>
+      <publishTime>07/21/2017 19:22:55</publishTime>
     </File>
     <File Include="bin/FMS.WEB.xml">
-      <publishTime>07/19/2017 18:20:26</publishTime>
+      <publishTime>07/21/2017 19:22:55</publishTime>
     </File>
     <File Include="bin/ja/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -571,7 +571,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:10</publishTime>
     </File>
     <File Include="Content/DashBoard.css">
-      <publishTime>07/19/2017 10:16:57</publishTime>
+      <publishTime>07/21/2017 19:21:37</publishTime>
     </File>
     <File Include="Content/DriverImages.ashx">
       <publishTime>04/11/2017 20:08:09</publishTime>
@@ -1054,7 +1054,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:10</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap.js">
-      <publishTime>07/19/2017 10:16:57</publishTime>
+      <publishTime>07/21/2017 19:21:37</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap_ClockLogic.js">
       <publishTime>04/11/2017 20:08:10</publishTime>
@@ -1273,7 +1273,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2017 09:04:11</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>07/19/2017 18:20:29</publishTime>
+      <publishTime>07/21/2017 19:22:58</publishTime>
     </File>
     <File Include="ProblemPage.aspx">
       <publishTime>04/11/2017 20:08:09</publishTime>
@@ -1369,7 +1369,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2017 19:36:06</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/19/2017 18:20:28</publishTime>
+      <publishTime>07/21/2017 19:22:57</publishTime>
     </File>
     <File Include="WebServices/Uniqco_Integrator.svc">
       <publishTime>04/11/2017 20:08:09</publishTime>
