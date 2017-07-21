@@ -66,29 +66,6 @@
 
         End Function
 
-        'Public Shared Function GetPointWithDataForDashboard(vehicleid As String) As Boolean
-        Public Shared Function GetPointWithDataForDashboard(vehicleID As String) As Boolean
-
-            Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromName(vehicleID)
-           
-            Try
-
-                If vehicle Is Nothing Then
-                    Return False
-                Else
-                    Return True
-                End If
-
-            Catch ex As Exception
-                Throw ex
-                'retobj.MessageDefinition = New FMS.Business.DataObjects.CAN_MessageDefinition()
-            End Try
-
-            'get the value 
-            'Return retobj
-
-        End Function
-
         Public Shared Function GetPointWithDataByDeviceId(SPN As Integer, deviceID As String, _
                                                 standard As String, startDate As Date, endDate As Date) As DataObjects.CanDataPoint
 
