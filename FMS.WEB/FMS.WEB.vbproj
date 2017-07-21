@@ -826,6 +826,12 @@
     <Content Include="Content\Images\Dashboard\Alignment_color.png" />
     <Content Include="Content\Images\Dashboard\Alignment_gray.png" />
     <Content Include="Content\Images\Dashboard\Battery_100.png" />
+    <Content Include="Content\Images\Dashboard\Battery_14.png" />
+    <Content Include="Content\Images\Dashboard\Battery_28.png" />
+    <Content Include="Content\Images\Dashboard\Battery_43.png" />
+    <Content Include="Content\Images\Dashboard\Battery_57.png" />
+    <Content Include="Content\Images\Dashboard\Battery_71.png" />
+    <Content Include="Content\Images\Dashboard\Battery_85.png" />
     <Content Include="Content\Images\Dashboard\battery_gray.png" />
     <Content Include="Content\Images\Dashboard\Break_color.png" />
     <Content Include="Content\Images\Dashboard\break_gray.png" />
@@ -853,6 +859,7 @@
     <Content Include="Content\Images\Dashboard\Plus_Button_Hover.png" />
     <Content Include="Content\Images\Dashboard\Plus_Button_Normal.png" />
     <Content Include="Content\Images\Dashboard\Plus_Button_Press.png" />
+    <Content Include="Content\Images\Dashboard\SoftVer.png" />
     <Content Include="Content\Images\Dashboard\Speed_color.png" />
     <Content Include="Content\Images\Dashboard\speed_gray.png" />
     <Content Include="Content\Images\Dashboard\steering_color.png" />
@@ -1170,7 +1177,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18353/</IISUrl>
+          <IISUrl>http://localhost:18355/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
