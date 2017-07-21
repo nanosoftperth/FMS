@@ -95,8 +95,11 @@
             Dim vehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(vehicleID).GetAvailableCANTagsValue()
 
             Try
+                If vehicle.Count > 0 Then
 
-                If Not vehicle(0).CanValues(0).Value = 0 Then
+                    'If Not vehicle(0).CanValues(0).Value = Nothing Then
+
+                    'MsgBox(vehicle(0).CanValues(0).Value.ToString())
 
                     Dim strDesc, strValue As String
                     Dim arrSteer() As String = {"MS 1", "MS 11", "MS 12", "MS 14", "MS 21", "MS 22", "MS 23",
@@ -198,28 +201,18 @@
                                         ListRow.AlignmentControl = sfc
                                     End If
 
-                                    
-
-                                    
-
-                                    'If strValue = "M1" Or strValue = "M2" Or strValue = "M3" Or strValue = "M4" Then
-                                    '    ListRow.Driving = sfc
-                                    'End If
-
-                                    'If strValue = "Can" Or strValue = "Canopen" Then
-                                    '    ListRow.CANControl = sfc
-                                    'End If
-
                                 Next sfc
 
                                 ListRow.StopControl = "ON"
-                                
+
                         End Select
 
 
                     Next
 
                     oList.Add(ListRow)
+
+                    'End If
 
                 End If
 
