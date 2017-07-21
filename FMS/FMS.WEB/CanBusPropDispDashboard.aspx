@@ -25,6 +25,10 @@
             priDeviceID = GetParameterValues('DeviceID');
             priVehicleName = GetParameterValues('VehicleName');
 
+            initPlaceToolTips();
+
+            // document.addEventListener('DOMContentLoaded', init, false);
+
             //getDataFromServer();
             //timeout();
 
@@ -53,7 +57,8 @@
         }
 
         function getDataFromServer() {
-            var uri = '../api/Vehicle/GetCanMessageValue?deviceID=' + priDeviceID;
+            //var uri = '../api/Vehicle/GetCanMessageValue?deviceID=' + priDeviceID;
+            var uri = '../api/Vehicle/GetDashboardData?DashVehicleID=' + priDeviceID;
 
             $.getJSON(uri).done(function (data) { receivedData(data); });
 
@@ -62,124 +67,65 @@
         function receivedData(dataCache) {
             var obj = dataCache;
 
+            //alert('run blink : ' + obj);
+
             if (obj.length > 0) {
-                //var oCtr = obj.length;
-                var oCtr = 3; // change to 'var oCtr = obj.length;' before deploy
-                var cvCtr = 0;
-                var strDesc = '';
-                var strCV_Value = '';
+                var oCtr = obj.length;
 
-                if (obj[0].CanValues.length == 0)
-                {
-                    //alert('No data to fetch for this vehicle!');
-                    return;                   
-                }
+                for (v = 0; v < oCtr; v++) {
 
-                for (i = 0; i < oCtr; i++) {
-                    
-                    // For testing only of fault codes, Battery Voltage. Will delete when deployed to demo/live. Remove or remarks before deploy
-                    if (i == 0)
-                    {
-                        strDesc = 'Parking Break';
-                        strCV_Value = 'Parking Break ON';
-                    }
-                    if (i == 1) {
-                        strDesc = 'Battery Voltage';
-                        strCV_Value = '83.4';
-                    }
-                    if (i == 2) {
-                        strDesc = 'Fault Codes';
-                        strCV_Value = 'S 1,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4,Canopen 3,Canopen 1,Can 101,Can 203';
-                    }
-                    // End of testing data
-                    
-                    //alert('before switch = '+ strDesc + ' : ' + strCV_Value);
-                    switch (strDesc) {
-                        case 'Parking Break':
-                            SetStatus(strDesc, strCV_Value);
-                            break;
-                        case 'Battery Voltage':
-                            SetStatus(strDesc, strCV_Value);
-                            break;
-
-
-                        case 'Fault Codes':
-                            var fltCtr = (strCV_Value.match(/,/g) || []).length + 1;
-                            var arr = strCV_Value.split(',');
-                            var ndx = 0;
-                            var strCode = '';
-
-                            var oMS = '';
-                            var oMNum = '';
-                            var oCan = '';
-
-                            for (var i = 0; i < fltCtr; i++) {
-
-                                ndx = arr[i].indexOf(' ');
-                                strCode = arr[i].substring(0, ndx).trim()
-                                //alert(strCode);
-
-                                if (strCode == 'MS')
-                                {
-                                        if (oMS.length == 0)
-                                        {
-                                            SetStatus('Steer', 'Err');
-                                            oMS = arr[i];
-                                        }
-                                }
-
-                                if (strCode == 'M1' || strCode == 'M2' || strCode == 'M3' || strCode == 'M4') {
-
-                                    if (oMNum.length == 0) {
-                                        SetStatus('Drive', 'Err');
-                                        oMNum = arr[i];
-                                    }
-
-                                }
-
-                                if (strCode == 'Can' || strCode == 'Canopen') {
-
-
-                                    if (oCan.length == 0) {
-                                        SetStatus('Can', 'Err');
-                                        oCan = arr[i];
-                                    }
-                                }
-
-                            }
-
-                            break;
-                        
+                    if (obj[v].Parking_Break == 'Parking Break ON') {
+                        SetToolTipPerStatus('.div_break', 'Parking Break : ' + obj[v].Parking_Break)
+                        SetStatus('Parking Break', obj[v].Parking_Break);
                     }
 
-                    // for tesing. Will delete when deployed to demo/live
-                    //if (strDesc == 'Fault Codes' || strDesc == 'Battery Voltage')
-                    //{
-                    //    //setLCDTitle(priVehicleName);
-                    //    break;
-                    //}
+                    if (obj[v].Steering.length > 0) {
+                        SetToolTipPerStatus('.div_steer', 'Steering : ' + obj[v].Steering)
+                        SetStatus('Steer', 'Err');
+                    }
+
+                    if (obj[v].Driving.length > 0) {
+                        SetToolTipPerStatus('.div_drive', 'Drive : ' + obj[v].Driving)
+                        SetStatus('Drive', 'Err');
+                    }
+
+                    if (obj[v].IFMControl.length > 0) {
+                        SetToolTipPerStatus('.div_ifm', 'IFM : ' + obj[v].IFMControl)
+                        SetStatus('IFM', 'Err');
+                    }
+
+                    if (obj[v].CANControl.length > 0) {
+                        SetToolTipPerStatus('.div_can', 'CAN/CANOPEN : ' + obj[v].CANControl)
+                        SetStatus('Can', 'Err');
+                    }
+
+                    if (obj[v].AlignmentControl.length > 0) {
+                        SetToolTipPerStatus('.div_align', 'Alignment : ' + obj[v].AlignmentControl)
+                        SetStatus('Align', 'Err');
+                    }
+
+                    if (obj[v].WarningControl.length > 0) {
+                        SetToolTipPerStatus('.div_warning', 'Warning : ' + obj[v].WarningControl)
+                        SetStatus('Warning', 'Err');
+                    }
+
+                    if (obj[v].SpeedControl.length > 0) {
+                        SetToolTipPerStatus('.div_speed', 'Speed : ' + obj[v].SpeedControl)
+                        SetStatus('Speed', 'Err');
+                    }
+
+                    if (obj[v].Battery_Voltage.length > 0) {
+                        SetToolTipPerStatus('.div_battery', 'Battery Voltage : ' + obj[v].Battery_Voltage)
+                        SetStatus('Battery Voltage', obj[v].Battery_Voltage);
+                    }
 
                 }
-
-                //str = JSON.parse(str);
-                //$.each(obj.Object.MessageDefinition, function (i, item) {
-                //    if (item.Description == 'Parking Break')
-                //    {
-                //        alert('test');
-                //    }
-                //    //$(".result1").append(item.username);
-                //    //$(".result2").append(item.uid);
-                //});
-
-                //alert(obj.CanValueMessageDefinition.MessageDefinition)
-                //document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
 
             }
 
         }
 
-        function SetStatus(indicatorDescription, indicatorStatus)
-        {
+        function SetStatus(indicatorDescription, indicatorStatus) {
             var elementID_Blink = '';
             var elementID_NoBlink = '';
             var blnIndicatorOn = false;
@@ -208,7 +154,7 @@
                         setStopStatus(false);
                         makeIndicatorBlink(false, '#isteer_blink', '#isteer');
                     }
-                    
+
                     break;
 
                 case 'Drive':
@@ -219,6 +165,18 @@
                     else {
                         setStopStatus(false);
                         makeIndicatorBlink(false, '#idrive_blink', '#idrive');
+                    }
+
+                    break;
+
+                case 'IFM':
+                    if (indicatorStatus == 'Err') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#iifm_blink', '#iifm');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#iifm_blink', '#iifm');
                     }
 
                     break;
@@ -235,36 +193,74 @@
 
                     break;
 
+                case 'Align':
+                    if (indicatorStatus == 'Err') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#ialign_blink', '#ialign');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#ialign_blink', '#ialign');
+                    }
+
+                    break;
+
+                case 'Warning':
+                    if (indicatorStatus == 'Err') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#iwarning_blink', '#iwarning');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#iwarning_blink', '#iwarning');
+                    }
+
+                    break;
+
+                case 'Speed':
+                    if (indicatorStatus == 'Err') {
+                        setStopStatus(true);
+                        makeIndicatorBlink(true, '#ispeed_blink', '#ispeed');
+                    }
+                    else {
+                        setStopStatus(false);
+                        makeIndicatorBlink(false, '#ispeed_blink', '#ispeed');
+                    }
+
+                    break;
+
                 case 'Battery Voltage':
-                    if (indicatorStatus >= 86)
-                    {
+                    if (indicatorStatus >= 83.95) {
                         makeIndicatorBlink(true, '#ibattery_100_blink', '#ibattery_100');
                     }
-                    if (indicatorStatus >= 72 && indicatorStatus <= 85) {
+                    if (indicatorStatus >= 83.1 && indicatorStatus <= 83.94) {
                         makeIndicatorBlink(true, '#ibattery_85', '#ibattery_100');
                     }
-                    if (indicatorStatus >= 58 && indicatorStatus <= 71) {
+                    if (indicatorStatus >= 82.25 && indicatorStatus <= 83.09) {
                         makeIndicatorBlink(true, '#ibattery_71', '#ibattery_100');
                     }
-                    if (indicatorStatus >= 44 && indicatorStatus <=57) {
+                    if (indicatorStatus >= 81.4 && indicatorStatus <= 82.24) {
                         makeIndicatorBlink(true, '#ibattery_57', '#ibattery_100');
                     }
-                    if (indicatorStatus >= 29 && indicatorStatus <= 43) {
+                    if (indicatorStatus >= 80.55 && indicatorStatus <= 81.39) {
                         makeIndicatorBlink(true, '#ibattery_43', '#ibattery_100');
                     }
-                    if (indicatorStatus >= 15 && indicatorStatus <= 28) {
+                    if (indicatorStatus >= 79.7 && indicatorStatus <= 80.54) {
                         makeIndicatorBlink(true, '#ibattery_28', '#ibattery_100');
                     }
-                    if (indicatorStatus >= 0 && indicatorStatus <= 14) {
+                    if (indicatorStatus >= 78.85 && indicatorStatus <= 79.69) {
                         makeIndicatorBlink(true, '#ibattery_14', '#ibattery_100');
                     }
+                    if (indicatorStatus <= 78.84) {
+                        makeIndicatorBlink(true, '#ibattery_100', '#ibattery_100_blink');
+                    }
+
                     break;
             }
 
         }
 
-        function makeIndicatorBlink(MakeBlink, elementID_Blink, elementID_NoBlink)
-        {
+        function makeIndicatorBlink(MakeBlink, elementID_Blink, elementID_NoBlink) {
             //alert('result : ' + MakeBlink + '; ' + elementID_Blink + '; ' + elementID_NoBlink)
 
             if (MakeBlink == true) {
@@ -288,8 +284,7 @@
             }
         }
 
-        function setStopStatus(StopStatus)
-        {
+        function setStopStatus(StopStatus) {
             //alert('Stop Status : ' + StopStatus);
 
             if (StopStatus == true) {
@@ -302,8 +297,7 @@
                 $('#istop_blink').removeClass('pnlimgHide')
                 $('#istop_blink').addClass('imgmax')
             }
-            else
-            {
+            else {
                 //alert('Stop Status : ' + StopStatus);
                 $('#istop').removeClass('imgmax');
                 $('#istop').removeClass('pnlimgHide')
@@ -313,11 +307,10 @@
                 $('#istop_blink').removeClass('pnlimgHide')
                 $('#istop_blink').addClass('pnlimgHide')
             }
-            
+
         }
 
-        function setLCDTitle(strText)
-        {
+        function setLCDTitle(strText) {
             $('#div_LCD').removeClass('LCDCont_Hide')
             $('#div_LCD').addClass('div_LCDCont')
             $('#spanLCDTitle').text(strText.replace(/%20/g, " "));
@@ -325,7 +318,30 @@
             $('#spanLine1').text(' Zagro GmbH ');
             $('#spanLine2').text('');
             $('#spanLine3').text('');
-            $('#spanLine4').text('SOFTWARE 2.00.00');
+            $('#LCDLine4').removeClass('div_LCDLine');
+            $('#LCDLine4').addClass('div_LCDLine4');
+            //$('#spanLine4').text('SOFTWARE 2.00.00');
+
+        }
+
+        function initPlaceToolTips() {
+            $('.div_break').prop('title', 'Flashes when fixing brake is not open ');
+            $('.div_steer').prop('title', 'Flashes when steering is not enabled ');
+            $('.div_drive').prop('title', 'Flashes when drive is not enabled ');
+            $('.div_ifm').prop('title', 'Flashes when no communication with IFM control ');
+            $('.div_can').prop('title', 'Flashes when no communication to AO412-module ');
+            $('.div_align').prop('title', 'Flashes when alignment is necessary ');
+            $('.div_warning').prop('title', 'Blinks when emergency operation is enabled  ');
+            $('.div_stop').prop('title', 'Blinks when emergency shutdown ');
+            $('.div_speed').prop('title', 'Blinks when maximum speed is limited ');
+            $('.div_battery').prop('title', 'Battery life indicator ');
+
+        }
+
+        function SetToolTipPerStatus(elementIDOrClass, StatusDesc) {
+
+            $(elementIDOrClass).prop('title', StatusDesc);
+
         }
 
         function blink() {
@@ -565,12 +581,12 @@
         setTimeout('blink()', 2000);
         setTimeout('blink()', 3000);
         setTimeout('blink()', 4000);
+        setTimeout('getDataFromServer()', 4000);
         setTimeout(function () {
             setLCDTitle(priVehicleName);
-        }, 4000)
-        setTimeout('getDataFromServer()', 4000);
-        //setTimeout('timeout()', 4000);
+        }, 4500)
 
+        //setTimeout('timeout()', 4000);
     </script>
 
 </head>
