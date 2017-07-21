@@ -417,7 +417,7 @@ function infoWindowCSSForDashboard(w) {
     // Apply the desired effect to the close button
     //iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', border: '2px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
-    iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', 'border-radius': '13px', 'box-shadow': '0 0 30px #3990B9', border: '7px solid #847F7C' });
+    iwCloseBtn.css({ opacity: '1', left: '642px', top: '37px', 'border-radius': '13px', 'box-shadow': '0 0 30px #3990B9', border: '7px solid #847F7C' });
 
     //iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9', border: '7px solid #847F7C' });
     //iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', 'border-radius': '13px', 'box-shadow': '0 0 5px black', border: '7px solid #847F7C' });
