@@ -374,7 +374,7 @@
 
 /*LCD Indicators*/
 .div_LCDCont {
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     top: 33px;
     left: 405px;
@@ -404,6 +404,94 @@
     font-family: 'Courier New';
     color: black;
 }
+
+.div_LCDLine4 {
+    /*background-color: transparent;*/
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-image: url('../Content/Images/Dashboard/SoftVer.png');
+    /*position: absolute;
+    top: 33px;*/
+    top: 17px;
+    left: 405px;
+    width: 163px;
+    height: 15px;
+    font-family: 'Courier New';
+    color: black;
+}
 .LCDCont_Hide {
     display:none;
 }
+
+/* Indicators tooltips*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.div_break .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.div_break .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.div_break:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}*/
+
+/*.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}*/
+
+/*.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}*/
