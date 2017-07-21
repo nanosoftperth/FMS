@@ -109,6 +109,7 @@
     <Compile Include="Classes\DataObjects\Contact.vb" />
     <Compile Include="Classes\DataObjects\customEvent.vb" />
     <Compile Include="Classes\DataObjects\CustomResource.vb" />
+    <Compile Include="Classes\DataObjects\DashboardValues.vb" />
     <Compile Include="Classes\DataObjects\Device.vb" />
     <Compile Include="Classes\DataObjects\ErrorLog.vb" />
     <Compile Include="Classes\DataObjects\EventType.vb" />
