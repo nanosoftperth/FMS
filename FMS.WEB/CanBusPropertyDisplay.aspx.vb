@@ -29,8 +29,18 @@ Public Class CanBusPropertyDisplay
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
         Dim id = DeviceID
-        Dim url = "api/vehicle/GetCanMessageValue?deviceid=" + id
-        Dim response As HttpResponseMessage = client.GetAsync(url).Result
+        Dim response As HttpResponseMessage = Nothing
+        Dim intCounter As Integer = 0
+
+        While intCounter <= 10
+            Dim url = "api/vehicle/GetCanMessageValue?deviceid=" + id
+            response = client.GetAsync(url).Result
+            If response.StatusCode.ToString().Equals("InternalServerError") Then
+                intCounter += 1
+            Else
+                Exit While
+            End If
+        End While
 
         If response.IsSuccessStatusCode Then
             Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
@@ -45,13 +55,12 @@ Public Class CanBusPropertyDisplay
                         cbd.spn = messageValue.MessageDefinition.SPN
                     End If
 
-
                     If Not messageValue.CanValues(0).Value Is Nothing Then
                         If Not messageValue.MessageDefinition.Units Is Nothing And _
                             Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
                             If Not messageValue.CanValues(0).Value.ToString().Equals("") Then
                                 If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
-                                    cbd.description = Format(messageValue.CanValues(0).Value, "0#.#").ToString() + " " + messageValue.MessageDefinition.Units
+                                    cbd.description = Convert.ToDouble(Format(messageValue.CanValues(0).Value, "##.#").ToString()) & " " & messageValue.MessageDefinition.Units
                                 Else
                                     cbd.description = "0"
                                 End If

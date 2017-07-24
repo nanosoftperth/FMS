@@ -5,7 +5,12 @@
             $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_ddlVehicles").change(function () {                
                 $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_btnRefresh").click();
             });
+
+            if ($('#hdnValidate').value == "true")
+                alert('true');
         })
+
+
     </script>
     <style>
         .ddlCenter {
@@ -13,13 +18,16 @@
         }
         .Hide { display:none; }
     </style>
-        
+    <div>
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> </div>
     <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0">
         <TabPages>
             <dx:TabPage Name="EventConfiguration" Text="Event Configuration">
                 <ContentCollection>
                     <dx:ContentControl runat="server">     
-                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="odsEventConfiguration" AutoGenerateColumns="False" KeyFieldName="CAN_EventDefinitionID" Width="550px">
+                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="odsEventConfiguration" AutoGenerateColumns="False" 
+                            KeyFieldName="CAN_EventDefinitionID" Width="550px" OnRowValidating="ASPxGridView1_RowValidating"
+                            OnStartRowEditing="ASPxGridView1_StartRowEditing">
                             <Columns>
                                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventDefinitionID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -35,22 +43,21 @@
                             <SettingsPager PageSize="5" />
                             <EditFormLayoutProperties ColCount="8" >
                                 <Items>
-                                    
-                                    <dx:GridViewColumnLayoutItem ColumnName="VehicleID" ColSpan="2" Caption="Vehicle">
+                                    <dx:GridViewColumnLayoutItem ColumnName="VehicleID" ColSpan="2" Caption="Vehicle" RequiredMarkDisplayMode="Required" >
                                         <Template>
                                             <dx:ASPxComboBox ID="ddlVehicleList" runat="server" Width="80px" DataSourceID="odsVehicles" Value='<%# Bind("VehicleID")%>' TextField="name" ValueField="name" />
                                         </Template>
                                     </dx:GridViewColumnLayoutItem>
 
-                                    <dx:GridViewColumnLayoutItem ColumnName="Metric" ColSpan="2" Caption="Parameter" >
+                                    <dx:GridViewColumnLayoutItem ColumnName="Metric" ColSpan="2" Caption="Parameter" RequiredMarkDisplayMode="Required" >
                                         <Template>
                                             <dx:ASPxComboBox ID="ddlMetric" runat="server" Width="100px" DataSourceID="odsMetric" Value='<%# Bind("Metric")%>' TextField="canMetricText" ValueField="CanMetricValue" />
                                         </Template>
                                     </dx:GridViewColumnLayoutItem>
 
-                                    <dx:GridViewColumnLayoutItem ColumnName="QueryType" ColSpan="2" Caption="Query Type">
+                                    <dx:GridViewColumnLayoutItem ColumnName="QueryType" ColSpan="2" Caption="Query Type" RequiredMarkDisplayMode="Required">
                                         <Template>
-                                            <dx:ASPxComboBox ID="ddlQueryType" runat="server" Width="50px" Value='<%# Bind("QueryType")%>'>
+                                            <dx:ASPxComboBox ID="ddlQueryType" runat="server" Width="50px" Value='<%# Bind("QueryType")%>' ClientInstanceName="xxx">
                                                 <Items>
                                                     <dx:ListEditItem Text=""   Value=""/>
                                                     <dx:ListEditItem Text="<" Value="<"/>
