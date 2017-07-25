@@ -224,10 +224,12 @@
                 'End If
 
             Catch ex As Exception
-                Throw ex
+                'Throw ex
                 'retobj.MessageDefinition = New FMS.Business.DataObjects.CAN_MessageDefinition()
+                oList = New List(Of DashboardValues)
             End Try
 
+            Return oList
             'get the value 
             'Return retobj
 
