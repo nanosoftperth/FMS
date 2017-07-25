@@ -4,10 +4,21 @@
     width: 650px;
     height: 200px;
     background-image: url('../Content/Images/Dashboard/Display-Grey_blank_withTail.png');
-    background-size: 100%;
+    /*background-size: 100%;*/
+    background-size: 650px 200px;
     background-repeat: no-repeat;
     background-position: center; 
+    
 }
+
+.div_closebutton {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0px;
+    left: 640px;
+}
+
 
 .imgDash {
     max-height: 100%;
@@ -40,7 +51,7 @@
     width: 25px;
     height: 25px;
     position: absolute;
-    top: 34px;
+    top: 31px;
     left: 50px;
 }
 
@@ -48,7 +59,7 @@
     width: 21px;
     height: 21px;
     position: absolute;
-    top: 34px;
+    top: 31px;
     left: 86px;
 }
 
@@ -56,7 +67,7 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 34px;
+    top: 31px;
     left: 120px;
 }
 
@@ -64,7 +75,7 @@
     width: 21px;
     height: 21px;
     position: absolute;
-    top: 34px;
+    top: 31px;
     left: 152px;
 }
 
@@ -72,7 +83,7 @@
     width: 33px;
     height: 33px;
     position: absolute;
-    top: 37px;
+    top: 34px;
     left: 181px;
 }
 
@@ -80,7 +91,7 @@
     width: 21px;
     height: 21px;
     position: absolute;
-    top: 33px;
+    top: 31px;
     left: 220px;
 }
 
@@ -462,6 +473,8 @@
     visibility: visible;
     opacity: 1;
 }
+
+
 
 /*.tooltip .tooltiptext {
     visibility: hidden;
