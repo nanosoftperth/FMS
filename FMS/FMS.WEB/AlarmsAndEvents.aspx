@@ -17,9 +17,7 @@
             padding-left: 20px;
         }
         .Hide { display:none; }
-    </style>
-    <div>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> </div>
+    </style>    
     <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0">
         <TabPages>
             <dx:TabPage Name="EventConfiguration" Text="Event Configuration">
@@ -89,7 +87,25 @@
             </dx:TabPage>
             <dx:TabPage Name="EventOccurances" Text="Event Occurances">
                 <ContentCollection>
-                    <dx:ContentControl runat="server"></dx:ContentControl>
+                    <dx:ContentControl runat="server">
+                        <dx:ASPxTextBox ID="txtSearch" runat="server" Width="170px">
+                            <ClientSideEvents TextChanged="function(s, e) {
+	                                                gridOccurances.Refresh();
+                                                }" />
+                        </dx:ASPxTextBox>
+                        <dx:ASPxGridView ID="gvEventOccurances" DataSourceID="odsEventOccurances" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridOccurances" Width="700px" >
+                            <Columns>                                
+                                <dx:GridViewDataTextColumn FieldName="EventType" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="EndTime" VisibleIndex="6"></dx:GridViewDataTextColumn>
+                            </Columns>
+                        </dx:ASPxGridView>
+                        <asp:ObjectDataSource ID="odsEventOccurances" runat="server" SelectMethod="GetCanEventOccuranceList" TypeName="FMS.Business.DataObjects.Can_EventOccurance">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="txtSearch" PropertyName="Text" Name="SearchParam" Type="String"></asp:ControlParameter>
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
             <dx:TabPage Name="AlertConfiguration" Text="Alert Configuration">
