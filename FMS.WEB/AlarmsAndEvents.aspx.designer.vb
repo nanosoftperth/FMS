@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class AlarmsAndEvents
 
     '''<summary>
-    '''TextBox1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''ASPxPageControl1 control.
     '''</summary>
     '''<remarks>
@@ -66,4 +57,31 @@ Partial Public Class AlarmsAndEvents
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsMetric As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''txtSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSearch As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''gvEventOccurances control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvEventOccurances As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsEventOccurances control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsEventOccurances As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
