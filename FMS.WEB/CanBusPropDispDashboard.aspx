@@ -15,19 +15,49 @@
     <script src="Content/javascript/jquery-3.1.0.min.js"></script>
 
     <script type="text/javascript">
+        var run_blink = false;
         var bln_blink = true;
         var bln_blinkBottom = false;
         var blink_ctr = 0;
         var priDeviceID = '';
         var priVehicleName = '';
+        var priClickEvent = '';
 
         $(document).ready(function () {
             priDeviceID = GetParameterValues('DeviceID');
             priVehicleName = GetParameterValues('VehicleName');
+            priClickEvent = GetParameterValues('ClickEvent');
 
             initPlaceToolTips();
 
-            // document.addEventListener('DOMContentLoaded', init, false);
+            if (priClickEvent == 'rightclick' || priClickEvent == 'mousedown')
+            {
+                goBlink();
+            }
+
+            //alert('priDeviceID: ' + priDeviceID + '; priVehicleName: ' + priVehicleName + '; priClickEvent: ' + priClickEvent);
+
+            ///alert(document.cookie.indexOf('session_deviceid'));
+            
+            //if (document.cookie.indexOf('session_deviceid') == -1) {
+            //    //alert('cookie session_deviceid does not exist');
+            //    setCookie('session_deviceid', priDeviceID, 1);
+            //    run_blink = true;
+            //    goBlink();
+            //}
+            //else {
+            //    if (priDeviceID == getCookie('session_deviceid')) {
+            //        //alert('new deviceID = stored session_deviceid');
+            //        var strCook = getCookie('session_deviceid');
+            //        run_blink = false;
+            //    }
+            //    else {
+            //        //alert('new deviceID not = stored session_deviceid');
+            //        setCookie('session_deviceid', priDeviceID, 1);
+            //        run_blink = true;
+            //        goBlink();
+            //    }
+            //}
 
             //getDataFromServer();
             //timeout();
@@ -336,6 +366,11 @@
             $('.div_speed').prop('title', 'Blinks when maximum speed is limited ');
             $('.div_battery').prop('title', 'Battery life indicator ');
 
+            $('.div_plus').prop('title', 'No Functions ');
+            $('.div_minus').prop('title', 'No Functions ');
+            $('.div_ex').prop('title', 'No Functions ');
+            $('.div_tick').prop('title', 'No Functions ');
+
         }
 
         function SetToolTipPerStatus(elementIDOrClass, StatusDesc) {
@@ -576,11 +611,59 @@
             }
         }
 
-        setTimeout('blink()', 0);
-        setTimeout('blink()', 1000);
-        setTimeout('blink()', 2000);
-        setTimeout('blink()', 3000);
-        setTimeout('blink()', 4000);
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie(cookiename) {
+            var valCookie = getCookie(cookiename);
+            if (valCookie != "") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function goBlink()
+        {
+                setTimeout('blink()', 0);
+                setTimeout('blink()', 1000);
+                setTimeout('blink()', 2000);
+                setTimeout('blink()', 3000);
+                setTimeout('blink()', 4000);
+        }
+
+        //if (run_blink == true)
+        //{
+        //    alert('blink');
+        //    setTimeout('blink()', 0);
+        //    setTimeout('blink()', 1000);
+        //    setTimeout('blink()', 2000);
+        //    setTimeout('blink()', 3000);
+        //    setTimeout('blink()', 4000);
+
+        //}
+        
         setTimeout('getDataFromServer()', 4000);
         setTimeout(function () {
             setLCDTitle(priVehicleName);
@@ -592,8 +675,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <%--<a href="#" onClick="map.closeInfoWindow()"><img 
+        src="here_you_put_your_cute_close_image.jpg" alt="close window"></a> 
+        </code> --%>
         <div class="div_dashboard">
         </div>
+        <%--<div id="idCloseWindow" class="div_closebutton">
+            <img src="Content/Images/Dashboard/x2_button.png" id="iClose" class="imgmax" />
+        </div>--%>
         <div class="div_break">
             <img src="Content/Images/Dashboard/break_gray.png" id="ibreak" class="imgmax" />
         </div>
