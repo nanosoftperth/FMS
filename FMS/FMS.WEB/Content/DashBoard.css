@@ -386,8 +386,9 @@
 /*LCD Indicators*/
 .div_LCDCont {
     background-color: transparent;
+    /*background-color: white;*/
     position: absolute;
-    top: 33px;
+    top: 32px;
     left: 405px;
     width: 163px;
     height: 73px;
@@ -395,9 +396,8 @@
 }
 .div_LCDTitle {
     background-color: black;
-    /*position: absolute;
-    top: 33px;*/
-    top: 2px;
+    position: fixed;
+    top: 32px;
     left: 405px;
     width: 163px;
     height: 15px;
@@ -415,20 +415,79 @@
     font-family: 'Courier New';
     color: black;
 }
-
-.div_LCDLine4 {
+.div_LCDLine1_intro {
     /*background-color: transparent;*/
-    background-size:100%;
+    background-size: 100px 10px;
     background-repeat: no-repeat;
-    background-image: url('../Content/Images/Dashboard/SoftVer.png');
+    background-image: url('../Content/Images/Dashboard/LCD/ZagroGmbH.png');
     /*position: absolute;
     top: 33px;*/
-    top: 17px;
-    left: 405px;
+    position: fixed;
+    top: 49px;
+    left: 415px;
     width: 163px;
+    height: 15px;
+}
+.div_LCDLine1_SpeedCM {
+    /*background-color: transparent;*/
+    /*background-size: 100px 10px;
+    background-repeat: no-repeat;
+    background-image: url('../Content/Images/Dashboard/LCD/ZagroGmbH.png');*/
+    /*position: absolute;
+    top: 33px;*/
+    position: fixed;
+    top: 46px;
+    width: 160px;
     height: 15px;
     font-family: 'Courier New';
     color: black;
+    text-align: right;
+}
+.div_LCDLine2_HR {
+    position: fixed;
+    top: 60px;
+    width: 160px;
+    height: 15px;
+    font-family: 'Courier New';
+    color: black;
+    text-align: right;
+}
+.div_LCDLine3_DrvMod {
+    position: fixed;
+    top: 75px;
+    width: 150px;
+    height: 30px;
+    font-family: 'Courier New';
+    color: black;
+    text-align: right;
+}
+
+.imgLCD_NoDisplay {
+    display: none;
+}
+.imgLCD_CM_display {
+    width: 11px;
+    height: 11px;
+    display: inline;
+}
+.imgLCD_DrvMod_display {
+    width: 22px;
+    height: 22px;
+    display: inline;
+}
+
+
+.div_LCDLine4_intro {
+    /*background-color: transparent;*/
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-image: url('../Content/Images/Dashboard/LCD/SoftVer.png');
+    position: fixed;
+    top: 93px;
+    left: 405px;
+    width: 163px;
+    height: 14px;
+    
 }
 .LCDCont_Hide {
     display:none;
