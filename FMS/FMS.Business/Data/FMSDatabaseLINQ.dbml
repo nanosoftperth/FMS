@@ -722,15 +722,6 @@
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.CAN_AlertDefinition" Member="CAN_AlertDefinitions">
-    <Type Name="CAN_AlertDefinition">
-      <Column Name="CAN_AlertDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CAN_EventDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SubscriberNativeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SendEmail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SendText" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.CAN_EventOccuranceAlert" Member="CAN_EventOccuranceAlerts">
     <Type Name="CAN_EventOccuranceAlert">
       <Column Name="CAN_EventOccuranceAlertID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -758,6 +749,16 @@
       <Column Name="CAN_EventDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="TriggerCondition" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="OccuredDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAN_AlertDefinition" Member="CAN_AlertDefinitions">
+    <Type Name="CAN_AlertDefinition">
+      <Column Name="CAN_AlertDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CAN_EventDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SubscriberNativeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SendEmail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SendText" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TimePeriod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

@@ -84,4 +84,22 @@ Partial Public Class AlarmsAndEvents
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsEventOccurances As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''gvAlertConfiguration control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvAlertConfiguration As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsAlertConfiguration control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsAlertConfiguration As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
