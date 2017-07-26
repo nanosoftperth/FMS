@@ -149,6 +149,19 @@
                         SetStatus('Battery Voltage', obj[v].Battery_Voltage);
                     }
 
+                    if (obj[v].LCD_DataLogger.length > 0) {
+                        setLCDTitle();
+                    }
+
+                    if (obj[v].LCD_Speed.length > 0) {
+                        setLCDline1(obj[v].LCD_Speed);
+                        setLCDline2('5:49');                        
+                    }
+
+                    if (obj[v].LCD_Driving_Mode.length > 0) {
+                        setLCDline3(obj[v].LCD_Driving_Mode);                        
+                    }
+                    
                 }
 
             }
@@ -340,17 +353,84 @@
 
         }
 
-        function setLCDTitle(strText) {
+        function setLCDStartUp(strText) {
             $('#div_LCD').removeClass('LCDCont_Hide')
             $('#div_LCD').addClass('div_LCDCont')
             $('#spanLCDTitle').text(strText.replace(/%20/g, " "));
 
-            $('#spanLine1').text(' Zagro GmbH ');
+            $('#LCDLine1').removeClass('div_LCDLine');
+            $('#LCDLine1').addClass('div_LCDLine1_intro');
             $('#spanLine2').text('');
             $('#spanLine3').text('');
             $('#LCDLine4').removeClass('div_LCDLine');
-            $('#LCDLine4').addClass('div_LCDLine4');
+            $('#LCDLine4').addClass('div_LCDLine4_intro');
+            //$('#spanLine1').text(' Zagro GmbH ');
             //$('#spanLine4').text('SOFTWARE 2.00.00');
+
+        }
+
+        function setLCDTitle() {
+            var d = new Date();
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+            
+            var output = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+
+            var t = d.getHours() + ':' + d.getMinutes();
+
+
+            $('#spanLCDTitle').text(output + ' ' + t);
+
+        }
+
+        function setLCDline1(val) {
+            $('#spanLine1').text(val + ' ');
+            $('#iLCD_CM').removeClass('imgLCD_NoDisplay');
+            $('#iLCD_CM').addClass('imgLCD_CM_display');
+            
+            $('#LCDLine1').removeClass('div_LCDLine1_intro');
+            $('#LCDLine1').addClass('div_LCDLine1_SpeedCM');
+        }
+        function setLCDline2(val) {
+            $('#spanLine2').text(val + ' ');
+            $('#iLCD_HR').removeClass('imgLCD_NoDisplay');
+            $('#iLCD_HR').addClass('imgLCD_CM_display');
+
+            $('#LCDLine2').removeClass('div_LCDLine');
+            $('#LCDLine2').addClass('div_LCDLine2_HR');
+        }
+        function setLCDline3(val) {
+            $('#spanLine3').text('');
+            //$('#spanLine3').addClass('');
+            $('#iLCD_DrvMod').removeClass('imgLCD_NoDisplay');
+            $('#iLCD_DrvMod').addClass('imgLCD_DrvMod_display');
+
+            $('#LCDLine3').removeClass('div_LCDLine');
+            $('#LCDLine3').addClass('div_LCDLine3_DrvMod');
+
+            $('#LCDLine4').removeClass('div_LCDLine');
+            $('#LCDLine4').addClass('imgLCD_NoDisplay');
+
+            var dmDiagonal = 'Content/Images/Dashboard/LCD/DiagonalMode.png';
+            var dmCircular = 'Content/Images/Dashboard/LCD/CircularMode.png';
+            var dmRail = 'Content/Images/Dashboard/LCD/RailMode.png';
+            
+            var oImgSrc = $('#iLCD_DrvMod').attr('src');
+
+            if (val == 'Diagonal mode road')
+            {
+                $('img[src="' + oImgSrc + '"]').attr('src', dmDiagonal);
+            }
+            if (val == 'Circular mode road') {
+
+                $('img[src="' + oImgSrc + '"]').attr('src', dmCircular);
+            }
+            if (val == 'Rail mode road') {
+
+                $('img[src="' + oImgSrc + '"]').attr('src', dmRail);
+            }
 
         }
 
@@ -666,7 +746,7 @@
         
         setTimeout('getDataFromServer()', 4000);
         setTimeout(function () {
-            setLCDTitle(priVehicleName);
+            setLCDStartUp(priVehicleName);
         }, 4500)
 
         //setTimeout('timeout()', 4000);
@@ -780,13 +860,13 @@
                 <span id="spanLCDTitle"></span>                
             </div>
             <div id="LCDLine1" class="div_LCDLine">
-                <span id="spanLine1"></span>
+                <span id="spanLine1"></span><img src="Content/Images/Dashboard/LCD/Num_CM-S.png" id="iLCD_CM" class="imgLCD_NoDisplay" />                
             </div>
             <div id="LCDLine2" class="div_LCDLine">
-                <span id="spanLine2"></span>
+                <span id="spanLine2"></span><img src="Content/Images/Dashboard/LCD/icon.png" id="iLCD_HR" class="imgLCD_NoDisplay" />
             </div>
             <div id="LCDLine3" class="div_LCDLine">
-                <span id="spanLine3"></span>
+                <span id="spanLine3"></span><img src="Content/Images/Dashboard/LCD/DiagonalMode.png" id="iLCD_DrvMod" class="imgLCD_NoDisplay" />
             </div>
             <div id="LCDLine4" class="div_LCDLine">
                 <span id="spanLine4"></span>
