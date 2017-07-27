@@ -102,4 +102,22 @@ Partial Public Class AlarmsAndEvents
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsAlertConfiguration As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsEventType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsEventType As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsMessageDestination control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsMessageDestination As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
