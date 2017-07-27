@@ -2,6 +2,7 @@
     Public Class Can_AlertDefinition
 #Region "Properties / enums"
         Private dateValue As String
+        Public Property CanAlertDefinitionIDUnique As String
         Public Property CAN_AlertDefinitionID As System.Guid
         Public Property CAN_EventDefinitionID As System.Guid
         Public Property SubscriberNativeID As System.Guid
@@ -24,27 +25,56 @@
 #Region "CRUD"
         Public Shared Sub Create(alertDef As DataObjects.Can_AlertDefinition)
             Dim canAlertDef As New FMS.Business.CAN_AlertDefinition
-            With canAlertDef
-                .CAN_AlertDefinitionID = Guid.NewGuid
-                .CAN_EventDefinitionID = alertDef.CAN_EventDefinitionID
-                .SendEmail = alertDef.SendEmail
-                .SendText = alertDef.SendText
-                .SubscriberNativeID = alertDef.SubscriberNativeID
-                .TimePeriod = alertDef.TimePeriod
-            End With
+            Dim RetEventType As System.Guid
+            Dim RetSubscriberID As System.Guid
+            If Not alertDef.EventType Is Nothing Or Not alertDef.MessageDestination Is Nothing Then               
+                With canAlertDef
+                    .CAN_AlertDefinitionID = Guid.NewGuid
+                    If Guid.TryParse(alertDef.EventType.ToString(), RetEventType) Then
+                        .CAN_EventDefinitionID = RetEventType
+                    End If
+                    Dim intCount As Integer = 0
+                    If Guid.TryParse(alertDef.MessageDestination.ToString(), RetSubscriberID) Then
+                        .SubscriberNativeID = RetSubscriberID
+                        intCount = (From x In SingletonAccess.FMSDataContextNew.GroupSubscribers).ToList.Where(Function(x) x.GroupID.Equals(RetSubscriberID)).Count()
+                    End If
+                    If intCount.Equals(0) Then
+                        .SendEmail = alertDef.SendEmail
+                        .SendText = alertDef.SendText
+                    End If
+                    .TimePeriod = alertDef.TimePeriod.AddYears(Date.Now.Year - 1)
+                End With
 
-            SingletonAccess.FMSDataContextContignous.CAN_AlertDefinitions.InsertOnSubmit(canAlertDef)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                SingletonAccess.FMSDataContextContignous.CAN_AlertDefinitions.InsertOnSubmit(canAlertDef)
+                SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            End If
         End Sub
         Public Shared Sub Update(alertDef As DataObjects.Can_AlertDefinition)
+            Dim AlertDefinitionID As System.Guid = Guid.Parse(alertDef.CanAlertDefinitionIDUnique.Split(":")(1).ToString())
+            Dim SubscriberID As System.Guid = Guid.Parse(alertDef.CanAlertDefinitionIDUnique.Split(":")(2).ToString())
             Dim canAlertDef As FMS.Business.CAN_AlertDefinition = (From i In SingletonAccess.FMSDataContextContignous.CAN_AlertDefinitions
-                                                                   Where i.CAN_AlertDefinitionID = alertDef.CAN_AlertDefinitionID).Single
+                                                                   Where i.CAN_AlertDefinitionID = AlertDefinitionID).Single
+            Dim RetEventType As System.Guid
+            Dim RetSubscriberID As System.Guid            
+            
             With canAlertDef
-                .CAN_AlertDefinitionID = alertDef.CAN_AlertDefinitionID
-                .CAN_EventDefinitionID = alertDef.CAN_EventDefinitionID
-                .SendEmail = alertDef.SendEmail
-                .SendText = alertDef.SendText
-                .SubscriberNativeID = alertDef.SubscriberNativeID
+                .CAN_AlertDefinitionID = AlertDefinitionID
+                If Guid.TryParse(alertDef.EventType.ToString(), RetEventType) Then
+                    .CAN_EventDefinitionID = RetEventType
+                End If
+
+                Dim intCount As Integer = 0
+                If Guid.TryParse(alertDef.MessageDestination.ToString(), RetSubscriberID) Then
+                    .SubscriberNativeID = RetSubscriberID
+                    intCount = (From x In SingletonAccess.FMSDataContextNew.GroupSubscribers).ToList.Where(Function(x) x.GroupID.Equals(RetSubscriberID)).Count()
+                Else
+                    intCount = (From x In SingletonAccess.FMSDataContextNew.GroupSubscribers).ToList.Where(Function(x) x.GroupID.Equals(SubscriberID)).Count()
+                End If
+
+                If intCount.Equals(0) Then
+                    .SendEmail = alertDef.SendEmail
+                    .SendText = alertDef.SendText
+                End If
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -75,15 +105,47 @@
                                              messageDef.Standard & " - " & _
                                              messageDef.Parameter_Group_Label & " " & _
                                              eventDef.TriggerConditoinQualifier.Trim() & " " & _
-                                             eventDef.TriggerConditionText.Trim(), .TimePeriod = alertDef.TimePeriod, .SubscriberNativeID = alertDef.SubscriberNativeID}).ToList()
-            Dim subsAlertDef = (From canAlert In objCanAlertDefinitions
-                               Join subs In objSubscribers On subs.NativeID Equals canAlert.SubscriberNativeID
-                               Join gMembers In grpMembers On gMembers.GroupID Equals canAlert.SubscriberNativeID
-                               Select New DataObjects.Can_AlertDefinition() With {.EventType = canAlert.EventType, .TimePeriod = canAlert.TimePeriod,
-                                   .MessageDestination = subs.NameFormatted, .SendEmail = subs.SendEmail, .SendText = subs.SendText, .SubscriberNativeID = canAlert.SubscriberNativeID}).ToList()
-            
-
-            Return subsAlertDef
+                                             eventDef.TriggerConditionText.Trim(), .TimePeriod = alertDef.TimePeriod, .SubscriberNativeID = alertDef.SubscriberNativeID, .CAN_AlertDefinitionID = alertDef.CAN_AlertDefinitionID, .CAN_EventDefinitionID = alertDef.CAN_EventDefinitionID, .SendEmail = alertDef.SendEmail, .SendText = alertDef.SendText}).ToList()
+            Dim subsAlertDefGroups = (From canAlert In objCanAlertDefinitions
+                                   Join subs In objSubscribers On subs.NativeID Equals canAlert.SubscriberNativeID
+                                   Join gMembers In grpMembers On gMembers.GroupID Equals canAlert.SubscriberNativeID
+                                   Select New DataObjects.Can_AlertDefinition() With {.EventType = canAlert.EventType, .TimePeriod = canAlert.TimePeriod,
+                                       .MessageDestination = subs.NameFormatted, .SendEmail = canAlert.SendEmail, .SendText = canAlert.SendText, .SubscriberNativeID = canAlert.SubscriberNativeID,
+                                        .CAN_AlertDefinitionID = canAlert.CAN_AlertDefinitionID, .CAN_EventDefinitionID = canAlert.CAN_EventDefinitionID}).ToList()
+            Dim subsAlertDefNoGroups = (From canAlert In objCanAlertDefinitions
+                                 Join subs In objSubscribers On subs.NativeID Equals canAlert.SubscriberNativeID
+                                 Select New DataObjects.Can_AlertDefinition() With {.EventType = canAlert.EventType, .TimePeriod = canAlert.TimePeriod,
+                                     .MessageDestination = subs.NameFormatted, .SendEmail = canAlert.SendEmail, .SendText = canAlert.SendText, .SubscriberNativeID = canAlert.SubscriberNativeID,
+                                        .CAN_AlertDefinitionID = canAlert.CAN_AlertDefinitionID, .CAN_EventDefinitionID = canAlert.CAN_EventDefinitionID}).ToList()
+            For Each grpAlertDef In grpMembers
+                For Each searchedMembers In subsAlertDefNoGroups
+                    If searchedMembers.SubscriberNativeID.Equals(grpAlertDef.GroupID) Then
+                        subsAlertDefNoGroups.Remove(searchedMembers)
+                        Exit For
+                    End If
+                Next
+            Next
+            Dim lstAlertDef = Enumerable.Union(subsAlertDefGroups, subsAlertDefNoGroups).ToList()
+            For Each AlertDef In lstAlertDef
+                AlertDef.CanAlertDefinitionIDUnique = Guid.NewGuid.ToString() & ":" & AlertDef.CAN_AlertDefinitionID.ToString() & ":" & AlertDef.SubscriberNativeID.ToString()
+            Next
+            Return lstAlertDef
+        End Function
+        Public Shared Function GetEventDefintionList() As List(Of DataObjects.Can_AlertDefinition.CanAlertDefintionTextValue)
+            Dim objCanAlertDefinitions = (From eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions
+                                       Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
+                                       eventDef.Standard Equals messageDef.Standard And eventDef.PGN Equals messageDef.PGN And eventDef.SPN Equals messageDef.SPN
+                                       Select New DataObjects.Can_AlertDefinition.CanAlertDefintionTextValue() With {.FieldText = eventDef.VehicleID & " | " & _
+                                           messageDef.Standard & " - " & _
+                                           messageDef.Parameter_Group_Label & " " & _
+                                           eventDef.TriggerConditoinQualifier.Trim() & " " & _
+                                           eventDef.TriggerConditionText.Trim(), .FieldValue = eventDef.CAN_EventDefinitionID}).ToList()
+            Return objCanAlertDefinitions
+        End Function
+        Public Shared Function GetSubscribersList(applicationId As Guid) As List(Of DataObjects.Can_AlertDefinition.CanAlertDefintionTextValue)
+            Dim objSubscribers = (From subs In DataObjects.Subscriber.GetAllforApplication(applicationId)
+                                 Select New DataObjects.Can_AlertDefinition.CanAlertDefintionTextValue() With {.FieldText = subs.NameFormatted, .FieldValue = subs.NativeID}).ToList()
+            Return objSubscribers
         End Function
 #End Region
 #Region "Constructors"
@@ -101,6 +163,10 @@
             End With
         End Sub
 #End Region
+        Public Class CanAlertDefintionTextValue
+            Public Property FieldText As String
+            Public Property FieldValue As Guid
+        End Class
     End Class
 End Namespace
 

@@ -4,13 +4,8 @@
         $(document).ready(function () {
             $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_ddlVehicles").change(function () {                
                 $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_btnRefresh").click();
-            });
-
-            if ($('#hdnValidate').value == "true")
-                alert('true');
+            });            
         })
-
-
     </script>
     <style>
         .ddlCenter {
@@ -110,8 +105,9 @@
             <dx:TabPage Name="AlertConfiguration" Text="Alert Configuration">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="gvAlertConfiguration" DataSourceID="odsAlertConfiguration" runat="server" AutoGenerateColumns="False">
+                        <dx:ASPxGridView ID="gvAlertConfiguration" DataSourceID="odsAlertConfiguration" runat="server" AutoGenerateColumns="False" KeyFieldName="CanAlertDefinitionIDUnique">
                             <Columns>
+                                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_AlertDefinitionID" VisibleIndex="9" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventDefinitionID" VisibleIndex="8" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="SubscriberNativeID" VisibleIndex="7" Visible="false"></dx:GridViewDataTextColumn>
@@ -131,8 +127,48 @@
                                 <dx:GridViewDataTextColumn FieldName="EventType" VisibleIndex="0"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="MessageDestination" VisibleIndex="2"></dx:GridViewDataTextColumn>
                             </Columns>
+                            <Settings ShowPreview="true" />
+                            <SettingsPager PageSize="5" />
+                            <EditFormLayoutProperties ColCount="8" >
+                                <Items>
+                                    <dx:GridViewColumnLayoutItem ColumnName="EventType" ColSpan="2" Caption="Event Type" RequiredMarkDisplayMode="Required" >
+                                        <Template>
+                                            <dx:ASPxComboBox ID="ddlEventType" runat="server" Width="100px" DataSourceID="odsEventType" Value='<%# Bind("EventType")%>' TextField="FieldText" ValueField="FieldValue" />
+                                        </Template>
+                                    </dx:GridViewColumnLayoutItem>
+                                    <dx:GridViewColumnLayoutItem ColumnName="TimePeriod" ColSpan="2" Caption="Time Period" RequiredMarkDisplayMode="Required" >
+                                        <Template>
+                                            <dx:ASPxTimeEdit ID="teTimePeriod" runat="server" EditFormat="Custom" Value='<%# Bind("TimePeriod")%>' 
+		                                        EditFormatString="HH:mm:ss" DateTime="01/01/2001 00:00:00">
+	                                        </dx:ASPxTimeEdit>
+                                        </Template>
+                                    </dx:GridViewColumnLayoutItem>
+                                    <dx:GridViewColumnLayoutItem ColumnName="MessageDestination" ColSpan="2" Caption="Message Destination" RequiredMarkDisplayMode="Required" >
+                                        <Template>
+                                            <dx:ASPxComboBox ID="ddlMessageDestination" runat="server" Width="100px" DataSourceID="odsMessageDestination" Value='<%# Bind("MessageDestination")%>' TextField="FieldText" ValueField="FieldValue" />
+                                        </Template>
+                                    </dx:GridViewColumnLayoutItem>
+                                    <dx:GridViewColumnLayoutItem ColumnName="SendEmail" ColSpan="2" Caption="Send Email">
+                                        <Template>
+                                            <dx:ASPxCheckBox value='<%# Bind("SendEmail")%>' ID="cbSendMail" runat="server"></dx:ASPxCheckBox>
+                                        </Template>
+                                    </dx:GridViewColumnLayoutItem>
+                                    <dx:GridViewColumnLayoutItem ColumnName="SendText" ColSpan="2" Caption="Send Text">
+                                        <Template>
+                                            <dx:ASPxCheckBox value='<%# Bind("SendText")%>' ID="cbSendText" runat="server"></dx:ASPxCheckBox>
+                                        </Template>
+                                    </dx:GridViewColumnLayoutItem>
+                                    <dx:EditModeCommandLayoutItem ColSpan="7" HorizontalAlign="Right" />
+                                </Items>
+                            </EditFormLayoutProperties>
                         </dx:ASPxGridView>
-                        <asp:ObjectDataSource ID="odsAlertConfiguration" runat="server" SelectMethod="GetCanAlertDefinitionList" TypeName="FMS.Business.DataObjects.Can_AlertDefinition">
+                       <asp:ObjectDataSource ID="odsAlertConfiguration" runat="server" SelectMethod="GetCanAlertDefinitionList" TypeName="FMS.Business.DataObjects.Can_AlertDefinition" DataObjectTypeName="FMS.Business.DataObjects.Can_AlertDefinition" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">
+                            <SelectParameters>
+                                <asp:SessionParameter SessionField="ApplicationId" DbType="Guid" Name="applicationId"></asp:SessionParameter>
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsEventType" runat="server" SelectMethod="GetEventDefintionList" TypeName="FMS.Business.DataObjects.Can_AlertDefinition"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsMessageDestination" runat="server" SelectMethod="GetSubscribersList" TypeName="FMS.Business.DataObjects.Can_AlertDefinition">
                             <SelectParameters>
                                 <asp:SessionParameter SessionField="ApplicationId" DbType="Guid" Name="applicationId"></asp:SessionParameter>
                             </SelectParameters>
