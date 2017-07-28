@@ -3,7 +3,7 @@
 .div_dashboard {
     width: 650px;
     height: 200px;
-    background-image: url('../Content/Images/Dashboard/Display-Grey_blank_withTail.png');
+    background-image: url('../Content/Images/Dashboard/Display_NEW.png');
     /*background-size: 100%;*/
     background-size: 650px 200px;
     background-repeat: no-repeat;
@@ -48,34 +48,34 @@
 
 /*Panel*/
 .div_break {
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
     position: absolute;
-    top: 31px;
+    top: 30px;
     left: 50px;
 }
 
 .div_steer {
-    width: 21px;
-    height: 21px;
+    width: 22px;
+    height: 22px;
     position: absolute;
-    top: 31px;
+    top: 30px;
     left: 86px;
 }
 
 .div_drive {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     position: absolute;
-    top: 31px;
+    top: 30px;
     left: 120px;
 }
 
 .div_ifm {
-    width: 21px;
-    height: 21px;
+    width: 22px;
+    height: 22px;
     position: absolute;
-    top: 31px;
+    top: 30px;
     left: 152px;
 }
 
@@ -83,49 +83,49 @@
     width: 33px;
     height: 33px;
     position: absolute;
-    top: 34px;
+    top: 33px;
     left: 181px;
 }
 
 .div_align {
     width: 21px;
-    height: 21px;
+    height: 22px;
     position: absolute;
     top: 31px;
-    left: 220px;
+    left: 221px;
 }
 
 .div_warning {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 67px;
+    top: 64px;
     left: 65px;
 }
 
 .div_stop {
-    width: 50px;
+    width: 52px;
     height: 50px;
     position: absolute;
-    top: 73px;
+    top: 70px;
     left: 117px;
 }
 
 .div_speed {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     position: absolute;
-    top: 71px;
+    top: 68px;
     left: 186px;
 }
 
 /*Battery*/
 .div_battery {
     width: 100px;
-    height: 100px;
+    height: 24px;
     position: absolute;
-    top: 30px;
-    left: 280px;
+    top: 28px;
+    left: 281px;
 }
 
 .pnlimgHide {
@@ -133,10 +133,10 @@
 }
 /*Buttons*/
 .div_plus {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 37px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Plus_Button_Normal.png');
@@ -144,10 +144,10 @@
 }
 
 .div_plus_blink {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 37px;
     background-image: url('../Content/Images/Dashboard/Plus_Button_Hover.png');
     position: absolute;
@@ -156,10 +156,10 @@
 }
 
 #iPlus:hover {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 37px;
     background-image: url('../Content/Images/Dashboard/Plus_Button_Hover.png');
     position: absolute;
@@ -168,10 +168,10 @@
 }
 
 #iPlus:active {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 37px;
     background-image: url('../Content/Images/Dashboard/Plus_Button_press.png');
     position: absolute;
@@ -180,54 +180,54 @@
 }
 
 .div_minus {
-    width: 41px;
-    height: 41px;
-    top: 107px;
+     width: 42px;
+    height: 42px;
+    position: absolute;
+    top: 104px;
     left: 96px;
-    position: absolute; 
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_Normal.png');
     background-repeat: no-repeat;
 }
 
 .div_minus_blink {
-    width: 41px;
-    height: 41px;
-    top: 107px;
-    left: 96px;
+    width: 42px;
+    height: 42px;
     position: absolute;
+    top: 104px;
+    left: 96px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_hover.png');
     background-repeat: no-repeat;
 }
 
 .div_minus:hover {
-    width: 41px;
-    height: 41px;
-    top: 107px;
-    left: 96px;
+    width: 42px;
+    height: 42px;
     position: absolute;
+    top: 104px;
+    left: 96px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_hover.png');
     background-repeat: no-repeat;
 }
 
 .div_minus:active {
-    width: 41px;
-    height: 41px;
-    top: 107px;
-    left: 96px;
+    width: 42px;
+    height: 42px;
     position: absolute;
+    top: 104px;
+    left: 96px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Minus_Button_press.png');
     background-repeat: no-repeat;
 }
 
 .div_ex {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_Normal.png');
@@ -235,10 +235,10 @@
 }
 
 .div_ex_blink {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_hover.png');
@@ -246,10 +246,10 @@
 }
 
 .div_ex:hover {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_hover.png');
@@ -257,10 +257,10 @@
 }
 
 .div_ex:active {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 156px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Ex_Button_press.png');
@@ -268,10 +268,10 @@
 }
 
 .div_tick {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_Normal.png');
@@ -279,10 +279,10 @@
 }
 
 .div_tick_blink {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_Hover.png');
@@ -290,10 +290,10 @@
 }
 
 .div_tick:hover {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_Hover.png');
@@ -301,10 +301,10 @@
 }
 
 .div_tick:active {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    top: 107px;
+    top: 104px;
     left: 213px;
     background-size:100%;
     background-image: url('../Content/Images/Dashboard/Tick_press.png');
@@ -315,7 +315,7 @@
     width: 131px;
     height: 50px;
     position: absolute;
-    top: 133px;
+    top: 132px;
     left: 499px;
 }
 
@@ -388,8 +388,8 @@
     background-color: transparent;
     /*background-color: white;*/
     position: absolute;
-    top: 32px;
-    left: 405px;
+    top: 30px;
+    left: 404px;
     width: 163px;
     height: 73px;
     
@@ -397,14 +397,15 @@
 .div_LCDTitle {
     background-color: black;
     position: fixed;
-    top: 32px;
-    left: 405px;
+    top: 30px;
+    left: 404px;
     width: 163px;
     height: 15px;
-    font-family: 'Courier New';
+    font-family: 'Windows Command Prompt';
     color: white;
 }
 .div_LCDLine {
+    font-family: 'Windows Command Prompt';
     background-color: transparent;
     /*position: absolute;
     top: 33px;*/
@@ -416,6 +417,7 @@
     color: black;
 }
 .div_LCDLine1_intro {
+    font-family: 'Windows Command Prompt';
     /*background-color: transparent;*/
     background-size: 100px 10px;
     background-repeat: no-repeat;
@@ -423,8 +425,8 @@
     /*position: absolute;
     top: 33px;*/
     position: fixed;
-    top: 49px;
-    left: 415px;
+    top: 47px;
+    left: 414px;
     width: 163px;
     height: 15px;
 }
@@ -439,7 +441,7 @@
     top: 46px;
     width: 160px;
     height: 15px;
-    font-family: 'Courier New';
+    font-family: 'Windows Command Prompt';
     color: black;
     text-align: right;
 }
@@ -448,7 +450,7 @@
     top: 60px;
     width: 160px;
     height: 15px;
-    font-family: 'Courier New';
+    font-family: 'Windows Command Prompt';
     color: black;
     text-align: right;
 }
@@ -457,7 +459,7 @@
     top: 75px;
     width: 150px;
     height: 30px;
-    font-family: 'Courier New';
+    font-family: 'Windows Command Prompt';
     color: black;
     text-align: right;
 }
@@ -466,7 +468,7 @@
     display: none;
 }
 .imgLCD_CM_display {
-    width: 11px;
+    /*width: 11px;*/
     height: 11px;
     display: inline;
 }
@@ -478,13 +480,14 @@
 
 
 .div_LCDLine4_intro {
+    font-family: 'Windows Command Prompt';
     /*background-color: transparent;*/
     background-size:100%;
     background-repeat: no-repeat;
     background-image: url('../Content/Images/Dashboard/LCD/SoftVer.png');
     position: fixed;
-    top: 93px;
-    left: 405px;
+    top: 91px;
+    left: 404px;
     width: 163px;
     height: 14px;
     
