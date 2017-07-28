@@ -62,6 +62,10 @@ button {
 top: -42px !important;
 left: 94px !important;
 }
+.iconposition_dash {
+top: -42px !important;
+left: 94px !important;
+}
 #iw-container {
 	/*margin-bottom: 10px;*/
 }
@@ -99,7 +103,7 @@ left: 94px !important;
 .custom-iw2_dash>.gm-style-iw{
 
     top:35px !Important;
-    left:0px !Important;
+    left:-65px !Important;
     width:700px !Important;
     height:200px !Important;
 
