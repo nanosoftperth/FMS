@@ -111,7 +111,7 @@ function ShowDashboard(event, name, deviceID, clicktype) {
 
     priDashEvent = event;
     var content = '<div id="iw-container_dash">' +
-                  '<div id="idCloseWindow" style="width: 15px; height: 15px; position: absolute; top: 0px; left: 650px;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/x2_button.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer"/></div>' +
+                  '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer"/></div>' +
                   '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
@@ -201,7 +201,7 @@ function getDashboard() {
     }
     evnt = priDashEvent;
     var content = '<div id="iw-container_dash">' +
-                  '<div id="idCloseWindow" style="width: 15px; height: 15px; position: absolute; top: 0px; left: 650px;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/x2_button.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer"/></div>' +
+                  '<div id="idCloseWindow" style="width: 15px; height: 15px; position: absolute; top: 0px; left: 650px;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer"/></div>' +
                   '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
@@ -401,7 +401,7 @@ function infoWindowCSSForDashboard(w) {
     $('#iw-container_dash').closest('.gm-style-iw').prev('div').remove();
     //$('#iw-container_dash').closest('.gm-style-iw').prev('div').addClass('dash_tail');
 
-    $('.custom-iw2_dash').parent().addClass('iconposition');
+    $('.custom-iw2_dash').parent().addClass('iconposition_dash');
 
     // Reference to s DIV that wraps the bottom of infowindow
     var iwOuter = $('#iw-container_dash').closest('.gm-style-iw');
@@ -426,7 +426,7 @@ function infoWindowCSSForDashboard(w) {
 
     // Moves the infowindow 115px to the right.
 
-    iwOuter.parent().parent().css({ left: '115px' });
+    iwOuter.parent().parent().css({ left: '70px' });
 
     iwOuter.parent().parent().css({ width: '115px' });
     // Moves the shadow of the arrow 76px to the left margin.
