@@ -722,14 +722,6 @@
       <Association Name="ApplicationDriver_ApplicationBooking" Member="ApplicationDriver" ThisKey="ApplicationDriverID" OtherKey="ApplicationDriverID" Type="ApplicationDriver" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.CAN_EventOccuranceAlert" Member="CAN_EventOccuranceAlerts">
-    <Type Name="CAN_EventOccuranceAlert">
-      <Column Name="CAN_EventOccuranceAlertID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CAN_EventOccuranceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="CAN_AlertDefinition" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="DateSent" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.CAN_EventDefinition" Member="CAN_EventDefinitions">
     <Type Name="CAN_EventDefinition">
       <Column Name="CAN_EventDefinitionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -759,6 +751,15 @@
       <Column Name="SendEmail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="SendText" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="TimePeriod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAN_EventOccuranceAlert" Member="CAN_EventOccuranceAlerts">
+    <Type Name="CAN_EventOccuranceAlert">
+      <Column Name="CAN_EventOccuranceAlertID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CAN_EventOccuranceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CAN_AlertDefinition" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MessageContent" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

@@ -173,19 +173,53 @@
                                 <asp:SessionParameter SessionField="ApplicationId" DbType="Guid" Name="applicationId"></asp:SessionParameter>
                             </SelectParameters>
                         </asp:ObjectDataSource>
-
-                        <%--<dx:ASPxComboBox ID="ASPxComboBox1" DataSourceID="odsAlertConfiguration" runat="server" ValueType="System.String" TextField="NameFormatted" ValueField="NativeId"></dx:ASPxComboBox>
-                        <asp:ObjectDataSource ID="odsAlertConfiguration" runat="server" SelectMethod="GetAllForGroupAlertSubscriber" TypeName="FMS.Business.DataObjects.Can_AlertDefinition">
-                            <SelectParameters>
-                                <asp:SessionParameter SessionField="ApplicationId" DbType="Guid" Name="applicationId"></asp:SessionParameter>
-                            </SelectParameters>
-                        </asp:ObjectDataSource>--%>
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
             <dx:TabPage Name="AlertOccurances" Text="Alert Occurances">
                 <ContentCollection>
-                    <dx:ContentControl runat="server"></dx:ContentControl>
+                    <dx:ContentControl runat="server">
+                        <dx:ASPxGridView ID="dvAlertOccurances" DataSourceID="odsAlertOccurances" runat="server" AutoGenerateColumns="False">
+                            <Columns>
+                                <dx:GridViewDataTextColumn FieldName="CAN_EventOccuranceAlertID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="CAN_EventOccuranceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="CAN_AlertDefinition" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataDateColumn FieldName="SentDate" VisibleIndex="7">
+                                    <PropertiesDateEdit>
+                                        <TimeSectionProperties>
+                                            <TimeEditProperties>
+                                                <ClearButton Visibility="Auto"></ClearButton>
+                                            </TimeEditProperties>
+                                        </TimeSectionProperties>
+
+                                        <ClearButton Visibility="Auto"></ClearButton>
+                                    </PropertiesDateEdit>
+                                </dx:GridViewDataDateColumn>
+                                <dx:GridViewDataTextColumn FieldName="AlertType" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataDateColumn FieldName="TimePeriod" VisibleIndex="9" Visible="false">
+                                    <PropertiesDateEdit>
+                                        <TimeSectionProperties>
+                                            <TimeEditProperties>
+                                                <ClearButton Visibility="Auto"></ClearButton>
+                                            </TimeEditProperties>
+                                        </TimeSectionProperties>
+
+                                        <ClearButton Visibility="Auto"></ClearButton>
+                                    </PropertiesDateEdit>
+                                </dx:GridViewDataDateColumn>
+                                <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="EndTime" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="SubscriberNativeID" VisibleIndex="10" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="EmailAddress" VisibleIndex="6"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="MessageContent" VisibleIndex="8"></dx:GridViewDataTextColumn>
+                            </Columns>
+                        </dx:ASPxGridView>
+                        <asp:ObjectDataSource ID="odsAlertOccurances" runat="server" SelectMethod="GetCanEventOccuranceList" TypeName="FMS.Business.DataObjects.Can_EventOccuranceAlert">
+                            <SelectParameters>
+                                <asp:SessionParameter SessionField="ApplicationId" DbType="Guid" Name="ApplicationId"></asp:SessionParameter>
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
         </TabPages>
