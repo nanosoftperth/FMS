@@ -79,8 +79,9 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(alertDef As DataObjects.Can_AlertDefinition)
+            Dim AlertDefinitionID As System.Guid = Guid.Parse(alertDef.CanAlertDefinitionIDUnique.Split(":")(1).ToString())
             Dim canAlertDef As FMS.Business.CAN_AlertDefinition = (From i In SingletonAccess.FMSDataContextContignous.CAN_AlertDefinitions
-                                                                   Where i.CAN_AlertDefinitionID = alertDef.CAN_AlertDefinitionID).Single
+                                                                   Where i.CAN_AlertDefinitionID = AlertDefinitionID).Single
             SingletonAccess.FMSDataContextContignous.CAN_AlertDefinitions.DeleteOnSubmit(canAlertDef)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
