@@ -5,16 +5,21 @@
 
 #Region "property definitions & constructors"
 
-        Public Property Parking_Break As String
-        Public Property Steering As String
-        Public Property Driving As String
-        Public Property IFMControl As String
-        Public Property CANControl As String
-        Public Property AlignmentControl As String
-        Public Property WarningControl As String
-        Public Property StopControl As String
-        Public Property SpeedControl As String
-        Public Property Battery_Voltage As String
+        Public Property Parking_Break As String = ""
+        Public Property Steering As String = ""
+        Public Property Driving As String = ""
+        Public Property IFMControl As String = ""
+        Public Property CANControl As String = ""
+        Public Property AlignmentControl As String = ""
+        Public Property WarningControl As String = ""
+        Public Property StopControl As String = ""
+        Public Property SpeedControl As String = ""
+        Public Property Battery_Voltage As String = ""
+        Public Property LCD_Speed As String = ""
+        Public Property LCD_Driving_Mode As String = ""
+        Public Property LCD_DataLogger As String = ""
+
+
 
         Private priParking As String
         Private priSteering As String
@@ -86,13 +91,13 @@
 #End Region
 
 
-        Public Shared Function GetDataForDashboard(vehicleID As String) As List(Of DashboardValues)
+        Public Shared Function GetDataForDashboard(deviceID As String) As List(Of DashboardValues)
 
             Dim oList As List(Of DashboardValues) = New List(Of DashboardValues)
             'Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(vehicleID)
             'FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValue()
 
-            Dim vehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(vehicleID).GetAvailableCANTagsValue()
+            Dim vehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValue()
 
             Try
                 If vehicle.Count > 0 Then
@@ -120,41 +125,71 @@
                                             "Can 31", "Can 101", "Can 102", "Can 103", "Can 104", "Can 105", "Can 106",
                                             "Can 107", "Can 108", "Can 131", "Can 205", "Can 206", "Can 207", "Can 208"}
                     Dim arrCANOPEN() As String = {"Canopen 5"}
+                    Dim arrDataLogger() As String = {"IO 30"}
 
-                    'Dim ctr = vehicle.Count
-                    Dim ctr = 9 ' for testing. will remove/remarks before deploy
+                    Dim ctr = vehicle.Count
+                    'Dim ctr = 9 ' ----- for testing. will remove/remarks before deploy
 
                     Dim ListRow = New DashboardValues
 
                     For ndx As Integer = 0 To ctr - 1
-                        ' Will enable when deployed to demo/live
-                        'strDesc = vehicle(ndx).MessageDefinition.Description 
-                        'strValue = vehicle(ndx).CanValues(0).Value
-                        ' End of disable
+                        ' ----- Will enable when deployed to demo/live
+                        strDesc = vehicle(ndx).MessageDefinition.Description
 
-                        ' Test data. Will remove/remarks when deployed to demo/live
-                        Select Case ndx
-                            Case 0
-                                strDesc = "Parking Break"
-                                strValue = "Parking Break ON"
-                            Case 1
-                                strDesc = "Battery Voltage"
-                                strValue = "80.54"
-                            Case 3
-                                strDesc = "Fault Codes"
-                                strValue = "S 1,MS 8,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4,Canopen 3,Canopen 1,Canopen 5,Can 101,Can 203,IO 3,IO 20,IO 40,IO 41"
-                            Case Else
-                                strDesc = ""
-                                strValue = ""
-                        End Select
-                        ' End of Test Data
+                        If vehicle(ndx).CanValues.Count = 0 Then
+                            Continue For
+                        End If
+                        strValue = vehicle(ndx).CanValues(0).Value
+                        ' ----- End of disable
+
+                        ' ----- Test data. Will remove/remarks when deployed to demo/live
+                        'Select Case ndx
+                        '    Case 0
+                        '        strDesc = "Parking Break"
+                        '        strValue = "Parking Break ON"
+                        '    Case 1
+                        '        strDesc = "Battery Voltage"
+                        '        strValue = "80.54"
+                        '    Case 2
+                        '        strDesc = "Speed"
+                        '        strValue = "-9.01"
+                        '    Case 3
+                        '        strDesc = "Driving Mode"
+                        '        strValue = "Rail mode road"
+                        '    Case 8
+                        '        strDesc = "Fault Codes"
+                        '        strValue = "S 1,MS 8,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4,Canopen 3,Canopen 1,Canopen 5,Can 101,Can 203,IO 3,IO 20,IO 30,IO 40,IO 41"
+                        '    Case Else
+                        '        strDesc = ""
+                        '        strValue = ""
+                        'End Select
+                        ' ----- End of Test Data
 
                         Select Case strDesc
                             Case "Parking Break"
                                 ListRow.Parking_Break = strValue
-                                ListRow.StopControl = "ON"
+
+                                If strValue = "Parking Break ON" Then
+                                    ListRow.StopControl = "ON"
+                                Else
+                                    If strValue = "Parking Break OFF" Then
+                                        ListRow.StopControl = "OFF"
+                                    End If
+                                End If
+
                             Case "Battery Voltage"
-                                ListRow.Battery_Voltage = strValue
+                                If Not strValue = Nothing Then
+                                    ListRow.Battery_Voltage = strValue
+                                Else
+                                    If ListRow.Battery_Voltage.Length = 0 Then
+                                        ListRow.Battery_Voltage = "0"
+                                    End If
+                                End If
+
+                            Case "Speed"
+                                ListRow.LCD_Speed = strValue
+                            Case "Driving Mode"
+                                ListRow.LCD_Driving_Mode = strValue
                             Case "Fault Codes"
                                 Dim fc As String() = Nothing
                                 fc = strValue.Split(",")
@@ -172,13 +207,14 @@
                                     Dim strIFM As String = Array.Find(arrIFM, Function(x) (x.StartsWith(sfc)))
                                     Dim strCAN As String = Array.Find(arrCAN, Function(x) (x.StartsWith(sfc)))
                                     Dim strCANOPEN As String = Array.Find(arrCANOPEN, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDataLogger As String = Array.Find(arrDataLogger, Function(x) (x.StartsWith(sfc)))
 
                                     If Not strSteer = Nothing Then
                                         ListRow.Steering = sfc
                                     End If
 
                                     If Not strDrive = Nothing Then
-                                        ListRow.Driving = sfc
+                                        ListRow.Driving = sfc                                    
                                     End If
 
                                     If Not strIFM = Nothing Then
@@ -201,9 +237,11 @@
                                         ListRow.AlignmentControl = sfc
                                     End If
 
-                                Next sfc
+                                    If Not strDataLogger = Nothing Then
+                                        ListRow.LCD_DataLogger = sfc
+                                    End If
 
-                                ListRow.StopControl = "ON"
+                                Next sfc
 
                         End Select
 
