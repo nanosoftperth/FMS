@@ -59,15 +59,15 @@ Namespace Controllers
         ''' <summary>
         ''' Get available CAN tags by deviceID for dashboard
         ''' </summary>
-        ''' <param name="DashVehicleID">The device Id</param>
+        ''' <param name="DashDeviceID">The device Id</param>
         ''' <returns>List of dashboard values</returns>
         <HttpGet>
-        Public Function GetDashboardData(DashVehicleID As String) As List(Of DashboardValues)
+        Public Function GetDashboardData(DashDeviceID As String) As List(Of DashboardValues)
 
             'Dim tagvalues = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashVehicleID).GetAvailableCANTagsValue()
             'Dim tagvalues = FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashVehicleID)
             'Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(DashVehicleID)
-            Return FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashVehicleID)
+            Return FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashDeviceID)
 
             'Dim objDashValues = New List(Of DashboardValues)
 
