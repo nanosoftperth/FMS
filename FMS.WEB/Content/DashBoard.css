@@ -3,6 +3,7 @@
 .div_dashboard {
     width: 650px;
     height: 200px;
+    background-color: transparent;
     background-image: url('../Content/Images/Dashboard/Display_NEW.png');
     /*background-size: 100%;*/
     background-size: 650px 200px;
@@ -385,6 +386,8 @@
 
 /*LCD Indicators*/
 .div_LCDCont {
+    font-family: 'Windows Command Prompt Regular';
+    /*font-family: 'Windows Command Prompt';*/
     background-color: transparent;
     /*background-color: white;*/
     position: absolute;
@@ -401,11 +404,13 @@
     left: 404px;
     width: 163px;
     height: 15px;
-    font-family: 'Windows Command Prompt';
+    font-family: 'Windows Command Prompt Regular';
+    /*font-family:'Courier New';*/
     color: white;
 }
 .div_LCDLine {
     font-family: 'Windows Command Prompt';
+    /*font-family:'Courier New';*/
     background-color: transparent;
     /*position: absolute;
     top: 33px;*/
@@ -413,11 +418,11 @@
     left: 405px;
     width: 163px;
     height: 15px;
-    font-family: 'Courier New';
     color: black;
 }
 .div_LCDLine1_intro {
-    font-family: 'Windows Command Prompt';
+   font-family: 'Windows Command Prompt Regular';
+    /*font-family:'Courier New';*/
     /*background-color: transparent;*/
     background-size: 100px 10px;
     background-repeat: no-repeat;
@@ -441,7 +446,8 @@
     top: 46px;
     width: 160px;
     height: 15px;
-    font-family: 'Windows Command Prompt';
+    font-family: 'Windows Command Prompt Regular';
+    /*font-family:'Courier New';*/
     color: black;
     text-align: right;
 }
@@ -450,7 +456,8 @@
     top: 60px;
     width: 160px;
     height: 15px;
-    font-family: 'Windows Command Prompt';
+    font-family: 'Windows Command Prompt Regular';
+    /*font-family:'Courier New';*/
     color: black;
     text-align: right;
 }
@@ -459,7 +466,8 @@
     top: 75px;
     width: 150px;
     height: 30px;
-    font-family: 'Windows Command Prompt';
+    font-family: 'Windows Command Prompt Regular';
+    /*font-family:'Courier New';*/
     color: black;
     text-align: right;
 }
@@ -472,6 +480,11 @@
     height: 11px;
     display: inline;
 }
+.imgLCD_ErrCat_display {
+    max-height: 100%;
+    max-width: 100%;
+    display: inline;
+}
 .imgLCD_DrvMod_display {
     width: 22px;
     height: 22px;
@@ -480,7 +493,7 @@
 
 
 .div_LCDLine4_intro {
-    font-family: 'Windows Command Prompt';
+    font-family: 'Windows Command Prompt Regular';
     /*background-color: transparent;*/
     background-size:100%;
     background-repeat: no-repeat;
@@ -491,6 +504,24 @@
     width: 163px;
     height: 14px;
     
+}
+
+.div_LCD_ErrCat {
+    font-family: 'Windows Command Prompt Regular';
+    /*font-family:'Courier New';*/
+    background-color: transparent;
+    /*position: absolute;
+    top: 33px;*/
+    top: 17px;
+    left: 405px;
+    width: 20px;
+    height: 10px;
+    color: black;
+}
+.span_errnum {
+    font-family: 'Windows Command Prompt Regular';
+    font-size: 10px;
+    text-align: center;
 }
 .LCDCont_Hide {
     display:none;
