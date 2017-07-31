@@ -128,7 +128,7 @@ Namespace ReportGeneration
             'Idle Duration is the time, when stopped, idling
             'departure time is the start time of the "next" travelling event (outside of this one)
 
-            '(t:travfelling, si:stopped(idling), ss(stopped, no engine)
+            '(t:travelling, si:stopped(idling), ss(stopped, no engine)
             '   -----t---si---ss----si---ss--si---t 
             '   ----|----------------------------|-------
 
@@ -227,21 +227,6 @@ Namespace ReportGeneration
 
                 End If
             Next
-
-            'HACK: unsure why these numbers do not add up using the method above.
-            'For Each varl As ReportGeneration.VehicleActivityReportLine In retobjs
-
-            '    Try
-
-            '        Dim ratio As Decimal = varl.IdleDuration.TotalMilliseconds / varl.StopDuration.TotalMilliseconds
-
-            '        varl.StopDuration = varl.DepartureTime.Value - varl.ArrivalTime.Value
-            '        varl.IdleDuration = TimeSpan.FromMilliseconds(varl.StopDuration.TotalMilliseconds * ratio)
-
-            '    Catch ex As Exception
-
-            '    End Try
-            'Next
 
             Return retobjs
 

@@ -301,23 +301,24 @@ Public Class CachedVehicleReport
         formatted_TotalTravelDuration = timespanFormatCust(TotalTravelDuration)
 
 
-        Try
+        'Try
 
-            'Figure out the timezone for the vehicle
-            Dim offset As Double = FMS.Business.DataObjects.ApplicationVehicle.GetForID(VehicleID).GetCurrentTimeZoneOffsetFromPerth
+        '    'Figure out the timezone for the vehicle
+        '    'Dim offset As Double = FMS.Business.DataObjects.ApplicationVehicle.GetForID(VehicleID).GetCurrentTimeZoneOffsetFromPerth
 
+        '    ''what was the offset applied for
 
-            For Each lv In LineValies
+        '    'For Each lv In LineValies
 
-                If lv.ArrivalTime.HasValue Then lv.ArrivalTime = lv.ArrivalTime.Value.AddHours(offset)
-                If lv.DepartureTime.HasValue Then lv.DepartureTime = lv.DepartureTime.Value.AddHours(offset)
-                If lv.StartTime.HasValue Then lv.StartTime = lv.StartTime.Value.AddHours(offset)
+        '    '    If lv.ArrivalTime.HasValue Then lv.ArrivalTime = lv.ArrivalTime.Value.AddHours(offset)
+        '    '    If lv.DepartureTime.HasValue Then lv.DepartureTime = lv.DepartureTime.Value.AddHours(offset)
+        '    '    If lv.StartTime.HasValue Then lv.StartTime = lv.StartTime.Value.AddHours(offset)
 
-            Next
+        '    'Next
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-        End Try
+        'End Try
 
 
     End Sub
