@@ -7,8 +7,8 @@
         Public Property SentDate As Date
         Public Property AlertType As String
         Public Property TimePeriod As Date
-        Public Property StartTime As String
-        Public Property EndTime As String
+        Public Property StartTime As Date
+        Public Property EndTime As Date
         Public Property SubscriberNativeID As System.Guid
         Public Property EmailAddress As String
         Public Property MessageContent As String
@@ -61,15 +61,15 @@
                                                                                             x.messageDef.Standard & " - " & _
                                                                                             x.messageDef.Parameter_Group_Label & " " & _
                                                                                             x.eventdef.TriggerConditoinQualifier.Trim() & " " & _
-                                                                                            x.eventdef.TriggerConditionText.Trim() & " for time period: " & _
-                                                                                            x.alertDef.TimePeriod.ToString()), _
+                                                                                            x.eventdef.TriggerConditionText.Trim() & " for time period: "), _
                                 .StartTime = g.Min(Function(y) y.eventOcc.OccuredDate), .EndTime = g.Max(Function(z) z.eventOcc.OccuredDate), _
                                 .SentDate = g.Max(Function(a) a.eventOccAlert.SentDate), .SubscriberNativeID = g.Max(Function(b) b.alertDef.SubscriberNativeID),
-                                .MessageContent = g.Max(Function(c) c.eventOccAlert.MessageContent)}).ToList()
+                                .MessageContent = g.Max(Function(c) c.eventOccAlert.MessageContent), .TimePeriod = g.Max(Function(d) d.alertDef.TimePeriod)}).ToList()
             For Each OccAlert In objCanEventOccuranceAlert
                 Dim subscribers = objSubscribers.Where(Function(x) x.NativeID.Equals(OccAlert.SubscriberNativeID)).FirstOrDefault
                 If Not subscribers Is Nothing Then
                     OccAlert.EmailAddress = subscribers.Email
+                    OccAlert.AlertType = OccAlert.AlertType & OccAlert.TimePeriod.ToString("HH:mm:ss")
                 End If
             Next
             Return objCanEventOccuranceAlert

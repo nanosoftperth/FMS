@@ -19,8 +19,7 @@
                 <ContentCollection>
                     <dx:ContentControl runat="server">     
                         <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="odsEventConfiguration" AutoGenerateColumns="False" 
-                            KeyFieldName="CAN_EventDefinitionID" Width="550px" OnRowValidating="ASPxGridView1_RowValidating"
-                            OnStartRowEditing="ASPxGridView1_StartRowEditing">
+                            KeyFieldName="CAN_EventDefinitionID" Width="550px" OnRowValidating="ASPxGridView1_RowValidating" Theme="SoftOrange">
                             <Columns>
                                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventDefinitionID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -32,7 +31,7 @@
                                 <dx:GridViewDataTextColumn FieldName="MetricValue" VisibleIndex="14" Visible="false"></dx:GridViewDataTextColumn>
                             </Columns>
                             <Settings ShowPreview="true" />
-                            <SettingsPager PageSize="5" />
+                            <SettingsPager PageSize="10" />
                             <EditFormLayoutProperties ColCount="8" >
                                 <Items>
                                     <dx:GridViewColumnLayoutItem ColumnName="VehicleID" ColSpan="2" Caption="Vehicle" RequiredMarkDisplayMode="Required" >
@@ -51,7 +50,7 @@
                                         <Template>
                                             <dx:ASPxComboBox ID="ddlQueryType" runat="server" Width="50px" Value='<%# Bind("QueryType")%>' ClientInstanceName="xxx">
                                                 <Items>
-                                                    <dx:ListEditItem Text=""   Value=""/>
+                                                    <dx:ListEditItem Text="" Value=""/>
                                                     <dx:ListEditItem Text="<" Value="<"/>
                                                     <dx:ListEditItem Text=">" Value=">"/>
                                                     <dx:ListEditItem Text="<=" Value="<="/>
@@ -87,11 +86,11 @@
 	                                                gridOccurances.Refresh();
                                                 }" />
                         </dx:ASPxTextBox>
-                        <dx:ASPxGridView ID="gvEventOccurances" DataSourceID="odsEventOccurances" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridOccurances" Width="700px" >
+                        <dx:ASPxGridView ID="gvEventOccurances" DataSourceID="odsEventOccurances" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridOccurances" Width="700px" Theme="SoftOrange">
                             <Columns>                                
                                 <dx:GridViewDataTextColumn FieldName="EventType" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="5"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="EndTime" VisibleIndex="6"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="5" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy HH:mm"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="EndTime" VisibleIndex="6" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy HH:mm"></dx:GridViewDataTextColumn>
                             </Columns>
                         </dx:ASPxGridView>
                         <asp:ObjectDataSource ID="odsEventOccurances" runat="server" SelectMethod="GetCanEventOccuranceList" TypeName="FMS.Business.DataObjects.Can_EventOccurance">
@@ -105,7 +104,7 @@
             <dx:TabPage Name="AlertConfiguration" Text="Alert Configuration">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="gvAlertConfiguration" DataSourceID="odsAlertConfiguration" runat="server" AutoGenerateColumns="False" KeyFieldName="CanAlertDefinitionIDUnique">
+                        <dx:ASPxGridView ID="gvAlertConfiguration" DataSourceID="odsAlertConfiguration" runat="server" AutoGenerateColumns="False" KeyFieldName="CanAlertDefinitionIDUnique" Theme="SoftOrange">
                             <Columns>
                                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_AlertDefinitionID" VisibleIndex="9" Visible="false"></dx:GridViewDataTextColumn>
@@ -128,7 +127,7 @@
                                 <dx:GridViewDataTextColumn FieldName="MessageDestination" VisibleIndex="2"></dx:GridViewDataTextColumn>
                             </Columns>
                             <Settings ShowPreview="true" />
-                            <SettingsPager PageSize="5" />
+                            <SettingsPager PageSize="10" />
                             <EditFormLayoutProperties ColCount="8" >
                                 <Items>
                                     <dx:GridViewColumnLayoutItem ColumnName="EventType" ColSpan="2" Caption="Event Type" RequiredMarkDisplayMode="Required" >
@@ -179,23 +178,22 @@
             <dx:TabPage Name="AlertOccurances" Text="Alert Occurances">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="dvAlertOccurances" DataSourceID="odsAlertOccurances" runat="server" AutoGenerateColumns="False">
+                        <dx:ASPxGridView ID="dvAlertOccurances" DataSourceID="odsAlertOccurances" runat="server" AutoGenerateColumns="False" Theme="SoftOrange">                            
                             <Columns>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventOccuranceAlertID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventOccuranceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_AlertDefinition" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataDateColumn FieldName="SentDate" VisibleIndex="7">
+                                <dx:GridViewDataDateColumn FieldName="SentDate" VisibleIndex="7" Width="120" PropertiesDateEdit-DisplayFormatString="d/MM/yyyy HH:mm" Caption="Data/Time Sent">
                                     <PropertiesDateEdit>
                                         <TimeSectionProperties>
                                             <TimeEditProperties>
                                                 <ClearButton Visibility="Auto"></ClearButton>
                                             </TimeEditProperties>
                                         </TimeSectionProperties>
-
                                         <ClearButton Visibility="Auto"></ClearButton>
                                     </PropertiesDateEdit>
                                 </dx:GridViewDataDateColumn>
-                                <dx:GridViewDataTextColumn FieldName="AlertType" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="AlertType" VisibleIndex="3" Width="250"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataDateColumn FieldName="TimePeriod" VisibleIndex="9" Visible="false">
                                     <PropertiesDateEdit>
                                         <TimeSectionProperties>
@@ -203,15 +201,14 @@
                                                 <ClearButton Visibility="Auto"></ClearButton>
                                             </TimeEditProperties>
                                         </TimeSectionProperties>
-
                                         <ClearButton Visibility="Auto"></ClearButton>
                                     </PropertiesDateEdit>
                                 </dx:GridViewDataDateColumn>
-                                <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="EndTime" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="4" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy HH:mm" Width="120px"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="EndTime" VisibleIndex="5" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy HH:mm" Width="120px"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="SubscriberNativeID" VisibleIndex="10" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="EmailAddress" VisibleIndex="6"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="MessageContent" VisibleIndex="8"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="EmailAddress" VisibleIndex="6" Width="150" Caption="Email Addresses"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="MessageContent" VisibleIndex="8" Width="300"></dx:GridViewDataTextColumn>
                             </Columns>
                         </dx:ASPxGridView>
                         <asp:ObjectDataSource ID="odsAlertOccurances" runat="server" SelectMethod="GetCanEventOccuranceList" TypeName="FMS.Business.DataObjects.Can_EventOccuranceAlert">
