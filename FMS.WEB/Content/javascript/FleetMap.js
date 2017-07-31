@@ -99,7 +99,7 @@ function ShowDashboard(event, name, deviceID, clicktype) {
     //var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + this.DeviceID + '&VehicleName=' + VehicleName;
     var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + priDeviceID + '&VehicleName=' + VehicleName + '&ClickEvent=' + clicktype;
     //var newURL = 'CanBusPropDispDashboard.aspx';
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:220px;width:700px\' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:220px;width:700px;background-color: transparent;  \' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
 
@@ -111,13 +111,13 @@ function ShowDashboard(event, name, deviceID, clicktype) {
 
     priDashEvent = event;
     var content = '<div id="iw-container_dash">' +
-                  '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer"/></div>' +
-                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
+                  '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
+                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px; background-color: transparent;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
         
     '</div>' +
-    '<div class="iw-bottom-gradient"></div>' +
+    '<div class="iw-bottom-gradient_dash"></div>' +
   '</div>';
 
     //  var content = '<div id="iw-container_dash">' +
@@ -128,6 +128,13 @@ function ShowDashboard(event, name, deviceID, clicktype) {
     //  '<div class="iw-bottom-gradient"></div>' +
     //'</div>';
 
+    //google.maps.event.addListener(marker, 'click', function () {
+    //    if (!infowindow.getMap()) {
+    //        infowindow.open(map, marker);
+    //    }
+    //});
+
+
 
     infoWindowVehicle = new google.maps.InfoWindow();
 
@@ -137,7 +144,12 @@ function ShowDashboard(event, name, deviceID, clicktype) {
 
     google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForDashboard(infoWindowVehicle) });
 
-    infoWindowVehicle.open(map);
+    if (!infoWindowVehicle.getMap())
+    {
+        infoWindowVehicle.open(map);
+    }
+
+    //infoWindowVehicle.open(map);
 
     //document.getElementById("idLiveData").addEventListener("click", Run_infoWindowCSSForCanBus);
 }
@@ -191,7 +203,7 @@ function getDashboard() {
 
     var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + priDeviceID + '&VehicleName=' + strVehicleName + '&ClickEvent=' + strClickEvent;
     //var newURL = 'CanBusPropDispDashboard.aspx?ClickEvent=' + strClickEvent;
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:190px;width:750px\' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:190px;width:750px;background-color: transparent; \' ></iframe>';
     contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
 
     if (infoWindowVehicle !== null) {
@@ -201,13 +213,13 @@ function getDashboard() {
     }
     evnt = priDashEvent;
     var content = '<div id="iw-container_dash">' +
-                  '<div id="idCloseWindow" style="width: 15px; height: 15px; position: absolute; top: 0px; left: 650px;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer"/></div>' +
+                  '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
                   '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
 
     '</div>' +
-    '<div class="iw-bottom-gradient"></div>' +
+    '<div class="iw-bottom-gradient_dash"></div>' +
   '</div>';
 
 
