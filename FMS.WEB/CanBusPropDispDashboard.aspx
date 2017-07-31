@@ -8,6 +8,7 @@
     <script src="Content/javascript/jquery-1.10.2.min.js"></script>
     <script src="Content/javascript/page.js"></script>
     <link href="Content/DashBoard.css" rel="stylesheet" />
+    <link href="Content/font_style.css" rel="stylesheet" />
 
     <%--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>--%>
     <%--<script src="Content/javascript/FleetMap.js"></script>--%>
@@ -105,48 +106,51 @@
                 for (v = 0; v < oCtr; v++) {
 
                     if (obj[v].Parking_Break == 'Parking Break ON') {
-                        SetToolTipPerStatus('.div_break', 'Parking Break : ' + obj[v].Parking_Break)
+                        SetToolTipPerStatus('.div_break', 'Parking Break : ' + obj[v].Parking_Break);
                         SetStatus('Parking Break', obj[v].Parking_Break);
                     }
 
                     if (obj[v].Steering.length > 0) {
-                        SetToolTipPerStatus('.div_steer', 'Steering : ' + obj[v].Steering)
+                        SetToolTipPerStatus('.div_steer', 'Steering : ' + obj[v].Steering);
                         SetStatus('Steer', 'Err');
                     }
 
                     if (obj[v].Driving.length > 0) {
-                        SetToolTipPerStatus('.div_drive', 'Drive : ' + obj[v].Driving)
+                        SetToolTipPerStatus('.div_drive', 'Drive : ' + obj[v].Driving);
                         SetStatus('Drive', 'Err');
                     }
 
                     if (obj[v].IFMControl.length > 0) {
-                        SetToolTipPerStatus('.div_ifm', 'IFM : ' + obj[v].IFMControl)
+                        SetToolTipPerStatus('.div_ifm', 'IFM : ' + obj[v].IFMControl);
                         SetStatus('IFM', 'Err');
                     }
 
                     if (obj[v].CANControl.length > 0) {
-                        SetToolTipPerStatus('.div_can', 'CAN/CANOPEN : ' + obj[v].CANControl)
+                        SetToolTipPerStatus('.div_can', 'CAN/CANOPEN : ' + obj[v].CANControl);
                         SetStatus('Can', 'Err');
+                        alert(obj[v].CANControl);
+                        setLCDErrCat(obj[v].CANControl);
                     }
 
                     if (obj[v].AlignmentControl.length > 0) {
-                        SetToolTipPerStatus('.div_align', 'Alignment : ' + obj[v].AlignmentControl)
+                        SetToolTipPerStatus('.div_align', 'Alignment : ' + obj[v].AlignmentControl);
                         SetStatus('Align', 'Err');
                     }
 
                     if (obj[v].WarningControl.length > 0) {
-                        SetToolTipPerStatus('.div_warning', 'Warning : ' + obj[v].WarningControl)
+                        SetToolTipPerStatus('.div_warning', 'Warning : ' + obj[v].WarningControl);
                         SetStatus('Warning', 'Err');
                     }
 
                     if (obj[v].SpeedControl.length > 0) {
-                        SetToolTipPerStatus('.div_speed', 'Speed : ' + obj[v].SpeedControl)
+                        SetToolTipPerStatus('.div_speed', 'Speed : ' + obj[v].SpeedControl);
                         SetStatus('Speed', 'Err');
+
                     }
 
                     if (obj[v].Battery_Voltage.length > 0) {
                         //alert('Battery_Voltage > 0');
-                        SetToolTipPerStatus('.div_battery', 'Battery Voltage : ' + obj[v].Battery_Voltage)
+                        SetToolTipPerStatus('.div_battery', 'Battery Voltage : ' + obj[v].Battery_Voltage);
                         SetStatus('Battery Voltage', obj[v].Battery_Voltage);
                     }
 
@@ -396,7 +400,7 @@
 
             //var strLen = val.length;
 
-            ////alert(val + ' : ' + strLen);
+            //////alert(val + ' : ' + strLen);
 
             //for (i = 0; i < strLen; i++) {
             //    //alert(val.substr(i, 1));
@@ -532,8 +536,18 @@
 
             if (val == 'Undefined') {
 
-                $('img[src="' + oImgSrc + '"]').attr('src', dmRail);
+                $('img[src="' + oImgSrc + '"]').attr('src', dmCircular);
             }
+
+        }
+
+        function setLCDErrCat(val) {
+            var strVal = val;
+            var nStart = strVal.indexOf(' ');
+            var nEnd = strVal.length;
+            var NumCode = strName.substring(nStart, nEnd);
+
+            alert(val + ' : ' + NumCode);
 
         }
 
@@ -996,6 +1010,13 @@
             <div id="LCDLine4" class="div_LCDLine">
                 <span id="spanLine4"></span>
             </div>
+            <div id="ErrCat" class="div_LCD_ErrCat">
+                <img src="Content/Images/Dashboard/LCD/FaultyM1.png" id="iErrCat" class="imgLCD_NoDisplay" />
+            </div>
+            <div id="ErrNum">
+                <span id="spanErrNum" class="span_errnum"></span>
+            </div>
+
         </div>
         
         <%--<div id="idLiveData" class="div_vwLiveData">
