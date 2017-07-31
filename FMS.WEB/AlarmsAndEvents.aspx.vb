@@ -21,14 +21,13 @@ Public Class AlarmsAndEvents
                 Exit For
             End If
         Next column
-        If e.NewValues("QueryType") IsNot Nothing AndAlso (Not e.NewValues("QueryType").ToString().Equals("=") Or Not e.NewValues("QueryType").ToString().Equals("Like")) Then
+        If e.NewValues("QueryType") IsNot Nothing AndAlso (Not e.NewValues("QueryType").ToString().Equals("=") And Not e.NewValues("QueryType").ToString().Equals("Like")) Then
             Dim intVal As Integer = 0
             Dim dblVal As Double = 0
             If Not e.NewValues("TextValue") Is Nothing Then
                 If Not Integer.TryParse(e.NewValues("TextValue").ToString(), intVal) Then
                     AddError(e.Errors, ASPxGridView1.Columns("TextValue"), "Text value should not be string.")
-                End If
-                If Not Double.TryParse(e.NewValues("TextValue").ToString(), dblVal) Then
+                ElseIf Not Double.TryParse(e.NewValues("TextValue").ToString(), dblVal) Then
                     AddError(e.Errors, ASPxGridView1.Columns("TextValue"), "Text value should not be string.")
                 End If
             End If
@@ -43,9 +42,9 @@ Public Class AlarmsAndEvents
         errors(column) = errorText
     End Sub
  
-    Protected Sub ASPxGridView1_StartRowEditing(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxStartRowEditingEventArgs)
-        If (Not ASPxGridView1.IsNewRowEditing) Then
-            ASPxGridView1.DoRowValidation()
-        End If
-    End Sub
+    'Protected Sub ASPxGridView1_StartRowEditing(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxStartRowEditingEventArgs)
+    '    If (Not ASPxGridView1.IsNewRowEditing) Then
+    '        ASPxGridView1.DoRowValidation()
+    '    End If
+    'End Sub
 End Class

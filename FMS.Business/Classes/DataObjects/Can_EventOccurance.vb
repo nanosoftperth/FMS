@@ -6,8 +6,8 @@
         Public Property OccuredDate As Date
         Public Property TriggerCondition As String
         Public Property EventType As String
-        Public Property StartTime As String
-        Public Property EndTime As String
+        Public Property StartTime As Date
+        Public Property EndTime As Date
 #End Region
 
 #Region "CRUD"
