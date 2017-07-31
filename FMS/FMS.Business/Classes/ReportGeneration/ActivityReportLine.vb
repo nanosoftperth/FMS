@@ -8,7 +8,7 @@
         ''' This needs to be short enough to detect stopping at the shops
         ''' but long enough to not detect stopping at a set of lights!
         ''' </summary>
-        Public Const STOP_TIME_MIN_MINUTES As Integer = 10
+        Public Const STOP_TIME_MIN_MINUTES As Integer = 2
 
         Public Enum ActivityReportLineType
             Stopped_EngineOff = 0
@@ -45,8 +45,8 @@
                                                     endDate As Date,
                                                     vehicleID As Guid) As List(Of ActivityReportLine)
 
-            startDate = startDate.timezoneToPerth
-            endDate = endDate.timezoneToPerth
+            'startDate = startDate.timezoneToPerth
+            'endDate = endDate.timezoneToPerth
 
             Dim retlst As New List(Of ActivityReportLine)
             'get all the speed and distances
@@ -110,7 +110,11 @@
 
                 Dim lengthOfThisAcitvity As TimeSpan = thisActivityReportLine.EndTime - thisActivityReportLine.StartTime
 
-                If lengthOfThisAcitvity.TotalMinutes < STOP_TIME_MIN_MINUTES AndAlso thisActivityReportLine.ActivityReportType = ActivityReportLineType.Stoipped_Idling Then
+
+                Dim vehicleStopped As Boolean = (thisActivityReportLine.ActivityReportType = ActivityReportLineType.Stopped_EngineOff) _
+                                               Or (thisActivityReportLine.ActivityReportType = ActivityReportLineType.Stoipped_Idling)
+
+                If lengthOfThisAcitvity.TotalMinutes < STOP_TIME_MIN_MINUTES AndAlso vehicleStopped Then
 
                     'if this activity is "idling", we cannot know if the previous activity was actually travelling as 
                     'we may have marked things as deleted
@@ -176,7 +180,8 @@
                 'deals with the "last" value
                 If tswv Is Nothing AndAlso i = retlst.Count - 1 Then
 
-                    If x.ActivityReportType = ActivityReportLineType.Stoipped_Idling Then x.ActivityReportType = ActivityReportLineType.Stopped_EngineOff
+                    If x.ActivityReportType = ActivityReportLineType.Stoipped_Idling Then _
+                                        x.ActivityReportType = ActivityReportLineType.Stopped_EngineOff
 
                     x.Lat = vsro.TimeSpansWithVals.Last.end_lat
                     x.Lng = vsro.TimeSpansWithVals.Last.end_long

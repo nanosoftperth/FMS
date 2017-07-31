@@ -102,12 +102,16 @@ Public Class GoogleGeoCodeResponse
 
     Public Shared Sub CannonTest()
 
+        ''Sydney import'	as RunDescription
+
         Dim i As Integer = 0
 
         Dim app As DataObjects.Application = DataObjects.Application.GetFromApplicationName("cannon")
-        Dim u As DataObjects.User = DataObjects.User.GetAllUsersForApplication(app.ApplicationID).Where(Function(x) x.UserName.ToLower = "dave").First
+        Dim u As DataObjects.User = DataObjects.User.GetAllUsersForApplication(app.ApplicationID). _
+                                                        Where(Function(x) x.UserName.ToLower = "graydon").First
 
-        For Each cd In (From x In SingletonAccess.FMSDataContextContignous.CannonDatas Where x.calc_field1 Is Nothing).ToList
+        For Each cd In (From x In SingletonAccess.FMSDataContextContignous.CannonDatas _
+                        Where x.RunDescription = "sydney stops").ToList
 
             Try
 
@@ -142,7 +146,7 @@ Public Class GoogleGeoCodeResponse
                     .Description = cd.SiteName
                     .Name = cd.CustomerName
                     .ApplicationID = app.ApplicationID
-                    .Colour = "#FF0000"
+                    .Colour = "#FFFFFF"
                     .DateCreated = Now
                     .IsCircular = True
                     .UserID = u.UserId
@@ -203,8 +207,11 @@ Public Class GoogleGeoCodeResponse
     End Sub
 
 
-    Public Shared Function AddGeoFenceProperty(ApplicationGeoFenceID As Guid, propName As String, propVal As String) As Integer
+    Public Shared Function AddGeoFenceProperty(ApplicationGeoFenceID As Guid, propName As String, propValObj As Object) As Integer
 
+        If propValObj Is Nothing Then Return Nothing
+
+        Dim propVal As String = CStr(propValObj)
 
         Dim newprop As New DataObjects.ApplicationGeoFenceProperty With {.ApplicationGeoFenceID = ApplicationGeoFenceID _
                                                                 , .PropertyName = propName _

@@ -186,6 +186,9 @@ Namespace ReportGeneration
 
         End Function
 
+        ''' <summary>
+        ''' The timezone returned for this method is the timezone of the vehicle itself
+        ''' </summary>        
         Public Shared Function GetActivityReportLines_ForVehicle(startDate As Date,
                                                                  endDate As Date,
                                                                  vehicleID As Guid?) As List(Of VehicleActivityReportLine)
@@ -202,18 +205,23 @@ Namespace ReportGeneration
             Dim lst As List(Of VehicleActivityReportLine) = _
                             FMS.Business.ReportGeneration.VehicleActivityReportLine.GetFromSpeedTimes(speedTimes)
 
+            Dim offset As Double = FMS.Business.DataObjects.ApplicationVehicle.GetForID(vehicleID).GetCurrentTimeZoneOffsetFromPerth
+
             'change the timezone to the client timezone (for each entry)
             For Each l In lst
-                l.ArrivalTime = l.ArrivalTime.timezoneToClient
-                l.DepartureTime = l.DepartureTime.timezoneToClient
-                l.StartTime = l.StartTime.timezoneToClient
+
+                If l.ArrivalTime.HasValue Then l.ArrivalTime = l.ArrivalTime.Value.AddHours(offset)
+                If l.ArrivalTime.HasValue Then l.DepartureTime = l.DepartureTime.Value.AddHours(offset)
+                If l.ArrivalTime.HasValue Then l.StartTime = l.StartTime.Value.AddHours(offset)
+
+                'l.StartTime = l.StartTime.timezoneToClient'old method before changing timezone to vehicles timezone
 
                 If l.DepartureTime.HasValue AndAlso l.ArrivalTime.HasValue Then _
-                                l.StopDuration = l.DepartureTime.Value - l.ArrivalTime.Value 
+                                l.StopDuration = l.DepartureTime.Value - l.ArrivalTime.Value
             Next
 
             ' Edited by Aman on 20170516 to validate minimum stop duration (5 Min)             
-            lst.RemoveAll(Function(x) x.StopDuration < TimeSpan.FromMinutes(5))
+            'lst.RemoveAll(Function(x) x.StopDuration < TimeSpan.FromMinues(5)) 
          
 
             'start time (earliest irst)
