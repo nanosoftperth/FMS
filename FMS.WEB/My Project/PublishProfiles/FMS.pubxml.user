@@ -37,10 +37,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:11</publishTime>
     </File>
     <File Include="AlarmsAndAlerts.aspx">
-      <publishTime>07/21/2017 11:09:20</publishTime>
+      <publishTime>07/31/2017 18:06:40</publishTime>
     </File>
     <File Include="AlarmsAndEvents.aspx">
-      <publishTime>07/25/2017 18:19:22</publishTime>
+      <publishTime>07/31/2017 19:20:41</publishTime>
     </File>
     <File Include="App_Data/NWind.mdf">
       <publishTime>07/19/2017 17:03:45</publishTime>
@@ -64,10 +64,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:11</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>07/25/2017 20:01:31</publishTime>
+      <publishTime>07/31/2017 20:28:15</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>07/25/2017 20:01:31</publishTime>
+      <publishTime>07/31/2017 20:28:15</publishTime>
     </File>
     <File Include="bin/de/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -337,19 +337,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/30/2016 14:18:19</publishTime>
     </File>
     <File Include="bin/FMS.Business.dll">
-      <publishTime>07/25/2017 20:01:19</publishTime>
+      <publishTime>07/31/2017 20:28:06</publishTime>
     </File>
     <File Include="bin/FMS.ReportLogic.dll">
-      <publishTime>07/25/2017 20:01:21</publishTime>
+      <publishTime>07/31/2017 20:28:07</publishTime>
     </File>
     <File Include="bin/FMS.ServiceAccess.dll">
-      <publishTime>07/25/2017 20:01:21</publishTime>
+      <publishTime>07/31/2017 20:28:07</publishTime>
     </File>
     <File Include="bin/FMS.WEB.dll">
-      <publishTime>07/25/2017 20:01:23</publishTime>
+      <publishTime>07/31/2017 20:28:09</publishTime>
     </File>
     <File Include="bin/FMS.WEB.xml">
-      <publishTime>07/25/2017 20:01:23</publishTime>
+      <publishTime>07/31/2017 20:28:09</publishTime>
     </File>
     <File Include="bin/ja/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -520,7 +520,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2017 00:00:51</publishTime>
     </File>
     <File Include="CanBusPropDispDashboard.aspx">
-      <publishTime>07/24/2017 10:09:19</publishTime>
+      <publishTime>07/31/2017 17:53:29</publishTime>
     </File>
     <File Include="CanBusPropertyDisplay.aspx">
       <publishTime>07/24/2017 21:02:54</publishTime>
@@ -571,7 +571,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:10</publishTime>
     </File>
     <File Include="Content/DashBoard.css">
-      <publishTime>07/21/2017 19:21:37</publishTime>
+      <publishTime>07/31/2017 17:55:25</publishTime>
     </File>
     <File Include="Content/DriverImages.ashx">
       <publishTime>04/11/2017 20:08:09</publishTime>
@@ -858,6 +858,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/Images/Dashboard/CAN_gray.png">
       <publishTime>07/05/2017 14:03:01</publishTime>
     </File>
+    <File Include="Content/Images/Dashboard/CloseButton.png">
+      <publishTime>07/31/2017 17:53:29</publishTime>
+    </File>
     <File Include="Content/Images/Dashboard/Display-Grey.png">
       <publishTime>07/04/2017 09:47:54</publishTime>
     </File>
@@ -869,6 +872,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/Images/Dashboard/Display-Grey_withTail.png">
       <publishTime>07/11/2017 12:09:22</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/Display_NEW.png">
+      <publishTime>07/31/2017 17:53:29</publishTime>
     </File>
     <File Include="Content/Images/Dashboard/drive_color.png">
       <publishTime>07/05/2017 14:03:01</publishTime>
@@ -900,6 +906,102 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/Images/Dashboard/IFM_gray.png">
       <publishTime>07/05/2017 14:03:01</publishTime>
     </File>
+    <File Include="Content/Images/Dashboard/LCD/Can.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/CanOpen.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/CircularMode.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/DecPoint.png">
+      <publishTime>07/31/2017 17:53:29</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/DiagonalMode.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/E-MaxiType.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/FaultyM1.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/FaultyM2.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/FaultyM3.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/FaultyM4.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/icon.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/InOut.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Negative.png">
+      <publishTime>07/27/2017 21:48:06</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/New_Colon.png">
+      <publishTime>07/27/2017 21:48:06</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_0.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_1.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_2.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_3.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_4.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_5.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_6.PNG">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_7.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_8.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_9.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_CM-S.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_Colon.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Num_hrs.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/RailMode.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/SoftVer.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/SteeringFault.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/Stop.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
+    <File Include="Content/Images/Dashboard/LCD/ZagroGmbH.png">
+      <publishTime>07/26/2017 11:30:08</publishTime>
+    </File>
     <File Include="Content/Images/Dashboard/Minus_Button_Hover.png">
       <publishTime>07/05/2017 14:03:01</publishTime>
     </File>
@@ -925,7 +1027,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/05/2017 14:03:01</publishTime>
     </File>
     <File Include="Content/Images/Dashboard/SoftVer.png">
-      <publishTime>07/21/2017 19:21:37</publishTime>
+      <publishTime>07/31/2017 17:53:29</publishTime>
     </File>
     <File Include="Content/Images/Dashboard/Speed_color.png">
       <publishTime>07/05/2017 14:03:01</publishTime>
@@ -1075,7 +1177,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:10</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap.js">
-      <publishTime>07/21/2017 19:21:37</publishTime>
+      <publishTime>07/31/2017 17:53:29</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap_ClockLogic.js">
       <publishTime>04/11/2017 20:08:10</publishTime>
@@ -1189,7 +1291,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 20:08:09</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>07/14/2017 16:13:24</publishTime>
+      <publishTime>07/31/2017 17:53:29</publishTime>
     </File>
     <File Include="Controls/NanoReportParam.ascx">
       <publishTime>07/10/2017 17:47:17</publishTime>
@@ -1294,7 +1396,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2017 09:04:11</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>07/25/2017 20:01:27</publishTime>
+      <publishTime>07/31/2017 20:28:12</publishTime>
     </File>
     <File Include="ProblemPage.aspx">
       <publishTime>04/11/2017 20:08:09</publishTime>
@@ -1390,7 +1492,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2017 19:36:06</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/21/2017 19:22:57</publishTime>
+      <publishTime>07/31/2017 20:28:11</publishTime>
     </File>
     <File Include="WebServices/Uniqco_Integrator.svc">
       <publishTime>04/11/2017 20:08:09</publishTime>

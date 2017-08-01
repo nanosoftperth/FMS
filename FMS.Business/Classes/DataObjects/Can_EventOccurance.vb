@@ -65,6 +65,22 @@
 
             Return objGetCanEventOccurance
         End Function
+        Public Shared Function GetCanEventOccuranceList() As List(Of DataObjects.Can_EventOccurance)
+            Dim objGetCanEventOccurance = (From eventOcc In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances
+                                            Join eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions On
+                                            eventDef.CAN_EventDefinitionID Equals eventOcc.CAN_EventDefinitionID
+                                            Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
+                                            messageDef.Standard Equals eventDef.Standard And messageDef.PGN Equals eventDef.PGN And messageDef.SPN Equals eventDef.SPN
+                                            Group eventDef, eventOcc, messageDef By eventDef.CAN_EventDefinitionID Into g = Group
+                                            Select New DataObjects.Can_EventOccurance() With {.EventType = g.Min(Function(x) x.eventDef.VehicleID.Trim() & " | " & _
+                                                                                                                    x.messageDef.Standard & " - " & _
+                                                                                                                    x.messageDef.Parameter_Group_Label & " " & _
+                                                                                                                    x.eventDef.TriggerConditoinQualifier.Trim() & " " & _
+                                                                                                                    x.eventDef.TriggerConditionText.Trim()), _
+                                                        .StartTime = g.Min(Function(y) y.eventOcc.OccuredDate), .EndTime = g.Max(Function(z) z.eventOcc.OccuredDate)}).ToList()
+
+            Return objGetCanEventOccurance
+        End Function
 #End Region
 
 #Region "Constructors"

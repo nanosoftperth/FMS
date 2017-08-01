@@ -59,15 +59,6 @@ Partial Public Class AlarmsAndEvents
     Protected WithEvents odsMetric As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''txtSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSearch As Global.DevExpress.Web.ASPxTextBox
-
-    '''<summary>
     '''gvEventOccurances control.
     '''</summary>
     '''<remarks>
