@@ -10,6 +10,7 @@
         Public Property Driving As String = ""
         Public Property IFMControl As String = ""
         Public Property CANControl As String = ""
+        Public Property CANOPENControl As String = ""
         Public Property AlignmentControl As String = ""
         Public Property WarningControl As String = ""
         Public Property StopControl As String = ""
@@ -18,7 +19,12 @@
         Public Property LCD_Speed As String = ""
         Public Property LCD_Driving_Mode As String = ""
         Public Property LCD_DataLogger As String = ""
-
+        Public Property LCD_Safety As String = ""
+        Public Property LCD_DriveM1 As String = ""
+        Public Property LCD_DriveM2 As String = ""
+        Public Property LCD_DriveM3 As String = ""
+        Public Property LCD_DriveM4 As String = ""
+        Public Property LCD_IO As String = ""
 
 
         Private priParking As String
@@ -126,6 +132,14 @@
                                             "Can 107", "Can 108", "Can 131", "Can 205", "Can 206", "Can 207", "Can 208"}
                     Dim arrCANOPEN() As String = {"Canopen 5"}
                     Dim arrDataLogger() As String = {"IO 30"}
+                    Dim arrSafety() As String = {"S 1", "S 2", "S 3", "S 4", "S 5", "S 10"}
+                    Dim arrDrive_M1() As String = {"M1 1", "M1 2", "M1 3", "M1 4", "M1 5", "M1 6"}
+                    Dim arrDrive_M2() As String = {"M2 1", "M2 2", "M2 3", "M2 4", "M2 5", "M2 6"}
+                    Dim arrDrive_M3() As String = {"M3 1", "M3 2", "M3 3", "M3 4", "M3 5", "M3 6"}
+                    Dim arrDrive_M4() As String = {"M4 1", "M4 2", "M4 3", "M4 4", "M4 5", "M4 6"}
+                    Dim arrIO() As String = {"IO 1", "IO 2", "IO 3", "IO 4", "IO 8", "IO 11",
+                                            "IO 12", "IO 13", "IO 14", "IO 20", "IO 30", "IO 32",
+                                            "IO 33", "IO 34", "IO 35", "IO 40", "IO 41", "IO 71"}
 
                     Dim ctr = vehicle.Count
                     'Dim ctr = 9 ' ----- for testing. will remove/remarks before deploy
@@ -158,7 +172,8 @@
                         '        strValue = "Rail mode road"
                         '    Case 8
                         '        strDesc = "Fault Codes"
-                        '        strValue = "S 1,MS 8,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4,Canopen 3,Canopen 1,Canopen 5,Can 101,Can 203,IO 3,IO 20,IO 30,IO 40,IO 41"
+                        '        'strValue = "S 1,MS 8,MS 34,MS 41,MS 42,M1 1,M1 4,M2 4,M3 2,M4 4,Canopen 3,Canopen 1,Canopen 5,Can 101,Can 203,IO 3,IO 20,IO 30,IO 40,IO 41"
+                        '        strValue = "IO 35"
                         '    Case Else
                         '        strDesc = ""
                         '        strValue = ""
@@ -208,6 +223,12 @@
                                     Dim strCAN As String = Array.Find(arrCAN, Function(x) (x.StartsWith(sfc)))
                                     Dim strCANOPEN As String = Array.Find(arrCANOPEN, Function(x) (x.StartsWith(sfc)))
                                     Dim strDataLogger As String = Array.Find(arrDataLogger, Function(x) (x.StartsWith(sfc)))
+                                    Dim strSafety As String = Array.Find(arrSafety, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM1 As String = Array.Find(arrDrive_M1, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM2 As String = Array.Find(arrDrive_M2, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM3 As String = Array.Find(arrDrive_M3, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM4 As String = Array.Find(arrDrive_M4, Function(x) (x.StartsWith(sfc)))
+                                    Dim strIO As String = Array.Find(arrIO, Function(x) (x.StartsWith(sfc)))
 
                                     If Not strSteer = Nothing Then
                                         ListRow.Steering = sfc
@@ -229,8 +250,12 @@
                                         ListRow.WarningControl = sfc
                                     End If
 
-                                    If Not strCAN = Nothing Or Not strCANOPEN = Nothing Then
+                                    If Not strCAN = Nothing Then
                                         ListRow.CANControl = sfc
+                                    End If
+
+                                    If Not strCANOPEN = Nothing Then
+                                        ListRow.CANOPENControl = sfc
                                     End If
 
                                     If Not strAlign = Nothing Then
@@ -239,6 +264,34 @@
 
                                     If Not strDataLogger = Nothing Then
                                         ListRow.LCD_DataLogger = sfc
+                                    End If
+
+                                    If Not strSafety = Nothing Then
+                                        ListRow.LCD_Safety = sfc
+                                    End If
+
+                                    If Not strSafety = Nothing Then
+                                        ListRow.LCD_Safety = sfc
+                                    End If
+
+                                    If Not strDrvM1 = Nothing Then
+                                        ListRow.LCD_DriveM1 = sfc
+                                    End If
+
+                                    If Not strDrvM2 = Nothing Then
+                                        ListRow.LCD_DriveM2 = sfc
+                                    End If
+
+                                    If Not strDrvM3 = Nothing Then
+                                        ListRow.LCD_DriveM3 = sfc
+                                    End If
+
+                                    If Not strDrvM4 = Nothing Then
+                                        ListRow.LCD_DriveM4 = sfc
+                                    End If
+
+                                    If Not strIO = Nothing Then
+                                        ListRow.LCD_IO = sfc
                                     End If
 
                                 Next sfc
@@ -254,7 +307,7 @@
 
                 End If
 
-                Return oList
+                'Return oList
                 'If vehicle Is Nothing Then
                 '    Return False
                 'Else
@@ -278,5 +331,6 @@
 
 
 End Namespace
+
 
 
