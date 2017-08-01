@@ -1,6 +1,7 @@
 ﻿body {
 }
 .div_dashboard {
+    font-family: 'Windows Command Prompt Regular';
     width: 650px;
     height: 200px;
     background-color: transparent;
