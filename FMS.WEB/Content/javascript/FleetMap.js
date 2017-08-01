@@ -203,7 +203,7 @@ function getDashboard() {
 
     var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + priDeviceID + '&VehicleName=' + strVehicleName + '&ClickEvent=' + strClickEvent;
     //var newURL = 'CanBusPropDispDashboard.aspx?ClickEvent=' + strClickEvent;
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:190px;width:750px;background-color: transparent; \' ></iframe>';
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height:220px;width:700px;background-color: transparent;  \' ></iframe>';
     contentString = '<div class=\'iw-content_dash\'>' + contentString + '</div>';
 
     if (infoWindowVehicle !== null) {
