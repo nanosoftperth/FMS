@@ -18,8 +18,9 @@
                     <dx:ContentControl runat="server">     
                         <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="odsEventConfiguration" AutoGenerateColumns="False" 
                             KeyFieldName="CAN_EventDefinitionID" Width="550px" OnRowValidating="ASPxGridView1_RowValidating" Theme="SoftOrange"
-                            OnCellEditorInitialize="ASPxGridView1_CellEditorInitialize" 
-                            >
+                            OnCellEditorInitialize="ASPxGridView1_CellEditorInitialize">
+                            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                            <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                             <Columns>
                                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventDefinitionID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -107,6 +108,8 @@
                 <ContentCollection>
                     <dx:ContentControl runat="server">
                         <dx:ASPxGridView ID="gvAlertConfiguration" DataSourceID="odsAlertConfiguration" runat="server" AutoGenerateColumns="False" KeyFieldName="CanAlertDefinitionIDUnique" Theme="SoftOrange">
+                            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                            <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                             <Columns>
                                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_AlertDefinitionID" VisibleIndex="9" Visible="false"></dx:GridViewDataTextColumn>
