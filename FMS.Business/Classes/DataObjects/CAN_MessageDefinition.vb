@@ -16,6 +16,7 @@ Namespace DataObjects
         Public Property pos As String
         Public Property SPN_Length As String
         Public Property PGN_Length As Integer
+        Public Property Parameter_Group_Label As String
 
         Public Property Data_Range As String
 
@@ -52,6 +53,7 @@ Namespace DataObjects
                     If .PGN IsNot Nothing Then Me.PGN = .PGN
                     If .SPN IsNot Nothing Then Me.SPN = .SPN
                     If .PGN_Length IsNot Nothing Then Me.PGN_Length = .PGN_Length
+                    If .Parameter_Group_Label IsNot Nothing Then Me.Parameter_Group_Label = .Parameter_Group_Label
                     If .Acronym IsNot Nothing Then Me.Acronym = .Acronym
                     If .Description IsNot Nothing Then Me.Description = .Description
                     If .Resolution IsNot Nothing Then Me.Resolution = .Resolution

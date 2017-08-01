@@ -17,7 +17,9 @@
                 <ContentCollection>
                     <dx:ContentControl runat="server">     
                         <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="odsEventConfiguration" AutoGenerateColumns="False" 
-                            KeyFieldName="CAN_EventDefinitionID" Width="550px" OnRowValidating="ASPxGridView1_RowValidating" Theme="SoftOrange">
+                            KeyFieldName="CAN_EventDefinitionID" Width="550px" OnRowValidating="ASPxGridView1_RowValidating" Theme="SoftOrange"
+                            OnCellEditorInitialize="ASPxGridView1_CellEditorInitialize" 
+                            >
                             <Columns>
                                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventDefinitionID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -27,6 +29,7 @@
                                 <dx:GridViewDataTextColumn FieldName="QueryType" VisibleIndex="12" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="TextValue" VisibleIndex="13" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="MetricValue" VisibleIndex="14" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="VehicleText" VisibleIndex="14" Visible="false"></dx:GridViewDataTextColumn>
                             </Columns>
                             <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
@@ -34,13 +37,19 @@
                                 <Items>
                                     <dx:GridViewColumnLayoutItem ColumnName="VehicleID" ColSpan="2" Caption="Vehicle" RequiredMarkDisplayMode="Required" >
                                         <Template>
-                                            <dx:ASPxComboBox ID="ddlVehicleList" runat="server" Width="80px" DataSourceID="odsVehicles" Value='<%# Bind("VehicleID")%>' TextField="name" ValueField="name"  />
+                                            <dx:ASPxComboBox ID="ddlVehicleList" runat="server" Width="80px" DataSourceID="odsVehicles" Value='<%# Bind("VehicleID")%>' TextField="name" ValueField="name"  
+                                                ClientSideEvents-TextChanged="function(s, e) { 
+                                                    ddlMetric.PerformCallback(s.GetValue().toString());
+                                                }"/>
                                         </Template>
                                     </dx:GridViewColumnLayoutItem>
 
-                                    <dx:GridViewColumnLayoutItem ColumnName="Metric" ColSpan="2" Caption="Parameter" RequiredMarkDisplayMode="Required" >
+                                    <dx:GridViewColumnLayoutItem ColumnName="Metric" ColSpan="2" Caption="Parameter" RequiredMarkDisplayMode="Required" Visible="true">
                                         <Template>
-                                            <dx:ASPxComboBox ID="ddlMetric" runat="server" Width="100px" DataSourceID="odsMetric" Value='<%# Bind("Metric")%>' TextField="canMetricText" ValueField="CanMetricValue" />
+                                            <dx:ASPxComboBox ID="ddlMetric" runat="server" Width="100px" DataSourceID="odsMetric" Value='<%# Bind("Metric")%>' 
+                                                TextField="canMetricText" ValueField="CanMetricValue" ClientInstanceName="ddlMetric" OnCallback="ddlMetric_Callback" ClientSideEvents-Init="function(se,e){
+                                                    ddlMetric.PerformCallback('Metric_Callback');
+                                                }" />
                                         </Template>
                                     </dx:GridViewColumnLayoutItem>
 
@@ -62,6 +71,7 @@
                                     </dx:GridViewColumnLayoutItem>
                                     <dx:GridViewColumnLayoutItem ColumnName="TextValue" Width="80px" Caption="" Visible="true"></dx:GridViewColumnLayoutItem>    
                                     <dx:GridViewColumnLayoutItem ColumnName="MetricValue" Width="0px" CssClass="Hide"></dx:GridViewColumnLayoutItem>
+                                    <dx:GridViewColumnLayoutItem ColumnName="VehicleText" Width="0px" CssClass="Hide"></dx:GridViewColumnLayoutItem>
                                     <dx:EditModeCommandLayoutItem ColSpan="7" HorizontalAlign="Right" />
                                 </Items>
                             </EditFormLayoutProperties>

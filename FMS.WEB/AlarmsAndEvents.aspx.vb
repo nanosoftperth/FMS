@@ -1,5 +1,7 @@
 ﻿Imports DevExpress.Web
 Imports System.Web.UI
+Imports FMS.Business
+
 Public Class AlarmsAndEvents
     Inherits System.Web.UI.Page
 
@@ -42,9 +44,41 @@ Public Class AlarmsAndEvents
         errors(column) = errorText
     End Sub
 
-    'Protected Sub ASPxGridView1_StartRowEditing(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxStartRowEditingEventArgs)
-    '    If (Not ASPxGridView1.IsNewRowEditing) Then
-    '        ASPxGridView1.DoRowValidation()
-    '    End If
-    'End Sub
+    Protected Sub ddlMetric_Callback(sender As Object, e As CallbackEventArgsBase)
+        FillSPNCombo(TryCast(sender, ASPxComboBox), e.Parameter)
+    End Sub
+
+    Protected Sub ASPxGridView1_CellEditorInitialize(sender As Object, e As ASPxGridViewEditorEventArgs)
+        If (Not ASPxGridView1.IsEditing) OrElse e.Column.FieldName <> "MetricValue" Then
+            Return
+        End If
+        If e.KeyValue Is DBNull.Value OrElse e.KeyValue Is Nothing Then
+            Return
+        End If
+        Dim val As Object = ASPxGridView1.GetRowValuesByKeyValue(e.KeyValue, "VehicleText")
+        If val Is DBNull.Value Then
+            Return
+        End If
+        Dim spn As String = CStr(val)
+        ViewState("spn") = spn       
+    End Sub
+    Protected Sub FillSPNCombo(ByVal cmb As ASPxComboBox, ByVal VehicleId As String)
+        If VehicleId.Equals("Metric_Callback") Then
+            VehicleId = ViewState("spn")
+        End If
+        If String.IsNullOrEmpty(VehicleId) Then
+            Return
+        End If
+
+        Dim SpnList As List(Of DataObjects.Can_EventDefinition.CanMessage) = GetSPNList(VehicleId)
+        cmb.Items.Clear()
+        For Each spn In SpnList
+            cmb.Items.Add(spn.CanMetricText, spn.CanMetricValue)
+        Next spn
+    End Sub
+    Private Function GetSPNList(VehicleId As String) As List(Of DataObjects.Can_EventDefinition.CanMessage)
+        Return FMS.Business.DataObjects.Can_EventDefinition.GetCanMessageList(VehicleId).ToList()
+    End Function
+
+
 End Class

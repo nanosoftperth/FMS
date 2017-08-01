@@ -14,6 +14,7 @@
         Public Property Comparison As String
         Public Property QueryType As String
         Public Property TextValue As String
+        Public Property VehicleText As String
         Public Property MetricValue As String
 #End Region
 
@@ -82,6 +83,7 @@
                                                                        .TriggerConditionText = eventDef.TriggerConditionText, _
                                                                        .TriggerConditoinQualifier = eventDef.TriggerConditoinQualifier, _
                                                                        .VehicleID = eventDef.VehicleID, _
+                                                                       .VehicleText = eventDef.VehicleID, _
                                                                        .Comparison = eventDef.TriggerConditoinQualifier + " " + eventDef.TriggerConditionText, _
                                                                        .MetricValue = canMessageDef.Standard.ToString() + " : " & canMessageDef.PGN.ToString() + " : " & canMessageDef.SPN.ToString()}).ToList()
 
@@ -95,7 +97,13 @@
             Return objCanMess
         End Function
 
-        
+        Public Shared Function GetCanMessageList(VehicleId As String) As List(Of DataObjects.Can_EventDefinition.CanMessage)            
+            Dim objCanMess = (From i In FMS.Business.DataObjects.ApplicationVehicle.GetFromName(VehicleId).GetAvailableCANTags()
+                      Select New DataObjects.Can_EventDefinition.CanMessage() _
+                      With {.CanMetricText = i.Standard + " " + i.Parameter_Group_Label, _
+                            .CanMetricValue = i.Standard.ToString() + " : " & i.PGN.ToString() + " : " & i.SPN.ToString()}).Distinct().ToList()
+            Return objCanMess
+        End Function
 #End Region
 
 #Region "Constructors"
