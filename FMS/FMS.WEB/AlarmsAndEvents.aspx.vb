@@ -6,7 +6,7 @@ Public Class AlarmsAndEvents
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'dgvEventConfiguration.StartEdit(2)
     End Sub
-    
+
     Protected Sub ASPxGridView1_RowValidating(sender As Object, e As Data.ASPxDataValidationEventArgs)
         For Each column As GridViewColumn In ASPxGridView1.Columns
             Dim dataColumn As GridViewDataColumn = TryCast(column, GridViewDataColumn)
@@ -41,7 +41,7 @@ Public Class AlarmsAndEvents
         End If
         errors(column) = errorText
     End Sub
- 
+
     'Protected Sub ASPxGridView1_StartRowEditing(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxStartRowEditingEventArgs)
     '    If (Not ASPxGridView1.IsNewRowEditing) Then
     '        ASPxGridView1.DoRowValidation()

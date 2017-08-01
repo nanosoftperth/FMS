@@ -2,9 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_ddlVehicles").change(function () {                
-                $("#ctl00_ctl00_MainPane_Content_ASPxRoundPanel1_MainContent_ASPxPageControl1_btnRefresh").click();
-            });            
+           
         })
     </script>
     <style>
@@ -36,7 +34,7 @@
                                 <Items>
                                     <dx:GridViewColumnLayoutItem ColumnName="VehicleID" ColSpan="2" Caption="Vehicle" RequiredMarkDisplayMode="Required" >
                                         <Template>
-                                            <dx:ASPxComboBox ID="ddlVehicleList" runat="server" Width="80px" DataSourceID="odsVehicles" Value='<%# Bind("VehicleID")%>' TextField="name" ValueField="name" />
+                                            <dx:ASPxComboBox ID="ddlVehicleList" runat="server" Width="80px" DataSourceID="odsVehicles" Value='<%# Bind("VehicleID")%>' TextField="name" ValueField="name"  />
                                         </Template>
                                     </dx:GridViewColumnLayoutItem>
 
@@ -81,12 +79,9 @@
             <dx:TabPage Name="EventOccurances" Text="Event Occurances">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxTextBox ID="txtSearch" runat="server" Width="170px">
-                            <ClientSideEvents TextChanged="function(s, e) {
-	                                                gridOccurances.Refresh();
-                                                }" />
-                        </dx:ASPxTextBox>
                         <dx:ASPxGridView ID="gvEventOccurances" DataSourceID="odsEventOccurances" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridOccurances" Width="700px" Theme="SoftOrange">
+                            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                            <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                             <Columns>                                
                                 <dx:GridViewDataTextColumn FieldName="EventType" VisibleIndex="4"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="5" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy HH:mm"></dx:GridViewDataTextColumn>
@@ -94,9 +89,6 @@
                             </Columns>
                         </dx:ASPxGridView>
                         <asp:ObjectDataSource ID="odsEventOccurances" runat="server" SelectMethod="GetCanEventOccuranceList" TypeName="FMS.Business.DataObjects.Can_EventOccurance">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="txtSearch" PropertyName="Text" Name="SearchParam" Type="String"></asp:ControlParameter>
-                            </SelectParameters>
                         </asp:ObjectDataSource>
                     </dx:ContentControl>
                 </ContentCollection>
@@ -179,6 +171,8 @@
                 <ContentCollection>
                     <dx:ContentControl runat="server">
                         <dx:ASPxGridView ID="dvAlertOccurances" DataSourceID="odsAlertOccurances" runat="server" AutoGenerateColumns="False" Theme="SoftOrange">                            
+                            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                            <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                             <Columns>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventOccuranceAlertID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventOccuranceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
