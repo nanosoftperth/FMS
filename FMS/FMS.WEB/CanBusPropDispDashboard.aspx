@@ -113,6 +113,7 @@
                     if (obj[v].Steering.length > 0) {
                         SetToolTipPerStatus('.div_steer', 'Steering : ' + obj[v].Steering);
                         SetStatus('Steer', 'Err');
+                        setLCDErrCat(obj[v].Steering, 'Steering');
                     }
 
                     if (obj[v].Driving.length > 0) {
@@ -128,8 +129,15 @@
                     if (obj[v].CANControl.length > 0) {
                         SetToolTipPerStatus('.div_can', 'CAN/CANOPEN : ' + obj[v].CANControl);
                         SetStatus('Can', 'Err');
-                        alert(obj[v].CANControl);
-                        setLCDErrCat(obj[v].CANControl);
+                        //alert('receivedData: ' + obj[v].CANControl);
+                        setLCDErrCat(obj[v].CANControl, 'CAN');
+                    }
+
+                    if (obj[v].CANOPENControl.length > 0) {
+                        SetToolTipPerStatus('.div_can', 'CAN/CANOPEN : ' + obj[v].CANOPENControl);
+                        SetStatus('Can', 'Err');
+                        //alert('receivedData: ' + obj[v].CANControl);
+                        setLCDErrCat(obj[v].CANOPENControl, 'CANOPEN');
                     }
 
                     if (obj[v].AlignmentControl.length > 0) {
@@ -166,6 +174,31 @@
                     if (obj[v].LCD_Driving_Mode.length > 0) {
                         setLCDline3(obj[v].LCD_Driving_Mode);                        
                     }
+
+                    if (obj[v].LCD_Safety.length > 0) {
+                        setLCDErrCat(obj[v].LCD_Safety, 'SAFE');
+                    }
+
+                    if (obj[v].LCD_DriveM1.length > 0) {
+                        setLCDErrCat(obj[v].LCD_DriveM1, 'DriveM1');
+                    }
+
+                    if (obj[v].LCD_DriveM2.length > 0) {
+                        setLCDErrCat(obj[v].LCD_DriveM2, 'DriveM2');
+                    }
+
+                    if (obj[v].LCD_DriveM3.length > 0) {
+                        setLCDErrCat(obj[v].LCD_DriveM3, 'DriveM3');
+                    }
+
+                    if (obj[v].LCD_DriveM4.length > 0) {
+                        setLCDErrCat(obj[v].LCD_DriveM4, 'DriveM4');
+                    }
+
+                    if (obj[v].LCD_IO.length > 0) {
+                        setLCDErrCat(obj[v].LCD_IO, 'InOut');
+                    }
+                    
                     
                 }
 
@@ -541,14 +574,62 @@
 
         }
 
-        function setLCDErrCat(val) {
+        function setLCDErrCat(val, category) {
             var strVal = val;
             var nStart = strVal.indexOf(' ');
             var nEnd = strVal.length;
-            var NumCode = strName.substring(nStart, nEnd);
+            var NumCode = strVal.substring(nStart, nEnd);
 
-            alert(val + ' : ' + NumCode);
+            //alert(val + ' : ' + NumCode);
+            var errCAN = 'Content/Images/Dashboard/LCD/can.png';
+            var errCANOPEN = 'Content/Images/Dashboard/LCD/CanOpen.png';
+            var errStop = 'Content/Images/Dashboard/LCD/Stop.png';
+            var errDriveM1 = 'Content/Images/Dashboard/LCD/FaultyM1.png';
+            var errDriveM2 = 'Content/Images/Dashboard/LCD/FaultyM2.png';
+            var errDriveM3 = 'Content/Images/Dashboard/LCD/FaultyM3.png';
+            var errDriveM4 = 'Content/Images/Dashboard/LCD/FaultyM4.png';
+            var errSteering = 'Content/Images/Dashboard/LCD/SteeringFault.png';
+            var errIO = 'Content/Images/Dashboard/LCD/InOut.png';
 
+            var oImgSrc = $('#iErrCat').attr('src');
+            
+            //$('#ErrCat').removeClass('imgLCD_NoDisplay');
+            //$('#ErrCat').addClass('imgLCD_ErrCat_display');
+
+            $('#iErrCat').removeClass('imgLCD_NoDisplay');
+            $('#iErrCat').addClass('imgLCD_ErrCat_display');
+
+            if (category == 'CAN')
+            {
+                $('img[src="' + oImgSrc + '"]').attr('src', errCAN);
+            }
+            if (category == 'CANOPEN') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errCANOPEN);
+            }
+            if (category == 'SAFE') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errStop);
+            }
+            if (category == 'DriveM1') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errDriveM1);
+            }
+            if (category == 'DriveM2') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errDriveM2);
+            }
+            if (category == 'DriveM3') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errDriveM3);
+            }
+            if (category == 'DriveM4') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errDriveM4);
+            }
+            if (category == 'Steering') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errSteering);
+            }
+            if (category == 'InOut') {
+                $('img[src="' + oImgSrc + '"]').attr('src', errIO);
+            }
+
+            
+            $('#spanErrNum').text(NumCode);
         }
 
         function ConverValToImg(elemID, remCls, addCls, numval)
@@ -1013,7 +1094,7 @@
             <div id="ErrCat" class="div_LCD_ErrCat">
                 <img src="Content/Images/Dashboard/LCD/FaultyM1.png" id="iErrCat" class="imgLCD_NoDisplay" />
             </div>
-            <div id="ErrNum">
+            <div id="ErrNum" class="div_LCD_ErrNum">
                 <span id="spanErrNum" class="span_errnum"></span>
             </div>
 
