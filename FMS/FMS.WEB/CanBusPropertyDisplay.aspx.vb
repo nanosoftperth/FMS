@@ -67,10 +67,12 @@ Public Class CanBusPropertyDisplay
                             Else
                                 cbd.description = "0"
                             End If
-
                         Else
                             cbd.description = messageValue.CanValues(0).Value.ToString()
                         End If
+                    End If
+                    If cbd.label.Equals("PressureValues3") Or cbd.label.Equals("PressureValues4") Then
+                        cbd.description = "Not implemented"
                     End If
                     cbd.dtTime = messageValue.CanValues(0).Time.ToString("MM/dd/yy HH:mm:ss")
                     canBusDef.Add(cbd)
@@ -87,7 +89,6 @@ Public Class CanBusPropertyDisplay
                     intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(1).dtTime))
                     canBusDef.RemoveAt(intMyIndex)
                 End If
-
             End If
 
             grid.DataBind()
@@ -110,6 +111,11 @@ Public Class CanBusPropertyDisplay
         Dim getDescription As String = templateContainer.Grid.GetRowValues(rVI, "description").ToString()
         Dim desc As String = ""
 
+        If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
+            Dim getCodeDescription As String = getDescription
+            desc = "Not implemented in the E-Maxis S, M, L series"
+        End If
+
         If getLabel.Equals("Fault Codes") Then
             Dim getCodeDescription As String = getDescription
             For Each arr In getDescription.Split(",")
@@ -121,23 +127,30 @@ Public Class CanBusPropertyDisplay
                     Next
                 End If
             Next
+            
         End If
 
         Dim contentUrl As String = String.Format("{0}", desc)
 
         link.NavigateUrl = "javascript:void(0);"
         link.Text = String.Format(getDescription)
-        link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
+        If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
+            pcLogin2.HeaderText = "Pressure Values Information"
+            link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnPressureValuesClick('{0}'); }}", contentUrl)
+        Else
+            pcLogin.HeaderText = "Fault Code Information"
+            link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
+        End If
+
     End Sub
 
     Protected Sub grid_HtmlDataCellPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewTableDataCellEventArgs) Handles grid.HtmlDataCellPrepared
         Dim getLabelName As String = (TryCast(sender, ASPxGridView)).GetRowValues(e.VisibleIndex, "label").ToString()
-        If Not getLabelName.Equals("Fault Codes") Then
+        If Not getLabelName.Equals("Fault Codes") And Not getLabelName.Equals("PressureValues3") And Not getLabelName.Equals("PressureValues4") Then
             If e.DataColumn.FieldName = "description" Then
                 e.Cell.Enabled = False
             End If
         End If
-
     End Sub
 End Class
 
