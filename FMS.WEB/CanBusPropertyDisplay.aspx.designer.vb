@@ -48,4 +48,22 @@ Partial Public Class CanBusPropertyDisplay
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel1 As Global.DevExpress.Web.ASPxPanel
+
+    '''<summary>
+    '''pcLogin2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pcLogin2 As Global.DevExpress.Web.ASPxPopupControl
+
+    '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
 End Class

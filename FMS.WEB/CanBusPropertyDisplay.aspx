@@ -35,9 +35,18 @@
             ShowLoginWindow();
             
         }
+        function OnPressureValuesClick(contentUrl) {
+            clearTimeout(timeout);
+            document.getElementById("pMessage2").innerHTML = contentUrl;
+            ShowLoginWindow2();
+        }
         function ShowLoginWindow() {
             pcLogin.ShowAtPos(10, 10);
             pcLogin.Show();
+        }
+        function ShowLoginWindow2() {
+            pcLogin2.ShowAtPos(10, 10);
+            pcLogin2.Show();
         }
 
     </script>
@@ -71,13 +80,34 @@
         HeaderText="Fault Code Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
            <ClientSideEvents Closing="function(s, e) {
                 window.location.reload(true);
-	;}"/>
+	        ;}"/>
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
                     <PanelCollection>
                         <dx:PanelContent runat="server">             
                             <p id="pMessage"></p>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>                
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ContentStyle>
+            <Paddings PaddingBottom="5px" />
+        </ContentStyle>
+    </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="pcLogin2" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin2"
+        HeaderText="Fault Code Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
+           <ClientSideEvents Closing="function(s, e) {
+                window.location.reload(true);
+	        ;}"/>
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
+                    <PanelCollection>
+                        <dx:PanelContent runat="server">             
+                            <p id="pMessage2"></p>
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>                

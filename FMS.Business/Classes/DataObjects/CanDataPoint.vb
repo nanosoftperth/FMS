@@ -129,33 +129,19 @@
 
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
                 'date format for local is MM/dd/yyyy
-                'I needed to test the date format because the demo server and the local server are having different date format
-                Dim strFormat1 As String = "dd/MM/yyyy"
-                Dim strFormat2 As String = "MM/dd/yyyy"
-                Dim startDate As Date
-                If Not Date.TryParse(Date.Now.AddDays(1).ToString(strFormat1), startDate) Then
-                    Date.TryParse(Date.Now.AddDays(1).ToString(strFormat2), startDate)
-                End If
-
-                Dim endDate As Date
-                If Not Date.TryParse(Date.Now.AddDays(-1).ToString(strFormat1), endDate) Then
-                    Date.TryParse(Date.Now.AddDays(-1).ToString(strFormat2), endDate)
-                End If
-
+                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
+                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
                                                                      PISDK.BoundaryTypeConstants.btInside)
 
-                'get the latest data from pi from current date backwards up to 30 counts/days to avoid infinity
+                'get the latest data from pi from current date backwards until it gets data
                 While pivds.Count = 0
                     intCount += 1
-                    Dim eDate As Date
-                    If Not Date.TryParse(startDate.AddDays(-intCount).ToString(strFormat1), eDate) Then
-                        Date.TryParse(startDate.AddDays(-intCount).ToString(strFormat2), eDate)
-                    End If
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("dd/MM/yyyy")
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
-                    If intCount = 30 Then Exit While
+                    'If intCount = 50 Then Exit While
                 End While
 
                 For Each p As PISDK.PIValue In pivds
