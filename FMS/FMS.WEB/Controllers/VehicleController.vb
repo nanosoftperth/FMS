@@ -63,16 +63,18 @@ Namespace Controllers
         ''' <returns>List of dashboard values</returns>
         <HttpGet>
         Public Function GetDashboardData(DashDeviceID As String) As List(Of DashboardValues)
+            'Public Function GetDashboardData(DashDeviceID As String) As List(Of CanValueMessageDefinition)
 
-            'Dim tagvalues = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashVehicleID).GetAvailableCANTagsValue()
-            'Dim tagvalues = FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashVehicleID)
-            'Return FMS.Business.DataObjects.CanDataPoint.GetPointWithDataForDashboard(DashVehicleID)
             Return FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashDeviceID)
 
-            'Dim objDashValues = New List(Of DashboardValues)
-
-
         End Function
+
+        
+        'Public Function GetDashboardData(DashDeviceID As String) As List(Of CanValueMessageDefinition)
+
+        '    Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashDeviceID).GetAvailableCANTagsValue()
+
+        'End Function
 
         ' GET api/vehicles/GetCanMessageValue/5
         ''' <summary>
@@ -94,7 +96,7 @@ Namespace Controllers
         ''' <param name="startdate">The startdate for the time period</param>
         ''' <param name="enddate">The enddate for the time period</param>
         ''' <returns>CanDataPoint</returns>
-        
+
         Public Function [Get](vehicleID As String, standard As String, SPN As Integer, startdate As String, enddate As String) As CanDataPoint
             'the standard of canbus is infered from the vehicleID.
 
