@@ -201,6 +201,10 @@ Namespace DataObjects
                             ListRow.LCD_Driving_Mode = strValue
 
                         Case "Fault Codes"
+                            If strValue = Nothing Then
+                                Continue For
+                            End If
+
                             Dim fc As String() = Nothing
                             fc = strValue.Split(",")
                             Dim sfc As String
