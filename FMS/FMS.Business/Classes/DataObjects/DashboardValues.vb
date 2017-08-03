@@ -116,14 +116,9 @@ Namespace DataObjects
 
         End Function
 
-        Public Shared Function GetDataForDashboardSimulator() As List(Of DashboardValues)
-            Dim oList As List(Of DashboardValues) = New List(Of DashboardValues)
-
-
-
-        End Function
         Public Shared Function GetDataForDashboard(deviceID As String) As List(Of DashboardValues)
             Dim oList As List(Of DashboardValues) = New List(Of DashboardValues)
+            Dim oListErrCat As New List(Of DashboardValues.clsErrCategory)()
 
             Dim vehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValue()
 
@@ -158,6 +153,8 @@ Namespace DataObjects
 
             If vehicle.Count > 0 Then
                 Dim ListRow = New DashboardValues
+                Dim rowErrCat = New DashboardValues.clsErrCategory
+
                 Dim mainLoopCtr = vehicle.Count
                 Dim strDesc, strValue As String
 
@@ -206,11 +203,94 @@ Namespace DataObjects
                         Case "Fault Codes"
                             Dim fc As String() = Nothing
                             fc = strValue.Split(",")
-                            'Dim sfc As String
+                            Dim sfc As String
+                            Dim strVal As String
+
+                            For count = 0 To fc.Length - 1
+                                sfc = fc(count)
+
+                                Dim valErrCat As String = ""
+                                Dim valErrCode As String = ""
+                                Dim chrpos = sfc.IndexOf(" ")
+                                Dim sLen = sfc.Length - chrpos
+                                strVal = sfc.Substring(chrpos, sLen).Trim()
+
+                                Dim strSteer As String = Array.Find(arrSteer, Function(x) (x.StartsWith(sfc)))
+                                Dim strDrive As String = Array.Find(arrDrive, Function(x) (x.StartsWith(sfc)))
+                                Dim strSpeed As String = Array.Find(arrSpeed, Function(x) (x.StartsWith(sfc)))
+                                Dim strWarning As String = Array.Find(arrWarning, Function(x) (x.StartsWith(sfc)))
+                                Dim strAlign As String = Array.Find(arrAlign, Function(x) (x.StartsWith(sfc)))
+                                Dim strIFM As String = Array.Find(arrIFM, Function(x) (x.StartsWith(sfc)))
+                                Dim strCAN As String = Array.Find(arrCAN, Function(x) (x.StartsWith(sfc)))
+                                Dim strCANOPEN As String = Array.Find(arrCANOPEN, Function(x) (x.StartsWith(sfc)))
+                                Dim strDataLogger As String = Array.Find(arrDataLogger, Function(x) (x.StartsWith(sfc)))
+                                Dim strSafety As String = Array.Find(arrSafety, Function(x) (x.StartsWith(sfc)))
+                                Dim strDrvM1 As String = Array.Find(arrDrive_M1, Function(x) (x.StartsWith(sfc)))
+                                Dim strDrvM2 As String = Array.Find(arrDrive_M2, Function(x) (x.StartsWith(sfc)))
+                                Dim strDrvM3 As String = Array.Find(arrDrive_M3, Function(x) (x.StartsWith(sfc)))
+                                Dim strDrvM4 As String = Array.Find(arrDrive_M4, Function(x) (x.StartsWith(sfc)))
+                                Dim strIO As String = Array.Find(arrIO, Function(x) (x.StartsWith(sfc)))
+
+                                If Not strSteer = Nothing Then
+                                    valErrCat = "Steering"
+                                    valErrCode = strVal
+                                End If
+
+                                If Not strSafety = Nothing Then
+                                    valErrCat = "Safety"
+                                    valErrCode = strVal
+                                End If
+
+                                If Not strDrvM1 = Nothing Then
+                                    valErrCat = "DriveM1"
+                                    valErrCode = strVal
+                                End If
+
+                                If Not strDrvM2 = Nothing Then
+                                    valErrCat = "DriveM2"
+                                    valErrCode = strVal
+                                End If
+
+                                If Not strDrvM3 = Nothing Then
+                                    valErrCat = "DriveM3"
+                                    valErrCode = strVal
+                                End If
+
+                                If Not strDrvM4 = Nothing Then
+                                    valErrCat = "DriveM4"
+                                    valErrCode = strVal
+                                End If
+
+                                If Not strCAN = Nothing Then
+                                    valErrCat = "CAN"
+                                    valErrCode = strVal
+                                    ListRow.CANControl = strValue
+                                End If
+
+                                If Not strCANOPEN = Nothing Then
+                                    valErrCat = "CANOPEN"
+                                    valErrCode = strVal
+                                    ListRow.CANControl = strValue
+                                End If
+
+                                If Not strIO = Nothing Then
+                                    valErrCat = "InOut"
+                                    valErrCode = strVal
+                                End If
+
+                                oListErrCat.Add(New DashboardValues.clsErrCategory() With { _
+                                                     .Err_Category = valErrCat, _
+                                                     .Err_Value = valErrCode _
+                                                })
+
+                            Next
+
+                            ListRow.LCD_ErrorCategory = oListErrCat
 
                     End Select
 
                 Next
+
                 oList.Add(ListRow)
             Else
                 oList = New List(Of DashboardValues)
