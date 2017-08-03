@@ -408,7 +408,7 @@
     font-family: 'Windows Command Prompt Regular';
     font-size: 19px;
     text-transform: uppercase;
-    /*text-align: center;*/
+    text-align: center;
     vertical-align: middle;
     /*font-family:'Courier New';*/
     color: white;
@@ -427,11 +427,12 @@
 }
 .div_LCDLine1_intro {
    font-family: 'Windows Command Prompt Regular';
+   font-size: 18px;
     /*font-family:'Courier New';*/
     /*background-color: transparent;*/
     background-size: 100px 10px;
     background-repeat: no-repeat;
-    background-image: url('../Content/Images/Dashboard/LCD/ZagroGmbH.png');
+    /*background-image: url('../Content/Images/Dashboard/LCD/ZagroGmbH.png');*/
     /*position: absolute;
     top: 33px;*/
     position: fixed;
@@ -499,10 +500,12 @@
 
 .div_LCDLine4_intro {
     font-family: 'Windows Command Prompt Regular';
+    font-size: 18px;
+    text-align: center;
     /*background-color: transparent;*/
     background-size:100%;
     background-repeat: no-repeat;
-    background-image: url('../Content/Images/Dashboard/LCD/SoftVer.png');
+    /*background-image: url('../Content/Images/Dashboard/LCD/SoftVer.png');*/
     position: fixed;
     top: 91px;
     left: 404px;
