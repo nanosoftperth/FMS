@@ -90,18 +90,49 @@
         function getDataFromServer() {
             //var uri = '../api/Vehicle/GetCanMessageValue?deviceID=' + priDeviceID;
             var uri = '../api/Vehicle/GetDashboardData?DashDeviceID=' + priDeviceID;
+            //var uri = '../api/Vehicle/GetDashboardDataSim';
 
             $.getJSON(uri).done(function (data) { receivedData(data); });
 
         }
 
         function receivedData(dataCache) {
-            var obj = dataCache;
+            //var obj = dataCache;
 
-            //alert('run blink : ' + obj);
+            if (oDashList == null) {
+                var obj = dataCache;
+            }
+            else
+            {
+                var obj = oDashList
+                var objErrCat = oDashList[0].LCD_ErrorCategory
+                
+            }
+            
+
+            //for (var i = 0; i < oDashList.length; i++) {
+            //    var t1 = oDashList[i];
+            //}
+
+            //var json = @Html.Raw(Json.Encode(@HttpContext.Current.Session["ses_DashboardRecord"]));	
+            <%--var oSess = '<%= Session("ses_DashboardRecord").ToString()%>';  
+            var strSes = 'ses_DashboardRecord';--%>
+
+            
+            <%--if('<%=Session("ses_DashboardRecord")%>' == null) {
+                alert('With No Session');
+                var obj = dataCache;
+            }
+            else
+            {
+                alert('With Session');
+                var obj = '<%= Session("ses_DashboardRecord")%>';                
+            }--%>
 
             if (obj.length > 0) {
                 var oCtr = obj.length;
+
+                //alert('Inside OBJ... Len: ' + oCtr);
 
                 for (v = 0; v < oCtr; v++) {
 
@@ -111,12 +142,14 @@
                     }
 
                     if (obj[v].Steering.length > 0) {
+                        alert('Inside steering' );
                         SetToolTipPerStatus('.div_steer', 'Steering : ' + obj[v].Steering);
                         SetStatus('Steer', 'Err');
                         setLCDErrCat(obj[v].Steering, 'Steering');
                     }
 
                     if (obj[v].Driving.length > 0) {
+                       // alert('Inside OBJ');
                         SetToolTipPerStatus('.div_drive', 'Drive : ' + obj[v].Driving);
                         SetStatus('Drive', 'Err');
                     }
@@ -130,14 +163,14 @@
                         SetToolTipPerStatus('.div_can', 'CAN/CANOPEN : ' + obj[v].CANControl);
                         SetStatus('Can', 'Err');
                         //alert('receivedData: ' + obj[v].CANControl);
-                        setLCDErrCat(obj[v].CANControl, 'CAN');
+                        //setLCDErrCat(obj[v].CANControl, 'CAN');
                     }
 
                     if (obj[v].CANOPENControl.length > 0) {
                         SetToolTipPerStatus('.div_can', 'CAN/CANOPEN : ' + obj[v].CANOPENControl);
                         SetStatus('Can', 'Err');
                         //alert('receivedData: ' + obj[v].CANControl);
-                        setLCDErrCat(obj[v].CANOPENControl, 'CANOPEN');
+                        //setLCDErrCat(obj[v].CANOPENControl, 'CANOPEN');
                     }
 
                     if (obj[v].AlignmentControl.length > 0) {
@@ -162,9 +195,13 @@
                         SetStatus('Battery Voltage', obj[v].Battery_Voltage);
                     }
 
-                    if (obj[v].LCD_DataLogger.length > 0) {
-                        setLCDTitle();
-                    }
+                    //if (obj[v].LCD_WithFaultCode.length > 0) {
+                    //    setLCDErrCat(obj[v].LCD_WithFaultCode, 'NOFAULTCODE');
+                    //}
+
+                    //if (obj[v].LCD_DataLogger.length > 0) {
+                    //    setLCDTitle();
+                    //}
 
                     if (obj[v].LCD_Speed.length > 0) {
                         setLCDline1(obj[v].LCD_Speed);
@@ -175,29 +212,88 @@
                         setLCDline3(obj[v].LCD_Driving_Mode);                        
                     }
 
-                    if (obj[v].LCD_Safety.length > 0) {
-                        setLCDErrCat(obj[v].LCD_Safety, 'SAFE');
-                    }
+                    if (obj[v].LCD_ErrorCategory != null)
+                    {
+                        if (obj[v].LCD_ErrorCategory.length > 0) {
+                            var lenErrCat = obj[v].LCD_ErrorCategory.length;
 
-                    if (obj[v].LCD_DriveM1.length > 0) {
-                        setLCDErrCat(obj[v].LCD_DriveM1, 'DriveM1');
-                    }
+                            for (e = 0; e < lenErrCat; e++) {
+                                if (obj[v].LCD_ErrorCategory[e].Err_Category.length > 0) {
+                                    var strCat = obj[v].LCD_ErrorCategory[e].Err_Category;
+                                    var strCode = obj[v].LCD_ErrorCategory[e].Err_Value;
 
-                    if (obj[v].LCD_DriveM2.length > 0) {
-                        setLCDErrCat(obj[v].LCD_DriveM2, 'DriveM2');
-                    }
+                                    if (strCat == 'Safety') {
+                                        setLCDErrCat(strCode, 'SAFE');
+                                    }
 
-                    if (obj[v].LCD_DriveM3.length > 0) {
-                        setLCDErrCat(obj[v].LCD_DriveM3, 'DriveM3');
-                    }
+                                    if (strCat == 'Steering') {
+                                        setLCDErrCat(strCode, 'Steering');
+                                    }
 
-                    if (obj[v].LCD_DriveM4.length > 0) {
-                        setLCDErrCat(obj[v].LCD_DriveM4, 'DriveM4');
-                    }
+                                    if (strCat == 'DriveM1') {
+                                        setLCDErrCat(strCode, 'DriveM1');
+                                    }
 
-                    if (obj[v].LCD_IO.length > 0) {
-                        setLCDErrCat(obj[v].LCD_IO, 'InOut');
+                                    if (strCat == 'DriveM2') {
+                                        setLCDErrCat(strCode, 'DriveM2');
+                                    }
+
+                                    if (strCat == 'DriveM2') {
+                                        setLCDErrCat(strCode, 'DriveM2');
+                                    }
+
+                                    if (strCat == 'DriveM2') {
+                                        setLCDErrCat(strCode, 'DriveM2');
+                                    }
+
+                                    if (strCat == 'DriveM4') {
+                                        setLCDErrCat(strCode, 'DriveM4');
+                                    }
+
+                                    if (strCat == 'CAN') {
+                                        setLCDErrCat(strCode, 'CAN');
+                                    }
+
+                                    if (strCat == 'CANOPEN') {
+                                        setLCDErrCat(strCode, 'CANOPEN');
+                                    }
+
+                                    if (strCat == 'InOut') {
+                                        setLCDErrCat(strCode, 'InOut');
+                                    }
+
+
+                                }
+                            }
+                        }
                     }
+                    
+
+                    
+
+                    //if (obj[v].LCD_Safety.length > 0) {
+                    //    setLCDErrCat(obj[v].LCD_Safety, 'SAFE');
+                    //}
+
+                    //if (obj[v].LCD_DriveM1.length > 0) {
+                    //    setLCDErrCat(obj[v].LCD_DriveM1, 'DriveM1');
+                    //}
+
+                    //if (obj[v].LCD_DriveM2.length > 0) {
+                    //    setLCDErrCat(obj[v].LCD_DriveM2, 'DriveM2');
+                    //}
+
+                    //if (obj[v].LCD_DriveM3.length > 0) {
+                    //    setLCDErrCat(obj[v].LCD_DriveM3, 'DriveM3');
+                    //}
+
+                    //if (obj[v].LCD_DriveM4.length > 0) {
+                    //    setLCDErrCat(obj[v].LCD_DriveM4, 'DriveM4');
+                    //}
+
+                    //if (obj[v].LCD_IO.length > 0) {
+                    //    setLCDErrCat(obj[v].LCD_IO, 'InOut');
+                    //}
                     
                     
                 }
@@ -404,8 +500,8 @@
             $('#spanLine3').text('');
             $('#LCDLine4').removeClass('div_LCDLine');
             $('#LCDLine4').addClass('div_LCDLine4_intro');
-            //$('#spanLine1').text(' Zagro GmbH ');
-            //$('#spanLine4').text('SOFTWARE 2.00.00');
+            $('#spanLine1').text(' Zagro GmbH ');
+            $('#spanLine4').text('SOFTWARE 4.05.05');
 
         }
 
@@ -591,6 +687,9 @@
             var errSteering = 'Content/Images/Dashboard/LCD/SteeringFault.png';
             var errIO = 'Content/Images/Dashboard/LCD/InOut.png';
 
+            $('#LCDLine4').removeClass('div_LCDLine');
+            $('#LCDLine4').addClass('imgLCD_NoDisplay');
+
             var oImgSrc = $('#iErrCat').attr('src');
             
             //$('#ErrCat').removeClass('imgLCD_NoDisplay');
@@ -628,7 +727,11 @@
                 $('img[src="' + oImgSrc + '"]').attr('src', errIO);
             }
 
-            
+            if (category == 'NOFAULTCODE') {
+                $('#spanNoFaultCode').text('No Fault Code');
+                
+            }
+
             $('#spanErrNum').text(NumCode);
         }
 
@@ -1092,7 +1195,7 @@
                 <span id="spanLine4"></span>
             </div>
             <div id="ErrCat" class="div_LCD_ErrCat">
-                <img src="Content/Images/Dashboard/LCD/FaultyM1.png" id="iErrCat" class="imgLCD_NoDisplay" />
+                <span id="spanNoFaultCode" class="span_errnum"></span><img src="Content/Images/Dashboard/LCD/FaultyM1.png" id="iErrCat" class="imgLCD_NoDisplay" />
             </div>
             <div id="ErrNum" class="div_LCD_ErrNum">
                 <span id="spanErrNum" class="span_errnum"></span>
