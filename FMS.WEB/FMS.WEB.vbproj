@@ -340,6 +340,13 @@
       <DependentUpon>NanoReportParamList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DashboardSimulator.aspx.designer.vb">
+      <DependentUpon>DashboardSimulator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardSimulator.aspx.vb">
+      <DependentUpon>DashboardSimulator.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Debug.aspx.designer.vb">
       <DependentUpon>Debug.aspx</DependentUpon>
     </Compile>
@@ -815,6 +822,7 @@
     <Content Include="Content\contextMenu\jquery.ui.position.js" />
     <Content Include="Content\contextMenu\jquery.ui.position.min.js" />
     <Content Include="Content\DashBoard.css" />
+    <Content Include="Content\font_style.css" />
     <Content Include="Content\Images\9051a7_7900e319de294aa4b0166540479978ea.png" />
     <Content Include="Content\Images\account_access_1.jpg" />
     <Content Include="Content\Images\AquaHeader.jpg" />
@@ -979,8 +987,10 @@
     <Content Include="Content\Jira.css" />
     <Content Include="Content\notes.txt" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\windows_command_prompt.svg" />
     <Content Include="Controls\NanoReportParam.ascx" />
     <Content Include="Controls\NanoReportParamList.ascx" />
+    <Content Include="DashboardSimulator.aspx" />
     <Content Include="Debug.aspx" />
     <Content Include="debugger.aspx" />
     <Content Include="Default.aspx" />
@@ -1125,6 +1135,9 @@
     <Content Include="Content\contextMenu\jquery.contextMenu.min.js.map" />
     <Content Include="Content\QueryParser.ashx" />
     <Content Include="ImageHandler.ashx" />
+    <Content Include="Content\windows_command_prompt.eot" />
+    <Content Include="Content\windows_command_prompt.ttf" />
+    <Content Include="Content\windows_command_prompt.woff" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -1211,7 +1224,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18355/</IISUrl>
+          <IISUrl>http://localhost:18357/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
