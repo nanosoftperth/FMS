@@ -119,16 +119,47 @@ Public Class DashboardSimulator
             Dim strIO As String = Array.Find(arrIO, Function(x) (x.StartsWith(sfc)))
 
             If Not strSteer = Nothing Then
-                'rowErrCat.Err_Category = "Steering"
-                'rowErrCat.Err_Value = strValue
                 valErrCat = "Steering"
                 valErrCode = strValue
             End If
 
             If Not strSafety = Nothing Then
-                'rowErrCat.Err_Category = "Safety"
-                'rowErrCat.Err_Value = strValue
                 valErrCat = "Safety"
+                valErrCode = strValue
+            End If
+
+            If Not strDrvM1 = Nothing Then
+                valErrCat = "DriveM1"
+                valErrCode = strValue
+            End If
+
+            If Not strDrvM2 = Nothing Then
+                valErrCat = "DriveM2"
+                valErrCode = strValue
+            End If
+
+            If Not strDrvM3 = Nothing Then
+                valErrCat = "DriveM3"
+                valErrCode = strValue
+            End If
+
+            If Not strDrvM4 = Nothing Then
+                valErrCat = "DriveM4"
+                valErrCode = strValue
+            End If
+
+            If Not strCAN = Nothing Then
+                valErrCat = "CAN"
+                valErrCode = strValue
+            End If
+
+            If Not strCANOPEN = Nothing Then
+                valErrCat = "CANOPEN"
+                valErrCode = strValue
+            End If
+
+            If Not strIO = Nothing Then
+                valErrCat = "InOut"
                 valErrCode = strValue
             End If
 
