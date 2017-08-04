@@ -87,12 +87,10 @@
         Public Shared Function GetLast2LogEntryForDeviceID(deviceID As String) As Object
             Dim retVal As String = ""
             Try
-
-
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
-                'date format for local is MM/dd/yyyy
-                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
-                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+                'date format for local is MM/dd/yyyy                
+                Dim startDate As Date = Date.Now.AddDays(1).ToShortDateString
+                Dim endDate As Date = Date.Now.AddDays(-1).ToShortDateString
 
                 Dim pipName As String = deviceID & "_log"
 
