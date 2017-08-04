@@ -18,6 +18,7 @@ Public Class CanBusPropertyDisplay
     Public Property DriverName As String
     Public Property VehicleName As String
     Dim canBusDef As New List(Of CanBusDefinitionValues)
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
@@ -29,6 +30,14 @@ Public Class CanBusPropertyDisplay
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
         Dim id = DeviceID
+        If Session("deviceId") IsNot Nothing AndAlso Not Session("deviceId").Equals(DeviceID) Then
+            Session("canBusDef") = Nothing
+            Session("deviceId") = id
+        End If
+        If Session("deviceId") Is Nothing Then
+            Session("deviceId") = id
+        End If
+
         Dim response As HttpResponseMessage = Nothing
         Dim intCounter As Integer = 0
 
@@ -41,63 +50,75 @@ Public Class CanBusPropertyDisplay
                 Exit While
             End If
         End While
+        Try
+            If response.IsSuccessStatusCode Then
+                Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
+                For Each messageValue As CanValueMessageDefinition In canMessDef.Where(Function(x) Not x.MessageDefinition.SPN.Equals(6))
+                    Dim cbd As New CanBusDefinitionValues()
+                    If Not messageValue.CanValues.Count.Equals(0) Then
 
-        If response.IsSuccessStatusCode Then
-            Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
-            For Each messageValue As CanValueMessageDefinition In canMessDef.Where(Function(x) Not x.MessageDefinition.SPN.Equals(6))
-                Dim cbd As New CanBusDefinitionValues()
-                If Not messageValue.CanValues.Count.Equals(0) Then
-                    cbd.label = messageValue.MessageDefinition.Description
-                    'this is for temporary only
-                    If messageValue.MessageDefinition.Standard.ToLower.Equals("zagro500") And Not messageValue.MessageDefinition.SPN = 7 Then
-                        cbd.spn = 10 + messageValue.MessageDefinition.SPN
-                    Else
-                        cbd.spn = messageValue.MessageDefinition.SPN
-                    End If
+                        cbd.label = messageValue.MessageDefinition.Description
+                        'this is for temporary only
+                        If messageValue.MessageDefinition.Standard.ToLower.Equals("zagro500") And Not messageValue.MessageDefinition.SPN = 7 Then
+                            cbd.spn = 10 + messageValue.MessageDefinition.SPN
+                        Else
+                            cbd.spn = messageValue.MessageDefinition.SPN
+                        End If
 
-                    If Not messageValue.CanValues(0).Value Is Nothing Then
-                        If Not messageValue.MessageDefinition.Units Is Nothing And _
-                            Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
-                            If Not messageValue.CanValues(0).Value.ToString().Equals("") Then
-                                If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
-                                    cbd.description = Convert.ToDouble(Format(messageValue.CanValues(0).Value, "##.#").ToString()) & " " & messageValue.MessageDefinition.Units
+                        If Not messageValue.CanValues(0).Value Is Nothing Then
+                            If Not messageValue.MessageDefinition.Units Is Nothing And _
+                                Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
+                                If Not messageValue.CanValues(0).Value.ToString().Equals("") Then
+                                    If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
+                                        cbd.description = Convert.ToDouble(Format(messageValue.CanValues(0).Value, "##.#").ToString()) & " " & messageValue.MessageDefinition.Units
+                                    Else
+                                        cbd.description = "0"
+                                    End If
                                 Else
                                     cbd.description = "0"
                                 End If
                             Else
-                                cbd.description = "0"
+                                cbd.description = messageValue.CanValues(0).Value.ToString()
                             End If
-                        Else
-                            cbd.description = messageValue.CanValues(0).Value.ToString()
                         End If
+                        If cbd.label.Equals("PressureValues3") Or cbd.label.Equals("PressureValues4") Then
+                            cbd.description = "Not implemented"
+                        End If
+                        cbd.dtTime = messageValue.CanValues(0).Time.ToString("MM/dd/yy HH:mm:ss")
+                        canBusDef.Add(cbd)
                     End If
-                    If cbd.label.Equals("PressureValues3") Or cbd.label.Equals("PressureValues4") Then
-                        cbd.description = "Not implemented"
-                    End If
-                    cbd.dtTime = messageValue.CanValues(0).Time.ToString("MM/dd/yy HH:mm:ss")
-                    canBusDef.Add(cbd)
-                End If
-            Next
+                Next
 
-            Dim batVolt = canBusDef.Where(Function(xx) xx.spn = 7).ToList()
-            Dim intMyIndex As Integer
-            If batVolt.Count > 1 Then
-                If batVolt(0).dtTime < batVolt(1).dtTime Then
-                    intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(0).dtTime))
-                    canBusDef.RemoveAt(intMyIndex)
-                Else
-                    intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(1).dtTime))
-                    canBusDef.RemoveAt(intMyIndex)
+                Dim batVolt = canBusDef.Where(Function(xx) xx.spn = 7).ToList()
+                Dim intMyIndex As Integer
+                If batVolt.Count > 1 Then
+                    If batVolt(0).dtTime < batVolt(1).dtTime Then
+                        intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(0).dtTime))
+                        canBusDef.RemoveAt(intMyIndex)
+                    Else
+                        intMyIndex = canBusDef.FindIndex(Function(x) x.dtTime.Equals(batVolt(1).dtTime))
+                        canBusDef.RemoveAt(intMyIndex)
+                    End If
                 End If
             End If
+        Catch ex As Exception
+        End Try
 
-            grid.DataBind()
-
-        End If
+        grid.DataBind()
     End Sub
 
     Protected Sub grid_DataBinding(ByVal sender As Object, ByVal e As EventArgs)
-        ' Assign the data source in grid_DataBinding
+        Try
+            If Session("canBusDef") Is Nothing And canBusDef.Count > 0 Then
+                Session("canBusDef") = canBusDef
+            End If
+            If canBusDef.Count.Equals(0) And Not Session("canBusDef") Is Nothing Then
+                canBusDef = Session("canBusDef")
+            End If
+        Catch ex As Exception
+            canBusDef = Nothing
+        End Try
+        
         grid.DataSource = canBusDef
     End Sub
 
