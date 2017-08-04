@@ -490,6 +490,8 @@
     max-height: 100%;
     max-width: 100%;
     display: inline;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 .imgLCD_DrvMod_display {
     width: 22px;
@@ -525,7 +527,7 @@
     left: 412px;
     width: 30px;
     height: 25px;
-    color: black;
+    color: black;    
 }
 
 .div_LCD_ErrNum {
