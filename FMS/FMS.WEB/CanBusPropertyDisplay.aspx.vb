@@ -113,7 +113,7 @@ Public Class CanBusPropertyDisplay
 
         If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
             Dim getCodeDescription As String = getDescription
-            desc = "Not implemented in the E-Maxis S, M, L series"
+            desc = "Not implemented in the E-Maxis S, M & L series"
         End If
 
         If getLabel.Equals("Fault Codes") Then

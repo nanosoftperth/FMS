@@ -128,9 +128,9 @@
                 Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
 
                 'date format for demo.nanosoft.com.au is dd/MM/yyyy
-                'date format for local is MM/dd/yyyy
-                Dim startDate As Date = Date.Now.AddDays(1).ToString("dd/MM/yyyy")
-                Dim endDate As Date = Date.Now.AddDays(-1).ToString("dd/MM/yyyy")
+                'date format for local is MM/dd/yyyy                
+                Dim startDate As Date = Date.Now.AddDays(1).ToShortDateString
+                Dim endDate As Date = Date.Now.AddDays(-1).ToShortDateString
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
@@ -139,7 +139,7 @@
                 'get the latest data from pi from current date backwards until it gets data
                 While pivds.Count = 0
                     intCount += 1
-                    Dim eDate As Date = startDate.AddDays(-intCount).ToString("dd/MM/yyyy")
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToShortDateString
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
                     'If intCount = 50 Then Exit While
                 End While
