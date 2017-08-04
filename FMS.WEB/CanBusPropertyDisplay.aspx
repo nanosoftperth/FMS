@@ -116,8 +116,7 @@
         <ContentStyle>
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
-    </dx:ASPxPopupControl>
-        <input type="hidden" id="hdnCanbusList" runat="server" />
+    </dx:ASPxPopupControl>        
     </form>
 </body>
 </html>
