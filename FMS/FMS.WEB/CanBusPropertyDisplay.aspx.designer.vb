@@ -66,4 +66,13 @@ Partial Public Class CanBusPropertyDisplay
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
+
+    '''<summary>
+    '''hdnCanbusList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdnCanbusList As Global.System.Web.UI.HtmlControls.HtmlInputHidden
 End Class

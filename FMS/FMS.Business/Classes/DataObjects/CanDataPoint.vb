@@ -228,117 +228,156 @@
 
             '1090	Battery Voltage				7
             Public Sub zagro125_7(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                cv.Value = GetJ1939(cv, msg_def) / 100 'uses same logic as j1939
+                Try
+                    cv.Value = GetJ1939(cv, msg_def) / 100 'uses same logic as j1939
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
-
             '646	Pressure Values				8,9,10,11
             Public Sub zagro125_pressurevals(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                cv.Value = GetJ1939(cv, msg_def) / 10000 * 250 'uses same logic as j1939
-
+                Try
+                    cv.Value = GetJ1939(cv, msg_def) / 10000 * 250 'uses same logic as j1939
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
-
-
             '645	Horn						5
             Public Sub zagro125_5(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Try
+                    Dim i As Decimal = StringToByteArray(cv.RawValue)(0)
 
-                Dim i As Decimal = StringToByteArray(cv.RawValue)(0)
-
-                i /= 2 'divide by 2 apparently?
-                cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
-                'If (i Mod 2 > 0) Then
-                '    IntHornPressed += 1
-                'End If
-                'cv.Value = IntHornPressed
+                    i /= 2 'divide by 2 apparently?
+                    cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
+                Catch ex As Exception
+                    cv.Value = "Horn OFF"
+                End Try
             End Sub
 
             '578	Fault Codes					4
             Public Sub zagro125_4(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Try
+                    Dim b() As Byte = StringToByteArray(cv.RawValue)
 
-                Dim b() As Byte = StringToByteArray(cv.RawValue)
+                    Dim startByte As Integer = msg_def.pos_start
 
-                Dim startByte As Integer = msg_def.pos_start
+                    Dim indx As Integer = 0
+                    Dim runningtotal As Double = 0
 
-                Dim indx As Integer = 0
-                Dim runningtotal As Double = 0
+                    For i As Integer = 5 To 4
 
-                For i As Integer = 5 To 4
+                        runningtotal += CInt(b(i)) * Math.Pow(256, indx)
+                        indx += 1
+                    Next
 
-                    runningtotal += CInt(b(i)) * Math.Pow(256, indx)
-                    indx += 1
-                Next
+                    Dim faultMode As Integer = CInt(b(3))
 
-                Dim faultMode As Integer = CInt(b(3))
-
-                cv.Value = String.Format("FaultCode:{0}, FaultMode:{1}", runningtotal, faultMode)
-
+                    cv.Value = String.Format("FaultCode:{0}, FaultMode:{1}", runningtotal, faultMode)
+                Catch ex As Exception
+                    cv.Value = String.Format("FaultCode:{0}, FaultMode:{1}", 0, 0)
+                End Try
             End Sub
 
             '578	Beacon Operation			3
             Public Sub zagro125_3(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-
-                Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(6))
-                cv.Value = If(i Mod 2 = 0, "Beacon is OFF", "Beacon is ON")
-
+                Try
+                    Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(6))
+                    cv.Value = If(i Mod 2 = 0, "Beacon is OFF", "Beacon is ON")
+                Catch ex As Exception
+                    cv.Value = "Beacon is OFF"
+                End Try
             End Sub
 
             '578	Parking Break				2
             Public Sub zagro125_2(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-
-                Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(7))
-                cv.Value = If(i Mod 2 = 0, "Parking Break OFF", "Parking Break ON")
-
+                Try
+                    Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(7))
+                    cv.Value = If(i Mod 2 = 0, "Parking Break OFF", "Parking Break ON")
+                Catch ex As Exception
+                    cv.Value = "Parking Break OFF"
+                End Try
             End Sub
-
 
             '578	Speed						1
             Public Sub zagro125_1(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                Dim J1939Value = GetJ1939(cv, msg_def)
-                '32768 fix value from the excel file CANBUS_Analysis_125KbData
-                If J1939Value < 32768 Then
-                    cv.Value = J1939Value / 100
-                Else
-                    cv.Value = -Convert.ToInt32(Right(Hex(-J1939Value), 4), 16) / 100
-                End If
+                Try
+                    Dim J1939Value = GetJ1939(cv, msg_def)
+                    '32768 fix value from the excel file CANBUS_Analysis_125KbData
+                    If J1939Value < 32768 Then
+                        cv.Value = J1939Value / 100
+                    Else
+                        cv.Value = -Convert.ToInt32(Right(Hex(-J1939Value), 4), 16) / 100
+                    End If
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
 #End Region
 
 #Region "Zagro 500K"
             Public Sub zagro500_7(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                cv.Value = GetJ1939(cv, msg_def) / 100
+                Try
+                    cv.Value = GetJ1939(cv, msg_def) / 100
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
 
             Public Sub zagro500_3(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                Dim i As Array = cv.RawValue.ToCharArray
-                Dim val As String = i(2).ToString + i(3).ToString
-                cv.Value = IIf(val.Equals("06"), "Diagonal mode road", IIf(val.Equals("08"), "Circle mode road", IIf(val.Equals("10"), "rail mode", IIf(val.Equals("00"), "Undefined", "Stationary"))))
+                Try
+                    Dim i As Array = cv.RawValue.ToCharArray
+                    Dim val As String = i(2).ToString + i(3).ToString
+                    cv.Value = IIf(val.Equals("06"), "Diagonal mode road", IIf(val.Equals("08"), "Circle mode road", IIf(val.Equals("10"), "rail mode", IIf(val.Equals("00"), "Undefined", "Stationary"))))
+                Catch ex As Exception
+                    cv.Value = "Undefined"
+                End Try
             End Sub
             Public Sub zagro500_8(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                cv.Value = GetMotorTemperature(cv, msg_def)
+                Try
+                    cv.Value = GetMotorTemperature(cv, msg_def)
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
             Public Sub zagro500_9(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                cv.Value = GetMotorTemperature(cv, msg_def)
+                Try
+                    cv.Value = GetMotorTemperature(cv, msg_def)
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
             Public Sub zagro500_10(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                cv.Value = GetMotorTemperature(cv, msg_def)
+                Try
+                    cv.Value = GetMotorTemperature(cv, msg_def)
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
             Public Sub zagro500_11(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                cv.Value = GetMotorTemperature(cv, msg_def)
+                Try
+                    cv.Value = GetMotorTemperature(cv, msg_def)
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
             Public Sub zagro500_12(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
-                Dim byte0 As Object = GetFaultCodes(cv, msg_def, 0, 1, 0)
-                Dim byte1 As Object = GetFaultCodes(cv, msg_def, 2, 3, 1)
-                Dim byte2 As Object = GetFaultCodes(cv, msg_def, 4, 5, 2)
-                Dim byte3 As Object = GetFaultCodes(cv, msg_def, 6, 7, 3)
-                Dim byte4 As Object = GetFaultCodes(cv, msg_def, 8, 9, 4)
-                Dim byte5 As Object = GetFaultCodes(cv, msg_def, 10, 11, 5)
-                Dim byte6 As Object = GetFaultCodes(cv, msg_def, 12, 13, 6)
-                Dim byte7 As Object = GetFaultCodes(cv, msg_def, 14, 15, 7)
-                Dim cvVal As String = IIf(Not byte0.Equals(""), byte0 & ",", "") + IIf(Not byte1.Equals(""), byte1 & ",", "") + _
-                    IIf(Not byte2.Equals(""), byte2 & ",", "") + IIf(Not byte3.Equals(""), byte3 & ",", "") + _
-                    IIf(Not byte4.Equals(""), byte4 & ",", "") + If(Not byte5.Equals(""), byte5 & ",", "") + _
-                    IIf(Not byte6.Equals(""), byte6 & ",", "") + IIf(Not byte7.Equals(""), byte7 & ",", "")
-                cv.Value = cvVal.Trim(",")
-
+                Try
+                    Dim byte0 As Object = GetFaultCodes(cv, msg_def, 0, 1, 0)
+                    Dim byte1 As Object = GetFaultCodes(cv, msg_def, 2, 3, 1)
+                    Dim byte2 As Object = GetFaultCodes(cv, msg_def, 4, 5, 2)
+                    Dim byte3 As Object = GetFaultCodes(cv, msg_def, 6, 7, 3)
+                    Dim byte4 As Object = GetFaultCodes(cv, msg_def, 8, 9, 4)
+                    Dim byte5 As Object = GetFaultCodes(cv, msg_def, 10, 11, 5)
+                    Dim byte6 As Object = GetFaultCodes(cv, msg_def, 12, 13, 6)
+                    Dim byte7 As Object = GetFaultCodes(cv, msg_def, 14, 15, 7)
+                    Dim cvVal As String = IIf(Not byte0.Equals(""), byte0 & ",", "") + IIf(Not byte1.Equals(""), byte1 & ",", "") + _
+                        IIf(Not byte2.Equals(""), byte2 & ",", "") + IIf(Not byte3.Equals(""), byte3 & ",", "") + _
+                        IIf(Not byte4.Equals(""), byte4 & ",", "") + If(Not byte5.Equals(""), byte5 & ",", "") + _
+                        IIf(Not byte6.Equals(""), byte6 & ",", "") + IIf(Not byte7.Equals(""), byte7 & ",", "")
+                    cv.Value = cvVal.Trim(",")
+                Catch ex As Exception
+                    cv.Value = ""
+                End Try
             End Sub
 #End Region
 
@@ -348,90 +387,100 @@
 
 
             Public Sub j1939(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Try
+                    Dim b() As Byte = StringToByteArray(cv.RawValue)
 
-                Dim b() As Byte = StringToByteArray(cv.RawValue)
+                    Dim startByte As Integer = msg_def.pos_start
 
-                Dim startByte As Integer = msg_def.pos_start
+                    Dim indx As Integer = 0
+                    Dim runningtotal As Double = 0
 
-                Dim indx As Integer = 0
-                Dim runningtotal As Double = 0
+                    For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
 
-                For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
+                        runningtotal += CInt(b(i)) * Math.Pow(256, indx)
+                        indx += 1
+                    Next
 
-                    runningtotal += CInt(b(i)) * Math.Pow(256, indx)
-                    indx += 1
-                Next
+                    runningtotal = msg_def.offset + (runningtotal * msg_def.Resolution_Multiplier)
 
-                runningtotal = msg_def.offset + (runningtotal * msg_def.Resolution_Multiplier)
-
-                cv.Value = runningtotal
-
+                    cv.Value = runningtotal
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
             End Sub
 
             Public Function GetJ1939(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
-
-                Dim b() As Byte = StringToByteArray(cv.RawValue)
-
-                Dim startByte As Integer = msg_def.pos_start
-
-                Dim indx As Integer = 0
                 Dim runningtotal As Double = 0
                 Dim startTotal As Double = 0
+                Dim indx As Integer = 0
+                Try
+                    Dim b() As Byte = StringToByteArray(cv.RawValue)
+                    Dim startByte As Integer = msg_def.pos_start
 
-                For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
-                    If indx.Equals(0) Then
-                        startTotal = CInt(b(i))
-                    Else
-                        runningtotal += startTotal + (CInt(b(i)) * Math.Pow(256, indx))
-                    End If
+                    For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
+                        If indx.Equals(0) Then
+                            startTotal = CInt(b(i))
+                        Else
+                            runningtotal += startTotal + (CInt(b(i)) * Math.Pow(256, indx))
+                        End If
 
-                    indx += 1
-                Next
-
+                        indx += 1
+                    Next
+                Catch ex As Exception
+                    runningtotal = 0
+                End Try
                 Return runningtotal
             End Function
 
             Public Function GetMotorTemperature(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
                 Dim objValue As Object = ""
-                Dim b() As Byte = StringToByteArray(cv.RawValue)
-                Dim i As Array = cv.RawValue.ToCharArray
-                Dim convertedValue As Integer
-                Dim tempList = GetTemperatureList()
-                convertedValue = b(4) * 2
-                Dim intListCount As Integer = tempList.Count
-                For iVal As Integer = 0 To intListCount - 2
-                    If convertedValue >= tempList(iVal).Key And convertedValue <= tempList(iVal + 1).Key Then
-                        Dim outTempValue As Integer
-                        Dim outTempValue2 As Integer
-                        Dim outTempValue3 As Integer
-                        Integer.TryParse(tempList(iVal + 1).Value.Split(",")(0), outTempValue2)
-                        Integer.TryParse(tempList(iVal).Value.Split(",")(1), outTempValue)
-                        Integer.TryParse(tempList(iVal + 1).Value.Split(",")(2), outTempValue3)
-                        objValue = (outTempValue + ((convertedValue - tempList(iVal).Key) / outTempValue2) * outTempValue3) / 10
-                        Exit For
-                    End If
-                Next
+                Try
+                    Dim b() As Byte = StringToByteArray(cv.RawValue)
+                    Dim i As Array = cv.RawValue.ToCharArray
+                    Dim convertedValue As Integer
+                    Dim tempList = GetTemperatureList()
+                    convertedValue = b(4) * 2
+                    Dim intListCount As Integer = tempList.Count
+                    For iVal As Integer = 0 To intListCount - 2
+                        If convertedValue >= tempList(iVal).Key And convertedValue <= tempList(iVal + 1).Key Then
+                            Dim outTempValue As Integer
+                            Dim outTempValue2 As Integer
+                            Dim outTempValue3 As Integer
+                            Integer.TryParse(tempList(iVal + 1).Value.Split(",")(0), outTempValue2)
+                            Integer.TryParse(tempList(iVal).Value.Split(",")(1), outTempValue)
+                            Integer.TryParse(tempList(iVal + 1).Value.Split(",")(2), outTempValue3)
+                            objValue = (outTempValue + ((convertedValue - tempList(iVal).Key) / outTempValue2) * outTempValue3) / 10
+                            Exit For
+                        End If
+                    Next
+                Catch ex As Exception
+                    objValue = ""
+                End Try
                 Return IIf(objValue.Equals(""), 0, objValue)
             End Function
             Public Function GetFaultCodes(ByVal cv As CanValue, msg_def As CAN_MessageDefinition, bitStart As Integer, bitEnd As Integer, byteCol As String) As Object
-                Dim i As Array = cv.RawValue.ToCharArray
-                Dim bit0 = Convert.ToString(Convert.ToInt32(i(bitStart), 16), 2).PadLeft(4, "0")
-                Dim bit1 = Convert.ToString(Convert.ToInt32(i(bitEnd), 16), 2).PadLeft(4, "0")
-                Dim byteVal As String = StrReverse((bit0 + bit1).ToString())
                 Dim faultCodeValues As String = ""
-                Dim intCounter As Integer = 1
-                For Each bVal As Char In byteVal.ToCharArray
-                    If Convert.ToInt16(bVal.ToString()) Then
-                        Dim faultList = GetFaultCodeList().Where(Function(xy) xy.byteCode.Equals(byteCol)).ToList()
-                        Dim faultCode = faultList.Select(Function(blist) blist.byteList.Where(Function(xy) xy.Key = intCounter)).ToList()
+                Try
+                    Dim i As Array = cv.RawValue.ToCharArray
+                    Dim bit0 = Convert.ToString(Convert.ToInt32(i(bitStart), 16), 2).PadLeft(4, "0")
+                    Dim bit1 = Convert.ToString(Convert.ToInt32(i(bitEnd), 16), 2).PadLeft(4, "0")
+                    Dim byteVal As String = StrReverse((bit0 + bit1).ToString())
+                    Dim intCounter As Integer = 1
+                    For Each bVal As Char In byteVal.ToCharArray
+                        If Convert.ToInt16(bVal.ToString()) Then
+                            Dim faultList = GetFaultCodeList().Where(Function(xy) xy.byteCode.Equals(byteCol)).ToList()
+                            Dim faultCode = faultList.Select(Function(blist) blist.byteList.Where(Function(xy) xy.Key = intCounter)).ToList()
 
-                        If Not faultCode(0)(0).Value.ToString().Equals("") Then
-                            faultCodeValues &= faultCode(0)(0).Value.ToString + ","
+                            If Not faultCode(0)(0).Value.ToString().Equals("") Then
+                                faultCodeValues &= faultCode(0)(0).Value.ToString + ","
+                            End If
+
                         End If
-
-                    End If
-                    intCounter += 1
-                Next
+                        intCounter += 1
+                    Next
+                Catch ex As Exception
+                    faultCodeValues = ""
+                End Try
                 Return faultCodeValues.Trim(",")
             End Function
 
