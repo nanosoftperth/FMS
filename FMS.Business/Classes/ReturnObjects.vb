@@ -82,7 +82,7 @@ Public Class Truck
     Public Property TruckName As String
     Public Property time As String
     Public Property Driver As String
-
+    Public Property IsWithCanBus As Boolean
     Public Property ApplicationImageID As String
 
     Private Property __comboBoxDisplay As String

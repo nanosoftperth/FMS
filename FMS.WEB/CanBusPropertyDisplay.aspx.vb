@@ -13,6 +13,11 @@ Public Class CanBusPropertyDisplay
             Return Request.QueryString("DeviceID")
         End Get
     End Property
+    Public ReadOnly Property DeviceName As String
+        Get
+            Return Request.QueryString("DeviceName")
+        End Get
+    End Property
 
     Public Property DriverID As String
     Public Property DriverName As String
@@ -23,9 +28,7 @@ Public Class CanBusPropertyDisplay
         If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
         Dim client As HttpClient = New HttpClient()
-        Dim baseAddress As String = ""
-        Dim standard As String = ConfigurationManager.AppSettings("Standard")
-        Dim spn As String = ConfigurationManager.AppSettings("SPN")
+        Dim baseAddress As String = ""       
         baseAddress = "http://" + HttpContext.Current.Request.Url.Authority + "/"
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
@@ -81,9 +84,10 @@ Public Class CanBusPropertyDisplay
                                 cbd.description = messageValue.CanValues(0).Value.ToString()
                             End If
                         End If
-                        If cbd.label.Equals("PressureValues3") Or cbd.label.Equals("PressureValues4") Then
+                        If Not DeviceName.ToUpper.IndexOf("XL") > 0 AndAlso (cbd.label.Equals("PressureValues3") Or cbd.label.Equals("PressureValues4")) Then
                             cbd.description = "Not implemented"
                         End If
+
                         cbd.dtTime = messageValue.CanValues(0).Time.ToString("MM/dd/yy HH:mm:ss")
                         canBusDef.Add(cbd)
                     End If
@@ -132,7 +136,7 @@ Public Class CanBusPropertyDisplay
         Dim getDescription As String = templateContainer.Grid.GetRowValues(rVI, "description").ToString()
         Dim desc As String = ""
 
-        If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
+        If Not DeviceName.ToUpper.IndexOf("XL") > 0 AndAlso (getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4")) Then
             Dim getCodeDescription As String = getDescription
             desc = "Not implemented in the E-Maxis S, M & L series"
         End If
@@ -155,23 +159,38 @@ Public Class CanBusPropertyDisplay
 
         link.NavigateUrl = "javascript:void(0);"
         link.Text = String.Format(getDescription)
-        If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
-            pcLogin2.HeaderText = "Pressure Values Information"
-            link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnPressureValuesClick('{0}'); }}", contentUrl)
+        If Not DeviceName.ToUpper.IndexOf("XL") > 0 Then
+            If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
+                pcLogin2.HeaderText = "Pressure Values Information"
+                link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnPressureValuesClick('{0}'); }}", contentUrl)
+            Else
+                pcLogin.HeaderText = "Fault Code Information"
+                link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
+            End If
         Else
             pcLogin.HeaderText = "Fault Code Information"
             link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
         End If
 
+
     End Sub
 
     Protected Sub grid_HtmlDataCellPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewTableDataCellEventArgs) Handles grid.HtmlDataCellPrepared
         Dim getLabelName As String = (TryCast(sender, ASPxGridView)).GetRowValues(e.VisibleIndex, "label").ToString()
-        If Not getLabelName.Equals("Fault Codes") And Not getLabelName.Equals("PressureValues3") And Not getLabelName.Equals("PressureValues4") Then
-            If e.DataColumn.FieldName = "description" Then
-                e.Cell.Enabled = False
+        If Not DeviceName.ToUpper.IndexOf("XL") > 0 Then
+            If Not getLabelName.Equals("Fault Codes") And Not getLabelName.Equals("PressureValues3") And Not getLabelName.Equals("PressureValues4") Then
+                If e.DataColumn.FieldName = "description" Then
+                    e.Cell.Enabled = False
+                End If
+            End If
+        Else
+            If Not getLabelName.Equals("Fault Codes") Then
+                If e.DataColumn.FieldName = "description" Then
+                    e.Cell.Enabled = False
+                End If
             End If
         End If
+        
     End Sub
 End Class
 
