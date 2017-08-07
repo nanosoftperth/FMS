@@ -23,6 +23,7 @@
         var priDeviceID = '';
         var priVehicleName = '';
         var priClickEvent = '';
+        var reconnectctr = 0;
 
         $(document).ready(function () {
             priDeviceID = GetParameterValues('DeviceID');
@@ -61,7 +62,7 @@
             //}
 
             //getDataFromServer();
-            //timeout();
+            timeout();
 
             function GetParameterValues(param) {
                 var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -87,12 +88,80 @@
             }, 5000);
         }
 
+        (function() {
+            /**
+             * Decimal adjustment of a number.
+             *
+             * @param {String}  type  The type of adjustment.
+             * @param {Number}  value The number.
+             * @param {Integer} exp   The exponent (the 10 logarithm of the adjustment base).
+             * @returns {Number} The adjusted value.
+             */
+            function decimalAdjust(type, value, exp) {
+                // If the exp is undefined or zero...
+                if (typeof exp === 'undefined' || +exp === 0) {
+                    return Math[type](value);
+                }
+                value = +value;
+                exp = +exp;
+                // If the value is not a number or the exp is not an integer...
+                if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+                    return NaN;
+                }
+                // If the value is negative...
+                if (value < 0) {
+                    return -decimalAdjust(type, -value, exp);
+                }
+                // Shift
+                value = value.toString().split('e');
+                value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+                // Shift back
+                value = value.toString().split('e');
+                return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+            }
+
+            // Decimal round
+            if (!Math.round10) {
+                Math.round10 = function(value, exp) {
+                    return decimalAdjust('round', value, exp);
+                };
+            }
+            // Decimal floor
+            if (!Math.floor10) {
+                Math.floor10 = function(value, exp) {
+                    return decimalAdjust('floor', value, exp);
+                };
+            }
+            // Decimal ceil
+            if (!Math.ceil10) {
+                Math.ceil10 = function(value, exp) {
+                    return decimalAdjust('ceil', value, exp);
+                };
+            }
+        })();
+
         function getDataFromServer() {
             //var uri = '../api/Vehicle/GetCanMessageValue?deviceID=' + priDeviceID;
             var uri = '../api/Vehicle/GetDashboardData?DashDeviceID=' + priDeviceID;
             //var uri = '../api/Vehicle/GetDashboardDataSim';
 
             $.getJSON(uri).done(function (data) { receivedData(data); });
+
+            //$.ajax({
+            //    url: uri,
+            //    dataType: 'jsonp',
+            //    success: function (data) {
+            //        receivedData(data);
+            //    },
+            //    error: function (xhr, status, error) {
+            //        reconnectctr = reconnectctr + 1;
+
+            //        if (reconnectctr <= 10)
+            //        {
+            //            getDataFromServer();
+            //        }
+            //    }
+            //});
 
         }
 
@@ -142,8 +211,7 @@
                     }
 
                     if (obj[v].Steering.length > 0) {
-                        alert('Inside steering' );
-                        SetToolTipPerStatus('.div_steer', 'Steering : ' + obj[v].Steering);
+                        alert('Inside steering');
                         SetStatus('Steer', 'Err');
                         setLCDErrCat(obj[v].Steering, 'Steering');
                     }
@@ -193,6 +261,7 @@
                         //alert('Battery_Voltage > 0');
                         SetToolTipPerStatus('.div_battery', 'Battery Voltage : ' + obj[v].Battery_Voltage);
                         SetStatus('Battery Voltage', obj[v].Battery_Voltage);
+                        setLCDTitle_percentage(obj[v].Battery_Voltage);
                     }
 
                     //if (obj[v].LCD_WithFaultCode.length > 0) {
@@ -521,6 +590,16 @@
 
         }
 
+        function setLCDTitle_percentage(val) {
+
+
+            $('#iBatteryPerc').removeClass('imgLCD_NoDisplay');
+            $('#iBatteryPerc').addClass('span_batterypercentage');
+
+            $('#iBatteryPerc').text(val + '%');
+           
+        }
+
         function setLCDline1(val) {
             ////var str = $('#Search').val();
             ////if (/^[a-zA-Z0-9- ]*$/.test(str) == false) {
@@ -603,8 +682,17 @@
             //    }
 
             //}
+            var num = Math.round10(val, -1);
 
-            $('#spanLine1').text(val + ' ');
+            if (num == 0) {
+                varnum = "0.0";
+            }
+            else
+            {
+                varnum = num;
+            }
+
+            $('#spanLine1').text(varnum + ' ');
             //$('#iLCD_CM_NumSign').removeClass('imgLCD_NoDisplay');
             //$('#iLCD_CM_1stNum').removeClass('imgLCD_NoDisplay');
             //$('#iLCD_CM_2ndNum').removeClass('imgLCD_NoDisplay');
@@ -1172,7 +1260,8 @@
         </div>
         <div id="div_LCD" class="LCDCont_Hide">
             <div id="LCDTitle" class="div_LCDTitle">
-                <span id="spanLCDTitle"></span>                
+                <span id="spanLCDTitle"></span>    
+                <span id="iBatteryPerc" class="span_batterypercentage"></span>            
             </div>
             <div id="LCDLine1" class="div_LCDLine">
                 <span id="spanLine1"></span>

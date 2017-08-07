@@ -47,7 +47,7 @@
                 <td class="Label_style"><asp:Label ID="lblCAN" runat="server" Text="CAN"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtCAN" runat="server" Width="300px"></asp:textbox></td>
             </tr>--%>
-            <%--<tr>
+            <%--<trtxtLCD_Speed
                 <td class="Label_style"><asp:Label ID="lblAlign" runat="server" Text="Alignment"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtAlign" runat="server" Width="300px"></asp:textbox></td>
             </tr>--%>
@@ -80,7 +80,7 @@
             </tr>
             <tr>
                 <td class="Label_style"><asp:Label ID="lblLCD_Speed" runat="server" Text="Speed in cm/sec"></asp:Label></td>                
-                <td class="Entry_text_style"><asp:textbox id="txtLCD_Speed" runat="server" Width="300px" ReadOnly="True"></asp:textbox></td>
+                <td class="Entry_text_style"><asp:textbox id="txtLCD_Speed" runat="server" Width="300px"></asp:textbox></td>
             </tr>
             <tr>
                 <td class="Label_style"><asp:Label ID="lblLCD_hour" runat="server" Text="Operating hour counter"></asp:Label></td>                
