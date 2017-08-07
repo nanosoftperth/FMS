@@ -39,6 +39,10 @@
         }
     </style>
 
+    <script>
+        sessionStorage.removeItem('startupseq');
+    </script>
+
     <dx:ASPxPanel DefaultButton="ASPxButton1"
         ID="LeftPane"
         runat="server"

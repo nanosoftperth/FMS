@@ -29,7 +29,11 @@ Public Class FleetMap
 
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-         
+
+        '---- to determine if Dashboard start up sequence is to be executed
+        Session.Remove("startupseq")
+        '--------------
+
         If Not UserAuthorisationCheck(FeatureListAccess.Fleet_Map) Then Exit Sub
 
         Dim clientDate As Date = Now.timezoneToClient
@@ -73,7 +77,7 @@ Public Class FleetMap
         loopStr = String.Format("<script type=""text/javascript"">{0}{1}{0}</script>", vbNewLine, loopStr)
 
         If Not ClientScript.IsClientScriptBlockRegistered("1") Then ClientScript.RegisterStartupScript(Me.[GetType](), "1", loopStr)
-         
+
     End Sub
 
     ''' <summary>
