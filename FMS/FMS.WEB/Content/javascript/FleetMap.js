@@ -252,7 +252,7 @@ function getInfoWindow2() {
     var s = '<div id=\'iw-container\'>' + priDeviceName + '</div>';//'<b>' + this.Name + '</b><br>';
     //iw-title 
     //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID;
-    var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + priDeviceID;
+    var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + priDeviceID + "&DeviceName=" + priVehicleName ;
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 600px; width: 400px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content2\'>' + contentString + '</div>';
@@ -1116,9 +1116,18 @@ function getLabelInvisibleMarker(location, text) {
 
     return marker;//
 }
+function DeviceWithZagro(dataCache) {
+    alert('result:' + JSON.stringify(dataCache));
+    return true;
+}
+function getDataFromServer(deviceId) {
+    var uri = '../api/Vehicle/GetCanMessageValue?deviceid=' + deviceId;
+    $.get(uri).done(function (data) { DeviceWithZagro(data); });
+
+}
 // Adds a marker to the map and push to the array.
 var touchtime = 0;
-function addMarker(location, lblContent, markerID, vehicleName, applicationImageID) {
+function addMarker(location, lblContent, markerID, vehicleName, applicationImageID, isWithCanBus) {
     var icon = {
         url: icon_truck + '&Id=' + applicationImageID, // url
         scaledSize: new google.maps.Size(60, 60), // scaled size
@@ -1136,6 +1145,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         labelStyle: { opacity: 0.75 },
         zIndex: 9999999,
         truckName: vehicleName
+        
     });
 
     marker.DeviceID = markerID;
@@ -1146,16 +1156,17 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     //marker.addListener('rightclick', ShowDashboard);
     //marker.addListener('dblclick', ShowDashboard);
     //marker.addListener('mousedown', ShowDashboard);
-    
-    marker.addListener('rightclick', function (event) {
-        ShowDashboard(event, marker.Name, marker.DeviceID,vehicleName, 'rightclick');
+    if (isWithCanBus) {
+        marker.addListener('rightclick', function (event) {
+            ShowDashboard(event, marker.Name, marker.DeviceID, vehicleName, 'rightclick');
 
-    });
+        });
 
-    marker.addListener('mousedown', function (event) {
-        ShowDashboard(event, marker.Name, marker.DeviceID,vehicleName, 'mousedown');
+        marker.addListener('mousedown', function (event) {
+            ShowDashboard(event, marker.Name, marker.DeviceID, vehicleName, 'mousedown');
 
-    });
+        });
+    }
 
 
     //marker.addListener('rightclick', showInfoWindow2);
@@ -1212,7 +1223,7 @@ function upsertMapTrucks(result) {
     for (index = 0; index < trucks.length; ++index) {
 
         //console.log(trucks[index].Driver);
-
+        var isWithCanBus = trucks[index].IsWithCanBus;
         var truckName = trucks[index].TruckName;
         var truckDriver = trucks[index].Driver;
         var itemExistsInArr = false;
@@ -1253,7 +1264,7 @@ function upsertMapTrucks(result) {
 
 
         } else {
-            addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName, trucks[index].ApplicationImageID);
+            addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName, trucks[index].ApplicationImageID, isWithCanBus);
         }
 
 

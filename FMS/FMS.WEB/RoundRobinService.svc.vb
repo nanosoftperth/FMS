@@ -114,6 +114,14 @@ Public Class RoundRobinService
         End Try
 
         'retobj.queryDate = retobj.queryDate.ToUniversalTime
+        For Each Truck In retobj.Trucks
+            Dim canbusData = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(Truck.ID).GetAvailableCANTagsValue()
+            If canbusData.Count > 0 Then
+                Truck.IsWithCanBus = True
+            Else
+                Truck.IsWithCanBus = False
+            End If
+        Next
 
         Return retobj
 
