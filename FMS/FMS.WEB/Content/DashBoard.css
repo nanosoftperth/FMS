@@ -407,9 +407,26 @@
     height: 15px;
     font-family: 'Windows Command Prompt Regular';
     font-size: 19px;
-    text-transform: uppercase;
-    text-align: center;
-    vertical-align: middle;
+    /*text-transform: uppercase;*/
+    text-align: left;
+    /*vertical-align: middle;*/
+    /*font-family:'Courier New';*/
+    color: white;
+    display: block;
+}
+
+.span_batterypercentage {
+    background-color: black;
+    position: fixed;
+    top: 30px;
+    left: 520px;
+    width: 50px;
+    height: 15px;
+    font-family: 'Windows Command Prompt Regular';
+    font-size: 19px;
+    /*text-transform: uppercase;*/
+    text-align: right;
+    /*vertical-align: middle;*/
     /*font-family:'Courier New';*/
     color: white;
 }
@@ -456,20 +473,22 @@
     /*font-family:'Courier New';*/
     color: black;
     text-align: right;
+    font-size: 18px;
 }
 .div_LCDLine2_HR {
     position: fixed;
-    top: 60px;
+    top: 63px;
     width: 160px;
     height: 15px;
     font-family: 'Windows Command Prompt Regular';
     /*font-family:'Courier New';*/
     color: black;
     text-align: right;
+    font-size: 18px;
 }
 .div_LCDLine3_DrvMod {
     position: fixed;
-    top: 75px;
+    top: 82px;
     width: 150px;
     height: 30px;
     font-family: 'Windows Command Prompt Regular';
@@ -483,8 +502,10 @@
 }
 .imgLCD_CM_display {
     /*width: 11px;*/
-    height: 11px;
+    height: 15px;
     display: inline;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 .imgLCD_ErrCat_display {
     max-height: 100%;
