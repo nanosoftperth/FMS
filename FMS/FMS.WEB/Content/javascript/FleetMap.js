@@ -58,8 +58,9 @@ function showInfoWindow(event) {
 var priDeviceID = '';
 var priDeviceName = '';
 var priDashEvent = null;
+var priVehicleName = '';
 
-function ShowDashboard(event, name, deviceID, clicktype) {
+function ShowDashboard(event, name, deviceID,vehicleName, clicktype) {
     var strDashName = name;
     //priDeviceID = this.DeviceID;
     //priDeviceName = this.Name;
@@ -68,6 +69,7 @@ function ShowDashboard(event, name, deviceID, clicktype) {
     priDeviceID = deviceID;
     priDeviceName = name;
     priDashEvent = event;
+    priVehicleName = vehicleName;
 
     //alert('priDeviceID: ' + deviceID + '; priDeviceName: ' + priDeviceName + '; clicktype: ' + clicktype);
     //if (clicktype == 'rightclick') {
@@ -85,7 +87,8 @@ function ShowDashboard(event, name, deviceID, clicktype) {
     var nStart = strName.indexOf('</br>') + 4;
     var nEnd = strName.length;
     var varName = strName.substring(nStart, nEnd);
-    var VehicleName = varName.replace(/[^a-zA-Z ]/g, "");
+    var VehicleName = vehicleName;
+    //var VehicleName = varName.replace(/[^a-zA-Z ]/g, "");
     //var varName = 'RIO E-maxi';
     //var varName = 'NONE';
     //alert('strName : ' + strName + '; nStart: ' + nStart + '; nEnd: ' + nEnd + '; varName: ' + varName);
@@ -199,7 +202,8 @@ function getDashboard() {
     var nStart = strName.indexOf('</br>') + 4;
     var nEnd = strName.length;
     var varName = strName.substring(nStart, nEnd);
-    var strVehicleName = varName.replace(/[^a-zA-Z ]/g, "");
+    var strVehicleName = priVehicleName;
+    //var strVehicleName = varName.replace(/[^a-zA-Z ]/g, "");
 
     var newURL = 'CanBusPropDispDashboard.aspx?DeviceID=' + priDeviceID + '&VehicleName=' + strVehicleName + '&ClickEvent=' + strClickEvent;
     //var newURL = 'CanBusPropDispDashboard.aspx?ClickEvent=' + strClickEvent;
@@ -1144,12 +1148,12 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     //marker.addListener('mousedown', ShowDashboard);
     
     marker.addListener('rightclick', function (event) {
-        ShowDashboard(event, marker.Name, marker.DeviceID, 'rightclick');
+        ShowDashboard(event, marker.Name, marker.DeviceID,vehicleName, 'rightclick');
 
     });
 
     marker.addListener('mousedown', function (event) {
-        ShowDashboard(event, marker.Name, marker.DeviceID, 'mousedown');
+        ShowDashboard(event, marker.Name, marker.DeviceID,vehicleName, 'mousedown');
 
     });
 
