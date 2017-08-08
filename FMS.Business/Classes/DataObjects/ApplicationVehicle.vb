@@ -170,6 +170,24 @@
 
         End Function
 
+        Public Function GetZagroStatus() As Boolean
+            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
+                                                       String.Format("tag = 'can*{0}*'", DeviceID))
+            Dim retValue As Boolean = False
+            For Each p As PISDK.PIPoint In plst
+
+                Try
+                    Dim ppname As String = p.Name
+                    If ppname.ToUpper.IndexOf("ZAGRO") > 0 AndAlso Not ppname.Split("_").Reverse()(0).Equals("0") Then
+                        retValue = True
+                        Exit For
+                    End If
+                Catch ex As Exception
+                    Dim msg As String = ex.Message
+                End Try
+            Next
+            Return retValue
+        End Function
         Public Function GetAvailableCANTagsValue() As List(Of DataObjects.CanValueMessageDefinition)
 
             Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
@@ -201,9 +219,9 @@
                 Dim canValue As New CanValueMessageDefinition()
                 Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(canmessdef.SPN, DeviceID, canmessdef.Standard)
                 canValue.MessageDefinition = canmessdef
-                canValue.CanValues = PointWithData.CanValues                
+                canValue.CanValues = PointWithData.CanValues
                 lstNew.Add(canValue)
-            Next            
+            Next
             'Use group by standard and spn to eliminate duplicate
             Return lstNew.ToList().ToList().GroupBy(Function(xx) New With {Key xx.MessageDefinition.Standard, Key xx.MessageDefinition.PGN, Key xx.MessageDefinition.SPN}).ToList().Select(Function(xxx) xxx.First()).ToList()
 
