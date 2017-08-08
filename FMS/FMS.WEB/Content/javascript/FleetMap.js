@@ -1156,7 +1156,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     //marker.addListener('rightclick', ShowDashboard);
     //marker.addListener('dblclick', ShowDashboard);
     //marker.addListener('mousedown', ShowDashboard);
-    //if (isWithCanBus) {
+    if (isWithCanBus) {
         marker.addListener('rightclick', function (event) {
             ShowDashboard(event, marker.Name, marker.DeviceID, vehicleName, 'rightclick');
 
@@ -1166,7 +1166,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
             ShowDashboard(event, marker.Name, marker.DeviceID, vehicleName, 'mousedown');
 
         });
-    //}
+    }
 
 
     //marker.addListener('rightclick', showInfoWindow2);
