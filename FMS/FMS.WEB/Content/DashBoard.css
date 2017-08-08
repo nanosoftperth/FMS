@@ -416,14 +416,15 @@
 }
 
 .span_batterypercentage {
-    background-color: black;
+    background-color: transparent;
     position: fixed;
-    top: 30px;
-    left: 520px;
+    top: 31px;
+    left: 515px;
     width: 50px;
     height: 15px;
     font-family: 'Windows Command Prompt Regular';
-    font-size: 19px;
+    font-size: 17px;
+    font-style: normal;
     /*text-transform: uppercase;*/
     text-align: right;
     /*vertical-align: middle;*/
@@ -473,7 +474,7 @@
     /*font-family:'Courier New';*/
     color: black;
     text-align: right;
-    font-size: 18px;
+    font-size: 22px;
 }
 .div_LCDLine2_HR {
     position: fixed;
