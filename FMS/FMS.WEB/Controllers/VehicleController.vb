@@ -87,6 +87,7 @@ Namespace Controllers
             Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValue()
         End Function
 
+        '<Route("api/vehicles/{vehicleID}")> 'example of kind of what it should look like
         ' GET api/vehicles/GetStatusIfZagroData/5
         ''' <summary>
         ''' Get available CAN Message Value by deviceID
@@ -94,7 +95,6 @@ Namespace Controllers
         ''' <param name="deviceID">The device Id</param>
         ''' <returns>true or false</returns>
         <HttpGet>
-        '<Route("api/vehicles/{vehicleID}")> 'example of kind of what it should look like
         Public Function GetStatusIfZagroData(deviceID As String) As Boolean
             Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetZagroStatus()
         End Function
