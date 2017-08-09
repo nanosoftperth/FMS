@@ -229,8 +229,8 @@
 
                 for (v = 0; v < oCtr; v++) {
 
-                    if (obj[v].Parking_Break == 'Parking Break ON') {
-                        SetToolTipPerStatus('.div_break', 'Parking Break : ' + obj[v].Parking_Break);
+                    if (obj[v].Parking_Break == 'Parking Brake ON') {
+                        SetToolTipPerStatus('.div_break', 'Parking Brake : ' + obj[v].Parking_Break);
                         SetStatus('Parking Break', obj[v].Parking_Break);
                     }
 
@@ -412,8 +412,8 @@
             //alert('Inside SetStatus...' + indicatorDescription + ' : ' + indicatorStatus);
 
             switch (indicatorDescription) {
-                case 'Parking Break':
-                    if (indicatorStatus == 'Parking Break ON') {
+                case 'Parking Brake':
+                    if (indicatorStatus == 'Parking Brake ON') {
                         setStopStatus(true);
                         makeIndicatorBlink(true, '#ibreak_blink', '#ibreak');
                     }
