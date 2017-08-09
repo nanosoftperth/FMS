@@ -24,45 +24,69 @@
         var priVehicleName = '';
         var priClickEvent = '';
         var reconnectctr = 0;
-
+        var priXL = '';
+        var priL = '';
+      
         $(document).ready(function () {
             priDeviceID = GetParameterValues('DeviceID');
-            priVehicleName = GetParameterValues('VehicleName');
-            priClickEvent = GetParameterValues('ClickEvent');
+            //priVehicleName = GetParameterValues('VehicleName');
+            priVehicleName = GetParameterValues('VehicleName').replace(/%20/g, " ");
+            priXL = priVehicleName.indexOf(" XL");
+            priL = priVehicleName.indexOf(" L");
 
+            priClickEvent = GetParameterValues('ClickEvent');
+            //replace(/%20/g, " ")
             initPlaceToolTips();
 
-            if (priClickEvent == 'rightclick' || priClickEvent == 'mousedown')
-            {
+            var ThisDevID = getCookie('devID');
+            var coockieexist = checkCookie('devID');
+            
+            //setTimeout('getDataFromServer()', 4000);
+            //setTimeout(function () {
+            //    setLCDStartUp(priVehicleName);
+            //}, 4500)
+
+            if (coockieexist == false) {
+                setCookie('devID', priDeviceID, 1);
+                //getDataFromServer();
                 goBlink();
+
+                setTimeout(function () {
+                    setLCDStartUp(priVehicleName);
+                }, 4500);
+                timeout();
+                //setTimeout('timeout()', 7000);
+
+            }
+            else
+            {
+                if (priDeviceID != ThisDevID)
+                {
+                    setCookie('devID', priDeviceID, 1);
+                    //getDataFromServer();
+                    goBlink();
+                    //setLCDStartUp(priVehicleName);
+                    setTimeout(function () {
+                        setLCDStartUp(priVehicleName);
+                    }, 4500);
+                    timeout();
+
+                    //setTimeout('timeout()', 7000);
+                    
+                }
+                else
+                {
+                    //getDataFromServer();
+                    $('#iLCD').removeClass('imgLCD');
+                    $('#iLCD').addClass('pnlimgHide');
+                    setLCDStartUp(priVehicleName);
+                    timeout();
+                    //setTimeout('timeout()', 2500);
+                }
             }
 
-            //alert('priDeviceID: ' + priDeviceID + '; priVehicleName: ' + priVehicleName + '; priClickEvent: ' + priClickEvent);
-
-            ///alert(document.cookie.indexOf('session_deviceid'));
-            
-            //if (document.cookie.indexOf('session_deviceid') == -1) {
-            //    //alert('cookie session_deviceid does not exist');
-            //    setCookie('session_deviceid', priDeviceID, 1);
-            //    run_blink = true;
-            //    goBlink();
-            //}
-            //else {
-            //    if (priDeviceID == getCookie('session_deviceid')) {
-            //        //alert('new deviceID = stored session_deviceid');
-            //        var strCook = getCookie('session_deviceid');
-            //        run_blink = false;
-            //    }
-            //    else {
-            //        //alert('new deviceID not = stored session_deviceid');
-            //        setCookie('session_deviceid', priDeviceID, 1);
-            //        run_blink = true;
-            //        goBlink();
-            //    }
-            //}
-
             //getDataFromServer();
-            timeout();
+            //timeout();
 
             function GetParameterValues(param) {
                 var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -276,6 +300,15 @@
                         setLCDline1(obj[v].LCD_Speed);
                         setLCDline2('5:49');                        
                     }
+
+                    if (obj[v].LCD_Hour.length > 0) {
+                        setLCDline2(obj[v].LCD_Hour);
+                    }
+                    else //will delete if there is already a return value from API
+                    {
+                        setLCDline2('06:35');
+                    }
+
 
                     if (obj[v].LCD_Driving_Mode.length > 0) {
                         setLCDline3(obj[v].LCD_Driving_Mode);                        
@@ -592,7 +625,6 @@
 
         function setLCDTitle_percentage(val) {
 
-
             $('#iBatteryPerc').removeClass('imgLCD_NoDisplay');
             $('#iBatteryPerc').addClass('span_batterypercentage');
 
@@ -692,6 +724,26 @@
                 varnum = num;
             }
 
+            var speedImgKMH = 'Content/Images/Dashboard/LCD/Num_KM-H.png';
+            var speedImgCMS = 'Content/Images/Dashboard/LCD/Num_CM-S.png';
+
+            var oImgSrc = $('#iLCD_CM').attr('src');
+
+            if (priL >= 0) {
+
+                if (oImgSrc != 'Content/Images/Dashboard/LCD/Num_CM-S.png')
+                {
+                    $('img[src="' + oImgSrc + '"]').attr('src', speedImgCMS);
+                }                
+            }
+
+            if (priXL >= 0) {
+
+                if (oImgSrc != 'Content/Images/Dashboard/LCD/Num_KM-H.png') {
+                    $('img[src="' + oImgSrc + '"]').attr('src', speedImgKMH);
+                }
+            }
+
             $('#spanLine1').text(varnum + ' ');
             //$('#iLCD_CM_NumSign').removeClass('imgLCD_NoDisplay');
             //$('#iLCD_CM_1stNum').removeClass('imgLCD_NoDisplay');
@@ -711,9 +763,19 @@
             
             $('#LCDLine1').removeClass('div_LCDLine1_intro');
             $('#LCDLine1').addClass('div_LCDLine1_SpeedCM');
+
+            
+            //Content/Images/Dashboard/LCD/Num_KM-H.png
+            //Content/Images/Dashboard/LCD/Num_CM-S.png
+            //priXL = priVehicleName.indexOf(" XL");
+            //priL = priVehicleName.indexOf(" L");
+            //var dmDiagonal = 'Content/Images/Dashboard/LCD/DiagonalMode.png';
+            //$('img[src="' + oImgSrc + '"]').attr('src', dmDiagonal);
         }
         function setLCDline2(val) {
-            $('#spanLine2').text(val + ' ');
+            var strVal = val.replace(':', ' : ')
+
+            $('#spanLine2').text(strVal + ' ');
             $('#iLCD_HR').removeClass('imgLCD_NoDisplay');
             $('#iLCD_HR').addClass('imgLCD_CM_display');
 
@@ -733,7 +795,7 @@
             $('#LCDLine4').addClass('imgLCD_NoDisplay');
 
             var dmDiagonal = 'Content/Images/Dashboard/LCD/DiagonalMode.png';
-            var dmCircular = 'Content/Images/Dashboard/LCD/CircularMode.png';
+            var dmCircular = 'Content/Images/Dashboard/LCD/CircularMode_rot90.png';
             var dmRail = 'Content/Images/Dashboard/LCD/RailMode.png';
             
             var oImgSrc = $('#iLCD_DrvMod').attr('src');
@@ -1147,10 +1209,10 @@
 
         //}
         
-        setTimeout('getDataFromServer()', 4000);
-        setTimeout(function () {
-            setLCDStartUp(priVehicleName);
-        }, 4500)
+        //setTimeout('getDataFromServer()', 4000);
+        //setTimeout(function () {
+        //    setLCDStartUp(priVehicleName);
+        //}, 4500)
 
         //setTimeout('timeout()', 4000);
     </script>
@@ -1272,10 +1334,10 @@
                     /><img src="Content/Images/Dashboard/LCD/DecPoint.png" id="iLCD_CM_DecPt" class="imgLCD_NoDisplay" 
                     /><img src="Content/Images/Dashboard/LCD/Num_0.png" id="iLCD_CM_4thNum" class="imgLCD_NoDisplay"
                     /><img src="Content/Images/Dashboard/LCD/Num_0.png" id="iLCD_CM_5thNum" class="imgLCD_NoDisplay"/>--%>
-                    <img src="Content/Images/Dashboard/LCD/Num_CM-S.png" id="iLCD_CM" class="imgLCD_NoDisplay" />
+                    <img src="Content/Images/Dashboard/LCD/Num_KM-H.png" id="iLCD_CM" class="imgLCD_NoDisplay" />
             </div>
             <div id="LCDLine2" class="div_LCDLine">
-                <span id="spanLine2"></span><img src="Content/Images/Dashboard/LCD/icon.png" id="iLCD_HR" class="imgLCD_NoDisplay" />
+                <span id="spanLine2"></span><img src="Content/Images/Dashboard/LCD/Num_hrs.png" id="iLCD_HR" class="imgLCD_NoDisplay" />
             </div>
             <div id="LCDLine3" class="div_LCDLine">
                 <span id="spanLine3"></span><img src="Content/Images/Dashboard/LCD/DiagonalMode.png" id="iLCD_DrvMod" class="imgLCD_NoDisplay" />

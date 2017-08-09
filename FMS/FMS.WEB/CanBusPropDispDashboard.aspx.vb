@@ -34,6 +34,8 @@ Public Class CanBusPropDispDashboard
             oList = Session("ses_DashboardRecord")
             ConvertToJSON(oList)
 
+
+
             'Page.ClientScript.RegisterStartupScript(Me.[GetType](), "CallMyFunction", "MyFunction()", True)
 
             'Page.ClientScript.RegisterStartupScript(Me.GetType(), "CallGMInit", "<script>initialize()</script>", False)
