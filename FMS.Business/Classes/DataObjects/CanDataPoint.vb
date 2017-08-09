@@ -177,7 +177,7 @@
             'Zagro125:
             'PGN    name                        SPN_#
             '578	Speed						1
-            '578	Parking Break				2
+            '578	Parking Brake				2
             '578	Beacon Operation			3
             '578	Fault Codes					4
             '645	Horn						5
@@ -292,9 +292,9 @@
             Public Sub zagro125_2(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
                 Try
                     Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(7))
-                    cv.Value = If(i Mod 2 = 0, "Parking Break OFF", "Parking Break ON")
+                    cv.Value = If(i Mod 2 = 0, "Parking Brake OFF", "Parking Brake ON")
                 Catch ex As Exception
-                    cv.Value = "Parking Break OFF"
+                    cv.Value = "Parking Brake OFF"
                 End Try
             End Sub
 
