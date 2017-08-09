@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ApplicationSettings.vb" />
+    <Compile Include="Classes\BackgroundCalculations\CANBUS_AlarmGenerator.vb" />
+    <Compile Include="Classes\BackgroundCalculations\CANBUS_EventGenerator.vb" />
     <Compile Include="Classes\BackgroundCalculations\EmailHelper.vb" />
     <Compile Include="Classes\BackgroundCalculations\GeoFenceCalcs.vb" />
     <Compile Include="Classes\BackgroundCalculations\SpeedTimeCalcs.vb" />
