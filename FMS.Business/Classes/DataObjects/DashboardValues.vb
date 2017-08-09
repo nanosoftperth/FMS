@@ -174,13 +174,13 @@ Namespace DataObjects
                     End If
 
                     Select Case strDesc
-                        Case "Parking Break"
+                        Case "Parking Brake"
                             ListRow.Parking_Break = strValue
 
-                            If strValue = "Parking Break ON" Then
+                            If strValue = "Parking Brake ON" Then
                                 ListRow.StopControl = "ON"
                             Else
-                                If strValue = "Parking Break OFF" Then
+                                If strValue = "Parking Brake OFF" Then
                                     ListRow.StopControl = "OFF"
                                 End If
                             End If
