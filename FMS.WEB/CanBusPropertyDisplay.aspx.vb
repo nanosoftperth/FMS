@@ -28,7 +28,7 @@ Public Class CanBusPropertyDisplay
         If IsPostBack And Membership.ApplicationName <> "/" Then Exit Sub
 
         Dim client As HttpClient = New HttpClient()
-        Dim baseAddress As String = ""       
+        Dim baseAddress As String = ""
         baseAddress = "http://" + HttpContext.Current.Request.Url.Authority + "/"
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
@@ -122,7 +122,7 @@ Public Class CanBusPropertyDisplay
         Catch ex As Exception
             canBusDef = Nothing
         End Try
-        
+
         grid.DataSource = canBusDef
     End Sub
 
@@ -152,7 +152,7 @@ Public Class CanBusPropertyDisplay
                     Next
                 End If
             Next
-            
+
         End If
 
         Dim contentUrl As String = String.Format("{0}", desc)
@@ -190,7 +190,7 @@ Public Class CanBusPropertyDisplay
                 End If
             End If
         End If
-        
+
     End Sub
 End Class
 
