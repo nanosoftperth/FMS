@@ -91,9 +91,12 @@ Module Module1
                                                                                               GeoFenceCollissionEarliestStartDate)
 
 
-            LogMsg("Processing CANBUS Events") 'TODO
+            LogMsg("Processing CANBUS EVENTS") 'TODO
+            'FMS.Business.BackgroundCalculations.CANBUS_EventGenerator
 
-            LogMsg("Processing CANBUS Alarms")
+
+            LogMsg("Processing CANBUS ALARMS")
+            'FMS.Business.BackgroundCalculations.CANBUS_AlarmGenerator
 
 
         Next

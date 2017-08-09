@@ -86,6 +86,7 @@ Namespace Controllers
         Public Function GetCanMessageValue(deviceID As String) As List(Of CanValueMessageDefinition)
             Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValue()
         End Function
+
         ' GET api/vehicles/GetStatusIfZagroData/5
         ''' <summary>
         ''' Get available CAN Message Value by deviceID
