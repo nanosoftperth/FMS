@@ -115,7 +115,7 @@ function ShowDashboard(event, name, deviceID,vehicleName, clicktype) {
     priDashEvent = event;
     var content = '<div id="iw-container_dash">' +
                   '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
-                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px; background-color: transparent;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
+                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 341px;font-size: 11px; background-color: transparent;" onclick="getInfoWindow2()">Launch Nano Tracker</button></div>' +
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
         
@@ -218,7 +218,7 @@ function getDashboard() {
     evnt = priDashEvent;
     var content = '<div id="iw-container_dash">' +
                   '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
-                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
+                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 341px;font-size: 11px;" onclick="getInfoWindow2()">Launch Nano Tracker</button></div>' +
                    contentString + '</div>' +
                    '<div id="idDashTail" class="dash_tail">' + '</div>'
 
