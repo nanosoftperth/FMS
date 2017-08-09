@@ -75,9 +75,10 @@ Module Module1
             LogMsg("Processing ""{0}"" at {1}", o.ApplicationName, Now.ToLongDateString)
 
             LogMsg("Processing GeoFence Collissions")
-
             Dim GeoFenceCollissionEarliestStartDate As Date = _
                 FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(o.ApplicationID)
+
+
 
             LogMsg("Processing Speed/Time values")
             Dim wasSpeedtimeValsSuccess As Boolean = _
@@ -88,6 +89,13 @@ Module Module1
             LogMsg("Processing GeoFence collission alerts")
             FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollissionAlerts(o.ApplicationID, _
                                                                                               GeoFenceCollissionEarliestStartDate)
+
+
+            LogMsg("Processing CANBUS Events") 'TODO
+
+            LogMsg("Processing CANBUS Alarms")
+
+
         Next
 
         LogMsg("Exited at " & Now.ToString("HH:mm:ss"))
