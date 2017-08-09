@@ -863,7 +863,9 @@
     <Content Include="Content\Images\Dashboard\IFM_gray.png" />
     <Content Include="Content\Images\Dashboard\LCD\Can.png" />
     <Content Include="Content\Images\Dashboard\LCD\CanOpen.png" />
+    <Content Include="Content\Images\Dashboard\LCD\CanOpen_1.png" />
     <Content Include="Content\Images\Dashboard\LCD\CircularMode.png" />
+    <Content Include="Content\Images\Dashboard\LCD\CircularMode_rot90.png" />
     <Content Include="Content\Images\Dashboard\LCD\DecPoint.png" />
     <Content Include="Content\Images\Dashboard\LCD\DiagonalMode.png" />
     <Content Include="Content\Images\Dashboard\LCD\E-MaxiType.png" />
@@ -888,7 +890,9 @@
     <Content Include="Content\Images\Dashboard\LCD\Num_CM-S.png" />
     <Content Include="Content\Images\Dashboard\LCD\Num_Colon.png" />
     <Content Include="Content\Images\Dashboard\LCD\Num_hrs.png" />
+    <Content Include="Content\Images\Dashboard\LCD\Num_KM-H.png" />
     <Content Include="Content\Images\Dashboard\LCD\RailMode.png" />
+    <Content Include="Content\Images\Dashboard\LCD\RailMode_1.png" />
     <Content Include="Content\Images\Dashboard\LCD\SoftVer.png" />
     <Content Include="Content\Images\Dashboard\LCD\SteeringFault.png" />
     <Content Include="Content\Images\Dashboard\LCD\Stop.png" />
@@ -1224,7 +1228,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18357/</IISUrl>
+          <IISUrl>http://localhost:18359/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
