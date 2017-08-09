@@ -231,7 +231,7 @@
 
                     if (obj[v].Parking_Break == 'Parking Brake ON') {
                         SetToolTipPerStatus('.div_break', 'Parking Brake : ' + obj[v].Parking_Break);
-                        SetStatus('Parking Break', obj[v].Parking_Break);
+                        SetStatus('Parking Brake', obj[v].Parking_Break);
                     }
 
                     if (obj[v].Steering.length > 0) {
