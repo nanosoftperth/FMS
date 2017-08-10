@@ -92,7 +92,7 @@ Module Module1
 
 
             LogMsg("Processing CANBUS EVENTS") 'TODO
-            'FMS.Business.BackgroundCalculations.CANBUS_EventGenerator
+            'FMS.Business.BackgroundCalculations.CANBUS_EventGenerator.ProcessCanbusEvents(o.ApplicationID)
 
 
             LogMsg("Processing CANBUS ALARMS")

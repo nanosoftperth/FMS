@@ -4,7 +4,19 @@ Namespace BackgroundCalculations
 
     Public Class CANBUS_EventGenerator
 
-        'for each vehicle 
+        Public Shared Function ProcessCanbusEvents(applicationId As Guid) As Boolean
+            'for each vehicle 
+            Dim applicationVehicle As New FMS.Business.DataObjects.ApplicationVehicle()
+            Dim appVehicles = FMS.Business.DataObjects.ApplicationVehicle.GetAll(applicationId)
+            For Each vehicle In appVehicles
+                applicationVehicle.DeviceID = vehicle.DeviceID
+                Dim x = applicationVehicle.GetAvailableCANTags()
+            Next
+
+            Return True
+        End Function
+
+
 
         'for each SPN 
 
@@ -31,7 +43,7 @@ Namespace BackgroundCalculations
         '
         '   }
         '}
-        
+
 
 
     End Class

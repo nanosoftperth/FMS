@@ -893,9 +893,10 @@
     </ElementType>
   </Function>
   <Function Name="dbo.usp_GetUnprocessedCollissionsForAlertType" Method="usp_GetUnprocessedCollissionsForAlertType">
-    <Parameter Name="AlertTypeID" Parameter="alertTypeID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="ApplicationID" Parameter="applicationID" Type="System.Guid" DbType="UniqueIdentifier" />
     <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="AlertTypeID" Parameter="alertTypeID" Type="System.Guid" DbType="UniqueIdentifier" />
     <ElementType Name="usp_GetUnprocessedCollissionsForAlertTypeResult">
       <Column Name="id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="DeviceID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
@@ -905,9 +906,6 @@
       <Column Name="Vehicle_Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="GeoFence_Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Driver_Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Driver_FristName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Driver_Surname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Driver_PhoneNumber" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="GeoFence_Name1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="ApplicationGeoFenceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ApplicationVehicleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -919,7 +917,6 @@
       <Column Name="DriverName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="DateSend" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MessageContent" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ApplictionID1" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

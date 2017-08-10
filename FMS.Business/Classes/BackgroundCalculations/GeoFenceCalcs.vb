@@ -48,7 +48,7 @@ Namespace BackgroundCalculations
                 'Finds geofence collissions which have not been processed yet for this alert type 
                 Dim geoReportRslts As List(Of ReportGeneration.AlertTypeUnprocessedCollission_Report) = _
                                                 ReportGeneration.AlertTypeUnprocessedCollission_Report.GetForAlertType( _
-                                                                                    alertDefn.ApplicationAlertTypeID, startDate)
+                                                                                    appid, alertDefn.ApplicationAlertTypeID, startDate)
 
 
                 'get the geo-fence COLLISIONS which we are interested in 
