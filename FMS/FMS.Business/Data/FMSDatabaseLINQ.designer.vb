@@ -792,8 +792,8 @@ Partial Public Class LINQtoSQLClassesDataContext
 	End Function
 	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUnprocessedCollissionsForAlertType")>  _
-	Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), alertTypeID, startDate, endDate)
+	Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate, alertTypeID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult))
 	End Function
 End Class
@@ -14747,12 +14747,6 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 	
 	Private _Driver_Name As String
 	
-	Private _Driver_FristName As String
-	
-	Private _Driver_Surname As String
-	
-	Private _Driver_PhoneNumber As String
-	
 	Private _GeoFence_Name1 As String
 	
 	Private _ApplicationGeoFenceID As System.Nullable(Of System.Guid)
@@ -14774,8 +14768,6 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 	Private _DateSend As System.Nullable(Of Date)
 	
 	Private _MessageContent As String
-	
-	Private _ApplictionID1 As System.Nullable(Of System.Guid)
 	
 	Public Sub New()
 		MyBase.New
@@ -14873,42 +14865,6 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 		Set
 			If (String.Equals(Me._Driver_Name, value) = false) Then
 				Me._Driver_Name = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver_FristName", DbType:="VarChar(MAX)")>  _
-	Public Property Driver_FristName() As String
-		Get
-			Return Me._Driver_FristName
-		End Get
-		Set
-			If (String.Equals(Me._Driver_FristName, value) = false) Then
-				Me._Driver_FristName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver_Surname", DbType:="VarChar(MAX)")>  _
-	Public Property Driver_Surname() As String
-		Get
-			Return Me._Driver_Surname
-		End Get
-		Set
-			If (String.Equals(Me._Driver_Surname, value) = false) Then
-				Me._Driver_Surname = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver_PhoneNumber", DbType:="VarChar(MAX)")>  _
-	Public Property Driver_PhoneNumber() As String
-		Get
-			Return Me._Driver_PhoneNumber
-		End Get
-		Set
-			If (String.Equals(Me._Driver_PhoneNumber, value) = false) Then
-				Me._Driver_PhoneNumber = value
 			End If
 		End Set
 	End Property
@@ -15041,18 +14997,6 @@ Partial Public Class usp_GetUnprocessedCollissionsForAlertTypeResult
 		Set
 			If (String.Equals(Me._MessageContent, value) = false) Then
 				Me._MessageContent = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplictionID1", DbType:="UniqueIdentifier")>  _
-	Public Property ApplictionID1() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._ApplictionID1
-		End Get
-		Set
-			If (Me._ApplictionID1.Equals(value) = false) Then
-				Me._ApplictionID1 = value
 			End If
 		End Set
 	End Property

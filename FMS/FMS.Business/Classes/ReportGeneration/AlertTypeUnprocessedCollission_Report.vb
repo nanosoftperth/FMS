@@ -75,10 +75,10 @@ Namespace ReportGeneration
                 Me.StartTime = .StartTime
                 Me.Vehicle_Name = .Vehicle_Name
 
-                'driver details
-                Me.Driver_FristName = .Driver_FristName
-                Me.Driver_PhoneNumber = .Driver_PhoneNumber
-                Me.Driver_Surname = .Driver_Surname
+                ''driver details
+                'Me.Driver_FristName = .Driver_FristName
+                'Me.Driver_PhoneNumber = .Driver_PhoneNumber
+                'Me.Driver_Surname = .Driver_Surname
 
 
             End With
@@ -99,19 +99,19 @@ Namespace ReportGeneration
         ''' <param name="startDate"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function GetForAlertType(AlertTypeID As Guid, startDate As Date)
+        Public Shared Function GetForAlertType(appId As Guid, AlertTypeID As Guid, startDate As Date)
 
-            Return GetForAlertType(AlertTypeID, startDate, Now.timezoneToPerth)
+            Return GetForAlertType(appId, AlertTypeID, startDate, Now.timezoneToPerth)
 
         End Function
 
-        Public Shared Function GetForAlertType(AlertTypeID As Guid, startDate As Date, endDate As Date)
+        Public Shared Function GetForAlertType(appId As Guid, AlertTypeID As Guid, startDate As Date, endDate As Date)
 
             Dim lst As List(Of usp_GetUnprocessedCollissionsForAlertTypeResult) = _
-                            SingletonAccess.FMSDataContextContignous.usp_GetUnprocessedCollissionsForAlertType(AlertTypeID, startDate, endDate).ToList()
+                            SingletonAccess.FMSDataContextContignous.usp_GetUnprocessedCollissionsForAlertType(appId, startDate, endDate, AlertTypeID).ToList()
 
 
-            Return (From x In lst Select New ReportGeneration.AlertTypeUnprocessedCollission_Report(x)).tolist
+            Return (From x In lst Select New ReportGeneration.AlertTypeUnprocessedCollission_Report(x)).ToList
 
 
         End Function
