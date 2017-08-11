@@ -17,7 +17,6 @@
         Public Property MessageDefinition As DataObjects.CAN_MessageDefinition
 
         Public Property CanValues As New CanValueList
-
         Public Sub New()
 
         End Sub
@@ -127,30 +126,73 @@
 
                 Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
 
-                'date format for demo.nanosoft.com.au is dd/MM/yyyy
-                'date format for local is MM/dd/yyyy                
                 Dim startDate As Date = Date.Now.AddDays(1).ToShortDateString
                 Dim endDate As Date = Date.Now.AddDays(-1).ToShortDateString
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
-                                                                     PISDK.BoundaryTypeConstants.btInside)
-
+                                                                     PISDK.BoundaryTypeConstants.btInside)                
                 'get the latest data from pi from current date backwards until it gets data
                 While pivds.Count = 0
                     intCount += 1
                     Dim eDate As Date = startDate.AddDays(-intCount).ToShortDateString
                     pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
-                    'If intCount = 50 Then Exit While
                 End While
 
                 For Each p As PISDK.PIValue In pivds
-
                     Try
-
                         retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
                                                                                 .RawValue = p.Value})
-                        'If Not SPN.Equals(5) Then Exit For
+                        Exit For
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                'Calculate the actual value from the raw values
+                retobj.CanValues.CalculateValues(SPN, retobj.MessageDefinition)
+            Catch ex As Exception
+                retobj.MessageDefinition = New FMS.Business.DataObjects.CAN_MessageDefinition()
+            End Try
+
+            'get the value 
+            Return retobj
+
+        End Function
+        Public Shared Function GetPointWithLatestDataByDeviceId(_StartDate As Date, _EndDate As Date, SPN As Integer, deviceID As String, _
+                                               standard As String) As DataObjects.CanDataPoint
+
+            Dim retobj As New CanDataPoint
+
+            Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID)
+
+            'get the MessageDefinition
+            retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard)
+
+            ' Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
+            Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
+                                                                                retobj.MessageDefinition.PGN)
+
+            Try
+
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
+
+                Dim startDate As Date = _StartDate.AddDays(1).ToShortDateString
+                Dim endDate As Date = _EndDate.AddDays(-1).ToShortDateString
+                Dim intCount As Integer = 1
+                'get data from pi for the time period
+                Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
+                                                                     PISDK.BoundaryTypeConstants.btInside)
+                'get the latest data from pi from current date backwards until it gets data
+                While pivds.Count = 0
+                    intCount += 1
+                    Dim eDate As Date = startDate.AddDays(-intCount).ToShortDateString
+                    pivds = pp.Data.RecordedValues(startDate, eDate, PISDK.BoundaryTypeConstants.btInside)
+                End While
+
+                For Each p As PISDK.PIValue In pivds
+                    Try
+                        retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
+                                                                                .RawValue = p.Value})
                         Exit For
                     Catch ex As Exception
                     End Try

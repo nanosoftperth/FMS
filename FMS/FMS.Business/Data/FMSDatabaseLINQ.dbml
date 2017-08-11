@@ -762,6 +762,16 @@
       <Column Name="MessageContent" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.CanBusLogs" Member="CanBusLogs">
+    <Type Name="CanBusLog">
+      <Column Name="CanLogId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DeviceId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PGN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SPN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Standard" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DateLog" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />

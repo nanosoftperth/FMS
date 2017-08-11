@@ -90,7 +90,6 @@ Module Module1
             FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollissionAlerts(o.ApplicationID, _
                                                                                               GeoFenceCollissionEarliestStartDate)
 
-
             LogMsg("Processing CANBUS EVENTS") 'TODO
             'FMS.Business.BackgroundCalculations.CANBUS_EventGenerator.ProcessCanbusEvents(o.ApplicationID)
 
