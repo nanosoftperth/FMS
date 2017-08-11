@@ -337,6 +337,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
     End Sub
+  Partial Private Sub InsertCanBusLog(instance As CanBusLog)
+    End Sub
+  Partial Private Sub UpdateCanBusLog(instance As CanBusLog)
+    End Sub
+  Partial Private Sub DeleteCanBusLog(instance As CanBusLog)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -715,6 +721,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property CAN_EventOccuranceAlerts() As System.Data.Linq.Table(Of CAN_EventOccuranceAlert)
 		Get
 			Return Me.GetTable(Of CAN_EventOccuranceAlert)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CanBusLogs() As System.Data.Linq.Table(Of CanBusLog)
+		Get
+			Return Me.GetTable(Of CanBusLog)
 		End Get
 	End Property
 	
@@ -13971,6 +13983,178 @@ Partial Public Class CAN_EventOccuranceAlert
 				Me._MessageContent = value
 				Me.SendPropertyChanged("MessageContent")
 				Me.OnMessageContentChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CanBusLogs")>  _
+Partial Public Class CanBusLog
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CanLogId As System.Guid
+	
+	Private _DeviceId As String
+	
+	Private _PGN As System.Nullable(Of Double)
+	
+	Private _SPN As System.Nullable(Of Double)
+	
+	Private _Standard As String
+	
+	Private _DateLog As System.Nullable(Of Date)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCanLogIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCanLogIdChanged()
+    End Sub
+    Partial Private Sub OnDeviceIdChanging(value As String)
+    End Sub
+    Partial Private Sub OnDeviceIdChanged()
+    End Sub
+    Partial Private Sub OnPGNChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnPGNChanged()
+    End Sub
+    Partial Private Sub OnSPNChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnSPNChanged()
+    End Sub
+    Partial Private Sub OnStandardChanging(value As String)
+    End Sub
+    Partial Private Sub OnStandardChanged()
+    End Sub
+    Partial Private Sub OnDateLogChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDateLogChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CanLogId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CanLogId() As System.Guid
+		Get
+			Return Me._CanLogId
+		End Get
+		Set
+			If ((Me._CanLogId = value)  _
+						= false) Then
+				Me.OnCanLogIdChanging(value)
+				Me.SendPropertyChanging
+				Me._CanLogId = value
+				Me.SendPropertyChanged("CanLogId")
+				Me.OnCanLogIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceId", DbType:="VarChar(10)")>  _
+	Public Property DeviceId() As String
+		Get
+			Return Me._DeviceId
+		End Get
+		Set
+			If (String.Equals(Me._DeviceId, value) = false) Then
+				Me.OnDeviceIdChanging(value)
+				Me.SendPropertyChanging
+				Me._DeviceId = value
+				Me.SendPropertyChanged("DeviceId")
+				Me.OnDeviceIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PGN", DbType:="Float")>  _
+	Public Property PGN() As System.Nullable(Of Double)
+		Get
+			Return Me._PGN
+		End Get
+		Set
+			If (Me._PGN.Equals(value) = false) Then
+				Me.OnPGNChanging(value)
+				Me.SendPropertyChanging
+				Me._PGN = value
+				Me.SendPropertyChanged("PGN")
+				Me.OnPGNChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SPN", DbType:="Float")>  _
+	Public Property SPN() As System.Nullable(Of Double)
+		Get
+			Return Me._SPN
+		End Get
+		Set
+			If (Me._SPN.Equals(value) = false) Then
+				Me.OnSPNChanging(value)
+				Me.SendPropertyChanging
+				Me._SPN = value
+				Me.SendPropertyChanged("SPN")
+				Me.OnSPNChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Standard", DbType:="NVarChar(255)")>  _
+	Public Property Standard() As String
+		Get
+			Return Me._Standard
+		End Get
+		Set
+			If (String.Equals(Me._Standard, value) = false) Then
+				Me.OnStandardChanging(value)
+				Me.SendPropertyChanging
+				Me._Standard = value
+				Me.SendPropertyChanged("Standard")
+				Me.OnStandardChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateLog", DbType:="DateTime")>  _
+	Public Property DateLog() As System.Nullable(Of Date)
+		Get
+			Return Me._DateLog
+		End Get
+		Set
+			If (Me._DateLog.Equals(value) = false) Then
+				Me.OnDateLogChanging(value)
+				Me.SendPropertyChanging
+				Me._DateLog = value
+				Me.SendPropertyChanged("DateLog")
+				Me.OnDateLogChanged
 			End If
 		End Set
 	End Property
