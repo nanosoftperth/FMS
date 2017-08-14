@@ -104,6 +104,12 @@
                             .CanMetricValue = i.Standard.ToString() + " : " & i.PGN.ToString() + " : " & i.SPN.ToString()}).Distinct().ToList()
             Return objCanMess
         End Function
+        Public Shared Function GetEventDefinitionList(vehicleId As String, pgn As Integer, spn As Integer, standard As String) As List(Of DataObjects.Can_EventDefinition)
+            Dim EventDef = (From eDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions
+                            Where eDef.VehicleID.Equals(vehicleId) And eDef.PGN.Equals(pgn) And eDef.SPN.Equals(spn) And eDef.Standard.Equals(standard) And eDef.deleted.Equals(False)
+                            Select New DataObjects.Can_EventDefinition(eDef)).ToList()
+            Return EventDef
+        End Function
 #End Region
 
 #Region "Constructors"
@@ -130,7 +136,7 @@
             Public Property CanMetricValue As String
         End Class
 
-        
+
     End Class
 
 
