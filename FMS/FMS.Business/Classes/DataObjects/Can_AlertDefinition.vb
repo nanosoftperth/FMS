@@ -136,6 +136,7 @@
             Dim objCanAlertDefinitions = (From eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions
                                        Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
                                        eventDef.Standard Equals messageDef.Standard And eventDef.PGN Equals messageDef.PGN And eventDef.SPN Equals messageDef.SPN
+                                       Where eventDef.deleted.Equals(False)
                                        Select New DataObjects.Can_AlertDefinition.CanAlertDefintionTextValue() With {.FieldText = eventDef.VehicleID & " | " & _
                                            messageDef.Standard & " - " & _
                                            messageDef.Parameter_Group_Label & " " & _
@@ -147,6 +148,12 @@
             Dim objSubscribers = (From subs In DataObjects.Subscriber.GetAllforApplication(applicationId)
                                  Select New DataObjects.Can_AlertDefinition.CanAlertDefintionTextValue() With {.FieldText = subs.NameFormatted, .FieldValue = subs.NativeID}).ToList()
             Return objSubscribers
+        End Function
+        Public Shared Function GetAlertDefinitionList(eventDefId As Guid) As List(Of DataObjects.Can_AlertDefinition)
+            Dim objAlertDefList = (From alertDef In SingletonAccess.FMSDataContextContignous.CAN_AlertDefinitions
+                                   Where alertDef.CAN_EventDefinitionID.Equals(eventDefId)
+                                  Select New DataObjects.Can_AlertDefinition(alertDef)).ToList()
+            Return objAlertDefList
         End Function
 #End Region
 #Region "Constructors"

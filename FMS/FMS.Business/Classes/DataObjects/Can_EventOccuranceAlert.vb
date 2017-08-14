@@ -74,6 +74,12 @@
             Next
             Return objCanEventOccuranceAlert
         End Function
+        Public Shared Function GetEventOccuranceAlertList(eventOccuranceId As Guid, alertDefId As Guid, sentDate As DateTime) As List(Of DataObjects.Can_EventOccuranceAlert)
+            Dim objEventOccAlert = (From eventOccAlert In SingletonAccess.FMSDataContextContignous.CAN_EventOccuranceAlerts
+                                    Where eventOccAlert.CAN_EventOccuranceID.Equals(eventOccuranceId) And eventOccAlert.CAN_AlertDefinition.Equals(alertDefId) And eventOccAlert.SentDate.Equals(sentDate)
+                                   Select New DataObjects.Can_EventOccuranceAlert(eventOccAlert)).ToList()
+            Return objEventOccAlert
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()
