@@ -22,6 +22,7 @@
                 .CAN_EventOccuranceID = eventOccurenceAlert.CAN_EventOccuranceID
                 .CAN_AlertDefinition = eventOccurenceAlert.CAN_AlertDefinition
                 .SentDate = eventOccurenceAlert.SentDate
+                .MessageContent = eventOccurenceAlert.MessageContent
             End With
             SingletonAccess.FMSDataContextContignous.CAN_EventOccuranceAlerts.InsertOnSubmit(canEventOccuranceAlert)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -34,6 +35,7 @@
                 .CAN_EventOccuranceID = eventOccuranceAlert.CAN_EventOccuranceID
                 .CAN_AlertDefinition = eventOccuranceAlert.CAN_AlertDefinition
                 .SentDate = eventOccuranceAlert.SentDate
+                .MessageContent = eventOccuranceAlert.MessageContent
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub

@@ -41,6 +41,26 @@ Namespace BackgroundCalculations
         "Username :  {1}" & vbNewLine & _
         "Password :  {2}"
 
+        Public Const CanbusAlertEmailContent As String = _
+        "Dear {0}, " & vbNewLine & vbNewLine & _
+        "..." & _
+        "..." & vbNewLine & _
+        "..." & vbNewLine & _
+        "Thank you," & vbNewLine & vbNewLine & _
+        "Nanosoft Automated Services"
+        Friend Shared Function SendAlertMail(emailList As String, companyName As String) As String
+            Dim RetValue As String = String.Empty
+            Dim messageBody As String = String.Empty
+            Try
+                Dim subject = String.Format("Canbus alert from {0}.nanosoft.com.au", companyName)
+                messageBody = String.Format(CanbusAlertEmailContent, companyName)
+                SendEmail(emailList, subject, messageBody)
+                RetValue = messageBody
+            Catch ex As Exception
+                RetValue = ex.Message
+            End Try
+            Return RetValue
+        End Function
         Friend Shared Function SendEmail(emailList As String, companyName As String, _
                                          driverName As String, geofence_Name As String, _
                                          EntryOrExitTime As Date, typ As DataObjects.AlertType.ActionType) As String
@@ -163,6 +183,43 @@ Namespace BackgroundCalculations
                 subject = subject.Replace(vbNewLine, ". ")
 
                 SendEmail(textListToEmail, subject, subject)
+
+            Catch ex As Exception
+                Dim x As String = ex.Message
+            End Try
+
+            Return messageBody
+
+        End Function
+        ''' <summary>
+        ''' Sends SMS messages using the paid-for SMS gateway
+        ''' which converts emails to SMS's
+        ''' </summary>
+        ''' <param name="textList">a semi-colon seperated list of SMS numbers</param>       
+        Public Shared Function CanbusSendSMS(textList As String, companyName As String) As String
+
+            'format: (has to be from no-reply@nanosoft.com.au)
+            '04XXXXXXXX@app.wholesalesms.com.au / send.smsbroadcast.com.au
+            'the content is the subject of the 
+
+            Dim textListToEmail As String = String.Empty
+            Dim textEmailFormat As String = "{0}@{1}"
+
+            'get a list of "04XXXXXXXX@app.wholesalesms.com.au"
+            Dim strList As List(Of String) = (From s In textList.Split(";").ToList _
+                                               Where Not String.IsNullOrEmpty(s.Trim)
+                                               Select String.Format(textEmailFormat, s.Trim, SMS_PROVIDER)).ToList
+
+            For Each s As String In strList
+                textListToEmail &= If(String.IsNullOrEmpty(textListToEmail), "", ";") & s
+            Next
+
+            Dim messageBody As String = String.Empty
+
+            Try
+                messageBody = String.Format(CanbusAlertEmailContent, companyName)
+                Dim subject = String.Format("Canbus alert from {0}.nanosoft.com.au", companyName)
+                SendEmail(textListToEmail, subject, messageBody)
 
             Catch ex As Exception
                 Dim x As String = ex.Message
