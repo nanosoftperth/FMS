@@ -8,6 +8,12 @@
         Public Property Time As DateTime
         Public Property Value As Object
 
+        Public ReadOnly Property ValueStr As String
+            Get
+                Return CStr(Value)
+            End Get
+        End Property
+
         Public Sub New()
 
         End Sub

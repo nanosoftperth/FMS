@@ -137,36 +137,11 @@
 #Region "CANbus specific"
 
 
+
+
         Public Function GetAvailableCANTags() As List(Of DataObjects.CAN_MessageDefinition)
 
-            Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
-
-            'search for all the pi points which exist for the device
-            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
-                                                        String.Format("tag = 'CAN*{0}*'", DeviceID))
-
-            Dim cnt As Integer = plst.Count
-
-            For Each p As PISDK.PIPoint In plst
-
-                Try
-
-                    Dim ppName As String = p.Name
-
-                    'get the SPN number
-                    'Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
-                    'Dim pgn As Integer = ppName.Replace(replaceStr, "")
-                    Dim pgn As Integer = ppName.Split("_").Reverse()(0)
-
-                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, Me.CAN_Protocol_Type))
-
-                Catch ex As Exception
-
-                    Dim msg As String = ex.Message
-                End Try
-            Next
-
-            Return lst
+            Return DataObjects.Device.GetCANMessageDefinitions(DeviceID)
 
         End Function
 
@@ -260,6 +235,8 @@
         End Function
 
         Public Shared Function GetAll(appplicationID As Guid) As List(Of ApplicationVehicle)
+
+            If appplicationID = Guid.Empty Then Return Nothing
 
             Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                             Function(x) New DataObjects.ApplicationVehicle(x)).ToList
