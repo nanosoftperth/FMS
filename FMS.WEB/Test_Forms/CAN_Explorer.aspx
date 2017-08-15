@@ -68,6 +68,7 @@
                                         <ClearButton Visibility="Auto"></ClearButton>
                                     </PropertiesDateEdit>
                                 </dx:GridViewDataDateColumn>
+
                             </Columns>
                         </dx:ASPxGridView>
 
