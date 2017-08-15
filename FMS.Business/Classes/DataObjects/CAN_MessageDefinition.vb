@@ -4,6 +4,12 @@ Namespace DataObjects
     Public Class CAN_MessageDefinition
 
 
+        Public ReadOnly Property Standard_SPN As String
+            Get
+                Return String.Format("{0}|{1}", Standard, SPN)
+            End Get
+        End Property
+
         Public Property Standard As String
         Public Property PGN As String
         Public Property SPN As Integer

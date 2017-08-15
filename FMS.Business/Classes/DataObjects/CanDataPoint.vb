@@ -21,7 +21,62 @@
 
         End Sub
 
-#End Region 
+#End Region
+
+
+
+        ''' <summary>
+        ''' Required for binding of a devexpress control to show the last 100 values of a standard/spn
+        ''' </summary>
+        ''' <param name="Standard_SPN">bar seperated values showing the {Standard}|{SPN} </param>
+        Public Function GetLast100Values(Standard_SPN As String, deviceID As String) As List(Of CanValue)  'DataObjects.CanDataPoint.CanValueList
+
+            If String.IsNullOrEmpty(Standard_SPN) Then Return Nothing
+
+            Dim msgdef As CAN_MessageDefinition = Nothing
+
+            Dim strArr() As String = Standard_SPN.Split("|")
+
+            Dim can_standard = strArr(0)
+            Dim SPN = strArr(1)
+
+            Dim retobj As New CanDataPoint
+
+            Try
+
+                'get spn from pgn
+                msgdef = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, can_standard)
+
+                Dim tagName As String = DataObjects.CanDataPoint.GetTagName(deviceID, can_standard, msgdef.PGN)
+
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
+
+                'get data from pi for the time period
+                Dim pivds As PISDK.PIValues = pp.Data.RecordedValuesByCount(DateTime.Now, 100, PISDK.DirectionConstants.dReverse, PISDK.BoundaryTypeConstants.btAuto)
+
+                For Each p As PISDK.PIValue In pivds
+
+                    Try
+
+                        retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
+                                                                                .RawValue = p.Value})
+
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                'Calculate the actual value from the raw values
+                retobj.CanValues.CalculateValues(SPN, msgdef)
+            Catch ex As Exception
+                retobj.MessageDefinition = New FMS.Business.DataObjects.CAN_MessageDefinition()
+            End Try
+
+            'get the value 
+            Return retobj.CanValues
+
+
+        End Function
+
         Public Shared Function GetPointWithData(SPN As Integer, vehicleid As String, _
                                                 standard As String, startDate As Date, endDate As Date) As DataObjects.CanDataPoint
 
@@ -131,7 +186,7 @@
                 Dim intCount As Integer = 1
                 'get data from pi for the time period
                 Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
-                                                                     PISDK.BoundaryTypeConstants.btInside)                
+                                                                     PISDK.BoundaryTypeConstants.btInside)
                 'get the latest data from pi from current date backwards until it gets data
                 While pivds.Count = 0
                     intCount += 1
@@ -255,6 +310,8 @@
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
+
+                If msg_def.Standard = "NANO1000" Then calcMethod = AddressOf j1939
 
                 For Each cv As CanValue In Me
                     calcMethod(cv, msg_def)

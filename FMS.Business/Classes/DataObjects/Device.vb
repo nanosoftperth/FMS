@@ -37,7 +37,42 @@
 #End Region
 
     
+        Public Shared Function GetCANMessageDefinitions(deviceid As String) As List(Of DataObjects.CAN_MessageDefinition)
 
+
+            If String.IsNullOrEmpty(deviceid) Then Return Nothing
+
+            Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
+
+            'search for all the pi points which exist for the device
+            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
+                                                        String.Format("tag = 'CAN*{0}*'", deviceid))
+
+            Dim cnt As Integer = plst.Count
+
+            For Each p As PISDK.PIPoint In plst
+
+                Try
+
+                    Dim ppName As String = p.Name
+
+                    'get the SPN number
+                    'Dim replaceStr As String = String.Format("CAN_{0}_", deviceid)
+                    'Dim pgn As Integer = ppName.Replace(replaceStr, "")
+                    Dim pgn As Integer = ppName.Split("_").Reverse()(0)
+                    Dim standardName As String = ppName.Split("_")(2)
+
+                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, standardName))
+
+                Catch ex As Exception
+
+                    Dim msg As String = ex.Message
+                End Try
+            Next
+
+            Return lst
+
+        End Function
         Public Function GetLatLongs(dt As DateTime) As KeyValuePair(Of Decimal, Decimal)
 
             Dim pipNameLat As String = String.Format("{0}_lat", Me.DeviceID)
