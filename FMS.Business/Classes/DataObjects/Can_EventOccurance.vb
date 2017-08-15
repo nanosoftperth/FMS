@@ -83,7 +83,7 @@
         End Function
         Public Shared Function GetCanbusEvenOccuranceList(DateOccured As DateTime) As List(Of DataObjects.Can_EventOccurance)
             Dim retList = (From canbusEvent In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances
-                          Where canbusEvent.OccuredDate <= DateOccured.AddDays(7) And canbusEvent.OccuredDate >= DateOccured
+                          Where canbusEvent.OccuredDate >= DateOccured.AddDays(-7) And canbusEvent.OccuredDate <= DateOccured
                           Select New DataObjects.Can_EventOccurance(canbusEvent)).ToList()
             Return retList
         End Function
