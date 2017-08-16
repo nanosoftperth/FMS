@@ -83,6 +83,8 @@ Public Class CanBusPropertyDisplay
                             Else
                                 cbd.description = messageValue.CanValues(0).Value.ToString()
                             End If
+                        Else
+                            cbd.description = ""
                         End If
                         If Not DeviceName.ToUpper.IndexOf("XL") > 0 AndAlso (cbd.label.Equals("PressureValues3") Or cbd.label.Equals("PressureValues4")) Then
                             cbd.description = "Not implemented"
@@ -128,51 +130,52 @@ Public Class CanBusPropertyDisplay
 
     Protected Sub hyperLink_Init(ByVal sender As Object, ByVal e As EventArgs)
         Dim link As ASPxHyperLink = CType(sender, ASPxHyperLink)
+        Try
+            Dim templateContainer As GridViewDataItemTemplateContainer = CType(link.NamingContainer, GridViewDataItemTemplateContainer)
 
-        Dim templateContainer As GridViewDataItemTemplateContainer = CType(link.NamingContainer, GridViewDataItemTemplateContainer)
+            Dim rVI As Integer = templateContainer.VisibleIndex
+            Dim getLabel As String = templateContainer.Grid.GetRowValues(rVI, "label").ToString()
+            Dim getDescription As String = templateContainer.Grid.GetRowValues(rVI, "description").ToString()
+            Dim desc As String = ""
 
-        Dim rVI As Integer = templateContainer.VisibleIndex
-        Dim getLabel As String = templateContainer.Grid.GetRowValues(rVI, "label").ToString()
-        Dim getDescription As String = templateContainer.Grid.GetRowValues(rVI, "description").ToString()
-        Dim desc As String = ""
+            If Not DeviceName.ToUpper.IndexOf("XL") > 0 AndAlso (getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4")) Then
+                Dim getCodeDescription As String = getDescription
+                desc = "Not implemented in the E-Maxis S, M & L series"
+            End If
 
-        If Not DeviceName.ToUpper.IndexOf("XL") > 0 AndAlso (getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4")) Then
-            Dim getCodeDescription As String = getDescription
-            desc = "Not implemented in the E-Maxis S, M & L series"
-        End If
+            If getLabel.Equals("Fault Codes") Then
+                Dim getCodeDescription As String = getDescription
+                For Each arr In getDescription.Split(",")
+                    Dim canBusFaultDef = FMS.Business.DataObjects.CanDataPoint.CanBusFaultDefinition.GetFaultCodeList()
+                    Dim canDescription = canBusFaultDef.Where(Function(canDef) canDef.Key.Equals(arr)).ToList()
+                    If Not canDescription.Count.Equals(0) Then
+                        For Each arr2 In canDescription
+                            desc &= arr2.Key + " = " + arr2.Value.Split(",")(1) + ","
+                        Next
+                    End If
+                Next
 
-        If getLabel.Equals("Fault Codes") Then
-            Dim getCodeDescription As String = getDescription
-            For Each arr In getDescription.Split(",")
-                Dim canBusFaultDef = FMS.Business.DataObjects.CanDataPoint.CanBusFaultDefinition.GetFaultCodeList()
-                Dim canDescription = canBusFaultDef.Where(Function(canDef) canDef.Key.Equals(arr)).ToList()
-                If Not canDescription.Count.Equals(0) Then
-                    For Each arr2 In canDescription
-                        desc &= arr2.Key + " = " + arr2.Value.Split(",")(1) + ","
-                    Next
+            End If
+
+            Dim contentUrl As String = String.Format("{0}", desc)
+
+            link.NavigateUrl = "javascript:void(0);"
+            link.Text = String.Format(getDescription)
+            If Not DeviceName.ToUpper.IndexOf("XL") > 0 Then
+                If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
+                    pcLogin2.HeaderText = "Pressure Values Information"
+                    link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnPressureValuesClick('{0}'); }}", contentUrl)
+                Else
+                    pcLogin.HeaderText = "Fault Code Information"
+                    link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
                 End If
-            Next
-
-        End If
-
-        Dim contentUrl As String = String.Format("{0}", desc)
-
-        link.NavigateUrl = "javascript:void(0);"
-        link.Text = String.Format(getDescription)
-        If Not DeviceName.ToUpper.IndexOf("XL") > 0 Then
-            If getLabel.Equals("PressureValues3") Or getLabel.Equals("PressureValues4") Then
-                pcLogin2.HeaderText = "Pressure Values Information"
-                link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnPressureValuesClick('{0}'); }}", contentUrl)
             Else
                 pcLogin.HeaderText = "Fault Code Information"
                 link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
             End If
-        Else
-            pcLogin.HeaderText = "Fault Code Information"
-            link.ClientSideEvents.Click = String.Format("function(s, e) {{ OnFaultCodesClick('{0}'); }}", contentUrl)
-        End If
 
-
+        Catch ex As Exception
+        End Try
     End Sub
 
     Protected Sub grid_HtmlDataCellPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewTableDataCellEventArgs) Handles grid.HtmlDataCellPrepared
