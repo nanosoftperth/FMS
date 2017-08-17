@@ -4,6 +4,7 @@
         Public Property CAN_EventOccuranceID As System.Guid
         Public Property CAN_EventDefinitionID As System.Guid
         Public Property OccuredDate As Date
+        Public Property FinishedDate As Date
         Public Property TriggerCondition As String
         Public Property EventType As String
         Public Property StartTime As Date
@@ -18,6 +19,7 @@
                 .CAN_EventDefinitionID = eventOccurance.CAN_EventDefinitionID
                 .TriggerCondition = eventOccurance.TriggerCondition
                 .OccuredDate = eventOccurance.OccuredDate
+                .FinishedDate = eventOccurance.FinishedDate
             End With
             SingletonAccess.FMSDataContextContignous.CAN_EventOccurances.InsertOnSubmit(canEventOccurance)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -30,6 +32,7 @@
                 .CAN_EventDefinitionID = eventOccurance.CAN_EventDefinitionID
                 .TriggerCondition = eventOccurance.TriggerCondition
                 .OccuredDate = eventOccurance.OccuredDate
+                .FinishedDate = eventOccurance.FinishedDate
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -49,35 +52,33 @@
             End If
 
             Dim objGetCanEventOccurance = (From eventOcc In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances
-                                            Join eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions On
-                                            eventDef.CAN_EventDefinitionID Equals eventOcc.CAN_EventDefinitionID
-                                            Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
-                                            messageDef.Standard Equals eventDef.Standard And messageDef.PGN Equals eventDef.PGN And messageDef.SPN Equals eventDef.SPN
-                                            Where eventDef.Standard.Contains(SearchParam) Or messageDef.Parameter_Group_Label.Contains(SearchParam) Or _
-                                            eventDef.TriggerConditionText.Contains(SearchParam) Or eventDef.TriggerConditoinQualifier.Contains(SearchParam)
-                                            Group eventDef, eventOcc, messageDef By eventDef.CAN_EventDefinitionID Into g = Group
-                                            Select New DataObjects.Can_EventOccurance() With {.EventType = g.Min(Function(x) x.eventDef.VehicleID.Trim() & " | " & _
-                                                                                                                    x.messageDef.Standard & " - " & _
-                                                                                                                    x.messageDef.Parameter_Group_Label & " " & _
-                                                                                                                    x.eventDef.TriggerConditoinQualifier.Trim() & " " & _
-                                                                                                                    x.eventDef.TriggerConditionText.Trim()), _
-                                                        .StartTime = g.Min(Function(y) y.eventOcc.OccuredDate), .EndTime = g.Max(Function(z) z.eventOcc.OccuredDate)}).ToList()
+                                           Join eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions On
+                                           eventDef.CAN_EventDefinitionID Equals eventOcc.CAN_EventDefinitionID
+                                           Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
+                                           messageDef.Standard Equals eventDef.Standard And messageDef.PGN Equals eventDef.PGN And messageDef.SPN Equals eventDef.SPN
+                                           Where eventDef.Standard.Contains(SearchParam) Or messageDef.Parameter_Group_Label.Contains(SearchParam) Or _
+                                           eventDef.TriggerConditionText.Contains(SearchParam) Or eventDef.TriggerConditoinQualifier.Contains(SearchParam)
+                                           Select New DataObjects.Can_EventOccurance() With {.EventType = eventDef.VehicleID.Trim() & " | " & _
+                                                                                                            messageDef.Standard & " - " & _
+                                                                                                            messageDef.Parameter_Group_Label & " " & _
+                                                                                                            eventDef.TriggerConditoinQualifier.Trim() & " " & _
+                                                                                                            eventDef.TriggerConditionText.Trim(), _
+                                                       .StartTime = eventOcc.OccuredDate, .EndTime = eventOcc.FinishedDate}).ToList()
 
             Return objGetCanEventOccurance
         End Function
-        Public Shared Function GetCanEventOccuranceList() As List(Of DataObjects.Can_EventOccurance)
+        Public Shared Function GetCanEventOccuranceList() As List(Of DataObjects.Can_EventOccurance)            
             Dim objGetCanEventOccurance = (From eventOcc In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances
-                                            Join eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions On
-                                            eventDef.CAN_EventDefinitionID Equals eventOcc.CAN_EventDefinitionID
-                                            Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
-                                            messageDef.Standard Equals eventDef.Standard And messageDef.PGN Equals eventDef.PGN And messageDef.SPN Equals eventDef.SPN
-                                            Group eventDef, eventOcc, messageDef By eventDef.CAN_EventDefinitionID Into g = Group
-                                            Select New DataObjects.Can_EventOccurance() With {.EventType = g.Min(Function(x) x.eventDef.VehicleID.Trim() & " | " & _
-                                                                                                                    x.messageDef.Standard & " - " & _
-                                                                                                                    x.messageDef.Parameter_Group_Label & " " & _
-                                                                                                                    x.eventDef.TriggerConditoinQualifier.Trim() & " " & _
-                                                                                                                    x.eventDef.TriggerConditionText.Trim()), _
-                                                        .StartTime = g.Min(Function(y) y.eventOcc.OccuredDate), .EndTime = g.Max(Function(z) z.eventOcc.OccuredDate)}).ToList()
+                                                        Join eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions On
+                                                        eventDef.CAN_EventDefinitionID Equals eventOcc.CAN_EventDefinitionID
+                                                        Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
+                                                        messageDef.Standard Equals eventDef.Standard And messageDef.PGN Equals eventDef.PGN And messageDef.SPN Equals eventDef.SPN
+                                                        Select New DataObjects.Can_EventOccurance() With {.EventType = eventDef.VehicleID.Trim() & " | " & _
+                                                                                                                                messageDef.Standard & " - " & _
+                                                                                                                                messageDef.Parameter_Group_Label & " " & _
+                                                                                                                                eventDef.TriggerConditoinQualifier.Trim() & " " & _
+                                                                                                                                eventDef.TriggerConditionText.Trim(), _
+                                                                    .StartTime = eventOcc.OccuredDate, .EndTime = eventOcc.FinishedDate}).ToList()
 
             Return objGetCanEventOccurance
         End Function
@@ -86,6 +87,12 @@
                           Where canbusEvent.OccuredDate >= DateOccured.AddDays(-7) And canbusEvent.OccuredDate <= DateOccured
                           Select New DataObjects.Can_EventOccurance(canbusEvent)).ToList()
             Return retList
+        End Function
+        Public Shared Function GetEventOccuranceByOccuranceId(OccuranceId As Guid) As DataObjects.Can_EventOccurance
+            Dim retValue = From canbusEvent In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances
+                           Where canbusEvent.CAN_EventOccuranceID.Equals(OccuranceId)
+                           Select New DataObjects.Can_EventOccurance(canbusEvent)
+            Return retValue
         End Function
 #End Region
 
@@ -98,6 +105,7 @@
                 CAN_EventDefinitionID = .CAN_EventDefinitionID
                 CAN_EventOccuranceID = .CAN_EventOccuranceID
                 OccuredDate = .OccuredDate
+                FinishedDate = .FinishedDate
                 TriggerCondition = .TriggerCondition
             End With
         End Sub

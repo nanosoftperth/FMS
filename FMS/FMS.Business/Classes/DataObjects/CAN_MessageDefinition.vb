@@ -140,6 +140,26 @@ Namespace DataObjects
             Return retobj
 
         End Function
+        Public Shared Function GetForSPNandPGNandStandard(spn As Integer, standard As String, pgn As Integer) As Business.DataObjects.CAN_MessageDefinition
+
+            Dim retobj As DataObjects.CAN_MessageDefinition
+
+            With New LINQtoSQLClassesDataContext
+
+                .SubmitChanges()
+
+
+                retobj = (From x In .CAN_MessageDefinitions
+                      Where x.SPN.HasValue AndAlso x.SPN = spn AndAlso x.Standard = standard AndAlso x.PGN = pgn
+                      Select New DataObjects.CAN_MessageDefinition(x)).FirstOrDefault
+
+                .Dispose()
+
+            End With
+
+            Return retobj
+
+        End Function
 
         Public Shared Function GetAll() As List(Of Business.DataObjects.CAN_MessageDefinition)
 

@@ -110,6 +110,18 @@
                             Select New DataObjects.Can_EventDefinition(eDef)).ToList()
             Return EventDef
         End Function
+        Public Shared Function GetAllCanEventDefinition() As List(Of DataObjects.Can_EventDefinition)
+            Dim CanEventDefinition = (From canEvent In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions
+                                      Where canEvent.deleted.Equals(False)
+                                     Select New DataObjects.Can_EventDefinition() With {.VehicleID = canEvent.VehicleID}).Distinct().ToList()
+            Return CanEventDefinition
+        End Function
+        Public Shared Function GetCanEventDefinitionByEventDefinitionId(EventDefinitionID As Guid) As List(Of DataObjects.Can_EventDefinition)
+            Dim CanEventDefinition = (From canEvent In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions
+                                      Where canEvent.deleted.Equals(False) And canEvent.CAN_EventDefinitionID.Equals(EventDefinitionID)
+                                     Select New DataObjects.Can_EventDefinition(canEvent)).Distinct().ToList()
+            Return CanEventDefinition
+        End Function
 #End Region
 
 #Region "Constructors"
