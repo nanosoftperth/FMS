@@ -170,6 +170,7 @@
 #Region "Non Static Method(s)"
 
         Public Function GetLCDHour(deviceID As String) As String
+            Dim retobj As New CanDataPoint
             'Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(SPN, vehicleID, standard, sd, ed)
             Dim vehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID)
             'Dim msgdef = DataObjects.Device.GetCANMessageDefinitions(deviceID)
@@ -182,6 +183,10 @@
             'Dim sd = String.Format("{0:dd/MM/yyyy}", Now)
             'Dim ed = String.Format("{0:dd/MM/yyyy}", Now)
             Dim hrctrSPN = 13
+
+            'get the MessageDefinition
+            retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(hrctrSPN, strStandard)
+
 
             '----- Sample
             ' vehicleID     = RIO E-maxi L
@@ -208,6 +213,7 @@
                 Dim oRawValue = oRaw.RawValue
                 Dim oValue = oRaw.Value
 
+                retobj.CanValues.CalculateValues(hrctrSPN, retobj.MessageDefinition)
 
             End If
 
