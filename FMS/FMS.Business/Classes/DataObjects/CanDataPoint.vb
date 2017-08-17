@@ -502,7 +502,7 @@
                     Dim indx As Integer = 0
                     Dim runningtotal As Double = 0
 
-                    For i As Integer = msg_def.pos_start - 1 To msg_def.pos_end - 1
+                    For i As Integer = msg_def.pos_end - 1 To msg_def.pos_start - 1
 
                         runningtotal += CInt(b(i)) * Math.Pow(256, indx)
                         indx += 1
