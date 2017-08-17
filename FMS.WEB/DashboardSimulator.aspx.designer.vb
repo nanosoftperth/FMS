@@ -23,6 +23,24 @@ Partial Public Class DashboardSimulator
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
+    '''lblDevID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDevID As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDevID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDevID As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblParking control.
     '''</summary>
     '''<remarks>
@@ -183,6 +201,15 @@ Partial Public Class DashboardSimulator
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFaultCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnGetDataFromAPI control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnGetDataFromAPI As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnSave control.
