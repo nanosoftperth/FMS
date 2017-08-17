@@ -215,6 +215,9 @@
 
                 retobj.CanValues.CalculateValues(hrctrSPN, retobj.MessageDefinition)
 
+
+                Dim objCanValues = retobj
+
             End If
 
             Return "80"
