@@ -62,14 +62,30 @@ Namespace Controllers
         ''' <param name="DashDeviceID">The device Id</param>
         ''' <returns>List of dashboard values</returns>
         <HttpGet>
-        Public Function GetDashboardData(DashDeviceID As String) As List(Of DashboardValues)
+        Public Function GetDashboardData(DashDeviceID As String) As List(Of DashboardValue)
             'Public Function GetDashboardData(DashDeviceID As String) As List(Of CanValueMessageDefinition)
 
-            Return FMS.Business.DataObjects.DashboardValues.GetDataForDashboard(DashDeviceID)
+            Return FMS.Business.DataObjects.DashboardValue.GetDataForDashboard(DashDeviceID)
+            'Return FMS.Business.DataObjects
 
         End Function
 
-        
+
+        ' GET api/vehicles/GetDashboardData/5
+        ''' <summary>
+        ''' Get available CAN tags by deviceID for dashboard
+        ''' </summary>
+        ''' <param name="simdevID">The device Id</param>
+        ''' <returns>List of dashboard values</returns>
+        <HttpGet>
+        Public Function GetDashboardDataForSimulator(simdevID As String) As Boolean
+            'Public Function GetDashboardData(DashDeviceID As String) As List(Of CanValueMessageDefinition)
+
+            Return FMS.Business.DataObjects.DashboardValue.GetDashboardData(simdevID)
+
+        End Function
+
+
         'Public Function GetDashboardData(DashDeviceID As String) As List(Of CanValueMessageDefinition)
 
         '    Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashDeviceID).GetAvailableCANTagsValue()
