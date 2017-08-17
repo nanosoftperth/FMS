@@ -1,4 +1,9 @@
 ﻿Imports FMS.Business.DataObjects
+Imports System.Net.Http
+Imports System.Net.Http.Headers
+Imports Newtonsoft.Json
+Imports DevExpress.Web
+Imports System.Net
 
 Public Class DashboardSimulator
     Inherits System.Web.UI.Page
@@ -71,12 +76,12 @@ Public Class DashboardSimulator
                                 "IO 12", "IO 13", "IO 14", "IO 20", "IO 30", "IO 32",
                                 "IO 33", "IO 34", "IO 35", "IO 40", "IO 41", "IO 71"}
 
-        Dim oList As List(Of DashboardValues) = New List(Of DashboardValues)
+        Dim oList As List(Of DashboardValue) = New List(Of DashboardValue)
         'Dim oListErrCat As List(Of DashboardValues.clsErrCategory) = New List(Of DashboardValues.clsErrCategory)
-        Dim oListErrCat As New List(Of DashboardValues.clsErrCategory)()
+        Dim oListErrCat As New List(Of DashboardValue.clsErrCategory)()
 
-        Dim ListRow = New DashboardValues
-        Dim rowErrCat = New DashboardValues.clsErrCategory
+        Dim ListRow = New DashboardValue
+        Dim rowErrCat = New DashboardValue.clsErrCategory
 
         ListRow.Parking_Break = txtParking.Text
         ListRow.Driving = txtDriving.Text
@@ -166,7 +171,7 @@ Public Class DashboardSimulator
             'oListErrCat.Add(rowErrCat)
 
             ' Add parts to the list.
-            oListErrCat.Add(New DashboardValues.clsErrCategory() With { _
+            oListErrCat.Add(New DashboardValue.clsErrCategory() With { _
                  .Err_Category = valErrCat, _
                  .Err_Value = valErrCode _
             })
@@ -189,5 +194,26 @@ Public Class DashboardSimulator
         Dim script As String = "<script type='text/javascript'> alert('" + msg + "');</script>"
 
         ClientScript.RegisterClientScriptBlock(Me.GetType(), "AlertBox", script)
+    End Sub
+
+    Protected Sub btnGetDataFromAPI_Click(sender As Object, e As EventArgs) Handles btnGetDataFromAPI.Click
+        Dim response As HttpResponseMessage = Nothing
+        Dim client As HttpClient = New HttpClient()
+        Dim baseAddress As String = ""
+        baseAddress = "http://" + HttpContext.Current.Request.Url.Authority + "/"
+        client.BaseAddress = New Uri(baseAddress)
+        client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
+
+        Dim url = "api/vehicle/GetDashboardDataForSimulator?simdevID=" + txtDevID.Text
+        response = client.GetAsync(url).Result
+
+        If response.IsSuccessStatusCode = True Then
+            Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
+
+        End If
+
+
+
+
     End Sub
 End Class

@@ -28,13 +28,13 @@
     <div>
         <table class="tbl_style">
             <tr>
+                <td class="Label_style"><asp:Label ID="lblDevID" runat="server" Text="Device ID"></asp:Label></td>                
+                <td class="Entry_text_style"><asp:textbox id="txtDevID" runat="server" Width="300px"></asp:textbox></td>
+            </tr>  
+            <tr>
                 <td class="Label_style"><asp:Label ID="lblParking" runat="server" Text="Parking"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtParking" runat="server" Width="300px"></asp:textbox></td>
-            </tr>
-            <%--<tr>
-                <td class="Label_style"><asp:Label ID="lblSteer" runat="server" Text="Steering"></asp:Label></td>                
-                <td class="Entry_text_style"><asp:textbox id="txtSteering" runat="server" Width="300px"></asp:textbox></td>
-            </tr>--%>
+            </tr>            
             <tr>
                 <td class="Label_style"><asp:Label ID="lblDriving" runat="server" Text="Driving"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtDriving" runat="server" Width="300px"></asp:textbox></td>
@@ -42,20 +42,16 @@
             <%--<tr>
                 <td class="Label_style"><asp:Label ID="lblIFM" runat="server" Text="IFM"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtIFM" runat="server" Width="300px"></asp:textbox></td>
-            </tr>--%>
-            <%--<tr>
+            </tr>--%>            <%--<tr>
                 <td class="Label_style"><asp:Label ID="lblCAN" runat="server" Text="CAN"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtCAN" runat="server" Width="300px"></asp:textbox></td>
-            </tr>--%>
-            <%--<trtxtLCD_Speed
+            </tr>--%>            <%--<trtxtLCD_Speed
                 <td class="Label_style"><asp:Label ID="lblAlign" runat="server" Text="Alignment"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtAlign" runat="server" Width="300px"></asp:textbox></td>
-            </tr>--%>
-            <%--<tr>
+            </tr>--%>            <%--<tr>
                 <td class="Label_style"><asp:Label ID="lblWarning" runat="server" Text="Warning"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtWarning" runat="server" Width="300px"></asp:textbox></td>
-            </tr>--%>
-            <%--<tr>
+            </tr>--%>            <%--<tr>
                 <td class="Label_style"><asp:Label ID="lblStop" runat="server" Text="STOP"></asp:Label></td>                
                 <td class="Entry_text_style"><asp:textbox id="txtStop" runat="server" Width="300px"></asp:textbox></td>
             </tr>--%>
@@ -93,13 +89,13 @@
             <tr>
                 <td class="Label_style">
                     <asp:Label ID="lblLCD_FaultCode" runat="server" Text="Fault Code"></asp:Label>
-                    <%--<br />--%>
-                    <%--<asp:Label ID="lblDelimeter" runat="server" Text="(Delimeter ',' if more than one(1) fault codes)"></asp:Label>--%>
+                    <%--<br />--%>                    <%--<asp:Label ID="lblDelimeter" runat="server" Text="(Delimeter ',' if more than one(1) fault codes)"></asp:Label>--%>
                 </td>                
                 <td class="Entry_text_style"><asp:textbox id="txtFaultCode" runat="server" Width="300px"></asp:textbox></td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align:right;">
+                    <asp:Button ID="btnGetDataFromAPI" runat="server" Text="Get Data From API" />
                     <asp:Button ID="btnSave" runat="server" Text="Save" onclick="btnSave_Click"/>
                 </td>
             </tr>
