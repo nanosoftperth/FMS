@@ -73,7 +73,12 @@ Public Class CanBusPropertyDisplay
                                 Not messageValue.CanValues(0).Value.ToString().Equals("0") Then
                                 If Not messageValue.CanValues(0).Value.ToString().Equals("") Then
                                     If Not Format(messageValue.CanValues(0).Value, "##.#").ToString().Equals("") Then
-                                        cbd.description = Convert.ToDouble(Format(messageValue.CanValues(0).Value, "##.#").ToString()) & " " & messageValue.MessageDefinition.Units
+                                        Dim dblValue As Double
+                                        If Double.TryParse(messageValue.CanValues(0).Value, dblValue) Then
+                                            cbd.description = Convert.ToDouble(Format(messageValue.CanValues(0).Value, "##.#").ToString()) & " " & messageValue.MessageDefinition.Units
+                                        Else
+                                            cbd.description = messageValue.CanValues(0).Value
+                                        End If
                                     Else
                                         cbd.description = "0"
                                     End If
@@ -108,6 +113,7 @@ Public Class CanBusPropertyDisplay
                 End If
             End If
         Catch ex As Exception
+            Dim x As String = ex.Message
         End Try
 
         grid.DataBind()
