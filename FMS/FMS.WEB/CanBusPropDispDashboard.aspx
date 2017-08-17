@@ -26,7 +26,7 @@
         var reconnectctr = 0;
         var priXL = '';
         var priL = '';
-      
+        
         $(document).ready(function () {
             priDeviceID = GetParameterValues('DeviceID');
             //priVehicleName = GetParameterValues('VehicleName');
@@ -40,11 +40,6 @@
 
             var ThisDevID = getCookie('devID');
             var coockieexist = checkCookie('devID');
-            
-            //setTimeout('getDataFromServer()', 4000);
-            //setTimeout(function () {
-            //    setLCDStartUp(priVehicleName);
-            //}, 4500)
 
             if (coockieexist == false) {
                 setCookie('devID', priDeviceID, 1);
@@ -54,8 +49,8 @@
                 setTimeout(function () {
                     setLCDStartUp(priVehicleName);
                 }, 4500);
-                timeout();
-                //setTimeout('timeout()', 7000);
+                //timeout();
+                setTimeout('timeout()', 2500);
 
             }
             else
@@ -69,9 +64,8 @@
                     setTimeout(function () {
                         setLCDStartUp(priVehicleName);
                     }, 4500);
-                    timeout();
-
-                    //setTimeout('timeout()', 7000);
+                    //timeout();
+                    setTimeout('timeout()', 2500);
                     
                 }
                 else
@@ -102,6 +96,11 @@
 
         });
 
+        function setArrDev(val)
+        {
+            priListDed.push(val);
+        }
+
         function timeout() {
             setTimeout(function () {
                 // Do Something Here
@@ -109,7 +108,7 @@
                 // create a recursive loop.
                 getDataFromServer();
                 timeout();
-            }, 5000);
+            }, 2500);
         }
 
         (function() {
@@ -170,23 +169,7 @@
             //var uri = '../api/Vehicle/GetDashboardDataSim';
 
             $.getJSON(uri).done(function (data) { receivedData(data); });
-
-            //$.ajax({
-            //    url: uri,
-            //    dataType: 'jsonp',
-            //    success: function (data) {
-            //        receivedData(data);
-            //    },
-            //    error: function (xhr, status, error) {
-            //        reconnectctr = reconnectctr + 1;
-
-            //        if (reconnectctr <= 10)
-            //        {
-            //            getDataFromServer();
-            //        }
-            //    }
-            //});
-
+            
         }
 
         function receivedData(dataCache) {
@@ -306,7 +289,16 @@
                     }
                     else //will delete if there is already a return value from API
                     {
-                        setLCDline2('06:35');
+                        if (priL >= 0) {
+                            setLCDline2('80:00');
+                            
+                        }
+
+                        if (priXL >= 0) {
+
+                            setLCDline2('15:38');
+                        }
+                        
                     }
 
 

@@ -29,7 +29,7 @@ Public Class CanBusPropDispDashboard
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If IsPostBack = False Then
-            Dim oList As List(Of DashboardValues) = New List(Of DashboardValues)
+            Dim oList As List(Of DashboardValue) = New List(Of DashboardValue)
 
             oList = Session("ses_DashboardRecord")
             ConvertToJSON(oList)
@@ -50,7 +50,7 @@ Public Class CanBusPropDispDashboard
         
     End Sub
 
-    Public Sub ConvertToJSON(dashlist As List(Of DashboardValues))
+    Public Sub ConvertToJSON(dashlist As List(Of DashboardValue))
         Dim jss1 As New JavaScriptSerializer()
         Dim _myJSONstring As String = jss1.Serialize(dashlist)
         Dim strList As String = (Convert.ToString("var oDashList=") & _myJSONstring) + ";"
