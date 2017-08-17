@@ -307,6 +307,7 @@
                     If SPN = 10 Then calcMethod = AddressOf zagro500_10
                     If SPN = 11 Then calcMethod = AddressOf zagro500_11
                     If SPN = 12 Then calcMethod = AddressOf zagro500_12
+                    If SPN = 13 Then calcMethod = AddressOf zagro500_13
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
@@ -476,6 +477,13 @@
                     cv.Value = cvVal.Trim(",")
                 Catch ex As Exception
                     cv.Value = ""
+                End Try
+            End Sub
+            Public Sub zagro500_13(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Try
+                    cv.Value = GetHourCounter(cv, msg_def)
+                Catch ex As Exception
+                    cv.Value = 0
                 End Try
             End Sub
 #End Region
@@ -711,7 +719,78 @@
                 Public Property byteList As New List(Of KeyValuePair(Of Integer, String))
             End Class
 
+            Public Function GetHourCounter(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
+                Dim objValue As Object = ""
+                Try
+                    Dim byteRV() As Byte = StringToByteArray(cv.RawValue)
+                    
+                    '---- Get byte value
+                    Dim b3 = byteRV(3)
+                    Dim b2 = byteRV(2)
+                    Dim b1 = byteRV(1)
+                    Dim b0 = byteRV(0)
+
+                    '---- Convert byte to Binary
+                    Dim binB3 = IIf(ConvertDecToBinary(b3).IndexOf("1") > -1, ConvertDecToBinary(b3), "")
+                    Dim binB2 = IIf(ConvertDecToBinary(b2).IndexOf("1") > -1, ConvertDecToBinary(b2), "")
+                    Dim binB1 = IIf(ConvertDecToBinary(b1).IndexOf("1") > -1, ConvertDecToBinary(b1), "")
+                    Dim binB0 = IIf(ConvertDecToBinary(b0).IndexOf("1") > -1, ConvertDecToBinary(b0), "")
+
+                    '---- Combine b0 to b3 to get total that will divide to 3600(60 mins * 60 secs)            
+                    Dim strBEES = String.Concat(binB0, binB1, binB2, binB3)
+                    
+                    '---- Convert binary to decimal 
+                    Dim decBEES = Convert.ToInt32(strBEES, 2)
+
+                    '---- Convert decimal to hh:mm:ss format
+                    Dim Time1 = Convert.ToDecimal(decBEES) / 3600
+                    Dim Time2 = Convert.ToDouble(Time1.ToString())
+                    Dim Time3 As DateTime = (New DateTime()).AddHours(Time2)
+
+                    objValue = Time3.ToString("h:mm:ss")
+
+
+
+                Catch ex As Exception
+                    objValue = ""
+                End Try
+                Return IIf(objValue.Equals(""), 0, objValue)
+            End Function
+
+
         End Class
+
+        Public Shared Function ConvertDecToBinary(DecByte As Integer) As String
+            Dim strDecByte = Convert.ToString(DecByte, 2)
+            Dim strValue As String = ""
+
+            Select Case strDecByte.Length
+                Case 8
+                    strValue = strDecByte
+                Case 7
+                    strValue = String.Concat("0", strDecByte)
+                Case 6
+                    strValue = String.Concat("00", strDecByte)
+                Case 5
+                    strValue = String.Concat("000", strDecByte)
+                Case 4
+                    strValue = String.Concat("0000", strDecByte)
+                Case 3
+                    strValue = String.Concat("00000", strDecByte)
+                Case 2
+                    strValue = String.Concat("000000", strDecByte)
+                Case 1
+                    strValue = String.Concat("0000000", strDecByte)
+            End Select
+
+            Return strValue
+        End Function
+
+        Public Shared Function ConvertDecToBinary(BinDec As String) As Integer
+            Dim strValue As Integer = Convert.ToInt32(BinDec, 2)
+
+            Return strValue
+        End Function
 
         Public Class CanBusFaultDefinition
             Public Shared Function GetFaultCodeList() As List(Of KeyValuePair(Of String, String))
