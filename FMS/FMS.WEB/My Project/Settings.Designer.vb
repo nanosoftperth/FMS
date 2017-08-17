@@ -104,6 +104,18 @@ Namespace My
                 Return CType(Me("debug_company_name"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Zagro125|7,Zagro500|3,Zagro50012|2,Zagro500|7,Zagro125_1|4,Zagro125|1,Zagro125|2,"& _ 
+            "Zagro125|3,Zagro125|8,Zagro125|9,Zagro125|10,Zagro125|11,Zagro500|3,Zagro500|12,"& _ 
+            "Zagro500|8,Zagro500|9,Zagro500|10,Zagro500|11,Zagro50012|2,Zagro500|7,Zagro125_1"& _ 
+            "|4,Zagro125|1,Zagro125|2,Zagro125|3")>  _
+        Public ReadOnly Property emaxi_standard_SPN_List() As String
+            Get
+                Return CType(Me("emaxi_standard_SPN_List"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

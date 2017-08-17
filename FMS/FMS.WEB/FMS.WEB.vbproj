@@ -308,6 +308,13 @@
       <DependentUpon>CanBusPropertyDisplay.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="CANBusPropertyDisplay2.aspx.designer.vb">
+      <DependentUpon>CANBusPropertyDisplay2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CANBusPropertyDisplay2.aspx.vb">
+      <DependentUpon>CANBusPropertyDisplay2.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Classes\DriverAppointmentFormClass.vb" />
     <Compile Include="Classes\DriverAppointmentFormController.vb" />
     <Compile Include="Classes\DriverAppointmentSaveCallbackCommand.vb" />
@@ -652,6 +659,13 @@
       <DependentUpon>CANData.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Test_Forms\CAN_Explorer.aspx.designer.vb">
+      <DependentUpon>CAN_Explorer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\CAN_Explorer.aspx.vb">
+      <DependentUpon>CAN_Explorer.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\CircularGeoFenceTest.aspx.designer.vb">
       <DependentUpon>CircularGeoFenceTest.aspx</DependentUpon>
     </Compile>
@@ -813,6 +827,7 @@
     <Content Include="App_Data\TopMenu.xml" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
+    <Content Include="CANBusPropertyDisplay2.aspx" />
     <Content Include="Content\Accoridan.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\contextMenu\jquery.contextMenu.css" />
@@ -1038,6 +1053,7 @@
     <Content Include="Contacts.aspx" />
     <Content Include="Test_Forms\BusinessLocationaspx.aspx" />
     <Content Include="Test_Forms\CANData.aspx" />
+    <Content Include="Test_Forms\CAN_Explorer.aspx" />
     <Content Include="Test_Forms\CircularGeoFenceTest.aspx" />
     <Content Include="Test_Forms\CSSTest.html" />
     <Content Include="Test_Forms\GeoFenceAlertAudit.aspx" />
