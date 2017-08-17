@@ -55,6 +55,17 @@ Namespace Controllers
             Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTags()
         End Function
 
+
+        Public Function GetEmaxiCANMessages(deviceID As String) As List(Of CAN_MessageDefinition)
+
+            Dim emaxiCSNMsgLst As List(Of Business.DataObjects.CAN_MessageDefinition) =
+                                    Business.DataObjects.CAN_MessageDefinition.GetAllForStandardSPNList(My.Settings.emaxi_standard_SPN_List)
+
+            Return emaxiCSNMsgLst
+
+        End Function
+
+
         ' GET api/vehicles/GetDashboardData/5
         ''' <summary>
         ''' Get available CAN tags by deviceID for dashboard
