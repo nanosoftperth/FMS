@@ -43,17 +43,17 @@ Namespace BackgroundCalculations
 
         Public Const CanbusAlertEmailContent As String = _
         "Dear {0}, " & vbNewLine & vbNewLine & _
-        "..." & _
-        "..." & vbNewLine & _
-        "..." & vbNewLine & _
+        "There has been an alarm fired for {1} to {2} " & vbNewLine & _
+        "This alarm was : {3} " & vbNewLine & _
+        "If you would like more information, please visit {4} " & vbNewLine & _
         "Thank you," & vbNewLine & vbNewLine & _
         "Nanosoft Automated Services"
-        Friend Shared Function SendAlertMail(emailList As String, companyName As String) As String
+        Friend Shared Function SendAlertMail(emailList As String, companyName As String, RecipientName As String, vehicleName As String, startTime As String, alertType As String, url As String) As String
             Dim RetValue As String = String.Empty
             Dim messageBody As String = String.Empty
             Try
                 Dim subject = String.Format("Canbus alert from {0}.nanosoft.com.au", companyName)
-                messageBody = String.Format(CanbusAlertEmailContent, companyName)
+                messageBody = String.Format(CanbusAlertEmailContent, RecipientName, vehicleName, startTime, alertType, url)
                 SendEmail(emailList, subject, messageBody)
                 RetValue = messageBody
             Catch ex As Exception

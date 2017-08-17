@@ -12,7 +12,8 @@ Namespace BackgroundCalculations
         Public Property OccuredDate As DateTime
         Public Property SubscriberList As List(Of DataObjects.Subscriber)
         Public Property MessageContent As String
-        Public Shared Function ProcesCanbusAlarms(applicationId As Guid) As Boolean
+        Public Property URL As String
+        Public Shared Function ProcesCanbusAlarms(applicationId As Guid, url As String) As Boolean
             Dim objSubscribers = DataObjects.Subscriber.GetAllforApplication(applicationId).ToList()
             Dim applicationName As String = DataObjects.Application.GetFromAppID(applicationId).ApplicationName
             Dim retVal As Boolean = False
@@ -28,6 +29,7 @@ Namespace BackgroundCalculations
                     propAlarmGenerator.OccuredDate = canOccurance.OccuredDate
                     propAlarmGenerator.SubscriberList = objSubscribers
                     propAlarmGenerator.ApplicationName = applicationName
+                    propAlarmGenerator.URL = url
                     'filter for events which require an alarm, and that alarm has not been fired yet
                     FilterEventRequireAlarm(propAlarmGenerator)
                 Next
@@ -41,10 +43,14 @@ Namespace BackgroundCalculations
             'Get GroupMembers of the list of subscriber
             Dim grpMembers As List(Of FMS.Business.GroupSubscriber) = _
                            (From x In SingletonAccess.FMSDataContextNew.GroupSubscribers).ToList
+
+
             'Get alert definition by event definition ID
             Dim objAlertDef = DataObjects.Can_AlertDefinition.GetAlertDefinitionList(alarmGen.EventDefinitionId)
             'For Each alert definition
             For Each alertDef In objAlertDef
+                Dim objEventDefinition = DataObjects.Can_EventDefinition.GetCanEventDefinitionByEventDefinitionId(alertDef.CAN_EventDefinitionID).SingleOrDefault
+                Dim messageDefinition = DataObjects.CAN_MessageDefinition.GetForSPNandPGNandStandard(objEventDefinition.SPN, objEventDefinition.Standard, objEventDefinition.PGN)                
                 'Get event occurance alert by eventoccuranceId, alertdefinitionId and occureddate
                 Dim objEventOccAlert = DataObjects.Can_EventOccuranceAlert.GetEventOccuranceAlertList(alarmGen.EventOccuranceId, alertDef.CAN_AlertDefinitionID, alarmGen.OccuredDate)
                 'If eventOccuranceId, AlertDefinitionId and Occured date does not exists in EventOccuranceAlert then it will send alert email or text
@@ -54,7 +60,7 @@ Namespace BackgroundCalculations
                     Dim memberEmail = alarmGen.SubscriberList.Where(Function(x) x.NativeID.Equals(alertDef.SubscriberNativeID)).SingleOrDefault()
                     If alertDef.SendEmail Then
                         'Send alert mail and get Email message
-                        alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmail.Email, alarmGen.ApplicationName)
+                        alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmail.Email, alarmGen.ApplicationName, memberEmail.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
                         'Create event Occurance Alert
                         CreateEventOccuranceAlert(alarmGen)
                     End If
@@ -73,7 +79,7 @@ Namespace BackgroundCalculations
                             'If send email=true then send alert email
                             If member.SendEmail Then
                                 'Get Email message
-                                Dim strMessage As String = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmailGroup.Email, alarmGen.ApplicationName)
+                                Dim strMessage As String = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmailGroup.Email, alarmGen.ApplicationName, memberEmailGroup.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
                                 alarmGen.MessageContent = strMessage
                                 'Create event Occurance Alert
                                 CreateEventOccuranceAlert(alarmGen)

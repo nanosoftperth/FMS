@@ -5,9 +5,9 @@ Namespace BackgroundCalculations
         Public Shared Function ProcessCanbusEvents(applicationId As Guid) As Boolean
             Dim retVal As Boolean = False
             Try
-                Dim applicationVehicles = DataObjects.ApplicationVehicle.GetAll(applicationId)
-                For Each vehicle In applicationVehicles 'for each vehicle 
-                    GetEachSPN(vehicle.DeviceID) 'for each SPN 
+                Dim AllCanEventDefinition = DataObjects.Can_EventDefinition.GetAllCanEventDefinition()
+                For Each canEvent In AllCanEventDefinition 'get all vehicles in can_eventdefinition
+                    GetEachSPN(DataObjects.ApplicationVehicle.GetFromName(canEvent.VehicleID, applicationId).DeviceID) 'for each SPN 
                 Next
                 retVal = True
             Catch ex As Exception
@@ -28,24 +28,13 @@ Namespace BackgroundCalculations
                 Dim getVehicleByDeviceId = DataObjects.ApplicationVehicle.GetFromDeviceID(strDeviceId)
                 If Not CanData.CanValues.Count.Equals(0) AndAlso Not lastTimeValid.ToString().Equals(CanData.CanValues(0).Time.ToString()) Then
                     'generate events from this new data
-                    GenerateEventsFromThisNewData(getVehicleByDeviceId.Name, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard, CanData.CanValues(0).Value)
+                    GenerateEventsFromThisNewData(getVehicleByDeviceId.Name, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard, CanData.CanValues(0).Value, lastTimeValid)
                     ' Save the last time that valid data was obtained for that SPN
                     SaveTheLastTimeValidData(CanData, strDeviceId, availCanTag.SPN, availCanTag.Standard)
                 End If
             Next
         End Sub
-        Private Shared Sub SaveTheLastTimeValidData(cdt As DataObjects.CanDataPoint, strDeviceId As String, intSPN As Integer, strStandard As String)
-            If Not cdt.CanValues.Count.Equals(0) Then
-                Dim cbl As New DataObjects.CanBusLogs
-                cbl.DeviceId = strDeviceId
-                cbl.PGN = cdt.MessageDefinition.PGN
-                cbl.SPN = intSPN
-                cbl.Standard = strStandard
-                cbl.DateLog = cdt.CanValues(0).Time
-                DataObjects.CanBusLogs.Create(cbl)
-            End If
-        End Sub
-        Private Shared Sub GenerateEventsFromThisNewData(vehicleId As String, pgn As Integer, spn As Integer, standard As String, canBusValue As String)
+        Private Shared Sub GenerateEventsFromThisNewData(vehicleId As String, pgn As Integer, spn As Integer, standard As String, canBusValue As String, lastTimeValid As Date)
             Dim eventDefList = DataObjects.Can_EventDefinition.GetEventDefinitionList(vehicleId, pgn, spn, standard)
             Dim dblCanValue As Double
 
@@ -53,6 +42,7 @@ Namespace BackgroundCalculations
                 Dim objCanOccurance As New DataObjects.Can_EventOccurance
                 If Not eventList.TriggerConditoinQualifier.ToUpper.Equals("LIKE") Then
                     Dim dblValue As Double
+                    objCanOccurance.OccuredDate = lastTimeValid
                     If Double.TryParse(eventList.TriggerConditionText.Trim, dblValue) AndAlso Double.TryParse(canBusValue, dblCanValue) Then
                         Select Case eventList.TriggerConditoinQualifier.Trim
                             Case "<"
@@ -106,10 +96,20 @@ Namespace BackgroundCalculations
         End Function
         Private Shared Sub SetCanOccurance(ByRef objOccurance As DataObjects.Can_EventOccurance, ByVal eventList As DataObjects.Can_EventDefinition)
             objOccurance.CAN_EventDefinitionID = eventList.CAN_EventDefinitionID
-            objOccurance.TriggerCondition = eventList.TriggerConditoinQualifier.Trim & " " & eventList.TriggerConditionText.Trim
-            objOccurance.OccuredDate = Date.Now
+            objOccurance.TriggerCondition = eventList.TriggerConditoinQualifier.Trim & " " & eventList.TriggerConditionText.Trim            
+            objOccurance.FinishedDate = Date.Now
         End Sub
-
+        Private Shared Sub SaveTheLastTimeValidData(cdt As DataObjects.CanDataPoint, strDeviceId As String, intSPN As Integer, strStandard As String)
+            If Not cdt.CanValues.Count.Equals(0) Then
+                Dim cbl As New DataObjects.CanBusLogs
+                cbl.DeviceId = strDeviceId
+                cbl.PGN = cdt.MessageDefinition.PGN
+                cbl.SPN = intSPN
+                cbl.Standard = strStandard
+                cbl.DateLog = cdt.CanValues(0).Time
+                DataObjects.CanBusLogs.Create(cbl)
+            End If
+        End Sub
 
         '1. for each vehicle 
 

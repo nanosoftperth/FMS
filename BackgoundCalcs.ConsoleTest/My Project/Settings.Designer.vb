@@ -62,6 +62,15 @@ Namespace My
                 Return CType(Me("ApprovedCalcList"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("demo.nanosoft.com.au/alarmsandevents.aspx")>  _
+        Public ReadOnly Property AlarmsAndEventsUrl() As String
+            Get
+                Return CType(Me("AlarmsAndEventsUrl"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

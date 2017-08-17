@@ -5,5 +5,8 @@
     <Setting Name="ApprovedCalcList" Type="System.String" Scope="Application">
       <Value Profile="(Default)">demo</Value>
     </Setting>
+    <Setting Name="AlarmsAndEventsUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">demo.nanosoft.com.au/alarmsandevents.aspx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
