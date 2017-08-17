@@ -53,8 +53,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+       
     <div>
-
         <dx:ASPxGridView ID="grid" Settings-ShowColumnHeaders="false" ClientInstanceName="grid" runat="server" Width="400px"
         AutoGenerateColumns="False" OnDataBinding="grid_DataBinding" Settings-UseFixedTableLayout="true" >
             <SettingsPager Visible="False" PageSize="18" >
@@ -73,7 +73,7 @@
                 <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="105">
                 </dx:GridViewDataTextColumn>
             </Columns>
-        </dx:ASPxGridView>
+        </dx:ASPxGridView>        
     </div>
         <dx:ASPxPopupControl ID="pcLogin" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin"
@@ -116,7 +116,7 @@
         <ContentStyle>
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
-    </dx:ASPxPopupControl>        
+    </dx:ASPxPopupControl>          
     </form>
 </body>
 </html>
