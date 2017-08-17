@@ -177,6 +177,37 @@ Namespace DataObjects
 
         End Function
 
+        Public Shared Function GetAllForStandardSPNList(commaSepList As String) As List(Of Business.DataObjects.CAN_MessageDefinition)
+
+            'expecting format Standard|SPN,STandard2|SPN2 etc etc
+
+            Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
+
+            'we could really move this to a stored procedure, though the performance hit i dont think is worth workign around.
+            With New LINQtoSQLClassesDataContext
+                .SubmitChanges()
+
+
+                For Each standSPN As String In commaSepList.split(",")
+
+                    Dim standard = standSPN.Split("|")(0)
+                    Dim spn = standSPN.Split("|")(1)
+
+                    Dim foundItm = (From x In .CAN_MessageDefinitions
+                                    Where x.Standard = standard AndAlso x.SPN = spn
+                                    Select New DataObjects.CAN_MessageDefinition(x)).FirstOrDefault
+
+                    If foundItm IsNot Nothing Then retobj.Add(foundItm)
+
+                Next
+
+                .Dispose()
+            End With
+
+            Return retobj
+
+        End Function
+
 
 
 
