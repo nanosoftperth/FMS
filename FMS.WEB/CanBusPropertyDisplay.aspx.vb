@@ -77,7 +77,14 @@ Public Class CanBusPropertyDisplay
                                         If Double.TryParse(messageValue.CanValues(0).Value, dblValue) Then
                                             cbd.description = Convert.ToDouble(Format(messageValue.CanValues(0).Value, "##.#").ToString()) & " " & messageValue.MessageDefinition.Units
                                         Else
-                                            cbd.description = messageValue.CanValues(0).Value
+
+                                            If messageValue.MessageDefinition.Units = "hrs" Or messageValue.MessageDefinition.Description = "Hour Counter" Then
+                                                cbd.description = messageValue.CanValues(0).Value & " " & messageValue.MessageDefinition.Units
+                                            Else
+                                                cbd.description = messageValue.CanValues(0).Value
+                                            End If
+
+
                                         End If
                                     Else
                                         cbd.description = "0"
