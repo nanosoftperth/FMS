@@ -7,7 +7,7 @@ Namespace BackgroundCalculations
             Try
                 Dim AllCanEventDefinition = DataObjects.Can_EventDefinition.GetAllCanEventDefinition()
                 For Each canEvent In AllCanEventDefinition 'get all vehicles in can_eventdefinition
-                    GetEachSPN(DataObjects.ApplicationVehicle.GetFromName(canEvent.VehicleID, applicationId).DeviceID) 'for each SPN 
+                    GetEachSPN(DataObjects.ApplicationVehicle.GetFromName(canEvent.VehicleID, applicationId).DeviceID, canEvent.VehicleID) 'for each SPN 
                 Next
                 retVal = True
             Catch ex As Exception
@@ -15,28 +15,30 @@ Namespace BackgroundCalculations
             End Try
             Return retVal
         End Function
-        Private Shared Sub GetEachSPN(strDeviceId As String)
+        Private Shared Sub GetEachSPN(strDeviceId As String, strVehicleName As String)
             Dim appVehicle As New DataObjects.ApplicationVehicle()
-            appVehicle.DeviceID = strDeviceId
+            appVehicle.DeviceID = strDeviceId            
             Dim AvailableCanTags = appVehicle.GetAvailableCANTags()
             For Each availCanTag In AvailableCanTags
                 'get the last time that valid data was obtained for that SPN
                 Dim lastTimeValid As DateTime = DataObjects.CanBusLogs.GetLastTimeValidData(strDeviceId, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard)
                 'read the new SPN data
                 Dim CanData = DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(Date.Now, lastTimeValid, availCanTag.SPN, strDeviceId, availCanTag.Standard)
-                'get vehicle by device id
-                Dim getVehicleByDeviceId = DataObjects.ApplicationVehicle.GetFromDeviceID(strDeviceId)
                 If Not CanData.CanValues.Count.Equals(0) AndAlso Not lastTimeValid.ToString().Equals(CanData.CanValues(0).Time.ToString()) Then
+                    Dim blnGeneratedEvents As Boolean = False
                     'generate events from this new data
-                    GenerateEventsFromThisNewData(getVehicleByDeviceId.Name, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard, CanData.CanValues(0).Value, lastTimeValid)
-                    ' Save the last time that valid data was obtained for that SPN
-                    SaveTheLastTimeValidData(CanData, strDeviceId, availCanTag.SPN, availCanTag.Standard)
+                    blnGeneratedEvents = GenerateEventsFromThisNewData(strVehicleName, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard, CanData.CanValues(0).Value, lastTimeValid)
+                    If blnGeneratedEvents Then
+                        ' Save the last time that valid data was obtained for that SPN
+                        SaveTheLastTimeValidData(CanData, strDeviceId, availCanTag.SPN, availCanTag.Standard)
+                    End If
                 End If
             Next
         End Sub
-        Private Shared Sub GenerateEventsFromThisNewData(vehicleId As String, pgn As Integer, spn As Integer, standard As String, canBusValue As String, lastTimeValid As Date)
+        Private Shared Function GenerateEventsFromThisNewData(vehicleId As String, pgn As Integer, spn As Integer, standard As String, canBusValue As String, lastTimeValid As Date) As Boolean
             Dim eventDefList = DataObjects.Can_EventDefinition.GetEventDefinitionList(vehicleId, pgn, spn, standard)
             Dim dblCanValue As Double
+            Dim blnRetValue As Boolean = False
 
             For Each eventList In eventDefList
                 Dim objCanOccurance As New DataObjects.Can_EventOccurance
@@ -47,58 +49,56 @@ Namespace BackgroundCalculations
                         Select Case eventList.TriggerConditoinQualifier.Trim
                             Case "<"
                                 If dblValue < dblCanValue Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             Case ">"
                                 If dblValue > dblCanValue Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             Case "<="
                                 If dblValue <= dblCanValue Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             Case ">="
                                 If dblValue >= dblCanValue Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             Case "!="
                                 If dblValue <> dblCanValue Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             Case "="
                                 If dblValue = dblCanValue Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                         End Select
                     Else
-                        Select Case eventList.TriggerConditoinQualifier.Trim
-                            Case "Like"
-                                If canBusValue.Trim().Contains(eventList.TriggerConditionText.Trim()) Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                        Select Case eventList.TriggerConditoinQualifier.ToUpper.Trim
+                            Case "LIKE"
+                                If canBusValue.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             Case "="
-                                If canBusValue.Trim().Contains(eventList.TriggerConditionText.Trim()) Then
-                                    SetCanOccurance(objCanOccurance, eventList)
+                                If canBusValue.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                         End Select
                     End If
                 End If
-                CreateCanEventOccurance(objCanOccurance)
             Next
-        End Sub
-        Private Shared Function CreateCanEventOccurance(canOccurance As DataObjects.Can_EventOccurance) As Boolean
+            Return blnRetValue
+        End Function
+        Private Shared Function SetCanOccurance(ByVal objOccurance As DataObjects.Can_EventOccurance, ByVal eventList As DataObjects.Can_EventDefinition) As Boolean
             Try
-                DataObjects.Can_EventOccurance.Create(canOccurance)
+                objOccurance.CAN_EventDefinitionID = eventList.CAN_EventDefinitionID
+                objOccurance.TriggerCondition = eventList.TriggerConditoinQualifier.Trim & " " & eventList.TriggerConditionText.Trim
+                objOccurance.FinishedDate = Date.Now
+                DataObjects.Can_EventOccurance.Create(objOccurance)
                 Return True
             Catch ex As Exception
                 Return False
             End Try
         End Function
-        Private Shared Sub SetCanOccurance(ByRef objOccurance As DataObjects.Can_EventOccurance, ByVal eventList As DataObjects.Can_EventDefinition)
-            objOccurance.CAN_EventDefinitionID = eventList.CAN_EventDefinitionID
-            objOccurance.TriggerCondition = eventList.TriggerConditoinQualifier.Trim & " " & eventList.TriggerConditionText.Trim            
-            objOccurance.FinishedDate = Date.Now
-        End Sub
         Private Shared Sub SaveTheLastTimeValidData(cdt As DataObjects.CanDataPoint, strDeviceId As String, intSPN As Integer, strStandard As String)
             If Not cdt.CanValues.Count.Equals(0) Then
                 Dim cbl As New DataObjects.CanBusLogs

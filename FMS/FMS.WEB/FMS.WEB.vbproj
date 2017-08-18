@@ -824,7 +824,9 @@
     </Content>
     <Content Include="App_Data\ReportService.mdf" />
     <Content Include="App_Data\SideMenu.xml" />
-    <Content Include="App_Data\TopMenu.xml" />
+    <Content Include="App_Data\TopMenu.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
     <Content Include="CANBusPropertyDisplay2.aspx" />
