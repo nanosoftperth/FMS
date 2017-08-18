@@ -60,8 +60,10 @@
             <SettingsPager Visible="False" PageSize="18" >
             </SettingsPager>
             <Columns>
-                <dx:GridViewDataTextColumn FieldName="spn" Visible="false" VisibleIndex="0" SortOrder="Ascending" Width="20">
+                <dx:GridViewDataTextColumn FieldName="sortNdx" Visible="false" VisibleIndex="0" SortOrder="Ascending" Width="20">
                 </dx:GridViewDataTextColumn>
+                <%--<dx:GridViewDataTextColumn FieldName="spn" Visible="false" VisibleIndex="0" SortOrder="Ascending" Width="20">
+                </dx:GridViewDataTextColumn>--%>
                 <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1" Width="97">
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn  FieldName="description" VisibleIndex="1" Width="140">
@@ -72,6 +74,18 @@
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="105">
                 </dx:GridViewDataTextColumn>
+                <%--<dx:GridViewDataTextColumn FieldName="spn" Visible="false" VisibleIndex="0" SortOrder="Ascending" Width="20">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="label" VisibleIndex="1" Width="97">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn  FieldName="description" VisibleIndex="1" Width="140">
+                    <DataItemTemplate>
+                        <dx:ASPxHyperLink ForeColor="Black" ID="hyperLink" runat="server" OnInit="hyperLink_Init">
+                        </dx:ASPxHyperLink>
+                    </DataItemTemplate>
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="dtTime" VisibleIndex="1" Width="105">
+                </dx:GridViewDataTextColumn>--%>
             </Columns>
         </dx:ASPxGridView>        
     </div>
@@ -97,7 +111,7 @@
         </ContentStyle>
     </dx:ASPxPopupControl>
         <dx:ASPxPopupControl ID="pcLogin2" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
-        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin2"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcLogin2" 
         HeaderText="Fault Code Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
            <ClientSideEvents Closing="function(s, e) {
                 window.location.reload(true);
