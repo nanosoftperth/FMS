@@ -170,58 +170,38 @@
 #Region "Non Static Method(s)"
 
         Public Function GetLCDHour(deviceID As String) As String
-            Dim retobj As New CanDataPoint
-            'Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(SPN, vehicleID, standard, sd, ed)
-            Dim vehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID)
-            'Dim msgdef = DataObjects.Device.GetCANMessageDefinitions(deviceID)
-
-            Dim strVehicleID = vehicle.Name
-            'Dim strStandard = vehicle.CAN_Protocol_Type '----> will enable once cleared on discussion why is that on table its Zagro125
-            Dim strStandard = "Zagro500"
-            Dim sd = String.Format("{0:MM/dd/yyyy}", Now.AddDays(-2))
-            Dim ed = String.Format("{0:MM/dd/yyyy}", Now.AddDays(1))
-            'Dim sd = String.Format("{0:dd/MM/yyyy}", Now)
-            'Dim ed = String.Format("{0:dd/MM/yyyy}", Now)
             Dim hrctrSPN = 13
+            Dim strStandard = "Zagro500"
 
-            'get the MessageDefinition
-            retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(hrctrSPN, strStandard)
+            Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(hrctrSPN, deviceID, strStandard)
 
+            Try
 
-            '----- Sample
-            ' vehicleID     = RIO E-maxi L
-            ' standard      = Zagro500
-            ' SPN           = 13
-            ' startdate     = 15/08/2017
-            ' enddate       = 15/08/2017
-            'demo.nanosoft.com.au/api/vehicle?vehicleID=RIO E-maxi L&standard=Zagro500&SPN=13&startdate=15/08/2017&enddate=17/08/2017
+                If IsNothing(cdp.CanValues) = False Then
+                    Dim olist As List(Of DataObjects.CanValue) = cdp.CanValues
 
-            'Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(SPN, vehicleID, standard, sd, ed)
-            Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithData(hrctrSPN, strVehicleID, strStandard, sd, ed)
+                    '---- use only to test for value while on breakpoint
+                    Dim oTime = olist(0).Time
+                    Dim oRawValue = olist(0).RawValue
+                    Dim oValue = olist(0).Value
+                    '---- end of test
 
-            'Dim JSONObj = JsonConvert.DeserializeObject(Of List(Of CanDataPoint))(cdp.ToString())
+                    Return olist(0).Value
+                Else
+                    Return ""
+                End If
 
-            'CanValue
-
-            If IsNothing(cdp.CanValues) = False Then
-                Dim olist As List(Of DataObjects.CanValue) = cdp.CanValues
-                'olist.Sort(Function(x, y) x.Time.CompareTo(y.Time))
-                'Dim oRaw1 = olist.OrderBy(Function(i) i.Time).First()
-
-                Dim oRaw = olist.OrderByDescending(Function(o) o.Time).First()
-                Dim oTime = oRaw.Time
-                Dim oRawValue = oRaw.RawValue
-                Dim oValue = oRaw.Value
-
-                retobj.CanValues.CalculateValues(hrctrSPN, retobj.MessageDefinition)
+            Catch ex As Exception
+                Return ""
+            End Try
 
 
-                Dim objCanValues = retobj
-
-            End If
-
-            Return "80"
         End Function
+
+        'Public Function GetStandardList() As list(of CAN_MessageDefinition) as DataObjects.CAN_MessageDefinition 
+
+
+
 #End Region
 
         Public Shared Function WithReturnValue(deviceID As String) As Integer
@@ -318,6 +298,8 @@
 
                         Case "Driving Mode"
                             ListRow.LCD_Driving_Mode = strValue
+                        Case "Hour Counter"
+                            ListRow.LCD_Hour = strValue
 
                         Case "Fault Codes"
                             If strValue = Nothing Then
@@ -423,7 +405,11 @@
 
         End Function
 
+        Public Class DashCANMsgDef
+            Public Property ID As String
+            Public Property Standard As String
 
+        End Class
     End Class
 
 End Namespace
