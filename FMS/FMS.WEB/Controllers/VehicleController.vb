@@ -81,6 +81,13 @@ Namespace Controllers
 
         End Function
 
+        'Public Shared Function GetCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanValue
+        <HttpGet>
+        Public Function GetCanMessageSnapshot(deviceid As String, standard As String, spn As Integer) As CanValue
+
+            Return Business.DataObjects.CanDataPoint.GetCANMessageSnapshotValue(deviceid, standard, spn)
+
+        End Function
 
         ' GET api/vehicles/GetDashboardData/5
         ''' <summary>

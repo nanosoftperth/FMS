@@ -167,8 +167,11 @@
 
         Public Shared Function GetCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanValue
 
-            Dim tagName As String = CanDataPoint.GetTagName(deviceid, standard, spn)
             Dim retObj As New CanValue
+
+            'use the message definition to figure out what the PGN is, so we can find the right tag 
+            Dim msgdef = DataObjects.CAN_MessageDefinition.GetForSPN(spn, standard)
+            Dim tagName As String = CanDataPoint.GetTagName(deviceid, standard, msgdef.PGN)
 
             Try
 
@@ -179,7 +182,7 @@
                     retObj.RawValue = .Value
                     retObj.Time = .TimeStamp.LocalDate.timezoneToClient
 
-                    Dim msgdef = DataObjects.CAN_MessageDefinition.GetForSPN(spn, standard)
+
 
                     Dim canVals As New CanValueList()
                     canVals.Add(retObj)
