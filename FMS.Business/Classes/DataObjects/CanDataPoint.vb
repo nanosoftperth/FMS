@@ -203,6 +203,58 @@
 
         End Function
 
+        Public Shared Function GetPointWithLatestDataByDeviceIdForDash(SPN As Integer, deviceID As String, _
+                                               standard As String) As DataObjects.CanDataPoint
+
+            Dim retobj As New CanDataPoint
+
+            Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID)
+
+            'get the MessageDefinition
+            retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard)
+
+            ' Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
+            Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
+                                                                                retobj.MessageDefinition.PGN)
+
+            Try
+
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
+
+                Dim startDate As Date = Date.Now.ToShortDateString
+                Dim endDate As Date = Date.Now.AddDays(1).ToShortDateString
+                Dim intCount As Integer = 1
+                'get data from pi for the time period
+                Dim pivds As PISDK.PIValues = pp.Data.RecordedValues(startDate, endDate,
+                                                                     PISDK.BoundaryTypeConstants.btInside)
+                'get the latest data from pi from current date backwards until it gets data
+                While pivds.Count = 0
+                    intCount += 1
+                    Dim eDate As Date = endDate.AddDays(-intCount).ToShortDateString
+                    Dim sDate As Date = startDate.AddDays(-intCount).ToShortDateString
+                    pivds = pp.Data.RecordedValues(sDate, eDate, PISDK.BoundaryTypeConstants.btInside)
+                End While
+
+                For Each p As PISDK.PIValue In pivds
+                    Try
+                        retobj.CanValues.Add(New CanValue With {.Time = p.TimeStamp.LocalDate,
+                                                                                .RawValue = p.Value})
+                        Exit For
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                'Calculate the actual value from the raw values
+                retobj.CanValues.CalculateValues(SPN, retobj.MessageDefinition)
+            Catch ex As Exception
+                retobj.MessageDefinition = New FMS.Business.DataObjects.CAN_MessageDefinition()
+            End Try
+
+            'get the value 
+            Return retobj
+
+        End Function
+
         Public Shared Function GetPointWithLatestDataByDeviceId(SPN As Integer, deviceID As String, _
                                                standard As String) As DataObjects.CanDataPoint
 
@@ -783,10 +835,10 @@
                     Dim b0 = byteRV(0)
 
                     '---- Convert byte to Binary
-                    Dim binB3 = IIf(ConvertDecToBinary(b3).IndexOf("1") > -1, ConvertDecToBinary(b3), "")
-                    Dim binB2 = IIf(ConvertDecToBinary(b2).IndexOf("1") > -1, ConvertDecToBinary(b2), "")
-                    Dim binB1 = IIf(ConvertDecToBinary(b1).IndexOf("1") > -1, ConvertDecToBinary(b1), "")
-                    Dim binB0 = IIf(ConvertDecToBinary(b0).IndexOf("1") > -1, ConvertDecToBinary(b0), "")
+                    Dim binB3 = IIf(ConvertDecToBinary(b3).IndexOf("1") > -1, ConvertDecToBinary(b3), "00000000")
+                    Dim binB2 = IIf(ConvertDecToBinary(b2).IndexOf("1") > -1, ConvertDecToBinary(b2), "00000000")
+                    Dim binB1 = IIf(ConvertDecToBinary(b1).IndexOf("1") > -1, ConvertDecToBinary(b1), "00000000")
+                    Dim binB0 = IIf(ConvertDecToBinary(b0).IndexOf("1") > -1, ConvertDecToBinary(b0), "00000000")
 
                     '---- Combine b0 to b3 to get total that will divide to 3600(60 mins * 60 secs)            
                     Dim strBEES = String.Concat(binB0, binB1, binB2, binB3)

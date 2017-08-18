@@ -218,6 +218,7 @@
         Public Shared Function GetDataForDashboard(deviceID As String) As List(Of DashboardValue)
             Dim oList As List(Of DashboardValue) = New List(Of DashboardValue)
             Dim oListErrCat As New List(Of DashboardValue.clsErrCategory)()
+            Dim oDash As New DashboardValue
 
             Dim vehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValue()
 
@@ -299,7 +300,8 @@
                         Case "Driving Mode"
                             ListRow.LCD_Driving_Mode = strValue
                         Case "Hour Counter"
-                            ListRow.LCD_Hour = strValue
+                            'ListRow.LCD_Hour = strValue
+                            ListRow.LCD_Hour = oDash.GetLCDHour(deviceID)
 
                         Case "Fault Codes"
                             If strValue = Nothing Then
