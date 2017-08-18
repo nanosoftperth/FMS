@@ -196,7 +196,7 @@ Namespace BackgroundCalculations
         ''' which converts emails to SMS's
         ''' </summary>
         ''' <param name="textList">a semi-colon seperated list of SMS numbers</param>       
-        Public Shared Function CanbusSendSMS(textList As String, companyName As String) As String
+        Public Shared Function CanbusSendSMS(textList As String, companyName As String, RecipientName As String, vehicleName As String, startTime As String, alertType As String, url As String) As String
 
             'format: (has to be from no-reply@nanosoft.com.au)
             '04XXXXXXXX@app.wholesalesms.com.au / send.smsbroadcast.com.au
@@ -217,9 +217,14 @@ Namespace BackgroundCalculations
             Dim messageBody As String = String.Empty
 
             Try
-                messageBody = String.Format(CanbusAlertEmailContent, companyName)
+                messageBody = String.Format(CanbusAlertEmailContent, RecipientName, vehicleName, startTime, alertType, url)
                 Dim subject = String.Format("Canbus alert from {0}.nanosoft.com.au", companyName)
-                SendEmail(textListToEmail, subject, messageBody)
+                If textListToEmail.Contains("|") Then
+                    SendEmail(textListToEmail.Split("|")(0), subject, messageBody)
+                Else
+                    SendEmail(textListToEmail, subject, messageBody)
+                End If
+
 
             Catch ex As Exception
                 Dim x As String = ex.Message

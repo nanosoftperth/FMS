@@ -44,7 +44,6 @@ Namespace BackgroundCalculations
             Dim grpMembers As List(Of FMS.Business.GroupSubscriber) = _
                            (From x In SingletonAccess.FMSDataContextNew.GroupSubscribers).ToList
 
-
             'Get alert definition by event definition ID
             Dim objAlertDef = DataObjects.Can_AlertDefinition.GetAlertDefinitionList(alarmGen.EventDefinitionId)
             'For Each alert definition
@@ -58,6 +57,7 @@ Namespace BackgroundCalculations
                     alarmGen.AlertDefinitionID = alertDef.CAN_AlertDefinitionID
                     'Get member Email Address
                     Dim memberEmail = alarmGen.SubscriberList.Where(Function(x) x.NativeID.Equals(alertDef.SubscriberNativeID)).SingleOrDefault()
+
                     If alertDef.SendEmail Then
                         'Send alert mail and get Email message
                         alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmail.Email, alarmGen.ApplicationName, memberEmail.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
@@ -65,8 +65,10 @@ Namespace BackgroundCalculations
                         CreateEventOccuranceAlert(alarmGen)
                     End If
                     If alertDef.SendText Then
-                        alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmail.Mobile, alarmGen.ApplicationName)
-                        CreateEventOccuranceAlert(alarmGen)
+                        If Not memberEmail.Mobile Is Nothing Then
+                            alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmail.Mobile, alarmGen.ApplicationName, memberEmail.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
+                            CreateEventOccuranceAlert(alarmGen)
+                        End If
                     End If
                     'Get subscriber list for the group 
                     Dim subscriberList = alarmGen.SubscriberList.Where(Function(x) x.NativeID.Equals(alertDef.SubscriberNativeID)).ToList()
@@ -85,8 +87,10 @@ Namespace BackgroundCalculations
                                 CreateEventOccuranceAlert(alarmGen)
                             End If
                             If member.SendText Then
-                                alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmailGroup.Mobile, alarmGen.ApplicationName)
-                                CreateEventOccuranceAlert(alarmGen)
+                                If Not memberEmailGroup.Mobile Is Nothing Then
+                                    alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmailGroup.Mobile, alarmGen.ApplicationName, memberEmailGroup.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
+                                    CreateEventOccuranceAlert(alarmGen)
+                                End If
                             End If
                         Next
                     Next

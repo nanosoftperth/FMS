@@ -72,30 +72,27 @@ Module Module1
         For Each o As FMS.Business.DataObjects.Application In lst.Where(Function(x) _
                                                     My.Settings.ApprovedCalcList.ToLower.Contains(x.ApplicationName.ToLower))
 
-            'LogMsg("Processing ""{0}"" at {1}", o.ApplicationName, Now.ToLongDateString)
+            LogMsg("Processing ""{0}"" at {1}", o.ApplicationName, Now.ToLongDateString)
 
-            'LogMsg("Processing GeoFence Collissions")
-            'Dim GeoFenceCollissionEarliestStartDate As Date = _
-            '    FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(o.ApplicationID)
+            LogMsg("Processing GeoFence Collissions")
+            Dim GeoFenceCollissionEarliestStartDate As Date = _
+                FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollisions(o.ApplicationID)
 
+            LogMsg("Processing Speed/Time values")
+            Dim wasSpeedtimeValsSuccess As Boolean = _
+                    FMS.Business.BackgroundCalculations.SpeedTimeCalcs.ProcessSpeedtimeVals(o.ApplicationID) ', CDate("13/07/2017"), True)
 
+            GeoFenceCollissionEarliestStartDate = Now.AddMonths(-1)
 
-            'LogMsg("Processing Speed/Time values")
-            'Dim wasSpeedtimeValsSuccess As Boolean = _
-            '        FMS.Business.BackgroundCalculations.SpeedTimeCalcs.ProcessSpeedtimeVals(o.ApplicationID) ', CDate("13/07/2017"), True)
+            LogMsg("Processing GeoFence collission alerts")
+            FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollissionAlerts(o.ApplicationID, _
+                                                                                              GeoFenceCollissionEarliestStartDate)
 
-            'GeoFenceCollissionEarliestStartDate = Now.AddMonths(-1)
-
-            'LogMsg("Processing GeoFence collission alerts")
-            'FMS.Business.BackgroundCalculations.GeoFenceCalcs.ProcessGeoFenceCollissionAlerts(o.ApplicationID, _
-            '                                                                                  GeoFenceCollissionEarliestStartDate)
-
-            'LogMsg("Processing CANBUS EVENTS")
-            'FMS.Business.BackgroundCalculations.CANBUS_EventGenerator.ProcessCanbusEvents(o.ApplicationID)
+            LogMsg("Processing CANBUS EVENTS")
+            FMS.Business.BackgroundCalculations.CANBUS_EventGenerator.ProcessCanbusEvents(o.ApplicationID)
 
             LogMsg("Processing CANBUS ALARMS")
             FMS.Business.BackgroundCalculations.CANBUS_AlarmGenerator.ProcesCanbusAlarms(o.ApplicationID, My.Settings.AlarmsAndEventsUrl)
-
 
         Next
 
