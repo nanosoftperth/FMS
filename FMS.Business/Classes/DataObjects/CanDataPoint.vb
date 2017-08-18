@@ -163,6 +163,43 @@
 
         End Function
 
+
+
+        Public Shared Function GetCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanValue
+
+            Dim tagName As String = CanDataPoint.GetTagName(deviceid, standard, spn)
+            Dim retObj As New CanValue
+
+            Try
+
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
+
+                With pp.Data.Snapshot
+
+                    retObj.RawValue = .Value
+                    retObj.Time = .TimeStamp.LocalDate.timezoneToClient
+
+                    Dim msgdef = DataObjects.CAN_MessageDefinition.GetForSPN(spn, standard)
+
+                    Dim canVals As New CanValueList()
+                    canVals.Add(retObj)
+                    canVals.CalculateValues(spn, msgdef)
+
+                    retObj = canVals.First
+
+                End With
+
+            Catch ex As Exception
+
+                retObj.Time = Now.timezoneToClient
+                retObj.value = String.Format("ERROR:{0}", ex.Message)
+
+            End Try
+
+            Return retObj
+
+        End Function
+
         Public Shared Function GetPointWithLatestDataByDeviceId(SPN As Integer, deviceID As String, _
                                                standard As String) As DataObjects.CanDataPoint
 
@@ -213,6 +250,7 @@
             Return retobj
 
         End Function
+
         Public Shared Function GetPointWithLatestDataByDeviceId(_StartDate As Date, _EndDate As Date, SPN As Integer, deviceID As String, _
                                                standard As String) As DataObjects.CanDataPoint
 
