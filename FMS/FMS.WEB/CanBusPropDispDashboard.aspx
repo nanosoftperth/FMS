@@ -281,7 +281,7 @@
 
                     if (obj[v].LCD_Speed.length > 0) {
                         setLCDline1(obj[v].LCD_Speed);
-                        setLCDline2('5:49');                        
+                        //setLCDline2('5:49');                        
                     }
 
                     if (obj[v].LCD_Hour.length > 0) {

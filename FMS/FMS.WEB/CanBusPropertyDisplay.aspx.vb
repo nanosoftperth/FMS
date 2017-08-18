@@ -43,7 +43,7 @@ Public Class CanBusPropertyDisplay
 
         Dim response As HttpResponseMessage = Nothing
         Dim intCounter As Integer = 0
-
+        
         While intCounter <= 10
             Dim url = "api/vehicle/GetCanMessageValue?deviceid=" + id
             response = client.GetAsync(url).Result
@@ -134,6 +134,44 @@ Public Class CanBusPropertyDisplay
             If canBusDef.Count.Equals(0) And Not Session("canBusDef") Is Nothing Then
                 canBusDef = Session("canBusDef")
             End If
+
+            For row As Integer = 0 To canBusDef.Count - 1
+                Select Case canBusDef(row).label
+                    Case "Speed"
+                        canBusDef(row).sortNdx = -2
+                    Case "Parking Brake"
+                        canBusDef(row).sortNdx = -1
+                    Case "Beacon Operation"
+                        canBusDef(row).sortNdx = 0
+                    Case "Horn"
+                        canBusDef(row).sortNdx = 3
+                    Case "Hour Counter"
+                        canBusDef(row).sortNdx = 4
+                    Case "Battery Voltage"
+                        canBusDef(row).sortNdx = 5
+                    Case "PressureValues1"
+                        canBusDef(row).sortNdx = 6
+                    Case "PressureValues2"
+                        canBusDef(row).sortNdx = 7
+                    Case "PressureValues3"
+                        canBusDef(row).sortNdx = 8
+                    Case "PressureValues4"
+                        canBusDef(row).sortNdx = 9
+                    Case "Driving Mode"
+                        canBusDef(row).sortNdx = 10
+                    Case "Motor Temp1"
+                        canBusDef(row).sortNdx = 11
+                    Case "Motor Temp2"
+                        canBusDef(row).sortNdx = 12
+                    Case "Motor Temp3"
+                        canBusDef(row).sortNdx = 13
+                    Case "Motor Temp4"
+                        canBusDef(row).sortNdx = 14
+                    Case "Fault Codes"
+                        canBusDef(row).sortNdx = 15
+                End Select
+            Next
+
         Catch ex As Exception
             canBusDef = Nothing
         End Try
@@ -215,4 +253,5 @@ Public Class CanBusDefinitionValues
     Public Property description As String
     Public Property dtTime As String
     Public Property spn As Integer
+    Public Property sortNdx As Integer
 End Class
