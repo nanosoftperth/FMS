@@ -166,6 +166,7 @@ Namespace DataObjects
             Dim retobj As New List(Of DataObjects.CAN_MessageDefinition)
 
             With New LINQtoSQLClassesDataContext
+
                 .SubmitChanges()
                 retobj = (From x In .CAN_MessageDefinitions
                           Select New DataObjects.CAN_MessageDefinition(x)).ToList
