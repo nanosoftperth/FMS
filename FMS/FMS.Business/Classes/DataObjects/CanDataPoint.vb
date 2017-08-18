@@ -195,7 +195,7 @@
             Catch ex As Exception
 
                 retObj.Time = Now.timezoneToClient
-                retObj.value = String.Format("ERROR:{0}", ex.Message)
+                retObj.Value = String.Format("ERROR:{0}", ex.Message)
 
             End Try
 
@@ -466,9 +466,20 @@
 
             Public Sub zagro500_3(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
                 Try
+                    'B1 – 6 = Diagonal mode road
+                    '8 = Circle mode road
+                    '10 = Rail mode
+
                     Dim i As Array = cv.RawValue.ToCharArray
                     Dim val As String = i(2).ToString + i(3).ToString
-                    cv.Value = IIf(val.Equals("06"), "Diagonal mode road", IIf(val.Equals("08"), "Circle mode road", IIf(val.Equals("10"), "rail mode", IIf(val.Equals("00"), "Undefined", "Stationary"))))
+                    cv.Value = IIf(val.Equals("06"),
+                                   "Diagonal mode road",
+                                   IIf(val.Equals("08"),
+                                       "Circle mode road",
+                                       IIf(val.Equals("10"),
+                                           "rail mode",
+                                           IIf(val.Equals("00"),
+                                               "Undefined", "Undefined"))))
                 Catch ex As Exception
                     cv.Value = "Undefined"
                 End Try
@@ -784,13 +795,18 @@
                     Dim decBEES = Convert.ToInt32(strBEES, 2)
 
                     '---- Convert decimal to hh:mm:ss format
-                    Dim Time1 = Convert.ToDecimal(decBEES) / 3600
-                    Dim Time2 = Convert.ToDouble(Time1.ToString())
-                    Dim Time3 As DateTime = (New DateTime()).AddHours(Time2)
+                    Dim sec = decBEES
+                    Dim totSec As TimeSpan = TimeSpan.FromSeconds(sec)
+                    'Dim Time1 = Convert.ToDecimal(decBEES) / 3600
+                    'Dim Time2 = Convert.ToDouble(Time1.ToString())
+                    'Dim Time3 As DateTime = (New DateTime()).AddHours(Time2)
+                    'Dim totSec1 = String.Format("{0}:{1}:{2}", _
+                    '     CInt(Math.Truncate(totSec.TotalHours)), _
+                    '     totSec.Minutes, _
+                    '     totSec.Seconds)
+                    Dim totSec1 = String.Format("{0}:{1}", CInt(Math.Truncate(totSec.TotalHours)), totSec.Minutes)
 
-                    objValue = Time3.ToString("h:mm:ss")
-
-
+                    objValue = totSec1
 
                 Catch ex As Exception
                     objValue = ""
