@@ -65,6 +65,15 @@ Namespace Controllers
 
         End Function
 
+        Public Function GetSortedEmaxiCANMessages(deviceID As String) As List(Of CAN_MessageDefinition)
+
+            Dim emaxiCSNMsgLst As List(Of Business.DataObjects.CAN_MessageDefinition) =
+                                    Business.DataObjects.CAN_MessageDefinition.GetAllForStandardSPNList(My.Settings.sorted_emaxi_standard_SPN_List)
+
+            Return emaxiCSNMsgLst
+
+        End Function
+
 
         ' GET api/vehicles/GetDashboardData/5
         ''' <summary>
@@ -86,6 +95,14 @@ Namespace Controllers
         Public Function GetCanMessageSnapshot(deviceid As String, standard As String, spn As Integer) As CanValue
 
             Return Business.DataObjects.CanDataPoint.GetCANMessageSnapshotValue(deviceid, standard, spn)
+
+        End Function
+
+        <HttpGet>
+        Public Function GetFormattedCanMessageSnapshot(_deviceid As String, _standard As String, _spn As Integer) As CanValue
+            Dim getSnapshot = Business.DataObjects.CanDataPoint.GetCANMessageSnapshotValue(_deviceid, _standard, _spn)
+
+            Return getSnapshot
 
         End Function
 

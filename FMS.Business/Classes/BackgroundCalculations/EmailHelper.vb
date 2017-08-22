@@ -43,7 +43,7 @@ Namespace BackgroundCalculations
 
         Public Const CanbusAlertEmailContent As String = _
         "Dear {0}, " & vbNewLine & vbNewLine & _
-        "There has been an alarm fired for {1} to {2} " & vbNewLine & _
+        "There has been an alarm fired for {1} on {2} " & vbNewLine & _
         "This alarm was : {3} " & vbNewLine & _
         "If you would like more information, please visit {4} " & vbNewLine & _
         "Thank you," & vbNewLine & vbNewLine & _
