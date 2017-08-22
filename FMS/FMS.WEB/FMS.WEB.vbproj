@@ -294,6 +294,13 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
+      <DependentUpon>CanBusDisplayProperty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanBusDisplayProperty.aspx.vb">
+      <DependentUpon>CanBusDisplayProperty.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="CanBusPropDispDashboard.aspx.designer.vb">
       <DependentUpon>CanBusPropDispDashboard.aspx</DependentUpon>
     </Compile>
@@ -827,6 +834,7 @@
     <Content Include="App_Data\TopMenu.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
     <Content Include="CANBusPropertyDisplay2.aspx" />

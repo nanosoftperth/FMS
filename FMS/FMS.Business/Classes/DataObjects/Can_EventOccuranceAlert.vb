@@ -58,15 +58,14 @@
                      eventOccAlert.CAN_EventOccuranceID Equals eventOcc.CAN_EventOccuranceID And eventOccAlert.CAN_AlertDefinition Equals alertDef.CAN_AlertDefinitionID
                      Join messageDef In SingletonAccess.FMSDataContextContignous.CAN_MessageDefinitions On
                      messageDef.Standard Equals eventdef.Standard And messageDef.PGN Equals eventdef.PGN And messageDef.SPN Equals eventdef.SPN
-                     Group eventdef, eventOcc, messageDef, alertDef, eventOccAlert By eventdef.CAN_EventDefinitionID Into g = Group
-                     Select New DataObjects.Can_EventOccuranceAlert() With {.AlertType = g.Min(Function(x) x.eventdef.VehicleID.Trim() & " | " & _
-                                                                                            x.messageDef.Standard & " - " & _
-                                                                                            x.messageDef.Parameter_Group_Label & " " & _
-                                                                                            x.eventdef.TriggerConditoinQualifier.Trim() & " " & _
-                                                                                            x.eventdef.TriggerConditionText.Trim() & " for time period: "), _
-                                .StartTime = g.Min(Function(y) y.eventOcc.OccuredDate), .EndTime = g.Max(Function(z) z.eventOcc.OccuredDate), _
-                                .SentDate = g.Max(Function(a) a.eventOccAlert.SentDate), .SubscriberNativeID = g.Max(Function(b) b.alertDef.SubscriberNativeID),
-                                .MessageContent = g.Max(Function(c) c.eventOccAlert.MessageContent), .TimePeriod = g.Max(Function(d) d.alertDef.TimePeriod)}).ToList()
+                     Select New DataObjects.Can_EventOccuranceAlert() With {.AlertType = eventdef.VehicleID.Trim() & " | " & _
+                                                                                            messageDef.Standard & " - " & _
+                                                                                            messageDef.Parameter_Group_Label & " " & _
+                                                                                            eventdef.TriggerConditoinQualifier.Trim() & " " & _
+                                                                                            eventdef.TriggerConditionText.Trim() & " for time period: ", _
+                                .StartTime = eventOcc.OccuredDate, .EndTime = eventOcc.FinishedDate, _
+                                .SentDate = eventOccAlert.SentDate, .SubscriberNativeID = alertDef.SubscriberNativeID,
+                                .MessageContent = eventOccAlert.MessageContent, .TimePeriod = alertDef.TimePeriod}).ToList()
             For Each OccAlert In objCanEventOccuranceAlert
                 Dim subscribers = objSubscribers.Where(Function(x) x.NativeID.Equals(OccAlert.SubscriberNativeID)).FirstOrDefault
                 If Not subscribers Is Nothing Then

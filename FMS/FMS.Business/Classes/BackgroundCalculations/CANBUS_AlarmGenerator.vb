@@ -57,16 +57,18 @@ Namespace BackgroundCalculations
                     alarmGen.AlertDefinitionID = alertDef.CAN_AlertDefinitionID
                     'Get member Email Address
                     Dim memberEmail = alarmGen.SubscriberList.Where(Function(x) x.NativeID.Equals(alertDef.SubscriberNativeID)).SingleOrDefault()
+                    Dim alertMessage As String = objEventDefinition.Standard.ToString.Trim() + " " + messageDefinition.Description.Trim() + " " + objEventDefinition.TriggerConditoinQualifier.Trim() + " " + objEventDefinition.TriggerConditionText.Trim()
+                    Dim alertTime As String = alarmGen.OccuredDate.ToString().Split(" ")(0) + " @ " + alarmGen.OccuredDate.ToString().Split(" ")(1)
 
                     If alertDef.SendEmail Then
                         'Send alert mail and get Email message
-                        alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmail.Email, alarmGen.ApplicationName, memberEmail.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
+                        alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmail.Email, alarmGen.ApplicationName, memberEmail.Name, objEventDefinition.VehicleID, alertTime, alertMessage, alarmGen.URL)
                         'Create event Occurance Alert
                         CreateEventOccuranceAlert(alarmGen)
                     End If
                     If alertDef.SendText Then
                         If Not memberEmail.Mobile Is Nothing Then
-                            alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmail.Mobile, alarmGen.ApplicationName, memberEmail.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
+                            alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmail.Mobile, alarmGen.ApplicationName, memberEmail.Name, objEventDefinition.VehicleID, alertTime, alertMessage, alarmGen.URL)
                             CreateEventOccuranceAlert(alarmGen)
                         End If
                     End If
@@ -81,14 +83,14 @@ Namespace BackgroundCalculations
                             'If send email=true then send alert email
                             If member.SendEmail Then
                                 'Get Email message
-                                Dim strMessage As String = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmailGroup.Email, alarmGen.ApplicationName, memberEmailGroup.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
+                                Dim strMessage As String = FMS.Business.BackgroundCalculations.EmailHelper.SendAlertMail(memberEmailGroup.Email, alarmGen.ApplicationName, memberEmailGroup.Name, objEventDefinition.VehicleID, alertTime, alertMessage, alarmGen.URL)
                                 alarmGen.MessageContent = strMessage
                                 'Create event Occurance Alert
                                 CreateEventOccuranceAlert(alarmGen)
                             End If
                             If member.SendText Then
                                 If Not memberEmailGroup.Mobile Is Nothing Then
-                                    alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmailGroup.Mobile, alarmGen.ApplicationName, memberEmailGroup.Name, objEventDefinition.VehicleID, alarmGen.OccuredDate, messageDefinition.Description, alarmGen.URL)
+                                    alarmGen.MessageContent = FMS.Business.BackgroundCalculations.EmailHelper.CanbusSendSMS(memberEmailGroup.Mobile, alarmGen.ApplicationName, memberEmailGroup.Name, objEventDefinition.VehicleID, alertTime, alertMessage, alarmGen.URL)
                                     CreateEventOccuranceAlert(alarmGen)
                                 End If
                             End If

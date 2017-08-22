@@ -110,7 +110,18 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("devbox2")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Zagro125|1,Zagro125|2,Zagro125|3,Zagro125|5,Zagro500|13,Zagro125|7,Zagro500|7,Zag"& _ 
+            "ro125|8,Zagro125|9,Zagro125|10,Zagro125|11,Zagro500|3,Zagro500|8,Zagro500|9,Zagr"& _ 
+            "o500|10,Zagro500|11,Zagro500|12")>  _
+        Public ReadOnly Property sorted_emaxi_standard_SPN_List() As String
+            Get
+                Return CType(Me("sorted_emaxi_standard_SPN_List"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("demo")>  _
         Public ReadOnly Property debug_company_name() As String
             Get
                 Return CType(Me("debug_company_name"),String)
