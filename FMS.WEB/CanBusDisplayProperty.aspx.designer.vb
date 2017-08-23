@@ -39,4 +39,22 @@ Partial Public Class CanBusDisplayProperty
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsCanMessages As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''faultPopup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents faultPopup As Global.DevExpress.Web.ASPxPopupControl
+
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.DevExpress.Web.ASPxPanel
 End Class

@@ -7,12 +7,19 @@
 <head runat="server">
     
     <title>CAN Value Viewer</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
 
+        table, td, th {
+            border: 1px solid #C1C5C8;
+        }
+    </style>
     <script src="Content/javascript/jquery-3.1.0.min.js"></script>    
 
     <script type="text/javascript">
 
-        var deviceid = '<%= DeviceID%>';
         var Zagro125Value = '';
         var Zagro500Value = '';
 
@@ -47,8 +54,7 @@
 
                             var standard = item.id.split('|')[0];
                             var spn = item.id.split('|')[1];
-
-                            var this_url = uri.format(deviceid, standard, spn);
+                            var this_url = uri.format($("#deviceId").val(), standard, spn);
 
                             var isLastItem = ((countOfCANVals - 1) == index);
 
@@ -63,18 +69,72 @@
         }
 
         function serverResult(data, dateItm, valItm, isLastItem, id) {
+            var dataVal = "";
             var date = new Date(data.Time);
             var dataTime = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() +
                 ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
             
+            switch (id) {
+                case "#Zagro500|8":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    valItm.text(dataVal);
+                    break;
+                case "#Zagro500|9":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    valItm.text(dataVal);
+                    break;
+                case "#Zagro500|10":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    valItm.text(dataVal);
+                    break;
+                case "#Zagro500|11":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    valItm.text(dataVal);
+                    break;
+                case "#Zagro125|1":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    valItm.text(dataVal);
+                    break;
+                case "#Zagro125|8":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    valItm.text(dataVal);
+                    break;
+                case "#Zagro125|9":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    valItm.text(dataVal);
+                    break;
+                case "#Zagro125|10":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    if (data.DeviceName.indexOf("XL")==-1) {
+                        valItm.text("").append("<a href='javascript:void(0)' onclick='OnPressureValueClick()' id='faultCodes'>Not implemented</a>");
+                    } else {
+                        valItm.text(dataVal);
+                    }
+                    break;
+                case "#Zagro125|11":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value.toFixed(1);
+                    if (data.DeviceName.indexOf("XL") == -1) {
+                        valItm.text("").append("<a href='javascript:void(0)' onclick='OnPressureValueClick()' id='faultCodes'>Not implemented</a>");
+                    } else {
+                        valItm.text(dataVal);
+                    }
+                    break;
+                case "#Zagro500|12":
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value;
+                    $("#faultDesc").val(data.ValueString);
+                    valItm.text("").append("<a href='javascript:void(0)' onclick='OnFaultCodesClick()' id='faultCodes'>" + dataVal + "</a>");
+                    break;
+                default:
+                    dataVal = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value;
+                    valItm.text(dataVal);
+            }
             dateItm.text(dataTime);
-            valItm.text((String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value);
             
             if (id == "#Zagro125|7") {
-                Zagro125Value = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value
+                Zagro125Value = (String(data.Value).indexOf("ERROR:") == 0) ? "" : dataVal;
             }
             if (id == "#Zagro500|7") {
-                Zagro500Value = (String(data.Value).indexOf("ERROR:") == 0) ? "" : data.Value
+                Zagro500Value = (String(data.Value).indexOf("ERROR:") == 0) ? "" : dataVal;
             }
 
             if (Zagro125Value == "") {
@@ -92,6 +152,34 @@
             if (isLastItem) setTimeout(loopGetVals, 1000);
         }
 
+        function OnPressureValueClick() {
+            var contentUrl = $("#faultDesc").val();
+
+            textVal = "Not implemented in the E-Maxis S, M & L series";
+            document.getElementById("pMessage").innerHTML = textVal;
+            myPopup.SetHeaderText('Pressure Values Information');
+            ShowMyPopupWindow();
+
+        }
+
+        function OnFaultCodesClick() {
+            var contentUrl = $("#faultDesc").val();
+            var textVal = "";
+            var content = contentUrl.split(',');
+            for (i = 0; i < content.length; i++) {
+                textVal += content[i] + "<br>";
+            }
+            
+            document.getElementById("pMessage").innerHTML = textVal;
+            myPopup.SetHeaderText('Fault Code Information');
+            ShowMyPopupWindow();
+
+        }
+        function ShowMyPopupWindow() {
+            myPopup.ShowAtPos(10, 10);
+            
+            myPopup.Show();
+        }
 
         $(document).ready(function () { loopGetVals(); });
 
@@ -115,7 +203,6 @@
 
                     <tr id="<%# Eval("Standard_SPN")%>" class="<%# Eval("Standard")%><%# Eval("spn")%>">
                         <td class="Description"  > <%# Eval("Description")%> </td>
-                        <%--<td class="Description"  > <%# Eval("Standard_SPN")%> </td>--%>
                         <td class="Value"  > Loading... </td>
                         <td class="Date"  > Loading... </td>
                     </tr>
@@ -134,6 +221,28 @@
             </asp:ObjectDataSource>
 
         </div>
+        <div>
+            <dx:ASPxPopupControl ID="myPopup" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+                PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="myPopup"
+                HeaderText="Fault Code Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
+                <ContentCollection>
+                    <dx:PopupControlContentControl runat="server">
+                        <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
+                            <PanelCollection>
+                                <dx:PanelContent runat="server">             
+                                    <p id="pMessage"></p>
+                                </dx:PanelContent>
+                            </PanelCollection>
+                        </dx:ASPxPanel>                
+                    </dx:PopupControlContentControl>
+                </ContentCollection>
+                <ContentStyle>
+                    <Paddings PaddingBottom="5px" />
+                </ContentStyle>
+            </dx:ASPxPopupControl>
+        </div>
+        <input type="hidden" id="deviceId"  value="<%= DeviceID%>"/>
+        <input type="hidden" id="faultDesc"  value=""/>
     </form>
 </body>
 </html>
