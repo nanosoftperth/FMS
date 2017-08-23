@@ -99,10 +99,9 @@ Namespace Controllers
         End Function
 
         <HttpGet>
-        Public Function GetFormattedCanMessageSnapshot(_deviceid As String, _standard As String, _spn As Integer) As CanValue
-            Dim getSnapshot = Business.DataObjects.CanDataPoint.GetCANMessageSnapshotValue(_deviceid, _standard, _spn)
-
-            Return getSnapshot
+        Public Function GetFormattedCanMessageSnapshot(_deviceid As String, _standard As String, _spn As Integer) As CanDataValue
+           
+            Return Business.DataObjects.CanDataPoint.GetFormattedCANMessageSnapshotValue(_deviceid, _standard, _spn)
 
         End Function
 

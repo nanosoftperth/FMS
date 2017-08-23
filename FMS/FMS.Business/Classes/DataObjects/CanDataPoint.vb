@@ -203,6 +203,52 @@
 
         End Function
 
+        Public Shared Function GetFormattedCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanDataValue
+            Dim retObj As New CanDataValue
+
+            'use the message definition to figure out what the PGN is, so we can find the right tag 
+            Dim msgdef = DataObjects.CAN_MessageDefinition.GetForSPN(spn, standard)
+            Dim tagName As String = CanDataPoint.GetTagName(deviceid, standard, msgdef.PGN)
+
+            Try
+
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
+
+                With pp.Data.Snapshot
+                    retObj.DeviceName = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceid).Name.ToString().ToUpper()
+                    retObj.RawValue = .Value
+                    retObj.Time = .TimeStamp.LocalDate.timezoneToClient
+
+                    Dim canVals As New CanValueList()
+                    canVals.Add(retObj)
+                    canVals.CalculateValues(spn, msgdef)
+
+                    If standard.Equals("Zagro500") And spn.Equals(12) Then
+                        For Each arr In canVals.First.Value.Split(",")
+                            Dim canBusFaultDef = FMS.Business.DataObjects.CanDataPoint.CanBusFaultDefinition.GetFaultCodeList()
+                            Dim canDescription = canBusFaultDef.Where(Function(canDef) canDef.Key.Equals(arr)).ToList()
+                            If Not canDescription.Count.Equals(0) Then
+                                For Each arr2 In canDescription
+                                    retObj.ValueString &= arr2.Key + " = " + arr2.Value.Split(",")(1) + ","
+                                Next
+                            End If
+                        Next
+                    Else
+                        retObj = canVals.First
+                    End If
+                End With
+
+            Catch ex As Exception
+
+                retObj.Time = Now.timezoneToClient
+                retObj.Value = String.Format("ERROR:{0}", ex.Message)
+
+            End Try
+
+            Return retObj
+
+        End Function
+
         Public Shared Function GetPointWithLatestDataByDeviceIdForDash(SPN As Integer, deviceID As String, _
                                                standard As String) As DataObjects.CanDataPoint
 
