@@ -827,7 +827,7 @@
                 Dim objValue As Object = ""
                 Try
                     Dim byteRV() As Byte = StringToByteArray(cv.RawValue)
-                    
+
                     '---- Get byte value
                     Dim b3 = byteRV(3)
                     Dim b2 = byteRV(2)
@@ -842,7 +842,7 @@
 
                     '---- Combine b0 to b3 to get total that will divide to 3600(60 mins * 60 secs)            
                     Dim strBEES = String.Concat(binB0, binB1, binB2, binB3)
-                    
+
                     '---- Convert binary to decimal 
                     Dim decBEES = Convert.ToInt32(strBEES, 2)
 
