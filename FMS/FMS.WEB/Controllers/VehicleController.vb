@@ -90,14 +90,6 @@ Namespace Controllers
 
         End Function
 
-        'Public Shared Function GetCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanValue
-        <HttpGet>
-        Public Function GetCanMessageSnapshot(deviceid As String, standard As String, spn As Integer) As CanValue
-
-            Return Business.DataObjects.CanDataPoint.GetCANMessageSnapshotValue(deviceid, standard, spn)
-
-        End Function
-
         <HttpGet>
         Public Function GetFormattedCanMessageSnapshot(_deviceid As String, _standard As String, _spn As Integer) As CanDataValue
            
@@ -112,10 +104,21 @@ Namespace Controllers
         ''' <param name="simdevID">The device Id</param>
         ''' <returns>List of dashboard values</returns>
         <HttpGet>
-        Public Function GetDashboardDataForSimulator(simdevID As String) As Boolean
+        Public Function GetDashboardDataForSimulator(simdevID As String) As List(Of DashboardValue)
             'Public Function GetDashboardData(DashDeviceID As String) As List(Of CanValueMessageDefinition)
 
-            Return FMS.Business.DataObjects.DashboardValue.GetDashboardData(simdevID)
+            Return FMS.Business.DataObjects.DashboardValue.GetDataForDashboard(simdevID)
+            'Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(simdevID)
+            'GetAvailableCANTagsValueForDash()
+            'Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(simdevID)
+
+        End Function
+
+        'Public Shared Function GetCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanValue
+        <HttpGet>
+        Public Function GetCanMessageSnapshot(deviceid As String, standard As String, spn As Integer) As CanValue
+
+            Return Business.DataObjects.CanDataPoint.GetCANMessageSnapshotValue(deviceid, standard, spn)
 
         End Function
 

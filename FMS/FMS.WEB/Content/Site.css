@@ -12,7 +12,8 @@
 }
 .custom-iw2 { 
 	/*top: 15px !important;*/
-    height:465px !Important;
+    /*height:465px !Important;*/
+    height:485px !Important;
     width:430px !Important;
 	/*left: 0px !important;*/
 	background-color: #fff;
@@ -83,7 +84,8 @@ background-color: transparent;
 }
 
 .leftarrow{
-    left:85px !Important;
+    /*left:85px !Important;*/
+    left:105px !Important;
 }
 
 .leftarrow_dash{
@@ -101,7 +103,7 @@ background-color: transparent;
 .custom-iw2>.gm-style-iw{
 
     top:0px !Important;
-    left:0px !Important;
+    left:1px !Important;
     width:428px !Important;
 }
 .custom-iw2_dash>.gm-style-iw{

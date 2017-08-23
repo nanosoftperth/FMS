@@ -2,6 +2,7 @@
 Imports System.Net.Http
 Imports System.Net.Http.Headers
 Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 Imports DevExpress.Web
 Imports System.Net
 
@@ -204,11 +205,36 @@ Public Class DashboardSimulator
         client.BaseAddress = New Uri(baseAddress)
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
 
+        'Dim url = "api/vehicle/GetDashboardDataForSimulator?simdevID=" + txtDevID.Text
         Dim url = "api/vehicle/GetDashboardDataForSimulator?simdevID=" + txtDevID.Text
         response = client.GetAsync(url).Result
 
+        
+
+
+
         If response.IsSuccessStatusCode = True Then
             Dim canMessDef As List(Of CanValueMessageDefinition) = JsonConvert.DeserializeObject(Of List(Of CanValueMessageDefinition))(response.Content.ReadAsStringAsync.Result().ToString())
+            'myWorkFlows = JsonConvert.DeserializeObject(Of List(Of WorkFlows))(jobj("Workflows"))
+
+            Dim json As String = response.Content.ReadAsStringAsync.Result().ToString()
+            Dim ser As JObject = JObject.Parse(json)
+            Dim data As List(Of JToken) = ser.Children().ToList
+            Dim output As String = ""
+
+            For Each item As JProperty In data
+                item.CreateReader()
+
+                Select Case item.Name
+                    Case "CAN_Protocol_Type"
+
+                End Select
+
+            Next
+
+
+
+            'Dim canMessDef As List(Of FMS.Business.DataObjects.ApplicationVehicle) = JsonConvert.DeserializeObject(Of List(Of FMS.Business.DataObjects.ApplicationVehicle))(strCMD)
 
         End If
 

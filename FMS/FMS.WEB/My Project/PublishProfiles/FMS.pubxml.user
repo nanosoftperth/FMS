@@ -64,10 +64,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/21/2017 19:13:48</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>08/18/2017 20:25:10</publishTime>
+      <publishTime>08/23/2017 20:26:12</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>08/18/2017 20:25:10</publishTime>
+      <publishTime>08/23/2017 20:26:12</publishTime>
     </File>
     <File Include="bin/de/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -337,19 +337,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/30/2016 14:18:19</publishTime>
     </File>
     <File Include="bin/FMS.Business.dll">
-      <publishTime>08/18/2017 20:25:02</publishTime>
+      <publishTime>08/23/2017 20:26:02</publishTime>
     </File>
     <File Include="bin/FMS.ReportLogic.dll">
-      <publishTime>08/18/2017 20:25:03</publishTime>
+      <publishTime>08/23/2017 20:26:03</publishTime>
     </File>
     <File Include="bin/FMS.ServiceAccess.dll">
-      <publishTime>08/18/2017 20:25:04</publishTime>
+      <publishTime>08/23/2017 20:26:04</publishTime>
     </File>
     <File Include="bin/FMS.WEB.dll">
-      <publishTime>08/18/2017 20:25:05</publishTime>
+      <publishTime>08/23/2017 20:26:06</publishTime>
     </File>
     <File Include="bin/FMS.WEB.xml">
-      <publishTime>08/18/2017 20:25:05</publishTime>
+      <publishTime>08/23/2017 20:26:06</publishTime>
     </File>
     <File Include="bin/ja/DevExpress.Data.v15.1.resources.dll">
       <publishTime>01/30/2016 14:18:07</publishTime>
@@ -519,8 +519,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.Http.WebHost.dll">
       <publishTime>07/21/2017 19:27:43</publishTime>
     </File>
+    <File Include="CanBusDisplayProperty.aspx">
+      <publishTime>08/23/2017 20:25:14</publishTime>
+    </File>
     <File Include="CanBusPropDispDashboard.aspx">
-      <publishTime>08/17/2017 13:23:16</publishTime>
+      <publishTime>08/23/2017 20:10:11</publishTime>
     </File>
     <File Include="CanBusPropertyDisplay.aspx">
       <publishTime>08/18/2017 13:43:34</publishTime>
@@ -1195,7 +1198,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/21/2017 19:13:50</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap.js">
-      <publishTime>08/11/2017 10:47:55</publishTime>
+      <publishTime>08/22/2017 19:46:45</publishTime>
     </File>
     <File Include="Content/javascript/FleetMap_ClockLogic.js">
       <publishTime>07/21/2017 19:13:50</publishTime>
@@ -1309,7 +1312,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/21/2017 19:13:51</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>08/18/2017 19:07:06</publishTime>
+      <publishTime>08/22/2017 19:57:56</publishTime>
     </File>
     <File Include="Content/windows_command_prompt.eot">
       <publishTime>07/31/2017 18:54:12</publishTime>
@@ -1429,7 +1432,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/21/2017 19:13:47</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>08/18/2017 20:25:07</publishTime>
+      <publishTime>08/23/2017 20:26:09</publishTime>
     </File>
     <File Include="ProblemPage.aspx">
       <publishTime>07/21/2017 19:13:51</publishTime>
@@ -1528,7 +1531,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/21/2017 19:13:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/18/2017 12:52:24</publishTime>
+      <publishTime>08/22/2017 20:09:15</publishTime>
     </File>
     <File Include="WebServices/Uniqco_Integrator.svc">
       <publishTime>07/21/2017 19:13:47</publishTime>

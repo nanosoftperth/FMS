@@ -103,7 +103,12 @@ Public Class CanBusPropertyDisplay
                         End If
 
                         cbd.dtTime = messageValue.CanValues(0).Time.ToString("MM/dd/yy HH:mm:ss")
-                        canBusDef.Add(cbd)
+
+                        If Not cbd.label = "LED" Or Not cbd.label = "Stop" Then '---> filter not to display LED entry on NTD
+                            canBusDef.Add(cbd)
+                        End If
+
+
                     End If
                 Next
 
@@ -169,6 +174,10 @@ Public Class CanBusPropertyDisplay
                         canBusDef(row).sortNdx = 14
                     Case "Fault Codes"
                         canBusDef(row).sortNdx = 15
+                    Case "LED"
+                        canBusDef(row).sortNdx = 16
+                    Case "Stop"
+                        canBusDef(row).sortNdx = 17
                 End Select
             Next
 

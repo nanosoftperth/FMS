@@ -73,7 +73,12 @@
                     //getDataFromServer();
                     $('#iLCD').removeClass('imgLCD');
                     $('#iLCD').addClass('pnlimgHide');
-                    setLCDStartUp(priVehicleName);
+                    //setLCDStartUp(priVehicleName);
+                    //setLCDNoStartUp(priVehicleName)
+                    //$('#div_LCD').removeClass('LCDCont_Hide')
+                    //$('#div_LCD').addClass('div_LCDCont')
+                    //$('#spanLCDTitle').text(priVehicleName.replace(/%20/g, " "));
+                    getDataFromServer();
                     timeout();
                     //setTimeout('timeout()', 2500);
                 }
@@ -185,6 +190,14 @@
                 
             }
             
+            var ThisDevID = getCookie('devID');
+
+            if (priDeviceID == ThisDevID)
+            {
+                $('#div_LCD').removeClass('LCDCont_Hide')
+                $('#div_LCD').addClass('div_LCDCont')
+                $('#spanLCDTitle').text(priVehicleName.replace(/%20/g, " "));
+            }
 
             //for (var i = 0; i < oDashList.length; i++) {
             //    var t1 = oDashList[i];
@@ -218,14 +231,16 @@
                     }
 
                     if (obj[v].Steering.length > 0) {
-                        alert('Inside steering');
+                        //alert('Inside steering');
+                        SetToolTipPerStatus('.div_steer', 'Check Steering');
                         SetStatus('Steer', 'Err');
                         setLCDErrCat(obj[v].Steering, 'Steering');
                     }
 
                     if (obj[v].Driving.length > 0) {
                        // alert('Inside OBJ');
-                        SetToolTipPerStatus('.div_drive', 'Drive : ' + obj[v].Driving);
+                        //SetToolTipPerStatus('.div_drive', 'Drive : ' + obj[v].Driving);
+                        SetToolTipPerStatus('.div_drive', 'Check Driving');
                         SetStatus('Drive', 'Err');
                     }
 
@@ -249,7 +264,9 @@
                     }
 
                     if (obj[v].AlignmentControl.length > 0) {
-                        SetToolTipPerStatus('.div_align', 'Alignment : ' + obj[v].AlignmentControl);
+                        //SetToolTipPerStatus('.div_align', 'Alignment : ' + obj[v].AlignmentControl);
+                        SetToolTipPerStatus('.div_align', 'Check Alignment');
+
                         SetStatus('Align', 'Err');
                     }
 
@@ -258,8 +275,14 @@
                         SetStatus('Warning', 'Err');
                     }
 
+                    if (obj[v].StopControl.length > 0) {
+                        SetToolTipPerStatus('.div_stop', 'Stop');
+                        SetStatus('Stop', obj[v].StopControl);
+                    }
+
                     if (obj[v].SpeedControl.length > 0) {
-                        SetToolTipPerStatus('.div_speed', 'Speed : ' + obj[v].SpeedControl);
+                        //SetToolTipPerStatus('.div_speed', 'Speed : ' + obj[v].SpeedControl);
+                        SetToolTipPerStatus('.div_speed', 'Check Speed');
                         SetStatus('Speed', 'Err');
 
                     }
@@ -290,13 +313,13 @@
                     else //will delete if there is already a return value from API
                     {
                         if (priL >= 0) {
-                            setLCDline2('80:00');
+                            setLCDline2('00:00');
                             
                         }
 
                         if (priXL >= 0) {
 
-                            setLCDline2('15:38');
+                            setLCDline2('00:00');
                         }
                         
                     }
@@ -363,33 +386,6 @@
                     }
                     
 
-                    
-
-                    //if (obj[v].LCD_Safety.length > 0) {
-                    //    setLCDErrCat(obj[v].LCD_Safety, 'SAFE');
-                    //}
-
-                    //if (obj[v].LCD_DriveM1.length > 0) {
-                    //    setLCDErrCat(obj[v].LCD_DriveM1, 'DriveM1');
-                    //}
-
-                    //if (obj[v].LCD_DriveM2.length > 0) {
-                    //    setLCDErrCat(obj[v].LCD_DriveM2, 'DriveM2');
-                    //}
-
-                    //if (obj[v].LCD_DriveM3.length > 0) {
-                    //    setLCDErrCat(obj[v].LCD_DriveM3, 'DriveM3');
-                    //}
-
-                    //if (obj[v].LCD_DriveM4.length > 0) {
-                    //    setLCDErrCat(obj[v].LCD_DriveM4, 'DriveM4');
-                    //}
-
-                    //if (obj[v].LCD_IO.length > 0) {
-                    //    setLCDErrCat(obj[v].LCD_IO, 'InOut');
-                    //}
-                    
-                    
                 }
 
             }
@@ -406,11 +402,11 @@
             switch (indicatorDescription) {
                 case 'Parking Brake':
                     if (indicatorStatus == 'Parking Brake ON') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#ibreak_blink', '#ibreak');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#ibreak_blink', '#ibreak');
                     }
 
@@ -418,11 +414,11 @@
 
                 case 'Steer':
                     if (indicatorStatus == 'Err') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#isteer_blink', '#isteer');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#isteer_blink', '#isteer');
                     }
 
@@ -430,11 +426,11 @@
 
                 case 'Drive':
                     if (indicatorStatus == 'Err') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#idrive_blink', '#idrive');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#idrive_blink', '#idrive');
                     }
 
@@ -442,11 +438,11 @@
 
                 case 'IFM':
                     if (indicatorStatus == 'Err') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#iifm_blink', '#iifm');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#iifm_blink', '#iifm');
                     }
 
@@ -454,11 +450,11 @@
 
                 case 'Can':
                     if (indicatorStatus == 'Err') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#ican_blink', '#ican');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#ican_blink', '#ican');
                     }
 
@@ -466,11 +462,11 @@
 
                 case 'Align':
                     if (indicatorStatus == 'Err') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#ialign_blink', '#ialign');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#ialign_blink', '#ialign');
                     }
 
@@ -478,23 +474,34 @@
 
                 case 'Warning':
                     if (indicatorStatus == 'Err') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#iwarning_blink', '#iwarning');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#iwarning_blink', '#iwarning');
+                    }
+
+                    break;
+
+                case 'Stop':
+                    if (indicatorStatus == 'On') {
+                        setStopStatus(true);
+                        
+                    }
+                    else {
+                        setStopStatus(false);                        
                     }
 
                     break;
 
                 case 'Speed':
                     if (indicatorStatus == 'Err') {
-                        setStopStatus(true);
+                        //setStopStatus(true);
                         makeIndicatorBlink(true, '#ispeed_blink', '#ispeed');
                     }
                     else {
-                        setStopStatus(false);
+                        //setStopStatus(false);
                         makeIndicatorBlink(false, '#ispeed_blink', '#ispeed');
                     }
 
@@ -599,6 +606,22 @@
 
         }
 
+        function setLCDNoStartUp(strText) {
+            $('#div_LCD').removeClass('LCDCont_Hide')
+            $('#div_LCD').addClass('div_LCDCont')
+            $('#spanLCDTitle').text(strText.replace(/%20/g, " "));
+
+            //$('#LCDLine1').removeClass('div_LCDLine');
+            //$('#LCDLine1').addClass('div_LCDLine1_intro');
+            //$('#spanLine2').text('');
+            //$('#spanLine3').text('');
+            //$('#LCDLine4').removeClass('div_LCDLine');
+            //$('#LCDLine4').addClass('div_LCDLine4_intro');
+            //$('#spanLine1').text(' Zagro GmbH ');
+            //$('#spanLine4').text('SOFTWARE 4.05.05');
+
+        }
+
         function setLCDTitle() {
             var d = new Date();
             var month = d.getMonth() + 1;
@@ -625,87 +648,7 @@
         }
 
         function setLCDline1(val) {
-            ////var str = $('#Search').val();
-            ////if (/^[a-zA-Z0-9- ]*$/.test(str) == false) {
-            ////    alert('Your search string contains illegal characters.');
-            ////}
-
-            //var strLen = val.length;
-
-            //////alert(val + ' : ' + strLen);
-
-            //for (i = 0; i < strLen; i++) {
-            //    //alert(val.substr(i, 1));
-            //    var sVal = val.substr(i, 1);
-
-            //    //if (/^[a-z0-9\_]+$/i.test(sVal) == false) {
-            //    //    if (sVal == '-') {
-            //    //        $('#iLCD_CM_NumSign').removeClass('imgLCD_NoDisplay');
-            //    //        $('#iLCD_CM_NumSign').addClass('imgLCD_CM_display');
-            //    //    }
-            //    //    if (sVal == ':') {
-            //    //        $('#iLCD_CM_NumDel').removeClass('imgLCD_NoDisplay');
-            //    //        $('#iLCD_CM_NumDel').addClass('imgLCD_CM_display');
-            //    //    }
-            //    //}
-            //    if (sVal == '-') {
-            //        $('#iLCD_CM_NumSign').removeClass('imgLCD_NoDisplay');
-            //        $('#iLCD_CM_NumSign').addClass('imgLCD_CM_display');
-
-            //        //if (sVal == '-') {
-            //        //    $('#iLCD_CM_NumSign').removeClass('imgLCD_NoDisplay');
-            //        //    $('#iLCD_CM_NumSign').addClass('imgLCD_CM_display');
-            //        //}
-            //        //if (sVal == ':') {
-            //        //    $('#iLCD_CM_NumDel').removeClass('imgLCD_NoDisplay');
-            //        //    $('#iLCD_CM_NumDel').addClass('imgLCD_CM_display');
-            //        //}
-            //        continue;
-            //    }
-            //    else if (sVal == '.') {
-            //        $('#iLCD_CM_DecPt').removeClass('imgLCD_NoDisplay');
-            //        $('#iLCD_CM_DecPt').addClass('imgLCD_CM_display');
-            //        continue;
-
-            //    }
-            //    else {
-            //        var Num1_class = $('#iLCD_CM_1stNum').attr('class');
-            //        var Num2_class = $('#iLCD_CM_2ndNum').attr('class');
-            //        var Num3_class = $('#iLCD_CM_3rdNum').attr('class');
-            //        var Num4_class = $('#iLCD_CM_4thNum').attr('class');
-            //        var Num5_class = $('#iLCD_CM_5thNum').attr('class');
-            //        var iLCD_CM_DecPt = $('#iLCD_CM_5thNum').attr('class');
-
-            //        if (iLCD_CM_DecPt == 'imgLCD_NoDisplay')
-            //        {
-            //            if (Num1_class == 'imgLCD_NoDisplay') {
-            //                ConverValToImg('#iLCD_CM_1stNum', 'imgLCD_NoDisplay', 'imgLCD_CM_display', sVal);
-            //                continue;
-            //            }
-            //            if (Num2_class == 'imgLCD_NoDisplay') {
-            //                ConverValToImg('#iLCD_CM_2ndNum', 'imgLCD_NoDisplay', 'imgLCD_CM_display', sVal);
-            //                continue;
-            //            }
-            //            if (Num3_class == 'imgLCD_NoDisplay') {
-            //                ConverValToImg('#iLCD_CM_3rdNum', 'imgLCD_NoDisplay', 'imgLCD_CM_display', sVal);
-            //                continue;
-            //            }
-            //        }
-            //        else if (iLCD_CM_DecPt == 'imgLCD_CM_display')
-            //        {
-            //            if (Num4_class == 'imgLCD_NoDisplay') {
-            //                ConverValToImg('#iLCD_CM_4thNum', 'imgLCD_NoDisplay', 'imgLCD_CM_display', sVal);
-            //                continue;
-            //            }
-            //            if (Num5_class == 'imgLCD_NoDisplay') {
-            //                ConverValToImg('#iLCD_CM_5thNum', 'imgLCD_NoDisplay', 'imgLCD_CM_display', sVal);
-            //                continue;
-            //            }
-            //        }
-                    
-            //    }
-
-            //}
+            
             var num = Math.round10(val, -1);
 
             if (num == 0) {
@@ -875,20 +818,6 @@
             }
 
             $('#spanErrNum').text(NumCode);
-        }
-
-        function ConverValToImg(elemID, remCls, addCls, numval)
-        {
-            for (deg = 0; deg < 10; deg++)
-            {
-                if (numval == deg) {
-                    $(elemID).removeClass(remCls);
-                    $(elemID).addClass(addCls);
-
-                    $(elemID).attr('src', 'Content/Images/Dashboard/LCD/Num_' + deg.toString() + '.png');
-                    //$('#id').attr('src', 'newImage.jpg');
-                }
-            }
         }
 
         function initPlaceToolTips() {
@@ -1190,23 +1119,7 @@
                 setTimeout('blink()', 4000);
         }
 
-        //if (run_blink == true)
-        //{
-        //    alert('blink');
-        //    setTimeout('blink()', 0);
-        //    setTimeout('blink()', 1000);
-        //    setTimeout('blink()', 2000);
-        //    setTimeout('blink()', 3000);
-        //    setTimeout('blink()', 4000);
-
-        //}
-        
-        //setTimeout('getDataFromServer()', 4000);
-        //setTimeout(function () {
-        //    setLCDStartUp(priVehicleName);
-        //}, 4500)
-
-        //setTimeout('timeout()', 4000);
+       
     </script>
 
 </head>

@@ -375,7 +375,7 @@ function infoWindowCSSForCanBus(w) {
 
     // Moves the infowindow 115px to the right.
 
-    iwOuter.parent().parent().css({ left: '115px' });
+    iwOuter.parent().parent().css({ left: '150px' });
 
     iwOuter.parent().parent().css({ width: '115px' });
     // Moves the shadow of the arrow 76px to the left margin.
