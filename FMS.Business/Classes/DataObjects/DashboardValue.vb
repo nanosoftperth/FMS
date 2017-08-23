@@ -171,6 +171,73 @@
 
         Public Function GetLCDHour(deviceID As String) As String
             Dim hrctrSPN = 13
+
+            'Dim vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValueForDash()
+            'Dim strStandard = vehicle.CAN_Protocol_Type '----> will enable once standard is change on DB's applicationvehicle table
+            Dim strStandard = "Zagro500"
+
+            Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(hrctrSPN, deviceID, strStandard)
+
+            Try
+
+                If IsNothing(cdp.CanValues) = False Then
+                    Dim olist As List(Of DataObjects.CanValue) = cdp.CanValues
+
+                    '---- use only to test for value while on breakpoint
+                    Dim oTime = olist(0).Time
+                    Dim oRawValue = olist(0).RawValue
+                    Dim oValue = olist(0).Value
+                    '---- end of test
+
+                    Return olist(0).Value
+                Else
+                    Return ""
+                End If
+
+            Catch ex As Exception
+                Return ""
+            End Try
+
+
+        End Function
+
+        Public Function GetLEDValue(deviceID As String) As String
+            Dim hrctrSPN = 14
+
+            'Dim vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValueForDash()
+            'Dim strStandard = vehicle.CAN_Protocol_Type '----> will enable once standard is change on DB's applicationvehicle table
+            Dim strStandard = "Zagro500"
+
+            Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(hrctrSPN, deviceID, strStandard)
+
+            Try
+
+                If IsNothing(cdp.CanValues) = False Then
+                    Dim olist As List(Of DataObjects.CanValue) = cdp.CanValues
+
+                    '---- use only to test for value while on breakpoint
+                    Dim oTime = olist(0).Time
+                    Dim oRawValue = olist(0).RawValue
+                    Dim oValue = olist(0).Value
+                    '---- end of test
+
+                    Return olist(0).Value
+                Else
+                    Return ""
+                End If
+
+            Catch ex As Exception
+                Return ""
+            End Try
+
+
+        End Function
+
+        Public Function GetStopValue(deviceID As String) As String
+            Dim hrctrSPN = 15
+
+            'Dim vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).GetAvailableCANTagsValueForDash()
+            'Dim strStandard = vehicle.CAN_Protocol_Type '----> will enable once standard is change on DB's applicationvehicle table
             Dim strStandard = "Zagro500"
 
             Dim cdp As CanDataPoint = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(hrctrSPN, deviceID, strStandard)
@@ -251,6 +318,7 @@
                                     "IO 33", "IO 34", "IO 35", "IO 40", "IO 41", "IO 71"}
 
 
+
             If vehicle.Count > 0 Then
                 Dim ListRow = New DashboardValue
                 Dim rowErrCat = New DashboardValue.clsErrCategory
@@ -274,16 +342,82 @@
                     End If
 
                     Select Case strDesc
-                        Case "Parking Brake"
-                            ListRow.Parking_Break = strValue
 
-                            If strValue = "Parking Brake ON" Then
-                                ListRow.StopControl = "ON"
+                        Case "Stop"
+                            Dim StpValue = oDash.GetStopValue(deviceID)
+
+                            If StpValue = "1" Then
+                                ListRow.StopControl = "On"
                             Else
-                                If strValue = "Parking Brake OFF" Then
-                                    ListRow.StopControl = "OFF"
-                                End If
+                                ListRow.StopControl = "Off"
                             End If
+
+                        Case "LED"
+                            'B6.2   - Stop
+                            'B7.0   - Parking brake
+                            'B7.1   - Steering
+                            'B7.2   - Drive unit
+                            'B7.3   - Ifm controller
+                            'B7.4   - Can bus
+                            'B7.5   - Service
+                            'B7.6   – Warning
+                            'B7.7   - Speedlimiter
+
+                            Dim LEDValue = oDash.GetLEDValue(deviceID)
+                            Dim pos = 7
+
+                            For count = 0 To LEDValue.Length - 1
+
+                                Dim bval = LEDValue.Substring(pos, 1)
+
+                                If count = 0 And bval = "1" Then
+                                    ListRow.Parking_Break = "Parking Brake ON"
+                                ElseIf count = 0 And bval = "0" Then
+                                    ListRow.Parking_Break = "Parking Brake OFF"
+                                End If
+
+                                If count = 1 And bval = "1" Then
+                                    ListRow.Steering = "Err"
+                                End If
+
+                                If count = 2 And bval = "1" Then
+                                    ListRow.Driving = "Err"
+                                End If
+
+                                If count = 3 And bval = "1" Then
+                                    ListRow.IFMControl = "Err"
+                                End If
+
+                                If count = 4 And bval = "1" Then
+                                    ListRow.CANControl = "Err"
+                                End If
+
+                                If count = 5 And bval = "1" Then
+                                    ListRow.AlignmentControl = "Err"
+                                End If
+
+                                If count = 6 And bval = "1" Then
+                                    ListRow.WarningControl = "Err"
+                                End If
+
+                                If count = 7 And bval = "1" Then
+                                    ListRow.SpeedControl = "Err"
+                                End If
+
+                                pos = pos - 1
+
+                            Next
+
+                            'Case "Parking Brake"
+                            '    ListRow.Parking_Break = strValue
+
+                            '    If strValue = "Parking Brake ON" Then
+                            '        ListRow.StopControl = "ON"
+                            '    Else
+                            '        If strValue = "Parking Brake OFF" Then
+                            '            ListRow.StopControl = "OFF"
+                            '        End If
+                            '    End If
 
                         Case "Battery Voltage"
                             If Not strValue = Nothing Then

@@ -446,7 +446,9 @@
                     If SPN = 10 Then calcMethod = AddressOf zagro500_10
                     If SPN = 11 Then calcMethod = AddressOf zagro500_11
                     If SPN = 12 Then calcMethod = AddressOf zagro500_12
-                    If SPN = 13 Then calcMethod = AddressOf zagro500_13
+                    If SPN = 13 Then calcMethod = AddressOf zagro500_13 '----> will add a function like this to other standard once available
+                    If SPN = 14 Then calcMethod = AddressOf zagro500_14
+                    If SPN = 15 Then calcMethod = AddressOf zagro500_15
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
@@ -632,10 +634,29 @@
             Public Sub zagro500_13(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
                 Try
                     cv.Value = GetHourCounter(cv, msg_def)
+
                 Catch ex As Exception
                     cv.Value = 0
                 End Try
             End Sub
+
+            Public Sub zagro500_14(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Try
+                    cv.Value = GetLEDB7(cv, msg_def)
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
+            End Sub
+
+            Public Sub zagro500_15(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Try
+                    cv.Value = GetLEDStop(cv, msg_def)
+                Catch ex As Exception
+                    cv.Value = 0
+                End Try
+            End Sub
+
+
 #End Region
 
             Public Shared Function StringToByteArray(hex As String) As Byte()
@@ -895,13 +916,7 @@
                     '---- Convert decimal to hh:mm:ss format
                     Dim sec = decBEES
                     Dim totSec As TimeSpan = TimeSpan.FromSeconds(sec)
-                    'Dim Time1 = Convert.ToDecimal(decBEES) / 3600
-                    'Dim Time2 = Convert.ToDouble(Time1.ToString())
-                    'Dim Time3 As DateTime = (New DateTime()).AddHours(Time2)
-                    'Dim totSec1 = String.Format("{0}:{1}:{2}", _
-                    '     CInt(Math.Truncate(totSec.TotalHours)), _
-                    '     totSec.Minutes, _
-                    '     totSec.Seconds)
+                    '
                     Dim totSec1 = String.Format("{0}:{1}", CInt(Math.Truncate(totSec.TotalHours)), totSec.Minutes)
 
                     objValue = totSec1
@@ -912,8 +927,50 @@
                 Return IIf(objValue.Equals(""), 0, objValue)
             End Function
 
+            Public Function GetLEDB7(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
+                Dim objValue As Object = ""
+                Try
+                    Dim byteRV() As Byte = StringToByteArray(cv.RawValue)
+
+                    '---- Get byte value
+                    Dim b7 = byteRV(7)
+
+                    '---- Convert byte to Binary
+                    Dim binB7 = IIf(ConvertDecToBinary(b7).IndexOf("1") > -1, ConvertDecToBinary(b7), "00000000")
+
+                    objValue = binB7
+
+                Catch ex As Exception
+                    objValue = ""
+                End Try
+                Return IIf(objValue.Equals(""), 0, objValue)
+            End Function
+
+            Public Function GetLEDStop(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
+                Dim objValue As Object = ""
+                Try
+                    Dim byteRV() As Byte = StringToByteArray(cv.RawValue)
+
+                    '---- Get byte value
+                    Dim b6 = byteRV(6)
+
+                    '---- Convert byte to Binary
+                    Dim binB6 = IIf(ConvertDecToBinary(b6).IndexOf("1") > -1, ConvertDecToBinary(b6), "00000000")
+
+                    '---- Get on/off
+                    Dim bval = binB6.Substring(5, 1)
+
+                    objValue = bval
+
+                Catch ex As Exception
+                    objValue = ""
+                End Try
+                Return IIf(objValue.Equals(""), 0, objValue)
+            End Function
 
         End Class
+
+
 
         Public Shared Function ConvertDecToBinary(DecByte As Integer) As String
             Dim strDecByte = Convert.ToString(DecByte, 2)

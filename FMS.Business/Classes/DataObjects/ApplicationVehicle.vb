@@ -202,6 +202,51 @@
 
         End Function
 
+        Public Function GetAvailableCANTagsValueForDash() As List(Of DataObjects.CanValueMessageDefinition)
+
+            Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
+            Dim lstNew As New List(Of DataObjects.CanValueMessageDefinition)
+
+            'search for all the pi points which exist for the device
+            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
+                                                        String.Format("tag = 'can*{0}*'", DeviceID))
+            Dim cnt As Integer = plst.Count
+
+            For Each p As PISDK.PIPoint In plst
+
+                Try
+
+                    Dim ppname As String = p.Name
+
+                    'get the spn number
+                    'dim replacestr as string = string.format("can_{0}_", deviceid)
+                    'dim pgn as integer = ppname.replace(replacestr, "")
+                    Dim pgn As Integer = ppname.Split("_").Reverse()(0)
+                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, Me.CAN_Protocol_Type))
+
+                Catch ex As Exception
+                    Dim msg As String = ex.Message
+                End Try
+            Next
+
+            'For Each canmessdef As CAN_MessageDefinition In lst.Where(Function(x) x.Standard.ToLower.Equals("zagro125") _
+            '                                                              Or x.Standard.ToLower.Equals("zagro500") _
+            '                                                              Or x.Standard.ToLower.Equals("j1939") _
+            '                                                              Or x.Standard.ToLower.Equals("NANO1000")).Distinct().ToList()
+            For Each canmessdef As CAN_MessageDefinition In lst.Where(Function(x) x.Standard.ToLower.Equals("zagro125") _
+                                                                          Or x.Standard.ToLower.Equals("zagro500") _
+                                                                          Or x.Standard.ToLower.Equals("j1939")).Distinct().ToList()
+                Dim canValue As New CanValueMessageDefinition()
+                Dim PointWithData = FMS.Business.DataObjects.CanDataPoint.GetPointWithLatestDataByDeviceId(canmessdef.SPN, DeviceID, canmessdef.Standard)
+                canValue.MessageDefinition = canmessdef
+                canValue.CanValues = PointWithData.CanValues
+                lstNew.Add(canValue)
+            Next
+            'Use group by standard and spn to eliminate duplicate
+            Return lstNew.ToList().ToList().GroupBy(Function(xx) New With {Key xx.MessageDefinition.Standard, Key xx.MessageDefinition.PGN, Key xx.MessageDefinition.SPN}).ToList().Select(Function(xxx) xxx.First()).ToList()
+
+        End Function
+
 #End Region
 
 #Region "Selectors"
