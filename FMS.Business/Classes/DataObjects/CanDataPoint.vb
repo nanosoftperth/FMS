@@ -218,6 +218,7 @@
                     retObj.DeviceName = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceid).Name.ToString().ToUpper()
                     retObj.RawValue = .Value
                     retObj.Time = .TimeStamp.LocalDate.timezoneToClient
+                    retObj.Units = IIf(msgdef.Units Is Nothing, "", msgdef.Units)
 
                     Dim canVals As New CanValueList()
                     canVals.Add(retObj)
@@ -237,6 +238,11 @@
                         retObj = canVals.First
                     End If
                 End With
+
+                If retObj.Value Is Nothing Then
+                    Dim sx As String
+                    sx = ""
+                End If
 
             Catch ex As Exception
 

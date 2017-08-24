@@ -977,7 +977,9 @@
     <Content Include="Content\Images\user-management.png" />
     <Content Include="Content\Images\wnR_pIsl_normal.png" />
     <Content Include="Content\javascript\accordian.js" />
+    <Content Include="Content\javascript\CanBusDisplayProperty.js" />
     <Content Include="Content\javascript\cSnapToRoute.js" />
+    <Content Include="Content\javascript\DateFormat.js" />
     <Content Include="Content\javascript\exampleTruckAnimator.js" />
     <Content Include="Content\javascript\firstRun.js" />
     <Content Include="Content\javascript\FleetMap.js" />

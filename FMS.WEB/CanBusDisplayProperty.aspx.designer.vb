@@ -41,13 +41,13 @@ Partial Public Class CanBusDisplayProperty
     Protected WithEvents odsCanMessages As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''faultPopup control.
+    '''myPopup control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents faultPopup As Global.DevExpress.Web.ASPxPopupControl
+    Protected WithEvents myPopup As Global.DevExpress.Web.ASPxPopupControl
 
     '''<summary>
     '''Panel1 control.
