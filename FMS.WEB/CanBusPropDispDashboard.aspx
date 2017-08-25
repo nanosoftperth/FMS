@@ -180,6 +180,8 @@
         function receivedData(dataCache) {
             //var obj = dataCache;
 
+            initLEDs();
+
             if (oDashList == null) {
                 var obj = dataCache;
             }
@@ -199,25 +201,6 @@
                 $('#spanLCDTitle').text(priVehicleName.replace(/%20/g, " "));
             }
 
-            //for (var i = 0; i < oDashList.length; i++) {
-            //    var t1 = oDashList[i];
-            //}
-
-            //var json = @Html.Raw(Json.Encode(@HttpContext.Current.Session["ses_DashboardRecord"]));	
-            <%--var oSess = '<%= Session("ses_DashboardRecord").ToString()%>';  
-            var strSes = 'ses_DashboardRecord';--%>
-
-            
-            <%--if('<%=Session("ses_DashboardRecord")%>' == null) {
-                alert('With No Session');
-                var obj = dataCache;
-            }
-            else
-            {
-                alert('With Session');
-                var obj = '<%= Session("ses_DashboardRecord")%>';                
-            }--%>
-
             if (obj.length > 0) {
                 var oCtr = obj.length;
 
@@ -234,7 +217,7 @@
                         //alert('Inside steering');
                         SetToolTipPerStatus('.div_steer', 'Check Steering');
                         SetStatus('Steer', 'Err');
-                        setLCDErrCat(obj[v].Steering, 'Steering');
+                        //setLCDErrCat(obj[v].Steering, 'Steering');
                     }
 
                     if (obj[v].Driving.length > 0) {
@@ -266,7 +249,6 @@
                     if (obj[v].AlignmentControl.length > 0) {
                         //SetToolTipPerStatus('.div_align', 'Alignment : ' + obj[v].AlignmentControl);
                         SetToolTipPerStatus('.div_align', 'Check Alignment');
-
                         SetStatus('Align', 'Err');
                     }
 
@@ -509,6 +491,7 @@
 
                 case 'Battery Voltage':
                     //alert('Setting battery indicator: ' + indicatorDescription + '; ' +indicatorStatus);
+                    makeIndicatorBlink(true, '#ibattery_100', '#ibattery_100_blink');
 
                     if (indicatorStatus >= 83.95) {
                         makeIndicatorBlink(true, '#ibattery_100_blink', '#ibattery_100');
@@ -836,6 +819,91 @@
             $('.div_minus').prop('title', 'No Functions ');
             $('.div_ex').prop('title', 'No Functions ');
             $('.div_tick').prop('title', 'No Functions ');
+
+        }
+
+        function initLEDs()
+        {
+            //--- break on color
+            $('#ibreak').removeClass('imgmax');
+            $('#ibreak').removeClass('pnlimgHide')
+            $('#ibreak').addClass('imgmax')
+
+            $('#ibreak_blink').removeClass('imgmax');
+            $('#ibreak_blink').removeClass('pnlimgHide')
+            $('#ibreak_blink').addClass('pnlimgHide')
+
+            //--- steer on color
+            $('#isteer').removeClass('imgmax');
+            $('#isteer').removeClass('pnlimgHide')
+            $('#isteer').addClass('imgmax')
+
+            $('#isteer_blink').removeClass('imgmax');
+            $('#isteer_blink').removeClass('pnlimgHide')
+            $('#isteer_blink').addClass('pnlimgHide')
+
+            //--- drive on color
+            $('#idrive').removeClass('imgmax');
+            $('#idrive').removeClass('pnlimgHide')
+            $('#idrive').addClass('imgmax')
+
+            $('#idrive_blink').removeClass('imgmax');
+            $('#idrive_blink').removeClass('pnlimgHide')
+            $('#idrive_blink').addClass('pnlimgHide')
+
+            //--- ifm on color
+            $('#iifm').removeClass('imgmax');
+            $('#iifm').removeClass('pnlimgHide')
+            $('#iifm').addClass('imgmax')
+
+            $('#iifm_blink').removeClass('imgmax');
+            $('#iifm_blink').removeClass('pnlimgHide')
+            $('#iifm_blink').addClass('pnlimgHide')
+
+            //--- can on color
+            $('#ican').removeClass('imgmax');
+            $('#ican').removeClass('pnlimgHide')
+            $('#ican').addClass('imgmax')
+
+            $('#ican_blink').removeClass('imgmax');
+            $('#ican_blink').removeClass('pnlimgHide')
+            $('#ican_blink').addClass('pnlimgHide')
+
+            //--- alignment on color
+            $('#ialign').removeClass('imgmax');
+            $('#ialign').removeClass('pnlimgHide')
+            $('#ialign').addClass('imgmax')
+
+            $('#ialign_blink').removeClass('imgmax');
+            $('#ialign_blink').removeClass('pnlimgHide')
+            $('#ialign_blink').addClass('pnlimgHide')
+
+            //--- warning on gray
+            $('#iwarning').removeClass('imgmax');
+            $('#iwarning').removeClass('pnlimgHide')
+            $('#iwarning').addClass('imgmax')
+
+            $('#iwarning_blink').removeClass('imgmax');
+            $('#iwarning_blink').removeClass('pnlimgHide')
+            $('#iwarning_blink').addClass('pnlimgHide')
+
+            //--- error on gray
+            $('#istop').removeClass('imgmax');
+            $('#istop').removeClass('pnlimgHide')
+            $('#istop').addClass('imgmax')
+
+            $('#istop_blink').removeClass('imgmax');
+            $('#istop_blink').removeClass('pnlimgHide')
+            $('#istop_blink').addClass('pnlimgHide')
+
+            //--- speed on gray
+            $('#ispeed').removeClass('imgmax');
+            $('#ispeed').removeClass('pnlimgHide')
+            $('#ispeed').addClass('imgmax')
+
+            $('#ispeed_blink').removeClass('imgmax');
+            $('#ispeed_blink').removeClass('pnlimgHide')
+            $('#ispeed_blink').addClass('pnlimgHide')
 
         }
 
