@@ -453,8 +453,8 @@
                     If SPN = 11 Then calcMethod = AddressOf zagro500_11
                     If SPN = 12 Then calcMethod = AddressOf zagro500_12
                     If SPN = 13 Then calcMethod = AddressOf zagro500_13 '----> will add a function like this to other standard once available
-                    If SPN = 14 Then calcMethod = AddressOf zagro500_14
-                    If SPN = 15 Then calcMethod = AddressOf zagro500_15
+                    If SPN = 14 Then calcMethod = AddressOf zagro500_14 '----> will add a function like this to other standard once available
+                    If SPN = 15 Then calcMethod = AddressOf zagro500_15 '----> will add a function like this to other standard once available
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
@@ -620,6 +620,12 @@
             End Sub
             Public Sub zagro500_12(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
                 Try
+                    ' Will remove once CAN_MessageDefinitions field values is finaized
+                    '---- test for PGN
+                    Dim oPGN = msg_def.PGN
+
+                    '----- end test
+
                     Dim byte0 As Object = GetFaultCodes(cv, msg_def, 0, 1, 0)
                     Dim byte1 As Object = GetFaultCodes(cv, msg_def, 2, 3, 1)
                     Dim byte2 As Object = GetFaultCodes(cv, msg_def, 4, 5, 2)
@@ -887,9 +893,38 @@
                                                                             }
                                                                         })
 
+                Dim objList = AddACEFaultCodeToList(lstFaultCodes) '----> will return the value once AC inverter function is laready working
+
                 Return lstFaultCodes
 
             End Function
+
+            Public Shared Function AddACEFaultCodeToList(oList As List(Of FaultCodes)) As List(Of FaultCodes)
+                '14 - ACE2 A1 
+                '15 - ACE2 A2 
+                '16 - ACE2 A3 
+                '17 - ACE2 A4 
+                '18 - EPS A5 
+                '19 - EPS A6 
+                '20 - EPS A7 
+                '21 - EPS A8
+
+                oList.Add(New FaultCodes() With {.byteCode = 3, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
+                                                                        From {
+                                                                                New KeyValuePair(Of Integer, String)(14, "ACE2 A1"),
+                                                                                New KeyValuePair(Of Integer, String)(15, "ACE2 A2"),
+                                                                                New KeyValuePair(Of Integer, String)(16, "ACE2 A3"),
+                                                                                New KeyValuePair(Of Integer, String)(17, "ACE2 A4"),
+                                                                                New KeyValuePair(Of Integer, String)(18, "EPS A5"),
+                                                                                New KeyValuePair(Of Integer, String)(19, "EPS A6"),
+                                                                                New KeyValuePair(Of Integer, String)(20, "EPS A7"),
+                                                                                New KeyValuePair(Of Integer, String)(21, "EPS A8")
+                                                                            }
+                                                                        })
+
+                Return oList
+            End Function
+
 
             Public Class FaultCodes
                 Public Property byteCode As String
@@ -976,8 +1011,6 @@
 
         End Class
 
-
-
         Public Shared Function ConvertDecToBinary(DecByte As Integer) As String
             Dim strDecByte = Convert.ToString(DecByte, 2)
             Dim strValue As String = ""
@@ -1012,7 +1045,7 @@
 
         Public Class CanBusFaultDefinition
             Public Shared Function GetFaultCodeList() As List(Of KeyValuePair(Of String, String))
-                Return New List(Of KeyValuePair(Of String, String)) _
+                Dim oKVPList = New List(Of KeyValuePair(Of String, String)) _
                     From {
                         New KeyValuePair(Of String, String)("S 1", "E,Emergency stop"),
                         New KeyValuePair(Of String, String)("S 4", "E,Limit end position. Acknowledgment by key switch"),
@@ -1076,7 +1109,115 @@
                         New KeyValuePair(Of String, String)("IO 20", "E,Invalid steering program,not for E-Maxi with option 'no steering'"),
                         New KeyValuePair(Of String, String)("IO 40", "W,Cable break current sensor.")
                         }
+
+                'Return New List(Of KeyValuePair(Of String, String)) _
+                '    From {
+                '        New KeyValuePair(Of String, String)("S 1", "E,Emergency stop"),
+                '        New KeyValuePair(Of String, String)("S 4", "E,Limit end position. Acknowledgment by key switch"),
+                '        New KeyValuePair(Of String, String)("S 4", "W,Incorrect start after and active faults. First joystick in the rest position"),
+                '        New KeyValuePair(Of String, String)("Can 31", "E,Timeout vehicle plc CR0020 A12 (from V4.0.8)"),
+                '        New KeyValuePair(Of String, String)("Canopen 1", "W,Timeout position transmitter B1,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Canopen 2", "W,Timeout position transmitter B2,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Canopen 3", "W,Timeout position transmitter B3,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Canopen 4", "W,Timeout position transmitter B4,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Canopen 5", "E,Timeout radio control A11"),
+                '        New KeyValuePair(Of String, String)("Canopen 6", "W,Timeout hydraulic module CR2032 A10,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Canopen 7", "W,Timeout WBA module CR2032 A40,only option 'WBA'"),
+                '        New KeyValuePair(Of String, String)("Canopen 8", "W,Timeout additional hydraulic module CR2032 A37,only option 'addional hydraulic'"),
+                '        New KeyValuePair(Of String, String)("Can 1", "E,Timeout AC Inverter A1 (drive)"),
+                '        New KeyValuePair(Of String, String)("Can 2", "E,Timeout AC Inverter A2 (drive)"),
+                '        New KeyValuePair(Of String, String)("Can 3", "E,Timeout AC Inverter A3 (drive)"),
+                '        New KeyValuePair(Of String, String)("Can 4", "E,Timeout AC Inverter A4 (drive)"),
+                '        New KeyValuePair(Of String, String)("Can 5", "E,Timeout AC Inverter A5 (steering),not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 6", "E,Timeout AC Inverter A6 (steering),not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 7", "E,Timeout AC Inverter A7 (steering),not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 8", "E,Timeout AC Inverter A8 (steering),not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 8", "E,Timeout vehicle plc CR0020 A12 (till V4.0.8)"),
+                '        New KeyValuePair(Of String, String)("Can 101", "E,Timeout AC Inverter A1 (drive) <br> no message reception since emergency stop or switching on"),
+                '        New KeyValuePair(Of String, String)("Can 102", "E,Timeout AC Inverter A2 (drive) <br> no message reception since emergency stop or switching on"),
+                '        New KeyValuePair(Of String, String)("Can 103", "E,Timeout AC Inverter A3 (drive) <br> no message reception since emergency stop or switching on"),
+                '        New KeyValuePair(Of String, String)("Can 104", "E,Timeout AC Inverter A4 (drive) <br> no message reception since emergency stop or switching on"),
+                '        New KeyValuePair(Of String, String)("Can 105", "E,Timeout AC Inverter A5 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 106", "E,Timeout AC Inverter A6 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 107", "E,Timeout AC Inverter A7 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 108", "E,Timeout AC Inverter A8 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 205", "E,Timeout boot up message AC Inverter A5,not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 206", "E,Timeout boot up message AC Inverter A6,not for E-Maxi S,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 207", "E,Timeout boot up message AC Inverter A7,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("Can 208", "E,Timeout boot up message AC Inverter A8,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("MS 1", "E,no steering control is online"),
+                '        New KeyValuePair(Of String, String)("MS 11", "E,Error position transmitter B1,not for E-Maxi S"),
+                '        New KeyValuePair(Of String, String)("MS 12", "E,Error AC inverter A5,not for E-Maxi S"),
+                '        New KeyValuePair(Of String, String)("MS 14", "E,Position discrepancy between axle 1 and 4 is too large. <br> Reset via emergency stop,not for E-Maxi S"),
+                '        New KeyValuePair(Of String, String)("MS 21", "E,Error position transmitter B2,not for E-Maxi S"),
+                '        New KeyValuePair(Of String, String)("MS 22", "E,Error AC inverter A6,not for E-Maxi S"),
+                '        New KeyValuePair(Of String, String)("MS 23", "E,Position discrepancy between axle 2 and 3 is too large. <br> Reset via emergency stop,not for E-Maxi S"),
+                '        New KeyValuePair(Of String, String)("MS 31", "E,Error position transmitter B3"),
+                '        New KeyValuePair(Of String, String)("MS 32", "E,Error AC inverter A7"),
+                '        New KeyValuePair(Of String, String)("MS 34", "E,Position discrepancy between axle 3 and 4 is too large. <br> Reset via emergency stop,only E-Maxi S"),
+                '        New KeyValuePair(Of String, String)("MS 41", "E,Error position transmitter B4"),
+                '        New KeyValuePair(Of String, String)("MS 42", "E,Error AC inverter A8"),
+                '        New KeyValuePair(Of String, String)("M1 1", "E,Drive/Engine axle 1.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                '        New KeyValuePair(Of String, String)("M1 2", "E,Drive/Engine axle 1.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                '        New KeyValuePair(Of String, String)("M1 4", "E,Drive/Engine axle 1.Temperature of the drive engine Mx is above break-off shaft."),
+                '        New KeyValuePair(Of String, String)("M2 1", "E,Drive/Engine axle 2.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                '        New KeyValuePair(Of String, String)("M2 2", "E,Drive/Engine axle 2.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                '        New KeyValuePair(Of String, String)("M2 4", "E,Drive/Engine axle 2.Temperature of the drive engine Mx is above break-off shaft."),
+                '        New KeyValuePair(Of String, String)("M3 1", "E,Drive/Engine axle 3.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                '        New KeyValuePair(Of String, String)("M3 2", "E,Drive/Engine axle 3.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                '        New KeyValuePair(Of String, String)("M3 4", "E,Drive/Engine axle 3.Temperature of the drive engine Mx is above break-off shaft."),
+                '        New KeyValuePair(Of String, String)("M4 1", "E,Drive/Engine axle 4.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
+                '        New KeyValuePair(Of String, String)("M4 2", "E,Drive/Engine axle 4.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
+                '        New KeyValuePair(Of String, String)("M4 4", "E,Drive/Engine axle 4.Temperature of the drive engine Mx is above break-off shaft."),
+                '        New KeyValuePair(Of String, String)("IO 1", "W,Cable break battery supervision."),
+                '        New KeyValuePair(Of String, String)("IO 4", "W,Battery empty <br> speed reduction"),
+                '        New KeyValuePair(Of String, String)("IO 20", "E,Invalid steering program,not for E-Maxi with option 'no steering'"),
+                '        New KeyValuePair(Of String, String)("IO 40", "W,Cable break current sensor.")
+                '        }
+
+                Dim tmpList = AddACEFaultCodeToKVPList(oKVPList)
+
+                Return tmpList
+
             End Function
+
+            Public Shared Function AddACEFaultCodeToKVPList(oList As List(Of KeyValuePair(Of String, String))) As List(Of KeyValuePair(Of String, String))
+
+                Dim objList = oList
+
+                '14 - ACE2 A1 
+                '15 - ACE2 A2 
+                '16 - ACE2 A3 
+                '17 - ACE2 A4 
+                '18 - EPS A5 
+                '19 - EPS A6 
+                '20 - EPS A7 
+                '21 - EPS A8
+
+                objList.Add(New KeyValuePair(Of String, String)("ACE2 A1", "E,ACE2 A1"))
+                objList.Add(New KeyValuePair(Of String, String)("ACE2 A2", "E,ACE2 A2"))
+                objList.Add(New KeyValuePair(Of String, String)("ACE2 A3", "E,ACE2 A3"))
+                objList.Add(New KeyValuePair(Of String, String)("ACE2 A4", "E,ACE2 A4"))
+                objList.Add(New KeyValuePair(Of String, String)("EPS A5", "E,EPS A5"))
+                objList.Add(New KeyValuePair(Of String, String)("EPS A6", "E,EPS A6"))
+                objList.Add(New KeyValuePair(Of String, String)("EPS A7", "E,EPS A7"))
+                objList.Add(New KeyValuePair(Of String, String)("EPS A8", "E,EPS A8"))
+
+                'Return New List(Of KeyValuePair(Of String, String)) _
+                '    From {
+                '        New KeyValuePair(Of String, String)("ACE2 A1", "E,ACE2 A1"),
+                '        New KeyValuePair(Of String, String)("ACE2 A2", "E,ACE2 A2"),
+                '        New KeyValuePair(Of String, String)("ACE2 A3", "E,ACE2 A3"),
+                '        New KeyValuePair(Of String, String)("ACE2 A4", "E,ACE2 A4"),
+                '        New KeyValuePair(Of String, String)("EPS A5", "E,EPS A5"),
+                '        New KeyValuePair(Of String, String)("EPS A6", "E,EPS A6"),
+                '        New KeyValuePair(Of String, String)("EPS A7", "E,EPS A7"),
+                '        New KeyValuePair(Of String, String)("EPS A8", "E,EPS A8")
+                '        }
+
+                Return objList
+            End Function
+
         End Class
     End Class
 
