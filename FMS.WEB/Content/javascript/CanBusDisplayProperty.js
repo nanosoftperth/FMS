@@ -46,10 +46,7 @@ function GetDataInput(data, num) {
 }
 function serverResult(data, dateItm, valItm, isLastItem, id) {
     var dataVal = "";
-    var date = new Date(data.Time);
-    var dataTime = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() +
-        ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-
+    
     switch (id) {
         case "#Zagro500|8":
             dataVal = GetDataInput(data,true) + " " + data.Units;
@@ -81,7 +78,7 @@ function serverResult(data, dateItm, valItm, isLastItem, id) {
             break;
         case "#Zagro125|10":
             dataVal = GetDataInput(data,true) + " " + data.Units;
-            if (data.DeviceName.indexOf("XL") == -1) {
+            if (data.DeviceName != null && data.DeviceName.indexOf("XL") == -1) {
                 valItm.text("").append("<a href='javascript:void(0)' onclick='OnPressureValueClick()' id='faultCodes'>Not implemented</a>");
             } else {
                 valItm.text(dataVal);
@@ -89,7 +86,7 @@ function serverResult(data, dateItm, valItm, isLastItem, id) {
             break;
         case "#Zagro125|11":
             dataVal = GetDataInput(data,true) + " " + data.Units;
-            if (data.DeviceName.indexOf("XL") == -1) {
+            if (data.DeviceName != null && data.DeviceName.indexOf("XL") == -1) {
                 valItm.text("").append("<a href='javascript:void(0)' onclick='OnPressureValueClick()' id='faultCodes'>Not implemented</a>");
             } else {
                 valItm.text(dataVal);
