@@ -17,9 +17,13 @@ Namespace BackgroundCalculations
         End Function
         Private Shared Sub GetEachSPN(strDeviceId As String, strVehicleName As String)
             Dim appVehicle As New DataObjects.ApplicationVehicle()
-            appVehicle.DeviceID = strDeviceId            
+            appVehicle.DeviceID = strDeviceId
+            Dim intCount As Integer = 0
             Dim AvailableCanTags = appVehicle.GetAvailableCANTags()
-            For Each availCanTag In AvailableCanTags
+            'Use group by standard and spn to eliminate duplicate
+            Dim removeDuplicates = AvailableCanTags.ToList().GroupBy(Function(xx) New With {Key xx.Standard, Key xx.PGN, Key xx.SPN}).ToList().Select(Function(xxx) xxx.First()).ToList()
+            For Each availCanTag In removeDuplicates
+                intCount += 1
                 'get the last time that valid data was obtained for that SPN
                 Dim lastTimeValid As DateTime = DataObjects.CanBusLogs.GetLastTimeValidData(strDeviceId, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard)
                 'read the new SPN data
@@ -39,55 +43,98 @@ Namespace BackgroundCalculations
             Dim eventDefList = DataObjects.Can_EventDefinition.GetEventDefinitionList(vehicleId, pgn, spn, standard)
             Dim dblCanValue As Double
             Dim blnRetValue As Boolean = False
+            Dim objCbEventOccuranceLog As New DataObjects.CanBusEventOccuranceLog()
 
             For Each eventList In eventDefList
                 Dim objCanOccurance As New DataObjects.Can_EventOccurance
-                If Not eventList.TriggerConditoinQualifier.ToUpper.Equals("LIKE") Then
-                    Dim dblValue As Double
-                    objCanOccurance.OccuredDate = lastTimeValid
-                    If Double.TryParse(eventList.TriggerConditionText.Trim, dblValue) AndAlso Double.TryParse(canBusValue, dblCanValue) Then
-                        Select Case eventList.TriggerConditoinQualifier.Trim
-                            Case "<"
-                                If dblValue < dblCanValue Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                            Case ">"
-                                If dblValue > dblCanValue Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                            Case "<="
-                                If dblValue <= dblCanValue Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                            Case ">="
-                                If dblValue >= dblCanValue Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                            Case "!="
-                                If dblValue <> dblCanValue Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                            Case "="
-                                If dblValue = dblCanValue Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                        End Select
-                    Else
-                        Select Case eventList.TriggerConditoinQualifier.ToUpper.Trim
-                            Case "LIKE"
-                                If canBusValue.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                            Case "="
-                                If canBusValue.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
-                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
-                                End If
-                        End Select
+                'If Not eventList.TriggerConditoinQualifier.ToUpper.Equals("LIKE") Then
+                Dim dblValue As Double
+                objCanOccurance.OccuredDate = lastTimeValid
+                objCanOccurance.CAN_EventOccuranceID = eventList.CAN_EventDefinitionID
+                Dim getLastEventValue = DataObjects.CanBusEventOccuranceLog.GetCanBusEventOccuranceLogs(eventList.CAN_EventDefinitionID).FirstOrDefault()
+                Dim previousCanValue As Double = 0
+                Dim previousCanValueStr As String = String.Empty
+                If Double.TryParse(eventList.TriggerConditionText.Trim, dblValue) AndAlso Double.TryParse(canBusValue, dblCanValue) Then
+
+                    If Not getLastEventValue Is Nothing Then
+                        previousCanValue = CDbl(getLastEventValue.CanValue)
                     End If
+                    Select Case eventList.TriggerConditoinQualifier.Trim
+                        Case "<"
+                            If dblCanValue < dblValue Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue > dblValue) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                        Case ">"
+                            If dblCanValue > dblValue Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue < dblValue) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                        Case "<="
+                            If dblCanValue <= dblValue Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue >= dblValue) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                        Case ">="
+                            If dblCanValue >= dblValue Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue <= dblValue) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                        Case "!="
+                            If dblCanValue <> dblValue Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue <> dblValue) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                        Case "="
+                            If dblCanValue = dblValue Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue = dblValue) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                    End Select
+                    SaveCanBusEventOccuranceLogs(objCanOccurance.CAN_EventOccuranceID, dblCanValue.ToString(), lastTimeValid)
+                Else
+                    If Not getLastEventValue Is Nothing Then
+                        previousCanValueStr = getLastEventValue.CanValue
+                    End If
+                    Select Case eventList.TriggerConditoinQualifier.ToUpper.Trim
+                        Case "LIKE"
+                            If canBusValue.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
+                                If previousCanValueStr.ToUpper.ToString().Trim <> canBusValue.ToUpper.Trim And
+                                    (getLastEventValue Is Nothing OrElse previousCanValueStr.ToUpper.ToString().Trim.Contains(eventList.TriggerConditionText.ToUpper.Trim())) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                        Case "="
+                            If canBusValue.ToUpper.Trim() = eventList.TriggerConditionText.ToUpper.Trim() Then
+                                If previousCanValueStr.ToUpper.ToString().Trim <> canBusValue.ToUpper.Trim And
+                                    (getLastEventValue Is Nothing OrElse previousCanValueStr.ToUpper.ToString().Trim = eventList.TriggerConditionText.ToUpper.Trim()) Then
+                                    blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                End If
+                            End If
+                    End Select
+                    SaveCanBusEventOccuranceLogs(objCanOccurance.CAN_EventOccuranceID, canBusValue, lastTimeValid)
                 End If
+
+                'End If
             Next
             Return blnRetValue
         End Function
+        Private Shared Sub SaveCanBusEventOccuranceLogs(EventDefinitionId As Guid, canBusValue As String, lastTimeValid As DateTime)
+            Try
+                Dim objCanBusEventOccuranceLog As New DataObjects.CanBusEventOccuranceLog()
+                objCanBusEventOccuranceLog.CanEventDefinitionId = EventDefinitionId
+                objCanBusEventOccuranceLog.CanValue = canBusValue
+                objCanBusEventOccuranceLog.LogDate = lastTimeValid
+                DataObjects.CanBusEventOccuranceLog.Create(objCanBusEventOccuranceLog)
+            Catch ex As Exception
+            End Try
+        End Sub
         Private Shared Function SetCanOccurance(ByVal objOccurance As DataObjects.Can_EventOccurance, ByVal eventList As DataObjects.Can_EventDefinition) As Boolean
             Try
                 objOccurance.CAN_EventDefinitionID = eventList.CAN_EventDefinitionID

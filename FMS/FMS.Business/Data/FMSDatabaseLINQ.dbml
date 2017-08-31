@@ -773,6 +773,14 @@
       <Column Name="FinishedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.CanBusEventOccuranceLog" Member="CanBusEventOccuranceLogs">
+    <Type Name="CanBusEventOccuranceLog">
+      <Column Name="CanBusEventOccuranceLogId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CanEventDefinitionId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CanValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LogDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />

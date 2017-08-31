@@ -100,6 +100,7 @@
     <Compile Include="Classes\DataObjects\ApplicationVehicleDriverTime.vb" />
     <Compile Include="Classes\DataObjects\ApplicationVehicleOdometerReading.vb" />
     <Compile Include="Classes\DataObjects\AuthenticationToken.vb" />
+    <Compile Include="Classes\DataObjects\CanBusEventOccuranceLog.vb" />
     <Compile Include="Classes\DataObjects\CanBusLogs.vb" />
     <Compile Include="Classes\DataObjects\CanDataValue.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
