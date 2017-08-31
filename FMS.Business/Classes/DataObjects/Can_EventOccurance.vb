@@ -67,7 +67,7 @@
 
             Return objGetCanEventOccurance
         End Function
-        Public Shared Function GetCanEventOccuranceList() As List(Of DataObjects.Can_EventOccurance)            
+        Public Shared Function GetCanEventOccuranceList() As List(Of DataObjects.Can_EventOccurance)
             Dim objGetCanEventOccurance = (From eventOcc In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances
                                                         Join eventDef In SingletonAccess.FMSDataContextContignous.CAN_EventDefinitions On
                                                         eventDef.CAN_EventDefinitionID Equals eventOcc.CAN_EventDefinitionID

@@ -343,6 +343,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteCAN_EventOccurance(instance As CAN_EventOccurance)
     End Sub
+  Partial Private Sub InsertCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+    End Sub
+  Partial Private Sub UpdateCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+    End Sub
+  Partial Private Sub DeleteCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -727,6 +733,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property CAN_EventOccurances() As System.Data.Linq.Table(Of CAN_EventOccurance)
 		Get
 			Return Me.GetTable(Of CAN_EventOccurance)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CanBusEventOccuranceLogs() As System.Data.Linq.Table(Of CanBusEventOccuranceLog)
+		Get
+			Return Me.GetTable(Of CanBusEventOccuranceLog)
 		End Get
 	End Property
 	
@@ -2391,7 +2403,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4035,7 +4047,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4424,7 +4436,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -14200,6 +14212,134 @@ Partial Public Class CAN_EventOccurance
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CanBusEventOccuranceLog")>  _
+Partial Public Class CanBusEventOccuranceLog
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CanBusEventOccuranceLogId As System.Guid
+	
+	Private _CanEventDefinitionId As System.Nullable(Of System.Guid)
+	
+	Private _CanValue As String
+	
+	Private _LogDate As System.Nullable(Of Date)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCanBusEventOccuranceLogIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCanBusEventOccuranceLogIdChanged()
+    End Sub
+    Partial Private Sub OnCanEventDefinitionIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnCanEventDefinitionIdChanged()
+    End Sub
+    Partial Private Sub OnCanValueChanging(value As String)
+    End Sub
+    Partial Private Sub OnCanValueChanged()
+    End Sub
+    Partial Private Sub OnLogDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnLogDateChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CanBusEventOccuranceLogId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CanBusEventOccuranceLogId() As System.Guid
+		Get
+			Return Me._CanBusEventOccuranceLogId
+		End Get
+		Set
+			If ((Me._CanBusEventOccuranceLogId = value)  _
+						= false) Then
+				Me.OnCanBusEventOccuranceLogIdChanging(value)
+				Me.SendPropertyChanging
+				Me._CanBusEventOccuranceLogId = value
+				Me.SendPropertyChanged("CanBusEventOccuranceLogId")
+				Me.OnCanBusEventOccuranceLogIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CanEventDefinitionId", DbType:="UniqueIdentifier")>  _
+	Public Property CanEventDefinitionId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._CanEventDefinitionId
+		End Get
+		Set
+			If (Me._CanEventDefinitionId.Equals(value) = false) Then
+				Me.OnCanEventDefinitionIdChanging(value)
+				Me.SendPropertyChanging
+				Me._CanEventDefinitionId = value
+				Me.SendPropertyChanged("CanEventDefinitionId")
+				Me.OnCanEventDefinitionIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CanValue", DbType:="NVarChar(50)")>  _
+	Public Property CanValue() As String
+		Get
+			Return Me._CanValue
+		End Get
+		Set
+			If (String.Equals(Me._CanValue, value) = false) Then
+				Me.OnCanValueChanging(value)
+				Me.SendPropertyChanging
+				Me._CanValue = value
+				Me.SendPropertyChanged("CanValue")
+				Me.OnCanValueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LogDate", DbType:="DateTime")>  _
+	Public Property LogDate() As System.Nullable(Of Date)
+		Get
+			Return Me._LogDate
+		End Get
+		Set
+			If (Me._LogDate.Equals(value) = false) Then
+				Me.OnLogDateChanging(value)
+				Me.SendPropertyChanging
+				Me._LogDate = value
+				Me.SendPropertyChanged("LogDate")
+				Me.OnLogDateChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -14491,7 +14631,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
