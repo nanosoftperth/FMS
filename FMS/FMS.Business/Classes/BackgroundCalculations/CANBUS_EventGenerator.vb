@@ -47,15 +47,13 @@ Namespace BackgroundCalculations
 
             For Each eventList In eventDefList
                 Dim objCanOccurance As New DataObjects.Can_EventOccurance
-                'If Not eventList.TriggerConditoinQualifier.ToUpper.Equals("LIKE") Then
                 Dim dblValue As Double
                 objCanOccurance.OccuredDate = lastTimeValid
                 objCanOccurance.CAN_EventOccuranceID = eventList.CAN_EventDefinitionID
-                Dim getLastEventValue = DataObjects.CanBusEventOccuranceLog.GetCanBusEventOccuranceLogs(eventList.CAN_EventDefinitionID).FirstOrDefault()
+                Dim getLastEventValue = DataObjects.CanBusEventOccuranceLog.GetCanBusEventOccuranceLatestLog(eventList.CAN_EventDefinitionID).FirstOrDefault()
                 Dim previousCanValue As Double = 0
                 Dim previousCanValueStr As String = String.Empty
                 If Double.TryParse(eventList.TriggerConditionText.Trim, dblValue) AndAlso Double.TryParse(canBusValue, dblCanValue) Then
-
                     If Not getLastEventValue Is Nothing Then
                         previousCanValue = CDbl(getLastEventValue.CanValue)
                     End If
@@ -86,13 +84,13 @@ Namespace BackgroundCalculations
                             End If
                         Case "!="
                             If dblCanValue <> dblValue Then
-                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue <> dblValue) Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue = dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             End If
                         Case "="
                             If dblCanValue = dblValue Then
-                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue = dblValue) Then
+                                If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue <> dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             End If
@@ -106,22 +104,20 @@ Namespace BackgroundCalculations
                         Case "LIKE"
                             If canBusValue.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
                                 If previousCanValueStr.ToUpper.ToString().Trim <> canBusValue.ToUpper.Trim And
-                                    (getLastEventValue Is Nothing OrElse previousCanValueStr.ToUpper.ToString().Trim.Contains(eventList.TriggerConditionText.ToUpper.Trim())) Then
+                                    (getLastEventValue Is Nothing OrElse Not previousCanValueStr.ToUpper.ToString().Trim.Contains(eventList.TriggerConditionText.ToUpper.Trim())) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             End If
                         Case "="
                             If canBusValue.ToUpper.Trim() = eventList.TriggerConditionText.ToUpper.Trim() Then
                                 If previousCanValueStr.ToUpper.ToString().Trim <> canBusValue.ToUpper.Trim And
-                                    (getLastEventValue Is Nothing OrElse previousCanValueStr.ToUpper.ToString().Trim = eventList.TriggerConditionText.ToUpper.Trim()) Then
+                                    (getLastEventValue Is Nothing OrElse previousCanValueStr.ToUpper.ToString().Trim <> eventList.TriggerConditionText.ToUpper.Trim()) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
                                 End If
                             End If
                     End Select
                     SaveCanBusEventOccuranceLogs(objCanOccurance.CAN_EventOccuranceID, canBusValue, lastTimeValid)
                 End If
-
-                'End If
             Next
             Return blnRetValue
         End Function
@@ -130,7 +126,7 @@ Namespace BackgroundCalculations
                 Dim objCanBusEventOccuranceLog As New DataObjects.CanBusEventOccuranceLog()
                 objCanBusEventOccuranceLog.CanEventDefinitionId = EventDefinitionId
                 objCanBusEventOccuranceLog.CanValue = canBusValue
-                objCanBusEventOccuranceLog.LogDate = lastTimeValid
+                objCanBusEventOccuranceLog.LogDate = DateTime.Now()
                 DataObjects.CanBusEventOccuranceLog.Create(objCanBusEventOccuranceLog)
             Catch ex As Exception
             End Try
