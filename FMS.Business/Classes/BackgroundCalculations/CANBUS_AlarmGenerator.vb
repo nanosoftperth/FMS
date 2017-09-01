@@ -49,7 +49,7 @@ Namespace BackgroundCalculations
             'For Each alert definition
             For Each alertDef In objAlertDef
                 Dim objEventDefinition = DataObjects.Can_EventDefinition.GetCanEventDefinitionByEventDefinitionId(alertDef.CAN_EventDefinitionID).SingleOrDefault
-                Dim messageDefinition = DataObjects.CAN_MessageDefinition.GetForSPNandPGNandStandard(objEventDefinition.SPN, objEventDefinition.Standard, objEventDefinition.PGN)                
+                Dim messageDefinition = DataObjects.CAN_MessageDefinition.GetForSPNandPGNandStandard(objEventDefinition.SPN, objEventDefinition.Standard, objEventDefinition.PGN)
                 'Get event occurance alert by eventoccuranceId, alertdefinitionId and occureddate
                 Dim objEventOccAlert = DataObjects.Can_EventOccuranceAlert.GetEventOccuranceAlertList(alarmGen.EventOccuranceId, alertDef.CAN_AlertDefinitionID, alarmGen.OccuredDate)
                 'If eventOccuranceId, AlertDefinitionId and Occured date does not exists in EventOccuranceAlert then it will send alert email or text

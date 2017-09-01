@@ -36,14 +36,11 @@
         End Sub
 #End Region
 #Region "GET Methods"
-        Public Shared Function GetCanBusEventOccuranceLogs(cbEventDefinitionId As Guid) As List(Of DataObjects.CanBusEventOccuranceLog)
+        Public Shared Function GetCanBusEventOccuranceLatestLog(cbEventDefinitionId As Guid) As List(Of DataObjects.CanBusEventOccuranceLog)
             Dim objCanBusEventOccuranceLog = (From logs In SingletonAccess.FMSDataContextNew.CanBusEventOccuranceLogs
-                                             Where logs.CanEventDefinitionId.Equals(cbEventDefinitionId)
-                                             Group logs By logs.CanEventDefinitionId Into g = Group
-                                             Order By g.Max(Function(_Date) _Date.LogDate)
-                                             Select New DataObjects.CanBusEventOccuranceLog() With {.CanValue = g.Max(Function(cbValue) cbValue.CanValue),
-                                                                                                    .CanEventDefinitionId = g.Max(Function(cbOccuranceId) cbOccuranceId.CanEventDefinitionId),
-                                                                                                    .LogDate = g.Max(Function(cbDate) cbDate.LogDate)}).ToList
+                                            Where logs.CanEventDefinitionId.Equals(cbEventDefinitionId)
+                                            Order By logs.LogDate Descending
+                                            Select New DataObjects.CanBusEventOccuranceLog(logs)).ToList
             Return objCanBusEventOccuranceLog
         End Function
 #End Region
