@@ -117,7 +117,7 @@ namespace FMS.Datalistener.CalAmp.API
                 string currentStandard = "j1939";//the default standard, if not defined then this is presumed
 
 
-                for (int i = 1; 1 < cmdList.Count; i++)
+                for (int i = 1; i < cmdList.Count; i++)
                 {
 
                     string[] cmds = cmdList[i].Split(' ');
@@ -192,7 +192,7 @@ namespace FMS.Datalistener.CalAmp.API
             catch (Exception ex)
             {
                 //we will need to log the issue, NOT stop the device from sending.
-                return "success";
+                return string.Format("Exception caused: {0}",ex.Message);
             }
 
         }
