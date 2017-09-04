@@ -3,7 +3,7 @@ Imports System.Text
 
 Module Module1
 
-    Dim version As String = "11.6"
+    Dim version As String = "11.7"
 
     Public Property fileName As String = String.Empty
 
