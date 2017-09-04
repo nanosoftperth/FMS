@@ -455,6 +455,7 @@
                     If SPN = 13 Then calcMethod = AddressOf zagro500_13 '----> will add a function like this to other standard once available
                     If SPN = 14 Then calcMethod = AddressOf zagro500_14 '----> will add a function like this to other standard once available
                     If SPN = 15 Then calcMethod = AddressOf zagro500_15 '----> will add a function like this to other standard once available
+                    If SPN = 16 Then calcMethod = AddressOf zagro500_16 'On going Dev
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
@@ -669,6 +670,23 @@
             End Sub
 
 
+            Public Sub zagro500_16(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+                Try
+                    ' Will remove once CAN_MessageDefinitions field values is finaized
+                    '---- test for PGN
+                    Dim oPGN = msg_def.PGN
+
+                    '----- end test
+
+                    Dim byte3 As Object = GetACFaultCodes(cv, msg_def)
+                   
+                    cv.Value = byte3
+                Catch ex As Exception
+                    cv.Value = ""
+                End Try
+            End Sub
+
+
 #End Region
 
             Public Shared Function StringToByteArray(hex As String) As Byte()
@@ -772,6 +790,73 @@
                     faultCodeValues = ""
                 End Try
                 Return faultCodeValues.Trim(",")
+            End Function
+
+            Public Function GetACFaultCodes(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
+                Dim faultCodeValues As Object = ""
+                Try
+                    Dim byteRV() As Byte = StringToByteArray(cv.RawValue)
+
+                    'b3	18	10010
+                    'b4	255	11111111
+                    'b5	17	‭00010001‬
+
+                    '---- Get byte value
+                    'byteRV(3) = "18"
+                    'byteRV(3) = "5"
+                    'byteRV(4) = "255"
+                    'byteRV(5) = "253"
+                    Dim b3 = byteRV(3)
+                    Dim b4 = byteRV(4)
+                    Dim b5 = byteRV(5)
+
+                    '----- compute for KeyValue by (b4*256) + b5
+                    Dim binB3 = b3
+                    Dim binB4 = b4 * 256
+                    Dim binB4B5 = binB4 + b5
+
+                    '---- Get error definition
+                    Dim errB3Key As Integer
+                    Dim errB3Val As String = ""
+                    Dim errB4B5Key As Integer
+                    Dim errB4B5Val As String = ""
+
+                    Dim errDefList = GetACEFaultCodeToList().Where(Function(ac) ac.byteCode = 3).ToList()
+                    Dim errKeyValList = errDefList(0).byteList().ToList()
+
+                    If errKeyValList.Count > 0 Then
+                        For nRow = 0 To errKeyValList.Count - 1
+
+                            If errKeyValList(nRow).Key = binB3 Then
+                                errB3Key = errKeyValList(nRow).Key
+                                errB3Val = errKeyValList(nRow).Value
+
+                            End If
+
+                            If errKeyValList(nRow).Key = binB4B5 Then
+                                errB4B5Key = errKeyValList(nRow).Key
+                                errB4B5Val = errKeyValList(nRow).Value
+
+                            End If
+
+                        Next
+                    End If
+
+                    Dim retVal As String = ""
+
+                    If errB3Val = "no error" And errB4B5Val = "no error" Then
+                        retVal = errB3Val
+                    Else
+                        retVal = errB3Val + "," + errB4B5Val
+                    End If
+
+                    faultCodeValues = retVal
+
+                Catch ex As Exception
+                    faultCodeValues = ""
+                End Try
+                Return faultCodeValues
+                'Return faultCodeValues.Trim(",")
             End Function
 
             Public Shared Function GetTemperatureList() As List(Of KeyValuePair(Of Integer, String))
@@ -893,13 +978,13 @@
                                                                             }
                                                                         })
 
-                Dim objList = AddACEFaultCodeToList(lstFaultCodes) '----> will return the value once AC inverter function is laready working
+                'Dim objList = AddACEFaultCodeToList(lstFaultCodes) '----> will return the value once AC inverter function is already working
 
                 Return lstFaultCodes
 
             End Function
 
-            Public Shared Function AddACEFaultCodeToList(oList As List(Of FaultCodes)) As List(Of FaultCodes)
+            Public Shared Function GetACEFaultCodeToList() As List(Of FaultCodes)
                 '14 - ACE2 A1 
                 '15 - ACE2 A2 
                 '16 - ACE2 A3 
@@ -908,9 +993,11 @@
                 '19 - EPS A6 
                 '20 - EPS A7 
                 '21 - EPS A8
+                Dim oList As New List(Of FaultCodes)
 
                 oList.Add(New FaultCodes() With {.byteCode = 3, .byteList = New List(Of KeyValuePair(Of Integer, String)) _
                                                                         From {
+                                                                                New KeyValuePair(Of Integer, String)(0, "no error"),
                                                                                 New KeyValuePair(Of Integer, String)(14, "ACE2 A1"),
                                                                                 New KeyValuePair(Of Integer, String)(15, "ACE2 A2"),
                                                                                 New KeyValuePair(Of Integer, String)(16, "ACE2 A3"),
@@ -918,9 +1005,70 @@
                                                                                 New KeyValuePair(Of Integer, String)(18, "EPS A5"),
                                                                                 New KeyValuePair(Of Integer, String)(19, "EPS A6"),
                                                                                 New KeyValuePair(Of Integer, String)(20, "EPS A7"),
-                                                                                New KeyValuePair(Of Integer, String)(21, "EPS A8")
+                                                                                New KeyValuePair(Of Integer, String)(21, "EPS A8"),
+                                                                                New KeyValuePair(Of Integer, String)(65297, "LOGIC FAILURE #3"),
+                                                                                New KeyValuePair(Of Integer, String)(65298, "LOGIC FAILURE #2"),
+                                                                                New KeyValuePair(Of Integer, String)(65299, "LOGIC FAILURE #1"),
+                                                                                New KeyValuePair(Of Integer, String)(12576, "VMN LOW"),
+                                                                                New KeyValuePair(Of Integer, String)(12560, "VMN HIGH"),
+                                                                                New KeyValuePair(Of Integer, String)(65317, "CONTACTOR CLOSED"),
+                                                                                New KeyValuePair(Of Integer, String)(21569, "CONTACTOR OPEN"),
+                                                                                New KeyValuePair(Of Integer, String)(8977, "STBY I HIGH"),
+                                                                                New KeyValuePair(Of Integer, String)(12592, "CAPACITOR CHARGE"),
+                                                                                New KeyValuePair(Of Integer, String)(12817, "DRIVER SHORTED"),
+                                                                                New KeyValuePair(Of Integer, String)(12833, "CONTACTOR DRIVER"),
+                                                                                New KeyValuePair(Of Integer, String)(29456, "ENCODER ERROR"),
+                                                                                New KeyValuePair(Of Integer, String)(65533, "PROG TOOTHS"),
+                                                                                New KeyValuePair(Of Integer, String)(4096, "GENERIC ERROR"),
+                                                                                New KeyValuePair(Of Integer, String)(24592, "WATCHDOG #1"),
+                                                                                New KeyValuePair(Of Integer, String)(12834, "AUX COIL SHORTED"),
+                                                                                New KeyValuePair(Of Integer, String)(24593, "WATCHDOG #2"),
+                                                                                New KeyValuePair(Of Integer, String)(65509, "SAFETY INPUT"),
+                                                                                New KeyValuePair(Of Integer, String)(8786, "MC COIL SHORTED"),
+                                                                                New KeyValuePair(Of Integer, String)(8784, "COIL SHORTED HW KO"),
+                                                                                New KeyValuePair(Of Integer, String)(20756, "KEY OFF SHORT"),
+                                                                                New KeyValuePair(Of Integer, String)(65513, "POWER MOS SHORTED"),
+                                                                                New KeyValuePair(Of Integer, String)(255, "EMERGENCY"),
+                                                                                New KeyValuePair(Of Integer, String)(65517, "ANALOG INPUT"),
+                                                                                New KeyValuePair(Of Integer, String)(65518, "WRONG 0 VOLTAGE"),
+                                                                                New KeyValuePair(Of Integer, String)(65519, "SAFETY OUTPUT"),
+                                                                                New KeyValuePair(Of Integer, String)(65520, "HARDWARE FAULT"),
+                                                                                New KeyValuePair(Of Integer, String)(65521, "FLASH CHECKSUM"),
+                                                                                New KeyValuePair(Of Integer, String)(29457, "ENCODER LOCKED"),
+                                                                                New KeyValuePair(Of Integer, String)(65524, "SOFTWARE ERROR"),
+                                                                                New KeyValuePair(Of Integer, String)(65525, "WRONG RAM ADDRESS"),
+                                                                                New KeyValuePair(Of Integer, String)(33072, "CAN BUS KO"),
+                                                                                New KeyValuePair(Of Integer, String)(65531, "WRONG SET BATTERY"),
+                                                                                New KeyValuePair(Of Integer, String)(12834, "AUX OUTPUT KO"),
+                                                                                New KeyValuePair(Of Integer, String)(21808, "EEPROM  KO"),
+                                                                                New KeyValuePair(Of Integer, String)(65342, "TH. PROTECTION"),
+                                                                                New KeyValuePair(Of Integer, String)(17168, "MOTOR TEMPERATURE"),
+                                                                                New KeyValuePair(Of Integer, String)(65360, "FORWARD+BACKWARD"),
+                                                                                New KeyValuePair(Of Integer, String)(65516, "CURRENT GAIN"),
+                                                                                New KeyValuePair(Of Integer, String)(65523, "SENS MOT TEMP KO"),
+                                                                                New KeyValuePair(Of Integer, String)(16913, "THERMIC SENS. KO"),
+                                                                                New KeyValuePair(Of Integer, String)(65533, "SLIP PROFILE"),
+                                                                                New KeyValuePair(Of Integer, String)(12548, "LOGIC FAILURE #4"),
+                                                                                New KeyValuePair(Of Integer, String)(12547, "LOGIC FAILURE #3"),
+                                                                                New KeyValuePair(Of Integer, String)(12546, "LOGIC FAILURE #2"),
+                                                                                New KeyValuePair(Of Integer, String)(12545, "LOGIC FAILURE #1"),
+                                                                                New KeyValuePair(Of Integer, String)(12544, "VMN NOT OK"),
+                                                                                New KeyValuePair(Of Integer, String)(65328, "MAIN CONT. OPEN"),
+                                                                                New KeyValuePair(Of Integer, String)(16912, "HIGH TEMPERATURE"),
+                                                                                New KeyValuePair(Of Integer, String)(8976, "STBY I HIGH"),
+                                                                                New KeyValuePair(Of Integer, String)(12595, "POWER FAILURE #3"),
+                                                                                New KeyValuePair(Of Integer, String)(12594, "POWER FAILURE #2"),
+                                                                                New KeyValuePair(Of Integer, String)(12593, "POWER FAILURE #1"),
+                                                                                New KeyValuePair(Of Integer, String)(12549, "STEER SENSOR KO	"),
+                                                                                New KeyValuePair(Of Integer, String)(65361, "DATA ACQUISITION"),
+                                                                                New KeyValuePair(Of Integer, String)(65374, "MICRO SLAVE KO"),
+                                                                                New KeyValuePair(Of Integer, String)(65288, "MICRO SLAVE"),
+                                                                                New KeyValuePair(Of Integer, String)(65318, "KM OPEN"),
+                                                                                New KeyValuePair(Of Integer, String)(65320, "KS OPEN"),
+                                                                                New KeyValuePair(Of Integer, String)(65319, "KS CLOSED")
                                                                             }
                                                                         })
+
 
                 Return oList
             End Function
@@ -929,6 +1077,13 @@
             Public Class FaultCodes
                 Public Property byteCode As String
                 Public Property byteList As New List(Of KeyValuePair(Of Integer, String))
+            End Class
+
+            Public Class ACFaultCodes
+                Public Property byteCode As String
+                Public Property ACKey As Integer
+                Public Property ACValue As String
+
             End Class
 
             Public Function GetHourCounter(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
@@ -1045,7 +1200,8 @@
 
         Public Class CanBusFaultDefinition
             Public Shared Function GetFaultCodeList() As List(Of KeyValuePair(Of String, String))
-                Dim oKVPList = New List(Of KeyValuePair(Of String, String)) _
+                '--- Original
+                Return New List(Of KeyValuePair(Of String, String)) _
                     From {
                         New KeyValuePair(Of String, String)("S 1", "E,Emergency stop"),
                         New KeyValuePair(Of String, String)("S 4", "E,Limit end position. Acknowledgment by key switch"),
@@ -1107,77 +1263,84 @@
                         New KeyValuePair(Of String, String)("IO 1", "W,Cable break battery supervision."),
                         New KeyValuePair(Of String, String)("IO 4", "W,Battery empty <br> speed reduction"),
                         New KeyValuePair(Of String, String)("IO 20", "E,Invalid steering program,not for E-Maxi with option 'no steering'"),
-                        New KeyValuePair(Of String, String)("IO 40", "W,Cable break current sensor.")
+                        New KeyValuePair(Of String, String)("IO 40", "W,Cable break current sensor."),
+                        New KeyValuePair(Of String, String)("no error", "E,no error"),
+                        New KeyValuePair(Of String, String)("ACE2 A1", "E,ACE2 A1"),
+                        New KeyValuePair(Of String, String)("ACE2 A2", "E,ACE2 A2"),
+                        New KeyValuePair(Of String, String)("ACE2 A3", "E,ACE2 A3"),
+                        New KeyValuePair(Of String, String)("ACE2 A4", "E,ACE2 A4"),
+                        New KeyValuePair(Of String, String)("EPS A5", "E,EPS A5"),
+                        New KeyValuePair(Of String, String)("EPS A6", "E,EPS A6"),
+                        New KeyValuePair(Of String, String)("EPS A7", "E,EPS A7"),
+                        New KeyValuePair(Of String, String)("EPS A8", "E,EPS A8"),
+                        New KeyValuePair(Of String, String)("LOGIC FAILURE #3", "E,Internal logic card failure"),
+                        New KeyValuePair(Of String, String)("LOGIC FAILURE #2", "E,Internal logic card failure"),
+                        New KeyValuePair(Of String, String)("LOGIC FAILURE #1", "E,Voltage suplay on key input is too low or too high"),
+                        New KeyValuePair(Of String, String)("VMN LOW", "E,mains under-voltage"),
+                        New KeyValuePair(Of String, String)("VMN HIGH", "E,mains over-voltage"),
+                        New KeyValuePair(Of String, String)("CONTACTOR CLOSED", "E,line contactor is closed at startup (ONLY AC3 e NOT IMS)"),
+                        New KeyValuePair(Of String, String)("CONTACTOR OPEN", "E,device hardware contact 1 = manufacturer specific"),
+                        New KeyValuePair(Of String, String)("STBY I HIGH", "E,current on device output side continues over current No.1"),
+                        New KeyValuePair(Of String, String)("CAPACITOR CHARGE", "E,voltage phase failure"),
+                        New KeyValuePair(Of String, String)("DRIVER SHORTED", "E,A1 output shorted/DC link over-voltage No.1"),
+                        New KeyValuePair(Of String, String)("CONTACTOR DRIVER", "E,A1 output opened/DC link under-voltage No.1"),
+                        New KeyValuePair(Of String, String)("ENCODER ERROR", "E,speed sensor broken"),
+                        New KeyValuePair(Of String, String)("PROG TOOTHS", "E,input A3 and A10 not compatible with parameter TOOTHS"),
+                        New KeyValuePair(Of String, String)("GENERIC ERROR", "E,generic error (the node is in selftest mode) safety a11 open"),
+                        New KeyValuePair(Of String, String)("WATCHDOG #1", "E,device software reset (watchdog)"),
+                        New KeyValuePair(Of String, String)("AUX COIL SHORTED", "E,coil short"),
+                        New KeyValuePair(Of String, String)("WATCHDOG #2", "E,device software reset (watchdog)"),
+                        New KeyValuePair(Of String, String)("SAFETY INPUT", "E,Safety input"),
+                        New KeyValuePair(Of String, String)("MC COIL SHORTED", "E,MC COIL SHORTED"),
+                        New KeyValuePair(Of String, String)("COIL SHORTED HW KO", "E,COIL SHORTED HW KO"),
+                        New KeyValuePair(Of String, String)("KEY OFF SHORT", "E,key off shorted"),
+                        New KeyValuePair(Of String, String)("POWER MOS SHORTED", "E,power mos shorted"),
+                        New KeyValuePair(Of String, String)("EMERGENCY", "E,Problems in the anaglog input"),
+                        New KeyValuePair(Of String, String)("ANALOG INPUT", "E,Problems in the anaglog input"),
+                        New KeyValuePair(Of String, String)("WRONG 0 VOLTAGE", "E,problems on the logic"),
+                        New KeyValuePair(Of String, String)("SAFETY OUTPUT", "E,safety output"),
+                        New KeyValuePair(Of String, String)("HARDWARE FAULT", "E,hardware fault"),
+                        New KeyValuePair(Of String, String)("FLASH CHECKSUM", "E,checksum error"),
+                        New KeyValuePair(Of String, String)("ENCODER LOCKED", "E,encodere locked"),
+                        New KeyValuePair(Of String, String)("SOFTWARE ERROR", "E,software error"),
+                        New KeyValuePair(Of String, String)("WRONG RAM ADDRESS", "E,wrong ram address"),
+                        New KeyValuePair(Of String, String)("CAN BUS KO", "E,Periodic PDO_RX  are not received"),
+                        New KeyValuePair(Of String, String)("WRONG SET BATTERY", "E,battery selection is wrong."),
+                        New KeyValuePair(Of String, String)("AUX OUTPUT KO", "E,A3 output broken/DC link under-voltage No.2"),
+                        New KeyValuePair(Of String, String)("EEPROM  KO", "W,device hardware data storage EEPROM"),
+                        New KeyValuePair(Of String, String)("TH. PROTECTION", "W,excess temperature device"),
+                        New KeyValuePair(Of String, String)("MOTOR TEMPERATURE", "W,excess temperature motor"),
+                        New KeyValuePair(Of String, String)("FORWARD+BACKWARD", "W,Forward and Reverse request direction together"),
+                        New KeyValuePair(Of String, String)("CURRENT GAIN", "W,Problems in the anaglog input"),
+                        New KeyValuePair(Of String, String)("SENS MOT TEMP KO", "W,sensor temperature motor"),
+                        New KeyValuePair(Of String, String)("THERMIC SENS. KO", "W,sensor temperature device broken (manufacturer specific)"),
+                        New KeyValuePair(Of String, String)("SLIP PROFILE", "W,FREQ SLIP # are not in ascendent order"),
+                        New KeyValuePair(Of String, String)("LOGIC FAILURE #4", "E,LOGIC FAILURE #4"),
+                        New KeyValuePair(Of String, String)("LOGIC FAILURE #2", "E,LOGIC FAILURE #2"),
+                        New KeyValuePair(Of String, String)("LOGIC FAILURE #1", "E,LOGIC FAILURE #1"),
+                        New KeyValuePair(Of String, String)("VMN NOT OK", "E,VMN NOT OK"),
+                        New KeyValuePair(Of String, String)("MAIN CONT. OPEN", "E,Main contractor beem opened. NMT RESET is required to clear the alarm"),
+                        New KeyValuePair(Of String, String)("HIGH TEMPERATURE", "E,HIGH TEMPERATURE"),
+                        New KeyValuePair(Of String, String)("STBY I HIGH", "E,STBY I HIGH"),
+                        New KeyValuePair(Of String, String)("POWER FAILURE #3", "E,POWER FAILURE #3"),
+                        New KeyValuePair(Of String, String)("POWER FAILURE #2", "E,POWER FAILURE #2"),
+                        New KeyValuePair(Of String, String)("POWER FAILURE #1", "E,POWER FAILURE #1"),
+                        New KeyValuePair(Of String, String)("STEER SENSOR KO", "E,STEER SENSOR KO"),
+                        New KeyValuePair(Of String, String)("DATA ACQUISITION", "E,DATA ACQUISITION"),
+                        New KeyValuePair(Of String, String)("MICRO SLAVE KO", "E,MICRO SLAVE KO"),
+                        New KeyValuePair(Of String, String)("MICRO SLAVE", "E,MICRO SLAVE"),
+                        New KeyValuePair(Of String, String)("KM OPEN", "E,KM OPEN"),
+                        New KeyValuePair(Of String, String)("KS OPEN", "E,KS OPEN"),
+                        New KeyValuePair(Of String, String)("KS CLOSED", "E,KS CLOSED")
                         }
 
-                'Return New List(Of KeyValuePair(Of String, String)) _
-                '    From {
-                '        New KeyValuePair(Of String, String)("S 1", "E,Emergency stop"),
-                '        New KeyValuePair(Of String, String)("S 4", "E,Limit end position. Acknowledgment by key switch"),
-                '        New KeyValuePair(Of String, String)("S 4", "W,Incorrect start after and active faults. First joystick in the rest position"),
-                '        New KeyValuePair(Of String, String)("Can 31", "E,Timeout vehicle plc CR0020 A12 (from V4.0.8)"),
-                '        New KeyValuePair(Of String, String)("Canopen 1", "W,Timeout position transmitter B1,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Canopen 2", "W,Timeout position transmitter B2,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Canopen 3", "W,Timeout position transmitter B3,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Canopen 4", "W,Timeout position transmitter B4,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Canopen 5", "E,Timeout radio control A11"),
-                '        New KeyValuePair(Of String, String)("Canopen 6", "W,Timeout hydraulic module CR2032 A10,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Canopen 7", "W,Timeout WBA module CR2032 A40,only option 'WBA'"),
-                '        New KeyValuePair(Of String, String)("Canopen 8", "W,Timeout additional hydraulic module CR2032 A37,only option 'addional hydraulic'"),
-                '        New KeyValuePair(Of String, String)("Can 1", "E,Timeout AC Inverter A1 (drive)"),
-                '        New KeyValuePair(Of String, String)("Can 2", "E,Timeout AC Inverter A2 (drive)"),
-                '        New KeyValuePair(Of String, String)("Can 3", "E,Timeout AC Inverter A3 (drive)"),
-                '        New KeyValuePair(Of String, String)("Can 4", "E,Timeout AC Inverter A4 (drive)"),
-                '        New KeyValuePair(Of String, String)("Can 5", "E,Timeout AC Inverter A5 (steering),not for E-Maxi S,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 6", "E,Timeout AC Inverter A6 (steering),not for E-Maxi S,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 7", "E,Timeout AC Inverter A7 (steering),not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 8", "E,Timeout AC Inverter A8 (steering),not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 8", "E,Timeout vehicle plc CR0020 A12 (till V4.0.8)"),
-                '        New KeyValuePair(Of String, String)("Can 101", "E,Timeout AC Inverter A1 (drive) <br> no message reception since emergency stop or switching on"),
-                '        New KeyValuePair(Of String, String)("Can 102", "E,Timeout AC Inverter A2 (drive) <br> no message reception since emergency stop or switching on"),
-                '        New KeyValuePair(Of String, String)("Can 103", "E,Timeout AC Inverter A3 (drive) <br> no message reception since emergency stop or switching on"),
-                '        New KeyValuePair(Of String, String)("Can 104", "E,Timeout AC Inverter A4 (drive) <br> no message reception since emergency stop or switching on"),
-                '        New KeyValuePair(Of String, String)("Can 105", "E,Timeout AC Inverter A5 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 106", "E,Timeout AC Inverter A6 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi S, not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 107", "E,Timeout AC Inverter A7 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 108", "E,Timeout AC Inverter A8 (steering) <br> no message reception since emergency stop or switching on,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 205", "E,Timeout boot up message AC Inverter A5,not for E-Maxi S,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 206", "E,Timeout boot up message AC Inverter A6,not for E-Maxi S,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 207", "E,Timeout boot up message AC Inverter A7,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("Can 208", "E,Timeout boot up message AC Inverter A8,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("MS 1", "E,no steering control is online"),
-                '        New KeyValuePair(Of String, String)("MS 11", "E,Error position transmitter B1,not for E-Maxi S"),
-                '        New KeyValuePair(Of String, String)("MS 12", "E,Error AC inverter A5,not for E-Maxi S"),
-                '        New KeyValuePair(Of String, String)("MS 14", "E,Position discrepancy between axle 1 and 4 is too large. <br> Reset via emergency stop,not for E-Maxi S"),
-                '        New KeyValuePair(Of String, String)("MS 21", "E,Error position transmitter B2,not for E-Maxi S"),
-                '        New KeyValuePair(Of String, String)("MS 22", "E,Error AC inverter A6,not for E-Maxi S"),
-                '        New KeyValuePair(Of String, String)("MS 23", "E,Position discrepancy between axle 2 and 3 is too large. <br> Reset via emergency stop,not for E-Maxi S"),
-                '        New KeyValuePair(Of String, String)("MS 31", "E,Error position transmitter B3"),
-                '        New KeyValuePair(Of String, String)("MS 32", "E,Error AC inverter A7"),
-                '        New KeyValuePair(Of String, String)("MS 34", "E,Position discrepancy between axle 3 and 4 is too large. <br> Reset via emergency stop,only E-Maxi S"),
-                '        New KeyValuePair(Of String, String)("MS 41", "E,Error position transmitter B4"),
-                '        New KeyValuePair(Of String, String)("MS 42", "E,Error AC inverter A8"),
-                '        New KeyValuePair(Of String, String)("M1 1", "E,Drive/Engine axle 1.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
-                '        New KeyValuePair(Of String, String)("M1 2", "E,Drive/Engine axle 1.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
-                '        New KeyValuePair(Of String, String)("M1 4", "E,Drive/Engine axle 1.Temperature of the drive engine Mx is above break-off shaft."),
-                '        New KeyValuePair(Of String, String)("M2 1", "E,Drive/Engine axle 2.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
-                '        New KeyValuePair(Of String, String)("M2 2", "E,Drive/Engine axle 2.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
-                '        New KeyValuePair(Of String, String)("M2 4", "E,Drive/Engine axle 2.Temperature of the drive engine Mx is above break-off shaft."),
-                '        New KeyValuePair(Of String, String)("M3 1", "E,Drive/Engine axle 3.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
-                '        New KeyValuePair(Of String, String)("M3 2", "E,Drive/Engine axle 3.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
-                '        New KeyValuePair(Of String, String)("M3 4", "E,Drive/Engine axle 3.Temperature of the drive engine Mx is above break-off shaft."),
-                '        New KeyValuePair(Of String, String)("M4 1", "E,Drive/Engine axle 4.Wants to drive but no pulse signals (encoder?). <br> Reset via emergency stop"),
-                '        New KeyValuePair(Of String, String)("M4 2", "E,Drive/Engine axle 4.Main contactor of the drive is not activated. <br> (see logbook Zapi)"),
-                '        New KeyValuePair(Of String, String)("M4 4", "E,Drive/Engine axle 4.Temperature of the drive engine Mx is above break-off shaft."),
-                '        New KeyValuePair(Of String, String)("IO 1", "W,Cable break battery supervision."),
-                '        New KeyValuePair(Of String, String)("IO 4", "W,Battery empty <br> speed reduction"),
-                '        New KeyValuePair(Of String, String)("IO 20", "E,Invalid steering program,not for E-Maxi with option 'no steering'"),
-                '        New KeyValuePair(Of String, String)("IO 40", "W,Cable break current sensor.")
-                '        }
+                
 
-                Dim tmpList = AddACEFaultCodeToKVPList(oKVPList)
+                '---- End of Original
 
-                Return tmpList
+                'Dim tmpList = AddACEFaultCodeToKVPList(oKVPList)
+
+                'Return tmpList
 
             End Function
 
@@ -1194,6 +1357,7 @@
                 '20 - EPS A7 
                 '21 - EPS A8
 
+                objList.Add(New KeyValuePair(Of String, String)("no error", "E,no error"))
                 objList.Add(New KeyValuePair(Of String, String)("ACE2 A1", "E,ACE2 A1"))
                 objList.Add(New KeyValuePair(Of String, String)("ACE2 A2", "E,ACE2 A2"))
                 objList.Add(New KeyValuePair(Of String, String)("ACE2 A3", "E,ACE2 A3"))

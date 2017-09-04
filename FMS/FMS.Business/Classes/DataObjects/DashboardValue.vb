@@ -316,15 +316,17 @@
             Dim arrIO() As String = {"IO 1", "IO 2", "IO 3", "IO 4", "IO 8", "IO 11",
                                     "IO 12", "IO 13", "IO 14", "IO 20", "IO 30", "IO 32",
                                     "IO 33", "IO 34", "IO 35", "IO 40", "IO 41", "IO 71"}
-
-
+            Dim arrAC() As String = {"ACE2 A1", "ACE2 A2", "ACE2 A3", "ACE2 A4",
+                                    "EPS A1", "EPS A2", "EPS A3", "EPS A4", "for Testing"}
+            
 
             If vehicle.Count > 0 Then
                 Dim ListRow = New DashboardValue
                 Dim rowErrCat = New DashboardValue.clsErrCategory
 
                 Dim mainLoopCtr = vehicle.Count
-                Dim strDesc, strValue As String
+                Dim strDesc As String = ""
+                Dim strValue As String = ""
 
                 For ndx As Integer = 0 To mainLoopCtr - 1
                     strDesc = vehicle(ndx).MessageDefinition.Description
@@ -338,7 +340,10 @@
                         Continue For
 
                     Else
-                        strValue = vehicle(ndx).CanValues(0).Value
+                        If (strDesc <> "AC Inverter") Then
+                            strValue = vehicle(ndx).CanValues(0).Value
+                        End If
+
                     End If
 
                     Select Case strDesc
@@ -365,9 +370,12 @@
 
                             Dim LEDValue = oDash.GetLEDValue(deviceID)
                             Dim pos = 7
+                            Dim bPos As Integer = 0
+
 
                             For count = 0 To LEDValue.Length - 1
 
+                                'LED	0000 01 01
                                 Dim bval = LEDValue.Substring(pos, 1)
 
                                 If count = 0 And bval = "1" Then
@@ -408,17 +416,6 @@
 
                             Next
 
-                            'Case "Parking Brake"
-                            '    ListRow.Parking_Break = strValue
-
-                            '    If strValue = "Parking Brake ON" Then
-                            '        ListRow.StopControl = "ON"
-                            '    Else
-                            '        If strValue = "Parking Brake OFF" Then
-                            '            ListRow.StopControl = "OFF"
-                            '        End If
-                            '    End If
-
                         Case "Battery Voltage"
                             If Not strValue = Nothing Then
                                 ListRow.Battery_Voltage = strValue
@@ -453,76 +450,82 @@
                                 Dim valErrCat As String = ""
                                 Dim valErrCode As String = ""
                                 Dim chrpos = sfc.IndexOf(" ")
-                                Dim sLen = sfc.Length - chrpos
-                                strVal = sfc.Substring(chrpos, sLen).Trim()
 
-                                Dim strSteer As String = Array.Find(arrSteer, Function(x) (x.StartsWith(sfc)))
-                                Dim strDrive As String = Array.Find(arrDrive, Function(x) (x.StartsWith(sfc)))
-                                Dim strSpeed As String = Array.Find(arrSpeed, Function(x) (x.StartsWith(sfc)))
-                                Dim strWarning As String = Array.Find(arrWarning, Function(x) (x.StartsWith(sfc)))
-                                Dim strAlign As String = Array.Find(arrAlign, Function(x) (x.StartsWith(sfc)))
-                                Dim strIFM As String = Array.Find(arrIFM, Function(x) (x.StartsWith(sfc)))
-                                Dim strCAN As String = Array.Find(arrCAN, Function(x) (x.StartsWith(sfc)))
-                                Dim strCANOPEN As String = Array.Find(arrCANOPEN, Function(x) (x.StartsWith(sfc)))
-                                Dim strDataLogger As String = Array.Find(arrDataLogger, Function(x) (x.StartsWith(sfc)))
-                                Dim strSafety As String = Array.Find(arrSafety, Function(x) (x.StartsWith(sfc)))
-                                Dim strDrvM1 As String = Array.Find(arrDrive_M1, Function(x) (x.StartsWith(sfc)))
-                                Dim strDrvM2 As String = Array.Find(arrDrive_M2, Function(x) (x.StartsWith(sfc)))
-                                Dim strDrvM3 As String = Array.Find(arrDrive_M3, Function(x) (x.StartsWith(sfc)))
-                                Dim strDrvM4 As String = Array.Find(arrDrive_M4, Function(x) (x.StartsWith(sfc)))
-                                Dim strIO As String = Array.Find(arrIO, Function(x) (x.StartsWith(sfc)))
+                                If chrpos > -1 Then
+                                    Dim sLen = sfc.Length - chrpos
+                                    strVal = sfc.Substring(chrpos, sLen).Trim()
 
-                                If Not strSteer = Nothing Then
-                                    valErrCat = "Steering"
-                                    valErrCode = strVal
+                                    Dim strSteer As String = Array.Find(arrSteer, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrive As String = Array.Find(arrDrive, Function(x) (x.StartsWith(sfc)))
+                                    Dim strSpeed As String = Array.Find(arrSpeed, Function(x) (x.StartsWith(sfc)))
+                                    Dim strWarning As String = Array.Find(arrWarning, Function(x) (x.StartsWith(sfc)))
+                                    Dim strAlign As String = Array.Find(arrAlign, Function(x) (x.StartsWith(sfc)))
+                                    Dim strIFM As String = Array.Find(arrIFM, Function(x) (x.StartsWith(sfc)))
+                                    Dim strCAN As String = Array.Find(arrCAN, Function(x) (x.StartsWith(sfc)))
+                                    Dim strCANOPEN As String = Array.Find(arrCANOPEN, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDataLogger As String = Array.Find(arrDataLogger, Function(x) (x.StartsWith(sfc)))
+                                    Dim strSafety As String = Array.Find(arrSafety, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM1 As String = Array.Find(arrDrive_M1, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM2 As String = Array.Find(arrDrive_M2, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM3 As String = Array.Find(arrDrive_M3, Function(x) (x.StartsWith(sfc)))
+                                    Dim strDrvM4 As String = Array.Find(arrDrive_M4, Function(x) (x.StartsWith(sfc)))
+                                    Dim strIO As String = Array.Find(arrIO, Function(x) (x.StartsWith(sfc)))
+                                    Dim strAC As String = Array.Find(arrAC, Function(x) (x.StartsWith(sfc)))
+
+                                    If Not strSteer = Nothing Then
+                                        valErrCat = "Steering"
+                                        valErrCode = strVal
+                                    End If
+
+                                    If Not strSafety = Nothing Then
+                                        valErrCat = "Safety"
+                                        valErrCode = strVal
+                                    End If
+
+                                    If Not strDrvM1 = Nothing Then
+                                        valErrCat = "DriveM1"
+                                        valErrCode = strVal
+                                    End If
+
+                                    If Not strDrvM2 = Nothing Then
+                                        valErrCat = "DriveM2"
+                                        valErrCode = strVal
+                                    End If
+
+                                    If Not strDrvM3 = Nothing Then
+                                        valErrCat = "DriveM3"
+                                        valErrCode = strVal
+                                    End If
+
+                                    If Not strDrvM4 = Nothing Then
+                                        valErrCat = "DriveM4"
+                                        valErrCode = strVal
+                                    End If
+
+                                    If Not strCAN = Nothing Then
+                                        valErrCat = "CAN"
+                                        valErrCode = strVal
+                                        ListRow.CANControl = strValue
+                                    End If
+
+                                    If Not strCANOPEN = Nothing Then
+                                        valErrCat = "CANOPEN"
+                                        valErrCode = strVal
+                                        ListRow.CANControl = strValue
+                                    End If
+
+                                    If Not strIO = Nothing Then
+                                        valErrCat = "InOut"
+                                        valErrCode = strVal
+                                    End If
+
+                                    oListErrCat.Add(New DashboardValue.clsErrCategory() With { _
+                                                         .Err_Category = valErrCat, _
+                                                         .Err_Value = valErrCode _
+                                                    })
+
                                 End If
 
-                                If Not strSafety = Nothing Then
-                                    valErrCat = "Safety"
-                                    valErrCode = strVal
-                                End If
-
-                                If Not strDrvM1 = Nothing Then
-                                    valErrCat = "DriveM1"
-                                    valErrCode = strVal
-                                End If
-
-                                If Not strDrvM2 = Nothing Then
-                                    valErrCat = "DriveM2"
-                                    valErrCode = strVal
-                                End If
-
-                                If Not strDrvM3 = Nothing Then
-                                    valErrCat = "DriveM3"
-                                    valErrCode = strVal
-                                End If
-
-                                If Not strDrvM4 = Nothing Then
-                                    valErrCat = "DriveM4"
-                                    valErrCode = strVal
-                                End If
-
-                                If Not strCAN = Nothing Then
-                                    valErrCat = "CAN"
-                                    valErrCode = strVal
-                                    ListRow.CANControl = strValue
-                                End If
-
-                                If Not strCANOPEN = Nothing Then
-                                    valErrCat = "CANOPEN"
-                                    valErrCode = strVal
-                                    ListRow.CANControl = strValue
-                                End If
-
-                                If Not strIO = Nothing Then
-                                    valErrCat = "InOut"
-                                    valErrCode = strVal
-                                End If
-
-                                oListErrCat.Add(New DashboardValue.clsErrCategory() With { _
-                                                     .Err_Category = valErrCat, _
-                                                     .Err_Value = valErrCode _
-                                                })
 
                             Next
 
