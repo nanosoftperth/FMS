@@ -42,7 +42,20 @@ function loopGetVals() {
     )
 }
 function GetDataInput(data, num) {
-    return (String(data.Value).indexOf("ERROR:") == 0) ? "" : (num == true) ? data.Value.toFixed(1) : data.Value;
+    if (data != null) {
+        if (String(data.Value).indexOf("ERROR:") == 0) {
+            return "";
+        } else {
+            if (num == true) {
+                return data.Value.toFixed(1);
+            } else {
+                return data.Value;
+            }
+        }
+    } else {
+        return "";
+    }
+    //return (String(data.Value).indexOf("ERROR:") == 0) ? "" : (num == true) ? data.Value.toFixed(1) : data.Value;
 }
 function serverResult(data, dateItm, valItm, isLastItem, id) {
     var dataVal = "";
