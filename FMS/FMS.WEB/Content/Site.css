@@ -222,8 +222,9 @@ background-color: transparent;
     /*height:375px;*/
     height:390px;
 	/*//max-height: 140px;*/
-	overflow-y: hidden;
-	overflow-x: hidden;
+	
+    /*overflow-y: hidden;
+	overflow-x: hidden;*/
 }
 .iw-content img {
 	float: right;
