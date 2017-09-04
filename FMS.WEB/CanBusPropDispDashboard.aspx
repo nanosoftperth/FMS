@@ -73,20 +73,13 @@
                     //getDataFromServer();
                     $('#iLCD').removeClass('imgLCD');
                     $('#iLCD').addClass('pnlimgHide');
-                    //setLCDStartUp(priVehicleName);
-                    //setLCDNoStartUp(priVehicleName)
-                    //$('#div_LCD').removeClass('LCDCont_Hide')
-                    //$('#div_LCD').addClass('div_LCDCont')
-                    //$('#spanLCDTitle').text(priVehicleName.replace(/%20/g, " "));
                     getDataFromServer();
                     timeout();
                     //setTimeout('timeout()', 2500);
                 }
             }
 
-            //getDataFromServer();
-            //timeout();
-
+            
             function GetParameterValues(param) {
                 var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
                 //alert(url);

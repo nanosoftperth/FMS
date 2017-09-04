@@ -104,13 +104,7 @@ Public Class CanBusPropertyDisplay
 
                         cbd.dtTime = messageValue.CanValues(0).Time.ToString("MM/dd/yy HH:mm:ss")
 
-                        If Not cbd.label = "LED" Or Not cbd.label = "Stop" Or Not cbd.label = "AC Fault Codes" Then '---> filter not to display LED entry on NTD
-                            canBusDef.Add(cbd)
-                        End If
-                        'If Not cbd.label = "LED" Or Not cbd.label = "Stop" Then '---> filter not to display LED entry on NTD
-                        '    canBusDef.Add(cbd)
-                        'End If
-
+                        canBusDef.Add(cbd)
 
                     End If
                 Next
@@ -127,6 +121,77 @@ Public Class CanBusPropertyDisplay
                     End If
                 End If
             End If
+
+           
+            Dim strACLabel = ""
+            Dim strACDescription = ""
+            Dim strFCDescription = ""
+            Dim strLEDValue = ""
+
+            'Find Fault Code and Add AC Fault and get value
+            For Nrow = 0 To canBusDef.Count - 1
+
+                If canBusDef(Nrow).label = "AC Inverter" Then
+                    strACLabel = canBusDef(Nrow).label
+
+                    Dim ndxAC = canBusDef(Nrow).description.Substring(0, 1)
+                    If ndxAC = "," Then
+                        strACDescription = canBusDef(Nrow).description.Replace(",", "")
+                    Else
+                        strACDescription = canBusDef(Nrow).description
+                    End If
+
+                End If
+                
+                If canBusDef(Nrow).label = "Fault Codes" Then
+                    strFCDescription = canBusDef(Nrow).description
+                End If
+
+                If canBusDef(Nrow).label = "LED" Then
+                    strLEDValue = canBusDef(Nrow).description
+                End If
+
+            Next
+
+            'Get LED value for parking brake and overwrite from existing one
+            Dim strBrakeVal = strLEDValue.Substring(7, 1)
+            Dim strBrake As String = ""
+
+            If strBrakeVal = "1" Then
+                strBrake = "Parking Brake ON"
+            Else
+                strBrake = "Parking Brake OFF"
+            End If
+
+            'Find Parking Brake and update value
+            For Nrow = 0 To canBusDef.Count - 1
+                If canBusDef(Nrow).label = "Parking Brake" Then
+                    canBusDef(Nrow).description = strBrake
+                    Exit For
+                End If                
+            Next
+
+            'Find Fault Code and update value
+            For Nrow = 0 To canBusDef.Count - 1
+                If canBusDef(Nrow).label = "Fault Codes" Then
+                    canBusDef(Nrow).description = IIf(strFCDescription = "", strACDescription, strFCDescription + "," + strACDescription)
+                    Exit For
+                End If
+                
+            Next
+
+            'remove stop, LED and AC Fault codes from list
+            'Indexes
+            Dim ndxSTP = canBusDef.FindIndex(Function(x) x.label = "Stop")
+            canBusDef.RemoveAt(ndxSTP)
+
+            'Dim ndxLED = canBusDef.FindIndex(Function(x) x.label = "LED")
+            'canBusDef.RemoveAt(ndxLED)
+
+            Dim ndxACE = canBusDef.FindIndex(Function(x) x.label = "AC Inverter")
+            canBusDef.RemoveAt(ndxACE)
+
+
         Catch ex As Exception
             Dim x As String = ex.Message
         End Try
@@ -177,12 +242,12 @@ Public Class CanBusPropertyDisplay
                         canBusDef(row).sortNdx = 14
                     Case "Fault Codes"
                         canBusDef(row).sortNdx = 15
+                        'Case "Stop"
+                        '    canBusDef(row).sortNdx = 17
+                        'Case "AC Inverter"
+                        '    canBusDef(row).sortNdx = 18
                     Case "LED"
-                        canBusDef(row).sortNdx = 16
-                    Case "Stop"
-                        canBusDef(row).sortNdx = 17
-                    Case "AC Fault Codes"
-                        canBusDef(row).sortNdx = 18
+                        canBusDef(row).sortNdx = 19
                 End Select
             Next
 
