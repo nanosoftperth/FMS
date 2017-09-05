@@ -4,11 +4,11 @@
         Public Property CAN_EventOccuranceID As System.Guid
         Public Property CAN_EventDefinitionID As System.Guid
         Public Property OccuredDate As Date
-        Public Property FinishedDate As Date
+        Public Property FinishedDate As Nullable(Of Date)
         Public Property TriggerCondition As String
         Public Property EventType As String
         Public Property StartTime As Date
-        Public Property EndTime As Date
+        Public Property EndTime As Nullable(Of Date)
 #End Region
 
 #Region "CRUD"
@@ -19,7 +19,7 @@
                 .CAN_EventDefinitionID = eventOccurance.CAN_EventDefinitionID
                 .TriggerCondition = eventOccurance.TriggerCondition
                 .OccuredDate = eventOccurance.OccuredDate
-                .FinishedDate = eventOccurance.FinishedDate
+                '.FinishedDate = eventOccurance.FinishedDate
             End With
             SingletonAccess.FMSDataContextContignous.CAN_EventOccurances.InsertOnSubmit(canEventOccurance)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -31,7 +31,7 @@
                 .CAN_EventOccuranceID = eventOccurance.CAN_EventOccuranceID
                 .CAN_EventDefinitionID = eventOccurance.CAN_EventDefinitionID
                 .TriggerCondition = eventOccurance.TriggerCondition
-                .OccuredDate = eventOccurance.OccuredDate
+                '.OccuredDate = eventOccurance.OccuredDate
                 .FinishedDate = eventOccurance.FinishedDate
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -81,6 +81,17 @@
                                                                     .StartTime = eventOcc.OccuredDate, .EndTime = eventOcc.FinishedDate}).ToList()
 
             Return objGetCanEventOccurance
+        End Function
+        Public Shared Function GetCanEventOccuranceFinishedDate(cbEventDefinitionId As Guid) As DataObjects.Can_EventOccurance
+            Dim objGetOccuranceFinishedDate = (From eventOcc In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances
+                                              Where eventOcc.CAN_EventDefinitionID.Equals(cbEventDefinitionId)
+                                              Order By eventOcc.OccuredDate Descending
+                                              Select New DataObjects.Can_EventOccurance() With {.CAN_EventOccuranceID = eventOcc.CAN_EventOccuranceID,
+                                                                                                .CAN_EventDefinitionID = eventOcc.CAN_EventDefinitionID,
+                                                                                                .TriggerCondition = eventOcc.TriggerCondition,
+                                                                                                .OccuredDate = eventOcc.OccuredDate,
+                                                                                                .FinishedDate = eventOcc.FinishedDate}).FirstOrDefault
+            Return objGetOccuranceFinishedDate
         End Function
         Public Shared Function GetCanbusEvenOccuranceList(DateOccured As DateTime) As List(Of DataObjects.Can_EventOccurance)
             Dim retList = (From canbusEvent In SingletonAccess.FMSDataContextContignous.CAN_EventOccurances

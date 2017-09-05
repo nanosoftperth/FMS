@@ -48,7 +48,7 @@
             Try
                 Dim getLastValidDate = (From logs In SingletonAccess.FMSDataContextNew.CanBusLogs
                                    Where logs.DeviceId.Equals(_deviceId) And logs.SPN.Equals(_spn) And logs.Standard.Equals(_standard) And logs.PGN.Equals(_pgn)
-                                   Group logs By logs.DeviceId, logs.SPN, logs.Standard Into g = Group
+                                   Group logs By logs.DeviceId, logs.PGN, logs.SPN, logs.Standard Into g = Group
                                    Order By g.Max(Function(orderDateLog) orderDateLog.DateLog)
                                    Select New DataObjects.CanBusLogs() With {.DateLog = g.Max(Function(dtLog) dtLog.DateLog)}).SingleOrDefault
                 If getLastValidDate Is Nothing Then
