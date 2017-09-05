@@ -31,15 +31,11 @@ Namespace BackgroundCalculations
                 If Not CanData.CanValues.Count.Equals(0) AndAlso Not lastTimeValid.ToString().Equals(CanData.CanValues(0).Time.ToString()) Then
                     Dim blnGeneratedEvents As Boolean = False
                     'generate events from this new data
-                    blnGeneratedEvents = GenerateEventsFromThisNewData(strVehicleName, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard, CanData.CanValues(0).Value, lastTimeValid)
-                    If blnGeneratedEvents Then
-                        ' Save the last time that valid data was obtained for that SPN
-                        SaveTheLastTimeValidData(CanData, strDeviceId, availCanTag.SPN, availCanTag.Standard)
-                    End If
+                    GenerateEventsFromThisNewData(strVehicleName, availCanTag.PGN, availCanTag.SPN, availCanTag.Standard, lastTimeValid, strDeviceId, CanData)
                 End If
             Next
         End Sub
-        Private Shared Function GenerateEventsFromThisNewData(vehicleId As String, pgn As Integer, spn As Integer, standard As String, canBusValue As String, lastTimeValid As Date) As Boolean
+        Private Shared Function GenerateEventsFromThisNewData(vehicleId As String, pgn As Integer, spn As Integer, standard As String, lastTimeValid As Date, strDeviceId As String, cdt As DataObjects.CanDataPoint) As Boolean
             Dim eventDefList = DataObjects.Can_EventDefinition.GetEventDefinitionList(vehicleId, pgn, spn, standard)
             Dim dblCanValue As Double
             Dim blnRetValue As Boolean = False
@@ -48,12 +44,12 @@ Namespace BackgroundCalculations
             For Each eventList In eventDefList
                 Dim objCanOccurance As New DataObjects.Can_EventOccurance
                 Dim dblValue As Double
-                objCanOccurance.OccuredDate = lastTimeValid
+                objCanOccurance.OccuredDate = cdt.CanValues(0).Time
                 objCanOccurance.CAN_EventOccuranceID = eventList.CAN_EventDefinitionID
                 Dim getLastEventValue = DataObjects.CanBusEventOccuranceLog.GetCanBusEventOccuranceLatestLog(eventList.CAN_EventDefinitionID).FirstOrDefault()
                 Dim previousCanValue As Double = 0
                 Dim previousCanValueStr As String = String.Empty
-                If Double.TryParse(eventList.TriggerConditionText.Trim, dblValue) AndAlso Double.TryParse(canBusValue, dblCanValue) Then
+                If Double.TryParse(eventList.TriggerConditionText.Trim, dblValue) AndAlso Double.TryParse(cdt.CanValues(0).Value, dblCanValue) Then
                     If Not getLastEventValue Is Nothing Then
                         previousCanValue = CDbl(getLastEventValue.CanValue)
                     End If
@@ -62,36 +58,96 @@ Namespace BackgroundCalculations
                             If dblCanValue < dblValue Then
                                 If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue > dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                         Case ">"
                             If dblCanValue > dblValue Then
                                 If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue < dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                         Case "<="
                             If dblCanValue <= dblValue Then
                                 If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue >= dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                         Case ">="
                             If dblCanValue >= dblValue Then
                                 If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue <= dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                         Case "!="
                             If dblCanValue <> dblValue Then
                                 If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue = dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                         Case "="
                             If dblCanValue = dblValue Then
                                 If previousCanValue <> dblCanValue And (getLastEventValue Is Nothing OrElse previousCanValue <> dblValue) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                     End Select
@@ -102,24 +158,54 @@ Namespace BackgroundCalculations
                     End If
                     Select Case eventList.TriggerConditoinQualifier.ToUpper.Trim
                         Case "LIKE"
-                            If canBusValue.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
-                                If previousCanValueStr.ToUpper.ToString().Trim <> canBusValue.ToUpper.Trim And
+                            If cdt.CanValues(0).Value.ToUpper.Trim().Contains(eventList.TriggerConditionText.ToUpper.Trim()) Then
+                                If previousCanValueStr.ToUpper.ToString().Trim <> cdt.CanValues(0).Value.ToUpper.Trim And
                                     (getLastEventValue Is Nothing OrElse Not previousCanValueStr.ToUpper.ToString().Trim.Contains(eventList.TriggerConditionText.ToUpper.Trim())) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                         Case "="
-                            If canBusValue.ToUpper.Trim() = eventList.TriggerConditionText.ToUpper.Trim() Then
-                                If previousCanValueStr.ToUpper.ToString().Trim <> canBusValue.ToUpper.Trim And
+                            If cdt.CanValues(0).Value.ToUpper.Trim() = eventList.TriggerConditionText.ToUpper.Trim() Then
+                                If previousCanValueStr.ToUpper.ToString().Trim <> cdt.CanValues(0).Value.ToUpper.Trim And
                                     (getLastEventValue Is Nothing OrElse previousCanValueStr.ToUpper.ToString().Trim <> eventList.TriggerConditionText.ToUpper.Trim()) Then
                                     blnRetValue = SetCanOccurance(objCanOccurance, eventList)
+                                    If blnRetValue Then
+                                        ' Save the last time that valid data was obtained for that SPN
+                                        SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
+                                    End If
+                                End If
+                            Else
+                                blnRetValue = CanEventOccuranceUpdate(eventList.CAN_EventDefinitionID, cdt.CanValues(0).Time)
+                                If blnRetValue Then
+                                    ' Save the last time that valid data was obtained for that SPN
+                                    SaveTheLastTimeValidData(cdt, strDeviceId, spn, standard)
                                 End If
                             End If
                     End Select
-                    SaveCanBusEventOccuranceLogs(objCanOccurance.CAN_EventOccuranceID, canBusValue, lastTimeValid)
+                    SaveCanBusEventOccuranceLogs(objCanOccurance.CAN_EventOccuranceID, cdt.CanValues(0).Value, lastTimeValid)
                 End If
             Next
             Return blnRetValue
+        End Function
+        Private Shared Function CanEventOccuranceUpdate(EventDefinitionId As Guid, CanbusDate As DateTime) As Boolean
+            Dim blnRet As Boolean = False
+            Dim canEventOcc = DataObjects.Can_EventOccurance.GetCanEventOccuranceFinishedDate(EventDefinitionId)
+            If Not canEventOcc Is Nothing AndAlso canEventOcc.FinishedDate Is Nothing Then
+                canEventOcc.FinishedDate = CanbusDate
+                DataObjects.Can_EventOccurance.Update(canEventOcc)
+                blnRet = True
+            End If
+            Return blnRet
         End Function
         Private Shared Sub SaveCanBusEventOccuranceLogs(EventDefinitionId As Guid, canBusValue As String, lastTimeValid As DateTime)
             Try
@@ -135,7 +221,6 @@ Namespace BackgroundCalculations
             Try
                 objOccurance.CAN_EventDefinitionID = eventList.CAN_EventDefinitionID
                 objOccurance.TriggerCondition = eventList.TriggerConditoinQualifier.Trim & " " & eventList.TriggerConditionText.Trim
-                objOccurance.FinishedDate = Date.Now
                 DataObjects.Can_EventOccurance.Create(objOccurance)
                 Return True
             Catch ex As Exception
