@@ -8,7 +8,7 @@
         Public Property AlertType As String
         Public Property TimePeriod As Date
         Public Property StartTime As Date
-        Public Property EndTime As Date
+        Public Property EndTime As Nullable(Of Date)
         Public Property SubscriberNativeID As System.Guid
         Public Property EmailAddress As String
         Public Property MessageContent As String
