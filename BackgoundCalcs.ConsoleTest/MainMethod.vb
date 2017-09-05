@@ -20,7 +20,7 @@
                 Threading.Thread.Sleep(TimeSpan.FromSeconds(SECONDS_TO_WAIT))
 
             Catch ex As Exception
-
+                LogMsg("Exception caused: {0}", ex.Message)
             End Try
         End While
 
