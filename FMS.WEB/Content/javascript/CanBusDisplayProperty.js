@@ -1,5 +1,7 @@
 ﻿var Zagro125Value = '';
 var Zagro500Value = '';
+var FC_Codes = '';
+var AC_Codes = '';
 
 // First, checks if it isn't implemented yet.
 if (!String.prototype.format) {
@@ -39,6 +41,9 @@ function loopGetVals() {
                 serverResult(data, dateItm, valItm, isLastItem, id);
             });
         }
+
+
+
     )
 }
 function GetDataInput(data, num) {
@@ -109,6 +114,16 @@ function serverResult(data, dateItm, valItm, isLastItem, id) {
             dataVal = GetDataInput(data, false) + " " + data.Units;
             $("#faultDesc").val(data.ValueString);
             valItm.text("").append("<a href='javascript:void(0)' onclick='OnFaultCodesClick()' id='faultCodes'>" + dataVal + "</a>");
+            FC_Codes = data.ValueString;
+
+            break;
+        case "#Zagro500|16":
+            dataVal = GetDataInput(data, false) + " " + data.Units;
+            $("#faultDesc").val(data.ValueString);
+            valItm.text("").append("<a href='javascript:void(0)' onclick='OnFaultCodesClick()' id='faultCodes'>" + dataVal + "</a>");
+            AC_Codes = data.ValueString;
+            //dataVal = GetDataInput(data, true) + " " + data.Units;
+            //valItm.text(dataVal);
             break;
         default:
             dataVal = GetDataInput(data, false) + " " + data.Units;
@@ -131,11 +146,53 @@ function serverResult(data, dateItm, valItm, isLastItem, id) {
 
     if (Zagro500Value == "") {
         $('#contentTable').find('.Zagro5007').hide();
+        //var tmp = $('#contentTable').find('.Zagro50016').find('Value tdFont').find('.faultCodes').text();
+        var tmp = $('#contentTable').children();
+        //alert(tmp);
+        //$('#contentTable').find('.Zagro50016').hide();
     } else {
         $('#contentTable').find('.Zagro5007').show();
+        //$('#contentTable').find('.Zagro50016').show();
     }
 
+    UpdateFaulCodesRow('', '');
+
     if (isLastItem) setTimeout(loopGetVals, 1000);
+}
+
+function UpdateFaulCodesRow(strFC_Codes, strAC_Codes)
+{
+    //$("table tr td:last-child").each(function (k, v) {
+    //    alert($(v).html());
+    //});
+
+    var countOfCANVals = $('#contentTable tr').length;
+
+    $('#contentTable tr').each(
+
+        function (index, item) {
+
+            var id = '#' + item.id;
+
+            if (id == '#Zagro125|1')
+            {
+
+            }
+
+            //var dateItm = $(item).find('.Date');
+            //var valItm = $(item).find('.Value');
+
+            //var standard = item.id.split('|')[0];
+            //var spn = item.id.split('|')[1];
+            //var this_url = uri.format($("#deviceId").val(), standard, spn);
+
+            //var isLastItem = ((countOfCANVals - 1) == index);
+
+        }
+
+
+
+    )
 }
 
 function OnPressureValueClick() {

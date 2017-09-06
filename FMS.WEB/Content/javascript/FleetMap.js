@@ -163,7 +163,8 @@ function showInfoWindow2(event) {
     //var vertices = '<br><br>' + this.getPath();
     var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
-    var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID;
+    //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID; //Original code
+    var newURL = 'CanBusDisplayProperty.aspx?DeviceID=' + this.DeviceID;
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 380px; width: 400px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content2\'>' + contentString + '</div>';
@@ -252,7 +253,8 @@ function getInfoWindow2() {
     var s = '<div id=\'iw-container\'>' + priDeviceName + '</div>';//'<b>' + this.Name + '</b><br>';
     //iw-title 
     //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID;
-    var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + priDeviceID + "&DeviceName=" + priVehicleName ;
+    //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + priDeviceID + "&DeviceName=" + priVehicleName ; //original code
+    var newURL = 'CanBusDisplayProperty.aspx?DeviceID=' + priDeviceID + "&DeviceName=" + priVehicleName; 
     contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 600px; width: 400px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content2\'>' + contentString + '</div>';

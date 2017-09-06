@@ -834,6 +834,7 @@
     <Content Include="App_Data\TopMenu.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
@@ -1256,7 +1257,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18356/</IISUrl>
+          <IISUrl>http://localhost:18357/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
