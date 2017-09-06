@@ -119,7 +119,7 @@ function serverResult(data, dateItm, valItm, isLastItem, id) {
             break;
         case "#Zagro500|16":
             dataVal = GetDataInput(data, false) + " " + data.Units;
-            $("#faultDesc").val(data.ValueString);
+            //$("#faultDesc").val(data.ValueString);
             valItm.text("").append("<a href='javascript:void(0)' onclick='OnFaultCodesClick()' id='faultCodes'>" + dataVal + "</a>");
             AC_Codes = data.ValueString;
             //dataVal = GetDataInput(data, true) + " " + data.Units;
