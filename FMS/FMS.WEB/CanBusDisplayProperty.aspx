@@ -22,6 +22,7 @@
             font-stretch:normal;
             font-weight:normal;
             font-style:normal;
+            padding-top: .1cm;
         }
 
         .Description {
