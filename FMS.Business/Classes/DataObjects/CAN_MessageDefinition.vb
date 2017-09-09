@@ -49,12 +49,14 @@ Namespace DataObjects
             End Get
         End Property
 
+        Public Property Name As String
 
         Public Sub New(x As Business.CAN_MessageDefinition)
 
             With x
 
                 Try
+                    If .Name IsNot Nothing Then Me.Name = .Name
                     If .Standard IsNot Nothing Then Me.Standard = .Standard
                     If .PGN IsNot Nothing Then Me.PGN = .PGN
                     If .SPN IsNot Nothing Then Me.SPN = .SPN
