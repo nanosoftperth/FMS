@@ -24,6 +24,8 @@ Namespace DataObjects
 
             End Get
         End Property
+
+
         Public Shared Function GetCompanyLogo(appID As Guid) As Byte()
 
             Dim ObjSetting As New List(Of FMS.Business.DataObjects.Setting)
@@ -35,6 +37,7 @@ Namespace DataObjects
             Dim stng As Setting = (From x In ObjSetting Where x.Name = "Logo").Single
 
             Return stng.ValueObj
+
         End Function
         Public Function GetAllDevicesNames() As List(Of String)
 

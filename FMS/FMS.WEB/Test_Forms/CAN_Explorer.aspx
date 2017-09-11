@@ -58,7 +58,9 @@
                                 <dx:GridViewDataTextColumn FieldName="ValueStr" VisibleIndex="2"></dx:GridViewDataTextColumn>
 
                                 <dx:GridViewDataDateColumn FieldName="Time" VisibleIndex="0">
-                                    <PropertiesDateEdit>
+                                    
+                                    <PropertiesDateEdit DisplayFormatString="g">
+                                        
                                         <TimeSectionProperties>
                                             <TimeEditProperties>
                                                 <ClearButton Visibility="Auto"></ClearButton>
