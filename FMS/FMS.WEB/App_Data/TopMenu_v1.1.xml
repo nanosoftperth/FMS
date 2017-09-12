@@ -11,6 +11,9 @@
 
   <item Text="Reporting" NavigateUrl="ReportGenerator.aspx"  />
 
+  <item Text="Dashboard System" NavigateUrl="Dashboarding.aspx"  />
+  
+
   <item Text="Administration &#x21D3;" NavigateUrl="#">
     <item Text="Application Management" NavigateUrl="UserManagement.aspx"   />
     <item Text="Vehicle &amp; Driver Management" NavigateUrl="ResourceMgmnt.aspx"   />
