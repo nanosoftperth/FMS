@@ -92,9 +92,7 @@ Public Class DashboardController
 
     <HttpPost()>
    <ActionName("Query")>
-    Public Function Query(request As HttpRequestMessage) As IEnumerable(Of queryReturnType)
-
-        Dim retobj As New List(Of queryReturnType)
+    Public Function Query(request As HttpRequestMessage) As Object
 
         'we presume at this point in time that the user is authorized
         Dim companyName As String = GetAuthorizedAndCompanyName(request.Headers.Authorization).CompanyName
@@ -112,7 +110,118 @@ Public Class DashboardController
         Dim startTime As Date = CDate(lok.range.from)
         Dim endTime As Date = CDate(lok.range.to)
 
-        Dim vehicleController As New Controllers.VehicleController
+        'grab the first target to determine if the result set should be timeserie or table
+        Dim isTimeserie As Boolean = lok.targets(0).type = "timeserie"
+
+        If isTimeserie Then
+            Return GetTimeSeriesResult(lok, startTime, endTime)
+        Else
+            Return GetTableResult(lok, startTime, endTime)
+        End If
+
+
+    End Function
+
+
+  
+
+    Public Class table_row
+
+        Public Sub New()
+
+        End Sub
+
+    End Class
+
+    Public Class table_column
+
+        Public Property text As String
+        Public Property type As String
+
+        Public Sub New()
+
+        End Sub
+    End Class
+
+
+
+
+    Public Function GetTableResult(lok As queryRequestType, startTime As Date, endTime As Date) As Object
+
+        Dim retobj As New table_retObj
+
+        retobj.type = "table"
+
+        retobj.columns = New List(Of table_column)
+        retobj.rows = New List(Of table_row)
+
+
+        retobj.columns.Add(New table_column With {.text = "Time", .type = "time"})
+        retobj.columns.Add(New table_column With {.text = "Value", .type = "string"})
+
+
+        For Each x As cust_target In lok.targets
+
+            Dim qrt = New queryReturnType With {.target = x.target}
+
+            Dim strs() As String = x.target.Split(">")
+            Dim vehicleName As String = strs(0)
+            Dim standard As String = strs(1)
+            Dim spn As Integer = CInt(strs(2))
+            Dim spnNAme As String = strs(3)
+
+            Dim canDataPoint = Business.DataObjects.CanDataPoint.GetPointWithData(spn, vehicleName, standard, startTime, endTime)
+
+            Dim cnt As Integer = canDataPoint.CanValues.Count
+            Dim i As Integer = 0
+
+            Dim dataPoints As Object(,) = New Object(cnt - 1, 1) {}
+
+            For Each cv In canDataPoint.CanValues
+
+                Try
+
+                    Dim unixTimestamp = CLng(cv.Time.AddHours(-8).Subtract(CDate("01/jan/1970")).TotalSeconds) * 1000
+                    Dim val As Object = cv.Value
+
+                    If cv.Time >= startTime AndAlso cv.Time <= endTime Then
+                        dataPoints(i, 0) = unixTimestamp
+                        dataPoints(i, 1) = val
+                    End If
+
+                    i += 1
+
+                Catch ex As Exception
+
+                End Try
+            Next
+
+            retobj.rows = dataPoints
+
+        Next
+
+        Return {retobj}
+
+    End Function
+
+    Public Class table_retObj
+
+        Public Property columns As List(Of table_column)
+
+        Public Property rows As Object
+
+        Public Property type As String
+
+        Public Sub New()
+
+        End Sub
+    End Class
+
+
+
+    Public Function GetTimeSeriesResult(lok As queryRequestType, startTime As Date, endTime As Date) As Object
+
+        Dim retobj As New List(Of queryReturnType)
 
         For Each x As cust_target In lok.targets
 
@@ -129,7 +238,7 @@ Public Class DashboardController
 
             Dim cnt As Integer = canDataPoint.CanValues.Count
 
-            Dim dataPoints As Long(,) = New Long(cnt, 1) {}
+            Dim dataPoints As Long(,) = New Long(cnt - 1, 1) {}
 
             Dim i As Integer = 0
 
@@ -138,12 +247,13 @@ Public Class DashboardController
                 Try
                     'Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds
 
-                    Dim unixTimestamp = CLng(cv.Time.Subtract(CDate("01/jan/1970")).TotalSeconds) * 1000
+                    Dim unixTimestamp = CLng(cv.Time.AddHours(-8).Subtract(CDate("01/jan/1970")).TotalSeconds) * 1000
                     Dim val As Long = cv.Value
 
-                    dataPoints(i, 0) = val
-                    dataPoints(i, 1) = unixTimestamp
-
+                    If cv.Time >= startTime AndAlso cv.Time <= endTime Then
+                        dataPoints(i, 0) = val
+                        dataPoints(i, 1) = unixTimestamp
+                    End If
 
                     i += 1
 
@@ -156,7 +266,7 @@ Public Class DashboardController
 
             retobj.Add(qrt)
         Next
-        
+
 
         Return retobj
 
