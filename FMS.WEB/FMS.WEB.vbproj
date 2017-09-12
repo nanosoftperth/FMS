@@ -357,6 +357,13 @@
       <DependentUpon>NanoReportParamList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Dashboarding.aspx.designer.vb">
+      <DependentUpon>Dashboarding.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboarding.aspx.vb">
+      <DependentUpon>Dashboarding.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="DashboardSimulator.aspx.designer.vb">
       <DependentUpon>DashboardSimulator.aspx</DependentUpon>
     </Compile>
@@ -1025,6 +1032,7 @@
     <Content Include="Content\windows_command_prompt.svg" />
     <Content Include="Controls\NanoReportParam.ascx" />
     <Content Include="Controls\NanoReportParamList.ascx" />
+    <Content Include="Dashboarding.aspx" />
     <Content Include="DashboardSimulator.aspx" />
     <Content Include="Debug.aspx" />
     <Content Include="debugger.aspx" />
