@@ -47,7 +47,12 @@ Public Class DashboardController
 
     End Function
 
-
+    ''' <summary>
+    ''' resurns a list of ALL the CANBUS tags which are available.
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     <HttpPost()>
     <ActionName("Search")>
     Public Function Search(request As HttpRequestMessage) As IEnumerable(Of String)
@@ -90,6 +95,13 @@ Public Class DashboardController
         Return cache_obj ' New String() {"upper_25", "upper_50", "upper_75", "upper_90", "sinusoid"}
     End Function
 
+
+    ''' <summary>
+    ''' Accepts a list of tag name and return a list of values between a time range
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     <HttpPost()>
    <ActionName("Query")>
     Public Function Query(request As HttpRequestMessage) As Object
@@ -123,7 +135,7 @@ Public Class DashboardController
     End Function
 
 
-  
+
 
     Public Class table_row
 
@@ -299,8 +311,20 @@ Public Class DashboardController
 
         Public Property panelId As Integer
 
+        ''' <summary>
+        ''' between start and end date 
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Property range As cust_range
 
+        ''' <summary>
+        ''' list of tags
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Property targets As List(Of cust_target)
 
         Public Property rangeRaw As Object
@@ -309,6 +333,12 @@ Public Class DashboardController
 
         Public Property intervalMs As Integer
 
+        ''' <summary>
+        ''' will accept a string which is either "table" or "timeserie" 
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Property format As String
 
         Public Property maxDataPoints As Integer
