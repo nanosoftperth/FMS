@@ -84,9 +84,24 @@
     <Reference Include="DevExpress.XtraReports.v15.1.Service, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.SemanticLogging.2.0.1406.1\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splunk.Logging.Common, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splunk.Logging.Common.1.6.1\lib\net45\Splunk.Logging.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splunk.Logging.SLAB, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splunk.Logging.SLAB.1.6.1\lib\net45\Splunk.Logging.SLAB.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splunk.Logging.TraceListener, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splunk.Logging.TraceListener.1.6.1\lib\net45\Splunk.Logging.TraceListener.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -340,6 +355,7 @@
       <DependentUpon>QueryParser.ashx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\DashboardController.vb" />
+    <Compile Include="Controllers\SplunkController.vb" />
     <Compile Include="Controllers\testController.vb" />
     <Compile Include="Controllers\UsersController.vb" />
     <Compile Include="Controls\DropDownListBoxTemplate.vb" />
@@ -739,6 +755,13 @@
       <DependentUpon>ReportScheduler_test.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Test_Forms\SplunkTest.aspx.designer.vb">
+      <DependentUpon>SplunkTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\SplunkTest.aspx.vb">
+      <DependentUpon>SplunkTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\Test.aspx.designer.vb">
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
@@ -1087,6 +1110,7 @@
     <Content Include="Test_Forms\ReportParameterTest.aspx" />
     <Content Include="Test_Forms\ReportPopupTester.aspx" />
     <Content Include="Test_Forms\ReportScheduler_test.aspx" />
+    <Content Include="Test_Forms\SplunkTest.aspx" />
     <Content Include="Test_Forms\test2.aspx" />
     <Content Include="Test_Forms\test3.aspx" />
     <Content Include="Test_Forms\TestEmail.aspx" />
@@ -1230,6 +1254,10 @@
     <ProjectReference Include="..\FMS.ServiceAccess\FMS.ServiceAccess.vbproj">
       <Project>{d44020a7-8bd2-4ab3-925b-ff4a76ec620a}</Project>
       <Name>FMS.ServiceAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS.WEBAPI\FMS.WEBAPI.csproj">
+      <Project>{a12baeb6-557a-4202-a947-1a254b5f14c4}</Project>
+      <Name>FMS.WEBAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
