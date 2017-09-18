@@ -24,11 +24,26 @@ Public Class SplunkController
 
 
     <HttpPost()>
-    <Route("api/SplunkAPI/GeoFence")>
+    <Route("api/SplunkAPI/GetTagVals")>
     <ResponseType(GetType(IHttpActionResult))>
-    Public Function SendTagList(ApplicatoinName As String) As IHttpActionResult
+    Public Function SendTagValues(ApplicatoinName As String) As IHttpActionResult
 
         Try
+
+            'i think we probably want to send something like 
+            '
+            'for application: uniqco 
+            '
+            '
+            'TAG NAME           |   TIME                |   VALUE
+            'x                  |  1/1/2017 00:00:01    |   2
+            'x                  |  1/1/2017 00:00:02    |   2
+            'x                  |  1/1/2017 00:00:03    |   2
+            'x                  |  1/1/2017 00:00:04    |   2
+            'Y                  |  1/1/2017 00:00:01    |   2
+            'Y                  |  1/1/2017 00:00:02    |   2
+            '
+
 
             ServicePointManager.ServerCertificateValidationCallback = Function(sender, certificate, chain, sslPolicyErrors) (True)
 
