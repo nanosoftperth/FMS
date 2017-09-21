@@ -110,7 +110,7 @@ Namespace DataObjects
                 .SubmitChanges()
 
                 retobj = (From x In .CAN_MessageDefinitions
-                          Where x.PGN.HasValue AndAlso x.PGN = pgn
+                          Where x.PGN.HasValue AndAlso x.PGN = pgn AndAlso x.Standard = standard
                           Select New DataObjects.CAN_MessageDefinition(x)).ToList
 
 
