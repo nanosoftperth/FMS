@@ -44,6 +44,7 @@ namespace FMS.WEBAPI.Controllers
                     0,
                     middleware.Plugin
                 );
+
                 ecSender.OnError += o => Console.WriteLine(o.Message);
                  
                 // ---- For testing
