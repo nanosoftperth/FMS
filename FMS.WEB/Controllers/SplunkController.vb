@@ -1,5 +1,4 @@
 ﻿Imports Splunk.Logging
-Imports FMS.WEBAPI
 'Imports NanoSplunk_WebAPI.Models
 Imports System
 Imports System.Collections.Generic
@@ -24,12 +23,16 @@ Public Class SplunkController
     'Hi Cesar, we dont want to reference the other controller at all, hopefully we can remove any reference the FMS.WebAPI project at all 
 
 
-
-    <HttpPost()>
-    <Route("api/SplunkAPI/GetTagVals")>
-    <ResponseType(GetType(IHttpActionResult))>
-    Public Function SendTagValues(ApplicatoinName As String) As IHttpActionResult
-
+    '<Route("api/Splunk/GetTagVals")>
+    '<HttpPost()>
+    '<Route("api/Splunk")>
+    '<ResponseType(GetType(IHttpActionResult))>
+    '<Route("api/Splunk/SendTagValues")>
+    '<HttpPost>
+    '<ActionName("SendTagValues")>
+    <HttpPost, Route("api/Splunk/SendTagValues")>
+    Public Function SendTagValues(ApplicatoinName As String, StartDate As DateTime, EndDate As DateTime) As IHttpActionResult
+        'Public Function SendTagValues(<FromBody> ApplicatoinName As String) As IHttpActionResult
         Try
 
             'i think we probably want to send something like 
@@ -45,7 +48,6 @@ Public Class SplunkController
             'Y                  |  1/1/2017 00:00:01    |   2
             'Y                  |  1/1/2017 00:00:02    |   2
             '
-
 
             ServicePointManager.ServerCertificateValidationCallback = Function(sender, certificate, chain, sslPolicyErrors) (True)
 
@@ -67,9 +69,13 @@ Public Class SplunkController
             '--- For testing
             Dim oDashQuery = New FMS.WEB.DashboardController
             Dim strAppName As String
-            strAppName = "demo"
-            Dim sd = DateTime.Parse("01/01/2017")
-            Dim ed = Format(Now, "MM/dd/yyyy")
+            'strAppName = "demo"
+            'Dim sd = DateTime.Parse("09/15/2017")
+            'Dim ed = Format(Now, "MM/dd/yyyy")
+
+            strAppName = ApplicatoinName
+            Dim sd = Format(StartDate, "MM/dd/yyyy")
+            Dim ed = Format(EndDate, "MM/dd/yyyy")
 
             'Dim url As String = "http://myserver/method"
             'Dim content As String = "param1=1&param2=2"
@@ -81,11 +87,12 @@ Public Class SplunkController
 
             'With request
             '    .Headers.Add("", "")
+            '    .Method()
             'End With
 
             'Dim application = Business.DataObjects.Application.GetFromApplicationName(strAppName)
 
-            ''Dim request As New HttpRequestMessage
+            ''Dim request As HttpRequestMessage
 
             'Dim jsonString = request.Content.ReadAsStringAsync().Result
 
@@ -110,44 +117,60 @@ Public Class SplunkController
             'End If
             '-----------------------------------
             Dim new_cache_obj = New List(Of String)
-            Dim oListSplunk As List(Of ForSplunk) = New List(Of ForSplunk)
-            Dim nRowSplunk As New ForSplunk
+            'Dim oListSplunk As List(Of ForSplunk) = New List(Of ForSplunk)
+            Dim tblSplunk As List(Of SplunkTable) = New List(Of SplunkTable)
+            'Dim TagValues As New Object
+
             Dim app = Business.DataObjects.Application.GetFromApplicationName(strAppName)
             Dim vehicles = Business.DataObjects.ApplicationVehicle.GetAll(app.ApplicationID)
 
             For Each av As Business.DataObjects.ApplicationVehicle In vehicles
 
-                For Each x In av.GetAvailableCANTags
-                    'new_cache_obj.Add(String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, x.Name))
-                    'vehicle>standard>spn>description
-                    If (x.Standard = "Zagro500") Then
+                If (Not av.CAN_Protocol_Type = "j1939") Then
+
+                    For Each x In av.GetAvailableCANTags
+                        'new_cache_obj.Add(String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, x.Name))
+                        'vehicle>standard>spn>description
+                        'If (x.Standard = "Zagro500") Then
+
+                        'End If
+
                         Dim strTag = String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, x.Name)
+                        'Dim TagValues = GetSPNValues(strTag, sd, ed)
                         Dim TagValues = GetSPNValues(strTag, sd, ed)
 
                         For Each ntag In TagValues
-                            Dim strVehicle = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).VehicleName
-                            Dim strStand = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Standard
-                            Dim strSPN = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPN
-                            Dim strDesc = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Description
-                            Dim dtTime = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Time
-                            Dim strValue = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPNValue
+                            'Dim nRowSplunk As New ForSplunk
+                            Dim nRowSplunk As New SplunkTable
+                            'Dim strVehicle = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).VehicleName
+                            'Dim strStand = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Standard
+                            'Dim strSPN = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPN
+                            'Dim strDesc = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Description
+                            'Dim dtTime = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Time
+                            'Dim strValue = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPNValue
 
-                            Dim strRec = String.Format("{0}>{1}>{2}>{3}:", strVehicle, strStand, strSPN, strDesc)
+                            'Dim strRec = String.Format("{0}>{1}>{2}>{3}:", strVehicle, strStand, strSPN, strDesc)
 
-                            nRowSplunk.RecStr = strRec
-                            nRowSplunk.RecVal = strValue
-                            nRowSplunk.RecTime = dtTime
-
-                            oListSplunk.Add(nRowSplunk)
+                            nRowSplunk.VehicleName = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).VehicleName
+                            nRowSplunk.Standard = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Standard
+                            nRowSplunk.SPN = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPN
+                            nRowSplunk.SPNValue = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPNValue
+                            nRowSplunk.Description = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Description
+                            nRowSplunk.Time = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Time
+                            
+                            'oListSplunk.Add(nRowSplunk)
+                            tblSplunk.Add(nRowSplunk)
                         Next
 
 
 
                         'new_cache_obj.Add(String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, x.Name))
-                    End If
 
 
-                Next
+
+                    Next
+
+                End If
             Next
 
 
@@ -166,12 +189,20 @@ Public Class SplunkController
             '    tagList.Add(Guid.NewGuid.ToString)
             'Next
 
-            
-            'Dim json = (New JavaScriptSerializer).Serialize(tagList)
-            Dim json = (New JavaScriptSerializer).Serialize(oListSplunk)
 
-            ecSender.Send(Guid.NewGuid.ToString, "INFO", Nothing, json)
-            ecSender.FlushAsync()
+
+            If (tblSplunk.Count > 0) Then
+
+                'Dim json = (New JavaScriptSerializer).Serialize(tagList)
+                'Regex.Replace(yourString, "[^A-Za-z0-9\-/]", "")
+                'Console.WriteLine(header.Trim( { " "c, "*"c, "."c } ))
+                ' Dim json = (New JavaScriptSerializer).Serialize(tblSplunk)
+                Dim json = (New JavaScriptSerializer).Serialize(tblSplunk).Replace("/", "").Replace("\", "")
+
+                ecSender.Send(Guid.NewGuid.ToString, "INFO", Nothing, Json)
+                ecSender.FlushAsync()
+            End If
+            
 
 
         Catch ex As Exception
