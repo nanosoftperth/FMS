@@ -58,6 +58,13 @@
                         $(this).delay(2500).toggle('slow');
                     });
         }
+
+        function CloseBussLocGridLookup() {
+            gridLookupBusinessLocation.ConfirmCurrentSelection();
+            gridLookupBusinessLocation.HideDropDown();
+            gridLookupBusinessLocation.Focus();
+        }
+
     </script>
     <style type="text/css">
         .small-nonbold label {
@@ -564,6 +571,44 @@
                                                     </ClearButton>
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>
+                                            <%--<dx:GridViewDataComboBoxColumn Caption="Business Location" FieldName="ApplicationLocationID" ShowInCustomizationForm="True" VisibleIndex="10">--%>
+                                            <dx:GridViewDataComboBoxColumn Caption="Business Location" VisibleIndex="10" ShowInCustomizationForm="True">
+                                                <%--Business Location LOGIC HERE--%>
+                                                <%--<PropertiesComboBox DataSourceID="odsApplicationLocationsWithDefault" TextField="Name" ValueField="ApplicationLocationID">
+                                                    <ClearButton Visibility="Auto"></ClearButton>
+                                                </PropertiesComboBox>--%>
+                                                <PropertiesComboBox TextField="Name" ValueField="ApplicationLocationID" ValueType="System.String" IncrementalFilteringMode="Contains"
+                                                    EnableCallbackMode="true" CallbackPageSize="7" OnItemRequestedByValue="ItemRequestedByValue" 
+                                                    OnItemsRequestedByFilterCondition="ItemsRequestedByFilterCondition">
+                                                   <%-- <ClearButton Visibility="Auto"></ClearButton>--%>
+                                                </PropertiesComboBox>
+                                                <EditItemTemplate>
+                                                    <dx:ASPxGridLookup ID="glBusinessLocation" runat="server" SelectionMode="Multiple"
+                                                        DataSourceID="odsApplicationLocationsWithDefault" ClientInstanceName="gridLookupBusinessLocation"
+                                                        KeyFieldName="Name" TextFormatString="{0}" MultiTextSeparator=", " Caption="" Width="300px">
+                                                        <Columns>
+                                                            <dx:GridViewCommandColumn ShowSelectCheckbox="True" />
+                                                            <dx:GridViewDataColumn FieldName="Name" />
+                                                            <dx:GridViewDataColumn FieldName="Address" Settings-AllowAutoFilter="False" />
+                                                        </Columns>
+                                                        <GridViewProperties>
+                                                            <Templates>
+                                                                <StatusBar>
+                                                                    <table class="OptionsTable" style="float: right">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <dx:ASPxButton ID="Close" runat="server" AutoPostBack="false" Text="Close" ClientSideEvents-Click="CloseBussLocGridLookup" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </StatusBar>
+                                                            </Templates>
+                                                            <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
+                                                        </GridViewProperties>
+                                                    </dx:ASPxGridLookup>
+                                                </EditItemTemplate>
+
+                                            </dx:GridViewDataComboBoxColumn>
                                         </Columns>
                                     </dx:ASPxGridView>
                                     <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
@@ -600,6 +645,11 @@
                                     <asp:ObjectDataSource ID="odsVehiclesDevices" runat="server" SelectMethod="GetDevicesforApplication" TypeName="FMS.Business.DataObjects.Device">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="appid" SessionField="ApplicationID" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
+                                    <asp:ObjectDataSource ID="odsApplicationLocationsWithDefault" runat="server" SelectMethod="GetAllIncludingInheritFromApplication" TypeName="FMS.Business.DataObjects.ApplicationLocation">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DbType="Guid" Name="ApplicationID" SessionField="ApplicationID" />
                                         </SelectParameters>
                                     </asp:ObjectDataSource>
                                 </dx:ContentControl>

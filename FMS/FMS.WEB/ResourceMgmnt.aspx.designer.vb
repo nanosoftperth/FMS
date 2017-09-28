@@ -212,6 +212,15 @@ Partial Public Class ResourceMgmnt
     Protected WithEvents odsVehiclesDevices As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
+    '''odsApplicationLocationsWithDefault control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsApplicationLocationsWithDefault As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''dgvDetailBookings control.
     '''</summary>
     '''<remarks>
