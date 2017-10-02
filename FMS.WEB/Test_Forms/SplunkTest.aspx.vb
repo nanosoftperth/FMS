@@ -15,7 +15,7 @@ Public Class SplunkTest
 
         Try
 
-            oSplunk.SendTagValues("uniqco")
+            'oSplunk.SendTagValues("uniqco")
             'With instance
             '    .Content = 
             'End With
