@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMS" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMS;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMSDev" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMSDev;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSDevConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[AlertSubscriber.deleteme]" Member="AlertSubscriber_deletemes">
     <Type Name="AlertSubscriber_deleteme">
       <Column Name="AlertSubscriberID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -779,6 +779,53 @@
       <Column Name="CanEventDefinitionId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="CanValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="LogDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_Driver" Member="Cannon_Drivers">
+    <Type Name="Cannon_Driver">
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="OtherFields" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_RunClient" Member="Cannon_RunClients">
+    <Type Name="Cannon_RunClient">
+      <Column Name="RunClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_RunCompletion" Member="Cannon_RunCompletions">
+    <Type Name="Cannon_RunCompletion">
+      <Column Name="RunCompletionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RunDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_Documents" Member="Cannon_Documents">
+    <Type Name="Cannon_Document">
+      <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhotoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_Run" Member="Cannon_Runs">
+    <Type Name="Cannon_Run">
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RunName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OtherFields" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AttributeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_Client" Member="Cannon_Clients">
+    <Type Name="Cannon_Client">
+      <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="OtherFields" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

@@ -246,7 +246,7 @@
          
 
         <%-- DXCOMMENT: Configure a datasource for the header menu --%>
-        <asp:XmlDataSource ID="XmlDataSourceHeader" runat="server" DataFile="~/App_Data/TopMenu_v1.1.xml"
+        <asp:XmlDataSource ID="XmlDataSourceHeader" runat="server" DataFile="~/App_Data/TopMenu_v1.2.xml"
             XPath="/items/*"></asp:XmlDataSource>
 
         <script type="text/javascript">
