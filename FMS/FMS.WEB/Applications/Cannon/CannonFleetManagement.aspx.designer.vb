@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class CannonFleetManagement
 
     '''<summary>
-    '''ASPxPageControl1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxPageControl1 As Global.DevExpress.Web.ASPxPageControl
-
-    '''<summary>
     '''CannonFleetManagementPageControl control.
     '''</summary>
     '''<remarks>

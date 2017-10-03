@@ -1,11 +1,6 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="CannonFleetManagement.aspx.vb" Inherits="FMS.WEB.CannonFleetManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server">
-        <TabPages>
-            <dx:TabPage Name="RunSheet" Text="Run Sheet">
-                <ContentCollection>
-                    <dx:ContentControl runat="server">
-                            <dx:ASPxPageControl ID="CannonFleetManagementPageControl" runat="server">
+    <dx:ASPxPageControl ID="CannonFleetManagementPageControl" runat="server">
                                 <TabPages>
                                     <dx:TabPage Name="Document" Text="Document">
                                         <ContentCollection>
@@ -172,17 +167,5 @@
                                     </dx:TabPage>
                                 </TabPages>
                             </dx:ASPxPageControl>
-                    </dx:ContentControl>
-                </ContentCollection>
-            </dx:TabPage>
-            <dx:TabPage Name="Document" Text="Document">
-                <ContentCollection>
-                    <dx:ContentControl runat="server">
-
-                    </dx:ContentControl>
-                </ContentCollection>
-            </dx:TabPage>
-        </TabPages>
-    </dx:ASPxPageControl>
 
 </asp:Content>
