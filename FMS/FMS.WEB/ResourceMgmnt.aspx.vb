@@ -1,5 +1,8 @@
 ﻿Imports DevExpress.Web
 Imports FMS.Business.DataObjects.FeatureListConstants
+Imports System.Collections
+Imports System.Collections.Generic
+Imports DevExpress.Web.Data
 
 
 
@@ -8,7 +11,7 @@ Public Class ResourceMgmnt
 
 
 #Region "odometer information"
-
+    Private priDeviceID As String = ""
 
     Public Sub dgvDetailOdometerReadings_BeforePerformDataSelect(sender As Object, e As System.EventArgs)
         FMS.Business.ThisSession.ApplicationVehicleID = CType(sender, ASPxGridView).GetMasterRowKeyValue()
@@ -37,10 +40,100 @@ Public Class ResourceMgmnt
     End Sub
     Private Sub dgvVehicles_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs) Handles dgvVehicles.RowInserting
         e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
+        e.NewValues("BusinessLocation") = GetBusinessLocation()
     End Sub
 
     Private Sub dgvVehicles_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs) Handles dgvVehicles.RowUpdating
         e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
+        e.NewValues("BusinessLocation") = GetBusinessLocation()
+    End Sub
+
+    Protected Sub dgvVehicles_CustomColumnDisplayText(ByVal sender As Object, ByVal e As ASPxGridViewColumnDisplayTextEventArgs)
+
+        If e.Column.FieldName = "DeviceID" Then
+            priDeviceID = e.Value
+        End If
+
+        If e.Column.FieldName = "BusinessLocation" Then
+            Dim BussLocs As String = ""
+            Dim blID As Guid
+
+            Dim appID = FMS.Business.ThisSession.ApplicationID
+            Dim vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetAllWithBusinessLocation(appID, priDeviceID)
+
+            For Each row In vehicle
+                If row.BusinessLocation IsNot Nothing And row.BusinessLocation.ToString().Length > 0 Then
+
+                    Dim blList As String() = Nothing
+                    blList = row.BusinessLocation.Split("|")
+                    Dim blVal As String
+                    'Dim strVal As String
+
+                    For count = 0 To blList.Length - 1
+                        blVal = blList(count)
+
+                        blID = New Guid(blVal)
+
+                        Dim blObj = FMS.Business.DataObjects.ApplicationLocation.GetFromID(blID)
+
+                        If (BussLocs.Length > 0) Then
+                            BussLocs = BussLocs + " | " + blObj.Name
+                        Else
+
+                            BussLocs = blObj.Name
+                        End If
+
+                    Next
+
+                End If
+            Next
+
+            e.DisplayText = If(BussLocs, String.Empty)
+
+            'Dim text = DataProvider.GetTags().Where(Function(t) tagIDs.Contains(t.ID)).Select(Function(t) t.Name).DefaultIfEmpty().Aggregate(Function(a, b) a & ", " & b)
+
+            'e.DisplayText = If(query, String.Empty)
+        End If
+    End Sub
+
+    Protected Sub luBusinessLocation_CustomJSProperties(ByVal sender As Object, ByVal e As CustomJSPropertiesEventArgs)
+        Dim grid As ASPxGridLookup = TryCast(sender, ASPxGridLookup)
+
+        Dim start As Int32 = grid.GridView.VisibleStartIndex
+        Dim [end] As Int32 = grid.GridView.VisibleStartIndex + grid.GridView.SettingsPager.PageSize
+
+        Dim selectNumbers As Int32 = 0
+
+        If [end] > grid.GridView.VisibleRowCount Then
+            [end] = (grid.GridView.VisibleRowCount)
+        Else
+            [end] = ([end])
+        End If
+
+        For i As Integer = start To [end] - 1
+            If grid.GridView.Selection.IsRowSelected(i) Then
+                selectNumbers += 1
+            End If
+        Next i
+
+        e.Properties("cpSelectedRowsOnPage") = selectNumbers
+        e.Properties("cpVisibleRowCount") = grid.GridView.VisibleRowCount
+
+    End Sub
+
+    Protected Sub cbAll_Init(ByVal sender As Object, ByVal e As EventArgs)
+        Dim chk As ASPxCheckBox = TryCast(sender, ASPxCheckBox)
+        Dim container = CType(chk.NamingContainer, GridViewHeaderTemplateContainer).Grid
+
+        chk.Checked = (container.Selection.Count = container.VisibleRowCount)
+
+        Dim obj As Object = ""
+
+        'Dim container = CType(lookup.NamingContainer, GridViewEditItemTemplateContainer)
+
+        'Dim chk As ASPxCheckBox = TryCast(sender, ASPxCheckBox)
+        'Dim grid As ASPxGridView = (TryCast(chk.NamingContainer, GridViewHeaderTemplateContainer)).Grid
+        'chk.Checked = (grid.Selection.Count = grid.VisibleRowCount)
     End Sub
 
 
@@ -278,7 +371,7 @@ Public Class ResourceMgmnt
 
     End Sub
     Protected Sub dgvDetailBookings_RowValidating(sender As Object, e As Data.ASPxDataValidationEventArgs)
-        For Each column As GridViewColumn In dgvDetailBookings.Columns 
+        For Each column As GridViewColumn In dgvDetailBookings.Columns
             Dim dataColumn As GridViewDataColumn = TryCast(column, GridViewDataColumn)
             If dataColumn Is Nothing Then
                 Continue For
@@ -288,8 +381,8 @@ Public Class ResourceMgmnt
                         e.Errors(dataColumn) = "Value can't be null."
                     End If
                 End If
-            End If  
-        Next column 
+            End If
+        Next column
     End Sub
     Private Sub AddError(ByVal errors As Dictionary(Of GridViewColumn, String), ByVal column As GridViewColumn, ByVal errorText As String)
         If errors.ContainsKey(column) Then
@@ -299,6 +392,55 @@ Public Class ResourceMgmnt
     End Sub
 
 #Region "for business location logic"
+
+    Private Function GetBusinessLocation() As Object
+
+        Try
+            Dim arrCtr As Integer = 0
+
+            Dim column = CType(dgvVehicles.Columns("BusinessLocation"), GridViewDataColumn)
+            Dim lookup = CType(dgvVehicles.FindEditRowCellTemplateControl(column, "luBusinessLocation"), ASPxGridLookup)
+            Dim tags = TryCast(lookup.GridView.GetSelectedFieldValues(lookup.KeyFieldName), List(Of Object))
+
+            Return tags
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Protected Sub BL_Lookup_Init(ByVal sender As Object, ByVal e As EventArgs)
+        Dim lookup = CType(sender, ASPxGridLookup)
+        Dim container = CType(lookup.NamingContainer, GridViewEditItemTemplateContainer)
+
+        If container.Grid.IsNewRowEditing Then
+            Return
+        End If
+
+        Dim BLs = CType(container.Grid.GetRowValues(container.VisibleIndex, container.Column.FieldName), String)
+
+        If (BLs IsNot Nothing And BLs.Length > 0) Then
+            Dim blList As String() = Nothing
+            blList = BLs.Split("|")
+            Dim blVal As String
+            Dim blID As Guid
+
+            For count = 0 To blList.Length - 1
+                blVal = blList(count)
+
+                blID = New Guid(blVal)
+
+                lookup.GridView.Selection.SelectRowByKey(blID)
+
+            Next
+        End If
+
+
+
+    End Sub
+
+
     Public Sub ItemRequestedByValue(ByVal source As Object, ByVal e As DevExpress.Web.ListEditItemRequestedByValueEventArgs)
         Dim value As Integer = 0
         If e.Value Is Nothing OrElse (Not Int32.TryParse(e.Value.ToString(), value)) Then
@@ -307,15 +449,6 @@ Public Class ResourceMgmnt
 
         Dim comboBox As ASPxComboBox = CType(source, ASPxComboBox)
 
-        'Dim dataContext As New DataClassesDataContext()
-
-        'Dim id As Integer = Int32.Parse(e.Value.ToString())
-        'Dim query = _
-        '    From category In dataContext.Categories _
-        '    Where category.CategoryID = id _
-        '    Select category
-
-        'Dim count = query.Count()
         Dim appID = FMS.Business.ThisSession.ApplicationID
         Dim query = FMS.Business.DataObjects.ApplicationLocation.GetAllIncludingInheritFromApplication(appID)
 
@@ -329,20 +462,27 @@ Public Class ResourceMgmnt
         Dim skip = e.BeginIndex
         Dim take = e.EndIndex - e.BeginIndex + 1
 
-        'Dim dataContext As New DataClassesDataContext()
-        'Dim queryStartWidth = ( _
-        '        From category In dataContext.Categories _
-        '        Where category.CategoryName.StartsWith(e.Filter) _
-        '        Order By category.CategoryName _
-        '        Select category).Skip(skip).Take(take)
         Dim appID = FMS.Business.ThisSession.ApplicationID
         Dim query = FMS.Business.DataObjects.ApplicationLocation.GetAllIncludingInheritFromApplication(appID)
-        
+
         comboBox.DataSource = query
         comboBox.DataBind()
     End Sub
 
+    Protected Sub GetSelectionButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Dim script As String = "<script type='text/javascript'> alert('Test...');</script>"
+        ClientScript.RegisterClientScriptBlock(Me.GetType(), "AlertBox", script)
+        'Dim grid As ASPxGridView = ASPxGridLookup1.GridView
+        'Dim value As Object = grid.GetRowValues(grid.FocusedRowIndex, New String() {"ProductName"})
+        'ASPxListBox1.Items.Clear()
+
+        'If value IsNot Nothing Then
+        '    ASPxListBox1.Items.Add(value.ToString())
+        'End If
+    End Sub
+
+
 #End Region
-    
+
 
 End Class

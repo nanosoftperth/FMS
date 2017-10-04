@@ -60,9 +60,22 @@
         }
 
         function CloseBussLocGridLookup() {
+            //ASPxClientGridView.GetSelectedFieldValues
+            //ASPxClientGridLookup.GetGridView 
+            //var oBL = glBusinessLocation.GetSelectedFieldValues;
+
+
+
             gridLookupBusinessLocation.ConfirmCurrentSelection();
             gridLookupBusinessLocation.HideDropDown();
             gridLookupBusinessLocation.Focus();
+        }
+
+        function OnAllCheckedChangedBussLoc(s, e) {
+            if (s.GetChecked())
+                gridLookUp.GetGridView().SelectRows();
+            else
+                gridLookUp.GetGridView().UnselectRows();
         }
 
     </script>
@@ -469,7 +482,9 @@
                                         KeyFieldName="ApplicationVehileID"
                                         SettingsBehavior-ConfirmDelete="true"
                                         SettingsText-ConfirmDelete="Are you sure you wish to delete the vehicle?"
-                                        Theme="SoftOrange">
+                                        Theme="SoftOrange"
+                                  
+                                        OnCustomColumnDisplayText="dgvVehicles_CustomColumnDisplayText">
                                         <SettingsDetail ShowDetailRow="true" />
                                         <SettingsBehavior ConfirmDelete="True" />
                                         <SettingsSearchPanel Visible="True" />
@@ -571,45 +586,45 @@
                                                     </ClearButton>
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>
-                                            <%--<dx:GridViewDataComboBoxColumn Caption="Business Location" FieldName="ApplicationLocationID" ShowInCustomizationForm="True" VisibleIndex="10">--%>
-                                            <dx:GridViewDataComboBoxColumn Caption="Business Location" VisibleIndex="10" ShowInCustomizationForm="True">
-                                                <%--Business Location LOGIC HERE--%>
-                                                <%--<PropertiesComboBox DataSourceID="odsApplicationLocationsWithDefault" TextField="Name" ValueField="ApplicationLocationID">
-                                                    <ClearButton Visibility="Auto"></ClearButton>
-                                                </PropertiesComboBox>--%>
-                                                <PropertiesComboBox TextField="Name" ValueField="ApplicationLocationID" ValueType="System.String" IncrementalFilteringMode="Contains"
-                                                    EnableCallbackMode="true" CallbackPageSize="7" OnItemRequestedByValue="ItemRequestedByValue" 
-                                                    OnItemsRequestedByFilterCondition="ItemsRequestedByFilterCondition">
-                                                   <%-- <ClearButton Visibility="Auto"></ClearButton>--%>
-                                                </PropertiesComboBox>
-                                                <EditItemTemplate>
-                                                    <dx:ASPxGridLookup ID="glBusinessLocation" runat="server" SelectionMode="Multiple"
-                                                        DataSourceID="odsApplicationLocationsWithDefault" ClientInstanceName="gridLookupBusinessLocation"
-                                                        KeyFieldName="Name" TextFormatString="{0}" MultiTextSeparator=", " Caption="" Width="300px">
-                                                        <Columns>
-                                                            <dx:GridViewCommandColumn ShowSelectCheckbox="True" />
-                                                            <dx:GridViewDataColumn FieldName="Name" />
-                                                            <dx:GridViewDataColumn FieldName="Address" Settings-AllowAutoFilter="False" />
-                                                        </Columns>
-                                                        <GridViewProperties>
+                                            <dx:GridViewDataColumn FieldName="BusinessLocation" Width="3500px">
+                                             <EditItemTemplate>
+                                                 <dx:ASPxGridLookup ID="luBusinessLocation" runat="server" AutoGenerateColumns="false" DataSourceID="odsAppVehicleLocation"
+                                                     KeyFieldName="ApplicationLocationID" SelectionMode="Multiple" OnInit="BL_Lookup_Init" TextFormatString="{0}" MultiTextSeparator=" | "
+                                                     OnCustomJSProperties="luBusinessLocation_CustomJSProperties" ClientInstanceName="gridLookUp" Width="350px">
+                                                     <Columns>
+                                                        <dx:GridViewCommandColumn ShowSelectCheckbox="true" VisibleIndex="0">
+                                                            <HeaderTemplate>
+                                                                <dx:ASPxCheckBox ID="cbxBussLoc" runat="server" ClientInstanceName="cbAll" ToolTip="Select all rows"
+                                                                OnInit="cbAll_Init">
+                                                                    <ClientSideEvents CheckedChanged="OnAllCheckedChangedBussLoc" />
+                                                                </dx:ASPxCheckBox>
+                                                            </HeaderTemplate>
+                                                        </dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="1"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="2"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ApplicationLocationID" VisibleIndex="3" Width="1px"></dx:GridViewDataTextColumn>
+                                                       <%-- <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="3" Width="0px"></dx:GridViewDataTextColumn>--%>
+                                                    </Columns>
+                                                    <%--<SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />--%>
+                                                    <%--<GridViewProperties>
                                                             <Templates>
                                                                 <StatusBar>
                                                                     <table class="OptionsTable" style="float: right">
                                                                         <tr>
                                                                             <td>
-                                                                                <dx:ASPxButton ID="Close" runat="server" AutoPostBack="false" Text="Close" ClientSideEvents-Click="CloseBussLocGridLookup" />
+                                                                                <dx:ASPxButton ID="btnUpdateBL" runat="server" AutoPostBack="false" Text="Update" OnClick="btnUpdateBL_Clicked" />
                                                                             </td>
                                                                         </tr>
                                                                     </table>
                                                                 </StatusBar>
                                                             </Templates>
                                                             <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
-                                                        </GridViewProperties>
-                                                    </dx:ASPxGridLookup>
-                                                </EditItemTemplate>
-
-                                            </dx:GridViewDataComboBoxColumn>
+                                                        </GridViewProperties>--%>
+                                                 </dx:ASPxGridLookup>
+                                             </EditItemTemplate>
+                                            </dx:GridViewDataColumn>
                                         </Columns>
+                                        
                                     </dx:ASPxGridView>
                                     <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
                                         <SelectParameters>
@@ -646,10 +661,11 @@
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="appid" SessionField="ApplicationID" />
                                         </SelectParameters>
-                                    </asp:ObjectDataSource>
-                                    <asp:ObjectDataSource ID="odsApplicationLocationsWithDefault" runat="server" SelectMethod="GetAllIncludingInheritFromApplication" TypeName="FMS.Business.DataObjects.ApplicationLocation">
+                                    </asp:ObjectDataSource>                             
+                                    <asp:ObjectDataSource ID="odsAppVehicleLocation" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationLocation">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="ApplicationID" SessionField="ApplicationID" />
+                                            <asp:Parameter Name="IncludeDefault" Type="Boolean" />
                                         </SelectParameters>
                                     </asp:ObjectDataSource>
                                 </dx:ContentControl>
