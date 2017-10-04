@@ -240,6 +240,7 @@
       <Column Name="VINNumber" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ApplicationImageID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="CAN_Protocol_Type" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="BusinessLocation" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ApplicationVehicleDriverTime" Member="ApplicationVehicleDriverTimes">
