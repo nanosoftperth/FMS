@@ -2475,7 +2475,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4119,7 +4119,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4508,7 +4508,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -4751,6 +4751,8 @@ Partial Public Class ApplicationVehicle
 	
 	Private _CAN_Protocol_Type As String
 	
+	Private _BusinessLocation As String
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -4793,6 +4795,10 @@ Partial Public Class ApplicationVehicle
     Partial Private Sub OnCAN_Protocol_TypeChanging(value As String)
     End Sub
     Partial Private Sub OnCAN_Protocol_TypeChanged()
+    End Sub
+    Partial Private Sub OnBusinessLocationChanging(value As String)
+    End Sub
+    Partial Private Sub OnBusinessLocationChanged()
     End Sub
     #End Region
 	
@@ -4943,6 +4949,22 @@ Partial Public Class ApplicationVehicle
 				Me._CAN_Protocol_Type = value
 				Me.SendPropertyChanged("CAN_Protocol_Type")
 				Me.OnCAN_Protocol_TypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BusinessLocation", DbType:="VarChar(MAX)")>  _
+	Public Property BusinessLocation() As String
+		Get
+			Return Me._BusinessLocation
+		End Get
+		Set
+			If (String.Equals(Me._BusinessLocation, value) = false) Then
+				Me.OnBusinessLocationChanging(value)
+				Me.SendPropertyChanging
+				Me._BusinessLocation = value
+				Me.SendPropertyChanged("BusinessLocation")
+				Me.OnBusinessLocationChanged
 			End If
 		End Set
 	End Property
@@ -14824,7 +14846,7 @@ Partial Public Class Cannon_Document
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -15450,7 +15472,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
