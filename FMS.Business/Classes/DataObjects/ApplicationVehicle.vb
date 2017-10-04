@@ -9,6 +9,8 @@
         Public Property Notes As String
         Public Property DeviceID As String
         Public Property ApplicationID As Guid
+        Public Property ApplicationLocationID As Guid ' for business location
+        Public Property BusinessLocation As Object ' for business location
         Public Property ApplicationImageID As Guid?
         Public Property VINNumber As String
         Public Property CurrentDriver As FMS.Business.DataObjects.ApplicationDriver
@@ -38,6 +40,7 @@
                 End If
 
                 Me.CAN_Protocol_Type = If(String.IsNullOrEmpty(av.CAN_Protocol_Type), "j1939", av.CAN_Protocol_Type)
+                Me.BusinessLocation = FormatBussLocation(av.BusinessLocation)
 
 
             End With
@@ -90,6 +93,8 @@
                 .ApplicationImageID = av.ApplicationImageID
                 .CAN_Protocol_Type = av.CAN_Protocol_Type
 
+                .BusinessLocation = FormatBussLocation(av.BusinessLocation)
+
             End With
 
             SingletonAccess.FMSDataContextContignous.ApplicationVehicles.InsertOnSubmit(contextAppVecle)
@@ -115,7 +120,10 @@
                 .CAN_Protocol_Type = av.CAN_Protocol_Type
 
                 .ApplicationImageID = av.ApplicationImageID
+
+                .BusinessLocation = FormatBussLocation(av.BusinessLocation)
             End With
+
 
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
 
@@ -290,6 +298,19 @@
 
         End Function
 
+        ' For Business Location
+        Public Shared Function GetAllWithBusinessLocation(appplicationID As Guid, deviceID As String) As List(Of ApplicationVehicle)
+
+            If appplicationID = Guid.Empty Then Return Nothing
+
+            Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID And y.DeviceID = deviceID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+            Return retobj
+
+        End Function
+
+
 
         Public Function GetCurrentTimeZoneOffsetFromPerth() As Double
 
@@ -453,7 +474,55 @@
         End Function
 
 
+        Public Shared Function FormatBussLocation(businesslocation As Object) As String
+            Try
+                Dim strValue As String = ""
+
+                If (businesslocation IsNot Nothing) Then
+
+                    Dim objType = businesslocation.GetType()
+
+                    If (objType.Name() = "List`1") Then
+                        Dim oCtr = DirectCast(businesslocation.Count, Integer)
+                        Dim blValue As Guid
+                        'Dim strValue As String = ""
+                        '(New System.Collections.Generic.Mscorlib_CollectionDebugView(Of Object)(businesslocation)).Items(0)
+                        If oCtr > 0 Then
+
+                            For Each element As Object In businesslocation
+                                ' Avoid Nothing elements.
+                                If element IsNot Nothing Then
+                                    blValue = element
+
+                                    If blValue.ToString() <> "00000000-0000-0000-0000-000000000000" Then
+                                        If strValue.Length > 0 Then
+                                            strValue = strValue + "|" + blValue.ToString()
+                                        Else
+                                            strValue = blValue.ToString()
+                                        End If
+                                    End If
+
+                                End If
+                            Next
+
+                        End If
+                    Else
+                        strValue = businesslocation.ToString()
+                    End If
+
+                End If
+
+                Return strValue
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+
 #End Region
+
+
 
     End Class
 
