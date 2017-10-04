@@ -899,6 +899,8 @@
     <Content Include="Content\contextMenu\jquery.ui.position.min.js" />
     <Content Include="Content\DashBoard.css" />
     <Content Include="Content\font_style.css" />
+    <Content Include="Content\grid\grid.css" />
+    <Content Include="Content\grid\bootstrap.css" />
     <Content Include="Content\Images\9051a7_7900e319de294aa4b0166540479978ea.png" />
     <Content Include="Content\Images\account_access_1.jpg" />
     <Content Include="Content\Images\AquaHeader.jpg" />
