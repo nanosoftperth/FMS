@@ -23,24 +23,6 @@ Partial Public Class CannonFleetManagement
     Protected WithEvents CannonFleetManagementPageControl As Global.DevExpress.Web.ASPxPageControl
 
     '''<summary>
-    '''DocumentGridView control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DocumentGridView As Global.DevExpress.Web.ASPxGridView
-
-    '''<summary>
-    '''odsDocuments control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsDocuments As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
     '''RunGridView control.
     '''</summary>
     '''<remarks>
@@ -57,6 +39,15 @@ Partial Public Class CannonFleetManagement
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsRun As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsRunMultiDocs control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsRunMultiDocs As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
     '''ClientGridView control.
@@ -77,22 +68,58 @@ Partial Public Class CannonFleetManagement
     Protected WithEvents odsClient As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''DriverGridView control.
+    '''odsMultiDocs control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DriverGridView As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents odsMultiDocs As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''odsDriver control.
+    '''odsCustomerList control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsDriver As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsCustomerList As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''lnkNewDriver control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkNewDriver As Global.DevExpress.Web.ASPxHyperLink
+
+    '''<summary>
+    '''ASPxGridView2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxGridView2 As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsApplicationLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsApplicationLocation As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsDrivers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
     '''RunCompletionGridView control.

@@ -66,4 +66,373 @@ Partial Public Class CustomerDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAddressLine1 As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblAddressLine2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAddressLine2 As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtAddressLine2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAddressLine2 As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblSuburb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSuburb As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtSuburb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSuburb As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblState control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblState As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''cbState control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbState As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''lblPCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPCode As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtPCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPCode As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblCustCommencementDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustCommencementDate As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''dtCustCommencementDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dtCustCommencementDate As Global.DevExpress.Web.ASPxDateEdit
+
+    '''<summary>
+    '''lblYears control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblYears As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtYears control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtYears As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblCustomerRating control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerRating As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''cbCustomerRating control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbCustomerRating As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''lblZone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblZone As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''cbZone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbZone As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''lblPerAnnumValue control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPerAnnumValue As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''lblCustomerContactName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerContactName As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtCustomerContactName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCustomerContactName As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''txtPerAnnumValue control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPerAnnumValue As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblCustomerPhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerPhone As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtCustomerPhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCustomerPhone As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''btnUpdateValue control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpdateValue As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''lblCustomerMobile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerMobile As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtCustomerMobile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCustomerMobile As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblCustomerFax control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerFax As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtCustomerFax control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCustomerFax As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblCustomerComments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerComments As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtCustomerComments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCustomerComments As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblCustomerAgentName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerAgentName As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''cbCustomerAgentName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbCustomerAgentName As Global.DevExpress.Web.ASPxComboBox
+
+    '''<summary>
+    '''btnAddNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddNew As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''btnExit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExit As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''lblMYOBCustomerNumber control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMYOBCustomerNumber As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''txtMYOBCustomerNumber control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtMYOBCustomerNumber As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
+    '''lblInactiveCustomer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblInactiveCustomer As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''chkInActiveCustomer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkInActiveCustomer As Global.DevExpress.Web.ASPxCheckBox
+
+    '''<summary>
+    '''lblExcludeFuelLevy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblExcludeFuelLevy As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''chkExcludeFuelLevy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkExcludeFuelLevy As Global.DevExpress.Web.ASPxCheckBox
+
+    '''<summary>
+    '''lblRateIncrease control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRateIncrease As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''cbRateIncrease control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbRateIncrease As Global.DevExpress.Web.ASPxComboBox
 End Class

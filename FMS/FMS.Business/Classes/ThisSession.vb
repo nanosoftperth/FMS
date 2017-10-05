@@ -42,6 +42,24 @@ Public Class ThisSession
         End Set
     End Property
 
+    Public Shared Property ClientID As Guid
+        Get
+            Return HttpContext.Current.Session("ClientID")
+        End Get
+        Set(value As Guid)
+            HttpContext.Current.Session("ClientID") = value
+        End Set
+    End Property
+
+    Public Shared Property RunID As Guid
+        Get
+            Return HttpContext.Current.Session("RunID")
+        End Get
+        Set(value As Guid)
+            HttpContext.Current.Session("RunID") = value
+        End Set
+    End Property
+
     Public Shared Property ApplicationID As Guid
         Get
             Return HttpContext.Current.Session("ApplicationID")
