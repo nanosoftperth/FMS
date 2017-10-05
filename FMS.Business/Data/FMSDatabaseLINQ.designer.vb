@@ -808,6 +808,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property tblCustomers() As System.Data.Linq.Table(Of tblCustomer)
+		Get
+			Return Me.GetTable(Of tblCustomer)
+		End Get
+	End Property
+	
 	Public ReadOnly Property Cannon_Clients() As System.Data.Linq.Table(Of Cannon_Client)
 		Get
 			Return Me.GetTable(Of Cannon_Client)
@@ -2475,7 +2481,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4119,7 +4125,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4508,7 +4514,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -14783,9 +14789,15 @@ Partial Public Class Cannon_Document
 	
 	Private _DocumentID As System.Guid
 	
+	Private _ClientID As System.Nullable(Of System.Guid)
+	
+	Private _RunID As System.Nullable(Of System.Guid)
+	
 	Private _Description As String
 	
 	Private _PhotoBinary As System.Data.Linq.Binary
+	
+	Private _CreatedDate As System.Nullable(Of Date)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -14798,6 +14810,14 @@ Partial Public Class Cannon_Document
     End Sub
     Partial Private Sub OnDocumentIDChanged()
     End Sub
+    Partial Private Sub OnClientIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnClientIDChanged()
+    End Sub
+    Partial Private Sub OnRunIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnRunIDChanged()
+    End Sub
     Partial Private Sub OnDescriptionChanging(value As String)
     End Sub
     Partial Private Sub OnDescriptionChanged()
@@ -14805,6 +14825,10 @@ Partial Public Class Cannon_Document
     Partial Private Sub OnPhotoBinaryChanging(value As System.Data.Linq.Binary)
     End Sub
     Partial Private Sub OnPhotoBinaryChanged()
+    End Sub
+    Partial Private Sub OnCreatedDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCreatedDateChanged()
     End Sub
     #End Region
 	
@@ -14830,6 +14854,38 @@ Partial Public Class Cannon_Document
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ClientID", DbType:="UniqueIdentifier")>  _
+	Public Property ClientID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ClientID
+		End Get
+		Set
+			If (Me._ClientID.Equals(value) = false) Then
+				Me.OnClientIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ClientID = value
+				Me.SendPropertyChanged("ClientID")
+				Me.OnClientIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier")>  _
+	Public Property RunID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._RunID
+		End Get
+		Set
+			If (Me._RunID.Equals(value) = false) Then
+				Me.OnRunIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RunID = value
+				Me.SendPropertyChanged("RunID")
+				Me.OnRunIDChanged
+			End If
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(50)")>  _
 	Public Property Description() As String
 		Get
@@ -14846,7 +14902,7 @@ Partial Public Class Cannon_Document
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -14858,6 +14914,22 @@ Partial Public Class Cannon_Document
 				Me._PhotoBinary = value
 				Me.SendPropertyChanged("PhotoBinary")
 				Me.OnPhotoBinaryChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CreatedDate", DbType:="DateTime")>  _
+	Public Property CreatedDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CreatedDate
+		End Get
+		Set
+			If (Me._CreatedDate.Equals(value) = false) Then
+				Me.OnCreatedDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CreatedDate = value
+				Me.SendPropertyChanged("CreatedDate")
+				Me.OnCreatedDateChanged
 			End If
 		End Set
 	End Property
@@ -14889,13 +14961,7 @@ Partial Public Class Cannon_Run
 	
 	Private _RunID As System.Guid
 	
-	Private _DocumentID As System.Nullable(Of System.Guid)
-	
 	Private _RunName As String
-	
-	Private _OtherFields As String
-	
-	Private _AttributeName As String
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -14908,21 +14974,9 @@ Partial Public Class Cannon_Run
     End Sub
     Partial Private Sub OnRunIDChanged()
     End Sub
-    Partial Private Sub OnDocumentIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnDocumentIDChanged()
-    End Sub
     Partial Private Sub OnRunNameChanging(value As String)
     End Sub
     Partial Private Sub OnRunNameChanged()
-    End Sub
-    Partial Private Sub OnOtherFieldsChanging(value As String)
-    End Sub
-    Partial Private Sub OnOtherFieldsChanged()
-    End Sub
-    Partial Private Sub OnAttributeNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnAttributeNameChanged()
     End Sub
     #End Region
 	
@@ -14948,22 +15002,6 @@ Partial Public Class Cannon_Run
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DocumentID", DbType:="UniqueIdentifier")>  _
-	Public Property DocumentID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._DocumentID
-		End Get
-		Set
-			If (Me._DocumentID.Equals(value) = false) Then
-				Me.OnDocumentIDChanging(value)
-				Me.SendPropertyChanging
-				Me._DocumentID = value
-				Me.SendPropertyChanged("DocumentID")
-				Me.OnDocumentIDChanged
-			End If
-		End Set
-	End Property
-	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunName", DbType:="NVarChar(50)")>  _
 	Public Property RunName() As String
 		Get
@@ -14976,38 +15014,6 @@ Partial Public Class Cannon_Run
 				Me._RunName = value
 				Me.SendPropertyChanged("RunName")
 				Me.OnRunNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OtherFields", DbType:="NVarChar(50)")>  _
-	Public Property OtherFields() As String
-		Get
-			Return Me._OtherFields
-		End Get
-		Set
-			If (String.Equals(Me._OtherFields, value) = false) Then
-				Me.OnOtherFieldsChanging(value)
-				Me.SendPropertyChanging
-				Me._OtherFields = value
-				Me.SendPropertyChanged("OtherFields")
-				Me.OnOtherFieldsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AttributeName", DbType:="NVarChar(50)")>  _
-	Public Property AttributeName() As String
-		Get
-			Return Me._AttributeName
-		End Get
-		Set
-			If (String.Equals(Me._AttributeName, value) = false) Then
-				Me.OnAttributeNameChanging(value)
-				Me.SendPropertyChanging
-				Me._AttributeName = value
-				Me.SendPropertyChanged("AttributeName")
-				Me.OnAttributeNameChanged
 			End If
 		End Set
 	End Property
@@ -15031,6 +15037,311 @@ Partial Public Class Cannon_Run
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomers")>  _
+Partial Public Class tblCustomer
+	
+	Private _Cid As Integer
+	
+	Private _CustomerName As String
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _State As System.Nullable(Of Integer)
+	
+	Private _Suburb As String
+	
+	Private _PostCode As String
+	
+	Private _CustomerContactName As String
+	
+	Private _CustomerPhone As String
+	
+	Private _CustomerMobile As String
+	
+	Private _CustomerFax As String
+	
+	Private _CustomerComments As String
+	
+	Private _CustomerAgentName As String
+	
+	Private _CustomerRating As System.Nullable(Of Short)
+	
+	Private _Zone As System.Nullable(Of Integer)
+	
+	Private _MYOBCustomerNumber As String
+	
+	Private _CustomerValue As System.Nullable(Of Double)
+	
+	Private _InactiveCustomer As Boolean
+	
+	Private _CustomerCommencementDate As System.Nullable(Of Date)
+	
+	Private _chkCustomerExcludeFuelLevy As Boolean
+	
+	Private _cmbRateIncrease As System.Nullable(Of Short)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me._AddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me._AddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="Int")>  _
+	Public Property State() As System.Nullable(Of Integer)
+		Get
+			Return Me._State
+		End Get
+		Set
+			If (Me._State.Equals(value) = false) Then
+				Me._State = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(22)")>  _
+	Public Property Suburb() As String
+		Get
+			Return Me._Suburb
+		End Get
+		Set
+			If (String.Equals(Me._Suburb, value) = false) Then
+				Me._Suburb = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="NVarChar(4)")>  _
+	Public Property PostCode() As String
+		Get
+			Return Me._PostCode
+		End Get
+		Set
+			If (String.Equals(Me._PostCode, value) = false) Then
+				Me._PostCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerContactName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerContactName() As String
+		Get
+			Return Me._CustomerContactName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerContactName, value) = false) Then
+				Me._CustomerContactName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(22)")>  _
+	Public Property CustomerPhone() As String
+		Get
+			Return Me._CustomerPhone
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPhone, value) = false) Then
+				Me._CustomerPhone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerMobile", DbType:="NVarChar(22)")>  _
+	Public Property CustomerMobile() As String
+		Get
+			Return Me._CustomerMobile
+		End Get
+		Set
+			If (String.Equals(Me._CustomerMobile, value) = false) Then
+				Me._CustomerMobile = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerFax", DbType:="NVarChar(22)")>  _
+	Public Property CustomerFax() As String
+		Get
+			Return Me._CustomerFax
+		End Get
+		Set
+			If (String.Equals(Me._CustomerFax, value) = false) Then
+				Me._CustomerFax = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerComments", DbType:="NVarChar(MAX)")>  _
+	Public Property CustomerComments() As String
+		Get
+			Return Me._CustomerComments
+		End Get
+		Set
+			If (String.Equals(Me._CustomerComments, value) = false) Then
+				Me._CustomerComments = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerAgentName() As String
+		Get
+			Return Me._CustomerAgentName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerAgentName, value) = false) Then
+				Me._CustomerAgentName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="SmallInt")>  _
+	Public Property CustomerRating() As System.Nullable(Of Short)
+		Get
+			Return Me._CustomerRating
+		End Get
+		Set
+			If (Me._CustomerRating.Equals(value) = false) Then
+				Me._CustomerRating = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
+	Public Property Zone() As System.Nullable(Of Integer)
+		Get
+			Return Me._Zone
+		End Get
+		Set
+			If (Me._Zone.Equals(value) = false) Then
+				Me._Zone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBCustomerNumber", DbType:="NVarChar(50)")>  _
+	Public Property MYOBCustomerNumber() As String
+		Get
+			Return Me._MYOBCustomerNumber
+		End Get
+		Set
+			If (String.Equals(Me._MYOBCustomerNumber, value) = false) Then
+				Me._MYOBCustomerNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerValue", DbType:="Float")>  _
+	Public Property CustomerValue() As System.Nullable(Of Double)
+		Get
+			Return Me._CustomerValue
+		End Get
+		Set
+			If (Me._CustomerValue.Equals(value) = false) Then
+				Me._CustomerValue = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveCustomer", DbType:="Bit NOT NULL")>  _
+	Public Property InactiveCustomer() As Boolean
+		Get
+			Return Me._InactiveCustomer
+		End Get
+		Set
+			If ((Me._InactiveCustomer = value)  _
+						= false) Then
+				Me._InactiveCustomer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerCommencementDate", DbType:="DateTime")>  _
+	Public Property CustomerCommencementDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CustomerCommencementDate
+		End Get
+		Set
+			If (Me._CustomerCommencementDate.Equals(value) = false) Then
+				Me._CustomerCommencementDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkCustomerExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
+	Public Property chkCustomerExcludeFuelLevy() As Boolean
+		Get
+			Return Me._chkCustomerExcludeFuelLevy
+		End Get
+		Set
+			If ((Me._chkCustomerExcludeFuelLevy = value)  _
+						= false) Then
+				Me._chkCustomerExcludeFuelLevy = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
+	Public Property cmbRateIncrease() As System.Nullable(Of Short)
+		Get
+			Return Me._cmbRateIncrease
+		End Get
+		Set
+			If (Me._cmbRateIncrease.Equals(value) = false) Then
+				Me._cmbRateIncrease = value
+			End If
+		End Set
+	End Property
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_Client")>  _
 Partial Public Class Cannon_Client
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -15039,13 +15350,11 @@ Partial Public Class Cannon_Client
 	
 	Private _ClientID As System.Guid
 	
-	Private _DocumentID As System.Nullable(Of System.Guid)
+	Private _CustomerID As System.Nullable(Of Integer)
 	
 	Private _Name As String
 	
 	Private _Address As String
-	
-	Private _OtherFields As String
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -15058,9 +15367,9 @@ Partial Public Class Cannon_Client
     End Sub
     Partial Private Sub OnClientIDChanged()
     End Sub
-    Partial Private Sub OnDocumentIDChanging(value As System.Nullable(Of System.Guid))
+    Partial Private Sub OnCustomerIDChanging(value As System.Nullable(Of Integer))
     End Sub
-    Partial Private Sub OnDocumentIDChanged()
+    Partial Private Sub OnCustomerIDChanged()
     End Sub
     Partial Private Sub OnNameChanging(value As String)
     End Sub
@@ -15069,10 +15378,6 @@ Partial Public Class Cannon_Client
     Partial Private Sub OnAddressChanging(value As String)
     End Sub
     Partial Private Sub OnAddressChanged()
-    End Sub
-    Partial Private Sub OnOtherFieldsChanging(value As String)
-    End Sub
-    Partial Private Sub OnOtherFieldsChanged()
     End Sub
     #End Region
 	
@@ -15098,18 +15403,18 @@ Partial Public Class Cannon_Client
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DocumentID", DbType:="UniqueIdentifier")>  _
-	Public Property DocumentID() As System.Nullable(Of System.Guid)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerID", DbType:="Int")>  _
+	Public Property CustomerID() As System.Nullable(Of Integer)
 		Get
-			Return Me._DocumentID
+			Return Me._CustomerID
 		End Get
 		Set
-			If (Me._DocumentID.Equals(value) = false) Then
-				Me.OnDocumentIDChanging(value)
+			If (Me._CustomerID.Equals(value) = false) Then
+				Me.OnCustomerIDChanging(value)
 				Me.SendPropertyChanging
-				Me._DocumentID = value
-				Me.SendPropertyChanged("DocumentID")
-				Me.OnDocumentIDChanged
+				Me._CustomerID = value
+				Me.SendPropertyChanged("CustomerID")
+				Me.OnCustomerIDChanged
 			End If
 		End Set
 	End Property
@@ -15142,22 +15447,6 @@ Partial Public Class Cannon_Client
 				Me._Address = value
 				Me.SendPropertyChanged("Address")
 				Me.OnAddressChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OtherFields", DbType:="NVarChar(50)")>  _
-	Public Property OtherFields() As String
-		Get
-			Return Me._OtherFields
-		End Get
-		Set
-			If (String.Equals(Me._OtherFields, value) = false) Then
-				Me.OnOtherFieldsChanging(value)
-				Me.SendPropertyChanging
-				Me._OtherFields = value
-				Me.SendPropertyChanged("OtherFields")
-				Me.OnOtherFieldsChanged
 			End If
 		End Set
 	End Property
@@ -15472,7 +15761,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

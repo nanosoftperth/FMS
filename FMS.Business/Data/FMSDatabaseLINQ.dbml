@@ -807,26 +807,50 @@
   <Table Name="dbo.Cannon_Documents" Member="Cannon_Documents">
     <Type Name="Cannon_Document">
       <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PhotoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Cannon_Run" Member="Cannon_Runs">
     <Type Name="Cannon_Run">
       <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="RunName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="OtherFields" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AttributeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCustomers" Member="tblCustomers">
+    <Type Name="tblCustomer">
+      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerMobile" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerFax" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Zone" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="InactiveCustomer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerCommencementDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="chkCustomerExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Cannon_Client" Member="Cannon_Clients">
     <Type Name="Cannon_Client">
       <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="OtherFields" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
