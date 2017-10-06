@@ -2,7 +2,8 @@
     Public Class Cannon_Run
 #Region "Properties / enums"
         Public Property RunID As System.Guid
-        Public Property RunName As String        
+        Public Property RunName As String
+        Public Property KeyNumber As String
 #End Region
 
 #Region "CRUD"
@@ -11,6 +12,7 @@
             With cannonRun
                 .RunID = Guid.NewGuid
                 .RunName = Run.RunName
+                .KeyNumber = Run.KeyNumber
             End With
             SingletonAccess.FMSDataContextContignous.Cannon_Runs.InsertOnSubmit(cannonRun)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -22,6 +24,7 @@
             With cannonRun
                 .RunID = Run.RunID
                 .RunName = Run.RunName
+                .KeyNumber = Run.KeyNumber
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -50,7 +53,8 @@
         Public Sub New(objCannonRun As FMS.Business.Cannon_Run)
             With objCannonRun
                 Me.RunID = .RunID
-                Me.RunName = .RunName                
+                Me.RunName = .RunName
+                Me.KeyNumber = .KeyNumber
             End With
         End Sub
 #End Region

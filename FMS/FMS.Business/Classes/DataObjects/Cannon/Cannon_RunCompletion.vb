@@ -4,7 +4,9 @@
         Public Property RunCompletionID As System.Guid
         Public Property RunID As System.Guid
         Public Property DriverID As System.Nullable(Of System.Guid)
+        Public Property DID As System.Nullable(Of Integer)
         Public Property RunDate As System.Nullable(Of Date)
+        Public Property Notes As String
 #End Region
 
 #Region "CRUD"
@@ -14,7 +16,9 @@
                 .RunCompletionID = Guid.NewGuid
                 .RunID = RunCompletion.RunID
                 .DriverID = RunCompletion.DriverID
+                .DID = RunCompletion.DID
                 .RunDate = RunCompletion.RunDate
+                .Notes = RunCompletion.Notes
             End With
             SingletonAccess.FMSDataContextContignous.Cannon_RunCompletions.InsertOnSubmit(cannonRunCompletion)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -26,7 +30,9 @@
                 .RunCompletionID = RunCompletion.RunCompletionID
                 .RunID = RunCompletion.RunID
                 .DriverID = RunCompletion.DriverID
+                .DID = RunCompletion.DID
                 .RunDate = RunCompletion.RunDate
+                .Notes = RunCompletion.Notes
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -44,6 +50,7 @@
                              Select New DataObjects.Cannon_RunCompletion(i)).ToList()
             Return cannonRunCompletion
         End Function
+
 #End Region
 #Region "Constructors"
         Public Sub New()
@@ -54,7 +61,9 @@
                 Me.RunCompletionID = .RunCompletionID
                 Me.RunID = .RunID
                 Me.DriverID = .DriverID
+                Me.DID = .DID
                 Me.RunDate = .RunDate
+                Me.Notes = .Notes
             End With
         End Sub
 #End Region

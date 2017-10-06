@@ -105,10 +105,10 @@
     <Compile Include="Classes\DataObjects\CanDataValue.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_Client.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_Document.vb" />
-    <Compile Include="Classes\DataObjects\Cannon\Cannon_Driver.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_Run.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_RunClient.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_RunCompletion.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblDrivers.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanValue.vb" />
     <Compile Include="Classes\DataObjects\Can_AlertDefinition.vb" />

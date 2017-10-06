@@ -35,6 +35,7 @@
                                 <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunName" VisibleIndex="2" Visible="true"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="KeyNumber" VisibleIndex="3" Visible="true" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
                             </Columns>
                                 <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
@@ -297,7 +298,7 @@
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
-            <dx:TabPage Name="RunCompletion" Text="Run Completion">
+            <dx:TabPage Name="RunCompletion" Text="Run Assignments">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
                         <dx:ASPxGridView ID="RunCompletionGridView" runat="server" DataSourceID="odsRunCompletion" KeyFieldName="RunCompletionID" Width="550px" Theme="SoftOrange">
@@ -312,18 +313,20 @@
                                         </ClearButton>
                                     </PropertiesComboBox>
                                 </dx:GridViewDataComboBoxColumn>  
-                                <dx:GridViewDataComboBoxColumn FieldName="DriverID" Caption="Driver Name" VisibleIndex="2">
-                                    <PropertiesComboBox DataSourceID="odsDrivers" TextField="FirstName" ValueField="ApplicationDriverID">
+                                <dx:GridViewDataComboBoxColumn FieldName="DID" Caption="Driver Name" VisibleIndex="3">
+                                    <PropertiesComboBox DataSourceID="odsTblDrivers" TextField="DriverName" ValueField="DID">
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
                                     </PropertiesComboBox>
                                 </dx:GridViewDataComboBoxColumn>  
-                                <dx:GridViewDataDateColumn FieldName="RunDate" VisibleIndex="3" Visible="true"></dx:GridViewDataDateColumn>
+                                <dx:GridViewDataDateColumn FieldName="RunDate" VisibleIndex="4" Visible="true"></dx:GridViewDataDateColumn>
+                                <dx:GridViewDataTextColumn FieldName="Notes" VisibleIndex="5" Visible="true"></dx:GridViewDataTextColumn>
                             </Columns>
                                 <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
                         </dx:ASPxGridView>
                         <asp:ObjectDataSource ID="odsRunCompletion" runat="server" DataObjectTypeName="FMS.Business.DataObjects.Cannon_RunCompletion" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.Cannon_RunCompletion" UpdateMethod="Update"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsTblDrivers" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
