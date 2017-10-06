@@ -349,23 +349,11 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
     End Sub
-  Partial Private Sub InsertCannon_Driver(instance As Cannon_Driver)
-    End Sub
-  Partial Private Sub UpdateCannon_Driver(instance As Cannon_Driver)
-    End Sub
-  Partial Private Sub DeleteCannon_Driver(instance As Cannon_Driver)
-    End Sub
   Partial Private Sub InsertCannon_RunClient(instance As Cannon_RunClient)
     End Sub
   Partial Private Sub UpdateCannon_RunClient(instance As Cannon_RunClient)
     End Sub
   Partial Private Sub DeleteCannon_RunClient(instance As Cannon_RunClient)
-    End Sub
-  Partial Private Sub InsertCannon_RunCompletion(instance As Cannon_RunCompletion)
-    End Sub
-  Partial Private Sub UpdateCannon_RunCompletion(instance As Cannon_RunCompletion)
-    End Sub
-  Partial Private Sub DeleteCannon_RunCompletion(instance As Cannon_RunCompletion)
     End Sub
   Partial Private Sub InsertCannon_Document(instance As Cannon_Document)
     End Sub
@@ -373,17 +361,23 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteCannon_Document(instance As Cannon_Document)
     End Sub
-  Partial Private Sub InsertCannon_Run(instance As Cannon_Run)
-    End Sub
-  Partial Private Sub UpdateCannon_Run(instance As Cannon_Run)
-    End Sub
-  Partial Private Sub DeleteCannon_Run(instance As Cannon_Run)
-    End Sub
   Partial Private Sub InsertCannon_Client(instance As Cannon_Client)
     End Sub
   Partial Private Sub UpdateCannon_Client(instance As Cannon_Client)
     End Sub
   Partial Private Sub DeleteCannon_Client(instance As Cannon_Client)
+    End Sub
+  Partial Private Sub InsertCannon_RunCompletion(instance As Cannon_RunCompletion)
+    End Sub
+  Partial Private Sub UpdateCannon_RunCompletion(instance As Cannon_RunCompletion)
+    End Sub
+  Partial Private Sub DeleteCannon_RunCompletion(instance As Cannon_RunCompletion)
+    End Sub
+  Partial Private Sub InsertCannon_Run(instance As Cannon_Run)
+    End Sub
+  Partial Private Sub UpdateCannon_Run(instance As Cannon_Run)
+    End Sub
+  Partial Private Sub DeleteCannon_Run(instance As Cannon_Run)
     End Sub
   #End Region
 	
@@ -778,33 +772,15 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property Cannon_Drivers() As System.Data.Linq.Table(Of Cannon_Driver)
-		Get
-			Return Me.GetTable(Of Cannon_Driver)
-		End Get
-	End Property
-	
 	Public ReadOnly Property Cannon_RunClients() As System.Data.Linq.Table(Of Cannon_RunClient)
 		Get
 			Return Me.GetTable(Of Cannon_RunClient)
 		End Get
 	End Property
 	
-	Public ReadOnly Property Cannon_RunCompletions() As System.Data.Linq.Table(Of Cannon_RunCompletion)
-		Get
-			Return Me.GetTable(Of Cannon_RunCompletion)
-		End Get
-	End Property
-	
 	Public ReadOnly Property Cannon_Documents() As System.Data.Linq.Table(Of Cannon_Document)
 		Get
 			Return Me.GetTable(Of Cannon_Document)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Cannon_Runs() As System.Data.Linq.Table(Of Cannon_Run)
-		Get
-			Return Me.GetTable(Of Cannon_Run)
 		End Get
 	End Property
 	
@@ -817,6 +793,24 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property Cannon_Clients() As System.Data.Linq.Table(Of Cannon_Client)
 		Get
 			Return Me.GetTable(Of Cannon_Client)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblDrivers() As System.Data.Linq.Table(Of tblDriver)
+		Get
+			Return Me.GetTable(Of tblDriver)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Cannon_RunCompletions() As System.Data.Linq.Table(Of Cannon_RunCompletion)
+		Get
+			Return Me.GetTable(Of Cannon_RunCompletion)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Cannon_Runs() As System.Data.Linq.Table(Of Cannon_Run)
+		Get
+			Return Me.GetTable(Of Cannon_Run)
 		End Get
 	End Property
 	
@@ -14440,112 +14434,6 @@ Partial Public Class CanBusEventOccuranceLog
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_Driver")>  _
-Partial Public Class Cannon_Driver
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _DriverID As System.Guid
-	
-	Private _Name As String
-	
-	Private _OtherFields As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnDriverIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnDriverIDChanged()
-    End Sub
-    Partial Private Sub OnNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnNameChanged()
-    End Sub
-    Partial Private Sub OnOtherFieldsChanging(value As String)
-    End Sub
-    Partial Private Sub OnOtherFieldsChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property DriverID() As System.Guid
-		Get
-			Return Me._DriverID
-		End Get
-		Set
-			If ((Me._DriverID = value)  _
-						= false) Then
-				Me.OnDriverIDChanging(value)
-				Me.SendPropertyChanging
-				Me._DriverID = value
-				Me.SendPropertyChanged("DriverID")
-				Me.OnDriverIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(100)")>  _
-	Public Property Name() As String
-		Get
-			Return Me._Name
-		End Get
-		Set
-			If (String.Equals(Me._Name, value) = false) Then
-				Me.OnNameChanging(value)
-				Me.SendPropertyChanging
-				Me._Name = value
-				Me.SendPropertyChanged("Name")
-				Me.OnNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OtherFields", DbType:="NVarChar(50)")>  _
-	Public Property OtherFields() As String
-		Get
-			Return Me._OtherFields
-		End Get
-		Set
-			If (String.Equals(Me._OtherFields, value) = false) Then
-				Me.OnOtherFieldsChanging(value)
-				Me.SendPropertyChanging
-				Me._OtherFields = value
-				Me.SendPropertyChanged("OtherFields")
-				Me.OnOtherFieldsChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_RunClient")>  _
 Partial Public Class Cannon_RunClient
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -14629,135 +14517,6 @@ Partial Public Class Cannon_RunClient
 				Me._ClientID = value
 				Me.SendPropertyChanged("ClientID")
 				Me.OnClientIDChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_RunCompletion")>  _
-Partial Public Class Cannon_RunCompletion
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _RunCompletionID As System.Guid
-	
-	Private _RunID As System.Guid
-	
-	Private _DriverID As System.Nullable(Of System.Guid)
-	
-	Private _RunDate As System.Nullable(Of Date)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnRunCompletionIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnRunCompletionIDChanged()
-    End Sub
-    Partial Private Sub OnRunIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnRunIDChanged()
-    End Sub
-    Partial Private Sub OnDriverIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnDriverIDChanged()
-    End Sub
-    Partial Private Sub OnRunDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnRunDateChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunCompletionID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property RunCompletionID() As System.Guid
-		Get
-			Return Me._RunCompletionID
-		End Get
-		Set
-			If ((Me._RunCompletionID = value)  _
-						= false) Then
-				Me.OnRunCompletionIDChanging(value)
-				Me.SendPropertyChanging
-				Me._RunCompletionID = value
-				Me.SendPropertyChanged("RunCompletionID")
-				Me.OnRunCompletionIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property RunID() As System.Guid
-		Get
-			Return Me._RunID
-		End Get
-		Set
-			If ((Me._RunID = value)  _
-						= false) Then
-				Me.OnRunIDChanging(value)
-				Me.SendPropertyChanging
-				Me._RunID = value
-				Me.SendPropertyChanged("RunID")
-				Me.OnRunIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverID", DbType:="UniqueIdentifier")>  _
-	Public Property DriverID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._DriverID
-		End Get
-		Set
-			If (Me._DriverID.Equals(value) = false) Then
-				Me.OnDriverIDChanging(value)
-				Me.SendPropertyChanging
-				Me._DriverID = value
-				Me.SendPropertyChanged("DriverID")
-				Me.OnDriverIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDate", DbType:="DateTime")>  _
-	Public Property RunDate() As System.Nullable(Of Date)
-		Get
-			Return Me._RunDate
-		End Get
-		Set
-			If (Me._RunDate.Equals(value) = false) Then
-				Me.OnRunDateChanging(value)
-				Me.SendPropertyChanging
-				Me._RunDate = value
-				Me.SendPropertyChanged("RunDate")
-				Me.OnRunDateChanged
 			End If
 		End Set
 	End Property
@@ -14930,90 +14689,6 @@ Partial Public Class Cannon_Document
 				Me._CreatedDate = value
 				Me.SendPropertyChanged("CreatedDate")
 				Me.OnCreatedDateChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_Run")>  _
-Partial Public Class Cannon_Run
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _RunID As System.Guid
-	
-	Private _RunName As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnRunIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnRunIDChanged()
-    End Sub
-    Partial Private Sub OnRunNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnRunNameChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property RunID() As System.Guid
-		Get
-			Return Me._RunID
-		End Get
-		Set
-			If ((Me._RunID = value)  _
-						= false) Then
-				Me.OnRunIDChanging(value)
-				Me.SendPropertyChanging
-				Me._RunID = value
-				Me.SendPropertyChanged("RunID")
-				Me.OnRunIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunName", DbType:="NVarChar(50)")>  _
-	Public Property RunName() As String
-		Get
-			Return Me._RunName
-		End Get
-		Set
-			If (String.Equals(Me._RunName, value) = false) Then
-				Me.OnRunNameChanging(value)
-				Me.SendPropertyChanging
-				Me._RunName = value
-				Me.SendPropertyChanged("RunName")
-				Me.OnRunNameChanged
 			End If
 		End Set
 	End Property
@@ -15447,6 +15122,365 @@ Partial Public Class Cannon_Client
 				Me._Address = value
 				Me.SendPropertyChanged("Address")
 				Me.OnAddressChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblDrivers")>  _
+Partial Public Class tblDriver
+	
+	Private _Did As Integer
+	
+	Private _DriverName As String
+	
+	Private _DriversLicenseNo As String
+	
+	Private _DriversLicenseExpiryDate As System.Nullable(Of Date)
+	
+	Private _Inactive As Boolean
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Did", DbType:="Int NOT NULL")>  _
+	Public Property Did() As Integer
+		Get
+			Return Me._Did
+		End Get
+		Set
+			If ((Me._Did = value)  _
+						= false) Then
+				Me._Did = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverName", DbType:="NVarChar(50)")>  _
+	Public Property DriverName() As String
+		Get
+			Return Me._DriverName
+		End Get
+		Set
+			If (String.Equals(Me._DriverName, value) = false) Then
+				Me._DriverName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriversLicenseNo", DbType:="NVarChar(22)")>  _
+	Public Property DriversLicenseNo() As String
+		Get
+			Return Me._DriversLicenseNo
+		End Get
+		Set
+			If (String.Equals(Me._DriversLicenseNo, value) = false) Then
+				Me._DriversLicenseNo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriversLicenseExpiryDate", DbType:="DateTime")>  _
+	Public Property DriversLicenseExpiryDate() As System.Nullable(Of Date)
+		Get
+			Return Me._DriversLicenseExpiryDate
+		End Get
+		Set
+			If (Me._DriversLicenseExpiryDate.Equals(value) = false) Then
+				Me._DriversLicenseExpiryDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Inactive", DbType:="Bit NOT NULL")>  _
+	Public Property Inactive() As Boolean
+		Get
+			Return Me._Inactive
+		End Get
+		Set
+			If ((Me._Inactive = value)  _
+						= false) Then
+				Me._Inactive = value
+			End If
+		End Set
+	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_RunCompletion")>  _
+Partial Public Class Cannon_RunCompletion
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RunCompletionID As System.Guid
+	
+	Private _RunID As System.Guid
+	
+	Private _DriverID As System.Nullable(Of System.Guid)
+	
+	Private _DID As System.Nullable(Of Integer)
+	
+	Private _RunDate As System.Nullable(Of Date)
+	
+	Private _Notes As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRunCompletionIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRunCompletionIDChanged()
+    End Sub
+    Partial Private Sub OnRunIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRunIDChanged()
+    End Sub
+    Partial Private Sub OnDriverIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnDriverIDChanged()
+    End Sub
+    Partial Private Sub OnDIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnDIDChanged()
+    End Sub
+    Partial Private Sub OnRunDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnRunDateChanged()
+    End Sub
+    Partial Private Sub OnNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnNotesChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunCompletionID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RunCompletionID() As System.Guid
+		Get
+			Return Me._RunCompletionID
+		End Get
+		Set
+			If ((Me._RunCompletionID = value)  _
+						= false) Then
+				Me.OnRunCompletionIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RunCompletionID = value
+				Me.SendPropertyChanged("RunCompletionID")
+				Me.OnRunCompletionIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property RunID() As System.Guid
+		Get
+			Return Me._RunID
+		End Get
+		Set
+			If ((Me._RunID = value)  _
+						= false) Then
+				Me.OnRunIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RunID = value
+				Me.SendPropertyChanged("RunID")
+				Me.OnRunIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverID", DbType:="UniqueIdentifier")>  _
+	Public Property DriverID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._DriverID
+		End Get
+		Set
+			If (Me._DriverID.Equals(value) = false) Then
+				Me.OnDriverIDChanging(value)
+				Me.SendPropertyChanging
+				Me._DriverID = value
+				Me.SendPropertyChanged("DriverID")
+				Me.OnDriverIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DID", DbType:="Int")>  _
+	Public Property DID() As System.Nullable(Of Integer)
+		Get
+			Return Me._DID
+		End Get
+		Set
+			If (Me._DID.Equals(value) = false) Then
+				Me.OnDIDChanging(value)
+				Me.SendPropertyChanging
+				Me._DID = value
+				Me.SendPropertyChanged("DID")
+				Me.OnDIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDate", DbType:="DateTime")>  _
+	Public Property RunDate() As System.Nullable(Of Date)
+		Get
+			Return Me._RunDate
+		End Get
+		Set
+			If (Me._RunDate.Equals(value) = false) Then
+				Me.OnRunDateChanging(value)
+				Me.SendPropertyChanging
+				Me._RunDate = value
+				Me.SendPropertyChanged("RunDate")
+				Me.OnRunDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="NVarChar(MAX)")>  _
+	Public Property Notes() As String
+		Get
+			Return Me._Notes
+		End Get
+		Set
+			If (String.Equals(Me._Notes, value) = false) Then
+				Me.OnNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._Notes = value
+				Me.SendPropertyChanged("Notes")
+				Me.OnNotesChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_Run")>  _
+Partial Public Class Cannon_Run
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RunID As System.Guid
+	
+	Private _RunName As String
+	
+	Private _KeyNumber As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRunIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRunIDChanged()
+    End Sub
+    Partial Private Sub OnRunNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnRunNameChanged()
+    End Sub
+    Partial Private Sub OnKeyNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnKeyNumberChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RunID() As System.Guid
+		Get
+			Return Me._RunID
+		End Get
+		Set
+			If ((Me._RunID = value)  _
+						= false) Then
+				Me.OnRunIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RunID = value
+				Me.SendPropertyChanged("RunID")
+				Me.OnRunIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunName", DbType:="NVarChar(50)")>  _
+	Public Property RunName() As String
+		Get
+			Return Me._RunName
+		End Get
+		Set
+			If (String.Equals(Me._RunName, value) = false) Then
+				Me.OnRunNameChanging(value)
+				Me.SendPropertyChanging
+				Me._RunName = value
+				Me.SendPropertyChanged("RunName")
+				Me.OnRunNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_KeyNumber", DbType:="NVarChar(10)")>  _
+	Public Property KeyNumber() As String
+		Get
+			Return Me._KeyNumber
+		End Get
+		Set
+			If (String.Equals(Me._KeyNumber, value) = false) Then
+				Me.OnKeyNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._KeyNumber = value
+				Me.SendPropertyChanged("KeyNumber")
+				Me.OnKeyNumberChanged
 			End If
 		End Set
 	End Property

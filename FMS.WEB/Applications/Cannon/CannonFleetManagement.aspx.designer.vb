@@ -140,6 +140,15 @@ Partial Public Class CannonFleetManagement
     Protected WithEvents odsRunCompletion As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
+    '''odsTblDrivers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsTblDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''RunClientGridView control.
     '''</summary>
     '''<remarks>

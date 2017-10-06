@@ -782,26 +782,11 @@
       <Column Name="LogDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Cannon_Driver" Member="Cannon_Drivers">
-    <Type Name="Cannon_Driver">
-      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="OtherFields" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Cannon_RunClient" Member="Cannon_RunClients">
     <Type Name="Cannon_RunClient">
       <Column Name="RunClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Cannon_RunCompletion" Member="Cannon_RunCompletions">
-    <Type Name="Cannon_RunCompletion">
-      <Column Name="RunCompletionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="RunDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Cannon_Documents" Member="Cannon_Documents">
@@ -812,12 +797,6 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PhotoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Cannon_Run" Member="Cannon_Runs">
-    <Type Name="Cannon_Run">
-      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RunName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblCustomers" Member="tblCustomers">
@@ -851,6 +830,32 @@
       <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDrivers" Member="tblDrivers">
+    <Type Name="tblDriver">
+      <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DriversLicenseNo" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="DriversLicenseExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_RunCompletion" Member="Cannon_RunCompletions">
+    <Type Name="Cannon_RunCompletion">
+      <Column Name="RunCompletionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cannon_Run" Member="Cannon_Runs">
+    <Type Name="Cannon_Run">
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RunName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KeyNumber" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
