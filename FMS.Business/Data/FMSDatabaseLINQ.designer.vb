@@ -379,6 +379,42 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteCannon_Run(instance As Cannon_Run)
     End Sub
+  Partial Private Sub InserttblCustomer(instance As tblCustomer)
+    End Sub
+  Partial Private Sub UpdatetblCustomer(instance As tblCustomer)
+    End Sub
+  Partial Private Sub DeletetblCustomer(instance As tblCustomer)
+    End Sub
+  Partial Private Sub InserttblState(instance As tblState)
+    End Sub
+  Partial Private Sub UpdatetblState(instance As tblState)
+    End Sub
+  Partial Private Sub DeletetblState(instance As tblState)
+    End Sub
+  Partial Private Sub InserttblCustomerRating(instance As tblCustomerRating)
+    End Sub
+  Partial Private Sub UpdatetblCustomerRating(instance As tblCustomerRating)
+    End Sub
+  Partial Private Sub DeletetblCustomerRating(instance As tblCustomerRating)
+    End Sub
+  Partial Private Sub InserttbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub UpdatetbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub DeletetbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
+    End Sub
+  Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
+    End Sub
+  Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
+    End Sub
+  Partial Private Sub InserttblRateIncreaseReference(instance As tblRateIncreaseReference)
+    End Sub
+  Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
+    End Sub
+  Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -784,12 +820,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblCustomers() As System.Data.Linq.Table(Of tblCustomer)
-		Get
-			Return Me.GetTable(Of tblCustomer)
-		End Get
-	End Property
-	
 	Public ReadOnly Property Cannon_Clients() As System.Data.Linq.Table(Of Cannon_Client)
 		Get
 			Return Me.GetTable(Of Cannon_Client)
@@ -811,6 +841,42 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property Cannon_Runs() As System.Data.Linq.Table(Of Cannon_Run)
 		Get
 			Return Me.GetTable(Of Cannon_Run)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomers() As System.Data.Linq.Table(Of tblCustomer)
+		Get
+			Return Me.GetTable(Of tblCustomer)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblStates() As System.Data.Linq.Table(Of tblState)
+		Get
+			Return Me.GetTable(Of tblState)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomerRatings() As System.Data.Linq.Table(Of tblCustomerRating)
+		Get
+			Return Me.GetTable(Of tblCustomerRating)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
+		Get
+			Return Me.GetTable(Of tbZone)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
+		Get
+			Return Me.GetTable(Of tblCustomerAgent)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
+		Get
+			Return Me.GetTable(Of tblRateIncreaseReference)
 		End Get
 	End Property
 	
@@ -14712,311 +14778,6 @@ Partial Public Class Cannon_Document
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomers")>  _
-Partial Public Class tblCustomer
-	
-	Private _Cid As Integer
-	
-	Private _CustomerName As String
-	
-	Private _AddressLine1 As String
-	
-	Private _AddressLine2 As String
-	
-	Private _State As System.Nullable(Of Integer)
-	
-	Private _Suburb As String
-	
-	Private _PostCode As String
-	
-	Private _CustomerContactName As String
-	
-	Private _CustomerPhone As String
-	
-	Private _CustomerMobile As String
-	
-	Private _CustomerFax As String
-	
-	Private _CustomerComments As String
-	
-	Private _CustomerAgentName As String
-	
-	Private _CustomerRating As System.Nullable(Of Short)
-	
-	Private _Zone As System.Nullable(Of Integer)
-	
-	Private _MYOBCustomerNumber As String
-	
-	Private _CustomerValue As System.Nullable(Of Double)
-	
-	Private _InactiveCustomer As Boolean
-	
-	Private _CustomerCommencementDate As System.Nullable(Of Date)
-	
-	Private _chkCustomerExcludeFuelLevy As Boolean
-	
-	Private _cmbRateIncrease As System.Nullable(Of Short)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
-	Public Property Cid() As Integer
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If ((Me._Cid = value)  _
-						= false) Then
-				Me._Cid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine1() As String
-		Get
-			Return Me._AddressLine1
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine1, value) = false) Then
-				Me._AddressLine1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine2() As String
-		Get
-			Return Me._AddressLine2
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine2, value) = false) Then
-				Me._AddressLine2 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="Int")>  _
-	Public Property State() As System.Nullable(Of Integer)
-		Get
-			Return Me._State
-		End Get
-		Set
-			If (Me._State.Equals(value) = false) Then
-				Me._State = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(22)")>  _
-	Public Property Suburb() As String
-		Get
-			Return Me._Suburb
-		End Get
-		Set
-			If (String.Equals(Me._Suburb, value) = false) Then
-				Me._Suburb = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="NVarChar(4)")>  _
-	Public Property PostCode() As String
-		Get
-			Return Me._PostCode
-		End Get
-		Set
-			If (String.Equals(Me._PostCode, value) = false) Then
-				Me._PostCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerContactName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerContactName() As String
-		Get
-			Return Me._CustomerContactName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerContactName, value) = false) Then
-				Me._CustomerContactName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(22)")>  _
-	Public Property CustomerPhone() As String
-		Get
-			Return Me._CustomerPhone
-		End Get
-		Set
-			If (String.Equals(Me._CustomerPhone, value) = false) Then
-				Me._CustomerPhone = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerMobile", DbType:="NVarChar(22)")>  _
-	Public Property CustomerMobile() As String
-		Get
-			Return Me._CustomerMobile
-		End Get
-		Set
-			If (String.Equals(Me._CustomerMobile, value) = false) Then
-				Me._CustomerMobile = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerFax", DbType:="NVarChar(22)")>  _
-	Public Property CustomerFax() As String
-		Get
-			Return Me._CustomerFax
-		End Get
-		Set
-			If (String.Equals(Me._CustomerFax, value) = false) Then
-				Me._CustomerFax = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerComments", DbType:="NVarChar(MAX)")>  _
-	Public Property CustomerComments() As String
-		Get
-			Return Me._CustomerComments
-		End Get
-		Set
-			If (String.Equals(Me._CustomerComments, value) = false) Then
-				Me._CustomerComments = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerAgentName() As String
-		Get
-			Return Me._CustomerAgentName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerAgentName, value) = false) Then
-				Me._CustomerAgentName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="SmallInt")>  _
-	Public Property CustomerRating() As System.Nullable(Of Short)
-		Get
-			Return Me._CustomerRating
-		End Get
-		Set
-			If (Me._CustomerRating.Equals(value) = false) Then
-				Me._CustomerRating = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
-	Public Property Zone() As System.Nullable(Of Integer)
-		Get
-			Return Me._Zone
-		End Get
-		Set
-			If (Me._Zone.Equals(value) = false) Then
-				Me._Zone = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBCustomerNumber", DbType:="NVarChar(50)")>  _
-	Public Property MYOBCustomerNumber() As String
-		Get
-			Return Me._MYOBCustomerNumber
-		End Get
-		Set
-			If (String.Equals(Me._MYOBCustomerNumber, value) = false) Then
-				Me._MYOBCustomerNumber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerValue", DbType:="Float")>  _
-	Public Property CustomerValue() As System.Nullable(Of Double)
-		Get
-			Return Me._CustomerValue
-		End Get
-		Set
-			If (Me._CustomerValue.Equals(value) = false) Then
-				Me._CustomerValue = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveCustomer", DbType:="Bit NOT NULL")>  _
-	Public Property InactiveCustomer() As Boolean
-		Get
-			Return Me._InactiveCustomer
-		End Get
-		Set
-			If ((Me._InactiveCustomer = value)  _
-						= false) Then
-				Me._InactiveCustomer = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerCommencementDate", DbType:="DateTime")>  _
-	Public Property CustomerCommencementDate() As System.Nullable(Of Date)
-		Get
-			Return Me._CustomerCommencementDate
-		End Get
-		Set
-			If (Me._CustomerCommencementDate.Equals(value) = false) Then
-				Me._CustomerCommencementDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkCustomerExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
-	Public Property chkCustomerExcludeFuelLevy() As Boolean
-		Get
-			Return Me._chkCustomerExcludeFuelLevy
-		End Get
-		Set
-			If ((Me._chkCustomerExcludeFuelLevy = value)  _
-						= false) Then
-				Me._chkCustomerExcludeFuelLevy = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
-	Public Property cmbRateIncrease() As System.Nullable(Of Short)
-		Get
-			Return Me._cmbRateIncrease
-		End Get
-		Set
-			If (Me._cmbRateIncrease.Equals(value) = false) Then
-				Me._cmbRateIncrease = value
-			End If
-		End Set
-	End Property
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cannon_Client")>  _
 Partial Public Class Cannon_Client
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -15481,6 +15242,1202 @@ Partial Public Class Cannon_Run
 				Me._KeyNumber = value
 				Me.SendPropertyChanged("KeyNumber")
 				Me.OnKeyNumberChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomers")>  _
+Partial Public Class tblCustomer
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerID As System.Guid
+	
+	Private _Cid As Integer
+	
+	Private _CustomerName As String
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _State As System.Nullable(Of Integer)
+	
+	Private _Suburb As String
+	
+	Private _PostCode As String
+	
+	Private _CustomerContactName As String
+	
+	Private _CustomerPhone As String
+	
+	Private _CustomerMobile As String
+	
+	Private _CustomerFax As String
+	
+	Private _CustomerComments As String
+	
+	Private _CustomerAgentName As String
+	
+	Private _CustomerRating As System.Nullable(Of Short)
+	
+	Private _Zone As System.Nullable(Of Integer)
+	
+	Private _MYOBCustomerNumber As String
+	
+	Private _CustomerValue As System.Nullable(Of Double)
+	
+	Private _InactiveCustomer As Boolean
+	
+	Private _CustomerCommencementDate As System.Nullable(Of Date)
+	
+	Private _chkCustomerExcludeFuelLevy As Boolean
+	
+	Private _cmbRateIncrease As System.Nullable(Of Short)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerIDChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnCustomerNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerNameChanged()
+    End Sub
+    Partial Private Sub OnAddressLine1Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine1Changed()
+    End Sub
+    Partial Private Sub OnAddressLine2Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine2Changed()
+    End Sub
+    Partial Private Sub OnStateChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnStateChanged()
+    End Sub
+    Partial Private Sub OnSuburbChanging(value As String)
+    End Sub
+    Partial Private Sub OnSuburbChanged()
+    End Sub
+    Partial Private Sub OnPostCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnPostCodeChanged()
+    End Sub
+    Partial Private Sub OnCustomerContactNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerContactNameChanged()
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanged()
+    End Sub
+    Partial Private Sub OnCustomerMobileChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerMobileChanged()
+    End Sub
+    Partial Private Sub OnCustomerFaxChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerFaxChanged()
+    End Sub
+    Partial Private Sub OnCustomerCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerCommentsChanged()
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanged()
+    End Sub
+    Partial Private Sub OnCustomerRatingChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnCustomerRatingChanged()
+    End Sub
+    Partial Private Sub OnZoneChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnZoneChanged()
+    End Sub
+    Partial Private Sub OnMYOBCustomerNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnMYOBCustomerNumberChanged()
+    End Sub
+    Partial Private Sub OnCustomerValueChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnCustomerValueChanged()
+    End Sub
+    Partial Private Sub OnInactiveCustomerChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnInactiveCustomerChanged()
+    End Sub
+    Partial Private Sub OnCustomerCommencementDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCustomerCommencementDateChanged()
+    End Sub
+    Partial Private Sub OnchkCustomerExcludeFuelLevyChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnchkCustomerExcludeFuelLevyChanged()
+    End Sub
+    Partial Private Sub OncmbRateIncreaseChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OncmbRateIncreaseChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerID() As System.Guid
+		Get
+			Return Me._CustomerID
+		End Get
+		Set
+			If ((Me._CustomerID = value)  _
+						= false) Then
+				Me.OnCustomerIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerID = value
+				Me.SendPropertyChanged("CustomerID")
+				Me.OnCustomerIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me.OnCustomerNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerName = value
+				Me.SendPropertyChanged("CustomerName")
+				Me.OnCustomerNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me.OnAddressLine1Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine1 = value
+				Me.SendPropertyChanged("AddressLine1")
+				Me.OnAddressLine1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me.OnAddressLine2Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine2 = value
+				Me.SendPropertyChanged("AddressLine2")
+				Me.OnAddressLine2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="Int")>  _
+	Public Property State() As System.Nullable(Of Integer)
+		Get
+			Return Me._State
+		End Get
+		Set
+			If (Me._State.Equals(value) = false) Then
+				Me.OnStateChanging(value)
+				Me.SendPropertyChanging
+				Me._State = value
+				Me.SendPropertyChanged("State")
+				Me.OnStateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(22)")>  _
+	Public Property Suburb() As String
+		Get
+			Return Me._Suburb
+		End Get
+		Set
+			If (String.Equals(Me._Suburb, value) = false) Then
+				Me.OnSuburbChanging(value)
+				Me.SendPropertyChanging
+				Me._Suburb = value
+				Me.SendPropertyChanged("Suburb")
+				Me.OnSuburbChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="NVarChar(4)")>  _
+	Public Property PostCode() As String
+		Get
+			Return Me._PostCode
+		End Get
+		Set
+			If (String.Equals(Me._PostCode, value) = false) Then
+				Me.OnPostCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._PostCode = value
+				Me.SendPropertyChanged("PostCode")
+				Me.OnPostCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerContactName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerContactName() As String
+		Get
+			Return Me._CustomerContactName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerContactName, value) = false) Then
+				Me.OnCustomerContactNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerContactName = value
+				Me.SendPropertyChanged("CustomerContactName")
+				Me.OnCustomerContactNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(22)")>  _
+	Public Property CustomerPhone() As String
+		Get
+			Return Me._CustomerPhone
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPhone, value) = false) Then
+				Me.OnCustomerPhoneChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerPhone = value
+				Me.SendPropertyChanged("CustomerPhone")
+				Me.OnCustomerPhoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerMobile", DbType:="NVarChar(22)")>  _
+	Public Property CustomerMobile() As String
+		Get
+			Return Me._CustomerMobile
+		End Get
+		Set
+			If (String.Equals(Me._CustomerMobile, value) = false) Then
+				Me.OnCustomerMobileChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerMobile = value
+				Me.SendPropertyChanged("CustomerMobile")
+				Me.OnCustomerMobileChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerFax", DbType:="NVarChar(22)")>  _
+	Public Property CustomerFax() As String
+		Get
+			Return Me._CustomerFax
+		End Get
+		Set
+			If (String.Equals(Me._CustomerFax, value) = false) Then
+				Me.OnCustomerFaxChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerFax = value
+				Me.SendPropertyChanged("CustomerFax")
+				Me.OnCustomerFaxChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerComments", DbType:="NVarChar(MAX)")>  _
+	Public Property CustomerComments() As String
+		Get
+			Return Me._CustomerComments
+		End Get
+		Set
+			If (String.Equals(Me._CustomerComments, value) = false) Then
+				Me.OnCustomerCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerComments = value
+				Me.SendPropertyChanged("CustomerComments")
+				Me.OnCustomerCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerAgentName() As String
+		Get
+			Return Me._CustomerAgentName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerAgentName, value) = false) Then
+				Me.OnCustomerAgentNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentName = value
+				Me.SendPropertyChanged("CustomerAgentName")
+				Me.OnCustomerAgentNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="SmallInt")>  _
+	Public Property CustomerRating() As System.Nullable(Of Short)
+		Get
+			Return Me._CustomerRating
+		End Get
+		Set
+			If (Me._CustomerRating.Equals(value) = false) Then
+				Me.OnCustomerRatingChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRating = value
+				Me.SendPropertyChanged("CustomerRating")
+				Me.OnCustomerRatingChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
+	Public Property Zone() As System.Nullable(Of Integer)
+		Get
+			Return Me._Zone
+		End Get
+		Set
+			If (Me._Zone.Equals(value) = false) Then
+				Me.OnZoneChanging(value)
+				Me.SendPropertyChanging
+				Me._Zone = value
+				Me.SendPropertyChanged("Zone")
+				Me.OnZoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBCustomerNumber", DbType:="NVarChar(50)")>  _
+	Public Property MYOBCustomerNumber() As String
+		Get
+			Return Me._MYOBCustomerNumber
+		End Get
+		Set
+			If (String.Equals(Me._MYOBCustomerNumber, value) = false) Then
+				Me.OnMYOBCustomerNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._MYOBCustomerNumber = value
+				Me.SendPropertyChanged("MYOBCustomerNumber")
+				Me.OnMYOBCustomerNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerValue", DbType:="Float")>  _
+	Public Property CustomerValue() As System.Nullable(Of Double)
+		Get
+			Return Me._CustomerValue
+		End Get
+		Set
+			If (Me._CustomerValue.Equals(value) = false) Then
+				Me.OnCustomerValueChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerValue = value
+				Me.SendPropertyChanged("CustomerValue")
+				Me.OnCustomerValueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveCustomer", DbType:="Bit NOT NULL")>  _
+	Public Property InactiveCustomer() As Boolean
+		Get
+			Return Me._InactiveCustomer
+		End Get
+		Set
+			If ((Me._InactiveCustomer = value)  _
+						= false) Then
+				Me.OnInactiveCustomerChanging(value)
+				Me.SendPropertyChanging
+				Me._InactiveCustomer = value
+				Me.SendPropertyChanged("InactiveCustomer")
+				Me.OnInactiveCustomerChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerCommencementDate", DbType:="DateTime")>  _
+	Public Property CustomerCommencementDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CustomerCommencementDate
+		End Get
+		Set
+			If (Me._CustomerCommencementDate.Equals(value) = false) Then
+				Me.OnCustomerCommencementDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerCommencementDate = value
+				Me.SendPropertyChanged("CustomerCommencementDate")
+				Me.OnCustomerCommencementDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkCustomerExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
+	Public Property chkCustomerExcludeFuelLevy() As Boolean
+		Get
+			Return Me._chkCustomerExcludeFuelLevy
+		End Get
+		Set
+			If ((Me._chkCustomerExcludeFuelLevy = value)  _
+						= false) Then
+				Me.OnchkCustomerExcludeFuelLevyChanging(value)
+				Me.SendPropertyChanging
+				Me._chkCustomerExcludeFuelLevy = value
+				Me.SendPropertyChanged("chkCustomerExcludeFuelLevy")
+				Me.OnchkCustomerExcludeFuelLevyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
+	Public Property cmbRateIncrease() As System.Nullable(Of Short)
+		Get
+			Return Me._cmbRateIncrease
+		End Get
+		Set
+			If (Me._cmbRateIncrease.Equals(value) = false) Then
+				Me.OncmbRateIncreaseChanging(value)
+				Me.SendPropertyChanging
+				Me._cmbRateIncrease = value
+				Me.SendPropertyChanged("cmbRateIncrease")
+				Me.OncmbRateIncreaseChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblStates")>  _
+Partial Public Class tblState
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _StateID As System.Guid
+	
+	Private _Sid As Integer
+	
+	Private _StateCode As String
+	
+	Private _StateDesc As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnStateIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnStateIDChanged()
+    End Sub
+    Partial Private Sub OnSidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSidChanged()
+    End Sub
+    Partial Private Sub OnStateCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnStateCodeChanged()
+    End Sub
+    Partial Private Sub OnStateDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnStateDescChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StateID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property StateID() As System.Guid
+		Get
+			Return Me._StateID
+		End Get
+		Set
+			If ((Me._StateID = value)  _
+						= false) Then
+				Me.OnStateIDChanging(value)
+				Me.SendPropertyChanging
+				Me._StateID = value
+				Me.SendPropertyChanged("StateID")
+				Me.OnStateIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Sid", DbType:="Int NOT NULL")>  _
+	Public Property Sid() As Integer
+		Get
+			Return Me._Sid
+		End Get
+		Set
+			If ((Me._Sid = value)  _
+						= false) Then
+				Me.OnSidChanging(value)
+				Me.SendPropertyChanging
+				Me._Sid = value
+				Me.SendPropertyChanged("Sid")
+				Me.OnSidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StateCode", DbType:="NVarChar(3)")>  _
+	Public Property StateCode() As String
+		Get
+			Return Me._StateCode
+		End Get
+		Set
+			If (String.Equals(Me._StateCode, value) = false) Then
+				Me.OnStateCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._StateCode = value
+				Me.SendPropertyChanged("StateCode")
+				Me.OnStateCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StateDesc", DbType:="NVarChar(30)")>  _
+	Public Property StateDesc() As String
+		Get
+			Return Me._StateDesc
+		End Get
+		Set
+			If (String.Equals(Me._StateDesc, value) = false) Then
+				Me.OnStateDescChanging(value)
+				Me.SendPropertyChanging
+				Me._StateDesc = value
+				Me.SendPropertyChanged("StateDesc")
+				Me.OnStateDescChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerRating")>  _
+Partial Public Class tblCustomerRating
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerRatingID As System.Guid
+	
+	Private _Rid As Integer
+	
+	Private _CustomerRating As String
+	
+	Private _CustomerRatingDesc As String
+	
+	Private _FromValue As System.Nullable(Of Integer)
+	
+	Private _ToValue As System.Nullable(Of Integer)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerRatingIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerRatingIDChanged()
+    End Sub
+    Partial Private Sub OnRidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnRidChanged()
+    End Sub
+    Partial Private Sub OnCustomerRatingChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerRatingChanged()
+    End Sub
+    Partial Private Sub OnCustomerRatingDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerRatingDescChanged()
+    End Sub
+    Partial Private Sub OnFromValueChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnFromValueChanged()
+    End Sub
+    Partial Private Sub OnToValueChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnToValueChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRatingID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerRatingID() As System.Guid
+		Get
+			Return Me._CustomerRatingID
+		End Get
+		Set
+			If ((Me._CustomerRatingID = value)  _
+						= false) Then
+				Me.OnCustomerRatingIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRatingID = value
+				Me.SendPropertyChanged("CustomerRatingID")
+				Me.OnCustomerRatingIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
+	Public Property Rid() As Integer
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If ((Me._Rid = value)  _
+						= false) Then
+				Me.OnRidChanging(value)
+				Me.SendPropertyChanging
+				Me._Rid = value
+				Me.SendPropertyChanged("Rid")
+				Me.OnRidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="NVarChar(22)")>  _
+	Public Property CustomerRating() As String
+		Get
+			Return Me._CustomerRating
+		End Get
+		Set
+			If (String.Equals(Me._CustomerRating, value) = false) Then
+				Me.OnCustomerRatingChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRating = value
+				Me.SendPropertyChanged("CustomerRating")
+				Me.OnCustomerRatingChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRatingDesc", DbType:="NVarChar(50)")>  _
+	Public Property CustomerRatingDesc() As String
+		Get
+			Return Me._CustomerRatingDesc
+		End Get
+		Set
+			If (String.Equals(Me._CustomerRatingDesc, value) = false) Then
+				Me.OnCustomerRatingDescChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRatingDesc = value
+				Me.SendPropertyChanged("CustomerRatingDesc")
+				Me.OnCustomerRatingDescChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromValue", DbType:="Int")>  _
+	Public Property FromValue() As System.Nullable(Of Integer)
+		Get
+			Return Me._FromValue
+		End Get
+		Set
+			If (Me._FromValue.Equals(value) = false) Then
+				Me.OnFromValueChanging(value)
+				Me.SendPropertyChanging
+				Me._FromValue = value
+				Me.SendPropertyChanged("FromValue")
+				Me.OnFromValueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToValue", DbType:="Int")>  _
+	Public Property ToValue() As System.Nullable(Of Integer)
+		Get
+			Return Me._ToValue
+		End Get
+		Set
+			If (Me._ToValue.Equals(value) = false) Then
+				Me.OnToValueChanging(value)
+				Me.SendPropertyChanging
+				Me._ToValue = value
+				Me.SendPropertyChanged("ToValue")
+				Me.OnToValueChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tbZones")>  _
+Partial Public Class tbZone
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ZoneID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _AreaDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnZoneIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnZoneIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ZoneID() As System.Guid
+		Get
+			Return Me._ZoneID
+		End Get
+		Set
+			If ((Me._ZoneID = value)  _
+						= false) Then
+				Me.OnZoneIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ZoneID = value
+				Me.SendPropertyChanged("ZoneID")
+				Me.OnZoneIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
+	Public Property AreaDescription() As String
+		Get
+			Return Me._AreaDescription
+		End Get
+		Set
+			If (String.Equals(Me._AreaDescription, value) = false) Then
+				Me.OnAreaDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._AreaDescription = value
+				Me.SendPropertyChanged("AreaDescription")
+				Me.OnAreaDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerAgents")>  _
+Partial Public Class tblCustomerAgent
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerAgentID As System.Guid
+	
+	Private _AID As Integer
+	
+	Private _CustomerAgentName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanged()
+    End Sub
+    Partial Private Sub OnAIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAIDChanged()
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerAgentID() As System.Guid
+		Get
+			Return Me._CustomerAgentID
+		End Get
+		Set
+			If ((Me._CustomerAgentID = value)  _
+						= false) Then
+				Me.OnCustomerAgentIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentID = value
+				Me.SendPropertyChanged("CustomerAgentID")
+				Me.OnCustomerAgentIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AID", DbType:="Int NOT NULL")>  _
+	Public Property AID() As Integer
+		Get
+			Return Me._AID
+		End Get
+		Set
+			If ((Me._AID = value)  _
+						= false) Then
+				Me.OnAIDChanging(value)
+				Me.SendPropertyChanging
+				Me._AID = value
+				Me.SendPropertyChanged("AID")
+				Me.OnAIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerAgentName() As String
+		Get
+			Return Me._CustomerAgentName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerAgentName, value) = false) Then
+				Me.OnCustomerAgentNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentName = value
+				Me.SendPropertyChanged("CustomerAgentName")
+				Me.OnCustomerAgentNameChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRateIncreaseReference")>  _
+Partial Public Class tblRateIncreaseReference
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RateIncreaseID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _RateIncreaseDescription As String
+	
+	Private _AnnualIncreaseApplies As Boolean
+	
+	Private _AlreadyDoneThisYear As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnRateIncreaseDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnRateIncreaseDescriptionChanged()
+    End Sub
+    Partial Private Sub OnAnnualIncreaseAppliesChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnAnnualIncreaseAppliesChanged()
+    End Sub
+    Partial Private Sub OnAlreadyDoneThisYearChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnAlreadyDoneThisYearChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RateIncreaseID() As System.Guid
+		Get
+			Return Me._RateIncreaseID
+		End Get
+		Set
+			If ((Me._RateIncreaseID = value)  _
+						= false) Then
+				Me.OnRateIncreaseIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RateIncreaseID = value
+				Me.SendPropertyChanged("RateIncreaseID")
+				Me.OnRateIncreaseIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseDescription", DbType:="NVarChar(25)")>  _
+	Public Property RateIncreaseDescription() As String
+		Get
+			Return Me._RateIncreaseDescription
+		End Get
+		Set
+			If (String.Equals(Me._RateIncreaseDescription, value) = false) Then
+				Me.OnRateIncreaseDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._RateIncreaseDescription = value
+				Me.SendPropertyChanged("RateIncreaseDescription")
+				Me.OnRateIncreaseDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualIncreaseApplies", DbType:="Bit NOT NULL")>  _
+	Public Property AnnualIncreaseApplies() As Boolean
+		Get
+			Return Me._AnnualIncreaseApplies
+		End Get
+		Set
+			If ((Me._AnnualIncreaseApplies = value)  _
+						= false) Then
+				Me.OnAnnualIncreaseAppliesChanging(value)
+				Me.SendPropertyChanging
+				Me._AnnualIncreaseApplies = value
+				Me.SendPropertyChanged("AnnualIncreaseApplies")
+				Me.OnAnnualIncreaseAppliesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AlreadyDoneThisYear", DbType:="Bit NOT NULL")>  _
+	Public Property AlreadyDoneThisYear() As Boolean
+		Get
+			Return Me._AlreadyDoneThisYear
+		End Get
+		Set
+			If ((Me._AlreadyDoneThisYear = value)  _
+						= false) Then
+				Me.OnAlreadyDoneThisYearChanging(value)
+				Me.SendPropertyChanging
+				Me._AlreadyDoneThisYear = value
+				Me.SendPropertyChanged("AlreadyDoneThisYear")
+				Me.OnAlreadyDoneThisYearChanged
 			End If
 		End Set
 	End Property

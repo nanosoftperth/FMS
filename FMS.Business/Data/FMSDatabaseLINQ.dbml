@@ -799,31 +799,6 @@
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblCustomers" Member="tblCustomers">
-    <Type Name="tblCustomer">
-      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerMobile" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerFax" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="Zone" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CustomerValue" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="InactiveCustomer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerCommencementDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="chkCustomerExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Cannon_Client" Member="Cannon_Clients">
     <Type Name="Cannon_Client">
       <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -856,6 +831,73 @@
       <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RunName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="KeyNumber" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCustomers" Member="tblCustomers">
+    <Type Name="tblCustomer">
+      <Column Name="CustomerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerMobile" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerFax" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Zone" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="InactiveCustomer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerCommencementDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="chkCustomerExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblStates" Member="tblStates">
+    <Type Name="tblState">
+      <Column Name="StateID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Sid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StateCode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="StateDesc" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCustomerRating" Member="tblCustomerRatings">
+    <Type Name="tblCustomerRating">
+      <Column Name="CustomerRatingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerRating" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerRatingDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FromValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ToValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbZones" Member="tbZones">
+    <Type Name="tbZone">
+      <Column Name="ZoneID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AreaDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCustomerAgents" Member="tblCustomerAgents">
+    <Type Name="tblCustomerAgent">
+      <Column Name="CustomerAgentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRateIncreaseReference" Member="tblRateIncreaseReferences">
+    <Type Name="tblRateIncreaseReference">
+      <Column Name="RateIncreaseID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RateIncreaseDescription" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="AnnualIncreaseApplies" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AlreadyDoneThisYear" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
