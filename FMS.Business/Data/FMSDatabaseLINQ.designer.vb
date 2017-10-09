@@ -397,12 +397,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblCustomerRating(instance As tblCustomerRating)
     End Sub
-  Partial Private Sub InserttbZone(instance As tbZone)
-    End Sub
-  Partial Private Sub UpdatetbZone(instance As tbZone)
-    End Sub
-  Partial Private Sub DeletetbZone(instance As tbZone)
-    End Sub
   Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
     End Sub
   Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
@@ -414,6 +408,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
   Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
+    End Sub
+  Partial Private Sub InserttbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub UpdatetbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub DeletetbZone(instance As tbZone)
     End Sub
   #End Region
 	
@@ -862,12 +862,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
-		Get
-			Return Me.GetTable(Of tbZone)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
 		Get
 			Return Me.GetTable(Of tblCustomerAgent)
@@ -877,6 +871,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
 		Get
 			Return Me.GetTable(Of tblRateIncreaseReference)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
+		Get
+			Return Me.GetTable(Of tbZone)
 		End Get
 	End Property
 	
@@ -2541,7 +2541,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4185,7 +4185,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4574,7 +4574,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -14727,7 +14727,7 @@ Partial Public Class Cannon_Document
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -16094,113 +16094,6 @@ Partial Public Class tblCustomerRating
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tbZones")>  _
-Partial Public Class tbZone
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ZoneID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _AreaDescription As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnZoneIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnZoneIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnAreaDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnAreaDescriptionChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ZoneID() As System.Guid
-		Get
-			Return Me._ZoneID
-		End Get
-		Set
-			If ((Me._ZoneID = value)  _
-						= false) Then
-				Me.OnZoneIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ZoneID = value
-				Me.SendPropertyChanged("ZoneID")
-				Me.OnZoneIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
-	Public Property AreaDescription() As String
-		Get
-			Return Me._AreaDescription
-		End Get
-		Set
-			If (String.Equals(Me._AreaDescription, value) = false) Then
-				Me.OnAreaDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._AreaDescription = value
-				Me.SendPropertyChanged("AreaDescription")
-				Me.OnAreaDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerAgents")>  _
 Partial Public Class tblCustomerAgent
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -16438,6 +16331,136 @@ Partial Public Class tblRateIncreaseReference
 				Me._AlreadyDoneThisYear = value
 				Me.SendPropertyChanged("AlreadyDoneThisYear")
 				Me.OnAlreadyDoneThisYearChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tbZones")>  _
+Partial Public Class tbZone
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ZoneID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _AreaDescription As String
+	
+	Private _SortOrder As Integer
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnZoneIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnZoneIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanged()
+    End Sub
+    Partial Private Sub OnSortOrderChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSortOrderChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ZoneID() As System.Guid
+		Get
+			Return Me._ZoneID
+		End Get
+		Set
+			If ((Me._ZoneID = value)  _
+						= false) Then
+				Me.OnZoneIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ZoneID = value
+				Me.SendPropertyChanged("ZoneID")
+				Me.OnZoneIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
+	Public Property AreaDescription() As String
+		Get
+			Return Me._AreaDescription
+		End Get
+		Set
+			If (String.Equals(Me._AreaDescription, value) = false) Then
+				Me.OnAreaDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._AreaDescription = value
+				Me.SendPropertyChanged("AreaDescription")
+				Me.OnAreaDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="Int NOT NULL")>  _
+	Public Property SortOrder() As Integer
+		Get
+			Return Me._SortOrder
+		End Get
+		Set
+			If ((Me._SortOrder = value)  _
+						= false) Then
+				Me.OnSortOrderChanging(value)
+				Me.SendPropertyChanging
+				Me._SortOrder = value
+				Me.SendPropertyChanged("SortOrder")
+				Me.OnSortOrderChanged
 			End If
 		End Set
 	End Property
@@ -16752,7 +16775,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

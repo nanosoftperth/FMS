@@ -37,7 +37,7 @@
                                 <dx:GridViewDataTextColumn FieldName="RunName" VisibleIndex="2" Visible="true"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="KeyNumber" VisibleIndex="3" Visible="true" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
                             </Columns>
-                                <Settings ShowPreview="true" />
+                            <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
                         </dx:ASPxGridView>
                         <asp:ObjectDataSource ID="odsRun" runat="server" DataObjectTypeName="FMS.Business.DataObjects.Cannon_Run" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.Cannon_Run" UpdateMethod="Update"></asp:ObjectDataSource>

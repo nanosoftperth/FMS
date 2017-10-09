@@ -28,6 +28,7 @@
         Public Shared Sub Create(customer As DataObjects.tblCustomers)
             Dim objCustomer As New FMS.Business.tblCustomer
             With objCustomer
+                .CustomerID = Guid.NewGuid
                 .Cid = GetLastIDUsed() + 1
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
@@ -57,7 +58,7 @@
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
                                                            Where c.Cid.Equals(customer.Cid)).SingleOrDefault
             With objCustomer
-                .CustomerID = customer.CustomerID
+                '.CustomerID = customer.CustomerID
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
                 .AddressLine2 = customer.AddressLine2

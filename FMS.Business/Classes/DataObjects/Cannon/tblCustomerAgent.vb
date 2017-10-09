@@ -9,6 +9,7 @@
         Public Shared Sub Create(CustomerAgent As DataObjects.tblCustomerAgent)
             Dim objCustomerAgent As New FMS.Business.tblCustomerAgent
             With objCustomerAgent
+                .CustomerAgentID = Guid.NewGuid
                 .AID = GetLastIDUsed() + 1
                 .CustomerAgentName = CustomerAgent.CustomerAgentName
             End With
@@ -17,7 +18,7 @@
         End Sub
         Public Shared Sub Update(CustomerAgent As DataObjects.tblCustomerAgent)
             Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                                                           Where c.AID.Equals(CustomerAgent.AID)).SingleOrDefault
+                                                           Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID)).SingleOrDefault
             With objCustomerAgent
                 .CustomerAgentName = CustomerAgent.CustomerAgentName
             End With
@@ -25,7 +26,7 @@
         End Sub
         Public Shared Sub Delete(CustomerAgent As DataObjects.tblCustomerAgent)
             Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                                                         Where c.AID.Equals(CustomerAgent.AID)).SingleOrDefault
+                                                         Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblCustomerAgents.DeleteOnSubmit(objCustomerAgent)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub

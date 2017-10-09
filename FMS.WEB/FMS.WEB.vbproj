@@ -317,6 +317,13 @@
       <DependentUpon>CannonFleetManagement.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\CustomerAgents.aspx.designer.vb">
+      <DependentUpon>CustomerAgents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\CustomerAgents.aspx.vb">
+      <DependentUpon>CustomerAgents.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Applications\Cannon\CustomerDetails.aspx.designer.vb">
       <DependentUpon>CustomerDetails.aspx</DependentUpon>
     </Compile>
@@ -329,6 +336,27 @@
     </Compile>
     <Compile Include="Applications\Cannon\CustomerDetailsMain.aspx.vb">
       <DependentUpon>CustomerDetailsMain.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\CustomerRating.aspx.designer.vb">
+      <DependentUpon>CustomerRating.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\CustomerRating.aspx.vb">
+      <DependentUpon>CustomerRating.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\EstablishZones.aspx.designer.vb">
+      <DependentUpon>EstablishZones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\EstablishZones.aspx.vb">
+      <DependentUpon>EstablishZones.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\RateIncreases.aspx.designer.vb">
+      <DependentUpon>RateIncreases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\RateIncreases.aspx.vb">
+      <DependentUpon>RateIncreases.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
@@ -880,8 +908,12 @@
     <Content Include="AlarmsAndAlerts.aspx" />
     <Content Include="AlarmsAndEvents.aspx" />
     <Content Include="Applications\Cannon\CannonFleetManagement.aspx" />
+    <Content Include="Applications\Cannon\CustomerAgents.aspx" />
     <Content Include="Applications\Cannon\CustomerDetails.aspx" />
     <Content Include="Applications\Cannon\CustomerDetailsMain.aspx" />
+    <Content Include="Applications\Cannon\CustomerRating.aspx" />
+    <Content Include="Applications\Cannon\EstablishZones.aspx" />
+    <Content Include="Applications\Cannon\RateIncreases.aspx" />
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="App_Data\NWind_log.ldf">
       <DependentUpon>NWind.mdf</DependentUpon>

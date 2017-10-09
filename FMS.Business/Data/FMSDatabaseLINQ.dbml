@@ -877,13 +877,6 @@
       <Column Name="ToValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbZones" Member="tbZones">
-    <Type Name="tbZone">
-      <Column Name="ZoneID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="AreaDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblCustomerAgents" Member="tblCustomerAgents">
     <Type Name="tblCustomerAgent">
       <Column Name="CustomerAgentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -898,6 +891,14 @@
       <Column Name="RateIncreaseDescription" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
       <Column Name="AnnualIncreaseApplies" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="AlreadyDoneThisYear" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbZones" Member="tbZones">
+    <Type Name="tbZone">
+      <Column Name="ZoneID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AreaDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

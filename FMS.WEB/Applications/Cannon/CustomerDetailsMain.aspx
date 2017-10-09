@@ -2,8 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link href="../../Content/grid/bootstrap.css" rel="stylesheet">
 <link href="../../Content/grid/grid.css" rel="stylesheet">
+
         <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" 
-            KeyFieldName="CustomerID" Width="550px"  Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
+            KeyFieldName="Cid" Width="550px"  Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
+            <ClientSideEvents SelectionChanged="function(s,e){ alert('xxxxx'); }" />
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Columns>
@@ -26,6 +28,9 @@
             <Templates>
                 <EditForm>
                     <div class="container">
+                        <div style="display:none">
+                            <dx:ASPxTextBox  id="txtCustomerID" runat="server" Text='<%# Eval("CustomerID") %>'></dx:ASPxTextBox>
+                        </div>
                         <div class="row">
                             <div class="col-md-4 col-md-1_5">
                                 <dx:ASPxLabel ID="lblCustomerName" runat="server" Text="Customer&nbsp;Name:" Width="100px"></dx:ASPxLabel>
@@ -65,7 +70,7 @@
                                     <div class="row row-md-margin-top">
                                         <dx:ASPxTextBox ID="txtSuburb" runat="server" Width="111px" MaxLength="22" Text='<%# Eval("Suburb") %>'></dx:ASPxTextBox>&nbsp;
                                         <dx:ASPxLabel ID="lblState" runat="server" Text="State:"></dx:ASPxLabel>&nbsp;
-                                        <dx:ASPxComboBox ID="cbState" DataSourceID="odsStates" runat="server" Width="112px" Height="20px" TextField="StateDesc" ValueField="Sid"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <dx:ASPxComboBox ID="cbState" DataSourceID="odsStates" runat="server" Width="112px" SelectedIndex='<%# Eval("state") - 1 %>'  Height="20px" TextField="StateDesc" ValueField="Sid"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <dx:ASPxLabel ID="lblPCode" runat="server" Text="P/Code:"></dx:ASPxLabel>&nbsp;
                                         <dx:ASPxTextBox ID="txtPCode" runat="server" Width="50px" MaxLength="22" Text='<%# Eval("PostCode") %>'></dx:ASPxTextBox>&nbsp;
                                     </div>
@@ -79,9 +84,9 @@
                             <div class="col-md-5">
                                 <div class="container">
                                     <div class="row row-md-margin-top">
-                                        <dx:ASPxDateEdit ID="dtCustCommencementDate" runat="server"></dx:ASPxDateEdit>&nbsp;
+                                        <dx:ASPxDateEdit ID="dtCustCommencementDate" runat="server" Date='<%# Eval("CustomerCommencementDate") %>'></dx:ASPxDateEdit>&nbsp;
                                         <dx:ASPxLabel ID="lblYears" runat="server" Text="Years:"></dx:ASPxLabel>&nbsp;
-                                        <dx:ASPxTextBox ID="txtYears" runat="server" Width="50px" MaxLength="22" Text='<%# Eval("CustomerCommencementDate") %>'></dx:ASPxTextBox>&nbsp;
+                                        <dx:ASPxTextBox ID="txtYears" runat="server" Width="50px" MaxLength="22" Text="10"></dx:ASPxTextBox>&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +96,7 @@
                                 <dx:ASPxLabel ID="lblCustomerRating" runat="server" Text="Customer&nbsp;Rating:" Width="100px"></dx:ASPxLabel>
                             </div>
                             <div class="col-md-3">
-                                <dx:ASPxComboBox ID="cbCustomerRating" DataSourceID="odsCustomerRating" runat="server" Width="170px" Height="20px" TextField="CustomerRating" ValueField="Rid"></dx:ASPxComboBox>
+                                <dx:ASPxComboBox ID="cbCustomerRating" DataSourceID="odsCustomerRating" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("CustomerRating") - 1 %>' TextField="CustomerRating" ValueField="Rid"></dx:ASPxComboBox>
                             </div>
                         </div>
                         <div class="row">
@@ -99,7 +104,7 @@
                                 <dx:ASPxLabel ID="lblZone" runat="server" Text="Zone:" Width="100px"></dx:ASPxLabel>
                             </div>
                             <div class="col-md-3">
-                                <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" Value='<%# Eval("Zone") %>'  TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-3">
@@ -211,7 +216,7 @@
         </dx:ASPxGridView>
     <asp:ObjectDataSource ID="odsRateIncreaseReference" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomerAgents" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerAgent"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" OldValuesParameterFormatString="original_{0}"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsStates" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblStates"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomerRating" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerRating"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomer" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomers" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomers" UpdateMethod="Update"></asp:ObjectDataSource>

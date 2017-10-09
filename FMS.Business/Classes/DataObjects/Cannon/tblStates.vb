@@ -42,6 +42,7 @@
         End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblStates)
             Dim objStates = (From c In SingletonAccess.FMSDataContextContignous.tblStates
+                                            Order By c.Sid
                                           Select New DataObjects.tblStates(c)).ToList
             Return objStates
         End Function

@@ -4,20 +4,23 @@
         Public Property ZoneID As System.Guid
         Public Property Aid As Integer
         Public Property AreaDescription As String
+        Public Property SortOrder As Integer
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Zone As DataObjects.tbZone)
             Dim objZone As New FMS.Business.tbZone
             With objZone
+                .ZoneID = Guid.NewGuid
                 .Aid = GetLastIDUsed() + 1
                 .AreaDescription = Zone.AreaDescription
+                .SortOrder = GetLastIDUsed() + 1
             End With
             SingletonAccess.FMSDataContextContignous.tbZones.InsertOnSubmit(objZone)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(Zone As DataObjects.tbZone)
             Dim objZone As FMS.Business.tbZone = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                                                           Where c.Aid.Equals(Zone.Aid)).SingleOrDefault
+                                                           Where c.ZoneID.Equals(Zone.ZoneID)).SingleOrDefault
             With objZone
                 .AreaDescription = Zone.AreaDescription
             End With
@@ -25,7 +28,7 @@
         End Sub
         Public Shared Sub Delete(Zone As DataObjects.tbZone)
             Dim objZone As FMS.Business.tbZone = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                                                         Where c.Aid.Equals(Zone.Aid)).SingleOrDefault
+                                                         Where c.ZoneID.Equals(Zone.ZoneID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tbZones.DeleteOnSubmit(objZone)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -53,6 +56,7 @@
                 Me.ZoneID = .ZoneID
                 Me.Aid = .Aid
                 Me.AreaDescription = .AreaDescription
+                Me.SortOrder = .SortOrder
             End With
         End Sub
 #End Region
