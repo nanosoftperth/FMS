@@ -12,6 +12,7 @@
         Public Shared Sub Create(CustomerRate As DataObjects.tblCustomerRating)
             Dim objCustomerRating As New FMS.Business.tblCustomerRating
             With objCustomerRating
+                .CustomerRatingID = Guid.NewGuid
                 .Rid = GetLastIDUsed() + 1
                 .CustomerRating = CustomerRate.CustomerRating
                 .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
@@ -23,7 +24,7 @@
         End Sub
         Public Shared Sub Update(CustomerRate As DataObjects.tblCustomerRating)
             Dim objCustomerRating As FMS.Business.tblCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
-                                                           Where c.Rid.Equals(CustomerRate.Rid)).SingleOrDefault
+                                                           Where c.CustomerRatingID.Equals(CustomerRate.CustomerRatingID)).SingleOrDefault
             With objCustomerRating
                 .CustomerRating = CustomerRate.CustomerRating
                 .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
@@ -34,7 +35,7 @@
         End Sub
         Public Shared Sub Delete(CustomerRate As DataObjects.tblCustomerRating)
             Dim objCustomerRating As FMS.Business.tblCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
-                                                         Where c.Rid.Equals(CustomerRate.Rid)).SingleOrDefault
+                                                         Where c.CustomerRatingID.Equals(CustomerRate.CustomerRatingID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblCustomerRatings.DeleteOnSubmit(objCustomerRating)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub

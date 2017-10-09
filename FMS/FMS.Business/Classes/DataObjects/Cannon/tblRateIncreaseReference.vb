@@ -11,6 +11,7 @@
         Public Shared Sub Create(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference As New FMS.Business.tblRateIncreaseReference
             With objRateIncreaseReference
+                .RateIncreaseID = Guid.NewGuid
                 .Aid = GetLastIDUsed() + 1
                 .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
                 .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
@@ -21,7 +22,7 @@
         End Sub
         Public Shared Sub Update(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                                           Where c.Aid.Equals(RateIncreaseReference.Aid)).SingleOrDefault
+                                                           Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID)).SingleOrDefault
             With objRateIncreaseReference
                 .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
                 .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
@@ -31,7 +32,7 @@
         End Sub
         Public Shared Sub Delete(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                                         Where c.Aid.Equals(RateIncreaseReference.Aid)).SingleOrDefault
+                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences.DeleteOnSubmit(objRateIncreaseReference)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
