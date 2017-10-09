@@ -146,13 +146,23 @@ Namespace ReportGeneration
                 Dim isCurrentlyStopped As Boolean = s_current.ActivityReportType = ActivityReportLineType.Stoipped_Idling Or s_current.ActivityReportType = ActivityReportLineType.Stopped_EngineOff
                 Dim isfirstLoopAndFirstValWasStopped As Boolean = (i = 1) AndAlso (s_prev.ActivityReportType = ActivityReportLineType.Stoipped_Idling Or s_prev.ActivityReportType = ActivityReportLineType.Stopped_EngineOff)
 
+
+                ' = = = = = =  APPLIED FIX HERE FOR CANNON = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+                '
+                '   10/10/2017 - AFTER WE CHANGED THE TRACKERS TO NOT BE 'ALWAYS ON' AN ISSUE OCCURED WHERE   
+                '                IF THE VEHICLE DID NOT PICK UP A SIGNAL FOR A WHILE, THEN THE REPORT THOUGHT THAT THE PLACE 
+                '                THE VEHICLE LEFT FROM WAS THE FIRST PLACE THAT THE SIGNAL WAS PICKED UP AGAIN
+                '                TO FIX THIS WE HAVE CHANGED THE STOPLOCATION TO BE THE DESTINATION OF THE PREVIOUS TRAVEL ACTIVITY REPORT LINE (SEE BELOW)
+                '
+                ' = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
                 'if this is the first time weve stopped, then find out the address
                 'if (in the very first place) we were already stopped, get that address
                 If wasPreviouslyTravelling And isCurrentlyStopped Then
-                    loopVARL.StopLocation = FMS.Business.GoogleGeoCodeResponse.GetForLatLong(s_current.Lat, s_current.Lng)
+                    loopVARL.StopLocation = FMS.Business.GoogleGeoCodeResponse.GetForLatLong(s_prev.Lat, s_prev.Lng)
                     'BY RYAN
-                    loopVARL.Lat = s_current.Lat
-                    loopVARL.Lng = s_current.Lng
+                    loopVARL.Lat = s_prev.Lat
+                    loopVARL.Lng = s_prev.Lng
                 End If
 
 
