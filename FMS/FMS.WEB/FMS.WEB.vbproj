@@ -324,6 +324,13 @@
       <DependentUpon>CustomerDetails.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\CustomerDetailsMain.aspx.designer.vb">
+      <DependentUpon>CustomerDetailsMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\CustomerDetailsMain.aspx.vb">
+      <DependentUpon>CustomerDetailsMain.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
       <DependentUpon>CanBusDisplayProperty.aspx</DependentUpon>
     </Compile>
@@ -874,6 +881,7 @@
     <Content Include="AlarmsAndEvents.aspx" />
     <Content Include="Applications\Cannon\CannonFleetManagement.aspx" />
     <Content Include="Applications\Cannon\CustomerDetails.aspx" />
+    <Content Include="Applications\Cannon\CustomerDetailsMain.aspx" />
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="App_Data\NWind_log.ldf">
       <DependentUpon>NWind.mdf</DependentUpon>
