@@ -35,10 +35,9 @@
 #End Region
 #Region "Get methods"
         Private Shared Function GetLastIDUsed() As Integer
-            Dim objState = (From c In SingletonAccess.FMSDataContextContignous.tblStates
-                               Order By c.Sid Descending
-                               Select New DataObjects.tblStates(c)).First()
-            Return objState.Sid
+            Dim objState = SingletonAccess.FMSDataContextContignous.tblStates.Count
+                               
+            Return objState
         End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblStates)
             Dim objStates = (From c In SingletonAccess.FMSDataContextContignous.tblStates

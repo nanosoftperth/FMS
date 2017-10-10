@@ -4,7 +4,6 @@
         Public Property ZoneID As System.Guid
         Public Property Aid As Integer
         Public Property AreaDescription As String
-        Public Property SortOrder As Integer
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Zone As DataObjects.tbZone)
@@ -13,7 +12,6 @@
                 .ZoneID = Guid.NewGuid
                 .Aid = GetLastIDUsed() + 1
                 .AreaDescription = Zone.AreaDescription
-                .SortOrder = GetLastIDUsed() + 1
             End With
             SingletonAccess.FMSDataContextContignous.tbZones.InsertOnSubmit(objZone)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -35,15 +33,21 @@
 #End Region
 #Region "Get methods"
         Private Shared Function GetLastIDUsed() As Integer
-            Dim objZone = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                               Order By c.Aid Descending
-                               Select New DataObjects.tbZone(c)).First()
-            Return objZone.Aid
+            Dim objZone = SingletonAccess.FMSDataContextContignous.tbZones.Count
+                               
+            Return objZone
         End Function
         Public Shared Function GetAll() As List(Of DataObjects.tbZone)
             Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
                             Order By c.AreaDescription
                                           Select New DataObjects.tbZone(c)).ToList
+            Return objZones
+        End Function
+        Public Shared Function GetZoneSortOrder(zID As Integer) As DataObjects.tbZone
+            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
+                            Where c.Aid.Equals(zID)
+                            Order By c.AreaDescription
+                                          Select New DataObjects.tbZone(c)).SingleOrDefault
             Return objZones
         End Function
 #End Region
@@ -56,7 +60,6 @@
                 Me.ZoneID = .ZoneID
                 Me.Aid = .Aid
                 Me.AreaDescription = .AreaDescription
-                Me.SortOrder = .SortOrder
             End With
         End Sub
 #End Region

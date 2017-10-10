@@ -2,7 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link href="../../Content/grid/bootstrap.css" rel="stylesheet">
 <link href="../../Content/grid/grid.css" rel="stylesheet">
+<script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function OnPressureValuesClick(contentUrl) {
+            document.getElementById("pMessage2").innerHTML = contentUrl;
+            ShowLoginWindow2();
+        }
+     
+        function ShowLoginWindow2() {
+            pcLogin2.ShowAtPos(10, 10);
+            pcLogin2.Show();
+        }
 
+    </script>
         <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" 
             KeyFieldName="Cid" Width="550px"  Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
             <ClientSideEvents SelectionChanged="function(s,e){ alert('xxxxx'); }" />
@@ -23,7 +35,9 @@
             <SettingsPager PageSize="10" />
             <%--<SettingsEditing Mode="PopupEditForm"/>
             <SettingsPopup>
-                <EditForm  Modal="true" />
+                <EditForm  Modal="true" 
+                    VerticalAlign="WindowCenter" 
+                    HorizontalAlign="WindowCenter"/>                
             </SettingsPopup>--%>
             <Templates>
                 <EditForm>
@@ -39,7 +53,9 @@
                                 <dx:ASPxTextBox ID="txtCustomerName" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("CustomerName") %>'></dx:ASPxTextBox>
                             </div>
                             <div class="col-md-1">
-                                <dx:ASPxButton ID="btnViewSites" runat="server" Text="View Sites"></dx:ASPxButton>
+                                <dx:ASPxButton ID="btnViewSites" AutoPostBack="false" runat="server" Text="View Sites">
+                                    <ClientSideEvents Click="function(s,e) { OnPressureValuesClick('you clicked me!');}" />
+                                </dx:ASPxButton>
                             </div>
                             <div class="col-md-1">
                                 <dx:ASPxTextBox ID="txtViewID" runat="server" Width="50px" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
@@ -104,7 +120,7 @@
                                 <dx:ASPxLabel ID="lblZone" runat="server" Text="Zone:" Width="100px"></dx:ASPxLabel>
                             </div>
                             <div class="col-md-3">
-                                <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" Value='<%# Eval("Zone") %>'  TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ZoneSortOrder") - 1%>'  TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-3">
@@ -164,7 +180,7 @@
                                 <dx:ASPxLabel ID="lblCustomerAgentName" runat="server" Text="Customer&nbsp;Agent&nbsp;Name:" Width="100px"></dx:ASPxLabel>
                             </div>
                             <div class="col-md-3">
-                                <dx:ASPxComboBox ID="cbCustomerAgentName" DataSourceID="odsCustomerAgents" runat="server" Width="260px" Height="20px" TextField="CustomerAgentName" ValueField="Aid"></dx:ASPxComboBox>
+                                <dx:ASPxComboBox ID="cbCustomerAgentName" DataSourceID="odsCustomerAgents" runat="server" Width="260px" Height="20px" SelectedIndex='<%# Eval("AgentSortOrder") - 1%>' TextField="CustomerAgentName" ValueField="Aid"></dx:ASPxComboBox>
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-1 col-md-1_5">
@@ -199,7 +215,7 @@
                                 <dx:ASPxLabel ID="lblRateIncrease" runat="server" Text="Rate&nbsp;Increase:" Width="100px"></dx:ASPxLabel>
                             </div>
                             <div class="col-md-1 col-md-1_5">
-                                <dx:ASPxComboBox ID="cbRateIncrease" DataSourceID="odsRateIncreaseReference" runat="server" Width="100px" Height="20px" TextField="RateIncreaseDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                <dx:ASPxComboBox ID="cbRateIncrease" DataSourceID="odsRateIncreaseReference" runat="server" Width="100px" Height="20px" SelectedIndex='<%# Eval("RateIncreaseSortOrder") - 1%>'  TextField="RateIncreaseDescription" ValueField="Aid"></dx:ASPxComboBox>
                             </div>
                         </div>
                     </div>
@@ -214,10 +230,37 @@
                 </EditForm>
             </Templates>
         </dx:ASPxGridView>
+    <dx:ASPxPopupControl ID="pcLogin2" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+        PopupHorizontalAlign="Center" PopupVerticalAlign="Middle" ClientInstanceName="pcLogin2" 
+        HeaderText="Fault Code Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
+           
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
+                    <PanelCollection>
+                        <dx:PanelContent runat="server">             
+                            <p id="pMessage2"></p>
+                            <dx:ASPxGridView ID="SiteGridView" DataSourceID="odsSitesView" runat="server" AutoGenerateColumns="False">
+                                <Columns>
+                                    <dx:GridViewDataTextColumn FieldName="ZoneID" VisibleIndex="0"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="1"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="AreaDescription" VisibleIndex="2"></dx:GridViewDataTextColumn>
+                                </Columns>
+                            </dx:ASPxGridView>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ContentStyle>
+            <Paddings PaddingBottom="5px" />
+        </ContentStyle>
+    </dx:ASPxPopupControl>
+    <asp:ObjectDataSource ID="odsSitesView" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone"></asp:ObjectDataSource>    
     <asp:ObjectDataSource ID="odsRateIncreaseReference" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomerAgents" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerAgent"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" OldValuesParameterFormatString="original_{0}"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsStates" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblStates"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomerRating" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerRating"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsCustomer" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomers" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomers" UpdateMethod="Update"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsCustomer" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomers" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblCustomers" UpdateMethod="Update"></asp:ObjectDataSource>
 </asp:Content>

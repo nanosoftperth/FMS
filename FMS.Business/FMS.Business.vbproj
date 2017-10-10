@@ -113,6 +113,7 @@
     <Compile Include="Classes\DataObjects\Cannon\tblCustomers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblDrivers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblRateIncreaseReference.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblSites.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblStates.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tbZone.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />

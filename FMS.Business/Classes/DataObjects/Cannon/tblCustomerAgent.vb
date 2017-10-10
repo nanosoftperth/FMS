@@ -33,10 +33,9 @@
 #End Region
 #Region "Get methods"
         Private Shared Function GetLastIDUsed() As Integer
-            Dim objCustomerAgents = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                               Order By c.AID Descending
-                               Select New DataObjects.tblCustomerAgent(c)).First()
-            Return objCustomerAgents.Aid
+            Dim objCustomerAgents = SingletonAccess.FMSDataContextContignous.tblCustomerAgents.Count
+                               
+            Return objCustomerAgents
         End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerAgent)
             Dim objCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
