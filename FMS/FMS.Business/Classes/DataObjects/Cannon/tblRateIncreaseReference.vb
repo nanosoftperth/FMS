@@ -39,10 +39,9 @@
 #End Region
 #Region "Get methods"
         Private Shared Function GetLastIDUsed() As Integer
-            Dim objRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                               Order By c.Aid Descending
-                               Select New DataObjects.tblRateIncreaseReference(c)).First()
-            Return objRateIncreaseReference.Aid
+            Dim objRateIncreaseReference = SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences.Count
+                               
+            Return objRateIncreaseReference
         End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences

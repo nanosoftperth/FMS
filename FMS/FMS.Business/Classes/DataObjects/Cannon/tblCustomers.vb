@@ -14,15 +14,18 @@
         Public Property CustomerMobile As String
         Public Property CustomerFax As String
         Public Property CustomerComments As String
-        Public Property CustomerAgentName As String
+        Public Property CustomerAgent As System.Nullable(Of Integer)
+        Public Property AgentSortOrder As System.Nullable(Of Integer)
         Public Property CustomerRating As System.Nullable(Of Short)
         Public Property Zone As System.Nullable(Of Integer)
+        Public Property ZoneSortOrder As System.Nullable(Of Integer)
         Public Property MYOBCustomerNumber As String
         Public Property CustomerValue As System.Nullable(Of Double)
         Public Property InactiveCustomer As Boolean
         Public Property CustomerCommencementDate As System.Nullable(Of Date)
         Public Property chkCustomerExcludeFuelLevy As Boolean
         Public Property cmbRateIncrease As System.Nullable(Of Short)
+        Public Property RateIncreaseSortOrder As System.Nullable(Of Integer)
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(customer As DataObjects.tblCustomers)
@@ -41,7 +44,7 @@
                 .CustomerMobile = customer.CustomerMobile
                 .CustomerFax = customer.CustomerFax
                 .CustomerComments = customer.CustomerComments
-                .CustomerAgentName = customer.CustomerAgentName
+                .CustomerAgent = customer.CustomerAgent
                 .CustomerRating = customer.CustomerRating
                 .Zone = customer.Zone
                 .MYOBCustomerNumber = customer.MYOBCustomerNumber
@@ -70,7 +73,7 @@
                 .CustomerMobile = customer.CustomerMobile
                 .CustomerFax = customer.CustomerFax
                 .CustomerComments = customer.CustomerComments
-                .CustomerAgentName = customer.CustomerAgentName
+                .CustomerAgent = customer.CustomerAgent
                 .CustomerRating = customer.CustomerRating
                 .Zone = customer.Zone
                 .MYOBCustomerNumber = customer.MYOBCustomerNumber
@@ -91,15 +94,34 @@
 #End Region
 #Region "Get methods"
         Private Shared Function GetLastIDUsed() As Integer
-            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                               Order By c.Cid Descending
-                               Select New DataObjects.tblCustomers(c)).First()
-            Return objCustomer.Cid
+            Dim objCustomer = SingletonAccess.FMSDataContextContignous.tblCustomers.Count
+                               
+            Return objCustomer
         End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomers)
 
             Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
                                Select New DataObjects.tblCustomers(c)).ToList
+            
+            Return objCustomer
+        End Function
+
+        Public Shared Function GetAllWithZoneSortOrder() As List(Of DataObjects.tblCustomers)
+
+            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomers
+                               Select New DataObjects.tblCustomers() With {.AddressLine1 = c.AddressLine1, .AddressLine2 = c.AddressLine2,
+                                                                           .chkCustomerExcludeFuelLevy = c.chkCustomerExcludeFuelLevy, .Cid = c.Cid,
+                                                                           .cmbRateIncrease = c.cmbRateIncrease, .CustomerAgent = c.CustomerAgent,
+                                                                           .CustomerCommencementDate = c.CustomerCommencementDate, .CustomerComments = c.CustomerComments,
+                                                                           .CustomerContactName = c.CustomerContactName, .CustomerFax = c.CustomerFax,
+                                                                           .CustomerID = c.CustomerID, .CustomerMobile = c.CustomerMobile,
+                                                                           .CustomerName = c.CustomerName, .CustomerPhone = c.CustomerPhone,
+                                                                           .CustomerRating = c.CustomerRating, .CustomerValue = c.CustomerValue,
+                                                                           .InactiveCustomer = c.InactiveCustomer, .MYOBCustomerNumber = c.MYOBCustomerNumber,
+                                                                           .PostCode = c.PostCode, .State = c.State, .Suburb = c.Suburb, .Zone = c.Zone,
+                                                                           .ZoneSortOrder = c.ZoneSortOrder, .AgentSortOrder = c.AgentSortOrder,
+                                                                           .RateIncreaseSortOrder = c.RateIncreaseSortOrder}).ToList
+
             Return objCustomer
         End Function
 #End Region
@@ -122,15 +144,18 @@
                 Me.CustomerMobile = .CustomerMobile
                 Me.CustomerFax = .CustomerFax
                 Me.CustomerComments = .CustomerComments
-                Me.CustomerAgentName = .CustomerAgentName
+                Me.CustomerAgent = .CustomerAgent
+                Me.AgentSortOrder = 0
                 Me.CustomerRating = .CustomerRating
                 Me.Zone = .Zone
+                Me.ZoneSortOrder = 0
                 Me.MYOBCustomerNumber = .MYOBCustomerNumber
                 Me.CustomerValue = .CustomerValue
                 Me.InactiveCustomer = .InactiveCustomer
                 Me.CustomerCommencementDate = .CustomerCommencementDate
                 Me.chkCustomerExcludeFuelLevy = .chkCustomerExcludeFuelLevy
                 Me.cmbRateIncrease = .cmbRateIncrease
+                Me.RateIncreaseSortOrder = 0
             End With
         End Sub
 #End Region

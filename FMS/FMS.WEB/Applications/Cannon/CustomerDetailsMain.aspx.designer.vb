@@ -23,6 +23,42 @@ Partial Public Class CustomerDetailsMain
     Protected WithEvents CustomersGridView As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
+    '''pcLogin2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pcLogin2 As Global.DevExpress.Web.ASPxPopupControl
+
+    '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
+
+    '''<summary>
+    '''SiteGridView control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SiteGridView As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsSitesView control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsSitesView As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsRateIncreaseReference control.
     '''</summary>
     '''<remarks>
