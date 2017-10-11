@@ -176,7 +176,7 @@
         End Function
         Public Shared Function GetAllByCustomer(cust As Integer) As List(Of DataObjects.tblSites)
             Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                            Where c.Customer.Equals(cust)
+                            Where c.Customer.Equals(cust) And (Not c.Customer Is Nothing And Not c.Customer.Equals(0))
                             Order By c.SiteName
                             Select New DataObjects.tblSites(c)).ToList
             Return objSites

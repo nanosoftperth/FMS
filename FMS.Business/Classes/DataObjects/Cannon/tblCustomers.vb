@@ -124,6 +124,7 @@
 
             Return objCustomer
         End Function
+        
 #End Region
 #Region "Constructors"
         Public Sub New()

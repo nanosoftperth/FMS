@@ -116,6 +116,7 @@
     <Compile Include="Classes\DataObjects\Cannon\tblSites.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblStates.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tbZone.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\usp_GetCustomerUpdateValue.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanValue.vb" />
     <Compile Include="Classes\DataObjects\Can_AlertDefinition.vb" />

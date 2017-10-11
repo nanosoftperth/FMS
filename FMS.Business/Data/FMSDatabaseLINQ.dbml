@@ -1137,4 +1137,12 @@
       <Column Name="RateIncreaseSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetCustomerUpdateValue" Method="usp_GetCustomerUpdateValue">
+    <Parameter Name="Cid" Parameter="cid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetCustomerUpdateValueResult">
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

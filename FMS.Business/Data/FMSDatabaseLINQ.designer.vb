@@ -976,6 +976,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomersResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerUpdateValue")>  _
+	Public Function usp_GetCustomerUpdateValue(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Cid", DbType:="Int")> ByVal cid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetCustomerUpdateValueResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), cid)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerUpdateValueResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -18920,6 +18926,55 @@ Partial Public Class usp_GetCustomersResult
 		Set
 			If (Me._RateIncreaseSortOrder.Equals(value) = false) Then
 				Me._RateIncreaseSortOrder = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetCustomerUpdateValueResult
+	
+	Private _CustomerName As String
+	
+	Private _TotalAmount As System.Nullable(Of Double)
+	
+	Private _Cid As System.Nullable(Of Integer)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalAmount", DbType:="Float")>  _
+	Public Property TotalAmount() As System.Nullable(Of Double)
+		Get
+			Return Me._TotalAmount
+		End Get
+		Set
+			If (Me._TotalAmount.Equals(value) = false) Then
+				Me._TotalAmount = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int")>  _
+	Public Property Cid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me._Cid = value
 			End If
 		End Set
 	End Property
