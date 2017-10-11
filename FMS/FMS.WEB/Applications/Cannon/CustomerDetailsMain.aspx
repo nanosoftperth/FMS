@@ -4,20 +4,41 @@
 <link href="../../Content/grid/grid.css" rel="stylesheet">
 <script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
-        function OnPressureValuesClick(contentUrl) {
-            document.getElementById("pMessage2").innerHTML = contentUrl;
-            ShowLoginWindow2();
+        function ViewSitesClick(custID) {
+            txtCustomerID.SetText(custID);
+            SiteGridView.Refresh();
+            ShowLoginWindow();
         }
-     
-        function ShowLoginWindow2() {
-            pcLogin2.ShowAtPos(10, 10);
-            pcLogin2.Show();
+
+        function ShowLoginWindow() {
+            //viewPopup.ShowAtPos(100, 10);
+            viewPopup.Show();
         }
+        function getDataFromServer(_cid) {
+            $.ajax({
+                type: "POST",
+                url: 'CustomerDetailsMain.aspx/UpdateValue',
+                dataType: "json",
+                data: JSON.stringify({ Cid: _cid }),
+                contentType: "application/json",
+                crossDomain: true,
+                success: function (data) {
+                    if (data.d != null) {
+                        txtPerAnnumValue.SetText(data.d.TotalAmount);
+                    } else {
+                        txtPerAnnumValue.SetText('0');
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            
+        })
 
     </script>
         <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" 
             KeyFieldName="Cid" Width="550px"  Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
-            <ClientSideEvents SelectionChanged="function(s,e){ alert('xxxxx'); }" />
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Columns>
@@ -43,7 +64,7 @@
                 <EditForm>
                     <div class="container">
                         <div style="display:none">
-                            <dx:ASPxTextBox  id="txtCustomerID" runat="server" Text='<%# Eval("CustomerID") %>'></dx:ASPxTextBox>
+                            <dx:ASPxTextBox  id="txtCustomerID" ClientInstanceName="custID" runat="server" Text='<%# Eval("CustomerID") %>'></dx:ASPxTextBox>
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-md-1_5">
@@ -53,12 +74,14 @@
                                 <dx:ASPxTextBox ID="txtCustomerName" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("CustomerName") %>'></dx:ASPxTextBox>
                             </div>
                             <div class="col-md-1">
-                                <dx:ASPxButton ID="btnViewSites" AutoPostBack="false" runat="server" Text="View Sites">
-                                    <ClientSideEvents Click="function(s,e) { OnPressureValuesClick('you clicked me!');}" />
+                                <dx:ASPxButton ID="btnViewSites" ClientInstanceName="btnViewSites" AutoPostBack="false" runat="server" Text="View Sites">
+                                    <ClientSideEvents Click="function(s,e) {
+                                         ViewSitesClick(txtViewID.GetText());
+                                        }" />
                                 </dx:ASPxButton>
                             </div>
                             <div class="col-md-1">
-                                <dx:ASPxTextBox ID="txtViewID" runat="server" Width="50px" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ID="txtViewID" ClientInstanceName="txtViewID" runat="server" Width="50px" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -136,7 +159,7 @@
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-3">
-                                <dx:ASPxTextBox ID="txtPerAnnumValue" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("CustomerValue") %>'></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ID="txtPerAnnumValue" ClientInstanceName="txtPerAnnumValue" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("CustomerValue") %>'></dx:ASPxTextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -148,7 +171,11 @@
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-3">
-                                <dx:ASPxButton ID="btnUpdateValue" runat="server" Text="Update Value"></dx:ASPxButton>
+                                <dx:ASPxButton ID="btnUpdateValue" runat="server" AutoPostBack="false" Text="Update Value">
+                                    <ClientSideEvents Click="function(s,e){
+                                            getDataFromServer(txtViewID.GetText());
+                                        }" />
+                                </dx:ASPxButton>
                             </div>
                         </div>
                         <div class="row">
@@ -184,10 +211,10 @@
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-1 col-md-1_5">
-                                <dx:ASPxButton ID="btnAddNew" runat="server" Text="Add New"></dx:ASPxButton>
+                                <%--<dx:ASPxButton ID="btnAddNew" runat="server" Text="Add New"></dx:ASPxButton>--%>
                             </div>
                              <div class="col-md-1 col-md-1_5">
-                                <dx:ASPxButton ID="btnExit" runat="server" Text="Exit"></dx:ASPxButton>
+                                <%--<dx:ASPxButton ID="btnExit" runat="server" Text="Exit"></dx:ASPxButton>--%>
                             </div>
                         </div>
                         <div class="row">
@@ -230,21 +257,24 @@
                 </EditForm>
             </Templates>
         </dx:ASPxGridView>
-    <dx:ASPxPopupControl ID="pcLogin2" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
-        PopupHorizontalAlign="Center" PopupVerticalAlign="Middle" ClientInstanceName="pcLogin2" 
-        HeaderText="Fault Code Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
-           
+    <dx:ASPxPopupControl ID="viewPopup" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="viewPopup" 
+        HeaderText="Site List" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="100%" >        
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
                     <PanelCollection>
                         <dx:PanelContent runat="server">             
-                            <p id="pMessage2"></p>
-                            <dx:ASPxGridView ID="SiteGridView" DataSourceID="odsSitesView" runat="server" AutoGenerateColumns="False">
+                            <dx:ASPxGridView ID="SiteGridView"  ClientInstanceName="SiteGridView" DataSourceID="odsSitesView" runat="server" AutoGenerateColumns="False">
                                 <Columns>
-                                    <dx:GridViewDataTextColumn FieldName="ZoneID" VisibleIndex="0"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="1"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="AreaDescription" VisibleIndex="2"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="SiteID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="SiteName" VisibleIndex="2" Width="50%"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="Customer" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="AddressLine1" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="Suburb" VisibleIndex="8"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="State" VisibleIndex="9"></dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="PostCode" VisibleIndex="10"></dx:GridViewDataTextColumn>
                                 </Columns>
                             </dx:ASPxGridView>
                         </dx:PanelContent>
@@ -256,7 +286,12 @@
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
-    <asp:ObjectDataSource ID="odsSitesView" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone"></asp:ObjectDataSource>    
+    <dx:ASPxTextBox ID="txtCustomerID" ClientInstanceName="txtCustomerID" runat="server" Text="1"></dx:ASPxTextBox>
+    <asp:ObjectDataSource ID="odsSitesView" runat="server" SelectMethod="GetAllByCustomer" TypeName="FMS.Business.DataObjects.tblSites">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="txtCustomerID" PropertyName="Text" Name="cust" Type="Int32"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>    
     <asp:ObjectDataSource ID="odsRateIncreaseReference" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomerAgents" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerAgent"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" OldValuesParameterFormatString="original_{0}"></asp:ObjectDataSource>

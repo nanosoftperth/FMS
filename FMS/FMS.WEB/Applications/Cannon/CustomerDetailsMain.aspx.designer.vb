@@ -23,13 +23,13 @@ Partial Public Class CustomerDetailsMain
     Protected WithEvents CustomersGridView As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
-    '''pcLogin2 control.
+    '''viewPopup control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pcLogin2 As Global.DevExpress.Web.ASPxPopupControl
+    Protected WithEvents viewPopup As Global.DevExpress.Web.ASPxPopupControl
 
     '''<summary>
     '''Panel2 control.
@@ -48,6 +48,15 @@ Partial Public Class CustomerDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SiteGridView As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''txtCustomerID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCustomerID As Global.DevExpress.Web.ASPxTextBox
 
     '''<summary>
     '''odsSitesView control.
