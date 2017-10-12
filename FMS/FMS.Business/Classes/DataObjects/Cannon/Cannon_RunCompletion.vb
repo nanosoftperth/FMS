@@ -50,7 +50,6 @@
                              Select New DataObjects.Cannon_RunCompletion(i)).ToList()
             Return cannonRunCompletion
         End Function
-
 #End Region
 #Region "Constructors"
         Public Sub New()
