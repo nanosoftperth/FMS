@@ -3,9 +3,14 @@
 <link href="../../Content/grid/bootstrap.css" rel="stylesheet">
 <link href="../../Content/grid/grid.css" rel="stylesheet">
 <script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
+    <style>
+        .dxeMemoEditAreaSys{
+            border-width:1px !Important;
+        }
+    </style>
     <script type="text/javascript">
         function ViewSitesClick(custID) {
-            txtCustomerID.SetText(custID);
+            hdnCID.SetText(custID);
             SiteGridView.Refresh();
             ShowLoginWindow();
         }
@@ -14,6 +19,23 @@
             //viewPopup.ShowAtPos(100, 10);
             viewPopup.Show();
         }
+
+        function CalculateCommencementDate(comm) {
+            if (comm != "") {
+                var date1 = new Date(comm);
+                var dateNow = new Date();
+                var dateNowToDays = new Date(dateNow.toLocaleDateString())
+                var diff = new Date(dateNowToDays - date1);
+                var diffByDays = diff / 1000 / 60 / 60 / 24;
+                var commencement = Math.round(diffByDays) / 365.25;
+                if (commencement.toFixed(2) != -0.00) {
+                    txtYears.SetText(commencement.toFixed(2));
+                } else {
+                    txtYears.SetText('');
+                }
+            }
+        }
+
         function getDataFromServer(_cid) {
             $.ajax({
                 type: "POST",
@@ -58,13 +80,16 @@
             <SettingsPopup>
                 <EditForm  Modal="true" 
                     VerticalAlign="WindowCenter" 
-                    HorizontalAlign="WindowCenter"/>                
+                    HorizontalAlign="WindowCenter" width="300px"/>                
             </SettingsPopup>--%>
             <Templates>
                 <EditForm>
                     <div class="container">
                         <div style="display:none">
                             <dx:ASPxTextBox  id="txtCustomerID" ClientInstanceName="custID" runat="server" Text='<%# Eval("CustomerID") %>'></dx:ASPxTextBox>
+                        </div>
+                        <div class="row">
+
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-md-1_5">
@@ -123,9 +148,13 @@
                             <div class="col-md-5">
                                 <div class="container">
                                     <div class="row row-md-margin-top">
-                                        <dx:ASPxDateEdit ID="dtCustCommencementDate" runat="server" Date='<%# Eval("CustomerCommencementDate") %>'></dx:ASPxDateEdit>&nbsp;
+                                        <dx:ASPxDateEdit ID="dtCustCommencementDate" ClientInstanceName="dtCustCommencementDate" runat="server" Date='<%# Eval("CustomerCommencementDate") %>'>
+                                            <ClientSideEvents LostFocus="function(s,e){
+                                                    CalculateCommencementDate(dtCustCommencementDate.GetText());
+                                                }" />
+                                        </dx:ASPxDateEdit>&nbsp;
                                         <dx:ASPxLabel ID="lblYears" runat="server" Text="Years:"></dx:ASPxLabel>&nbsp;
-                                        <dx:ASPxTextBox ID="txtYears" runat="server" Width="50px" MaxLength="22" Text="10"></dx:ASPxTextBox>&nbsp;
+                                        <dx:ASPxTextBox ID="txtYears" ClientInstanceName="txtYears" runat="server" Width="50px" MaxLength="22" Text=""></dx:ASPxTextBox>&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +174,7 @@
                             <div class="col-md-3">
                                 <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ZoneSortOrder") - 1%>'  TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
                             </div>
-                            <div class="col-md-1"></div>
+                            <%--<div class="col-md-1"></div>--%>
                             <div class="col-md-3">
                                 <dx:ASPxLabel ID="lblPerAnnumValue" runat="server" Text="Per Annum Value:" ForeColor="Blue" Font-Bold="true" Width="300px"></dx:ASPxLabel>
                             </div>
@@ -157,7 +186,7 @@
                             <div class="col-md-3">
                                 <dx:ASPxTextBox ID="txtCustomerContactName" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerContactName") %>'></dx:ASPxTextBox>
                             </div>
-                            <div class="col-md-1"></div>
+                            <%--<div class="col-md-1"></div>--%>
                             <div class="col-md-3">
                                 <dx:ASPxTextBox ID="txtPerAnnumValue" ClientInstanceName="txtPerAnnumValue" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("CustomerValue") %>'></dx:ASPxTextBox>
                             </div>
@@ -169,7 +198,7 @@
                             <div class="col-md-3">
                                 <dx:ASPxTextBox ID="txtCustomerPhone" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerPhone")%>'></dx:ASPxTextBox>
                             </div>
-                            <div class="col-md-1"></div>
+                            <%--<div class="col-md-1"></div>--%>
                             <div class="col-md-3">
                                 <dx:ASPxButton ID="btnUpdateValue" runat="server" AutoPostBack="false" Text="Update Value">
                                     <ClientSideEvents Click="function(s,e){
@@ -199,7 +228,7 @@
                                 <dx:ASPxLabel ID="lblCustomerComments" runat="server" Text="Customer&nbsp;Comments:" Width="100px"></dx:ASPxLabel>
                             </div>
                             <div class="col-md-3">
-                                <dx:ASPxTextBox ID="txtCustomerComments" runat="server" Width="270px" Height="100px" Text='<%# Eval("CustomerComments")%>'></dx:ASPxTextBox>
+                                <dx:ASPxMemo ID="txtCustomerComments" runat="server" Height="100px" Width="270px" class="dxeMemoEditAreaSys"  Text='<%# Eval("CustomerComments") %>'></dx:ASPxMemo>
                             </div>
                         </div>
                         <div class="row">
@@ -286,10 +315,12 @@
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
-    <dx:ASPxTextBox ID="txtCustomerID" ClientInstanceName="txtCustomerID" runat="server" Text="1"></dx:ASPxTextBox>
+    <div style="display:none">
+        <dx:ASPxTextBox ID="hdnCID" ClientInstanceName="hdnCID" runat="server" Text="0"></dx:ASPxTextBox>
+    </div>
     <asp:ObjectDataSource ID="odsSitesView" runat="server" SelectMethod="GetAllByCustomer" TypeName="FMS.Business.DataObjects.tblSites">
         <SelectParameters>
-            <asp:ControlParameter ControlID="txtCustomerID" PropertyName="Text" Name="cust" Type="Int32"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="hdnCID" PropertyName="Text" Name="cust" Type="Int32"></asp:ControlParameter>
         </SelectParameters>
     </asp:ObjectDataSource>    
     <asp:ObjectDataSource ID="odsRateIncreaseReference" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>

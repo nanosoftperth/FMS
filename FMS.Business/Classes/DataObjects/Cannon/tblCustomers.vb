@@ -87,7 +87,7 @@
         End Sub
         Public Shared Sub Delete(Customer As DataObjects.tblCustomers)
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.CustomerID.Equals(Customer.CustomerID) And c.Cid.Equals(Customer.Cid)).SingleOrDefault
+                                                           Where c.Cid.Equals(Customer.Cid)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblCustomers.DeleteOnSubmit(objCustomer)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
