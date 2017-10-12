@@ -27,7 +27,7 @@ Public Class CustomerDetailsMain
         Dim txtCustomerPhone As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtCustomerPhone"), ASPxTextBox)
         Dim txtCustomerMobile As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtCustomerMobile"), ASPxTextBox)
         Dim txtCustomerFax As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtCustomerFax"), ASPxTextBox)
-        Dim txtCustomerComments As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtCustomerComments"), ASPxTextBox)
+        Dim txtCustomerComments As ASPxMemo = TryCast(CustomersGridView.FindEditFormTemplateControl("txtCustomerComments"), ASPxMemo)
         Dim cbCustomerAgentName As ASPxComboBox = TryCast(CustomersGridView.FindEditFormTemplateControl("cbCustomerAgentName"), ASPxComboBox)
         Dim txtMYOBCustomerNumber As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtMYOBCustomerNumber"), ASPxTextBox)
         Dim chkInActiveCustomer As ASPxCheckBox = TryCast(CustomersGridView.FindEditFormTemplateControl("chkInActiveCustomer"), ASPxCheckBox)
@@ -68,7 +68,13 @@ Public Class CustomerDetailsMain
         End If
 
         e.NewValues("CustomerContactName") = txtCustomerContactName.Text
-        e.NewValues("CustomerValue") = IIf(txtPerAnnumValue.Text.Equals(""), 0, txtPerAnnumValue.Text)
+        Dim dblCustomerValue As System.Nullable(Of Double) = 0
+        If txtPerAnnumValue.Text.Equals("") Then
+            dblCustomerValue = 0
+        Else
+            dblCustomerValue = Convert.ToDouble(txtPerAnnumValue.Text)
+        End If
+        e.NewValues("CustomerValue") = dblCustomerValue
         e.NewValues("CustomerPhone") = txtCustomerPhone.Text
         e.NewValues("CustomerMobile") = txtCustomerMobile.Text
         e.NewValues("CustomerFax") = txtCustomerFax.Text

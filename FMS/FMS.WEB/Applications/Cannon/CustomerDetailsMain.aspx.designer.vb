@@ -50,13 +50,13 @@ Partial Public Class CustomerDetailsMain
     Protected WithEvents SiteGridView As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
-    '''txtCustomerID control.
+    '''hdnCID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCustomerID As Global.DevExpress.Web.ASPxTextBox
+    Protected WithEvents hdnCID As Global.DevExpress.Web.ASPxTextBox
 
     '''<summary>
     '''odsSitesView control.
