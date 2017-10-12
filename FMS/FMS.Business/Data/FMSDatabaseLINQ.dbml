@@ -1145,4 +1145,12 @@
       <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetAllDrivers" Method="usp_GetAllDrivers">
+    <ElementType Name="usp_GetAllDriversResult">
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="InActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>
