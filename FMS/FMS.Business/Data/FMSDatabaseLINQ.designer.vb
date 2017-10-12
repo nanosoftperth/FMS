@@ -982,6 +982,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), cid)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerUpdateValueResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAllDrivers")>  _
+	Public Function usp_GetAllDrivers() As ISingleResult(Of usp_GetAllDriversResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAllDriversResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -18975,6 +18981,71 @@ Partial Public Class usp_GetCustomerUpdateValueResult
 		Set
 			If (Me._Cid.Equals(value) = false) Then
 				Me._Cid = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetAllDriversResult
+	
+	Private _DriverID As System.Guid
+	
+	Private _DriverName As String
+	
+	Private _InActive As Integer
+	
+	Private _Source As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property DriverID() As System.Guid
+		Get
+			Return Me._DriverID
+		End Get
+		Set
+			If ((Me._DriverID = value)  _
+						= false) Then
+				Me._DriverID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverName", DbType:="NVarChar(MAX)")>  _
+	Public Property DriverName() As String
+		Get
+			Return Me._DriverName
+		End Get
+		Set
+			If (String.Equals(Me._DriverName, value) = false) Then
+				Me._DriverName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InActive", DbType:="Int NOT NULL")>  _
+	Public Property InActive() As Integer
+		Get
+			Return Me._InActive
+		End Get
+		Set
+			If ((Me._InActive = value)  _
+						= false) Then
+				Me._InActive = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Source", DbType:="VarChar(8) NOT NULL", CanBeNull:=false)>  _
+	Public Property Source() As String
+		Get
+			Return Me._Source
+		End Get
+		Set
+			If (String.Equals(Me._Source, value) = false) Then
+				Me._Source = value
 			End If
 		End Set
 	End Property
