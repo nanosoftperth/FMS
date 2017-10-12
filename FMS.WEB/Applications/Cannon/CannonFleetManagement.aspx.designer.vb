@@ -86,42 +86,6 @@ Partial Public Class CannonFleetManagement
     Protected WithEvents odsCustomerList As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''lnkNewDriver control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkNewDriver As Global.DevExpress.Web.ASPxHyperLink
-
-    '''<summary>
-    '''ASPxGridView2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxGridView2 As Global.DevExpress.Web.ASPxGridView
-
-    '''<summary>
-    '''odsApplicationLocation control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsApplicationLocation As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
-    '''odsDrivers control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
     '''RunCompletionGridView control.
     '''</summary>
     '''<remarks>

@@ -40,13 +40,13 @@ Public Class CannonFleetManagement
     End Sub
 
 
-    Private Sub ASPxGridView2_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles ASPxGridView2.RowInserting
-        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
-    End Sub
+    'Private Sub ASPxGridView2_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles ASPxGridView2.RowInserting
+    '    e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
+    'End Sub
 
-    Private Sub ASPxGridView2_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles ASPxGridView2.RowUpdating
-        e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
-    End Sub
+    'Private Sub ASPxGridView2_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles ASPxGridView2.RowUpdating
+    '    e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
+    'End Sub
 
     Protected Sub hyperLinkNew_Init(sender As Object, e As EventArgs)
         Dim hyperLink As ASPxHyperLink = TryCast(sender, ASPxHyperLink)

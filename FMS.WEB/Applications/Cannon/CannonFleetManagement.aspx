@@ -103,7 +103,7 @@
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
-            <dx:TabPage Name="Drivers" Text="Drivers">
+            <%--<dx:TabPage Name="Drivers" Text="Drivers">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
                         <dx:ASPxHyperLink ID="lnkNewDriver" Theme="SoftOrange" ClientInstanceName="lnkNewDriver" runat="server" Text="Add New Driver" NavigateUrl="javascript:dgvDrivers.AddNewRow()">
@@ -297,7 +297,7 @@
                         </asp:ObjectDataSource>
                     </dx:ContentControl>
                 </ContentCollection>
-            </dx:TabPage>
+            </dx:TabPage>--%>
             <dx:TabPage Name="RunCompletion" Text="Run Assignments">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
@@ -313,8 +313,8 @@
                                         </ClearButton>
                                     </PropertiesComboBox>
                                 </dx:GridViewDataComboBoxColumn>  
-                                <dx:GridViewDataComboBoxColumn FieldName="DID" Caption="Driver Name" VisibleIndex="3">
-                                    <PropertiesComboBox DataSourceID="odsTblDrivers" TextField="DriverName" ValueField="DID">
+                                <dx:GridViewDataComboBoxColumn FieldName="DriverID" Caption="Driver Name" VisibleIndex="3">
+                                    <PropertiesComboBox DataSourceID="odsTblDrivers" TextField="DriverName" ValueField="DriverID">
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
                                     </PropertiesComboBox>
@@ -326,7 +326,7 @@
                             <SettingsPager PageSize="10" />
                         </dx:ASPxGridView>
                         <asp:ObjectDataSource ID="odsRunCompletion" runat="server" DataObjectTypeName="FMS.Business.DataObjects.Cannon_RunCompletion" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.Cannon_RunCompletion" UpdateMethod="Update"></asp:ObjectDataSource>
-                        <asp:ObjectDataSource ID="odsTblDrivers" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsTblDrivers" runat="server" SelectMethod="GetAllDrivers" TypeName="FMS.Business.DataObjects.usp_GetAllDrivers"></asp:ObjectDataSource>
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
