@@ -24,7 +24,7 @@
             if (comm != "") {
                 var date1 = new Date(comm);
                 var dateNow = new Date();
-                var dateNowToDays = new Date(dateNow.toLocaleDateString())
+                var dateNowToDays = new Date(dateNow.toLocaleDateString()) 
                 var diff = new Date(dateNowToDays - date1);
                 var diffByDays = diff / 1000 / 60 / 60 / 24;
                 var commencement = Math.round(diffByDays) / 365.25;
