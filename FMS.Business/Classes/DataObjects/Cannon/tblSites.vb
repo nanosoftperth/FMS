@@ -5,12 +5,14 @@
         Public Property Cid As Integer
         Public Property SiteName As String
         Public Property Customer As System.Nullable(Of Short)
+        Public Property CustomerSortOrder As System.Nullable(Of Integer)
         Public Property AddressLine1 As String
         Public Property AddressLine2 As String
         Public Property AddressLine3 As String
         Public Property AddressLine4 As String
         Public Property Suburb As String
         Public Property State As String
+        Public Property StateSortOrder As System.Nullable(Of Integer)
         Public Property PostCode As System.Nullable(Of Short)
         Public Property PhoneNo As String
         Public Property FaxNo As String
@@ -32,6 +34,7 @@
         Public Property InvoiceFrequency As System.Nullable(Of Integer)
         Public Property InvoiceCommencing As System.Nullable(Of Date)
         Public Property IndustryGroup As System.Nullable(Of Short)
+        Public Property IndustrySortOrder As System.Nullable(Of Integer)
         Public Property PreviousSupplier As System.Nullable(Of Short)
         Public Property LostBusinessTo As System.Nullable(Of Short)
         Public Property SalesPerson As System.Nullable(Of Short)
@@ -44,6 +47,7 @@
         Public Property TotalUnits As System.Nullable(Of Double)
         Public Property TotalAmount As System.Nullable(Of Double)
         Public Property Zone As System.Nullable(Of Integer)
+        Public Property ZoneSortOrder As System.Nullable(Of Integer)
         Public Property SeparateInvoice As Boolean
         Public Property PurchaseOrderNumber As String
         Public Property chkSitesExcludeFuelLevy As Boolean
@@ -181,6 +185,24 @@
                             Select New DataObjects.tblSites(c)).ToList
             Return objSites
         End Function
+        Public Shared Function GetAllWithZoneSortOrder() As List(Of DataObjects.tblSites)
+            Dim objSites = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSites
+                            Select New DataObjects.tblSites() With {.SiteID = s.SiteID, .Cid = s.Cid, .SiteName = s.SiteName, .Customer = s.Customer, .AddressLine1 = s.AddressLine1,
+                                                                    .AddressLine2 = s.AddressLine2, .AddressLine3 = s.AddressLine3, .AddressLine4 = s.AddressLine4, .Suburb = s.Suburb,
+                                                                    .State = s.State, .PostCode = s.PostCode, .PhoneNo = s.PhoneNo, .FaxNo = s.FaxNo, .SiteContactName = s.SiteContactName,
+                                                                    .SiteContactPhone = s.SiteContactPhone, .SiteContactFax = s.SiteContactFax, .SiteContactMobile = s.SiteContactMobile,
+                                                                    .SiteContactEmail = s.SiteContactEmail, .PostalAddressLine1 = s.PostalAddressLine1, .PostalAddressLine2 = s.PostalAddressLine2,
+                                                                    .PostalSuburb = s.PostalSuburb, .PostalState = s.PostalState, .PostalPostCode = s.PostalPostCode, .SiteStartDate = s.SiteStartDate,
+                                                                    .SitePeriod = s.SitePeriod, .SiteContractExpiry = s.SiteContractExpiry, .SiteCeaseDate = s.SiteCeaseDate, .SiteCeaseReason = s.SiteCeaseReason,
+                                                                    .InvoiceFrequency = s.InvoiceFrequency, .InvoiceCommencing = s.InvoiceCommencing, .IndustryGroup = s.IndustryGroup, .PreviousSupplier = s.PreviousSupplier,
+                                                                    .LostBusinessTo = s.LostBusinessTo, .SalesPerson = s.SalesPerson, .InitialServiceAgreementNo = s.InitialServiceAgreementNo, .InvoiceMonth1 = s.InvoiceMonth1,
+                                                                    .InvoiceMonth2 = s.InvoiceMonth2, .InvoiceMonth3 = s.InvoiceMonth3, .InvoiceMonth4 = s.InvoiceMonth4,
+                                                                    .GeneralSiteServiceComments = s.GeneralSiteServiceComments, .TotalUnits = s.TotalUnits, .TotalAmount = s.TotalAmount, .Zone = s.Zone,
+                                                                    .ZoneSortOrder = s.ZoneSortOrder, .SeparateInvoice = s.SeparateInvoice, .PurchaseOrderNumber = s.PurchaseOrderNumber, .chkSitesExcludeFuelLevy = s.chkSitesExcludeFuelLevy,
+                                                                    .cmbRateIncrease = s.cmbRateIncrease, .StateSortOrder = s.StateSortOrder, .CustomerSortOrder = s.CustomerSortOrder,
+                                                                    .IndustrySortOrder = s.IndustrySortOrder}).ToList
+            Return objSites
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()
@@ -192,12 +214,14 @@
                 Me.Cid = .Cid
                 Me.SiteName = .SiteName
                 Me.Customer = .Customer
+                Me.CustomerSortOrder = 0
                 Me.AddressLine1 = .AddressLine1
                 Me.AddressLine2 = .AddressLine2
                 Me.AddressLine3 = .AddressLine3
                 Me.AddressLine4 = .AddressLine4
                 Me.Suburb = .Suburb
                 Me.State = .State
+                Me.StateSortOrder = 0
                 Me.PostCode = .PostCode
                 Me.PhoneNo = .PhoneNo
                 Me.FaxNo = .FaxNo
@@ -219,6 +243,7 @@
                 Me.InvoiceFrequency = .InvoiceFrequency
                 Me.InvoiceCommencing = .InvoiceCommencing
                 Me.IndustryGroup = .IndustryGroup
+                Me.IndustrySortOrder = 0
                 Me.PreviousSupplier = .PreviousSupplier
                 Me.LostBusinessTo = .LostBusinessTo
                 Me.SalesPerson = .SalesPerson
@@ -231,6 +256,7 @@
                 Me.TotalUnits = .TotalUnits
                 Me.TotalAmount = .TotalAmount
                 Me.Zone = .Zone
+                Me.ZoneSortOrder = 0
                 Me.SeparateInvoice = .SeparateInvoice
                 Me.PurchaseOrderNumber = .PurchaseOrderNumber
                 Me.chkSitesExcludeFuelLevy = .chkSitesExcludeFuelLevy

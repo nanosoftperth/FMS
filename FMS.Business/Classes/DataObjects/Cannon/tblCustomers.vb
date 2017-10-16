@@ -105,6 +105,14 @@
             
             Return objCustomer
         End Function
+        Public Shared Function GetAllOrderByCustomerName() As List(Of DataObjects.tblCustomers)
+
+            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
+                               Order By c.CustomerName
+                               Select New DataObjects.tblCustomers(c)).ToList
+
+            Return objCustomer
+        End Function
 
         Public Shared Function GetAllWithZoneSortOrder() As List(Of DataObjects.tblCustomers)
 

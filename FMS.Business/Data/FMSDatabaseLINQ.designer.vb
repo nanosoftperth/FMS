@@ -421,6 +421,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblSite(instance As tblSite)
     End Sub
+  Partial Private Sub InserttblIndustryGroup(instance As tblIndustryGroup)
+    End Sub
+  Partial Private Sub UpdatetblIndustryGroup(instance As tblIndustryGroup)
+    End Sub
+  Partial Private Sub DeletetblIndustryGroup(instance As tblIndustryGroup)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -892,6 +898,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property tblIndustryGroups() As System.Data.Linq.Table(Of tblIndustryGroup)
+		Get
+			Return Me.GetTable(Of tblIndustryGroup)
+		End Get
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")>  _
 	Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
@@ -987,6 +999,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetAllDrivers() As ISingleResult(Of usp_GetAllDriversResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAllDriversResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSites")>  _
+	Public Function usp_GetSites() As ISingleResult(Of usp_GetSitesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesResult))
 	End Function
 End Class
 
@@ -17568,6 +17586,113 @@ Partial Public Class tblSite
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblIndustryGroups")>  _
+Partial Public Class tblIndustryGroup
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _IndustryID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _IndustryDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIndustryIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnIndustryIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnIndustryDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnIndustryDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property IndustryID() As System.Guid
+		Get
+			Return Me._IndustryID
+		End Get
+		Set
+			If ((Me._IndustryID = value)  _
+						= false) Then
+				Me.OnIndustryIDChanging(value)
+				Me.SendPropertyChanging
+				Me._IndustryID = value
+				Me.SendPropertyChanged("IndustryID")
+				Me.OnIndustryIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryDescription", DbType:="NVarChar(50)")>  _
+	Public Property IndustryDescription() As String
+		Get
+			Return Me._IndustryDescription
+		End Get
+		Set
+			If (String.Equals(Me._IndustryDescription, value) = false) Then
+				Me.OnIndustryDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._IndustryDescription = value
+				Me.SendPropertyChanged("IndustryDescription")
+				Me.OnIndustryDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -19046,6 +19171,731 @@ Partial Public Class usp_GetAllDriversResult
 		Set
 			If (String.Equals(Me._Source, value) = false) Then
 				Me._Source = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetSitesResult
+	
+	Private _SiteID As System.Guid
+	
+	Private _Cid As Integer
+	
+	Private _SiteName As String
+	
+	Private _Customer As System.Nullable(Of Short)
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _AddressLine3 As String
+	
+	Private _AddressLine4 As String
+	
+	Private _Suburb As String
+	
+	Private _State As String
+	
+	Private _PostCode As System.Nullable(Of Short)
+	
+	Private _PhoneNo As String
+	
+	Private _FaxNo As String
+	
+	Private _SiteContactName As String
+	
+	Private _SiteContactPhone As String
+	
+	Private _SiteContactFax As String
+	
+	Private _SiteContactMobile As String
+	
+	Private _SiteContactEmail As String
+	
+	Private _PostalAddressLine1 As String
+	
+	Private _PostalAddressLine2 As String
+	
+	Private _PostalSuburb As String
+	
+	Private _PostalState As String
+	
+	Private _PostalPostCode As System.Nullable(Of Short)
+	
+	Private _SiteStartDate As System.Nullable(Of Date)
+	
+	Private _SitePeriod As System.Nullable(Of Integer)
+	
+	Private _SiteContractExpiry As System.Nullable(Of Date)
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Private _SiteCeaseReason As System.Nullable(Of Integer)
+	
+	Private _InvoiceFrequency As System.Nullable(Of Integer)
+	
+	Private _InvoiceCommencing As System.Nullable(Of Date)
+	
+	Private _IndustryGroup As System.Nullable(Of Short)
+	
+	Private _PreviousSupplier As System.Nullable(Of Short)
+	
+	Private _LostBusinessTo As System.Nullable(Of Short)
+	
+	Private _SalesPerson As System.Nullable(Of Short)
+	
+	Private _InitialServiceAgreementNo As String
+	
+	Private _InvoiceMonth1 As System.Nullable(Of Integer)
+	
+	Private _InvoiceMonth2 As System.Nullable(Of Integer)
+	
+	Private _InvoiceMonth3 As System.Nullable(Of Integer)
+	
+	Private _InvoiceMonth4 As System.Nullable(Of Integer)
+	
+	Private _GeneralSiteServiceComments As String
+	
+	Private _TotalUnits As System.Nullable(Of Double)
+	
+	Private _TotalAmount As System.Nullable(Of Double)
+	
+	Private _Zone As System.Nullable(Of Integer)
+	
+	Private _SeparateInvoice As Boolean
+	
+	Private _PurchaseOrderNumber As String
+	
+	Private _chkSitesExcludeFuelLevy As Boolean
+	
+	Private _cmbRateIncrease As System.Nullable(Of Short)
+	
+	Private _ZoneSortOrder As System.Nullable(Of Long)
+	
+	Private _StateSortOrder As System.Nullable(Of Long)
+	
+	Private _CustomerSortOrder As System.Nullable(Of Long)
+	
+	Private _IndustrySortOrder As System.Nullable(Of Long)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property SiteID() As System.Guid
+		Get
+			Return Me._SiteID
+		End Get
+		Set
+			If ((Me._SiteID = value)  _
+						= false) Then
+				Me._SiteID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
+	Public Property Customer() As System.Nullable(Of Short)
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (Me._Customer.Equals(value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me._AddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me._AddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine3", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine3() As String
+		Get
+			Return Me._AddressLine3
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine3, value) = false) Then
+				Me._AddressLine3 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine4", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine4() As String
+		Get
+			Return Me._AddressLine4
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine4, value) = false) Then
+				Me._AddressLine4 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(50)")>  _
+	Public Property Suburb() As String
+		Get
+			Return Me._Suburb
+		End Get
+		Set
+			If (String.Equals(Me._Suburb, value) = false) Then
+				Me._Suburb = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="NVarChar(5)")>  _
+	Public Property State() As String
+		Get
+			Return Me._State
+		End Get
+		Set
+			If (String.Equals(Me._State, value) = false) Then
+				Me._State = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="SmallInt")>  _
+	Public Property PostCode() As System.Nullable(Of Short)
+		Get
+			Return Me._PostCode
+		End Get
+		Set
+			If (Me._PostCode.Equals(value) = false) Then
+				Me._PostCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNo", DbType:="NVarChar(50)")>  _
+	Public Property PhoneNo() As String
+		Get
+			Return Me._PhoneNo
+		End Get
+		Set
+			If (String.Equals(Me._PhoneNo, value) = false) Then
+				Me._PhoneNo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FaxNo", DbType:="NVarChar(50)")>  _
+	Public Property FaxNo() As String
+		Get
+			Return Me._FaxNo
+		End Get
+		Set
+			If (String.Equals(Me._FaxNo, value) = false) Then
+				Me._FaxNo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactName", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactName() As String
+		Get
+			Return Me._SiteContactName
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactName, value) = false) Then
+				Me._SiteContactName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactPhone", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactPhone() As String
+		Get
+			Return Me._SiteContactPhone
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactPhone, value) = false) Then
+				Me._SiteContactPhone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactFax", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactFax() As String
+		Get
+			Return Me._SiteContactFax
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactFax, value) = false) Then
+				Me._SiteContactFax = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactMobile", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactMobile() As String
+		Get
+			Return Me._SiteContactMobile
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactMobile, value) = false) Then
+				Me._SiteContactMobile = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactEmail", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactEmail() As String
+		Get
+			Return Me._SiteContactEmail
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactEmail, value) = false) Then
+				Me._SiteContactEmail = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine1() As String
+		Get
+			Return Me._PostalAddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine1, value) = false) Then
+				Me._PostalAddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine2() As String
+		Get
+			Return Me._PostalAddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine2, value) = false) Then
+				Me._PostalAddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSuburb", DbType:="NVarChar(50)")>  _
+	Public Property PostalSuburb() As String
+		Get
+			Return Me._PostalSuburb
+		End Get
+		Set
+			If (String.Equals(Me._PostalSuburb, value) = false) Then
+				Me._PostalSuburb = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalState", DbType:="NVarChar(6)")>  _
+	Public Property PostalState() As String
+		Get
+			Return Me._PostalState
+		End Get
+		Set
+			If (String.Equals(Me._PostalState, value) = false) Then
+				Me._PostalState = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalPostCode", DbType:="SmallInt")>  _
+	Public Property PostalPostCode() As System.Nullable(Of Short)
+		Get
+			Return Me._PostalPostCode
+		End Get
+		Set
+			If (Me._PostalPostCode.Equals(value) = false) Then
+				Me._PostalPostCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteStartDate", DbType:="Date")>  _
+	Public Property SiteStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteStartDate
+		End Get
+		Set
+			If (Me._SiteStartDate.Equals(value) = false) Then
+				Me._SiteStartDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SitePeriod", DbType:="Int")>  _
+	Public Property SitePeriod() As System.Nullable(Of Integer)
+		Get
+			Return Me._SitePeriod
+		End Get
+		Set
+			If (Me._SitePeriod.Equals(value) = false) Then
+				Me._SitePeriod = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContractExpiry", DbType:="Date")>  _
+	Public Property SiteContractExpiry() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteContractExpiry
+		End Get
+		Set
+			If (Me._SiteContractExpiry.Equals(value) = false) Then
+				Me._SiteContractExpiry = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseReason", DbType:="Int")>  _
+	Public Property SiteCeaseReason() As System.Nullable(Of Integer)
+		Get
+			Return Me._SiteCeaseReason
+		End Get
+		Set
+			If (Me._SiteCeaseReason.Equals(value) = false) Then
+				Me._SiteCeaseReason = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceFrequency", DbType:="Int")>  _
+	Public Property InvoiceFrequency() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceFrequency
+		End Get
+		Set
+			If (Me._InvoiceFrequency.Equals(value) = false) Then
+				Me._InvoiceFrequency = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceCommencing", DbType:="Date")>  _
+	Public Property InvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._InvoiceCommencing
+		End Get
+		Set
+			If (Me._InvoiceCommencing.Equals(value) = false) Then
+				Me._InvoiceCommencing = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryGroup", DbType:="SmallInt")>  _
+	Public Property IndustryGroup() As System.Nullable(Of Short)
+		Get
+			Return Me._IndustryGroup
+		End Get
+		Set
+			If (Me._IndustryGroup.Equals(value) = false) Then
+				Me._IndustryGroup = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="SmallInt")>  _
+	Public Property PreviousSupplier() As System.Nullable(Of Short)
+		Get
+			Return Me._PreviousSupplier
+		End Get
+		Set
+			If (Me._PreviousSupplier.Equals(value) = false) Then
+				Me._PreviousSupplier = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LostBusinessTo", DbType:="SmallInt")>  _
+	Public Property LostBusinessTo() As System.Nullable(Of Short)
+		Get
+			Return Me._LostBusinessTo
+		End Get
+		Set
+			If (Me._LostBusinessTo.Equals(value) = false) Then
+				Me._LostBusinessTo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPerson", DbType:="SmallInt")>  _
+	Public Property SalesPerson() As System.Nullable(Of Short)
+		Get
+			Return Me._SalesPerson
+		End Get
+		Set
+			If (Me._SalesPerson.Equals(value) = false) Then
+				Me._SalesPerson = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InitialServiceAgreementNo", DbType:="NVarChar(22)")>  _
+	Public Property InitialServiceAgreementNo() As String
+		Get
+			Return Me._InitialServiceAgreementNo
+		End Get
+		Set
+			If (String.Equals(Me._InitialServiceAgreementNo, value) = false) Then
+				Me._InitialServiceAgreementNo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth1", DbType:="Int")>  _
+	Public Property InvoiceMonth1() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth1
+		End Get
+		Set
+			If (Me._InvoiceMonth1.Equals(value) = false) Then
+				Me._InvoiceMonth1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth2", DbType:="Int")>  _
+	Public Property InvoiceMonth2() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth2
+		End Get
+		Set
+			If (Me._InvoiceMonth2.Equals(value) = false) Then
+				Me._InvoiceMonth2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth3", DbType:="Int")>  _
+	Public Property InvoiceMonth3() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth3
+		End Get
+		Set
+			If (Me._InvoiceMonth3.Equals(value) = false) Then
+				Me._InvoiceMonth3 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth4", DbType:="Int")>  _
+	Public Property InvoiceMonth4() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth4
+		End Get
+		Set
+			If (Me._InvoiceMonth4.Equals(value) = false) Then
+				Me._InvoiceMonth4 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeneralSiteServiceComments", DbType:="NVarChar(MAX)")>  _
+	Public Property GeneralSiteServiceComments() As String
+		Get
+			Return Me._GeneralSiteServiceComments
+		End Get
+		Set
+			If (String.Equals(Me._GeneralSiteServiceComments, value) = false) Then
+				Me._GeneralSiteServiceComments = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalUnits", DbType:="Float")>  _
+	Public Property TotalUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._TotalUnits
+		End Get
+		Set
+			If (Me._TotalUnits.Equals(value) = false) Then
+				Me._TotalUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalAmount", DbType:="Float")>  _
+	Public Property TotalAmount() As System.Nullable(Of Double)
+		Get
+			Return Me._TotalAmount
+		End Get
+		Set
+			If (Me._TotalAmount.Equals(value) = false) Then
+				Me._TotalAmount = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
+	Public Property Zone() As System.Nullable(Of Integer)
+		Get
+			Return Me._Zone
+		End Get
+		Set
+			If (Me._Zone.Equals(value) = false) Then
+				Me._Zone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SeparateInvoice", DbType:="Bit NOT NULL")>  _
+	Public Property SeparateInvoice() As Boolean
+		Get
+			Return Me._SeparateInvoice
+		End Get
+		Set
+			If ((Me._SeparateInvoice = value)  _
+						= false) Then
+				Me._SeparateInvoice = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PurchaseOrderNumber", DbType:="NVarChar(50)")>  _
+	Public Property PurchaseOrderNumber() As String
+		Get
+			Return Me._PurchaseOrderNumber
+		End Get
+		Set
+			If (String.Equals(Me._PurchaseOrderNumber, value) = false) Then
+				Me._PurchaseOrderNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkSitesExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
+	Public Property chkSitesExcludeFuelLevy() As Boolean
+		Get
+			Return Me._chkSitesExcludeFuelLevy
+		End Get
+		Set
+			If ((Me._chkSitesExcludeFuelLevy = value)  _
+						= false) Then
+				Me._chkSitesExcludeFuelLevy = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
+	Public Property cmbRateIncrease() As System.Nullable(Of Short)
+		Get
+			Return Me._cmbRateIncrease
+		End Get
+		Set
+			If (Me._cmbRateIncrease.Equals(value) = false) Then
+				Me._cmbRateIncrease = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneSortOrder", DbType:="BigInt")>  _
+	Public Property ZoneSortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ZoneSortOrder
+		End Get
+		Set
+			If (Me._ZoneSortOrder.Equals(value) = false) Then
+				Me._ZoneSortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StateSortOrder", DbType:="BigInt")>  _
+	Public Property StateSortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._StateSortOrder
+		End Get
+		Set
+			If (Me._StateSortOrder.Equals(value) = false) Then
+				Me._StateSortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerSortOrder", DbType:="BigInt")>  _
+	Public Property CustomerSortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._CustomerSortOrder
+		End Get
+		Set
+			If (Me._CustomerSortOrder.Equals(value) = false) Then
+				Me._CustomerSortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustrySortOrder", DbType:="BigInt")>  _
+	Public Property IndustrySortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._IndustrySortOrder
+		End Get
+		Set
+			If (Me._IndustrySortOrder.Equals(value) = false) Then
+				Me._IndustrySortOrder = value
 			End If
 		End Set
 	End Property
