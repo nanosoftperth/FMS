@@ -78,6 +78,11 @@
                 gridLookUp.GetGridView().UnselectRows();
         }
 
+        function LUOnInit(s, e) {
+            var dropDown = s.GetPopupControl();
+            dropDown.isPopupFullCorrectionOn = false;
+        }
+
     </script>
     <style type="text/css">
         .small-nonbold label {
@@ -586,13 +591,18 @@
                                                     </ClearButton>
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>
-                                            <dx:GridViewDataColumn FieldName="BusinessLocation" Width="3500px">
+                                            <dx:GridViewDataColumn FieldName="BusinessLocation" ShowInCustomizationForm="True"  VisibleIndex="10">
                                              <EditItemTemplate>
                                                  <dx:ASPxGridLookup ID="luBusinessLocation" runat="server" AutoGenerateColumns="false" DataSourceID="odsAppVehicleLocation"
                                                      KeyFieldName="ApplicationLocationID" SelectionMode="Multiple" OnInit="BL_Lookup_Init" TextFormatString="{0}" MultiTextSeparator=" | "
-                                                     OnCustomJSProperties="luBusinessLocation_CustomJSProperties" ClientInstanceName="gridLookUp" Width="350px">
+                                                     OnCustomJSProperties="luBusinessLocation_CustomJSProperties" ClientInstanceName="gridLookUp" ClientSideEvents-Init="LUOnInit" >
+                                                     <GridViewProperties>
+                                                         <%--<SettingsPager NumericButtonCount="3"/>--%>
+                                                        
+                                                     </GridViewProperties>
                                                      <Columns>
-                                                        <dx:GridViewCommandColumn ShowSelectCheckbox="true" VisibleIndex="0">
+                                                        <dx:GridViewCommandColumn ShowSelectCheckbox="true" VisibleIndex="0" Width="1">
+                                                            <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top"/>
                                                             <HeaderTemplate>
                                                                 <dx:ASPxCheckBox ID="cbxBussLoc" runat="server" ClientInstanceName="cbAll" ToolTip="Select all rows"
                                                                 OnInit="cbAll_Init">
@@ -602,7 +612,7 @@
                                                         </dx:GridViewCommandColumn>
                                                         <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="1"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="2"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="ApplicationLocationID" VisibleIndex="3" Width="1px"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ApplicationLocationID" VisibleIndex="3" Width="1px" Visible="false"></dx:GridViewDataTextColumn>
                                                        <%-- <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="3" Width="0px"></dx:GridViewDataTextColumn>--%>
                                                     </Columns>
                                                     <%--<SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />--%>

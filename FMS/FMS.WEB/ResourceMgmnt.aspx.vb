@@ -436,6 +436,12 @@ Public Class ResourceMgmnt
             Next
         End If
 
+        lookup.PopupVerticalAlign = PopupVerticalAlign.Above
+        'Dim gv As ASPxGridView = TryCast(lookup.GridView, ASPxGridView)
+        'gv.Width = 30
+
+        'lookup.GridView.Width = Unit.Pixel(250)
+
 
 
     End Sub
