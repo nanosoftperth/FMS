@@ -352,11 +352,32 @@
       <DependentUpon>EstablishZones.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\IndustryGroupPopup.aspx.designer.vb">
+      <DependentUpon>IndustryGroupPopup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\IndustryGroupPopup.aspx.vb">
+      <DependentUpon>IndustryGroupPopup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\IndustryGroups.aspx.designer.vb">
+      <DependentUpon>IndustryGroups.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\IndustryGroups.aspx.vb">
+      <DependentUpon>IndustryGroups.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Applications\Cannon\RateIncreases.aspx.designer.vb">
       <DependentUpon>RateIncreases.aspx</DependentUpon>
     </Compile>
     <Compile Include="Applications\Cannon\RateIncreases.aspx.vb">
       <DependentUpon>RateIncreases.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\SiteDetailsMain.aspx.designer.vb">
+      <DependentUpon>SiteDetailsMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\SiteDetailsMain.aspx.vb">
+      <DependentUpon>SiteDetailsMain.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
@@ -913,7 +934,10 @@
     <Content Include="Applications\Cannon\CustomerDetailsMain.aspx" />
     <Content Include="Applications\Cannon\CustomerRating.aspx" />
     <Content Include="Applications\Cannon\EstablishZones.aspx" />
+    <Content Include="Applications\Cannon\IndustryGroupPopup.aspx" />
+    <Content Include="Applications\Cannon\IndustryGroups.aspx" />
     <Content Include="Applications\Cannon\RateIncreases.aspx" />
+    <Content Include="Applications\Cannon\SiteDetailsMain.aspx" />
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="App_Data\NWind_log.ldf">
       <DependentUpon>NWind.mdf</DependentUpon>

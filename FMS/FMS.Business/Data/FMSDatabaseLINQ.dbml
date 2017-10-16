@@ -951,6 +951,13 @@
       <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblIndustryGroups" Member="tblIndustryGroups">
+    <Type Name="tblIndustryGroup">
+      <Column Name="IndustryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
@@ -1151,6 +1158,61 @@
       <Column Name="DriverName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="InActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Source" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetSites" Method="usp_GetSites">
+    <ElementType Name="usp_GetSitesResult">
+      <Column Name="SiteID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Customer" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="PhoneNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FaxNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactFax" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactMobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactEmail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalAddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalAddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalSuburb" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalState" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="PostalPostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="SiteStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SitePeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SiteContractExpiry" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SiteCeaseReason" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceFrequency" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="IndustryGroup" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="PreviousSupplier" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="LostBusinessTo" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="SalesPerson" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="InitialServiceAgreementNo" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="InvoiceMonth1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceMonth2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceMonth3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceMonth4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GeneralSiteServiceComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TotalUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Zone" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SeparateInvoice" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PurchaseOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="chkSitesExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ZoneSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="StateSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CustomerSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IndustrySortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
