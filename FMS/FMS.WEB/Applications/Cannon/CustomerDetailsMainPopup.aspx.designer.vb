@@ -11,16 +11,25 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class SiteDetailsMain
+Partial Public Class CustomerDetailsMainPopup
 
     '''<summary>
-    '''SiteDetailsGridView control.
+    '''form1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents SiteDetailsGridView As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+
+    '''<summary>
+    '''CustomersGridView control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CustomersGridView As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
     '''viewPopup control.
@@ -41,58 +50,49 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
 
     '''<summary>
-    '''odsSiteCeaseReason control.
+    '''SiteGridView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsSiteCeaseReason As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents SiteGridView As Global.DevExpress.Web.ASPxGridView
 
     '''<summary>
-    '''odsInitialContractPeriod control.
+    '''hdnCID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsInitialContractPeriod As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents hdnCID As Global.DevExpress.Web.ASPxTextBox
 
     '''<summary>
-    '''odsSalesPerson control.
+    '''odsSitesView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsSalesPerson As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsSitesView As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''odsPreviousSuppliers control.
+    '''odsRateIncreaseReference control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsPreviousSuppliers As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsRateIncreaseReference As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''odsIndustryGroups control.
+    '''odsCustomerAgents control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsIndustryGroups As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
-    '''odsCustomers control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsCustomers As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsCustomerAgents As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
     '''odsZones control.
@@ -113,11 +113,20 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents odsStates As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''odsSiteDetails control.
+    '''odsCustomerRating control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsSiteDetails As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsCustomerRating As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsCustomer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsCustomer As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

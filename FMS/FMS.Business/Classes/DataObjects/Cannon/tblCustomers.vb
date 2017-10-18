@@ -26,13 +26,13 @@
         Public Property chkCustomerExcludeFuelLevy As Boolean
         Public Property cmbRateIncrease As System.Nullable(Of Short)
         Public Property RateIncreaseSortOrder As System.Nullable(Of Integer)
+        Public Property CustomerSortOrder As System.Nullable(Of Integer)
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(customer As DataObjects.tblCustomers)
             Dim objCustomer As New FMS.Business.tblCustomer
             With objCustomer
                 .CustomerID = Guid.NewGuid
-                .Cid = GetLastIDUsed() + 1
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
                 .AddressLine2 = customer.AddressLine2
@@ -93,13 +93,7 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Private Shared Function GetLastIDUsed() As Integer
-            Dim objCustomer = SingletonAccess.FMSDataContextContignous.tblCustomers.Count
-                               
-            Return objCustomer
-        End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomers)
-
             Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
                                Select New DataObjects.tblCustomers(c)).ToList
             
@@ -132,6 +126,25 @@
 
             Return objCustomer
         End Function
+        Public Shared Function GetACustomerByCID(cid As Integer) As DataObjects.tblCustomers
+
+            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomers
+                               Where c.Cid.Equals(cid)
+                               Select New DataObjects.tblCustomers() With {.AddressLine1 = c.AddressLine1, .AddressLine2 = c.AddressLine2,
+                                                                           .chkCustomerExcludeFuelLevy = c.chkCustomerExcludeFuelLevy, .Cid = c.Cid,
+                                                                           .cmbRateIncrease = c.cmbRateIncrease, .CustomerAgent = c.CustomerAgent,
+                                                                           .CustomerCommencementDate = c.CustomerCommencementDate, .CustomerComments = c.CustomerComments,
+                                                                           .CustomerContactName = c.CustomerContactName, .CustomerFax = c.CustomerFax,
+                                                                           .CustomerID = c.CustomerID, .CustomerMobile = c.CustomerMobile,
+                                                                           .CustomerName = c.CustomerName, .CustomerPhone = c.CustomerPhone,
+                                                                           .CustomerRating = c.CustomerRating, .CustomerValue = c.CustomerValue,
+                                                                           .InactiveCustomer = c.InactiveCustomer, .MYOBCustomerNumber = c.MYOBCustomerNumber,
+                                                                           .PostCode = c.PostCode, .State = c.State, .Suburb = c.Suburb, .Zone = c.Zone,
+                                                                           .ZoneSortOrder = c.ZoneSortOrder, .AgentSortOrder = c.AgentSortOrder,
+                                                                           .RateIncreaseSortOrder = c.RateIncreaseSortOrder, .CustomerSortOrder = c.CustomerSortOrder}).SingleOrDefault
+
+            Return objCustomer
+        End Function
         
 #End Region
 #Region "Constructors"
@@ -143,6 +156,7 @@
                 Me.CustomerID = .CustomerID
                 Me.Cid = .Cid
                 Me.CustomerName = .CustomerName
+                Me.CustomerSortOrder = 0
                 Me.AddressLine1 = .AddressLine1
                 Me.AddressLine2 = .AddressLine2
                 Me.State = .State

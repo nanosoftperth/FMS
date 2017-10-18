@@ -1,66 +1,72 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="CustomerDetailsMain.aspx.vb" Inherits="FMS.WEB.CustomerDetailsMain" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="../../Content/grid/bootstrap.css" rel="stylesheet">
-<link href="../../Content/grid/grid.css" rel="stylesheet">
-<script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
-<script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
-<style>
-    .container {
-        width: 700px;
-    }
-</style>
-<style>
-    .dxeMemoEditAreaSys{
-        border-width:1px !Important;
-    }
-</style>
-<script type="text/javascript">
-    function ViewSitesClick(custID) {
-        hdnCID.SetText(custID);
-        SiteGridView.Refresh();
-        ShowLoginWindow();
-    }
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="CustomerDetailsMainPopup.aspx.vb" Inherits="FMS.WEB.CustomerDetailsMainPopup" %>
 
-    function ShowLoginWindow() {
-        //viewPopup.ShowAtPos(100, 10);
-        viewPopup.Show();
-    }
+<!DOCTYPE html>
 
-    function CalculateCommencementDate(comm) {
-        if (comm != "") {
-            var date1 = new Date(comm);
-            var dateNow = new Date();
-            var dateNowToDays = new Date(dateNow.toLocaleDateString()) 
-            var diff = new Date(dateNowToDays - date1);
-            var diffByDays = diff / 1000 / 60 / 60 / 24;
-            var commencement = Math.round(diffByDays) / 365.25;
-            if (commencement.toFixed(2) != -0.00) {
-                txtYears.SetText(commencement.toFixed(2));
-            } else {
-                txtYears.SetText('');
-            }
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../../Content/grid/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/grid/grid.css" rel="stylesheet" />
+    <script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
+    <style>
+        .container {
+            width: 700px;
         }
-    }
+        .dxeMemoEditAreaSys{
+            border-width:1px !Important;
+        }
+    </style>
+    <script type="text/javascript">
+        function ViewSitesClick(custID) {
+            hdnCID.SetText(custID);
+            SiteGridView.Refresh();
+            ShowLoginWindow();
+        }
 
-    function getDataFromServer(_cid) {
-        $.ajax({
-            type: "POST",
-            url: 'CustomerDetailsMain.aspx/UpdateValue',
-            dataType: "json",
-            data: JSON.stringify({ Cid: _cid }),
-            contentType: "application/json",
-            crossDomain: true,
-            success: function (data) {
-                if (data.d != null) {
-                    txtPerAnnumValue.SetText(data.d.TotalAmount);
+        function ShowLoginWindow() {
+            //viewPopup.ShowAtPos(100, 10);
+            viewPopup.Show();
+        }
+
+        function CalculateCommencementDate(comm) {
+            if (comm != "") {
+                var date1 = new Date(comm);
+                var dateNow = new Date();
+                var dateNowToDays = new Date(dateNow.toLocaleDateString())
+                var diff = new Date(dateNowToDays - date1);
+                var diffByDays = diff / 1000 / 60 / 60 / 24;
+                var commencement = Math.round(diffByDays) / 365.25;
+                if (commencement.toFixed(2) != -0.00) {
+                    txtYears.SetText(commencement.toFixed(2));
                 } else {
-                    txtPerAnnumValue.SetText('0');
+                    txtYears.SetText('');
                 }
             }
-        });
-    }
+        }
 
-</script>
+        function getDataFromServer(_cid) {
+            $.ajax({
+                type: "POST",
+                url: 'CustomerDetailsMainPopup.aspx/UpdateValue',
+                dataType: "json",
+                data: JSON.stringify({ Cid: _cid }),
+                contentType: "application/json",
+                crossDomain: true,
+                success: function (data) {
+                    if (data.d != null) {
+                        txtPerAnnumValue.SetText(data.d.TotalAmount);
+                    } else {
+                        txtPerAnnumValue.SetText('0');
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
     <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" 
             KeyFieldName="Cid" Width="550px"  Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
@@ -276,7 +282,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="text-align: right; padding: 2px; padding-top:60px">
+                    <div style="text-align: right; padding: 2px;">
                         <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
                             runat="server">
                         </dx:ASPxGridViewTemplateReplacement>
@@ -287,47 +293,50 @@
                 </EditForm>
             </Templates>
         </dx:ASPxGridView>
-    <dx:ASPxPopupControl ID="viewPopup" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
-        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="viewPopup" 
-        HeaderText="Site List" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="100%" >        
-        <ContentCollection>
-            <dx:PopupControlContentControl runat="server">
-                <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
-                    <PanelCollection>
-                        <dx:PanelContent runat="server">             
-                            <dx:ASPxGridView ID="SiteGridView"  ClientInstanceName="SiteGridView" DataSourceID="odsSitesView" runat="server" AutoGenerateColumns="False">
-                                <Columns>
-                                    <dx:GridViewDataTextColumn FieldName="SiteID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="SiteName" VisibleIndex="2" Width="50%"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Customer" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="AddressLine1" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Suburb" VisibleIndex="8"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="State" VisibleIndex="9"></dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="PostCode" VisibleIndex="10"></dx:GridViewDataTextColumn>
-                                </Columns>
-                            </dx:ASPxGridView>
-                        </dx:PanelContent>
-                    </PanelCollection>
-                </dx:ASPxPanel>
-            </dx:PopupControlContentControl>
-        </ContentCollection>
-        <ContentStyle>
-            <Paddings PaddingBottom="5px" />
-        </ContentStyle>
-    </dx:ASPxPopupControl>
-    <div style="display:none">
-        <dx:ASPxTextBox ID="hdnCID" ClientInstanceName="hdnCID" runat="server" Text="0"></dx:ASPxTextBox>
+        <dx:ASPxPopupControl ID="viewPopup" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+            PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="viewPopup" 
+            HeaderText="Site List" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="100%" >        
+            <ContentCollection>
+                <dx:PopupControlContentControl runat="server">
+                    <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
+                        <PanelCollection>
+                            <dx:PanelContent runat="server">             
+                                <dx:ASPxGridView ID="SiteGridView"  ClientInstanceName="SiteGridView" DataSourceID="odsSitesView" runat="server" AutoGenerateColumns="False">
+                                    <Columns>
+                                        <dx:GridViewDataTextColumn FieldName="SiteID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="SiteName" VisibleIndex="2" Width="50%"></dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="Customer" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="AddressLine1" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="Suburb" VisibleIndex="8"></dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="State" VisibleIndex="9"></dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="PostCode" VisibleIndex="10"></dx:GridViewDataTextColumn>
+                                    </Columns>
+                                </dx:ASPxGridView>
+                            </dx:PanelContent>
+                        </PanelCollection>
+                    </dx:ASPxPanel>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+            <ContentStyle>
+                <Paddings PaddingBottom="5px" />
+            </ContentStyle>
+        </dx:ASPxPopupControl>
+        <div style="display:none">
+            <dx:ASPxTextBox ID="hdnCID" ClientInstanceName="hdnCID" runat="server" Text="0"></dx:ASPxTextBox>
+        </div>
+        <asp:ObjectDataSource ID="odsSitesView" runat="server" SelectMethod="GetAllByCustomer" TypeName="FMS.Business.DataObjects.tblSites">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="hdnCID" PropertyName="Text" Name="cust" Type="Int32"></asp:ControlParameter>
+            </SelectParameters>
+        </asp:ObjectDataSource>    
+        <asp:ObjectDataSource ID="odsRateIncreaseReference" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsCustomerAgents" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerAgent"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" OldValuesParameterFormatString="original_{0}"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsStates" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblStates"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsCustomerRating" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerRating"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsCustomer" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomers" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblCustomers" UpdateMethod="Update"></asp:ObjectDataSource>
     </div>
-    <asp:ObjectDataSource ID="odsSitesView" runat="server" SelectMethod="GetAllByCustomer" TypeName="FMS.Business.DataObjects.tblSites">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="hdnCID" PropertyName="Text" Name="cust" Type="Int32"></asp:ControlParameter>
-        </SelectParameters>
-    </asp:ObjectDataSource>    
-    <asp:ObjectDataSource ID="odsRateIncreaseReference" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsCustomerAgents" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerAgent"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" OldValuesParameterFormatString="original_{0}"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsStates" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblStates"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsCustomerRating" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerRating"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsCustomer" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomers" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblCustomers" UpdateMethod="Update"></asp:ObjectDataSource>
-</asp:Content>
+    </form>
+</body>
+</html>

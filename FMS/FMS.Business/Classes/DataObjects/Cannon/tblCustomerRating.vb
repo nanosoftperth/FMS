@@ -13,7 +13,6 @@
             Dim objCustomerRating As New FMS.Business.tblCustomerRating
             With objCustomerRating
                 .CustomerRatingID = Guid.NewGuid
-                .Rid = GetLastIDUsed() + 1
                 .CustomerRating = CustomerRate.CustomerRating
                 .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
                 .FromValue = CustomerRate.FromValue
@@ -41,11 +40,6 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Private Shared Function GetLastIDUsed() As Integer
-            Dim objCustomerRating = SingletonAccess.FMSDataContextContignous.tblCustomerRatings.Count
-                               
-            Return objCustomerRating
-        End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerRating)
             Dim objCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
                                      Order By c.CustomerRatingDesc

@@ -10,7 +10,6 @@
             Dim objZone As New FMS.Business.tbZone
             With objZone
                 .ZoneID = Guid.NewGuid
-                .Aid = GetLastIDUsed() + 1
                 .AreaDescription = Zone.AreaDescription
             End With
             SingletonAccess.FMSDataContextContignous.tbZones.InsertOnSubmit(objZone)
@@ -32,11 +31,6 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Private Shared Function GetLastIDUsed() As Integer
-            Dim objZone = SingletonAccess.FMSDataContextContignous.tbZones.Count
-                               
-            Return objZone
-        End Function
         Public Shared Function GetAll() As List(Of DataObjects.tbZone)
             Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
                             Order By c.AreaDescription
