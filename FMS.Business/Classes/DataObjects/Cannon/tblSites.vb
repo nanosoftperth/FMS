@@ -28,16 +28,21 @@
         Public Property PostalPostCode As System.Nullable(Of Short)
         Public Property SiteStartDate As System.Nullable(Of Date)
         Public Property SitePeriod As System.Nullable(Of Integer)
+        Public Property InitialContractPeriodSortOrder As System.Nullable(Of Integer)
         Public Property SiteContractExpiry As System.Nullable(Of Date)
         Public Property SiteCeaseDate As System.Nullable(Of Date)
         Public Property SiteCeaseReason As System.Nullable(Of Integer)
+        Public Property ContractCeaseReasonsSortOrder As System.Nullable(Of Integer)
         Public Property InvoiceFrequency As System.Nullable(Of Integer)
         Public Property InvoiceCommencing As System.Nullable(Of Date)
         Public Property IndustryGroup As System.Nullable(Of Short)
         Public Property IndustrySortOrder As System.Nullable(Of Integer)
         Public Property PreviousSupplier As System.Nullable(Of Short)
+        Public Property PreviousSupplierSortOrder As System.Nullable(Of Integer)
         Public Property LostBusinessTo As System.Nullable(Of Short)
+        Public Property LostBusinessToSortOrder As System.Nullable(Of Integer)
         Public Property SalesPerson As System.Nullable(Of Short)
+        Public Property SalesPersonSortOrder As System.Nullable(Of Integer)
         Public Property InitialServiceAgreementNo As String
         Public Property InvoiceMonth1 As System.Nullable(Of Integer)
         Public Property InvoiceMonth2 As System.Nullable(Of Integer)
@@ -58,7 +63,6 @@
             Dim objSite As New FMS.Business.tblSite
             With objSite
                 .SiteID = Guid.NewGuid
-                .Cid = GetLastIDUsed() + 1
                 .SiteName = Site.SiteName
                 .Customer = Site.Customer
                 .AddressLine1 = Site.AddressLine1
@@ -168,10 +172,6 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Private Shared Function GetLastIDUsed() As Integer
-            Dim objSite = SingletonAccess.FMSDataContextContignous.tblSites.Count
-            Return objSite
-        End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblSites)
             Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
                             Order By c.SiteName
@@ -200,7 +200,9 @@
                                                                     .GeneralSiteServiceComments = s.GeneralSiteServiceComments, .TotalUnits = s.TotalUnits, .TotalAmount = s.TotalAmount, .Zone = s.Zone,
                                                                     .ZoneSortOrder = s.ZoneSortOrder, .SeparateInvoice = s.SeparateInvoice, .PurchaseOrderNumber = s.PurchaseOrderNumber, .chkSitesExcludeFuelLevy = s.chkSitesExcludeFuelLevy,
                                                                     .cmbRateIncrease = s.cmbRateIncrease, .StateSortOrder = s.StateSortOrder, .CustomerSortOrder = s.CustomerSortOrder,
-                                                                    .IndustrySortOrder = s.IndustrySortOrder}).ToList
+                                                                    .IndustrySortOrder = s.IndustrySortOrder, .PreviousSupplierSortOrder = s.PreviousSupplierSortOrder, .SalesPersonSortOrder = s.SalesPersonSortOrder,
+                                                                    .InitialContractPeriodSortOrder = s.InitialContractPeriodSortOrder, .ContractCeaseReasonsSortOrder = s.ContractCeaseReasonsSortOrder,
+                                                                    .LostBusinessToSortOrder = s.LostBusinessToSortOrder}).ToList
             Return objSites
         End Function
 #End Region
@@ -237,16 +239,21 @@
                 Me.PostalPostCode = .PostalPostCode
                 Me.SiteStartDate = .SiteStartDate
                 Me.SitePeriod = .SitePeriod
+                Me.InitialContractPeriodSortOrder = 0
                 Me.SiteContractExpiry = .SiteContractExpiry
                 Me.SiteCeaseDate = .SiteCeaseDate
                 Me.SiteCeaseReason = .SiteCeaseReason
+                Me.ContractCeaseReasonsSortOrder = 0
                 Me.InvoiceFrequency = .InvoiceFrequency
                 Me.InvoiceCommencing = .InvoiceCommencing
                 Me.IndustryGroup = .IndustryGroup
                 Me.IndustrySortOrder = 0
                 Me.PreviousSupplier = .PreviousSupplier
+                Me.PreviousSupplierSortOrder = 0
                 Me.LostBusinessTo = .LostBusinessTo
+                Me.LostBusinessToSortOrder = 0
                 Me.SalesPerson = .SalesPerson
+                Me.SalesPersonSortOrder = 0
                 Me.InitialServiceAgreementNo = .InitialServiceAgreementNo
                 Me.InvoiceMonth1 = .InvoiceMonth1
                 Me.InvoiceMonth2 = .InvoiceMonth2

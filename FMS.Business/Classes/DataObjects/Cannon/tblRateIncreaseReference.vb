@@ -12,7 +12,6 @@
             Dim objRateIncreaseReference As New FMS.Business.tblRateIncreaseReference
             With objRateIncreaseReference
                 .RateIncreaseID = Guid.NewGuid
-                .Aid = GetLastIDUsed() + 1
                 .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
                 .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
                 .AlreadyDoneThisYear = RateIncreaseReference.AlreadyDoneThisYear
@@ -38,11 +37,6 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Private Shared Function GetLastIDUsed() As Integer
-            Dim objRateIncreaseReference = SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences.Count
-                               
-            Return objRateIncreaseReference
-        End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
                                             Order By c.RateIncreaseDescription

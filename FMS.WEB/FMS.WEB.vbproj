@@ -317,6 +317,20 @@
       <DependentUpon>CannonFleetManagement.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\ContractCeaseReasons.aspx.designer.vb">
+      <DependentUpon>ContractCeaseReasons.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\ContractCeaseReasons.aspx.vb">
+      <DependentUpon>ContractCeaseReasons.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\ContractCeaseReasonsPopup.aspx.designer.vb">
+      <DependentUpon>ContractCeaseReasonsPopup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\ContractCeaseReasonsPopup.aspx.vb">
+      <DependentUpon>ContractCeaseReasonsPopup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Applications\Cannon\CustomerAgents.aspx.designer.vb">
       <DependentUpon>CustomerAgents.aspx</DependentUpon>
     </Compile>
@@ -336,6 +350,13 @@
     </Compile>
     <Compile Include="Applications\Cannon\CustomerDetailsMain.aspx.vb">
       <DependentUpon>CustomerDetailsMain.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\CustomerDetailsMainPopup.aspx.designer.vb">
+      <DependentUpon>CustomerDetailsMainPopup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\CustomerDetailsMainPopup.aspx.vb">
+      <DependentUpon>CustomerDetailsMainPopup.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Applications\Cannon\CustomerRating.aspx.designer.vb">
@@ -364,6 +385,20 @@
     </Compile>
     <Compile Include="Applications\Cannon\IndustryGroups.aspx.vb">
       <DependentUpon>IndustryGroups.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\PreviousSupplierPopup.aspx.designer.vb">
+      <DependentUpon>PreviousSupplierPopup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\PreviousSupplierPopup.aspx.vb">
+      <DependentUpon>PreviousSupplierPopup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\PreviousSuppliers.aspx.designer.vb">
+      <DependentUpon>PreviousSuppliers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\PreviousSuppliers.aspx.vb">
+      <DependentUpon>PreviousSuppliers.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Applications\Cannon\RateIncreases.aspx.designer.vb">
@@ -929,13 +964,18 @@
     <Content Include="AlarmsAndAlerts.aspx" />
     <Content Include="AlarmsAndEvents.aspx" />
     <Content Include="Applications\Cannon\CannonFleetManagement.aspx" />
+    <Content Include="Applications\Cannon\ContractCeaseReasons.aspx" />
+    <Content Include="Applications\Cannon\ContractCeaseReasonsPopup.aspx" />
     <Content Include="Applications\Cannon\CustomerAgents.aspx" />
     <Content Include="Applications\Cannon\CustomerDetails.aspx" />
     <Content Include="Applications\Cannon\CustomerDetailsMain.aspx" />
+    <Content Include="Applications\Cannon\CustomerDetailsMainPopup.aspx" />
     <Content Include="Applications\Cannon\CustomerRating.aspx" />
     <Content Include="Applications\Cannon\EstablishZones.aspx" />
     <Content Include="Applications\Cannon\IndustryGroupPopup.aspx" />
     <Content Include="Applications\Cannon\IndustryGroups.aspx" />
+    <Content Include="Applications\Cannon\PreviousSupplierPopup.aspx" />
+    <Content Include="Applications\Cannon\PreviousSuppliers.aspx" />
     <Content Include="Applications\Cannon\RateIncreases.aspx" />
     <Content Include="Applications\Cannon\SiteDetailsMain.aspx" />
     <Content Include="App_Data\NWind.mdf" />

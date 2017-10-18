@@ -10,7 +10,6 @@
             Dim objCustomerAgent As New FMS.Business.tblCustomerAgent
             With objCustomerAgent
                 .CustomerAgentID = Guid.NewGuid
-                .AID = GetLastIDUsed() + 1
                 .CustomerAgentName = CustomerAgent.CustomerAgentName
             End With
             SingletonAccess.FMSDataContextContignous.tblCustomerAgents.InsertOnSubmit(objCustomerAgent)
@@ -32,11 +31,6 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Private Shared Function GetLastIDUsed() As Integer
-            Dim objCustomerAgents = SingletonAccess.FMSDataContextContignous.tblCustomerAgents.Count
-                               
-            Return objCustomerAgents
-        End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerAgent)
             Dim objCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
                             Order By c.CustomerAgentName

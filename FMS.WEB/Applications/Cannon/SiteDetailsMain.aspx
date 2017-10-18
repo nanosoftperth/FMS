@@ -9,20 +9,63 @@
     }
 </style>
 <script>
-    function ShowLoginWindow() {
-        //viewPopup.ShowAtPos(100, 10);
+    function ShowCustomerWindow() {
+        viewPopup.SetHeaderText("Customer Details");
         viewPopup.Show();
     }
-    function ExecuteLinkIndustryGroup() {
-   
-        ShowLoginWindow();
-        
-        $("#ifrIndustryGroup").attr("src", "http://localhost:18351/Applications/Cannon/IndustryGroupPopup.aspx");
-        
-        //$("#ifrIndustryGroup").click();
+    function ExecuteLinkCustomer(cid) {
+        var httpOrigin = window.location.origin;
+        $("#ifrPopup").width(860);
+        $("#ifrPopup").height(800);
+        $("#ifrPopup").attr("src",  httpOrigin +"/Applications/Cannon/CustomerDetailsMainPopup.aspx?cid=" + cid);
+        ShowCustomerWindow();
     }
+    function ShowIndustryGroupWindow() {
+        viewPopup.SetHeaderText("Industry Group");
+        viewPopup.Show();
+    }
+    function ExecuteLinkIndustryGroup(aid) {
+        var httpOrigin = window.location.origin;
+        $("#ifrPopup").width(460);
+        $("#ifrPopup").height(450);
+        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/IndustryGroupPopup.aspx?aid=" + aid);
+        ShowIndustryGroupWindow();
+    }
+    function ShowPreviousSupplierWindow() {
+        viewPopup.SetHeaderText("Previous Supplier");
+        viewPopup.Show();
+    }
+    function ExecuteLinkPreviousSupplier(cid) {
+        var httpOrigin = window.location.origin;
+        $("#ifrPopup").width(460);
+        $("#ifrPopup").height(450);
+        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + cid);
+        ShowPreviousSupplierWindow();
+    }
+    function ShowCeaseReasonsWindow() {
+        viewPopup.SetHeaderText("Contract Cease Reason");
+        viewPopup.Show();
+    }
+    function ExecuteLinkCeaseReasons(aid) {
+        var httpOrigin = window.location.origin;
+        $("#ifrPopup").width(600);
+        $("#ifrPopup").height(460);
+        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/ContractCeaseReasonsPopup.aspx?aid=" + aid);
+        ShowCeaseReasonsWindow();
+    }
+    function ShowLostBusinessToWindow() {
+        viewPopup.SetHeaderText("Contract Cease Reason");
+        viewPopup.Show();
+    }
+    function ExecuteLinkLostBusinessTo(aid) {
+        var httpOrigin = window.location.origin;
+        $("#ifrPopup").width(600);
+        $("#ifrPopup").height(460);
+        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + aid);
+        ShowLostBusinessToWindow();
+    }
+    
 </script>
-    <a id="lnkIndustryGroup" href="#" target="ifrIndustryGroup"></a>
     <dx:ASPxGridView ID="SiteDetailsGridView" runat="server" DataSourceID="odsSiteDetails" AutoGenerateColumns="False" 
         KeyFieldName="Cid" Width="550px"  Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" OnRowInserting="SiteDetailsGridView_RowInserting">
         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
@@ -134,10 +177,13 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <dx:ASPxButton ID="btnCustomerDetails" ClientInstanceName="btnCustomerDetails" AutoPostBack="false" runat="server" Text="Customer Details">
-                                                    <%--<ClientSideEvents Click="function(s,e) {
-                                                            ViewSitesClick(txtViewID.GetText());
-                                                        }" />--%>
+                                                    <ClientSideEvents Click="function(s,e) {
+                                                            ExecuteLinkCustomer(hdnCustomerID.GetText());
+                                                        }" />
                                                 </dx:ASPxButton>
+                                                <div style="display:none">
+                                                    <dx:ASPxTextBox ID="hdnCustomerID" ClientInstanceName="hdnCustomerID" runat="server" Text='<%# Eval("Customer")%>'></dx:ASPxTextBox>
+                                                </div>
                                             </div>
                                         </div>
                                         
@@ -151,10 +197,12 @@
                                             <div class="col-md-1">
                                                 <dx:ASPxButton ID="btnIndustryGroup" ClientInstanceName="btnIndustryGroup" AutoPostBack="false" runat="server" Text="Industry Group">
                                                     <ClientSideEvents Click="function(s,e) {
-                                                            ExecuteLinkIndustryGroup();
+                                                            ExecuteLinkIndustryGroup(hdnIndustryGroupID.GetText());
                                                         }" />
                                                 </dx:ASPxButton>
-                                                
+                                                 <div style="display:none">
+                                                    <dx:ASPxTextBox ID="hdnIndustryGroupID" ClientInstanceName="hdnIndustryGroupID" runat="server" Text='<%# Eval("IndustryGroup")%>'></dx:ASPxTextBox>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -201,6 +249,155 @@
                                 </ContentCollection>
                             </dx:TabPage>
                             <dx:TabPage Name="SiteContractDetails" Text="Site Contract Details">
+                                <ContentCollection>
+                                    <dx:ContentControl runat="server">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblPreviousSupplier" runat="server" Text="Previous Supplier:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxComboBox ID="cbPreviousSupplier" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("PreviousSupplierSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxButton ID="btnPreviousSupplier" ClientInstanceName="btnPreviousSupplier" AutoPostBack="false" runat="server" Text="View Previous Suppliers">
+                                                    <ClientSideEvents Click="function(s,e) {
+                                                            ExecuteLinkPreviousSupplier(hdnPreviousSupplierID.GetText());
+                                                        }" />
+                                                </dx:ASPxButton>
+                                                 <div style="display:none">
+                                                    <dx:ASPxTextBox ID="hdnPreviousSupplierID" ClientInstanceName="hdnPreviousSupplierID" runat="server" Text='<%# Eval("PreviousSupplier")%>'></dx:ASPxTextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblInitialContract" runat="server" Text="Initial&nbsp;Contract&nbsp;Start&nbsp;Date:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxDateEdit ID="dtContractStartDate" ClientInstanceName="dtContractStartDate" runat="server" Date='<%# Eval("SiteStartDate") %>'></dx:ASPxDateEdit>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblSiteContractExpiry" runat="server" Text="Site&nbsp;Contract&nbsp;Expiry:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <dx:ASPxDateEdit ID="dtContractExpiryDate" ClientInstanceName="dtContractExpiryDate" runat="server" Date='<%# Eval("SiteContractExpiry")%>'></dx:ASPxDateEdit>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblSalesPerson" runat="server" Text="Sales Person:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxComboBox ID="cbSalesPerson" DataSourceID="odsSalesPerson" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("SalesPersonSortOrder") - 1%>' TextField="SalesPerson" ValueField="Aid"></dx:ASPxComboBox>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblInitialContractPeriod" runat="server" Text="Initial&nbsp;Contract&nbsp;Period:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxComboBox ID="cbInitialContractPeriod" DataSourceID="odsInitialContractPeriod" runat="server" Width="170px" Height="20px" 
+                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("InitialContractPeriodSortOrder") - 1%>' TextField="ContractPeriodDesc" ValueField="Aid">
+                                                    <Columns>                                   
+                                                        <dx:ListBoxColumn FieldName="ContractPeriodDesc" Width="130px" />
+                                                        <dx:ListBoxColumn FieldName="ContractPeriodMonths" Width="100%" />
+                                                    </Columns>
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblInitialServiceAgreementNo" runat="server" Text="Initial&nbsp;Service&nbsp;Agreement&nbsp;No:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <dx:ASPxTextBox ID="txtInitialServiceAgreementNo" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("InitialServiceAgreementNo") %>'></dx:ASPxTextBox>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblContractCeaseDate" runat="server" Text="Contract Cease Date:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxDateEdit ID="dtContractCeaseDate" ClientInstanceName="dtContractCeaseDate" runat="server" Date='<%# Eval("SiteCeaseDate") %>'></dx:ASPxDateEdit>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblContractCeaseReason" runat="server" Text="Contract Cease Reason:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxComboBox ID="cbSiteCeaseReason" DataSourceID="odsSiteCeaseReason" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ContractCeaseReasonsSortOrder") - 1%>' TextField="CeaseReasonDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxButton ID="btnViewCeasedReasons" ClientInstanceName="btnViewCeasedReasons" AutoPostBack="false" runat="server" Text="View Ceased Reasons">
+                                                    <ClientSideEvents Click="function(s,e) {
+                                                            ExecuteLinkCeaseReasons(hdnSiteCeaseReason.GetText());
+                                                        }" />
+                                                </dx:ASPxButton>
+                                                 <div style="display:none">
+                                                    <dx:ASPxTextBox ID="hdnSiteCeaseReason" ClientInstanceName="hdnSiteCeaseReason" runat="server" Text='<%# Eval("SiteCeaseReason")%>'></dx:ASPxTextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblLostBusinessTo" runat="server" Text="Lost Business To:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxComboBox ID="cbLostBusinessTo" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("LostBusinessToSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxButton ID="btnLostBusinessTo" ClientInstanceName="btnLostBusinessTo" AutoPostBack="false" runat="server" Text="View Lost Business To">
+                                                    <ClientSideEvents Click="function(s,e) {
+                                                            ExecuteLinkLostBusinessTo(hdnLostBusinessTo.GetText());
+                                                        }" />
+                                                </dx:ASPxButton>
+                                                 <div style="display:none">
+                                                    <dx:ASPxTextBox ID="hdnLostBusinessTo" ClientInstanceName="hdnLostBusinessTo" runat="server" Text='<%# Eval("LostBusinessTo")%>'></dx:ASPxTextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div style="display:none">
+                                                    <dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>    
+                                                </div>
+                                                <dx:ASPxGridView ID="ResignHistoryGridView" KeyFieldName="ResignHistoryID" DataSourceID="odsSiteResignDetails" runat="server" AutoGenerateColumns="False">
+                                                    <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                                                    <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                                    <Settings ShowPreview="true" />
+                                                    <SettingsPager PageSize="10" />
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ResignHistoryID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="SiteCId" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataDateColumn FieldName="ReSignDate" VisibleIndex="4" Visible="true"></dx:GridViewDataDateColumn>
+                                                        <dx:GridViewDataComboBoxColumn FieldName="ReSignPeriod" Caption="Re-Sign Period" VisibleIndex="5" >
+                                                            <PropertiesComboBox DataSourceID="odsInitialContractPeriod" TextField="ContractPeriodDesc" ValueField="Aid" Width="150px">
+                                                                <Columns>                                   
+                                                                    <dx:ListBoxColumn FieldName="ContractPeriodDesc" Width="80px" />
+                                                                    <dx:ListBoxColumn FieldName="ContractPeriodMonths" Width="80px" />
+                                                                </Columns>
+                                                                <ClearButton Visibility="Auto"></ClearButton>
+                                                            </PropertiesComboBox>
+                                                        </dx:GridViewDataComboBoxColumn> 
+                                                        <dx:GridViewDataTextColumn FieldName="ServiceAgreementNo" VisibleIndex="6" Visible="true"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataComboBoxColumn FieldName="SalesPerson" Caption="Sales Person" VisibleIndex="7" >
+                                                            <PropertiesComboBox DataSourceID="odsSalesPerson" TextField="SalesPerson" ValueField="Aid" Width="150px">
+                                                                <ClearButton Visibility="Auto"></ClearButton>
+                                                            </PropertiesComboBox>
+                                                        </dx:GridViewDataComboBoxColumn> 
+                                                        <dx:GridViewDataDateColumn FieldName="ContractExpiryDate" Caption="Expiry Date" VisibleIndex="8" Visible="true"></dx:GridViewDataDateColumn>
+                                                    </Columns>
+                                                </dx:ASPxGridView>
+                                                <asp:ObjectDataSource ID="odsSiteResignDetails" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblSiteReSignDetails" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllSiteID" TypeName="FMS.Business.DataObjects.tblSiteReSignDetails" UpdateMethod="Update">
+                                                    <SelectParameters>
+                                                        <asp:ControlParameter ControlID="hdnSiteCid" PropertyName="Text" Name="siteID" Type="Int32"></asp:ControlParameter>
+                                                    </SelectParameters>
+                                                </asp:ObjectDataSource>
+                                            </div>
+                                        </div>
+                                    </dx:ContentControl>
+                                </ContentCollection>
                             </dx:TabPage>
                             <dx:TabPage Name="SiteInvoicingDetails" Text="Site Invoicing Details">
                             </dx:TabPage>
@@ -227,13 +424,13 @@
 
     <dx:ASPxPopupControl ID="viewPopup" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="viewPopup" 
-        HeaderText="Site List" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="300px" Height="300px" >        
+        AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="300px" Height="300px" >        
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
                     <PanelCollection>
                         <dx:PanelContent runat="server">             
-                            <iframe id="ifrIndustryGroup" name="ifrIndustryGroup" src="#" style="width:460px; height:450px;"></iframe>
+                            <iframe id="ifrPopup" name="ifrPopup" src="#"></iframe>
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>
@@ -243,7 +440,10 @@
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
-
+    <asp:ObjectDataSource ID="odsSiteCeaseReason" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblContractCeaseReasons"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsInitialContractPeriod" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblContractPeriods"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsSalesPerson" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblSalesPersons"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsPreviousSuppliers" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblPreviousSuppliers"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsIndustryGroups" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblIndustryGroups"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomers" runat="server" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblCustomers"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" ></asp:ObjectDataSource>

@@ -10,7 +10,6 @@
         Public Shared Sub Create(State As DataObjects.tblStates)
             Dim objState As New FMS.Business.tblState
             With objState
-                .Sid = GetLastIDUsed() + 1
                 .StateCode = State.StateCode
                 .StateDesc = State.StateDesc
             End With
@@ -34,11 +33,6 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Private Shared Function GetLastIDUsed() As Integer
-            Dim objState = SingletonAccess.FMSDataContextContignous.tblStates.Count
-                               
-            Return objState
-        End Function
         Public Shared Function GetAll() As List(Of DataObjects.tblStates)
             Dim objStates = (From c In SingletonAccess.FMSDataContextContignous.tblStates
                                             Order By c.Sid

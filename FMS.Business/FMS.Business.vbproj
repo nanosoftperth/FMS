@@ -108,12 +108,17 @@
     <Compile Include="Classes\DataObjects\Cannon\Cannon_Run.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_RunClient.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_RunCompletion.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblContractCeaseReasons.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblContractPeriods.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblCustomerAgent.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblCustomerRating.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblCustomers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblDrivers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblIndustryGroups.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblRateIncreaseReference.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblSalesPersons.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblSiteReSignDetails.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblSites.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblStates.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tbZone.vb" />
