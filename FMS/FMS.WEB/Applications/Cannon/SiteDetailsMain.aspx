@@ -95,6 +95,7 @@
                 <div class="container">
                     <div style="display:none">
                         <dx:ASPxTextBox  id="txtSiteID" ClientInstanceName="siteID" runat="server" Text='<%# Eval("SiteID") %>'></dx:ASPxTextBox>
+                        <dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>    
                     </div>
                     <div class="row"></div>
                     <dx:ASPxPageControl ID="SiteDetailsPageControl" runat="server">
@@ -358,9 +359,10 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div style="display:none">
-                                                    <dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>    
+                                                    <%--<dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>--%>    
                                                 </div>
-                                                <dx:ASPxGridView ID="ResignHistoryGridView" KeyFieldName="ResignHistoryID" DataSourceID="odsSiteResignDetails" runat="server" AutoGenerateColumns="False">
+                                                <dx:ASPxGridView ID="ResignHistoryGridView" KeyFieldName="ResignHistoryID" DataSourceID="odsSiteResignDetails" runat="server" 
+                                                    AutoGenerateColumns="False" OnRowUpdating="ResignHistoryGridView_RowUpdating" OnRowInserting="ResignHistoryGridView_RowInserting">
                                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                                                     <Settings ShowPreview="true" />
@@ -369,7 +371,7 @@
                                                         <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                                         <dx:GridViewDataTextColumn FieldName="ResignHistoryID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="SiteCId" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="SiteCId" VisibleIndex="3" Visible="false" ></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataDateColumn FieldName="ReSignDate" VisibleIndex="4" Visible="true"></dx:GridViewDataDateColumn>
                                                         <dx:GridViewDataComboBoxColumn FieldName="ReSignPeriod" Caption="Re-Sign Period" VisibleIndex="5" >
                                                             <PropertiesComboBox DataSourceID="odsInitialContractPeriod" TextField="ContractPeriodDesc" ValueField="Aid" Width="150px">

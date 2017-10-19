@@ -12,4 +12,14 @@ Public Class SiteDetailsMain
     Protected Sub SiteDetailsGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
         'GetCustomersRowUpdatingRowInserting(e, True)
     End Sub
+
+    Protected Sub ResignHistoryGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("SiteCId") = hdnSiteCid.Text
+    End Sub
+
+    Protected Sub ResignHistoryGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("SiteCId") = hdnSiteCid.Text
+    End Sub
 End Class
