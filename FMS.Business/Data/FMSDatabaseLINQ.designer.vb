@@ -463,6 +463,18 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblSiteReSignDetail(instance As tblSiteReSignDetail)
     End Sub
+  Partial Private Sub InserttblInvoicingFrequency(instance As tblInvoicingFrequency)
+    End Sub
+  Partial Private Sub UpdatetblInvoicingFrequency(instance As tblInvoicingFrequency)
+    End Sub
+  Partial Private Sub DeletetblInvoicingFrequency(instance As tblInvoicingFrequency)
+    End Sub
+  Partial Private Sub InserttblMonth(instance As tblMonth)
+    End Sub
+  Partial Private Sub UpdatetblMonth(instance As tblMonth)
+    End Sub
+  Partial Private Sub DeletetblMonth(instance As tblMonth)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -967,6 +979,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblSiteReSignDetails() As System.Data.Linq.Table(Of tblSiteReSignDetail)
 		Get
 			Return Me.GetTable(Of tblSiteReSignDetail)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblInvoicingFrequencies() As System.Data.Linq.Table(Of tblInvoicingFrequency)
+		Get
+			Return Me.GetTable(Of tblInvoicingFrequency)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblMonths() As System.Data.Linq.Table(Of tblMonth)
+		Get
+			Return Me.GetTable(Of tblMonth)
 		End Get
 	End Property
 	
@@ -18604,6 +18628,263 @@ Partial Public Class tblSiteReSignDetail
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblInvoicingFrequency")>  _
+Partial Public Class tblInvoicingFrequency
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _InvoiceFrequencyID As System.Guid
+	
+	Private _IId As Integer
+	
+	Private _InvoiceId As String
+	
+	Private _Frequency As String
+	
+	Private _NoOfWeeks As System.Nullable(Of Single)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyIDChanged()
+    End Sub
+    Partial Private Sub OnIIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIIdChanged()
+    End Sub
+    Partial Private Sub OnInvoiceIdChanging(value As String)
+    End Sub
+    Partial Private Sub OnInvoiceIdChanged()
+    End Sub
+    Partial Private Sub OnFrequencyChanging(value As String)
+    End Sub
+    Partial Private Sub OnFrequencyChanged()
+    End Sub
+    Partial Private Sub OnNoOfWeeksChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnNoOfWeeksChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceFrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property InvoiceFrequencyID() As System.Guid
+		Get
+			Return Me._InvoiceFrequencyID
+		End Get
+		Set
+			If ((Me._InvoiceFrequencyID = value)  _
+						= false) Then
+				Me.OnInvoiceFrequencyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceFrequencyID = value
+				Me.SendPropertyChanged("InvoiceFrequencyID")
+				Me.OnInvoiceFrequencyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IId", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property IId() As Integer
+		Get
+			Return Me._IId
+		End Get
+		Set
+			If ((Me._IId = value)  _
+						= false) Then
+				Me.OnIIdChanging(value)
+				Me.SendPropertyChanging
+				Me._IId = value
+				Me.SendPropertyChanged("IId")
+				Me.OnIIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceId", DbType:="NVarChar(1)")>  _
+	Public Property InvoiceId() As String
+		Get
+			Return Me._InvoiceId
+		End Get
+		Set
+			If (String.Equals(Me._InvoiceId, value) = false) Then
+				Me.OnInvoiceIdChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceId = value
+				Me.SendPropertyChanged("InvoiceId")
+				Me.OnInvoiceIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Frequency", DbType:="NVarChar(22)")>  _
+	Public Property Frequency() As String
+		Get
+			Return Me._Frequency
+		End Get
+		Set
+			If (String.Equals(Me._Frequency, value) = false) Then
+				Me.OnFrequencyChanging(value)
+				Me.SendPropertyChanging
+				Me._Frequency = value
+				Me.SendPropertyChanged("Frequency")
+				Me.OnFrequencyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NoOfWeeks", DbType:="Real")>  _
+	Public Property NoOfWeeks() As System.Nullable(Of Single)
+		Get
+			Return Me._NoOfWeeks
+		End Get
+		Set
+			If (Me._NoOfWeeks.Equals(value) = false) Then
+				Me.OnNoOfWeeksChanging(value)
+				Me.SendPropertyChanging
+				Me._NoOfWeeks = value
+				Me.SendPropertyChanged("NoOfWeeks")
+				Me.OnNoOfWeeksChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMonths")>  _
+Partial Public Class tblMonth
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _MonthID As System.Guid
+	
+	Private _MonthNo As System.Nullable(Of Short)
+	
+	Private _MonthDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnMonthIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnMonthIDChanged()
+    End Sub
+    Partial Private Sub OnMonthNoChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnMonthNoChanged()
+    End Sub
+    Partial Private Sub OnMonthDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnMonthDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MonthID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property MonthID() As System.Guid
+		Get
+			Return Me._MonthID
+		End Get
+		Set
+			If ((Me._MonthID = value)  _
+						= false) Then
+				Me.OnMonthIDChanging(value)
+				Me.SendPropertyChanging
+				Me._MonthID = value
+				Me.SendPropertyChanged("MonthID")
+				Me.OnMonthIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MonthNo", DbType:="SmallInt")>  _
+	Public Property MonthNo() As System.Nullable(Of Short)
+		Get
+			Return Me._MonthNo
+		End Get
+		Set
+			If (Me._MonthNo.Equals(value) = false) Then
+				Me.OnMonthNoChanging(value)
+				Me.SendPropertyChanging
+				Me._MonthNo = value
+				Me.SendPropertyChanged("MonthNo")
+				Me.OnMonthNoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MonthDescription", DbType:="NVarChar(15)")>  _
+	Public Property MonthDescription() As String
+		Get
+			Return Me._MonthDescription
+		End Get
+		Set
+			If (String.Equals(Me._MonthDescription, value) = false) Then
+				Me.OnMonthDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._MonthDescription = value
+				Me.SendPropertyChanged("MonthDescription")
+				Me.OnMonthDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -20410,6 +20691,8 @@ Partial Public Class usp_GetSitesResult
 	
 	Private _LostBusinessToSortOrder As System.Nullable(Of Long)
 	
+	Private _InvoicingFrequencySortOrder As System.Nullable(Of Long)
+	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -21086,6 +21369,18 @@ Partial Public Class usp_GetSitesResult
 		Set
 			If (Me._LostBusinessToSortOrder.Equals(value) = false) Then
 				Me._LostBusinessToSortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoicingFrequencySortOrder", DbType:="BigInt")>  _
+	Public Property InvoicingFrequencySortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._InvoicingFrequencySortOrder
+		End Get
+		Set
+			If (Me._InvoicingFrequencySortOrder.Equals(value) = false) Then
+				Me._InvoicingFrequencySortOrder = value
 			End If
 		End Set
 	End Property

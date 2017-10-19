@@ -387,6 +387,13 @@
       <DependentUpon>IndustryGroups.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\InvoicingFrequency.aspx.designer.vb">
+      <DependentUpon>InvoicingFrequency.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\InvoicingFrequency.aspx.vb">
+      <DependentUpon>InvoicingFrequency.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Applications\Cannon\PreviousSupplierPopup.aspx.designer.vb">
       <DependentUpon>PreviousSupplierPopup.aspx</DependentUpon>
     </Compile>
@@ -974,6 +981,7 @@
     <Content Include="Applications\Cannon\EstablishZones.aspx" />
     <Content Include="Applications\Cannon\IndustryGroupPopup.aspx" />
     <Content Include="Applications\Cannon\IndustryGroups.aspx" />
+    <Content Include="Applications\Cannon\InvoicingFrequency.aspx" />
     <Content Include="Applications\Cannon\PreviousSupplierPopup.aspx" />
     <Content Include="Applications\Cannon\PreviousSuppliers.aspx" />
     <Content Include="Applications\Cannon\RateIncreases.aspx" />

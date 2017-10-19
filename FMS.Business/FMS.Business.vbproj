@@ -115,6 +115,8 @@
     <Compile Include="Classes\DataObjects\Cannon\tblCustomers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblDrivers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblIndustryGroups.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblInvoicingFrequency.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblMonths.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblRateIncreaseReference.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblSalesPersons.vb" />

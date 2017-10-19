@@ -187,7 +187,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <dx:ASPxLabel ID="lblIndustryGroup" runat="server" Text="Industry Group:" Width="100px"></dx:ASPxLabel>
@@ -402,6 +401,131 @@
                                 </ContentCollection>
                             </dx:TabPage>
                             <dx:TabPage Name="SiteInvoicingDetails" Text="Site Invoicing Details">
+                                <ContentCollection>
+                                    <dx:ContentControl runat="server">
+                                        <div style="border:1px solid gray; width:600px; padding:5px">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <p style="font-weight:bold; color:black">Postal Address</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <dx:ASPxLabel ID="lblAddress1" runat="server" Text="Address&nbsp;Line&nbsp;1:" Width="100px"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <dx:ASPxTextBox ID="txtPostalAddressLine1" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("PostalAddressLine1") %>'></dx:ASPxTextBox>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <dx:ASPxLabel ID="lblAddress2" runat="server" Text="Address&nbsp;Line&nbsp;2:" Width="100px"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <dx:ASPxTextBox ID="txtPostalAddressLine2" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("PostalAddressLine2") %>'></dx:ASPxTextBox>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-2">
+                                                    <dx:ASPxLabel ID="lblSiteInvoicingSuburb" runat="server" Text="Suburb:" Width="100px"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="container">
+                                                        <div class="row row-md-margin-top">
+                                                            <dx:ASPxTextBox ID="txtPostalSuburb" runat="server" Width="111px" MaxLength="22" Text='<%# Eval("PostalSuburb")%>'></dx:ASPxTextBox>&nbsp;
+                                                            <dx:ASPxLabel ID="lblSiteInvoicingState" runat="server" Text="State:"></dx:ASPxLabel>&nbsp;
+                                                            <dx:ASPxComboBox ID="cbPostalState" DataSourceID="odsStates" runat="server" Width="112px" SelectedIndex='<%# Eval("StateSortOrder") - 1%>'  Height="20px" TextField="StateDesc" ValueField="Sid"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <dx:ASPxLabel ID="lblSiteInvoicingPostalState" runat="server" Text="P/Code:"></dx:ASPxLabel>&nbsp;
+                                                            <dx:ASPxTextBox ID="txtPostalPostCode" runat="server" Width="50px" MaxLength="22" Text='<%# Eval("PostalPostCode")%>'></dx:ASPxTextBox>&nbsp;
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblInvoiceFrequency" runat="server" Text="Invoice&nbsp;Frequency:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxComboBox ID="cbInvoiceFrequency" DataSourceID="odsInvoiceFrequency" runat="server" Width="170px" Height="20px" 
+                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("InvoicingFrequencySortOrder") - 1%>' TextField="Frequency" ValueField="iid">                                                        
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblInvoiceCommencing" runat="server" Text="Invoice&nbsp;Commencing:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <dx:ASPxTextBox ID="txtInvoiceCommencing" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("InvoiceCommencing") %>'></dx:ASPxTextBox>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblSeparateInvoice" runat="server" Text="Separate&nbsp;Invoice:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxCheckBox ID="chkSeparateInvoice" runat="server" Checked='<%# Eval("SeparateInvoice")%>'></dx:ASPxCheckBox>
+                                                <dx:ASPxLabel ID="lblPurchaseOrderNumber" runat="server" Text="Purchase&nbsp;Order&nbsp;Number:" Width="100px"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <dx:ASPxTextBox ID="txtPurchaseOrderNumber" runat="server" Width="200px" MaxLength="50" Text='<%# Eval("PurchaseOrderNumber")%>'></dx:ASPxTextBox>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <dx:ASPxLabel ID="lblExcludeFuelLevy" runat="server" Text="Exclude&nbsp;Fuel&nbsp;Levy:" Width="100px"></dx:ASPxLabel>
+                                                <dx:ASPxCheckBox ID="chkExcludeFuelLevy" runat="server" Checked='<%# Eval("chkSitesExcludeFuelLevy")%>'></dx:ASPxCheckBox>
+                                            </div>
+                                        </div>
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p style="font-weight:bold; color:black">Invoicing Months</p>
+                                            </div>
+                                        </div>
+                                        <div style="border:1px solid gray; width:350px; padding:5px">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <dx:ASPxLabel ID="lblInvoiceMonth1" runat="server" Text="Invoice&nbsp;Month&nbsp;1:" Width="100px"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <dx:ASPxComboBox ID="cbInvoiceMonth1" DataSourceID="odsInvoiceMonth" runat="server" Width="170px" Height="20px" 
+                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("InvoiceMonth1") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                    </dx:ASPxComboBox>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <dx:ASPxLabel ID="lblInvoiceMonth2" runat="server" Text="Invoice&nbsp;Month&nbsp;2:" Width="100px"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <dx:ASPxComboBox ID="cbInvoiceMonth2" DataSourceID="odsInvoiceMonth" runat="server" Width="170px" Height="20px" 
+                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("InvoiceMonth2") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                    </dx:ASPxComboBox>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <dx:ASPxLabel ID="lblInvoiceMonth3" runat="server" Text="Invoice&nbsp;Month&nbsp;3:" Width="100px"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <dx:ASPxComboBox ID="cbInvoiceMonth3" DataSourceID="odsInvoiceMonth" runat="server" Width="170px" Height="20px" 
+                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("InvoiceMonth3") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                    </dx:ASPxComboBox>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <dx:ASPxLabel ID="lblInvoiceMonth4" runat="server" Text="Invoice&nbsp;Month&nbsp;4:" Width="100px"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <dx:ASPxComboBox ID="cbInvoiceMonth4" DataSourceID="odsInvoiceMonth" runat="server" Width="170px" Height="20px" 
+                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("InvoiceMonth4") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                    </dx:ASPxComboBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding: 2px; padding-top:140px"></div>
+                                    </dx:ContentControl>
+                                </ContentCollection>
                             </dx:TabPage>
                             <dx:TabPage Name="SiteServices" Text="Site Services">
                             </dx:TabPage>
@@ -442,6 +566,8 @@
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
+    <asp:ObjectDataSource ID="odsInvoiceMonth" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblMonths"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsInvoiceFrequency" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblInvoicingFrequency"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsSiteCeaseReason" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblContractCeaseReasons"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsInitialContractPeriod" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblContractPeriods"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsSalesPerson" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblSalesPersons"></asp:ObjectDataSource>
