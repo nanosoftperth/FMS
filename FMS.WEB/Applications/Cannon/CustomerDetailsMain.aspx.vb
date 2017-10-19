@@ -6,7 +6,6 @@ Public Class CustomerDetailsMain
     Protected Sub CustomersGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
         GetCustomersRowUpdatingRowInserting(e, False)
     End Sub
-
     Protected Sub CustomersGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
         GetCustomersRowUpdatingRowInserting(e, True)
     End Sub
