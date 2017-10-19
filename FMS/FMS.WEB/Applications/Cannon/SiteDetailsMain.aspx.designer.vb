@@ -41,6 +41,24 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
 
     '''<summary>
+    '''odsInvoiceMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsInvoiceMonth As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsInvoiceFrequency control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsInvoiceFrequency As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsSiteCeaseReason control.
     '''</summary>
     '''<remarks>

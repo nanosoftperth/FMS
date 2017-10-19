@@ -34,6 +34,7 @@
         Public Property SiteCeaseReason As System.Nullable(Of Integer)
         Public Property ContractCeaseReasonsSortOrder As System.Nullable(Of Integer)
         Public Property InvoiceFrequency As System.Nullable(Of Integer)
+        Public Property InvoicingFrequencySortOrder As System.Nullable(Of Integer)
         Public Property InvoiceCommencing As System.Nullable(Of Date)
         Public Property IndustryGroup As System.Nullable(Of Short)
         Public Property IndustrySortOrder As System.Nullable(Of Integer)
@@ -202,7 +203,7 @@
                                                                     .cmbRateIncrease = s.cmbRateIncrease, .StateSortOrder = s.StateSortOrder, .CustomerSortOrder = s.CustomerSortOrder,
                                                                     .IndustrySortOrder = s.IndustrySortOrder, .PreviousSupplierSortOrder = s.PreviousSupplierSortOrder, .SalesPersonSortOrder = s.SalesPersonSortOrder,
                                                                     .InitialContractPeriodSortOrder = s.InitialContractPeriodSortOrder, .ContractCeaseReasonsSortOrder = s.ContractCeaseReasonsSortOrder,
-                                                                    .LostBusinessToSortOrder = s.LostBusinessToSortOrder}).ToList
+                                                                    .LostBusinessToSortOrder = s.LostBusinessToSortOrder, .InvoicingFrequencySortOrder = s.InvoicingFrequencySortOrder}).ToList
             Return objSites
         End Function
 #End Region
@@ -245,6 +246,7 @@
                 Me.SiteCeaseReason = .SiteCeaseReason
                 Me.ContractCeaseReasonsSortOrder = 0
                 Me.InvoiceFrequency = .InvoiceFrequency
+                Me.InvoicingFrequencySortOrder = 0
                 Me.InvoiceCommencing = .InvoiceCommencing
                 Me.IndustryGroup = .IndustryGroup
                 Me.IndustrySortOrder = 0
