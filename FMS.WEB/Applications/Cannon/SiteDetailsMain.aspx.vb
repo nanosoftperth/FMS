@@ -22,4 +22,20 @@ Public Class SiteDetailsMain
         Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
         e.NewValues("SiteCId") = hdnSiteCid.Text
     End Sub
+    <System.Web.Services.WebMethod()>
+    Public Shared Function GetSiteInvoicingDetails(ByVal Cid As Integer)
+        Dim objSites = FMS.Business.DataObjects.tblSites.GetAllBySiteID(Cid)
+        objSites.InvoiceCommencingString = objSites.InvoiceCommencing.ToString()
+        Return objSites
+    End Function
+
+    Protected Sub CustomerServiceGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("CId") = hdnSiteCid.Text
+    End Sub
+
+    Protected Sub CustomerServiceGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("CId") = hdnSiteCid.Text
+    End Sub
 End Class
