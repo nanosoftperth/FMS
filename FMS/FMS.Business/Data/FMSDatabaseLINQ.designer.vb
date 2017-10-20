@@ -475,6 +475,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblMonth(instance As tblMonth)
     End Sub
+  Partial Private Sub InserttblCustomerService(instance As tblCustomerService)
+    End Sub
+  Partial Private Sub UpdatetblCustomerService(instance As tblCustomerService)
+    End Sub
+  Partial Private Sub DeletetblCustomerService(instance As tblCustomerService)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -991,6 +997,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblMonths() As System.Data.Linq.Table(Of tblMonth)
 		Get
 			Return Me.GetTable(Of tblMonth)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomerServices() As System.Data.Linq.Table(Of tblCustomerService)
+		Get
+			Return Me.GetTable(Of tblCustomerService)
 		End Get
 	End Property
 	
@@ -18885,6 +18897,488 @@ Partial Public Class tblMonth
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerServices")>  _
+Partial Public Class tblCustomerService
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerServiceID As System.Guid
+	
+	Private _ID As Integer
+	
+	Private _CSid As System.Nullable(Of Integer)
+	
+	Private _CId As System.Nullable(Of Integer)
+	
+	Private _ServiceFrequencyCode As System.Nullable(Of Short)
+	
+	Private _ServiceUnits As System.Nullable(Of Single)
+	
+	Private _ServicePrice As System.Nullable(Of Single)
+	
+	Private _PerAnnumCharge As System.Nullable(Of Single)
+	
+	Private _ServiceRun As System.Nullable(Of Short)
+	
+	Private _ServiceComments As String
+	
+	Private _UnitsHaveMoreThanOneRun As Boolean
+	
+	Private _ServiceFrequency1 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency2 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency3 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency4 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency5 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency6 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency7 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency8 As System.Nullable(Of Short)
+	
+	Private _ServiceSortOrderCode As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerServiceIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerServiceIDChanged()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnCSidChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCSidChanged()
+    End Sub
+    Partial Private Sub OnCIdChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCIdChanged()
+    End Sub
+    Partial Private Sub OnServiceFrequencyCodeChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequencyCodeChanged()
+    End Sub
+    Partial Private Sub OnServiceUnitsChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnServiceUnitsChanged()
+    End Sub
+    Partial Private Sub OnServicePriceChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnServicePriceChanged()
+    End Sub
+    Partial Private Sub OnPerAnnumChargeChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnPerAnnumChargeChanged()
+    End Sub
+    Partial Private Sub OnServiceRunChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceRunChanged()
+    End Sub
+    Partial Private Sub OnServiceCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnServiceCommentsChanged()
+    End Sub
+    Partial Private Sub OnUnitsHaveMoreThanOneRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnUnitsHaveMoreThanOneRunChanged()
+    End Sub
+    Partial Private Sub OnServiceFrequency1Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency1Changed()
+    End Sub
+    Partial Private Sub OnServiceFrequency2Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency2Changed()
+    End Sub
+    Partial Private Sub OnServiceFrequency3Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency3Changed()
+    End Sub
+    Partial Private Sub OnServiceFrequency4Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency4Changed()
+    End Sub
+    Partial Private Sub OnServiceFrequency5Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency5Changed()
+    End Sub
+    Partial Private Sub OnServiceFrequency6Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency6Changed()
+    End Sub
+    Partial Private Sub OnServiceFrequency7Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency7Changed()
+    End Sub
+    Partial Private Sub OnServiceFrequency8Changing(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceFrequency8Changed()
+    End Sub
+    Partial Private Sub OnServiceSortOrderCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnServiceSortOrderCodeChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerServiceID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerServiceID() As System.Guid
+		Get
+			Return Me._CustomerServiceID
+		End Get
+		Set
+			If ((Me._CustomerServiceID = value)  _
+						= false) Then
+				Me.OnCustomerServiceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerServiceID = value
+				Me.SendPropertyChanged("CustomerServiceID")
+				Me.OnCustomerServiceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property ID() As Integer
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CSid", DbType:="Int")>  _
+	Public Property CSid() As System.Nullable(Of Integer)
+		Get
+			Return Me._CSid
+		End Get
+		Set
+			If (Me._CSid.Equals(value) = false) Then
+				Me.OnCSidChanging(value)
+				Me.SendPropertyChanging
+				Me._CSid = value
+				Me.SendPropertyChanged("CSid")
+				Me.OnCSidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CId", DbType:="Int")>  _
+	Public Property CId() As System.Nullable(Of Integer)
+		Get
+			Return Me._CId
+		End Get
+		Set
+			If (Me._CId.Equals(value) = false) Then
+				Me.OnCIdChanging(value)
+				Me.SendPropertyChanging
+				Me._CId = value
+				Me.SendPropertyChanged("CId")
+				Me.OnCIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequencyCode", DbType:="SmallInt")>  _
+	Public Property ServiceFrequencyCode() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequencyCode
+		End Get
+		Set
+			If (Me._ServiceFrequencyCode.Equals(value) = false) Then
+				Me.OnServiceFrequencyCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequencyCode = value
+				Me.SendPropertyChanged("ServiceFrequencyCode")
+				Me.OnServiceFrequencyCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
+	Public Property ServiceUnits() As System.Nullable(Of Single)
+		Get
+			Return Me._ServiceUnits
+		End Get
+		Set
+			If (Me._ServiceUnits.Equals(value) = false) Then
+				Me.OnServiceUnitsChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceUnits = value
+				Me.SendPropertyChanged("ServiceUnits")
+				Me.OnServiceUnitsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicePrice", DbType:="Real")>  _
+	Public Property ServicePrice() As System.Nullable(Of Single)
+		Get
+			Return Me._ServicePrice
+		End Get
+		Set
+			If (Me._ServicePrice.Equals(value) = false) Then
+				Me.OnServicePriceChanging(value)
+				Me.SendPropertyChanging
+				Me._ServicePrice = value
+				Me.SendPropertyChanged("ServicePrice")
+				Me.OnServicePriceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
+	Public Property PerAnnumCharge() As System.Nullable(Of Single)
+		Get
+			Return Me._PerAnnumCharge
+		End Get
+		Set
+			If (Me._PerAnnumCharge.Equals(value) = false) Then
+				Me.OnPerAnnumChargeChanging(value)
+				Me.SendPropertyChanging
+				Me._PerAnnumCharge = value
+				Me.SendPropertyChanged("PerAnnumCharge")
+				Me.OnPerAnnumChargeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRun", DbType:="SmallInt")>  _
+	Public Property ServiceRun() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceRun
+		End Get
+		Set
+			If (Me._ServiceRun.Equals(value) = false) Then
+				Me.OnServiceRunChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceRun = value
+				Me.SendPropertyChanged("ServiceRun")
+				Me.OnServiceRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceComments", DbType:="NVarChar(MAX)")>  _
+	Public Property ServiceComments() As String
+		Get
+			Return Me._ServiceComments
+		End Get
+		Set
+			If (String.Equals(Me._ServiceComments, value) = false) Then
+				Me.OnServiceCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceComments = value
+				Me.SendPropertyChanged("ServiceComments")
+				Me.OnServiceCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsHaveMoreThanOneRun", DbType:="Bit NOT NULL")>  _
+	Public Property UnitsHaveMoreThanOneRun() As Boolean
+		Get
+			Return Me._UnitsHaveMoreThanOneRun
+		End Get
+		Set
+			If ((Me._UnitsHaveMoreThanOneRun = value)  _
+						= false) Then
+				Me.OnUnitsHaveMoreThanOneRunChanging(value)
+				Me.SendPropertyChanging
+				Me._UnitsHaveMoreThanOneRun = value
+				Me.SendPropertyChanged("UnitsHaveMoreThanOneRun")
+				Me.OnUnitsHaveMoreThanOneRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency1", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency1() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency1
+		End Get
+		Set
+			If (Me._ServiceFrequency1.Equals(value) = false) Then
+				Me.OnServiceFrequency1Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency1 = value
+				Me.SendPropertyChanged("ServiceFrequency1")
+				Me.OnServiceFrequency1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency2", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency2() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency2
+		End Get
+		Set
+			If (Me._ServiceFrequency2.Equals(value) = false) Then
+				Me.OnServiceFrequency2Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency2 = value
+				Me.SendPropertyChanged("ServiceFrequency2")
+				Me.OnServiceFrequency2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency3", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency3() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency3
+		End Get
+		Set
+			If (Me._ServiceFrequency3.Equals(value) = false) Then
+				Me.OnServiceFrequency3Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency3 = value
+				Me.SendPropertyChanged("ServiceFrequency3")
+				Me.OnServiceFrequency3Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency4", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency4() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency4
+		End Get
+		Set
+			If (Me._ServiceFrequency4.Equals(value) = false) Then
+				Me.OnServiceFrequency4Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency4 = value
+				Me.SendPropertyChanged("ServiceFrequency4")
+				Me.OnServiceFrequency4Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency5", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency5() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency5
+		End Get
+		Set
+			If (Me._ServiceFrequency5.Equals(value) = false) Then
+				Me.OnServiceFrequency5Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency5 = value
+				Me.SendPropertyChanged("ServiceFrequency5")
+				Me.OnServiceFrequency5Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency6", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency6() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency6
+		End Get
+		Set
+			If (Me._ServiceFrequency6.Equals(value) = false) Then
+				Me.OnServiceFrequency6Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency6 = value
+				Me.SendPropertyChanged("ServiceFrequency6")
+				Me.OnServiceFrequency6Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency7", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency7() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency7
+		End Get
+		Set
+			If (Me._ServiceFrequency7.Equals(value) = false) Then
+				Me.OnServiceFrequency7Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency7 = value
+				Me.SendPropertyChanged("ServiceFrequency7")
+				Me.OnServiceFrequency7Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency8", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency8() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency8
+		End Get
+		Set
+			If (Me._ServiceFrequency8.Equals(value) = false) Then
+				Me.OnServiceFrequency8Changing(value)
+				Me.SendPropertyChanging
+				Me._ServiceFrequency8 = value
+				Me.SendPropertyChanged("ServiceFrequency8")
+				Me.OnServiceFrequency8Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceSortOrderCode", DbType:="NVarChar(12)")>  _
+	Public Property ServiceSortOrderCode() As String
+		Get
+			Return Me._ServiceSortOrderCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceSortOrderCode, value) = false) Then
+				Me.OnServiceSortOrderCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceSortOrderCode = value
+				Me.SendPropertyChanged("ServiceSortOrderCode")
+				Me.OnServiceSortOrderCodeChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -20693,6 +21187,8 @@ Partial Public Class usp_GetSitesResult
 	
 	Private _InvoicingFrequencySortOrder As System.Nullable(Of Long)
 	
+	Private _cmbRateIncreaseSortOrder As System.Nullable(Of Long)
+	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -21381,6 +21877,18 @@ Partial Public Class usp_GetSitesResult
 		Set
 			If (Me._InvoicingFrequencySortOrder.Equals(value) = false) Then
 				Me._InvoicingFrequencySortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncreaseSortOrder", DbType:="BigInt")>  _
+	Public Property cmbRateIncreaseSortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._cmbRateIncreaseSortOrder
+		End Get
+		Set
+			If (Me._cmbRateIncreaseSortOrder.Equals(value) = false) Then
+				Me._cmbRateIncreaseSortOrder = value
 			End If
 		End Set
 	End Property

@@ -113,6 +113,7 @@
     <Compile Include="Classes\DataObjects\Cannon\tblCustomerAgent.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblCustomerRating.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblCustomers.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblCustomerServices.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblDrivers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblIndustryGroups.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblInvoicingFrequency.vb" />

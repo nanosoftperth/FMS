@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class SiteDetailsMain
 
     '''<summary>
+    '''hdnStoreCid control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdnStoreCid As Global.DevExpress.Web.ASPxTextBox
+
+    '''<summary>
     '''SiteDetailsGridView control.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
+
+    '''<summary>
+    '''odsRateIncrease control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsRateIncrease As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
     '''odsInvoiceMonth control.
