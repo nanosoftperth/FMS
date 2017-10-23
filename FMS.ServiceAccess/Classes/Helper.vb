@@ -5,6 +5,12 @@ Imports FMS.ServiceAccess.WebServices
 
 Public Class Helper
 
+    ''' <summary>
+    ''' TODO: need to make this method smaller, getting far too big.
+    ''' </summary>
+    ''' <param name="vnr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Shared Function GetVehicleData(vnr As VINNumberRequest) As VINNumberResponse
 
         'create the return object, with the correct VIN number, startdate and enddate
@@ -103,7 +109,44 @@ Public Class Helper
                 dailyReading.Enginehours = (engineHoursOn + .EngineHoursOn).TotalHours
             End With
 
+
+            '============================================================================================
+            '|    this is a hard-coded fix for the Emaxi's. There was no time to make this genericised. |
+            '|    the data needs to come from the CANbus value from the emaxi                           |
+            '|    uses the same logic as the vehicle controllers method "GetCanMessageMessage"          |
+            '============================================================================================
+
+            If foundVehicle.DeviceID.ToLower.Contains("emaxi") Then
+
+                Try
+
+                    'below should be constants, or part of the vehicles definitino in SQL 
+                    Dim standard As String = "Zagro500"
+                    Dim spn As Integer = 13
+
+                    Dim dt As Date = loopEndDate
+                    Dim deviceid As String = foundVehicle.DeviceID
+
+                    Dim canVal As Business.DataObjects.CanValue = _
+                            Business.DataObjects.CanDataPoint.GetCANMessageForTime(deviceid, standard, spn, dt)
+
+
+                    Dim engineHrs As String = canVal.ValueStr.Split(":")(0)
+                    Dim engineMins As String = canVal.ValueStr.Split(":")(1)
+                    Dim engineMinsAsDecimal As Integer = (CDec(engineMins) / 60) * 100
+
+                    dailyReading.Enginehours = CDec(String.Format("{0}.{1}", engineHrs, engineMinsAsDecimal))
+
+                Catch ex As Exception
+
+                    retobj.ErrorMessage = String.Format("EXCEPTION CAUSED{0}{1}", vbNewLine, ex.Message)
+                    retobj.WasError = True
+                End Try
+
+            End If
+
             retobj.DailyReadings.Add(dailyReading)
+
         Next
 
         Return retobj
