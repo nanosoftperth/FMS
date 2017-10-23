@@ -8,17 +8,19 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    This is the nanosoft FMS Service Access page. 
+        <div>
+            This is the nanosoft FMS Service Access page. 
 
       <br />
 
-        Please contact Dave Gardner for instructions on how to use 
+            Please contact Dave Gardner for instructions on how to use 
         <br />
 
-        dave@nanosoft.com.au<br /> +61467280912
+            dave@nanosoft.com.au
+            <br />
+            +61467280912
 
-    </div>
+        </div>
     </form>
 </body>
 </html>
