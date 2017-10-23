@@ -21,6 +21,7 @@
         Public Property ServiceFrequency7 As System.Nullable(Of Short)
         Public Property ServiceFrequency8 As System.Nullable(Of Short)
         Public Property ServiceSortOrderCode As String
+        Public Property ServicesSortOrder As System.Nullable(Of Integer)
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(CustomerService As DataObjects.tblCustomerServices)
@@ -89,11 +90,27 @@
             Return objZones
         End Function
         Public Shared Function GetAllByCid(cid As Integer) As List(Of DataObjects.tblCustomerServices)
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
+            Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
                             Where c.CId.Equals(cid)
                             Order By c.CSid
                                           Select New DataObjects.tblCustomerServices(c)).ToList
-            Return objZones
+            Return objCustomerServices
+        End Function
+        Public Shared Function GetAllByCidWithSortOrders(cid As Integer) As List(Of DataObjects.tblCustomerServices)
+            Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerServices
+                            Where c.CId.Equals(cid)
+                            Order By c.CSid
+                                          Select New DataObjects.tblCustomerServices() With {.CustomerServiceID = c.CustomerServiceID, .ID = c.ID,
+                                                                                             .CSid = c.CSid, .CId = c.CId, .ServiceFrequencyCode = c.ServiceFrequencyCode,
+                                                                                             .ServiceUnits = c.ServiceUnits, .ServicePrice = c.ServicePrice,
+                                                                                             .PerAnnumCharge = c.PerAnnumCharge, .ServiceRun = c.ServiceRun,
+                                                                                             .ServiceComments = c.ServiceComments, .UnitsHaveMoreThanOneRun = c.UnitsHaveMoreThanOneRun,
+                                                                                             .ServiceFrequency1 = c.ServiceFrequency1, .ServiceFrequency2 = c.ServiceFrequency2,
+                                                                                             .ServiceFrequency3 = c.ServiceFrequency3, .ServiceFrequency4 = c.ServiceFrequency4,
+                                                                                             .ServiceFrequency5 = c.ServiceFrequency5, .ServiceFrequency6 = c.ServiceFrequency6,
+                                                                                             .ServiceFrequency7 = c.ServiceFrequency7, .ServiceFrequency8 = c.ServiceFrequency8,
+                                                                                             .ServiceSortOrderCode = c.ServiceSortOrderCode, .ServicesSortOrder = c.ServicesSortOrder}).ToList
+            Return objCustomerServices
         End Function
 #End Region
 #Region "Constructors"
@@ -122,6 +139,7 @@
                 Me.ServiceFrequency7 = .ServiceFrequency7
                 Me.ServiceFrequency8 = .ServiceFrequency8
                 Me.ServiceSortOrderCode = .ServiceSortOrderCode
+                Me.ServicesSortOrder = 0
             End With
         End Sub
 #End Region

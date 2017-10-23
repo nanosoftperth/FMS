@@ -15,6 +15,9 @@
     }
     function ExecuteLinkCustomer(cid) {
         var httpOrigin = window.location.origin;
+        if (cbCustomer.GetValue() != null) {
+            cid = cbCustomer.GetValue();
+        }
         $("#ifrPopup").width(860);
         $("#ifrPopup").height(800);
         $("#ifrPopup").attr("src",  httpOrigin +"/Applications/Cannon/CustomerDetailsMainPopup.aspx?cid=" + cid);
@@ -26,6 +29,9 @@
     }
     function ExecuteLinkIndustryGroup(aid) {
         var httpOrigin = window.location.origin;
+        if (cbIndustryGroup.GetValue() != null) {
+            aid = cbIndustryGroup.GetValue();
+        }
         $("#ifrPopup").width(460);
         $("#ifrPopup").height(450);
         $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/IndustryGroupPopup.aspx?aid=" + aid);
@@ -37,6 +43,9 @@
     }
     function ExecuteLinkPreviousSupplier(cid) {
         var httpOrigin = window.location.origin;
+        if (cbPreviousSupplier.GetValue() != null) {
+            cid = cbPreviousSupplier.GetValue();
+        }
         $("#ifrPopup").width(460);
         $("#ifrPopup").height(450);
         $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + cid);
@@ -48,6 +57,11 @@
     }
     function ExecuteLinkCeaseReasons(aid) {
         var httpOrigin = window.location.origin;
+
+        if (cbSiteCeaseReason.GetValue() != null) {
+            aid = cbSiteCeaseReason.GetValue();
+        }
+
         $("#ifrPopup").width(600);
         $("#ifrPopup").height(460);
         $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/ContractCeaseReasonsPopup.aspx?aid=" + aid);
@@ -59,6 +73,9 @@
     }
     function ExecuteLinkLostBusinessTo(aid) {
         var httpOrigin = window.location.origin;
+        if (cbLostBusinessTo.GetValue() != null) {
+            aid = cbLostBusinessTo.GetValue();
+        }
         $("#ifrPopup").width(600);
         $("#ifrPopup").height(460);
         $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + aid);
@@ -187,7 +204,7 @@
                                                     <div class="row row-md-margin-top">
                                                         <dx:ASPxTextBox ID="txtSuburb" runat="server" Width="111px" MaxLength="22" Text='<%# Eval("Suburb") %>'></dx:ASPxTextBox>&nbsp;
                                                         <dx:ASPxLabel ID="lblState" runat="server" Text="State:"></dx:ASPxLabel>&nbsp;
-                                                        <dx:ASPxComboBox ID="cbState" DataSourceID="odsStates" runat="server" Width="112px" SelectedIndex='<%# Eval("StateSortOrder") - 1 %>'  Height="20px" TextField="StateDesc" ValueField="Sid"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <dx:ASPxComboBox ID="cbState" DataSourceID="odsStates" runat="server" Width="112px" SelectedIndex='<%# Eval("StateSortOrder") - 1 %>'  Height="20px" TextField="StateDesc" ValueField="StateCode"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <dx:ASPxLabel ID="lblPCode" runat="server" Text="P/Code:"></dx:ASPxLabel>&nbsp;
                                                         <dx:ASPxTextBox ID="txtPCode" runat="server" Width="50px" MaxLength="22" Text='<%# Eval("PostCode") %>'></dx:ASPxTextBox>&nbsp;
                                                         <dx:ASPxLabel ID="lblZone" runat="server" Text="Zone:"></dx:ASPxLabel>&nbsp;
@@ -203,7 +220,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <%--<dx:ASPxTextBox ID="txtCustomer" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("Customer")%>'></dx:ASPxTextBox>--%>
-                                                <dx:ASPxComboBox ID="cbCustomer" DataSourceID="odsCustomers" runat="server" Width="260px" Height="20px" 
+                                                <dx:ASPxComboBox ID="cbCustomer" ClientInstanceName="cbCustomer" DataSourceID="odsCustomers" runat="server" Width="260px" Height="20px" 
                                                      CallbackPageSize="30" SelectedIndex='<%# Eval("CustomerSortOrder") - 1%>'  TextField="CustomerName" ValueField="Cid">
                                                     <Columns>                                   
                                                         <dx:ListBoxColumn FieldName="CustomerName" Width="130px" />
@@ -227,7 +244,7 @@
                                                 <dx:ASPxLabel ID="lblIndustryGroup" runat="server" Text="Industry Group:" Width="100px"></dx:ASPxLabel>
                                             </div>
                                             <div class="col-md-2">
-                                                <dx:ASPxComboBox ID="cbIndustryGroup" DataSourceID="odsIndustryGroups" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("IndustrySortOrder") - 1%>' TextField="IndustryDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                                <dx:ASPxComboBox ID="cbIndustryGroup" ClientInstanceName="cbIndustryGroup" DataSourceID="odsIndustryGroups" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("IndustrySortOrder") - 1%>' TextField="IndustryDescription" ValueField="Aid"></dx:ASPxComboBox>
                                             </div>
                                             <div class="col-md-1">
                                                 <dx:ASPxButton ID="btnIndustryGroup" ClientInstanceName="btnIndustryGroup" AutoPostBack="false" runat="server" Text="Industry Group">
@@ -291,7 +308,7 @@
                                                 <dx:ASPxLabel ID="lblPreviousSupplier" runat="server" Text="Previous Supplier:" Width="100px"></dx:ASPxLabel>
                                             </div>
                                             <div class="col-md-2">
-                                                <dx:ASPxComboBox ID="cbPreviousSupplier" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("PreviousSupplierSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
+                                                <dx:ASPxComboBox ID="cbPreviousSupplier" ClientInstanceName="cbPreviousSupplier" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("PreviousSupplierSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
                                             </div>
                                             <div class="col-md-1">
                                                 <dx:ASPxButton ID="btnPreviousSupplier" ClientInstanceName="btnPreviousSupplier" AutoPostBack="false" runat="server" Text="View Previous Suppliers">
@@ -359,7 +376,7 @@
                                                 <dx:ASPxLabel ID="lblContractCeaseReason" runat="server" Text="Contract Cease Reason:" Width="100px"></dx:ASPxLabel>
                                             </div>
                                             <div class="col-md-2">
-                                                <dx:ASPxComboBox ID="cbSiteCeaseReason" DataSourceID="odsSiteCeaseReason" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ContractCeaseReasonsSortOrder") - 1%>' TextField="CeaseReasonDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                                <dx:ASPxComboBox ID="cbSiteCeaseReason" ClientInstanceName="cbSiteCeaseReason" DataSourceID="odsSiteCeaseReason" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ContractCeaseReasonsSortOrder") - 1%>' TextField="CeaseReasonDescription" ValueField="Aid"></dx:ASPxComboBox>
                                             </div>
                                             <div class="col-md-1">
                                                 <dx:ASPxButton ID="btnViewCeasedReasons" ClientInstanceName="btnViewCeasedReasons" AutoPostBack="false" runat="server" Text="View Ceased Reasons">
@@ -377,7 +394,7 @@
                                                 <dx:ASPxLabel ID="lblLostBusinessTo" runat="server" Text="Lost Business To:" Width="100px"></dx:ASPxLabel>
                                             </div>
                                             <div class="col-md-2">
-                                                <dx:ASPxComboBox ID="cbLostBusinessTo" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("LostBusinessToSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
+                                                <dx:ASPxComboBox ID="cbLostBusinessTo" ClientInstanceName="cbLostBusinessTo" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("LostBusinessToSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
                                             </div>
                                             <div class="col-md-1">
                                                 <dx:ASPxButton ID="btnLostBusinessTo" ClientInstanceName="btnLostBusinessTo" AutoPostBack="false" runat="server" Text="View Lost Business To">
@@ -524,7 +541,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <dx:ASPxComboBox ID="cbRateIncrease" DataSourceID="odsRateIncrease" runat="server" Width="170px" Height="20px" 
-                                                            CallbackPageSize="30" SelectedIndex='<%# Eval("cmbRateIncreaseSortOrder") - 1%>' TextField="RateIncreaseDescription" ValueField="RateIncreaseID">                                                        
+                                                            CallbackPageSize="30" SelectedIndex='<%# Eval("cmbRateIncreaseSortOrder") - 1%>' TextField="RateIncreaseDescription" ValueField="Aid">                                                        
                                                         </dx:ASPxComboBox>
                                                     </div>
                                                 </div>
@@ -598,22 +615,49 @@
                             <dx:TabPage Name="SiteServices" Text="Site Services">
                                 <ContentCollection>
                                     <dx:ContentControl runat="server">
-                                        <dx:ASPxGridView ID="CustomerServiceGridView" KeyFieldName="CustomerServiceID" 
-                                            DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False" 
-                                            OnRowUpdating="CustomerServiceGridView_RowUpdating" OnRowInserting="CustomerServiceGridView_RowInserting">
-                                            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
-                                            <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
-                                            <Settings ShowPreview="true" />
-                                            <SettingsPager PageSize="10" />
-                                            <Columns>
-                                                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
-                                                <dx:GridViewDataTextColumn FieldName="CustomerServiceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="CSid" VisibleIndex="3"></dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                                            </Columns>
-                                        </dx:ASPxGridView>
-                                        <asp:ObjectDataSource ID="odsCustomerService" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomerServices" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllByCid" TypeName="FMS.Business.DataObjects.tblCustomerServices" UpdateMethod="Update">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxGridView ID="CustomerServiceGridView" KeyFieldName="CustomerServiceID" 
+                                                    DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False"
+                                                    OnRowUpdating="CustomerServiceGridView_RowUpdating" OnRowInserting="CustomerServiceGridView_RowInserting">
+                                                    <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                                                    <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                                    <Settings ShowPreview="true" />
+                                                    <SettingsPager PageSize="10" />
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CustomerServiceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <%--<dx:GridViewDataTextColumn FieldName="CSid" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="4"></dx:GridViewDataTextColumn>--%>
+                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsServices" FieldName="CSid" PropertiesComboBox-TextField="ServiceDescription" PropertiesComboBox-ValueField="sid"></dx:GridViewDataComboBoxColumn>
+                                                    </Columns>
+                                                    <%--<Templates>
+                                                        <EditForm>
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-md-2">
+                                                                        <dx:ASPxComboBox ID="cbServices" ClientInstanceName="cbServices" DataSourceID="odsServices" runat="server" Width="170px" Height="20px" 
+                                                                            CallbackPageSize="30" SelectedIndex='<%# Eval("ServicesSortOrder") - 1%>' TextField="ServiceDescription" ValueField="sid">                                                        
+                                                                        </dx:ASPxComboBox>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div style="text-align: right; padding: 2px">
+                                                                <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
+                                                                    runat="server">
+                                                                </dx:ASPxGridViewTemplateReplacement>
+                                                                <dx:ASPxGridViewTemplateReplacement ID="CancelButton" ReplacementType="EditFormCancelButton"
+                                                                    runat="server">
+                                                                </dx:ASPxGridViewTemplateReplacement>
+                                                            </div>
+                                                        </EditForm>
+                                                    </Templates>--%>
+                                                </dx:ASPxGridView>
+                                            </div>
+                                        </div>
+                                        
+                                        <asp:ObjectDataSource ID="odsCustomerService" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomerServices" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllByCidWithSortOrders" TypeName="FMS.Business.DataObjects.tblCustomerServices" UpdateMethod="Update">
                                             <SelectParameters>
                                                 <asp:ControlParameter ControlID="hdnSiteCid" PropertyName="Text" Name="cid" Type="Int32"></asp:ControlParameter>
                                             </SelectParameters>
@@ -658,6 +702,7 @@
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
+    <asp:ObjectDataSource ID="odsServices" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblServices"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsRateIncrease" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsInvoiceMonth" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblMonths"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsInvoiceFrequency" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblInvoicingFrequency"></asp:ObjectDataSource>
@@ -669,6 +714,6 @@
     <asp:ObjectDataSource ID="odsCustomers" runat="server" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblCustomers"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" ></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsStates" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblStates"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsSiteDetails" runat="server" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblSites"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsSiteDetails" runat="server" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblSites" DataObjectTypeName="FMS.Business.DataObjects.tblSites" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
     
 </asp:Content>

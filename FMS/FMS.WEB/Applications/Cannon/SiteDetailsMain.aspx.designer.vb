@@ -50,6 +50,15 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
 
     '''<summary>
+    '''odsServices control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsServices As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsRateIncrease control.
     '''</summary>
     '''<remarks>

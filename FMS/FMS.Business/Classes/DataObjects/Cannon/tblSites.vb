@@ -118,7 +118,7 @@
         End Sub
         Public Shared Sub Update(Site As DataObjects.tblSites)
             Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                           Where c.SiteID.Equals(Site.SiteID)).SingleOrDefault
+                                                           Where c.Cid.Equals(Site.Cid)).SingleOrDefault
             With objSite
                 .SiteName = Site.SiteName
                 .Customer = Site.Customer
@@ -170,7 +170,7 @@
         End Sub
         Public Shared Sub Delete(Site As DataObjects.tblSites)
             Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                         Where c.SiteID.Equals(Site.SiteID)).SingleOrDefault
+                                                         Where c.Cid.Equals(Site.Cid)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblSites.DeleteOnSubmit(objSite)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
