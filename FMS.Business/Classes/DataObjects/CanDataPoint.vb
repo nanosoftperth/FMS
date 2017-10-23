@@ -163,7 +163,43 @@
 
         End Function
 
+        Public Shared Function GetCANMessageForTime(deviceid As String, standard As String, spn As Integer, time As DateTime) As CanValue
 
+            Dim retObj As New CanValue
+
+            'use the message definition to figure out what the PGN is, so we can find the right tag 
+            Dim msgdef = DataObjects.CAN_MessageDefinition.GetForSPN(spn, standard)
+            Dim tagName As String = CanDataPoint.GetTagName(deviceid, standard, msgdef.PGN)
+
+            Try
+
+                Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
+
+
+                Dim piv As PISDK.PIValue = pp.Data.ArcValue(time, PISDK.RetrievalTypeConstants.rtAtOrBefore)
+
+
+
+                retObj.RawValue = piv.Value
+                retObj.Time = piv.TimeStamp.LocalDate.timezoneToClient
+
+                Dim canVals As New CanValueList()
+                canVals.Add(retObj)
+                canVals.CalculateValues(spn, msgdef)
+
+                retObj = canVals.First
+
+
+            Catch ex As Exception
+
+                retObj.Time = Now.timezoneToClient
+                retObj.Value = String.Format("ERROR:{0}", ex.Message)
+
+            End Try
+
+            Return retObj
+
+        End Function
 
         Public Shared Function GetCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanValue
 
@@ -181,8 +217,6 @@
 
                     retObj.RawValue = .Value
                     retObj.Time = .TimeStamp.LocalDate.timezoneToClient
-
-
 
                     Dim canVals As New CanValueList()
                     canVals.Add(retObj)
@@ -679,7 +713,7 @@
                     '----- end test
 
                     Dim byte3 As Object = GetACFaultCodes(cv, msg_def)
-                   
+
                     cv.Value = byte3
                 Catch ex As Exception
                     cv.Value = ""
@@ -1334,7 +1368,7 @@
                         New KeyValuePair(Of String, String)("KS CLOSED", "E,KS CLOSED")
                         }
 
-                
+
 
                 '---- End of Original
 
