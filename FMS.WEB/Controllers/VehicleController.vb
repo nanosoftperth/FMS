@@ -123,6 +123,17 @@ Namespace Controllers
         End Function
 
 
+        'Public Shared Function GetCANMessageSnapshotValue(deviceid As String, standard As String, spn As Integer) As CanValue
+        <HttpGet>
+        Public Function GetCanMessageMessage(deviceid As String, standard As String, spn As Integer, time As String) As CanValue
+
+            Dim dt As DateTime = DateTime.Parse(time)
+
+            Return Business.DataObjects.CanDataPoint.GetCANMessageForTime(deviceid, standard, spn, dt)
+
+        End Function
+
+
         'Public Function GetDashboardData(DashDeviceID As String) As List(Of CanValueMessageDefinition)
 
         '    Return FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(DashDeviceID).GetAvailableCANTagsValue()
