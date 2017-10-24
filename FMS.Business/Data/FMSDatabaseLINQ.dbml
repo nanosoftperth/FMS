@@ -1052,6 +1052,33 @@
       <Column Name="CostOfService" Type="System.Single" DbType="Real" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblServiceFrequency" Member="tblServiceFrequencies">
+    <Type Name="tblServiceFrequency">
+      <Column Name="FrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FrequencyDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Periodical" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRuns" Member="tblRuns">
+    <Type Name="tblRun">
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(33)" CanBeNull="true" />
+      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
@@ -1364,6 +1391,16 @@
       <Column Name="ServiceFrequency8" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="ServiceSortOrderCode" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
       <Column Name="ServicesSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequencySortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceRunSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency1SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency2SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency3SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency4SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency5SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency6SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency7SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency8SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

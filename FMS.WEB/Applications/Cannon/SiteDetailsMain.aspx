@@ -618,7 +618,7 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <dx:ASPxGridView ID="CustomerServiceGridView" KeyFieldName="CustomerServiceID" 
-                                                    DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False"
+                                                    DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False" Width="700px"
                                                     OnRowUpdating="CustomerServiceGridView_RowUpdating" OnRowInserting="CustomerServiceGridView_RowInserting">
                                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -631,19 +631,138 @@
                                                         <%--<dx:GridViewDataTextColumn FieldName="CSid" VisibleIndex="3"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="4"></dx:GridViewDataTextColumn>--%>
                                                         <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsServices" FieldName="CSid" PropertiesComboBox-TextField="ServiceDescription" PropertiesComboBox-ValueField="sid"></dx:GridViewDataComboBoxColumn>
+                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsFrequency" FieldName="ServiceFrequencyCode" PropertiesComboBox-TextField="FrequencyDescription" PropertiesComboBox-ValueField="Fid"></dx:GridViewDataComboBoxColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="4"></dx:GridViewDataTextColumn>
                                                     </Columns>
-                                                    <%--<Templates>
+                                                    <Templates>
                                                         <EditForm>
-                                                            <div class="container">
+                                                            <div style="width:790px;height:200px">
                                                                 <div class="row">
                                                                     <div class="col-md-2">
-                                                                        <dx:ASPxComboBox ID="cbServices" ClientInstanceName="cbServices" DataSourceID="odsServices" runat="server" Width="170px" Height="20px" 
-                                                                            CallbackPageSize="30" SelectedIndex='<%# Eval("ServicesSortOrder") - 1%>' TextField="ServiceDescription" ValueField="sid">                                                        
-                                                                        </dx:ASPxComboBox>
+                                                                        <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="Service" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div style="width:5px;"></div>
+                                                                    <div class="col-md-1">
+                                                                        <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Frequency" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div style="width:5px;"></div>
+                                                                    <div class="col-md-1">
+                                                                        <dx:ASPxLabel ID="ASPxLabel5" runat="server" Text="Service Units" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div style="width:5px;"></div>
+                                                                    <div class="col-md-1">
+                                                                        <dx:ASPxLabel ID="ASPxLabel6" runat="server" Text="Unit Price PA" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div style="width:5px;"></div>
+                                                                    <div class="col-md-1">
+                                                                        <dx:ASPxLabel ID="ASPxLabel7" runat="server" Text="Amount Per Annum" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div style="width:5px;"></div>
+                                                                    <div class="col-md-2">
+                                                                        <dx:ASPxLabel ID="ASPxLabel8" runat="server" Text="Run / Driver" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                     </div>
                                                                 </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <div class="row">
+                                                                            <div class="col-md-2">
+                                                                                <dx:ASPxComboBox ID="cbServices" ClientInstanceName="cbServices" DataSourceID="odsServices" runat="server" Width="140px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServicesSortOrder") - 1%>' TextField="ServiceDescription" ValueField="sid">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="width:5px;"></div>
+                                                                            <div class="col-md-1">
+                                                                                <dx:ASPxComboBox ID="cbFrequency" ClientInstanceName="cbFrequency" DataSourceID="odsFrequency" runat="server" Width="100px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequencySortOrder") - 1%>' TextField="FrequencyDescription" ValueField="Fid">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="width:10px;"></div>
+                                                                            <div class="col-md-1">
+                                                                                <dx:ASPxTextBox ID="txtServiceUnits" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("ServiceUnits")%>'></dx:ASPxTextBox>
+                                                                            </div>
+                                                                            <div style="width:10px;"></div>
+                                                                            <div class="col-md-1">
+                                                                                <dx:ASPxTextBox ID="txtServicePrice" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("ServicePrice")%>'></dx:ASPxTextBox>
+                                                                            </div>
+                                                                            <div style="width:15px;"></div>
+                                                                            <div class="col-md-1">
+                                                                                <dx:ASPxTextBox ID="txtPerAnnumCharge" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("PerAnnumCharge")%>'></dx:ASPxTextBox>
+                                                                            </div>
+                                                                            <div style="width:15px;"></div>
+                                                                            <div class="col-md-2">
+                                                                                <dx:ASPxComboBox ID="cbServiceRun" ClientInstanceName="cbServiceRun" DataSourceID="odsServiceRun" runat="server" Width="100px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceRunSortOrder") - 1%>' TextField="RunDescription" ValueField="Rid">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <dx:ASPxLabel ID="lblMonthsForPeriodicRuns" runat="server" Text="Months&nbsp;for&nbsp;periodic&nbsp;runs" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <dx:ASPxCheckBox ID="chkUnitsHaveMoreThanOneRun" runat="server" Checked='<%# Eval("UnitsHaveMoreThanOneRun")%>'></dx:ASPxCheckBox>
+                                                                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Units&nbsp;Have&nbsp;More&nbsp;Than&nbsp;One&nbsp;&Run" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                            </div>
+                                                                            <div class="col-md-1">
+                                                                                <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Sort&nbsp;Code" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div style="padding-left:12px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency1" ClientInstanceName="cbServiceFrequency1" DataSourceID="odsInvoiceMonth" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency1SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency2" ClientInstanceName="cbServiceFrequency2" DataSourceID="odsServiceFrequency" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency2SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency3" ClientInstanceName="cbServiceFrequency3" DataSourceID="odsServiceFrequency" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency3SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency4" ClientInstanceName="cbServiceFrequency4" DataSourceID="odsServiceFrequency" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency4SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency5" ClientInstanceName="cbServiceFrequency5" DataSourceID="odsServiceFrequency" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency5SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency6" ClientInstanceName="cbServiceFrequency6" DataSourceID="odsServiceFrequency" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency6SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency7" ClientInstanceName="cbServiceFrequency7" DataSourceID="odsServiceFrequency" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency7SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxComboBox ID="cbServiceFrequency8" ClientInstanceName="cbServiceFrequency8" DataSourceID="odsServiceFrequency" runat="server" Width="70px" Height="20px" 
+                                                                                    CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequency8SortOrder") - 1%>' TextField="MonthDescription" ValueField="MonthNo">                                                        
+                                                                                </dx:ASPxComboBox>
+                                                                            </div>
+                                                                            <div style="padding-left:1px">
+                                                                                <dx:ASPxTextBox ID="txtSortCode" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("ServiceSortOrderCode")%>'></dx:ASPxTextBox>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                     <div style="position:absolute;z-index:1;left:700px;top:155px">
+                                                                         <dx:ASPxLabel ID="ASPxLabel9" runat="server" Text="Comments" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                     </div>
+                                                                    <div style="position:absolute;z-index:1;left:700px;">
+                                                                        
+                                                                        <asp:TextBox ID="txtServiceComments" runat="server"  Width="120px" Height="100px" MaxLength="50" Text='<%# Eval("ServiceComments")%>' TextMode="MultiLine"></asp:TextBox>
+                                                                    </div>     
+                                                                </div>
                                                             </div>
-                                                            <div style="text-align: right; padding: 2px">
+                                                            <div style="text-align: right; padding-right:10px">
                                                                 <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
                                                                     runat="server">
                                                                 </dx:ASPxGridViewTemplateReplacement>
@@ -652,7 +771,7 @@
                                                                 </dx:ASPxGridViewTemplateReplacement>
                                                             </div>
                                                         </EditForm>
-                                                    </Templates>--%>
+                                                    </Templates>
                                                 </dx:ASPxGridView>
                                             </div>
                                         </div>
@@ -702,6 +821,9 @@
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
+    <asp:ObjectDataSource ID="odsServiceFrequency" runat="server" SelectMethod="GetAllByMonthDescription" TypeName="FMS.Business.DataObjects.tblMonths"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsServiceRun" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsFrequency" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblServiceFrequency"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsServices" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblServices"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsRateIncrease" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsInvoiceMonth" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblMonths"></asp:ObjectDataSource>

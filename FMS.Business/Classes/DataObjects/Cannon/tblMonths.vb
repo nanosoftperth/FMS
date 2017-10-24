@@ -12,6 +12,12 @@
                             Select New DataObjects.tblMonths(c)).ToList
             Return objMonth
         End Function
+        Public Shared Function GetAllByMonthDescription() As List(Of DataObjects.tblMonths)
+            Dim objMonth = (From c In SingletonAccess.FMSDataContextContignous.tblMonths
+                            Order By c.MonthDescription
+                            Select New DataObjects.tblMonths(c)).ToList
+            Return objMonth
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()
