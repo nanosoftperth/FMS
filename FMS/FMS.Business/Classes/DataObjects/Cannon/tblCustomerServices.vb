@@ -6,20 +6,30 @@
         Public Property CSid As System.Nullable(Of Integer)
         Public Property CId As System.Nullable(Of Integer)
         Public Property ServiceFrequencyCode As System.Nullable(Of Short)
+        Public Property ServiceFrequencySortOrder As System.Nullable(Of Integer)
         Public Property ServiceUnits As System.Nullable(Of Single)
         Public Property ServicePrice As System.Nullable(Of Single)
         Public Property PerAnnumCharge As System.Nullable(Of Single)
         Public Property ServiceRun As System.Nullable(Of Short)
+        Public Property ServiceRunSortOrder As System.Nullable(Of Integer)
         Public Property ServiceComments As String
         Public Property UnitsHaveMoreThanOneRun As Boolean
         Public Property ServiceFrequency1 As System.Nullable(Of Short)
+        Public Property ServiceFrequency1SortOrder As System.Nullable(Of Integer)
         Public Property ServiceFrequency2 As System.Nullable(Of Short)
+        Public Property ServiceFrequency2SortOrder As System.Nullable(Of Integer)
         Public Property ServiceFrequency3 As System.Nullable(Of Short)
+        Public Property ServiceFrequency3SortOrder As System.Nullable(Of Integer)
         Public Property ServiceFrequency4 As System.Nullable(Of Short)
+        Public Property ServiceFrequency4SortOrder As System.Nullable(Of Integer)
         Public Property ServiceFrequency5 As System.Nullable(Of Short)
+        Public Property ServiceFrequency5SortOrder As System.Nullable(Of Integer)
         Public Property ServiceFrequency6 As System.Nullable(Of Short)
+        Public Property ServiceFrequency6SortOrder As System.Nullable(Of Integer)
         Public Property ServiceFrequency7 As System.Nullable(Of Short)
+        Public Property ServiceFrequency7SortOrder As System.Nullable(Of Integer)
         Public Property ServiceFrequency8 As System.Nullable(Of Short)
+        Public Property ServiceFrequency8SortOrder As System.Nullable(Of Integer)
         Public Property ServiceSortOrderCode As String
         Public Property ServicesSortOrder As System.Nullable(Of Integer)
 #End Region
@@ -109,7 +119,12 @@
                                                                                              .ServiceFrequency3 = c.ServiceFrequency3, .ServiceFrequency4 = c.ServiceFrequency4,
                                                                                              .ServiceFrequency5 = c.ServiceFrequency5, .ServiceFrequency6 = c.ServiceFrequency6,
                                                                                              .ServiceFrequency7 = c.ServiceFrequency7, .ServiceFrequency8 = c.ServiceFrequency8,
-                                                                                             .ServiceSortOrderCode = c.ServiceSortOrderCode, .ServicesSortOrder = c.ServicesSortOrder}).ToList
+                                                                                             .ServiceSortOrderCode = c.ServiceSortOrderCode, .ServicesSortOrder = c.ServicesSortOrder,
+                                                                                             .ServiceFrequencySortOrder = c.ServiceFrequencySortOrder, .ServiceRunSortOrder = c.ServiceRunSortOrder,
+                                                                                             .ServiceFrequency1SortOrder = c.ServiceFrequency1SortOrder, .ServiceFrequency2SortOrder = c.ServiceFrequency2SortOrder,
+                                                                                             .ServiceFrequency3SortOrder = c.ServiceFrequency3SortOrder, .ServiceFrequency4SortOrder = c.ServiceFrequency4SortOrder,
+                                                                                             .ServiceFrequency5SortOrder = c.ServiceFrequency5SortOrder, .ServiceFrequency6SortOrder = c.ServiceFrequency6SortOrder,
+                                                                                             .ServiceFrequency7SortOrder = c.ServiceFrequency7SortOrder, .ServiceFrequency8SortOrder = c.ServiceFrequency8SortOrder}).ToList
             Return objCustomerServices
         End Function
 #End Region
@@ -124,20 +139,30 @@
                 Me.CSid = .CSid
                 Me.CId = .CId
                 Me.ServiceFrequencyCode = .ServiceFrequencyCode
+                Me.ServiceFrequencySortOrder = 0
                 Me.ServiceUnits = .ServiceUnits
                 Me.ServicePrice = .ServicePrice
                 Me.PerAnnumCharge = .PerAnnumCharge
                 Me.ServiceRun = .ServiceRun
+                Me.ServiceRunSortOrder = 0
                 Me.ServiceComments = .ServiceComments
                 Me.UnitsHaveMoreThanOneRun = .UnitsHaveMoreThanOneRun
                 Me.ServiceFrequency1 = .ServiceFrequency1
+                Me.ServiceFrequency1SortOrder = 0
                 Me.ServiceFrequency2 = .ServiceFrequency2
+                Me.ServiceFrequency2SortOrder = 0
                 Me.ServiceFrequency3 = .ServiceFrequency3
+                Me.ServiceFrequency3SortOrder = 0
                 Me.ServiceFrequency4 = .ServiceFrequency4
+                Me.ServiceFrequency4SortOrder = 0
                 Me.ServiceFrequency5 = .ServiceFrequency5
+                Me.ServiceFrequency5SortOrder = 0
                 Me.ServiceFrequency6 = .ServiceFrequency6
+                Me.ServiceFrequency6SortOrder = 0
                 Me.ServiceFrequency7 = .ServiceFrequency7
+                Me.ServiceFrequency7SortOrder = 0
                 Me.ServiceFrequency8 = .ServiceFrequency8
+                Me.ServiceFrequency8SortOrder = 0
                 Me.ServiceSortOrderCode = .ServiceSortOrderCode
                 Me.ServicesSortOrder = 0
             End With

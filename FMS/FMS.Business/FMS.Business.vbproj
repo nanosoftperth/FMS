@@ -120,7 +120,9 @@
     <Compile Include="Classes\DataObjects\Cannon\tblMonths.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblRateIncreaseReference.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblRuns.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblSalesPersons.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblServiceFrequency.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblServices.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblSiteReSignDetails.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblSites.vb" />

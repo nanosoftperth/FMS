@@ -487,6 +487,18 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblService(instance As tblService)
     End Sub
+  Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
+    End Sub
+  Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
+    End Sub
+  Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
+    End Sub
+  Partial Private Sub InserttblRun(instance As tblRun)
+    End Sub
+  Partial Private Sub UpdatetblRun(instance As tblRun)
+    End Sub
+  Partial Private Sub DeletetblRun(instance As tblRun)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1015,6 +1027,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblServices() As System.Data.Linq.Table(Of tblService)
 		Get
 			Return Me.GetTable(Of tblService)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
+		Get
+			Return Me.GetTable(Of tblServiceFrequency)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRuns() As System.Data.Linq.Table(Of tblRun)
+		Get
+			Return Me.GetTable(Of tblRun)
 		End Get
 	End Property
 	
@@ -19548,6 +19572,515 @@ Partial Public Class tblService
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServiceFrequency")>  _
+Partial Public Class tblServiceFrequency
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _FrequencyID As System.Guid
+	
+	Private _Fid As Integer
+	
+	Private _FrequencyDescription As String
+	
+	Private _Factor As System.Nullable(Of Single)
+	
+	Private _Periodical As Boolean
+	
+	Private _Notes As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnFrequencyIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFrequencyIDChanged()
+    End Sub
+    Partial Private Sub OnFidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnFidChanged()
+    End Sub
+    Partial Private Sub OnFrequencyDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnFrequencyDescriptionChanged()
+    End Sub
+    Partial Private Sub OnFactorChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnFactorChanged()
+    End Sub
+    Partial Private Sub OnPeriodicalChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnPeriodicalChanged()
+    End Sub
+    Partial Private Sub OnNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnNotesChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property FrequencyID() As System.Guid
+		Get
+			Return Me._FrequencyID
+		End Get
+		Set
+			If ((Me._FrequencyID = value)  _
+						= false) Then
+				Me.OnFrequencyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FrequencyID = value
+				Me.SendPropertyChanged("FrequencyID")
+				Me.OnFrequencyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property Fid() As Integer
+		Get
+			Return Me._Fid
+		End Get
+		Set
+			If ((Me._Fid = value)  _
+						= false) Then
+				Me.OnFidChanging(value)
+				Me.SendPropertyChanging
+				Me._Fid = value
+				Me.SendPropertyChanged("Fid")
+				Me.OnFidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyDescription", DbType:="NVarChar(50)")>  _
+	Public Property FrequencyDescription() As String
+		Get
+			Return Me._FrequencyDescription
+		End Get
+		Set
+			If (String.Equals(Me._FrequencyDescription, value) = false) Then
+				Me.OnFrequencyDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._FrequencyDescription = value
+				Me.SendPropertyChanged("FrequencyDescription")
+				Me.OnFrequencyDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Factor", DbType:="Real")>  _
+	Public Property Factor() As System.Nullable(Of Single)
+		Get
+			Return Me._Factor
+		End Get
+		Set
+			If (Me._Factor.Equals(value) = false) Then
+				Me.OnFactorChanging(value)
+				Me.SendPropertyChanging
+				Me._Factor = value
+				Me.SendPropertyChanged("Factor")
+				Me.OnFactorChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Periodical", DbType:="Bit NOT NULL")>  _
+	Public Property Periodical() As Boolean
+		Get
+			Return Me._Periodical
+		End Get
+		Set
+			If ((Me._Periodical = value)  _
+						= false) Then
+				Me.OnPeriodicalChanging(value)
+				Me.SendPropertyChanging
+				Me._Periodical = value
+				Me.SendPropertyChanged("Periodical")
+				Me.OnPeriodicalChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="NVarChar(MAX)")>  _
+	Public Property Notes() As String
+		Get
+			Return Me._Notes
+		End Get
+		Set
+			If (String.Equals(Me._Notes, value) = false) Then
+				Me.OnNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._Notes = value
+				Me.SendPropertyChanged("Notes")
+				Me.OnNotesChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRuns")>  _
+Partial Public Class tblRun
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RunID As System.Guid
+	
+	Private _Rid As Integer
+	
+	Private _RunNUmber As System.Nullable(Of Integer)
+	
+	Private _RunDescription As String
+	
+	Private _RunDriver As System.Nullable(Of Short)
+	
+	Private _MondayRun As Boolean
+	
+	Private _TuesdayRun As Boolean
+	
+	Private _WednesdayRun As Boolean
+	
+	Private _ThursdayRun As Boolean
+	
+	Private _FridayRun As Boolean
+	
+	Private _SaturdayRun As Boolean
+	
+	Private _SundayRun As Boolean
+	
+	Private _InactiveRun As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRunIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRunIDChanged()
+    End Sub
+    Partial Private Sub OnRidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnRidChanged()
+    End Sub
+    Partial Private Sub OnRunNUmberChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnRunNUmberChanged()
+    End Sub
+    Partial Private Sub OnRunDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnRunDescriptionChanged()
+    End Sub
+    Partial Private Sub OnRunDriverChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnRunDriverChanged()
+    End Sub
+    Partial Private Sub OnMondayRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnMondayRunChanged()
+    End Sub
+    Partial Private Sub OnTuesdayRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnTuesdayRunChanged()
+    End Sub
+    Partial Private Sub OnWednesdayRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnWednesdayRunChanged()
+    End Sub
+    Partial Private Sub OnThursdayRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnThursdayRunChanged()
+    End Sub
+    Partial Private Sub OnFridayRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnFridayRunChanged()
+    End Sub
+    Partial Private Sub OnSaturdayRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnSaturdayRunChanged()
+    End Sub
+    Partial Private Sub OnSundayRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnSundayRunChanged()
+    End Sub
+    Partial Private Sub OnInactiveRunChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnInactiveRunChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RunID() As System.Guid
+		Get
+			Return Me._RunID
+		End Get
+		Set
+			If ((Me._RunID = value)  _
+						= false) Then
+				Me.OnRunIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RunID = value
+				Me.SendPropertyChanged("RunID")
+				Me.OnRunIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property Rid() As Integer
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If ((Me._Rid = value)  _
+						= false) Then
+				Me.OnRidChanging(value)
+				Me.SendPropertyChanging
+				Me._Rid = value
+				Me.SendPropertyChanged("Rid")
+				Me.OnRidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunNUmber", DbType:="Int")>  _
+	Public Property RunNUmber() As System.Nullable(Of Integer)
+		Get
+			Return Me._RunNUmber
+		End Get
+		Set
+			If (Me._RunNUmber.Equals(value) = false) Then
+				Me.OnRunNUmberChanging(value)
+				Me.SendPropertyChanging
+				Me._RunNUmber = value
+				Me.SendPropertyChanged("RunNUmber")
+				Me.OnRunNUmberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(33)")>  _
+	Public Property RunDescription() As String
+		Get
+			Return Me._RunDescription
+		End Get
+		Set
+			If (String.Equals(Me._RunDescription, value) = false) Then
+				Me.OnRunDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._RunDescription = value
+				Me.SendPropertyChanged("RunDescription")
+				Me.OnRunDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDriver", DbType:="SmallInt")>  _
+	Public Property RunDriver() As System.Nullable(Of Short)
+		Get
+			Return Me._RunDriver
+		End Get
+		Set
+			If (Me._RunDriver.Equals(value) = false) Then
+				Me.OnRunDriverChanging(value)
+				Me.SendPropertyChanging
+				Me._RunDriver = value
+				Me.SendPropertyChanged("RunDriver")
+				Me.OnRunDriverChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MondayRun", DbType:="Bit NOT NULL")>  _
+	Public Property MondayRun() As Boolean
+		Get
+			Return Me._MondayRun
+		End Get
+		Set
+			If ((Me._MondayRun = value)  _
+						= false) Then
+				Me.OnMondayRunChanging(value)
+				Me.SendPropertyChanging
+				Me._MondayRun = value
+				Me.SendPropertyChanged("MondayRun")
+				Me.OnMondayRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TuesdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property TuesdayRun() As Boolean
+		Get
+			Return Me._TuesdayRun
+		End Get
+		Set
+			If ((Me._TuesdayRun = value)  _
+						= false) Then
+				Me.OnTuesdayRunChanging(value)
+				Me.SendPropertyChanging
+				Me._TuesdayRun = value
+				Me.SendPropertyChanged("TuesdayRun")
+				Me.OnTuesdayRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WednesdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property WednesdayRun() As Boolean
+		Get
+			Return Me._WednesdayRun
+		End Get
+		Set
+			If ((Me._WednesdayRun = value)  _
+						= false) Then
+				Me.OnWednesdayRunChanging(value)
+				Me.SendPropertyChanging
+				Me._WednesdayRun = value
+				Me.SendPropertyChanged("WednesdayRun")
+				Me.OnWednesdayRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ThursdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property ThursdayRun() As Boolean
+		Get
+			Return Me._ThursdayRun
+		End Get
+		Set
+			If ((Me._ThursdayRun = value)  _
+						= false) Then
+				Me.OnThursdayRunChanging(value)
+				Me.SendPropertyChanging
+				Me._ThursdayRun = value
+				Me.SendPropertyChanged("ThursdayRun")
+				Me.OnThursdayRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FridayRun", DbType:="Bit NOT NULL")>  _
+	Public Property FridayRun() As Boolean
+		Get
+			Return Me._FridayRun
+		End Get
+		Set
+			If ((Me._FridayRun = value)  _
+						= false) Then
+				Me.OnFridayRunChanging(value)
+				Me.SendPropertyChanging
+				Me._FridayRun = value
+				Me.SendPropertyChanged("FridayRun")
+				Me.OnFridayRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SaturdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property SaturdayRun() As Boolean
+		Get
+			Return Me._SaturdayRun
+		End Get
+		Set
+			If ((Me._SaturdayRun = value)  _
+						= false) Then
+				Me.OnSaturdayRunChanging(value)
+				Me.SendPropertyChanging
+				Me._SaturdayRun = value
+				Me.SendPropertyChanged("SaturdayRun")
+				Me.OnSaturdayRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SundayRun", DbType:="Bit NOT NULL")>  _
+	Public Property SundayRun() As Boolean
+		Get
+			Return Me._SundayRun
+		End Get
+		Set
+			If ((Me._SundayRun = value)  _
+						= false) Then
+				Me.OnSundayRunChanging(value)
+				Me.SendPropertyChanging
+				Me._SundayRun = value
+				Me.SendPropertyChanged("SundayRun")
+				Me.OnSundayRunChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveRun", DbType:="Bit NOT NULL")>  _
+	Public Property InactiveRun() As Boolean
+		Get
+			Return Me._InactiveRun
+		End Get
+		Set
+			If ((Me._InactiveRun = value)  _
+						= false) Then
+				Me.OnInactiveRunChanging(value)
+				Me.SendPropertyChanging
+				Me._InactiveRun = value
+				Me.SendPropertyChanged("InactiveRun")
+				Me.OnInactiveRunChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -22107,6 +22640,26 @@ Partial Public Class usp_GetCustomerServicesResult
 	
 	Private _ServicesSortOrder As System.Nullable(Of Long)
 	
+	Private _ServiceFrequencySortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceRunSortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency1SortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency2SortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency3SortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency4SortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency5SortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency6SortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency7SortOrder As System.Nullable(Of Long)
+	
+	Private _ServiceFrequency8SortOrder As System.Nullable(Of Long)
+	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -22362,6 +22915,126 @@ Partial Public Class usp_GetCustomerServicesResult
 		Set
 			If (Me._ServicesSortOrder.Equals(value) = false) Then
 				Me._ServicesSortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequencySortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequencySortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequencySortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequencySortOrder.Equals(value) = false) Then
+				Me._ServiceFrequencySortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRunSortOrder", DbType:="BigInt")>  _
+	Public Property ServiceRunSortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceRunSortOrder
+		End Get
+		Set
+			If (Me._ServiceRunSortOrder.Equals(value) = false) Then
+				Me._ServiceRunSortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency1SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency1SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency1SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency1SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency1SortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency2SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency2SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency2SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency2SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency2SortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency3SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency3SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency3SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency3SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency3SortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency4SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency4SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency4SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency4SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency4SortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency5SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency5SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency5SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency5SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency5SortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency6SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency6SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency6SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency6SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency6SortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency7SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency7SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency7SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency7SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency7SortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency8SortOrder", DbType:="BigInt")>  _
+	Public Property ServiceFrequency8SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._ServiceFrequency8SortOrder
+		End Get
+		Set
+			If (Me._ServiceFrequency8SortOrder.Equals(value) = false) Then
+				Me._ServiceFrequency8SortOrder = value
 			End If
 		End Set
 	End Property
