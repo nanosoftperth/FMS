@@ -39,6 +39,7 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblServices)
             Dim objServices = (From c In SingletonAccess.FMSDataContextContignous.tblServices
+                               Where Not c.ServiceCode Is Nothing
                             Order By c.ServiceCode
                                           Select New DataObjects.tblServices(c)).ToList
             Return objServices

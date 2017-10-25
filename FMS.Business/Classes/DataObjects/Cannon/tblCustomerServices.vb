@@ -106,6 +106,30 @@
                                           Select New DataObjects.tblCustomerServices(c)).ToList
             Return objCustomerServices
         End Function
+        Public Shared Function GetRecalculatedServices(cid As Integer) As DataObjects.ReCalculatedServices
+            Dim objCustomers = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
+                                Where c.CId.Equals(cid))
+            Dim totalPerAnnum As Double
+            Dim totalServiceUnits As Double
+            For Each cust In objCustomers
+                If Not cust.PerAnnumCharge Is Nothing Then
+                    Dim dblPerAnnum As Double = 0
+                    If Double.TryParse(cust.PerAnnumCharge, dblPerAnnum) Then
+                        totalPerAnnum += dblPerAnnum
+                    End If
+                End If
+                If Not cust.ServiceUnits Is Nothing Then
+                    Dim dblServiceUnits As Double = 0
+                    If Double.TryParse(cust.ServiceUnits, dblServiceUnits) Then
+                        totalServiceUnits += dblServiceUnits
+                    End If
+                End If
+            Next
+            Dim recalculate As New DataObjects.ReCalculatedServices()
+            recalculate.PerAnnumCharge = totalPerAnnum
+            recalculate.ServiceUnits = totalServiceUnits
+            Return recalculate
+        End Function
         Public Shared Function GetAllByCidWithSortOrders(cid As Integer) As List(Of DataObjects.tblCustomerServices)
             Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerServices
                             Where c.CId.Equals(cid)
@@ -168,6 +192,10 @@
             End With
         End Sub
 #End Region
+    End Class
+    Public Class ReCalculatedServices
+        Public Property PerAnnumCharge As Double
+        Public Property ServiceUnits As Double
     End Class
 End Namespace
 
