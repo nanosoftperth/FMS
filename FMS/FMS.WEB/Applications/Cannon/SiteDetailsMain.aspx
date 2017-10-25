@@ -7,6 +7,9 @@
     .container {
         width: 910px;
     }
+    .dxeMemoEditAreaSys{
+        border-width:1px !Important;
+    }
 </style>
 <script>
     function ShowCustomerWindow() {
@@ -111,6 +114,25 @@
                 }
             });
         }
+    }
+    function ReCalculateSiteServices(siteID) {
+        $.ajax({
+            type: "POST",
+            url: 'SiteDetailsMain.aspx/GetRecalculatedServices',
+            dataType: "json",
+            data: JSON.stringify({ siteId: siteID }),
+            contentType: "application/json",
+            crossDomain: true,
+            success: function (data) {
+                if (data.d != null) {
+                    txtTotalUnits.SetText(data.d.ServiceUnits);
+                    txtTotalAmount.SetText(data.d.PerAnnumCharge);
+                }
+            }
+        });
+    }
+    function ViewSiteList(siteID) {
+        alert("to follow...");
     }
     
 </script>
@@ -412,7 +434,7 @@
                                                 <div style="display:none">
                                                     <%--<dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>--%>    
                                                 </div>
-                                                <dx:ASPxGridView ID="ResignHistoryGridView" KeyFieldName="ResignHistoryID" DataSourceID="odsSiteResignDetails" runat="server" 
+                                                <dx:ASPxGridView ID="ResignHistoryGridView" KeyFieldName="ResignHistoryID" DataSourceID="odsSiteResignDetails" runat="server" Theme="SoftOrange"
                                                     AutoGenerateColumns="False" OnRowUpdating="ResignHistoryGridView_RowUpdating" OnRowInserting="ResignHistoryGridView_RowInserting">
                                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -616,9 +638,17 @@
                                 <ContentCollection>
                                     <dx:ContentControl runat="server">
                                         <div class="row">
+                                            <div class="col-md-3">
+                                                <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="General Site Service Comments:" Font-Bold="true" Width="100%"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <dx:ASPxMemo ID="txtGeneralSiteServiceComments" runat="server" class="dxeMemoEditAreaSys" Width="630px" Height="90px" Text='<%# Eval("GeneralSiteServiceComments")%>'></dx:ASPxMemo>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-2">
-                                                <dx:ASPxGridView ID="CustomerServiceGridView" KeyFieldName="CustomerServiceID" 
-                                                    DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False" Width="700px"
+                                                <dx:ASPxGridView ID="CustomerServiceGridView" KeyFieldName="CustomerServiceID" Theme="SoftOrange"
+                                                    DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False" Width="900px" 
                                                     OnRowUpdating="CustomerServiceGridView_RowUpdating" OnRowInserting="CustomerServiceGridView_RowInserting">
                                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -628,24 +658,26 @@
                                                         <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                                         <dx:GridViewDataTextColumn FieldName="CustomerServiceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
-                                                        <%--<dx:GridViewDataTextColumn FieldName="CSid" VisibleIndex="3"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="4"></dx:GridViewDataTextColumn>--%>
-                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsServices" FieldName="CSid" PropertiesComboBox-TextField="ServiceDescription" PropertiesComboBox-ValueField="sid"></dx:GridViewDataComboBoxColumn>
-                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsFrequency" FieldName="ServiceFrequencyCode" PropertiesComboBox-TextField="FrequencyDescription" PropertiesComboBox-ValueField="Fid"></dx:GridViewDataComboBoxColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsServices" FieldName="CSid" PropertiesComboBox-TextField="ServiceDescription" PropertiesComboBox-ValueField="sid" Caption="Services" VisibleIndex="4"></dx:GridViewDataComboBoxColumn>
+                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsFrequency" FieldName="ServiceFrequencyCode" PropertiesComboBox-TextField="FrequencyDescription" PropertiesComboBox-ValueField="Fid" Caption="Frequency" VisibleIndex="5"></dx:GridViewDataComboBoxColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ServiceUnits" VisibleIndex="6" Caption="Service Units" ></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="ServicePrice" VisibleIndex="7" caption="Unit Price PA"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="PerAnnumCharge" VisibleIndex="8" caption="Amount Per Annum"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsServiceRun" FieldName="ServiceRun" PropertiesComboBox-TextField="RunDescription" PropertiesComboBox-ValueField="Rid" Caption="Frequency" VisibleIndex="9"></dx:GridViewDataComboBoxColumn>
                                                     </Columns>
                                                     <Templates>
                                                         <EditForm>
-                                                            <div style="width:790px;height:200px">
+                                                            <div style="width:850px;height:200px">
                                                                 <div class="row">
-                                                                    <div class="col-md-2">
+                                                                    <div class="col-md-1">
                                                                         <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="Service" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                     </div>
-                                                                    <div style="width:5px;"></div>
+                                                                    <div style="width:50px;"></div>
                                                                     <div class="col-md-1">
                                                                         <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Frequency" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                     </div>
-                                                                    <div style="width:5px;"></div>
+                                                                    <%--<div style="width:5px;"></div>--%>
                                                                     <div class="col-md-1">
                                                                         <dx:ASPxLabel ID="ASPxLabel5" runat="server" Text="Service Units" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                     </div>
@@ -665,12 +697,12 @@
                                                                 <div class="row">
                                                                     <div class="col-md-10">
                                                                         <div class="row">
-                                                                            <div class="col-md-2">
+                                                                            <div class="col-md-1">
                                                                                 <dx:ASPxComboBox ID="cbServices" ClientInstanceName="cbServices" DataSourceID="odsServices" runat="server" Width="140px" Height="20px" 
                                                                                     CallbackPageSize="30" SelectedIndex='<%# Eval("ServicesSortOrder") - 1%>' TextField="ServiceDescription" ValueField="sid">                                                        
                                                                                 </dx:ASPxComboBox>
                                                                             </div>
-                                                                            <div style="width:5px;"></div>
+                                                                            <div style="width:50px;"></div>
                                                                             <div class="col-md-1">
                                                                                 <dx:ASPxComboBox ID="cbFrequency" ClientInstanceName="cbFrequency" DataSourceID="odsFrequency" runat="server" Width="100px" Height="20px" 
                                                                                     CallbackPageSize="30" SelectedIndex='<%# Eval("ServiceFrequencySortOrder") - 1%>' TextField="FrequencyDescription" ValueField="Fid">                                                        
@@ -701,7 +733,7 @@
                                                                             </div>
                                                                             <div class="col-md-4">
                                                                                 <dx:ASPxCheckBox ID="chkUnitsHaveMoreThanOneRun" runat="server" Checked='<%# Eval("UnitsHaveMoreThanOneRun")%>'></dx:ASPxCheckBox>
-                                                                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Units&nbsp;Have&nbsp;More&nbsp;Than&nbsp;One&nbsp;&Run" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Units&nbsp;Have&nbsp;More&nbsp;Than&nbsp;One&nbsp;Run" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                             </div>
                                                                             <div class="col-md-1">
                                                                                 <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Sort&nbsp;Code" Font-Bold="true" Width="100px"></dx:ASPxLabel>
@@ -753,12 +785,12 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                     <div style="position:absolute;z-index:1;left:700px;top:155px">
+                                                                     <div style="position:absolute;z-index:1;left:750px;top:155px">
                                                                          <dx:ASPxLabel ID="ASPxLabel9" runat="server" Text="Comments" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                      </div>
                                                                     <div style="position:absolute;z-index:1;left:700px;">
-                                                                        
-                                                                        <asp:TextBox ID="txtServiceComments" runat="server"  Width="120px" Height="100px" MaxLength="50" Text='<%# Eval("ServiceComments")%>' TextMode="MultiLine"></asp:TextBox>
+                                                                        <dx:ASPxMemo ID="txtServiceComments" runat="server" class="dxeMemoEditAreaSys" Width="180px" Height="90px" Text='<%# Eval("ServiceComments")%>'></dx:ASPxMemo>
+                                                                        <%--<asp:TextBox ID="txtServiceComments" runat="server"  Width="180px" Height="90px" MaxLength="50" Text='<%# Eval("ServiceComments")%>' TextMode="MultiLine"></asp:TextBox>--%>
                                                                     </div>     
                                                                 </div>
                                                             </div>
@@ -773,6 +805,36 @@
                                                         </EditForm>
                                                     </Templates>
                                                 </dx:ASPxGridView>
+                                            </div>
+                                        </div>
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxLabel ID="ASPxLabel10" runat="server" Text="Total Units:" Font-Bold="true" Width="100%"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxTextBox ID="txtTotalUnits" ClientInstanceName="txtTotalUnits" Width="70px" runat="server" Text='<%# Eval("TotalUnits")%>'></dx:ASPxTextBox>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxLabel ID="ASPxLabel11" runat="server" Text="Total&nbsp;Amount:" Font-Bold="true" Width="100%"></dx:ASPxLabel>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxTextBox ID="txtTotalAmount" ClientInstanceName="txtTotalAmount" Width="70px" runat="server" Text='<%# Eval("TotalAmount")%>'></dx:ASPxTextBox>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxButton ID="btnReCalculate" ClientInstanceName="btnReCalculate" AutoPostBack="false" runat="server" Text="Re-Calculate">
+                                                    <ClientSideEvents Click="function(s,e) {
+                                                            ReCalculateSiteServices(hdnSiteCid.GetText());
+                                                        }" />
+                                                </dx:ASPxButton>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <dx:ASPxButton ID="btnSiteList" ClientInstanceName="btnSiteList" AutoPostBack="false" runat="server" Text="Site List">
+                                                    <ClientSideEvents Click="function(s,e) {
+                                                            ViewSiteList(hdnSiteCid.GetText());
+                                                        }" />
+                                                </dx:ASPxButton>
                                             </div>
                                         </div>
                                         

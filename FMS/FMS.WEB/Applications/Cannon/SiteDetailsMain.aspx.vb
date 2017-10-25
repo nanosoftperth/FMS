@@ -70,6 +70,9 @@ Public Class SiteDetailsMain
             Dim cbInvoiceMonth2 As ASPxComboBox = TryCast(SiteDetailsPageControl.FindControl("cbInvoiceMonth2"), ASPxComboBox)
             Dim cbInvoiceMonth3 As ASPxComboBox = TryCast(SiteDetailsPageControl.FindControl("cbInvoiceMonth3"), ASPxComboBox)
             Dim cbInvoiceMonth4 As ASPxComboBox = TryCast(SiteDetailsPageControl.FindControl("cbInvoiceMonth4"), ASPxComboBox)
+            Dim txtTotalAmount As ASPxTextBox = TryCast(SiteDetailsPageControl.FindControl("txtTotalAmount"), ASPxTextBox)
+            Dim txtTotalUnits As ASPxTextBox = TryCast(SiteDetailsPageControl.FindControl("txtTotalUnits"), ASPxTextBox)
+            Dim txtGeneralSiteServiceComments As ASPxMemo = TryCast(SiteDetailsPageControl.FindControl("txtGeneralSiteServiceComments"), ASPxMemo)
 
             e.NewValues("SiteName") = txtSiteName.Text
             e.NewValues("AddressLine1") = txtAddressLine1.Text
@@ -185,6 +188,15 @@ Public Class SiteDetailsMain
                 iInvoiceMonth4 = Convert.ToInt16(cbInvoiceMonth4.SelectedItem.Value)
                 e.NewValues("InvoiceMonth4") = iInvoiceMonth4
             End If
+            e.NewValues("GeneralSiteServiceComments") = txtGeneralSiteServiceComments.Text
+            Dim dblTotalAmount As Double = 0
+            If Double.TryParse(txtTotalAmount.Text, dblTotalAmount) Then
+                e.NewValues("TotalAmount") = dblTotalAmount
+            End If
+            Dim dblTotalUnits As Double = 0
+            If Double.TryParse(txtTotalUnits.Text, dblTotalUnits) Then
+                e.NewValues("TotalUnits") = dblTotalUnits
+            End If
         Catch ex As Exception
             Dim err As String
             err = ex.Message.ToString()
@@ -200,20 +212,123 @@ Public Class SiteDetailsMain
         Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
         e.NewValues("SiteCId") = hdnSiteCid.Text
     End Sub
+
+
+    Protected Sub CustomerServiceGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("CId") = hdnSiteCid.Text
+        GetCustomerServiceRowUpdatingRowInserting(e, False)
+    End Sub
+
+    Protected Sub CustomerServiceGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("CId") = hdnSiteCid.Text
+        GetCustomerServiceRowUpdatingRowInserting(e, True)
+    End Sub
+    Protected Sub GetCustomerServiceRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
+        Dim SiteDetailsPageControl As ASPxPageControl = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("SiteDetailsPageControl"), ASPxPageControl)
+        Dim CustomerServiceGrid As ASPxGridView = TryCast(SiteDetailsPageControl.FindControl("CustomerServiceGridView"), ASPxGridView)
+        Dim cbServices As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServices"), ASPxComboBox)
+        Dim cbFrequency As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbFrequency"), ASPxComboBox)
+        Dim txtServiceUnits As ASPxTextBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtServiceUnits"), ASPxTextBox)
+        Dim txtServicePrice As ASPxTextBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtServicePrice"), ASPxTextBox)
+        Dim txtPerAnnumCharge As ASPxTextBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtPerAnnumCharge"), ASPxTextBox)
+        Dim cbServiceRun As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceRun"), ASPxComboBox)
+        Dim chkUnitsHaveMoreThanOneRun As ASPxCheckBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("chkUnitsHaveMoreThanOneRun"), ASPxCheckBox)
+        Dim cbServiceFrequency1 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency1"), ASPxComboBox)
+        Dim cbServiceFrequency2 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency2"), ASPxComboBox)
+        Dim cbServiceFrequency3 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency3"), ASPxComboBox)
+        Dim cbServiceFrequency4 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency4"), ASPxComboBox)
+        Dim cbServiceFrequency5 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency5"), ASPxComboBox)
+        Dim cbServiceFrequency6 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency6"), ASPxComboBox)
+        Dim cbServiceFrequency7 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency7"), ASPxComboBox)
+        Dim cbServiceFrequency8 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency8"), ASPxComboBox)
+        Dim txtSortCode As ASPxTextBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtSortCode"), ASPxTextBox)
+        Dim txtServiceComments As ASPxMemo = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtServiceComments"), ASPxMemo)
+        
+        If Not cbServices.SelectedItem Is Nothing Then
+            Dim iServices As Nullable(Of Integer) = 0
+            iServices = Convert.ToInt16(cbServices.SelectedItem.Value)
+            e.NewValues("CSid") = iServices
+        End If
+        If Not cbFrequency.SelectedItem Is Nothing Then
+            Dim iFrequency As Nullable(Of Short) = 0
+            iFrequency = Convert.ToInt16(cbFrequency.SelectedItem.Value)
+            e.NewValues("ServiceFrequencyCode") = iFrequency
+        End If
+        Dim ServiceUnits As Single = 0
+        If Single.TryParse(txtServiceUnits.Text, ServiceUnits) Then
+            e.NewValues("ServiceUnits") = ServiceUnits
+        End If
+        Dim ServicePrice As Single = 0
+        If Single.TryParse(txtServicePrice.Text, ServicePrice) Then
+            e.NewValues("ServicePrice") = ServicePrice
+        End If
+        Dim PerAnnumCharge As Single = 0
+        If Single.TryParse(txtPerAnnumCharge.Text, PerAnnumCharge) Then
+            e.NewValues("PerAnnumCharge") = PerAnnumCharge
+        End If
+        If Not cbServiceRun.SelectedItem Is Nothing Then
+            Dim iServiceRun As Nullable(Of Short) = 0
+            iServiceRun = Convert.ToInt16(cbServiceRun.SelectedItem.Value)
+            e.NewValues("ServiceRun") = iServiceRun
+        End If
+        e.NewValues("UnitsHaveMoreThanOneRun") = chkUnitsHaveMoreThanOneRun.Checked
+        If Not cbServiceFrequency1.SelectedItem Is Nothing Then
+            Dim iServiceFrequency1 As Nullable(Of Short) = 0
+            iServiceFrequency1 = Convert.ToInt16(cbServiceFrequency1.SelectedItem.Value)
+            e.NewValues("ServiceFrequency1") = iServiceFrequency1
+        End If
+        If Not cbServiceFrequency2.SelectedItem Is Nothing Then
+            Dim iServiceFrequency2 As Nullable(Of Short) = 0
+            iServiceFrequency2 = Convert.ToInt16(cbServiceFrequency2.SelectedItem.Value)
+            e.NewValues("ServiceFrequency2") = iServiceFrequency2
+        End If
+        If Not cbServiceFrequency3.SelectedItem Is Nothing Then
+            Dim iServiceFrequency3 As Nullable(Of Short) = 0
+            iServiceFrequency3 = Convert.ToInt16(cbServiceFrequency3.SelectedItem.Value)
+            e.NewValues("ServiceFrequency3") = iServiceFrequency3
+        End If
+        If Not cbServiceFrequency4.SelectedItem Is Nothing Then
+            Dim iServiceFrequency4 As Nullable(Of Short) = 0
+            iServiceFrequency4 = Convert.ToInt16(cbServiceFrequency4.SelectedItem.Value)
+            e.NewValues("ServiceFrequency4") = iServiceFrequency4
+        End If
+        If Not cbServiceFrequency5.SelectedItem Is Nothing Then
+            Dim iServiceFrequency5 As Nullable(Of Short) = 0
+            iServiceFrequency5 = Convert.ToInt16(cbServiceFrequency5.SelectedItem.Value)
+            e.NewValues("ServiceFrequency5") = iServiceFrequency5
+        End If
+        If Not cbServiceFrequency6.SelectedItem Is Nothing Then
+            Dim iServiceFrequency6 As Nullable(Of Short) = 0
+            iServiceFrequency6 = Convert.ToInt16(cbServiceFrequency6.SelectedItem.Value)
+            e.NewValues("ServiceFrequency6") = iServiceFrequency6
+        End If
+        If Not cbServiceFrequency7.SelectedItem Is Nothing Then
+            Dim iServiceFrequency7 As Nullable(Of Short) = 0
+            iServiceFrequency7 = Convert.ToInt16(cbServiceFrequency7.SelectedItem.Value)
+            e.NewValues("ServiceFrequency7") = iServiceFrequency7
+        End If
+        If Not cbServiceFrequency8.SelectedItem Is Nothing Then
+            Dim iServiceFrequency8 As Nullable(Of Short) = 0
+            iServiceFrequency8 = Convert.ToInt16(cbServiceFrequency8.SelectedItem.Value)
+            e.NewValues("ServiceFrequency8") = iServiceFrequency8
+        End If
+        e.NewValues("ServiceSortOrderCode") = txtSortCode.Text
+        e.NewValues("ServiceComments") = txtServiceComments.Text
+    End Sub
+#Region "WebMethods"
     <System.Web.Services.WebMethod()>
     Public Shared Function GetSiteInvoicingDetails(ByVal Cid As Integer)
         Dim objSites = FMS.Business.DataObjects.tblSites.GetAllBySiteID(Cid)
         objSites.InvoiceCommencingString = objSites.InvoiceCommencing.ToString()
         Return objSites
     End Function
-
-    Protected Sub CustomerServiceGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
-        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
-        e.NewValues("CId") = hdnSiteCid.Text
-    End Sub
-
-    Protected Sub CustomerServiceGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
-        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
-        e.NewValues("CId") = hdnSiteCid.Text
-    End Sub
+    <System.Web.Services.WebMethod()>
+    Public Shared Function GetRecalculatedServices(ByVal siteId As Integer)
+        Dim objSites = FMS.Business.DataObjects.tblCustomerServices.GetRecalculatedServices(siteId)
+        Return objSites
+    End Function
+#End Region
+    
 End Class
