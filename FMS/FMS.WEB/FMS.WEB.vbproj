@@ -317,6 +317,13 @@
       <DependentUpon>CannonFleetManagement.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\CIRReasons.aspx.designer.vb">
+      <DependentUpon>CIRReasons.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\CIRReasons.aspx.vb">
+      <DependentUpon>CIRReasons.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Applications\Cannon\ContractCeaseReasons.aspx.designer.vb">
       <DependentUpon>ContractCeaseReasons.aspx</DependentUpon>
     </Compile>
@@ -971,6 +978,7 @@
     <Content Include="AlarmsAndAlerts.aspx" />
     <Content Include="AlarmsAndEvents.aspx" />
     <Content Include="Applications\Cannon\CannonFleetManagement.aspx" />
+    <Content Include="Applications\Cannon\CIRReasons.aspx" />
     <Content Include="Applications\Cannon\ContractCeaseReasons.aspx" />
     <Content Include="Applications\Cannon\ContractCeaseReasonsPopup.aspx" />
     <Content Include="Applications\Cannon\CustomerAgents.aspx" />
@@ -1427,7 +1435,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18351/</IISUrl>
+          <IISUrl>http://localhost:18352/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

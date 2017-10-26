@@ -499,6 +499,18 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblRun(instance As tblRun)
     End Sub
+  Partial Private Sub InserttblCIRReason(instance As tblCIRReason)
+    End Sub
+  Partial Private Sub UpdatetblCIRReason(instance As tblCIRReason)
+    End Sub
+  Partial Private Sub DeletetblCIRReason(instance As tblCIRReason)
+    End Sub
+  Partial Private Sub InserttblCIRHistory(instance As tblCIRHistory)
+    End Sub
+  Partial Private Sub UpdatetblCIRHistory(instance As tblCIRHistory)
+    End Sub
+  Partial Private Sub DeletetblCIRHistory(instance As tblCIRHistory)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1042,6 +1054,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property tblCIRReasons() As System.Data.Linq.Table(Of tblCIRReason)
+		Get
+			Return Me.GetTable(Of tblCIRReason)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCIRHistories() As System.Data.Linq.Table(Of tblCIRHistory)
+		Get
+			Return Me.GetTable(Of tblCIRHistory)
+		End Get
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")>  _
 	Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
@@ -1167,6 +1191,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetCustomerServices() As ISingleResult(Of usp_GetCustomerServicesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerServicesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCIRHistory")>  _
+	Public Function usp_GetCIRHistory() As ISingleResult(Of usp_GetCIRHistoryResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCIRHistoryResult))
 	End Function
 End Class
 
@@ -2751,7 +2781,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4395,7 +4425,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -4784,7 +4814,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -14937,7 +14967,7 @@ Partial Public Class Cannon_Document
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -20081,6 +20111,374 @@ Partial Public Class tblRun
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCIRReason")>  _
+Partial Public Class tblCIRReason
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ReasonID As System.Guid
+	
+	Private _CId As Integer
+	
+	Private _CIRReason As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnReasonIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnReasonIDChanged()
+    End Sub
+    Partial Private Sub OnCIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCIdChanged()
+    End Sub
+    Partial Private Sub OnCIRReasonChanging(value As String)
+    End Sub
+    Partial Private Sub OnCIRReasonChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ReasonID() As System.Guid
+		Get
+			Return Me._ReasonID
+		End Get
+		Set
+			If ((Me._ReasonID = value)  _
+						= false) Then
+				Me.OnReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ReasonID = value
+				Me.SendPropertyChanged("ReasonID")
+				Me.OnReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CId", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property CId() As Integer
+		Get
+			Return Me._CId
+		End Get
+		Set
+			If ((Me._CId = value)  _
+						= false) Then
+				Me.OnCIdChanging(value)
+				Me.SendPropertyChanging
+				Me._CId = value
+				Me.SendPropertyChanged("CId")
+				Me.OnCIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CIRReason", DbType:="NVarChar(50)")>  _
+	Public Property CIRReason() As String
+		Get
+			Return Me._CIRReason
+		End Get
+		Set
+			If (String.Equals(Me._CIRReason, value) = false) Then
+				Me.OnCIRReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._CIRReason = value
+				Me.SendPropertyChanged("CIRReason")
+				Me.OnCIRReasonChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCIRHistory")>  _
+Partial Public Class tblCIRHistory
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _HistoryID As System.Guid
+	
+	Private _NCId As Integer
+	
+	Private _Cid As System.Nullable(Of Short)
+	
+	Private _NCRDate As System.Nullable(Of Date)
+	
+	Private _NCRNumber As System.Nullable(Of Integer)
+	
+	Private _NCRDescription As String
+	
+	Private _NCRRecordedBY As String
+	
+	Private _NCRClosedBy As String
+	
+	Private _Driver As System.Nullable(Of Short)
+	
+	Private _NCRReason As System.Nullable(Of Short)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnHistoryIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnHistoryIDChanged()
+    End Sub
+    Partial Private Sub OnNCIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnNCIdChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnNCRDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnNCRDateChanged()
+    End Sub
+    Partial Private Sub OnNCRNumberChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnNCRNumberChanged()
+    End Sub
+    Partial Private Sub OnNCRDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnNCRDescriptionChanged()
+    End Sub
+    Partial Private Sub OnNCRRecordedBYChanging(value As String)
+    End Sub
+    Partial Private Sub OnNCRRecordedBYChanged()
+    End Sub
+    Partial Private Sub OnNCRClosedByChanging(value As String)
+    End Sub
+    Partial Private Sub OnNCRClosedByChanged()
+    End Sub
+    Partial Private Sub OnDriverChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnDriverChanged()
+    End Sub
+    Partial Private Sub OnNCRReasonChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnNCRReasonChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HistoryID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property HistoryID() As System.Guid
+		Get
+			Return Me._HistoryID
+		End Get
+		Set
+			If ((Me._HistoryID = value)  _
+						= false) Then
+				Me.OnHistoryIDChanging(value)
+				Me.SendPropertyChanging
+				Me._HistoryID = value
+				Me.SendPropertyChanged("HistoryID")
+				Me.OnHistoryIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCId", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property NCId() As Integer
+		Get
+			Return Me._NCId
+		End Get
+		Set
+			If ((Me._NCId = value)  _
+						= false) Then
+				Me.OnNCIdChanging(value)
+				Me.SendPropertyChanging
+				Me._NCId = value
+				Me.SendPropertyChanged("NCId")
+				Me.OnNCIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="SmallInt")>  _
+	Public Property Cid() As System.Nullable(Of Short)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRDate", DbType:="DateTime")>  _
+	Public Property NCRDate() As System.Nullable(Of Date)
+		Get
+			Return Me._NCRDate
+		End Get
+		Set
+			If (Me._NCRDate.Equals(value) = false) Then
+				Me.OnNCRDateChanging(value)
+				Me.SendPropertyChanging
+				Me._NCRDate = value
+				Me.SendPropertyChanged("NCRDate")
+				Me.OnNCRDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRNumber", DbType:="Int")>  _
+	Public Property NCRNumber() As System.Nullable(Of Integer)
+		Get
+			Return Me._NCRNumber
+		End Get
+		Set
+			If (Me._NCRNumber.Equals(value) = false) Then
+				Me.OnNCRNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._NCRNumber = value
+				Me.SendPropertyChanged("NCRNumber")
+				Me.OnNCRNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRDescription", DbType:="NVarChar(MAX)")>  _
+	Public Property NCRDescription() As String
+		Get
+			Return Me._NCRDescription
+		End Get
+		Set
+			If (String.Equals(Me._NCRDescription, value) = false) Then
+				Me.OnNCRDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._NCRDescription = value
+				Me.SendPropertyChanged("NCRDescription")
+				Me.OnNCRDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRRecordedBY", DbType:="NVarChar(50)")>  _
+	Public Property NCRRecordedBY() As String
+		Get
+			Return Me._NCRRecordedBY
+		End Get
+		Set
+			If (String.Equals(Me._NCRRecordedBY, value) = false) Then
+				Me.OnNCRRecordedBYChanging(value)
+				Me.SendPropertyChanging
+				Me._NCRRecordedBY = value
+				Me.SendPropertyChanged("NCRRecordedBY")
+				Me.OnNCRRecordedBYChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRClosedBy", DbType:="NVarChar(50)")>  _
+	Public Property NCRClosedBy() As String
+		Get
+			Return Me._NCRClosedBy
+		End Get
+		Set
+			If (String.Equals(Me._NCRClosedBy, value) = false) Then
+				Me.OnNCRClosedByChanging(value)
+				Me.SendPropertyChanging
+				Me._NCRClosedBy = value
+				Me.SendPropertyChanged("NCRClosedBy")
+				Me.OnNCRClosedByChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver", DbType:="SmallInt")>  _
+	Public Property Driver() As System.Nullable(Of Short)
+		Get
+			Return Me._Driver
+		End Get
+		Set
+			If (Me._Driver.Equals(value) = false) Then
+				Me.OnDriverChanging(value)
+				Me.SendPropertyChanging
+				Me._Driver = value
+				Me.SendPropertyChanged("Driver")
+				Me.OnDriverChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRReason", DbType:="SmallInt")>  _
+	Public Property NCRReason() As System.Nullable(Of Short)
+		Get
+			Return Me._NCRReason
+		End Get
+		Set
+			If (Me._NCRReason.Equals(value) = false) Then
+				Me.OnNCRReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._NCRReason = value
+				Me.SendPropertyChanged("NCRReason")
+				Me.OnNCRReasonChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -20372,7 +20770,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -23035,6 +23433,183 @@ Partial Public Class usp_GetCustomerServicesResult
 		Set
 			If (Me._ServiceFrequency8SortOrder.Equals(value) = false) Then
 				Me._ServiceFrequency8SortOrder = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetCIRHistoryResult
+	
+	Private _HistoryID As System.Guid
+	
+	Private _NCId As Integer
+	
+	Private _Cid As System.Nullable(Of Short)
+	
+	Private _NCRDate As System.Nullable(Of Date)
+	
+	Private _NCRNumber As System.Nullable(Of Integer)
+	
+	Private _NCRDescription As String
+	
+	Private _NCRRecordedBY As String
+	
+	Private _NCRClosedBy As String
+	
+	Private _Driver As System.Nullable(Of Short)
+	
+	Private _NCRReason As System.Nullable(Of Short)
+	
+	Private _NCRReasonSortOrder As System.Nullable(Of Long)
+	
+	Private _DriverSortOrder As System.Nullable(Of Long)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HistoryID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property HistoryID() As System.Guid
+		Get
+			Return Me._HistoryID
+		End Get
+		Set
+			If ((Me._HistoryID = value)  _
+						= false) Then
+				Me._HistoryID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCId", DbType:="Int NOT NULL")>  _
+	Public Property NCId() As Integer
+		Get
+			Return Me._NCId
+		End Get
+		Set
+			If ((Me._NCId = value)  _
+						= false) Then
+				Me._NCId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="SmallInt")>  _
+	Public Property Cid() As System.Nullable(Of Short)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRDate", DbType:="DateTime")>  _
+	Public Property NCRDate() As System.Nullable(Of Date)
+		Get
+			Return Me._NCRDate
+		End Get
+		Set
+			If (Me._NCRDate.Equals(value) = false) Then
+				Me._NCRDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRNumber", DbType:="Int")>  _
+	Public Property NCRNumber() As System.Nullable(Of Integer)
+		Get
+			Return Me._NCRNumber
+		End Get
+		Set
+			If (Me._NCRNumber.Equals(value) = false) Then
+				Me._NCRNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRDescription", DbType:="NVarChar(MAX)")>  _
+	Public Property NCRDescription() As String
+		Get
+			Return Me._NCRDescription
+		End Get
+		Set
+			If (String.Equals(Me._NCRDescription, value) = false) Then
+				Me._NCRDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRRecordedBY", DbType:="NVarChar(50)")>  _
+	Public Property NCRRecordedBY() As String
+		Get
+			Return Me._NCRRecordedBY
+		End Get
+		Set
+			If (String.Equals(Me._NCRRecordedBY, value) = false) Then
+				Me._NCRRecordedBY = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRClosedBy", DbType:="NVarChar(50)")>  _
+	Public Property NCRClosedBy() As String
+		Get
+			Return Me._NCRClosedBy
+		End Get
+		Set
+			If (String.Equals(Me._NCRClosedBy, value) = false) Then
+				Me._NCRClosedBy = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Driver", DbType:="SmallInt")>  _
+	Public Property Driver() As System.Nullable(Of Short)
+		Get
+			Return Me._Driver
+		End Get
+		Set
+			If (Me._Driver.Equals(value) = false) Then
+				Me._Driver = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRReason", DbType:="SmallInt")>  _
+	Public Property NCRReason() As System.Nullable(Of Short)
+		Get
+			Return Me._NCRReason
+		End Get
+		Set
+			If (Me._NCRReason.Equals(value) = false) Then
+				Me._NCRReason = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NCRReasonSortOrder", DbType:="BigInt")>  _
+	Public Property NCRReasonSortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._NCRReasonSortOrder
+		End Get
+		Set
+			If (Me._NCRReasonSortOrder.Equals(value) = false) Then
+				Me._NCRReasonSortOrder = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverSortOrder", DbType:="BigInt")>  _
+	Public Property DriverSortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._DriverSortOrder
+		End Get
+		Set
+			If (Me._DriverSortOrder.Equals(value) = false) Then
+				Me._DriverSortOrder = value
 			End If
 		End Set
 	End Property

@@ -108,6 +108,8 @@
     <Compile Include="Classes\DataObjects\Cannon\Cannon_Run.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_RunClient.vb" />
     <Compile Include="Classes\DataObjects\Cannon\Cannon_RunCompletion.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblCIRHistory.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\tblCIRReason.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblContractCeaseReasons.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblContractPeriods.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tblCustomerAgent.vb" />
