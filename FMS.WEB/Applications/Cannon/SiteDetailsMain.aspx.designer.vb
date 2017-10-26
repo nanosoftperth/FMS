@@ -50,6 +50,24 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
 
     '''<summary>
+    '''odsDrivers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsReason As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
     '''odsServiceFrequency control.
     '''</summary>
     '''<remarks>

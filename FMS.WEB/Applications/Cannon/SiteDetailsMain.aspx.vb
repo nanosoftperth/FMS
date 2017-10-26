@@ -331,4 +331,13 @@ Public Class SiteDetailsMain
     End Function
 #End Region
     
+    Protected Sub CIRHistoryGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("Cid") = hdnSiteCid.Text
+    End Sub
+
+    Protected Sub CIRHistoryGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("Cid") = hdnSiteCid.Text
+    End Sub
 End Class

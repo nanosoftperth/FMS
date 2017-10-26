@@ -169,7 +169,6 @@
                     <div style="display:none">
                         <dx:ASPxTextBox  id="txtSiteID" ClientInstanceName="siteID" runat="server" Text='<%# Eval("SiteID") %>'></dx:ASPxTextBox>
                         <dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>    
-                        
                     </div>
                     <div class="row"></div>
                     <dx:ASPxPageControl ID="SiteDetailsPageControl" runat="server">
@@ -432,7 +431,6 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div style="display:none">
-                                                    <%--<dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>--%>    
                                                 </div>
                                                 <dx:ASPxGridView ID="ResignHistoryGridView" KeyFieldName="ResignHistoryID" DataSourceID="odsSiteResignDetails" runat="server" Theme="SoftOrange"
                                                     AutoGenerateColumns="False" OnRowUpdating="ResignHistoryGridView_RowUpdating" OnRowInserting="ResignHistoryGridView_RowInserting">
@@ -837,7 +835,6 @@
                                                 </dx:ASPxButton>
                                             </div>
                                         </div>
-                                        
                                         <asp:ObjectDataSource ID="odsCustomerService" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomerServices" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllByCidWithSortOrders" TypeName="FMS.Business.DataObjects.tblCustomerServices" UpdateMethod="Update">
                                             <SelectParameters>
                                                 <asp:ControlParameter ControlID="hdnSiteCid" PropertyName="Text" Name="cid" Type="Int32"></asp:ControlParameter>
@@ -847,6 +844,107 @@
                                 </ContentCollection>
                             </dx:TabPage>
                             <dx:TabPage Name="CIRHistory" Text="CIR History">
+                                <ContentCollection>
+                                    <dx:ContentControl runat="server">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxGridView ID="CIRHistoryGridView" KeyFieldName="HistoryID" Theme="SoftOrange"
+                                                    DataSourceID="odsCIRHistory" runat="server" AutoGenerateColumns="False" Width="900px"
+                                                    OnRowUpdating="CIRHistoryGridView_RowUpdating" OnRowInserting="CIRHistoryGridView_RowInserting">
+                                                    <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                                                    <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                                    <Settings ShowPreview="true" />
+                                                    <SettingsPager PageSize="10" />
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="HistoryID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="NCId" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataDateColumn FieldName="NCRDate" Caption="CIR Date" VisibleIndex="4" Visible="true"></dx:GridViewDataDateColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="NCRNumber" Caption="Number" VisibleIndex="5" Visible="true"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsReason" FieldName="NCRReason" PropertiesComboBox-TextField="CIRReason" PropertiesComboBox-ValueField="CId" Caption="Reason" VisibleIndex="6"></dx:GridViewDataComboBoxColumn>
+                                                        <dx:GridViewDataComboBoxColumn PropertiesComboBox-DataSourceID="odsDrivers" FieldName="Driver" PropertiesComboBox-TextField="DriverName" PropertiesComboBox-ValueField="Did" Caption="Driver" VisibleIndex="7"></dx:GridViewDataComboBoxColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="NCRRecordedBY" Caption="Recorded By" VisibleIndex="8" Visible="true"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="NCRClosedBy" Caption="Recorded By" VisibleIndex="9" Visible="true"></dx:GridViewDataTextColumn>
+                                                    </Columns>
+                                                    <Templates>
+                                                        <EditForm>
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxLabel ID="lblCirDate" runat="server" Text="CIR Date" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                </div>
+                                                                <div style="width:75px;"></div>
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxLabel ID="lblNumber" runat="server" Text="Number" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxLabel ID="lblReason" runat="server" Text="Reason" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                </div>
+                                                                <div style="width:80px;"></div>
+                                                                <div class="col-md-2">
+                                                                    <dx:ASPxLabel ID="lblDriver" runat="server" Text="Driver" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                </div>
+                                                                <div style="width:10px;"></div>
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxLabel ID="lblRecordedBy" runat="server" Text="Recorded By" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxLabel ID="lblClosedBy" runat="server" Text="Closed By" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <dx:ASPxDateEdit ID="dtNCRDate" ClientInstanceName="dtNCRDate" runat="server" Date='<%# Eval("NCRDate") %>'></dx:ASPxDateEdit>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxTextBox ID="txtNCRNumber" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("NCRNumber")%>'></dx:ASPxTextBox>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <dx:ASPxComboBox ID="cbReason" ClientInstanceName="cbReason" DataSourceID="odsReason" runat="server" Width="180px" Height="20px" 
+                                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("NCRReasonSortOrder") - 1%>' TextField="CIRReason" ValueField="CId">                                                        
+                                                                    </dx:ASPxComboBox>
+                                                                </div>
+                                                                <div style="width:5px;"></div>
+                                                                <div class="col-md-2">
+                                                                    <dx:ASPxComboBox ID="cbDrivers" ClientInstanceName="cbDrivers" DataSourceID="odsDrivers" runat="server" Width="180px" Height="20px" 
+                                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("DriverSortOrder") - 1%>' TextField="DriverName" ValueField="Did">                                                        
+                                                                    </dx:ASPxComboBox>
+                                                                </div>
+                                                                <div style="width:5px;"></div>
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxTextBox ID="txtNCRRecordedBY" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("NCRRecordedBY")%>'></dx:ASPxTextBox>
+                                                                </div>
+                                                                <div style="width:5px;"></div>
+                                                                <div class="col-md-1">
+                                                                    <dx:ASPxTextBox ID="txtNCRClosedBy" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("NCRClosedBy")%>'></dx:ASPxTextBox>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <dx:ASPxMemo ID="txtNCRDescription" runat="server" class="dxeMemoEditAreaSys" Width="870px" Height="90px" Text='<%# Eval("NCRDescription")%>'></dx:ASPxMemo>
+                                                                </div>
+                                                            </div>
+                                                            <div style="padding: 2px; padding-top:140px"></div>
+                                                            <div style="text-align: right; padding-right:10px">
+                                                                <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
+                                                                    runat="server">
+                                                                </dx:ASPxGridViewTemplateReplacement>
+                                                                <dx:ASPxGridViewTemplateReplacement ID="CancelButton" ReplacementType="EditFormCancelButton"
+                                                                    runat="server">
+                                                                </dx:ASPxGridViewTemplateReplacement>
+                                                            </div>
+                                                        </EditForm>
+                                                    </Templates>
+                                                </dx:ASPxGridView>
+                                            </div>
+                                        </div>
+                                        <asp:ObjectDataSource ID="odsCIRHistory" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCIRHistory" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllByCIDWithSortOrder" TypeName="FMS.Business.DataObjects.tblCIRHistory" UpdateMethod="Update">
+                                        <SelectParameters>
+                                            <asp:ControlParameter ControlID="hdnSiteCid" PropertyName="Text" Name="cid" Type="Int16"></asp:ControlParameter>
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
+                                    </dx:ContentControl>
+                                </ContentCollection>
                             </dx:TabPage>
                             <dx:TabPage Name="Comments" Text="Comments">
                             </dx:TabPage>
@@ -883,6 +981,8 @@
             <Paddings PaddingBottom="5px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
+    <asp:ObjectDataSource ID="odsDrivers" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsReason" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCIRReason"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsServiceFrequency" runat="server" SelectMethod="GetAllByMonthDescription" TypeName="FMS.Business.DataObjects.tblMonths"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsServiceRun" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsFrequency" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblServiceFrequency"></asp:ObjectDataSource>

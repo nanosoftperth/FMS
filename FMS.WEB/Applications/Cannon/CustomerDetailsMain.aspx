@@ -91,7 +91,6 @@
                             <dx:ASPxTextBox  id="txtCustomerID" ClientInstanceName="custID" runat="server" Text='<%# Eval("CustomerID") %>'></dx:ASPxTextBox>
                         </div>
                         <div class="row">
-
                         </div>
                         <div class="row">
                             <div class="col-md-2">
