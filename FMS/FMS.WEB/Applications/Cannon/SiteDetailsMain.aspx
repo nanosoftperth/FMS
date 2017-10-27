@@ -171,6 +171,22 @@
                         <dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>    
                     </div>
                     <div class="row"></div>
+                    <div class="row">
+                        <div class="col-md-1"><b>Customer&nbsp;Rating:</b></div>
+                        <div style="width:15px;"></div>
+                        <dx:ASPxTextBox ID="txtCustomerRating" ClientInstanceName="txtCustomerRating" Width="30px" runat="server" Text='<%# Eval("CustomerRating") %>'></dx:ASPxTextBox>
+                        <dx:ASPxTextBox ID="txtCustomerRatingDesc" ClientInstanceName="txtCustomerRatingDesc" Width="100px" runat="server" Text='<%# Eval("CustomerRatingDesc") %>'></dx:ASPxTextBox>
+                        <div class="col-md-1" style="text-align:right"><b>Customer</b></div>
+                        <dx:ASPxTextBox ID="txtCustomerName" ClientInstanceName="txtCustomerName" runat="server" Text='<%# Eval("CustomerName") %>'></dx:ASPxTextBox>
+                        <div style="width:10px;"></div>
+                        <b>Site</b>
+                        <div style="width:5px;"></div>
+                        <dx:ASPxTextBox ID="txtSiteNameMain" ClientInstanceName="txtSiteNameMain" runat="server" Text='<%# Eval("SiteName") %>'></dx:ASPxTextBox>
+                        <div style="width:5px;"></div>
+                        <b>Site ID:</b>
+                        <div style="width:5px;"></div>
+                        <dx:ASPxTextBox ID="txtSiteIDMain" ClientInstanceName="txtSiteIDMain" Width="40px" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
+                    </div>
                     <dx:ASPxPageControl ID="SiteDetailsPageControl" runat="server">
                         <TabPages>
                             <dx:TabPage Name="SiteDetails" Text="Site Details">
@@ -230,7 +246,6 @@
                                                         <dx:ASPxTextBox ID="txtPCode" runat="server" Width="50px" MaxLength="22" Text='<%# Eval("PostCode") %>'></dx:ASPxTextBox>&nbsp;
                                                         <dx:ASPxLabel ID="lblZone" runat="server" Text="Zone:"></dx:ASPxLabel>&nbsp;
                                                         <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ZoneSortOrder") - 1%>' TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
-                                                        <%--<dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ZoneSortOrder") - 1%>'  TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,7 +255,6 @@
                                                 <dx:ASPxLabel ID="lblCustomer" runat="server" Text="Customer:" Width="100px"></dx:ASPxLabel>
                                             </div>
                                             <div class="col-md-3">
-                                                <%--<dx:ASPxTextBox ID="txtCustomer" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("Customer")%>'></dx:ASPxTextBox>--%>
                                                 <dx:ASPxComboBox ID="cbCustomer" ClientInstanceName="cbCustomer" DataSourceID="odsCustomers" runat="server" Width="260px" Height="20px" 
                                                      CallbackPageSize="30" SelectedIndex='<%# Eval("CustomerSortOrder") - 1%>'  TextField="CustomerName" ValueField="Cid">
                                                     <Columns>                                   
@@ -675,7 +689,6 @@
                                                                     <div class="col-md-1">
                                                                         <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Frequency" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                     </div>
-                                                                    <%--<div style="width:5px;"></div>--%>
                                                                     <div class="col-md-1">
                                                                         <dx:ASPxLabel ID="ASPxLabel5" runat="server" Text="Service Units" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                     </div>
@@ -788,7 +801,6 @@
                                                                      </div>
                                                                     <div style="position:absolute;z-index:1;left:700px;">
                                                                         <dx:ASPxMemo ID="txtServiceComments" runat="server" class="dxeMemoEditAreaSys" Width="180px" Height="90px" Text='<%# Eval("ServiceComments")%>'></dx:ASPxMemo>
-                                                                        <%--<asp:TextBox ID="txtServiceComments" runat="server"  Width="180px" Height="90px" MaxLength="50" Text='<%# Eval("ServiceComments")%>' TextMode="MultiLine"></asp:TextBox>--%>
                                                                     </div>     
                                                                 </div>
                                                             </div>
@@ -947,6 +959,60 @@
                                 </ContentCollection>
                             </dx:TabPage>
                             <dx:TabPage Name="Comments" Text="Comments">
+                                <ContentCollection>
+                                    <dx:ContentControl runat="server">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <dx:ASPxGridView ID="SiteCommentsGridView" KeyFieldName="CommentsID" 
+                                                    DataSourceID="odsSiteComments" runat="server" Theme="SoftOrange" AutoGenerateColumns="False" Width="900px"
+                                                    OnRowUpdating="SiteCommentsGridView_RowUpdating" OnRowInserting="SiteCommentsGridView_RowInserting">
+                                                    <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                                                    <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                                    <Settings ShowPreview="true" />
+                                                    <SettingsPager PageSize="10" />
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="CommentsID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataDateColumn FieldName="CommentDate" VisibleIndex="5"></dx:GridViewDataDateColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="6"></dx:GridViewDataTextColumn>
+                                                    </Columns>
+                                                    <Templates>
+                                                        <EditForm>
+                                                            <div class="row">
+                                                                <div class="col-md-2">Date</div>
+                                                                <div class="col-md-1">Comments</div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <dx:ASPxDateEdit ID="dtCommentDate" ClientInstanceName="dtNCRDate" runat="server" Date='<%# Eval("CommentDate")%>'></dx:ASPxDateEdit>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <dx:ASPxMemo ID="txtSiteComments" runat="server" class="dxeMemoEditAreaSys" Width="670px" Height="90px" Text='<%# Eval("Comments")%>'></dx:ASPxMemo>
+                                                                </div>
+                                                            </div>
+                                                            <div style="text-align: right; padding-right:10px; padding-top:10px">
+                                                                <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
+                                                                    runat="server">
+                                                                </dx:ASPxGridViewTemplateReplacement>
+                                                                <dx:ASPxGridViewTemplateReplacement ID="CancelButton" ReplacementType="EditFormCancelButton"
+                                                                    runat="server">
+                                                                </dx:ASPxGridViewTemplateReplacement>
+                                                            </div>
+                                                        </EditForm>
+                                                    </Templates>
+                                                </dx:ASPxGridView>
+                                                <asp:ObjectDataSource ID="odsSiteComments" runat="server" SelectMethod="GetAllByCID" TypeName="FMS.Business.DataObjects.tblSiteComments" DataObjectTypeName="FMS.Business.DataObjects.tblSiteComments" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">
+                                                    <SelectParameters>
+                                                        <asp:ControlParameter ControlID="hdnSiteCid" PropertyName="Text" Name="cid" Type="Int16"></asp:ControlParameter>
+                                                    </SelectParameters>
+                                                </asp:ObjectDataSource>
+                                            </div>
+                                        </div>
+                                        <div style="padding: 2px; padding-top:140px"></div>
+                                    </dx:ContentControl>
+                                </ContentCollection>
                             </dx:TabPage>
                         </TabPages>
                     </dx:ASPxPageControl>

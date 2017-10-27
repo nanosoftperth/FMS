@@ -12,13 +12,9 @@ Public Class SiteDetailsMain
             Dim err As String
             err = ex.Message.ToString()
         End Try
-
-        'GetCustomersRowUpdatingRowInserting(e, False)
-
     End Sub
 
     Protected Sub SiteDetailsGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
-        'GetCustomersRowUpdatingRowInserting(e, True)
         Try
             GetSiteDetailsRowUpdatingRowInserting(e, True)
         Catch ex As Exception
@@ -317,6 +313,73 @@ Public Class SiteDetailsMain
         e.NewValues("ServiceSortOrderCode") = txtSortCode.Text
         e.NewValues("ServiceComments") = txtServiceComments.Text
     End Sub
+
+    Protected Sub CIRHistoryGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("Cid") = hdnSiteCid.Text
+        CIRHistoryGridViewRowUpdatingRowInserting(e, False)
+    End Sub
+
+    Protected Sub CIRHistoryGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("Cid") = hdnSiteCid.Text
+        CIRHistoryGridViewRowUpdatingRowInserting(e, True)
+    End Sub
+
+    Protected Sub CIRHistoryGridViewRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
+        Dim SiteDetailsPageControl As ASPxPageControl = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("SiteDetailsPageControl"), ASPxPageControl)
+        Dim CIRHistoryGridView As ASPxGridView = TryCast(SiteDetailsPageControl.FindControl("CIRHistoryGridView"), ASPxGridView)
+        Dim dtNCRDate As ASPxDateEdit = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("dtNCRDate"), ASPxDateEdit)
+        Dim txtNCRNumber As ASPxTextBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("txtNCRNumber"), ASPxTextBox)
+        Dim cbReason As ASPxComboBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("cbReason"), ASPxComboBox)
+        Dim cbDrivers As ASPxComboBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("cbDrivers"), ASPxComboBox)
+        Dim txtNCRRecordedBY As ASPxTextBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("txtNCRRecordedBY"), ASPxTextBox)
+        Dim txtNCRClosedBy As ASPxTextBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("txtNCRClosedBy"), ASPxTextBox)
+        Dim txtNCRDescription As ASPxMemo = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("txtNCRDescription"), ASPxMemo)
+        If Not dtNCRDate.Value Is Nothing Then
+            e.NewValues("NCRDate") = dtNCRDate.Value.ToString()
+        End If
+        Dim NCRNumber As Integer = 0
+        If Single.TryParse(txtNCRNumber.Text, NCRNumber) Then
+            e.NewValues("NCRNumber") = NCRNumber
+        End If
+        If Not cbReason.SelectedItem Is Nothing Then
+            Dim sNCRReason As Nullable(Of Short) = 0
+            sNCRReason = Convert.ToInt16(cbReason.SelectedItem.Value)
+            e.NewValues("NCRReason") = sNCRReason
+        End If
+        If Not cbDrivers.SelectedItem Is Nothing Then
+            Dim sDriver As Nullable(Of Short) = 0
+            sDriver = Convert.ToInt16(cbDrivers.SelectedItem.Value)
+            e.NewValues("Driver") = sDriver
+        End If
+        e.NewValues("NCRRecordedBY") = txtNCRRecordedBY.Text
+        e.NewValues("NCRClosedBy") = txtNCRClosedBy.Text
+        e.NewValues("NCRDescription") = txtNCRDescription.Text
+    End Sub
+    Protected Sub SiteCommentsGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("Cid") = hdnSiteCid.Text
+        SiteCommentsGridViewRowUpdatingRowInserting(e, False)
+    End Sub
+
+    Protected Sub SiteCommentsGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
+        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        e.NewValues("Cid") = hdnSiteCid.Text
+        SiteCommentsGridViewRowUpdatingRowInserting(e, True)
+    End Sub
+
+    Protected Sub SiteCommentsGridViewRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
+        Dim SiteDetailsPageControl As ASPxPageControl = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("SiteDetailsPageControl"), ASPxPageControl)
+        Dim SiteCommentsGridView As ASPxGridView = TryCast(SiteDetailsPageControl.FindControl("SiteCommentsGridView"), ASPxGridView)
+        Dim dtCommentDate As ASPxDateEdit = TryCast(SiteCommentsGridView.FindEditFormTemplateControl("dtCommentDate"), ASPxDateEdit)
+        Dim txtSiteComments As ASPxMemo = TryCast(SiteCommentsGridView.FindEditFormTemplateControl("txtSiteComments"), ASPxMemo)
+        If Not dtCommentDate.Value Is Nothing Then
+            e.NewValues("CommentDate") = dtCommentDate.Value.ToString()
+        End If
+        e.NewValues("Comments") = txtSiteComments.Text
+    End Sub
+
 #Region "WebMethods"
     <System.Web.Services.WebMethod()>
     Public Shared Function GetSiteInvoicingDetails(ByVal Cid As Integer)
@@ -330,14 +393,6 @@ Public Class SiteDetailsMain
         Return objSites
     End Function
 #End Region
-    
-    Protected Sub CIRHistoryGridView_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs)
-        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
-        e.NewValues("Cid") = hdnSiteCid.Text
-    End Sub
 
-    Protected Sub CIRHistoryGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
-        Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
-        e.NewValues("Cid") = hdnSiteCid.Text
-    End Sub
+
 End Class

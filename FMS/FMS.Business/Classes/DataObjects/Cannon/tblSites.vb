@@ -61,6 +61,9 @@
         Public Property chkSitesExcludeFuelLevy As Boolean
         Public Property cmbRateIncrease As System.Nullable(Of Short)
         Public Property cmbRateIncreaseSortOrder As System.Nullable(Of Integer)
+        Public Property CustomerName As String
+        Public Property CustomerRating As System.Nullable(Of Short)
+        Public Property CustomerRatingDesc As String
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Site As DataObjects.tblSites)
@@ -209,7 +212,8 @@
                                                                     .IndustrySortOrder = s.IndustrySortOrder, .PreviousSupplierSortOrder = s.PreviousSupplierSortOrder, .SalesPersonSortOrder = s.SalesPersonSortOrder,
                                                                     .InitialContractPeriodSortOrder = s.InitialContractPeriodSortOrder, .ContractCeaseReasonsSortOrder = s.ContractCeaseReasonsSortOrder,
                                                                     .LostBusinessToSortOrder = s.LostBusinessToSortOrder, .InvoicingFrequencySortOrder = s.InvoicingFrequencySortOrder,
-                                                                    .cmbRateIncreaseSortOrder = s.cmbRateIncreaseSortOrder}).SingleOrDefault
+                                                                    .cmbRateIncreaseSortOrder = s.cmbRateIncreaseSortOrder, .CustomerName = s.CustomerName, .CustomerRating = s.CustomerRating,
+                                                                    .CustomerRatingDesc = s.CustomerRatingDesc}).SingleOrDefault
             Return objSites
         End Function
         Public Shared Function GetAllWithZoneSortOrder() As List(Of DataObjects.tblSites)
@@ -230,7 +234,8 @@
                                                                     .IndustrySortOrder = s.IndustrySortOrder, .PreviousSupplierSortOrder = s.PreviousSupplierSortOrder, .SalesPersonSortOrder = s.SalesPersonSortOrder,
                                                                     .InitialContractPeriodSortOrder = s.InitialContractPeriodSortOrder, .ContractCeaseReasonsSortOrder = s.ContractCeaseReasonsSortOrder,
                                                                     .LostBusinessToSortOrder = s.LostBusinessToSortOrder, .InvoicingFrequencySortOrder = s.InvoicingFrequencySortOrder,
-                                                                    .cmbRateIncreaseSortOrder = s.cmbRateIncreaseSortOrder}).ToList
+                                                                    .cmbRateIncreaseSortOrder = s.cmbRateIncreaseSortOrder, .CustomerName = s.CustomerName, .CustomerRating = s.CustomerRating,
+                                                                    .CustomerRatingDesc = s.CustomerRatingDesc}).ToList
             Return objSites
         End Function
 #End Region

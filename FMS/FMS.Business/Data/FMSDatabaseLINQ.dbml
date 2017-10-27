@@ -1100,6 +1100,15 @@
       <Column Name="NCRReason" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblSiteComments" Member="tblSiteComments">
+    <Type Name="tblSiteComment">
+      <Column Name="CommentsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
@@ -1327,6 +1336,57 @@
       <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetCustomerServices" Method="usp_GetCustomerServices">
+    <ElementType Name="usp_GetCustomerServicesResult">
+      <Column Name="CustomerServiceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServiceFrequencyCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ServiceRun" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceFrequency1" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency2" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency3" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency4" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency5" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency6" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency7" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency8" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ServiceSortOrderCode" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="ServicesSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequencySortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceRunSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency1SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency2SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency3SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency4SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency5SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency6SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency7SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ServiceFrequency8SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetCIRHistory" Method="usp_GetCIRHistory">
+    <ElementType Name="usp_GetCIRHistoryResult">
+      <Column Name="HistoryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NCId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NCRDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NCRNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NCRDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NCRRecordedBY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NCRClosedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Driver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NCRReason" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NCRReasonSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="DriverSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.usp_GetSites" Method="usp_GetSites">
     <ElementType Name="usp_GetSitesResult">
       <Column Name="SiteID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -1387,57 +1447,9 @@
       <Column Name="LostBusinessToSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="InvoicingFrequencySortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="cmbRateIncreaseSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.usp_GetCustomerServices" Method="usp_GetCustomerServices">
-    <ElementType Name="usp_GetCustomerServicesResult">
-      <Column Name="CustomerServiceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ServiceFrequencyCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ServiceRun" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ServiceFrequency1" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency2" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency3" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency4" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency5" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency6" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency7" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency8" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ServiceSortOrderCode" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
-      <Column Name="ServicesSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequencySortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceRunSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency1SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency2SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency3SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency4SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency5SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency6SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency7SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="ServiceFrequency8SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.usp_GetCIRHistory" Method="usp_GetCIRHistory">
-    <ElementType Name="usp_GetCIRHistoryResult">
-      <Column Name="HistoryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="NCId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="NCRDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="NCRNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NCRDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="NCRRecordedBY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NCRClosedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Driver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="NCRReason" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="NCRReasonSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="DriverSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CustomerRatingDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
