@@ -1,141 +1,171 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="SiteDetailsMain.aspx.vb" Inherits="FMS.WEB.SiteDetailsMain" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="../../Content/grid/bootstrap.css" rel="stylesheet">
-<link href="../../Content/grid/grid.css" rel="stylesheet">
-<script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
-<style>
-    .container {
-        width: 910px;
-    }
-    .dxeMemoEditAreaSys{
-        border-width:1px !Important;
-    }
-</style>
-<script>
-    function ShowCustomerWindow() {
-        viewPopup.SetHeaderText("Customer Details");
-        viewPopup.Show();
-    }
-    function ExecuteLinkCustomer(cid) {
-        var httpOrigin = window.location.origin;
-        if (cbCustomer.GetValue() != null) {
-            cid = cbCustomer.GetValue();
-        }
-        $("#ifrPopup").width(860);
-        $("#ifrPopup").height(800);
-        $("#ifrPopup").attr("src",  httpOrigin +"/Applications/Cannon/CustomerDetailsMainPopup.aspx?cid=" + cid);
-        ShowCustomerWindow();
-    }
-    function ShowIndustryGroupWindow() {
-        viewPopup.SetHeaderText("Industry Group");
-        viewPopup.Show();
-    }
-    function ExecuteLinkIndustryGroup(aid) {
-        var httpOrigin = window.location.origin;
-        if (cbIndustryGroup.GetValue() != null) {
-            aid = cbIndustryGroup.GetValue();
-        }
-        $("#ifrPopup").width(460);
-        $("#ifrPopup").height(450);
-        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/IndustryGroupPopup.aspx?aid=" + aid);
-        ShowIndustryGroupWindow();
-    }
-    function ShowPreviousSupplierWindow() {
-        viewPopup.SetHeaderText("Previous Supplier");
-        viewPopup.Show();
-    }
-    function ExecuteLinkPreviousSupplier(cid) {
-        var httpOrigin = window.location.origin;
-        if (cbPreviousSupplier.GetValue() != null) {
-            cid = cbPreviousSupplier.GetValue();
-        }
-        $("#ifrPopup").width(460);
-        $("#ifrPopup").height(450);
-        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + cid);
-        ShowPreviousSupplierWindow();
-    }
-    function ShowCeaseReasonsWindow() {
-        viewPopup.SetHeaderText("Contract Cease Reason");
-        viewPopup.Show();
-    }
-    function ExecuteLinkCeaseReasons(aid) {
-        var httpOrigin = window.location.origin;
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="SiteDetailsMain.aspx.vb" Inherits="FMS.WEB.SiteDetailsMain" %>
 
-        if (cbSiteCeaseReason.GetValue() != null) {
-            aid = cbSiteCeaseReason.GetValue();
-        }
+<!DOCTYPE html>
 
-        $("#ifrPopup").width(600);
-        $("#ifrPopup").height(460);
-        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/ContractCeaseReasonsPopup.aspx?aid=" + aid);
-        ShowCeaseReasonsWindow();
-    }
-    function ShowLostBusinessToWindow() {
-        viewPopup.SetHeaderText("Contract Cease Reason");
-        viewPopup.Show();
-    }
-    function ExecuteLinkLostBusinessTo(aid) {
-        var httpOrigin = window.location.origin;
-        if (cbLostBusinessTo.GetValue() != null) {
-            aid = cbLostBusinessTo.GetValue();
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../../Content/grid/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/grid/grid.css" rel="stylesheet" />
+    <script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
+    <style>
+        .container {
+            width: 910px;
         }
-        $("#ifrPopup").width(600);
-        $("#ifrPopup").height(460);
-        $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + aid);
-        ShowLostBusinessToWindow();
-    }
-    function getSiteID(_cid) {
-        hdnStoreCid.SetText(_cid);
-    }
-    function getSiteInvoicingDetails(_cid) {
-        if (_cid != null || _cid != "") {
+        .dxeMemoEditAreaSys{
+            border-width:1px !Important;
+        }
+    </style>
+    <script>
+        function ShowCustomerWindow() {
+            viewPopup.SetHeaderText("Customer Details");
+            viewPopup.Show();
+        }
+        function ExecuteLinkCustomer(cid) {
+            var httpOrigin = window.location.origin;
+            if (cbCustomer.GetValue() != null) {
+                cid = cbCustomer.GetValue();
+            }
+            $("#ifrPopup").width(860);
+            $("#ifrPopup").height(800);
+            $("#ifrPopup").attr("src",  httpOrigin +"/Applications/Cannon/CustomerDetailsMainPopup.aspx?cid=" + cid);
+            ShowCustomerWindow();
+        }
+        function ShowIndustryGroupWindow() {
+            viewPopup.SetHeaderText("Industry Group");
+            viewPopup.Show();
+        }
+        function ExecuteLinkIndustryGroup(aid) {
+            var httpOrigin = window.location.origin;
+            if (cbIndustryGroup.GetValue() != null) {
+                aid = cbIndustryGroup.GetValue();
+            }
+            $("#ifrPopup").width(460);
+            $("#ifrPopup").height(450);
+            $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/IndustryGroupPopup.aspx?aid=" + aid);
+            ShowIndustryGroupWindow();
+        }
+        function ShowPreviousSupplierWindow() {
+            viewPopup.SetHeaderText("Previous Supplier");
+            viewPopup.Show();
+        }
+        function ExecuteLinkPreviousSupplier(cid) {
+            var httpOrigin = window.location.origin;
+            if (cbPreviousSupplier.GetValue() != null) {
+                cid = cbPreviousSupplier.GetValue();
+            }
+            $("#ifrPopup").width(460);
+            $("#ifrPopup").height(450);
+            $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + cid);
+            ShowPreviousSupplierWindow();
+        }
+        function ShowCeaseReasonsWindow() {
+            viewPopup.SetHeaderText("Contract Cease Reason");
+            viewPopup.Show();
+        }
+        function ExecuteLinkCeaseReasons(aid) {
+            var httpOrigin = window.location.origin;
+
+            if (cbSiteCeaseReason.GetValue() != null) {
+                aid = cbSiteCeaseReason.GetValue();
+            }
+
+            $("#ifrPopup").width(600);
+            $("#ifrPopup").height(460);
+            $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/ContractCeaseReasonsPopup.aspx?aid=" + aid);
+            ShowCeaseReasonsWindow();
+        }
+        function ShowLostBusinessToWindow() {
+            viewPopup.SetHeaderText("Contract Cease Reason");
+            viewPopup.Show();
+        }
+        function ExecuteLinkLostBusinessTo(aid) {
+            var httpOrigin = window.location.origin;
+            if (cbLostBusinessTo.GetValue() != null) {
+                aid = cbLostBusinessTo.GetValue();
+            }
+            $("#ifrPopup").width(600);
+            $("#ifrPopup").height(460);
+            $("#ifrPopup").attr("src", httpOrigin + "/Applications/Cannon/PreviousSupplierPopup.aspx?cid=" + aid);
+            ShowLostBusinessToWindow();
+        }
+        function getSiteID(_cid) {
+            hdnStoreCid.SetText(_cid);
+        }
+        function getSiteInvoicingDetails(_cid) {
+            if (_cid != null || _cid != "") {
+                $.ajax({
+                    type: "POST",
+                    url: 'SiteDetailsMain.aspx/GetSiteInvoicingDetails',
+                    dataType: "json",
+                    data: JSON.stringify({ Cid: _cid }),
+                    contentType: "application/json",
+                    crossDomain: true,
+                    success: function (data) {
+                        if (data.d != null) {
+                            cbInvoiceMonth1.SetSelectedIndex(data.d.InvoiceMonth1 - 1);
+                            cbInvoiceMonth2.SetSelectedIndex(data.d.InvoiceMonth2 - 1);
+                            cbInvoiceMonth3.SetSelectedIndex(data.d.InvoiceMonth3 - 1);
+                            cbInvoiceMonth4.SetSelectedIndex(data.d.InvoiceMonth4 - 1);
+                            var dateInv = new Date(data.d.InvoiceCommencingString);
+                            dtInvoiceCommencing.SetDate(dateInv);
+                            cbInvoiceFrequency.SetSelectedIndex(data.d.InvoicingFrequencySortOrder - 1);
+                            txtPostalAddressLine1.SetText(data.d.PostalAddressLine1);
+                            txtPostalAddressLine2.SetText(data.d.PostalAddressLine2);
+                            cbPostalState.SetSelectedIndex(data.d.PostalState - 1);
+                            txtPostalPostCode.SetText(data.d.PostalPostCode);
+                            txtPostalSuburb.SetText(data.d.PostalSuburb);
+                        }
+                    }
+                });
+            }
+        }
+        function ReCalculateSiteServices(siteID) {
             $.ajax({
                 type: "POST",
-                url: 'SiteDetailsMain.aspx/GetSiteInvoicingDetails',
+                url: 'SiteDetailsMain.aspx/GetRecalculatedServices',
                 dataType: "json",
-                data: JSON.stringify({ Cid: _cid }),
+                data: JSON.stringify({ siteId: siteID }),
                 contentType: "application/json",
                 crossDomain: true,
                 success: function (data) {
                     if (data.d != null) {
-                        cbInvoiceMonth1.SetSelectedIndex(data.d.InvoiceMonth1 - 1);
-                        cbInvoiceMonth2.SetSelectedIndex(data.d.InvoiceMonth2 - 1);
-                        cbInvoiceMonth3.SetSelectedIndex(data.d.InvoiceMonth3 - 1);
-                        cbInvoiceMonth4.SetSelectedIndex(data.d.InvoiceMonth4 - 1);
-                        var dateInv = new Date(data.d.InvoiceCommencingString);
-                        dtInvoiceCommencing.SetDate(dateInv);
-                        cbInvoiceFrequency.SetSelectedIndex(data.d.InvoicingFrequencySortOrder - 1);
-                        txtPostalAddressLine1.SetText(data.d.PostalAddressLine1);
-                        txtPostalAddressLine2.SetText(data.d.PostalAddressLine2);
-                        cbPostalState.SetSelectedIndex(data.d.PostalState - 1);
-                        txtPostalPostCode.SetText(data.d.PostalPostCode);
-                        txtPostalSuburb.SetText(data.d.PostalSuburb);
+                        txtTotalUnits.SetText(data.d.ServiceUnits);
+                        txtTotalAmount.SetText(data.d.PerAnnumCharge);
                     }
                 }
             });
         }
-    }
-    function ReCalculateSiteServices(siteID) {
-        $.ajax({
-            type: "POST",
-            url: 'SiteDetailsMain.aspx/GetRecalculatedServices',
-            dataType: "json",
-            data: JSON.stringify({ siteId: siteID }),
-            contentType: "application/json",
-            crossDomain: true,
-            success: function (data) {
-                if (data.d != null) {
-                    txtTotalUnits.SetText(data.d.ServiceUnits);
-                    txtTotalAmount.SetText(data.d.PerAnnumCharge);
-                }
+        function ViewSiteList(siteID) {
+            alert("to follow...");
+        }
+        function SetServiceEnabledDisabled(e) {
+            //var collection = obj;
+            //for (var key in collection.elements) {
+            //    var control = collection.elements[key];
+            //    if (control != null && hdnSiteCid.GetText() != '')
+            //        control.SetEnabled(false);
+            //}
+            
+            if (hdnSiteCid.GetText() != "") {
+                SiteDetailsPageControl.tabs[3].SetEnabled(true);
+            } else {
+                SiteDetailsPageControl.tabs[3].SetEnabled(false);
             }
-        });
-    }
-    function ViewSiteList(siteID) {
-        alert("to follow...");
-    }
+
+        }
+        function SetServiceInitialize(e) {
+            if (hdnSiteCid.GetText() != "") {
+                SiteDetailsPageControl.tabs[3].SetEnabled(true);
+            } else {
+                SiteDetailsPageControl.tabs[3].SetEnabled(false);
+            }
+        }
     
 </script>
+</head>
+<body>
+    <form id="form1" runat="server">
     <div style="display:none">
         <dx:ASPxTextBox ID="hdnStoreCid" ClientInstanceName="hdnStoreCid" AutoPostBack="true" runat="server" Text=""></dx:ASPxTextBox>    
     </div>
@@ -187,7 +217,10 @@
                         <div style="width:5px;"></div>
                         <dx:ASPxTextBox ID="txtSiteIDMain" ClientInstanceName="txtSiteIDMain" Width="40px" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
                     </div>
-                    <dx:ASPxPageControl ID="SiteDetailsPageControl" runat="server">
+                    <dx:ASPxPageControl ID="SiteDetailsPageControl" runat="server" ClientInstanceName="SiteDetailsPageControl" >
+                        <ClientSideEvents TabClick="function(s,e){
+                            SetServiceEnabledDisabled(e);
+                        }"  Init="function(s,e){SetServiceInitialize(e);}"/>
                         <TabPages>
                             <dx:TabPage Name="SiteDetails" Text="Site Details">
                                 <ContentCollection>
@@ -665,7 +698,7 @@
                                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                                                     <Settings ShowPreview="true" />
-                                                    <SettingsPager PageSize="10" />
+                                                    <SettingsPager PageSize="5" />
                                                     <Columns>
                                                         <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                                         <dx:GridViewDataTextColumn FieldName="CustomerServiceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -1065,5 +1098,7 @@
     <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone" ></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsStates" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblStates"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsSiteDetails" runat="server" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblSites" DataObjectTypeName="FMS.Business.DataObjects.tblSites" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
+    </form>
     
-</asp:Content>
+</body>
+</html>

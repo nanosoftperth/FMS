@@ -1,7 +1,14 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="CustomerDetailsMain.aspx.vb" Inherits="FMS.WEB.CustomerDetailsMain" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="../../Content/grid/bootstrap.css" rel="stylesheet">
-<link href="../../Content/grid/grid.css" rel="stylesheet">
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="CustomerDetailsMain.aspx.vb" Inherits="FMS.WEB.CustomerDetailsMain" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+
+<link href="../../Content/grid/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/grid/grid.css" rel="stylesheet" />
 <script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
 <script src="../../Content/javascript/jquery-1.10.2.min.js"></script>
 <style>
@@ -61,6 +68,10 @@
     }
 
 </script>
+       
+</head>
+<body>
+        <form id="form1" runat="server">
     <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" 
             KeyFieldName="Cid" Width="550px"  Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
@@ -329,4 +340,7 @@
     <asp:ObjectDataSource ID="odsStates" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblStates"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomerRating" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerRating"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsCustomer" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblCustomers" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllWithZoneSortOrder" TypeName="FMS.Business.DataObjects.tblCustomers" UpdateMethod="Update"></asp:ObjectDataSource>
-</asp:Content>
+</form>
+    
+</body>
+</html>
