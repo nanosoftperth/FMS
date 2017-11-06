@@ -14,20 +14,29 @@ Option Explicit On
 Partial Public Class CustomerRating
 
     '''<summary>
-    '''CustomerRatingGridView control.
+    '''form1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CustomerRatingGridView As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''odsCustomerRating control.
+    '''RateIncreasesGridView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsCustomerRating As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents RateIncreasesGridView As Global.DevExpress.Web.ASPxGridView
+
+    '''<summary>
+    '''odsRateIncreases control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsRateIncreases As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

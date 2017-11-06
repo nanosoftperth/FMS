@@ -380,6 +380,13 @@
       <DependentUpon>EstablishZones.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\FleetManagementMenu.aspx.designer.vb">
+      <DependentUpon>FleetManagementMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\FleetManagementMenu.aspx.vb">
+      <DependentUpon>FleetManagementMenu.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Applications\Cannon\IndustryGroupPopup.aspx.designer.vb">
       <DependentUpon>IndustryGroupPopup.aspx</DependentUpon>
     </Compile>
@@ -541,6 +548,13 @@
       <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="IWebService_Uniqco.vb" />
+    <Compile Include="MainMenu.master.designer.vb">
+      <DependentUpon>MainMenu.master</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.master.vb">
+      <DependentUpon>MainMenu.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Main_Test.aspx.designer.vb">
       <DependentUpon>Main_Test.aspx</DependentUpon>
     </Compile>
@@ -987,6 +1001,7 @@
     <Content Include="Applications\Cannon\CustomerDetailsMainPopup.aspx" />
     <Content Include="Applications\Cannon\CustomerRating.aspx" />
     <Content Include="Applications\Cannon\EstablishZones.aspx" />
+    <Content Include="Applications\Cannon\FleetManagementMenu.aspx" />
     <Content Include="Applications\Cannon\IndustryGroupPopup.aspx" />
     <Content Include="Applications\Cannon\IndustryGroups.aspx" />
     <Content Include="Applications\Cannon\InvoicingFrequency.aspx" />
@@ -1018,6 +1033,9 @@
     <Content Include="Content\contextMenu\jquery.ui.position.js" />
     <Content Include="Content\contextMenu\jquery.ui.position.min.js" />
     <Content Include="Content\DashBoard.css" />
+    <Content Include="Content\FleetmanagementMenu\FleetManagementMenu.css" />
+    <Content Include="Content\font-awesome\font-awesome.css" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font_style.css" />
     <Content Include="Content\grid\grid.css" />
     <Content Include="Content\grid\bootstrap.css" />
@@ -1150,11 +1168,13 @@
     <Content Include="Content\Images\user-management.png" />
     <Content Include="Content\Images\wnR_pIsl_normal.png" />
     <Content Include="Content\javascript\accordian.js" />
+    <Content Include="Content\javascript\bootstrap.min.js" />
     <Content Include="Content\javascript\CanBusDisplayProperty.js" />
     <Content Include="Content\javascript\cSnapToRoute.js" />
     <Content Include="Content\javascript\DateFormat.js" />
     <Content Include="Content\javascript\exampleTruckAnimator.js" />
     <Content Include="Content\javascript\firstRun.js" />
+    <Content Include="Content\javascript\FleetmanagementMenu\FleetManagementMenu.js" />
     <Content Include="Content\javascript\FleetMap.js" />
     <Content Include="Content\javascript\FleetMap_ClockLogic.js" />
     <Content Include="Content\javascript\GeoFencing.js" />
@@ -1186,6 +1206,7 @@
     <Content Include="Content\javascript\page.js" />
     <Content Include="Content\javascript\pathDrawer.js" />
     <Content Include="Content\javascript\respond.min.js" />
+    <Content Include="Content\javascript\tether.js" />
     <Content Include="Content\javascript\truckAnmiator.js" />
     <Content Include="Content\javascript\UserManagement.js" />
     <Content Include="Content\Jira.css" />
@@ -1345,6 +1366,12 @@
     <Content Include="Content\windows_command_prompt.eot" />
     <Content Include="Content\windows_command_prompt.ttf" />
     <Content Include="Content\windows_command_prompt.woff" />
+    <Content Include="MainMenu.master" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
