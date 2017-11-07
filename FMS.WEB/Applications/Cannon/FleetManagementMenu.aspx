@@ -8,7 +8,7 @@
     <script src="../../Content/javascript/bootstrap.min.js"></script>
     <script src="../../Content/javascript/FleetmanagementMenu/FleetManagementMenu.js"></script>
  
-	<div class="nav-side-menu" onload="this.width=screen.width;this.height=screen.height;">
+	<div class="nav-side-menu">
 		<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 	  
 			<div class="menu-list">
@@ -16,7 +16,7 @@
 				<ul id="menu-content" class="menu-content collapse out">
 					<li>
 					  <a href="CustomerDetailsMain.aspx" target="iframeMenu">
-					  <i class="fa fa-address-card-o"></i> Customers Details
+					  <i class="fa fa-address-card-o"></i> Customers Details 
 					  </a>
 					</li>
 	                 <li>
@@ -24,11 +24,11 @@
 					  <i class="fa fa fa-sitemap"></i> Sites
 					  </a>
 					</li>
-					<li  data-toggle="collapse" data-target="#products" class="collapsed active">
+					<li  data-toggle="collapse" data-target="#products" class="collapsed">
 					  <a href="#"><i class="fa fa-wrench fa-lg"></i> Maintenence <span class="arrow"></span></a>
 					</li>
 					<ul class="sub-menu collapse" id="products">
-						<li class="active"><a href="#" target="iframeMenu">Services</a></li>
+						<li><a href="#">Services</a></li>
 						<li><a href="#">Driver Details</a></li>
 						<li><a href="#">Runs</a></li>
 						<li><a href="IndustryGroups.aspx" target="iframeMenu">Industry Groups</a></li>
@@ -88,7 +88,7 @@
 				</ul>
 		 </div>
 	</div>
-    <div style="float:left; padding-left:305px; " onload="this.width=screen.width;this.height=screen.height;">
-        <iframe name="iframeMenu" onload="this.width=screen.width;this.height=screen.height;" style="overflow-y: scroll"></iframe>
+    <div style="float:left; padding-left:305px; " >
+        <iframe name="iframeMenu" onload="this.width=screen.width+140;this.height=(screen.height-15);" style="overflow-y: scroll"></iframe>
     </div>
 </asp:Content>
