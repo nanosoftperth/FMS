@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <dx:ASPxGridView ID="ContractCeaseReasonsGridView" KeyFieldName="CeaseReasonID" DataSourceID="odsContractCeaseReasons" runat="server" AutoGenerateColumns="False">
+        <dx:ASPxGridView ID="ContractCeaseReasonsGridView" KeyFieldName="CeaseReasonID" DataSourceID="odsContractCeaseReasons" runat="server" Theme="SoftOrange" AutoGenerateColumns="False">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />

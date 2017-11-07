@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <dx:ASPxGridView ID="EstablishZonesGridView" KeyFieldName="ZoneID" DataSourceID="odsEstablishZones" runat="server">
+        <dx:ASPxGridView ID="EstablishZonesGridView" KeyFieldName="ZoneID" DataSourceID="odsEstablishZones" Theme="SoftOrange" runat="server">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />

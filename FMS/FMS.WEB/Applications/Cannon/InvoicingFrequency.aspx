@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <dx:ASPxGridView ID="InvoicingFrequencyGridView" KeyFieldName="InvoiceFrequencyID" DataSourceID="odsInvoicingFrequency" runat="server" AutoGenerateColumns="False">
+        <dx:ASPxGridView ID="InvoicingFrequencyGridView" KeyFieldName="InvoiceFrequencyID" DataSourceID="odsInvoicingFrequency" Theme="SoftOrange" runat="server" AutoGenerateColumns="False">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />

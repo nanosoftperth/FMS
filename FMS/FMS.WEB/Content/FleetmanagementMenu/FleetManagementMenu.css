@@ -3,12 +3,14 @@
 	font-family: verdana;
 	font-size: 12px;
 	font-weight: 200;
-	background-color: #2e353d;
+	/*background-color: #2e353d;*/
+    background-color:#F0F0F0;
 	position: fixed;
 	/*top: 0px;*/
 	width: 300px;
 	height: 100%;
-	color: #e1ffff;
+	/*color: #e1ffff;*/
+    color:black !important;
   }
   .nav-side-menu .brand {
 	background-color: #23282e;
@@ -66,15 +68,18 @@
   }
   .nav-side-menu ul .sub-menu li,
   .nav-side-menu li .sub-menu li {
-	background-color: #181c20;
+	/*background-color: #181c20;*/
+    background-color: #F0F0F0;
 	border: none;
 	line-height: 28px;
-	border-bottom: 1px solid #23282e;
+	/*border-bottom: 1px solid #23282e;*/
+    border-bottom: 1px solid #FFFFFF;
 	margin-left: 0px;
   }
   .nav-side-menu ul .sub-menu li:hover,
   .nav-side-menu li .sub-menu li:hover {
-	background-color: #020203;
+	/*background-color: #020203;*/
+    background-color: #FF8800;
   }
   .nav-side-menu ul .sub-menu li:before,
   .nav-side-menu li .sub-menu li:before {
@@ -87,12 +92,15 @@
   }
   .nav-side-menu li {
 	padding-left: 0px;
-	border-left: 3px solid #2e353d;
-	border-bottom: 1px solid #23282e;
+	/*border-left: 3px solid #2e353d;
+	border-bottom: 1px solid #23282e;*/
+    border-left: 3px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
   }
   .nav-side-menu li a {
 	text-decoration: none;
-	color: #e1ffff;
+	/*color: #e1ffff;*/
+    color: black;
   }
   .nav-side-menu li a i {
 	padding-left: 10px;
@@ -101,7 +109,8 @@
   }
   .nav-side-menu li:hover {
 	border-left: 3px solid #d19b3d;
-	background-color: #4f5b69;
+	/*background-color: #4f5b69;*/
+    background-color: #FF8800;
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;
