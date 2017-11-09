@@ -133,6 +133,7 @@
     <Compile Include="Classes\DataObjects\Cannon\tbZone.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetAllDrivers.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetCustomerUpdateValue.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\usp_GetIndustryListReport.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanValue.vb" />
     <Compile Include="Classes\DataObjects\Can_AlertDefinition.vb" />

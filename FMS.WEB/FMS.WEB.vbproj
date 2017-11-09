@@ -401,6 +401,13 @@
       <DependentUpon>IndustryGroups.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Applications\Cannon\IndustryListReport.aspx.designer.vb">
+      <DependentUpon>IndustryListReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\IndustryListReport.aspx.vb">
+      <DependentUpon>IndustryListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Applications\Cannon\InvoicingFrequency.aspx.designer.vb">
       <DependentUpon>InvoicingFrequency.aspx</DependentUpon>
     </Compile>
@@ -428,6 +435,13 @@
     <Compile Include="Applications\Cannon\RateIncreases.aspx.vb">
       <DependentUpon>RateIncreases.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Applications\Cannon\ReportContentPage.aspx.designer.vb">
+      <DependentUpon>ReportContentPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Cannon\ReportContentPage.aspx.vb">
+      <DependentUpon>ReportContentPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Applications\Cannon\SiteDetailsMain.aspx.designer.vb">
       <DependentUpon>SiteDetailsMain.aspx</DependentUpon>
@@ -1004,10 +1018,12 @@
     <Content Include="Applications\Cannon\FleetManagementMenu.aspx" />
     <Content Include="Applications\Cannon\IndustryGroupPopup.aspx" />
     <Content Include="Applications\Cannon\IndustryGroups.aspx" />
+    <Content Include="Applications\Cannon\IndustryListReport.aspx" />
     <Content Include="Applications\Cannon\InvoicingFrequency.aspx" />
     <Content Include="Applications\Cannon\PreviousSupplierPopup.aspx" />
     <Content Include="Applications\Cannon\PreviousSuppliers.aspx" />
     <Content Include="Applications\Cannon\RateIncreases.aspx" />
+    <Content Include="Applications\Cannon\ReportContentPage.aspx" />
     <Content Include="Applications\Cannon\SiteDetailsMain.aspx" />
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="App_Data\NWind_log.ldf">

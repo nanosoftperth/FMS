@@ -43,6 +43,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Data.v15.1.dll</HintPath>
@@ -59,6 +60,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.DemoData.v15.1.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Pdf.v15.1.Core.dll</HintPath>
@@ -67,11 +69,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Pdf.v15.1.Drawing.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Printing.v15.1.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.XtraReports.v15.1.dll</HintPath>
@@ -120,6 +127,7 @@
     <Compile Include="Classes\AvailableReport.vb" />
     <Compile Include="Classes\BusinessLocation.vb" />
     <Compile Include="Classes\Contact.vb" />
+    <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
     <Compile Include="Classes\SystemRoles.vb" />
     <Compile Include="Classes\Users.vb" />
@@ -154,6 +162,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\FeatureAccessListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\IndustryListReport.Designer.vb">
+      <DependentUpon>IndustryListReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\IndustryListReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ReportGeoFence_byDriverPDF.vb">
@@ -212,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FeatureAccessListReport.resx">
       <DependentUpon>FeatureAccessListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\IndustryListReport.resx">
+      <DependentUpon>IndustryListReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportGeoFence_byDriverPDF.resx">
       <DependentUpon>ReportGeoFence_byDriverPDF.vb</DependentUpon>

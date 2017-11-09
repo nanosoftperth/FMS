@@ -68,7 +68,7 @@
 					  <li>Customers By Cust Zone</li>
 					  <li>Customer Contract Details</li>
                       <li>Site List</li>
-					  <li>Industry List</li>
+					  <li><a href="IndustryListReport.aspx" target="iframeMenu">Industry List</a></li>
 					  <li>Revenue Report By Zone</li>
                       <li>Gains & Losses (Sales)</li>
 					  <li>Driver License Expiry</li>

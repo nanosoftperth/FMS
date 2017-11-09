@@ -595,6 +595,27 @@ Public Class ReportDataHandler
         End Try
         Return rept
     End Function
+
+    Public Shared Function GetIndustryListReport() As CacheIndustryList
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim rept As New CacheIndustryList
+        Dim retobj = FMS.Business.DataObjects.usp_GetIndustryListReport.GetIndustryListReportByIndustryID(paramValues(0)).ToList()
+        Dim objList As New List(Of IndustryList)
+        For Each item In retobj
+            objList.Add(New IndustryList() With
+                                 {.Aid = item.Aid, .CustomerName = item.CustomerName,
+                                  .Frequency = item.Frequency, .IndustryDescription = item.IndustryDescription,
+                                  .InvoiceCommencing = item.InvoiceCommencing, .MYOBCustomerNumber = item.MYOBCustomerNumber,
+                                  .PerAnnumCharge = item.PerAnnumCharge, .PostCode = item.PostCode,
+                                  .ServiceDescription = item.ServiceDescription, .ServicePrice = item.ServicePrice,
+                                  .ServiceUnits = item.ServiceUnits, .SiteCeaseDate = item.SiteCeaseDate,
+                                  .SiteName = item.SiteName, .SiteName1 = item.SiteName1, .UnitsHaveMoreThanOneRun = item.UnitsHaveMoreThanOneRun})
+        Next
+        rept.LineValies = objList
+        rept.Param = paramValues(1)
+
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub
