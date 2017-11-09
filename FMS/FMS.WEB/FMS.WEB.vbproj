@@ -1222,6 +1222,7 @@
     <Content Include="Default.aspx" />
     <Content Include="DevicePropertyDisplay.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="MainMenu.master" />
     <Content Include="Main_Test.aspx" />
     <Content Include="NoAccessPage.aspx" />
     <Content Include="OdometerTester.aspx" />
@@ -1366,7 +1367,6 @@
     <Content Include="Content\windows_command_prompt.eot" />
     <Content Include="Content\windows_command_prompt.ttf" />
     <Content Include="Content\windows_command_prompt.woff" />
-    <Content Include="MainMenu.master" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
