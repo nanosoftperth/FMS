@@ -186,6 +186,15 @@ Public Class ThisSession
         End Set
     End Property
 
+    Public Shared Property ParameterValues As String
+        Get
+            Return HttpContext.Current.Session("ParameterValues")
+        End Get
+        Set(value As String)
+            HttpContext.Current.Session("ParameterValues") = value
+        End Set
+    End Property
+
     Public Shared ReadOnly Property CachedVehicleReports As List(Of CachedVehicleReport)
         Get
 
