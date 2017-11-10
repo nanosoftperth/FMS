@@ -1,4 +1,6 @@
-﻿Namespace DataObjects
+﻿Imports System.Linq
+
+Namespace DataObjects
 
     Public Class Device
 
@@ -36,7 +38,7 @@
         End Sub
 #End Region
 
-    
+
         Public Shared Function GetCANMessageDefinitions(deviceid As String) As List(Of DataObjects.CAN_MessageDefinition)
 
 
@@ -54,6 +56,8 @@
 
                 Try
 
+                    Dim pointCurrentVal As String = p.Data.Snapshot.Value.ToString
+
                     Dim ppName As String = p.Name
 
                     'get the SPN number
@@ -62,13 +66,46 @@
                     Dim pgn As Integer = ppName.Split("_").Reverse()(0)
                     Dim standardName As String = ppName.Split("_")(2)
 
-                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, standardName))
+                    'get the latest value for this 
+                    Dim currentVal As String = p.Data.Snapshot.Value.ToString
+
+                    For Each cmd As CAN_MessageDefinition In CAN_MessageDefinition.GetForPGN(pgn, standardName)
+
+                        Dim num1, num2 As Integer
+
+                        If Not Integer.TryParse(cmd.pos, num1) Then
+
+                            'for each of the values, get the actual HEX value and if it is all FF, then there is no data available so do not show
+                            'if this is not in the format "x - y" then exit the for loop 
+                            Dim posns() As String = cmd.pos.Split("-"c)
+
+                            If posns.Count <> 2 Then Exit For
+
+                            'if either side of the " - ", both values are not integers, then exit the for loop ( "2 - 4" is ok , " x - 6" is not)
+                            If Not (Integer.TryParse(posns(0), num1) Or Integer.TryParse(posns(1), num2)) Then Exit For
+
+                        Else
+                            num2 = num1
+                        End If
+
+                        'if we are here, then there should be a num1 and num2 to get the data out of the hex value
+                        Dim valStr As String = currentVal.Substring(num1 - 1, (num2 - num1) + 1)
+
+                        'if we find one item which is not an F, then we can add this to the list
+                        Dim excludeItemFromlist As Boolean = (From x In valStr.ToCharArray Where x <> "F"c).Count > 0
+
+
+                        If Not excludeItemFromlist Then lst.Add(cmd)
+
+                    Next
 
                 Catch ex As Exception
 
                     Dim msg As String = ex.Message
                 End Try
+
             Next
+
 
             Return lst
 
