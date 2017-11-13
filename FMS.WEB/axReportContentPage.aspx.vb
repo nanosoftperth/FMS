@@ -3,7 +3,10 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        FMS.Business.ThisSession.ParameterValues = Request.QueryString("param")
+        If Not Request.QueryString("param") Is Nothing Then
+            FMS.Business.ThisSession.ParameterValues = Request.QueryString("param")
+        End If
+
         Dim reportname As String = Request.QueryString("Report")
         Me.ASPxDocumentViewer1.Report = GetReportFromName(reportname)
 
@@ -13,6 +16,8 @@
         Select Case reportName
             Case "IndustryListReport"
                 Return New FMS.ReportLogic.IndustryListReport()
+            Case "ServiceListReport"
+                Return New FMS.ReportLogic.ServiceListReport()
             Case Else
                 Return Nothing
         End Select

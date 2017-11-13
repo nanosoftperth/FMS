@@ -310,6 +310,13 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axServiceListReport.aspx.designer.vb">
+      <DependentUpon>axServiceListReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axServiceListReport.aspx.vb">
+      <DependentUpon>axServiceListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
       <DependentUpon>CanBusDisplayProperty.aspx</DependentUpon>
     </Compile>
@@ -1009,6 +1016,7 @@
     </Content>
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
+    <Content Include="axServiceListReport.aspx" />
     <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
