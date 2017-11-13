@@ -18,6 +18,8 @@
                 Return New FMS.ReportLogic.IndustryListReport()
             Case "ServiceListReport"
                 Return New FMS.ReportLogic.ServiceListReport()
+            Case "DriversLicenseExpiryReport"
+                Return New FMS.ReportLogic.DriversLicenseExpiryReport()
             Case Else
                 Return Nothing
         End Select

@@ -127,6 +127,7 @@
     <Compile Include="Classes\AvailableReport.vb" />
     <Compile Include="Classes\BusinessLocation.vb" />
     <Compile Include="Classes\Contact.vb" />
+    <Compile Include="Classes\DriversLicenseExpiry.vb" />
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
     <Compile Include="Classes\ServiceList.vb" />
@@ -160,6 +161,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\DriverOperatingHoursReportPDF.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DriversLicenseExpiryReport.Designer.vb">
+      <DependentUpon>DriversLicenseExpiryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DriversLicenseExpiryReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\FeatureAccessListReport.vb">
@@ -230,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DriverOperatingHoursReportPDF.resx">
       <DependentUpon>DriverOperatingHoursReportPDF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriversLicenseExpiryReport.resx">
+      <DependentUpon>DriversLicenseExpiryReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FeatureAccessListReport.resx">
       <DependentUpon>FeatureAccessListReport.vb</DependentUpon>

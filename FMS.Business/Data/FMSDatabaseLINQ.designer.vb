@@ -1216,6 +1216,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), industryID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIndustryListReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetDriversLicenseExpiryReport")>  _
+	Public Function usp_GetDriversLicenseExpiryReport() As ISingleResult(Of usp_GetDriversLicenseExpiryReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetDriversLicenseExpiryReportResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -24040,6 +24046,114 @@ Partial Public Class usp_GetIndustryListReportResult
 		Set
 			If (String.Equals(Me._MYOBCustomerNumber, value) = false) Then
 				Me._MYOBCustomerNumber = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetDriversLicenseExpiryReportResult
+	
+	Private _DriverID As System.Guid
+	
+	Private _Did As Integer
+	
+	Private _DriverName As String
+	
+	Private _DriversLicenseNo As String
+	
+	Private _DriversLicenseExpiryDate As System.Nullable(Of Date)
+	
+	Private _Inactive As Boolean
+	
+	Private _Renewal As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property DriverID() As System.Guid
+		Get
+			Return Me._DriverID
+		End Get
+		Set
+			If ((Me._DriverID = value)  _
+						= false) Then
+				Me._DriverID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Did", DbType:="Int NOT NULL")>  _
+	Public Property Did() As Integer
+		Get
+			Return Me._Did
+		End Get
+		Set
+			If ((Me._Did = value)  _
+						= false) Then
+				Me._Did = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverName", DbType:="NVarChar(50)")>  _
+	Public Property DriverName() As String
+		Get
+			Return Me._DriverName
+		End Get
+		Set
+			If (String.Equals(Me._DriverName, value) = false) Then
+				Me._DriverName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriversLicenseNo", DbType:="NVarChar(22)")>  _
+	Public Property DriversLicenseNo() As String
+		Get
+			Return Me._DriversLicenseNo
+		End Get
+		Set
+			If (String.Equals(Me._DriversLicenseNo, value) = false) Then
+				Me._DriversLicenseNo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriversLicenseExpiryDate", DbType:="DateTime")>  _
+	Public Property DriversLicenseExpiryDate() As System.Nullable(Of Date)
+		Get
+			Return Me._DriversLicenseExpiryDate
+		End Get
+		Set
+			If (Me._DriversLicenseExpiryDate.Equals(value) = false) Then
+				Me._DriversLicenseExpiryDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Inactive", DbType:="Bit NOT NULL")>  _
+	Public Property Inactive() As Boolean
+		Get
+			Return Me._Inactive
+		End Get
+		Set
+			If ((Me._Inactive = value)  _
+						= false) Then
+				Me._Inactive = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Renewal", DbType:="VarChar(11) NOT NULL", CanBeNull:=false)>  _
+	Public Property Renewal() As String
+		Get
+			Return Me._Renewal
+		End Get
+		Set
+			If (String.Equals(Me._Renewal, value) = false) Then
+				Me._Renewal = value
 			End If
 		End Set
 	End Property
