@@ -629,6 +629,20 @@ Public Class ReportDataHandler
         rept.Param = ""
         Return rept
     End Function
+    Public Shared Function GetDriversLicenseExpiryReport() As CacheDriversLicenseExpiry
+        Dim rept As New CacheDriversLicenseExpiry
+        Dim retobj = FMS.Business.DataObjects.usp_GetDriversLicenseExpiryReport.GetDriversLicenseExpiryReport().ToList()
+        Dim objList As New List(Of DriversLicenseExpiry)
+        For Each item In retobj
+            objList.Add(New DriversLicenseExpiry() With {
+                        .Did = item.Did, .DriverID = item.DriverID, .DriverName = item.DriverName,
+                        .DriversLicenseExpiryDate = item.DriversLicenseExpiryDate, .DriversLicenseNo = item.DriversLicenseNo,
+                        .Inactive = item.Inactive, .Renewal = item.Renewal})
+        Next
+        rept.LineValues = objList
+        rept.Param = ""
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub
