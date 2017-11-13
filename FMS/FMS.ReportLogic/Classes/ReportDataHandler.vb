@@ -616,6 +616,19 @@ Public Class ReportDataHandler
 
         Return rept
     End Function
+    Public Shared Function GetServiceListReport() As CacheServiceList
+        Dim rept As New CacheServiceList
+        Dim retobj = FMS.Business.DataObjects.tblServices.GetAllWithNull().ToList()
+        Dim objList As New List(Of ServiceList)
+        For Each item In retobj
+            objList.Add(New ServiceList() With {
+                        .CostOfService = item.CostOfService, .ServiceCode = item.ServiceCode, .ServiceDescription = item.ServiceDescription,
+                        .ServicesID = item.ServicesID, .Sid = item.Sid})
+        Next
+        rept.LineValues = objList
+        rept.Param = ""
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

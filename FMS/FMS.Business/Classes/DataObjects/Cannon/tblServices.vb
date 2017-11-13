@@ -44,6 +44,12 @@
                                           Select New DataObjects.tblServices(c)).ToList
             Return objServices
         End Function
+        Public Shared Function GetAllWithNull() As List(Of DataObjects.tblServices)
+            Dim objServices = (From c In SingletonAccess.FMSDataContextContignous.tblServices
+                            Order By c.ServiceDescription
+                                          Select New DataObjects.tblServices(c)).ToList
+            Return objServices
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()

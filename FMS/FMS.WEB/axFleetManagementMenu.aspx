@@ -58,7 +58,7 @@
 					  <li>Contract Renewals</li>
 					  <li>Quick View By Suburb</li>
 					  <li>Audit Report & G & L</li>
-                      <li>Service List</li>
+                      <li><a href="axServiceListReport.aspx" target="iframeMenu">Service List</a></li>
 					  <li>Run Listing</li>
 					  <li>Run Values</li>
                       <li>Run Value Summary</li>
