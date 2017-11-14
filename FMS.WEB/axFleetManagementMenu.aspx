@@ -55,7 +55,7 @@
 					  <a href="#"><i class="fa fa-file-text fa-lg"></i> Reports <span class="arrow"></span></a>
 					</li>  
 					<ul class="sub-menu collapse" id="service">
-					  <li>Contract Renewals</li>
+					  <li><a href="axContractRenewalsReport.aspx" target="iframeMenu">Contract Renewals</a></li>
 					  <li>Quick View By Suburb</li>
 					  <li>Audit Report & G & L</li>
                       <li><a href="axServiceListReport.aspx" target="iframeMenu">Service List</a></li>

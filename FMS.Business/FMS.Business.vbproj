@@ -132,6 +132,7 @@
     <Compile Include="Classes\DataObjects\Cannon\tblStates.vb" />
     <Compile Include="Classes\DataObjects\Cannon\tbZone.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetAllDrivers.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\usp_GetContractRenewalsReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetCustomerUpdateValue.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetDriversLicenseExpiryReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetIndustryListReport.vb" />
