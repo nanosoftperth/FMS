@@ -127,6 +127,7 @@
     <Compile Include="Classes\AvailableReport.vb" />
     <Compile Include="Classes\BusinessLocation.vb" />
     <Compile Include="Classes\Contact.vb" />
+    <Compile Include="Classes\ContractRenewal.vb" />
     <Compile Include="Classes\DriversLicenseExpiry.vb" />
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
@@ -158,6 +159,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\BusinessLocationListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ContractRenewalReport.Designer.vb">
+      <DependentUpon>ContractRenewalReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ContractRenewalReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\DriverOperatingHoursReportPDF.vb">
@@ -234,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\BusinessLocationListReport.resx">
       <DependentUpon>BusinessLocationListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ContractRenewalReport.resx">
+      <DependentUpon>ContractRenewalReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DriverOperatingHoursReportPDF.resx">
       <DependentUpon>DriverOperatingHoursReportPDF.vb</DependentUpon>

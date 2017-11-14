@@ -643,6 +643,37 @@ Public Class ReportDataHandler
         rept.Param = ""
         Return rept
     End Function
+    Public Shared Function GetContractRenewalReport() As CacheContractRenewal
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split("|")
+        Dim paramZone As String = paramValues(0).Split(":")(1)
+        Dim paramDateStart() As String = paramValues(1).Split(":")
+        Dim paramDateEnd() As String = paramValues(2).Split(":")
+        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart(1).ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart(1).ToString()))
+        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd(1).ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd(1).ToString()))
+        Dim rept As New CacheContractRenewal
+
+        Dim retobj As List(Of FMS.Business.DataObjects.usp_GetContractRenewalsReport)
+        If Not paramZone.Equals("") Then
+            retobj = FMS.Business.DataObjects.usp_GetContractRenewalsReport.GetContractRenewalsReport(startDate, endDate, paramZone).ToList()
+        Else
+            retobj = FMS.Business.DataObjects.usp_GetContractRenewalsReport.GetContractRenewalsReport(startDate, endDate).ToList()
+        End If
+
+        Dim objList As New List(Of ContractRenewal)
+        For Each item In retobj
+            objList.Add(New ContractRenewal() With {
+                        .Customer = item.Customer, .AreaDescription = item.AreaDescription, .SiteContractExpiry = item.SiteContractExpiry,
+                        .CustomerName = item.CustomerName, .SiteName = item.SiteName, .SiteStartDate = item.SiteStartDate,
+                        .ContractPeriodDesc = item.ContractPeriodDesc, .SiteContactPhone = item.SiteContactPhone,
+                        .CustomerContactName = item.CustomerContactName, .CustomerPhone = item.CustomerPhone,
+                        .ServiceUnits = item.ServiceUnits, .PerAnnumCharge = item.PerAnnumCharge})
+        Next
+        rept.LineValues = objList
+        rept.Param = startDate.ToShortDateString()
+        rept.Param2 = endDate.ToShortDateString()
+        rept.Param3 = DateTime.Now.ToShortDateString()
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

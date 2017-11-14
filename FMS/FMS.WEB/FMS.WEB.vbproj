@@ -317,6 +317,13 @@
       <DependentUpon>axDriversLicenseExpiryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axContractRenewalsReport.aspx.designer.vb">
+      <DependentUpon>axContractRenewalsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axContractRenewalsReport.aspx.vb">
+      <DependentUpon>axContractRenewalsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="axServiceListReport.aspx.designer.vb">
       <DependentUpon>axServiceListReport.aspx</DependentUpon>
     </Compile>
@@ -1024,6 +1031,7 @@
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="axDriversLicenseExpiryReport.aspx" />
+    <Content Include="axContractRenewalsReport.aspx" />
     <Content Include="axServiceListReport.aspx" />
     <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />

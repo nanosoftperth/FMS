@@ -1483,4 +1483,22 @@
       <Column Name="Renewal" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetContractRenewalsReport" Method="usp_GetContractRenewalsReport">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_GetContractRenewalsReportResult">
+      <Column Name="Customer" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="AreaDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContractExpiry" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ContractPeriodDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
