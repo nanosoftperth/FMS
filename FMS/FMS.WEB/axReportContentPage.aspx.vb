@@ -24,6 +24,8 @@
                 Return New FMS.ReportLogic.ContractRenewalReport()
             Case "ServiceSummaryReport"
                 Return New FMS.ReportLogic.ServiceSummaryReport()
+            Case "LengthOfServiceReport"
+                Return New FMS.ReportLogic.LengthOfServicesReport()
             Case Else
                 Return Nothing
         End Select
