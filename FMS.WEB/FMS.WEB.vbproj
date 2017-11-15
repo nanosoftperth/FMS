@@ -317,6 +317,13 @@
       <DependentUpon>axLengthOfServiceReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axCustomerByCustZoneReport.aspx.designer.vb">
+      <DependentUpon>axCustomerByCustZoneReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axCustomerByCustZoneReport.aspx.vb">
+      <DependentUpon>axCustomerByCustZoneReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="axServiceSummaryReport.aspx.designer.vb">
       <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
     </Compile>
@@ -1045,6 +1052,7 @@
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="axLengthOfServiceReport.aspx" />
+    <Content Include="axCustomerByCustZoneReport.aspx" />
     <Content Include="axServiceSummaryReport.aspx" />
     <Content Include="axDriversLicenseExpiryReport.aspx" />
     <Content Include="axContractRenewalsReport.aspx" />

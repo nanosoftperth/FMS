@@ -65,7 +65,7 @@
 					  <li><a href="axServiceSummaryReport.aspx" target="iframeMenu">Service Summary</a></li>
 					  <li>Annual Analysis</li>
                       <li><a href="axLengthOfServiceReport.aspx" target="iframeMenu">Length of Service</a></li>
-					  <li>Customers By Cust Zone</li>
+					  <li><a href="axCustomerByCustZoneReport.aspx" target="iframeMenu">Customers By Cust Zone</a></li>
 					  <li>Customer Contract Details</li>
                       <li>Site List</li>
 					  <li><a href="axIndustryListReport.aspx" target="iframeMenu">Industry List</a></li>

@@ -674,6 +674,19 @@ Public Class ReportDataHandler
         rept.Param3 = DateTime.Now.ToShortDateString()
         Return rept
     End Function
+    Public Shared Function GetServiceSummaryReport() As CacheServiceSummary
+        Dim rept As New CacheServiceSummary
+        Dim retobj = FMS.Business.DataObjects.usp_GetServiceSummaryReport.GetServiceSummay().ToList()
+        Dim objList As New List(Of ServiceSummary)
+        For Each item In retobj
+            objList.Add(New ServiceSummary() With {
+                        .FrequencyDescription = item.FrequencyDescription, .ServiceCode = item.ServiceCode,
+                        .ServiceDescription = item.ServiceDescription, .ServiceUnits = item.ServiceUnits,
+                        .SiteCeaseDate = item.SiteCeaseDate})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Shared Function GetLengthOfServiceReport() As CacheLengthOfServices
         Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
         Dim gtYears As Integer = Convert.ToInt32(IIf(paramValues(1).ToString().Equals(""), "0", paramValues(1).ToString()))
@@ -683,6 +696,20 @@ Public Class ReportDataHandler
         For Each item In retobj
             objList.Add(New LengthOfServices() With {
                         .SiteName = item.SiteName, .sitestartdate = item.sitestartdate, .Years = item.Years})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
+    Public Shared Function GetCustomerByCustZoneReport() As CacheCustomerByCustZone
+        Dim rept As New CacheCustomerByCustZone
+        Dim retobj = FMS.Business.DataObjects.usp_GetCustomerByCustZone.GetCustByCustZone().ToList()
+        Dim objList As New List(Of CustomerByCustZone)
+        For Each item In retobj
+            objList.Add(New CustomerByCustZone() With {
+                        .AddressLine1 = item.AddressLine1, .AddressLine2 = item.AddressLine2, .Cid = item.Cid,
+                        .CustomerContactName = item.CustomerContactName, .CustomerName = item.CustomerName,
+                        .CustomerPhone = item.CustomerPhone, .PostCode = item.PostCode, .StateCode = item.StateCode,
+                        .Suburb = item.Suburb, .ZoneDescription = item.ZoneDescription})
         Next
         rept.LineValues = objList
         Return rept
