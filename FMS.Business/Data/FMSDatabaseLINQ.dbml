@@ -1510,4 +1510,12 @@
       <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetLengthOfServicesReport" Method="usp_GetLengthOfServicesReport">
+    <Parameter Name="GreaterThanYears" Parameter="greaterThanYears" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetLengthOfServicesReportResult">
+      <Column Name="Years" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sitestartdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

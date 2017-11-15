@@ -64,7 +64,7 @@
                       <li>Run Value Summary</li>
 					  <li><a href="axServiceSummaryReport.aspx" target="iframeMenu">Service Summary</a></li>
 					  <li>Annual Analysis</li>
-                      <li>Length of Service</li>
+                      <li><a href="axLengthOfServiceReport.aspx" target="iframeMenu">Length of Service</a></li>
 					  <li>Customers By Cust Zone</li>
 					  <li>Customer Contract Details</li>
                       <li>Site List</li>

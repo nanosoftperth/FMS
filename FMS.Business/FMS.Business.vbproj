@@ -136,6 +136,7 @@
     <Compile Include="Classes\DataObjects\Cannon\usp_GetCustomerUpdateValue.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetDriversLicenseExpiryReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetIndustryListReport.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\usp_GetLengthOfServicesReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetServiceSummaryReport.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanValue.vb" />

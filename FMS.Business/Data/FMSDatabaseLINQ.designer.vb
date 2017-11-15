@@ -1234,6 +1234,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetServiceSummaryReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetLengthOfServicesReport")>  _
+	Public Function usp_GetLengthOfServicesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="GreaterThanYears", DbType:="Int")> ByVal greaterThanYears As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetLengthOfServicesReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), greaterThanYears)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetLengthOfServicesReportResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -24418,6 +24424,55 @@ Partial Public Class usp_GetServiceSummaryReportResult
 		Set
 			If (Me._SiteCeaseDate.Equals(value) = false) Then
 				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetLengthOfServicesReportResult
+	
+	Private _Years As System.Nullable(Of Integer)
+	
+	Private _sitestartdate As System.Nullable(Of Date)
+	
+	Private _SiteName As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Years", DbType:="Int")>  _
+	Public Property Years() As System.Nullable(Of Integer)
+		Get
+			Return Me._Years
+		End Get
+		Set
+			If (Me._Years.Equals(value) = false) Then
+				Me._Years = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_sitestartdate", DbType:="Date")>  _
+	Public Property sitestartdate() As System.Nullable(Of Date)
+		Get
+			Return Me._sitestartdate
+		End Get
+		Set
+			If (Me._sitestartdate.Equals(value) = false) Then
+				Me._sitestartdate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
 			End If
 		End Set
 	End Property
