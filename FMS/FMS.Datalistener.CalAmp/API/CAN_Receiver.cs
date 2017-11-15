@@ -144,7 +144,13 @@ namespace FMS.Datalistener.CalAmp.API
 
                     //get the required data from the posted line (we can only presume this is a CANbus entry at this point)
                     string arb_id_ = cmds[0];
-                    int arb_id_int = hex2integer(arb_id_);
+                    
+                    //if this is an extended ID, then we need to get the arbitration ID from it. 
+                    //the presumption here is that there is a 4 byte arb ID returned which needs a hex mask of 0x00FFFF00 applied. 
+                    if (arb_id_.Length == 8) arb_id_ = arb_id_.Substring(2, 4);
+
+                    int arb_id_int = hex2integer(arb_id_);                    
+                    
 
                     //if there is no data to parse, then dont do anything
                     if (cmds.Length < 2) continue;
