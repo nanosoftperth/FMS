@@ -128,6 +128,7 @@
     <Compile Include="Classes\BusinessLocation.vb" />
     <Compile Include="Classes\Contact.vb" />
     <Compile Include="Classes\ContractRenewal.vb" />
+    <Compile Include="Classes\CustomerByCustZone.vb" />
     <Compile Include="Classes\DriversLicenseExpiry.vb" />
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\LengthOfServices.vb" />
@@ -167,6 +168,12 @@
       <DependentUpon>ContractRenewalReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\ContractRenewalReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CustomerByCustZoneReport.Designer.vb">
+      <DependentUpon>CustomerByCustZoneReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CustomerByCustZoneReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\DriverOperatingHoursReportPDF.vb">
@@ -258,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ContractRenewalReport.resx">
       <DependentUpon>ContractRenewalReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CustomerByCustZoneReport.resx">
+      <DependentUpon>CustomerByCustZoneReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DriverOperatingHoursReportPDF.resx">
       <DependentUpon>DriverOperatingHoursReportPDF.vb</DependentUpon>
