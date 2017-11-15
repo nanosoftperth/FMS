@@ -1228,6 +1228,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetContractRenewalsReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetServiceSummaryReport")>  _
+	Public Function usp_GetServiceSummaryReport() As ISingleResult(Of usp_GetServiceSummaryReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetServiceSummaryReportResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -24335,6 +24341,83 @@ Partial Public Class usp_GetContractRenewalsReportResult
 		Set
 			If (Me._PerAnnumCharge.Equals(value) = false) Then
 				Me._PerAnnumCharge = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetServiceSummaryReportResult
+	
+	Private _FrequencyDescription As String
+	
+	Private _ServiceDescription As String
+	
+	Private _ServiceCode As String
+	
+	Private _ServiceUnits As System.Nullable(Of Double)
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyDescription", DbType:="NVarChar(50)")>  _
+	Public Property FrequencyDescription() As String
+		Get
+			Return Me._FrequencyDescription
+		End Get
+		Set
+			If (String.Equals(Me._FrequencyDescription, value) = false) Then
+				Me._FrequencyDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
+	Public Property ServiceCode() As String
+		Get
+			Return Me._ServiceCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceCode, value) = false) Then
+				Me._ServiceCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Float")>  _
+	Public Property ServiceUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._ServiceUnits
+		End Get
+		Set
+			If (Me._ServiceUnits.Equals(value) = false) Then
+				Me._ServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
 			End If
 		End Set
 	End Property

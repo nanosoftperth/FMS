@@ -310,6 +310,13 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axServiceSummaryReport.aspx.designer.vb">
+      <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axServiceSummaryReport.aspx.vb">
+      <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="axDriversLicenseExpiryReport.aspx.designer.vb">
       <DependentUpon>axDriversLicenseExpiryReport.aspx</DependentUpon>
     </Compile>
@@ -1030,6 +1037,7 @@
     </Content>
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
+    <Content Include="axServiceSummaryReport.aspx" />
     <Content Include="axDriversLicenseExpiryReport.aspx" />
     <Content Include="axContractRenewalsReport.aspx" />
     <Content Include="axServiceListReport.aspx" />

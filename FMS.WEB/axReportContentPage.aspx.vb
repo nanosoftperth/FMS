@@ -22,6 +22,8 @@
                 Return New FMS.ReportLogic.DriversLicenseExpiryReport()
             Case "ContractRenewalReport"
                 Return New FMS.ReportLogic.ContractRenewalReport()
+            Case "ServiceSummaryReport"
+                Return New FMS.ReportLogic.ServiceSummaryReport()
             Case Else
                 Return Nothing
         End Select
