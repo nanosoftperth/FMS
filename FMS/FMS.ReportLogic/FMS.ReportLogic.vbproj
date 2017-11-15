@@ -132,6 +132,7 @@
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
     <Compile Include="Classes\ServiceList.vb" />
+    <Compile Include="Classes\ServiceSummary.vb" />
     <Compile Include="Classes\SystemRoles.vb" />
     <Compile Include="Classes\Users.vb" />
     <Compile Include="Classes\Drivers.vb" />
@@ -203,6 +204,12 @@
     <Compile Include="Reports\ServiceListReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\ServiceSummaryReport.Designer.vb">
+      <DependentUpon>ServiceSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ServiceSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\UsersListReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -271,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ServiceListReport.resx">
       <DependentUpon>ServiceListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ServiceSummaryReport.resx">
+      <DependentUpon>ServiceSummaryReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\UsersListReport.resx">
       <DependentUpon>UsersListReport.vb</DependentUpon>

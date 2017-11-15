@@ -1501,4 +1501,13 @@
       <Column Name="PerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetServiceSummaryReport" Method="usp_GetServiceSummaryReport">
+    <ElementType Name="usp_GetServiceSummaryReportResult">
+      <Column Name="FrequencyDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServiceCode" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

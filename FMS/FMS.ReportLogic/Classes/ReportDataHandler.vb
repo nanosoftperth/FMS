@@ -674,6 +674,19 @@ Public Class ReportDataHandler
         rept.Param3 = DateTime.Now.ToShortDateString()
         Return rept
     End Function
+    Public Shared Function GetServiceSummaryReport() As CacheServiceSummary
+        Dim rept As New CacheServiceSummary
+        Dim retobj = FMS.Business.DataObjects.usp_GetServiceSummaryReport.GetServiceSummay().ToList()
+        Dim objList As New List(Of ServiceSummary)
+        For Each item In retobj
+            objList.Add(New ServiceSummary() With {
+                        .FrequencyDescription = item.FrequencyDescription, .ServiceCode = item.ServiceCode,
+                        .ServiceDescription = item.ServiceDescription, .ServiceUnits = item.ServiceUnits,
+                        .SiteCeaseDate = item.SiteCeaseDate})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub
