@@ -310,11 +310,11 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="axLengthOfServiceReport.aspx.designer.vb">
-      <DependentUpon>axLengthOfServiceReport.aspx</DependentUpon>
+    <Compile Include="axContractRenewalsReport.aspx.designer.vb">
+      <DependentUpon>axContractRenewalsReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="axLengthOfServiceReport.aspx.vb">
-      <DependentUpon>axLengthOfServiceReport.aspx</DependentUpon>
+    <Compile Include="axContractRenewalsReport.aspx.vb">
+      <DependentUpon>axContractRenewalsReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="axCustomerByCustZoneReport.aspx.designer.vb">
@@ -324,13 +324,6 @@
       <DependentUpon>axCustomerByCustZoneReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="axServiceSummaryReport.aspx.designer.vb">
-      <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="axServiceSummaryReport.aspx.vb">
-      <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="axDriversLicenseExpiryReport.aspx.designer.vb">
       <DependentUpon>axDriversLicenseExpiryReport.aspx</DependentUpon>
     </Compile>
@@ -338,11 +331,11 @@
       <DependentUpon>axDriversLicenseExpiryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="axContractRenewalsReport.aspx.designer.vb">
-      <DependentUpon>axContractRenewalsReport.aspx</DependentUpon>
+    <Compile Include="axLengthOfServiceReport.aspx.designer.vb">
+      <DependentUpon>axLengthOfServiceReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="axContractRenewalsReport.aspx.vb">
-      <DependentUpon>axContractRenewalsReport.aspx</DependentUpon>
+    <Compile Include="axLengthOfServiceReport.aspx.vb">
+      <DependentUpon>axLengthOfServiceReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="axServiceListReport.aspx.designer.vb">
@@ -350,6 +343,13 @@
     </Compile>
     <Compile Include="axServiceListReport.aspx.vb">
       <DependentUpon>axServiceListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="axServiceSummaryReport.aspx.designer.vb">
+      <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axServiceSummaryReport.aspx.vb">
+      <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
@@ -1051,12 +1051,12 @@
     </Content>
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
-    <Content Include="axLengthOfServiceReport.aspx" />
-    <Content Include="axCustomerByCustZoneReport.aspx" />
-    <Content Include="axServiceSummaryReport.aspx" />
-    <Content Include="axDriversLicenseExpiryReport.aspx" />
     <Content Include="axContractRenewalsReport.aspx" />
+    <Content Include="axCustomerByCustZoneReport.aspx" />
+    <Content Include="axDriversLicenseExpiryReport.aspx" />
+    <Content Include="axLengthOfServiceReport.aspx" />
     <Content Include="axServiceListReport.aspx" />
+    <Content Include="axServiceSummaryReport.aspx" />
     <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
