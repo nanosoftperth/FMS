@@ -92,7 +92,7 @@ Namespace DataObjects
                         Dim valStr As String = currentVal.Substring(num1 - 1, (num2 - num1) + 1)
 
                         'if we find one item which is not an F, then we can add this to the list
-                        Dim excludeItemFromlist As Boolean = (From x In valStr.ToCharArray Where x <> "F"c).Count > 0
+                        Dim excludeItemFromlist As Boolean = (From x In valStr.ToCharArray Where x <> "F"c And x <> "f"c).Count > 0
 
 
                         If Not excludeItemFromlist Then lst.Add(cmd)
