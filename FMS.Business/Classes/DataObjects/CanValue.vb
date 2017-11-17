@@ -8,6 +8,8 @@
         Public Property Time As DateTime
         Public Property Value As Object
 
+        Public Property IsValid As Boolean = True
+
         Public ReadOnly Property ValueStr As String
             Get
                 Return CStr(Value)
@@ -18,10 +20,14 @@
 
         End Sub
 
-        Public Sub New(name As String, rawvalue As Double, time As DateTime)
+        
+
+        Public Sub New(name As String, rawvalue As Double, time As DateTime, Optional isValid As Boolean = True)
 
             Me.RawValue = rawvalue
             Me.Time = time
+            Me.IsValid = isValid
+
         End Sub
 
 #End Region
