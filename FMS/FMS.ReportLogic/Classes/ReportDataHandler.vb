@@ -714,6 +714,21 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
+    Public Shared Function GetCustomerContactDetailsReport() As CacheCustomerContactDetails
+        Dim rept As New CacheCustomerContactDetails
+        Dim retobj = FMS.Business.DataObjects.usp_GetCustomerContactDetailsReport.GetCustomerContactDetailsReport.ToList()
+        Dim objList As New List(Of CustomerContactDetails)
+        For Each item In retobj
+            objList.Add(New CustomerContactDetails() With {
+                        .CustomerName = item.CustomerName, .AddressLine1 = item.AddressLine1, .AddressLine2 = item.AddressLine2,
+                        .AddressLine3 = item.AddressLine3, .StateDesc = item.StateDesc, .Suburb = item.Suburb, .PostCode = item.PostCode,
+                        .CustomerContactName = item.CustomerContactName, .CustomerPhone = item.CustomerPhone, .CustomerMobile = item.CustomerMobile,
+                        .CustomerFax = item.CustomerFax, .CustomerComments = item.CustomerComments, .CustomerAgentName = item.CustomerAgentName,
+                        .CustomerRating = item.CustomerRating, .CustomerRatingDesc = item.CustomerRatingDesc})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

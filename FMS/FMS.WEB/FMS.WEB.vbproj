@@ -324,6 +324,13 @@
       <DependentUpon>axCustomerByCustZoneReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axCustomerContactDetailsReport.aspx.designer.vb">
+      <DependentUpon>axCustomerContactDetailsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axCustomerContactDetailsReport.aspx.vb">
+      <DependentUpon>axCustomerContactDetailsReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="axDriversLicenseExpiryReport.aspx.designer.vb">
       <DependentUpon>axDriversLicenseExpiryReport.aspx</DependentUpon>
     </Compile>
@@ -1053,6 +1060,7 @@
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="axContractRenewalsReport.aspx" />
     <Content Include="axCustomerByCustZoneReport.aspx" />
+    <Content Include="axCustomerContactDetailsReport.aspx" />
     <Content Include="axDriversLicenseExpiryReport.aspx" />
     <Content Include="axLengthOfServiceReport.aspx" />
     <Content Include="axServiceListReport.aspx" />
@@ -1518,7 +1526,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18352/</IISUrl>
+          <IISUrl>http://localhost:18351/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
