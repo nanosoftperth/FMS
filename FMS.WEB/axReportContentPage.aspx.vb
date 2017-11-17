@@ -28,6 +28,8 @@
                 Return New FMS.ReportLogic.LengthOfServicesReport()
             Case "CustomerByCustZoneReport"
                 Return New FMS.ReportLogic.CustomerByCustZoneReport()
+            Case "CustomerContactDetailsReport"
+                Return New FMS.ReportLogic.CustomerContactDetailsReport()
             Case Else
                 Return Nothing
         End Select
