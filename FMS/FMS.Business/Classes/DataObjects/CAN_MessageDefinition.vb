@@ -55,40 +55,63 @@ Namespace DataObjects
 
             With x
 
-                Try
-                    If .Name IsNot Nothing Then Me.Name = .Name
-                    If .Standard IsNot Nothing Then Me.Standard = .Standard
-                    If .PGN IsNot Nothing Then Me.PGN = .PGN
-                    If .SPN IsNot Nothing Then Me.SPN = .SPN
-                    If .PGN_Length IsNot Nothing Then Me.PGN_Length = .PGN_Length
-                    If .Parameter_Group_Label IsNot Nothing Then Me.Parameter_Group_Label = .Parameter_Group_Label
-                    If .Acronym IsNot Nothing Then Me.Acronym = .Acronym
-                    If .Description IsNot Nothing Then Me.Description = .Description
-                    If .Resolution IsNot Nothing Then Me.Resolution = .Resolution
-                    If .Units IsNot Nothing Then Me.Units = .Units
-                    If .Offset IsNot Nothing Then Me.offset = .Offset
-                    If .pos IsNot Nothing Then Me.pos = .pos
-                    If .SPN_length IsNot Nothing Then Me.SPN_Length = .SPN_length
-                    If .Units IsNot Nothing Then Me.Units = .Units
 
-                    If .Data_Range IsNot Nothing Then Me.Data_Range = .Data_Range
+                If .Name IsNot Nothing Then Me.Name = .Name
+                If .Standard IsNot Nothing Then Me.Standard = .Standard
+                If .PGN IsNot Nothing Then Me.PGN = .PGN
+                If .SPN IsNot Nothing Then Me.SPN = .SPN
 
-                    'calculate position start and end 
-                    If Not String.IsNullOrEmpty(Me.pos) Then
-                        Me._pos_start = Decimal.Parse(Me.pos.Split("-")(0).Trim)
-                        If Me.pos.Contains("-") Then Me._pos_end = Decimal.Parse(Me.pos.Split("-")(1).Trim)
+                Dim pgn_len As Integer
 
-                        If pos_end = 0 Then _pos_end = pos_start + (CInt(SPN_Length / 8) - 1)
+                If .PGN_Length IsNot Nothing AndAlso Integer.TryParse(.PGN_Length, pgn_len) Then Me.PGN_Length = .PGN_Length
+
+                If .Parameter_Group_Label IsNot Nothing Then Me.Parameter_Group_Label = .Parameter_Group_Label
+                If .Acronym IsNot Nothing Then Me.Acronym = .Acronym
+                If .Description IsNot Nothing Then Me.Description = .Description
+                If .Resolution IsNot Nothing Then Me.Resolution = .Resolution
+                If .Units IsNot Nothing Then Me.Units = .Units
+                If .Offset IsNot Nothing Then Me.offset = .Offset
+                If .pos IsNot Nothing Then Me.pos = .pos
+                If .SPN_length IsNot Nothing Then Me.SPN_Length = .SPN_length
+                If .Units IsNot Nothing Then Me.Units = .Units
+
+                If .Data_Range IsNot Nothing Then Me.Data_Range = .Data_Range
+
+                'calculate position start and end 
+                If Not String.IsNullOrEmpty(Me.pos) Then
+                    Me._pos_start = Decimal.Parse(Me.pos.Split("-")(0).Trim)
+                    If Me.pos.Contains("-") Then Me._pos_end = Decimal.Parse(Me.pos.Split("-")(1).Trim)
+
+                    If pos_end = 0 Then _pos_end = pos_start + (CInt(SPN_Length / 8) - 1)
+                End If
+
+
+                If Not String.IsNullOrEmpty(Me.Resolution) Then
+
+
+                    'if this is not a division type 
+                    Dim res As String = Me.Resolution.Split(" "c)(0)
+
+                    If res = "1/bit" Then 'getting hard coded here, not liking it
+
+                        Me._Resolution_Multiplier = 1
+
+                    ElseIf res.Contains("/") Then
+
+                        Dim xy = res.Split("/")
+
+                        Me._Resolution_Multiplier = CDec(xy(0)) / CDec(xy(1))
+
+                    Else
+
+                        Me._Resolution_Multiplier = CDec(res)
                     End If
 
-                    If Not String.IsNullOrEmpty(Me.Resolution) Then Me._Resolution_Multiplier = Decimal.Parse(Me.Resolution.Split(" "c)(0))
 
-                Catch ex As Exception
-
-                    Dim msg As String = "asd"
-                End Try
+                End If
 
 
+                'If Not String.IsNullOrEmpty(Me.Resolution) Then Me._Resolution_Multiplier = Decimal.Parse(Me.Resolution.Split(" "c)(0))
 
             End With
 
@@ -191,7 +214,7 @@ Namespace DataObjects
                 .SubmitChanges()
 
 
-                For Each standSPN As String In commaSepList.split(",")
+                For Each standSPN As String In commaSepList.Split(",")
 
                     Dim standard = standSPN.Split("|")(0)
                     Dim spn = standSPN.Split("|")(1)

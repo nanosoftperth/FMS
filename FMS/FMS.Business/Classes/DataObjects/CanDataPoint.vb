@@ -732,6 +732,44 @@
                 Try
                     Dim b() As Byte = StringToByteArray(cv.RawValue)
 
+                    Dim spnLengthBits As Integer = msg_def.SPN_Length
+                    Dim spnStartBit As String = msg_def.pos
+
+                    Dim binarystring As String = [String].Join([String].Empty, cv.RawValue.[Select](Function(c) Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, "0"c)))
+
+                    Dim splts() As String = spnStartBit.Split("-")(0).Split("."c)
+
+                    Dim startchar As Integer = (CInt(splts(0)) - 1) * 8
+
+                    If splts.Length > 1 Then startchar += (CInt(splts(1)) - 1)
+
+                    Dim binStr As String = binarystring.Substring(startchar, spnLengthBits)
+
+                    'if all we have is 1's, then this is a "not available" value
+                    cv.IsValid = binStr.Contains("0")
+                    If Not cv.IsValid Then Exit Sub
+
+                    'resolution, pos, spn_length
+                    If msg_def.Resolution IsNot Nothing AndAlso msg_def.Resolution.Contains("states") Then
+
+
+
+                        Dim retVal As String = "<<invalid entry>>"
+
+                        For Each s As String In msg_def.Description.Split(vbNewLine)
+
+                            If s.StartsWith(binStr) Then
+
+                                retVal = s.Replace(binStr, String.Empty).Trim.Trim("-").Trim
+                                Exit For
+                            End If
+                        Next
+
+                        cv.Value = retVal
+                        Exit Sub
+
+                    End If
+
                     Dim startByte As Integer = msg_def.pos_start
 
                     Dim indx As Integer = 0
