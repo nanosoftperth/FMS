@@ -359,6 +359,13 @@
       <DependentUpon>axServiceSummaryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axSitesWithNoContractsReport.aspx.designer.vb">
+      <DependentUpon>axSitesWithNoContractsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axSitesWithNoContractsReport.aspx.vb">
+      <DependentUpon>axSitesWithNoContractsReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
       <DependentUpon>CanBusDisplayProperty.aspx</DependentUpon>
     </Compile>
@@ -1065,6 +1072,7 @@
     <Content Include="axLengthOfServiceReport.aspx" />
     <Content Include="axServiceListReport.aspx" />
     <Content Include="axServiceSummaryReport.aspx" />
+    <Content Include="axSitesWithNoContractsReport.aspx" />
     <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />

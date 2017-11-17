@@ -729,6 +729,18 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
+    Public Shared Function GetSiteWithNoContractsReport() As CacheSitesWithNoContracts
+        Dim rept As New CacheSitesWithNoContracts
+        Dim retobj = FMS.Business.DataObjects.usp_GetSitesWithNoContractsReport.GetSitesWithNoContract.ToList()
+        Dim objList As New List(Of SitesWithNoContracts)
+        For Each item In retobj
+            objList.Add(New SitesWithNoContracts() With {
+                        .CustomerName = item.CustomerName, .SiteName = item.SiteName, .SitePeriod = item.SitePeriod,
+                        .SiteStartDate = item.SiteStartDate, .ContractPeriodDesc = item.ContractPeriodDesc, .SiteCeaseDate = item.SiteCeaseDate})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

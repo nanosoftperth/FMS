@@ -73,11 +73,16 @@
                       <li>Gains & Losses (Sales)</li>
 					  <li><a href="axDriversLicenseExpiryReport.aspx" target="iframeMenu">Driver License Expiry</a></li>
 					  <li>Per Annum Value</li>
-                      <li>Invoicing</li>
-					  <li>Sites With No Contracts</li>
+					  <li><a href="axSitesWithNoContractsReport.aspx" target="iframeMenu">Sites With No Contracts</a></li>
 					  <li>Sites By Site Zone</li>
 					</ul>
-	
+                    <li data-toggle="collapse" data-target="#Invoicing" class="collapsed">
+                        <a href="#"><i class="fa fa-list-alt fa-lg"></i> Invoicing Reports<span class="arrow"></span></a>
+                    </li>
+                    <ul class="sub-menu collapse" id="Invoicing">
+                        <li>Basic Details Check</li>
+                        <li>Print Customer Invoice</li>
+                    </ul>
 					<li data-toggle="collapse" data-target="#new" class="collapsed">
 					  <a href="#"><i class="fa fa-sticky-note fa-lg"></i> Other Processes <span class="arrow"></span></a>
 					</li>
