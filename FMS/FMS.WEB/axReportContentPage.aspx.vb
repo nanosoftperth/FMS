@@ -30,6 +30,8 @@
                 Return New FMS.ReportLogic.CustomerByCustZoneReport()
             Case "CustomerContactDetailsReport"
                 Return New FMS.ReportLogic.CustomerContactDetailsReport()
+            Case "SitesWithNoContractsReport"
+                Return New FMS.ReportLogic.SitesWithNoContractsReport()
             Case Else
                 Return Nothing
         End Select

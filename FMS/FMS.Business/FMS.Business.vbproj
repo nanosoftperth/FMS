@@ -140,6 +140,7 @@
     <Compile Include="Classes\DataObjects\Cannon\usp_GetIndustryListReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetLengthOfServicesReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetServiceSummaryReport.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\usp_GetSitesWithNoContractsReport.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanValue.vb" />
     <Compile Include="Classes\DataObjects\Can_AlertDefinition.vb" />
