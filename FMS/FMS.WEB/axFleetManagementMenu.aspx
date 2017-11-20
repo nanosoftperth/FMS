@@ -80,8 +80,8 @@
                         <a href="#"><i class="fa fa-list-alt fa-lg"></i> Invoicing Reports<span class="arrow"></span></a>
                     </li>
                     <ul class="sub-menu collapse" id="Invoicing">
-                        <li>Basic Details Check</li>
-                        <li>Print Customer Invoice</li>
+                        <li><a href="axInvoiceBasicCheckReport.aspx" target="iframeMenu">Basic Details Check</a></li>
+                        <li><a href="axMYOBCustomerInvoiceReport.aspx" target="iframeMenu">Print Customer Invoice</a></li>
                     </ul>
 					<li data-toggle="collapse" data-target="#new" class="collapsed">
 					  <a href="#"><i class="fa fa-sticky-note fa-lg"></i> Other Processes <span class="arrow"></span></a>

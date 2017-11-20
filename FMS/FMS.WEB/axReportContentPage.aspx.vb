@@ -32,6 +32,10 @@
                 Return New FMS.ReportLogic.CustomerContactDetailsReport()
             Case "SitesWithNoContractsReport"
                 Return New FMS.ReportLogic.SitesWithNoContractsReport()
+            Case "InvoiceBasicCheckReport"
+                Return New FMS.ReportLogic.InvoiceBasicCheckReport()
+            Case "MYOBCustomerInvoiceReport"
+                Return New FMS.ReportLogic.MYOBCustomerInvoiceReport()
             Case Else
                 Return Nothing
         End Select

@@ -338,12 +338,26 @@
       <DependentUpon>axDriversLicenseExpiryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axInvoiceBasicCheckReport.aspx.designer.vb">
+      <DependentUpon>axInvoiceBasicCheckReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axInvoiceBasicCheckReport.aspx.vb">
+      <DependentUpon>axInvoiceBasicCheckReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="axLengthOfServiceReport.aspx.designer.vb">
       <DependentUpon>axLengthOfServiceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="axLengthOfServiceReport.aspx.vb">
       <DependentUpon>axLengthOfServiceReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="axMYOBCustomerInvoiceReport.aspx.designer.vb">
+      <DependentUpon>axMYOBCustomerInvoiceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axMYOBCustomerInvoiceReport.aspx.vb">
+      <DependentUpon>axMYOBCustomerInvoiceReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="axServiceListReport.aspx.designer.vb">
       <DependentUpon>axServiceListReport.aspx</DependentUpon>
@@ -1069,7 +1083,9 @@
     <Content Include="axCustomerByCustZoneReport.aspx" />
     <Content Include="axCustomerContactDetailsReport.aspx" />
     <Content Include="axDriversLicenseExpiryReport.aspx" />
+    <Content Include="axInvoiceBasicCheckReport.aspx" />
     <Content Include="axLengthOfServiceReport.aspx" />
+    <Content Include="axMYOBCustomerInvoiceReport.aspx" />
     <Content Include="axServiceListReport.aspx" />
     <Content Include="axServiceSummaryReport.aspx" />
     <Content Include="axSitesWithNoContractsReport.aspx" />

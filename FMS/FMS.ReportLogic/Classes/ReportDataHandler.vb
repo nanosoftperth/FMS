@@ -741,6 +741,36 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
+    Public Shared Function GetInvoiceBasicCheckReport() As CacheInvoiceBasicCheck
+        Dim rept As New CacheInvoiceBasicCheck
+        Dim retobj = FMS.Business.DataObjects.usp_GetInvoiceBasicCheckReport.GetInvoiceBasicCheckReport.ToList()
+        Dim objList As New List(Of InvoiceBasicCheck)
+        For Each item In retobj
+            objList.Add(New InvoiceBasicCheck() With {
+                        .CustomerName = item.CustomerName, .SiteName = item.SiteName,
+                        .SiteCeaseDate = item.SiteCeaseDate, .Frequency = item.Frequency,
+                        .InvoiceCommencing = item.InvoiceCommencing, .MonthDescription = item.MonthDescription})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
+    Public Shared Function GetMYOBCustomerInvoiceReport() As CacheMYOBCustomerInvoice
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim custName As String = IIf(paramValues(1).ToString().Equals(""), "", paramValues(1).ToString())
+        Dim rept As New CacheMYOBCustomerInvoice
+        Dim retobj = FMS.Business.DataObjects.usp_GetMYOBCustomerInvoiceReport.GetMYOBCustomerInvoiceReport(custName).ToList()
+        Dim objList As New List(Of MYOBCustomerInvoice)
+        For Each item In retobj
+            objList.Add(New MYOBCustomerInvoice() With {
+                        .CustomerName = item.CustomerName, .CustomerNumber = item.CustomerNumber, .InvoiceNumber = item.InvoiceNumber,
+                        .CustomerPurchaseOrderNumber = item.CustomerPurchaseOrderNumber, .Quantity = item.Quantity, .ProductCode = item.ProductCode,
+                        .ProductDescription = item.ProductDescription, .InvoiceAmountExGST = item.InvoiceAmountExGST, .InvoiceAmountIncGST = item.InvoiceAmountIncGST,
+                        .GSTAmount = item.GSTAmount, .SiteName = item.SiteName})
+        Next
+        rept.LineValues = objList
+        rept.Param = custName
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

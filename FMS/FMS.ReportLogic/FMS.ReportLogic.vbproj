@@ -132,7 +132,9 @@
     <Compile Include="Classes\CustomerContactDetails.vb" />
     <Compile Include="Classes\DriversLicenseExpiry.vb" />
     <Compile Include="Classes\IndustryList.vb" />
+    <Compile Include="Classes\InvoiceBasicCheck.vb" />
     <Compile Include="Classes\LengthOfServices.vb" />
+    <Compile Include="Classes\MYOBCustomerInvoice.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
     <Compile Include="Classes\ServiceList.vb" />
     <Compile Include="Classes\ServiceSummary.vb" />
@@ -202,10 +204,22 @@
     <Compile Include="Reports\IndustryListReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\InvoiceBasicCheckReport.Designer.vb">
+      <DependentUpon>InvoiceBasicCheckReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InvoiceBasicCheckReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\LengthOfServicesReport.Designer.vb">
       <DependentUpon>LengthOfServicesReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\LengthOfServicesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\MYOBCustomerInvoiceReport.Designer.vb">
+      <DependentUpon>MYOBCustomerInvoiceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MYOBCustomerInvoiceReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ReportGeoFence_byDriverPDF.vb">
@@ -298,8 +312,14 @@
     <EmbeddedResource Include="Reports\IndustryListReport.resx">
       <DependentUpon>IndustryListReport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InvoiceBasicCheckReport.resx">
+      <DependentUpon>InvoiceBasicCheckReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\LengthOfServicesReport.resx">
       <DependentUpon>LengthOfServicesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MYOBCustomerInvoiceReport.resx">
+      <DependentUpon>MYOBCustomerInvoiceReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportGeoFence_byDriverPDF.resx">
       <DependentUpon>ReportGeoFence_byDriverPDF.vb</DependentUpon>
