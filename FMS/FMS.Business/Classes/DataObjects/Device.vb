@@ -71,31 +71,17 @@ Namespace DataObjects
 
                     For Each cmd As CAN_MessageDefinition In CAN_MessageDefinition.GetForPGN(pgn, standardName)
 
-                        Dim num1, num2 As Integer
 
-                        If Not Integer.TryParse(cmd.pos, num1) Then
+                        'Look at the latest value from the archive. Check if there is only 1's in the result. 
+                        'If there is only 1's, then this is the ECU saying that it "doesn't know" the value being asked of it.
 
-                            'for each of the values, get the actual HEX value and if it is all FF, then there is no data available so do not show
-                            'if this is not in the format "x - y" then exit the for loop 
-                            Dim posns() As String = cmd.pos.Split("-"c)
+                        Dim cvl As New DataObjects.CanDataPoint.CanValueList()
 
-                            If posns.Count <> 2 Then Exit For
+                        cvl.Add(New CanValue With {.Time = Now, .Value = currentVal, .RawValue = .Value})
 
-                            'if either side of the " - ", both values are not integers, then exit the for loop ( "2 - 4" is ok , " x - 6" is not)
-                            If Not (Integer.TryParse(posns(0), num1) Or Integer.TryParse(posns(1), num2)) Then Exit For
+                        cvl.CalculateValues(cmd.SPN, cmd)
 
-                        Else
-                            num2 = num1
-                        End If
-
-                        'if we are here, then there should be a num1 and num2 to get the data out of the hex value
-                        Dim valStr As String = currentVal.Substring(num1 - 1, (num2 - num1) + 1)
-
-                        'if we find one item which is not an F, then we can add this to the list
-                        Dim excludeItemFromlist As Boolean = (From x In valStr.ToCharArray Where x <> "F"c And x <> "f"c).Count > 0
-
-
-                        If Not excludeItemFromlist Then lst.Add(cmd)
+                        If cvl.First.IsValid Then lst.Add(cmd)
 
                     Next
 

@@ -12,6 +12,9 @@ namespace FMS.TestConsole
         static void Main(string[] args)
         {
 
+
+            var x = FMS.Business.DataObjects.Device.GetCANMessageDefinitions("Komatsu01");
+
             var dict = new Dictionary<string, string>();
 
             dict.Add("", "");

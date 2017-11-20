@@ -758,7 +758,7 @@
 
                         For Each s As String In msg_def.Description.Split(vbNewLine)
 
-                            If s.StartsWith(binStr) Then
+                            If s.Trim.StartsWith(binStr) Then
 
                                 retVal = s.Replace(binStr, String.Empty).Trim.Trim("-").Trim
                                 Exit For
