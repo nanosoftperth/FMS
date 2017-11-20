@@ -1,6 +1,0 @@
-﻿
-
-
-alertSubscriber			done
-contact					done
-group					still to do 
