@@ -22,5 +22,5 @@
     <item Text="Feature Requests" NavigateUrl="Debug.aspx"  />
   </item>
   
-  <item Text="Cannon Fleet Management" NavigateUrl="axFleetManagementMenu.aspx"  />
+  <item Text="Fleet Management" NavigateUrl="axFleetManagementMenu.aspx"  />
 </items>
