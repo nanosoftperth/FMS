@@ -10,6 +10,11 @@ Public Class RootMaster
         End Get
     End Property
 
+    Public Shared ReadOnly Property CompanyName As String
+        Get
+            Return My.Settings.debug_company_name
+        End Get
+    End Property
 
     '   Page event order (from MSDN)
     '   =============================
@@ -62,6 +67,18 @@ Public Class RootMaster
             If strs.Length < 1 Then Throw New Exception(String.Format("unxepected application name ({0})", servername))
             Membership.ApplicationName = strs(0)
         End If
+
+        Select Case Membership.ApplicationName.ToLower
+            Case "cannon"
+                XmlDataSourceHeader.DataFile = "~/App_Data/TopMenu_cannon_v1.2.xml"
+            Case "uniqco"
+                XmlDataSourceHeader.DataFile = "~/App_Data/TopMenu_uniqco_v1.2.xml"
+            Case "demo"
+                XmlDataSourceHeader.DataFile = "~/App_Data/TopMenu_demo_v1.2.xml"
+            Case Else
+                XmlDataSourceHeader.DataFile = "~/App_Data/TopMenu_v1.2.xml"
+        End Select
+
 
         SetApplicationSessionVars()
 
