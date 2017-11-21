@@ -29,6 +29,27 @@
     End Sub
 
     Private Sub Page_PreInit(sender As Object, e As EventArgs) Handles Me.PreInit
+
+        'Dim retobj As Object = Nothing
+
+        'Dim isBusy As String = "234@#$a3sd"
+
+
+        'If HttpContext.Current.Session(isBusy) Is Nothing Then HttpContext.Current.Session(isBusy) = False
+
+        'While True
+
+        '    If Not HttpContext.Current.Session(isBusy) Then
+        '        HttpContext.Current.Session(isBusy) = True
+        '        Exit While
+        '    End If
+
+        '    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1))
+
+        'End While
+
+        'HttpContext.Current.Session(isBusy) = False
+
         ' FMS.Business.SingletonAccess.ClientSelected_TimeZone = (From x In FMS.Business.DataObjects.TimeZone.GetMSoftTZones).ToList.First
     End Sub
 

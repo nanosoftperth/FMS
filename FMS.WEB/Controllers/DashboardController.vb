@@ -106,31 +106,67 @@ Public Class DashboardController
    <ActionName("Query")>
     Public Function Query(request As HttpRequestMessage) As Object
 
-        'we presume at this point in time that the user is authorized
-        Dim companyName As String = GetAuthorizedAndCompanyName(request.Headers.Authorization).CompanyName
+        Dim retobj As Object = Nothing
 
-        Dim application = Business.DataObjects.Application.GetFromApplicationName(companyName)
+        'Dim isBusy As String = "234@#$a3sd"
 
-        Dim jsonString = request.Content.ReadAsStringAsync().Result
 
-        Dim jSerializer = New JavaScriptSerializer()
+        'If HttpContext.Current.Session(isBusy) Is Nothing Then HttpContext.Current.Session(isBusy) = False
 
-        Dim lok As queryRequestType = jSerializer.Deserialize(Of queryRequestType)(jsonString)
+        'While True
 
-        Dim queryReturnList As New List(Of queryReturnType)
+        '    If Not HttpContext.Current.Session(isBusy) Then
+        '        HttpContext.Current.Session(isBusy) = True
+        '        Exit While
+        '    End If
 
-        Dim startTime As Date = CDate(lok.range.from)
-        Dim endTime As Date = CDate(lok.range.to)
+        '    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(0.1))
 
-        'grab the first target to determine if the result set should be timeserie or table
-        Dim isTimeserie As Boolean = lok.targets(0).type = "timeserie"
+        'End While
 
-        If isTimeserie Then
-            Return GetTimeSeriesResult(lok, startTime, endTime)
-        Else
-            Return GetTableResult(lok, startTime, endTime)
-        End If
+        Dim i As Integer = 0
 
+        While True
+
+            Try
+
+                'we presume at this point in time that the user is authorized
+                Dim companyName As String = GetAuthorizedAndCompanyName(request.Headers.Authorization).CompanyName
+
+                Dim application = Business.DataObjects.Application.GetFromApplicationName(companyName)
+
+                Dim jsonString = request.Content.ReadAsStringAsync().Result
+
+                Dim jSerializer = New JavaScriptSerializer()
+
+                Dim lok As queryRequestType = jSerializer.Deserialize(Of queryRequestType)(jsonString)
+
+                Dim queryReturnList As New List(Of queryReturnType)
+
+                Dim startTime As Date = CDate(lok.range.from)
+                Dim endTime As Date = CDate(lok.range.to)
+
+                'grab the first target to determine if the result set should be timeserie or table
+                Dim isTimeserie As Boolean = lok.targets(0).type = "timeserie"
+
+                If isTimeserie Then
+                    retobj = GetTimeSeriesResult(lok, startTime, endTime)
+                Else
+                    retobj = GetTableResult(lok, startTime, endTime)
+                End If
+
+
+                Return retobj
+
+            Catch ex As Exception
+                If i > 5 Then Throw
+            End Try
+
+            i += 1
+
+        End While
+
+       
 
     End Function
 
