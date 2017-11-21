@@ -771,6 +771,21 @@ Public Class ReportDataHandler
         rept.Param = custName
         Return rept
     End Function
+    Public Shared Function GetRunListingReport() As CacheRunListing
+        Dim rept As New CacheRunListing
+        Dim retobj = FMS.Business.DataObjects.usp_GetRunListingReport.GetRunListingReport.ToList()
+        Dim objList As New List(Of RunListing)
+        For Each item In retobj
+            objList.Add(New RunListing() With {
+                        .RunNUmber = item.RunNUmber, .RunNum = item.RunNum, .RunDescription = item.RunDescription,
+                        .RunDriver = item.RunDriver, .DriverName = item.DriverName, .MondayRun = item.MondayRun,
+                        .TuesdayRun = item.TuesdayRun, .WednesdayRun = item.WednesdayRun, .ThursdayRun = item.ThursdayRun,
+                        .FridayRun = item.FridayRun, .SaturdayRun = item.SaturdayRun, .SundayRun = item.SundayRun,
+                        .InactiveRun = item.InactiveRun, .Rid = item.Rid, .DateOfRun = item.DateOfRun})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

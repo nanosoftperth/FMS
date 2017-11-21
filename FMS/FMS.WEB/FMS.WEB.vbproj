@@ -1077,6 +1077,9 @@
     <Content Include="App_Data\TopMenu.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data\TopMenu_demo_v1.2.xml" />
+    <Content Include="App_Data\TopMenu_uniqco_v1.2.xml" />
+    <Content Include="App_Data\TopMenu_cannon_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="axContractRenewalsReport.aspx" />
