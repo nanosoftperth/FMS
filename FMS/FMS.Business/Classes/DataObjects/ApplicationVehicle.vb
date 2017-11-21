@@ -191,7 +191,9 @@
                     'dim replacestr as string = string.format("can_{0}_", deviceid)
                     'dim pgn as integer = ppname.replace(replacestr, "")
                     Dim pgn As Integer = ppname.Split("_").Reverse()(0)
-                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, Me.CAN_Protocol_Type))
+                    Dim protocolType As String = ppname.Split("_")(2)
+
+                    lst.AddRange(CAN_MessageDefinition.GetForPGN(pgn, protocolType))
 
                 Catch ex As Exception
                     Dim msg As String = ex.Message

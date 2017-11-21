@@ -12,6 +12,7 @@ namespace FMS.TestConsole
         static void Main(string[] args)
         {
 
+            
 
             var x = FMS.Business.DataObjects.Device.GetCANMessageDefinitions("Komatsu01");
 
