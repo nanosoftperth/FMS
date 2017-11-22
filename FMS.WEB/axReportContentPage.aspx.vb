@@ -36,6 +36,8 @@
                 Return New FMS.ReportLogic.InvoiceBasicCheckReport()
             Case "MYOBCustomerInvoiceReport"
                 Return New FMS.ReportLogic.MYOBCustomerInvoiceReport()
+            Case "GainsAndLossesReport"
+                Return New FMS.ReportLogic.GainsAndLossesReport()
             Case Else
                 Return Nothing
         End Select

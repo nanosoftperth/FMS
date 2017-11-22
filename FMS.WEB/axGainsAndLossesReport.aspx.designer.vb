@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class axLengthOfServiceReport
+Partial Public Class axGainsAndLossesReport
 
     '''<summary>
     '''form1 control.
@@ -23,22 +23,40 @@ Partial Public Class axLengthOfServiceReport
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''lblGreaterThanYearsService control.
+    '''lblDtFrom control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblGreaterThanYearsService As Global.DevExpress.Web.ASPxLabel
+    Protected WithEvents lblDtFrom As Global.DevExpress.Web.ASPxLabel
 
     '''<summary>
-    '''txtGreaterThanYearsService control.
+    '''dtFrom control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtGreaterThanYearsService As Global.DevExpress.Web.ASPxTextBox
+    Protected WithEvents dtFrom As Global.DevExpress.Web.ASPxDateEdit
+
+    '''<summary>
+    '''lblDtTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDtTo As Global.DevExpress.Web.ASPxLabel
+
+    '''<summary>
+    '''dtTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dtTo As Global.DevExpress.Web.ASPxDateEdit
 
     '''<summary>
     '''ASPxButton1 control.

@@ -16,34 +16,46 @@
                      var jScriptDataStr = cbIndustryList.GetValue() + ":" + cbIndustryList.GetText();
 
                      var paramValue = jScriptDataStr;
+                     LoadingPanel.Show();
                      $("#frmContent").attr("src", "axReportContentPage.aspx?Report=IndustryListReport&param=" + paramValue);
                  }
              }
+
+             $(function () {
+                 $('#frmContent').load(function () {
+                     $(this).show();
+                     LoadingPanel.Hide();
+                 });
+             })
         </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <table>
-            <tr>
-                <td style="padding: 4px;">
-                    <dx:ASPxLabel ID="lblIndustry" runat="server" Text="Industry"></dx:ASPxLabel>
-                </td>
-                <td>
-                    <dx:ASPxComboBox ID="cbIndustryList" ClientInstanceName="cbIndustryList" DataSourceID="odsIndustryList" runat="server" ValueType="System.String" TextField="IndustryDescription" ValueField="Aid"></dx:ASPxComboBox>
-                </td>
-                <td style="padding: 4px;">
-                    <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
-                        <ClientSideEvents Click="function(s, e) {
-	                        btnProcessReport_Click(s,e);
-                        }"></ClientSideEvents>
-                    </dx:ASPxButton>
-                </td>
-            </tr>
-        </table>
-        <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-100);" style="border: none; overflow-y: visible;" class="row"></iframe>
-
-        <asp:ObjectDataSource ID="odsIndustryList" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblIndustryGroups"></asp:ObjectDataSource>
+        <div>
+            <table>
+                <tr>
+                    <td style="padding: 4px;">
+                        <dx:ASPxLabel ID="lblIndustry" runat="server" Text="Industry"></dx:ASPxLabel>
+                    </td>
+                    <td>
+                        <dx:ASPxComboBox ID="cbIndustryList" ClientInstanceName="cbIndustryList" DataSourceID="odsIndustryList" runat="server" ValueType="System.String" TextField="IndustryDescription" ValueField="Aid"></dx:ASPxComboBox>
+                    </td>
+                    <td style="padding: 4px;">
+                        <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
+                            <ClientSideEvents Click="function(s, e) {
+	                            btnProcessReport_Click(s,e);
+                            }"></ClientSideEvents>
+                        </dx:ASPxButton>
+                    </td>
+                </tr>
+            </table>
+            <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-100);" style="border: none; overflow-y: visible;" class="row"></iframe>
+            <asp:ObjectDataSource ID="odsIndustryList" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblIndustryGroups"></asp:ObjectDataSource>
+        </div>
+        <div>
+            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+                Modal="True">
+            </dx:ASPxLoadingPanel>
         </div>
     </form>
 </body>

@@ -12,14 +12,27 @@
         <script src="Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function btnProcessReport_Click() {
+                LoadingPanel.Show();
                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=ServiceSummaryReport");
              }
+
+             $(function () {
+                 $('#frmContent').load(function () {
+                     $(this).show();
+                     LoadingPanel.Hide();
+                 });
+             })
         </script>
 </head>
 <body onload="btnProcessReport_Click()">
     <form id="form1" runat="server" >
         <div>
             <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-50);" style="border: none; overflow-y: visible;" class="row"></iframe>
+        </div>
+        <div>
+            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+                Modal="True">
+            </dx:ASPxLoadingPanel>
         </div>
     </form>
 </body>

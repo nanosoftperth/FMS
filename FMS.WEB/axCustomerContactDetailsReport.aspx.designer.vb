@@ -21,4 +21,13 @@ Partial Public Class axCustomerContactDetailsReport
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+
+    '''<summary>
+    '''LoadingPanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
 End Class
