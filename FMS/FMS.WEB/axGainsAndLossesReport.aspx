@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="axMYOBCustomerInvoiceReport.aspx.vb" Inherits="FMS.WEB.axMYOBCustomerInvoiceReport" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="axGainsAndLossesReport.aspx.vb" Inherits="FMS.WEB.axGainsAndLossesReport" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
@@ -12,19 +12,18 @@
         <script src="Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function btnProcessReport_Click() {
-                 if (cbCustomers.GetText() != '') {
-                     var jScriptDataStr = cbCustomers.GetValue() + ":" + cbCustomers.GetText();
+                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
 
-                     var paramValue = jScriptDataStr;
-                     LoadingPanel.Show();
-                     $("#frmContent").attr("src", "axReportContentPage.aspx?Report=MYOBCustomerInvoiceReport&param=" + paramValue);
-                 }
+                 var paramValue = encodeURIComponent(jScriptDataStr);
+                 LoadingPanel.Show();
+                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=GainsAndLossesReport&param=" + paramValue);
+                 
              }
 
              $(function () {
                  $('#frmContent').load(function () {
                      $(this).show();
-                     LoadingPanel.Hide();
+                     LoadingPanel.Hide();    
                  });
              })
         </script>
@@ -34,13 +33,21 @@
         <div>
             <table>
                 <tr>
-                    <td style="padding: 4px;">
-                        <dx:ASPxLabel ID="lblCustomer" runat="server" Text="Customer"></dx:ASPxLabel>
-                    </td>
+                    <td><dx:ASPxLabel ID="lblDtFrom" runat="server" Text="From Date:"></dx:ASPxLabel></td>
+                    <td>&nbsp;</td>
                     <td>
-                        <dx:ASPxComboBox ID="cbCustomers" ClientInstanceName="cbCustomers" DataSourceID="odsCustomers" runat="server" ValueType="System.String" TextField="CustomerName" ValueField="cid"></dx:ASPxComboBox>
+                        <dx:ASPxDateEdit ID="dtFrom" ClientInstanceName="dtFrom" runat="server"></dx:ASPxDateEdit>
                     </td>
-                    <td style="padding: 4px;">
+                </tr>
+                <tr>
+                    <td><dx:ASPxLabel ID="lblDtTo" runat="server" Text="To Date:"></dx:ASPxLabel></td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <dx:ASPxDateEdit ID="dtTo" ClientInstanceName="dtTo" runat="server"></dx:ASPxDateEdit>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="padding: 4px; text-align:right" >
                         <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
                             <ClientSideEvents Click="function(s, e) {
 	                            btnProcessReport_Click(s,e);
@@ -49,9 +56,7 @@
                     </td>
                 </tr>
             </table>
-            <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-100);" style="border: none; overflow-y: visible;" class="row"></iframe>
-
-            <asp:ObjectDataSource ID="odsCustomers" runat="server" SelectMethod="GetAllOrderByCustomerName" TypeName="FMS.Business.DataObjects.tblCustomers"></asp:ObjectDataSource>
+            <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-150);" style="border: none; overflow-y: visible;" class="row"></iframe>
         </div>
         <div>
             <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"

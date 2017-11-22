@@ -8,7 +8,13 @@
     <script src="Content/javascript/bootstrap.min.js"></script>
     <script src="Content/javascript/FleetmanagementMenu/FleetManagementMenu.js"></script>
  
-	<div class="nav-side-menu">
+    <script>
+        $(function () {
+            var contents = $('#mainContent');
+            //contents.css('height', this.screen.height + 'px');
+        })
+    </script>
+	<div class="nav-side-menu" id="mainContent">
 		<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 	  
 			<div class="menu-list">

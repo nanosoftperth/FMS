@@ -93,4 +93,13 @@ Partial Public Class axContractRenewalsReport
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsZones As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''LoadingPanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
 End Class

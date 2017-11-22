@@ -338,6 +338,13 @@
       <DependentUpon>axDriversLicenseExpiryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="axGainsAndLossesReport.aspx.designer.vb">
+      <DependentUpon>axGainsAndLossesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axGainsAndLossesReport.aspx.vb">
+      <DependentUpon>axGainsAndLossesReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="axInvoiceBasicCheckReport.aspx.designer.vb">
       <DependentUpon>axInvoiceBasicCheckReport.aspx</DependentUpon>
     </Compile>
@@ -1086,6 +1093,7 @@
     <Content Include="axCustomerByCustZoneReport.aspx" />
     <Content Include="axCustomerContactDetailsReport.aspx" />
     <Content Include="axDriversLicenseExpiryReport.aspx" />
+    <Content Include="axGainsAndLossesReport.aspx" />
     <Content Include="axInvoiceBasicCheckReport.aspx" />
     <Content Include="axLengthOfServiceReport.aspx" />
     <Content Include="axMYOBCustomerInvoiceReport.aspx" />

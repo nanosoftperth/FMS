@@ -131,6 +131,7 @@
     <Compile Include="Classes\CustomerByCustZone.vb" />
     <Compile Include="Classes\CustomerContactDetails.vb" />
     <Compile Include="Classes\DriversLicenseExpiry.vb" />
+    <Compile Include="Classes\GainsAndLosses.vb" />
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\InvoiceBasicCheck.vb" />
     <Compile Include="Classes\LengthOfServices.vb" />
@@ -197,6 +198,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\FeatureAccessListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReport.Designer.vb">
+      <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\IndustryListReport.Designer.vb">
@@ -315,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FeatureAccessListReport.resx">
       <DependentUpon>FeatureAccessListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesReport.resx">
+      <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\IndustryListReport.resx">
       <DependentUpon>IndustryListReport.vb</DependentUpon>

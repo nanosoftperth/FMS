@@ -16,9 +16,17 @@
                      var jScriptDataStr = "GreaterThan:" + txtGreaterThanYearsService.GetText();
 
                      var paramValue = jScriptDataStr;
+                     LoadingPanel.Show();
                      $("#frmContent").attr("src", "axReportContentPage.aspx?Report=LengthOfServiceReport&param=" + paramValue);
                  }
              }
+
+             $(function () {
+                 $('#frmContent').load(function () {
+                     $(this).show();
+                     LoadingPanel.Hide();
+                 });
+             })
         </script>
 </head>
 <body>
@@ -42,6 +50,11 @@
                 </tr>
             </table>
             <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-100);" style="border: none; overflow-y: visible;" class="row"></iframe>
+        </div>
+        <div>
+            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+                Modal="True">
+            </dx:ASPxLoadingPanel>
         </div>
     </form>
 </body>

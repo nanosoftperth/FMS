@@ -15,50 +15,62 @@
                 var jScriptDataStr = cbZones.GetValue() + ":" + cbZones.GetText() + '|' + 'dtFrom:' + dtFrom.GetText() + '|' + 'dtTo:' + dtTo.GetText();
 
                 var paramValue = encodeURIComponent(jScriptDataStr);
+                LoadingPanel.Show();
                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=ContractRenewalReport&param=" + paramValue);
              }
+
+             $(function () {
+                 $('#frmContent').load(function () {
+                     $(this).show();
+                     LoadingPanel.Hide();
+                 });
+             })
         </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <table>
-            <tr>
-                <td><dx:ASPxLabel ID="lblDtFrom" runat="server" Text="From Date:"></dx:ASPxLabel></td>
-                <td>&nbsp;</td>
-                <td>
-                    <dx:ASPxDateEdit ID="dtFrom" ClientInstanceName="dtFrom" runat="server"></dx:ASPxDateEdit>
-                </td>
-            </tr>
-            <tr>
-                <td><dx:ASPxLabel ID="lblDtTo" runat="server" Text="To Date:"></dx:ASPxLabel></td>
-                <td>&nbsp;</td>
-                <td>
-                    <dx:ASPxDateEdit ID="dtTo" ClientInstanceName="dtTo" runat="server"></dx:ASPxDateEdit>
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 4px;">
-                    <dx:ASPxLabel ID="lblZones" runat="server" Text="Zone:"></dx:ASPxLabel>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                    <dx:ASPxComboBox ID="cbZones" ClientInstanceName="cbZones" DataSourceID="odsZones" runat="server" ValueType="System.String" TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" style="padding: 4px; text-align:right" >
-                    <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
-                        <ClientSideEvents Click="function(s, e) {
-	                        btnProcessReport_Click(s,e);
-                        }"></ClientSideEvents>
-                    </dx:ASPxButton>
-                </td>
-            </tr>
-        </table>
-        <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-150);" style="border: none; overflow-y: visible;" class="row"></iframe>
-
-        <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone"></asp:ObjectDataSource>
+        <div>
+            <table>
+                <tr>
+                    <td><dx:ASPxLabel ID="lblDtFrom" runat="server" Text="From Date:"></dx:ASPxLabel></td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <dx:ASPxDateEdit ID="dtFrom" ClientInstanceName="dtFrom" runat="server"></dx:ASPxDateEdit>
+                    </td>
+                </tr>
+                <tr>
+                    <td><dx:ASPxLabel ID="lblDtTo" runat="server" Text="To Date:"></dx:ASPxLabel></td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <dx:ASPxDateEdit ID="dtTo" ClientInstanceName="dtTo" runat="server"></dx:ASPxDateEdit>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 4px;">
+                        <dx:ASPxLabel ID="lblZones" runat="server" Text="Zone:"></dx:ASPxLabel>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <dx:ASPxComboBox ID="cbZones" ClientInstanceName="cbZones" DataSourceID="odsZones" runat="server" ValueType="System.String" TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="padding: 4px; text-align:right" >
+                        <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
+                            <ClientSideEvents Click="function(s, e) {
+	                            btnProcessReport_Click(s,e);
+                            }"></ClientSideEvents>
+                        </dx:ASPxButton>
+                    </td>
+                </tr>
+            </table>
+            <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-150);" style="border: none; overflow-y: visible;" class="row"></iframe>
+            <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone"></asp:ObjectDataSource>
+        </div>
+        <div>
+            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+                Modal="True">
+            </dx:ASPxLoadingPanel>
         </div>
     </form>
 </body>
