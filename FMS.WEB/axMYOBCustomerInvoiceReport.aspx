@@ -49,7 +49,7 @@
                     </td>
                 </tr>
             </table>
-            <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-100);" style="border: none; overflow-y: visible;" class="row"></iframe>
+            <iframe id="frmContent" src="" style="height:85vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
 
             <asp:ObjectDataSource ID="odsCustomers" runat="server" SelectMethod="GetAllOrderByCustomerName" TypeName="FMS.Business.DataObjects.tblCustomers"></asp:ObjectDataSource>
         </div>

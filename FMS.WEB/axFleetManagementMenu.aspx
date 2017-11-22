@@ -7,13 +7,6 @@
     <script src="Content/javascript/tether.js"></script>
     <script src="Content/javascript/bootstrap.min.js"></script>
     <script src="Content/javascript/FleetmanagementMenu/FleetManagementMenu.js"></script>
- 
-    <script>
-        $(function () {
-            var contents = $('#mainContent');
-            //contents.css('height', this.screen.height + 'px');
-        })
-    </script>
 	<div class="nav-side-menu" id="mainContent">
 		<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 	  
@@ -99,7 +92,10 @@
 				</ul>
 		 </div>
 	</div>
-    <div style="float:left; padding-left:305px; " >
+    <%--<div style="float:left; padding-left:305px; " >
         <iframe name="iframeMenu" onload="this.width=screen.width+140;this.height=(screen.height-15);" style="overflow-y: scroll"></iframe>
+    </div>--%>
+    <div style="float:left; padding-left:305px; " >
+        <iframe name="iframeMenu"  style="overflow-y: auto; height:80vh; width:158vh"></iframe>
     </div>
 </asp:Content>

@@ -27,7 +27,7 @@
 <body onload="btnProcessReport_Click()">
     <form id="form1" runat="server" >
         <div>
-            <iframe id="frmContent" src="" onload="this.width=screen.width+10;this.height=(screen.height-50);" style="border: none; overflow-y: visible;" class="row"></iframe>
+            <iframe id="frmContent" src="" style="height:95vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
             <asp:ObjectDataSource ID="odsIndustryList" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblIndustryGroups"></asp:ObjectDataSource>
         </div>
         <div>
