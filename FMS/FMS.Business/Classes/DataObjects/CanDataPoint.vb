@@ -496,9 +496,23 @@
 
                 If msg_def.Standard = "NANO1000" Then calcMethod = AddressOf j1939
 
-                For Each cv As CanValue In Me
-                    calcMethod(cv, msg_def)
-                Next
+                'HACK: for efficiency. Do not do a lengthly check for validity if there are more than one values being returned.
+                'below needs tidying up, has been added for efficiency
+                If msg_def.Standard = "j1939" Then
+
+                    'assumption is that we will only check if the value is "valid" if we are looking at one value only 
+                    'This could cause issues in future as it is not obvious
+                    Dim checkValidity As Boolean = Me.Count = 1
+
+                    For Each cv As CanValue In Me
+                        j1939(cv, msg_def, checkValidity)
+                    Next
+                Else
+
+                    For Each cv As CanValue In Me
+                        calcMethod(cv, msg_def)
+                    Next
+                End If
 
             End Sub
 
@@ -728,31 +742,40 @@
             End Function
 
 
-            Public Sub j1939(ByRef cv As CanValue, msg_def As CAN_MessageDefinition)
+            Public Sub j1939(ByRef cv As CanValue, msg_def As CAN_MessageDefinition, Optional CheckIsValid As Boolean = True)
                 Try
+
                     Dim b() As Byte = StringToByteArray(cv.RawValue)
+                    Dim binStr As String = String.Empty
 
-                    Dim spnLengthBits As Integer = msg_def.SPN_Length
-                    Dim spnStartBit As String = msg_def.pos
+                    Dim isStateBasedVal As Boolean = (msg_def.Resolution IsNot Nothing AndAlso msg_def.Resolution.Contains("states"))
 
-                    Dim binarystring As String = [String].Join([String].Empty, cv.RawValue.[Select](Function(c) Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, "0"c)))
+                    'if this is a "state based" value (i.e. 010 = "ERROR CODE 6") then calculate the value in bits in a string i.e. "0010111010101"
+                    If CheckIsValid Or isStateBasedVal Then
 
-                    Dim splts() As String = spnStartBit.Split("-")(0).Split("."c)
+                        Dim spnLengthBits As Integer = msg_def.SPN_Length
+                        Dim spnStartBit As String = msg_def.pos
 
-                    Dim startchar As Integer = (CInt(splts(0)) - 1) * 8
+                        Dim binarystring As String = [String].Join([String].Empty, cv.RawValue.[Select](Function(c) Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, "0"c)))
 
-                    If splts.Length > 1 Then startchar += (CInt(splts(1)) - 1)
+                        Dim splts() As String = spnStartBit.Split("-")(0).Split("."c)
 
-                    Dim binStr As String = binarystring.Substring(startchar, spnLengthBits)
+                        Dim startchar As Integer = (CInt(splts(0)) - 1) * 8
 
-                    'if all we have is 1's, then this is a "not available" value
-                    cv.IsValid = binStr.Contains("0")
-                    If Not cv.IsValid Then Exit Sub
+                        If splts.Length > 1 Then startchar += (CInt(splts(1)) - 1)
+
+                        binStr = binarystring.Substring(startchar, spnLengthBits)
+
+                        'if all we have is 1's, then this is a "not available" value
+                        cv.IsValid = binStr.Contains("0")
+
+                        If CheckIsValid AndAlso Not cv.IsValid Then Exit Sub
+
+                    End If
+
 
                     'resolution, pos, spn_length
-                    If msg_def.Resolution IsNot Nothing AndAlso msg_def.Resolution.Contains("states") Then
-
-
+                    If isStateBasedVal Then
 
                         Dim retVal As String = "<<invalid entry>>"
 
