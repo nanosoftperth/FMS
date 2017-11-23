@@ -132,6 +132,7 @@
     <Compile Include="Classes\CustomerContactDetails.vb" />
     <Compile Include="Classes\DriversLicenseExpiry.vb" />
     <Compile Include="Classes\GainsAndLosses.vb" />
+    <Compile Include="Classes\GainsAndLossesPerAnnum.vb" />
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\InvoiceBasicCheck.vb" />
     <Compile Include="Classes\LengthOfServices.vb" />
@@ -204,6 +205,24 @@
       <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\GainsAndLossesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.Designer.vb">
+      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumReport.Designer.vb">
+      <DependentUpon>GainsAndLossesReportPerAnnumReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesSummaryReport.Designer.vb">
+      <DependentUpon>GainsAndLossesSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesSummaryReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\IndustryListReport.Designer.vb">
@@ -325,6 +344,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\GainsAndLossesReport.resx">
       <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.resx">
+      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesReportPerAnnumReport.resx">
+      <DependentUpon>GainsAndLossesReportPerAnnumReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesSummaryReport.resx">
+      <DependentUpon>GainsAndLossesSummaryReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\IndustryListReport.resx">
       <DependentUpon>IndustryListReport.vb</DependentUpon>

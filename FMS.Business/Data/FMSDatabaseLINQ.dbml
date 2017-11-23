@@ -1628,4 +1628,24 @@
       <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetGainsAndLossesPerAnnumReport" Method="usp_GetGainsAndLossesPerAnnumReport">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_GetGainsAndLossesPerAnnumReportResult">
+      <Column Name="SalesPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Site" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EffectiveDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ServiceCode" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OldServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NewServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UnitsDiff" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UnitType" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="OldPerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NewPerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PADiff" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PAType" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
