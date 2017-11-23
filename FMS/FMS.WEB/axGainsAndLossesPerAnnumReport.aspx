@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="axGainsAndLossesReport.aspx.vb" Inherits="FMS.WEB.axGainsAndLossesReport" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="axGainsAndLossesPerAnnumReport.aspx.vb" Inherits="FMS.WEB.axGainsAndLossesPerAnnumReport" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
@@ -16,7 +16,7 @@
 
                  var paramValue = encodeURIComponent(jScriptDataStr);
                  LoadingPanel.Show();
-                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=GainsAndLossesReport&param=" + paramValue);
+                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=GainsAndLossesPerAnnumReport&param=" + paramValue);
              }
 
              function btnProcessSummaryReport_Click() {
@@ -24,13 +24,13 @@
 
                  var paramValue = encodeURIComponent(jScriptDataStr);
                  LoadingPanel.Show();
-                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=GainsAndLossesSummaryReport&param=" + paramValue);
+                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=GainsAndLossesPerAnnumSummaryReport&param=" + paramValue);
              }
 
              $(function () {
                  $('#frmContent').load(function () {
                      $(this).show();
-                     LoadingPanel.Hide();    
+                     LoadingPanel.Hide();
                  });
              })
         </script>

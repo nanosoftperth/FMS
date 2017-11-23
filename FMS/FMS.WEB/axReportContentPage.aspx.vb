@@ -38,6 +38,12 @@
                 Return New FMS.ReportLogic.MYOBCustomerInvoiceReport()
             Case "GainsAndLossesReport"
                 Return New FMS.ReportLogic.GainsAndLossesReport()
+            Case "GainsAndLossesSummaryReport"
+                Return New FMS.ReportLogic.GainsAndLossesSummaryReport()
+            Case "GainsAndLossesPerAnnumReport"
+                Return New FMS.ReportLogic.GainsAndLossesReportPerAnnumReport()
+            Case "GainsAndLossesPerAnnumSummaryReport"
+                Return New FMS.ReportLogic.GainsAndLossesReportPerAnnumSummaryReport()
             Case Else
                 Return Nothing
         End Select

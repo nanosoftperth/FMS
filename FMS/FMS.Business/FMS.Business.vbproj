@@ -137,6 +137,7 @@
     <Compile Include="Classes\DataObjects\Cannon\usp_GetCustomerContactDetailsReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetCustomerUpdateValue.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetDriversLicenseExpiryReport.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\usp_GetGainsAndLossesPerAnnumReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetGainsAndLossesReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetIndustryListReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetInvoiceBasicCheckReport.vb" />

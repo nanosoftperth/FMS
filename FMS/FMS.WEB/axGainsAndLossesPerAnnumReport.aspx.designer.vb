@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class axGainsAndLossesReport
+Partial Public Class axGainsAndLossesPerAnnumReport
 
     '''<summary>
     '''form1 control.
