@@ -832,6 +832,37 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
+
+    Public Shared Function GetStandardAuditReport() As CacheStandardAudit
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim paramDateStart As String = paramValues(0)
+        Dim paramDateEnd As String = paramValues(1)
+        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
+        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
+
+        Dim rept As New CacheStandardAudit
+        Dim retobj = FMS.Business.DataObjects.usp_GetStandardAuditReport.GetStandardAuditReport(startDate, endDate).ToList()
+        Dim objList As New List(Of StandardAudit)
+        For Each item In retobj
+            objList.Add(New StandardAudit() With {
+                        .Aid = item.Aid, .CSid = item.CSid, .Cid = item.Cid, .Customer = item.Customer, .Site = item.Site,
+                        .OldServiceUnits = item.OldServiceUnits, .OldServicePrice = item.OldServicePrice, .OldPerAnnumCharge = item.OldPerAnnumCharge,
+                        .NewServiceUnits = item.NewServiceUnits, .NewServicePrice = item.NewServicePrice, .NewPerAnnumCharge = item.NewPerAnnumCharge,
+                        .ChangeReasonCode = item.ChangeReasonCode, .User = item.User, .ChangeDate = item.ChangeDate, .ChangeTime = item.ChangeTime,
+                        .EffectiveDate = item.EffectiveDate, .OldContractCeasedate = item.OldContractCeasedate, .NewContractCeasedate = item.NewContractCeasedate,
+                        .OldInvoiceCommencing = item.OldInvoiceCommencing, .NewInvoiceCommencing = item.NewInvoiceCommencing, .OldInvoicingFrequency = item.OldInvoicingFrequency,
+                        .NewInvoicingFrequency = item.NewInvoicingFrequency, .OldContractStartDate = item.OldContractStartDate, .NewContractStartDate = item.NewContractStartDate,
+                        .FieldType = item.FieldType, .OldService = item.OldService, .RevenueChangeReason = item.RevenueChangeReason, .ServiceDescription = item.ServiceDescription,
+                        .ServiceCode = item.ServiceCode, .EffectiveDate1 = item.EffectiveDate1, .InvoiceCommencing = item.InvoiceCommencing, .Frequency = item.Frequency,
+                        .SiteCeaseDate = item.SiteCeaseDate, .FieldType1 = item.FieldType1, .CustomerName = item.CustomerName, .InvoiceMonth1 = item.InvoiceMonth1,
+                        .InvoiceMonth2 = item.InvoiceMonth2, .InvoiceMonth3 = item.InvoiceMonth3, .InvoiceMonth4 = item.InvoiceMonth4, .PurchaseOrderNumber = item.PurchaseOrderNumber,
+                        .SiteCeaseDate1 = item.SiteCeaseDate1, .OldService1 = item.OldService1, .CustormerSiteCeaseDate = item.CustormerSiteCeaseDate})
+        Next
+        rept.LineValues = objList
+        rept.Param1 = startDate
+        rept.Param2 = endDate
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

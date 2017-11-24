@@ -142,6 +142,7 @@
     <Compile Include="Classes\ServiceList.vb" />
     <Compile Include="Classes\ServiceSummary.vb" />
     <Compile Include="Classes\SitesWithNoContracts.vb" />
+    <Compile Include="Classes\StandardAudit.vb" />
     <Compile Include="Classes\SystemRoles.vb" />
     <Compile Include="Classes\Users.vb" />
     <Compile Include="Classes\Drivers.vb" />
@@ -285,6 +286,12 @@
     <Compile Include="Reports\SitesWithNoContractsReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\StandardAuditReport.Designer.vb">
+      <DependentUpon>StandardAuditReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StandardAuditReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\UsersListReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -389,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SitesWithNoContractsReport.resx">
       <DependentUpon>SitesWithNoContractsReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StandardAuditReport.resx">
+      <DependentUpon>StandardAuditReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\UsersListReport.resx">
       <DependentUpon>UsersListReport.vb</DependentUpon>
