@@ -58,14 +58,14 @@
                         <table>
                             <tr>
                                 <td>
-                                    <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Units" width="90px">
+                                    <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="PA Value" width="90px">
                                         <ClientSideEvents Click="function(s, e) {
 	                                        btnProcessReport_Click(s,e);
                                         }"></ClientSideEvents>
                                     </dx:ASPxButton>
                                 </td>
                                 <td>
-                                    <dx:ASPxButton ID="ASPxButton2" AutoPostBack="false" runat="server" Text="Units Summary">
+                                    <dx:ASPxButton ID="ASPxButton2" AutoPostBack="false" runat="server" Text="PA Summary">
                                         <ClientSideEvents Click="function(s, e) {
 	                                        btnProcessSummaryReport_Click(s,e);
                                         }"></ClientSideEvents>
