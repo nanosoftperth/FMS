@@ -207,16 +207,16 @@
     <Compile Include="Reports\GainsAndLossesReport.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.Designer.vb">
-      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\GainsAndLossesReportPerAnnumReport.Designer.vb">
       <DependentUpon>GainsAndLossesReportPerAnnumReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\GainsAndLossesReportPerAnnumReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.Designer.vb">
+      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\GainsAndLossesSummaryReport.Designer.vb">
@@ -345,11 +345,11 @@
     <EmbeddedResource Include="Reports\GainsAndLossesReport.resx">
       <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.resx">
-      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\GainsAndLossesReportPerAnnumReport.resx">
       <DependentUpon>GainsAndLossesReportPerAnnumReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.resx">
+      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\GainsAndLossesSummaryReport.resx">
       <DependentUpon>GainsAndLossesSummaryReport.vb</DependentUpon>
