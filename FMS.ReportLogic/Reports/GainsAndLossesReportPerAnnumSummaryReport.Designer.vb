@@ -67,6 +67,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
@@ -82,7 +83,6 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel40 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel42 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -159,7 +159,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(647.9999!, 33.0!)
         Me.XrLabel12.StyleName = "Title"
-        Me.XrLabel12.Text = "Gains & Losses Report - Per Annum Value"
+        Me.XrLabel12.Text = "Gains & Losses Report - Per Annum Value Summary"
         '
         'XrLabel31
         '
@@ -492,6 +492,12 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel26.Summary = XrSummary6
         Me.XrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetGainsAndLossesPerAnnumReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        '
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine2, Me.XrLine1, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel17, Me.XrLabel18})
@@ -676,12 +682,6 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         XrSummary9.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
         Me.XrLabel42.Summary = XrSummary9
         Me.XrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        '
-        'ObjectDataSource1
-        '
-        Me.ObjectDataSource1.DataMember = "GetGainsAndLossesPerAnnumReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
         '
         'GainsAndLossesReportPerAnnumSummaryReport
         '
