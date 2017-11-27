@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AssignVehicletoDriver.vb" />
+    <Compile Include="Classes\AuditContract.vb" />
     <Compile Include="Classes\AvailableReport.vb" />
     <Compile Include="Classes\BusinessLocation.vb" />
     <Compile Include="Classes\Contact.vb" />
@@ -165,6 +166,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Reports\AuditContractReport.Designer.vb">
+      <DependentUpon>AuditContractReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\AuditContractReport.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ContactsListReport.vb">
       <SubType>Component</SubType>
@@ -324,6 +331,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AuditContractReport.resx">
+      <DependentUpon>AuditContractReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ContactsListReport.resx">
       <DependentUpon>ContactsListReport.vb</DependentUpon>

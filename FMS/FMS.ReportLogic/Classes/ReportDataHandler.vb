@@ -863,6 +863,26 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
+    Public Shared Function GetAuditContractReport() As CacheAuditContract
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim paramDateStart As String = paramValues(0)
+        Dim paramDateEnd As String = paramValues(1)
+        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
+        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
+
+        Dim rept As New CacheAuditContract
+        Dim retobj = FMS.Business.DataObjects.usp_GetAuditContractReport.GetAuditContractReport(startDate, endDate).ToList()
+        Dim objList As New List(Of AuditContract)
+        For Each item In retobj
+            objList.Add(New AuditContract() With {
+                        .FieldType = item.FieldType, .ChangeDate = item.ChangeDate, .Customer = item.Customer,
+                        .OldContractCeasedate = item.OldContractCeasedate, .NewContractCeasedate = item.NewContractCeasedate})
+        Next
+        rept.LineValues = objList
+        rept.Param1 = startDate
+        rept.Param2 = endDate
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

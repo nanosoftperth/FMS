@@ -1294,6 +1294,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetStandardAuditReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditContractReport")>  _
+	Public Function usp_GetAuditContractReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditContractReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditContractReportResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -25987,526 +25993,603 @@ Partial Public Class usp_GetStandardAuditReportResult
 	
 	Private _OldService1 As String
 	
-    Private _CustormerSiteCeaseDate As String
+	Private _CustormerSiteCeaseDate As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me._Aid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CSid", DbType:="Int")>  _
+	Public Property CSid() As System.Nullable(Of Integer)
+		Get
+			Return Me._CSid
+		End Get
+		Set
+			If (Me._CSid.Equals(value) = false) Then
+				Me._CSid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int")>  _
+	Public Property Cid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="NVarChar(50)")>  _
+	Public Property Customer() As String
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (String.Equals(Me._Customer, value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Site", DbType:="NVarChar(50)")>  _
+	Public Property Site() As String
+		Get
+			Return Me._Site
+		End Get
+		Set
+			If (String.Equals(Me._Site, value) = false) Then
+				Me._Site = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldServiceUnits", DbType:="Float")>  _
+	Public Property OldServiceUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._OldServiceUnits
+		End Get
+		Set
+			If (Me._OldServiceUnits.Equals(value) = false) Then
+				Me._OldServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldServicePrice", DbType:="Float")>  _
+	Public Property OldServicePrice() As System.Nullable(Of Double)
+		Get
+			Return Me._OldServicePrice
+		End Get
+		Set
+			If (Me._OldServicePrice.Equals(value) = false) Then
+				Me._OldServicePrice = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldPerAnnumCharge", DbType:="Float")>  _
+	Public Property OldPerAnnumCharge() As System.Nullable(Of Double)
+		Get
+			Return Me._OldPerAnnumCharge
+		End Get
+		Set
+			If (Me._OldPerAnnumCharge.Equals(value) = false) Then
+				Me._OldPerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewServiceUnits", DbType:="Float")>  _
+	Public Property NewServiceUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._NewServiceUnits
+		End Get
+		Set
+			If (Me._NewServiceUnits.Equals(value) = false) Then
+				Me._NewServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewServicePrice", DbType:="Float")>  _
+	Public Property NewServicePrice() As System.Nullable(Of Double)
+		Get
+			Return Me._NewServicePrice
+		End Get
+		Set
+			If (Me._NewServicePrice.Equals(value) = false) Then
+				Me._NewServicePrice = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewPerAnnumCharge", DbType:="Float")>  _
+	Public Property NewPerAnnumCharge() As System.Nullable(Of Double)
+		Get
+			Return Me._NewPerAnnumCharge
+		End Get
+		Set
+			If (Me._NewPerAnnumCharge.Equals(value) = false) Then
+				Me._NewPerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeReasonCode", DbType:="Int")>  _
+	Public Property ChangeReasonCode() As System.Nullable(Of Integer)
+		Get
+			Return Me._ChangeReasonCode
+		End Get
+		Set
+			If (Me._ChangeReasonCode.Equals(value) = false) Then
+				Me._ChangeReasonCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[User]", Storage:="_User", DbType:="NVarChar(50)")>  _
+	Public Property User() As String
+		Get
+			Return Me._User
+		End Get
+		Set
+			If (String.Equals(Me._User, value) = false) Then
+				Me._User = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")>  _
+	Public Property ChangeDate() As System.Nullable(Of Date)
+		Get
+			Return Me._ChangeDate
+		End Get
+		Set
+			If (Me._ChangeDate.Equals(value) = false) Then
+				Me._ChangeDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeTime", DbType:="DateTime")>  _
+	Public Property ChangeTime() As System.Nullable(Of Date)
+		Get
+			Return Me._ChangeTime
+		End Get
+		Set
+			If (Me._ChangeTime.Equals(value) = false) Then
+				Me._ChangeTime = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EffectiveDate", DbType:="Date")>  _
+	Public Property EffectiveDate() As System.Nullable(Of Date)
+		Get
+			Return Me._EffectiveDate
+		End Get
+		Set
+			If (Me._EffectiveDate.Equals(value) = false) Then
+				Me._EffectiveDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractCeasedate", DbType:="Date")>  _
+	Public Property OldContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._OldContractCeasedate
+		End Get
+		Set
+			If (Me._OldContractCeasedate.Equals(value) = false) Then
+				Me._OldContractCeasedate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractCeasedate", DbType:="Date")>  _
+	Public Property NewContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._NewContractCeasedate
+		End Get
+		Set
+			If (Me._NewContractCeasedate.Equals(value) = false) Then
+				Me._NewContractCeasedate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldInvoiceCommencing", DbType:="Date")>  _
+	Public Property OldInvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._OldInvoiceCommencing
+		End Get
+		Set
+			If (Me._OldInvoiceCommencing.Equals(value) = false) Then
+				Me._OldInvoiceCommencing = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewInvoiceCommencing", DbType:="Date")>  _
+	Public Property NewInvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._NewInvoiceCommencing
+		End Get
+		Set
+			If (Me._NewInvoiceCommencing.Equals(value) = false) Then
+				Me._NewInvoiceCommencing = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldInvoicingFrequency", DbType:="NVarChar(22)")>  _
+	Public Property OldInvoicingFrequency() As String
+		Get
+			Return Me._OldInvoicingFrequency
+		End Get
+		Set
+			If (String.Equals(Me._OldInvoicingFrequency, value) = false) Then
+				Me._OldInvoicingFrequency = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewInvoicingFrequency", DbType:="NVarChar(22)")>  _
+	Public Property NewInvoicingFrequency() As String
+		Get
+			Return Me._NewInvoicingFrequency
+		End Get
+		Set
+			If (String.Equals(Me._NewInvoicingFrequency, value) = false) Then
+				Me._NewInvoicingFrequency = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractStartDate", DbType:="Date")>  _
+	Public Property OldContractStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._OldContractStartDate
+		End Get
+		Set
+			If (Me._OldContractStartDate.Equals(value) = false) Then
+				Me._OldContractStartDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractStartDate", DbType:="Date")>  _
+	Public Property NewContractStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._NewContractStartDate
+		End Get
+		Set
+			If (Me._NewContractStartDate.Equals(value) = false) Then
+				Me._NewContractStartDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType", DbType:="NVarChar(5)")>  _
+	Public Property FieldType() As String
+		Get
+			Return Me._FieldType
+		End Get
+		Set
+			If (String.Equals(Me._FieldType, value) = false) Then
+				Me._FieldType = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldService", DbType:="NVarChar(50)")>  _
+	Public Property OldService() As String
+		Get
+			Return Me._OldService
+		End Get
+		Set
+			If (String.Equals(Me._OldService, value) = false) Then
+				Me._OldService = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")>  _
+	Public Property RevenueChangeReason() As String
+		Get
+			Return Me._RevenueChangeReason
+		End Get
+		Set
+			If (String.Equals(Me._RevenueChangeReason, value) = false) Then
+				Me._RevenueChangeReason = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
+	Public Property ServiceCode() As String
+		Get
+			Return Me._ServiceCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceCode, value) = false) Then
+				Me._ServiceCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EffectiveDate1", DbType:="Date")>  _
+	Public Property EffectiveDate1() As System.Nullable(Of Date)
+		Get
+			Return Me._EffectiveDate1
+		End Get
+		Set
+			If (Me._EffectiveDate1.Equals(value) = false) Then
+				Me._EffectiveDate1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceCommencing", DbType:="Date")>  _
+	Public Property InvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._InvoiceCommencing
+		End Get
+		Set
+			If (Me._InvoiceCommencing.Equals(value) = false) Then
+				Me._InvoiceCommencing = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Frequency", DbType:="NVarChar(22)")>  _
+	Public Property Frequency() As String
+		Get
+			Return Me._Frequency
+		End Get
+		Set
+			If (String.Equals(Me._Frequency, value) = false) Then
+				Me._Frequency = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType1", DbType:="NVarChar(5)")>  _
+	Public Property FieldType1() As String
+		Get
+			Return Me._FieldType1
+		End Get
+		Set
+			If (String.Equals(Me._FieldType1, value) = false) Then
+				Me._FieldType1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth1", DbType:="Int")>  _
+	Public Property InvoiceMonth1() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth1
+		End Get
+		Set
+			If (Me._InvoiceMonth1.Equals(value) = false) Then
+				Me._InvoiceMonth1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth2", DbType:="Int")>  _
+	Public Property InvoiceMonth2() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth2
+		End Get
+		Set
+			If (Me._InvoiceMonth2.Equals(value) = false) Then
+				Me._InvoiceMonth2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth3", DbType:="Int")>  _
+	Public Property InvoiceMonth3() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth3
+		End Get
+		Set
+			If (Me._InvoiceMonth3.Equals(value) = false) Then
+				Me._InvoiceMonth3 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth4", DbType:="Int")>  _
+	Public Property InvoiceMonth4() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth4
+		End Get
+		Set
+			If (Me._InvoiceMonth4.Equals(value) = false) Then
+				Me._InvoiceMonth4 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PurchaseOrderNumber", DbType:="NVarChar(50)")>  _
+	Public Property PurchaseOrderNumber() As String
+		Get
+			Return Me._PurchaseOrderNumber
+		End Get
+		Set
+			If (String.Equals(Me._PurchaseOrderNumber, value) = false) Then
+				Me._PurchaseOrderNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate1", DbType:="Date")>  _
+	Public Property SiteCeaseDate1() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate1
+		End Get
+		Set
+			If (Me._SiteCeaseDate1.Equals(value) = false) Then
+				Me._SiteCeaseDate1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldService1", DbType:="NVarChar(50)")>  _
+	Public Property OldService1() As String
+		Get
+			Return Me._OldService1
+		End Get
+		Set
+			If (String.Equals(Me._OldService1, value) = false) Then
+				Me._OldService1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustormerSiteCeaseDate", DbType:="VarChar(36)")>  _
+	Public Property CustormerSiteCeaseDate() As String
+		Get
+			Return Me._CustormerSiteCeaseDate
+		End Get
+		Set
+			If (String.Equals(Me._CustormerSiteCeaseDate, value) = false) Then
+				Me._CustormerSiteCeaseDate = value
+			End If
+		End Set
+	End Property
+End Class
 
-    Public Sub New()
-        MyBase.New()
-    End Sub
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")> _
-    Public Property Aid() As Integer
-        Get
-            Return Me._Aid
-        End Get
-        Set(value As Integer)
-            If ((Me._Aid = value) _
-                        = False) Then
-                Me._Aid = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CSid", DbType:="Int")> _
-    Public Property CSid() As System.Nullable(Of Integer)
-        Get
-            Return Me._CSid
-        End Get
-        Set(value As System.Nullable(Of Integer))
-            If (Me._CSid.Equals(value) = False) Then
-                Me._CSid = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int")> _
-    Public Property Cid() As System.Nullable(Of Integer)
-        Get
-            Return Me._Cid
-        End Get
-        Set(value As System.Nullable(Of Integer))
-            If (Me._Cid.Equals(value) = False) Then
-                Me._Cid = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="NVarChar(50)")> _
-    Public Property Customer() As String
-        Get
-            Return Me._Customer
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._Customer, value) = False) Then
-                Me._Customer = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Site", DbType:="NVarChar(50)")> _
-    Public Property Site() As String
-        Get
-            Return Me._Site
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._Site, value) = False) Then
-                Me._Site = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldServiceUnits", DbType:="Float")> _
-    Public Property OldServiceUnits() As System.Nullable(Of Double)
-        Get
-            Return Me._OldServiceUnits
-        End Get
-        Set(value As System.Nullable(Of Double))
-            If (Me._OldServiceUnits.Equals(value) = False) Then
-                Me._OldServiceUnits = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldServicePrice", DbType:="Float")> _
-    Public Property OldServicePrice() As System.Nullable(Of Double)
-        Get
-            Return Me._OldServicePrice
-        End Get
-        Set(value As System.Nullable(Of Double))
-            If (Me._OldServicePrice.Equals(value) = False) Then
-                Me._OldServicePrice = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldPerAnnumCharge", DbType:="Float")> _
-    Public Property OldPerAnnumCharge() As System.Nullable(Of Double)
-        Get
-            Return Me._OldPerAnnumCharge
-        End Get
-        Set(value As System.Nullable(Of Double))
-            If (Me._OldPerAnnumCharge.Equals(value) = False) Then
-                Me._OldPerAnnumCharge = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewServiceUnits", DbType:="Float")> _
-    Public Property NewServiceUnits() As System.Nullable(Of Double)
-        Get
-            Return Me._NewServiceUnits
-        End Get
-        Set(value As System.Nullable(Of Double))
-            If (Me._NewServiceUnits.Equals(value) = False) Then
-                Me._NewServiceUnits = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewServicePrice", DbType:="Float")> _
-    Public Property NewServicePrice() As System.Nullable(Of Double)
-        Get
-            Return Me._NewServicePrice
-        End Get
-        Set(value As System.Nullable(Of Double))
-            If (Me._NewServicePrice.Equals(value) = False) Then
-                Me._NewServicePrice = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewPerAnnumCharge", DbType:="Float")> _
-    Public Property NewPerAnnumCharge() As System.Nullable(Of Double)
-        Get
-            Return Me._NewPerAnnumCharge
-        End Get
-        Set(value As System.Nullable(Of Double))
-            If (Me._NewPerAnnumCharge.Equals(value) = False) Then
-                Me._NewPerAnnumCharge = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeReasonCode", DbType:="Int")> _
-    Public Property ChangeReasonCode() As System.Nullable(Of Integer)
-        Get
-            Return Me._ChangeReasonCode
-        End Get
-        Set(value As System.Nullable(Of Integer))
-            If (Me._ChangeReasonCode.Equals(value) = False) Then
-                Me._ChangeReasonCode = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[User]", Storage:="_User", DbType:="NVarChar(50)")> _
-    Public Property User() As String
-        Get
-            Return Me._User
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._User, value) = False) Then
-                Me._User = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")> _
-    Public Property ChangeDate() As System.Nullable(Of Date)
-        Get
-            Return Me._ChangeDate
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._ChangeDate.Equals(value) = False) Then
-                Me._ChangeDate = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeTime", DbType:="DateTime")> _
-    Public Property ChangeTime() As System.Nullable(Of Date)
-        Get
-            Return Me._ChangeTime
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._ChangeTime.Equals(value) = False) Then
-                Me._ChangeTime = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EffectiveDate", DbType:="Date")> _
-    Public Property EffectiveDate() As System.Nullable(Of Date)
-        Get
-            Return Me._EffectiveDate
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._EffectiveDate.Equals(value) = False) Then
-                Me._EffectiveDate = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractCeasedate", DbType:="Date")> _
-    Public Property OldContractCeasedate() As System.Nullable(Of Date)
-        Get
-            Return Me._OldContractCeasedate
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._OldContractCeasedate.Equals(value) = False) Then
-                Me._OldContractCeasedate = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractCeasedate", DbType:="Date")> _
-    Public Property NewContractCeasedate() As System.Nullable(Of Date)
-        Get
-            Return Me._NewContractCeasedate
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._NewContractCeasedate.Equals(value) = False) Then
-                Me._NewContractCeasedate = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldInvoiceCommencing", DbType:="Date")> _
-    Public Property OldInvoiceCommencing() As System.Nullable(Of Date)
-        Get
-            Return Me._OldInvoiceCommencing
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._OldInvoiceCommencing.Equals(value) = False) Then
-                Me._OldInvoiceCommencing = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewInvoiceCommencing", DbType:="Date")> _
-    Public Property NewInvoiceCommencing() As System.Nullable(Of Date)
-        Get
-            Return Me._NewInvoiceCommencing
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._NewInvoiceCommencing.Equals(value) = False) Then
-                Me._NewInvoiceCommencing = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldInvoicingFrequency", DbType:="NVarChar(22)")> _
-    Public Property OldInvoicingFrequency() As String
-        Get
-            Return Me._OldInvoicingFrequency
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._OldInvoicingFrequency, value) = False) Then
-                Me._OldInvoicingFrequency = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewInvoicingFrequency", DbType:="NVarChar(22)")> _
-    Public Property NewInvoicingFrequency() As String
-        Get
-            Return Me._NewInvoicingFrequency
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._NewInvoicingFrequency, value) = False) Then
-                Me._NewInvoicingFrequency = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractStartDate", DbType:="Date")> _
-    Public Property OldContractStartDate() As System.Nullable(Of Date)
-        Get
-            Return Me._OldContractStartDate
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._OldContractStartDate.Equals(value) = False) Then
-                Me._OldContractStartDate = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractStartDate", DbType:="Date")> _
-    Public Property NewContractStartDate() As System.Nullable(Of Date)
-        Get
-            Return Me._NewContractStartDate
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._NewContractStartDate.Equals(value) = False) Then
-                Me._NewContractStartDate = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType", DbType:="NVarChar(5)")> _
-    Public Property FieldType() As String
-        Get
-            Return Me._FieldType
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._FieldType, value) = False) Then
-                Me._FieldType = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldService", DbType:="NVarChar(50)")> _
-    Public Property OldService() As String
-        Get
-            Return Me._OldService
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._OldService, value) = False) Then
-                Me._OldService = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")> _
-    Public Property RevenueChangeReason() As String
-        Get
-            Return Me._RevenueChangeReason
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._RevenueChangeReason, value) = False) Then
-                Me._RevenueChangeReason = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")> _
-    Public Property ServiceDescription() As String
-        Get
-            Return Me._ServiceDescription
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._ServiceDescription, value) = False) Then
-                Me._ServiceDescription = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")> _
-    Public Property ServiceCode() As String
-        Get
-            Return Me._ServiceCode
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._ServiceCode, value) = False) Then
-                Me._ServiceCode = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EffectiveDate1", DbType:="Date")> _
-    Public Property EffectiveDate1() As System.Nullable(Of Date)
-        Get
-            Return Me._EffectiveDate1
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._EffectiveDate1.Equals(value) = False) Then
-                Me._EffectiveDate1 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceCommencing", DbType:="Date")> _
-    Public Property InvoiceCommencing() As System.Nullable(Of Date)
-        Get
-            Return Me._InvoiceCommencing
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._InvoiceCommencing.Equals(value) = False) Then
-                Me._InvoiceCommencing = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Frequency", DbType:="NVarChar(22)")> _
-    Public Property Frequency() As String
-        Get
-            Return Me._Frequency
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._Frequency, value) = False) Then
-                Me._Frequency = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")> _
-    Public Property SiteCeaseDate() As System.Nullable(Of Date)
-        Get
-            Return Me._SiteCeaseDate
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._SiteCeaseDate.Equals(value) = False) Then
-                Me._SiteCeaseDate = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType1", DbType:="NVarChar(5)")> _
-    Public Property FieldType1() As String
-        Get
-            Return Me._FieldType1
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._FieldType1, value) = False) Then
-                Me._FieldType1 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")> _
-    Public Property CustomerName() As String
-        Get
-            Return Me._CustomerName
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._CustomerName, value) = False) Then
-                Me._CustomerName = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth1", DbType:="Int")> _
-    Public Property InvoiceMonth1() As System.Nullable(Of Integer)
-        Get
-            Return Me._InvoiceMonth1
-        End Get
-        Set(value As System.Nullable(Of Integer))
-            If (Me._InvoiceMonth1.Equals(value) = False) Then
-                Me._InvoiceMonth1 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth2", DbType:="Int")> _
-    Public Property InvoiceMonth2() As System.Nullable(Of Integer)
-        Get
-            Return Me._InvoiceMonth2
-        End Get
-        Set(value As System.Nullable(Of Integer))
-            If (Me._InvoiceMonth2.Equals(value) = False) Then
-                Me._InvoiceMonth2 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth3", DbType:="Int")> _
-    Public Property InvoiceMonth3() As System.Nullable(Of Integer)
-        Get
-            Return Me._InvoiceMonth3
-        End Get
-        Set(value As System.Nullable(Of Integer))
-            If (Me._InvoiceMonth3.Equals(value) = False) Then
-                Me._InvoiceMonth3 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth4", DbType:="Int")> _
-    Public Property InvoiceMonth4() As System.Nullable(Of Integer)
-        Get
-            Return Me._InvoiceMonth4
-        End Get
-        Set(value As System.Nullable(Of Integer))
-            If (Me._InvoiceMonth4.Equals(value) = False) Then
-                Me._InvoiceMonth4 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PurchaseOrderNumber", DbType:="NVarChar(50)")> _
-    Public Property PurchaseOrderNumber() As String
-        Get
-            Return Me._PurchaseOrderNumber
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._PurchaseOrderNumber, value) = False) Then
-                Me._PurchaseOrderNumber = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate1", DbType:="Date")> _
-    Public Property SiteCeaseDate1() As System.Nullable(Of Date)
-        Get
-            Return Me._SiteCeaseDate1
-        End Get
-        Set(value As System.Nullable(Of Date))
-            If (Me._SiteCeaseDate1.Equals(value) = False) Then
-                Me._SiteCeaseDate1 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldService1", DbType:="NVarChar(50)")> _
-    Public Property OldService1() As String
-        Get
-            Return Me._OldService1
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._OldService1, value) = False) Then
-                Me._OldService1 = value
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustormerSiteCeaseDate", DbType:="VarChar(36)")> _
-    Public Property CustormerSiteCeaseDate() As String
-        Get
-            Return Me._CustormerSiteCeaseDate
-        End Get
-        Set(value As String)
-            If (String.Equals(Me._CustormerSiteCeaseDate, value) = False) Then
-                Me._CustormerSiteCeaseDate = value
-            End If
-        End Set
-    End Property
+Partial Public Class usp_GetAuditContractReportResult
+	
+	Private _FieldType As String
+	
+	Private _ChangeDate As System.Nullable(Of Date)
+	
+	Private _Customer As String
+	
+	Private _OldContractCeasedate As System.Nullable(Of Date)
+	
+	Private _NewContractCeasedate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType", DbType:="NVarChar(5)")>  _
+	Public Property FieldType() As String
+		Get
+			Return Me._FieldType
+		End Get
+		Set
+			If (String.Equals(Me._FieldType, value) = false) Then
+				Me._FieldType = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")>  _
+	Public Property ChangeDate() As System.Nullable(Of Date)
+		Get
+			Return Me._ChangeDate
+		End Get
+		Set
+			If (Me._ChangeDate.Equals(value) = false) Then
+				Me._ChangeDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="NVarChar(50)")>  _
+	Public Property Customer() As String
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (String.Equals(Me._Customer, value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractCeasedate", DbType:="Date")>  _
+	Public Property OldContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._OldContractCeasedate
+		End Get
+		Set
+			If (Me._OldContractCeasedate.Equals(value) = false) Then
+				Me._OldContractCeasedate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractCeasedate", DbType:="Date")>  _
+	Public Property NewContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._NewContractCeasedate
+		End Get
+		Set
+			If (Me._NewContractCeasedate.Equals(value) = false) Then
+				Me._NewContractCeasedate = value
+			End If
+		End Set
+	End Property
 End Class

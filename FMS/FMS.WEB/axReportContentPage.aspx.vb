@@ -46,6 +46,8 @@
                 Return New FMS.ReportLogic.GainsAndLossesReportPerAnnumSummaryReport()
             Case "StandardAuditReport"
                 Return New FMS.ReportLogic.StandardAuditReport()
+            Case "AuditContractReport"
+                Return New FMS.ReportLogic.AuditContractReport()
             Case Else
                 Return Nothing
         End Select
