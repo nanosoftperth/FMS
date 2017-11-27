@@ -1697,4 +1697,15 @@
       <Column Name="CustormerSiteCeaseDate" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetAuditContractReport" Method="usp_GetAuditContractReport">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_GetAuditContractReportResult">
+      <Column Name="FieldType" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Customer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OldContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NewContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

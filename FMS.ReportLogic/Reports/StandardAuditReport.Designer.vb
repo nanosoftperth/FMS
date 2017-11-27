@@ -116,10 +116,10 @@ Partial Public Class StandardAuditReport
         Me.XrLabel53 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel52 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel51 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLine4 = New DevExpress.XtraReports.UI.XRLine()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -176,14 +176,14 @@ Partial Public Class StandardAuditReport
         'ReportHeaderBand1
         '
         Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine4, Me.XrLabel65, Me.XrLabel64, Me.XrLabel63, Me.XrLabel62, Me.XrLabel7})
-        Me.ReportHeaderBand1.HeightF = 95.79166!
+        Me.ReportHeaderBand1.HeightF = 95.79167!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
         '
         'XrLabel65
         '
         Me.XrLabel65.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Param2", "{0:MM/dd/yyyy}")})
         Me.XrLabel65.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel65.LocationFloat = New DevExpress.Utils.PointFloat(444.0001!, 66.62499!)
+        Me.XrLabel65.LocationFloat = New DevExpress.Utils.PointFloat(446.7084!, 76.625!)
         Me.XrLabel65.Name = "XrLabel65"
         Me.XrLabel65.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel65.SizeF = New System.Drawing.SizeF(100.0!, 19.16667!)
@@ -194,7 +194,7 @@ Partial Public Class StandardAuditReport
         '
         Me.XrLabel64.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Param1", "{0:MM/dd/yyyy}")})
         Me.XrLabel64.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel64.LocationFloat = New DevExpress.Utils.PointFloat(340.2083!, 66.62499!)
+        Me.XrLabel64.LocationFloat = New DevExpress.Utils.PointFloat(342.9166!, 76.625!)
         Me.XrLabel64.Name = "XrLabel64"
         Me.XrLabel64.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel64.SizeF = New System.Drawing.SizeF(74.375!, 19.16667!)
@@ -205,7 +205,7 @@ Partial Public Class StandardAuditReport
         '
         Me.XrLabel63.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel63.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel63.LocationFloat = New DevExpress.Utils.PointFloat(414.5833!, 66.62499!)
+        Me.XrLabel63.LocationFloat = New DevExpress.Utils.PointFloat(417.2917!, 76.625!)
         Me.XrLabel63.Multiline = True
         Me.XrLabel63.Name = "XrLabel63"
         Me.XrLabel63.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -221,7 +221,7 @@ Partial Public Class StandardAuditReport
         '
         Me.XrLabel62.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel62.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel62.LocationFloat = New DevExpress.Utils.PointFloat(268.7501!, 66.62499!)
+        Me.XrLabel62.LocationFloat = New DevExpress.Utils.PointFloat(271.4584!, 76.625!)
         Me.XrLabel62.Multiline = True
         Me.XrLabel62.Name = "XrLabel62"
         Me.XrLabel62.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -237,7 +237,7 @@ Partial Public Class StandardAuditReport
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel7.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 31.95833!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(6.00001!, 43.625!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(888.0!, 33.0!)
@@ -1099,12 +1099,6 @@ Partial Public Class StandardAuditReport
         Me.XrLabel51.Text = "Change Date"
         Me.XrLabel51.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
-        'ObjectDataSource1
-        '
-        Me.ObjectDataSource1.DataMember = "GetStandardAuditReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
-        '
         'XrLine2
         '
         Me.XrLine2.ForeColor = System.Drawing.Color.Navy
@@ -1132,6 +1126,12 @@ Partial Public Class StandardAuditReport
         Me.XrLine4.Name = "XrLine4"
         Me.XrLine4.SizeF = New System.Drawing.SizeF(898.0!, 6.25!)
         Me.XrLine4.StylePriority.UseForeColor = False
+        '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetStandardAuditReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
         '
         'StandardAuditReport
         '

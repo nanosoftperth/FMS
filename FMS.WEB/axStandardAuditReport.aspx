@@ -19,13 +19,13 @@
                  $("#frmContent").attr("src", "axReportContentPage.aspx?Report=StandardAuditReport&param=" + paramValue);
              }
 
-             //function btnProcessSummaryReport_Click() {
-             //    var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
+             function btnProcessAuditContractCeaseDatesReport_Click() {
+                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
 
-             //    var paramValue = encodeURIComponent(jScriptDataStr);
-             //    LoadingPanel.Show();
-             //    $("#frmContent").attr("src", "axReportContentPage.aspx?Report=GainsAndLossesSummaryReport&param=" + paramValue);
-             //}
+                 var paramValue = encodeURIComponent(jScriptDataStr);
+                 LoadingPanel.Show();
+                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=AuditContractReport&param=" + paramValue);
+             }
 
              $(function () {
                  $('#frmContent').load(function () {
@@ -65,11 +65,11 @@
                                     </dx:ASPxButton>
                                 </td>
                                 <td>
-                                    <%--<dx:ASPxButton ID="ASPxButton2" AutoPostBack="false" runat="server" Text="Units Summary">
+                                    <dx:ASPxButton ID="ASPxButton2" AutoPostBack="false" runat="server" Text="Audit Contract">
                                         <ClientSideEvents Click="function(s, e) {
-	                                        btnProcessSummaryReport_Click(s,e);
+	                                        btnProcessAuditContractCeaseDatesReport_Click(s,e);
                                         }"></ClientSideEvents>
-                                    </dx:ASPxButton>--%>
+                                    </dx:ASPxButton>
                                 </td>
                             </tr>
                         </table>
