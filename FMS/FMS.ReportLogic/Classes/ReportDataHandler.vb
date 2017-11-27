@@ -906,6 +906,20 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
+    Public Shared Function GetSitesBySiteZoneReport() As CacheSitesBySiteZone
+        Dim rept As New CacheSitesBySiteZone
+        Dim retobj = FMS.Business.DataObjects.usp_GetSitesBySiteZoneReport.GetSitesBySiteZone.ToList()
+        Dim objList As New List(Of SitesBySiteZone)
+        For Each item In retobj
+            objList.Add(New SitesBySiteZone() With {
+                        .Zone = item.Zone, .Cid = item.Cid, .SiteName = item.SiteName, .Customer = item.Customer, .AddressLine1 = item.AddressLine1,
+                        .AddressLine2 = item.AddressLine2, .AddressLine3 = item.AddressLine3, .Suburb = item.Suburb, .PostCode = item.PostCode,
+                        .PostalAddressLine1 = item.PostalAddressLine1, .PostalAddressLine2 = item.PostalAddressLine2, .PostalSuburb = item.PostalSuburb,
+                        .PostalPostCode = item.PostalPostCode})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub
