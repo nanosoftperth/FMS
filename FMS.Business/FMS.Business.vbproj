@@ -147,6 +147,7 @@
     <Compile Include="Classes\DataObjects\Cannon\usp_GetMYOBCustomerInvoiceReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetRunListingReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetServiceSummaryReport.vb" />
+    <Compile Include="Classes\DataObjects\Cannon\usp_GetSitesBySiteZoneReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetSitesWithNoContractsReport.vb" />
     <Compile Include="Classes\DataObjects\Cannon\usp_GetStandardAuditReport.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />

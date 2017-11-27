@@ -143,6 +143,7 @@
     <Compile Include="Classes\RunListing.vb" />
     <Compile Include="Classes\ServiceList.vb" />
     <Compile Include="Classes\ServiceSummary.vb" />
+    <Compile Include="Classes\SitesBySiteZone.vb" />
     <Compile Include="Classes\SitesWithNoContracts.vb" />
     <Compile Include="Classes\StandardAudit.vb" />
     <Compile Include="Classes\SystemRoles.vb" />
@@ -294,6 +295,12 @@
     <Compile Include="Reports\ServiceSummaryReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\SitesBySiteZoneReport.Designer.vb">
+      <DependentUpon>SitesBySiteZoneReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SitesBySiteZoneReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\SitesWithNoContractsReport.Designer.vb">
       <DependentUpon>SitesWithNoContractsReport.vb</DependentUpon>
     </Compile>
@@ -413,6 +420,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ServiceSummaryReport.resx">
       <DependentUpon>ServiceSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SitesBySiteZoneReport.resx">
+      <DependentUpon>SitesBySiteZoneReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SitesWithNoContractsReport.resx">
       <DependentUpon>SitesWithNoContractsReport.vb</DependentUpon>

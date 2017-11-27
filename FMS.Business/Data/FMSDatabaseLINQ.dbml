@@ -1726,4 +1726,21 @@
       <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetSitesBySiteZoneReport" Method="usp_GetSitesBySiteZoneReport">
+    <ElementType Name="usp_GetSitesBySiteZoneReportResult">
+      <Column Name="Zone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Customer" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="PostalAddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalAddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalSuburb" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalPostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
