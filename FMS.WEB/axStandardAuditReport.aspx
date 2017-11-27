@@ -27,6 +27,15 @@
                  $("#frmContent").attr("src", "axReportContentPage.aspx?Report=AuditContractReport&param=" + paramValue);
              }
 
+             function btnProcessAuditOfSiteDetailReport_Click() {
+                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
+
+                 var paramValue = encodeURIComponent(jScriptDataStr);
+                 LoadingPanel.Show();
+                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=AuditOfSiteDetailChangesReport&param=" + paramValue);
+             }
+             
+
              $(function () {
                  $('#frmContent').load(function () {
                      $(this).show();
@@ -71,12 +80,19 @@
                                         }"></ClientSideEvents>
                                     </dx:ASPxButton>
                                 </td>
+                                <td>
+                                    <dx:ASPxButton ID="ASPxButton3" AutoPostBack="false" runat="server" Text="Audit Of Site">
+                                        <ClientSideEvents Click="function(s, e) {
+	                                        btnProcessAuditOfSiteDetailReport_Click(s,e);
+                                        }"></ClientSideEvents>
+                                    </dx:ASPxButton>
+                                </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-            <iframe id="frmContent" src="" style="height:95vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <iframe id="frmContent" src="" style="height:89.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
         </div>
         <div>
             <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"

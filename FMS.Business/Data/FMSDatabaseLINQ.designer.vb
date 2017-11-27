@@ -1300,6 +1300,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditContractReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditOfSiteDetailReport")>  _
+	Public Function usp_GetAuditOfSiteDetailReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditOfSiteDetailReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditOfSiteDetailReportResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -26589,6 +26595,181 @@ Partial Public Class usp_GetAuditContractReportResult
 		Set
 			If (Me._NewContractCeasedate.Equals(value) = false) Then
 				Me._NewContractCeasedate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetAuditOfSiteDetailReportResult
+	
+	Private _FieldType As String
+	
+	Private _Customer As String
+	
+	Private _Site As String
+	
+	Private _OldContractCeasedate As System.Nullable(Of Date)
+	
+	Private _NewContractCeasedate As System.Nullable(Of Date)
+	
+	Private _OldInvoiceCommencing As System.Nullable(Of Date)
+	
+	Private _NewInvoiceCommencing As System.Nullable(Of Date)
+	
+	Private _OldInvoicingFrequency As String
+	
+	Private _NewInvoicingFrequency As String
+	
+	Private _OldContractStartDate As System.Nullable(Of Date)
+	
+	Private _NewContractStartDate As System.Nullable(Of Date)
+	
+	Private _ChangeDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType", DbType:="NVarChar(5)")>  _
+	Public Property FieldType() As String
+		Get
+			Return Me._FieldType
+		End Get
+		Set
+			If (String.Equals(Me._FieldType, value) = false) Then
+				Me._FieldType = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="NVarChar(50)")>  _
+	Public Property Customer() As String
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (String.Equals(Me._Customer, value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Site", DbType:="NVarChar(50)")>  _
+	Public Property Site() As String
+		Get
+			Return Me._Site
+		End Get
+		Set
+			If (String.Equals(Me._Site, value) = false) Then
+				Me._Site = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractCeasedate", DbType:="Date")>  _
+	Public Property OldContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._OldContractCeasedate
+		End Get
+		Set
+			If (Me._OldContractCeasedate.Equals(value) = false) Then
+				Me._OldContractCeasedate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractCeasedate", DbType:="Date")>  _
+	Public Property NewContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._NewContractCeasedate
+		End Get
+		Set
+			If (Me._NewContractCeasedate.Equals(value) = false) Then
+				Me._NewContractCeasedate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldInvoiceCommencing", DbType:="Date")>  _
+	Public Property OldInvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._OldInvoiceCommencing
+		End Get
+		Set
+			If (Me._OldInvoiceCommencing.Equals(value) = false) Then
+				Me._OldInvoiceCommencing = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewInvoiceCommencing", DbType:="Date")>  _
+	Public Property NewInvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._NewInvoiceCommencing
+		End Get
+		Set
+			If (Me._NewInvoiceCommencing.Equals(value) = false) Then
+				Me._NewInvoiceCommencing = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldInvoicingFrequency", DbType:="NVarChar(22)")>  _
+	Public Property OldInvoicingFrequency() As String
+		Get
+			Return Me._OldInvoicingFrequency
+		End Get
+		Set
+			If (String.Equals(Me._OldInvoicingFrequency, value) = false) Then
+				Me._OldInvoicingFrequency = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewInvoicingFrequency", DbType:="NVarChar(22)")>  _
+	Public Property NewInvoicingFrequency() As String
+		Get
+			Return Me._NewInvoicingFrequency
+		End Get
+		Set
+			If (String.Equals(Me._NewInvoicingFrequency, value) = false) Then
+				Me._NewInvoicingFrequency = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractStartDate", DbType:="Date")>  _
+	Public Property OldContractStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._OldContractStartDate
+		End Get
+		Set
+			If (Me._OldContractStartDate.Equals(value) = false) Then
+				Me._OldContractStartDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractStartDate", DbType:="Date")>  _
+	Public Property NewContractStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._NewContractStartDate
+		End Get
+		Set
+			If (Me._NewContractStartDate.Equals(value) = false) Then
+				Me._NewContractStartDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")>  _
+	Public Property ChangeDate() As System.Nullable(Of Date)
+		Get
+			Return Me._ChangeDate
+		End Get
+		Set
+			If (Me._ChangeDate.Equals(value) = false) Then
+				Me._ChangeDate = value
 			End If
 		End Set
 	End Property
