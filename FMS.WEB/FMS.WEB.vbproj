@@ -394,6 +394,13 @@
       <DependentUpon>axSitesWithNoContractsReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="axStandardAuditReport.aspx.designer.vb">
+      <DependentUpon>axStandardAuditReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axStandardAuditReport.aspx.vb">
+      <DependentUpon>axStandardAuditReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="CanBusDisplayProperty.aspx.designer.vb">
       <DependentUpon>CanBusDisplayProperty.aspx</DependentUpon>
     </Compile>
@@ -1108,6 +1115,7 @@
     <Content Include="axServiceListReport.aspx" />
     <Content Include="axServiceSummaryReport.aspx" />
     <Content Include="axSitesWithNoContractsReport.aspx" />
+    <Content Include="axStandardAuditReport.aspx" />
     <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
@@ -1569,7 +1577,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18351/</IISUrl>
+          <IISUrl>http://localhost:18352/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
