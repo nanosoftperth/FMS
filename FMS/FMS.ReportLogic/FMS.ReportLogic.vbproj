@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="Classes\AssignVehicletoDriver.vb" />
     <Compile Include="Classes\AuditContract.vb" />
+    <Compile Include="Classes\AuditOfSiteDetail.vb" />
     <Compile Include="Classes\AvailableReport.vb" />
     <Compile Include="Classes\BusinessLocation.vb" />
     <Compile Include="Classes\Contact.vb" />
@@ -171,6 +172,12 @@
       <DependentUpon>AuditContractReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\AuditContractReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AuditOfSiteDetailReport.Designer.vb">
+      <DependentUpon>AuditOfSiteDetailReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\AuditOfSiteDetailReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ContactsListReport.vb">
@@ -334,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\AuditContractReport.resx">
       <DependentUpon>AuditContractReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AuditOfSiteDetailReport.resx">
+      <DependentUpon>AuditOfSiteDetailReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ContactsListReport.resx">
       <DependentUpon>ContactsListReport.vb</DependentUpon>

@@ -883,6 +883,29 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
+    Public Shared Function GetAuditOfSiteDetailReport() As CacheAuditOfSiteDetail
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim paramDateStart As String = paramValues(0)
+        Dim paramDateEnd As String = paramValues(1)
+        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
+        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
+
+        Dim rept As New CacheAuditOfSiteDetail
+        Dim retobj = FMS.Business.DataObjects.usp_GetAuditOfSiteDetailReport.GetAuditOfSiteDetailReportt(startDate, endDate).ToList()
+        Dim objList As New List(Of AuditOfSiteDetail)
+        For Each item In retobj
+            objList.Add(New AuditOfSiteDetail() With {
+                        .FieldType = item.FieldType, .Customer = item.Customer, .Site = item.Site, .OldContractCeasedate = item.OldContractCeasedate,
+                        .NewContractCeasedate = item.NewContractCeasedate, .OldInvoiceCommencing = item.OldInvoiceCommencing, .NewInvoiceCommencing = item.NewInvoiceCommencing,
+                        .OldInvoicingFrequency = item.OldInvoicingFrequency, .NewInvoicingFrequency = item.NewInvoicingFrequency,
+                        .OldContractStartDate = item.OldContractStartDate, .NewContractStartDate = item.NewContractStartDate,
+                        .ChangeDate = item.ChangeDate})
+        Next
+        rept.LineValues = objList
+        rept.Param1 = startDate
+        rept.Param2 = endDate
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

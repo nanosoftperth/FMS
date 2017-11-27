@@ -48,6 +48,8 @@
                 Return New FMS.ReportLogic.StandardAuditReport()
             Case "AuditContractReport"
                 Return New FMS.ReportLogic.AuditContractReport()
+            Case "AuditOfSiteDetailChangesReport"
+                Return New FMS.ReportLogic.AuditOfSiteDetailReport()
             Case Else
                 Return Nothing
         End Select

@@ -77,6 +77,15 @@ Partial Public Class axStandardAuditReport
     Protected WithEvents ASPxButton2 As Global.DevExpress.Web.ASPxButton
 
     '''<summary>
+    '''ASPxButton3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButton3 As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
     '''LoadingPanel control.
     '''</summary>
     '''<remarks>

@@ -56,7 +56,6 @@
 					<ul class="sub-menu collapse" id="service">
 					  <li><a href="axContractRenewalsReport.aspx" target="iframeMenu">Contract Renewals</a></li>
 					  <li>Quick View By Suburb</li>
-					  <li>Audit Report & G & L</li>
                       <li><a href="axServiceListReport.aspx" target="iframeMenu">Service List</a></li>
 					  <li>Run Listing</li>
 					  <li>Run Values</li>
@@ -75,6 +74,14 @@
 					  <li><a href="axSitesWithNoContractsReport.aspx" target="iframeMenu">Sites With No Contracts</a></li>
 					  <li>Sites By Site Zone</li>
 					</ul>
+                    <li data-toggle="collapse" data-target="#AuditReport" class="collapsed">
+                        <a href="#"><i class="fa fa-list-alt fa-lg"></i> Audit Report & G & L<span class="arrow"></span></a>
+                    </li>
+                    <ul class="sub-menu collapse" id="AuditReport">
+                        <li><a href="axGainsAndLossesReport.aspx" target="iframeMenu">Gains & Losses Units Report</a></li>
+                        <li><a href="axGainsAndLossesPerAnnumReport.aspx" target="iframeMenu">Gains & Losses PA Change Report</a></li>
+                        <li><a href="axStandardAuditReport.aspx" target="iframeMenu">Standard Audit Report</a></li>
+                    </ul>
                     <li data-toggle="collapse" data-target="#Invoicing" class="collapsed">
                         <a href="#"><i class="fa fa-list-alt fa-lg"></i> Invoicing Reports<span class="arrow"></span></a>
                     </li>

@@ -76,7 +76,7 @@
                     </td>
                 </tr>
             </table>
-            <iframe id="frmContent" src="" style="height:95vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <iframe id="frmContent" src="" style="height:89.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
         </div>
         <div>
             <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
