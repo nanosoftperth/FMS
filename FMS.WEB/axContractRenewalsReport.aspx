@@ -64,7 +64,7 @@
                     </td>
                 </tr>
             </table>
-            <iframe id="frmContent" src="" style="height:75vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <iframe id="frmContent" src="" style="height:76.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
             <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone"></asp:ObjectDataSource>
         </div>
         <div>

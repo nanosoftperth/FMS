@@ -1,4 +1,5 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="axSiteBySiteZoneReport.aspx.vb" Inherits="FMS.WEB.axSiteBySiteZoneReport" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="axRunValueSummaryReport.aspx.vb" Inherits="FMS.WEB.axRunValueSummaryReport" %>
+
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
 <%@ Register Assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
@@ -12,7 +13,7 @@
          <script type="text/javascript">
              function btnProcessReport_Click() {
                  LoadingPanel.Show();
-                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=SiteBySiteZoneReport");
+                 $("#frmContent").attr("src", "axReportContentPage.aspx?Report=RunValueSummaryReport");
              }
 
              $(function () {
@@ -27,6 +28,7 @@
     <form id="form1" runat="server" >
         <div>
             <iframe id="frmContent" src="" style="height:96vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <asp:ObjectDataSource ID="odsIndustryList" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblIndustryGroups"></asp:ObjectDataSource>
         </div>
         <div>
             <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"

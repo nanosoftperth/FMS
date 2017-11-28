@@ -380,6 +380,13 @@
       <DependentUpon>axRunValuesReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="axRunValueSummaryReport.aspx.designer.vb">
+      <DependentUpon>axRunValueSummaryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="axRunValueSummaryReport.aspx.vb">
+      <DependentUpon>axRunValueSummaryReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="axServiceListReport.aspx.designer.vb">
       <DependentUpon>axServiceListReport.aspx</DependentUpon>
     </Compile>
@@ -1127,6 +1134,7 @@
     <Content Include="axLengthOfServiceReport.aspx" />
     <Content Include="axMYOBCustomerInvoiceReport.aspx" />
     <Content Include="axRunValuesReport.aspx" />
+    <Content Include="axRunValueSummaryReport.aspx" />
     <Content Include="axServiceListReport.aspx" />
     <Content Include="axServiceSummaryReport.aspx" />
     <Content Include="axSiteBySiteZoneReport.aspx" />
