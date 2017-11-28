@@ -1318,6 +1318,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), serviceRun)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValuesReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValueSummaryReport")>  _
+	Public Function usp_GetRunValueSummaryReport() As ISingleResult(Of usp_GetRunValueSummaryReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValueSummaryReportResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -27105,6 +27111,41 @@ Partial Public Class usp_GetRunValuesReportResult
 		Set
 			If (Me._SiteCeaseDate.Equals(value) = false) Then
 				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetRunValueSummaryReportResult
+	
+	Private _RunDescription As String
+	
+	Private _SumOfPerAnnumCharge As System.Nullable(Of Double)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(33)")>  _
+	Public Property RunDescription() As String
+		Get
+			Return Me._RunDescription
+		End Get
+		Set
+			If (String.Equals(Me._RunDescription, value) = false) Then
+				Me._RunDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SumOfPerAnnumCharge", DbType:="Float")>  _
+	Public Property SumOfPerAnnumCharge() As System.Nullable(Of Double)
+		Get
+			Return Me._SumOfPerAnnumCharge
+		End Get
+		Set
+			If (Me._SumOfPerAnnumCharge.Equals(value) = false) Then
+				Me._SumOfPerAnnumCharge = value
 			End If
 		End Set
 	End Property

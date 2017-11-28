@@ -936,6 +936,17 @@ Public Class ReportDataHandler
         rept.Param = serviceRun
         Return rept
     End Function
+    Public Shared Function GetRunValueSummaryReport() As CacheRunValueSummary
+        Dim rept As New CacheRunValueSummary
+        Dim retobj = FMS.Business.DataObjects.usp_GetRunValueSummaryReport.GetRunValueSummaryReport.ToList()
+        Dim objList As New List(Of RunValueSummary)
+        For Each item In retobj
+            objList.Add(New RunValueSummary() With {
+                        .RunDescription = item.RunDescription, .SumOfPerAnnumCharge = item.SumOfPerAnnumCharge})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub
