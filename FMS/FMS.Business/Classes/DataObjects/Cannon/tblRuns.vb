@@ -67,6 +67,13 @@
                             Select New DataObjects.tblRuns(c)).ToList
             Return objRun
         End Function
+        Public Shared Function GetTblRuns() As List(Of DataObjects.tblRuns)
+            Dim objRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
+                            Order By c.RunDescription
+                            Where c.RunDescription IsNot Nothing
+                            Select New DataObjects.tblRuns(c)).ToList
+            Return objRun
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()

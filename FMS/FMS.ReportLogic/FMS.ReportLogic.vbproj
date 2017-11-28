@@ -141,6 +141,7 @@
     <Compile Include="Classes\MYOBCustomerInvoice.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
     <Compile Include="Classes\RunListing.vb" />
+    <Compile Include="Classes\RunValues.vb" />
     <Compile Include="Classes\ServiceList.vb" />
     <Compile Include="Classes\ServiceSummary.vb" />
     <Compile Include="Classes\SitesBySiteZone.vb" />
@@ -283,6 +284,12 @@
     <Compile Include="Reports\RunListingReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RunValuesReport.Designer.vb">
+      <DependentUpon>RunValuesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunValuesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ServiceListReport.Designer.vb">
       <DependentUpon>ServiceListReport.vb</DependentUpon>
     </Compile>
@@ -414,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RunListingReport.resx">
       <DependentUpon>RunListingReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunValuesReport.resx">
+      <DependentUpon>RunValuesReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ServiceListReport.resx">
       <DependentUpon>ServiceListReport.vb</DependentUpon>

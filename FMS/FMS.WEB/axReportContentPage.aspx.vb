@@ -52,6 +52,8 @@
                 Return New FMS.ReportLogic.AuditOfSiteDetailReport()
             Case "SiteBySiteZoneReport"
                 Return New FMS.ReportLogic.SitesBySiteZoneReport()
+            Case "RunValuesReport"
+                Return New FMS.ReportLogic.RunValuesReport()
             Case Else
                 Return Nothing
         End Select

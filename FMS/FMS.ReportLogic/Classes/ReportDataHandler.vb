@@ -920,6 +920,22 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
+    Public Shared Function GetRunValuesReport() As CacheRunValues
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim serviceRun As String = IIf(paramValues(0).ToString().Equals(""), "", paramValues(0).ToString())
+        Dim rept As New CacheRunValues
+        Dim retobj = FMS.Business.DataObjects.usp_GetRunValuesReport.GetRunValuesReport(serviceRun).ToList()
+        Dim objList As New List(Of RunValues)
+        For Each item In retobj
+            objList.Add(New RunValues() With {
+                        .SiteName = item.SiteName, .Add = item.Add, .AddLastLine = item.AddLastLine, .ServiceDescription = item.ServiceDescription,
+                        .ServiceUnits = item.ServiceUnits, .PerAnnumCharge = item.PerAnnumCharge, .ServiceRun = item.ServiceRun,
+                        .RunDescription = item.RunDescription, .SiteCeaseDate = item.SiteCeaseDate})
+        Next
+        rept.LineValues = objList
+        rept.Param = serviceRun
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub
