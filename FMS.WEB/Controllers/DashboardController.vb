@@ -108,65 +108,45 @@ Public Class DashboardController
 
         Dim retobj As Object = Nothing
 
-        'Dim isBusy As String = "234@#$a3sd"
-
-
-        'If HttpContext.Current.Session(isBusy) Is Nothing Then HttpContext.Current.Session(isBusy) = False
-
-        'While True
-
-        '    If Not HttpContext.Current.Session(isBusy) Then
-        '        HttpContext.Current.Session(isBusy) = True
-        '        Exit While
-        '    End If
-
-        '    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(0.1))
-
-        'End While
-
         Dim i As Integer = 0
 
-        While True
+        Dim jsonString = request.Content.ReadAsStringAsync().Result
 
-            Try
+        Dim requestHAsh As Integer = (jsonString & request.Headers.Authorization.ToString).GetHashCode
 
-                'we presume at this point in time that the user is authorized
-                Dim companyName As String = GetAuthorizedAndCompanyName(request.Headers.Authorization).CompanyName
-
-                Dim application = Business.DataObjects.Application.GetFromApplicationName(companyName)
-
-                Dim jsonString = request.Content.ReadAsStringAsync().Result
-
-                Dim jSerializer = New JavaScriptSerializer()
-
-                Dim lok As queryRequestType = jSerializer.Deserialize(Of queryRequestType)(jsonString)
-
-                Dim queryReturnList As New List(Of queryReturnType)
-
-                Dim startTime As Date = CDate(lok.range.from)
-                Dim endTime As Date = CDate(lok.range.to)
-
-                'grab the first target to determine if the result set should be timeserie or table
-                Dim isTimeserie As Boolean = lok.targets(0).type = "timeserie"
-
-                If isTimeserie Then
-                    retobj = GetTimeSeriesResult(lok, startTime, endTime)
-                Else
-                    retobj = GetTableResult(lok, startTime, endTime)
-                End If
+        'if we have already gotten the result previously, then return it from memory this time
+        If MemoryCache.Default.Contains(requestHAsh) Then Return MemoryCache.Default.GetCacheItem(requestHAsh).Value
 
 
-                Return retobj
+        'we presume at this point in time that the user is authorized
+        Dim companyName As String = GetAuthorizedAndCompanyName(request.Headers.Authorization).CompanyName
 
-            Catch ex As Exception
-                If i > 5 Then Throw
-            End Try
-
-            i += 1
-
-        End While
+        Dim application = Business.DataObjects.Application.GetFromApplicationName(companyName)
 
 
+
+        Dim jSerializer = New JavaScriptSerializer()
+
+        Dim lok As queryRequestType = jSerializer.Deserialize(Of queryRequestType)(jsonString)
+
+        Dim queryReturnList As New List(Of queryReturnType)
+
+        Dim startTime As Date = CDate(lok.range.from)
+        Dim endTime As Date = CDate(lok.range.to)
+
+        'grab the first target to determine if the result set should be timeserie or table
+        Dim isTimeserie As Boolean = lok.targets(0).type = "timeserie"
+
+        If isTimeserie Then
+            retobj = GetTimeSeriesResult(lok, startTime, endTime)
+        Else
+            retobj = GetTableResult(lok, startTime, endTime)
+        End If
+
+        'add to the cache so we dont have to do this wole calc again next time
+        MemoryCache.Default.Add(requestHAsh, retobj, New DateTimeOffset(Now.AddHours(1)), Nothing)
+
+        Return retobj
 
     End Function
 
