@@ -72,7 +72,7 @@
 					  <li><a href="axDriversLicenseExpiryReport.aspx" target="iframeMenu">Driver License Expiry</a></li>
 					  <li>Per Annum Value</li>
 					  <li><a href="axSitesWithNoContractsReport.aspx" target="iframeMenu">Sites With No Contracts</a></li>
-					  <li>Sites By Site Zone</li>
+					  <li><a href="axSiteBySiteZoneReport.aspx" target="iframeMenu">Sites By Site Zone</a></li>
 					</ul>
                     <li data-toggle="collapse" data-target="#AuditReport" class="collapsed">
                         <a href="#"><i class="fa fa-list-alt fa-lg"></i> Audit Report & G & L<span class="arrow"></span></a>
