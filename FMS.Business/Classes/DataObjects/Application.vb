@@ -129,7 +129,16 @@ Namespace DataObjects
 
         Public Shared Function GetFromApplicationName(appName As String) As DataObjects.Application
 
-            Dim y As FMS.Business.aspnet_Application = SingletonAccess.FMSDataContextNew.aspnet_Applications.Where(Function(x) x.LoweredApplicationName = appName.ToLower).SingleOrDefault
+            Dim y As FMS.Business.aspnet_Application
+            '= SingletonAccess.FMSDataContextNew.aspnet_Applications.Where
+            '       (Function(x) x.LoweredApplicationName = appName.ToLower).SingleOrDefault
+
+            With New Business.LINQtoSQLClassesDataContext
+
+                y = (From x In .aspnet_Applications Where x.LoweredApplicationName = appName.ToLower).SingleOrDefault
+
+            End With
+
 
             If y IsNot Nothing Then
                 Return New DataObjects.Application(y)

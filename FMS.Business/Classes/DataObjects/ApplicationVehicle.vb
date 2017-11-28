@@ -275,9 +275,19 @@
 
         Public Shared Function GetFromName(name As String) As ApplicationVehicle
 
-            Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicles _
-                    Where x.Name = name _
-                    Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
+
+            With New FMS.Business.LINQtoSQLClassesDataContext()
+
+                Return (From x In .ApplicationVehicles _
+                         Where x.Name = name
+                         Select New DataObjects.ApplicationVehicle(x)).FirstOrDefault
+
+            End With
+
+
+            'Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicles _
+            '        Where x.Name = name _
+            '        Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
 
         End Function
 
