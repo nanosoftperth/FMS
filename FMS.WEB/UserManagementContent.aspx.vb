@@ -18,8 +18,6 @@ Public Class Test
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-
-
         '############           EXIT THE SUB HERE IF THIS IS A CALL/POST BACK      #############
         If IsPostBack Or IsCallback Then Exit Sub
         Dim thisapp As DataObjects.Application = DataObjects.Application.GetFromAppID(FMS.Business.ThisSession.ApplicationID)

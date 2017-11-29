@@ -41,7 +41,7 @@ Public Class SplunkTest
     Protected Sub TestGetall_Click(sender As Object, e As EventArgs)
 
         Dim appid = FMS.Business.ThisSession.ApplicationID
-        Dim oAppVehicle = FMS.Business.DataObjects.ApplicationVehicle.GetAll_Draft1(appid)
+        Dim oAppVehicle = FMS.Business.DataObjects.ApplicationVehicle.GetAll_DraftVer01(appid)
 
 
         Dim obj As Object = ""
