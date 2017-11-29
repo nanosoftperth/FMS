@@ -122,8 +122,17 @@ Namespace DataObjects
         Public Shared Function GetPerAppID(applicationID As Guid, Optional IncludeDefault As Boolean = False) As List(Of Vehicles)
             Dim listVeh As List(Of Vehicles) = New List(Of Vehicles)
 
-            'Dim oList = (From x In SingletonAccess.FMSDataContextContignous.vw_GetVehicles _
-            '        Where x.ApplicationID = applicationID).ToList
+            'Dim userID = FMS.Business.ThisSession.User.UserId
+            'Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+            'Dim appID = FMS.Business.ThisSession.ApplicationID
+            'Dim canAccessAllLocation As Boolean = False
+
+            'Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = "DBD34E53-DC70-434E-9BF4-1CD98049A7C3").ToList()
+
+            'Dim oList = IIf(retafr.Count > 0,
+            '                FMS.Business.DataObjects.ApplicationLocation.GetAll(appID),
+            '                FMS.Business.SingletonAccess.ClientSelected_BusinessLocation
+            '                )
 
             Dim oList = FMS.Business.SingletonAccess.ClientSelected_BusinessLocation
 
@@ -148,8 +157,18 @@ Namespace DataObjects
         Public Shared Function GetPerAppIDAndDevID(applicationID As Guid, deviceID As String, Optional IncludeDefault As Boolean = False) As List(Of Vehicles)
             Dim listVeh As List(Of Vehicles) = New List(Of Vehicles)
 
-            'Dim oList = (From x In SingletonAccess.FMSDataContextContignous.vw_GetVehicles _
-            '        Where x.ApplicationID = applicationID And x.DeviceID = deviceID).ToList
+            'Dim userID = FMS.Business.ThisSession.User.UserId
+            'Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+            'Dim appID = FMS.Business.ThisSession.ApplicationID
+            'Dim canAccessAllLocation As Boolean = False
+
+            'Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = "DBD34E53-DC70-434E-9BF4-1CD98049A7C3").ToList()
+
+            'Dim oList = IIf(retafr.Count > 0,
+            '                FMS.Business.DataObjects.ApplicationLocation.GetAll(appID),
+            '                FMS.Business.SingletonAccess.ClientSelected_BusinessLocation
+            '                )
+
             Dim oList = FMS.Business.SingletonAccess.ClientSelected_BusinessLocation
 
             If (oList.Count > 0) Then

@@ -306,11 +306,37 @@
 
         End Function
 
+        ' New getall function to return all vehicles according to feature as per UW 227 - for approval
         Public Shared Function GetAll(appplicationID As Guid) As List(Of ApplicationVehicle)
+
+            Dim userID = FMS.Business.ThisSession.User.UserId
+            Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+            Dim appID = FMS.Business.ThisSession.ApplicationID
+            
+            'check if user have access to all vehicles
+            Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = "DBD34E53-DC70-434E-9BF4-1CD98049A7C3").ToList()
+
+            Dim retobj As Object
+
+            If (retafr.Count > 0) Then
+
+                retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+            Else
+                retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+            End If
+
+            Return retobj
+
+        End Function
+
+        Public Shared Function GetAll_original(appplicationID As Guid) As List(Of ApplicationVehicle)
 
             'added by Cesar for Admin Business Location Column use 11/27/2017
             Dim listVeh As List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles) = New List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles)
-            
+
             If appplicationID = Guid.Empty Then Return Nothing
 
             Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
@@ -452,7 +478,6 @@
             Dim ObjList As New List(Of DataObjects.ApplicationVehicle)
             Dim resultString = FMS.Business.DataObjects.ApplicationVehicle.GetAll(appID)
 
-
             ObjList.Add(New FMS.Business.DataObjects.ApplicationVehicle() With
                                  {.Name = "Select All"})
 
@@ -592,6 +617,33 @@
         End Function
 
         ' For UW 227 task (Filter vehicles returned dependant on the user requesting them) - for testing
+
+        Public Shared Function GetAll_DraftVer01(appplicationID As Guid) As List(Of ApplicationVehicle)
+
+            Dim userID = FMS.Business.ThisSession.User.UserId
+            Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+            Dim appID = FMS.Business.ThisSession.ApplicationID
+            Dim canSeeAllVehicle As Boolean = False
+
+            'check if user have access to all vehicles
+            Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = "DBD34E53-DC70-434E-9BF4-1CD98049A7C3").ToList()
+
+            Dim retobj As Object
+
+            If (retafr.Count > 0) Then
+
+                retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+            Else
+                retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+            End If
+
+            Return retobj
+
+        End Function
+
         Public Shared Function GetAll_Draft(appplicationID As Guid) As List(Of ApplicationVehicle)
 
             If appplicationID = Guid.Empty Then Return Nothing
