@@ -136,6 +136,49 @@
                 editLng.SetText(nisLng);
             }
 
+            //For vehicle list logic
+            function OnAllCheckedChangedVehicles(s, e) {
+                if (s.GetChecked())
+                    gridLookUp.GetGridView().SelectRows();
+                else
+                    gridLookUp.GetGridView().UnselectRows();
+            }
+
+
+            //var textSeparator = " | ";
+            //function OnListBoxVehicleSelectionChanged(ddListVehicles, args) {
+            //    if (args.index == 0)
+            //        args.isSelected ? ddListVehicles.SelectAll() : ddListVehicles.UnselectAll();
+            //    UpdateSelectAllItemState();
+            //    UpdateText();
+            //}
+
+            //function UpdateSelectAllItemState() {
+            //    IsAllSelected() ? clbVehicles.SelectIndices([0]) : clbVehicles.UnselectIndices([0]);
+            //}
+
+            //function IsAllSelected() {
+            //    var selectedDataItemCount = clbVehicles.GetItemCount() - (clbVehicles.GetItem(0).selected ? 0 : 1);
+            //    return clbVehicles.GetSelectedItems().length == selectedDataItemCount;
+            //}
+
+            //function UpdateText() {
+            //    var selectedItems = clbVehicles.GetSelectedItems();
+            //    ddVehicles.SetText(GetSelectedItemsText(selectedItems));
+                
+            //}
+
+            //function GetSelectedItemsText(items) {
+            //    var texts = [];
+            //    for (var i = 0; i < items.length; i++)
+            //        if (items[i].index != 0)
+            //            texts.push(items[i].text);
+            //    return texts.join(textSeparator);
+            //}
+
+
+            //End for vehicle list logic
+
         </script>
 
         <div id="aui-flag-container" style="display: none;">
@@ -356,7 +399,11 @@
                     <dx:TabPage Text="Roles Access to Features" Name="tab_RolesAccessToFeatures">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="ApplicationFeatureRoleID" ID="dgvRoleAccessToFeatures" ClientInstanceName="dgvRoleAccessToFeatures" runat="server" AutoGenerateColumns="False" DataSourceID="odsApplicationFeatureRoles" Width="100%" Theme="SoftOrange">
+                                <dx:ASPxGridView KeyFieldName="ApplicationFeatureRoleID" ID="dgvRoleAccessToFeatures" 
+                                    ClientInstanceName="dgvRoleAccessToFeatures" runat="server" 
+                                    AutoGenerateColumns="False" DataSourceID="odsApplicationFeatureRoles" 
+                                    Width="100%"  Theme="SoftOrange"
+                                    >
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <SettingsSearchPanel Visible="True" />
@@ -394,6 +441,35 @@
                                                 </ClearButton>
                                             </PropertiesComboBox>
                                         </dx:GridViewDataComboBoxColumn>
+
+                                        
+                                        <%--<dx:GridViewDataComboBoxColumn FieldName="Vehicles" ShowInCustomizationForm="True" VisibleIndex="5" Visible="false">
+                                            <EditFormSettings Visible="true" />
+                                            <EditItemTemplate>
+                                                <dx:ASPxDropDownEdit ClientInstanceName="ddVehicles" ID="cbxVehicles" Width="210px" runat="server" AnimationType="None">
+                                                    <DropDownWindowStyle BackColor="#EDEDED"/>
+                                                    <DropDownWindowTemplate>
+                                                        <dx:ASPxListBox ID="ddListVehicles" ClientInstanceName="clbVehicles" 
+                                                            SelectionMode="CheckColumn" runat="server" Width="300" Height="210px"
+                                                            DataSourceID="odsVehicles" ValueField="ApplicationVehileID" TextField="Name" ValueType="System.String" 
+                                                            Caption="Vehicles" >      
+                                                            <CaptionSettings Position="Top"/>
+                                                            <Border BorderStyle="None" />
+                                                            <Columns>
+                                                                <dx:ListBoxColumn FieldName="Name" Width="100%" />
+                                                                
+                                                            </Columns>
+                                                            
+                                                           
+                                                            <ClientSideEvents SelectedIndexChanged="OnListBoxVehicleSelectionChanged" />
+                                                        </dx:ASPxListBox>
+                                                    </DropDownWindowTemplate>
+                                                </dx:ASPxDropDownEdit>
+                                            </EditItemTemplate>
+                    
+                                        </dx:GridViewDataComboBoxColumn>--%>
+                                        
+
                                     </Columns>
                                 </dx:ASPxGridView>
                                 <asp:ObjectDataSource ID="odsApplicationFeatureRoles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationFeatureRole" DeleteMethod="delete" InsertMethod="insert" SelectMethod="GetAllApplicationFeatureRoles" TypeName="FMS.Business.DataObjects.ApplicationFeatureRole" UpdateMethod="update">
@@ -866,6 +942,15 @@
                     <asp:SessionParameter DbType="Guid" Name="ApplicationID" SessionField="ApplicationID" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+
+
+            <asp:ObjectDataSource ID="odsVehicles"
+                runat="server" OnInserting="odsUsers_Inserting"
+                SelectMethod="GetAllWithoutFilter"
+                TypeName="FMS.Business.DataObjects.ApplicationVehicle" OnDeleting="odsUsers_Deleting">
+            </asp:ObjectDataSource>
+
+
         </div>
     </form>
 </body>

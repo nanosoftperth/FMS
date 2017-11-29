@@ -16,7 +16,15 @@
                      <asp:Label ID="Label1" runat="server" Text="Start Date"></asp:Label>
                 </td>            
                 <td>
-                    <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                     <asp:Label ID="Label3" runat="server" Text="End Date"></asp:Label>
+                </td>            
+                <td>
+                    <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -30,6 +38,7 @@
         </table>
 
         <asp:Button runat="server" Text="Send to SPLUNK" OnClick="Unnamed1_Click" />
+        <asp:Button runat="server" Text="Test GetAll Func Vehicle" OnClick="TestGetall_Click" />
     </div>
     </form>
 </body>

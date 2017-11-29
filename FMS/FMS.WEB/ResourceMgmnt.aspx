@@ -72,10 +72,17 @@
         }
 
         function OnAllCheckedChangedBussLoc(s, e) {
-            if (s.GetChecked())
+            if (s.GetChecked()) {
+                var key = gridLookup.GetGridView().GetRowKey(gridLookup.GetGridView().GetFocusedRowIndex());
+
+                alert(key);
                 gridLookUp.GetGridView().SelectRows();
-            else
+            }
+
+            else {
                 gridLookUp.GetGridView().UnselectRows();
+            }
+                
         }
 
         function LUOnInit(s, e) {
@@ -591,10 +598,10 @@
                                                     </ClearButton>
                                                 </PropertiesComboBox>
                                             </dx:GridViewDataComboBoxColumn>
-                                            <dx:GridViewDataColumn FieldName="BusinessLocation" ShowInCustomizationForm="True"  VisibleIndex="10">
+                                            <dx:GridViewDataColumn FieldName="BusinessLocation" ShowInCustomizationForm="True" VisibleIndex="10">
                                              <EditItemTemplate>
-                                                 <dx:ASPxGridLookup ID="luBusinessLocation" runat="server" AutoGenerateColumns="false" DataSourceID="odsAppVehicleLocation"
-                                                     KeyFieldName="ApplicationLocationID" SelectionMode="Multiple" OnInit="BL_Lookup_Init" TextFormatString="{0}" MultiTextSeparator=" | "
+                                                 <dx:ASPxGridLookup ID="luBusinessLocation" runat="server" AutoGenerateColumns="false" DataSourceID="odsVehicleLocations"
+                                                     KeyFieldName="BusinessLocationID" SelectionMode="Multiple" OnInit="BL_Lookup_Init" TextFormatString="{0}" MultiTextSeparator=" | "
                                                      OnCustomJSProperties="luBusinessLocation_CustomJSProperties" ClientInstanceName="gridLookUp" ClientSideEvents-Init="LUOnInit" >
                                                      <GridViewProperties>
                                                          <%--<SettingsPager NumericButtonCount="3"/>--%>
@@ -612,7 +619,8 @@
                                                         </dx:GridViewCommandColumn>
                                                         <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="1"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="2"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="ApplicationLocationID" VisibleIndex="3" Width="1px" Visible="false"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="BusinessLocationID" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                                                       <%-- <dx:GridViewDataTextColumn FieldName="ApplicationLocationID" VisibleIndex="3" Width="1px" Visible="false"></dx:GridViewDataTextColumn>--%>
                                                        <%-- <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="3" Width="0px"></dx:GridViewDataTextColumn>--%>
                                                     </Columns>
                                                     <%--<SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />--%>
@@ -673,6 +681,12 @@
                                         </SelectParameters>
                                     </asp:ObjectDataSource>                             
                                     <asp:ObjectDataSource ID="odsAppVehicleLocation" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationLocation">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DbType="Guid" Name="ApplicationID" SessionField="ApplicationID" />
+                                            <asp:Parameter Name="IncludeDefault" Type="Boolean" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
+                                    <asp:ObjectDataSource ID="odsVehicleLocations" runat="server" SelectMethod="GetPerAppID" TypeName="FMS.Business.DataObjects.VehicleLocation">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="ApplicationID" SessionField="ApplicationID" />
                                             <asp:Parameter Name="IncludeDefault" Type="Boolean" />

@@ -1,8 +1,14 @@
 ﻿Imports FMS.Business
 Imports FMS.Business.DataObjects.FeatureListConstants
 
+Imports DevExpress.Web
+Imports DevExpress.Web.Data
+
 Public Class Test
     Inherits System.Web.UI.Page
+
+    Private priFeatureID As Guid    ' for vehicle list logic
+    Private priRoleID As Guid       ' for vehicle list logic
 
     Public ReadOnly Property AppVersion As String
         Get
@@ -69,6 +75,11 @@ Public Class Test
 
     Private Sub dgvRoleAccessToFeatures_RowInserting(sender As Object, e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles dgvRoleAccessToFeatures.RowInserting
         e.NewValues.Add("ApplicationID", FMS.Business.ThisSession.ApplicationID)
+
+    End Sub
+    Private Sub dgvRoleAccessToFeatures_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles dgvRoleAccessToFeatures.RowUpdating
+        e.NewValues.Add("ApplicationID", FMS.Business.ThisSession.ApplicationID)
+        
     End Sub
 
     Private Sub dgvSettings_RowUpdating(sender As Object, e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles dgvSettings.RowUpdating
@@ -237,4 +248,104 @@ Public Class Test
         Dim ImagetoDelete = DataObjects.ApplicationImage.GetImageFromID(id)
         DataObjects.ApplicationImage.Delete(ImagetoDelete)
     End Sub
+
+#Region "Vehicle Selection Logic"""
+    ' For Vehicle Selection
+
+    Protected Sub ASPxGridLookupVehicle_Load(ByVal sender As Object, ByVal e As EventArgs)
+        TryCast(sender, ASPxGridLookup).GridView.Width = New Unit(200, UnitType.Pixel)
+    End Sub
+
+    'Protected Sub BL_Lookup_Init(ByVal sender As Object, ByVal e As EventArgs)
+    '    Dim lookup = CType(sender, ASPxGridLookup)
+    '    Dim container = CType(lookup.NamingContainer, GridViewEditItemTemplateContainer)
+
+    '    'Dim gv As ASPxGridView = TryCast(lookup.GridView, ASPxGridView)
+    '    'gv.Width = 20
+
+    '    If container.Grid.IsNewRowEditing Then
+    '        Return
+    '    End If
+
+    '    Dim vehicles = CType(container.Grid.GetRowValues(container.VisibleIndex, container.Column.FieldName), String)
+
+    '    If vehicles = Nothing Then
+    '        Exit Sub
+    '    End If
+
+    '    If (vehicles IsNot Nothing And vehicles.Length > 0) Then
+    '        Dim blList As String() = Nothing
+    '        blList = vehicles.Split("|")
+    '        Dim blVal As String
+    '        Dim blID As Guid
+
+    '        For count = 0 To blList.Length - 1
+    '            blVal = blList(count)
+
+    '            blID = New Guid(blVal)
+
+    '            lookup.GridView.Selection.SelectRowByKey(blID)
+
+    '        Next
+    '    End If
+
+
+    'End Sub
+
+    'Protected Sub luVehicles_CustomJSProperties(ByVal sender As Object, ByVal e As CustomJSPropertiesEventArgs)
+    '    Dim grid As ASPxGridLookup = TryCast(sender, ASPxGridLookup)
+
+    '    Dim start As Int32 = grid.GridView.VisibleStartIndex
+    '    Dim [end] As Int32 = grid.GridView.VisibleStartIndex + grid.GridView.SettingsPager.PageSize
+
+    '    Dim selectNumbers As Int32 = 0
+
+    '    If [end] > grid.GridView.VisibleRowCount Then
+    '        [end] = (grid.GridView.VisibleRowCount)
+    '    Else
+    '        [end] = ([end])
+    '    End If
+
+    '    For i As Integer = start To [end] - 1
+    '        If grid.GridView.Selection.IsRowSelected(i) Then
+    '            selectNumbers += 1
+    '        End If
+    '    Next i
+
+    '    e.Properties("cpSelectedRowsOnPage") = selectNumbers
+    '    e.Properties("cpVisibleRowCount") = grid.GridView.VisibleRowCount
+
+    'End Sub
+
+    'Protected Sub cbAll_Init(ByVal sender As Object, ByVal e As EventArgs)
+    '    Dim chk As ASPxCheckBox = TryCast(sender, ASPxCheckBox)
+    '    Dim container = CType(chk.NamingContainer, GridViewHeaderTemplateContainer).Grid
+
+    '    chk.Checked = (container.Selection.Count = container.VisibleRowCount)
+
+    '    Dim obj As Object = ""
+
+
+    'End Sub
+
+    'Private Function GetVehicles() As Object
+
+    '    Try
+    '        Dim arrCtr As Integer = 0
+
+    '        Dim column = CType(dgvRoleAccessToFeatures.Columns("Vehicles"), GridViewDataColumn)
+    '        Dim lookup = CType(dgvRoleAccessToFeatures.FindEditRowCellTemplateControl(column, "luVehicles"), ASPxGridLookup)
+    '        Dim tags = TryCast(lookup.GridView.GetSelectedFieldValues(lookup.KeyFieldName), List(Of Object))
+
+    '        Return tags
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+
+    'End Function
+
+    ' End For Vehicle Selection
+#End Region
+    
 End Class

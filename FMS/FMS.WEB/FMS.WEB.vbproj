@@ -1035,6 +1035,13 @@
       <DependentUpon>test3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Test_Forms\TestAdmin.aspx.designer.vb">
+      <DependentUpon>TestAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Forms\TestAdmin.aspx.vb">
+      <DependentUpon>TestAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Test_Forms\TestEmail.aspx.designer.vb">
       <DependentUpon>TestEmail.aspx</DependentUpon>
     </Compile>
@@ -1413,6 +1420,7 @@
     <Content Include="Test_Forms\SplunkTest.aspx" />
     <Content Include="Test_Forms\test2.aspx" />
     <Content Include="Test_Forms\test3.aspx" />
+    <Content Include="Test_Forms\TestAdmin.aspx" />
     <Content Include="Test_Forms\TestEmail.aspx" />
     <Content Include="Test_Forms\TestRyan.aspx" />
     <Content Include="Test_Forms\test_Settings.aspx" />
@@ -1601,7 +1609,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18352/</IISUrl>
+          <IISUrl>http://localhost:18353/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
