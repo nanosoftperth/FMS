@@ -50,43 +50,84 @@ Public Class ResourceMgmnt
 
     Protected Sub dgvVehicles_CustomColumnDisplayText(ByVal sender As Object, ByVal e As ASPxGridViewColumnDisplayTextEventArgs)
 
+        'FMS.Business.ThisSession.
+
         If e.Column.FieldName = "DeviceID" Then
             priDeviceID = e.Value
         End If
 
         If e.Column.FieldName = "BusinessLocation" Then
             Dim BussLocs As String = ""
-            Dim blID As Guid
+            Dim LocName As String = ""
 
-            Dim appID = FMS.Business.ThisSession.ApplicationID
-            Dim vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetAllWithBusinessLocation(appID, priDeviceID)
+            Dim oList = FMS.Business.DataObjects.VehicleLocation.GetPerDeviceID(priDeviceID)
 
-            For Each row In vehicle
-                If row.BusinessLocation IsNot Nothing And row.BusinessLocation.ToString().Length > 0 Then
+            If (oList IsNot Nothing) Then
 
-                    Dim blList As String() = Nothing
-                    blList = row.BusinessLocation.Split("|")
-                    Dim blVal As String
-                    'Dim strVal As String
+                Dim objType = oList.GetType()
 
-                    For count = 0 To blList.Length - 1
-                        blVal = blList(count)
+                If (objType.Name() = "List`1") Then
+                    Dim oCtr = DirectCast(oList.Count, Integer)
 
-                        blID = New Guid(blVal)
+                    If oCtr > 0 Then
+                        For Each element As Object In oList
 
-                        Dim blObj = FMS.Business.DataObjects.ApplicationLocation.GetFromID(blID)
+                            LocName = DirectCast(element, FMS.Business.vw_GetVehicle).Name
 
-                        If (BussLocs.Length > 0) Then
-                            BussLocs = BussLocs + " | " + blObj.Name
-                        Else
+                            'Dim VehicleName = DirectCast(element, FMS.Business.vw_GetVehicle).Name
 
-                            BussLocs = blObj.Name
-                        End If
+                            If (BussLocs.Length > 0) Then
+                                BussLocs = BussLocs + " | " + LocName
+                            Else
 
-                    Next
+                                BussLocs = LocName
+                            End If
+
+
+                            'Dim blObj = FMS.Business.DataObjects.ApplicationLocation.GetFromID(blID)
+
+
+
+                        Next
+                    End If
+
 
                 End If
-            Next
+
+            End If
+
+
+
+
+            'Dim appID = FMS.Business.ThisSession.ApplicationID
+            'Dim vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetAllWithBusinessLocation(appID, priDeviceID)
+
+            'For Each row In vehicle
+            '    If row.BusinessLocation IsNot Nothing And row.BusinessLocation.ToString().Length > 0 Then
+
+            '        Dim blList As String() = Nothing
+            '        blList = row.BusinessLocation.Split("|")
+            '        Dim blVal As String
+            '        'Dim strVal As String
+
+            '        For count = 0 To blList.Length - 1
+            '            blVal = blList(count)
+
+            '            blID = New Guid(blVal)
+
+            '            Dim blObj = FMS.Business.DataObjects.ApplicationLocation.GetFromID(blID)
+
+            '            If (BussLocs.Length > 0) Then
+            '                BussLocs = BussLocs + " | " + blObj.Name
+            '            Else
+
+            '                BussLocs = blObj.Name
+            '            End If
+
+            '        Next
+
+            '    End If
+            'Next
 
             e.DisplayText = If(BussLocs, String.Empty)
 
@@ -396,6 +437,7 @@ Public Class ResourceMgmnt
     Private Function GetBusinessLocation() As Object
 
         Try
+
             Dim arrCtr As Integer = 0
 
             Dim column = CType(dgvVehicles.Columns("BusinessLocation"), GridViewDataColumn)
@@ -418,31 +460,21 @@ Public Class ResourceMgmnt
             Return
         End If
 
-        Dim BLs = CType(container.Grid.GetRowValues(container.VisibleIndex, container.Column.FieldName), String)
+        Dim devid = CType(container.Grid.GetRowValues(container.VisibleIndex, "DeviceID"), String)
+        Dim BLs = FMS.Business.DataObjects.VehicleLocation.GetPerDeviceID(devid)
 
-        If (BLs IsNot Nothing And BLs.Length > 0) Then
-            Dim blList As String() = Nothing
-            blList = BLs.Split("|")
-            Dim blVal As String
-            Dim blID As Guid
+        Dim rows = DirectCast(BLs.count, Integer)
 
-            For count = 0 To blList.Length - 1
-                blVal = blList(count)
+        For nrow = 0 To rows - 1
 
-                blID = New Guid(blVal)
+            Dim blID = DirectCast(BLs(nrow), FMS.Business.vw_GetVehicle).ApplicationLocationID
 
-                lookup.GridView.Selection.SelectRowByKey(blID)
+            lookup.GridView.Selection.SelectRowByKey(blID)
 
-            Next
-        End If
+        Next
 
         lookup.PopupVerticalAlign = PopupVerticalAlign.Above
-        'Dim gv As ASPxGridView = TryCast(lookup.GridView, ASPxGridView)
-        'gv.Width = 30
-
-        'lookup.GridView.Width = Unit.Pixel(250)
-
-
+        
 
     End Sub
 

@@ -163,6 +163,10 @@ Public Class RootMaster
         Response.Redirect(FMS.Business.ThisSession.ReturnToUniqcoURL)
     End Sub
 
+    Private Sub binaryImageLogo_CallbackError(sender As Object, e As EventArgs) Handles binaryImageLogo.CallbackError
+
+    End Sub
+
     Private Sub binaryImageLogo_Init(sender As Object, e As EventArgs) Handles binaryImageLogo.Init
 
         initiate()
@@ -194,6 +198,13 @@ Public Class RootMaster
 
                 FMS.Business.SingletonAccess.ClientSelected_TimeZone = _
                     If(String.IsNullOrEmpty(FMS.Business.ThisSession.User.TimeZone.ID), FMS.Business.ThisSession.ApplicationObject.TimeZone, FMS.Business.ThisSession.User.TimeZone)
+
+                'set the users business location here (in the singleton)
+                Dim usrAppID = FMS.Business.ThisSession.User.ApplicationID
+                Dim userBusinessLocation = FMS.Business.DataObjects.ApplicationLocation.GetLocationUsingApplicationID(usrAppID)
+
+                'FMS.Business.SingletonAccess.ClientSelected_BusinessLocation = ThisSession.User.
+                FMS.Business.SingletonAccess.ClientSelected_BusinessLocation = userBusinessLocation
             Else
                 FMS.Business.SingletonAccess.ClientSelected_TimeZone = FMS.Business.ThisSession.ApplicationObject.TimeZone
             End If

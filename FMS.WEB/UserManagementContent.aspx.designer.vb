@@ -408,4 +408,13 @@ Partial Public Class Test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsApplicationLocationsWithDefault As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''odsVehicles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsVehicles As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
