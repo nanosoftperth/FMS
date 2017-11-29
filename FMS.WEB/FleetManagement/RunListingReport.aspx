@@ -12,11 +12,13 @@
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function btnProcessReport_Click() {
-                 LoadingPanel.Show();
-                 if (RunListing.GetValue() == '0') {
-                     $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingReport");
-                 } else {
-                     $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingByRunNumberReport");
+                 if (RunListing.GetValue() != null) {
+                     LoadingPanel.Show();
+                     if (RunListing.GetValue() == '0') {
+                         $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingReport");
+                     } else {
+                         $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingByRunNumberReport");
+                     }
                  }
              }
              $(function () {
