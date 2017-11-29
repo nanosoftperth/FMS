@@ -42,8 +42,13 @@
                 Me.CAN_Protocol_Type = If(String.IsNullOrEmpty(av.CAN_Protocol_Type), "j1939", av.CAN_Protocol_Type)
                 Me.BusinessLocation = FormatBussLocation(av.BusinessLocation)
 
-
             End With
+
+
+
+
+            'Dim oVL = FMS.Business.DataObjects.VehicleLocation.Create()
+
 
         End Sub
 
@@ -93,12 +98,12 @@
                 .ApplicationImageID = av.ApplicationImageID
                 .CAN_Protocol_Type = av.CAN_Protocol_Type
 
-                .BusinessLocation = FormatBussLocation(av.BusinessLocation)
-
             End With
 
             SingletonAccess.FMSDataContextContignous.ApplicationVehicles.InsertOnSubmit(contextAppVecle)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+            FMS.Business.DataObjects.VehicleLocation.Save(av.BusinessLocation, av.ApplicationVehileID)
 
         End Sub
 
@@ -121,11 +126,13 @@
 
                 .ApplicationImageID = av.ApplicationImageID
 
-                .BusinessLocation = FormatBussLocation(av.BusinessLocation)
             End With
 
 
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+            FMS.Business.DataObjects.VehicleLocation.Save(av.BusinessLocation, av.ApplicationVehileID)
+            
 
         End Sub
 
@@ -301,10 +308,47 @@
 
         Public Shared Function GetAll(appplicationID As Guid) As List(Of ApplicationVehicle)
 
+            'added by Cesar for Admin Business Location Column use 11/27/2017
+            Dim listVeh As List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles) = New List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles)
+            
             If appplicationID = Guid.Empty Then Return Nothing
 
             Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                             Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+            For Each itm As DataObjects.ApplicationVehicle In retobj
+
+                'get vehicles per DevicesID from VehicleLocation, ApplicationLocation, ApplicationVehicle
+                Dim VehicleList = FMS.Business.DataObjects.VehicleLocation.GetPerAppIDAndDevID(appplicationID, itm.DeviceID)
+
+                If (VehicleList.Count > 0) Then
+                    Dim strBL As String = ""
+
+                    For row = 0 To VehicleList.Count - 1
+
+                        If (strBL.Length > 0) Then
+                            strBL = strBL + " | " + VehicleList(row).LocationID.ToString()
+                        Else
+                            strBL = VehicleList(row).LocationID.ToString()
+                        End If
+
+                    Next
+
+                    itm.BusinessLocation = strBL
+                Else
+                    itm.BusinessLocation = ""
+
+                End If
+
+                'Dim driver As usp_GetVehiclesAndDriversFortimePeriodResult = _
+                '                    (From i In drivers Where i.ApplicationVehicleID = itm.ApplicationVehileID).FirstOrDefault
+
+                'If driver.ApplicationDriverID.HasValue Then _
+                '        itm.CurrentDriver = DataObjects.ApplicationDriver.GetDriverFromID(driver.ApplicationDriverID)
+
+                'itm.QueryTime = querydate.timezoneToClient
+
+            Next
+
 
             Return retobj
 
@@ -317,7 +361,7 @@
 
             Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID And y.DeviceID = deviceID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                             Function(x) New DataObjects.ApplicationVehicle(x)).ToList
-
+            
             Return retobj
 
         End Function
@@ -353,8 +397,6 @@
                             Function(x) New DataObjects.ApplicationVehicle(x)).Single
 
         End Function
-
-
 
         Public Shared Function GetAllWithDrivers(appid As Guid, querydate As Date) As List(Of ApplicationVehicle)
 
@@ -406,7 +448,6 @@
 
         End Function
         Public Shared Function GetApplicationsVehicleList(appID As Guid) As List(Of FMS.Business.DataObjects.ApplicationVehicle)
-
 
             Dim ObjList As New List(Of DataObjects.ApplicationVehicle)
             Dim resultString = FMS.Business.DataObjects.ApplicationVehicle.GetAll(appID)
@@ -485,7 +526,13 @@
 
         End Function
 
-
+#Region "BusinessLocation Logic"
+        ''' <summary>
+        ''' For 
+        ''' </summary>
+        ''' <param name="businesslocation"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Shared Function FormatBussLocation(businesslocation As Object) As String
             Try
                 Dim strValue As String = ""
@@ -530,6 +577,197 @@
                 Throw ex
             End Try
         End Function
+#End Region
+
+
+        Public Shared Function GetAllWithoutFilter() As List(Of ApplicationVehicle)
+
+            'Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+            '                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+            Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+            Return retobj
+
+        End Function
+
+        ' For UW 227 task (Filter vehicles returned dependant on the user requesting them) - for testing
+        Public Shared Function GetAll_Draft(appplicationID As Guid) As List(Of ApplicationVehicle)
+
+            If appplicationID = Guid.Empty Then Return Nothing
+
+            'Dim oUser = FMS.Business.ThisSession.User
+            'Dim oApp = FMS.Business.ThisSession.ApplicationID
+
+            Dim oVehicle = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+            Dim oList As List(Of VehicleList) = New List(Of VehicleList)
+            Dim blnExist As Boolean = False
+
+            For Each row In oVehicle
+
+                Dim strValue = row.BusinessLocation
+
+                Dim str As String() = Nothing
+                str = strValue.Split("|")
+                Dim strID As String = ""
+                'Dim strVal As String
+
+                For count = 0 To str.Length - 1
+
+                    If (str(count).Length > 0) Then
+                        Dim ListRow = New VehicleList
+
+                        strID = str(count)
+
+                        ' check if location already exist in the list
+                        For rCtr = 0 To oList.Count() - 1
+                            If oList.Item(rCtr).ApplicationLocationID = New Guid(strID) Then
+                                blnExist = True
+                                Exit For
+                            End If
+                        Next
+
+                        ' if location is already exist in the list do not save
+                        If blnExist = False Then
+                            ListRow.ApplicationLocationID = New Guid(strID)
+
+                            oList.Add(ListRow)
+                        Else
+                            blnExist = False
+                        End If
+
+                    End If
+
+                Next
+
+            Next
+
+            Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+            Return retobj
+
+        End Function
+
+        Public Shared Function GetAll_Draft1(appplicationID As Guid) As List(Of ApplicationVehicle)
+            If appplicationID = Guid.Empty Then Return Nothing
+
+            ' Get all Location in current location
+            Dim AppLocID = FMS.Business.DataObjects.ApplicationLocation.GetLocationUsingApplicationID(appplicationID)
+
+            ' initialize variable to use to get vehicle that uses location
+            Dim guidAppLocID As Guid
+            Dim objVehicle As List(Of ApplicationVehicle)
+            Dim objVehicleForReturn As New List(Of ApplicationVehicle)
+            Dim appVehicleID As Guid
+            Dim strDevID As String = ""
+            Dim strName As String = ""
+
+            ' loop throuogh the location that was fetch from application location and get the vehicles that uses these locations
+            For Each row In AppLocID
+
+                guidAppLocID = row.ApplicationLocationID
+
+                ' Select records from application vehicle table with contains application location ID in 
+                ' there business location column
+                With New LINQtoSQLClassesDataContext
+
+                    objVehicle = (From x In .ApplicationVehicles
+                              Where System.Data.Linq.SqlClient.SqlMethods.Like(x.BusinessLocation, "%" + guidAppLocID.ToString() + "%")
+                              Order By x.Name Ascending
+                              Select New DataObjects.ApplicationVehicle(x)).ToList
+
+
+                    .Dispose()
+                End With
+
+                ' start getting vehicle ID, Device ID and Vehicle Name
+                For Each rowVehicle In objVehicle
+                    Dim ListRow = New ApplicationVehicle
+
+                    'appVehicleID = rowVehicle.ApplicationVehileID
+                    'strDevID = rowVehicle.DeviceID
+                    'strName = rowVehicle.Name
+
+                    If (objVehicleForReturn.Count) > 0 Then
+                        'Dim cont = objVehicleForReturn.Select(Function(v) v.ApplicationVehileID = rowVehicle.ApplicationVehileID)
+                        Dim cont = objVehicleForReturn.Exists(Function(v) v.ApplicationVehileID = rowVehicle.ApplicationVehileID)
+
+                        If (cont = False) Then
+                            ListRow.ApplicationVehileID = rowVehicle.ApplicationVehileID
+                            ListRow.Name = rowVehicle.Name
+                            ListRow.Registration = rowVehicle.Registration
+                            ListRow.Notes = rowVehicle.Notes
+                            ListRow.DeviceID = rowVehicle.DeviceID
+                            ListRow.ApplicationID = rowVehicle.ApplicationID
+                            ListRow.VINNumber = rowVehicle.VINNumber
+                            ListRow.ApplicationImageID = rowVehicle.ApplicationImageID
+                            ListRow.CAN_Protocol_Type = rowVehicle.CAN_Protocol_Type
+                            ListRow.BusinessLocation = rowVehicle.BusinessLocation
+
+                            objVehicleForReturn.Add(ListRow)
+                        End If
+
+                    Else
+
+                        ListRow.ApplicationVehileID = rowVehicle.ApplicationVehileID
+                        ListRow.Name = rowVehicle.Name
+                        ListRow.Registration = rowVehicle.Registration
+                        ListRow.Notes = rowVehicle.Notes
+                        ListRow.DeviceID = rowVehicle.DeviceID
+                        ListRow.ApplicationID = rowVehicle.ApplicationID
+                        ListRow.VINNumber = rowVehicle.VINNumber
+                        ListRow.ApplicationImageID = rowVehicle.ApplicationImageID
+                        ListRow.CAN_Protocol_Type = rowVehicle.CAN_Protocol_Type
+                        ListRow.BusinessLocation = rowVehicle.BusinessLocation
+
+                        objVehicleForReturn.Add(ListRow)
+
+                    End If
+
+
+
+
+
+                Next
+
+
+            Next
+
+            Return objVehicleForReturn
+
+
+            ' ----- just for return value
+
+            'Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+            '                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+            'Return retobj
+
+        End Function
+
+        ' END For UW 227 task (Filter vehicles returned dependant on the user requesting them) - for testing
+
+        Public Class VehicleList
+            Public Property ApplicationVehicleID As Guid
+            Public Property Name As String
+            Public Property Registration As String
+            Public Property Notes As String
+            Public Property DeviceID As String
+            Public Property ApplicationID As Guid
+            Public Property ApplicationLocationID As Guid ' for business location
+            Public Property BusinessLocation As Object ' for business location
+            Public Property ApplicationImageID As Guid?
+            Public Property VINNumber As String
+            Public Property CurrentDriver As FMS.Business.DataObjects.ApplicationDriver
+            Public Property QueryTime As Date
+            Public Property CAN_Protocol_Type As String
+            Public Sub New()
+
+            End Sub
+        End Class
 
 
 #End Region

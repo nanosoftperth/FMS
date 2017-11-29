@@ -223,6 +223,27 @@ Namespace DataObjects
 
 
         End Function
+
+        ' For UW 227 (Filter vehicles returned dependant on the user requesting them)
+        Public Shared Function GetLocationUsingApplicationID(applicationID As Guid) As List(Of DataObjects.ApplicationLocation)
+
+            Dim retobj As New List(Of DataObjects.ApplicationLocation)
+
+            With New LINQtoSQLClassesDataContext
+
+                retobj = (From x In .ApplicationLocations
+                          Where x.ApplicationID = applicationID
+                          Order By x.Name Ascending
+                          Select New DataObjects.ApplicationLocation(x)).ToList
+
+
+                .Dispose()
+            End With
+
+            Return retobj
+
+        End Function
+
 #End Region
 
 

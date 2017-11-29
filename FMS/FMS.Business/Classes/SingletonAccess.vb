@@ -127,6 +127,8 @@
 
     Public Shared Property synclock_TimeZone As New Object
 
+
+
     ''' <summary>
     ''' Singleton object which  holds the time-zone of the applications
     ''' this is is actually the time-zone of the user, if that is not defined, then that of the application
@@ -148,6 +150,28 @@
             End SyncLock
         End Set
     End Property
+
+
+#Region "UW 227 - BusinessLocation (Filter vehicles returned dependant on the user requesting them) - for approval"
+    Private Shared Property businessLocation As List(Of DataObjects.ApplicationLocation)
+    Public Shared Property synclock_BusinessLocation As New Object
+
+    Public Shared Property ClientSelected_BusinessLocation As List(Of DataObjects.ApplicationLocation)
+        Get
+            SyncLock synclock_BusinessLocation
+                If businessLocation Is Nothing Then businessLocation = DataObjects.ApplicationLocation.GetLocationUsingApplicationID(ThisSession.ApplicationID)
+                Return businessLocation
+            End SyncLock
+
+        End Get
+        Set(value As List(Of DataObjects.ApplicationLocation))
+            SyncLock synclock_BusinessLocation
+                businessLocation = value
+            End SyncLock
+        End Set
+    End Property
+#End Region
+    
 
 
 #End Region

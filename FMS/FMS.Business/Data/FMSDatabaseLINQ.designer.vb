@@ -517,6 +517,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteFleetRunCompletion(instance As FleetRunCompletion)
     End Sub
+  Partial Private Sub InsertVehicleLocation(instance As VehicleLocation)
+    End Sub
+  Partial Private Sub UpdateVehicleLocation(instance As VehicleLocation)
+    End Sub
+  Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1075,6 +1081,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property FleetRunCompletions() As System.Data.Linq.Table(Of FleetRunCompletion)
 		Get
 			Return Me.GetTable(Of FleetRunCompletion)
+		End Get
+	End Property
+	
+	Public ReadOnly Property VehicleLocations() As System.Data.Linq.Table(Of VehicleLocation)
+		Get
+			Return Me.GetTable(Of VehicleLocation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property vw_GetVehicles() As System.Data.Linq.Table(Of vw_GetVehicle)
+		Get
+			Return Me.GetTable(Of vw_GetVehicle)
 		End Get
 	End Property
 	
@@ -20754,6 +20772,236 @@ Partial Public Class FleetRunCompletion
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
 	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.VehicleLocation")>  _
+Partial Public Class VehicleLocation
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _LocationID As System.Guid
+	
+	Private _VehicleID As System.Guid
+	
+	Private _BusinessLocationID As System.Guid
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnLocationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnLocationIDChanged()
+    End Sub
+    Partial Private Sub OnVehicleIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnVehicleIDChanged()
+    End Sub
+    Partial Private Sub OnBusinessLocationIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnBusinessLocationIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LocationID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property LocationID() As System.Guid
+		Get
+			Return Me._LocationID
+		End Get
+		Set
+			If ((Me._LocationID = value)  _
+						= false) Then
+				Me.OnLocationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._LocationID = value
+				Me.SendPropertyChanged("LocationID")
+				Me.OnLocationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VehicleID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property VehicleID() As System.Guid
+		Get
+			Return Me._VehicleID
+		End Get
+		Set
+			If ((Me._VehicleID = value)  _
+						= false) Then
+				Me.OnVehicleIDChanging(value)
+				Me.SendPropertyChanging
+				Me._VehicleID = value
+				Me.SendPropertyChanged("VehicleID")
+				Me.OnVehicleIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BusinessLocationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property BusinessLocationID() As System.Guid
+		Get
+			Return Me._BusinessLocationID
+		End Get
+		Set
+			If ((Me._BusinessLocationID = value)  _
+						= false) Then
+				Me.OnBusinessLocationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._BusinessLocationID = value
+				Me.SendPropertyChanged("BusinessLocationID")
+				Me.OnBusinessLocationIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.vw_GetVehicles")>  _
+Partial Public Class vw_GetVehicle
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _ApplicationLocationID As System.Guid
+	
+	Private _Name As String
+	
+	Private _Address As String
+	
+	Private _LocationID As System.Nullable(Of System.Guid)
+	
+	Private _VehicleID As System.Nullable(Of System.Guid)
+	
+	Private _Vehicle_name As String
+	
+	Private _DeviceID As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me._ApplicationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationLocationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationLocationID() As System.Guid
+		Get
+			Return Me._ApplicationLocationID
+		End Get
+		Set
+			If ((Me._ApplicationLocationID = value)  _
+						= false) Then
+				Me._ApplicationLocationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(500)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Address", DbType:="VarChar(MAX)")>  _
+	Public Property Address() As String
+		Get
+			Return Me._Address
+		End Get
+		Set
+			If (String.Equals(Me._Address, value) = false) Then
+				Me._Address = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LocationID", DbType:="UniqueIdentifier")>  _
+	Public Property LocationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._LocationID
+		End Get
+		Set
+			If (Me._LocationID.Equals(value) = false) Then
+				Me._LocationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VehicleID", DbType:="UniqueIdentifier")>  _
+	Public Property VehicleID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._VehicleID
+		End Get
+		Set
+			If (Me._VehicleID.Equals(value) = false) Then
+				Me._VehicleID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Vehicle_name", DbType:="VarChar(500)")>  _
+	Public Property Vehicle_name() As String
+		Get
+			Return Me._Vehicle_name
+		End Get
+		Set
+			If (String.Equals(Me._Vehicle_name, value) = false) Then
+				Me._Vehicle_name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(10)")>  _
+	Public Property DeviceID() As String
+		Get
+			Return Me._DeviceID
+		End Get
+		Set
+			If (String.Equals(Me._DeviceID, value) = false) Then
+				Me._DeviceID = value
+			End If
+		End Set
+	End Property
 End Class
 
 Partial Public Class aspnet_Roles_GetAllRolesResult

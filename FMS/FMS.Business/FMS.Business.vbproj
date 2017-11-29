@@ -178,6 +178,7 @@
     <Compile Include="Classes\DataObjects\SimulatorSetting.vb" />
     <Compile Include="Classes\DataObjects\Subscriber.vb" />
     <Compile Include="Classes\DataObjects\TimeZone.vb" />
+    <Compile Include="Classes\DataObjects\VehicleLocation.vb" />
     <Compile Include="Classes\DataObjects\WebServiceLogLine.vb" />
     <Compile Include="Classes\DataObjects\WorkRequest.vb" />
     <Compile Include="Classes\DebugObjects\DeviceEvent.vb" />
