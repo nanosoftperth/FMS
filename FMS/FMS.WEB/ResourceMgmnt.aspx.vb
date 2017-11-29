@@ -50,8 +50,6 @@ Public Class ResourceMgmnt
 
     Protected Sub dgvVehicles_CustomColumnDisplayText(ByVal sender As Object, ByVal e As ASPxGridViewColumnDisplayTextEventArgs)
 
-        'FMS.Business.ThisSession.
-
         If e.Column.FieldName = "DeviceID" Then
             priDeviceID = e.Value
         End If
@@ -74,19 +72,11 @@ Public Class ResourceMgmnt
 
                             LocName = DirectCast(element, FMS.Business.vw_GetVehicle).Name
 
-                            'Dim VehicleName = DirectCast(element, FMS.Business.vw_GetVehicle).Name
-
                             If (BussLocs.Length > 0) Then
                                 BussLocs = BussLocs + " | " + LocName
                             Else
-
                                 BussLocs = LocName
                             End If
-
-
-                            'Dim blObj = FMS.Business.DataObjects.ApplicationLocation.GetFromID(blID)
-
-
 
                         Next
                     End If
@@ -95,12 +85,6 @@ Public Class ResourceMgmnt
                 End If
 
             End If
-
-
-
-
-            'Dim appID = FMS.Business.ThisSession.ApplicationID
-            'Dim vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetAllWithBusinessLocation(appID, priDeviceID)
 
             'For Each row In vehicle
             '    If row.BusinessLocation IsNot Nothing And row.BusinessLocation.ToString().Length > 0 Then
