@@ -20,5 +20,5 @@
     <item Text="Feature Requests" NavigateUrl="Debug.aspx"  />
   </item>
   
-  <item Text="Fleet Management" NavigateUrl="axFleetManagementMenu.aspx"  />
+  <item Text="Fleet Management" NavigateUrl="FleetManagement/Main.aspx"  />
 </items>
