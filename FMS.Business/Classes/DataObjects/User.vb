@@ -25,7 +25,6 @@ Namespace DataObjects
         ''' </summary>
         Public Property ApplicationLocationID As Guid
 
-
         Public Sub UpdatetimeZone(Optional u As aspnet_User = Nothing)
 
             If u Is Nothing Then u = SingletonAccess.FMSDataContextNew.aspnet_Users.Where(Function(x) x.UserId = Me.UserId).Single
@@ -215,6 +214,7 @@ Namespace DataObjects
             Return retobj
 
         End Function
+
         'Public Shared Function GetAllUsers(applicationid As Guid) As List(Of DataObjects.User)
 
         '    Dim retobj = (From Users In SingletonAccess.FMSDataContextNew.aspnet_Users Join UserRoles In SingletonAccess.FMSDataContextNew.aspnet_UsersInRoles
