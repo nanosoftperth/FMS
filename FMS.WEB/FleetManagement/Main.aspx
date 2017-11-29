@@ -57,7 +57,7 @@
 					  <li><a href="ContractRenewalsReport.aspx" target="iframeMenu">Contract Renewals</a></li>
 					  <li>Quick View By Suburb</li>
                       <li><a href="ServiceListReport.aspx" target="iframeMenu">Service List</a></li>
-					  <li>Run Listing</li>
+					  <li><a href="RunListingReport.aspx" target="iframeMenu">Run Listing</a></li>
 					  <li><a href="RunValuesReport.aspx" target="iframeMenu">Run Values</a></li>
                       <li><a href="RunValueSummaryReport.aspx" target="iframeMenu">Run Value Summary</a></li>
 					  <li><a href="ServiceSummaryReport.aspx" target="iframeMenu">Service Summary</a></li>

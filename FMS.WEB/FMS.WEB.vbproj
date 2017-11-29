@@ -373,6 +373,13 @@
       <DependentUpon>MYOBCustomerInvoiceReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\RunListingReport.aspx.designer.vb">
+      <DependentUpon>RunListingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\RunListingReport.aspx.vb">
+      <DependentUpon>RunListingReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\RunValuesReport.aspx.designer.vb">
       <DependentUpon>RunValuesReport.aspx</DependentUpon>
     </Compile>
@@ -1140,6 +1147,7 @@
     <Content Include="FleetManagement\InvoiceBasicCheckReport.aspx" />
     <Content Include="FleetManagement\LengthOfServiceReport.aspx" />
     <Content Include="FleetManagement\MYOBCustomerInvoiceReport.aspx" />
+    <Content Include="FleetManagement\RunListingReport.aspx" />
     <Content Include="FleetManagement\RunValuesReport.aspx" />
     <Content Include="FleetManagement\RunValueSummaryReport.aspx" />
     <Content Include="FleetManagement\ServiceListReport.aspx" />

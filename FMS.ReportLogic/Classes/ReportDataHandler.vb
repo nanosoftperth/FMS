@@ -786,6 +786,32 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
+    Public Shared Function GetRunListByRunNumberReport() As CacheRunListByRunNumber
+        Dim rept As New CacheRunListByRunNumber
+        Dim retobj = FMS.Business.DataObjects.usp_GetRunListByRunNumberReport.GetRunListingReport.ToList()
+        Dim objList As New List(Of RunListByRunNumber)
+        For Each item In retobj
+            objList.Add(New RunListByRunNumber() With {
+                        .RunNUmber = item.RunNUmber, .RunNum = item.RunNum, .RunNo = item.RunNo, .RunDescription = item.RunDescription,
+                        .RunDriver = item.RunDriver, .DriverName = item.DriverName, .MondayRun = item.MondayRun,
+                        .TuesdayRun = item.TuesdayRun, .WednesdayRun = item.WednesdayRun, .ThursdayRun = item.ThursdayRun,
+                        .FridayRun = item.FridayRun, .SaturdayRun = item.SaturdayRun, .SundayRun = item.SundayRun,
+                        .InactiveRun = item.InactiveRun, .Rid = item.Rid, .DateOfRun = item.DateOfRun})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
+    Public Shared Function GetRunDatesReport(rid As Integer) As CacheRunDates
+        Dim rept As New CacheRunDates
+        Dim retobj = FMS.Business.DataObjects.usp_GetRunDates.GetRunDatesReport(rid).ToList()
+        Dim objList As New List(Of RunDates)
+        For Each item In retobj
+            objList.Add(New RunDates() With {
+                        .RID = item.RID, .DateOfRun = item.DateOfRun})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Shared Function GetGainsAndLossesReport() As CacheGainsAndLosses
         Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
         Dim paramDateStart As String = paramValues(0)

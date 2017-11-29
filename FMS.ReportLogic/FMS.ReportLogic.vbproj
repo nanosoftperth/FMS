@@ -140,6 +140,8 @@
     <Compile Include="Classes\LengthOfServices.vb" />
     <Compile Include="Classes\MYOBCustomerInvoice.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
+    <Compile Include="Classes\RunDates.vb" />
+    <Compile Include="Classes\RunListByRunNumber.vb" />
     <Compile Include="Classes\RunListing.vb" />
     <Compile Include="Classes\RunValues.vb" />
     <Compile Include="Classes\RunValueSummary.vb" />
@@ -277,6 +279,18 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ContactListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RunDatesReport.Designer.vb">
+      <DependentUpon>RunDatesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunDatesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RunListByRunNumberReport.Designer.vb">
+      <DependentUpon>RunListByRunNumberReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunListByRunNumberReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RunListingReport.Designer.vb">
@@ -425,6 +439,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ContactListReport.resx">
       <DependentUpon>ContactListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunDatesReport.resx">
+      <DependentUpon>RunDatesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunListByRunNumberReport.resx">
+      <DependentUpon>RunListByRunNumberReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RunListingReport.resx">
       <DependentUpon>RunListingReport.vb</DependentUpon>

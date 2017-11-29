@@ -56,6 +56,10 @@
                 Return New FMS.ReportLogic.RunValuesReport()
             Case "RunValueSummaryReport"
                 Return New FMS.ReportLogic.RunValueSummaryReport()
+            Case "RunListingReport"
+                Return New FMS.ReportLogic.RunListingReport()
+            Case "RunListingByRunNumberReport"
+                Return New FMS.ReportLogic.RunListByRunNumberReport()
             Case Else
                 Return Nothing
         End Select
