@@ -44,7 +44,6 @@
                 Me.SundayRun = .SundayRun
                 Me.InactiveRun = .InactiveRun
                 Me.Rid = .Rid
-                Me.DateOfRun = .DateOfRun
             End With
         End Sub
 #End Region

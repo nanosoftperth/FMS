@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Public Class RunListingReport
+Partial Public Class RunListByRunNumberReport
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
@@ -34,39 +34,40 @@ Partial Public Class RunListingReport
         Me.DataField = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrCheckBox8 = New DevExpress.XtraReports.UI.XRCheckBox()
         Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
-        Me.XrCheckBox7 = New DevExpress.XtraReports.UI.XRCheckBox()
-        Me.XrCheckBox6 = New DevExpress.XtraReports.UI.XRCheckBox()
-        Me.XrCheckBox5 = New DevExpress.XtraReports.UI.XRCheckBox()
-        Me.XrCheckBox4 = New DevExpress.XtraReports.UI.XRCheckBox()
-        Me.XrCheckBox3 = New DevExpress.XtraReports.UI.XRCheckBox()
-        Me.XrCheckBox2 = New DevExpress.XtraReports.UI.XRCheckBox()
         Me.XrCheckBox1 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrCheckBox2 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrCheckBox3 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrCheckBox4 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrCheckBox5 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrCheckBox6 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrCheckBox7 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrCheckBox8 = New DevExpress.XtraReports.UI.XRCheckBox()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.GroupHeader2 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.HeightF = 32.0!
+        Me.Detail.HeightF = 0.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -88,7 +89,7 @@ Partial Public Class RunListingReport
         'PageFooterBand1
         '
         Me.PageFooterBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1, Me.XrPageInfo2})
-        Me.PageFooterBand1.HeightF = 78.99996!
+        Me.PageFooterBand1.HeightF = 73.79163!
         Me.PageFooterBand1.Name = "PageFooterBand1"
         '
         'XrPageInfo1
@@ -186,100 +187,102 @@ Partial Public Class RunListingReport
         '
         'Detail1
         '
-        Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrCheckBox8, Me.XrSubreport1, Me.XrCheckBox7, Me.XrCheckBox6, Me.XrCheckBox5, Me.XrCheckBox4, Me.XrCheckBox3, Me.XrCheckBox2, Me.XrCheckBox1})
-        Me.Detail1.HeightF = 55.25003!
+        Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrSubreport1, Me.XrCheckBox1, Me.XrCheckBox2, Me.XrCheckBox3, Me.XrCheckBox4, Me.XrCheckBox5, Me.XrCheckBox6, Me.XrCheckBox7, Me.XrCheckBox8})
+        Me.Detail1.HeightF = 23.0!
         Me.Detail1.Name = "Detail1"
-        '
-        'XrCheckBox8
-        '
-        Me.XrCheckBox8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.InactiveRun")})
-        Me.XrCheckBox8.LocationFloat = New DevExpress.Utils.PointFloat(491.1666!, 0.0!)
-        Me.XrCheckBox8.Name = "XrCheckBox8"
-        Me.XrCheckBox8.SizeF = New System.Drawing.SizeF(14.58328!, 23.0!)
-        Me.XrCheckBox8.Text = "LineValues.InactiveRun"
         '
         'XrSubreport1
         '
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(512.5!, 32.25002!)
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(508.604!, 0.0!)
         Me.XrSubreport1.Name = "XrSubreport1"
         Me.XrSubreport1.ParameterBindings.Add(New DevExpress.XtraReports.UI.ParameterBinding("RidParam", Nothing, "LineValues.Rid"))
         Me.XrSubreport1.ReportSource = New FMS.ReportLogic.RunDatesReport()
-        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(127.4999!, 23.0!)
+        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(141.396!, 23.0!)
         '
-        'XrCheckBox7
+        'XrCheckBox1
         '
-        Me.XrCheckBox7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.SundayRun")})
-        Me.XrCheckBox7.LocationFloat = New DevExpress.Utils.PointFloat(435.1667!, 0.0!)
-        Me.XrCheckBox7.Name = "XrCheckBox7"
-        Me.XrCheckBox7.SizeF = New System.Drawing.SizeF(15.87503!, 23.0!)
-        Me.XrCheckBox7.Text = "LineValues.SundayRun"
+        Me.XrCheckBox1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.MondayRun")})
+        Me.XrCheckBox1.LocationFloat = New DevExpress.Utils.PointFloat(135.146!, 0.0!)
+        Me.XrCheckBox1.Name = "XrCheckBox1"
+        Me.XrCheckBox1.SizeF = New System.Drawing.SizeF(14.85405!, 23.0!)
+        Me.XrCheckBox1.Text = "LineValues.MondayRun"
         '
-        'XrCheckBox6
+        'XrCheckBox2
         '
-        Me.XrCheckBox6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.SaturdayRun")})
-        Me.XrCheckBox6.LocationFloat = New DevExpress.Utils.PointFloat(386.4583!, 0.0!)
-        Me.XrCheckBox6.Name = "XrCheckBox6"
-        Me.XrCheckBox6.SizeF = New System.Drawing.SizeF(14.58331!, 23.0!)
-        Me.XrCheckBox6.Text = "LineValues.SaturdayRun"
-        '
-        'XrCheckBox5
-        '
-        Me.XrCheckBox5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.FridayRun")})
-        Me.XrCheckBox5.LocationFloat = New DevExpress.Utils.PointFloat(331.0!, 0.0!)
-        Me.XrCheckBox5.Name = "XrCheckBox5"
-        Me.XrCheckBox5.SizeF = New System.Drawing.SizeF(14.5833!, 23.0!)
-        Me.XrCheckBox5.Text = "LineValues.FridayRun"
-        '
-        'XrCheckBox4
-        '
-        Me.XrCheckBox4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.ThursdayRun")})
-        Me.XrCheckBox4.LocationFloat = New DevExpress.Utils.PointFloat(284.375!, 0.0!)
-        Me.XrCheckBox4.Name = "XrCheckBox4"
-        Me.XrCheckBox4.SizeF = New System.Drawing.SizeF(13.54167!, 23.0!)
-        Me.XrCheckBox4.Text = "LineValues.ThursdayRun"
+        Me.XrCheckBox2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.TuesdayRun")})
+        Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(185.1459!, 0.0!)
+        Me.XrCheckBox2.Name = "XrCheckBox2"
+        Me.XrCheckBox2.SizeF = New System.Drawing.SizeF(14.58331!, 23.0!)
+        Me.XrCheckBox2.Text = "LineValues.TuesdayRun"
         '
         'XrCheckBox3
         '
         Me.XrCheckBox3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.WednesdayRun")})
         Me.XrCheckBox3.LocationFloat = New DevExpress.Utils.PointFloat(239.5835!, 0.0!)
         Me.XrCheckBox3.Name = "XrCheckBox3"
-        Me.XrCheckBox3.SizeF = New System.Drawing.SizeF(15.62482!, 23.0!)
+        Me.XrCheckBox3.SizeF = New System.Drawing.SizeF(14.31236!, 23.0!)
         Me.XrCheckBox3.Text = "LineValues.WednesdayRun"
         '
-        'XrCheckBox2
+        'XrCheckBox4
         '
-        Me.XrCheckBox2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.TuesdayRun")})
-        Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(188.5417!, 0.0!)
-        Me.XrCheckBox2.Name = "XrCheckBox2"
-        Me.XrCheckBox2.SizeF = New System.Drawing.SizeF(14.58331!, 23.0!)
-        Me.XrCheckBox2.Text = "LineValues.TuesdayRun"
+        Me.XrCheckBox4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.ThursdayRun")})
+        Me.XrCheckBox4.LocationFloat = New DevExpress.Utils.PointFloat(289.3126!, 0.0!)
+        Me.XrCheckBox4.Name = "XrCheckBox4"
+        Me.XrCheckBox4.SizeF = New System.Drawing.SizeF(13.54167!, 23.0!)
+        Me.XrCheckBox4.Text = "LineValues.ThursdayRun"
         '
-        'XrCheckBox1
+        'XrCheckBox5
         '
-        Me.XrCheckBox1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.MondayRun")})
-        Me.XrCheckBox1.LocationFloat = New DevExpress.Utils.PointFloat(134.375!, 0.0!)
-        Me.XrCheckBox1.Name = "XrCheckBox1"
-        Me.XrCheckBox1.SizeF = New System.Drawing.SizeF(15.625!, 23.0!)
-        Me.XrCheckBox1.Text = "LineValues.MondayRun"
+        Me.XrCheckBox5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.FridayRun")})
+        Me.XrCheckBox5.LocationFloat = New DevExpress.Utils.PointFloat(335.9375!, 0.0!)
+        Me.XrCheckBox5.Name = "XrCheckBox5"
+        Me.XrCheckBox5.SizeF = New System.Drawing.SizeF(14.5833!, 23.0!)
+        Me.XrCheckBox5.Text = "LineValues.FridayRun"
+        '
+        'XrCheckBox6
+        '
+        Me.XrCheckBox6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.SaturdayRun")})
+        Me.XrCheckBox6.LocationFloat = New DevExpress.Utils.PointFloat(386.1875!, 0.0!)
+        Me.XrCheckBox6.Name = "XrCheckBox6"
+        Me.XrCheckBox6.SizeF = New System.Drawing.SizeF(14.58331!, 23.0!)
+        Me.XrCheckBox6.Text = "LineValues.SaturdayRun"
+        '
+        'XrCheckBox7
+        '
+        Me.XrCheckBox7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.SundayRun")})
+        Me.XrCheckBox7.LocationFloat = New DevExpress.Utils.PointFloat(430.7292!, 0.0!)
+        Me.XrCheckBox7.Name = "XrCheckBox7"
+        Me.XrCheckBox7.SizeF = New System.Drawing.SizeF(13.79172!, 23.0!)
+        Me.XrCheckBox7.Text = "LineValues.SundayRun"
+        '
+        'XrCheckBox8
+        '
+        Me.XrCheckBox8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("CheckState", Nothing, "LineValues.InactiveRun")})
+        Me.XrCheckBox8.LocationFloat = New DevExpress.Utils.PointFloat(482.5624!, 0.0!)
+        Me.XrCheckBox8.Name = "XrCheckBox8"
+        Me.XrCheckBox8.SizeF = New System.Drawing.SizeF(14.58334!, 23.0!)
+        Me.XrCheckBox8.Text = "LineValues.InactiveRun"
         '
         'GroupHeader1
         '
-        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel13, Me.XrLabel1})
+        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel15, Me.XrLabel13, Me.XrLabel14, Me.XrLabel1})
         Me.GroupHeader1.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("RunDescription", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
         Me.GroupHeader1.HeightF = 23.0!
         Me.GroupHeader1.Level = 1
         Me.GroupHeader1.Name = "GroupHeader1"
         '
-        'XrLabel14
+        'XrLabel15
         '
-        Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.RunNum")})
-        Me.XrLabel14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(239.5835!, 0.0!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XrLabel14.StylePriority.UseFont = False
-        Me.XrLabel14.Text = "XrLabel14"
+        Me.XrLabel15.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.RunNUmber")})
+        Me.XrLabel15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel15.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(239.5835!, 0.0!)
+        Me.XrLabel15.Name = "XrLabel15"
+        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel15.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel15.StylePriority.UseFont = False
+        Me.XrLabel15.StylePriority.UseForeColor = False
+        Me.XrLabel15.Text = "XrLabel15"
         '
         'XrLabel13
         '
@@ -293,6 +296,19 @@ Partial Public Class RunListingReport
         Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseForeColor = False
         Me.XrLabel13.Text = "Run No:"
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.RunNum")})
+        Me.XrLabel14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel14.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(539.9999!, 0.0!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel14.StylePriority.UseFont = False
+        Me.XrLabel14.StylePriority.UseForeColor = False
+        Me.XrLabel14.Text = "XrLabel14"
         '
         'XrLabel1
         '
@@ -328,138 +344,21 @@ Partial Public Class RunListingReport
         '
         'ObjectDataSource1
         '
-        Me.ObjectDataSource1.DataMember = "GetRunListingReport"
+        Me.ObjectDataSource1.DataMember = "GetRunListByRunNumberReport"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel18})
-        Me.PageHeader.HeightF = 32.29167!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel18, Me.XrLabel4, Me.XrLabel5, Me.XrLabel6, Me.XrLabel7, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.XrLabel12})
+        Me.PageHeader.HeightF = 23.0!
         Me.PageHeader.Name = "PageHeader"
-        '
-        'XrLabel12
-        '
-        Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(540.1251!, 0.0!)
-        Me.XrLabel12.Name = "XrLabel12"
-        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(109.8749!, 23.0!)
-        Me.XrLabel12.StyleName = "Title"
-        Me.XrLabel12.StylePriority.UseFont = False
-        Me.XrLabel12.StylePriority.UseForeColor = False
-        Me.XrLabel12.Text = "Specified Dates"
-        '
-        'XrLabel11
-        '
-        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(466.6667!, 0.0!)
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(62.00009!, 23.0!)
-        Me.XrLabel11.StyleName = "Title"
-        Me.XrLabel11.StylePriority.UseFont = False
-        Me.XrLabel11.StylePriority.UseForeColor = False
-        Me.XrLabel11.Text = "Inactive"
-        '
-        'XrLabel10
-        '
-        Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(416.125!, 0.0!)
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(34.91663!, 23.0!)
-        Me.XrLabel10.StyleName = "Title"
-        Me.XrLabel10.StylePriority.UseFont = False
-        Me.XrLabel10.StylePriority.UseForeColor = False
-        Me.XrLabel10.Text = "Sun"
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(371.3333!, 0.0!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(29.70831!, 23.0!)
-        Me.XrLabel9.StyleName = "Title"
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.StylePriority.UseForeColor = False
-        Me.XrLabel9.Text = "Sat"
-        '
-        'XrLabel8
-        '
-        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(315.875!, 0.0!)
-        Me.XrLabel8.Name = "XrLabel8"
-        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(29.70831!, 23.0!)
-        Me.XrLabel8.StyleName = "Title"
-        Me.XrLabel8.StylePriority.UseFont = False
-        Me.XrLabel8.StylePriority.UseForeColor = False
-        Me.XrLabel8.Text = "Fri"
-        '
-        'XrLabel7
-        '
-        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(266.6667!, 0.0!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(31.25002!, 23.0!)
-        Me.XrLabel7.StyleName = "Title"
-        Me.XrLabel7.StylePriority.UseFont = False
-        Me.XrLabel7.StylePriority.UseForeColor = False
-        Me.XrLabel7.Text = "Thu"
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(218.75!, 0.0!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(42.70833!, 23.0!)
-        Me.XrLabel6.StyleName = "Title"
-        Me.XrLabel6.StylePriority.UseFont = False
-        Me.XrLabel6.StylePriority.UseForeColor = False
-        Me.XrLabel6.Text = "Wed"
-        '
-        'XrLabel5
-        '
-        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(170.8334!, 0.0!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(32.29166!, 23.0!)
-        Me.XrLabel5.StyleName = "Title"
-        Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.StylePriority.UseForeColor = False
-        Me.XrLabel5.Text = "Tue"
-        '
-        'XrLabel4
-        '
-        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(122.9167!, 0.0!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(42.70833!, 23.0!)
-        Me.XrLabel4.StyleName = "Title"
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseForeColor = False
-        Me.XrLabel4.Text = "Mon"
         '
         'XrLabel18
         '
         Me.XrLabel18.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel18.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(50.0!, 0.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(50.00013!, 0.0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(50.0!, 23.0!)
@@ -468,7 +367,124 @@ Partial Public Class RunListingReport
         Me.XrLabel18.StylePriority.UseForeColor = False
         Me.XrLabel18.Text = "Driver"
         '
-        'RunListingReport
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(122.9168!, 0.0!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(42.70833!, 23.0!)
+        Me.XrLabel4.StyleName = "Title"
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseForeColor = False
+        Me.XrLabel4.Text = "Mon"
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel5.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(170.8335!, 0.0!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(32.29166!, 23.0!)
+        Me.XrLabel5.StyleName = "Title"
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseForeColor = False
+        Me.XrLabel5.Text = "Tue"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel6.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(218.7501!, 0.0!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(42.70833!, 23.0!)
+        Me.XrLabel6.StyleName = "Title"
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseForeColor = False
+        Me.XrLabel6.Text = "Wed"
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel7.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(266.6668!, 0.0!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(31.25002!, 23.0!)
+        Me.XrLabel7.StyleName = "Title"
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseForeColor = False
+        Me.XrLabel7.Text = "Thu"
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(315.8751!, 0.0!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(29.70831!, 23.0!)
+        Me.XrLabel8.StyleName = "Title"
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseForeColor = False
+        Me.XrLabel8.Text = "Fri"
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(371.3334!, 0.0!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(29.70831!, 23.0!)
+        Me.XrLabel9.StyleName = "Title"
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseForeColor = False
+        Me.XrLabel9.Text = "Sat"
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel10.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(416.1251!, 0.0!)
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(34.91663!, 23.0!)
+        Me.XrLabel10.StyleName = "Title"
+        Me.XrLabel10.StylePriority.UseFont = False
+        Me.XrLabel10.StylePriority.UseForeColor = False
+        Me.XrLabel10.Text = "Sun"
+        '
+        'XrLabel11
+        '
+        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel11.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(466.6668!, 0.0!)
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(62.00009!, 23.0!)
+        Me.XrLabel11.StyleName = "Title"
+        Me.XrLabel11.StylePriority.UseFont = False
+        Me.XrLabel11.StylePriority.UseForeColor = False
+        Me.XrLabel11.Text = "Inactive"
+        '
+        'XrLabel12
+        '
+        Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel12.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(540.1252!, 0.0!)
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(109.8749!, 23.0!)
+        Me.XrLabel12.StyleName = "Title"
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.StylePriority.UseForeColor = False
+        Me.XrLabel12.Text = "Specified Dates"
+        '
+        'RunListByRunNumberReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport, Me.PageHeader})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
@@ -496,29 +512,30 @@ Partial Public Class RunListingReport
     Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents GroupHeader1 As DevExpress.XtraReports.UI.GroupHeaderBand
-    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents GroupHeader2 As DevExpress.XtraReports.UI.GroupHeaderBand
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrCheckBox1 As DevExpress.XtraReports.UI.XRCheckBox
     Friend WithEvents XrCheckBox2 As DevExpress.XtraReports.UI.XRCheckBox
-    Friend WithEvents XrSubreport1 As DevExpress.XtraReports.UI.XRSubreport
-    Friend WithEvents XrCheckBox7 As DevExpress.XtraReports.UI.XRCheckBox
-    Friend WithEvents XrCheckBox6 As DevExpress.XtraReports.UI.XRCheckBox
-    Friend WithEvents XrCheckBox5 As DevExpress.XtraReports.UI.XRCheckBox
-    Friend WithEvents XrCheckBox4 As DevExpress.XtraReports.UI.XRCheckBox
     Friend WithEvents XrCheckBox3 As DevExpress.XtraReports.UI.XRCheckBox
-    Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
-    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrCheckBox4 As DevExpress.XtraReports.UI.XRCheckBox
+    Friend WithEvents XrCheckBox5 As DevExpress.XtraReports.UI.XRCheckBox
+    Friend WithEvents XrCheckBox6 As DevExpress.XtraReports.UI.XRCheckBox
+    Friend WithEvents XrCheckBox7 As DevExpress.XtraReports.UI.XRCheckBox
     Friend WithEvents XrCheckBox8 As DevExpress.XtraReports.UI.XRCheckBox
+    Friend WithEvents XrSubreport1 As DevExpress.XtraReports.UI.XRSubreport
+    Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
+    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
 End Class
