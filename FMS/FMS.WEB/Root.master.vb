@@ -203,7 +203,6 @@ Public Class RootMaster
                 Dim usrAppID = FMS.Business.ThisSession.User.ApplicationID
                 Dim userBusinessLocation = FMS.Business.DataObjects.ApplicationLocation.GetLocationUsingApplicationID(usrAppID)
 
-                'FMS.Business.SingletonAccess.ClientSelected_BusinessLocation = ThisSession.User.
                 FMS.Business.SingletonAccess.ClientSelected_BusinessLocation = userBusinessLocation
             Else
                 FMS.Business.SingletonAccess.ClientSelected_TimeZone = FMS.Business.ThisSession.ApplicationObject.TimeZone

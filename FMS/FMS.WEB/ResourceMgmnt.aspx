@@ -59,23 +59,17 @@
                     });
         }
 
-        function CloseBussLocGridLookup() {
-            //ASPxClientGridView.GetSelectedFieldValues
-            //ASPxClientGridLookup.GetGridView 
-            //var oBL = glBusinessLocation.GetSelectedFieldValues;
-
-
-
-            gridLookupBusinessLocation.ConfirmCurrentSelection();
-            gridLookupBusinessLocation.HideDropDown();
-            gridLookupBusinessLocation.Focus();
-        }
+        //function CloseBussLocGridLookup() {
+        //    gridLookupBusinessLocation.ConfirmCurrentSelection();
+        //    gridLookupBusinessLocation.HideDropDown();
+        //    gridLookupBusinessLocation.Focus();
+        //}
 
         function OnAllCheckedChangedBussLoc(s, e) {
             if (s.GetChecked()) {
-                var key = gridLookup.GetGridView().GetRowKey(gridLookup.GetGridView().GetFocusedRowIndex());
+                //var key = gridLookup.GetGridView().GetRowKey(gridLookup.GetGridView().GetFocusedRowIndex());
 
-                alert(key);
+                //alert(key);
                 gridLookUp.GetGridView().SelectRows();
             }
 
@@ -619,25 +613,11 @@
                                                         </dx:GridViewCommandColumn>
                                                         <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="1"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="2"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="BusinessLocationID" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                                                        <%--<dx:GridViewDataTextColumn FieldName="BusinessLocationID" VisibleIndex="3"></dx:GridViewDataTextColumn>--%>
                                                        <%-- <dx:GridViewDataTextColumn FieldName="ApplicationLocationID" VisibleIndex="3" Width="1px" Visible="false"></dx:GridViewDataTextColumn>--%>
                                                        <%-- <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="3" Width="0px"></dx:GridViewDataTextColumn>--%>
                                                     </Columns>
-                                                    <%--<SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />--%>
-                                                    <%--<GridViewProperties>
-                                                            <Templates>
-                                                                <StatusBar>
-                                                                    <table class="OptionsTable" style="float: right">
-                                                                        <tr>
-                                                                            <td>
-                                                                                <dx:ASPxButton ID="btnUpdateBL" runat="server" AutoPostBack="false" Text="Update" OnClick="btnUpdateBL_Clicked" />
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </StatusBar>
-                                                            </Templates>
-                                                            <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
-                                                        </GridViewProperties>--%>
+                                                    
                                                  </dx:ASPxGridLookup>
                                              </EditItemTemplate>
                                             </dx:GridViewDataColumn>
