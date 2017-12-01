@@ -291,11 +291,6 @@
 
             End With
 
-
-            'Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicles _
-            '        Where x.Name = name _
-            '        Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
-
         End Function
 
         Public Shared Function GetFromDeviceID(deviceID As String) As ApplicationVehicle
@@ -308,27 +303,30 @@
 
         ' New getall function to return all vehicles according to feature as per UW 227 - for approval
         Public Shared Function GetAll(appplicationID As Guid) As List(Of ApplicationVehicle)
+            Dim retobj As Object = Nothing
 
-            Dim userID = FMS.Business.ThisSession.User.UserId
-            Dim userRoledID = FMS.Business.ThisSession.User.RoleID
-            Dim appID = FMS.Business.ThisSession.ApplicationID
-            
-            'check if user have access to all vehicles
-            Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = "DBD34E53-DC70-434E-9BF4-1CD98049A7C3").ToList()
+            Try
+                Dim userID = FMS.Business.ThisSession.User.UserId
+                Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+                Dim appID = FMS.Business.ThisSession.ApplicationID
 
-            Dim retobj As Object
+                'check if user have access to all vehicles
+                Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = "DBD34E53-DC70-434E-9BF4-1CD98049A7C3").ToList()
 
-            If (retafr.Count > 0) Then
+                If (retafr.Count > 0) Then
+                    retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
+                                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                Else
+                    retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                End If
 
-                retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
-                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
-            Else
-                retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
-                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                Return retobj
 
-            End If
-
-            Return retobj
+            Catch ex As Exception
+                retobj = Nothing
+                Return retobj
+            End Try
 
         End Function
 
@@ -392,8 +390,6 @@
 
         End Function
 
-
-
         Public Function GetCurrentTimeZoneOffsetFromPerth() As Double
 
             Try
@@ -414,7 +410,6 @@
             Return 0
 
         End Function
-
 
         Public Shared Function GetForID(Id As Guid) As ApplicationVehicle
 
@@ -450,7 +445,6 @@
 
         End Function
 
-
         ''' <summary>
         ''' For the outlook like 
         ''' schedule  control
@@ -459,7 +453,6 @@
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function GetAllAsScheduleResources(appid As Guid) As List(Of CustomResource)
-
 
             Dim retobjs As New List(Of CustomResource)
             Dim vehicles As List(Of DataObjects.ApplicationVehicle) = GetAll(appid)
@@ -617,7 +610,6 @@
         End Function
 
         ' For UW 227 task (Filter vehicles returned dependant on the user requesting them) - for testing
-
         Public Shared Function GetAll_DraftVer01(appplicationID As Guid) As List(Of ApplicationVehicle)
 
             Dim userID = FMS.Business.ThisSession.User.UserId
@@ -647,9 +639,6 @@
         Public Shared Function GetAll_Draft(appplicationID As Guid) As List(Of ApplicationVehicle)
 
             If appplicationID = Guid.Empty Then Return Nothing
-
-            'Dim oUser = FMS.Business.ThisSession.User
-            'Dim oApp = FMS.Business.ThisSession.ApplicationID
 
             Dim oVehicle = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                             Function(x) New DataObjects.ApplicationVehicle(x)).ToList
@@ -801,7 +790,6 @@
         End Function
 
         ' END For UW 227 task (Filter vehicles returned dependant on the user requesting them) - for testing
-
         Public Class VehicleList
             Public Property ApplicationVehicleID As Guid
             Public Property Name As String

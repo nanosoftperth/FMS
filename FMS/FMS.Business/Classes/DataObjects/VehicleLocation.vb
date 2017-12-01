@@ -45,7 +45,6 @@ Namespace DataObjects
 
             End With
 
-
             SingletonAccess.FMSDataContextContignous.VehicleLocations.InsertOnSubmit(contextLocation)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
 
@@ -62,7 +61,6 @@ Namespace DataObjects
                 .BusinessLocationID = vl.BusinessLocationID
 
             End With
-
 
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -108,15 +106,28 @@ Namespace DataObjects
                     Where x.VehicleID = appvehicleID _
                     Select New DataObjects.VehicleLocation(x)).ToList
 
-
-
         End Function
 
-        Public Shared Function GetPerDeviceID(deviceID As String) As Object
+        Public Shared Function GetPerDeviceID(devID As String) As Object
 
-            Return (From x In SingletonAccess.FMSDataContextContignous.vw_GetVehicles _
-                    Where x.DeviceID = deviceID).ToList
+            '-- Old Code
+            'Return (From x In SingletonAccess.FMSDataContextContignous.vw_GetVehicles _
+            '        Where x.DeviceID = deviceID).ToList
 
+            Dim appID = FMS.Business.ThisSession.ApplicationID
+            Dim listVehicle = (From vl In SingletonAccess.FMSDataContextContignous.VehicleLocations
+                              Join al In SingletonAccess.FMSDataContextContignous.ApplicationLocations
+                              On vl.BusinessLocationID Equals al.ApplicationLocationID
+                              Join av In SingletonAccess.FMSDataContextContignous.ApplicationVehicles
+                              On vl.VehicleID Equals av.ApplicationVehicleID
+                              Where (av.DeviceID = devID)
+                              Select al.ApplicationID, al.ApplicationLocationID, al.Name, al.Address,
+                                    vl.LocationID, vl.VehicleID, Vehicle_Name = av.Name, av.DeviceID
+                                    ).ToList()
+
+            Return listVehicle
+
+            
         End Function
 
         Public Shared Function GetPerAppID(applicationID As Guid, Optional IncludeDefault As Boolean = False) As List(Of Vehicles)
