@@ -4,8 +4,6 @@ Imports System.Collections
 Imports System.Collections.Generic
 Imports DevExpress.Web.Data
 
-
-
 Public Class ResourceMgmnt
     Inherits System.Web.UI.Page
 
@@ -60,7 +58,7 @@ Public Class ResourceMgmnt
 
             Dim oList = FMS.Business.DataObjects.VehicleLocation.GetPerDeviceID(priDeviceID)
 
-            If (oList IsNot Nothing) Then
+            If (oList IsNot Nothing) And (oList.Count > 0) Then
 
                 Dim objType = oList.GetType()
 
@@ -68,9 +66,10 @@ Public Class ResourceMgmnt
                     Dim oCtr = DirectCast(oList.Count, Integer)
 
                     If oCtr > 0 Then
+
                         For Each element As Object In oList
 
-                            LocName = DirectCast(element, FMS.Business.vw_GetVehicle).Name
+                            LocName = DataBinder.GetPropertyValue(element, "Name")
 
                             If (BussLocs.Length > 0) Then
                                 BussLocs = BussLocs + " | " + LocName
@@ -86,38 +85,8 @@ Public Class ResourceMgmnt
 
             End If
 
-            'For Each row In vehicle
-            '    If row.BusinessLocation IsNot Nothing And row.BusinessLocation.ToString().Length > 0 Then
-
-            '        Dim blList As String() = Nothing
-            '        blList = row.BusinessLocation.Split("|")
-            '        Dim blVal As String
-            '        'Dim strVal As String
-
-            '        For count = 0 To blList.Length - 1
-            '            blVal = blList(count)
-
-            '            blID = New Guid(blVal)
-
-            '            Dim blObj = FMS.Business.DataObjects.ApplicationLocation.GetFromID(blID)
-
-            '            If (BussLocs.Length > 0) Then
-            '                BussLocs = BussLocs + " | " + blObj.Name
-            '            Else
-
-            '                BussLocs = blObj.Name
-            '            End If
-
-            '        Next
-
-            '    End If
-            'Next
-
             e.DisplayText = If(BussLocs, String.Empty)
 
-            'Dim text = DataProvider.GetTags().Where(Function(t) tagIDs.Contains(t.ID)).Select(Function(t) t.Name).DefaultIfEmpty().Aggregate(Function(a, b) a & ", " & b)
-
-            'e.DisplayText = If(query, String.Empty)
         End If
     End Sub
 
@@ -152,13 +121,6 @@ Public Class ResourceMgmnt
 
         chk.Checked = (container.Selection.Count = container.VisibleRowCount)
 
-        Dim obj As Object = ""
-
-        'Dim container = CType(lookup.NamingContainer, GridViewEditItemTemplateContainer)
-
-        'Dim chk As ASPxCheckBox = TryCast(sender, ASPxCheckBox)
-        'Dim grid As ASPxGridView = (TryCast(chk.NamingContainer, GridViewHeaderTemplateContainer)).Grid
-        'chk.Checked = (grid.Selection.Count = grid.VisibleRowCount)
     End Sub
 
 
@@ -451,17 +413,16 @@ Public Class ResourceMgmnt
 
         For nrow = 0 To rows - 1
 
-            Dim blID = DirectCast(BLs(nrow), FMS.Business.vw_GetVehicle).ApplicationLocationID
+            'Dim blID = DirectCast(BLs(nrow), FMS.Business.vw_GetVehicle).ApplicationLocationID
+            Dim blID = DataBinder.GetPropertyValue(BLs(nrow), "ApplicationLocationID")
 
             lookup.GridView.Selection.SelectRowByKey(blID)
 
         Next
 
         lookup.PopupVerticalAlign = PopupVerticalAlign.Above
-        
 
     End Sub
-
 
     Public Sub ItemRequestedByValue(ByVal source As Object, ByVal e As DevExpress.Web.ListEditItemRequestedByValueEventArgs)
         Dim value As Integer = 0
