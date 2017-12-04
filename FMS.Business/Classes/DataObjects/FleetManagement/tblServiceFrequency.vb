@@ -13,6 +13,7 @@
             Dim objServiceFrequency As New FMS.Business.tblServiceFrequency
             With objServiceFrequency
                 .FrequencyID = Guid.NewGuid
+                .Fid = tblProjectID.FrequencyIDCreateOrUpdate()
                 .FrequencyDescription = ServiceFrequency.FrequencyDescription
                 .Factor = ServiceFrequency.Factor
                 .Periodical = ServiceFrequency.Periodical
@@ -23,7 +24,7 @@
         End Sub
         Public Shared Sub Update(ServiceFrequency As DataObjects.tblServiceFrequency)
             Dim objServiceFrequency As FMS.Business.tblServiceFrequency = (From c In SingletonAccess.FMSDataContextContignous.tblServiceFrequencies
-                                                           Where c.Fid.Equals(ServiceFrequency.Fid)).SingleOrDefault
+                                                           Where c.FrequencyID.Equals(ServiceFrequency.FrequencyID)).SingleOrDefault
             With objServiceFrequency
                 .FrequencyDescription = ServiceFrequency.FrequencyDescription
                 .Factor = ServiceFrequency.Factor
@@ -34,7 +35,7 @@
         End Sub
         Public Shared Sub Delete(ServiceFrequency As DataObjects.tblServiceFrequency)
             Dim objServiceFrequency As FMS.Business.tblServiceFrequency = (From c In SingletonAccess.FMSDataContextContignous.tblServiceFrequencies
-                                                         Where c.Fid.Equals(ServiceFrequency.Fid)).SingleOrDefault
+                                                         Where c.FrequencyID.Equals(ServiceFrequency.FrequencyID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblServiceFrequencies.DeleteOnSubmit(objServiceFrequency)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub

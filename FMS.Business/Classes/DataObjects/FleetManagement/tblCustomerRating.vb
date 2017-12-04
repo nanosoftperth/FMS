@@ -13,6 +13,7 @@
             Dim objCustomerRating As New FMS.Business.tblCustomerRating
             With objCustomerRating
                 .CustomerRatingID = Guid.NewGuid
+                .Rid = tblProjectID.CustomerRatingIDCreateOrUpdate()
                 .CustomerRating = CustomerRate.CustomerRating
                 .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
                 .FromValue = CustomerRate.FromValue

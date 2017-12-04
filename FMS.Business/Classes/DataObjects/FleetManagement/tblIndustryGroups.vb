@@ -11,6 +11,7 @@
             Dim objIndustryGroup As New FMS.Business.tblIndustryGroup
             With objIndustryGroup
                 .IndustryID = Guid.NewGuid
+                .Aid = tblProjectID.IndustryGroupIDCreateOrUpdate()
                 .IndustryDescription = IndustryGroup.IndustryDescription
             End With
             SingletonAccess.FMSDataContextContignous.tblIndustryGroups.InsertOnSubmit(objIndustryGroup)

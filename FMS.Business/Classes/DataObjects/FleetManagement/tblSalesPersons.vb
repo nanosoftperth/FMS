@@ -12,6 +12,7 @@
             Dim objSalesPerson As New FMS.Business.tblSalesPerson
             With objSalesPerson
                 .SalesPersonID = Guid.NewGuid
+                .Aid = tblProjectID.SalesPersonIDCreateOrUpdate()
                 .SalesPerson = sPerson.SalesPerson
                 .SalesPersonStartDate = sPerson.SalesPersonStartDate
                 .SalesPersonComments = sPerson.SalesPersonComments

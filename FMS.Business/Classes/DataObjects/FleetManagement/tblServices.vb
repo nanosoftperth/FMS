@@ -12,6 +12,7 @@
             Dim objService As New FMS.Business.tblService
             With objService
                 .ServicesID = Guid.NewGuid
+                .Sid = tblProjectID.ServicesIDCreateOrUpdate()
                 .ServiceCode = Services.ServiceCode
                 .ServiceDescription = Services.ServiceDescription
                 .CostOfService = Services.CostOfService

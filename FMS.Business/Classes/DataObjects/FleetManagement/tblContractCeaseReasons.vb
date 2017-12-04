@@ -11,6 +11,7 @@
             Dim objContractCeaseReason As New FMS.Business.tblContractCeaseReason
             With objContractCeaseReason
                 .CeaseReasonID = Guid.NewGuid
+                .Aid = tblProjectID.CeaseReasonIDCreateOrUpdate()
                 .CeaseReasonDescription = ContractCeaseReason.CeaseReasonDescription
             End With
             SingletonAccess.FMSDataContextContignous.tblContractCeaseReasons.InsertOnSubmit(objContractCeaseReason)

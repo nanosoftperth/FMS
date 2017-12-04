@@ -70,6 +70,7 @@
             Dim objSite As New FMS.Business.tblSite
             With objSite
                 .SiteID = Guid.NewGuid
+                .Cid = tblProjectID.SiteIDCreateOrUpdate
                 .SiteName = Site.SiteName
                 .Customer = Site.Customer
                 .AddressLine1 = Site.AddressLine1

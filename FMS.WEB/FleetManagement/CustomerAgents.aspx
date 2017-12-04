@@ -12,6 +12,12 @@
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
+            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+            <SettingsPopup>
+                <EditForm  Modal="true" 
+                    VerticalAlign="WindowCenter" 
+                    HorizontalAlign="WindowCenter" width="300px" />
+            </SettingsPopup>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="CustomerAgentID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
