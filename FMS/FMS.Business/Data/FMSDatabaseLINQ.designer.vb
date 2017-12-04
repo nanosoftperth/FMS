@@ -22,1338 +22,1398 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")> _
 Partial Public Class LINQtoSQLClassesDataContext
-	Inherits System.Data.Linq.DataContext
-	
-	Private Shared mappingSource As System.Data.Linq.Mapping.MappingSource = New AttributeMappingSource()
-	
-  #Region "Extensibility Method Definitions"
-  Partial Private Sub OnCreated()
-  End Sub
-  Partial Private Sub InsertAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
+    Inherits System.Data.Linq.DataContext
+
+    Private Shared mappingSource As System.Data.Linq.Mapping.MappingSource = New AttributeMappingSource()
+
+#Region "Extensibility Method Definitions"
+    Partial Private Sub OnCreated()
     End Sub
-  Partial Private Sub UpdateAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
+    Partial Private Sub InsertAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
     End Sub
-  Partial Private Sub DeleteAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
+    Partial Private Sub UpdateAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
     End Sub
-  Partial Private Sub InsertWorkRequest(instance As WorkRequest)
+    Partial Private Sub DeleteAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
     End Sub
-  Partial Private Sub UpdateWorkRequest(instance As WorkRequest)
+    Partial Private Sub InsertWorkRequest(instance As WorkRequest)
     End Sub
-  Partial Private Sub DeleteWorkRequest(instance As WorkRequest)
+    Partial Private Sub UpdateWorkRequest(instance As WorkRequest)
     End Sub
-  Partial Private Sub InsertAlertType(instance As AlertType)
+    Partial Private Sub DeleteWorkRequest(instance As WorkRequest)
     End Sub
-  Partial Private Sub UpdateAlertType(instance As AlertType)
+    Partial Private Sub InsertAlertType(instance As AlertType)
     End Sub
-  Partial Private Sub DeleteAlertType(instance As AlertType)
+    Partial Private Sub UpdateAlertType(instance As AlertType)
     End Sub
-  Partial Private Sub InsertAlertTypeOccurance(instance As AlertTypeOccurance)
+    Partial Private Sub DeleteAlertType(instance As AlertType)
     End Sub
-  Partial Private Sub UpdateAlertTypeOccurance(instance As AlertTypeOccurance)
+    Partial Private Sub InsertAlertTypeOccurance(instance As AlertTypeOccurance)
     End Sub
-  Partial Private Sub DeleteAlertTypeOccurance(instance As AlertTypeOccurance)
+    Partial Private Sub UpdateAlertTypeOccurance(instance As AlertTypeOccurance)
     End Sub
-  Partial Private Sub InsertAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
+    Partial Private Sub DeleteAlertTypeOccurance(instance As AlertTypeOccurance)
     End Sub
-  Partial Private Sub UpdateAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
+    Partial Private Sub InsertAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
     End Sub
-  Partial Private Sub DeleteAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
+    Partial Private Sub UpdateAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
     End Sub
-  Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
+    Partial Private Sub DeleteAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
     End Sub
-  Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
+    Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
     End Sub
-  Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
+    Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
     End Sub
-  Partial Private Sub InsertApplicationFeature(instance As ApplicationFeature)
+    Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
     End Sub
-  Partial Private Sub UpdateApplicationFeature(instance As ApplicationFeature)
+    Partial Private Sub InsertApplicationFeature(instance As ApplicationFeature)
     End Sub
-  Partial Private Sub DeleteApplicationFeature(instance As ApplicationFeature)
+    Partial Private Sub UpdateApplicationFeature(instance As ApplicationFeature)
     End Sub
-  Partial Private Sub InsertApplicationFeatureRole(instance As ApplicationFeatureRole)
+    Partial Private Sub DeleteApplicationFeature(instance As ApplicationFeature)
     End Sub
-  Partial Private Sub UpdateApplicationFeatureRole(instance As ApplicationFeatureRole)
+    Partial Private Sub InsertApplicationFeatureRole(instance As ApplicationFeatureRole)
     End Sub
-  Partial Private Sub DeleteApplicationFeatureRole(instance As ApplicationFeatureRole)
+    Partial Private Sub UpdateApplicationFeatureRole(instance As ApplicationFeatureRole)
     End Sub
-  Partial Private Sub InsertApplicationGeoFence(instance As ApplicationGeoFence)
+    Partial Private Sub DeleteApplicationFeatureRole(instance As ApplicationFeatureRole)
     End Sub
-  Partial Private Sub UpdateApplicationGeoFence(instance As ApplicationGeoFence)
+    Partial Private Sub InsertApplicationGeoFence(instance As ApplicationGeoFence)
     End Sub
-  Partial Private Sub DeleteApplicationGeoFence(instance As ApplicationGeoFence)
+    Partial Private Sub UpdateApplicationGeoFence(instance As ApplicationGeoFence)
     End Sub
-  Partial Private Sub InsertApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
+    Partial Private Sub DeleteApplicationGeoFence(instance As ApplicationGeoFence)
     End Sub
-  Partial Private Sub UpdateApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
+    Partial Private Sub InsertApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
     End Sub
-  Partial Private Sub DeleteApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
+    Partial Private Sub UpdateApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
     End Sub
-  Partial Private Sub InsertApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
+    Partial Private Sub DeleteApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
     End Sub
-  Partial Private Sub UpdateApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
+    Partial Private Sub InsertApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
     End Sub
-  Partial Private Sub DeleteApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
+    Partial Private Sub UpdateApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
     End Sub
-  Partial Private Sub InsertApplicationImage(instance As ApplicationImage)
+    Partial Private Sub DeleteApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
     End Sub
-  Partial Private Sub UpdateApplicationImage(instance As ApplicationImage)
+    Partial Private Sub InsertApplicationImage(instance As ApplicationImage)
     End Sub
-  Partial Private Sub DeleteApplicationImage(instance As ApplicationImage)
+    Partial Private Sub UpdateApplicationImage(instance As ApplicationImage)
     End Sub
-  Partial Private Sub InsertApplicationLocation(instance As ApplicationLocation)
+    Partial Private Sub DeleteApplicationImage(instance As ApplicationImage)
     End Sub
-  Partial Private Sub UpdateApplicationLocation(instance As ApplicationLocation)
+    Partial Private Sub InsertApplicationLocation(instance As ApplicationLocation)
     End Sub
-  Partial Private Sub DeleteApplicationLocation(instance As ApplicationLocation)
+    Partial Private Sub UpdateApplicationLocation(instance As ApplicationLocation)
     End Sub
-  Partial Private Sub InsertApplicationSettingValue(instance As ApplicationSettingValue)
+    Partial Private Sub DeleteApplicationLocation(instance As ApplicationLocation)
     End Sub
-  Partial Private Sub UpdateApplicationSettingValue(instance As ApplicationSettingValue)
+    Partial Private Sub InsertApplicationSettingValue(instance As ApplicationSettingValue)
     End Sub
-  Partial Private Sub DeleteApplicationSettingValue(instance As ApplicationSettingValue)
+    Partial Private Sub UpdateApplicationSettingValue(instance As ApplicationSettingValue)
     End Sub
-  Partial Private Sub InsertApplicationTimeZone(instance As ApplicationTimeZone)
+    Partial Private Sub DeleteApplicationSettingValue(instance As ApplicationSettingValue)
     End Sub
-  Partial Private Sub UpdateApplicationTimeZone(instance As ApplicationTimeZone)
+    Partial Private Sub InsertApplicationTimeZone(instance As ApplicationTimeZone)
     End Sub
-  Partial Private Sub DeleteApplicationTimeZone(instance As ApplicationTimeZone)
+    Partial Private Sub UpdateApplicationTimeZone(instance As ApplicationTimeZone)
     End Sub
-  Partial Private Sub InsertApplicationVehicle(instance As ApplicationVehicle)
+    Partial Private Sub DeleteApplicationTimeZone(instance As ApplicationTimeZone)
     End Sub
-  Partial Private Sub UpdateApplicationVehicle(instance As ApplicationVehicle)
+    Partial Private Sub InsertApplicationVehicle(instance As ApplicationVehicle)
     End Sub
-  Partial Private Sub DeleteApplicationVehicle(instance As ApplicationVehicle)
+    Partial Private Sub UpdateApplicationVehicle(instance As ApplicationVehicle)
     End Sub
-  Partial Private Sub InsertApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
+    Partial Private Sub DeleteApplicationVehicle(instance As ApplicationVehicle)
     End Sub
-  Partial Private Sub UpdateApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
+    Partial Private Sub InsertApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
     End Sub
-  Partial Private Sub DeleteApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
+    Partial Private Sub UpdateApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
     End Sub
-  Partial Private Sub InsertApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
+    Partial Private Sub DeleteApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
     End Sub
-  Partial Private Sub UpdateApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
+    Partial Private Sub InsertApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
     End Sub
-  Partial Private Sub DeleteApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
+    Partial Private Sub UpdateApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
     End Sub
-  Partial Private Sub Insertaspnet_Application(instance As aspnet_Application)
+    Partial Private Sub DeleteApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
     End Sub
-  Partial Private Sub Updateaspnet_Application(instance As aspnet_Application)
+    Partial Private Sub Insertaspnet_Application(instance As aspnet_Application)
     End Sub
-  Partial Private Sub Deleteaspnet_Application(instance As aspnet_Application)
+    Partial Private Sub Updateaspnet_Application(instance As aspnet_Application)
     End Sub
-  Partial Private Sub Insertaspnet_Membership(instance As aspnet_Membership)
+    Partial Private Sub Deleteaspnet_Application(instance As aspnet_Application)
     End Sub
-  Partial Private Sub Updateaspnet_Membership(instance As aspnet_Membership)
+    Partial Private Sub Insertaspnet_Membership(instance As aspnet_Membership)
     End Sub
-  Partial Private Sub Deleteaspnet_Membership(instance As aspnet_Membership)
+    Partial Private Sub Updateaspnet_Membership(instance As aspnet_Membership)
     End Sub
-  Partial Private Sub Insertaspnet_Path(instance As aspnet_Path)
+    Partial Private Sub Deleteaspnet_Membership(instance As aspnet_Membership)
     End Sub
-  Partial Private Sub Updateaspnet_Path(instance As aspnet_Path)
+    Partial Private Sub Insertaspnet_Path(instance As aspnet_Path)
     End Sub
-  Partial Private Sub Deleteaspnet_Path(instance As aspnet_Path)
+    Partial Private Sub Updateaspnet_Path(instance As aspnet_Path)
     End Sub
-  Partial Private Sub Insertaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
+    Partial Private Sub Deleteaspnet_Path(instance As aspnet_Path)
     End Sub
-  Partial Private Sub Updateaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
+    Partial Private Sub Insertaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
     End Sub
-  Partial Private Sub Deleteaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
+    Partial Private Sub Updateaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
     End Sub
-  Partial Private Sub Insertaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
+    Partial Private Sub Deleteaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
     End Sub
-  Partial Private Sub Updateaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
+    Partial Private Sub Insertaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
     End Sub
-  Partial Private Sub Deleteaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
+    Partial Private Sub Updateaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
     End Sub
-  Partial Private Sub Insertaspnet_Profile(instance As aspnet_Profile)
+    Partial Private Sub Deleteaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
     End Sub
-  Partial Private Sub Updateaspnet_Profile(instance As aspnet_Profile)
+    Partial Private Sub Insertaspnet_Profile(instance As aspnet_Profile)
     End Sub
-  Partial Private Sub Deleteaspnet_Profile(instance As aspnet_Profile)
+    Partial Private Sub Updateaspnet_Profile(instance As aspnet_Profile)
     End Sub
-  Partial Private Sub Insertaspnet_Role(instance As aspnet_Role)
+    Partial Private Sub Deleteaspnet_Profile(instance As aspnet_Profile)
     End Sub
-  Partial Private Sub Updateaspnet_Role(instance As aspnet_Role)
+    Partial Private Sub Insertaspnet_Role(instance As aspnet_Role)
     End Sub
-  Partial Private Sub Deleteaspnet_Role(instance As aspnet_Role)
+    Partial Private Sub Updateaspnet_Role(instance As aspnet_Role)
     End Sub
-  Partial Private Sub Insertaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
+    Partial Private Sub Deleteaspnet_Role(instance As aspnet_Role)
     End Sub
-  Partial Private Sub Updateaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
+    Partial Private Sub Insertaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
     End Sub
-  Partial Private Sub Deleteaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
+    Partial Private Sub Updateaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
     End Sub
-  Partial Private Sub Insertaspnet_User(instance As aspnet_User)
+    Partial Private Sub Deleteaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
     End Sub
-  Partial Private Sub Updateaspnet_User(instance As aspnet_User)
+    Partial Private Sub Insertaspnet_User(instance As aspnet_User)
     End Sub
-  Partial Private Sub Deleteaspnet_User(instance As aspnet_User)
+    Partial Private Sub Updateaspnet_User(instance As aspnet_User)
     End Sub
-  Partial Private Sub Insertaspnet_UsersInRole(instance As aspnet_UsersInRole)
+    Partial Private Sub Deleteaspnet_User(instance As aspnet_User)
     End Sub
-  Partial Private Sub Updateaspnet_UsersInRole(instance As aspnet_UsersInRole)
+    Partial Private Sub Insertaspnet_UsersInRole(instance As aspnet_UsersInRole)
     End Sub
-  Partial Private Sub Deleteaspnet_UsersInRole(instance As aspnet_UsersInRole)
+    Partial Private Sub Updateaspnet_UsersInRole(instance As aspnet_UsersInRole)
     End Sub
-  Partial Private Sub Insertaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
+    Partial Private Sub Deleteaspnet_UsersInRole(instance As aspnet_UsersInRole)
     End Sub
-  Partial Private Sub Updateaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
+    Partial Private Sub Insertaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
     End Sub
-  Partial Private Sub Deleteaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
+    Partial Private Sub Updateaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
     End Sub
-  Partial Private Sub InsertAuthenticationToken(instance As AuthenticationToken)
+    Partial Private Sub Deleteaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
     End Sub
-  Partial Private Sub UpdateAuthenticationToken(instance As AuthenticationToken)
+    Partial Private Sub InsertAuthenticationToken(instance As AuthenticationToken)
     End Sub
-  Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
+    Partial Private Sub UpdateAuthenticationToken(instance As AuthenticationToken)
     End Sub
-  Partial Private Sub InsertCAN_Data(instance As CAN_Data)
+    Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
     End Sub
-  Partial Private Sub UpdateCAN_Data(instance As CAN_Data)
+    Partial Private Sub InsertCAN_Data(instance As CAN_Data)
     End Sub
-  Partial Private Sub DeleteCAN_Data(instance As CAN_Data)
+    Partial Private Sub UpdateCAN_Data(instance As CAN_Data)
     End Sub
-  Partial Private Sub InsertCannonData(instance As CannonData)
+    Partial Private Sub DeleteCAN_Data(instance As CAN_Data)
     End Sub
-  Partial Private Sub UpdateCannonData(instance As CannonData)
+    Partial Private Sub InsertCannonData(instance As CannonData)
     End Sub
-  Partial Private Sub DeleteCannonData(instance As CannonData)
+    Partial Private Sub UpdateCannonData(instance As CannonData)
     End Sub
-  Partial Private Sub InsertContact(instance As Contact)
+    Partial Private Sub DeleteCannonData(instance As CannonData)
     End Sub
-  Partial Private Sub UpdateContact(instance As Contact)
+    Partial Private Sub InsertContact(instance As Contact)
     End Sub
-  Partial Private Sub DeleteContact(instance As Contact)
+    Partial Private Sub UpdateContact(instance As Contact)
     End Sub
-  Partial Private Sub InsertDevelopment(instance As Development)
+    Partial Private Sub DeleteContact(instance As Contact)
     End Sub
-  Partial Private Sub UpdateDevelopment(instance As Development)
+    Partial Private Sub InsertDevelopment(instance As Development)
     End Sub
-  Partial Private Sub DeleteDevelopment(instance As Development)
+    Partial Private Sub UpdateDevelopment(instance As Development)
     End Sub
-  Partial Private Sub InsertDevice(instance As Device)
+    Partial Private Sub DeleteDevelopment(instance As Development)
     End Sub
-  Partial Private Sub UpdateDevice(instance As Device)
+    Partial Private Sub InsertDevice(instance As Device)
     End Sub
-  Partial Private Sub DeleteDevice(instance As Device)
+    Partial Private Sub UpdateDevice(instance As Device)
     End Sub
-  Partial Private Sub InsertFeature(instance As Feature)
+    Partial Private Sub DeleteDevice(instance As Device)
     End Sub
-  Partial Private Sub UpdateFeature(instance As Feature)
+    Partial Private Sub InsertFeature(instance As Feature)
     End Sub
-  Partial Private Sub DeleteFeature(instance As Feature)
+    Partial Private Sub UpdateFeature(instance As Feature)
     End Sub
-  Partial Private Sub InsertFleetMapMarker(instance As FleetMapMarker)
+    Partial Private Sub DeleteFeature(instance As Feature)
     End Sub
-  Partial Private Sub UpdateFleetMapMarker(instance As FleetMapMarker)
+    Partial Private Sub InsertFleetMapMarker(instance As FleetMapMarker)
     End Sub
-  Partial Private Sub DeleteFleetMapMarker(instance As FleetMapMarker)
+    Partial Private Sub UpdateFleetMapMarker(instance As FleetMapMarker)
     End Sub
-  Partial Private Sub InsertGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
+    Partial Private Sub DeleteFleetMapMarker(instance As FleetMapMarker)
     End Sub
-  Partial Private Sub UpdateGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
+    Partial Private Sub InsertGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
     End Sub
-  Partial Private Sub DeleteGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
+    Partial Private Sub UpdateGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
     End Sub
-  Partial Private Sub InsertGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
+    Partial Private Sub DeleteGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
     End Sub
-  Partial Private Sub UpdateGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
+    Partial Private Sub InsertGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
     End Sub
-  Partial Private Sub DeleteGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
+    Partial Private Sub UpdateGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
     End Sub
-  Partial Private Sub InsertGroup(instance As [Group])
+    Partial Private Sub DeleteGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
     End Sub
-  Partial Private Sub UpdateGroup(instance As [Group])
+    Partial Private Sub InsertGroup(instance As [Group])
     End Sub
-  Partial Private Sub DeleteGroup(instance As [Group])
+    Partial Private Sub UpdateGroup(instance As [Group])
     End Sub
-  Partial Private Sub InsertGroupSubscriber(instance As GroupSubscriber)
+    Partial Private Sub DeleteGroup(instance As [Group])
     End Sub
-  Partial Private Sub UpdateGroupSubscriber(instance As GroupSubscriber)
+    Partial Private Sub InsertGroupSubscriber(instance As GroupSubscriber)
     End Sub
-  Partial Private Sub DeleteGroupSubscriber(instance As GroupSubscriber)
+    Partial Private Sub UpdateGroupSubscriber(instance As GroupSubscriber)
     End Sub
-  Partial Private Sub InsertPaidFeature(instance As PaidFeature)
+    Partial Private Sub DeleteGroupSubscriber(instance As GroupSubscriber)
     End Sub
-  Partial Private Sub UpdatePaidFeature(instance As PaidFeature)
+    Partial Private Sub InsertPaidFeature(instance As PaidFeature)
     End Sub
-  Partial Private Sub DeletePaidFeature(instance As PaidFeature)
+    Partial Private Sub UpdatePaidFeature(instance As PaidFeature)
     End Sub
-  Partial Private Sub InsertSetting(instance As Setting)
+    Partial Private Sub DeletePaidFeature(instance As PaidFeature)
     End Sub
-  Partial Private Sub UpdateSetting(instance As Setting)
+    Partial Private Sub InsertSetting(instance As Setting)
     End Sub
-  Partial Private Sub DeleteSetting(instance As Setting)
+    Partial Private Sub UpdateSetting(instance As Setting)
     End Sub
-  Partial Private Sub InsertSimulatorSetting(instance As SimulatorSetting)
+    Partial Private Sub DeleteSetting(instance As Setting)
     End Sub
-  Partial Private Sub UpdateSimulatorSetting(instance As SimulatorSetting)
+    Partial Private Sub InsertSimulatorSetting(instance As SimulatorSetting)
     End Sub
-  Partial Private Sub DeleteSimulatorSetting(instance As SimulatorSetting)
+    Partial Private Sub UpdateSimulatorSetting(instance As SimulatorSetting)
     End Sub
-  Partial Private Sub InsertWebServiceLog(instance As WebServiceLog)
+    Partial Private Sub DeleteSimulatorSetting(instance As SimulatorSetting)
     End Sub
-  Partial Private Sub UpdateWebServiceLog(instance As WebServiceLog)
+    Partial Private Sub InsertWebServiceLog(instance As WebServiceLog)
     End Sub
-  Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
+    Partial Private Sub UpdateWebServiceLog(instance As WebServiceLog)
     End Sub
-  Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
+    Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
     End Sub
-  Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
+    Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
     End Sub
-  Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
+    Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
     End Sub
-  Partial Private Sub InsertApplicationBooking(instance As ApplicationBooking)
+    Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
     End Sub
-  Partial Private Sub UpdateApplicationBooking(instance As ApplicationBooking)
+    Partial Private Sub InsertApplicationBooking(instance As ApplicationBooking)
     End Sub
-  Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
+    Partial Private Sub UpdateApplicationBooking(instance As ApplicationBooking)
     End Sub
-  Partial Private Sub InsertCAN_EventDefinition(instance As CAN_EventDefinition)
+    Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
     End Sub
-  Partial Private Sub UpdateCAN_EventDefinition(instance As CAN_EventDefinition)
+    Partial Private Sub InsertCAN_EventDefinition(instance As CAN_EventDefinition)
     End Sub
-  Partial Private Sub DeleteCAN_EventDefinition(instance As CAN_EventDefinition)
+    Partial Private Sub UpdateCAN_EventDefinition(instance As CAN_EventDefinition)
     End Sub
-  Partial Private Sub InsertCAN_AlertDefinition(instance As CAN_AlertDefinition)
+    Partial Private Sub DeleteCAN_EventDefinition(instance As CAN_EventDefinition)
     End Sub
-  Partial Private Sub UpdateCAN_AlertDefinition(instance As CAN_AlertDefinition)
+    Partial Private Sub InsertCAN_AlertDefinition(instance As CAN_AlertDefinition)
     End Sub
-  Partial Private Sub DeleteCAN_AlertDefinition(instance As CAN_AlertDefinition)
+    Partial Private Sub UpdateCAN_AlertDefinition(instance As CAN_AlertDefinition)
     End Sub
-  Partial Private Sub InsertCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+    Partial Private Sub DeleteCAN_AlertDefinition(instance As CAN_AlertDefinition)
     End Sub
-  Partial Private Sub UpdateCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+    Partial Private Sub InsertCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
     End Sub
-  Partial Private Sub DeleteCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+    Partial Private Sub UpdateCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
     End Sub
-  Partial Private Sub InsertCanBusLog(instance As CanBusLog)
+    Partial Private Sub DeleteCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
     End Sub
-  Partial Private Sub UpdateCanBusLog(instance As CanBusLog)
+    Partial Private Sub InsertCanBusLog(instance As CanBusLog)
     End Sub
-  Partial Private Sub DeleteCanBusLog(instance As CanBusLog)
+    Partial Private Sub UpdateCanBusLog(instance As CanBusLog)
     End Sub
-  Partial Private Sub InsertCAN_EventOccurance(instance As CAN_EventOccurance)
+    Partial Private Sub DeleteCanBusLog(instance As CanBusLog)
     End Sub
-  Partial Private Sub UpdateCAN_EventOccurance(instance As CAN_EventOccurance)
+    Partial Private Sub InsertCAN_EventOccurance(instance As CAN_EventOccurance)
     End Sub
-  Partial Private Sub DeleteCAN_EventOccurance(instance As CAN_EventOccurance)
+    Partial Private Sub UpdateCAN_EventOccurance(instance As CAN_EventOccurance)
     End Sub
-  Partial Private Sub InsertCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+    Partial Private Sub DeleteCAN_EventOccurance(instance As CAN_EventOccurance)
     End Sub
-  Partial Private Sub UpdateCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+    Partial Private Sub InsertCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
     End Sub
-  Partial Private Sub DeleteCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+    Partial Private Sub UpdateCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
     End Sub
-  Partial Private Sub InserttblCustomer(instance As tblCustomer)
+    Partial Private Sub DeleteCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
     End Sub
-  Partial Private Sub UpdatetblCustomer(instance As tblCustomer)
+    Partial Private Sub InserttblContractPeriod(instance As tblContractPeriod)
     End Sub
-  Partial Private Sub DeletetblCustomer(instance As tblCustomer)
+    Partial Private Sub UpdatetblContractPeriod(instance As tblContractPeriod)
     End Sub
-  Partial Private Sub InserttblContractPeriod(instance As tblContractPeriod)
+    Partial Private Sub DeletetblContractPeriod(instance As tblContractPeriod)
     End Sub
-  Partial Private Sub UpdatetblContractPeriod(instance As tblContractPeriod)
+    Partial Private Sub InserttblDriver(instance As tblDriver)
     End Sub
-  Partial Private Sub DeletetblContractPeriod(instance As tblContractPeriod)
+    Partial Private Sub UpdatetblDriver(instance As tblDriver)
     End Sub
-  Partial Private Sub InserttbZone(instance As tbZone)
+    Partial Private Sub DeletetblDriver(instance As tblDriver)
     End Sub
-  Partial Private Sub UpdatetbZone(instance As tbZone)
+    Partial Private Sub InserttblState(instance As tblState)
     End Sub
-  Partial Private Sub DeletetbZone(instance As tbZone)
+    Partial Private Sub UpdatetblState(instance As tblState)
     End Sub
-  Partial Private Sub InserttblIndustryGroup(instance As tblIndustryGroup)
+    Partial Private Sub DeletetblState(instance As tblState)
     End Sub
-  Partial Private Sub UpdatetblIndustryGroup(instance As tblIndustryGroup)
+    Partial Private Sub InserttblSiteReSignDetail(instance As tblSiteReSignDetail)
     End Sub
-  Partial Private Sub DeletetblIndustryGroup(instance As tblIndustryGroup)
+    Partial Private Sub UpdatetblSiteReSignDetail(instance As tblSiteReSignDetail)
     End Sub
-  Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
+    Partial Private Sub DeletetblSiteReSignDetail(instance As tblSiteReSignDetail)
     End Sub
-  Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
+    Partial Private Sub InserttblMonth(instance As tblMonth)
     End Sub
-  Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
+    Partial Private Sub UpdatetblMonth(instance As tblMonth)
     End Sub
-  Partial Private Sub InserttblCustomerRating(instance As tblCustomerRating)
+    Partial Private Sub DeletetblMonth(instance As tblMonth)
     End Sub
-  Partial Private Sub UpdatetblCustomerRating(instance As tblCustomerRating)
+    Partial Private Sub InserttblCustomerService(instance As tblCustomerService)
     End Sub
-  Partial Private Sub DeletetblCustomerRating(instance As tblCustomerRating)
+    Partial Private Sub UpdatetblCustomerService(instance As tblCustomerService)
     End Sub
-  Partial Private Sub InserttblDriver(instance As tblDriver)
+    Partial Private Sub DeletetblCustomerService(instance As tblCustomerService)
     End Sub
-  Partial Private Sub UpdatetblDriver(instance As tblDriver)
+    Partial Private Sub InserttblRun(instance As tblRun)
     End Sub
-  Partial Private Sub DeletetblDriver(instance As tblDriver)
+    Partial Private Sub UpdatetblRun(instance As tblRun)
     End Sub
-  Partial Private Sub InserttblPreviousSupplier(instance As tblPreviousSupplier)
+    Partial Private Sub DeletetblRun(instance As tblRun)
     End Sub
-  Partial Private Sub UpdatetblPreviousSupplier(instance As tblPreviousSupplier)
+    Partial Private Sub InserttblCIRHistory(instance As tblCIRHistory)
     End Sub
-  Partial Private Sub DeletetblPreviousSupplier(instance As tblPreviousSupplier)
+    Partial Private Sub UpdatetblCIRHistory(instance As tblCIRHistory)
     End Sub
-  Partial Private Sub InserttblRateIncreaseReference(instance As tblRateIncreaseReference)
+    Partial Private Sub DeletetblCIRHistory(instance As tblCIRHistory)
     End Sub
-  Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
+    Partial Private Sub InserttblSiteComment(instance As tblSiteComment)
     End Sub
-  Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
+    Partial Private Sub UpdatetblSiteComment(instance As tblSiteComment)
     End Sub
-  Partial Private Sub InserttblSalesPerson(instance As tblSalesPerson)
+    Partial Private Sub DeletetblSiteComment(instance As tblSiteComment)
     End Sub
-  Partial Private Sub UpdatetblSalesPerson(instance As tblSalesPerson)
+    Partial Private Sub InsertFleetClient(instance As FleetClient)
     End Sub
-  Partial Private Sub DeletetblSalesPerson(instance As tblSalesPerson)
+    Partial Private Sub UpdateFleetClient(instance As FleetClient)
     End Sub
-  Partial Private Sub InserttblSite(instance As tblSite)
+    Partial Private Sub DeleteFleetClient(instance As FleetClient)
     End Sub
-  Partial Private Sub UpdatetblSite(instance As tblSite)
+    Partial Private Sub InsertFleetDocument(instance As FleetDocument)
     End Sub
-  Partial Private Sub DeletetblSite(instance As tblSite)
+    Partial Private Sub UpdateFleetDocument(instance As FleetDocument)
     End Sub
-  Partial Private Sub InserttblState(instance As tblState)
+    Partial Private Sub DeleteFleetDocument(instance As FleetDocument)
     End Sub
-  Partial Private Sub UpdatetblState(instance As tblState)
+    Partial Private Sub InsertFleetRun(instance As FleetRun)
     End Sub
-  Partial Private Sub DeletetblState(instance As tblState)
+    Partial Private Sub UpdateFleetRun(instance As FleetRun)
     End Sub
-  Partial Private Sub InserttblContractCeaseReason(instance As tblContractCeaseReason)
+    Partial Private Sub DeleteFleetRun(instance As FleetRun)
     End Sub
-  Partial Private Sub UpdatetblContractCeaseReason(instance As tblContractCeaseReason)
+    Partial Private Sub InsertFleetRunClient(instance As FleetRunClient)
     End Sub
-  Partial Private Sub DeletetblContractCeaseReason(instance As tblContractCeaseReason)
+    Partial Private Sub UpdateFleetRunClient(instance As FleetRunClient)
     End Sub
-  Partial Private Sub InserttblSiteReSignDetail(instance As tblSiteReSignDetail)
+    Partial Private Sub DeleteFleetRunClient(instance As FleetRunClient)
     End Sub
-  Partial Private Sub UpdatetblSiteReSignDetail(instance As tblSiteReSignDetail)
+    Partial Private Sub InsertFleetRunCompletion(instance As FleetRunCompletion)
     End Sub
-  Partial Private Sub DeletetblSiteReSignDetail(instance As tblSiteReSignDetail)
+    Partial Private Sub UpdateFleetRunCompletion(instance As FleetRunCompletion)
     End Sub
-  Partial Private Sub InserttblInvoicingFrequency(instance As tblInvoicingFrequency)
+    Partial Private Sub DeleteFleetRunCompletion(instance As FleetRunCompletion)
     End Sub
-  Partial Private Sub UpdatetblInvoicingFrequency(instance As tblInvoicingFrequency)
+    Partial Private Sub InsertVehicleLocation(instance As VehicleLocation)
     End Sub
-  Partial Private Sub DeletetblInvoicingFrequency(instance As tblInvoicingFrequency)
+    Partial Private Sub UpdateVehicleLocation(instance As VehicleLocation)
     End Sub
-  Partial Private Sub InserttblMonth(instance As tblMonth)
+    Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
     End Sub
-  Partial Private Sub UpdatetblMonth(instance As tblMonth)
+    Partial Private Sub InserttblCustomer(instance As tblCustomer)
     End Sub
-  Partial Private Sub DeletetblMonth(instance As tblMonth)
+    Partial Private Sub UpdatetblCustomer(instance As tblCustomer)
     End Sub
-  Partial Private Sub InserttblCustomerService(instance As tblCustomerService)
+    Partial Private Sub DeletetblCustomer(instance As tblCustomer)
     End Sub
-  Partial Private Sub UpdatetblCustomerService(instance As tblCustomerService)
+    Partial Private Sub InserttblSite(instance As tblSite)
     End Sub
-  Partial Private Sub DeletetblCustomerService(instance As tblCustomerService)
+    Partial Private Sub UpdatetblSite(instance As tblSite)
     End Sub
-  Partial Private Sub InserttblService(instance As tblService)
+    Partial Private Sub DeletetblSite(instance As tblSite)
     End Sub
-  Partial Private Sub UpdatetblService(instance As tblService)
+    Partial Private Sub InserttblIndustryGroup(instance As tblIndustryGroup)
     End Sub
-  Partial Private Sub DeletetblService(instance As tblService)
+    Partial Private Sub UpdatetblIndustryGroup(instance As tblIndustryGroup)
     End Sub
-  Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
+    Partial Private Sub DeletetblIndustryGroup(instance As tblIndustryGroup)
     End Sub
-  Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
+    Partial Private Sub InserttblInvoicingFrequency(instance As tblInvoicingFrequency)
     End Sub
-  Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
+    Partial Private Sub UpdatetblInvoicingFrequency(instance As tblInvoicingFrequency)
     End Sub
-  Partial Private Sub InserttblRun(instance As tblRun)
+    Partial Private Sub DeletetblInvoicingFrequency(instance As tblInvoicingFrequency)
     End Sub
-  Partial Private Sub UpdatetblRun(instance As tblRun)
+    Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
     End Sub
-  Partial Private Sub DeletetblRun(instance As tblRun)
+    Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
     End Sub
-  Partial Private Sub InserttblCIRReason(instance As tblCIRReason)
+    Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
     End Sub
-  Partial Private Sub UpdatetblCIRReason(instance As tblCIRReason)
+    Partial Private Sub InserttblContractCeaseReason(instance As tblContractCeaseReason)
     End Sub
-  Partial Private Sub DeletetblCIRReason(instance As tblCIRReason)
+    Partial Private Sub UpdatetblContractCeaseReason(instance As tblContractCeaseReason)
     End Sub
-  Partial Private Sub InserttblCIRHistory(instance As tblCIRHistory)
+    Partial Private Sub DeletetblContractCeaseReason(instance As tblContractCeaseReason)
     End Sub
-  Partial Private Sub UpdatetblCIRHistory(instance As tblCIRHistory)
+    Partial Private Sub InserttblCIRReason(instance As tblCIRReason)
     End Sub
-  Partial Private Sub DeletetblCIRHistory(instance As tblCIRHistory)
+    Partial Private Sub UpdatetblCIRReason(instance As tblCIRReason)
     End Sub
-  Partial Private Sub InserttblSiteComment(instance As tblSiteComment)
+    Partial Private Sub DeletetblCIRReason(instance As tblCIRReason)
     End Sub
-  Partial Private Sub UpdatetblSiteComment(instance As tblSiteComment)
+    Partial Private Sub InserttbZone(instance As tbZone)
     End Sub
-  Partial Private Sub DeletetblSiteComment(instance As tblSiteComment)
+    Partial Private Sub UpdatetbZone(instance As tbZone)
     End Sub
-  Partial Private Sub InsertFleetClient(instance As FleetClient)
+    Partial Private Sub DeletetbZone(instance As tbZone)
     End Sub
-  Partial Private Sub UpdateFleetClient(instance As FleetClient)
+    Partial Private Sub InserttblCustomerRating(instance As tblCustomerRating)
     End Sub
-  Partial Private Sub DeleteFleetClient(instance As FleetClient)
+    Partial Private Sub UpdatetblCustomerRating(instance As tblCustomerRating)
     End Sub
-  Partial Private Sub InsertFleetDocument(instance As FleetDocument)
+    Partial Private Sub DeletetblCustomerRating(instance As tblCustomerRating)
     End Sub
-  Partial Private Sub UpdateFleetDocument(instance As FleetDocument)
+    Partial Private Sub InserttblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
-  Partial Private Sub DeleteFleetDocument(instance As FleetDocument)
+    Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
-  Partial Private Sub InsertFleetRun(instance As FleetRun)
+    Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
-  Partial Private Sub UpdateFleetRun(instance As FleetRun)
+    Partial Private Sub InserttblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
-  Partial Private Sub DeleteFleetRun(instance As FleetRun)
+    Partial Private Sub UpdatetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
-  Partial Private Sub InsertFleetRunClient(instance As FleetRunClient)
+    Partial Private Sub DeletetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
-  Partial Private Sub UpdateFleetRunClient(instance As FleetRunClient)
+    Partial Private Sub InserttblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
-  Partial Private Sub DeleteFleetRunClient(instance As FleetRunClient)
+    Partial Private Sub UpdatetblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
-  Partial Private Sub InsertFleetRunCompletion(instance As FleetRunCompletion)
+    Partial Private Sub DeletetblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
-  Partial Private Sub UpdateFleetRunCompletion(instance As FleetRunCompletion)
+    Partial Private Sub InserttblPreviousSupplier(instance As tblPreviousSupplier)
     End Sub
-  Partial Private Sub DeleteFleetRunCompletion(instance As FleetRunCompletion)
+    Partial Private Sub UpdatetblPreviousSupplier(instance As tblPreviousSupplier)
     End Sub
-  Partial Private Sub InsertVehicleLocation(instance As VehicleLocation)
+    Partial Private Sub DeletetblPreviousSupplier(instance As tblPreviousSupplier)
     End Sub
-  Partial Private Sub UpdateVehicleLocation(instance As VehicleLocation)
+    Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
     End Sub
-  Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
+    Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
     End Sub
-  #End Region
-	
-	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As String)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As System.Data.IDbConnection)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public ReadOnly Property AlertSubscriber_deletemes() As System.Data.Linq.Table(Of AlertSubscriber_deleteme)
-		Get
-			Return Me.GetTable(Of AlertSubscriber_deleteme)
-		End Get
-	End Property
-	
-	Public ReadOnly Property WorkRequests() As System.Data.Linq.Table(Of WorkRequest)
-		Get
-			Return Me.GetTable(Of WorkRequest)
-		End Get
-	End Property
-	
-	Public ReadOnly Property AlertTypes() As System.Data.Linq.Table(Of AlertType)
-		Get
-			Return Me.GetTable(Of AlertType)
-		End Get
-	End Property
-	
-	Public ReadOnly Property AlertTypeOccurances() As System.Data.Linq.Table(Of AlertTypeOccurance)
-		Get
-			Return Me.GetTable(Of AlertTypeOccurance)
-		End Get
-	End Property
-	
-	Public ReadOnly Property AlertTypeSubscriber_deletemes() As System.Data.Linq.Table(Of AlertTypeSubscriber_deleteme)
-		Get
-			Return Me.GetTable(Of AlertTypeSubscriber_deleteme)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationBooking_20170222s() As System.Data.Linq.Table(Of ApplicationBooking_20170222)
-		Get
-			Return Me.GetTable(Of ApplicationBooking_20170222)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
-		Get
-			Return Me.GetTable(Of ApplicationDriver)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationFeatures() As System.Data.Linq.Table(Of ApplicationFeature)
-		Get
-			Return Me.GetTable(Of ApplicationFeature)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationFeatureRoles() As System.Data.Linq.Table(Of ApplicationFeatureRole)
-		Get
-			Return Me.GetTable(Of ApplicationFeatureRole)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationGeoFences() As System.Data.Linq.Table(Of ApplicationGeoFence)
-		Get
-			Return Me.GetTable(Of ApplicationGeoFence)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationGeoFence_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160615)
-		Get
-			Return Me.GetTable(Of ApplicationGeoFence_20160615)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationGeoFence_20160842s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160842)
-		Get
-			Return Me.GetTable(Of ApplicationGeoFence_20160842)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationGeofenceProperties() As System.Data.Linq.Table(Of ApplicationGeofenceProperty)
-		Get
-			Return Me.GetTable(Of ApplicationGeofenceProperty)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationGeoFenceSides() As System.Data.Linq.Table(Of ApplicationGeoFenceSide)
-		Get
-			Return Me.GetTable(Of ApplicationGeoFenceSide)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationGeoFenceSide_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFenceSide_20160615)
-		Get
-			Return Me.GetTable(Of ApplicationGeoFenceSide_20160615)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationImages() As System.Data.Linq.Table(Of ApplicationImage)
-		Get
-			Return Me.GetTable(Of ApplicationImage)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationLocations() As System.Data.Linq.Table(Of ApplicationLocation)
-		Get
-			Return Me.GetTable(Of ApplicationLocation)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationSettingValues() As System.Data.Linq.Table(Of ApplicationSettingValue)
-		Get
-			Return Me.GetTable(Of ApplicationSettingValue)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationTimeZones() As System.Data.Linq.Table(Of ApplicationTimeZone)
-		Get
-			Return Me.GetTable(Of ApplicationTimeZone)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationVehicles() As System.Data.Linq.Table(Of ApplicationVehicle)
-		Get
-			Return Me.GetTable(Of ApplicationVehicle)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationVehicleDriverTimes() As System.Data.Linq.Table(Of ApplicationVehicleDriverTime)
-		Get
-			Return Me.GetTable(Of ApplicationVehicleDriverTime)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationVehicleOdometerReadings() As System.Data.Linq.Table(Of ApplicationVehicleOdometerReading)
-		Get
-			Return Me.GetTable(Of ApplicationVehicleOdometerReading)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_Applications() As System.Data.Linq.Table(Of aspnet_Application)
-		Get
-			Return Me.GetTable(Of aspnet_Application)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_Memberships() As System.Data.Linq.Table(Of aspnet_Membership)
-		Get
-			Return Me.GetTable(Of aspnet_Membership)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_Paths() As System.Data.Linq.Table(Of aspnet_Path)
-		Get
-			Return Me.GetTable(Of aspnet_Path)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_PersonalizationAllUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationAllUser)
-		Get
-			Return Me.GetTable(Of aspnet_PersonalizationAllUser)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_PersonalizationPerUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationPerUser)
-		Get
-			Return Me.GetTable(Of aspnet_PersonalizationPerUser)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_Profiles() As System.Data.Linq.Table(Of aspnet_Profile)
-		Get
-			Return Me.GetTable(Of aspnet_Profile)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_Roles() As System.Data.Linq.Table(Of aspnet_Role)
-		Get
-			Return Me.GetTable(Of aspnet_Role)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_SchemaVersions() As System.Data.Linq.Table(Of aspnet_SchemaVersion)
-		Get
-			Return Me.GetTable(Of aspnet_SchemaVersion)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_Users() As System.Data.Linq.Table(Of aspnet_User)
-		Get
-			Return Me.GetTable(Of aspnet_User)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_UsersInRoles() As System.Data.Linq.Table(Of aspnet_UsersInRole)
-		Get
-			Return Me.GetTable(Of aspnet_UsersInRole)
-		End Get
-	End Property
-	
-	Public ReadOnly Property aspnet_WebEvent_Events() As System.Data.Linq.Table(Of aspnet_WebEvent_Event)
-		Get
-			Return Me.GetTable(Of aspnet_WebEvent_Event)
-		End Get
-	End Property
-	
-	Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
-		Get
-			Return Me.GetTable(Of AuthenticationToken)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CAN_Datas() As System.Data.Linq.Table(Of CAN_Data)
-		Get
-			Return Me.GetTable(Of CAN_Data)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CAN_MessageDefinitions() As System.Data.Linq.Table(Of CAN_MessageDefinition)
-		Get
-			Return Me.GetTable(Of CAN_MessageDefinition)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CannonDatas() As System.Data.Linq.Table(Of CannonData)
-		Get
-			Return Me.GetTable(Of CannonData)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Contacts() As System.Data.Linq.Table(Of Contact)
-		Get
-			Return Me.GetTable(Of Contact)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Developments() As System.Data.Linq.Table(Of Development)
-		Get
-			Return Me.GetTable(Of Development)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Devices() As System.Data.Linq.Table(Of Device)
-		Get
-			Return Me.GetTable(Of Device)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Features() As System.Data.Linq.Table(Of Feature)
-		Get
-			Return Me.GetTable(Of Feature)
-		End Get
-	End Property
-	
-	Public ReadOnly Property FleetMapMarkers() As System.Data.Linq.Table(Of FleetMapMarker)
-		Get
-			Return Me.GetTable(Of FleetMapMarker)
-		End Get
-	End Property
-	
-	Public ReadOnly Property GeoFenceDeviceCollisionAlerts() As System.Data.Linq.Table(Of GeoFenceDeviceCollisionAlert)
-		Get
-			Return Me.GetTable(Of GeoFenceDeviceCollisionAlert)
-		End Get
-	End Property
-	
-	Public ReadOnly Property GeoFenceDeviceCollissions() As System.Data.Linq.Table(Of GeoFenceDeviceCollission)
-		Get
-			Return Me.GetTable(Of GeoFenceDeviceCollission)
-		End Get
-	End Property
-	
-	Public ReadOnly Property GeoFenceDeviceCollission_20160604s() As System.Data.Linq.Table(Of GeoFenceDeviceCollission_20160604)
-		Get
-			Return Me.GetTable(Of GeoFenceDeviceCollission_20160604)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Groups() As System.Data.Linq.Table(Of [Group])
-		Get
-			Return Me.GetTable(Of [Group])
-		End Get
-	End Property
-	
-	Public ReadOnly Property GroupMember_olds() As System.Data.Linq.Table(Of GroupMember_old)
-		Get
-			Return Me.GetTable(Of GroupMember_old)
-		End Get
-	End Property
-	
-	Public ReadOnly Property GroupSubscribers() As System.Data.Linq.Table(Of GroupSubscriber)
-		Get
-			Return Me.GetTable(Of GroupSubscriber)
-		End Get
-	End Property
-	
-	Public ReadOnly Property j1939s() As System.Data.Linq.Table(Of j1939)
-		Get
-			Return Me.GetTable(Of j1939)
-		End Get
-	End Property
-	
-	Public ReadOnly Property PaidFeatures() As System.Data.Linq.Table(Of PaidFeature)
-		Get
-			Return Me.GetTable(Of PaidFeature)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Settings() As System.Data.Linq.Table(Of Setting)
-		Get
-			Return Me.GetTable(Of Setting)
-		End Get
-	End Property
-	
-	Public ReadOnly Property SimulatorSettings() As System.Data.Linq.Table(Of SimulatorSetting)
-		Get
-			Return Me.GetTable(Of SimulatorSetting)
-		End Get
-	End Property
-	
-	Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
-		Get
-			Return Me.GetTable(Of WebServiceLog)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
-		Get
-			Return Me.GetTable(Of ReportSchdeule)
-		End Get
-	End Property
-	
-	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
-		Get
-			Return Me.GetTable(Of ApplicationBooking)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CAN_EventDefinitions() As System.Data.Linq.Table(Of CAN_EventDefinition)
-		Get
-			Return Me.GetTable(Of CAN_EventDefinition)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CAN_AlertDefinitions() As System.Data.Linq.Table(Of CAN_AlertDefinition)
-		Get
-			Return Me.GetTable(Of CAN_AlertDefinition)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CAN_EventOccuranceAlerts() As System.Data.Linq.Table(Of CAN_EventOccuranceAlert)
-		Get
-			Return Me.GetTable(Of CAN_EventOccuranceAlert)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CanBusLogs() As System.Data.Linq.Table(Of CanBusLog)
-		Get
-			Return Me.GetTable(Of CanBusLog)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CAN_EventOccurances() As System.Data.Linq.Table(Of CAN_EventOccurance)
-		Get
-			Return Me.GetTable(Of CAN_EventOccurance)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CanBusEventOccuranceLogs() As System.Data.Linq.Table(Of CanBusEventOccuranceLog)
-		Get
-			Return Me.GetTable(Of CanBusEventOccuranceLog)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblCustomers() As System.Data.Linq.Table(Of tblCustomer)
-		Get
-			Return Me.GetTable(Of tblCustomer)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblContractPeriods() As System.Data.Linq.Table(Of tblContractPeriod)
-		Get
-			Return Me.GetTable(Of tblContractPeriod)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
-		Get
-			Return Me.GetTable(Of tbZone)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblIndustryGroups() As System.Data.Linq.Table(Of tblIndustryGroup)
-		Get
-			Return Me.GetTable(Of tblIndustryGroup)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
-		Get
-			Return Me.GetTable(Of tblCustomerAgent)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblCustomerRatings() As System.Data.Linq.Table(Of tblCustomerRating)
-		Get
-			Return Me.GetTable(Of tblCustomerRating)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblDrivers() As System.Data.Linq.Table(Of tblDriver)
-		Get
-			Return Me.GetTable(Of tblDriver)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblPreviousSuppliers() As System.Data.Linq.Table(Of tblPreviousSupplier)
-		Get
-			Return Me.GetTable(Of tblPreviousSupplier)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
-		Get
-			Return Me.GetTable(Of tblRateIncreaseReference)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblSalesPersons() As System.Data.Linq.Table(Of tblSalesPerson)
-		Get
-			Return Me.GetTable(Of tblSalesPerson)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblSites() As System.Data.Linq.Table(Of tblSite)
-		Get
-			Return Me.GetTable(Of tblSite)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblStates() As System.Data.Linq.Table(Of tblState)
-		Get
-			Return Me.GetTable(Of tblState)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblContractCeaseReasons() As System.Data.Linq.Table(Of tblContractCeaseReason)
-		Get
-			Return Me.GetTable(Of tblContractCeaseReason)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblSiteReSignDetails() As System.Data.Linq.Table(Of tblSiteReSignDetail)
-		Get
-			Return Me.GetTable(Of tblSiteReSignDetail)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblInvoicingFrequencies() As System.Data.Linq.Table(Of tblInvoicingFrequency)
-		Get
-			Return Me.GetTable(Of tblInvoicingFrequency)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblMonths() As System.Data.Linq.Table(Of tblMonth)
-		Get
-			Return Me.GetTable(Of tblMonth)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblCustomerServices() As System.Data.Linq.Table(Of tblCustomerService)
-		Get
-			Return Me.GetTable(Of tblCustomerService)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblServices() As System.Data.Linq.Table(Of tblService)
-		Get
-			Return Me.GetTable(Of tblService)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
-		Get
-			Return Me.GetTable(Of tblServiceFrequency)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblRuns() As System.Data.Linq.Table(Of tblRun)
-		Get
-			Return Me.GetTable(Of tblRun)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblCIRReasons() As System.Data.Linq.Table(Of tblCIRReason)
-		Get
-			Return Me.GetTable(Of tblCIRReason)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblCIRHistories() As System.Data.Linq.Table(Of tblCIRHistory)
-		Get
-			Return Me.GetTable(Of tblCIRHistory)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblSiteComments() As System.Data.Linq.Table(Of tblSiteComment)
-		Get
-			Return Me.GetTable(Of tblSiteComment)
-		End Get
-	End Property
-	
-	Public ReadOnly Property FleetClients() As System.Data.Linq.Table(Of FleetClient)
-		Get
-			Return Me.GetTable(Of FleetClient)
-		End Get
-	End Property
-	
-	Public ReadOnly Property FleetDocuments() As System.Data.Linq.Table(Of FleetDocument)
-		Get
-			Return Me.GetTable(Of FleetDocument)
-		End Get
-	End Property
-	
-	Public ReadOnly Property FleetRuns() As System.Data.Linq.Table(Of FleetRun)
-		Get
-			Return Me.GetTable(Of FleetRun)
-		End Get
-	End Property
-	
-	Public ReadOnly Property FleetRunClients() As System.Data.Linq.Table(Of FleetRunClient)
-		Get
-			Return Me.GetTable(Of FleetRunClient)
-		End Get
-	End Property
-	
-	Public ReadOnly Property FleetRunCompletions() As System.Data.Linq.Table(Of FleetRunCompletion)
-		Get
-			Return Me.GetTable(Of FleetRunCompletion)
-		End Get
-	End Property
-	
-	Public ReadOnly Property VehicleLocations() As System.Data.Linq.Table(Of VehicleLocation)
-		Get
-			Return Me.GetTable(Of VehicleLocation)
-		End Get
-	End Property
-	
-	Public ReadOnly Property vw_GetVehicles() As System.Data.Linq.Table(Of vw_GetVehicle)
-		Get
-			Return Me.GetTable(Of vw_GetVehicle)
-		End Get
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")>  _
-	Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
-		userId = CType(result.GetParameterValue(12),System.Nullable(Of System.Guid))
-		Return CType(result.ReturnValue,Integer)
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_GetAllRoles")>  _
-	Public Function aspnet_Roles_GetAllRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String) As ISingleResult(Of aspnet_Roles_GetAllRolesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName)
-		Return CType(result.ReturnValue,ISingleResult(Of aspnet_Roles_GetAllRolesResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_AddUsersToRoles")>  _
-	Public Function aspnet_UsersInRoles_AddUsersToRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date)) As ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userNames, roleNames, currentTimeUtc)
-		Return CType(result.ReturnValue,ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_RemoveUsersFromRoles")>  _
-	Public Function aspnet_UsersInRoles_RemoveUsersFromRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String) As ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userNames, roleNames)
-		Return CType(result.ReturnValue,ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_RemoveAllrolesForUserAndAssignRole")>  _
-	Public Function usp_RemoveAllrolesForUserAndAssignRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserID", DbType:="UniqueIdentifier")> ByVal userID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleID", DbType:="UniqueIdentifier")> ByVal roleID As System.Nullable(Of System.Guid)) As Integer
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), userID, roleID)
-		Return CType(result.ReturnValue,Integer)
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_deleteGeoFenceCollisions")>  _
-	Public Function usp_deleteGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="VarChar(10)")> ByVal deviceid As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As Integer
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), deviceid, startDate, endDate)
-		Return CType(result.ReturnValue,Integer)
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetVehiclesAndDriversFortimePeriod")>  _
-	Public Function usp_GetVehiclesAndDriversFortimePeriod(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateStart", DbType:="DateTime")> ByVal dateStart As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateEnd", DbType:="DateTime")> ByVal dateEnd As System.Nullable(Of Date)) As ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, dateStart, dateEnd)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSettingsForApplication")>  _
-	Public Function usp_GetSettingsForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="VarChar(MAX)")> ByVal applicationName As String) As ISingleResult(Of usp_GetSettingsForApplicationResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSettingsForApplicationResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSubscribersForApplication")>  _
-	Public Function usp_GetSubscribersForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSubscribersForApplicationResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSubscribersForApplicationResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_CreateRole")>  _
-	Public Function aspnet_Roles_CreateRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleName", DbType:="NVarChar(256)")> ByVal roleName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Description", DbType:="NVarChar(256)")> ByVal description As String) As Integer
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, roleName, description)
-		Return CType(result.ReturnValue,Integer)
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGeoFenceCollisions")>  _
-	Public Function usp_GetGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGeoFenceCollisionsResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGeoFenceCollisionsResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAssignedVehiclestoDrivers")>  _
-	Public Function usp_GetAssignedVehiclestoDrivers(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetAssignedVehiclestoDriversResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAssignedVehiclestoDriversResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUnprocessedCollissionsForAlertType")>  _
-	Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate, alertTypeID)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerUpdateValue")>  _
-	Public Function usp_GetCustomerUpdateValue(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Cid", DbType:="Int")> ByVal cid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetCustomerUpdateValueResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), cid)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerUpdateValueResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAllDrivers")>  _
-	Public Function usp_GetAllDrivers() As ISingleResult(Of usp_GetAllDriversResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAllDriversResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryGroup")>  _
-	Public Function usp_GetIndustryGroup() As ISingleResult(Of usp_GetIndustryGroupResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIndustryGroupResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomers")>  _
-	Public Function usp_GetCustomers() As ISingleResult(Of usp_GetCustomersResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomersResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetPreviousSupplier")>  _
-	Public Function usp_GetPreviousSupplier() As ISingleResult(Of usp_GetPreviousSupplierResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetPreviousSupplierResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractCeaseReasons")>  _
-	Public Function usp_GetContractCeaseReasons() As ISingleResult(Of usp_GetContractCeaseReasonsResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetContractCeaseReasonsResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerServices")>  _
-	Public Function usp_GetCustomerServices() As ISingleResult(Of usp_GetCustomerServicesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerServicesResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCIRHistory")>  _
-	Public Function usp_GetCIRHistory() As ISingleResult(Of usp_GetCIRHistoryResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCIRHistoryResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSites")>  _
-	Public Function usp_GetSites() As ISingleResult(Of usp_GetSitesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryListReport")>  _
-	Public Function usp_GetIndustryListReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IndustryID", DbType:="Int")> ByVal industryID As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetIndustryListReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), industryID)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIndustryListReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetDriversLicenseExpiryReport")>  _
-	Public Function usp_GetDriversLicenseExpiryReport() As ISingleResult(Of usp_GetDriversLicenseExpiryReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetDriversLicenseExpiryReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractRenewalsReport")>  _
-	Public Function usp_GetContractRenewalsReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetContractRenewalsReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetContractRenewalsReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetServiceSummaryReport")>  _
-	Public Function usp_GetServiceSummaryReport() As ISingleResult(Of usp_GetServiceSummaryReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetServiceSummaryReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetLengthOfServicesReport")>  _
-	Public Function usp_GetLengthOfServicesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="GreaterThanYears", DbType:="Int")> ByVal greaterThanYears As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetLengthOfServicesReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), greaterThanYears)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetLengthOfServicesReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerByCustZone")>  _
-	Public Function usp_GetCustomerByCustZone() As ISingleResult(Of usp_GetCustomerByCustZoneResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerByCustZoneResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerContactDetailsReport")>  _
-	Public Function usp_GetCustomerContactDetailsReport() As ISingleResult(Of usp_GetCustomerContactDetailsReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerContactDetailsReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesWithNoContractsReport")>  _
-	Public Function usp_GetSitesWithNoContractsReport() As ISingleResult(Of usp_GetSitesWithNoContractsReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesWithNoContractsReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetInvoiceBasicCheckReport")>  _
-	Public Function usp_GetInvoiceBasicCheckReport() As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetInvoiceBasicCheckReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetMYOBCustomerInvoiceReport")>  _
-	Public Function usp_GetMYOBCustomerInvoiceReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CustomerName", DbType:="NVarChar(50)")> ByVal customerName As String) As ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), customerName)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesReport")>  _
-	Public Function usp_GetGainsAndLossesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGainsAndLossesReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesPerAnnumReport")>  _
-	Public Function usp_GetGainsAndLossesPerAnnumReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetStandardAuditReport")>  _
-	Public Function usp_GetStandardAuditReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetStandardAuditReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetStandardAuditReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditContractReport")>  _
-	Public Function usp_GetAuditContractReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditContractReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditContractReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditOfSiteDetailReport")>  _
-	Public Function usp_GetAuditOfSiteDetailReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditOfSiteDetailReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditOfSiteDetailReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesBySiteZoneReport")>  _
-	Public Function usp_GetSitesBySiteZoneReport() As ISingleResult(Of usp_GetSitesBySiteZoneReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValuesReport")>  _
-	Public Function usp_GetRunValuesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ServiceRun", DbType:="VarChar(20)")> ByVal serviceRun As String) As ISingleResult(Of usp_GetRunValuesReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), serviceRun)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValuesReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValueSummaryReport")>  _
-	Public Function usp_GetRunValueSummaryReport() As ISingleResult(Of usp_GetRunValueSummaryReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValueSummaryReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListingReport")>  _
-	Public Function usp_GetRunListingReport() As ISingleResult(Of usp_GetRunListingReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunListingReportResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunDates")>  _
-	Public Function usp_GetRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetRunDatesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunDatesResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListByRunNumberReport")>  _
-	Public Function usp_GetRunListByRunNumberReport() As ISingleResult(Of usp_GetRunListByRunNumberReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunListByRunNumberReportResult))
-	End Function
+    Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
+    End Sub
+    Partial Private Sub InserttblService(instance As tblService)
+    End Sub
+    Partial Private Sub UpdatetblService(instance As tblService)
+    End Sub
+    Partial Private Sub DeletetblService(instance As tblService)
+    End Sub
+    Partial Private Sub InserttblSalesPerson(instance As tblSalesPerson)
+    End Sub
+    Partial Private Sub UpdatetblSalesPerson(instance As tblSalesPerson)
+    End Sub
+    Partial Private Sub DeletetblSalesPerson(instance As tblSalesPerson)
+    End Sub
+    Partial Private Sub InserttblProjectID(instance As tblProjectID)
+    End Sub
+    Partial Private Sub UpdatetblProjectID(instance As tblProjectID)
+    End Sub
+    Partial Private Sub DeletetblProjectID(instance As tblProjectID)
+    End Sub
+    Partial Private Sub InserttblFuelLevy(instance As tblFuelLevy)
+    End Sub
+    Partial Private Sub UpdatetblFuelLevy(instance As tblFuelLevy)
+    End Sub
+    Partial Private Sub DeletetblFuelLevy(instance As tblFuelLevy)
+    End Sub
+#End Region
+
+    Public Sub New()
+        MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As String)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As System.Data.IDbConnection)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public ReadOnly Property AlertSubscriber_deletemes() As System.Data.Linq.Table(Of AlertSubscriber_deleteme)
+        Get
+            Return Me.GetTable(Of AlertSubscriber_deleteme)()
+        End Get
+    End Property
+
+    Public ReadOnly Property WorkRequests() As System.Data.Linq.Table(Of WorkRequest)
+        Get
+            Return Me.GetTable(Of WorkRequest)()
+        End Get
+    End Property
+
+    Public ReadOnly Property AlertTypes() As System.Data.Linq.Table(Of AlertType)
+        Get
+            Return Me.GetTable(Of AlertType)()
+        End Get
+    End Property
+
+    Public ReadOnly Property AlertTypeOccurances() As System.Data.Linq.Table(Of AlertTypeOccurance)
+        Get
+            Return Me.GetTable(Of AlertTypeOccurance)()
+        End Get
+    End Property
+
+    Public ReadOnly Property AlertTypeSubscriber_deletemes() As System.Data.Linq.Table(Of AlertTypeSubscriber_deleteme)
+        Get
+            Return Me.GetTable(Of AlertTypeSubscriber_deleteme)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationBooking_20170222s() As System.Data.Linq.Table(Of ApplicationBooking_20170222)
+        Get
+            Return Me.GetTable(Of ApplicationBooking_20170222)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
+        Get
+            Return Me.GetTable(Of ApplicationDriver)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationFeatures() As System.Data.Linq.Table(Of ApplicationFeature)
+        Get
+            Return Me.GetTable(Of ApplicationFeature)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationFeatureRoles() As System.Data.Linq.Table(Of ApplicationFeatureRole)
+        Get
+            Return Me.GetTable(Of ApplicationFeatureRole)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationGeoFences() As System.Data.Linq.Table(Of ApplicationGeoFence)
+        Get
+            Return Me.GetTable(Of ApplicationGeoFence)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationGeoFence_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160615)
+        Get
+            Return Me.GetTable(Of ApplicationGeoFence_20160615)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationGeoFence_20160842s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160842)
+        Get
+            Return Me.GetTable(Of ApplicationGeoFence_20160842)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationGeofenceProperties() As System.Data.Linq.Table(Of ApplicationGeofenceProperty)
+        Get
+            Return Me.GetTable(Of ApplicationGeofenceProperty)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationGeoFenceSides() As System.Data.Linq.Table(Of ApplicationGeoFenceSide)
+        Get
+            Return Me.GetTable(Of ApplicationGeoFenceSide)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationGeoFenceSide_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFenceSide_20160615)
+        Get
+            Return Me.GetTable(Of ApplicationGeoFenceSide_20160615)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationImages() As System.Data.Linq.Table(Of ApplicationImage)
+        Get
+            Return Me.GetTable(Of ApplicationImage)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationLocations() As System.Data.Linq.Table(Of ApplicationLocation)
+        Get
+            Return Me.GetTable(Of ApplicationLocation)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationSettingValues() As System.Data.Linq.Table(Of ApplicationSettingValue)
+        Get
+            Return Me.GetTable(Of ApplicationSettingValue)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationTimeZones() As System.Data.Linq.Table(Of ApplicationTimeZone)
+        Get
+            Return Me.GetTable(Of ApplicationTimeZone)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationVehicles() As System.Data.Linq.Table(Of ApplicationVehicle)
+        Get
+            Return Me.GetTable(Of ApplicationVehicle)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationVehicleDriverTimes() As System.Data.Linq.Table(Of ApplicationVehicleDriverTime)
+        Get
+            Return Me.GetTable(Of ApplicationVehicleDriverTime)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationVehicleOdometerReadings() As System.Data.Linq.Table(Of ApplicationVehicleOdometerReading)
+        Get
+            Return Me.GetTable(Of ApplicationVehicleOdometerReading)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_Applications() As System.Data.Linq.Table(Of aspnet_Application)
+        Get
+            Return Me.GetTable(Of aspnet_Application)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_Memberships() As System.Data.Linq.Table(Of aspnet_Membership)
+        Get
+            Return Me.GetTable(Of aspnet_Membership)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_Paths() As System.Data.Linq.Table(Of aspnet_Path)
+        Get
+            Return Me.GetTable(Of aspnet_Path)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_PersonalizationAllUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationAllUser)
+        Get
+            Return Me.GetTable(Of aspnet_PersonalizationAllUser)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_PersonalizationPerUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationPerUser)
+        Get
+            Return Me.GetTable(Of aspnet_PersonalizationPerUser)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_Profiles() As System.Data.Linq.Table(Of aspnet_Profile)
+        Get
+            Return Me.GetTable(Of aspnet_Profile)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_Roles() As System.Data.Linq.Table(Of aspnet_Role)
+        Get
+            Return Me.GetTable(Of aspnet_Role)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_SchemaVersions() As System.Data.Linq.Table(Of aspnet_SchemaVersion)
+        Get
+            Return Me.GetTable(Of aspnet_SchemaVersion)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_Users() As System.Data.Linq.Table(Of aspnet_User)
+        Get
+            Return Me.GetTable(Of aspnet_User)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_UsersInRoles() As System.Data.Linq.Table(Of aspnet_UsersInRole)
+        Get
+            Return Me.GetTable(Of aspnet_UsersInRole)()
+        End Get
+    End Property
+
+    Public ReadOnly Property aspnet_WebEvent_Events() As System.Data.Linq.Table(Of aspnet_WebEvent_Event)
+        Get
+            Return Me.GetTable(Of aspnet_WebEvent_Event)()
+        End Get
+    End Property
+
+    Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
+        Get
+            Return Me.GetTable(Of AuthenticationToken)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CAN_Datas() As System.Data.Linq.Table(Of CAN_Data)
+        Get
+            Return Me.GetTable(Of CAN_Data)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CAN_MessageDefinitions() As System.Data.Linq.Table(Of CAN_MessageDefinition)
+        Get
+            Return Me.GetTable(Of CAN_MessageDefinition)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CannonDatas() As System.Data.Linq.Table(Of CannonData)
+        Get
+            Return Me.GetTable(Of CannonData)()
+        End Get
+    End Property
+
+    Public ReadOnly Property Contacts() As System.Data.Linq.Table(Of Contact)
+        Get
+            Return Me.GetTable(Of Contact)()
+        End Get
+    End Property
+
+    Public ReadOnly Property Developments() As System.Data.Linq.Table(Of Development)
+        Get
+            Return Me.GetTable(Of Development)()
+        End Get
+    End Property
+
+    Public ReadOnly Property Devices() As System.Data.Linq.Table(Of Device)
+        Get
+            Return Me.GetTable(Of Device)()
+        End Get
+    End Property
+
+    Public ReadOnly Property Features() As System.Data.Linq.Table(Of Feature)
+        Get
+            Return Me.GetTable(Of Feature)()
+        End Get
+    End Property
+
+    Public ReadOnly Property FleetMapMarkers() As System.Data.Linq.Table(Of FleetMapMarker)
+        Get
+            Return Me.GetTable(Of FleetMapMarker)()
+        End Get
+    End Property
+
+    Public ReadOnly Property GeoFenceDeviceCollisionAlerts() As System.Data.Linq.Table(Of GeoFenceDeviceCollisionAlert)
+        Get
+            Return Me.GetTable(Of GeoFenceDeviceCollisionAlert)()
+        End Get
+    End Property
+
+    Public ReadOnly Property GeoFenceDeviceCollissions() As System.Data.Linq.Table(Of GeoFenceDeviceCollission)
+        Get
+            Return Me.GetTable(Of GeoFenceDeviceCollission)()
+        End Get
+    End Property
+
+    Public ReadOnly Property GeoFenceDeviceCollission_20160604s() As System.Data.Linq.Table(Of GeoFenceDeviceCollission_20160604)
+        Get
+            Return Me.GetTable(Of GeoFenceDeviceCollission_20160604)()
+        End Get
+    End Property
+
+    Public ReadOnly Property Groups() As System.Data.Linq.Table(Of [Group])
+        Get
+            Return Me.GetTable(Of [Group])()
+        End Get
+    End Property
+
+    Public ReadOnly Property GroupMember_olds() As System.Data.Linq.Table(Of GroupMember_old)
+        Get
+            Return Me.GetTable(Of GroupMember_old)()
+        End Get
+    End Property
+
+    Public ReadOnly Property GroupSubscribers() As System.Data.Linq.Table(Of GroupSubscriber)
+        Get
+            Return Me.GetTable(Of GroupSubscriber)()
+        End Get
+    End Property
+
+    Public ReadOnly Property j1939s() As System.Data.Linq.Table(Of j1939)
+        Get
+            Return Me.GetTable(Of j1939)()
+        End Get
+    End Property
+
+    Public ReadOnly Property PaidFeatures() As System.Data.Linq.Table(Of PaidFeature)
+        Get
+            Return Me.GetTable(Of PaidFeature)()
+        End Get
+    End Property
+
+    Public ReadOnly Property Settings() As System.Data.Linq.Table(Of Setting)
+        Get
+            Return Me.GetTable(Of Setting)()
+        End Get
+    End Property
+
+    Public ReadOnly Property SimulatorSettings() As System.Data.Linq.Table(Of SimulatorSetting)
+        Get
+            Return Me.GetTable(Of SimulatorSetting)()
+        End Get
+    End Property
+
+    Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
+        Get
+            Return Me.GetTable(Of WebServiceLog)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
+        Get
+            Return Me.GetTable(Of ReportSchdeule)()
+        End Get
+    End Property
+
+    Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
+        Get
+            Return Me.GetTable(Of ApplicationBooking)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CAN_EventDefinitions() As System.Data.Linq.Table(Of CAN_EventDefinition)
+        Get
+            Return Me.GetTable(Of CAN_EventDefinition)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CAN_AlertDefinitions() As System.Data.Linq.Table(Of CAN_AlertDefinition)
+        Get
+            Return Me.GetTable(Of CAN_AlertDefinition)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CAN_EventOccuranceAlerts() As System.Data.Linq.Table(Of CAN_EventOccuranceAlert)
+        Get
+            Return Me.GetTable(Of CAN_EventOccuranceAlert)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CanBusLogs() As System.Data.Linq.Table(Of CanBusLog)
+        Get
+            Return Me.GetTable(Of CanBusLog)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CAN_EventOccurances() As System.Data.Linq.Table(Of CAN_EventOccurance)
+        Get
+            Return Me.GetTable(Of CAN_EventOccurance)()
+        End Get
+    End Property
+
+    Public ReadOnly Property CanBusEventOccuranceLogs() As System.Data.Linq.Table(Of CanBusEventOccuranceLog)
+        Get
+            Return Me.GetTable(Of CanBusEventOccuranceLog)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblContractPeriods() As System.Data.Linq.Table(Of tblContractPeriod)
+        Get
+            Return Me.GetTable(Of tblContractPeriod)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblDrivers() As System.Data.Linq.Table(Of tblDriver)
+        Get
+            Return Me.GetTable(Of tblDriver)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblStates() As System.Data.Linq.Table(Of tblState)
+        Get
+            Return Me.GetTable(Of tblState)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblSiteReSignDetails() As System.Data.Linq.Table(Of tblSiteReSignDetail)
+        Get
+            Return Me.GetTable(Of tblSiteReSignDetail)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblMonths() As System.Data.Linq.Table(Of tblMonth)
+        Get
+            Return Me.GetTable(Of tblMonth)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblCustomerServices() As System.Data.Linq.Table(Of tblCustomerService)
+        Get
+            Return Me.GetTable(Of tblCustomerService)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblRuns() As System.Data.Linq.Table(Of tblRun)
+        Get
+            Return Me.GetTable(Of tblRun)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblCIRHistories() As System.Data.Linq.Table(Of tblCIRHistory)
+        Get
+            Return Me.GetTable(Of tblCIRHistory)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblSiteComments() As System.Data.Linq.Table(Of tblSiteComment)
+        Get
+            Return Me.GetTable(Of tblSiteComment)()
+        End Get
+    End Property
+
+    Public ReadOnly Property FleetClients() As System.Data.Linq.Table(Of FleetClient)
+        Get
+            Return Me.GetTable(Of FleetClient)()
+        End Get
+    End Property
+
+    Public ReadOnly Property FleetDocuments() As System.Data.Linq.Table(Of FleetDocument)
+        Get
+            Return Me.GetTable(Of FleetDocument)()
+        End Get
+    End Property
+
+    Public ReadOnly Property FleetRuns() As System.Data.Linq.Table(Of FleetRun)
+        Get
+            Return Me.GetTable(Of FleetRun)()
+        End Get
+    End Property
+
+    Public ReadOnly Property FleetRunClients() As System.Data.Linq.Table(Of FleetRunClient)
+        Get
+            Return Me.GetTable(Of FleetRunClient)()
+        End Get
+    End Property
+
+    Public ReadOnly Property FleetRunCompletions() As System.Data.Linq.Table(Of FleetRunCompletion)
+        Get
+            Return Me.GetTable(Of FleetRunCompletion)()
+        End Get
+    End Property
+
+    Public ReadOnly Property VehicleLocations() As System.Data.Linq.Table(Of VehicleLocation)
+        Get
+            Return Me.GetTable(Of VehicleLocation)()
+        End Get
+    End Property
+
+    Public ReadOnly Property vw_GetVehicles() As System.Data.Linq.Table(Of vw_GetVehicle)
+        Get
+            Return Me.GetTable(Of vw_GetVehicle)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblCustomers() As System.Data.Linq.Table(Of tblCustomer)
+        Get
+            Return Me.GetTable(Of tblCustomer)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblSites() As System.Data.Linq.Table(Of tblSite)
+        Get
+            Return Me.GetTable(Of tblSite)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblIndustryGroups() As System.Data.Linq.Table(Of tblIndustryGroup)
+        Get
+            Return Me.GetTable(Of tblIndustryGroup)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblInvoicingFrequencies() As System.Data.Linq.Table(Of tblInvoicingFrequency)
+        Get
+            Return Me.GetTable(Of tblInvoicingFrequency)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
+        Get
+            Return Me.GetTable(Of tblCustomerAgent)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblContractCeaseReasons() As System.Data.Linq.Table(Of tblContractCeaseReason)
+        Get
+            Return Me.GetTable(Of tblContractCeaseReason)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblCIRReasons() As System.Data.Linq.Table(Of tblCIRReason)
+        Get
+            Return Me.GetTable(Of tblCIRReason)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
+        Get
+            Return Me.GetTable(Of tbZone)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblCustomerRatings() As System.Data.Linq.Table(Of tblCustomerRating)
+        Get
+            Return Me.GetTable(Of tblCustomerRating)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
+        Get
+            Return Me.GetTable(Of tblRateIncreaseReference)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblRunFortnightlyCycles() As System.Data.Linq.Table(Of tblRunFortnightlyCycle)
+        Get
+            Return Me.GetTable(Of tblRunFortnightlyCycle)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblRevenueChangeReasons() As System.Data.Linq.Table(Of tblRevenueChangeReason)
+        Get
+            Return Me.GetTable(Of tblRevenueChangeReason)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblPreviousSuppliers() As System.Data.Linq.Table(Of tblPreviousSupplier)
+        Get
+            Return Me.GetTable(Of tblPreviousSupplier)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
+        Get
+            Return Me.GetTable(Of tblServiceFrequency)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblServices() As System.Data.Linq.Table(Of tblService)
+        Get
+            Return Me.GetTable(Of tblService)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblSalesPersons() As System.Data.Linq.Table(Of tblSalesPerson)
+        Get
+            Return Me.GetTable(Of tblSalesPerson)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblProjectIDs() As System.Data.Linq.Table(Of tblProjectID)
+        Get
+            Return Me.GetTable(Of tblProjectID)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblFuelLevies() As System.Data.Linq.Table(Of tblFuelLevy)
+        Get
+            Return Me.GetTable(Of tblFuelLevy)()
+        End Get
+    End Property
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")> _
+    Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
+        userId = CType(result.GetParameterValue(12), System.Nullable(Of System.Guid))
+        Return CType(result.ReturnValue, Integer)
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_GetAllRoles")> _
+    Public Function aspnet_Roles_GetAllRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String) As ISingleResult(Of aspnet_Roles_GetAllRolesResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName)
+        Return CType(result.ReturnValue, ISingleResult(Of aspnet_Roles_GetAllRolesResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_AddUsersToRoles")> _
+    Public Function aspnet_UsersInRoles_AddUsersToRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date)) As ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, userNames, roleNames, currentTimeUtc)
+        Return CType(result.ReturnValue, ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_RemoveUsersFromRoles")> _
+    Public Function aspnet_UsersInRoles_RemoveUsersFromRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String) As ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, userNames, roleNames)
+        Return CType(result.ReturnValue, ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_RemoveAllrolesForUserAndAssignRole")> _
+    Public Function usp_RemoveAllrolesForUserAndAssignRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserID", DbType:="UniqueIdentifier")> ByVal userID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleID", DbType:="UniqueIdentifier")> ByVal roleID As System.Nullable(Of System.Guid)) As Integer
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), userID, roleID)
+        Return CType(result.ReturnValue, Integer)
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_deleteGeoFenceCollisions")> _
+    Public Function usp_deleteGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="VarChar(10)")> ByVal deviceid As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As Integer
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), deviceid, startDate, endDate)
+        Return CType(result.ReturnValue, Integer)
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetVehiclesAndDriversFortimePeriod")> _
+    Public Function usp_GetVehiclesAndDriversFortimePeriod(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateStart", DbType:="DateTime")> ByVal dateStart As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateEnd", DbType:="DateTime")> ByVal dateEnd As System.Nullable(Of Date)) As ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID, dateStart, dateEnd)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSettingsForApplication")> _
+    Public Function usp_GetSettingsForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="VarChar(MAX)")> ByVal applicationName As String) As ISingleResult(Of usp_GetSettingsForApplicationResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSettingsForApplicationResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSubscribersForApplication")> _
+    Public Function usp_GetSubscribersForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSubscribersForApplicationResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSubscribersForApplicationResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_CreateRole")> _
+    Public Function aspnet_Roles_CreateRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleName", DbType:="NVarChar(256)")> ByVal roleName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Description", DbType:="NVarChar(256)")> ByVal description As String) As Integer
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, roleName, description)
+        Return CType(result.ReturnValue, Integer)
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGeoFenceCollisions")> _
+    Public Function usp_GetGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGeoFenceCollisionsResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID, startDate, endDate)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetGeoFenceCollisionsResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAssignedVehiclestoDrivers")> _
+    Public Function usp_GetAssignedVehiclestoDrivers(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetAssignedVehiclestoDriversResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAssignedVehiclestoDriversResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUnprocessedCollissionsForAlertType")> _
+    Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID, startDate, endDate, alertTypeID)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerUpdateValue")> _
+    Public Function usp_GetCustomerUpdateValue(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Cid", DbType:="Int")> ByVal cid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetCustomerUpdateValueResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), cid)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerUpdateValueResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAllDrivers")> _
+    Public Function usp_GetAllDrivers() As ISingleResult(Of usp_GetAllDriversResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAllDriversResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryGroup")> _
+    Public Function usp_GetIndustryGroup() As ISingleResult(Of usp_GetIndustryGroupResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetIndustryGroupResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomers")> _
+    Public Function usp_GetCustomers() As ISingleResult(Of usp_GetCustomersResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomersResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetPreviousSupplier")> _
+    Public Function usp_GetPreviousSupplier() As ISingleResult(Of usp_GetPreviousSupplierResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetPreviousSupplierResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractCeaseReasons")> _
+    Public Function usp_GetContractCeaseReasons() As ISingleResult(Of usp_GetContractCeaseReasonsResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetContractCeaseReasonsResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerServices")> _
+    Public Function usp_GetCustomerServices() As ISingleResult(Of usp_GetCustomerServicesResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerServicesResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCIRHistory")> _
+    Public Function usp_GetCIRHistory() As ISingleResult(Of usp_GetCIRHistoryResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCIRHistoryResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSites")> _
+    Public Function usp_GetSites() As ISingleResult(Of usp_GetSitesResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSitesResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryListReport")> _
+    Public Function usp_GetIndustryListReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IndustryID", DbType:="Int")> ByVal industryID As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetIndustryListReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), industryID)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetIndustryListReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetDriversLicenseExpiryReport")> _
+    Public Function usp_GetDriversLicenseExpiryReport() As ISingleResult(Of usp_GetDriversLicenseExpiryReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetDriversLicenseExpiryReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractRenewalsReport")> _
+    Public Function usp_GetContractRenewalsReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetContractRenewalsReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetContractRenewalsReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetServiceSummaryReport")> _
+    Public Function usp_GetServiceSummaryReport() As ISingleResult(Of usp_GetServiceSummaryReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetServiceSummaryReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetLengthOfServicesReport")> _
+    Public Function usp_GetLengthOfServicesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="GreaterThanYears", DbType:="Int")> ByVal greaterThanYears As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetLengthOfServicesReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), greaterThanYears)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetLengthOfServicesReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerByCustZone")> _
+    Public Function usp_GetCustomerByCustZone() As ISingleResult(Of usp_GetCustomerByCustZoneResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerByCustZoneResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerContactDetailsReport")> _
+    Public Function usp_GetCustomerContactDetailsReport() As ISingleResult(Of usp_GetCustomerContactDetailsReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerContactDetailsReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesWithNoContractsReport")> _
+    Public Function usp_GetSitesWithNoContractsReport() As ISingleResult(Of usp_GetSitesWithNoContractsReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSitesWithNoContractsReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetInvoiceBasicCheckReport")> _
+    Public Function usp_GetInvoiceBasicCheckReport() As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetInvoiceBasicCheckReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetMYOBCustomerInvoiceReport")> _
+    Public Function usp_GetMYOBCustomerInvoiceReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CustomerName", DbType:="NVarChar(50)")> ByVal customerName As String) As ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), customerName)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesReport")> _
+    Public Function usp_GetGainsAndLossesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetGainsAndLossesReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesPerAnnumReport")> _
+    Public Function usp_GetGainsAndLossesPerAnnumReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetStandardAuditReport")> _
+    Public Function usp_GetStandardAuditReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetStandardAuditReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetStandardAuditReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditContractReport")> _
+    Public Function usp_GetAuditContractReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditContractReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAuditContractReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditOfSiteDetailReport")> _
+    Public Function usp_GetAuditOfSiteDetailReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditOfSiteDetailReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAuditOfSiteDetailReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesBySiteZoneReport")> _
+    Public Function usp_GetSitesBySiteZoneReport() As ISingleResult(Of usp_GetSitesBySiteZoneReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValuesReport")> _
+    Public Function usp_GetRunValuesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ServiceRun", DbType:="VarChar(20)")> ByVal serviceRun As String) As ISingleResult(Of usp_GetRunValuesReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), serviceRun)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunValuesReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValueSummaryReport")> _
+    Public Function usp_GetRunValueSummaryReport() As ISingleResult(Of usp_GetRunValueSummaryReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunValueSummaryReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListingReport")> _
+    Public Function usp_GetRunListingReport() As ISingleResult(Of usp_GetRunListingReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunListingReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunDates")> _
+    Public Function usp_GetRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetRunDatesResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), rid)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunDatesResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListByRunNumberReport")> _
+    Public Function usp_GetRunListByRunNumberReport() As ISingleResult(Of usp_GetRunListByRunNumberReportResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunListByRunNumberReportResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetFortNightlyCycles")> _
+    Public Function usp_GetFortNightlyCycles() As ISingleResult(Of usp_GetFortNightlyCyclesResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetFortNightlyCyclesResult))
+    End Function
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueChangeReason")> _
+    Public Function usp_GetRevenueChangeReason() As ISingleResult(Of usp_GetRevenueChangeReasonResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
+        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRevenueChangeReasonResult))
+    End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -14896,533 +14956,6 @@ Partial Public Class CanBusEventOccuranceLog
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomers")>  _
-Partial Public Class tblCustomer
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _CustomerID As System.Guid
-	
-	Private _Cid As Integer
-	
-	Private _CustomerName As String
-	
-	Private _AddressLine1 As String
-	
-	Private _AddressLine2 As String
-	
-	Private _State As System.Nullable(Of Integer)
-	
-	Private _Suburb As String
-	
-	Private _PostCode As String
-	
-	Private _CustomerContactName As String
-	
-	Private _CustomerPhone As String
-	
-	Private _CustomerMobile As String
-	
-	Private _CustomerFax As String
-	
-	Private _CustomerComments As String
-	
-	Private _CustomerAgent As System.Nullable(Of Integer)
-	
-	Private _CustomerRating As System.Nullable(Of Short)
-	
-	Private _Zone As System.Nullable(Of Integer)
-	
-	Private _MYOBCustomerNumber As String
-	
-	Private _CustomerValue As System.Nullable(Of Double)
-	
-	Private _InactiveCustomer As Boolean
-	
-	Private _CustomerCommencementDate As System.Nullable(Of Date)
-	
-	Private _chkCustomerExcludeFuelLevy As Boolean
-	
-	Private _cmbRateIncrease As System.Nullable(Of Short)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnCustomerIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnCustomerIDChanged()
-    End Sub
-    Partial Private Sub OnCidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnCidChanged()
-    End Sub
-    Partial Private Sub OnCustomerNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerNameChanged()
-    End Sub
-    Partial Private Sub OnAddressLine1Changing(value As String)
-    End Sub
-    Partial Private Sub OnAddressLine1Changed()
-    End Sub
-    Partial Private Sub OnAddressLine2Changing(value As String)
-    End Sub
-    Partial Private Sub OnAddressLine2Changed()
-    End Sub
-    Partial Private Sub OnStateChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnStateChanged()
-    End Sub
-    Partial Private Sub OnSuburbChanging(value As String)
-    End Sub
-    Partial Private Sub OnSuburbChanged()
-    End Sub
-    Partial Private Sub OnPostCodeChanging(value As String)
-    End Sub
-    Partial Private Sub OnPostCodeChanged()
-    End Sub
-    Partial Private Sub OnCustomerContactNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerContactNameChanged()
-    End Sub
-    Partial Private Sub OnCustomerPhoneChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerPhoneChanged()
-    End Sub
-    Partial Private Sub OnCustomerMobileChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerMobileChanged()
-    End Sub
-    Partial Private Sub OnCustomerFaxChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerFaxChanged()
-    End Sub
-    Partial Private Sub OnCustomerCommentsChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerCommentsChanged()
-    End Sub
-    Partial Private Sub OnCustomerAgentChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnCustomerAgentChanged()
-    End Sub
-    Partial Private Sub OnCustomerRatingChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnCustomerRatingChanged()
-    End Sub
-    Partial Private Sub OnZoneChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnZoneChanged()
-    End Sub
-    Partial Private Sub OnMYOBCustomerNumberChanging(value As String)
-    End Sub
-    Partial Private Sub OnMYOBCustomerNumberChanged()
-    End Sub
-    Partial Private Sub OnCustomerValueChanging(value As System.Nullable(Of Double))
-    End Sub
-    Partial Private Sub OnCustomerValueChanged()
-    End Sub
-    Partial Private Sub OnInactiveCustomerChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnInactiveCustomerChanged()
-    End Sub
-    Partial Private Sub OnCustomerCommencementDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnCustomerCommencementDateChanged()
-    End Sub
-    Partial Private Sub OnchkCustomerExcludeFuelLevyChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnchkCustomerExcludeFuelLevyChanged()
-    End Sub
-    Partial Private Sub OncmbRateIncreaseChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OncmbRateIncreaseChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CustomerID() As System.Guid
-		Get
-			Return Me._CustomerID
-		End Get
-		Set
-			If ((Me._CustomerID = value)  _
-						= false) Then
-				Me.OnCustomerIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerID = value
-				Me.SendPropertyChanged("CustomerID")
-				Me.OnCustomerIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Cid() As Integer
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If ((Me._Cid = value)  _
-						= false) Then
-				Me.OnCidChanging(value)
-				Me.SendPropertyChanging
-				Me._Cid = value
-				Me.SendPropertyChanged("Cid")
-				Me.OnCidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me.OnCustomerNameChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerName = value
-				Me.SendPropertyChanged("CustomerName")
-				Me.OnCustomerNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine1() As String
-		Get
-			Return Me._AddressLine1
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine1, value) = false) Then
-				Me.OnAddressLine1Changing(value)
-				Me.SendPropertyChanging
-				Me._AddressLine1 = value
-				Me.SendPropertyChanged("AddressLine1")
-				Me.OnAddressLine1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine2() As String
-		Get
-			Return Me._AddressLine2
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine2, value) = false) Then
-				Me.OnAddressLine2Changing(value)
-				Me.SendPropertyChanging
-				Me._AddressLine2 = value
-				Me.SendPropertyChanged("AddressLine2")
-				Me.OnAddressLine2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="Int")>  _
-	Public Property State() As System.Nullable(Of Integer)
-		Get
-			Return Me._State
-		End Get
-		Set
-			If (Me._State.Equals(value) = false) Then
-				Me.OnStateChanging(value)
-				Me.SendPropertyChanging
-				Me._State = value
-				Me.SendPropertyChanged("State")
-				Me.OnStateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(22)")>  _
-	Public Property Suburb() As String
-		Get
-			Return Me._Suburb
-		End Get
-		Set
-			If (String.Equals(Me._Suburb, value) = false) Then
-				Me.OnSuburbChanging(value)
-				Me.SendPropertyChanging
-				Me._Suburb = value
-				Me.SendPropertyChanged("Suburb")
-				Me.OnSuburbChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="NVarChar(4)")>  _
-	Public Property PostCode() As String
-		Get
-			Return Me._PostCode
-		End Get
-		Set
-			If (String.Equals(Me._PostCode, value) = false) Then
-				Me.OnPostCodeChanging(value)
-				Me.SendPropertyChanging
-				Me._PostCode = value
-				Me.SendPropertyChanged("PostCode")
-				Me.OnPostCodeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerContactName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerContactName() As String
-		Get
-			Return Me._CustomerContactName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerContactName, value) = false) Then
-				Me.OnCustomerContactNameChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerContactName = value
-				Me.SendPropertyChanged("CustomerContactName")
-				Me.OnCustomerContactNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(22)")>  _
-	Public Property CustomerPhone() As String
-		Get
-			Return Me._CustomerPhone
-		End Get
-		Set
-			If (String.Equals(Me._CustomerPhone, value) = false) Then
-				Me.OnCustomerPhoneChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerPhone = value
-				Me.SendPropertyChanged("CustomerPhone")
-				Me.OnCustomerPhoneChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerMobile", DbType:="NVarChar(22)")>  _
-	Public Property CustomerMobile() As String
-		Get
-			Return Me._CustomerMobile
-		End Get
-		Set
-			If (String.Equals(Me._CustomerMobile, value) = false) Then
-				Me.OnCustomerMobileChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerMobile = value
-				Me.SendPropertyChanged("CustomerMobile")
-				Me.OnCustomerMobileChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerFax", DbType:="NVarChar(22)")>  _
-	Public Property CustomerFax() As String
-		Get
-			Return Me._CustomerFax
-		End Get
-		Set
-			If (String.Equals(Me._CustomerFax, value) = false) Then
-				Me.OnCustomerFaxChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerFax = value
-				Me.SendPropertyChanged("CustomerFax")
-				Me.OnCustomerFaxChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerComments", DbType:="NVarChar(MAX)")>  _
-	Public Property CustomerComments() As String
-		Get
-			Return Me._CustomerComments
-		End Get
-		Set
-			If (String.Equals(Me._CustomerComments, value) = false) Then
-				Me.OnCustomerCommentsChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerComments = value
-				Me.SendPropertyChanged("CustomerComments")
-				Me.OnCustomerCommentsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgent", DbType:="Int")>  _
-	Public Property CustomerAgent() As System.Nullable(Of Integer)
-		Get
-			Return Me._CustomerAgent
-		End Get
-		Set
-			If (Me._CustomerAgent.Equals(value) = false) Then
-				Me.OnCustomerAgentChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerAgent = value
-				Me.SendPropertyChanged("CustomerAgent")
-				Me.OnCustomerAgentChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="SmallInt")>  _
-	Public Property CustomerRating() As System.Nullable(Of Short)
-		Get
-			Return Me._CustomerRating
-		End Get
-		Set
-			If (Me._CustomerRating.Equals(value) = false) Then
-				Me.OnCustomerRatingChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerRating = value
-				Me.SendPropertyChanged("CustomerRating")
-				Me.OnCustomerRatingChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
-	Public Property Zone() As System.Nullable(Of Integer)
-		Get
-			Return Me._Zone
-		End Get
-		Set
-			If (Me._Zone.Equals(value) = false) Then
-				Me.OnZoneChanging(value)
-				Me.SendPropertyChanging
-				Me._Zone = value
-				Me.SendPropertyChanged("Zone")
-				Me.OnZoneChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBCustomerNumber", DbType:="NVarChar(50)")>  _
-	Public Property MYOBCustomerNumber() As String
-		Get
-			Return Me._MYOBCustomerNumber
-		End Get
-		Set
-			If (String.Equals(Me._MYOBCustomerNumber, value) = false) Then
-				Me.OnMYOBCustomerNumberChanging(value)
-				Me.SendPropertyChanging
-				Me._MYOBCustomerNumber = value
-				Me.SendPropertyChanged("MYOBCustomerNumber")
-				Me.OnMYOBCustomerNumberChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerValue", DbType:="Float")>  _
-	Public Property CustomerValue() As System.Nullable(Of Double)
-		Get
-			Return Me._CustomerValue
-		End Get
-		Set
-			If (Me._CustomerValue.Equals(value) = false) Then
-				Me.OnCustomerValueChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerValue = value
-				Me.SendPropertyChanged("CustomerValue")
-				Me.OnCustomerValueChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveCustomer", DbType:="Bit NOT NULL")>  _
-	Public Property InactiveCustomer() As Boolean
-		Get
-			Return Me._InactiveCustomer
-		End Get
-		Set
-			If ((Me._InactiveCustomer = value)  _
-						= false) Then
-				Me.OnInactiveCustomerChanging(value)
-				Me.SendPropertyChanging
-				Me._InactiveCustomer = value
-				Me.SendPropertyChanged("InactiveCustomer")
-				Me.OnInactiveCustomerChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerCommencementDate", DbType:="DateTime")>  _
-	Public Property CustomerCommencementDate() As System.Nullable(Of Date)
-		Get
-			Return Me._CustomerCommencementDate
-		End Get
-		Set
-			If (Me._CustomerCommencementDate.Equals(value) = false) Then
-				Me.OnCustomerCommencementDateChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerCommencementDate = value
-				Me.SendPropertyChanged("CustomerCommencementDate")
-				Me.OnCustomerCommencementDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkCustomerExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
-	Public Property chkCustomerExcludeFuelLevy() As Boolean
-		Get
-			Return Me._chkCustomerExcludeFuelLevy
-		End Get
-		Set
-			If ((Me._chkCustomerExcludeFuelLevy = value)  _
-						= false) Then
-				Me.OnchkCustomerExcludeFuelLevyChanging(value)
-				Me.SendPropertyChanging
-				Me._chkCustomerExcludeFuelLevy = value
-				Me.SendPropertyChanged("chkCustomerExcludeFuelLevy")
-				Me.OnchkCustomerExcludeFuelLevyChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
-	Public Property cmbRateIncrease() As System.Nullable(Of Short)
-		Get
-			Return Me._cmbRateIncrease
-		End Get
-		Set
-			If (Me._cmbRateIncrease.Equals(value) = false) Then
-				Me.OncmbRateIncreaseChanging(value)
-				Me.SendPropertyChanging
-				Me._cmbRateIncrease = value
-				Me.SendPropertyChanged("cmbRateIncrease")
-				Me.OncmbRateIncreaseChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblContractPeriods")>  _
 Partial Public Class tblContractPeriod
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -15551,500 +15084,6 @@ Partial Public Class tblContractPeriod
 				Me._NumberOfYears = value
 				Me.SendPropertyChanged("NumberOfYears")
 				Me.OnNumberOfYearsChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tbZones")>  _
-Partial Public Class tbZone
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ZoneID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _AreaDescription As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnZoneIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnZoneIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnAreaDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnAreaDescriptionChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ZoneID() As System.Guid
-		Get
-			Return Me._ZoneID
-		End Get
-		Set
-			If ((Me._ZoneID = value)  _
-						= false) Then
-				Me.OnZoneIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ZoneID = value
-				Me.SendPropertyChanged("ZoneID")
-				Me.OnZoneIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
-	Public Property AreaDescription() As String
-		Get
-			Return Me._AreaDescription
-		End Get
-		Set
-			If (String.Equals(Me._AreaDescription, value) = false) Then
-				Me.OnAreaDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._AreaDescription = value
-				Me.SendPropertyChanged("AreaDescription")
-				Me.OnAreaDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblIndustryGroups")>  _
-Partial Public Class tblIndustryGroup
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _IndustryID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _IndustryDescription As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIndustryIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnIndustryIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnIndustryDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnIndustryDescriptionChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property IndustryID() As System.Guid
-		Get
-			Return Me._IndustryID
-		End Get
-		Set
-			If ((Me._IndustryID = value)  _
-						= false) Then
-				Me.OnIndustryIDChanging(value)
-				Me.SendPropertyChanging
-				Me._IndustryID = value
-				Me.SendPropertyChanged("IndustryID")
-				Me.OnIndustryIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryDescription", DbType:="NVarChar(50)")>  _
-	Public Property IndustryDescription() As String
-		Get
-			Return Me._IndustryDescription
-		End Get
-		Set
-			If (String.Equals(Me._IndustryDescription, value) = false) Then
-				Me.OnIndustryDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._IndustryDescription = value
-				Me.SendPropertyChanged("IndustryDescription")
-				Me.OnIndustryDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerAgents")>  _
-Partial Public Class tblCustomerAgent
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _CustomerAgentID As System.Guid
-	
-	Private _AID As Integer
-	
-	Private _CustomerAgentName As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnCustomerAgentIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnCustomerAgentIDChanged()
-    End Sub
-    Partial Private Sub OnAIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAIDChanged()
-    End Sub
-    Partial Private Sub OnCustomerAgentNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerAgentNameChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CustomerAgentID() As System.Guid
-		Get
-			Return Me._CustomerAgentID
-		End Get
-		Set
-			If ((Me._CustomerAgentID = value)  _
-						= false) Then
-				Me.OnCustomerAgentIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerAgentID = value
-				Me.SendPropertyChanged("CustomerAgentID")
-				Me.OnCustomerAgentIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AID", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property AID() As Integer
-		Get
-			Return Me._AID
-		End Get
-		Set
-			If ((Me._AID = value)  _
-						= false) Then
-				Me.OnAIDChanging(value)
-				Me.SendPropertyChanging
-				Me._AID = value
-				Me.SendPropertyChanged("AID")
-				Me.OnAIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerAgentName() As String
-		Get
-			Return Me._CustomerAgentName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerAgentName, value) = false) Then
-				Me.OnCustomerAgentNameChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerAgentName = value
-				Me.SendPropertyChanged("CustomerAgentName")
-				Me.OnCustomerAgentNameChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerRating")>  _
-Partial Public Class tblCustomerRating
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _CustomerRatingID As System.Guid
-	
-	Private _Rid As Integer
-	
-	Private _CustomerRating As String
-	
-	Private _CustomerRatingDesc As String
-	
-	Private _FromValue As System.Nullable(Of Integer)
-	
-	Private _ToValue As System.Nullable(Of Integer)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnCustomerRatingIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnCustomerRatingIDChanged()
-    End Sub
-    Partial Private Sub OnRidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnRidChanged()
-    End Sub
-    Partial Private Sub OnCustomerRatingChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerRatingChanged()
-    End Sub
-    Partial Private Sub OnCustomerRatingDescChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerRatingDescChanged()
-    End Sub
-    Partial Private Sub OnFromValueChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnFromValueChanged()
-    End Sub
-    Partial Private Sub OnToValueChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnToValueChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRatingID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CustomerRatingID() As System.Guid
-		Get
-			Return Me._CustomerRatingID
-		End Get
-		Set
-			If ((Me._CustomerRatingID = value)  _
-						= false) Then
-				Me.OnCustomerRatingIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerRatingID = value
-				Me.SendPropertyChanged("CustomerRatingID")
-				Me.OnCustomerRatingIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Rid() As Integer
-		Get
-			Return Me._Rid
-		End Get
-		Set
-			If ((Me._Rid = value)  _
-						= false) Then
-				Me.OnRidChanging(value)
-				Me.SendPropertyChanging
-				Me._Rid = value
-				Me.SendPropertyChanged("Rid")
-				Me.OnRidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="NVarChar(22)")>  _
-	Public Property CustomerRating() As String
-		Get
-			Return Me._CustomerRating
-		End Get
-		Set
-			If (String.Equals(Me._CustomerRating, value) = false) Then
-				Me.OnCustomerRatingChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerRating = value
-				Me.SendPropertyChanged("CustomerRating")
-				Me.OnCustomerRatingChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRatingDesc", DbType:="NVarChar(50)")>  _
-	Public Property CustomerRatingDesc() As String
-		Get
-			Return Me._CustomerRatingDesc
-		End Get
-		Set
-			If (String.Equals(Me._CustomerRatingDesc, value) = false) Then
-				Me.OnCustomerRatingDescChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerRatingDesc = value
-				Me.SendPropertyChanged("CustomerRatingDesc")
-				Me.OnCustomerRatingDescChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromValue", DbType:="Int")>  _
-	Public Property FromValue() As System.Nullable(Of Integer)
-		Get
-			Return Me._FromValue
-		End Get
-		Set
-			If (Me._FromValue.Equals(value) = false) Then
-				Me.OnFromValueChanging(value)
-				Me.SendPropertyChanging
-				Me._FromValue = value
-				Me.SendPropertyChanged("FromValue")
-				Me.OnFromValueChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToValue", DbType:="Int")>  _
-	Public Property ToValue() As System.Nullable(Of Integer)
-		Get
-			Return Me._ToValue
-		End Get
-		Set
-			If (Me._ToValue.Equals(value) = false) Then
-				Me.OnToValueChanging(value)
-				Me.SendPropertyChanging
-				Me._ToValue = value
-				Me.SendPropertyChanged("ToValue")
-				Me.OnToValueChanged
 			End If
 		End Set
 	End Property
@@ -16242,1494 +15281,6 @@ Partial Public Class tblDriver
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblPreviousSuppliers")>  _
-Partial Public Class tblPreviousSupplier
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _PreviousSupplierID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _PreviousSupplier As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnPreviousSupplierIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnPreviousSupplierIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnPreviousSupplierChanging(value As String)
-    End Sub
-    Partial Private Sub OnPreviousSupplierChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplierID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property PreviousSupplierID() As System.Guid
-		Get
-			Return Me._PreviousSupplierID
-		End Get
-		Set
-			If ((Me._PreviousSupplierID = value)  _
-						= false) Then
-				Me.OnPreviousSupplierIDChanging(value)
-				Me.SendPropertyChanging
-				Me._PreviousSupplierID = value
-				Me.SendPropertyChanged("PreviousSupplierID")
-				Me.OnPreviousSupplierIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="NVarChar(50)")>  _
-	Public Property PreviousSupplier() As String
-		Get
-			Return Me._PreviousSupplier
-		End Get
-		Set
-			If (String.Equals(Me._PreviousSupplier, value) = false) Then
-				Me.OnPreviousSupplierChanging(value)
-				Me.SendPropertyChanging
-				Me._PreviousSupplier = value
-				Me.SendPropertyChanged("PreviousSupplier")
-				Me.OnPreviousSupplierChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRateIncreaseReference")>  _
-Partial Public Class tblRateIncreaseReference
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _RateIncreaseID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _RateIncreaseDescription As String
-	
-	Private _AnnualIncreaseApplies As Boolean
-	
-	Private _AlreadyDoneThisYear As Boolean
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnRateIncreaseIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnRateIncreaseIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnRateIncreaseDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnRateIncreaseDescriptionChanged()
-    End Sub
-    Partial Private Sub OnAnnualIncreaseAppliesChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnAnnualIncreaseAppliesChanged()
-    End Sub
-    Partial Private Sub OnAlreadyDoneThisYearChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnAlreadyDoneThisYearChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property RateIncreaseID() As System.Guid
-		Get
-			Return Me._RateIncreaseID
-		End Get
-		Set
-			If ((Me._RateIncreaseID = value)  _
-						= false) Then
-				Me.OnRateIncreaseIDChanging(value)
-				Me.SendPropertyChanging
-				Me._RateIncreaseID = value
-				Me.SendPropertyChanged("RateIncreaseID")
-				Me.OnRateIncreaseIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseDescription", DbType:="NVarChar(25)")>  _
-	Public Property RateIncreaseDescription() As String
-		Get
-			Return Me._RateIncreaseDescription
-		End Get
-		Set
-			If (String.Equals(Me._RateIncreaseDescription, value) = false) Then
-				Me.OnRateIncreaseDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._RateIncreaseDescription = value
-				Me.SendPropertyChanged("RateIncreaseDescription")
-				Me.OnRateIncreaseDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualIncreaseApplies", DbType:="Bit NOT NULL")>  _
-	Public Property AnnualIncreaseApplies() As Boolean
-		Get
-			Return Me._AnnualIncreaseApplies
-		End Get
-		Set
-			If ((Me._AnnualIncreaseApplies = value)  _
-						= false) Then
-				Me.OnAnnualIncreaseAppliesChanging(value)
-				Me.SendPropertyChanging
-				Me._AnnualIncreaseApplies = value
-				Me.SendPropertyChanged("AnnualIncreaseApplies")
-				Me.OnAnnualIncreaseAppliesChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AlreadyDoneThisYear", DbType:="Bit NOT NULL")>  _
-	Public Property AlreadyDoneThisYear() As Boolean
-		Get
-			Return Me._AlreadyDoneThisYear
-		End Get
-		Set
-			If ((Me._AlreadyDoneThisYear = value)  _
-						= false) Then
-				Me.OnAlreadyDoneThisYearChanging(value)
-				Me.SendPropertyChanging
-				Me._AlreadyDoneThisYear = value
-				Me.SendPropertyChanged("AlreadyDoneThisYear")
-				Me.OnAlreadyDoneThisYearChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSalesPersons")>  _
-Partial Public Class tblSalesPerson
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _SalesPersonID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _SalesPerson As String
-	
-	Private _SalesPersonStartDate As System.Nullable(Of Date)
-	
-	Private _SalesPersonComments As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnSalesPersonIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnSalesPersonIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnSalesPersonChanging(value As String)
-    End Sub
-    Partial Private Sub OnSalesPersonChanged()
-    End Sub
-    Partial Private Sub OnSalesPersonStartDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnSalesPersonStartDateChanged()
-    End Sub
-    Partial Private Sub OnSalesPersonCommentsChanging(value As String)
-    End Sub
-    Partial Private Sub OnSalesPersonCommentsChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPersonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property SalesPersonID() As System.Guid
-		Get
-			Return Me._SalesPersonID
-		End Get
-		Set
-			If ((Me._SalesPersonID = value)  _
-						= false) Then
-				Me.OnSalesPersonIDChanging(value)
-				Me.SendPropertyChanging
-				Me._SalesPersonID = value
-				Me.SendPropertyChanged("SalesPersonID")
-				Me.OnSalesPersonIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPerson", DbType:="NVarChar(50)")>  _
-	Public Property SalesPerson() As String
-		Get
-			Return Me._SalesPerson
-		End Get
-		Set
-			If (String.Equals(Me._SalesPerson, value) = false) Then
-				Me.OnSalesPersonChanging(value)
-				Me.SendPropertyChanging
-				Me._SalesPerson = value
-				Me.SendPropertyChanged("SalesPerson")
-				Me.OnSalesPersonChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPersonStartDate", DbType:="DateTime")>  _
-	Public Property SalesPersonStartDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SalesPersonStartDate
-		End Get
-		Set
-			If (Me._SalesPersonStartDate.Equals(value) = false) Then
-				Me.OnSalesPersonStartDateChanging(value)
-				Me.SendPropertyChanging
-				Me._SalesPersonStartDate = value
-				Me.SendPropertyChanged("SalesPersonStartDate")
-				Me.OnSalesPersonStartDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPersonComments", DbType:="NVarChar(MAX)")>  _
-	Public Property SalesPersonComments() As String
-		Get
-			Return Me._SalesPersonComments
-		End Get
-		Set
-			If (String.Equals(Me._SalesPersonComments, value) = false) Then
-				Me.OnSalesPersonCommentsChanging(value)
-				Me.SendPropertyChanging
-				Me._SalesPersonComments = value
-				Me.SendPropertyChanged("SalesPersonComments")
-				Me.OnSalesPersonCommentsChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSites")>  _
-Partial Public Class tblSite
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _SiteID As System.Guid
-	
-	Private _Cid As Integer
-	
-	Private _SiteName As String
-	
-	Private _Customer As System.Nullable(Of Short)
-	
-	Private _AddressLine1 As String
-	
-	Private _AddressLine2 As String
-	
-	Private _AddressLine3 As String
-	
-	Private _AddressLine4 As String
-	
-	Private _Suburb As String
-	
-	Private _State As String
-	
-	Private _PostCode As System.Nullable(Of Short)
-	
-	Private _PhoneNo As String
-	
-	Private _FaxNo As String
-	
-	Private _SiteContactName As String
-	
-	Private _SiteContactPhone As String
-	
-	Private _SiteContactFax As String
-	
-	Private _SiteContactMobile As String
-	
-	Private _SiteContactEmail As String
-	
-	Private _PostalAddressLine1 As String
-	
-	Private _PostalAddressLine2 As String
-	
-	Private _PostalSuburb As String
-	
-	Private _PostalState As String
-	
-	Private _PostalPostCode As System.Nullable(Of Short)
-	
-	Private _SiteStartDate As System.Nullable(Of Date)
-	
-	Private _SitePeriod As System.Nullable(Of Integer)
-	
-	Private _SiteContractExpiry As System.Nullable(Of Date)
-	
-	Private _SiteCeaseDate As System.Nullable(Of Date)
-	
-	Private _SiteCeaseReason As System.Nullable(Of Integer)
-	
-	Private _InvoiceFrequency As System.Nullable(Of Integer)
-	
-	Private _InvoiceCommencing As System.Nullable(Of Date)
-	
-	Private _IndustryGroup As System.Nullable(Of Short)
-	
-	Private _PreviousSupplier As System.Nullable(Of Short)
-	
-	Private _LostBusinessTo As System.Nullable(Of Short)
-	
-	Private _SalesPerson As System.Nullable(Of Short)
-	
-	Private _InitialServiceAgreementNo As String
-	
-	Private _InvoiceMonth1 As System.Nullable(Of Integer)
-	
-	Private _InvoiceMonth2 As System.Nullable(Of Integer)
-	
-	Private _InvoiceMonth3 As System.Nullable(Of Integer)
-	
-	Private _InvoiceMonth4 As System.Nullable(Of Integer)
-	
-	Private _GeneralSiteServiceComments As String
-	
-	Private _TotalUnits As System.Nullable(Of Double)
-	
-	Private _TotalAmount As System.Nullable(Of Double)
-	
-	Private _Zone As System.Nullable(Of Integer)
-	
-	Private _SeparateInvoice As Boolean
-	
-	Private _PurchaseOrderNumber As String
-	
-	Private _chkSitesExcludeFuelLevy As Boolean
-	
-	Private _cmbRateIncrease As System.Nullable(Of Short)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnSiteIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnSiteIDChanged()
-    End Sub
-    Partial Private Sub OnCidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnCidChanged()
-    End Sub
-    Partial Private Sub OnSiteNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnSiteNameChanged()
-    End Sub
-    Partial Private Sub OnCustomerChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnCustomerChanged()
-    End Sub
-    Partial Private Sub OnAddressLine1Changing(value As String)
-    End Sub
-    Partial Private Sub OnAddressLine1Changed()
-    End Sub
-    Partial Private Sub OnAddressLine2Changing(value As String)
-    End Sub
-    Partial Private Sub OnAddressLine2Changed()
-    End Sub
-    Partial Private Sub OnAddressLine3Changing(value As String)
-    End Sub
-    Partial Private Sub OnAddressLine3Changed()
-    End Sub
-    Partial Private Sub OnAddressLine4Changing(value As String)
-    End Sub
-    Partial Private Sub OnAddressLine4Changed()
-    End Sub
-    Partial Private Sub OnSuburbChanging(value As String)
-    End Sub
-    Partial Private Sub OnSuburbChanged()
-    End Sub
-    Partial Private Sub OnStateChanging(value As String)
-    End Sub
-    Partial Private Sub OnStateChanged()
-    End Sub
-    Partial Private Sub OnPostCodeChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnPostCodeChanged()
-    End Sub
-    Partial Private Sub OnPhoneNoChanging(value As String)
-    End Sub
-    Partial Private Sub OnPhoneNoChanged()
-    End Sub
-    Partial Private Sub OnFaxNoChanging(value As String)
-    End Sub
-    Partial Private Sub OnFaxNoChanged()
-    End Sub
-    Partial Private Sub OnSiteContactNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnSiteContactNameChanged()
-    End Sub
-    Partial Private Sub OnSiteContactPhoneChanging(value As String)
-    End Sub
-    Partial Private Sub OnSiteContactPhoneChanged()
-    End Sub
-    Partial Private Sub OnSiteContactFaxChanging(value As String)
-    End Sub
-    Partial Private Sub OnSiteContactFaxChanged()
-    End Sub
-    Partial Private Sub OnSiteContactMobileChanging(value As String)
-    End Sub
-    Partial Private Sub OnSiteContactMobileChanged()
-    End Sub
-    Partial Private Sub OnSiteContactEmailChanging(value As String)
-    End Sub
-    Partial Private Sub OnSiteContactEmailChanged()
-    End Sub
-    Partial Private Sub OnPostalAddressLine1Changing(value As String)
-    End Sub
-    Partial Private Sub OnPostalAddressLine1Changed()
-    End Sub
-    Partial Private Sub OnPostalAddressLine2Changing(value As String)
-    End Sub
-    Partial Private Sub OnPostalAddressLine2Changed()
-    End Sub
-    Partial Private Sub OnPostalSuburbChanging(value As String)
-    End Sub
-    Partial Private Sub OnPostalSuburbChanged()
-    End Sub
-    Partial Private Sub OnPostalStateChanging(value As String)
-    End Sub
-    Partial Private Sub OnPostalStateChanged()
-    End Sub
-    Partial Private Sub OnPostalPostCodeChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnPostalPostCodeChanged()
-    End Sub
-    Partial Private Sub OnSiteStartDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnSiteStartDateChanged()
-    End Sub
-    Partial Private Sub OnSitePeriodChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnSitePeriodChanged()
-    End Sub
-    Partial Private Sub OnSiteContractExpiryChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnSiteContractExpiryChanged()
-    End Sub
-    Partial Private Sub OnSiteCeaseDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnSiteCeaseDateChanged()
-    End Sub
-    Partial Private Sub OnSiteCeaseReasonChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnSiteCeaseReasonChanged()
-    End Sub
-    Partial Private Sub OnInvoiceFrequencyChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnInvoiceFrequencyChanged()
-    End Sub
-    Partial Private Sub OnInvoiceCommencingChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnInvoiceCommencingChanged()
-    End Sub
-    Partial Private Sub OnIndustryGroupChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnIndustryGroupChanged()
-    End Sub
-    Partial Private Sub OnPreviousSupplierChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnPreviousSupplierChanged()
-    End Sub
-    Partial Private Sub OnLostBusinessToChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnLostBusinessToChanged()
-    End Sub
-    Partial Private Sub OnSalesPersonChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnSalesPersonChanged()
-    End Sub
-    Partial Private Sub OnInitialServiceAgreementNoChanging(value As String)
-    End Sub
-    Partial Private Sub OnInitialServiceAgreementNoChanged()
-    End Sub
-    Partial Private Sub OnInvoiceMonth1Changing(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnInvoiceMonth1Changed()
-    End Sub
-    Partial Private Sub OnInvoiceMonth2Changing(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnInvoiceMonth2Changed()
-    End Sub
-    Partial Private Sub OnInvoiceMonth3Changing(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnInvoiceMonth3Changed()
-    End Sub
-    Partial Private Sub OnInvoiceMonth4Changing(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnInvoiceMonth4Changed()
-    End Sub
-    Partial Private Sub OnGeneralSiteServiceCommentsChanging(value As String)
-    End Sub
-    Partial Private Sub OnGeneralSiteServiceCommentsChanged()
-    End Sub
-    Partial Private Sub OnTotalUnitsChanging(value As System.Nullable(Of Double))
-    End Sub
-    Partial Private Sub OnTotalUnitsChanged()
-    End Sub
-    Partial Private Sub OnTotalAmountChanging(value As System.Nullable(Of Double))
-    End Sub
-    Partial Private Sub OnTotalAmountChanged()
-    End Sub
-    Partial Private Sub OnZoneChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnZoneChanged()
-    End Sub
-    Partial Private Sub OnSeparateInvoiceChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnSeparateInvoiceChanged()
-    End Sub
-    Partial Private Sub OnPurchaseOrderNumberChanging(value As String)
-    End Sub
-    Partial Private Sub OnPurchaseOrderNumberChanged()
-    End Sub
-    Partial Private Sub OnchkSitesExcludeFuelLevyChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnchkSitesExcludeFuelLevyChanged()
-    End Sub
-    Partial Private Sub OncmbRateIncreaseChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OncmbRateIncreaseChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property SiteID() As System.Guid
-		Get
-			Return Me._SiteID
-		End Get
-		Set
-			If ((Me._SiteID = value)  _
-						= false) Then
-				Me.OnSiteIDChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteID = value
-				Me.SendPropertyChanged("SiteID")
-				Me.OnSiteIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Cid() As Integer
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If ((Me._Cid = value)  _
-						= false) Then
-				Me.OnCidChanging(value)
-				Me.SendPropertyChanging
-				Me._Cid = value
-				Me.SendPropertyChanged("Cid")
-				Me.OnCidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me.OnSiteNameChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteName = value
-				Me.SendPropertyChanged("SiteName")
-				Me.OnSiteNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
-	Public Property Customer() As System.Nullable(Of Short)
-		Get
-			Return Me._Customer
-		End Get
-		Set
-			If (Me._Customer.Equals(value) = false) Then
-				Me.OnCustomerChanging(value)
-				Me.SendPropertyChanging
-				Me._Customer = value
-				Me.SendPropertyChanged("Customer")
-				Me.OnCustomerChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine1() As String
-		Get
-			Return Me._AddressLine1
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine1, value) = false) Then
-				Me.OnAddressLine1Changing(value)
-				Me.SendPropertyChanging
-				Me._AddressLine1 = value
-				Me.SendPropertyChanged("AddressLine1")
-				Me.OnAddressLine1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine2() As String
-		Get
-			Return Me._AddressLine2
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine2, value) = false) Then
-				Me.OnAddressLine2Changing(value)
-				Me.SendPropertyChanging
-				Me._AddressLine2 = value
-				Me.SendPropertyChanged("AddressLine2")
-				Me.OnAddressLine2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine3", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine3() As String
-		Get
-			Return Me._AddressLine3
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine3, value) = false) Then
-				Me.OnAddressLine3Changing(value)
-				Me.SendPropertyChanging
-				Me._AddressLine3 = value
-				Me.SendPropertyChanged("AddressLine3")
-				Me.OnAddressLine3Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine4", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine4() As String
-		Get
-			Return Me._AddressLine4
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine4, value) = false) Then
-				Me.OnAddressLine4Changing(value)
-				Me.SendPropertyChanging
-				Me._AddressLine4 = value
-				Me.SendPropertyChanged("AddressLine4")
-				Me.OnAddressLine4Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(50)")>  _
-	Public Property Suburb() As String
-		Get
-			Return Me._Suburb
-		End Get
-		Set
-			If (String.Equals(Me._Suburb, value) = false) Then
-				Me.OnSuburbChanging(value)
-				Me.SendPropertyChanging
-				Me._Suburb = value
-				Me.SendPropertyChanged("Suburb")
-				Me.OnSuburbChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="NVarChar(5)")>  _
-	Public Property State() As String
-		Get
-			Return Me._State
-		End Get
-		Set
-			If (String.Equals(Me._State, value) = false) Then
-				Me.OnStateChanging(value)
-				Me.SendPropertyChanging
-				Me._State = value
-				Me.SendPropertyChanged("State")
-				Me.OnStateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="SmallInt")>  _
-	Public Property PostCode() As System.Nullable(Of Short)
-		Get
-			Return Me._PostCode
-		End Get
-		Set
-			If (Me._PostCode.Equals(value) = false) Then
-				Me.OnPostCodeChanging(value)
-				Me.SendPropertyChanging
-				Me._PostCode = value
-				Me.SendPropertyChanged("PostCode")
-				Me.OnPostCodeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNo", DbType:="NVarChar(50)")>  _
-	Public Property PhoneNo() As String
-		Get
-			Return Me._PhoneNo
-		End Get
-		Set
-			If (String.Equals(Me._PhoneNo, value) = false) Then
-				Me.OnPhoneNoChanging(value)
-				Me.SendPropertyChanging
-				Me._PhoneNo = value
-				Me.SendPropertyChanged("PhoneNo")
-				Me.OnPhoneNoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FaxNo", DbType:="NVarChar(50)")>  _
-	Public Property FaxNo() As String
-		Get
-			Return Me._FaxNo
-		End Get
-		Set
-			If (String.Equals(Me._FaxNo, value) = false) Then
-				Me.OnFaxNoChanging(value)
-				Me.SendPropertyChanging
-				Me._FaxNo = value
-				Me.SendPropertyChanged("FaxNo")
-				Me.OnFaxNoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactName", DbType:="NVarChar(50)")>  _
-	Public Property SiteContactName() As String
-		Get
-			Return Me._SiteContactName
-		End Get
-		Set
-			If (String.Equals(Me._SiteContactName, value) = false) Then
-				Me.OnSiteContactNameChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteContactName = value
-				Me.SendPropertyChanged("SiteContactName")
-				Me.OnSiteContactNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactPhone", DbType:="NVarChar(50)")>  _
-	Public Property SiteContactPhone() As String
-		Get
-			Return Me._SiteContactPhone
-		End Get
-		Set
-			If (String.Equals(Me._SiteContactPhone, value) = false) Then
-				Me.OnSiteContactPhoneChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteContactPhone = value
-				Me.SendPropertyChanged("SiteContactPhone")
-				Me.OnSiteContactPhoneChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactFax", DbType:="NVarChar(50)")>  _
-	Public Property SiteContactFax() As String
-		Get
-			Return Me._SiteContactFax
-		End Get
-		Set
-			If (String.Equals(Me._SiteContactFax, value) = false) Then
-				Me.OnSiteContactFaxChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteContactFax = value
-				Me.SendPropertyChanged("SiteContactFax")
-				Me.OnSiteContactFaxChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactMobile", DbType:="NVarChar(50)")>  _
-	Public Property SiteContactMobile() As String
-		Get
-			Return Me._SiteContactMobile
-		End Get
-		Set
-			If (String.Equals(Me._SiteContactMobile, value) = false) Then
-				Me.OnSiteContactMobileChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteContactMobile = value
-				Me.SendPropertyChanged("SiteContactMobile")
-				Me.OnSiteContactMobileChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactEmail", DbType:="NVarChar(50)")>  _
-	Public Property SiteContactEmail() As String
-		Get
-			Return Me._SiteContactEmail
-		End Get
-		Set
-			If (String.Equals(Me._SiteContactEmail, value) = false) Then
-				Me.OnSiteContactEmailChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteContactEmail = value
-				Me.SendPropertyChanged("SiteContactEmail")
-				Me.OnSiteContactEmailChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine1", DbType:="NVarChar(50)")>  _
-	Public Property PostalAddressLine1() As String
-		Get
-			Return Me._PostalAddressLine1
-		End Get
-		Set
-			If (String.Equals(Me._PostalAddressLine1, value) = false) Then
-				Me.OnPostalAddressLine1Changing(value)
-				Me.SendPropertyChanging
-				Me._PostalAddressLine1 = value
-				Me.SendPropertyChanged("PostalAddressLine1")
-				Me.OnPostalAddressLine1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine2", DbType:="NVarChar(50)")>  _
-	Public Property PostalAddressLine2() As String
-		Get
-			Return Me._PostalAddressLine2
-		End Get
-		Set
-			If (String.Equals(Me._PostalAddressLine2, value) = false) Then
-				Me.OnPostalAddressLine2Changing(value)
-				Me.SendPropertyChanging
-				Me._PostalAddressLine2 = value
-				Me.SendPropertyChanged("PostalAddressLine2")
-				Me.OnPostalAddressLine2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSuburb", DbType:="NVarChar(50)")>  _
-	Public Property PostalSuburb() As String
-		Get
-			Return Me._PostalSuburb
-		End Get
-		Set
-			If (String.Equals(Me._PostalSuburb, value) = false) Then
-				Me.OnPostalSuburbChanging(value)
-				Me.SendPropertyChanging
-				Me._PostalSuburb = value
-				Me.SendPropertyChanged("PostalSuburb")
-				Me.OnPostalSuburbChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalState", DbType:="NVarChar(6)")>  _
-	Public Property PostalState() As String
-		Get
-			Return Me._PostalState
-		End Get
-		Set
-			If (String.Equals(Me._PostalState, value) = false) Then
-				Me.OnPostalStateChanging(value)
-				Me.SendPropertyChanging
-				Me._PostalState = value
-				Me.SendPropertyChanged("PostalState")
-				Me.OnPostalStateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalPostCode", DbType:="SmallInt")>  _
-	Public Property PostalPostCode() As System.Nullable(Of Short)
-		Get
-			Return Me._PostalPostCode
-		End Get
-		Set
-			If (Me._PostalPostCode.Equals(value) = false) Then
-				Me.OnPostalPostCodeChanging(value)
-				Me.SendPropertyChanging
-				Me._PostalPostCode = value
-				Me.SendPropertyChanged("PostalPostCode")
-				Me.OnPostalPostCodeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteStartDate", DbType:="Date")>  _
-	Public Property SiteStartDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteStartDate
-		End Get
-		Set
-			If (Me._SiteStartDate.Equals(value) = false) Then
-				Me.OnSiteStartDateChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteStartDate = value
-				Me.SendPropertyChanged("SiteStartDate")
-				Me.OnSiteStartDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SitePeriod", DbType:="Int")>  _
-	Public Property SitePeriod() As System.Nullable(Of Integer)
-		Get
-			Return Me._SitePeriod
-		End Get
-		Set
-			If (Me._SitePeriod.Equals(value) = false) Then
-				Me.OnSitePeriodChanging(value)
-				Me.SendPropertyChanging
-				Me._SitePeriod = value
-				Me.SendPropertyChanged("SitePeriod")
-				Me.OnSitePeriodChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContractExpiry", DbType:="Date")>  _
-	Public Property SiteContractExpiry() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteContractExpiry
-		End Get
-		Set
-			If (Me._SiteContractExpiry.Equals(value) = false) Then
-				Me.OnSiteContractExpiryChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteContractExpiry = value
-				Me.SendPropertyChanged("SiteContractExpiry")
-				Me.OnSiteContractExpiryChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
-	Public Property SiteCeaseDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteCeaseDate
-		End Get
-		Set
-			If (Me._SiteCeaseDate.Equals(value) = false) Then
-				Me.OnSiteCeaseDateChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteCeaseDate = value
-				Me.SendPropertyChanged("SiteCeaseDate")
-				Me.OnSiteCeaseDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseReason", DbType:="Int")>  _
-	Public Property SiteCeaseReason() As System.Nullable(Of Integer)
-		Get
-			Return Me._SiteCeaseReason
-		End Get
-		Set
-			If (Me._SiteCeaseReason.Equals(value) = false) Then
-				Me.OnSiteCeaseReasonChanging(value)
-				Me.SendPropertyChanging
-				Me._SiteCeaseReason = value
-				Me.SendPropertyChanged("SiteCeaseReason")
-				Me.OnSiteCeaseReasonChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceFrequency", DbType:="Int")>  _
-	Public Property InvoiceFrequency() As System.Nullable(Of Integer)
-		Get
-			Return Me._InvoiceFrequency
-		End Get
-		Set
-			If (Me._InvoiceFrequency.Equals(value) = false) Then
-				Me.OnInvoiceFrequencyChanging(value)
-				Me.SendPropertyChanging
-				Me._InvoiceFrequency = value
-				Me.SendPropertyChanged("InvoiceFrequency")
-				Me.OnInvoiceFrequencyChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceCommencing", DbType:="Date")>  _
-	Public Property InvoiceCommencing() As System.Nullable(Of Date)
-		Get
-			Return Me._InvoiceCommencing
-		End Get
-		Set
-			If (Me._InvoiceCommencing.Equals(value) = false) Then
-				Me.OnInvoiceCommencingChanging(value)
-				Me.SendPropertyChanging
-				Me._InvoiceCommencing = value
-				Me.SendPropertyChanged("InvoiceCommencing")
-				Me.OnInvoiceCommencingChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryGroup", DbType:="SmallInt")>  _
-	Public Property IndustryGroup() As System.Nullable(Of Short)
-		Get
-			Return Me._IndustryGroup
-		End Get
-		Set
-			If (Me._IndustryGroup.Equals(value) = false) Then
-				Me.OnIndustryGroupChanging(value)
-				Me.SendPropertyChanging
-				Me._IndustryGroup = value
-				Me.SendPropertyChanged("IndustryGroup")
-				Me.OnIndustryGroupChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="SmallInt")>  _
-	Public Property PreviousSupplier() As System.Nullable(Of Short)
-		Get
-			Return Me._PreviousSupplier
-		End Get
-		Set
-			If (Me._PreviousSupplier.Equals(value) = false) Then
-				Me.OnPreviousSupplierChanging(value)
-				Me.SendPropertyChanging
-				Me._PreviousSupplier = value
-				Me.SendPropertyChanged("PreviousSupplier")
-				Me.OnPreviousSupplierChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LostBusinessTo", DbType:="SmallInt")>  _
-	Public Property LostBusinessTo() As System.Nullable(Of Short)
-		Get
-			Return Me._LostBusinessTo
-		End Get
-		Set
-			If (Me._LostBusinessTo.Equals(value) = false) Then
-				Me.OnLostBusinessToChanging(value)
-				Me.SendPropertyChanging
-				Me._LostBusinessTo = value
-				Me.SendPropertyChanged("LostBusinessTo")
-				Me.OnLostBusinessToChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPerson", DbType:="SmallInt")>  _
-	Public Property SalesPerson() As System.Nullable(Of Short)
-		Get
-			Return Me._SalesPerson
-		End Get
-		Set
-			If (Me._SalesPerson.Equals(value) = false) Then
-				Me.OnSalesPersonChanging(value)
-				Me.SendPropertyChanging
-				Me._SalesPerson = value
-				Me.SendPropertyChanged("SalesPerson")
-				Me.OnSalesPersonChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InitialServiceAgreementNo", DbType:="NVarChar(22)")>  _
-	Public Property InitialServiceAgreementNo() As String
-		Get
-			Return Me._InitialServiceAgreementNo
-		End Get
-		Set
-			If (String.Equals(Me._InitialServiceAgreementNo, value) = false) Then
-				Me.OnInitialServiceAgreementNoChanging(value)
-				Me.SendPropertyChanging
-				Me._InitialServiceAgreementNo = value
-				Me.SendPropertyChanged("InitialServiceAgreementNo")
-				Me.OnInitialServiceAgreementNoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth1", DbType:="Int")>  _
-	Public Property InvoiceMonth1() As System.Nullable(Of Integer)
-		Get
-			Return Me._InvoiceMonth1
-		End Get
-		Set
-			If (Me._InvoiceMonth1.Equals(value) = false) Then
-				Me.OnInvoiceMonth1Changing(value)
-				Me.SendPropertyChanging
-				Me._InvoiceMonth1 = value
-				Me.SendPropertyChanged("InvoiceMonth1")
-				Me.OnInvoiceMonth1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth2", DbType:="Int")>  _
-	Public Property InvoiceMonth2() As System.Nullable(Of Integer)
-		Get
-			Return Me._InvoiceMonth2
-		End Get
-		Set
-			If (Me._InvoiceMonth2.Equals(value) = false) Then
-				Me.OnInvoiceMonth2Changing(value)
-				Me.SendPropertyChanging
-				Me._InvoiceMonth2 = value
-				Me.SendPropertyChanged("InvoiceMonth2")
-				Me.OnInvoiceMonth2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth3", DbType:="Int")>  _
-	Public Property InvoiceMonth3() As System.Nullable(Of Integer)
-		Get
-			Return Me._InvoiceMonth3
-		End Get
-		Set
-			If (Me._InvoiceMonth3.Equals(value) = false) Then
-				Me.OnInvoiceMonth3Changing(value)
-				Me.SendPropertyChanging
-				Me._InvoiceMonth3 = value
-				Me.SendPropertyChanged("InvoiceMonth3")
-				Me.OnInvoiceMonth3Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth4", DbType:="Int")>  _
-	Public Property InvoiceMonth4() As System.Nullable(Of Integer)
-		Get
-			Return Me._InvoiceMonth4
-		End Get
-		Set
-			If (Me._InvoiceMonth4.Equals(value) = false) Then
-				Me.OnInvoiceMonth4Changing(value)
-				Me.SendPropertyChanging
-				Me._InvoiceMonth4 = value
-				Me.SendPropertyChanged("InvoiceMonth4")
-				Me.OnInvoiceMonth4Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeneralSiteServiceComments", DbType:="NVarChar(MAX)")>  _
-	Public Property GeneralSiteServiceComments() As String
-		Get
-			Return Me._GeneralSiteServiceComments
-		End Get
-		Set
-			If (String.Equals(Me._GeneralSiteServiceComments, value) = false) Then
-				Me.OnGeneralSiteServiceCommentsChanging(value)
-				Me.SendPropertyChanging
-				Me._GeneralSiteServiceComments = value
-				Me.SendPropertyChanged("GeneralSiteServiceComments")
-				Me.OnGeneralSiteServiceCommentsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalUnits", DbType:="Float")>  _
-	Public Property TotalUnits() As System.Nullable(Of Double)
-		Get
-			Return Me._TotalUnits
-		End Get
-		Set
-			If (Me._TotalUnits.Equals(value) = false) Then
-				Me.OnTotalUnitsChanging(value)
-				Me.SendPropertyChanging
-				Me._TotalUnits = value
-				Me.SendPropertyChanged("TotalUnits")
-				Me.OnTotalUnitsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalAmount", DbType:="Float")>  _
-	Public Property TotalAmount() As System.Nullable(Of Double)
-		Get
-			Return Me._TotalAmount
-		End Get
-		Set
-			If (Me._TotalAmount.Equals(value) = false) Then
-				Me.OnTotalAmountChanging(value)
-				Me.SendPropertyChanging
-				Me._TotalAmount = value
-				Me.SendPropertyChanged("TotalAmount")
-				Me.OnTotalAmountChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
-	Public Property Zone() As System.Nullable(Of Integer)
-		Get
-			Return Me._Zone
-		End Get
-		Set
-			If (Me._Zone.Equals(value) = false) Then
-				Me.OnZoneChanging(value)
-				Me.SendPropertyChanging
-				Me._Zone = value
-				Me.SendPropertyChanged("Zone")
-				Me.OnZoneChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SeparateInvoice", DbType:="Bit NOT NULL")>  _
-	Public Property SeparateInvoice() As Boolean
-		Get
-			Return Me._SeparateInvoice
-		End Get
-		Set
-			If ((Me._SeparateInvoice = value)  _
-						= false) Then
-				Me.OnSeparateInvoiceChanging(value)
-				Me.SendPropertyChanging
-				Me._SeparateInvoice = value
-				Me.SendPropertyChanged("SeparateInvoice")
-				Me.OnSeparateInvoiceChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PurchaseOrderNumber", DbType:="NVarChar(50)")>  _
-	Public Property PurchaseOrderNumber() As String
-		Get
-			Return Me._PurchaseOrderNumber
-		End Get
-		Set
-			If (String.Equals(Me._PurchaseOrderNumber, value) = false) Then
-				Me.OnPurchaseOrderNumberChanging(value)
-				Me.SendPropertyChanging
-				Me._PurchaseOrderNumber = value
-				Me.SendPropertyChanged("PurchaseOrderNumber")
-				Me.OnPurchaseOrderNumberChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkSitesExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
-	Public Property chkSitesExcludeFuelLevy() As Boolean
-		Get
-			Return Me._chkSitesExcludeFuelLevy
-		End Get
-		Set
-			If ((Me._chkSitesExcludeFuelLevy = value)  _
-						= false) Then
-				Me.OnchkSitesExcludeFuelLevyChanging(value)
-				Me.SendPropertyChanging
-				Me._chkSitesExcludeFuelLevy = value
-				Me.SendPropertyChanged("chkSitesExcludeFuelLevy")
-				Me.OnchkSitesExcludeFuelLevyChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
-	Public Property cmbRateIncrease() As System.Nullable(Of Short)
-		Get
-			Return Me._cmbRateIncrease
-		End Get
-		Set
-			If (Me._cmbRateIncrease.Equals(value) = false) Then
-				Me.OncmbRateIncreaseChanging(value)
-				Me.SendPropertyChanging
-				Me._cmbRateIncrease = value
-				Me.SendPropertyChanged("cmbRateIncrease")
-				Me.OncmbRateIncreaseChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblStates")>  _
 Partial Public Class tblState
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -17836,113 +15387,6 @@ Partial Public Class tblState
 				Me._StateDesc = value
 				Me.SendPropertyChanged("StateDesc")
 				Me.OnStateDescChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblContractCeaseReasons")>  _
-Partial Public Class tblContractCeaseReason
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _CeaseReasonID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _CeaseReasonDescription As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnCeaseReasonIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnCeaseReasonIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnCeaseReasonDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnCeaseReasonDescriptionChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CeaseReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CeaseReasonID() As System.Guid
-		Get
-			Return Me._CeaseReasonID
-		End Get
-		Set
-			If ((Me._CeaseReasonID = value)  _
-						= false) Then
-				Me.OnCeaseReasonIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CeaseReasonID = value
-				Me.SendPropertyChanged("CeaseReasonID")
-				Me.OnCeaseReasonIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CeaseReasonDescription", DbType:="NVarChar(50)")>  _
-	Public Property CeaseReasonDescription() As String
-		Get
-			Return Me._CeaseReasonDescription
-		End Get
-		Set
-			If (String.Equals(Me._CeaseReasonDescription, value) = false) Then
-				Me.OnCeaseReasonDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._CeaseReasonDescription = value
-				Me.SendPropertyChanged("CeaseReasonDescription")
-				Me.OnCeaseReasonDescriptionChanged
 			End If
 		End Set
 	End Property
@@ -18160,157 +15604,6 @@ Partial Public Class tblSiteReSignDetail
 				Me._ContractExpiryDate = value
 				Me.SendPropertyChanged("ContractExpiryDate")
 				Me.OnContractExpiryDateChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblInvoicingFrequency")>  _
-Partial Public Class tblInvoicingFrequency
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _InvoiceFrequencyID As System.Guid
-	
-	Private _IId As Integer
-	
-	Private _InvoiceId As String
-	
-	Private _Frequency As String
-	
-	Private _NoOfWeeks As System.Nullable(Of Single)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnInvoiceFrequencyIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnInvoiceFrequencyIDChanged()
-    End Sub
-    Partial Private Sub OnIIdChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnIIdChanged()
-    End Sub
-    Partial Private Sub OnInvoiceIdChanging(value As String)
-    End Sub
-    Partial Private Sub OnInvoiceIdChanged()
-    End Sub
-    Partial Private Sub OnFrequencyChanging(value As String)
-    End Sub
-    Partial Private Sub OnFrequencyChanged()
-    End Sub
-    Partial Private Sub OnNoOfWeeksChanging(value As System.Nullable(Of Single))
-    End Sub
-    Partial Private Sub OnNoOfWeeksChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceFrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property InvoiceFrequencyID() As System.Guid
-		Get
-			Return Me._InvoiceFrequencyID
-		End Get
-		Set
-			If ((Me._InvoiceFrequencyID = value)  _
-						= false) Then
-				Me.OnInvoiceFrequencyIDChanging(value)
-				Me.SendPropertyChanging
-				Me._InvoiceFrequencyID = value
-				Me.SendPropertyChanged("InvoiceFrequencyID")
-				Me.OnInvoiceFrequencyIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IId", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property IId() As Integer
-		Get
-			Return Me._IId
-		End Get
-		Set
-			If ((Me._IId = value)  _
-						= false) Then
-				Me.OnIIdChanging(value)
-				Me.SendPropertyChanging
-				Me._IId = value
-				Me.SendPropertyChanged("IId")
-				Me.OnIIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceId", DbType:="NVarChar(1)")>  _
-	Public Property InvoiceId() As String
-		Get
-			Return Me._InvoiceId
-		End Get
-		Set
-			If (String.Equals(Me._InvoiceId, value) = false) Then
-				Me.OnInvoiceIdChanging(value)
-				Me.SendPropertyChanging
-				Me._InvoiceId = value
-				Me.SendPropertyChanged("InvoiceId")
-				Me.OnInvoiceIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Frequency", DbType:="NVarChar(22)")>  _
-	Public Property Frequency() As String
-		Get
-			Return Me._Frequency
-		End Get
-		Set
-			If (String.Equals(Me._Frequency, value) = false) Then
-				Me.OnFrequencyChanging(value)
-				Me.SendPropertyChanging
-				Me._Frequency = value
-				Me.SendPropertyChanged("Frequency")
-				Me.OnFrequencyChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NoOfWeeks", DbType:="Real")>  _
-	Public Property NoOfWeeks() As System.Nullable(Of Single)
-		Get
-			Return Me._NoOfWeeks
-		End Get
-		Set
-			If (Me._NoOfWeeks.Equals(value) = false) Then
-				Me.OnNoOfWeeksChanging(value)
-				Me.SendPropertyChanging
-				Me._NoOfWeeks = value
-				Me.SendPropertyChanged("NoOfWeeks")
-				Me.OnNoOfWeeksChanged
 			End If
 		End Set
 	End Property
@@ -18922,331 +16215,6 @@ Partial Public Class tblCustomerService
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServices")>  _
-Partial Public Class tblService
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ServicesID As System.Guid
-	
-	Private _Sid As Integer
-	
-	Private _ServiceCode As String
-	
-	Private _ServiceDescription As String
-	
-	Private _CostOfService As System.Nullable(Of Single)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnServicesIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnServicesIDChanged()
-    End Sub
-    Partial Private Sub OnSidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnSidChanged()
-    End Sub
-    Partial Private Sub OnServiceCodeChanging(value As String)
-    End Sub
-    Partial Private Sub OnServiceCodeChanged()
-    End Sub
-    Partial Private Sub OnServiceDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnServiceDescriptionChanged()
-    End Sub
-    Partial Private Sub OnCostOfServiceChanging(value As System.Nullable(Of Single))
-    End Sub
-    Partial Private Sub OnCostOfServiceChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ServicesID() As System.Guid
-		Get
-			Return Me._ServicesID
-		End Get
-		Set
-			If ((Me._ServicesID = value)  _
-						= false) Then
-				Me.OnServicesIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ServicesID = value
-				Me.SendPropertyChanged("ServicesID")
-				Me.OnServicesIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Sid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Sid() As Integer
-		Get
-			Return Me._Sid
-		End Get
-		Set
-			If ((Me._Sid = value)  _
-						= false) Then
-				Me.OnSidChanging(value)
-				Me.SendPropertyChanging
-				Me._Sid = value
-				Me.SendPropertyChanged("Sid")
-				Me.OnSidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
-	Public Property ServiceCode() As String
-		Get
-			Return Me._ServiceCode
-		End Get
-		Set
-			If (String.Equals(Me._ServiceCode, value) = false) Then
-				Me.OnServiceCodeChanging(value)
-				Me.SendPropertyChanging
-				Me._ServiceCode = value
-				Me.SendPropertyChanged("ServiceCode")
-				Me.OnServiceCodeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
-	Public Property ServiceDescription() As String
-		Get
-			Return Me._ServiceDescription
-		End Get
-		Set
-			If (String.Equals(Me._ServiceDescription, value) = false) Then
-				Me.OnServiceDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._ServiceDescription = value
-				Me.SendPropertyChanged("ServiceDescription")
-				Me.OnServiceDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CostOfService", DbType:="Real")>  _
-	Public Property CostOfService() As System.Nullable(Of Single)
-		Get
-			Return Me._CostOfService
-		End Get
-		Set
-			If (Me._CostOfService.Equals(value) = false) Then
-				Me.OnCostOfServiceChanging(value)
-				Me.SendPropertyChanging
-				Me._CostOfService = value
-				Me.SendPropertyChanged("CostOfService")
-				Me.OnCostOfServiceChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServiceFrequency")>  _
-Partial Public Class tblServiceFrequency
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _FrequencyID As System.Guid
-	
-	Private _Fid As Integer
-	
-	Private _FrequencyDescription As String
-	
-	Private _Factor As System.Nullable(Of Single)
-	
-	Private _Periodical As Boolean
-	
-	Private _Notes As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnFrequencyIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnFrequencyIDChanged()
-    End Sub
-    Partial Private Sub OnFidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnFidChanged()
-    End Sub
-    Partial Private Sub OnFrequencyDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnFrequencyDescriptionChanged()
-    End Sub
-    Partial Private Sub OnFactorChanging(value As System.Nullable(Of Single))
-    End Sub
-    Partial Private Sub OnFactorChanged()
-    End Sub
-    Partial Private Sub OnPeriodicalChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnPeriodicalChanged()
-    End Sub
-    Partial Private Sub OnNotesChanging(value As String)
-    End Sub
-    Partial Private Sub OnNotesChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property FrequencyID() As System.Guid
-		Get
-			Return Me._FrequencyID
-		End Get
-		Set
-			If ((Me._FrequencyID = value)  _
-						= false) Then
-				Me.OnFrequencyIDChanging(value)
-				Me.SendPropertyChanging
-				Me._FrequencyID = value
-				Me.SendPropertyChanged("FrequencyID")
-				Me.OnFrequencyIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Fid() As Integer
-		Get
-			Return Me._Fid
-		End Get
-		Set
-			If ((Me._Fid = value)  _
-						= false) Then
-				Me.OnFidChanging(value)
-				Me.SendPropertyChanging
-				Me._Fid = value
-				Me.SendPropertyChanged("Fid")
-				Me.OnFidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyDescription", DbType:="NVarChar(50)")>  _
-	Public Property FrequencyDescription() As String
-		Get
-			Return Me._FrequencyDescription
-		End Get
-		Set
-			If (String.Equals(Me._FrequencyDescription, value) = false) Then
-				Me.OnFrequencyDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._FrequencyDescription = value
-				Me.SendPropertyChanged("FrequencyDescription")
-				Me.OnFrequencyDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Factor", DbType:="Real")>  _
-	Public Property Factor() As System.Nullable(Of Single)
-		Get
-			Return Me._Factor
-		End Get
-		Set
-			If (Me._Factor.Equals(value) = false) Then
-				Me.OnFactorChanging(value)
-				Me.SendPropertyChanging
-				Me._Factor = value
-				Me.SendPropertyChanged("Factor")
-				Me.OnFactorChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Periodical", DbType:="Bit NOT NULL")>  _
-	Public Property Periodical() As Boolean
-		Get
-			Return Me._Periodical
-		End Get
-		Set
-			If ((Me._Periodical = value)  _
-						= false) Then
-				Me.OnPeriodicalChanging(value)
-				Me.SendPropertyChanging
-				Me._Periodical = value
-				Me.SendPropertyChanged("Periodical")
-				Me.OnPeriodicalChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="NVarChar(MAX)")>  _
-	Public Property Notes() As String
-		Get
-			Return Me._Notes
-		End Get
-		Set
-			If (String.Equals(Me._Notes, value) = false) Then
-				Me.OnNotesChanging(value)
-				Me.SendPropertyChanging
-				Me._Notes = value
-				Me.SendPropertyChanged("Notes")
-				Me.OnNotesChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRuns")>  _
 Partial Public Class tblRun
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -19559,113 +16527,6 @@ Partial Public Class tblRun
 				Me._InactiveRun = value
 				Me.SendPropertyChanged("InactiveRun")
 				Me.OnInactiveRunChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCIRReason")>  _
-Partial Public Class tblCIRReason
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ReasonID As System.Guid
-	
-	Private _CId As Integer
-	
-	Private _CIRReason As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnReasonIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnReasonIDChanged()
-    End Sub
-    Partial Private Sub OnCIdChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnCIdChanged()
-    End Sub
-    Partial Private Sub OnCIRReasonChanging(value As String)
-    End Sub
-    Partial Private Sub OnCIRReasonChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ReasonID() As System.Guid
-		Get
-			Return Me._ReasonID
-		End Get
-		Set
-			If ((Me._ReasonID = value)  _
-						= false) Then
-				Me.OnReasonIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ReasonID = value
-				Me.SendPropertyChanged("ReasonID")
-				Me.OnReasonIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CId", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property CId() As Integer
-		Get
-			Return Me._CId
-		End Get
-		Set
-			If ((Me._CId = value)  _
-						= false) Then
-				Me.OnCIdChanging(value)
-				Me.SendPropertyChanging
-				Me._CId = value
-				Me.SendPropertyChanged("CId")
-				Me.OnCIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CIRReason", DbType:="NVarChar(50)")>  _
-	Public Property CIRReason() As String
-		Get
-			Return Me._CIRReason
-		End Get
-		Set
-			If (String.Equals(Me._CIRReason, value) = false) Then
-				Me.OnCIRReasonChanging(value)
-				Me.SendPropertyChanging
-				Me._CIRReason = value
-				Me.SendPropertyChanged("CIRReason")
-				Me.OnCIRReasonChanged
 			End If
 		End Set
 	End Property
@@ -21014,6 +17875,4028 @@ Partial Public Class vw_GetVehicle
 			End If
 		End Set
 	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomers")>  _
+Partial Public Class tblCustomer
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerID As System.Guid
+	
+	Private _Cid As Integer
+	
+	Private _CustomerName As String
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _State As System.Nullable(Of Integer)
+	
+	Private _Suburb As String
+	
+	Private _PostCode As String
+	
+	Private _CustomerContactName As String
+	
+	Private _CustomerPhone As String
+	
+	Private _CustomerMobile As String
+	
+	Private _CustomerFax As String
+	
+	Private _CustomerComments As String
+	
+	Private _CustomerAgent As System.Nullable(Of Integer)
+	
+	Private _CustomerRating As System.Nullable(Of Short)
+	
+	Private _Zone As System.Nullable(Of Integer)
+	
+	Private _MYOBCustomerNumber As String
+	
+	Private _CustomerValue As System.Nullable(Of Double)
+	
+	Private _InactiveCustomer As Boolean
+	
+	Private _CustomerCommencementDate As System.Nullable(Of Date)
+	
+	Private _chkCustomerExcludeFuelLevy As Boolean
+	
+	Private _cmbRateIncrease As System.Nullable(Of Short)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerIDChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnCustomerNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerNameChanged()
+    End Sub
+    Partial Private Sub OnAddressLine1Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine1Changed()
+    End Sub
+    Partial Private Sub OnAddressLine2Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine2Changed()
+    End Sub
+    Partial Private Sub OnStateChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnStateChanged()
+    End Sub
+    Partial Private Sub OnSuburbChanging(value As String)
+    End Sub
+    Partial Private Sub OnSuburbChanged()
+    End Sub
+    Partial Private Sub OnPostCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnPostCodeChanged()
+    End Sub
+    Partial Private Sub OnCustomerContactNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerContactNameChanged()
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanged()
+    End Sub
+    Partial Private Sub OnCustomerMobileChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerMobileChanged()
+    End Sub
+    Partial Private Sub OnCustomerFaxChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerFaxChanged()
+    End Sub
+    Partial Private Sub OnCustomerCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerCommentsChanged()
+    End Sub
+    Partial Private Sub OnCustomerAgentChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCustomerAgentChanged()
+    End Sub
+    Partial Private Sub OnCustomerRatingChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnCustomerRatingChanged()
+    End Sub
+    Partial Private Sub OnZoneChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnZoneChanged()
+    End Sub
+    Partial Private Sub OnMYOBCustomerNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnMYOBCustomerNumberChanged()
+    End Sub
+    Partial Private Sub OnCustomerValueChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnCustomerValueChanged()
+    End Sub
+    Partial Private Sub OnInactiveCustomerChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnInactiveCustomerChanged()
+    End Sub
+    Partial Private Sub OnCustomerCommencementDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCustomerCommencementDateChanged()
+    End Sub
+    Partial Private Sub OnchkCustomerExcludeFuelLevyChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnchkCustomerExcludeFuelLevyChanged()
+    End Sub
+    Partial Private Sub OncmbRateIncreaseChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OncmbRateIncreaseChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerID() As System.Guid
+		Get
+			Return Me._CustomerID
+		End Get
+		Set
+			If ((Me._CustomerID = value)  _
+						= false) Then
+				Me.OnCustomerIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerID = value
+				Me.SendPropertyChanged("CustomerID")
+				Me.OnCustomerIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me.OnCustomerNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerName = value
+				Me.SendPropertyChanged("CustomerName")
+				Me.OnCustomerNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me.OnAddressLine1Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine1 = value
+				Me.SendPropertyChanged("AddressLine1")
+				Me.OnAddressLine1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me.OnAddressLine2Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine2 = value
+				Me.SendPropertyChanged("AddressLine2")
+				Me.OnAddressLine2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="Int")>  _
+	Public Property State() As System.Nullable(Of Integer)
+		Get
+			Return Me._State
+		End Get
+		Set
+			If (Me._State.Equals(value) = false) Then
+				Me.OnStateChanging(value)
+				Me.SendPropertyChanging
+				Me._State = value
+				Me.SendPropertyChanged("State")
+				Me.OnStateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(22)")>  _
+	Public Property Suburb() As String
+		Get
+			Return Me._Suburb
+		End Get
+		Set
+			If (String.Equals(Me._Suburb, value) = false) Then
+				Me.OnSuburbChanging(value)
+				Me.SendPropertyChanging
+				Me._Suburb = value
+				Me.SendPropertyChanged("Suburb")
+				Me.OnSuburbChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="NVarChar(4)")>  _
+	Public Property PostCode() As String
+		Get
+			Return Me._PostCode
+		End Get
+		Set
+			If (String.Equals(Me._PostCode, value) = false) Then
+				Me.OnPostCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._PostCode = value
+				Me.SendPropertyChanged("PostCode")
+				Me.OnPostCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerContactName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerContactName() As String
+		Get
+			Return Me._CustomerContactName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerContactName, value) = false) Then
+				Me.OnCustomerContactNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerContactName = value
+				Me.SendPropertyChanged("CustomerContactName")
+				Me.OnCustomerContactNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(22)")>  _
+	Public Property CustomerPhone() As String
+		Get
+			Return Me._CustomerPhone
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPhone, value) = false) Then
+				Me.OnCustomerPhoneChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerPhone = value
+				Me.SendPropertyChanged("CustomerPhone")
+				Me.OnCustomerPhoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerMobile", DbType:="NVarChar(22)")>  _
+	Public Property CustomerMobile() As String
+		Get
+			Return Me._CustomerMobile
+		End Get
+		Set
+			If (String.Equals(Me._CustomerMobile, value) = false) Then
+				Me.OnCustomerMobileChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerMobile = value
+				Me.SendPropertyChanged("CustomerMobile")
+				Me.OnCustomerMobileChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerFax", DbType:="NVarChar(22)")>  _
+	Public Property CustomerFax() As String
+		Get
+			Return Me._CustomerFax
+		End Get
+		Set
+			If (String.Equals(Me._CustomerFax, value) = false) Then
+				Me.OnCustomerFaxChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerFax = value
+				Me.SendPropertyChanged("CustomerFax")
+				Me.OnCustomerFaxChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerComments", DbType:="NVarChar(MAX)")>  _
+	Public Property CustomerComments() As String
+		Get
+			Return Me._CustomerComments
+		End Get
+		Set
+			If (String.Equals(Me._CustomerComments, value) = false) Then
+				Me.OnCustomerCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerComments = value
+				Me.SendPropertyChanged("CustomerComments")
+				Me.OnCustomerCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgent", DbType:="Int")>  _
+	Public Property CustomerAgent() As System.Nullable(Of Integer)
+		Get
+			Return Me._CustomerAgent
+		End Get
+		Set
+			If (Me._CustomerAgent.Equals(value) = false) Then
+				Me.OnCustomerAgentChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgent = value
+				Me.SendPropertyChanged("CustomerAgent")
+				Me.OnCustomerAgentChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="SmallInt")>  _
+	Public Property CustomerRating() As System.Nullable(Of Short)
+		Get
+			Return Me._CustomerRating
+		End Get
+		Set
+			If (Me._CustomerRating.Equals(value) = false) Then
+				Me.OnCustomerRatingChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRating = value
+				Me.SendPropertyChanged("CustomerRating")
+				Me.OnCustomerRatingChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
+	Public Property Zone() As System.Nullable(Of Integer)
+		Get
+			Return Me._Zone
+		End Get
+		Set
+			If (Me._Zone.Equals(value) = false) Then
+				Me.OnZoneChanging(value)
+				Me.SendPropertyChanging
+				Me._Zone = value
+				Me.SendPropertyChanged("Zone")
+				Me.OnZoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBCustomerNumber", DbType:="NVarChar(50)")>  _
+	Public Property MYOBCustomerNumber() As String
+		Get
+			Return Me._MYOBCustomerNumber
+		End Get
+		Set
+			If (String.Equals(Me._MYOBCustomerNumber, value) = false) Then
+				Me.OnMYOBCustomerNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._MYOBCustomerNumber = value
+				Me.SendPropertyChanged("MYOBCustomerNumber")
+				Me.OnMYOBCustomerNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerValue", DbType:="Float")>  _
+	Public Property CustomerValue() As System.Nullable(Of Double)
+		Get
+			Return Me._CustomerValue
+		End Get
+		Set
+			If (Me._CustomerValue.Equals(value) = false) Then
+				Me.OnCustomerValueChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerValue = value
+				Me.SendPropertyChanged("CustomerValue")
+				Me.OnCustomerValueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveCustomer", DbType:="Bit NOT NULL")>  _
+	Public Property InactiveCustomer() As Boolean
+		Get
+			Return Me._InactiveCustomer
+		End Get
+		Set
+			If ((Me._InactiveCustomer = value)  _
+						= false) Then
+				Me.OnInactiveCustomerChanging(value)
+				Me.SendPropertyChanging
+				Me._InactiveCustomer = value
+				Me.SendPropertyChanged("InactiveCustomer")
+				Me.OnInactiveCustomerChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerCommencementDate", DbType:="DateTime")>  _
+	Public Property CustomerCommencementDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CustomerCommencementDate
+		End Get
+		Set
+			If (Me._CustomerCommencementDate.Equals(value) = false) Then
+				Me.OnCustomerCommencementDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerCommencementDate = value
+				Me.SendPropertyChanged("CustomerCommencementDate")
+				Me.OnCustomerCommencementDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkCustomerExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
+	Public Property chkCustomerExcludeFuelLevy() As Boolean
+		Get
+			Return Me._chkCustomerExcludeFuelLevy
+		End Get
+		Set
+			If ((Me._chkCustomerExcludeFuelLevy = value)  _
+						= false) Then
+				Me.OnchkCustomerExcludeFuelLevyChanging(value)
+				Me.SendPropertyChanging
+				Me._chkCustomerExcludeFuelLevy = value
+				Me.SendPropertyChanged("chkCustomerExcludeFuelLevy")
+				Me.OnchkCustomerExcludeFuelLevyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
+	Public Property cmbRateIncrease() As System.Nullable(Of Short)
+		Get
+			Return Me._cmbRateIncrease
+		End Get
+		Set
+			If (Me._cmbRateIncrease.Equals(value) = false) Then
+				Me.OncmbRateIncreaseChanging(value)
+				Me.SendPropertyChanging
+				Me._cmbRateIncrease = value
+				Me.SendPropertyChanged("cmbRateIncrease")
+				Me.OncmbRateIncreaseChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSites")>  _
+Partial Public Class tblSite
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _SiteID As System.Guid
+	
+	Private _Cid As Integer
+	
+	Private _SiteName As String
+	
+	Private _Customer As System.Nullable(Of Short)
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _AddressLine3 As String
+	
+	Private _AddressLine4 As String
+	
+	Private _Suburb As String
+	
+	Private _State As String
+	
+	Private _PostCode As System.Nullable(Of Short)
+	
+	Private _PhoneNo As String
+	
+	Private _FaxNo As String
+	
+	Private _SiteContactName As String
+	
+	Private _SiteContactPhone As String
+	
+	Private _SiteContactFax As String
+	
+	Private _SiteContactMobile As String
+	
+	Private _SiteContactEmail As String
+	
+	Private _PostalAddressLine1 As String
+	
+	Private _PostalAddressLine2 As String
+	
+	Private _PostalSuburb As String
+	
+	Private _PostalState As String
+	
+	Private _PostalPostCode As System.Nullable(Of Short)
+	
+	Private _SiteStartDate As System.Nullable(Of Date)
+	
+	Private _SitePeriod As System.Nullable(Of Integer)
+	
+	Private _SiteContractExpiry As System.Nullable(Of Date)
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Private _SiteCeaseReason As System.Nullable(Of Integer)
+	
+	Private _InvoiceFrequency As System.Nullable(Of Integer)
+	
+	Private _InvoiceCommencing As System.Nullable(Of Date)
+	
+	Private _IndustryGroup As System.Nullable(Of Short)
+	
+	Private _PreviousSupplier As System.Nullable(Of Short)
+	
+	Private _LostBusinessTo As System.Nullable(Of Short)
+	
+	Private _SalesPerson As System.Nullable(Of Short)
+	
+	Private _InitialServiceAgreementNo As String
+	
+	Private _InvoiceMonth1 As System.Nullable(Of Integer)
+	
+	Private _InvoiceMonth2 As System.Nullable(Of Integer)
+	
+	Private _InvoiceMonth3 As System.Nullable(Of Integer)
+	
+	Private _InvoiceMonth4 As System.Nullable(Of Integer)
+	
+	Private _GeneralSiteServiceComments As String
+	
+	Private _TotalUnits As System.Nullable(Of Double)
+	
+	Private _TotalAmount As System.Nullable(Of Double)
+	
+	Private _Zone As System.Nullable(Of Integer)
+	
+	Private _SeparateInvoice As Boolean
+	
+	Private _PurchaseOrderNumber As String
+	
+	Private _chkSitesExcludeFuelLevy As Boolean
+	
+	Private _cmbRateIncrease As System.Nullable(Of Short)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnSiteIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnSiteIDChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnSiteNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteNameChanged()
+    End Sub
+    Partial Private Sub OnCustomerChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnCustomerChanged()
+    End Sub
+    Partial Private Sub OnAddressLine1Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine1Changed()
+    End Sub
+    Partial Private Sub OnAddressLine2Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine2Changed()
+    End Sub
+    Partial Private Sub OnAddressLine3Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine3Changed()
+    End Sub
+    Partial Private Sub OnAddressLine4Changing(value As String)
+    End Sub
+    Partial Private Sub OnAddressLine4Changed()
+    End Sub
+    Partial Private Sub OnSuburbChanging(value As String)
+    End Sub
+    Partial Private Sub OnSuburbChanged()
+    End Sub
+    Partial Private Sub OnStateChanging(value As String)
+    End Sub
+    Partial Private Sub OnStateChanged()
+    End Sub
+    Partial Private Sub OnPostCodeChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnPostCodeChanged()
+    End Sub
+    Partial Private Sub OnPhoneNoChanging(value As String)
+    End Sub
+    Partial Private Sub OnPhoneNoChanged()
+    End Sub
+    Partial Private Sub OnFaxNoChanging(value As String)
+    End Sub
+    Partial Private Sub OnFaxNoChanged()
+    End Sub
+    Partial Private Sub OnSiteContactNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteContactNameChanged()
+    End Sub
+    Partial Private Sub OnSiteContactPhoneChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteContactPhoneChanged()
+    End Sub
+    Partial Private Sub OnSiteContactFaxChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteContactFaxChanged()
+    End Sub
+    Partial Private Sub OnSiteContactMobileChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteContactMobileChanged()
+    End Sub
+    Partial Private Sub OnSiteContactEmailChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteContactEmailChanged()
+    End Sub
+    Partial Private Sub OnPostalAddressLine1Changing(value As String)
+    End Sub
+    Partial Private Sub OnPostalAddressLine1Changed()
+    End Sub
+    Partial Private Sub OnPostalAddressLine2Changing(value As String)
+    End Sub
+    Partial Private Sub OnPostalAddressLine2Changed()
+    End Sub
+    Partial Private Sub OnPostalSuburbChanging(value As String)
+    End Sub
+    Partial Private Sub OnPostalSuburbChanged()
+    End Sub
+    Partial Private Sub OnPostalStateChanging(value As String)
+    End Sub
+    Partial Private Sub OnPostalStateChanged()
+    End Sub
+    Partial Private Sub OnPostalPostCodeChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnPostalPostCodeChanged()
+    End Sub
+    Partial Private Sub OnSiteStartDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnSiteStartDateChanged()
+    End Sub
+    Partial Private Sub OnSitePeriodChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSitePeriodChanged()
+    End Sub
+    Partial Private Sub OnSiteContractExpiryChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnSiteContractExpiryChanged()
+    End Sub
+    Partial Private Sub OnSiteCeaseDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnSiteCeaseDateChanged()
+    End Sub
+    Partial Private Sub OnSiteCeaseReasonChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSiteCeaseReasonChanged()
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyChanged()
+    End Sub
+    Partial Private Sub OnInvoiceCommencingChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnInvoiceCommencingChanged()
+    End Sub
+    Partial Private Sub OnIndustryGroupChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnIndustryGroupChanged()
+    End Sub
+    Partial Private Sub OnPreviousSupplierChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnPreviousSupplierChanged()
+    End Sub
+    Partial Private Sub OnLostBusinessToChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnLostBusinessToChanged()
+    End Sub
+    Partial Private Sub OnSalesPersonChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnSalesPersonChanged()
+    End Sub
+    Partial Private Sub OnInitialServiceAgreementNoChanging(value As String)
+    End Sub
+    Partial Private Sub OnInitialServiceAgreementNoChanged()
+    End Sub
+    Partial Private Sub OnInvoiceMonth1Changing(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnInvoiceMonth1Changed()
+    End Sub
+    Partial Private Sub OnInvoiceMonth2Changing(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnInvoiceMonth2Changed()
+    End Sub
+    Partial Private Sub OnInvoiceMonth3Changing(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnInvoiceMonth3Changed()
+    End Sub
+    Partial Private Sub OnInvoiceMonth4Changing(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnInvoiceMonth4Changed()
+    End Sub
+    Partial Private Sub OnGeneralSiteServiceCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnGeneralSiteServiceCommentsChanged()
+    End Sub
+    Partial Private Sub OnTotalUnitsChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnTotalUnitsChanged()
+    End Sub
+    Partial Private Sub OnTotalAmountChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnTotalAmountChanged()
+    End Sub
+    Partial Private Sub OnZoneChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnZoneChanged()
+    End Sub
+    Partial Private Sub OnSeparateInvoiceChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnSeparateInvoiceChanged()
+    End Sub
+    Partial Private Sub OnPurchaseOrderNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnPurchaseOrderNumberChanged()
+    End Sub
+    Partial Private Sub OnchkSitesExcludeFuelLevyChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnchkSitesExcludeFuelLevyChanged()
+    End Sub
+    Partial Private Sub OncmbRateIncreaseChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OncmbRateIncreaseChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property SiteID() As System.Guid
+		Get
+			Return Me._SiteID
+		End Get
+		Set
+			If ((Me._SiteID = value)  _
+						= false) Then
+				Me.OnSiteIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteID = value
+				Me.SendPropertyChanged("SiteID")
+				Me.OnSiteIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me.OnSiteNameChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteName = value
+				Me.SendPropertyChanged("SiteName")
+				Me.OnSiteNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
+	Public Property Customer() As System.Nullable(Of Short)
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (Me._Customer.Equals(value) = false) Then
+				Me.OnCustomerChanging(value)
+				Me.SendPropertyChanging
+				Me._Customer = value
+				Me.SendPropertyChanged("Customer")
+				Me.OnCustomerChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me.OnAddressLine1Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine1 = value
+				Me.SendPropertyChanged("AddressLine1")
+				Me.OnAddressLine1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me.OnAddressLine2Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine2 = value
+				Me.SendPropertyChanged("AddressLine2")
+				Me.OnAddressLine2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine3", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine3() As String
+		Get
+			Return Me._AddressLine3
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine3, value) = false) Then
+				Me.OnAddressLine3Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine3 = value
+				Me.SendPropertyChanged("AddressLine3")
+				Me.OnAddressLine3Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine4", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine4() As String
+		Get
+			Return Me._AddressLine4
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine4, value) = false) Then
+				Me.OnAddressLine4Changing(value)
+				Me.SendPropertyChanging
+				Me._AddressLine4 = value
+				Me.SendPropertyChanged("AddressLine4")
+				Me.OnAddressLine4Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(50)")>  _
+	Public Property Suburb() As String
+		Get
+			Return Me._Suburb
+		End Get
+		Set
+			If (String.Equals(Me._Suburb, value) = false) Then
+				Me.OnSuburbChanging(value)
+				Me.SendPropertyChanging
+				Me._Suburb = value
+				Me.SendPropertyChanged("Suburb")
+				Me.OnSuburbChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_State", DbType:="NVarChar(5)")>  _
+	Public Property State() As String
+		Get
+			Return Me._State
+		End Get
+		Set
+			If (String.Equals(Me._State, value) = false) Then
+				Me.OnStateChanging(value)
+				Me.SendPropertyChanging
+				Me._State = value
+				Me.SendPropertyChanged("State")
+				Me.OnStateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="SmallInt")>  _
+	Public Property PostCode() As System.Nullable(Of Short)
+		Get
+			Return Me._PostCode
+		End Get
+		Set
+			If (Me._PostCode.Equals(value) = false) Then
+				Me.OnPostCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._PostCode = value
+				Me.SendPropertyChanged("PostCode")
+				Me.OnPostCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhoneNo", DbType:="NVarChar(50)")>  _
+	Public Property PhoneNo() As String
+		Get
+			Return Me._PhoneNo
+		End Get
+		Set
+			If (String.Equals(Me._PhoneNo, value) = false) Then
+				Me.OnPhoneNoChanging(value)
+				Me.SendPropertyChanging
+				Me._PhoneNo = value
+				Me.SendPropertyChanged("PhoneNo")
+				Me.OnPhoneNoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FaxNo", DbType:="NVarChar(50)")>  _
+	Public Property FaxNo() As String
+		Get
+			Return Me._FaxNo
+		End Get
+		Set
+			If (String.Equals(Me._FaxNo, value) = false) Then
+				Me.OnFaxNoChanging(value)
+				Me.SendPropertyChanging
+				Me._FaxNo = value
+				Me.SendPropertyChanged("FaxNo")
+				Me.OnFaxNoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactName", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactName() As String
+		Get
+			Return Me._SiteContactName
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactName, value) = false) Then
+				Me.OnSiteContactNameChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteContactName = value
+				Me.SendPropertyChanged("SiteContactName")
+				Me.OnSiteContactNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactPhone", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactPhone() As String
+		Get
+			Return Me._SiteContactPhone
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactPhone, value) = false) Then
+				Me.OnSiteContactPhoneChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteContactPhone = value
+				Me.SendPropertyChanged("SiteContactPhone")
+				Me.OnSiteContactPhoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactFax", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactFax() As String
+		Get
+			Return Me._SiteContactFax
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactFax, value) = false) Then
+				Me.OnSiteContactFaxChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteContactFax = value
+				Me.SendPropertyChanged("SiteContactFax")
+				Me.OnSiteContactFaxChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactMobile", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactMobile() As String
+		Get
+			Return Me._SiteContactMobile
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactMobile, value) = false) Then
+				Me.OnSiteContactMobileChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteContactMobile = value
+				Me.SendPropertyChanged("SiteContactMobile")
+				Me.OnSiteContactMobileChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactEmail", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactEmail() As String
+		Get
+			Return Me._SiteContactEmail
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactEmail, value) = false) Then
+				Me.OnSiteContactEmailChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteContactEmail = value
+				Me.SendPropertyChanged("SiteContactEmail")
+				Me.OnSiteContactEmailChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine1() As String
+		Get
+			Return Me._PostalAddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine1, value) = false) Then
+				Me.OnPostalAddressLine1Changing(value)
+				Me.SendPropertyChanging
+				Me._PostalAddressLine1 = value
+				Me.SendPropertyChanged("PostalAddressLine1")
+				Me.OnPostalAddressLine1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine2() As String
+		Get
+			Return Me._PostalAddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine2, value) = false) Then
+				Me.OnPostalAddressLine2Changing(value)
+				Me.SendPropertyChanging
+				Me._PostalAddressLine2 = value
+				Me.SendPropertyChanged("PostalAddressLine2")
+				Me.OnPostalAddressLine2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSuburb", DbType:="NVarChar(50)")>  _
+	Public Property PostalSuburb() As String
+		Get
+			Return Me._PostalSuburb
+		End Get
+		Set
+			If (String.Equals(Me._PostalSuburb, value) = false) Then
+				Me.OnPostalSuburbChanging(value)
+				Me.SendPropertyChanging
+				Me._PostalSuburb = value
+				Me.SendPropertyChanged("PostalSuburb")
+				Me.OnPostalSuburbChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalState", DbType:="NVarChar(6)")>  _
+	Public Property PostalState() As String
+		Get
+			Return Me._PostalState
+		End Get
+		Set
+			If (String.Equals(Me._PostalState, value) = false) Then
+				Me.OnPostalStateChanging(value)
+				Me.SendPropertyChanging
+				Me._PostalState = value
+				Me.SendPropertyChanged("PostalState")
+				Me.OnPostalStateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalPostCode", DbType:="SmallInt")>  _
+	Public Property PostalPostCode() As System.Nullable(Of Short)
+		Get
+			Return Me._PostalPostCode
+		End Get
+		Set
+			If (Me._PostalPostCode.Equals(value) = false) Then
+				Me.OnPostalPostCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._PostalPostCode = value
+				Me.SendPropertyChanged("PostalPostCode")
+				Me.OnPostalPostCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteStartDate", DbType:="Date")>  _
+	Public Property SiteStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteStartDate
+		End Get
+		Set
+			If (Me._SiteStartDate.Equals(value) = false) Then
+				Me.OnSiteStartDateChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteStartDate = value
+				Me.SendPropertyChanged("SiteStartDate")
+				Me.OnSiteStartDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SitePeriod", DbType:="Int")>  _
+	Public Property SitePeriod() As System.Nullable(Of Integer)
+		Get
+			Return Me._SitePeriod
+		End Get
+		Set
+			If (Me._SitePeriod.Equals(value) = false) Then
+				Me.OnSitePeriodChanging(value)
+				Me.SendPropertyChanging
+				Me._SitePeriod = value
+				Me.SendPropertyChanged("SitePeriod")
+				Me.OnSitePeriodChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContractExpiry", DbType:="Date")>  _
+	Public Property SiteContractExpiry() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteContractExpiry
+		End Get
+		Set
+			If (Me._SiteContractExpiry.Equals(value) = false) Then
+				Me.OnSiteContractExpiryChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteContractExpiry = value
+				Me.SendPropertyChanged("SiteContractExpiry")
+				Me.OnSiteContractExpiryChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me.OnSiteCeaseDateChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteCeaseDate = value
+				Me.SendPropertyChanged("SiteCeaseDate")
+				Me.OnSiteCeaseDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseReason", DbType:="Int")>  _
+	Public Property SiteCeaseReason() As System.Nullable(Of Integer)
+		Get
+			Return Me._SiteCeaseReason
+		End Get
+		Set
+			If (Me._SiteCeaseReason.Equals(value) = false) Then
+				Me.OnSiteCeaseReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteCeaseReason = value
+				Me.SendPropertyChanged("SiteCeaseReason")
+				Me.OnSiteCeaseReasonChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceFrequency", DbType:="Int")>  _
+	Public Property InvoiceFrequency() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceFrequency
+		End Get
+		Set
+			If (Me._InvoiceFrequency.Equals(value) = false) Then
+				Me.OnInvoiceFrequencyChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceFrequency = value
+				Me.SendPropertyChanged("InvoiceFrequency")
+				Me.OnInvoiceFrequencyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceCommencing", DbType:="Date")>  _
+	Public Property InvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._InvoiceCommencing
+		End Get
+		Set
+			If (Me._InvoiceCommencing.Equals(value) = false) Then
+				Me.OnInvoiceCommencingChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceCommencing = value
+				Me.SendPropertyChanged("InvoiceCommencing")
+				Me.OnInvoiceCommencingChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryGroup", DbType:="SmallInt")>  _
+	Public Property IndustryGroup() As System.Nullable(Of Short)
+		Get
+			Return Me._IndustryGroup
+		End Get
+		Set
+			If (Me._IndustryGroup.Equals(value) = false) Then
+				Me.OnIndustryGroupChanging(value)
+				Me.SendPropertyChanging
+				Me._IndustryGroup = value
+				Me.SendPropertyChanged("IndustryGroup")
+				Me.OnIndustryGroupChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="SmallInt")>  _
+	Public Property PreviousSupplier() As System.Nullable(Of Short)
+		Get
+			Return Me._PreviousSupplier
+		End Get
+		Set
+			If (Me._PreviousSupplier.Equals(value) = false) Then
+				Me.OnPreviousSupplierChanging(value)
+				Me.SendPropertyChanging
+				Me._PreviousSupplier = value
+				Me.SendPropertyChanged("PreviousSupplier")
+				Me.OnPreviousSupplierChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LostBusinessTo", DbType:="SmallInt")>  _
+	Public Property LostBusinessTo() As System.Nullable(Of Short)
+		Get
+			Return Me._LostBusinessTo
+		End Get
+		Set
+			If (Me._LostBusinessTo.Equals(value) = false) Then
+				Me.OnLostBusinessToChanging(value)
+				Me.SendPropertyChanging
+				Me._LostBusinessTo = value
+				Me.SendPropertyChanged("LostBusinessTo")
+				Me.OnLostBusinessToChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPerson", DbType:="SmallInt")>  _
+	Public Property SalesPerson() As System.Nullable(Of Short)
+		Get
+			Return Me._SalesPerson
+		End Get
+		Set
+			If (Me._SalesPerson.Equals(value) = false) Then
+				Me.OnSalesPersonChanging(value)
+				Me.SendPropertyChanging
+				Me._SalesPerson = value
+				Me.SendPropertyChanged("SalesPerson")
+				Me.OnSalesPersonChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InitialServiceAgreementNo", DbType:="NVarChar(22)")>  _
+	Public Property InitialServiceAgreementNo() As String
+		Get
+			Return Me._InitialServiceAgreementNo
+		End Get
+		Set
+			If (String.Equals(Me._InitialServiceAgreementNo, value) = false) Then
+				Me.OnInitialServiceAgreementNoChanging(value)
+				Me.SendPropertyChanging
+				Me._InitialServiceAgreementNo = value
+				Me.SendPropertyChanged("InitialServiceAgreementNo")
+				Me.OnInitialServiceAgreementNoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth1", DbType:="Int")>  _
+	Public Property InvoiceMonth1() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth1
+		End Get
+		Set
+			If (Me._InvoiceMonth1.Equals(value) = false) Then
+				Me.OnInvoiceMonth1Changing(value)
+				Me.SendPropertyChanging
+				Me._InvoiceMonth1 = value
+				Me.SendPropertyChanged("InvoiceMonth1")
+				Me.OnInvoiceMonth1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth2", DbType:="Int")>  _
+	Public Property InvoiceMonth2() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth2
+		End Get
+		Set
+			If (Me._InvoiceMonth2.Equals(value) = false) Then
+				Me.OnInvoiceMonth2Changing(value)
+				Me.SendPropertyChanging
+				Me._InvoiceMonth2 = value
+				Me.SendPropertyChanged("InvoiceMonth2")
+				Me.OnInvoiceMonth2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth3", DbType:="Int")>  _
+	Public Property InvoiceMonth3() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth3
+		End Get
+		Set
+			If (Me._InvoiceMonth3.Equals(value) = false) Then
+				Me.OnInvoiceMonth3Changing(value)
+				Me.SendPropertyChanging
+				Me._InvoiceMonth3 = value
+				Me.SendPropertyChanged("InvoiceMonth3")
+				Me.OnInvoiceMonth3Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceMonth4", DbType:="Int")>  _
+	Public Property InvoiceMonth4() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceMonth4
+		End Get
+		Set
+			If (Me._InvoiceMonth4.Equals(value) = false) Then
+				Me.OnInvoiceMonth4Changing(value)
+				Me.SendPropertyChanging
+				Me._InvoiceMonth4 = value
+				Me.SendPropertyChanged("InvoiceMonth4")
+				Me.OnInvoiceMonth4Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GeneralSiteServiceComments", DbType:="NVarChar(MAX)")>  _
+	Public Property GeneralSiteServiceComments() As String
+		Get
+			Return Me._GeneralSiteServiceComments
+		End Get
+		Set
+			If (String.Equals(Me._GeneralSiteServiceComments, value) = false) Then
+				Me.OnGeneralSiteServiceCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._GeneralSiteServiceComments = value
+				Me.SendPropertyChanged("GeneralSiteServiceComments")
+				Me.OnGeneralSiteServiceCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalUnits", DbType:="Float")>  _
+	Public Property TotalUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._TotalUnits
+		End Get
+		Set
+			If (Me._TotalUnits.Equals(value) = false) Then
+				Me.OnTotalUnitsChanging(value)
+				Me.SendPropertyChanging
+				Me._TotalUnits = value
+				Me.SendPropertyChanged("TotalUnits")
+				Me.OnTotalUnitsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalAmount", DbType:="Float")>  _
+	Public Property TotalAmount() As System.Nullable(Of Double)
+		Get
+			Return Me._TotalAmount
+		End Get
+		Set
+			If (Me._TotalAmount.Equals(value) = false) Then
+				Me.OnTotalAmountChanging(value)
+				Me.SendPropertyChanging
+				Me._TotalAmount = value
+				Me.SendPropertyChanged("TotalAmount")
+				Me.OnTotalAmountChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
+	Public Property Zone() As System.Nullable(Of Integer)
+		Get
+			Return Me._Zone
+		End Get
+		Set
+			If (Me._Zone.Equals(value) = false) Then
+				Me.OnZoneChanging(value)
+				Me.SendPropertyChanging
+				Me._Zone = value
+				Me.SendPropertyChanged("Zone")
+				Me.OnZoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SeparateInvoice", DbType:="Bit NOT NULL")>  _
+	Public Property SeparateInvoice() As Boolean
+		Get
+			Return Me._SeparateInvoice
+		End Get
+		Set
+			If ((Me._SeparateInvoice = value)  _
+						= false) Then
+				Me.OnSeparateInvoiceChanging(value)
+				Me.SendPropertyChanging
+				Me._SeparateInvoice = value
+				Me.SendPropertyChanged("SeparateInvoice")
+				Me.OnSeparateInvoiceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PurchaseOrderNumber", DbType:="NVarChar(50)")>  _
+	Public Property PurchaseOrderNumber() As String
+		Get
+			Return Me._PurchaseOrderNumber
+		End Get
+		Set
+			If (String.Equals(Me._PurchaseOrderNumber, value) = false) Then
+				Me.OnPurchaseOrderNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._PurchaseOrderNumber = value
+				Me.SendPropertyChanged("PurchaseOrderNumber")
+				Me.OnPurchaseOrderNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chkSitesExcludeFuelLevy", DbType:="Bit NOT NULL")>  _
+	Public Property chkSitesExcludeFuelLevy() As Boolean
+		Get
+			Return Me._chkSitesExcludeFuelLevy
+		End Get
+		Set
+			If ((Me._chkSitesExcludeFuelLevy = value)  _
+						= false) Then
+				Me.OnchkSitesExcludeFuelLevyChanging(value)
+				Me.SendPropertyChanging
+				Me._chkSitesExcludeFuelLevy = value
+				Me.SendPropertyChanged("chkSitesExcludeFuelLevy")
+				Me.OnchkSitesExcludeFuelLevyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cmbRateIncrease", DbType:="SmallInt")>  _
+	Public Property cmbRateIncrease() As System.Nullable(Of Short)
+		Get
+			Return Me._cmbRateIncrease
+		End Get
+		Set
+			If (Me._cmbRateIncrease.Equals(value) = false) Then
+				Me.OncmbRateIncreaseChanging(value)
+				Me.SendPropertyChanging
+				Me._cmbRateIncrease = value
+				Me.SendPropertyChanged("cmbRateIncrease")
+				Me.OncmbRateIncreaseChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblIndustryGroups")>  _
+Partial Public Class tblIndustryGroup
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _IndustryID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _IndustryDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIndustryIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnIndustryIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnIndustryDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnIndustryDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property IndustryID() As System.Guid
+		Get
+			Return Me._IndustryID
+		End Get
+		Set
+			If ((Me._IndustryID = value)  _
+						= false) Then
+				Me.OnIndustryIDChanging(value)
+				Me.SendPropertyChanging
+				Me._IndustryID = value
+				Me.SendPropertyChanged("IndustryID")
+				Me.OnIndustryIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryDescription", DbType:="NVarChar(50)")>  _
+	Public Property IndustryDescription() As String
+		Get
+			Return Me._IndustryDescription
+		End Get
+		Set
+			If (String.Equals(Me._IndustryDescription, value) = false) Then
+				Me.OnIndustryDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._IndustryDescription = value
+				Me.SendPropertyChanged("IndustryDescription")
+				Me.OnIndustryDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblInvoicingFrequency")>  _
+Partial Public Class tblInvoicingFrequency
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _InvoiceFrequencyID As System.Guid
+	
+	Private _IId As Integer
+	
+	Private _InvoiceId As String
+	
+	Private _Frequency As String
+	
+	Private _NoOfWeeks As System.Nullable(Of Single)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyIDChanged()
+    End Sub
+    Partial Private Sub OnIIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIIdChanged()
+    End Sub
+    Partial Private Sub OnInvoiceIdChanging(value As String)
+    End Sub
+    Partial Private Sub OnInvoiceIdChanged()
+    End Sub
+    Partial Private Sub OnFrequencyChanging(value As String)
+    End Sub
+    Partial Private Sub OnFrequencyChanged()
+    End Sub
+    Partial Private Sub OnNoOfWeeksChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnNoOfWeeksChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceFrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property InvoiceFrequencyID() As System.Guid
+		Get
+			Return Me._InvoiceFrequencyID
+		End Get
+		Set
+			If ((Me._InvoiceFrequencyID = value)  _
+						= false) Then
+				Me.OnInvoiceFrequencyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceFrequencyID = value
+				Me.SendPropertyChanged("InvoiceFrequencyID")
+				Me.OnInvoiceFrequencyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IId", DbType:="Int NOT NULL")>  _
+	Public Property IId() As Integer
+		Get
+			Return Me._IId
+		End Get
+		Set
+			If ((Me._IId = value)  _
+						= false) Then
+				Me.OnIIdChanging(value)
+				Me.SendPropertyChanging
+				Me._IId = value
+				Me.SendPropertyChanged("IId")
+				Me.OnIIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceId", DbType:="NVarChar(1)")>  _
+	Public Property InvoiceId() As String
+		Get
+			Return Me._InvoiceId
+		End Get
+		Set
+			If (String.Equals(Me._InvoiceId, value) = false) Then
+				Me.OnInvoiceIdChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceId = value
+				Me.SendPropertyChanged("InvoiceId")
+				Me.OnInvoiceIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Frequency", DbType:="NVarChar(22)")>  _
+	Public Property Frequency() As String
+		Get
+			Return Me._Frequency
+		End Get
+		Set
+			If (String.Equals(Me._Frequency, value) = false) Then
+				Me.OnFrequencyChanging(value)
+				Me.SendPropertyChanging
+				Me._Frequency = value
+				Me.SendPropertyChanged("Frequency")
+				Me.OnFrequencyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NoOfWeeks", DbType:="Real")>  _
+	Public Property NoOfWeeks() As System.Nullable(Of Single)
+		Get
+			Return Me._NoOfWeeks
+		End Get
+		Set
+			If (Me._NoOfWeeks.Equals(value) = false) Then
+				Me.OnNoOfWeeksChanging(value)
+				Me.SendPropertyChanging
+				Me._NoOfWeeks = value
+				Me.SendPropertyChanged("NoOfWeeks")
+				Me.OnNoOfWeeksChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerAgents")>  _
+Partial Public Class tblCustomerAgent
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerAgentID As System.Guid
+	
+	Private _AID As Integer
+	
+	Private _CustomerAgentName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanged()
+    End Sub
+    Partial Private Sub OnAIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAIDChanged()
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerAgentID() As System.Guid
+		Get
+			Return Me._CustomerAgentID
+		End Get
+		Set
+			If ((Me._CustomerAgentID = value)  _
+						= false) Then
+				Me.OnCustomerAgentIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentID = value
+				Me.SendPropertyChanged("CustomerAgentID")
+				Me.OnCustomerAgentIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AID", DbType:="Int NOT NULL")>  _
+	Public Property AID() As Integer
+		Get
+			Return Me._AID
+		End Get
+		Set
+			If ((Me._AID = value)  _
+						= false) Then
+				Me.OnAIDChanging(value)
+				Me.SendPropertyChanging
+				Me._AID = value
+				Me.SendPropertyChanged("AID")
+				Me.OnAIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerAgentName() As String
+		Get
+			Return Me._CustomerAgentName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerAgentName, value) = false) Then
+				Me.OnCustomerAgentNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentName = value
+				Me.SendPropertyChanged("CustomerAgentName")
+				Me.OnCustomerAgentNameChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblContractCeaseReasons")>  _
+Partial Public Class tblContractCeaseReason
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CeaseReasonID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _CeaseReasonDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCeaseReasonIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCeaseReasonIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCeaseReasonDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnCeaseReasonDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CeaseReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CeaseReasonID() As System.Guid
+		Get
+			Return Me._CeaseReasonID
+		End Get
+		Set
+			If ((Me._CeaseReasonID = value)  _
+						= false) Then
+				Me.OnCeaseReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CeaseReasonID = value
+				Me.SendPropertyChanged("CeaseReasonID")
+				Me.OnCeaseReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CeaseReasonDescription", DbType:="NVarChar(50)")>  _
+	Public Property CeaseReasonDescription() As String
+		Get
+			Return Me._CeaseReasonDescription
+		End Get
+		Set
+			If (String.Equals(Me._CeaseReasonDescription, value) = false) Then
+				Me.OnCeaseReasonDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._CeaseReasonDescription = value
+				Me.SendPropertyChanged("CeaseReasonDescription")
+				Me.OnCeaseReasonDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCIRReason")>  _
+Partial Public Class tblCIRReason
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ReasonID As System.Guid
+	
+	Private _CId As Integer
+	
+	Private _CIRReason As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnReasonIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnReasonIDChanged()
+    End Sub
+    Partial Private Sub OnCIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCIdChanged()
+    End Sub
+    Partial Private Sub OnCIRReasonChanging(value As String)
+    End Sub
+    Partial Private Sub OnCIRReasonChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ReasonID() As System.Guid
+		Get
+			Return Me._ReasonID
+		End Get
+		Set
+			If ((Me._ReasonID = value)  _
+						= false) Then
+				Me.OnReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ReasonID = value
+				Me.SendPropertyChanged("ReasonID")
+				Me.OnReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CId", DbType:="Int NOT NULL")>  _
+	Public Property CId() As Integer
+		Get
+			Return Me._CId
+		End Get
+		Set
+			If ((Me._CId = value)  _
+						= false) Then
+				Me.OnCIdChanging(value)
+				Me.SendPropertyChanging
+				Me._CId = value
+				Me.SendPropertyChanged("CId")
+				Me.OnCIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CIRReason", DbType:="NVarChar(50)")>  _
+	Public Property CIRReason() As String
+		Get
+			Return Me._CIRReason
+		End Get
+		Set
+			If (String.Equals(Me._CIRReason, value) = false) Then
+				Me.OnCIRReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._CIRReason = value
+				Me.SendPropertyChanged("CIRReason")
+				Me.OnCIRReasonChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tbZones")>  _
+Partial Public Class tbZone
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ZoneID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _AreaDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnZoneIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnZoneIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ZoneID() As System.Guid
+		Get
+			Return Me._ZoneID
+		End Get
+		Set
+			If ((Me._ZoneID = value)  _
+						= false) Then
+				Me.OnZoneIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ZoneID = value
+				Me.SendPropertyChanged("ZoneID")
+				Me.OnZoneIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
+	Public Property AreaDescription() As String
+		Get
+			Return Me._AreaDescription
+		End Get
+		Set
+			If (String.Equals(Me._AreaDescription, value) = false) Then
+				Me.OnAreaDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._AreaDescription = value
+				Me.SendPropertyChanged("AreaDescription")
+				Me.OnAreaDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerRating")>  _
+Partial Public Class tblCustomerRating
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerRatingID As System.Guid
+	
+	Private _Rid As Integer
+	
+	Private _CustomerRating As String
+	
+	Private _CustomerRatingDesc As String
+	
+	Private _FromValue As System.Nullable(Of Integer)
+	
+	Private _ToValue As System.Nullable(Of Integer)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerRatingIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerRatingIDChanged()
+    End Sub
+    Partial Private Sub OnRidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnRidChanged()
+    End Sub
+    Partial Private Sub OnCustomerRatingChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerRatingChanged()
+    End Sub
+    Partial Private Sub OnCustomerRatingDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerRatingDescChanged()
+    End Sub
+    Partial Private Sub OnFromValueChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnFromValueChanged()
+    End Sub
+    Partial Private Sub OnToValueChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnToValueChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRatingID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerRatingID() As System.Guid
+		Get
+			Return Me._CustomerRatingID
+		End Get
+		Set
+			If ((Me._CustomerRatingID = value)  _
+						= false) Then
+				Me.OnCustomerRatingIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRatingID = value
+				Me.SendPropertyChanged("CustomerRatingID")
+				Me.OnCustomerRatingIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
+	Public Property Rid() As Integer
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If ((Me._Rid = value)  _
+						= false) Then
+				Me.OnRidChanging(value)
+				Me.SendPropertyChanging
+				Me._Rid = value
+				Me.SendPropertyChanged("Rid")
+				Me.OnRidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRating", DbType:="NVarChar(22)")>  _
+	Public Property CustomerRating() As String
+		Get
+			Return Me._CustomerRating
+		End Get
+		Set
+			If (String.Equals(Me._CustomerRating, value) = false) Then
+				Me.OnCustomerRatingChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRating = value
+				Me.SendPropertyChanged("CustomerRating")
+				Me.OnCustomerRatingChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRatingDesc", DbType:="NVarChar(50)")>  _
+	Public Property CustomerRatingDesc() As String
+		Get
+			Return Me._CustomerRatingDesc
+		End Get
+		Set
+			If (String.Equals(Me._CustomerRatingDesc, value) = false) Then
+				Me.OnCustomerRatingDescChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRatingDesc = value
+				Me.SendPropertyChanged("CustomerRatingDesc")
+				Me.OnCustomerRatingDescChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromValue", DbType:="Int")>  _
+	Public Property FromValue() As System.Nullable(Of Integer)
+		Get
+			Return Me._FromValue
+		End Get
+		Set
+			If (Me._FromValue.Equals(value) = false) Then
+				Me.OnFromValueChanging(value)
+				Me.SendPropertyChanging
+				Me._FromValue = value
+				Me.SendPropertyChanged("FromValue")
+				Me.OnFromValueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToValue", DbType:="Int")>  _
+	Public Property ToValue() As System.Nullable(Of Integer)
+		Get
+			Return Me._ToValue
+		End Get
+		Set
+			If (Me._ToValue.Equals(value) = false) Then
+				Me.OnToValueChanging(value)
+				Me.SendPropertyChanging
+				Me._ToValue = value
+				Me.SendPropertyChanged("ToValue")
+				Me.OnToValueChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRateIncreaseReference")>  _
+Partial Public Class tblRateIncreaseReference
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RateIncreaseID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _RateIncreaseDescription As String
+	
+	Private _AnnualIncreaseApplies As Boolean
+	
+	Private _AlreadyDoneThisYear As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnRateIncreaseDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnRateIncreaseDescriptionChanged()
+    End Sub
+    Partial Private Sub OnAnnualIncreaseAppliesChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnAnnualIncreaseAppliesChanged()
+    End Sub
+    Partial Private Sub OnAlreadyDoneThisYearChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnAlreadyDoneThisYearChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RateIncreaseID() As System.Guid
+		Get
+			Return Me._RateIncreaseID
+		End Get
+		Set
+			If ((Me._RateIncreaseID = value)  _
+						= false) Then
+				Me.OnRateIncreaseIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RateIncreaseID = value
+				Me.SendPropertyChanged("RateIncreaseID")
+				Me.OnRateIncreaseIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseDescription", DbType:="NVarChar(25)")>  _
+	Public Property RateIncreaseDescription() As String
+		Get
+			Return Me._RateIncreaseDescription
+		End Get
+		Set
+			If (String.Equals(Me._RateIncreaseDescription, value) = false) Then
+				Me.OnRateIncreaseDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._RateIncreaseDescription = value
+				Me.SendPropertyChanged("RateIncreaseDescription")
+				Me.OnRateIncreaseDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualIncreaseApplies", DbType:="Bit NOT NULL")>  _
+	Public Property AnnualIncreaseApplies() As Boolean
+		Get
+			Return Me._AnnualIncreaseApplies
+		End Get
+		Set
+			If ((Me._AnnualIncreaseApplies = value)  _
+						= false) Then
+				Me.OnAnnualIncreaseAppliesChanging(value)
+				Me.SendPropertyChanging
+				Me._AnnualIncreaseApplies = value
+				Me.SendPropertyChanged("AnnualIncreaseApplies")
+				Me.OnAnnualIncreaseAppliesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AlreadyDoneThisYear", DbType:="Bit NOT NULL")>  _
+	Public Property AlreadyDoneThisYear() As Boolean
+		Get
+			Return Me._AlreadyDoneThisYear
+		End Get
+		Set
+			If ((Me._AlreadyDoneThisYear = value)  _
+						= false) Then
+				Me.OnAlreadyDoneThisYearChanging(value)
+				Me.SendPropertyChanging
+				Me._AlreadyDoneThisYear = value
+				Me.SendPropertyChanged("AlreadyDoneThisYear")
+				Me.OnAlreadyDoneThisYearChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRunFortnightlyCycles")>  _
+Partial Public Class tblRunFortnightlyCycle
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _FortnightlyCyclesID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _CycleDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnFortnightlyCyclesIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFortnightlyCyclesIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCycleDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnCycleDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FortnightlyCyclesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property FortnightlyCyclesID() As System.Guid
+		Get
+			Return Me._FortnightlyCyclesID
+		End Get
+		Set
+			If ((Me._FortnightlyCyclesID = value)  _
+						= false) Then
+				Me.OnFortnightlyCyclesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FortnightlyCyclesID = value
+				Me.SendPropertyChanged("FortnightlyCyclesID")
+				Me.OnFortnightlyCyclesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CycleDescription", DbType:="NVarChar(50)")>  _
+	Public Property CycleDescription() As String
+		Get
+			Return Me._CycleDescription
+		End Get
+		Set
+			If (String.Equals(Me._CycleDescription, value) = false) Then
+				Me.OnCycleDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._CycleDescription = value
+				Me.SendPropertyChanged("CycleDescription")
+				Me.OnCycleDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRevenueChangeReason")>  _
+Partial Public Class tblRevenueChangeReason
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RevenueChangeReasonID As System.Guid
+	
+	Private _Rid As Integer
+	
+	Private _RevenueChangeReason As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonIDChanged()
+    End Sub
+    Partial Private Sub OnRidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnRidChanged()
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonChanging(value As String)
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RevenueChangeReasonID() As System.Guid
+		Get
+			Return Me._RevenueChangeReasonID
+		End Get
+		Set
+			If ((Me._RevenueChangeReasonID = value)  _
+						= false) Then
+				Me.OnRevenueChangeReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RevenueChangeReasonID = value
+				Me.SendPropertyChanged("RevenueChangeReasonID")
+				Me.OnRevenueChangeReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
+	Public Property Rid() As Integer
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If ((Me._Rid = value)  _
+						= false) Then
+				Me.OnRidChanging(value)
+				Me.SendPropertyChanging
+				Me._Rid = value
+				Me.SendPropertyChanged("Rid")
+				Me.OnRidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")>  _
+	Public Property RevenueChangeReason() As String
+		Get
+			Return Me._RevenueChangeReason
+		End Get
+		Set
+			If (String.Equals(Me._RevenueChangeReason, value) = false) Then
+				Me.OnRevenueChangeReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._RevenueChangeReason = value
+				Me.SendPropertyChanged("RevenueChangeReason")
+				Me.OnRevenueChangeReasonChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblPreviousSuppliers")>  _
+Partial Public Class tblPreviousSupplier
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _PreviousSupplierID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _PreviousSupplier As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnPreviousSupplierIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnPreviousSupplierIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnPreviousSupplierChanging(value As String)
+    End Sub
+    Partial Private Sub OnPreviousSupplierChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplierID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property PreviousSupplierID() As System.Guid
+		Get
+			Return Me._PreviousSupplierID
+		End Get
+		Set
+			If ((Me._PreviousSupplierID = value)  _
+						= false) Then
+				Me.OnPreviousSupplierIDChanging(value)
+				Me.SendPropertyChanging
+				Me._PreviousSupplierID = value
+				Me.SendPropertyChanged("PreviousSupplierID")
+				Me.OnPreviousSupplierIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="NVarChar(50)")>  _
+	Public Property PreviousSupplier() As String
+		Get
+			Return Me._PreviousSupplier
+		End Get
+		Set
+			If (String.Equals(Me._PreviousSupplier, value) = false) Then
+				Me.OnPreviousSupplierChanging(value)
+				Me.SendPropertyChanging
+				Me._PreviousSupplier = value
+				Me.SendPropertyChanged("PreviousSupplier")
+				Me.OnPreviousSupplierChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServiceFrequency")>  _
+Partial Public Class tblServiceFrequency
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _FrequencyID As System.Guid
+	
+	Private _Fid As Integer
+	
+	Private _FrequencyDescription As String
+	
+	Private _Factor As System.Nullable(Of Single)
+	
+	Private _Periodical As Boolean
+	
+	Private _Notes As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnFrequencyIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFrequencyIDChanged()
+    End Sub
+    Partial Private Sub OnFidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnFidChanged()
+    End Sub
+    Partial Private Sub OnFrequencyDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnFrequencyDescriptionChanged()
+    End Sub
+    Partial Private Sub OnFactorChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnFactorChanged()
+    End Sub
+    Partial Private Sub OnPeriodicalChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnPeriodicalChanged()
+    End Sub
+    Partial Private Sub OnNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnNotesChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property FrequencyID() As System.Guid
+		Get
+			Return Me._FrequencyID
+		End Get
+		Set
+			If ((Me._FrequencyID = value)  _
+						= false) Then
+				Me.OnFrequencyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FrequencyID = value
+				Me.SendPropertyChanged("FrequencyID")
+				Me.OnFrequencyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fid", DbType:="Int NOT NULL")>  _
+	Public Property Fid() As Integer
+		Get
+			Return Me._Fid
+		End Get
+		Set
+			If ((Me._Fid = value)  _
+						= false) Then
+				Me.OnFidChanging(value)
+				Me.SendPropertyChanging
+				Me._Fid = value
+				Me.SendPropertyChanged("Fid")
+				Me.OnFidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyDescription", DbType:="NVarChar(50)")>  _
+	Public Property FrequencyDescription() As String
+		Get
+			Return Me._FrequencyDescription
+		End Get
+		Set
+			If (String.Equals(Me._FrequencyDescription, value) = false) Then
+				Me.OnFrequencyDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._FrequencyDescription = value
+				Me.SendPropertyChanged("FrequencyDescription")
+				Me.OnFrequencyDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Factor", DbType:="Real")>  _
+	Public Property Factor() As System.Nullable(Of Single)
+		Get
+			Return Me._Factor
+		End Get
+		Set
+			If (Me._Factor.Equals(value) = false) Then
+				Me.OnFactorChanging(value)
+				Me.SendPropertyChanging
+				Me._Factor = value
+				Me.SendPropertyChanged("Factor")
+				Me.OnFactorChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Periodical", DbType:="Bit NOT NULL")>  _
+	Public Property Periodical() As Boolean
+		Get
+			Return Me._Periodical
+		End Get
+		Set
+			If ((Me._Periodical = value)  _
+						= false) Then
+				Me.OnPeriodicalChanging(value)
+				Me.SendPropertyChanging
+				Me._Periodical = value
+				Me.SendPropertyChanged("Periodical")
+				Me.OnPeriodicalChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="NVarChar(MAX)")>  _
+	Public Property Notes() As String
+		Get
+			Return Me._Notes
+		End Get
+		Set
+			If (String.Equals(Me._Notes, value) = false) Then
+				Me.OnNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._Notes = value
+				Me.SendPropertyChanged("Notes")
+				Me.OnNotesChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServices")>  _
+Partial Public Class tblService
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ServicesID As System.Guid
+	
+	Private _Sid As Integer
+	
+	Private _ServiceCode As String
+	
+	Private _ServiceDescription As String
+	
+	Private _CostOfService As System.Nullable(Of Single)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnServicesIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnServicesIDChanged()
+    End Sub
+    Partial Private Sub OnSidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSidChanged()
+    End Sub
+    Partial Private Sub OnServiceCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnServiceCodeChanged()
+    End Sub
+    Partial Private Sub OnServiceDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnServiceDescriptionChanged()
+    End Sub
+    Partial Private Sub OnCostOfServiceChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnCostOfServiceChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ServicesID() As System.Guid
+		Get
+			Return Me._ServicesID
+		End Get
+		Set
+			If ((Me._ServicesID = value)  _
+						= false) Then
+				Me.OnServicesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ServicesID = value
+				Me.SendPropertyChanged("ServicesID")
+				Me.OnServicesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Sid", DbType:="Int NOT NULL")>  _
+	Public Property Sid() As Integer
+		Get
+			Return Me._Sid
+		End Get
+		Set
+			If ((Me._Sid = value)  _
+						= false) Then
+				Me.OnSidChanging(value)
+				Me.SendPropertyChanging
+				Me._Sid = value
+				Me.SendPropertyChanged("Sid")
+				Me.OnSidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
+	Public Property ServiceCode() As String
+		Get
+			Return Me._ServiceCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceCode, value) = false) Then
+				Me.OnServiceCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceCode = value
+				Me.SendPropertyChanged("ServiceCode")
+				Me.OnServiceCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me.OnServiceDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceDescription = value
+				Me.SendPropertyChanged("ServiceDescription")
+				Me.OnServiceDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CostOfService", DbType:="Real")>  _
+	Public Property CostOfService() As System.Nullable(Of Single)
+		Get
+			Return Me._CostOfService
+		End Get
+		Set
+			If (Me._CostOfService.Equals(value) = false) Then
+				Me.OnCostOfServiceChanging(value)
+				Me.SendPropertyChanging
+				Me._CostOfService = value
+				Me.SendPropertyChanged("CostOfService")
+				Me.OnCostOfServiceChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSalesPersons")>  _
+Partial Public Class tblSalesPerson
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _SalesPersonID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _SalesPerson As String
+	
+	Private _SalesPersonStartDate As System.Nullable(Of Date)
+	
+	Private _SalesPersonComments As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnSalesPersonIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnSalesPersonIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnSalesPersonChanging(value As String)
+    End Sub
+    Partial Private Sub OnSalesPersonChanged()
+    End Sub
+    Partial Private Sub OnSalesPersonStartDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnSalesPersonStartDateChanged()
+    End Sub
+    Partial Private Sub OnSalesPersonCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnSalesPersonCommentsChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPersonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property SalesPersonID() As System.Guid
+		Get
+			Return Me._SalesPersonID
+		End Get
+		Set
+			If ((Me._SalesPersonID = value)  _
+						= false) Then
+				Me.OnSalesPersonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SalesPersonID = value
+				Me.SendPropertyChanged("SalesPersonID")
+				Me.OnSalesPersonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPerson", DbType:="NVarChar(50)")>  _
+	Public Property SalesPerson() As String
+		Get
+			Return Me._SalesPerson
+		End Get
+		Set
+			If (String.Equals(Me._SalesPerson, value) = false) Then
+				Me.OnSalesPersonChanging(value)
+				Me.SendPropertyChanging
+				Me._SalesPerson = value
+				Me.SendPropertyChanged("SalesPerson")
+				Me.OnSalesPersonChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPersonStartDate", DbType:="DateTime")>  _
+	Public Property SalesPersonStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SalesPersonStartDate
+		End Get
+		Set
+			If (Me._SalesPersonStartDate.Equals(value) = false) Then
+				Me.OnSalesPersonStartDateChanging(value)
+				Me.SendPropertyChanging
+				Me._SalesPersonStartDate = value
+				Me.SendPropertyChanged("SalesPersonStartDate")
+				Me.OnSalesPersonStartDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPersonComments", DbType:="NVarChar(MAX)")>  _
+	Public Property SalesPersonComments() As String
+		Get
+			Return Me._SalesPersonComments
+		End Get
+		Set
+			If (String.Equals(Me._SalesPersonComments, value) = false) Then
+				Me.OnSalesPersonCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._SalesPersonComments = value
+				Me.SendPropertyChanged("SalesPersonComments")
+				Me.OnSalesPersonCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblProjectID")>  _
+Partial Public Class tblProjectID
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ProjectID As System.Guid
+	
+	Private _CustomersID As System.Nullable(Of Integer)
+	
+	Private _SitesID As System.Nullable(Of Integer)
+	
+	Private _IndustryGroupID As System.Nullable(Of Integer)
+	
+	Private _InvoiceFrequencyID As System.Nullable(Of Integer)
+	
+	Private _CustomerAgentID As System.Nullable(Of Integer)
+	
+	Private _CeaseReasonID As System.Nullable(Of Integer)
+	
+	Private _CIRReasonID As System.Nullable(Of Integer)
+	
+	Private _ZoneID As System.Nullable(Of Integer)
+	
+	Private _CustomerRatingID As System.Nullable(Of Integer)
+	
+	Private _RateIncreaseID As System.Nullable(Of Integer)
+	
+	Private _PreviousSupplierID As System.Nullable(Of Integer)
+	
+	Private _FortnightlyCyclesID As System.Nullable(Of Integer)
+	
+	Private _RevenueChangeReasonID As System.Nullable(Of Integer)
+	
+	Private _FrequencyID As System.Nullable(Of Integer)
+	
+	Private _ServicesID As System.Nullable(Of Integer)
+	
+	Private _SalesPersonID As System.Nullable(Of Integer)
+	
+	Private _FuelLevyID As System.Nullable(Of Integer)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnProjectIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnProjectIDChanged()
+    End Sub
+    Partial Private Sub OnCustomersIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCustomersIDChanged()
+    End Sub
+    Partial Private Sub OnSitesIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSitesIDChanged()
+    End Sub
+    Partial Private Sub OnIndustryGroupIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnIndustryGroupIDChanged()
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnInvoiceFrequencyIDChanged()
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanged()
+    End Sub
+    Partial Private Sub OnCeaseReasonIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCeaseReasonIDChanged()
+    End Sub
+    Partial Private Sub OnCIRReasonIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCIRReasonIDChanged()
+    End Sub
+    Partial Private Sub OnZoneIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnZoneIDChanged()
+    End Sub
+    Partial Private Sub OnCustomerRatingIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCustomerRatingIDChanged()
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanged()
+    End Sub
+    Partial Private Sub OnPreviousSupplierIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnPreviousSupplierIDChanged()
+    End Sub
+    Partial Private Sub OnFortnightlyCyclesIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnFortnightlyCyclesIDChanged()
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonIDChanged()
+    End Sub
+    Partial Private Sub OnFrequencyIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnFrequencyIDChanged()
+    End Sub
+    Partial Private Sub OnServicesIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnServicesIDChanged()
+    End Sub
+    Partial Private Sub OnSalesPersonIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSalesPersonIDChanged()
+    End Sub
+    Partial Private Sub OnFuelLevyIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnFuelLevyIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProjectID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ProjectID() As System.Guid
+		Get
+			Return Me._ProjectID
+		End Get
+		Set
+			If ((Me._ProjectID = value)  _
+						= false) Then
+				Me.OnProjectIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ProjectID = value
+				Me.SendPropertyChanged("ProjectID")
+				Me.OnProjectIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomersID", DbType:="Int")>  _
+	Public Property CustomersID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CustomersID
+		End Get
+		Set
+			If (Me._CustomersID.Equals(value) = false) Then
+				Me.OnCustomersIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomersID = value
+				Me.SendPropertyChanged("CustomersID")
+				Me.OnCustomersIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SitesID", DbType:="Int")>  _
+	Public Property SitesID() As System.Nullable(Of Integer)
+		Get
+			Return Me._SitesID
+		End Get
+		Set
+			If (Me._SitesID.Equals(value) = false) Then
+				Me.OnSitesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SitesID = value
+				Me.SendPropertyChanged("SitesID")
+				Me.OnSitesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IndustryGroupID", DbType:="Int")>  _
+	Public Property IndustryGroupID() As System.Nullable(Of Integer)
+		Get
+			Return Me._IndustryGroupID
+		End Get
+		Set
+			If (Me._IndustryGroupID.Equals(value) = false) Then
+				Me.OnIndustryGroupIDChanging(value)
+				Me.SendPropertyChanging
+				Me._IndustryGroupID = value
+				Me.SendPropertyChanged("IndustryGroupID")
+				Me.OnIndustryGroupIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceFrequencyID", DbType:="Int")>  _
+	Public Property InvoiceFrequencyID() As System.Nullable(Of Integer)
+		Get
+			Return Me._InvoiceFrequencyID
+		End Get
+		Set
+			If (Me._InvoiceFrequencyID.Equals(value) = false) Then
+				Me.OnInvoiceFrequencyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceFrequencyID = value
+				Me.SendPropertyChanged("InvoiceFrequencyID")
+				Me.OnInvoiceFrequencyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentID", DbType:="Int")>  _
+	Public Property CustomerAgentID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CustomerAgentID
+		End Get
+		Set
+			If (Me._CustomerAgentID.Equals(value) = false) Then
+				Me.OnCustomerAgentIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentID = value
+				Me.SendPropertyChanged("CustomerAgentID")
+				Me.OnCustomerAgentIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CeaseReasonID", DbType:="Int")>  _
+	Public Property CeaseReasonID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CeaseReasonID
+		End Get
+		Set
+			If (Me._CeaseReasonID.Equals(value) = false) Then
+				Me.OnCeaseReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CeaseReasonID = value
+				Me.SendPropertyChanged("CeaseReasonID")
+				Me.OnCeaseReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CIRReasonID", DbType:="Int")>  _
+	Public Property CIRReasonID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CIRReasonID
+		End Get
+		Set
+			If (Me._CIRReasonID.Equals(value) = false) Then
+				Me.OnCIRReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CIRReasonID = value
+				Me.SendPropertyChanged("CIRReasonID")
+				Me.OnCIRReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="Int")>  _
+	Public Property ZoneID() As System.Nullable(Of Integer)
+		Get
+			Return Me._ZoneID
+		End Get
+		Set
+			If (Me._ZoneID.Equals(value) = false) Then
+				Me.OnZoneIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ZoneID = value
+				Me.SendPropertyChanged("ZoneID")
+				Me.OnZoneIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerRatingID", DbType:="Int")>  _
+	Public Property CustomerRatingID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CustomerRatingID
+		End Get
+		Set
+			If (Me._CustomerRatingID.Equals(value) = false) Then
+				Me.OnCustomerRatingIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerRatingID = value
+				Me.SendPropertyChanged("CustomerRatingID")
+				Me.OnCustomerRatingIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseID", DbType:="Int")>  _
+	Public Property RateIncreaseID() As System.Nullable(Of Integer)
+		Get
+			Return Me._RateIncreaseID
+		End Get
+		Set
+			If (Me._RateIncreaseID.Equals(value) = false) Then
+				Me.OnRateIncreaseIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RateIncreaseID = value
+				Me.SendPropertyChanged("RateIncreaseID")
+				Me.OnRateIncreaseIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplierID", DbType:="Int")>  _
+	Public Property PreviousSupplierID() As System.Nullable(Of Integer)
+		Get
+			Return Me._PreviousSupplierID
+		End Get
+		Set
+			If (Me._PreviousSupplierID.Equals(value) = false) Then
+				Me.OnPreviousSupplierIDChanging(value)
+				Me.SendPropertyChanging
+				Me._PreviousSupplierID = value
+				Me.SendPropertyChanged("PreviousSupplierID")
+				Me.OnPreviousSupplierIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FortnightlyCyclesID", DbType:="Int")>  _
+	Public Property FortnightlyCyclesID() As System.Nullable(Of Integer)
+		Get
+			Return Me._FortnightlyCyclesID
+		End Get
+		Set
+			If (Me._FortnightlyCyclesID.Equals(value) = false) Then
+				Me.OnFortnightlyCyclesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FortnightlyCyclesID = value
+				Me.SendPropertyChanged("FortnightlyCyclesID")
+				Me.OnFortnightlyCyclesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReasonID", DbType:="Int")>  _
+	Public Property RevenueChangeReasonID() As System.Nullable(Of Integer)
+		Get
+			Return Me._RevenueChangeReasonID
+		End Get
+		Set
+			If (Me._RevenueChangeReasonID.Equals(value) = false) Then
+				Me.OnRevenueChangeReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RevenueChangeReasonID = value
+				Me.SendPropertyChanged("RevenueChangeReasonID")
+				Me.OnRevenueChangeReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyID", DbType:="Int")>  _
+	Public Property FrequencyID() As System.Nullable(Of Integer)
+		Get
+			Return Me._FrequencyID
+		End Get
+		Set
+			If (Me._FrequencyID.Equals(value) = false) Then
+				Me.OnFrequencyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FrequencyID = value
+				Me.SendPropertyChanged("FrequencyID")
+				Me.OnFrequencyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicesID", DbType:="Int")>  _
+	Public Property ServicesID() As System.Nullable(Of Integer)
+		Get
+			Return Me._ServicesID
+		End Get
+		Set
+			If (Me._ServicesID.Equals(value) = false) Then
+				Me.OnServicesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ServicesID = value
+				Me.SendPropertyChanged("ServicesID")
+				Me.OnServicesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPersonID", DbType:="Int")>  _
+	Public Property SalesPersonID() As System.Nullable(Of Integer)
+		Get
+			Return Me._SalesPersonID
+		End Get
+		Set
+			If (Me._SalesPersonID.Equals(value) = false) Then
+				Me.OnSalesPersonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SalesPersonID = value
+				Me.SendPropertyChanged("SalesPersonID")
+				Me.OnSalesPersonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FuelLevyID", DbType:="Int")>  _
+	Public Property FuelLevyID() As System.Nullable(Of Integer)
+		Get
+			Return Me._FuelLevyID
+		End Get
+		Set
+			If (Me._FuelLevyID.Equals(value) = false) Then
+				Me.OnFuelLevyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FuelLevyID = value
+				Me.SendPropertyChanged("FuelLevyID")
+				Me.OnFuelLevyIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblFuelLevy")>  _
+Partial Public Class tblFuelLevy
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _FuelLevyID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _Code As String
+	
+	Private _Description As String
+	
+	Private _Percentage As System.Nullable(Of Single)
+	
+	Private _MYOBInvoiceCode As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnFuelLevyIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFuelLevyIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnCodeChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    Partial Private Sub OnPercentageChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnPercentageChanged()
+    End Sub
+    Partial Private Sub OnMYOBInvoiceCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnMYOBInvoiceCodeChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FuelLevyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property FuelLevyID() As System.Guid
+		Get
+			Return Me._FuelLevyID
+		End Get
+		Set
+			If ((Me._FuelLevyID = value)  _
+						= false) Then
+				Me.OnFuelLevyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FuelLevyID = value
+				Me.SendPropertyChanged("FuelLevyID")
+				Me.OnFuelLevyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Code", DbType:="NVarChar(8)")>  _
+	Public Property Code() As String
+		Get
+			Return Me._Code
+		End Get
+		Set
+			If (String.Equals(Me._Code, value) = false) Then
+				Me.OnCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._Code = value
+				Me.SendPropertyChanged("Code")
+				Me.OnCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(22)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Percentage", DbType:="Real")>  _
+	Public Property Percentage() As System.Nullable(Of Single)
+		Get
+			Return Me._Percentage
+		End Get
+		Set
+			If (Me._Percentage.Equals(value) = false) Then
+				Me.OnPercentageChanging(value)
+				Me.SendPropertyChanging
+				Me._Percentage = value
+				Me.SendPropertyChanged("Percentage")
+				Me.OnPercentageChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBInvoiceCode", DbType:="NVarChar(12)")>  _
+	Public Property MYOBInvoiceCode() As String
+		Get
+			Return Me._MYOBInvoiceCode
+		End Get
+		Set
+			If (String.Equals(Me._MYOBInvoiceCode, value) = false) Then
+				Me.OnMYOBInvoiceCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._MYOBInvoiceCode = value
+				Me.SendPropertyChanged("MYOBInvoiceCode")
+				Me.OnMYOBInvoiceCodeChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class
 
 Partial Public Class aspnet_Roles_GetAllRolesResult
@@ -27638,6 +28521,136 @@ Partial Public Class usp_GetRunListByRunNumberReportResult
 			If ((Me._Rid = value)  _
 						= false) Then
 				Me._Rid = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetFortNightlyCyclesResult
+	
+	Private _FortnightlyCyclesID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _CycleDescription As String
+	
+	Private _SortOrder As System.Nullable(Of Long)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FortnightlyCyclesID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property FortnightlyCyclesID() As System.Guid
+		Get
+			Return Me._FortnightlyCyclesID
+		End Get
+		Set
+			If ((Me._FortnightlyCyclesID = value)  _
+						= false) Then
+				Me._FortnightlyCyclesID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me._Aid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CycleDescription", DbType:="NVarChar(50)")>  _
+	Public Property CycleDescription() As String
+		Get
+			Return Me._CycleDescription
+		End Get
+		Set
+			If (String.Equals(Me._CycleDescription, value) = false) Then
+				Me._CycleDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
+	Public Property SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._SortOrder
+		End Get
+		Set
+			If (Me._SortOrder.Equals(value) = false) Then
+				Me._SortOrder = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetRevenueChangeReasonResult
+	
+	Private _RevenueChangeReasonID As System.Guid
+	
+	Private _Rid As Integer
+	
+	Private _RevenueChangeReason As String
+	
+	Private _SortOrder As System.Nullable(Of Long)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReasonID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property RevenueChangeReasonID() As System.Guid
+		Get
+			Return Me._RevenueChangeReasonID
+		End Get
+		Set
+			If ((Me._RevenueChangeReasonID = value)  _
+						= false) Then
+				Me._RevenueChangeReasonID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
+	Public Property Rid() As Integer
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If ((Me._Rid = value)  _
+						= false) Then
+				Me._Rid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")>  _
+	Public Property RevenueChangeReason() As String
+		Get
+			Return Me._RevenueChangeReason
+		End Get
+		Set
+			If (String.Equals(Me._RevenueChangeReason, value) = false) Then
+				Me._RevenueChangeReason = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
+	Public Property SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._SortOrder
+		End Get
+		Set
+			If (Me._SortOrder.Equals(value) = false) Then
+				Me._SortOrder = value
 			End If
 		End Set
 	End Property

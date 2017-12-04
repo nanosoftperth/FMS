@@ -33,6 +33,7 @@
             Dim objCustomer As New FMS.Business.tblCustomer
             With objCustomer
                 .CustomerID = Guid.NewGuid
+                .Cid = tblProjectID.CustomerIDCreateOrUpdate()
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
                 .AddressLine2 = customer.AddressLine2
@@ -61,7 +62,6 @@
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
                                                            Where c.Cid.Equals(customer.Cid)).SingleOrDefault
             With objCustomer
-                '.CustomerID = customer.CustomerID
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
                 .AddressLine2 = customer.AddressLine2

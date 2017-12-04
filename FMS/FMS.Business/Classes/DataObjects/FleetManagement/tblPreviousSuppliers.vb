@@ -11,6 +11,7 @@
             Dim objTblPreviousSupplier As New FMS.Business.tblPreviousSupplier
             With objTblPreviousSupplier
                 .PreviousSupplierID = Guid.NewGuid
+                .Aid = tblProjectID.PreviousSupplierIDCreateOrUpdate()
                 .PreviousSupplier = PSupplier.PreviousSupplier
             End With
             SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers.InsertOnSubmit(objTblPreviousSupplier)

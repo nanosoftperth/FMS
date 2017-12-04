@@ -117,11 +117,15 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomerServices.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblDrivers.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblFuelLevy.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblIndustryGroups.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblInvoicingFrequency.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblMonths.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblPreviousSuppliers.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblProjectID.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRateIncreaseReference.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblRevenueChangeReason.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblRunFortnightlyCycle.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRuns.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblSalesPersons.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblServiceFrequency.vb" />

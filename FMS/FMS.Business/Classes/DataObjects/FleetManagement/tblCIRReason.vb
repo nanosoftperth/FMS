@@ -10,6 +10,7 @@
             Dim objCIRReason As New FMS.Business.tblCIRReason
             With objCIRReason
                 .ReasonID = Guid.NewGuid
+                .CId = tblProjectID.CIRReasonIDCreateOrUpdate()
                 .CIRReason = Reason.CIRReason
             End With
             SingletonAccess.FMSDataContextContignous.tblCIRReasons.InsertOnSubmit(objCIRReason)

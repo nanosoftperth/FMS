@@ -10,6 +10,7 @@
             Dim objZone As New FMS.Business.tbZone
             With objZone
                 .ZoneID = Guid.NewGuid
+                .Aid = tblProjectID.ZoneIDCreateOrUpdate()
                 .AreaDescription = Zone.AreaDescription
             End With
             SingletonAccess.FMSDataContextContignous.tbZones.InsertOnSubmit(objZone)

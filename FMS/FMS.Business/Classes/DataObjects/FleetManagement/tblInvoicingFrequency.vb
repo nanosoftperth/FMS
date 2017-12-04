@@ -12,6 +12,7 @@
             Dim objInvoicingFrequency As New FMS.Business.tblInvoicingFrequency
             With objInvoicingFrequency
                 .InvoiceFrequencyID = Guid.NewGuid
+                .IId = tblProjectID.InvoiceFrequencyIDCreateOrUpdate()
                 .InvoiceId = InvoicingFrequency.InvoiceId
                 .Frequency = InvoicingFrequency.Frequency
                 .NoOfWeeks = InvoicingFrequency.NoOfWeeks

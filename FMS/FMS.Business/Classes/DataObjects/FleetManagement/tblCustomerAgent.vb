@@ -10,6 +10,7 @@
             Dim objCustomerAgent As New FMS.Business.tblCustomerAgent
             With objCustomerAgent
                 .CustomerAgentID = Guid.NewGuid
+                .AID = tblProjectID.CustomerAgentIDCreateOrUpdate()
                 .CustomerAgentName = CustomerAgent.CustomerAgentName
             End With
             SingletonAccess.FMSDataContextContignous.tblCustomerAgents.InsertOnSubmit(objCustomerAgent)
