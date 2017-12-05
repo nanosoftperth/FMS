@@ -306,12 +306,19 @@
             Dim retobj As Object = Nothing
 
             Try
+                Dim strFeatureID As String = ""
                 Dim userID = FMS.Business.ThisSession.User.UserId
                 Dim userRoledID = FMS.Business.ThisSession.User.RoleID
                 Dim appID = FMS.Business.ThisSession.ApplicationID
+                Dim featureList = FMS.Business.DataObjects.Feature.GetAllFeatures().Where(Function(f) f.Name.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
 
-                'check if user have access to all vehicles
-                Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = "DBD34E53-DC70-434E-9BF4-1CD98049A7C3").ToList()
+                If (featureList.Count > 0) Then
+                    'do comment or remark if want to test within business location only automatically
+                    strFeatureID = featureList(0).FeatureID.ToString()
+                End If
+
+                'check if user have access to all vehicles (Note: Need to change FeatureID field value for criteria whenever the Vehicle and Driver Management - See All Vehicle id changes)
+                Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = strFeatureID).ToList()
 
                 If (retafr.Count > 0) Then
                     retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
@@ -330,6 +337,7 @@
 
         End Function
 
+        ' Original Get All (due to deletion if new getall is ok after evaluation)
         Public Shared Function GetAll_original(appplicationID As Guid) As List(Of ApplicationVehicle)
 
             'added by Cesar for Admin Business Location Column use 11/27/2017
@@ -631,62 +639,6 @@
                                                                             Function(x) New DataObjects.ApplicationVehicle(x)).ToList
 
             End If
-
-            Return retobj
-
-        End Function
-
-        Public Shared Function GetAll_Draft(appplicationID As Guid) As List(Of ApplicationVehicle)
-
-            If appplicationID = Guid.Empty Then Return Nothing
-
-            Dim oVehicle = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
-                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
-
-            Dim oList As List(Of VehicleList) = New List(Of VehicleList)
-            Dim blnExist As Boolean = False
-
-            For Each row In oVehicle
-
-                Dim strValue = row.BusinessLocation
-
-                Dim str As String() = Nothing
-                str = strValue.Split("|")
-                Dim strID As String = ""
-                'Dim strVal As String
-
-                For count = 0 To str.Length - 1
-
-                    If (str(count).Length > 0) Then
-                        Dim ListRow = New VehicleList
-
-                        strID = str(count)
-
-                        ' check if location already exist in the list
-                        For rCtr = 0 To oList.Count() - 1
-                            If oList.Item(rCtr).ApplicationLocationID = New Guid(strID) Then
-                                blnExist = True
-                                Exit For
-                            End If
-                        Next
-
-                        ' if location is already exist in the list do not save
-                        If blnExist = False Then
-                            ListRow.ApplicationLocationID = New Guid(strID)
-
-                            oList.Add(ListRow)
-                        Else
-                            blnExist = False
-                        End If
-
-                    End If
-
-                Next
-
-            Next
-
-            Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
-                                                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
 
             Return retobj
 

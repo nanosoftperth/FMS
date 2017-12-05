@@ -10,8 +10,7 @@ Namespace DataObjects
         Public Property FetaureName As String
         Public Property RoleName As String
         Public Property Vehicles As Object      'for UW 226 (Add feature allowing filtering of vehicles on the map) - testing
-        Public Property AllVehicles As Boolean  'for UW 226 (Add feature allowing filtering of vehicles on the map) - testing
-
+        
         Public Sub New(apr As FMS.Business.ApplicationFeatureRole)
             With apr
                 Me.ApplicationFeatureRoleID = .ApplicationFeatureRoledID
@@ -63,11 +62,29 @@ Namespace DataObjects
         End Sub
 
         Public Shared Function GetAllApplicationFeatureRoles(appid As Guid) As List(Of ApplicationFeatureRole)
+            ' Old Code
+            'Dim retlst As List(Of DataObjects.ApplicationFeatureRole) = _
+            '                (From i In SingletonAccess.FMSDataContextNew.ApplicationFeatureRoles _
+            '                    Where i.ApplicationID = appid
+            '                    Select New DataObjects.ApplicationFeatureRole(i)).ToList
 
-            Dim retlst As List(Of DataObjects.ApplicationFeatureRole) = _
-                            (From i In SingletonAccess.FMSDataContextNew.ApplicationFeatureRoles _
-                                Where i.ApplicationID = appid
-                                 Select New DataObjects.ApplicationFeatureRole(i)).ToList
+            ' Updated code for approval (this is to have value for Featurename and Rolename right away without going back to DB for another fetch)
+            Dim retlst = (From afr In SingletonAccess.FMSDataContextContignous.ApplicationFeatureRoles
+                         Join f In SingletonAccess.FMSDataContextContignous.Features
+                         On afr.FeatureID Equals f.FeatureID
+                         Join r In SingletonAccess.FMSDataContextContignous.aspnet_Roles
+                         On afr.RoleID Equals r.RoleId
+                         Where afr.ApplicationID = appid
+                         Select New DataObjects.ApplicationFeatureRole With {
+                             .ApplicationFeatureRoleID = afr.ApplicationFeatureRoledID,
+                             .ApplicationID = afr.ApplicationID,
+                             .FeatureID = afr.FeatureID,
+                             .FetaureName = f.FeatureName,
+                             .RoleID = afr.RoleID,
+                             .RoleName = r.RoleName
+                            }).OrderBy(Function(a) a.FetaureName).ToList()
+
+
             Return retlst
 
 
@@ -108,50 +125,50 @@ Namespace DataObjects
 
 
 #Region "Vehicles pers role"
-        Public Shared Function FormatVehicles(vehicles As Object) As String
-            Try
-                Dim strValue As String = ""
+        'Public Shared Function FormatVehicles(vehicles As Object) As String
+        '    Try
+        '        Dim strValue As String = ""
 
-                If (vehicles IsNot Nothing) Then
+        '        If (vehicles IsNot Nothing) Then
 
-                    Dim objType = vehicles.GetType()
+        '            Dim objType = vehicles.GetType()
 
-                    If (objType.Name() = "List`1") Then
-                        Dim oCtr = DirectCast(vehicles.Count, Integer)
-                        Dim vValue As Guid
-                        'Dim strValue As String = ""
-                        '(New System.Collections.Generic.Mscorlib_CollectionDebugView(Of Object)(businesslocation)).Items(0)
-                        If oCtr > 0 Then
+        '            If (objType.Name() = "List`1") Then
+        '                Dim oCtr = DirectCast(vehicles.Count, Integer)
+        '                Dim vValue As Guid
+        '                'Dim strValue As String = ""
+        '                '(New System.Collections.Generic.Mscorlib_CollectionDebugView(Of Object)(businesslocation)).Items(0)
+        '                If oCtr > 0 Then
 
-                            For Each element As Object In vehicles
-                                ' Avoid Nothing elements.
-                                If element IsNot Nothing Then
-                                    vValue = element
+        '                    For Each element As Object In vehicles
+        '                        ' Avoid Nothing elements.
+        '                        If element IsNot Nothing Then
+        '                            vValue = element
 
-                                    If vValue.ToString() <> "00000000-0000-0000-0000-000000000000" Then
-                                        If strValue.Length > 0 Then
-                                            strValue = strValue + "|" + vValue.ToString()
-                                        Else
-                                            strValue = vValue.ToString()
-                                        End If
-                                    End If
+        '                            If vValue.ToString() <> "00000000-0000-0000-0000-000000000000" Then
+        '                                If strValue.Length > 0 Then
+        '                                    strValue = strValue + "|" + vValue.ToString()
+        '                                Else
+        '                                    strValue = vValue.ToString()
+        '                                End If
+        '                            End If
 
-                                End If
-                            Next
+        '                        End If
+        '                    Next
 
-                        End If
-                    Else
-                        strValue = vehicles.ToString()
-                    End If
+        '                End If
+        '            Else
+        '                strValue = vehicles.ToString()
+        '            End If
 
-                End If
+        '        End If
 
-                Return strValue
+        '        Return strValue
 
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Function
+        '    Catch ex As Exception
+        '        Throw ex
+        '    End Try
+        'End Function
 #End Region
 
 
