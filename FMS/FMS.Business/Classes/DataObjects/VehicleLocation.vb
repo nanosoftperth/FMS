@@ -114,6 +114,7 @@ Namespace DataObjects
             'Return (From x In SingletonAccess.FMSDataContextContignous.vw_GetVehicles _
             '        Where x.DeviceID = deviceID).ToList
 
+            ' Updated code for approval (this will minimize going back to DB again for fetch)
             Dim appID = FMS.Business.ThisSession.ApplicationID
             Dim listVehicle = (From vl In SingletonAccess.FMSDataContextContignous.VehicleLocations
                               Join al In SingletonAccess.FMSDataContextContignous.ApplicationLocations
@@ -127,7 +128,6 @@ Namespace DataObjects
 
             Return listVehicle
 
-            
         End Function
 
         Public Shared Function GetPerAppID(applicationID As Guid, Optional IncludeDefault As Boolean = False) As List(Of Vehicles)
@@ -189,61 +189,38 @@ Namespace DataObjects
 
             If (oList IsNot Nothing) Then
 
-                For Each element As Object In oList
-                    ctr = ctr + 1
-                Next
+                'For Each element As Object In oList
+                '    ctr = ctr + 1
+                'Next
+
+                ctr = oList.Count
 
                 If (ctr > 0) Then
-                    Update_Ext(objVL, appvehicleID)
+                    DoSave(objVL, appvehicleID, False)
+                    'Update_Ext(objVL, appvehicleID)
                 Else
-                    Create_Ext(objVL, appvehicleID)
+                    DoSave(objVL, appvehicleID, True)
+                    'Create_Ext(objVL, appvehicleID)
                 End If
 
             Else
-                Create_Ext(objVL, appvehicleID)
+                DoSave(objVL, appvehicleID, True)
+                'Create_Ext(objVL, appvehicleID)
             End If
 
         End Sub
 
-        Public Shared Sub Create_Ext(objVL As Object, appvehicleID As Guid)
+        Public Shared Sub DoSave(objVL As Object, appvehicleID As Guid, blnInsert As Boolean)
 
             Dim listRow = New VehicleLocation
-
-            If (objVL IsNot Nothing) Then
-                Dim objType = objVL.GetType()
-                If (objType.Name() = "List`1") Then
-                    Dim oCtr = DirectCast(objVL.Count, Integer)
-                    Dim val As Guid
-
-                    If oCtr > 0 Then
-                        For Each element As Object In objVL
-                            val = element
-
-                            listRow.VehicleID = appvehicleID
-                            listRow.BusinessLocationID = val
-
-                            Create(listRow)
-
-                        Next
-
-                    End If
-
-                End If
-            End If
-
-        End Sub
-
-        Public Shared Sub Update_Ext(objVL As Object, appvehicleID As Guid)
-            Dim listRow = New VehicleLocation
-
             listRow.VehicleID = appvehicleID
 
-            DeletePerVehicle(listRow)
+            If (blnInsert = False) Then '
+                DeletePerVehicle(listRow)
+            End If
 
             If (objVL IsNot Nothing) Then
-
                 Dim objType = objVL.GetType()
-
                 If (objType.Name() = "List`1") Then
                     Dim oCtr = DirectCast(objVL.Count, Integer)
                     Dim val As Guid
@@ -252,7 +229,7 @@ Namespace DataObjects
                         For Each element As Object In objVL
                             val = element
 
-                            listRow.VehicleID = appvehicleID
+                            'If (listRow.VehicleID.ToString().Length <= 0) Then listRow.VehicleID = appvehicleID
                             listRow.BusinessLocationID = val
 
                             Create(listRow)
@@ -262,18 +239,79 @@ Namespace DataObjects
                     End If
 
                 End If
-
-
             End If
 
-
         End Sub
+
+        ' due for removal
+        'Public Shared Sub Create_Ext(objVL As Object, appvehicleID As Guid)
+
+        '    Dim listRow = New VehicleLocation
+
+        '    If (objVL IsNot Nothing) Then
+        '        Dim objType = objVL.GetType()
+        '        If (objType.Name() = "List`1") Then
+        '            Dim oCtr = DirectCast(objVL.Count, Integer)
+        '            Dim val As Guid
+
+        '            If oCtr > 0 Then
+        '                For Each element As Object In objVL
+        '                    val = element
+
+        '                    listRow.VehicleID = appvehicleID
+        '                    listRow.BusinessLocationID = val
+
+        '                    Create(listRow)
+
+        '                Next
+
+        '            End If
+
+        '        End If
+        '    End If
+
+        'End Sub
+
+        'Public Shared Sub Update_Ext(objVL As Object, appvehicleID As Guid)
+        '    Dim listRow = New VehicleLocation
+
+        '    listRow.VehicleID = appvehicleID
+
+        '    DeletePerVehicle(listRow)
+
+        '    If (objVL IsNot Nothing) Then
+
+        '        Dim objType = objVL.GetType()
+
+        '        If (objType.Name() = "List`1") Then
+        '            Dim oCtr = DirectCast(objVL.Count, Integer)
+        '            Dim val As Guid
+
+        '            If oCtr > 0 Then
+        '                For Each element As Object In objVL
+        '                    val = element
+
+        '                    listRow.VehicleID = appvehicleID
+        '                    listRow.BusinessLocationID = val
+
+        '                    Create(listRow)
+
+        '                Next
+
+        '            End If
+
+        '        End If
+
+
+        '    End If
+
+
+        'End Sub
 
         Public Shared Sub DeletePerVehicle(vl As FMS.Business.DataObjects.VehicleLocation)
 
             Dim tblVehicleLocations = (From i In SingletonAccess.FMSDataContextContignous.VehicleLocations
                                                              Where i.VehicleID = vl.VehicleID).ToList()
-
 
             If Not tblVehicleLocations Is Nothing Then
                 SingletonAccess.FMSDataContextContignous.VehicleLocations.DeleteAllOnSubmit(tblVehicleLocations)

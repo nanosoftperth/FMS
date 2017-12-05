@@ -128,7 +128,6 @@
 
     End Class
 
-
     Public Class FeatureListConstants
 
         Public Const Fleet_Map As String = "Fleet Map"
