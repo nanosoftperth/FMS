@@ -113,6 +113,7 @@
         Public Shared Function GetAllFeatures() As List(Of Feature)
 
             Return (From i In SingletonAccess.FMSDataContextNew.Features
+                    Order By i.FeatureName
                      Select New DataObjects.Feature(i)).ToList
 
         End Function
@@ -120,7 +121,7 @@
 
             Return (From i In SingletonAccess.FMSDataContextNew.ApplicationFeatures
                     Where i.ApplicationID = appid
-                     Select New DataObjects.Feature(i.Feature)).ToList
+                    Select New DataObjects.Feature(i.Feature)).ToList
 
         End Function
 
