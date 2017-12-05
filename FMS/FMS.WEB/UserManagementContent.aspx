@@ -402,7 +402,7 @@
                                 <dx:ASPxGridView KeyFieldName="ApplicationFeatureRoleID" ID="dgvRoleAccessToFeatures" 
                                     ClientInstanceName="dgvRoleAccessToFeatures" runat="server" 
                                     AutoGenerateColumns="False" DataSourceID="odsApplicationFeatureRoles" 
-                                    Width="100%"  Theme="SoftOrange"
+                                    Width="100%"  Theme="SoftOrange"                                    
                                     >
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
@@ -429,7 +429,8 @@
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataComboBoxColumn FieldName="FeatureID" ShowInCustomizationForm="True" VisibleIndex="3" Caption="Feature">
+                                        <dx:GridViewDataComboBoxColumn FieldName="FeatureID" ShowInCustomizationForm="True" VisibleIndex="3" Caption="Feature" >
+                                            <Settings SortMode="DisplayText" />
                                             <PropertiesComboBox DataSourceID="odsAppFeatRoleFeatures" TextField="Name" ValueField="FeatureID">
                                                 <ClearButton Visibility="Auto">
                                                 </ClearButton>
