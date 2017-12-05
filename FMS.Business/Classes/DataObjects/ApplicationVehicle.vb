@@ -306,27 +306,74 @@
             Dim retobj As Object = Nothing
 
             Try
-                Dim strFeatureID As String = ""
-                Dim userID = FMS.Business.ThisSession.User.UserId
-                Dim userRoledID = FMS.Business.ThisSession.User.RoleID
-                Dim appID = FMS.Business.ThisSession.ApplicationID
-                Dim featureList = FMS.Business.DataObjects.Feature.GetAllFeatures().Where(Function(f) f.Name.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
+                If appplicationID = Guid.Empty Then Return Nothing
 
-                If (featureList.Count > 0) Then
-                    'do comment or remark if want to test within business location only automatically
-                    strFeatureID = featureList(0).FeatureID.ToString()
-                End If
-
-                'check if user have access to all vehicles (Note: Need to change FeatureID field value for criteria whenever the Vehicle and Driver Management - See All Vehicle id changes)
-                Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = strFeatureID).ToList()
-
-                If (retafr.Count > 0) Then
-                    retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
-                                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
-                Else
+                If (IsNothing(FMS.Business.ThisSession.User()) = True) Then
                     retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                                 Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                Else
+                    Dim strFeatureID As String = ""
+                    Dim userID = FMS.Business.ThisSession.User.UserId
+                    Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+                    Dim appID = FMS.Business.ThisSession.ApplicationID
+
+                    Dim featureList = FMS.Business.DataObjects.Feature.GetAllFeatures().Where(Function(f) f.Name.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
+
+                    If (featureList.Count > 0) Then
+                        'do comment or remark if want to test within business location only automatically
+                        strFeatureID = featureList(0).FeatureID.ToString()
+                    End If
+
+                    'check if user have access to all vehicles (Note: Need to change FeatureID field value for criteria whenever the Vehicle and Driver Management - See All Vehicle id changes)
+                    Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = strFeatureID).ToList()
+
+                    If (retafr.Count > 0) Then
+                        'retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
+                        '                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+                        retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.DeviceID IsNot Nothing).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                    Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+                    Else
+                        retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                    End If
+
                 End If
+
+
+
+                '------------------------------
+                'If appplicationID = Guid.Empty Then Return Nothing
+                'If (IsNothing(FMS.Business.ThisSession.User()) = True) Then Return Nothing
+
+                'Dim strFeatureID As String = ""
+                ''Dim oSession = FMS.Business.ThisSession.User()
+
+                ''If (IsNothing(FMS.Business.ThisSession.User()) = True) Then
+                ''    Return retobj
+                ''End If
+
+                'Dim userID = FMS.Business.ThisSession.User.UserId
+                'Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+                'Dim appID = FMS.Business.ThisSession.ApplicationID
+                'Dim featureList = FMS.Business.DataObjects.Feature.GetAllFeatures().Where(Function(f) f.Name.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
+
+                'If (featureList.Count > 0) Then
+                '    'do comment or remark if want to test within business location only automatically
+                '    strFeatureID = featureList(0).FeatureID.ToString()
+                'End If
+
+                ''check if user have access to all vehicles (Note: Need to change FeatureID field value for criteria whenever the Vehicle and Driver Management - See All Vehicle id changes)
+                'Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = strFeatureID).ToList()
+
+                'If (retafr.Count > 0) Then
+                '    retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
+                '                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                'Else
+                '    retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                '                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                'End If
 
                 Return retobj
 
@@ -338,7 +385,7 @@
         End Function
 
         ' Original Get All (due to deletion if new getall is ok after evaluation)
-        Public Shared Function GetAll_original(appplicationID As Guid) As List(Of ApplicationVehicle)
+        Public Shared Function GetAll_Orig(appplicationID As Guid) As List(Of ApplicationVehicle)
 
             'added by Cesar for Admin Business Location Column use 11/27/2017
             Dim listVeh As List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles) = New List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles)
@@ -433,6 +480,8 @@
 
             Dim vehicles As List(Of DataObjects.ApplicationVehicle) = GetAll(appid)
 
+            If (IsNothing(vehicles) = True) Then Return Nothing ' added by Cesar to return GetAllWithDrivers with nothing value
+
             Dim drivers As List(Of usp_GetVehiclesAndDriversFortimePeriodResult) = _
                     SingletonAccess.FMSDataContextNew.usp_GetVehiclesAndDriversFortimePeriod(appid, querydate, querydate).ToList
 
@@ -442,10 +491,12 @@
                 Dim driver As usp_GetVehiclesAndDriversFortimePeriodResult = _
                                     (From i In drivers Where i.ApplicationVehicleID = itm.ApplicationVehileID).FirstOrDefault
 
-                If driver.ApplicationDriverID.HasValue Then _
+                If IsNothing(driver) = False Then       ' filter added by cesar to filter the driver with proper data only
+                    If driver.ApplicationDriverID.HasValue Then _
                         itm.CurrentDriver = DataObjects.ApplicationDriver.GetDriverFromID(driver.ApplicationDriverID)
 
-                itm.QueryTime = querydate.timezoneToClient
+                    itm.QueryTime = querydate.timezoneToClient
+                End If
 
             Next
 
