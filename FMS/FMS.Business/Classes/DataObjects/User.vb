@@ -205,11 +205,17 @@ Namespace DataObjects
 
         Public Shared Function GetAllUsersForApplication(applicationid As Guid) As List(Of DataObjects.User)
 
+            Dim retobj As New List(Of DataObjects.User)
 
-            Dim retobj = (From i In SingletonAccess.FMSDataContextNew.aspnet_Users
-                                 Where i.ApplicationId = applicationid
-                                 Select New User(i)).ToList
+            With New Business.LINQtoSQLClassesDataContext
 
+
+                Dim x = (From y In .aspnet_Users Where y.ApplicationId = applicationid).ToList
+
+                retobj = (From z In x Select New DataObjects.User(z)).ToList
+
+
+            End With
 
             Return retobj
 

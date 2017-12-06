@@ -202,7 +202,19 @@
                     <dx:TabPage Text="Users" Name="tab_Users">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView KeyFieldName="UserId" OnInitNewRow="dgvUsers_InitNewRow" OnBeforeGetCallbackResult="dgvUsers_BeforeGetCallbackResult" ID="dgvUsers" ClientInstanceName="dgvUsers" runat="server" AutoGenerateColumns="False" DataSourceID="odsUsers" EnableTheming="True" Theme="SoftOrange" Width="100%">
+                                <dx:ASPxGridView KeyFieldName="UserId" 
+                                                    OnInitNewRow="dgvUsers_InitNewRow" 
+                                                    OnBeforeGetCallbackResult="dgvUsers_BeforeGetCallbackResult" 
+                                                    ID="dgvUsers" 
+                                                    ClientInstanceName="dgvUsers" 
+                                                    runat="server" 
+                                                    AutoGenerateColumns="False" 
+                                                    DataSourceID="odsUsers" 
+                                                    EnableTheming="True" 
+                                                    Theme="SoftOrange" 
+                                                    Width="100%">
+
+
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <SettingsBehavior ConfirmDelete="true" />
