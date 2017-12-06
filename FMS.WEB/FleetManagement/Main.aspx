@@ -7,6 +7,36 @@
     <script src="../Content/javascript/tether.js"></script>
     <script src="../Content/javascript/bootstrap.min.js"></script>
     <script src="../Content/javascript/FleetmanagementMenu/FleetManagementMenu.js"></script>
+    <script>
+        $(function () {
+            function AdjustWindowHeightAndWidth() {
+                var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                var windowWidth = $(window).width() - $('.nav-side-menu').width() - 20;
+                $('#mainContent').css({
+                    "height": windowHeight
+                });
+                $('#mainFrame').css({
+                    "height": windowHeight,
+                    "width": windowWidth
+                });
+            }
+
+            $('a[target="iframeMenu"]').click(function (event) {
+                LoadingPanel.SetText("");
+                LoadingPanel.Show();
+            });
+
+            $('#mainFrame').on("load", function () {
+                LoadingPanel.Hide();
+            });
+            
+            AdjustWindowHeightAndWidth();
+            $(window).resize(function () {
+                AdjustWindowHeightAndWidth();
+            })
+        })
+        
+    </script>
 	<div class="nav-side-menu" id="mainContent">
 		<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 	  
@@ -102,7 +132,16 @@
     <%--<div style="float:left; padding-left:305px; " >
         <iframe name="iframeMenu" onload="this.width=screen.width+140;this.height=(screen.height-15);" style="overflow-y: scroll"></iframe>
     </div>--%>
+    <%--<div style="float:left; padding-left:305px; " >
+        <iframe name="iframeMenu"  style="overflow-y: auto; height:80vh; width:158vh" id="mainFrame"></iframe>
+    </div>--%>
     <div style="float:left; padding-left:305px; " >
-        <iframe name="iframeMenu"  style="overflow-y: auto; height:80vh; width:158vh"></iframe>
+        <iframe name="iframeMenu"  style="overflow-y: auto;" id="mainFrame"></iframe>
+    </div>
+    <div>
+        <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" 
+            Modal="True">
+            <Image Url="../Content/Images/drop.gif"/>
+        </dx:ASPxLoadingPanel>
     </div>
 </asp:Content>

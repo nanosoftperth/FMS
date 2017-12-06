@@ -12,4 +12,13 @@ Option Explicit On
 
 
 Partial Public Class Main
+
+    '''<summary>
+    '''LoadingPanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
 End Class

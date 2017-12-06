@@ -4,6 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="../Content/grid/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/grid/grid.css" rel="stylesheet" />
     <style>
     .dxeMemoEditAreaSys{
         border-width:1px !Important;
