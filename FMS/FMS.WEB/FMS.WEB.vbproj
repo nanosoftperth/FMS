@@ -1187,6 +1187,7 @@
     <Content Include="App_Data\TopMenu_cannon_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
+    <Content Include="Content\Images\drop.gif" />
     <Content Include="FleetManagement\AuditChangeReasons.aspx" />
     <Content Include="FleetManagement\ContractPreviousSuppliers.aspx" />
     <Content Include="FleetManagement\ContractRenewalsReport.aspx" />
