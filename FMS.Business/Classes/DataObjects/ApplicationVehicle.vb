@@ -324,6 +324,9 @@
                         strFeatureID = featureList(0).FeatureID.ToString()
                     End If
 
+                    Dim UserLocatios = FMS.Business.SingletonAccess.ClientSelected_BusinessLocation
+                    Dim listVehicleLocation = DataObjects.VehicleLocation.GetAssignedLocationPerApplicationID(appID)
+
                     'check if user have access to all vehicles (Note: Need to change FeatureID field value for criteria whenever the Vehicle and Driver Management - See All Vehicle id changes)
                     Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = strFeatureID).ToList()
 
@@ -335,8 +338,67 @@
                                                                     Function(x) New DataObjects.ApplicationVehicle(x)).ToList
 
                     Else
-                        retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                        ' old code
+                        'retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                        '                                                        Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+
+                        'List all vehicle per applicationID
+                        Dim objVehicles As List(Of ApplicationVehicle) = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                                 Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+                        ' loop to get stored business location other than default location
+                        For vRow = 0 To objVehicles.Count - 1
+
+                            'Get Stored Business location using vehicle ID
+                            Dim uiVehicleID As Guid = objVehicles(vRow).ApplicationVehileID
+                            Dim ListBL = FMS.Business.DataObjects.VehicleLocation.GetPerAppVehicleID(uiVehicleID)
+
+                            ' loop to separate BusinessLocation column values
+                            For count = 0 To ListBL.Count - 1
+                                'uiBL = Guid.Parse(arrBL(count))
+                                Dim uiBL = ListBL(count).BusinessLocationID
+
+                                ' get/fetch all vehicles assigned to the location stored in business location column
+                                Dim lstVeh = (From al In SingletonAccess.FMSDataContextContignous.ApplicationLocations
+                                             Join av In SingletonAccess.FMSDataContextContignous.ApplicationVehicles
+                                             On al.ApplicationID Equals av.ApplicationID
+                                             Where (al.ApplicationLocationID = uiBL)
+                                             Select av.ApplicationVehicleID, av.Name, av.DeviceID, av.ApplicationID,
+                                                    av.ApplicationImageID, av.CAN_Protocol_Type,
+                                                    al.ApplicationLocationID, al_name = al.Name).ToList()
+
+                                ' loop through the list of vehicles that were fetched
+                                For rLstVeh = 0 To lstVeh.Count - 1
+                                    Dim vehrow = New ApplicationVehicle
+                                    Dim strName = lstVeh(rLstVeh).Name
+
+                                    ' check if the vehicle from list already exist in the current list of vehicle assigned to application
+                                    Dim veh = objVehicles.Where(Function(v) v.Name.Contains(strName)).ToList()
+
+                                    ' if vehicle not exist in the current list then add so that it can be shown in the Fleet Map
+                                    If (veh.Count <= 0) Then
+                                        vehrow.ApplicationID = lstVeh(rLstVeh).ApplicationID
+                                        vehrow.ApplicationImageID = lstVeh(rLstVeh).ApplicationImageID
+                                        vehrow.ApplicationVehileID = lstVeh(rLstVeh).ApplicationVehicleID
+                                        vehrow.BusinessLocation = uiBL
+                                        vehrow.CAN_Protocol_Type = lstVeh(rLstVeh).CAN_Protocol_Type
+                                        vehrow.DeviceID = lstVeh(rLstVeh).DeviceID
+                                        vehrow.Name = lstVeh(rLstVeh).Name
+                                        objVehicles.Add(vehrow)
+
+                                    End If
+
+                                Next
+
+
+                            Next
+
+
+                        Next
+
+                        retobj = objVehicles
+                       
                     End If
 
                 End If
@@ -384,11 +446,61 @@
 
         End Function
 
+
+        Public Shared Function GetAllToList(appplicationID As Guid) As List(Of ApplicationVehicle)
+            Dim retobj As Object = Nothing
+
+            Try
+                If appplicationID = Guid.Empty Then Return Nothing
+
+                If (IsNothing(FMS.Business.ThisSession.User()) = True) Then
+                    retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+                Else
+                    Dim strFeatureID As String = ""
+                    Dim userID = FMS.Business.ThisSession.User.UserId
+                    Dim userRoledID = FMS.Business.ThisSession.User.RoleID
+                    Dim appID = FMS.Business.ThisSession.ApplicationID
+
+                    Dim featureList = FMS.Business.DataObjects.Feature.GetAllFeatures().Where(Function(f) f.Name.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
+
+                    If (featureList.Count > 0) Then
+                        'do comment or remark if want to test within business location only automatically
+                        strFeatureID = featureList(0).FeatureID.ToString()
+                    End If
+
+                    'Dim UserLocatios = FMS.Business.SingletonAccess.ClientSelected_BusinessLocation
+                    'Dim listVehicleLocation = DataObjects.VehicleLocation.GetAssignedLocationPerApplicationID(appID)
+
+                    'check if user have access to all vehicles (Note: Need to change FeatureID field value for criteria whenever the Vehicle and Driver Management - See All Vehicle id changes)
+                    Dim retafr = FMS.Business.DataObjects.ApplicationFeatureRole.GetAllApplicationFeatureRoles(appID).Where(Function(l) l.RoleID = userRoledID And l.FeatureID.ToString() = strFeatureID).ToList()
+
+                    If (retafr.Count > 0) Then
+                        'retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.OrderBy(Function(m) m.DeviceID).Select( _
+                        '                                            Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+                        retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.DeviceID IsNot Nothing).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                    Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+                    Else
+                        retobj = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID).OrderBy(Function(m) m.DeviceID).Select( _
+                                                                                Function(x) New DataObjects.ApplicationVehicle(x)).ToList
+
+                    End If
+
+                End If
+
+                Return retobj
+
+            Catch ex As Exception
+                retobj = Nothing
+                Return retobj
+            End Try
+
+        End Function
+
         ' Original Get All (due to deletion if new getall is ok after evaluation)
         Public Shared Function GetAll_Orig(appplicationID As Guid) As List(Of ApplicationVehicle)
-
-            'added by Cesar for Admin Business Location Column use 11/27/2017
-            Dim listVeh As List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles) = New List(Of FMS.Business.DataObjects.VehicleLocation.Vehicles)
 
             If appplicationID = Guid.Empty Then Return Nothing
 

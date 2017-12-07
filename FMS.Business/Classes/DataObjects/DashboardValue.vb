@@ -119,51 +119,6 @@
             End Try
 
 
-
-
-
-
-
-            '-------------
-            ''Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
-            ''                                            String.Format("tag = 'can*{0}*'", deviceID))
-            ''Dim cnt As Integer = plst.Count
-
-            ''----- Get CAN_Protocol_Type from 
-            'Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID)
-
-            ''----- Search on Historoian Server with Tagname can*deviceID*. This is RAW data
-            'Dim ptList As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints(String.Format("tag = 'can*{0}*{1}*'", deviceID, "Zagro500"))
-            'Dim cnt As Integer = ptList.Count
-
-            'Dim lstCanMsg As New List(Of DataObjects.CAN_MessageDefinition)
-            'Dim PGN_Hex As Integer
-
-            'Try
-
-            '    For Each pt As PISDK.PIPoint In ptList
-            '        Dim ptName = pt.Name
-
-            '        Dim pgn As Integer = ptName.Split("_").Reverse()(0)
-
-            '        If pgn = 1602 Then
-            '            PGN_Hex = Hex(1602)
-            '        End If
-
-            '        If pgn = 1346 Then
-            '            PGN_Hex = Hex(1346)
-            '        End If
-
-            '        lstCanMsg.AddRange(CAN_MessageDefinition.GetForPGN(PGN_Hex, "Zagro500"))
-
-            '    Next
-
-
-
-            'Catch ex As Exception
-            '    Throw ex
-            'End Try
-
             Return True
         End Function
 
