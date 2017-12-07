@@ -57,6 +57,7 @@
                 .ServiceFrequency8 = CustomerService.ServiceFrequency8
                 .ServiceSortOrderCode = CustomerService.ServiceSortOrderCode
             End With
+            GetCustomerServiceID = objCustomerService.CustomerServiceID
             SingletonAccess.FMSDataContextContignous.tblCustomerServices.InsertOnSubmit(objCustomerService)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -93,6 +94,8 @@
         End Sub
 #End Region
 #Region "Get methods"
+        Public Shared Property GetCustomerServiceID() As Guid
+
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerServices)
             Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
                             Order By c.CSid
