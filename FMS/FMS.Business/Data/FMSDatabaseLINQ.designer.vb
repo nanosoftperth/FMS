@@ -22,1398 +22,1398 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")> _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")>  _
 Partial Public Class LINQtoSQLClassesDataContext
-    Inherits System.Data.Linq.DataContext
-
-    Private Shared mappingSource As System.Data.Linq.Mapping.MappingSource = New AttributeMappingSource()
-
-#Region "Extensibility Method Definitions"
-    Partial Private Sub OnCreated()
+	Inherits System.Data.Linq.DataContext
+	
+	Private Shared mappingSource As System.Data.Linq.Mapping.MappingSource = New AttributeMappingSource()
+	
+  #Region "Extensibility Method Definitions"
+  Partial Private Sub OnCreated()
+  End Sub
+  Partial Private Sub InsertAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
     End Sub
-    Partial Private Sub InsertAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
+  Partial Private Sub UpdateAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
     End Sub
-    Partial Private Sub UpdateAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
+  Partial Private Sub DeleteAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
     End Sub
-    Partial Private Sub DeleteAlertSubscriber_deleteme(instance As AlertSubscriber_deleteme)
+  Partial Private Sub InsertWorkRequest(instance As WorkRequest)
     End Sub
-    Partial Private Sub InsertWorkRequest(instance As WorkRequest)
+  Partial Private Sub UpdateWorkRequest(instance As WorkRequest)
     End Sub
-    Partial Private Sub UpdateWorkRequest(instance As WorkRequest)
+  Partial Private Sub DeleteWorkRequest(instance As WorkRequest)
     End Sub
-    Partial Private Sub DeleteWorkRequest(instance As WorkRequest)
+  Partial Private Sub InsertAlertType(instance As AlertType)
     End Sub
-    Partial Private Sub InsertAlertType(instance As AlertType)
+  Partial Private Sub UpdateAlertType(instance As AlertType)
     End Sub
-    Partial Private Sub UpdateAlertType(instance As AlertType)
+  Partial Private Sub DeleteAlertType(instance As AlertType)
     End Sub
-    Partial Private Sub DeleteAlertType(instance As AlertType)
+  Partial Private Sub InsertAlertTypeOccurance(instance As AlertTypeOccurance)
     End Sub
-    Partial Private Sub InsertAlertTypeOccurance(instance As AlertTypeOccurance)
+  Partial Private Sub UpdateAlertTypeOccurance(instance As AlertTypeOccurance)
     End Sub
-    Partial Private Sub UpdateAlertTypeOccurance(instance As AlertTypeOccurance)
+  Partial Private Sub DeleteAlertTypeOccurance(instance As AlertTypeOccurance)
     End Sub
-    Partial Private Sub DeleteAlertTypeOccurance(instance As AlertTypeOccurance)
+  Partial Private Sub InsertAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
     End Sub
-    Partial Private Sub InsertAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
+  Partial Private Sub UpdateAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
     End Sub
-    Partial Private Sub UpdateAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
+  Partial Private Sub DeleteAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
     End Sub
-    Partial Private Sub DeleteAlertTypeSubscriber_deleteme(instance As AlertTypeSubscriber_deleteme)
+  Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
     End Sub
-    Partial Private Sub InsertApplicationDriver(instance As ApplicationDriver)
+  Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
     End Sub
-    Partial Private Sub UpdateApplicationDriver(instance As ApplicationDriver)
+  Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
     End Sub
-    Partial Private Sub DeleteApplicationDriver(instance As ApplicationDriver)
+  Partial Private Sub InsertApplicationFeature(instance As ApplicationFeature)
     End Sub
-    Partial Private Sub InsertApplicationFeature(instance As ApplicationFeature)
+  Partial Private Sub UpdateApplicationFeature(instance As ApplicationFeature)
     End Sub
-    Partial Private Sub UpdateApplicationFeature(instance As ApplicationFeature)
+  Partial Private Sub DeleteApplicationFeature(instance As ApplicationFeature)
     End Sub
-    Partial Private Sub DeleteApplicationFeature(instance As ApplicationFeature)
+  Partial Private Sub InsertApplicationFeatureRole(instance As ApplicationFeatureRole)
     End Sub
-    Partial Private Sub InsertApplicationFeatureRole(instance As ApplicationFeatureRole)
+  Partial Private Sub UpdateApplicationFeatureRole(instance As ApplicationFeatureRole)
     End Sub
-    Partial Private Sub UpdateApplicationFeatureRole(instance As ApplicationFeatureRole)
+  Partial Private Sub DeleteApplicationFeatureRole(instance As ApplicationFeatureRole)
     End Sub
-    Partial Private Sub DeleteApplicationFeatureRole(instance As ApplicationFeatureRole)
+  Partial Private Sub InsertApplicationGeoFence(instance As ApplicationGeoFence)
     End Sub
-    Partial Private Sub InsertApplicationGeoFence(instance As ApplicationGeoFence)
+  Partial Private Sub UpdateApplicationGeoFence(instance As ApplicationGeoFence)
     End Sub
-    Partial Private Sub UpdateApplicationGeoFence(instance As ApplicationGeoFence)
+  Partial Private Sub DeleteApplicationGeoFence(instance As ApplicationGeoFence)
     End Sub
-    Partial Private Sub DeleteApplicationGeoFence(instance As ApplicationGeoFence)
+  Partial Private Sub InsertApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
     End Sub
-    Partial Private Sub InsertApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
+  Partial Private Sub UpdateApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
     End Sub
-    Partial Private Sub UpdateApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
+  Partial Private Sub DeleteApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
     End Sub
-    Partial Private Sub DeleteApplicationGeofenceProperty(instance As ApplicationGeofenceProperty)
+  Partial Private Sub InsertApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
     End Sub
-    Partial Private Sub InsertApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
+  Partial Private Sub UpdateApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
     End Sub
-    Partial Private Sub UpdateApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
+  Partial Private Sub DeleteApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
     End Sub
-    Partial Private Sub DeleteApplicationGeoFenceSide(instance As ApplicationGeoFenceSide)
+  Partial Private Sub InsertApplicationImage(instance As ApplicationImage)
     End Sub
-    Partial Private Sub InsertApplicationImage(instance As ApplicationImage)
+  Partial Private Sub UpdateApplicationImage(instance As ApplicationImage)
     End Sub
-    Partial Private Sub UpdateApplicationImage(instance As ApplicationImage)
+  Partial Private Sub DeleteApplicationImage(instance As ApplicationImage)
     End Sub
-    Partial Private Sub DeleteApplicationImage(instance As ApplicationImage)
+  Partial Private Sub InsertApplicationLocation(instance As ApplicationLocation)
     End Sub
-    Partial Private Sub InsertApplicationLocation(instance As ApplicationLocation)
+  Partial Private Sub UpdateApplicationLocation(instance As ApplicationLocation)
     End Sub
-    Partial Private Sub UpdateApplicationLocation(instance As ApplicationLocation)
+  Partial Private Sub DeleteApplicationLocation(instance As ApplicationLocation)
     End Sub
-    Partial Private Sub DeleteApplicationLocation(instance As ApplicationLocation)
+  Partial Private Sub InsertApplicationSettingValue(instance As ApplicationSettingValue)
     End Sub
-    Partial Private Sub InsertApplicationSettingValue(instance As ApplicationSettingValue)
+  Partial Private Sub UpdateApplicationSettingValue(instance As ApplicationSettingValue)
     End Sub
-    Partial Private Sub UpdateApplicationSettingValue(instance As ApplicationSettingValue)
+  Partial Private Sub DeleteApplicationSettingValue(instance As ApplicationSettingValue)
     End Sub
-    Partial Private Sub DeleteApplicationSettingValue(instance As ApplicationSettingValue)
+  Partial Private Sub InsertApplicationTimeZone(instance As ApplicationTimeZone)
     End Sub
-    Partial Private Sub InsertApplicationTimeZone(instance As ApplicationTimeZone)
+  Partial Private Sub UpdateApplicationTimeZone(instance As ApplicationTimeZone)
     End Sub
-    Partial Private Sub UpdateApplicationTimeZone(instance As ApplicationTimeZone)
+  Partial Private Sub DeleteApplicationTimeZone(instance As ApplicationTimeZone)
     End Sub
-    Partial Private Sub DeleteApplicationTimeZone(instance As ApplicationTimeZone)
+  Partial Private Sub InsertApplicationVehicle(instance As ApplicationVehicle)
     End Sub
-    Partial Private Sub InsertApplicationVehicle(instance As ApplicationVehicle)
+  Partial Private Sub UpdateApplicationVehicle(instance As ApplicationVehicle)
     End Sub
-    Partial Private Sub UpdateApplicationVehicle(instance As ApplicationVehicle)
+  Partial Private Sub DeleteApplicationVehicle(instance As ApplicationVehicle)
     End Sub
-    Partial Private Sub DeleteApplicationVehicle(instance As ApplicationVehicle)
+  Partial Private Sub InsertApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
     End Sub
-    Partial Private Sub InsertApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
+  Partial Private Sub UpdateApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
     End Sub
-    Partial Private Sub UpdateApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
+  Partial Private Sub DeleteApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
     End Sub
-    Partial Private Sub DeleteApplicationVehicleDriverTime(instance As ApplicationVehicleDriverTime)
+  Partial Private Sub InsertApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
     End Sub
-    Partial Private Sub InsertApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
+  Partial Private Sub UpdateApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
     End Sub
-    Partial Private Sub UpdateApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
+  Partial Private Sub DeleteApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
     End Sub
-    Partial Private Sub DeleteApplicationVehicleOdometerReading(instance As ApplicationVehicleOdometerReading)
+  Partial Private Sub Insertaspnet_Application(instance As aspnet_Application)
     End Sub
-    Partial Private Sub Insertaspnet_Application(instance As aspnet_Application)
+  Partial Private Sub Updateaspnet_Application(instance As aspnet_Application)
     End Sub
-    Partial Private Sub Updateaspnet_Application(instance As aspnet_Application)
+  Partial Private Sub Deleteaspnet_Application(instance As aspnet_Application)
     End Sub
-    Partial Private Sub Deleteaspnet_Application(instance As aspnet_Application)
+  Partial Private Sub Insertaspnet_Membership(instance As aspnet_Membership)
     End Sub
-    Partial Private Sub Insertaspnet_Membership(instance As aspnet_Membership)
+  Partial Private Sub Updateaspnet_Membership(instance As aspnet_Membership)
     End Sub
-    Partial Private Sub Updateaspnet_Membership(instance As aspnet_Membership)
+  Partial Private Sub Deleteaspnet_Membership(instance As aspnet_Membership)
     End Sub
-    Partial Private Sub Deleteaspnet_Membership(instance As aspnet_Membership)
+  Partial Private Sub Insertaspnet_Path(instance As aspnet_Path)
     End Sub
-    Partial Private Sub Insertaspnet_Path(instance As aspnet_Path)
+  Partial Private Sub Updateaspnet_Path(instance As aspnet_Path)
     End Sub
-    Partial Private Sub Updateaspnet_Path(instance As aspnet_Path)
+  Partial Private Sub Deleteaspnet_Path(instance As aspnet_Path)
     End Sub
-    Partial Private Sub Deleteaspnet_Path(instance As aspnet_Path)
+  Partial Private Sub Insertaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
     End Sub
-    Partial Private Sub Insertaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
+  Partial Private Sub Updateaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
     End Sub
-    Partial Private Sub Updateaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
+  Partial Private Sub Deleteaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
     End Sub
-    Partial Private Sub Deleteaspnet_PersonalizationAllUser(instance As aspnet_PersonalizationAllUser)
+  Partial Private Sub Insertaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
     End Sub
-    Partial Private Sub Insertaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
+  Partial Private Sub Updateaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
     End Sub
-    Partial Private Sub Updateaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
+  Partial Private Sub Deleteaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
     End Sub
-    Partial Private Sub Deleteaspnet_PersonalizationPerUser(instance As aspnet_PersonalizationPerUser)
+  Partial Private Sub Insertaspnet_Profile(instance As aspnet_Profile)
     End Sub
-    Partial Private Sub Insertaspnet_Profile(instance As aspnet_Profile)
+  Partial Private Sub Updateaspnet_Profile(instance As aspnet_Profile)
     End Sub
-    Partial Private Sub Updateaspnet_Profile(instance As aspnet_Profile)
+  Partial Private Sub Deleteaspnet_Profile(instance As aspnet_Profile)
     End Sub
-    Partial Private Sub Deleteaspnet_Profile(instance As aspnet_Profile)
+  Partial Private Sub Insertaspnet_Role(instance As aspnet_Role)
     End Sub
-    Partial Private Sub Insertaspnet_Role(instance As aspnet_Role)
+  Partial Private Sub Updateaspnet_Role(instance As aspnet_Role)
     End Sub
-    Partial Private Sub Updateaspnet_Role(instance As aspnet_Role)
+  Partial Private Sub Deleteaspnet_Role(instance As aspnet_Role)
     End Sub
-    Partial Private Sub Deleteaspnet_Role(instance As aspnet_Role)
+  Partial Private Sub Insertaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
     End Sub
-    Partial Private Sub Insertaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
+  Partial Private Sub Updateaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
     End Sub
-    Partial Private Sub Updateaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
+  Partial Private Sub Deleteaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
     End Sub
-    Partial Private Sub Deleteaspnet_SchemaVersion(instance As aspnet_SchemaVersion)
+  Partial Private Sub Insertaspnet_User(instance As aspnet_User)
     End Sub
-    Partial Private Sub Insertaspnet_User(instance As aspnet_User)
+  Partial Private Sub Updateaspnet_User(instance As aspnet_User)
     End Sub
-    Partial Private Sub Updateaspnet_User(instance As aspnet_User)
+  Partial Private Sub Deleteaspnet_User(instance As aspnet_User)
     End Sub
-    Partial Private Sub Deleteaspnet_User(instance As aspnet_User)
+  Partial Private Sub Insertaspnet_UsersInRole(instance As aspnet_UsersInRole)
     End Sub
-    Partial Private Sub Insertaspnet_UsersInRole(instance As aspnet_UsersInRole)
+  Partial Private Sub Updateaspnet_UsersInRole(instance As aspnet_UsersInRole)
     End Sub
-    Partial Private Sub Updateaspnet_UsersInRole(instance As aspnet_UsersInRole)
+  Partial Private Sub Deleteaspnet_UsersInRole(instance As aspnet_UsersInRole)
     End Sub
-    Partial Private Sub Deleteaspnet_UsersInRole(instance As aspnet_UsersInRole)
+  Partial Private Sub Insertaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
     End Sub
-    Partial Private Sub Insertaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
+  Partial Private Sub Updateaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
     End Sub
-    Partial Private Sub Updateaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
+  Partial Private Sub Deleteaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
     End Sub
-    Partial Private Sub Deleteaspnet_WebEvent_Event(instance As aspnet_WebEvent_Event)
+  Partial Private Sub InsertAuthenticationToken(instance As AuthenticationToken)
     End Sub
-    Partial Private Sub InsertAuthenticationToken(instance As AuthenticationToken)
+  Partial Private Sub UpdateAuthenticationToken(instance As AuthenticationToken)
     End Sub
-    Partial Private Sub UpdateAuthenticationToken(instance As AuthenticationToken)
+  Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
     End Sub
-    Partial Private Sub DeleteAuthenticationToken(instance As AuthenticationToken)
+  Partial Private Sub InsertCAN_Data(instance As CAN_Data)
     End Sub
-    Partial Private Sub InsertCAN_Data(instance As CAN_Data)
+  Partial Private Sub UpdateCAN_Data(instance As CAN_Data)
     End Sub
-    Partial Private Sub UpdateCAN_Data(instance As CAN_Data)
+  Partial Private Sub DeleteCAN_Data(instance As CAN_Data)
     End Sub
-    Partial Private Sub DeleteCAN_Data(instance As CAN_Data)
+  Partial Private Sub InsertCannonData(instance As CannonData)
     End Sub
-    Partial Private Sub InsertCannonData(instance As CannonData)
+  Partial Private Sub UpdateCannonData(instance As CannonData)
     End Sub
-    Partial Private Sub UpdateCannonData(instance As CannonData)
+  Partial Private Sub DeleteCannonData(instance As CannonData)
     End Sub
-    Partial Private Sub DeleteCannonData(instance As CannonData)
+  Partial Private Sub InsertContact(instance As Contact)
     End Sub
-    Partial Private Sub InsertContact(instance As Contact)
+  Partial Private Sub UpdateContact(instance As Contact)
     End Sub
-    Partial Private Sub UpdateContact(instance As Contact)
+  Partial Private Sub DeleteContact(instance As Contact)
     End Sub
-    Partial Private Sub DeleteContact(instance As Contact)
+  Partial Private Sub InsertDevelopment(instance As Development)
     End Sub
-    Partial Private Sub InsertDevelopment(instance As Development)
+  Partial Private Sub UpdateDevelopment(instance As Development)
     End Sub
-    Partial Private Sub UpdateDevelopment(instance As Development)
+  Partial Private Sub DeleteDevelopment(instance As Development)
     End Sub
-    Partial Private Sub DeleteDevelopment(instance As Development)
+  Partial Private Sub InsertDevice(instance As Device)
     End Sub
-    Partial Private Sub InsertDevice(instance As Device)
+  Partial Private Sub UpdateDevice(instance As Device)
     End Sub
-    Partial Private Sub UpdateDevice(instance As Device)
+  Partial Private Sub DeleteDevice(instance As Device)
     End Sub
-    Partial Private Sub DeleteDevice(instance As Device)
+  Partial Private Sub InsertFeature(instance As Feature)
     End Sub
-    Partial Private Sub InsertFeature(instance As Feature)
+  Partial Private Sub UpdateFeature(instance As Feature)
     End Sub
-    Partial Private Sub UpdateFeature(instance As Feature)
+  Partial Private Sub DeleteFeature(instance As Feature)
     End Sub
-    Partial Private Sub DeleteFeature(instance As Feature)
+  Partial Private Sub InsertFleetMapMarker(instance As FleetMapMarker)
     End Sub
-    Partial Private Sub InsertFleetMapMarker(instance As FleetMapMarker)
+  Partial Private Sub UpdateFleetMapMarker(instance As FleetMapMarker)
     End Sub
-    Partial Private Sub UpdateFleetMapMarker(instance As FleetMapMarker)
+  Partial Private Sub DeleteFleetMapMarker(instance As FleetMapMarker)
     End Sub
-    Partial Private Sub DeleteFleetMapMarker(instance As FleetMapMarker)
+  Partial Private Sub InsertGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
     End Sub
-    Partial Private Sub InsertGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
+  Partial Private Sub UpdateGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
     End Sub
-    Partial Private Sub UpdateGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
+  Partial Private Sub DeleteGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
     End Sub
-    Partial Private Sub DeleteGeoFenceDeviceCollisionAlert(instance As GeoFenceDeviceCollisionAlert)
+  Partial Private Sub InsertGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
     End Sub
-    Partial Private Sub InsertGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
+  Partial Private Sub UpdateGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
     End Sub
-    Partial Private Sub UpdateGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
+  Partial Private Sub DeleteGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
     End Sub
-    Partial Private Sub DeleteGeoFenceDeviceCollission(instance As GeoFenceDeviceCollission)
+  Partial Private Sub InsertGroup(instance As [Group])
     End Sub
-    Partial Private Sub InsertGroup(instance As [Group])
+  Partial Private Sub UpdateGroup(instance As [Group])
     End Sub
-    Partial Private Sub UpdateGroup(instance As [Group])
+  Partial Private Sub DeleteGroup(instance As [Group])
     End Sub
-    Partial Private Sub DeleteGroup(instance As [Group])
+  Partial Private Sub InsertGroupSubscriber(instance As GroupSubscriber)
     End Sub
-    Partial Private Sub InsertGroupSubscriber(instance As GroupSubscriber)
+  Partial Private Sub UpdateGroupSubscriber(instance As GroupSubscriber)
     End Sub
-    Partial Private Sub UpdateGroupSubscriber(instance As GroupSubscriber)
+  Partial Private Sub DeleteGroupSubscriber(instance As GroupSubscriber)
     End Sub
-    Partial Private Sub DeleteGroupSubscriber(instance As GroupSubscriber)
+  Partial Private Sub InsertPaidFeature(instance As PaidFeature)
     End Sub
-    Partial Private Sub InsertPaidFeature(instance As PaidFeature)
+  Partial Private Sub UpdatePaidFeature(instance As PaidFeature)
     End Sub
-    Partial Private Sub UpdatePaidFeature(instance As PaidFeature)
+  Partial Private Sub DeletePaidFeature(instance As PaidFeature)
     End Sub
-    Partial Private Sub DeletePaidFeature(instance As PaidFeature)
+  Partial Private Sub InsertSetting(instance As Setting)
     End Sub
-    Partial Private Sub InsertSetting(instance As Setting)
+  Partial Private Sub UpdateSetting(instance As Setting)
     End Sub
-    Partial Private Sub UpdateSetting(instance As Setting)
+  Partial Private Sub DeleteSetting(instance As Setting)
     End Sub
-    Partial Private Sub DeleteSetting(instance As Setting)
+  Partial Private Sub InsertSimulatorSetting(instance As SimulatorSetting)
     End Sub
-    Partial Private Sub InsertSimulatorSetting(instance As SimulatorSetting)
+  Partial Private Sub UpdateSimulatorSetting(instance As SimulatorSetting)
     End Sub
-    Partial Private Sub UpdateSimulatorSetting(instance As SimulatorSetting)
+  Partial Private Sub DeleteSimulatorSetting(instance As SimulatorSetting)
     End Sub
-    Partial Private Sub DeleteSimulatorSetting(instance As SimulatorSetting)
+  Partial Private Sub InsertWebServiceLog(instance As WebServiceLog)
     End Sub
-    Partial Private Sub InsertWebServiceLog(instance As WebServiceLog)
+  Partial Private Sub UpdateWebServiceLog(instance As WebServiceLog)
     End Sub
-    Partial Private Sub UpdateWebServiceLog(instance As WebServiceLog)
+  Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
     End Sub
-    Partial Private Sub DeleteWebServiceLog(instance As WebServiceLog)
+  Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
     End Sub
-    Partial Private Sub InsertReportSchdeule(instance As ReportSchdeule)
+  Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
     End Sub
-    Partial Private Sub UpdateReportSchdeule(instance As ReportSchdeule)
+  Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
     End Sub
-    Partial Private Sub DeleteReportSchdeule(instance As ReportSchdeule)
+  Partial Private Sub InsertApplicationBooking(instance As ApplicationBooking)
     End Sub
-    Partial Private Sub InsertApplicationBooking(instance As ApplicationBooking)
+  Partial Private Sub UpdateApplicationBooking(instance As ApplicationBooking)
     End Sub
-    Partial Private Sub UpdateApplicationBooking(instance As ApplicationBooking)
+  Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
     End Sub
-    Partial Private Sub DeleteApplicationBooking(instance As ApplicationBooking)
+  Partial Private Sub InsertCAN_EventDefinition(instance As CAN_EventDefinition)
     End Sub
-    Partial Private Sub InsertCAN_EventDefinition(instance As CAN_EventDefinition)
+  Partial Private Sub UpdateCAN_EventDefinition(instance As CAN_EventDefinition)
     End Sub
-    Partial Private Sub UpdateCAN_EventDefinition(instance As CAN_EventDefinition)
+  Partial Private Sub DeleteCAN_EventDefinition(instance As CAN_EventDefinition)
     End Sub
-    Partial Private Sub DeleteCAN_EventDefinition(instance As CAN_EventDefinition)
+  Partial Private Sub InsertCAN_AlertDefinition(instance As CAN_AlertDefinition)
     End Sub
-    Partial Private Sub InsertCAN_AlertDefinition(instance As CAN_AlertDefinition)
+  Partial Private Sub UpdateCAN_AlertDefinition(instance As CAN_AlertDefinition)
     End Sub
-    Partial Private Sub UpdateCAN_AlertDefinition(instance As CAN_AlertDefinition)
+  Partial Private Sub DeleteCAN_AlertDefinition(instance As CAN_AlertDefinition)
     End Sub
-    Partial Private Sub DeleteCAN_AlertDefinition(instance As CAN_AlertDefinition)
+  Partial Private Sub InsertCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
     End Sub
-    Partial Private Sub InsertCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+  Partial Private Sub UpdateCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
     End Sub
-    Partial Private Sub UpdateCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+  Partial Private Sub DeleteCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
     End Sub
-    Partial Private Sub DeleteCAN_EventOccuranceAlert(instance As CAN_EventOccuranceAlert)
+  Partial Private Sub InsertCanBusLog(instance As CanBusLog)
     End Sub
-    Partial Private Sub InsertCanBusLog(instance As CanBusLog)
+  Partial Private Sub UpdateCanBusLog(instance As CanBusLog)
     End Sub
-    Partial Private Sub UpdateCanBusLog(instance As CanBusLog)
+  Partial Private Sub DeleteCanBusLog(instance As CanBusLog)
     End Sub
-    Partial Private Sub DeleteCanBusLog(instance As CanBusLog)
+  Partial Private Sub InsertCAN_EventOccurance(instance As CAN_EventOccurance)
     End Sub
-    Partial Private Sub InsertCAN_EventOccurance(instance As CAN_EventOccurance)
+  Partial Private Sub UpdateCAN_EventOccurance(instance As CAN_EventOccurance)
     End Sub
-    Partial Private Sub UpdateCAN_EventOccurance(instance As CAN_EventOccurance)
+  Partial Private Sub DeleteCAN_EventOccurance(instance As CAN_EventOccurance)
     End Sub
-    Partial Private Sub DeleteCAN_EventOccurance(instance As CAN_EventOccurance)
+  Partial Private Sub InsertCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
     End Sub
-    Partial Private Sub InsertCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+  Partial Private Sub UpdateCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
     End Sub
-    Partial Private Sub UpdateCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+  Partial Private Sub DeleteCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
     End Sub
-    Partial Private Sub DeleteCanBusEventOccuranceLog(instance As CanBusEventOccuranceLog)
+  Partial Private Sub InserttblContractPeriod(instance As tblContractPeriod)
     End Sub
-    Partial Private Sub InserttblContractPeriod(instance As tblContractPeriod)
+  Partial Private Sub UpdatetblContractPeriod(instance As tblContractPeriod)
     End Sub
-    Partial Private Sub UpdatetblContractPeriod(instance As tblContractPeriod)
+  Partial Private Sub DeletetblContractPeriod(instance As tblContractPeriod)
     End Sub
-    Partial Private Sub DeletetblContractPeriod(instance As tblContractPeriod)
+  Partial Private Sub InserttblDriver(instance As tblDriver)
     End Sub
-    Partial Private Sub InserttblDriver(instance As tblDriver)
+  Partial Private Sub UpdatetblDriver(instance As tblDriver)
     End Sub
-    Partial Private Sub UpdatetblDriver(instance As tblDriver)
+  Partial Private Sub DeletetblDriver(instance As tblDriver)
     End Sub
-    Partial Private Sub DeletetblDriver(instance As tblDriver)
+  Partial Private Sub InserttblState(instance As tblState)
     End Sub
-    Partial Private Sub InserttblState(instance As tblState)
+  Partial Private Sub UpdatetblState(instance As tblState)
     End Sub
-    Partial Private Sub UpdatetblState(instance As tblState)
+  Partial Private Sub DeletetblState(instance As tblState)
     End Sub
-    Partial Private Sub DeletetblState(instance As tblState)
+  Partial Private Sub InserttblSiteReSignDetail(instance As tblSiteReSignDetail)
     End Sub
-    Partial Private Sub InserttblSiteReSignDetail(instance As tblSiteReSignDetail)
+  Partial Private Sub UpdatetblSiteReSignDetail(instance As tblSiteReSignDetail)
     End Sub
-    Partial Private Sub UpdatetblSiteReSignDetail(instance As tblSiteReSignDetail)
+  Partial Private Sub DeletetblSiteReSignDetail(instance As tblSiteReSignDetail)
     End Sub
-    Partial Private Sub DeletetblSiteReSignDetail(instance As tblSiteReSignDetail)
+  Partial Private Sub InserttblMonth(instance As tblMonth)
     End Sub
-    Partial Private Sub InserttblMonth(instance As tblMonth)
+  Partial Private Sub UpdatetblMonth(instance As tblMonth)
     End Sub
-    Partial Private Sub UpdatetblMonth(instance As tblMonth)
+  Partial Private Sub DeletetblMonth(instance As tblMonth)
     End Sub
-    Partial Private Sub DeletetblMonth(instance As tblMonth)
+  Partial Private Sub InserttblCustomerService(instance As tblCustomerService)
     End Sub
-    Partial Private Sub InserttblCustomerService(instance As tblCustomerService)
+  Partial Private Sub UpdatetblCustomerService(instance As tblCustomerService)
     End Sub
-    Partial Private Sub UpdatetblCustomerService(instance As tblCustomerService)
+  Partial Private Sub DeletetblCustomerService(instance As tblCustomerService)
     End Sub
-    Partial Private Sub DeletetblCustomerService(instance As tblCustomerService)
+  Partial Private Sub InserttblRun(instance As tblRun)
     End Sub
-    Partial Private Sub InserttblRun(instance As tblRun)
+  Partial Private Sub UpdatetblRun(instance As tblRun)
     End Sub
-    Partial Private Sub UpdatetblRun(instance As tblRun)
+  Partial Private Sub DeletetblRun(instance As tblRun)
     End Sub
-    Partial Private Sub DeletetblRun(instance As tblRun)
+  Partial Private Sub InserttblCIRHistory(instance As tblCIRHistory)
     End Sub
-    Partial Private Sub InserttblCIRHistory(instance As tblCIRHistory)
+  Partial Private Sub UpdatetblCIRHistory(instance As tblCIRHistory)
     End Sub
-    Partial Private Sub UpdatetblCIRHistory(instance As tblCIRHistory)
+  Partial Private Sub DeletetblCIRHistory(instance As tblCIRHistory)
     End Sub
-    Partial Private Sub DeletetblCIRHistory(instance As tblCIRHistory)
+  Partial Private Sub InserttblSiteComment(instance As tblSiteComment)
     End Sub
-    Partial Private Sub InserttblSiteComment(instance As tblSiteComment)
+  Partial Private Sub UpdatetblSiteComment(instance As tblSiteComment)
     End Sub
-    Partial Private Sub UpdatetblSiteComment(instance As tblSiteComment)
+  Partial Private Sub DeletetblSiteComment(instance As tblSiteComment)
     End Sub
-    Partial Private Sub DeletetblSiteComment(instance As tblSiteComment)
+  Partial Private Sub InsertFleetClient(instance As FleetClient)
     End Sub
-    Partial Private Sub InsertFleetClient(instance As FleetClient)
+  Partial Private Sub UpdateFleetClient(instance As FleetClient)
     End Sub
-    Partial Private Sub UpdateFleetClient(instance As FleetClient)
+  Partial Private Sub DeleteFleetClient(instance As FleetClient)
     End Sub
-    Partial Private Sub DeleteFleetClient(instance As FleetClient)
+  Partial Private Sub InsertFleetDocument(instance As FleetDocument)
     End Sub
-    Partial Private Sub InsertFleetDocument(instance As FleetDocument)
+  Partial Private Sub UpdateFleetDocument(instance As FleetDocument)
     End Sub
-    Partial Private Sub UpdateFleetDocument(instance As FleetDocument)
+  Partial Private Sub DeleteFleetDocument(instance As FleetDocument)
     End Sub
-    Partial Private Sub DeleteFleetDocument(instance As FleetDocument)
+  Partial Private Sub InsertFleetRun(instance As FleetRun)
     End Sub
-    Partial Private Sub InsertFleetRun(instance As FleetRun)
+  Partial Private Sub UpdateFleetRun(instance As FleetRun)
     End Sub
-    Partial Private Sub UpdateFleetRun(instance As FleetRun)
+  Partial Private Sub DeleteFleetRun(instance As FleetRun)
     End Sub
-    Partial Private Sub DeleteFleetRun(instance As FleetRun)
+  Partial Private Sub InsertFleetRunClient(instance As FleetRunClient)
     End Sub
-    Partial Private Sub InsertFleetRunClient(instance As FleetRunClient)
+  Partial Private Sub UpdateFleetRunClient(instance As FleetRunClient)
     End Sub
-    Partial Private Sub UpdateFleetRunClient(instance As FleetRunClient)
+  Partial Private Sub DeleteFleetRunClient(instance As FleetRunClient)
     End Sub
-    Partial Private Sub DeleteFleetRunClient(instance As FleetRunClient)
+  Partial Private Sub InsertFleetRunCompletion(instance As FleetRunCompletion)
     End Sub
-    Partial Private Sub InsertFleetRunCompletion(instance As FleetRunCompletion)
+  Partial Private Sub UpdateFleetRunCompletion(instance As FleetRunCompletion)
     End Sub
-    Partial Private Sub UpdateFleetRunCompletion(instance As FleetRunCompletion)
+  Partial Private Sub DeleteFleetRunCompletion(instance As FleetRunCompletion)
     End Sub
-    Partial Private Sub DeleteFleetRunCompletion(instance As FleetRunCompletion)
+  Partial Private Sub InsertVehicleLocation(instance As VehicleLocation)
     End Sub
-    Partial Private Sub InsertVehicleLocation(instance As VehicleLocation)
+  Partial Private Sub UpdateVehicleLocation(instance As VehicleLocation)
     End Sub
-    Partial Private Sub UpdateVehicleLocation(instance As VehicleLocation)
+  Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
     End Sub
-    Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
+  Partial Private Sub InserttblCustomer(instance As tblCustomer)
     End Sub
-    Partial Private Sub InserttblCustomer(instance As tblCustomer)
+  Partial Private Sub UpdatetblCustomer(instance As tblCustomer)
     End Sub
-    Partial Private Sub UpdatetblCustomer(instance As tblCustomer)
+  Partial Private Sub DeletetblCustomer(instance As tblCustomer)
     End Sub
-    Partial Private Sub DeletetblCustomer(instance As tblCustomer)
+  Partial Private Sub InserttblSite(instance As tblSite)
     End Sub
-    Partial Private Sub InserttblSite(instance As tblSite)
+  Partial Private Sub UpdatetblSite(instance As tblSite)
     End Sub
-    Partial Private Sub UpdatetblSite(instance As tblSite)
+  Partial Private Sub DeletetblSite(instance As tblSite)
     End Sub
-    Partial Private Sub DeletetblSite(instance As tblSite)
+  Partial Private Sub InserttblIndustryGroup(instance As tblIndustryGroup)
     End Sub
-    Partial Private Sub InserttblIndustryGroup(instance As tblIndustryGroup)
+  Partial Private Sub UpdatetblIndustryGroup(instance As tblIndustryGroup)
     End Sub
-    Partial Private Sub UpdatetblIndustryGroup(instance As tblIndustryGroup)
+  Partial Private Sub DeletetblIndustryGroup(instance As tblIndustryGroup)
     End Sub
-    Partial Private Sub DeletetblIndustryGroup(instance As tblIndustryGroup)
+  Partial Private Sub InserttblInvoicingFrequency(instance As tblInvoicingFrequency)
     End Sub
-    Partial Private Sub InserttblInvoicingFrequency(instance As tblInvoicingFrequency)
+  Partial Private Sub UpdatetblInvoicingFrequency(instance As tblInvoicingFrequency)
     End Sub
-    Partial Private Sub UpdatetblInvoicingFrequency(instance As tblInvoicingFrequency)
+  Partial Private Sub DeletetblInvoicingFrequency(instance As tblInvoicingFrequency)
     End Sub
-    Partial Private Sub DeletetblInvoicingFrequency(instance As tblInvoicingFrequency)
+  Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
     End Sub
-    Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
+  Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
     End Sub
-    Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
+  Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
     End Sub
-    Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
+  Partial Private Sub InserttblContractCeaseReason(instance As tblContractCeaseReason)
     End Sub
-    Partial Private Sub InserttblContractCeaseReason(instance As tblContractCeaseReason)
+  Partial Private Sub UpdatetblContractCeaseReason(instance As tblContractCeaseReason)
     End Sub
-    Partial Private Sub UpdatetblContractCeaseReason(instance As tblContractCeaseReason)
+  Partial Private Sub DeletetblContractCeaseReason(instance As tblContractCeaseReason)
     End Sub
-    Partial Private Sub DeletetblContractCeaseReason(instance As tblContractCeaseReason)
+  Partial Private Sub InserttblCIRReason(instance As tblCIRReason)
     End Sub
-    Partial Private Sub InserttblCIRReason(instance As tblCIRReason)
+  Partial Private Sub UpdatetblCIRReason(instance As tblCIRReason)
     End Sub
-    Partial Private Sub UpdatetblCIRReason(instance As tblCIRReason)
+  Partial Private Sub DeletetblCIRReason(instance As tblCIRReason)
     End Sub
-    Partial Private Sub DeletetblCIRReason(instance As tblCIRReason)
+  Partial Private Sub InserttbZone(instance As tbZone)
     End Sub
-    Partial Private Sub InserttbZone(instance As tbZone)
+  Partial Private Sub UpdatetbZone(instance As tbZone)
     End Sub
-    Partial Private Sub UpdatetbZone(instance As tbZone)
+  Partial Private Sub DeletetbZone(instance As tbZone)
     End Sub
-    Partial Private Sub DeletetbZone(instance As tbZone)
+  Partial Private Sub InserttblCustomerRating(instance As tblCustomerRating)
     End Sub
-    Partial Private Sub InserttblCustomerRating(instance As tblCustomerRating)
+  Partial Private Sub UpdatetblCustomerRating(instance As tblCustomerRating)
     End Sub
-    Partial Private Sub UpdatetblCustomerRating(instance As tblCustomerRating)
+  Partial Private Sub DeletetblCustomerRating(instance As tblCustomerRating)
     End Sub
-    Partial Private Sub DeletetblCustomerRating(instance As tblCustomerRating)
+  Partial Private Sub InserttblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
-    Partial Private Sub InserttblRateIncreaseReference(instance As tblRateIncreaseReference)
+  Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
-    Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
+  Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
-    Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
+  Partial Private Sub InserttblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
-    Partial Private Sub InserttblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
+  Partial Private Sub UpdatetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
-    Partial Private Sub UpdatetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
+  Partial Private Sub DeletetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
-    Partial Private Sub DeletetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
+  Partial Private Sub InserttblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
-    Partial Private Sub InserttblRevenueChangeReason(instance As tblRevenueChangeReason)
+  Partial Private Sub UpdatetblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
-    Partial Private Sub UpdatetblRevenueChangeReason(instance As tblRevenueChangeReason)
+  Partial Private Sub DeletetblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
-    Partial Private Sub DeletetblRevenueChangeReason(instance As tblRevenueChangeReason)
+  Partial Private Sub InserttblPreviousSupplier(instance As tblPreviousSupplier)
     End Sub
-    Partial Private Sub InserttblPreviousSupplier(instance As tblPreviousSupplier)
+  Partial Private Sub UpdatetblPreviousSupplier(instance As tblPreviousSupplier)
     End Sub
-    Partial Private Sub UpdatetblPreviousSupplier(instance As tblPreviousSupplier)
+  Partial Private Sub DeletetblPreviousSupplier(instance As tblPreviousSupplier)
     End Sub
-    Partial Private Sub DeletetblPreviousSupplier(instance As tblPreviousSupplier)
+  Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
     End Sub
-    Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
+  Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
     End Sub
-    Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
+  Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
     End Sub
-    Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
+  Partial Private Sub InserttblService(instance As tblService)
     End Sub
-    Partial Private Sub InserttblService(instance As tblService)
+  Partial Private Sub UpdatetblService(instance As tblService)
     End Sub
-    Partial Private Sub UpdatetblService(instance As tblService)
+  Partial Private Sub DeletetblService(instance As tblService)
     End Sub
-    Partial Private Sub DeletetblService(instance As tblService)
+  Partial Private Sub InserttblSalesPerson(instance As tblSalesPerson)
     End Sub
-    Partial Private Sub InserttblSalesPerson(instance As tblSalesPerson)
+  Partial Private Sub UpdatetblSalesPerson(instance As tblSalesPerson)
     End Sub
-    Partial Private Sub UpdatetblSalesPerson(instance As tblSalesPerson)
+  Partial Private Sub DeletetblSalesPerson(instance As tblSalesPerson)
     End Sub
-    Partial Private Sub DeletetblSalesPerson(instance As tblSalesPerson)
+  Partial Private Sub InserttblProjectID(instance As tblProjectID)
     End Sub
-    Partial Private Sub InserttblProjectID(instance As tblProjectID)
+  Partial Private Sub UpdatetblProjectID(instance As tblProjectID)
     End Sub
-    Partial Private Sub UpdatetblProjectID(instance As tblProjectID)
+  Partial Private Sub DeletetblProjectID(instance As tblProjectID)
     End Sub
-    Partial Private Sub DeletetblProjectID(instance As tblProjectID)
+  Partial Private Sub InserttblFuelLevy(instance As tblFuelLevy)
     End Sub
-    Partial Private Sub InserttblFuelLevy(instance As tblFuelLevy)
+  Partial Private Sub UpdatetblFuelLevy(instance As tblFuelLevy)
     End Sub
-    Partial Private Sub UpdatetblFuelLevy(instance As tblFuelLevy)
+  Partial Private Sub DeletetblFuelLevy(instance As tblFuelLevy)
     End Sub
-    Partial Private Sub DeletetblFuelLevy(instance As tblFuelLevy)
-    End Sub
-#End Region
-
-    Public Sub New()
-        MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public Sub New(ByVal connection As String)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public Sub New(ByVal connection As System.Data.IDbConnection)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public ReadOnly Property AlertSubscriber_deletemes() As System.Data.Linq.Table(Of AlertSubscriber_deleteme)
-        Get
-            Return Me.GetTable(Of AlertSubscriber_deleteme)()
-        End Get
-    End Property
-
-    Public ReadOnly Property WorkRequests() As System.Data.Linq.Table(Of WorkRequest)
-        Get
-            Return Me.GetTable(Of WorkRequest)()
-        End Get
-    End Property
-
-    Public ReadOnly Property AlertTypes() As System.Data.Linq.Table(Of AlertType)
-        Get
-            Return Me.GetTable(Of AlertType)()
-        End Get
-    End Property
-
-    Public ReadOnly Property AlertTypeOccurances() As System.Data.Linq.Table(Of AlertTypeOccurance)
-        Get
-            Return Me.GetTable(Of AlertTypeOccurance)()
-        End Get
-    End Property
-
-    Public ReadOnly Property AlertTypeSubscriber_deletemes() As System.Data.Linq.Table(Of AlertTypeSubscriber_deleteme)
-        Get
-            Return Me.GetTable(Of AlertTypeSubscriber_deleteme)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationBooking_20170222s() As System.Data.Linq.Table(Of ApplicationBooking_20170222)
-        Get
-            Return Me.GetTable(Of ApplicationBooking_20170222)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
-        Get
-            Return Me.GetTable(Of ApplicationDriver)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationFeatures() As System.Data.Linq.Table(Of ApplicationFeature)
-        Get
-            Return Me.GetTable(Of ApplicationFeature)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationFeatureRoles() As System.Data.Linq.Table(Of ApplicationFeatureRole)
-        Get
-            Return Me.GetTable(Of ApplicationFeatureRole)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationGeoFences() As System.Data.Linq.Table(Of ApplicationGeoFence)
-        Get
-            Return Me.GetTable(Of ApplicationGeoFence)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationGeoFence_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160615)
-        Get
-            Return Me.GetTable(Of ApplicationGeoFence_20160615)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationGeoFence_20160842s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160842)
-        Get
-            Return Me.GetTable(Of ApplicationGeoFence_20160842)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationGeofenceProperties() As System.Data.Linq.Table(Of ApplicationGeofenceProperty)
-        Get
-            Return Me.GetTable(Of ApplicationGeofenceProperty)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationGeoFenceSides() As System.Data.Linq.Table(Of ApplicationGeoFenceSide)
-        Get
-            Return Me.GetTable(Of ApplicationGeoFenceSide)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationGeoFenceSide_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFenceSide_20160615)
-        Get
-            Return Me.GetTable(Of ApplicationGeoFenceSide_20160615)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationImages() As System.Data.Linq.Table(Of ApplicationImage)
-        Get
-            Return Me.GetTable(Of ApplicationImage)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationLocations() As System.Data.Linq.Table(Of ApplicationLocation)
-        Get
-            Return Me.GetTable(Of ApplicationLocation)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationSettingValues() As System.Data.Linq.Table(Of ApplicationSettingValue)
-        Get
-            Return Me.GetTable(Of ApplicationSettingValue)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationTimeZones() As System.Data.Linq.Table(Of ApplicationTimeZone)
-        Get
-            Return Me.GetTable(Of ApplicationTimeZone)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationVehicles() As System.Data.Linq.Table(Of ApplicationVehicle)
-        Get
-            Return Me.GetTable(Of ApplicationVehicle)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationVehicleDriverTimes() As System.Data.Linq.Table(Of ApplicationVehicleDriverTime)
-        Get
-            Return Me.GetTable(Of ApplicationVehicleDriverTime)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationVehicleOdometerReadings() As System.Data.Linq.Table(Of ApplicationVehicleOdometerReading)
-        Get
-            Return Me.GetTable(Of ApplicationVehicleOdometerReading)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_Applications() As System.Data.Linq.Table(Of aspnet_Application)
-        Get
-            Return Me.GetTable(Of aspnet_Application)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_Memberships() As System.Data.Linq.Table(Of aspnet_Membership)
-        Get
-            Return Me.GetTable(Of aspnet_Membership)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_Paths() As System.Data.Linq.Table(Of aspnet_Path)
-        Get
-            Return Me.GetTable(Of aspnet_Path)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_PersonalizationAllUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationAllUser)
-        Get
-            Return Me.GetTable(Of aspnet_PersonalizationAllUser)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_PersonalizationPerUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationPerUser)
-        Get
-            Return Me.GetTable(Of aspnet_PersonalizationPerUser)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_Profiles() As System.Data.Linq.Table(Of aspnet_Profile)
-        Get
-            Return Me.GetTable(Of aspnet_Profile)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_Roles() As System.Data.Linq.Table(Of aspnet_Role)
-        Get
-            Return Me.GetTable(Of aspnet_Role)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_SchemaVersions() As System.Data.Linq.Table(Of aspnet_SchemaVersion)
-        Get
-            Return Me.GetTable(Of aspnet_SchemaVersion)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_Users() As System.Data.Linq.Table(Of aspnet_User)
-        Get
-            Return Me.GetTable(Of aspnet_User)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_UsersInRoles() As System.Data.Linq.Table(Of aspnet_UsersInRole)
-        Get
-            Return Me.GetTable(Of aspnet_UsersInRole)()
-        End Get
-    End Property
-
-    Public ReadOnly Property aspnet_WebEvent_Events() As System.Data.Linq.Table(Of aspnet_WebEvent_Event)
-        Get
-            Return Me.GetTable(Of aspnet_WebEvent_Event)()
-        End Get
-    End Property
-
-    Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
-        Get
-            Return Me.GetTable(Of AuthenticationToken)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CAN_Datas() As System.Data.Linq.Table(Of CAN_Data)
-        Get
-            Return Me.GetTable(Of CAN_Data)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CAN_MessageDefinitions() As System.Data.Linq.Table(Of CAN_MessageDefinition)
-        Get
-            Return Me.GetTable(Of CAN_MessageDefinition)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CannonDatas() As System.Data.Linq.Table(Of CannonData)
-        Get
-            Return Me.GetTable(Of CannonData)()
-        End Get
-    End Property
-
-    Public ReadOnly Property Contacts() As System.Data.Linq.Table(Of Contact)
-        Get
-            Return Me.GetTable(Of Contact)()
-        End Get
-    End Property
-
-    Public ReadOnly Property Developments() As System.Data.Linq.Table(Of Development)
-        Get
-            Return Me.GetTable(Of Development)()
-        End Get
-    End Property
-
-    Public ReadOnly Property Devices() As System.Data.Linq.Table(Of Device)
-        Get
-            Return Me.GetTable(Of Device)()
-        End Get
-    End Property
-
-    Public ReadOnly Property Features() As System.Data.Linq.Table(Of Feature)
-        Get
-            Return Me.GetTable(Of Feature)()
-        End Get
-    End Property
-
-    Public ReadOnly Property FleetMapMarkers() As System.Data.Linq.Table(Of FleetMapMarker)
-        Get
-            Return Me.GetTable(Of FleetMapMarker)()
-        End Get
-    End Property
-
-    Public ReadOnly Property GeoFenceDeviceCollisionAlerts() As System.Data.Linq.Table(Of GeoFenceDeviceCollisionAlert)
-        Get
-            Return Me.GetTable(Of GeoFenceDeviceCollisionAlert)()
-        End Get
-    End Property
-
-    Public ReadOnly Property GeoFenceDeviceCollissions() As System.Data.Linq.Table(Of GeoFenceDeviceCollission)
-        Get
-            Return Me.GetTable(Of GeoFenceDeviceCollission)()
-        End Get
-    End Property
-
-    Public ReadOnly Property GeoFenceDeviceCollission_20160604s() As System.Data.Linq.Table(Of GeoFenceDeviceCollission_20160604)
-        Get
-            Return Me.GetTable(Of GeoFenceDeviceCollission_20160604)()
-        End Get
-    End Property
-
-    Public ReadOnly Property Groups() As System.Data.Linq.Table(Of [Group])
-        Get
-            Return Me.GetTable(Of [Group])()
-        End Get
-    End Property
-
-    Public ReadOnly Property GroupMember_olds() As System.Data.Linq.Table(Of GroupMember_old)
-        Get
-            Return Me.GetTable(Of GroupMember_old)()
-        End Get
-    End Property
-
-    Public ReadOnly Property GroupSubscribers() As System.Data.Linq.Table(Of GroupSubscriber)
-        Get
-            Return Me.GetTable(Of GroupSubscriber)()
-        End Get
-    End Property
-
-    Public ReadOnly Property j1939s() As System.Data.Linq.Table(Of j1939)
-        Get
-            Return Me.GetTable(Of j1939)()
-        End Get
-    End Property
-
-    Public ReadOnly Property PaidFeatures() As System.Data.Linq.Table(Of PaidFeature)
-        Get
-            Return Me.GetTable(Of PaidFeature)()
-        End Get
-    End Property
-
-    Public ReadOnly Property Settings() As System.Data.Linq.Table(Of Setting)
-        Get
-            Return Me.GetTable(Of Setting)()
-        End Get
-    End Property
-
-    Public ReadOnly Property SimulatorSettings() As System.Data.Linq.Table(Of SimulatorSetting)
-        Get
-            Return Me.GetTable(Of SimulatorSetting)()
-        End Get
-    End Property
-
-    Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
-        Get
-            Return Me.GetTable(Of WebServiceLog)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
-        Get
-            Return Me.GetTable(Of ReportSchdeule)()
-        End Get
-    End Property
-
-    Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
-        Get
-            Return Me.GetTable(Of ApplicationBooking)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CAN_EventDefinitions() As System.Data.Linq.Table(Of CAN_EventDefinition)
-        Get
-            Return Me.GetTable(Of CAN_EventDefinition)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CAN_AlertDefinitions() As System.Data.Linq.Table(Of CAN_AlertDefinition)
-        Get
-            Return Me.GetTable(Of CAN_AlertDefinition)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CAN_EventOccuranceAlerts() As System.Data.Linq.Table(Of CAN_EventOccuranceAlert)
-        Get
-            Return Me.GetTable(Of CAN_EventOccuranceAlert)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CanBusLogs() As System.Data.Linq.Table(Of CanBusLog)
-        Get
-            Return Me.GetTable(Of CanBusLog)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CAN_EventOccurances() As System.Data.Linq.Table(Of CAN_EventOccurance)
-        Get
-            Return Me.GetTable(Of CAN_EventOccurance)()
-        End Get
-    End Property
-
-    Public ReadOnly Property CanBusEventOccuranceLogs() As System.Data.Linq.Table(Of CanBusEventOccuranceLog)
-        Get
-            Return Me.GetTable(Of CanBusEventOccuranceLog)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblContractPeriods() As System.Data.Linq.Table(Of tblContractPeriod)
-        Get
-            Return Me.GetTable(Of tblContractPeriod)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblDrivers() As System.Data.Linq.Table(Of tblDriver)
-        Get
-            Return Me.GetTable(Of tblDriver)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblStates() As System.Data.Linq.Table(Of tblState)
-        Get
-            Return Me.GetTable(Of tblState)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblSiteReSignDetails() As System.Data.Linq.Table(Of tblSiteReSignDetail)
-        Get
-            Return Me.GetTable(Of tblSiteReSignDetail)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblMonths() As System.Data.Linq.Table(Of tblMonth)
-        Get
-            Return Me.GetTable(Of tblMonth)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblCustomerServices() As System.Data.Linq.Table(Of tblCustomerService)
-        Get
-            Return Me.GetTable(Of tblCustomerService)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblRuns() As System.Data.Linq.Table(Of tblRun)
-        Get
-            Return Me.GetTable(Of tblRun)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblCIRHistories() As System.Data.Linq.Table(Of tblCIRHistory)
-        Get
-            Return Me.GetTable(Of tblCIRHistory)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblSiteComments() As System.Data.Linq.Table(Of tblSiteComment)
-        Get
-            Return Me.GetTable(Of tblSiteComment)()
-        End Get
-    End Property
-
-    Public ReadOnly Property FleetClients() As System.Data.Linq.Table(Of FleetClient)
-        Get
-            Return Me.GetTable(Of FleetClient)()
-        End Get
-    End Property
-
-    Public ReadOnly Property FleetDocuments() As System.Data.Linq.Table(Of FleetDocument)
-        Get
-            Return Me.GetTable(Of FleetDocument)()
-        End Get
-    End Property
-
-    Public ReadOnly Property FleetRuns() As System.Data.Linq.Table(Of FleetRun)
-        Get
-            Return Me.GetTable(Of FleetRun)()
-        End Get
-    End Property
-
-    Public ReadOnly Property FleetRunClients() As System.Data.Linq.Table(Of FleetRunClient)
-        Get
-            Return Me.GetTable(Of FleetRunClient)()
-        End Get
-    End Property
-
-    Public ReadOnly Property FleetRunCompletions() As System.Data.Linq.Table(Of FleetRunCompletion)
-        Get
-            Return Me.GetTable(Of FleetRunCompletion)()
-        End Get
-    End Property
-
-    Public ReadOnly Property VehicleLocations() As System.Data.Linq.Table(Of VehicleLocation)
-        Get
-            Return Me.GetTable(Of VehicleLocation)()
-        End Get
-    End Property
-
-    Public ReadOnly Property vw_GetVehicles() As System.Data.Linq.Table(Of vw_GetVehicle)
-        Get
-            Return Me.GetTable(Of vw_GetVehicle)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblCustomers() As System.Data.Linq.Table(Of tblCustomer)
-        Get
-            Return Me.GetTable(Of tblCustomer)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblSites() As System.Data.Linq.Table(Of tblSite)
-        Get
-            Return Me.GetTable(Of tblSite)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblIndustryGroups() As System.Data.Linq.Table(Of tblIndustryGroup)
-        Get
-            Return Me.GetTable(Of tblIndustryGroup)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblInvoicingFrequencies() As System.Data.Linq.Table(Of tblInvoicingFrequency)
-        Get
-            Return Me.GetTable(Of tblInvoicingFrequency)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
-        Get
-            Return Me.GetTable(Of tblCustomerAgent)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblContractCeaseReasons() As System.Data.Linq.Table(Of tblContractCeaseReason)
-        Get
-            Return Me.GetTable(Of tblContractCeaseReason)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblCIRReasons() As System.Data.Linq.Table(Of tblCIRReason)
-        Get
-            Return Me.GetTable(Of tblCIRReason)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
-        Get
-            Return Me.GetTable(Of tbZone)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblCustomerRatings() As System.Data.Linq.Table(Of tblCustomerRating)
-        Get
-            Return Me.GetTable(Of tblCustomerRating)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
-        Get
-            Return Me.GetTable(Of tblRateIncreaseReference)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblRunFortnightlyCycles() As System.Data.Linq.Table(Of tblRunFortnightlyCycle)
-        Get
-            Return Me.GetTable(Of tblRunFortnightlyCycle)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblRevenueChangeReasons() As System.Data.Linq.Table(Of tblRevenueChangeReason)
-        Get
-            Return Me.GetTable(Of tblRevenueChangeReason)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblPreviousSuppliers() As System.Data.Linq.Table(Of tblPreviousSupplier)
-        Get
-            Return Me.GetTable(Of tblPreviousSupplier)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
-        Get
-            Return Me.GetTable(Of tblServiceFrequency)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblServices() As System.Data.Linq.Table(Of tblService)
-        Get
-            Return Me.GetTable(Of tblService)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblSalesPersons() As System.Data.Linq.Table(Of tblSalesPerson)
-        Get
-            Return Me.GetTable(Of tblSalesPerson)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblProjectIDs() As System.Data.Linq.Table(Of tblProjectID)
-        Get
-            Return Me.GetTable(Of tblProjectID)()
-        End Get
-    End Property
-
-    Public ReadOnly Property tblFuelLevies() As System.Data.Linq.Table(Of tblFuelLevy)
-        Get
-            Return Me.GetTable(Of tblFuelLevy)()
-        End Get
-    End Property
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")> _
-    Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
-        userId = CType(result.GetParameterValue(12), System.Nullable(Of System.Guid))
-        Return CType(result.ReturnValue, Integer)
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_GetAllRoles")> _
-    Public Function aspnet_Roles_GetAllRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String) As ISingleResult(Of aspnet_Roles_GetAllRolesResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName)
-        Return CType(result.ReturnValue, ISingleResult(Of aspnet_Roles_GetAllRolesResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_AddUsersToRoles")> _
-    Public Function aspnet_UsersInRoles_AddUsersToRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date)) As ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, userNames, roleNames, currentTimeUtc)
-        Return CType(result.ReturnValue, ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_RemoveUsersFromRoles")> _
-    Public Function aspnet_UsersInRoles_RemoveUsersFromRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String) As ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, userNames, roleNames)
-        Return CType(result.ReturnValue, ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_RemoveAllrolesForUserAndAssignRole")> _
-    Public Function usp_RemoveAllrolesForUserAndAssignRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserID", DbType:="UniqueIdentifier")> ByVal userID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleID", DbType:="UniqueIdentifier")> ByVal roleID As System.Nullable(Of System.Guid)) As Integer
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), userID, roleID)
-        Return CType(result.ReturnValue, Integer)
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_deleteGeoFenceCollisions")> _
-    Public Function usp_deleteGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="VarChar(10)")> ByVal deviceid As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As Integer
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), deviceid, startDate, endDate)
-        Return CType(result.ReturnValue, Integer)
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetVehiclesAndDriversFortimePeriod")> _
-    Public Function usp_GetVehiclesAndDriversFortimePeriod(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateStart", DbType:="DateTime")> ByVal dateStart As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateEnd", DbType:="DateTime")> ByVal dateEnd As System.Nullable(Of Date)) As ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID, dateStart, dateEnd)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSettingsForApplication")> _
-    Public Function usp_GetSettingsForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="VarChar(MAX)")> ByVal applicationName As String) As ISingleResult(Of usp_GetSettingsForApplicationResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSettingsForApplicationResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSubscribersForApplication")> _
-    Public Function usp_GetSubscribersForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSubscribersForApplicationResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSubscribersForApplicationResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_CreateRole")> _
-    Public Function aspnet_Roles_CreateRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleName", DbType:="NVarChar(256)")> ByVal roleName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Description", DbType:="NVarChar(256)")> ByVal description As String) As Integer
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationName, roleName, description)
-        Return CType(result.ReturnValue, Integer)
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGeoFenceCollisions")> _
-    Public Function usp_GetGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGeoFenceCollisionsResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID, startDate, endDate)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetGeoFenceCollisionsResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAssignedVehiclestoDrivers")> _
-    Public Function usp_GetAssignedVehiclestoDrivers(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetAssignedVehiclestoDriversResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAssignedVehiclestoDriversResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUnprocessedCollissionsForAlertType")> _
-    Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), applicationID, startDate, endDate, alertTypeID)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerUpdateValue")> _
-    Public Function usp_GetCustomerUpdateValue(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Cid", DbType:="Int")> ByVal cid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetCustomerUpdateValueResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), cid)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerUpdateValueResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAllDrivers")> _
-    Public Function usp_GetAllDrivers() As ISingleResult(Of usp_GetAllDriversResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAllDriversResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryGroup")> _
-    Public Function usp_GetIndustryGroup() As ISingleResult(Of usp_GetIndustryGroupResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetIndustryGroupResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomers")> _
-    Public Function usp_GetCustomers() As ISingleResult(Of usp_GetCustomersResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomersResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetPreviousSupplier")> _
-    Public Function usp_GetPreviousSupplier() As ISingleResult(Of usp_GetPreviousSupplierResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetPreviousSupplierResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractCeaseReasons")> _
-    Public Function usp_GetContractCeaseReasons() As ISingleResult(Of usp_GetContractCeaseReasonsResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetContractCeaseReasonsResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerServices")> _
-    Public Function usp_GetCustomerServices() As ISingleResult(Of usp_GetCustomerServicesResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerServicesResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCIRHistory")> _
-    Public Function usp_GetCIRHistory() As ISingleResult(Of usp_GetCIRHistoryResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCIRHistoryResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSites")> _
-    Public Function usp_GetSites() As ISingleResult(Of usp_GetSitesResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSitesResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryListReport")> _
-    Public Function usp_GetIndustryListReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IndustryID", DbType:="Int")> ByVal industryID As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetIndustryListReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), industryID)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetIndustryListReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetDriversLicenseExpiryReport")> _
-    Public Function usp_GetDriversLicenseExpiryReport() As ISingleResult(Of usp_GetDriversLicenseExpiryReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetDriversLicenseExpiryReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractRenewalsReport")> _
-    Public Function usp_GetContractRenewalsReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetContractRenewalsReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetContractRenewalsReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetServiceSummaryReport")> _
-    Public Function usp_GetServiceSummaryReport() As ISingleResult(Of usp_GetServiceSummaryReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetServiceSummaryReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetLengthOfServicesReport")> _
-    Public Function usp_GetLengthOfServicesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="GreaterThanYears", DbType:="Int")> ByVal greaterThanYears As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetLengthOfServicesReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), greaterThanYears)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetLengthOfServicesReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerByCustZone")> _
-    Public Function usp_GetCustomerByCustZone() As ISingleResult(Of usp_GetCustomerByCustZoneResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerByCustZoneResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerContactDetailsReport")> _
-    Public Function usp_GetCustomerContactDetailsReport() As ISingleResult(Of usp_GetCustomerContactDetailsReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetCustomerContactDetailsReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesWithNoContractsReport")> _
-    Public Function usp_GetSitesWithNoContractsReport() As ISingleResult(Of usp_GetSitesWithNoContractsReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSitesWithNoContractsReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetInvoiceBasicCheckReport")> _
-    Public Function usp_GetInvoiceBasicCheckReport() As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetInvoiceBasicCheckReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetMYOBCustomerInvoiceReport")> _
-    Public Function usp_GetMYOBCustomerInvoiceReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CustomerName", DbType:="NVarChar(50)")> ByVal customerName As String) As ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), customerName)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesReport")> _
-    Public Function usp_GetGainsAndLossesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetGainsAndLossesReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesPerAnnumReport")> _
-    Public Function usp_GetGainsAndLossesPerAnnumReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetStandardAuditReport")> _
-    Public Function usp_GetStandardAuditReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetStandardAuditReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetStandardAuditReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditContractReport")> _
-    Public Function usp_GetAuditContractReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditContractReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAuditContractReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditOfSiteDetailReport")> _
-    Public Function usp_GetAuditOfSiteDetailReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditOfSiteDetailReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), startDate, endDate)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetAuditOfSiteDetailReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesBySiteZoneReport")> _
-    Public Function usp_GetSitesBySiteZoneReport() As ISingleResult(Of usp_GetSitesBySiteZoneReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValuesReport")> _
-    Public Function usp_GetRunValuesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ServiceRun", DbType:="VarChar(20)")> ByVal serviceRun As String) As ISingleResult(Of usp_GetRunValuesReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), serviceRun)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunValuesReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValueSummaryReport")> _
-    Public Function usp_GetRunValueSummaryReport() As ISingleResult(Of usp_GetRunValueSummaryReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunValueSummaryReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListingReport")> _
-    Public Function usp_GetRunListingReport() As ISingleResult(Of usp_GetRunListingReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunListingReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunDates")> _
-    Public Function usp_GetRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetRunDatesResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), rid)
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunDatesResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListByRunNumberReport")> _
-    Public Function usp_GetRunListByRunNumberReport() As ISingleResult(Of usp_GetRunListByRunNumberReportResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRunListByRunNumberReportResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetFortNightlyCycles")> _
-    Public Function usp_GetFortNightlyCycles() As ISingleResult(Of usp_GetFortNightlyCyclesResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetFortNightlyCyclesResult))
-    End Function
-
-    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueChangeReason")> _
-    Public Function usp_GetRevenueChangeReason() As ISingleResult(Of usp_GetRevenueChangeReasonResult)
-        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo))
-        Return CType(result.ReturnValue, ISingleResult(Of usp_GetRevenueChangeReasonResult))
-    End Function
+  #End Region
+	
+	Public Sub New()
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As String)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As System.Data.IDbConnection)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public ReadOnly Property AlertSubscriber_deletemes() As System.Data.Linq.Table(Of AlertSubscriber_deleteme)
+		Get
+			Return Me.GetTable(Of AlertSubscriber_deleteme)
+		End Get
+	End Property
+	
+	Public ReadOnly Property WorkRequests() As System.Data.Linq.Table(Of WorkRequest)
+		Get
+			Return Me.GetTable(Of WorkRequest)
+		End Get
+	End Property
+	
+	Public ReadOnly Property AlertTypes() As System.Data.Linq.Table(Of AlertType)
+		Get
+			Return Me.GetTable(Of AlertType)
+		End Get
+	End Property
+	
+	Public ReadOnly Property AlertTypeOccurances() As System.Data.Linq.Table(Of AlertTypeOccurance)
+		Get
+			Return Me.GetTable(Of AlertTypeOccurance)
+		End Get
+	End Property
+	
+	Public ReadOnly Property AlertTypeSubscriber_deletemes() As System.Data.Linq.Table(Of AlertTypeSubscriber_deleteme)
+		Get
+			Return Me.GetTable(Of AlertTypeSubscriber_deleteme)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationBooking_20170222s() As System.Data.Linq.Table(Of ApplicationBooking_20170222)
+		Get
+			Return Me.GetTable(Of ApplicationBooking_20170222)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationDrivers() As System.Data.Linq.Table(Of ApplicationDriver)
+		Get
+			Return Me.GetTable(Of ApplicationDriver)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationFeatures() As System.Data.Linq.Table(Of ApplicationFeature)
+		Get
+			Return Me.GetTable(Of ApplicationFeature)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationFeatureRoles() As System.Data.Linq.Table(Of ApplicationFeatureRole)
+		Get
+			Return Me.GetTable(Of ApplicationFeatureRole)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationGeoFences() As System.Data.Linq.Table(Of ApplicationGeoFence)
+		Get
+			Return Me.GetTable(Of ApplicationGeoFence)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationGeoFence_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160615)
+		Get
+			Return Me.GetTable(Of ApplicationGeoFence_20160615)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationGeoFence_20160842s() As System.Data.Linq.Table(Of ApplicationGeoFence_20160842)
+		Get
+			Return Me.GetTable(Of ApplicationGeoFence_20160842)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationGeofenceProperties() As System.Data.Linq.Table(Of ApplicationGeofenceProperty)
+		Get
+			Return Me.GetTable(Of ApplicationGeofenceProperty)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationGeoFenceSides() As System.Data.Linq.Table(Of ApplicationGeoFenceSide)
+		Get
+			Return Me.GetTable(Of ApplicationGeoFenceSide)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationGeoFenceSide_20160615s() As System.Data.Linq.Table(Of ApplicationGeoFenceSide_20160615)
+		Get
+			Return Me.GetTable(Of ApplicationGeoFenceSide_20160615)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationImages() As System.Data.Linq.Table(Of ApplicationImage)
+		Get
+			Return Me.GetTable(Of ApplicationImage)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationLocations() As System.Data.Linq.Table(Of ApplicationLocation)
+		Get
+			Return Me.GetTable(Of ApplicationLocation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationSettingValues() As System.Data.Linq.Table(Of ApplicationSettingValue)
+		Get
+			Return Me.GetTable(Of ApplicationSettingValue)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationTimeZones() As System.Data.Linq.Table(Of ApplicationTimeZone)
+		Get
+			Return Me.GetTable(Of ApplicationTimeZone)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationVehicles() As System.Data.Linq.Table(Of ApplicationVehicle)
+		Get
+			Return Me.GetTable(Of ApplicationVehicle)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationVehicleDriverTimes() As System.Data.Linq.Table(Of ApplicationVehicleDriverTime)
+		Get
+			Return Me.GetTable(Of ApplicationVehicleDriverTime)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationVehicleOdometerReadings() As System.Data.Linq.Table(Of ApplicationVehicleOdometerReading)
+		Get
+			Return Me.GetTable(Of ApplicationVehicleOdometerReading)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_Applications() As System.Data.Linq.Table(Of aspnet_Application)
+		Get
+			Return Me.GetTable(Of aspnet_Application)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_Memberships() As System.Data.Linq.Table(Of aspnet_Membership)
+		Get
+			Return Me.GetTable(Of aspnet_Membership)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_Paths() As System.Data.Linq.Table(Of aspnet_Path)
+		Get
+			Return Me.GetTable(Of aspnet_Path)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_PersonalizationAllUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationAllUser)
+		Get
+			Return Me.GetTable(Of aspnet_PersonalizationAllUser)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_PersonalizationPerUsers() As System.Data.Linq.Table(Of aspnet_PersonalizationPerUser)
+		Get
+			Return Me.GetTable(Of aspnet_PersonalizationPerUser)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_Profiles() As System.Data.Linq.Table(Of aspnet_Profile)
+		Get
+			Return Me.GetTable(Of aspnet_Profile)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_Roles() As System.Data.Linq.Table(Of aspnet_Role)
+		Get
+			Return Me.GetTable(Of aspnet_Role)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_SchemaVersions() As System.Data.Linq.Table(Of aspnet_SchemaVersion)
+		Get
+			Return Me.GetTable(Of aspnet_SchemaVersion)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_Users() As System.Data.Linq.Table(Of aspnet_User)
+		Get
+			Return Me.GetTable(Of aspnet_User)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_UsersInRoles() As System.Data.Linq.Table(Of aspnet_UsersInRole)
+		Get
+			Return Me.GetTable(Of aspnet_UsersInRole)
+		End Get
+	End Property
+	
+	Public ReadOnly Property aspnet_WebEvent_Events() As System.Data.Linq.Table(Of aspnet_WebEvent_Event)
+		Get
+			Return Me.GetTable(Of aspnet_WebEvent_Event)
+		End Get
+	End Property
+	
+	Public ReadOnly Property AuthenticationTokens() As System.Data.Linq.Table(Of AuthenticationToken)
+		Get
+			Return Me.GetTable(Of AuthenticationToken)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_Datas() As System.Data.Linq.Table(Of CAN_Data)
+		Get
+			Return Me.GetTable(Of CAN_Data)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_MessageDefinitions() As System.Data.Linq.Table(Of CAN_MessageDefinition)
+		Get
+			Return Me.GetTable(Of CAN_MessageDefinition)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CannonDatas() As System.Data.Linq.Table(Of CannonData)
+		Get
+			Return Me.GetTable(Of CannonData)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Contacts() As System.Data.Linq.Table(Of Contact)
+		Get
+			Return Me.GetTable(Of Contact)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Developments() As System.Data.Linq.Table(Of Development)
+		Get
+			Return Me.GetTable(Of Development)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Devices() As System.Data.Linq.Table(Of Device)
+		Get
+			Return Me.GetTable(Of Device)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Features() As System.Data.Linq.Table(Of Feature)
+		Get
+			Return Me.GetTable(Of Feature)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetMapMarkers() As System.Data.Linq.Table(Of FleetMapMarker)
+		Get
+			Return Me.GetTable(Of FleetMapMarker)
+		End Get
+	End Property
+	
+	Public ReadOnly Property GeoFenceDeviceCollisionAlerts() As System.Data.Linq.Table(Of GeoFenceDeviceCollisionAlert)
+		Get
+			Return Me.GetTable(Of GeoFenceDeviceCollisionAlert)
+		End Get
+	End Property
+	
+	Public ReadOnly Property GeoFenceDeviceCollissions() As System.Data.Linq.Table(Of GeoFenceDeviceCollission)
+		Get
+			Return Me.GetTable(Of GeoFenceDeviceCollission)
+		End Get
+	End Property
+	
+	Public ReadOnly Property GeoFenceDeviceCollission_20160604s() As System.Data.Linq.Table(Of GeoFenceDeviceCollission_20160604)
+		Get
+			Return Me.GetTable(Of GeoFenceDeviceCollission_20160604)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Groups() As System.Data.Linq.Table(Of [Group])
+		Get
+			Return Me.GetTable(Of [Group])
+		End Get
+	End Property
+	
+	Public ReadOnly Property GroupMember_olds() As System.Data.Linq.Table(Of GroupMember_old)
+		Get
+			Return Me.GetTable(Of GroupMember_old)
+		End Get
+	End Property
+	
+	Public ReadOnly Property GroupSubscribers() As System.Data.Linq.Table(Of GroupSubscriber)
+		Get
+			Return Me.GetTable(Of GroupSubscriber)
+		End Get
+	End Property
+	
+	Public ReadOnly Property j1939s() As System.Data.Linq.Table(Of j1939)
+		Get
+			Return Me.GetTable(Of j1939)
+		End Get
+	End Property
+	
+	Public ReadOnly Property PaidFeatures() As System.Data.Linq.Table(Of PaidFeature)
+		Get
+			Return Me.GetTable(Of PaidFeature)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Settings() As System.Data.Linq.Table(Of Setting)
+		Get
+			Return Me.GetTable(Of Setting)
+		End Get
+	End Property
+	
+	Public ReadOnly Property SimulatorSettings() As System.Data.Linq.Table(Of SimulatorSetting)
+		Get
+			Return Me.GetTable(Of SimulatorSetting)
+		End Get
+	End Property
+	
+	Public ReadOnly Property WebServiceLogs() As System.Data.Linq.Table(Of WebServiceLog)
+		Get
+			Return Me.GetTable(Of WebServiceLog)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ReportSchdeules() As System.Data.Linq.Table(Of ReportSchdeule)
+		Get
+			Return Me.GetTable(Of ReportSchdeule)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ApplicationBookings() As System.Data.Linq.Table(Of ApplicationBooking)
+		Get
+			Return Me.GetTable(Of ApplicationBooking)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_EventDefinitions() As System.Data.Linq.Table(Of CAN_EventDefinition)
+		Get
+			Return Me.GetTable(Of CAN_EventDefinition)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_AlertDefinitions() As System.Data.Linq.Table(Of CAN_AlertDefinition)
+		Get
+			Return Me.GetTable(Of CAN_AlertDefinition)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_EventOccuranceAlerts() As System.Data.Linq.Table(Of CAN_EventOccuranceAlert)
+		Get
+			Return Me.GetTable(Of CAN_EventOccuranceAlert)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CanBusLogs() As System.Data.Linq.Table(Of CanBusLog)
+		Get
+			Return Me.GetTable(Of CanBusLog)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CAN_EventOccurances() As System.Data.Linq.Table(Of CAN_EventOccurance)
+		Get
+			Return Me.GetTable(Of CAN_EventOccurance)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CanBusEventOccuranceLogs() As System.Data.Linq.Table(Of CanBusEventOccuranceLog)
+		Get
+			Return Me.GetTable(Of CanBusEventOccuranceLog)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblContractPeriods() As System.Data.Linq.Table(Of tblContractPeriod)
+		Get
+			Return Me.GetTable(Of tblContractPeriod)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblDrivers() As System.Data.Linq.Table(Of tblDriver)
+		Get
+			Return Me.GetTable(Of tblDriver)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblStates() As System.Data.Linq.Table(Of tblState)
+		Get
+			Return Me.GetTable(Of tblState)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblSiteReSignDetails() As System.Data.Linq.Table(Of tblSiteReSignDetail)
+		Get
+			Return Me.GetTable(Of tblSiteReSignDetail)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblMonths() As System.Data.Linq.Table(Of tblMonth)
+		Get
+			Return Me.GetTable(Of tblMonth)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomerServices() As System.Data.Linq.Table(Of tblCustomerService)
+		Get
+			Return Me.GetTable(Of tblCustomerService)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRuns() As System.Data.Linq.Table(Of tblRun)
+		Get
+			Return Me.GetTable(Of tblRun)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCIRHistories() As System.Data.Linq.Table(Of tblCIRHistory)
+		Get
+			Return Me.GetTable(Of tblCIRHistory)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblSiteComments() As System.Data.Linq.Table(Of tblSiteComment)
+		Get
+			Return Me.GetTable(Of tblSiteComment)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetClients() As System.Data.Linq.Table(Of FleetClient)
+		Get
+			Return Me.GetTable(Of FleetClient)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetDocuments() As System.Data.Linq.Table(Of FleetDocument)
+		Get
+			Return Me.GetTable(Of FleetDocument)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetRuns() As System.Data.Linq.Table(Of FleetRun)
+		Get
+			Return Me.GetTable(Of FleetRun)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetRunClients() As System.Data.Linq.Table(Of FleetRunClient)
+		Get
+			Return Me.GetTable(Of FleetRunClient)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetRunCompletions() As System.Data.Linq.Table(Of FleetRunCompletion)
+		Get
+			Return Me.GetTable(Of FleetRunCompletion)
+		End Get
+	End Property
+	
+	Public ReadOnly Property VehicleLocations() As System.Data.Linq.Table(Of VehicleLocation)
+		Get
+			Return Me.GetTable(Of VehicleLocation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomers() As System.Data.Linq.Table(Of tblCustomer)
+		Get
+			Return Me.GetTable(Of tblCustomer)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblSites() As System.Data.Linq.Table(Of tblSite)
+		Get
+			Return Me.GetTable(Of tblSite)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblIndustryGroups() As System.Data.Linq.Table(Of tblIndustryGroup)
+		Get
+			Return Me.GetTable(Of tblIndustryGroup)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblInvoicingFrequencies() As System.Data.Linq.Table(Of tblInvoicingFrequency)
+		Get
+			Return Me.GetTable(Of tblInvoicingFrequency)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
+		Get
+			Return Me.GetTable(Of tblCustomerAgent)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblContractCeaseReasons() As System.Data.Linq.Table(Of tblContractCeaseReason)
+		Get
+			Return Me.GetTable(Of tblContractCeaseReason)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCIRReasons() As System.Data.Linq.Table(Of tblCIRReason)
+		Get
+			Return Me.GetTable(Of tblCIRReason)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
+		Get
+			Return Me.GetTable(Of tbZone)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomerRatings() As System.Data.Linq.Table(Of tblCustomerRating)
+		Get
+			Return Me.GetTable(Of tblCustomerRating)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
+		Get
+			Return Me.GetTable(Of tblRateIncreaseReference)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRunFortnightlyCycles() As System.Data.Linq.Table(Of tblRunFortnightlyCycle)
+		Get
+			Return Me.GetTable(Of tblRunFortnightlyCycle)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRevenueChangeReasons() As System.Data.Linq.Table(Of tblRevenueChangeReason)
+		Get
+			Return Me.GetTable(Of tblRevenueChangeReason)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblPreviousSuppliers() As System.Data.Linq.Table(Of tblPreviousSupplier)
+		Get
+			Return Me.GetTable(Of tblPreviousSupplier)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
+		Get
+			Return Me.GetTable(Of tblServiceFrequency)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblServices() As System.Data.Linq.Table(Of tblService)
+		Get
+			Return Me.GetTable(Of tblService)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblSalesPersons() As System.Data.Linq.Table(Of tblSalesPerson)
+		Get
+			Return Me.GetTable(Of tblSalesPerson)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblProjectIDs() As System.Data.Linq.Table(Of tblProjectID)
+		Get
+			Return Me.GetTable(Of tblProjectID)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblFuelLevies() As System.Data.Linq.Table(Of tblFuelLevy)
+		Get
+			Return Me.GetTable(Of tblFuelLevy)
+		End Get
+	End Property
+	
+	Public ReadOnly Property vw_GetVehicleLocations() As System.Data.Linq.Table(Of vw_GetVehicleLocation)
+		Get
+			Return Me.GetTable(Of vw_GetVehicleLocation)
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")>  _
+	Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
+		userId = CType(result.GetParameterValue(12),System.Nullable(Of System.Guid))
+		Return CType(result.ReturnValue,Integer)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_GetAllRoles")>  _
+	Public Function aspnet_Roles_GetAllRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String) As ISingleResult(Of aspnet_Roles_GetAllRolesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName)
+		Return CType(result.ReturnValue,ISingleResult(Of aspnet_Roles_GetAllRolesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_AddUsersToRoles")>  _
+	Public Function aspnet_UsersInRoles_AddUsersToRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date)) As ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userNames, roleNames, currentTimeUtc)
+		Return CType(result.ReturnValue,ISingleResult(Of aspnet_UsersInRoles_AddUsersToRolesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_UsersInRoles_RemoveUsersFromRoles")>  _
+	Public Function aspnet_UsersInRoles_RemoveUsersFromRoles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserNames", DbType:="NVarChar(4000)")> ByVal userNames As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleNames", DbType:="NVarChar(4000)")> ByVal roleNames As String) As ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userNames, roleNames)
+		Return CType(result.ReturnValue,ISingleResult(Of aspnet_UsersInRoles_RemoveUsersFromRolesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_RemoveAllrolesForUserAndAssignRole")>  _
+	Public Function usp_RemoveAllrolesForUserAndAssignRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserID", DbType:="UniqueIdentifier")> ByVal userID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleID", DbType:="UniqueIdentifier")> ByVal roleID As System.Nullable(Of System.Guid)) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), userID, roleID)
+		Return CType(result.ReturnValue,Integer)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_deleteGeoFenceCollisions")>  _
+	Public Function usp_deleteGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="VarChar(10)")> ByVal deviceid As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), deviceid, startDate, endDate)
+		Return CType(result.ReturnValue,Integer)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetVehiclesAndDriversFortimePeriod")>  _
+	Public Function usp_GetVehiclesAndDriversFortimePeriod(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateStart", DbType:="DateTime")> ByVal dateStart As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="DateEnd", DbType:="DateTime")> ByVal dateEnd As System.Nullable(Of Date)) As ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, dateStart, dateEnd)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetVehiclesAndDriversFortimePeriodResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSettingsForApplication")>  _
+	Public Function usp_GetSettingsForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="VarChar(MAX)")> ByVal applicationName As String) As ISingleResult(Of usp_GetSettingsForApplicationResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSettingsForApplicationResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSubscribersForApplication")>  _
+	Public Function usp_GetSubscribersForApplication(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSubscribersForApplicationResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSubscribersForApplicationResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Roles_CreateRole")>  _
+	Public Function aspnet_Roles_CreateRole(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="RoleName", DbType:="NVarChar(256)")> ByVal roleName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Description", DbType:="NVarChar(256)")> ByVal description As String) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, roleName, description)
+		Return CType(result.ReturnValue,Integer)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGeoFenceCollisions")>  _
+	Public Function usp_GetGeoFenceCollisions(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGeoFenceCollisionsResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGeoFenceCollisionsResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAssignedVehiclestoDrivers")>  _
+	Public Function usp_GetAssignedVehiclestoDrivers(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetAssignedVehiclestoDriversResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAssignedVehiclestoDriversResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUnprocessedCollissionsForAlertType")>  _
+	Public Function usp_GetUnprocessedCollissionsForAlertType(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AlertTypeID", DbType:="UniqueIdentifier")> ByVal alertTypeID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, startDate, endDate, alertTypeID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetUnprocessedCollissionsForAlertTypeResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerUpdateValue")>  _
+	Public Function usp_GetCustomerUpdateValue(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Cid", DbType:="Int")> ByVal cid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetCustomerUpdateValueResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), cid)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerUpdateValueResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAllDrivers")>  _
+	Public Function usp_GetAllDrivers() As ISingleResult(Of usp_GetAllDriversResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAllDriversResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryGroup")>  _
+	Public Function usp_GetIndustryGroup() As ISingleResult(Of usp_GetIndustryGroupResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIndustryGroupResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomers")>  _
+	Public Function usp_GetCustomers() As ISingleResult(Of usp_GetCustomersResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomersResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetPreviousSupplier")>  _
+	Public Function usp_GetPreviousSupplier() As ISingleResult(Of usp_GetPreviousSupplierResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetPreviousSupplierResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractCeaseReasons")>  _
+	Public Function usp_GetContractCeaseReasons() As ISingleResult(Of usp_GetContractCeaseReasonsResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetContractCeaseReasonsResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerServices")>  _
+	Public Function usp_GetCustomerServices() As ISingleResult(Of usp_GetCustomerServicesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerServicesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCIRHistory")>  _
+	Public Function usp_GetCIRHistory() As ISingleResult(Of usp_GetCIRHistoryResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCIRHistoryResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSites")>  _
+	Public Function usp_GetSites() As ISingleResult(Of usp_GetSitesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryListReport")>  _
+	Public Function usp_GetIndustryListReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IndustryID", DbType:="Int")> ByVal industryID As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetIndustryListReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), industryID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIndustryListReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetDriversLicenseExpiryReport")>  _
+	Public Function usp_GetDriversLicenseExpiryReport() As ISingleResult(Of usp_GetDriversLicenseExpiryReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetDriversLicenseExpiryReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetContractRenewalsReport")>  _
+	Public Function usp_GetContractRenewalsReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetContractRenewalsReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetContractRenewalsReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetServiceSummaryReport")>  _
+	Public Function usp_GetServiceSummaryReport() As ISingleResult(Of usp_GetServiceSummaryReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetServiceSummaryReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetLengthOfServicesReport")>  _
+	Public Function usp_GetLengthOfServicesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="GreaterThanYears", DbType:="Int")> ByVal greaterThanYears As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetLengthOfServicesReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), greaterThanYears)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetLengthOfServicesReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerByCustZone")>  _
+	Public Function usp_GetCustomerByCustZone() As ISingleResult(Of usp_GetCustomerByCustZoneResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerByCustZoneResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerContactDetailsReport")>  _
+	Public Function usp_GetCustomerContactDetailsReport() As ISingleResult(Of usp_GetCustomerContactDetailsReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomerContactDetailsReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesWithNoContractsReport")>  _
+	Public Function usp_GetSitesWithNoContractsReport() As ISingleResult(Of usp_GetSitesWithNoContractsReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesWithNoContractsReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetInvoiceBasicCheckReport")>  _
+	Public Function usp_GetInvoiceBasicCheckReport() As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetInvoiceBasicCheckReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetMYOBCustomerInvoiceReport")>  _
+	Public Function usp_GetMYOBCustomerInvoiceReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CustomerName", DbType:="NVarChar(50)")> ByVal customerName As String) As ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), customerName)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesReport")>  _
+	Public Function usp_GetGainsAndLossesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGainsAndLossesReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesPerAnnumReport")>  _
+	Public Function usp_GetGainsAndLossesPerAnnumReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetStandardAuditReport")>  _
+	Public Function usp_GetStandardAuditReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetStandardAuditReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetStandardAuditReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditContractReport")>  _
+	Public Function usp_GetAuditContractReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditContractReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditContractReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditOfSiteDetailReport")>  _
+	Public Function usp_GetAuditOfSiteDetailReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditOfSiteDetailReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditOfSiteDetailReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesBySiteZoneReport")>  _
+	Public Function usp_GetSitesBySiteZoneReport() As ISingleResult(Of usp_GetSitesBySiteZoneReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValuesReport")>  _
+	Public Function usp_GetRunValuesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ServiceRun", DbType:="VarChar(20)")> ByVal serviceRun As String) As ISingleResult(Of usp_GetRunValuesReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), serviceRun)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValuesReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValueSummaryReport")>  _
+	Public Function usp_GetRunValueSummaryReport() As ISingleResult(Of usp_GetRunValueSummaryReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValueSummaryReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListingReport")>  _
+	Public Function usp_GetRunListingReport() As ISingleResult(Of usp_GetRunListingReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunListingReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunDates")>  _
+	Public Function usp_GetRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetRunDatesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunDatesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunListByRunNumberReport")>  _
+	Public Function usp_GetRunListByRunNumberReport() As ISingleResult(Of usp_GetRunListByRunNumberReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunListByRunNumberReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetFortNightlyCycles")>  _
+	Public Function usp_GetFortNightlyCycles() As ISingleResult(Of usp_GetFortNightlyCyclesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetFortNightlyCyclesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueChangeReason")>  _
+	Public Function usp_GetRevenueChangeReason() As ISingleResult(Of usp_GetRevenueChangeReasonResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRevenueChangeReasonResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -17755,128 +17755,6 @@ Partial Public Class VehicleLocation
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.vw_GetVehicles")>  _
-Partial Public Class vw_GetVehicle
-	
-	Private _ApplicationID As System.Guid
-	
-	Private _ApplicationLocationID As System.Guid
-	
-	Private _Name As String
-	
-	Private _Address As String
-	
-	Private _LocationID As System.Nullable(Of System.Guid)
-	
-	Private _VehicleID As System.Nullable(Of System.Guid)
-	
-	Private _Vehicle_name As String
-	
-	Private _DeviceID As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationID() As System.Guid
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If ((Me._ApplicationID = value)  _
-						= false) Then
-				Me._ApplicationID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationLocationID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property ApplicationLocationID() As System.Guid
-		Get
-			Return Me._ApplicationLocationID
-		End Get
-		Set
-			If ((Me._ApplicationLocationID = value)  _
-						= false) Then
-				Me._ApplicationLocationID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(500)")>  _
-	Public Property Name() As String
-		Get
-			Return Me._Name
-		End Get
-		Set
-			If (String.Equals(Me._Name, value) = false) Then
-				Me._Name = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Address", DbType:="VarChar(MAX)")>  _
-	Public Property Address() As String
-		Get
-			Return Me._Address
-		End Get
-		Set
-			If (String.Equals(Me._Address, value) = false) Then
-				Me._Address = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LocationID", DbType:="UniqueIdentifier")>  _
-	Public Property LocationID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._LocationID
-		End Get
-		Set
-			If (Me._LocationID.Equals(value) = false) Then
-				Me._LocationID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VehicleID", DbType:="UniqueIdentifier")>  _
-	Public Property VehicleID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._VehicleID
-		End Get
-		Set
-			If (Me._VehicleID.Equals(value) = false) Then
-				Me._VehicleID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Vehicle_name", DbType:="VarChar(500)")>  _
-	Public Property Vehicle_name() As String
-		Get
-			Return Me._Vehicle_name
-		End Get
-		Set
-			If (String.Equals(Me._Vehicle_name, value) = false) Then
-				Me._Vehicle_name = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(10)")>  _
-	Public Property DeviceID() As String
-		Get
-			Return Me._DeviceID
-		End Get
-		Set
-			If (String.Equals(Me._DeviceID, value) = false) Then
-				Me._DeviceID = value
-			End If
-		End Set
-	End Property
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomers")>  _
 Partial Public Class tblCustomer
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -21897,6 +21775,127 @@ Partial Public Class tblFuelLevy
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
 	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.vw_GetVehicleLocations")>  _
+Partial Public Class vw_GetVehicleLocation
+	
+	Private _LocationID As System.Nullable(Of System.Guid)
+	
+	Private _VehicleID As System.Nullable(Of System.Guid)
+	
+	Private _BusinessLocationID As System.Nullable(Of System.Guid)
+	
+	Private _Name As String
+	
+	Private _DeviceID As String
+	
+	Private _ApplicationID As System.Guid
+	
+	Private _AL_Name As String
+	
+	Private _Address As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LocationID", DbType:="UniqueIdentifier")>  _
+	Public Property LocationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._LocationID
+		End Get
+		Set
+			If (Me._LocationID.Equals(value) = false) Then
+				Me._LocationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VehicleID", DbType:="UniqueIdentifier")>  _
+	Public Property VehicleID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._VehicleID
+		End Get
+		Set
+			If (Me._VehicleID.Equals(value) = false) Then
+				Me._VehicleID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BusinessLocationID", DbType:="UniqueIdentifier")>  _
+	Public Property BusinessLocationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._BusinessLocationID
+		End Get
+		Set
+			If (Me._BusinessLocationID.Equals(value) = false) Then
+				Me._BusinessLocationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="VarChar(500)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeviceID", DbType:="VarChar(10)")>  _
+	Public Property DeviceID() As String
+		Get
+			Return Me._DeviceID
+		End Get
+		Set
+			If (String.Equals(Me._DeviceID, value) = false) Then
+				Me._DeviceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property ApplicationID() As System.Guid
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If ((Me._ApplicationID = value)  _
+						= false) Then
+				Me._ApplicationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AL_Name", DbType:="VarChar(500)")>  _
+	Public Property AL_Name() As String
+		Get
+			Return Me._AL_Name
+		End Get
+		Set
+			If (String.Equals(Me._AL_Name, value) = false) Then
+				Me._AL_Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Address", DbType:="VarChar(MAX)")>  _
+	Public Property Address() As String
+		Get
+			Return Me._Address
+		End Get
+		Set
+			If (String.Equals(Me._Address, value) = false) Then
+				Me._Address = value
+			End If
+		End Set
+	End Property
 End Class
 
 Partial Public Class aspnet_Roles_GetAllRolesResult

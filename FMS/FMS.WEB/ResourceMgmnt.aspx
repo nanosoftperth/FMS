@@ -260,7 +260,7 @@
                                                                 <asp:ControlParameter ControlID="timeEditTo" PropertyName="DateTime" Name="enddate" Type="DateTime"></asp:ControlParameter>
                                                             </SelectParameters>
                                                         </asp:ObjectDataSource>
-                                                        <asp:ObjectDataSource runat="server" ID="odsAVDTVehicles" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle">
+                                                        <asp:ObjectDataSource runat="server" ID="odsAVDTVehicles" SelectMethod="GetAllToList" TypeName="FMS.Business.DataObjects.ApplicationVehicle">
                                                             <SelectParameters>
                                                                 <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appplicationID"></asp:SessionParameter>
                                                             </SelectParameters>
@@ -636,7 +636,7 @@
                                         SelectMethod="GetAllCANPRotocols"
                                         TypeName="FMS.Business.DataObjects.ApplicationVehicle+CanStandard"></asp:ObjectDataSource>
 
-                                    <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
+                                    <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllToList" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
                                         <SelectParameters>
                                             <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
                                         </SelectParameters>
