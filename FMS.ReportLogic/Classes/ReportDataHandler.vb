@@ -16,7 +16,9 @@ Public Class ReportDataHandler
     Public Shared Function GetThisApplicationsDriverList() As List(Of FMS.Business.DataObjects.ApplicationDriver)
         Return FMS.Business.DataObjects.ApplicationDriver.GetAllDriversIncludingEveryone(ThisSession.ApplicationID)
     End Function
-
+    Public Shared Function GetIndustryList() As List(Of FMS.Business.DataObjects.tblIndustryGroups)
+        Return FMS.Business.DataObjects.tblIndustryGroups.GetAll()
+    End Function
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -596,10 +598,9 @@ Public Class ReportDataHandler
         Return rept
     End Function
 
-    Public Shared Function GetIndustryListReport() As CacheIndustryList
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+    Public Shared Function GetIndustryListReport(IndustryID As Int32) As CacheIndustryList
         Dim rept As New CacheIndustryList
-        Dim retobj = FMS.Business.DataObjects.usp_GetIndustryListReport.GetIndustryListReportByIndustryID(paramValues(0)).ToList()
+        Dim retobj = FMS.Business.DataObjects.usp_GetIndustryListReport.GetIndustryListReportByIndustryID(IndustryID).ToList()
         Dim objList As New List(Of IndustryList)
         For Each item In retobj
             objList.Add(New IndustryList() With
@@ -612,7 +613,7 @@ Public Class ReportDataHandler
                                   .SiteName = item.SiteName, .SiteName1 = item.SiteName1, .UnitsHaveMoreThanOneRun = item.UnitsHaveMoreThanOneRun})
         Next
         rept.LineValies = objList
-        rept.Param = paramValues(1)
+        rept.Param = retobj.FirstOrDefault().IndustryDescription
 
         Return rept
     End Function
