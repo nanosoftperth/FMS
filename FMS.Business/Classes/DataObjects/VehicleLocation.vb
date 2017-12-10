@@ -184,7 +184,19 @@ Namespace DataObjects
 
             Dim oList As New List(Of FMS.Business.DataObjects.ApplicationLocation)
 
-            Dim featureList = FMS.Business.DataObjects.Feature.GetAllFeatures().Where(Function(f) f.Name.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
+            'Dim featureList = FMS.Business.DataObjects.Feature.GetAllFeatures().Where(Function(f) f.Name.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
+            Dim featureList = (From au In SingletonAccess.FMSDataContextContignous.aspnet_Users
+                                    Join aur In SingletonAccess.FMSDataContextContignous.aspnet_UsersInRoles
+                                    On au.UserId Equals aur.UserId
+                                    Join ar In SingletonAccess.FMSDataContextContignous.aspnet_Roles
+                                    On aur.RoleId Equals ar.RoleId
+                                    Join afr In SingletonAccess.FMSDataContextContignous.ApplicationFeatureRoles
+                                    On ar.RoleId Equals afr.RoleID
+                                    Join f In SingletonAccess.FMSDataContextContignous.Features
+                                    On afr.FeatureID Equals f.FeatureID
+                                    Where (au.ApplicationId = applicationID) And (au.UserId = userID)
+                                    Select f.FeatureID, f.FeatureName, f.FeatureDescription).Where(Function(feat) feat.FeatureName.Contains("Vehicle and Driver Management - See All Vehicle")).ToList()
+
 
             If (featureList.Count > 0) Then
                 'do comment or remark if want to test within business location only automatically
@@ -198,8 +210,8 @@ Namespace DataObjects
                 'Dim lstLocation = (From al In SingletonAccess.FMSDataContextContignous.ApplicationLocations
                 '                  Select al.ApplicationLocationID, al.Name).ToList()
 
-                Dim lstLocation = SingletonAccess.FMSDataContextContignous.ApplicationLocations().OrderBy(Function(l) l.Name).ToList()
-
+                Dim lstLocation = SingletonAccess.FMSDataContextContignous.ApplicationLocations.Where(Function(l) l.ApplicationID = applicationID).OrderBy(Function(lo) lo.Name).ToList()
+                
                 If (lstLocation.Count > 0) Then
                     For rLoc = 0 To lstLocation.Count - 1
                         Dim listRow = New Vehicles
