@@ -140,7 +140,7 @@ Public Class RoundRobinService
             retObj.queryDate = CDate(EndTime)
 
             'return the list of trucks
-            retObj.Trucks = Truck.GetFleetAtTime(EndTime, FMS.Business.ThisSession.ApplicationID)
+            retObj.Trucks = Truck.GetFleetAtTime(EndTime, FMS.Business.ThisSession.ApplicationID, Business.ThisSession.UserID)
 
             'for each truck we wish to process, find the journey lat and longs.
             For Each truckID As String In selectedTruckIds
@@ -170,7 +170,7 @@ Public Class RoundRobinService
         Dim retObj As New ClientServerRoundRobin_ReturnObject
 
         Try
-            retObj.Trucks = Truck.GetFleetAtTime(Now.timezoneToClient, FMS.Business.ThisSession.ApplicationID)
+            retObj.Trucks = Truck.GetFleetAtTime(Now.timezoneToClient, FMS.Business.ThisSession.ApplicationID, Business.ThisSession.UserID)
         Catch ex As Exception
             Dim x As String = ""
         End Try
@@ -196,7 +196,7 @@ Public Class RoundRobinService
 
             theDate = browserDate
             Dim std As Date = CDate(theDate)
-            retObj.Trucks = Truck.GetFleetAtTime(std, FMS.Business.ThisSession.ApplicationID)
+            retObj.Trucks = Truck.GetFleetAtTime(std, FMS.Business.ThisSession.ApplicationID, Business.ThisSession.UserID)
             retObj.queryDate = std
 
             Return retObj

@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMS")>  _
 Partial Public Class LINQtoSQLClassesDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -550,7 +550,7 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -1413,6 +1413,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetRevenueChangeReason() As ISingleResult(Of usp_GetRevenueChangeReasonResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRevenueChangeReasonResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetVehiclesForUser")>  _
+	Public Function usp_GetVehiclesForUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="UniqueIdentifier")> ByVal userid As System.Nullable(Of System.Guid)) As ISingleResult(Of ApplicationVehicle)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), userid)
+		Return CType(result.ReturnValue,ISingleResult(Of ApplicationVehicle))
 	End Function
 End Class
 
