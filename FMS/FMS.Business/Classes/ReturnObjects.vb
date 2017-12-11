@@ -190,7 +190,7 @@ Public Class Truck
 
     Public Shared Function GetExampleFleetNow(appid As Guid) As List(Of Truck)
 
-        Return GetFleetAtTime(Now.timezoneToClient.AddSeconds(-10), appid)
+        Return GetFleetAtTime(Now.timezoneToClient.AddSeconds(-10), appid, Business.ThisSession.UserID)
     End Function
 
     Public Class LatLong
@@ -217,7 +217,7 @@ Public Class Truck
 
         Dim retObj As New ClientServerRoundRobin_ReturnObject
 
-        Dim trcks As List(Of Truck) = GetFleetAtTime(Now, applicationid)
+        Dim trcks As List(Of Truck) = GetFleetAtTime(Now, applicationid, Business.ThisSession.UserID)
 
         Dim trck As Truck = (From t As Truck In trcks Where t.ID = truckID).First
 
@@ -230,13 +230,13 @@ Public Class Truck
 
     End Function
 
-    Public Shared Function GetFleetAtTime(time As DateTime, applicationid As Guid) As List(Of Truck)
+    Public Shared Function GetFleetAtTime(time As DateTime, applicationid As Guid, userid As Guid) As List(Of Truck)
 
 
         Dim lst As New List(Of Truck)
 
         Dim lstFromBusiness As List(Of FMS.Business.DataObjects.ApplicationVehicle) = _
-                        FMS.Business.DataObjects.ApplicationVehicle.GetAllWithDrivers(applicationid, time)
+                        FMS.Business.DataObjects.ApplicationVehicle.GetAllWithDrivers(applicationid, time, userid)
 
         time = time.timezoneToPerth()
 

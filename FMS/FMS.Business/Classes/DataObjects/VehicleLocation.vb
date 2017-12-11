@@ -116,6 +116,7 @@ Namespace DataObjects
 
             ' Updated code for approval (this will minimize going back to DB again for fetch)
             Dim appID = FMS.Business.ThisSession.ApplicationID
+
             Dim listVehicle = (From vl In SingletonAccess.FMSDataContextContignous.VehicleLocations
                               Join al In SingletonAccess.FMSDataContextContignous.ApplicationLocations
                               On vl.BusinessLocationID Equals al.ApplicationLocationID
