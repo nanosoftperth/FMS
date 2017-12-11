@@ -683,7 +683,7 @@
 
             Dim retobj As Object = SingletonAccess.FMSDataContextNew.ApplicationVehicles.Where(Function(y) y.ApplicationID = appplicationID And y.DeviceID = deviceID).OrderBy(Function(m) m.DeviceID).Select( _
                                                                             Function(x) New DataObjects.ApplicationVehicle(x)).ToList
-            
+
             Return retobj
 
         End Function
