@@ -21,8 +21,10 @@ namespace FMS.Datalistener.CalAmp
         static void Main(string[] args)
         {
 
-          //  DataObjects.LogFileProcessor.ProcessLogs();
+            //  DataObjects.LogFileProcessor.ProcessLogs();
+            CalAMP_Receiver.StartListener();
 
+            return;
 
             HostFactory.Run(x =>
             {
@@ -32,6 +34,7 @@ namespace FMS.Datalistener.CalAmp
                     s.WhenStarted(tc => tc.Start());
                     s.WhenStopped(tc => tc.Stop());
                 });
+
                 x.RunAsLocalSystem();
 
                 x.SetDescription("FMS data receiver for CalAMP products");
@@ -89,7 +92,7 @@ namespace FMS.Datalistener.CalAmp
                              .ToArray();
         }
 
-        private static void StartListener()
+        public static void StartListener()
         {
             bool done = false;
 
@@ -142,7 +145,7 @@ namespace FMS.Datalistener.CalAmp
 
                     recevied_telegram.MessageBody.Updatetime += TimeSpan.FromHours(8);//make perth time
 
-                    if (recevied_telegram.MessageBody.Lattitude > 0 )
+                    if (recevied_telegram.MessageBody.Lattitude != 0 )
                             dac.Get(recevied_telegram.OptionsHeader.MobileID, 
                                 recevied_telegram.MessageBody.Lattitude, 
                                 recevied_telegram.MessageBody.Longtiude, 

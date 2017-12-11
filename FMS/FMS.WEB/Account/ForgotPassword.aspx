@@ -22,7 +22,7 @@
                                 <dx:ASPxTextBox ID="tbUserName" ClientInstanceName="tbUserName" Theme="SoftOrange" runat="server" Width="200px">
                                     <ValidationSettings ValidationGroup="ForgotPasswordValidationGroup">
                                     </ValidationSettings>
-                                     <ClientSideEvents Validation="function(s, e) {
+                                    <%-- <ClientSideEvents Validation="function(s, e) {
                                         var un = tbEmail.GetText();
                                         if(!un){
                                             var em = tbUserName.GetText();
@@ -33,7 +33,7 @@
                                         }
                                     }" GotFocus="function(s, e) {
                                          tbEmail.SetText('');
-                                         }" />
+                                         }" />--%>
                                 </dx:ASPxTextBox>
                             </div>
                             <div class="form-field">
@@ -44,7 +44,7 @@
                                 <dx:ASPxTextBox Theme="SoftOrange" ID="tbEmail" ClientInstanceName="tbEmail" runat="server" Width="200px">
                                     <ValidationSettings ValidationGroup="ForgotPasswordValidationGroup" >
                                     </ValidationSettings>
-                                    <ClientSideEvents Validation="function(s, e) {
+                                  <%--  <ClientSideEvents Validation="function(s, e) {
                                         var un = tbUserName.GetText();
                                         if(!un){
                                             var em = tbEmail.GetText();
@@ -63,7 +63,7 @@
                                         }
                                     }" GotFocus="function(s, e) {
                                          tbUserName.SetText('');
-                                         }" />
+                                         }" />--%>
                                 </dx:ASPxTextBox>
                             </div>
                             <dx:ASPxButton ID="btnSendEmail" Theme="SoftOrange" runat="server" Text="Send Email" ValidationGroup="ForgotPasswordValidationGroup"
