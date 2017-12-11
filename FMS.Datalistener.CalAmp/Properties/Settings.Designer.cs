@@ -34,7 +34,7 @@ namespace FMS.Datalistener.CalAmp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8082")]
+        [global::System.Configuration.DefaultSettingValueAttribute("9000")]
         public string web_url_port {
             get {
                 return ((string)(this["web_url_port"]));
