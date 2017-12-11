@@ -245,6 +245,9 @@ Public Class Truck
         Dim default_lat As String = app.Settings.Where(Function(x) x.Name.ToLower = "business_lattitude").Single.Value
         Dim default_lng As String = app.Settings.Where(Function(x) x.Name.ToLower = "business_longitude").Single.Value
 
+        'if there is nothing to process, then just return the empty list 
+        If lstFromBusiness Is Nothing Then Return lst
+
         For Each l As FMS.Business.DataObjects.ApplicationVehicle In lstFromBusiness
             With l
 
