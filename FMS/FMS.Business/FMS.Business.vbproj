@@ -136,6 +136,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblStates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tbZone.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetAllDrivers.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetAnnualAnalysisReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetAuditContractReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetAuditOfSiteDetailReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetContractRenewalsReport.vb" />

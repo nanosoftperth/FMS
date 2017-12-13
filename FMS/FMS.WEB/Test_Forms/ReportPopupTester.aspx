@@ -15,7 +15,6 @@
 
 
         function showPopupVehicleReport(vehicleName, vehicleID) {
-
             var popupHeader = 'Vehicle Report | ' + vehicleName;
 
             popupReport.ShowAtPos(posX, 130);
