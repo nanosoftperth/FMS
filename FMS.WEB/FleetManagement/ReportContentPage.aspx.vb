@@ -16,6 +16,8 @@
         Select Case reportName
             Case "IndustryListReport"
                 Return New FMS.ReportLogic.IndustryListReport()
+            Case "QuickViewBySuburbReport"
+                Return New FMS.ReportLogic.QuickViewBySuburbReport()
             Case "ServiceListReport"
                 Return New FMS.ReportLogic.ServiceListReport()
             Case "DriversLicenseExpiryReport"

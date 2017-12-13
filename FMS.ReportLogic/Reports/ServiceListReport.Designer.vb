@@ -25,6 +25,7 @@ Partial Public Class ServiceListReport
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.PageFooterBand1 = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
@@ -35,15 +36,14 @@ Partial Public Class ServiceListReport
         Me.DataField = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -81,6 +81,14 @@ Partial Public Class ServiceListReport
         Me.PageFooterBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine2, Me.XrPageInfo1, Me.XrPageInfo2})
         Me.PageFooterBand1.HeightF = 78.99996!
         Me.PageFooterBand1.Name = "PageFooterBand1"
+        '
+        'XrLine2
+        '
+        Me.XrLine2.BorderColor = System.Drawing.Color.Navy
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(24.75006!, 0.0!)
+        Me.XrLine2.Name = "XrLine2"
+        Me.XrLine2.SizeF = New System.Drawing.SizeF(601.5416!, 2.083328!)
+        Me.XrLine2.StylePriority.UseBorderColor = False
         '
         'XrPageInfo1
         '
@@ -183,28 +191,6 @@ Partial Public Class ServiceListReport
         Me.Detail1.HeightF = 23.0!
         Me.Detail1.Name = "Detail1"
         '
-        'XrLabel1
-        '
-        Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceDescription")})
-        Me.XrLabel1.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(24.75001!, 0.0!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(381.25!, 23.0!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.Text = "XrLabel1"
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceCode")})
-        Me.XrLabel2.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(412.5!, 0.0!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.Text = "XrLabel2"
-        '
         'XrLabel3
         '
         Me.XrLabel3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CostOfService", "{0:0.00}")})
@@ -218,37 +204,39 @@ Partial Public Class ServiceListReport
         Me.XrLabel3.Text = "XrLabel3"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
+        'XrLabel2
+        '
+        Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceCode")})
+        Me.XrLabel2.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(412.5!, 0.0!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.Text = "XrLabel2"
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceDescription")})
+        Me.XrLabel1.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(24.75001!, 0.0!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(381.25!, 23.0!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.Text = "XrLabel1"
+        '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetServiceListReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        '
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel4, Me.XrLabel18, Me.XrLine1})
         Me.PageHeader.HeightF = 27.58335!
         Me.PageHeader.Name = "PageHeader"
-        '
-        'XrLabel18
-        '
-        Me.XrLabel18.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel18.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(24.75001!, 0.0!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(90.62498!, 23.0!)
-        Me.XrLabel18.StyleName = "Title"
-        Me.XrLabel18.StylePriority.UseFont = False
-        Me.XrLabel18.StylePriority.UseForeColor = False
-        Me.XrLabel18.Text = "Product"
-        '
-        'XrLabel4
-        '
-        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(412.5!, 0.0!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(99.99991!, 23.0!)
-        Me.XrLabel4.StyleName = "Title"
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseForeColor = False
-        Me.XrLabel4.Text = "Code"
         '
         'XrLabel6
         '
@@ -263,19 +251,31 @@ Partial Public Class ServiceListReport
         Me.XrLabel6.StylePriority.UseForeColor = False
         Me.XrLabel6.Text = "Min Charge"
         '
-        'XrLine2
+        'XrLabel4
         '
-        Me.XrLine2.BorderColor = System.Drawing.Color.Navy
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(24.75006!, 0.0!)
-        Me.XrLine2.Name = "XrLine2"
-        Me.XrLine2.SizeF = New System.Drawing.SizeF(601.5416!, 2.083328!)
-        Me.XrLine2.StylePriority.UseBorderColor = False
+        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(412.5!, 0.0!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(99.99991!, 23.0!)
+        Me.XrLabel4.StyleName = "Title"
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseForeColor = False
+        Me.XrLabel4.Text = "Code"
         '
-        'ObjectDataSource1
+        'XrLabel18
         '
-        Me.ObjectDataSource1.DataMember = "GetServiceListReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Me.XrLabel18.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel18.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(24.75001!, 0.0!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(90.62498!, 23.0!)
+        Me.XrLabel18.StyleName = "Title"
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.StylePriority.UseForeColor = False
+        Me.XrLabel18.Text = "Product"
         '
         'ServiceListReport
         '

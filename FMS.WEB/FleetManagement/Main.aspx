@@ -85,7 +85,8 @@
 					</li>  
 					<ul class="sub-menu collapse" id="service">
 					  <li><a href="ContractRenewalsReport.aspx" target="iframeMenu">Contract Renewals</a></li>
-					  <li>Quick View By Suburb</li>
+					  <%--<li>Quick View By Suburb</li>--%>
+                      <li><a href="QuickViewBySuburbReport.aspx" target="iframeMenu">Quick View By Suburb</a></li>
                       <li><a href="ServiceListReport.aspx" target="iframeMenu">Service List</a></li>
 					  <li><a href="RunListingReport.aspx" target="iframeMenu">Run Listing</a></li>
 					  <li><a href="RunValuesReport.aspx" target="iframeMenu">Run Values</a></li>
