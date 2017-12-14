@@ -150,6 +150,16 @@ Namespace My
                 Return CType(Me("FMSConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WINDOWS-VULTR;Initial Catalog=FMSDev;Integrated Security=True")>  _
+        Public ReadOnly Property FMSDevConnectionString1() As String
+            Get
+                Return CType(Me("FMSDevConnectionString1"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

@@ -47,6 +47,12 @@
                             Select New DataObjects.tblServiceFrequency(c)).ToList
             Return objServiceFrequency
         End Function
+        Public Shared Function GetServiceFrequencyByFID(Fid As Integer) As List(Of DataObjects.tblServiceFrequency)
+            Dim objServiceFrequency = (From c In SingletonAccess.FMSDataContextContignous.tblServiceFrequencies
+                                       Where c.Fid.Equals(Fid)
+                                       Select New DataObjects.tblServiceFrequency(c)).ToList
+            Return objServiceFrequency
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()

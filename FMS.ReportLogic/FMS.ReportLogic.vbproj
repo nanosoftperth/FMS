@@ -141,6 +141,8 @@
     <Compile Include="Classes\DriversLicenseExpiry.vb" />
     <Compile Include="Classes\GainsAndLosses.vb" />
     <Compile Include="Classes\GainsAndLossesPerAnnum.vb" />
+    <Compile Include="Classes\GeneralRunSheetsDetail.vb" />
+    <Compile Include="Classes\GenerateRunSheetsDetailSub.vb" />
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\InvoiceBasicCheck.vb" />
     <Compile Include="Classes\LengthOfServices.vb" />

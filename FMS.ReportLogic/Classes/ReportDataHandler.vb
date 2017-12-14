@@ -974,6 +974,20 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
+    Public Shared Function GetGenerateRunSheetsDetailReport() As CacheGeneralRunSheetsDetail
+        Dim rept As New CacheGeneralRunSheetsDetail
+        Dim retobj = FMS.Business.DataObjects.usp_GetGenerateRunSheetsDetail.GetGenerateRunSheetsDetail().ToList()
+        Dim objList As New List(Of GeneralRunSheetsDetail)
+        For Each item In retobj
+            objList.Add(New GeneralRunSheetsDetail() With {
+                        .SortOrder = item.SortOrder, .Cid = item.Cid, .SiteName = item.SiteName, .Add = item.Add,
+                        .Suburb = item.Suburb, .SiteContactName = item.SiteContactName, .SiteContactPhone = item.SiteContactPhone,
+                        .SiteContactMobile = item.SiteContactMobile, .RunDriver = item.RunDriver, .GeneralSiteServiceComments = item.GeneralSiteServiceComments,
+                        .RunNumber = item.RunNumber, .DriverName = item.DriverName, .RunDescription = item.RunDescription, .Notes = item.Notes})
+        Next
+        rept.LineValues = objList
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

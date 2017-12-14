@@ -736,6 +736,49 @@
             End If
         End Function
 #End Region
+#Region "tblzGenerateRunSheets"
+        Private Shared Function GetLatestRunSheetID() As FMS.Business.tblzGenerateRunSheet
+            Return (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
+                       Order By c.Aid Descending
+                       Select c).FirstOrDefault()
+        End Function
+        Private Shared Function RunSheetIDCreate() As Integer
+            Dim tblRunSheetAId As FMS.Business.tblzGenerateRunSheet = GetLatestRunSheetID()
+            Dim objRunSheetID As New FMS.Business.tblProjectID
+            With objRunSheetID
+                .ProjectID = Guid.NewGuid()
+                .RunSheetID = tblRunSheetAId.Aid + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.tblProjectIDs.InsertOnSubmit(objRunSheetID)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objRunSheetID.RunSheetID
+        End Function
+        Private Shared Function RunSheetIDUpdate(RunSheetID As Object) As Integer
+            Dim objProject As FMS.Business.tblProjectID = Nothing
+            If RunSheetID Is Nothing Then
+                Dim tblRunSheetAId As FMS.Business.tblzGenerateRunSheet = GetLatestRunSheetID()
+                RunSheetID = tblRunSheetAId.Aid
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+            Else
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                                                  Where c.RunSheetID.Equals(RunSheetID)).SingleOrDefault
+            End If
+
+            With objProject
+                .RunSheetID = RunSheetID + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objProject.RunSheetID
+        End Function
+        Public Shared Function RunSheetIDCreateOrUpdate() As Integer
+            Dim objRunSheetID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
+            If Not objRunSheetID Is Nothing AndAlso objRunSheetID.Count().Equals(0) Then
+                Return RunSheetIDCreate()
+            Else
+                Return RunSheetIDUpdate(objRunSheetID.SingleOrDefault().RunSheetID)
+            End If
+        End Function
+#End Region
 #End Region
 #Region "Constructors"
         Public Sub New()
