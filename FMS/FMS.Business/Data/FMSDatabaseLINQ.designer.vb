@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSUAT")>  _
 Partial Public Class LINQtoSQLClassesDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -556,7 +556,7 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString1, mappingSource)
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSUATConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -1467,6 +1467,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetSitesAndCustomerServices(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetSitesAndCustomerServicesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesAndCustomerServicesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSiteListReport")>  _
+	Public Function usp_GetSiteListReport() As ISingleResult(Of usp_GetSiteListReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSiteListReportResult))
 	End Function
 End Class
 
@@ -3051,7 +3057,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4695,7 +4701,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -5084,7 +5090,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -17265,7 +17271,7 @@ Partial Public Class FleetDocument
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -22548,7 +22554,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -30258,6 +30264,252 @@ Partial Public Class usp_GetSitesAndCustomerServicesResult
 		Set
 			If (Me._ServiceRun1.Equals(value) = false) Then
 				Me._ServiceRun1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetSiteListReportResult
+	
+	Private _CustomerName As String
+	
+	Private _SiteName As String
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _AddressLine3 As String
+	
+	Private _AddressLine4 As String
+	
+	Private _PostalSubStatePC As String
+	
+	Private _SiteContactName As String
+	
+	Private _SiteContactPhone As String
+	
+	Private _SiteContactFax As String
+	
+	Private _SiteContactMobile As String
+	
+	Private _SiteContactEmail As String
+	
+	Private _Cid As Integer
+	
+	Private _PostalAddressLine1 As String
+	
+	Private _PostalAddressLine2 As String
+	
+	Private _PostalSubStatePC1 As String
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me._AddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me._AddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine3", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine3() As String
+		Get
+			Return Me._AddressLine3
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine3, value) = false) Then
+				Me._AddressLine3 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine4", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine4() As String
+		Get
+			Return Me._AddressLine4
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine4, value) = false) Then
+				Me._AddressLine4 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSubStatePC", DbType:="NVarChar(87)")>  _
+	Public Property PostalSubStatePC() As String
+		Get
+			Return Me._PostalSubStatePC
+		End Get
+		Set
+			If (String.Equals(Me._PostalSubStatePC, value) = false) Then
+				Me._PostalSubStatePC = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactName", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactName() As String
+		Get
+			Return Me._SiteContactName
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactName, value) = false) Then
+				Me._SiteContactName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactPhone", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactPhone() As String
+		Get
+			Return Me._SiteContactPhone
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactPhone, value) = false) Then
+				Me._SiteContactPhone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactFax", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactFax() As String
+		Get
+			Return Me._SiteContactFax
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactFax, value) = false) Then
+				Me._SiteContactFax = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactMobile", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactMobile() As String
+		Get
+			Return Me._SiteContactMobile
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactMobile, value) = false) Then
+				Me._SiteContactMobile = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteContactEmail", DbType:="NVarChar(50)")>  _
+	Public Property SiteContactEmail() As String
+		Get
+			Return Me._SiteContactEmail
+		End Get
+		Set
+			If (String.Equals(Me._SiteContactEmail, value) = false) Then
+				Me._SiteContactEmail = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine1() As String
+		Get
+			Return Me._PostalAddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine1, value) = false) Then
+				Me._PostalAddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine2() As String
+		Get
+			Return Me._PostalAddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine2, value) = false) Then
+				Me._PostalAddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSubStatePC1", DbType:="NVarChar(88)")>  _
+	Public Property PostalSubStatePC1() As String
+		Get
+			Return Me._PostalSubStatePC1
+		End Get
+		Set
+			If (String.Equals(Me._PostalSubStatePC1, value) = false) Then
+				Me._PostalSubStatePC1 = value
 			End If
 		End Set
 	End Property

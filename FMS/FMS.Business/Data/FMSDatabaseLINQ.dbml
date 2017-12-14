@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMSDev" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMSDev;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSDevConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMSUAT" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMSUAT;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSUATConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[AlertSubscriber.deleteme]" Member="AlertSubscriber_deletemes">
     <Type Name="AlertSubscriber_deleteme">
       <Column Name="AlertSubscriberID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1999,6 +1999,27 @@
       <Column Name="ServiceFrequency8" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="ServiceSortOrderCode" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
       <Column Name="ServiceRun1" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetSiteListReport" Method="usp_GetSiteListReport">
+    <ElementType Name="usp_GetSiteListReportResult">
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalSubStatePC" Type="System.String" DbType="NVarChar(87)" CanBeNull="true" />
+      <Column Name="SiteContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactFax" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactMobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteContactEmail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PostalAddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalAddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostalSubStatePC1" Type="System.String" DbType="NVarChar(88)" CanBeNull="true" />
       <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
