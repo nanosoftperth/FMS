@@ -134,6 +134,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblSiteReSignDetails.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblSites.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblStates.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblzGenerateRunSheets.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tbZone.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetAllDrivers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetAnnualAnalysisReport.vb" />
@@ -146,6 +147,8 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetDriversLicenseExpiryReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGainsAndLossesPerAnnumReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGainsAndLossesReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGenerateRunSheetsDetail.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGenerateRunSheetsDetailSub.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetIndustryListReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetInvoiceBasicCheckReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetLengthOfServicesReport.vb" />
@@ -156,8 +159,10 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunValuesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunValueSummaryReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetServiceSummaryReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSitesAndCustomerServices.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSitesBySiteZoneReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSitesWithNoContractsReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSpecificDates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetStandardAuditReport.vb" />
     <Compile Include="Classes\DataObjects\CanValueMesssageDefinition.vb" />
     <Compile Include="Classes\DataObjects\CanValue.vb" />
@@ -176,6 +181,7 @@
     <Compile Include="Classes\DataObjects\EventType.vb" />
     <Compile Include="Classes\DataObjects\Feature.vb" />
     <Compile Include="Classes\DataObjects\ApplicationFeatureRole.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetTblRuns.vb" />
     <Compile Include="Classes\DataObjects\FleetMapMarker.vb" />
     <Compile Include="Classes\DataObjects\GeoFenceDeviceCollision.vb" />
     <Compile Include="Classes\DataObjects\Group.vb" />
