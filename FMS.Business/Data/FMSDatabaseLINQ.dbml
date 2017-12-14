@@ -2004,7 +2004,9 @@
   </Function>
   <Function Name="dbo.usp_GetSiteListReport" Method="usp_GetSiteListReport">
     <ElementType Name="usp_GetSiteListReportResult">
+      <Column Name="Customer" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
