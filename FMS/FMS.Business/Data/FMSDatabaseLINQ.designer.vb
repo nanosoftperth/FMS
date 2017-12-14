@@ -30283,7 +30283,11 @@ End Class
 
 Partial Public Class usp_GetSiteListReportResult
 	
+	Private _Customer As System.Nullable(Of Short)
+	
 	Private _CustomerName As String
+	
+	Private _SiteID As System.Guid
 	
 	Private _SiteName As String
 	
@@ -30321,6 +30325,18 @@ Partial Public Class usp_GetSiteListReportResult
 		MyBase.New
 	End Sub
 	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
+	Public Property Customer() As System.Nullable(Of Short)
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (Me._Customer.Equals(value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
 	Public Property CustomerName() As String
 		Get
@@ -30329,6 +30345,19 @@ Partial Public Class usp_GetSiteListReportResult
 		Set
 			If (String.Equals(Me._CustomerName, value) = false) Then
 				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property SiteID() As System.Guid
+		Get
+			Return Me._SiteID
+		End Get
+		Set
+			If ((Me._SiteID = value)  _
+						= false) Then
+				Me._SiteID = value
 			End If
 		End Set
 	End Property
