@@ -30295,7 +30295,7 @@ Partial Public Class usp_GetSiteListReportResult
 	
 	Private _AddressLine4 As String
 	
-	Private _PostalSubStatePC As String
+	Private _SubStatePC As String
 	
 	Private _SiteContactName As String
 	
@@ -30313,7 +30313,7 @@ Partial Public Class usp_GetSiteListReportResult
 	
 	Private _PostalAddressLine2 As String
 	
-	Private _PostalSubStatePC1 As String
+	Private _PostalSubStatePC As String
 	
 	Private _SiteCeaseDate As System.Nullable(Of Date)
 	
@@ -30393,14 +30393,14 @@ Partial Public Class usp_GetSiteListReportResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSubStatePC", DbType:="NVarChar(87)")>  _
-	Public Property PostalSubStatePC() As String
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubStatePC", DbType:="NVarChar(87)")>  _
+	Public Property SubStatePC() As String
 		Get
-			Return Me._PostalSubStatePC
+			Return Me._SubStatePC
 		End Get
 		Set
-			If (String.Equals(Me._PostalSubStatePC, value) = false) Then
-				Me._PostalSubStatePC = value
+			If (String.Equals(Me._SubStatePC, value) = false) Then
+				Me._SubStatePC = value
 			End If
 		End Set
 	End Property
@@ -30502,14 +30502,14 @@ Partial Public Class usp_GetSiteListReportResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSubStatePC1", DbType:="NVarChar(88)")>  _
-	Public Property PostalSubStatePC1() As String
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSubStatePC", DbType:="NVarChar(88)")>  _
+	Public Property PostalSubStatePC() As String
 		Get
-			Return Me._PostalSubStatePC1
+			Return Me._PostalSubStatePC
 		End Get
 		Set
-			If (String.Equals(Me._PostalSubStatePC1, value) = false) Then
-				Me._PostalSubStatePC1 = value
+			If (String.Equals(Me._PostalSubStatePC, value) = false) Then
+				Me._PostalSubStatePC = value
 			End If
 		End Set
 	End Property

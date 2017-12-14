@@ -2010,7 +2010,7 @@
       <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="AddressLine3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="AddressLine4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PostalSubStatePC" Type="System.String" DbType="NVarChar(87)" CanBeNull="true" />
+      <Column Name="SubStatePC" Type="System.String" DbType="NVarChar(87)" CanBeNull="true" />
       <Column Name="SiteContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SiteContactPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SiteContactFax" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -2019,7 +2019,7 @@
       <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="PostalAddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PostalAddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PostalSubStatePC1" Type="System.String" DbType="NVarChar(88)" CanBeNull="true" />
+      <Column Name="PostalSubStatePC" Type="System.String" DbType="NVarChar(88)" CanBeNull="true" />
       <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
