@@ -974,16 +974,38 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
-    Public Shared Function GetGenerateRunSheetsDetailReport() As CacheGeneralRunSheetsDetail
-        Dim rept As New CacheGeneralRunSheetsDetail
+    Public Shared Function GetGenerateRunSheetsDetailReport() As CacheGenerateRunSheetsDetail
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim rept As New CacheGenerateRunSheetsDetail
         Dim retobj = FMS.Business.DataObjects.usp_GetGenerateRunSheetsDetail.GetGenerateRunSheetsDetail().ToList()
-        Dim objList As New List(Of GeneralRunSheetsDetail)
+        Dim objList As New List(Of GenerateRunSheetsDetail)
         For Each item In retobj
-            objList.Add(New GeneralRunSheetsDetail() With {
+            objList.Add(New GenerateRunSheetsDetail() With {
                         .SortOrder = item.SortOrder, .Cid = item.Cid, .SiteName = item.SiteName, .Add = item.Add,
                         .Suburb = item.Suburb, .SiteContactName = item.SiteContactName, .SiteContactPhone = item.SiteContactPhone,
                         .SiteContactMobile = item.SiteContactMobile, .RunDriver = item.RunDriver, .GeneralSiteServiceComments = item.GeneralSiteServiceComments,
                         .RunNumber = item.RunNumber, .DriverName = item.DriverName, .RunDescription = item.RunDescription, .Notes = item.Notes})
+        Next
+        rept.LineValues = objList
+        rept.ParamDate = paramValues(0).ToString()
+        rept.ParamDay = paramValues(1).ToString()
+        Dim strForSignature As String = ""
+        If paramValues(2).ToString().Equals("'true'") Then
+            strForSignature = "X"
+        End If
+        rept.ParamSignature = strForSignature
+        Return rept
+    End Function
+    Public Shared Function GetGenerateRunSheetsDetailSubReport() As CacheGenerateRunSheetsDetailSub
+        Dim rept As New CacheGenerateRunSheetsDetailSub
+        Dim retobj = FMS.Business.DataObjects.usp_GetGenerateRunSheetsDetailSub.GetGenerateRunSheetsDetailSub().ToList()
+        Dim objList As New List(Of GenerateRunSheetsDetailSub)
+        For Each item In retobj
+            objList.Add(New GenerateRunSheetsDetailSub() With {
+                        .Add = item.Add, .Cid = item.Cid, .CSid = item.CSid, .DriverName = item.DriverName, .GeneralSiteServiceComments = item.GeneralSiteServiceComments,
+                        .RunDriver = item.RunDriver, .RunNumber = item.RunNumber, .ServiceComments = item.ServiceComments, .ServiceDesc = item.ServiceDesc,
+                        .ServiceUnits = item.ServiceUnits, .SiteContactMobile = item.SiteContactMobile, .SiteContactName = item.SiteContactName, .SiteContactPhone = item.SiteContactPhone,
+                        .SiteName = item.SiteName, .SortOrder = item.SortOrder, .Suburb = item.Suburb})
         Next
         rept.LineValues = objList
         Return rept

@@ -16,7 +16,7 @@
     Public Shared SkipThisOne As Boolean = False
     Public Shared strTemp As String
     Public Shared Sub ProcessRecords(RunSheets As RunSheets)
-        Dim Run = FMS.Business.DataObjects.usp_GetTblRuns.GetTblRuns("")
+        Dim Run = FMS.Business.DataObjects.usp_GetTblRuns.GetTblRuns(RunSheets.SpecificRun)
         For Each rsin In Run
             ProcessWeekly(RunSheets, rsin)
             SpecificDates(RunSheets, rsin)
