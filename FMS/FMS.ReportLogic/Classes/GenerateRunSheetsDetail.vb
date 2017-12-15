@@ -1,7 +1,10 @@
-﻿Public Class CacheGeneralRunSheetsDetail
-    Public Property LineValues As List(Of GeneralRunSheetsDetail)
+﻿Public Class CacheGenerateRunSheetsDetail
+    Public Property LineValues As List(Of GenerateRunSheetsDetail)
+    Public Property ParamDate As String
+    Public Property ParamDay As String
+    Public Property ParamSignature As String
 End Class
-Public Class GeneralRunSheetsDetail
+Public Class GenerateRunSheetsDetail
     Public Property SortOrder As String
     Public Property Cid As System.Nullable(Of Integer)
     Public Property SiteName As String
