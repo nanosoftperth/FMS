@@ -150,6 +150,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGenerateRunSheetsDetail.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGenerateRunSheetsDetailSub.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGenerateRunSheetSummary.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetIncludeServiceInformationReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetIndustryListReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetInvoiceBasicCheckReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetLengthOfServicesReport.vb" />
