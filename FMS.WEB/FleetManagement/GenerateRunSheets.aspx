@@ -9,25 +9,36 @@
         <script type="text/javascript">
             var chkPrint = 'false';
             function btnGenerateRunSheets_Click() {
-                var param = {
-                    DateOfRun: dtDateOfRun.GetText(),
-                    DayOfRun: txtDateOfRun.GetText(),
-                    Month: cbMonth.GetText(),
-                    SqlDate: dtMonth.GetText(),
-                    SpecificRun: cbSpecificRun.GetText(),
-                    PrintCustomerSignature: chkPrint
-                }
-                $.ajax({
-                    type: 'POST',
-                    url: 'GenerateRunSheets.aspx/GenerateRunSheets',
-                    dataType: "json",
-                    data: JSON.stringify({ 'RunSheets': param }),
-                    contentType:"application/json",
-                    success: function (data) {
-                        if (data.d != null) {
-                        }
+                LoadingPanel.SetText("");
+                LoadingPanel.Show();
+                if (dtDateOfRun.GetText() != '' && txtDateOfRun.GetText() != '' && dtMonth.GetText() != '') {
+                    var param = {
+                        DateOfRun: dtDateOfRun.GetText(),
+                        DayOfRun: txtDateOfRun.GetText(),
+                        Month: cbMonth.GetText(),
+                        SqlDate: dtMonth.GetText(),
+                        SpecificRun: cbSpecificRun.GetValue(),
+                        PrintCustomerSignature: chkPrint
                     }
-                })
+                    $.ajax({
+                        type: 'POST',
+                        url: 'GenerateRunSheets.aspx/GenerateRunSheets',
+                        dataType: "json",
+                        data: JSON.stringify({ 'RunSheets': param }),
+                        contentType:"application/json",
+                        success: function (data) {
+                            if (data.d != null && data.d == 'Success') {
+                                ShowMessageWindow(data.d);
+                            } else {
+                                ShowMessageWindow(data.d);
+                            }
+                            LoadingPanel.Hide();
+                        }
+                    })
+                } else {
+                    LoadingPanel.Hide();
+                    ShowMessageWindow('Please enter a date for the run sheets.');
+                }
             }
             function GetDayFromMonth() {
                 txtDateOfRun.SetText(GetDayWord(dtDateOfRun.date.getDay()));
@@ -52,19 +63,32 @@
             }
 
             function btnPrintDetail_Click() {
-                var jScriptDataStr = dtDateOfRun.GetText() + ":" + txtDateOfRun.GetText() + ":" + chkPrint;
+                if (dtDateOfRun.GetText() != '' && txtDateOfRun.GetText() != '' && dtMonth.GetText() != '') {
+                    var jScriptDataStr = dtDateOfRun.GetText() + ":" + txtDateOfRun.GetText() + ":" + chkPrint;
 
-                var paramValue = jScriptDataStr;
-                LoadingPanel.Show();
-                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=GenerateRunSheetDetailReport&param=" + paramValue);
+                    var paramValue = jScriptDataStr;
+                    LoadingPanel.Show();
+                    $("#frmContent").attr("src", "ReportContentPage.aspx?Report=GenerateRunSheetDetailReport&param=" + paramValue);
+                } else {
+                    ShowMessageWindow('Please enter a date for the run sheets.');
+                }
             }
             function btnPrintSummary_Click() {
-                var jScriptDataStr = dtDateOfRun.GetText() + ":" + txtDateOfRun.GetText() + ":" + chkPrint;
+                if (dtDateOfRun.GetText() != '' && txtDateOfRun.GetText() != '' && dtMonth.GetText() != '') {
+                    var jScriptDataStr = dtDateOfRun.GetText() + ":" + txtDateOfRun.GetText();
 
-                var paramValue = jScriptDataStr;
-                LoadingPanel.Show();
-              
-                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=GenerateRunSheetsDetailReport&param=" + paramValue);
+                    var paramValue = jScriptDataStr;
+                    LoadingPanel.Show();
+
+                    $("#frmContent").attr("src", "ReportContentPage.aspx?Report=GenerateRunSheetSummaryReport&param=" + paramValue);
+                } else {
+                    ShowMessageWindow('Please enter a date for the run sheets.');
+                }
+            }
+
+            function ShowMessageWindow(message) {
+                $('#alertMessage').text(message);
+                AlertMessageWindow.Show();
             }
 
             $(function () {
@@ -87,7 +111,7 @@
                             }"/>
                         </dx:ASPxDateEdit></td>
                     <td>
-                        <dx:ASPxTextBox ID="txtDateOfRun" ClientInstanceName="txtDateOfRun" runat="server" Width="170px"></dx:ASPxTextBox>
+                        <dx:ASPxTextBox ID="txtDateOfRun" ClientInstanceName="txtDateOfRun" runat="server" Width="170px" ReadOnly="true"></dx:ASPxTextBox>
                     </td>
                 </tr>
                 <tr>
@@ -100,7 +124,7 @@
                 <tr>
                     <td>Specific Run:</td>
                     <td colspan="2">
-                        <dx:ASPxComboBox ID="cbSpecificRun" ClientInstanceName="cbSpecificRun" DataSourceID="odsServiceRun" runat="server" Width="365px">
+                        <dx:ASPxComboBox ID="cbSpecificRun" ClientInstanceName="cbSpecificRun" DataSourceID="odsServiceRun" runat="server" Width="365px" TextField="RunDescription" ValueField="RunNUmber">
                             <Columns>
                                 <dx:ListBoxColumn FieldName="RunDescription" />
                                 <dx:ListBoxColumn FieldName="RunNUmber" />
@@ -147,6 +171,51 @@
                 Modal="True">
             </dx:ASPxLoadingPanel>
         </div>
+        <dx:ASPxPopupControl ID="AlertMessageWindow" runat="server" Width="320" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="AlertMessageWindow"
+        HeaderText="Message" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" AutoUpdatePosition="true">
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
+                    <PanelCollection>
+                        <dx:PanelContent runat="server">
+                            <dx:ASPxFormLayout runat="server" ID="ASPxFormLayout1" Width="100%" Height="100%">
+                                <Items>
+                                    <dx:LayoutItem Caption="">
+                                        <LayoutItemNestedControlCollection>
+                                            <dx:LayoutItemNestedControlContainer>
+                                                <p id="alertMessage" style="font-size:15px">Message</p>
+                                            </dx:LayoutItemNestedControlContainer>
+                                        </LayoutItemNestedControlCollection>
+                                    </dx:LayoutItem>
+                                    <dx:LayoutItem ShowCaption="False" Paddings-PaddingTop="19">
+                                        <LayoutItemNestedControlCollection>
+                                            <dx:LayoutItemNestedControlContainer>
+                                                <div style="padding-left:100px">
+                                                    <dx:ASPxButton ID="btOK" runat="server" Text="Ok" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                                        <ClientSideEvents Click="function(s, e) { AlertMessageWindow.Hide(); }" />
+                                                    </dx:ASPxButton>
+                                                </div>
+                                            </dx:LayoutItemNestedControlContainer>
+                                        </LayoutItemNestedControlCollection>
+                                    </dx:LayoutItem>
+                                </Items>
+                            </dx:ASPxFormLayout>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ContentStyle>
+            <Paddings PaddingBottom="5px" />
+        </ContentStyle>
+    </dx:ASPxPopupControl>
     </form>
+    <div>
+        <dx:ASPxLoadingPanel ID="ASPxLoadingPanel1" runat="server" ClientInstanceName="LoadingPanel" 
+            Modal="True">
+            <Image Url="../Content/Images/drop.gif"/>
+        </dx:ASPxLoadingPanel>
+    </div>
 </body>
 </html>

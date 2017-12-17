@@ -124,7 +124,7 @@
 					  <a href="#"><i class="fa fa-sticky-note fa-lg"></i> Other Processes <span class="arrow"></span></a>
 					</li>
 					<ul class="sub-menu collapse" id="new">
-					  <li>Generate Run Sheets</li>
+					  <li><a href="GenerateRunSheets.aspx" target="iframeMenu">Generate Run Sheets</a></li>
 					  <li>Produce MYOB File</li>
 					</ul>
 				</ul>

@@ -7,21 +7,31 @@
 
 #Region "WebMethods"
     <System.Web.Services.WebMethod()>
-    Public Shared Function GenerateRunSheets(ByVal RunSheets As RunSheets)
-        FMS.Business.DataObjects.tblzGenerateRunSheets.DeleteAllGenerateRunSheets()
-        ProcessRecords(RunSheets)
-        Return Nothing
+    Public Shared Function GenerateRunSheets(ByVal RunSheets As RunSheets) As String
+        Dim strStatus As String = ""
+        Try
+            FMS.Business.DataObjects.tblzGenerateRunSheets.DeleteAllGenerateRunSheets()
+            strStatus = ProcessRecords(RunSheets)
+        Catch ex As Exception
+            strStatus = "Failed"
+        End Try
+
+        Return strStatus
     End Function
-    Public Shared RetObj As New ReturnObjects()
     Public Shared SkipThisOne As Boolean = False
     Public Shared strTemp As String
-    Public Shared Sub ProcessRecords(RunSheets As RunSheets)
+    Public Shared Function ProcessRecords(RunSheets As RunSheets) As String
         Dim Run = FMS.Business.DataObjects.usp_GetTblRuns.GetTblRuns(RunSheets.SpecificRun)
-        For Each rsin In Run
-            ProcessWeekly(RunSheets, rsin)
-            SpecificDates(RunSheets, rsin)
-        Next
-    End Sub
+        If Run.Count > 0 Then
+            For Each rsin In Run
+                ProcessWeekly(RunSheets, rsin)
+                SpecificDates(RunSheets, rsin)
+            Next
+            Return "No runs selected for processing"
+        Else
+            Return "Success"
+        End If
+    End Function
     Public Shared Sub ProcessWeekly(RunSheets As RunSheets, rsin As FMS.Business.DataObjects.usp_GetTblRuns)
         strTemp = RunSheets.DayOfRun
         Select Case strTemp
@@ -129,8 +139,5 @@
         Public Property SqlDate As String
         Public Property SpecificRun As String
         Public Property PrintCustomerSignature As String
-    End Class
-    Public Class ReturnObjects
-        Public Property Message As String
     End Class
 End Class
