@@ -96,7 +96,8 @@
                       <li><a href="LengthOfServiceReport.aspx" target="iframeMenu">Length of Service</a></li>
 					  <li><a href="CustomerByCustZoneReport.aspx" target="iframeMenu">Customers By Cust Zone</a></li>
 					  <li><a href="CustomerContactDetailsReport.aspx" target="iframeMenu">Customer Contract Details</a></li>
-                      <li>Site List</li>
+                      <li><a href="SiteListReport.aspx" target="iframeMenu">Site List</a></li>
+                      <%--<li>Site List</li>--%>
 					  <li><a href="IndustryListReport.aspx" target="iframeMenu">Industry List</a></li>
 					  <li>Revenue Report By Zone</li>
                       <li>Gains & Losses (Sales)</li>

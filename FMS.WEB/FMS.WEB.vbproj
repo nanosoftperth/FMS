@@ -478,6 +478,13 @@
       <DependentUpon>SiteBySiteZoneReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\SiteListReport.aspx.designer.vb">
+      <DependentUpon>SiteListReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\SiteListReport.aspx.vb">
+      <DependentUpon>SiteListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\SitesWithNoContractsReport.aspx.designer.vb">
       <DependentUpon>SitesWithNoContractsReport.aspx</DependentUpon>
     </Compile>
@@ -1226,6 +1233,7 @@
     <Content Include="FleetManagement\Services.aspx" />
     <Content Include="FleetManagement\ServiceSummaryReport.aspx" />
     <Content Include="FleetManagement\SiteBySiteZoneReport.aspx" />
+    <Content Include="FleetManagement\SiteListReport.aspx" />
     <Content Include="FleetManagement\SitesWithNoContractsReport.aspx" />
     <Content Include="FleetManagement\StandardAuditReport.aspx" />
     <Content Include="CanBusDisplayProperty.aspx" />
