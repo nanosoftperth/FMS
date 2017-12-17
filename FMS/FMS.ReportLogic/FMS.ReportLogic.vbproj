@@ -143,6 +143,7 @@
     <Compile Include="Classes\GainsAndLossesPerAnnum.vb" />
     <Compile Include="Classes\GenerateRunSheetsDetail.vb" />
     <Compile Include="Classes\GenerateRunSheetsDetailSub.vb" />
+    <Compile Include="Classes\GenerateRunSheetSummary.vb" />
     <Compile Include="Classes\IndustryList.vb" />
     <Compile Include="Classes\InvoiceBasicCheck.vb" />
     <Compile Include="Classes\LengthOfServices.vb" />
@@ -263,6 +264,12 @@
       <DependentUpon>GenerateRunSheetsDetailSubReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\GenerateRunSheetsDetailSubReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetSummaryReport.Designer.vb">
+      <DependentUpon>GenerateRunSheetSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetSummaryReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\IndustryListReport.Designer.vb">
@@ -444,6 +451,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\GenerateRunSheetsDetailSubReport.resx">
       <DependentUpon>GenerateRunSheetsDetailSubReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GenerateRunSheetSummaryReport.resx">
+      <DependentUpon>GenerateRunSheetSummaryReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\IndustryListReport.resx">
       <DependentUpon>IndustryListReport.vb</DependentUpon>

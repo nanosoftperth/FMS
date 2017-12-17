@@ -1010,6 +1010,20 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
+    Public Shared Function GetGenerateRunSheetSummaryReport() As CacheGenerateRunSheetSummary
+        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+        Dim rept As New CacheGenerateRunSheetSummary
+        Dim retobj = FMS.Business.DataObjects.usp_GetGenerateRunSheetSummary.GetGenerateRunSheetSummary().ToList()
+        Dim objList As New List(Of GenerateRunSheetSummary)
+        For Each item In retobj
+            objList.Add(New GenerateRunSheetSummary() With {
+                        .ServiceCode = item.ServiceCode, .ServiceDescription = item.ServiceDescription, .SumOfServiceUnits = item.SumOfServiceUnits})
+        Next
+        rept.LineValues = objList
+        rept.ParamDate = paramValues(0).ToString()
+        rept.ParamDay = paramValues(1).ToString()
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub

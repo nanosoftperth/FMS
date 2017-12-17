@@ -129,4 +129,49 @@ Partial Public Class GenerateRunSheets
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
+
+    '''<summary>
+    '''AlertMessageWindow control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents AlertMessageWindow As Global.DevExpress.Web.ASPxPopupControl
+
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.DevExpress.Web.ASPxPanel
+
+    '''<summary>
+    '''ASPxFormLayout1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxFormLayout1 As Global.DevExpress.Web.ASPxFormLayout
+
+    '''<summary>
+    '''btOK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btOK As Global.DevExpress.Web.ASPxButton
+
+    '''<summary>
+    '''ASPxLoadingPanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLoadingPanel1 As Global.DevExpress.Web.ASPxLoadingPanel
 End Class

@@ -14,6 +14,8 @@
     Public Shared Function GetReportFromName(reportName As String) As DevExpress.XtraReports.UI.XtraReport
 
         Select Case reportName
+            Case "GenerateRunSheetSummaryReport"
+                Return New FMS.ReportLogic.GenerateRunSheetSummaryReport()
             Case "GenerateRunSheetDetailReport"
                 Return New FMS.ReportLogic.GenerateRunSheetsDetailReport()
             Case "IndustryListReport"

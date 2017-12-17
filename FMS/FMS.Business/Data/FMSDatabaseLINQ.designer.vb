@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSUAT")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")>  _
 Partial Public Class LINQtoSQLClassesDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -556,7 +556,7 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSUATConnectionString, mappingSource)
+        MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -1473,6 +1473,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetSiteListReport() As ISingleResult(Of usp_GetSiteListReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSiteListReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGenerateRunSheetSummary")>  _
+	Public Function usp_GetGenerateRunSheetSummary() As ISingleResult(Of usp_GetGenerateRunSheetSummaryResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGenerateRunSheetSummaryResult))
 	End Function
 End Class
 
@@ -30551,6 +30557,55 @@ Partial Public Class usp_GetSiteListReportResult
 		Set
 			If (Me._SiteCeaseDate.Equals(value) = false) Then
 				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetGenerateRunSheetSummaryResult
+	
+	Private _ServiceCode As String
+	
+	Private _ServiceDescription As String
+	
+	Private _SumOfServiceUnits As System.Nullable(Of Double)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
+	Public Property ServiceCode() As String
+		Get
+			Return Me._ServiceCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceCode, value) = false) Then
+				Me._ServiceCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SumOfServiceUnits", DbType:="Float")>  _
+	Public Property SumOfServiceUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._SumOfServiceUnits
+		End Get
+		Set
+			If (Me._SumOfServiceUnits.Equals(value) = false) Then
+				Me._SumOfServiceUnits = value
 			End If
 		End Set
 	End Property
