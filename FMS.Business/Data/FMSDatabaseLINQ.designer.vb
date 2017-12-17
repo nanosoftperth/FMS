@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSUAT")>  _
 Partial Public Class LINQtoSQLClassesDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -556,7 +556,7 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-        MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSUATConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -1479,6 +1479,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetGenerateRunSheetSummary() As ISingleResult(Of usp_GetGenerateRunSheetSummaryResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGenerateRunSheetSummaryResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIncludeServiceInformationReport")>  _
+	Public Function usp_GetIncludeServiceInformationReport() As ISingleResult(Of usp_GetIncludeServiceInformationReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIncludeServiceInformationReportResult))
 	End Function
 End Class
 
@@ -30606,6 +30612,154 @@ Partial Public Class usp_GetGenerateRunSheetSummaryResult
 		Set
 			If (Me._SumOfServiceUnits.Equals(value) = false) Then
 				Me._SumOfServiceUnits = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetIncludeServiceInformationReportResult
+	
+	Private _Cid As System.Nullable(Of Integer)
+	
+	Private _ServiceCode As String
+	
+	Private _ServiceDescription As String
+	
+	Private _ServiceUnits As System.Nullable(Of Single)
+	
+	Private _ServicePrice As System.Nullable(Of Single)
+	
+	Private _PerAnnumCharge As System.Nullable(Of Single)
+	
+	Private _CSid As System.Nullable(Of Integer)
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Private _UnitsHaveMoreThanOneRun As Boolean
+	
+	Private _Customer As System.Nullable(Of Short)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int")>  _
+	Public Property Cid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
+	Public Property ServiceCode() As String
+		Get
+			Return Me._ServiceCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceCode, value) = false) Then
+				Me._ServiceCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
+	Public Property ServiceUnits() As System.Nullable(Of Single)
+		Get
+			Return Me._ServiceUnits
+		End Get
+		Set
+			If (Me._ServiceUnits.Equals(value) = false) Then
+				Me._ServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicePrice", DbType:="Real")>  _
+	Public Property ServicePrice() As System.Nullable(Of Single)
+		Get
+			Return Me._ServicePrice
+		End Get
+		Set
+			If (Me._ServicePrice.Equals(value) = false) Then
+				Me._ServicePrice = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
+	Public Property PerAnnumCharge() As System.Nullable(Of Single)
+		Get
+			Return Me._PerAnnumCharge
+		End Get
+		Set
+			If (Me._PerAnnumCharge.Equals(value) = false) Then
+				Me._PerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CSid", DbType:="Int")>  _
+	Public Property CSid() As System.Nullable(Of Integer)
+		Get
+			Return Me._CSid
+		End Get
+		Set
+			If (Me._CSid.Equals(value) = false) Then
+				Me._CSid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsHaveMoreThanOneRun", DbType:="Bit NOT NULL")>  _
+	Public Property UnitsHaveMoreThanOneRun() As Boolean
+		Get
+			Return Me._UnitsHaveMoreThanOneRun
+		End Get
+		Set
+			If ((Me._UnitsHaveMoreThanOneRun = value)  _
+						= false) Then
+				Me._UnitsHaveMoreThanOneRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
+	Public Property Customer() As System.Nullable(Of Short)
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (Me._Customer.Equals(value) = false) Then
+				Me._Customer = value
 			End If
 		End Set
 	End Property
