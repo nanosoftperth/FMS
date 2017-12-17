@@ -353,6 +353,9 @@
     <Compile Include="Reports\ServiceSummaryReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\SiteListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\SitesBySiteZoneReport.Designer.vb">
       <DependentUpon>SitesBySiteZoneReport.vb</DependentUpon>
     </Compile>
@@ -502,6 +505,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ServiceSummaryReport.resx">
       <DependentUpon>ServiceSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SiteListReport.resx">
+      <DependentUpon>SiteListReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SitesBySiteZoneReport.resx">
       <DependentUpon>SitesBySiteZoneReport.vb</DependentUpon>
