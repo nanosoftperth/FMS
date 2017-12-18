@@ -11,14 +11,21 @@
     <title></title>
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
-             function btnProcessReport_Click() {
-                 if (cbRuns.GetText() != '') {
-                     var jScriptDataStr = cbRuns.GetValue() + ":" + cbRuns.GetText();
+             function AdjustWindowHeightAndWidth() {
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 $('#frmContent').css({
+                     "height": windowHeight
+                 })
+             }
 
-                     var paramValue = jScriptDataStr;
-                     LoadingPanel.Show();
-                     $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunValuesReport&param=" + paramValue);
-                 }
+             $(window).resize(function () {
+                 AdjustWindowHeightAndWidth();
+             })
+
+             function ShowReport() {
+                AdjustWindowHeightAndWidth();
+                LoadingPanel.Show();
+                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunValuesReport");
              }
 
              $(function () {
@@ -29,28 +36,10 @@
              })
         </script>
 </head>
-<body>
+<body onload="ShowReport()">
     <form id="form1" runat="server">
         <div>
-            <table>
-                <tr>
-                    <td style="padding: 4px;">
-                        <dx:ASPxLabel ID="lblRun" runat="server" Text="Run"></dx:ASPxLabel>
-                    </td>
-                    <td>
-                        <dx:ASPxComboBox ID="cbRuns" ClientInstanceName="cbRuns" DataSourceID="odsRuns" runat="server" ValueType="System.String" TextField="RunDescription" ValueField="Rid"></dx:ASPxComboBox>
-                    </td>
-                    <td style="padding: 4px;">
-                        <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
-                            <ClientSideEvents Click="function(s, e) {
-	                            btnProcessReport_Click(s,e);
-                            }"></ClientSideEvents>
-                        </dx:ASPxButton>
-                    </td>
-                </tr>
-            </table>
             <iframe id="frmContent" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
-
             <asp:ObjectDataSource ID="odsRuns" runat="server" SelectMethod="GetTblRuns" TypeName="FMS.Business.DataObjects.tblRuns"></asp:ObjectDataSource>
         </div>
         <div>
