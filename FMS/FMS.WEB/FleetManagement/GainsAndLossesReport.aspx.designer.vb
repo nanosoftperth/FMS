@@ -23,65 +23,29 @@ Partial Public Class GainsAndLossesReport
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''lblDtFrom control.
+    '''GainsAndLossesPageControl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblDtFrom As Global.DevExpress.Web.ASPxLabel
+    Protected WithEvents GainsAndLossesPageControl As Global.DevExpress.Web.ASPxPageControl
 
     '''<summary>
-    '''dtFrom control.
+    '''GainsAndLossessLoadingPanel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dtFrom As Global.DevExpress.Web.ASPxDateEdit
+    Protected WithEvents GainsAndLossessLoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
 
     '''<summary>
-    '''lblDtTo control.
+    '''GainsAndLossessSummaryLoadingPanel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblDtTo As Global.DevExpress.Web.ASPxLabel
-
-    '''<summary>
-    '''dtTo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dtTo As Global.DevExpress.Web.ASPxDateEdit
-
-    '''<summary>
-    '''ASPxButton1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxButton1 As Global.DevExpress.Web.ASPxButton
-
-    '''<summary>
-    '''ASPxButton2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxButton2 As Global.DevExpress.Web.ASPxButton
-
-    '''<summary>
-    '''LoadingPanel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
+    Protected WithEvents GainsAndLossessSummaryLoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
 End Class

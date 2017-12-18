@@ -812,13 +812,7 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
-    Public Shared Function GetGainsAndLossesReport() As CacheGainsAndLosses
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim paramDateStart As String = paramValues(0)
-        Dim paramDateEnd As String = paramValues(1)
-        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
-        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
-
+    Public Shared Function GetGainsAndLossesReport(startDate As Date, endDate As Date) As CacheGainsAndLosses
         Dim rept As New CacheGainsAndLosses
         Dim retobj = FMS.Business.DataObjects.usp_GetGainsAndLossesReport.GetGainsAndLossesReport(startDate, endDate).ToList()
         Dim objList As New List(Of GainsAndLosses)
@@ -835,13 +829,7 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
-    Public Shared Function GetGainsAndLossesPerAnnumReport() As CacheGainsAndLossesPerAnnum
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim paramDateStart As String = paramValues(0)
-        Dim paramDateEnd As String = paramValues(1)
-        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
-        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
-
+    Public Shared Function GetGainsAndLossesPerAnnumReport(startDate As Date, endDate As Date) As CacheGainsAndLossesPerAnnum
         Dim rept As New CacheGainsAndLossesPerAnnum
         Dim retobj = FMS.Business.DataObjects.usp_GetGainsAndLossesPerAnnumReport.GetGainsAndLossesPerAnnumReport(startDate, endDate).ToList()
         Dim objList As New List(Of GainsAndLossesPerAnnum)
