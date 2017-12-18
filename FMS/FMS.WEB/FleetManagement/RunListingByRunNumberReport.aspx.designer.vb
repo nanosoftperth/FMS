@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class RunListingReport
+Partial Public Class RunListingByRunNumberReport
 
     '''<summary>
     '''form1 control.

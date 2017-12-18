@@ -85,10 +85,9 @@
 					</li>  
 					<ul class="sub-menu collapse" id="service">
 					  <li><a href="ContractRenewalsReport.aspx" target="iframeMenu">Contract Renewals</a></li>
-					  <%--<li>Quick View By Suburb</li>--%>
                       <li><a href="QuickViewBySuburbReport.aspx" target="iframeMenu">Quick View By Suburb</a></li>
                       <li><a href="ServiceListReport.aspx" target="iframeMenu">Service List</a></li>
-					  <li><a href="RunListingReport.aspx" target="iframeMenu">Run Listing</a></li>
+					  <%--<li><a href="RunListingReport.aspx" target="iframeMenu">Run Listing</a></li>--%>
 					  <li><a href="RunValuesReport.aspx" target="iframeMenu">Run Values</a></li>
                       <li><a href="RunValueSummaryReport.aspx" target="iframeMenu">Run Value Summary</a></li>
 					  <li><a href="ServiceSummaryReport.aspx" target="iframeMenu">Service Summary</a></li>
@@ -97,7 +96,6 @@
 					  <li><a href="CustomerByCustZoneReport.aspx" target="iframeMenu">Customers By Cust Zone</a></li>
 					  <li><a href="CustomerContactDetailsReport.aspx" target="iframeMenu">Customer Contract Details</a></li>
                       <li><a href="SiteListReport.aspx" target="iframeMenu">Site List</a></li>
-                      <%--<li>Site List</li>--%>
 					  <li><a href="IndustryListReport.aspx" target="iframeMenu">Industry List</a></li>
 					  <li>Revenue Report By Zone</li>
                       <li>Gains & Losses (Sales)</li>
@@ -106,6 +104,14 @@
 					  <li><a href="SitesWithNoContractsReport.aspx" target="iframeMenu">Sites With No Contracts</a></li>
 					  <li><a href="SiteBySiteZoneReport.aspx" target="iframeMenu">Sites By Site Zone</a></li>
 					</ul>
+                    <li data-toggle="collapse" data-target="#RunListing" class="collapsed">
+                        <a href="#"><i class="fa fa-list-alt fa-lg"></i> Run Listing<span class="arrow"></span></a>
+                    </li>
+                    <ul class="sub-menu collapse" id="RunListing">
+                        <li><a href="RunListingReport.aspx" target="iframeMenu">Run Listing Report</a></li>
+                        <li><a href="RunListingByRunNumberReport.aspx" target="iframeMenu">Run Listing by Run Number</a></li>
+                    </ul>
+
                     <li data-toggle="collapse" data-target="#AuditReport" class="collapsed">
                         <a href="#"><i class="fa fa-list-alt fa-lg"></i> Audit Report & G & L<span class="arrow"></span></a>
                     </li>

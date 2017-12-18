@@ -11,15 +11,21 @@
     <title></title>
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
-             function btnProcessReport_Click() {
-                 if (RunListing.GetValue() != null) {
-                     LoadingPanel.Show();
-                     if (RunListing.GetValue() == '0') {
-                         $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingReport");
-                     } else {
-                         $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingByRunNumberReport");
-                     }
-                 }
+             function AdjustWindowHeightAndWidth() {
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 $('#frmContent').css({
+                     "height": windowHeight
+                 })
+             }
+
+             $(window).resize(function () {
+                 AdjustWindowHeightAndWidth();
+             })
+
+             function ShowReport() {
+                AdjustWindowHeightAndWidth();
+                LoadingPanel.Show();
+                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingReport");
              }
              $(function () {
                  $('#frmContent').load(function () {
@@ -29,30 +35,10 @@
              })
         </script>
 </head>
-<body>
+<body onload="ShowReport()">
     <form id="form1" runat="server">
         <div>
-            <table>
-                <tr>
-                    <td>
-                        <dx:ASPxRadioButtonList ID="RunListing" ClientInstanceName="RunListing" AutoPostBack="false" runat="server" ValueType="System.String" >
-                            <Items>
-                                <dx:ListEditItem Text="Run Listing Report" Value="0" />
-                                <dx:ListEditItem Text="Run Listing by Run Number" Value="1" />
-                            </Items>
-                        </dx:ASPxRadioButtonList>
-                    </td>
-                    <td style="padding: 4px;">
-                        <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
-                            <ClientSideEvents Click="function(s, e) {
-	                            btnProcessReport_Click(s,e);
-                            }"></ClientSideEvents>
-                        </dx:ASPxButton>
-                    </td>
-                </tr>
-            </table>
             <iframe id="frmContent" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
-
             <asp:ObjectDataSource ID="odsCustomers" runat="server" SelectMethod="GetAllOrderByCustomerName" TypeName="FMS.Business.DataObjects.tblCustomers"></asp:ObjectDataSource>
         </div>
         <div>

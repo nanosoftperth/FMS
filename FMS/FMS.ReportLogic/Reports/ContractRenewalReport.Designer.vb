@@ -22,8 +22,13 @@ Partial Public Class ContractRenewalReport
         Me.components = New System.ComponentModel.Container()
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary4 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -83,8 +88,18 @@ Partial Public Class ContractRenewalReport
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.Zone = New DevExpress.XtraReports.Parameters.Parameter()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        '
+        'ObjectDataSource2
+        '
+        Me.ObjectDataSource2.DataMember = "GetZoneList"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
         'Detail
         '
@@ -282,7 +297,6 @@ Partial Public Class ContractRenewalReport
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1, Me.GroupHeader1, Me.GroupHeader2, Me.GroupHeader3, Me.GroupFooter2})
-        Me.DetailReport.DataMember = "LineValues"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
@@ -521,6 +535,16 @@ Partial Public Class ContractRenewalReport
         Me.ObjectDataSource1.DataMember = "GetContractRenewalReport"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter1.Name = "startDate"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
+        Parameter2.Name = "endDate"
+        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
+        Parameter3.Name = "zoneDescription"
+        Parameter3.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter3.Value = New DevExpress.DataAccess.Expression("[Parameters.Zone]", GetType(String))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2, Parameter3})
         '
         'PageHeader
         '
@@ -698,14 +722,42 @@ Partial Public Class ContractRenewalReport
         Me.XrLabel29.Text = "Report Totals:"
         Me.XrLabel29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
+        'StartDate
+        '
+        Me.StartDate.Description = "Start Date"
+        Me.StartDate.Name = "StartDate"
+        Me.StartDate.Type = GetType(Date)
+        Me.StartDate.ValueInfo = "2000-01-01"
+        '
+        'EndDate
+        '
+        Me.EndDate.Description = "End Date"
+        Me.EndDate.Name = "EndDate"
+        Me.EndDate.Type = GetType(Date)
+        Me.EndDate.ValueInfo = "2000-01-01"
+        '
+        'Zone
+        '
+        Me.Zone.Description = "Zone"
+        DynamicListLookUpSettings1.DataAdapter = Nothing
+        DynamicListLookUpSettings1.DataMember = Nothing
+        DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource2
+        DynamicListLookUpSettings1.DisplayMember = "AreaDescription"
+        DynamicListLookUpSettings1.ValueMember = "AreaDescription"
+        Me.Zone.LookUpSettings = DynamicListLookUpSettings1
+        Me.Zone.Name = "Zone"
+        '
         'ContractRenewalReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport, Me.PageHeader, Me.GroupFooter1, Me.ReportFooter})
-        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
+        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
         Me.DataSource = Me.ObjectDataSource1
+        Me.FilterString = "[LineValues][[AreaDescription] = ?Parameter1]"
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.StartDate, Me.EndDate, Me.Zone})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -713,7 +765,6 @@ Partial Public Class ContractRenewalReport
     Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
-    Friend WithEvents ObjectDataSource1 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents PageFooterBand1 As DevExpress.XtraReports.UI.PageFooterBand
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XrPageInfo2 As DevExpress.XtraReports.UI.XRPageInfo
@@ -769,4 +820,9 @@ Partial Public Class ContractRenewalReport
     Friend WithEvents XrLabel34 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel36 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents GroupFooter2 As DevExpress.XtraReports.UI.GroupFooterBand
+    Friend WithEvents ObjectDataSource1 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents StartDate As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents EndDate As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents ObjectDataSource2 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents Zone As DevExpress.XtraReports.Parameters.Parameter
 End Class

@@ -124,17 +124,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WINDOWS-VULTR;Initial Catalog=FMSUAT;Integrated Security=True")>  _
-        Public ReadOnly Property FMSUATConnectionString() As String
-            Get
-                Return CType(Me("FMSUATConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WINDOWS-VULTR;Initial Catalog=FMSUAT;Integrated Security=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WINDOWS-VULTR;Initial Catalog=FMSDev;Integrated Security=True")>  _
         Public ReadOnly Property FMSDevConnectionString() As String
             Get
                 Return CType(Me("FMSDevConnectionString"),String)
@@ -144,7 +134,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WINDOWS-VULTR;Initial Catalog=FMSUAT;Integrated Security=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WINDOWS-VULTR;Initial Catalog=FMS;Integrated Security=True")>  _
         Public ReadOnly Property FMSConnectionString() As String
             Get
                 Return CType(Me("FMSConnectionString"),String)
@@ -155,9 +145,9 @@ Namespace My
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WINDOWS-VULTR;Initial Catalog=FMSUAT;Integrated Security=True")>  _
-        Public ReadOnly Property FMSDevConnectionString1() As String
+        Public ReadOnly Property FMSUATConnectionString() As String
             Get
-                Return CType(Me("FMSDevConnectionString1"),String)
+                Return CType(Me("FMSUATConnectionString"),String)
             End Get
         End Property
     End Class
