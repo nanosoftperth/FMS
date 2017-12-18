@@ -556,7 +556,7 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSUATConnectionString, mappingSource)
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	

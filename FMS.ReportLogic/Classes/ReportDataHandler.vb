@@ -19,6 +19,9 @@ Public Class ReportDataHandler
     Public Shared Function GetIndustryList() As List(Of FMS.Business.DataObjects.tblIndustryGroups)
         Return FMS.Business.DataObjects.tblIndustryGroups.GetAll()
     End Function
+    Public Shared Function GetZoneList() As List(Of FMS.Business.DataObjects.tbZone)
+        Return FMS.Business.DataObjects.tbZone.GetAll()
+    End Function
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -613,7 +616,7 @@ Public Class ReportDataHandler
                                   .SiteName = item.SiteName, .SiteName1 = item.SiteName1, .UnitsHaveMoreThanOneRun = item.UnitsHaveMoreThanOneRun})
         Next
         rept.LineValies = objList
-        rept.Param = retobj.FirstOrDefault().IndustryDescription
+        rept.Param = IIf(objList.Count > 0, retobj.FirstOrDefault().IndustryDescription, "")
 
         Return rept
     End Function
@@ -644,18 +647,17 @@ Public Class ReportDataHandler
         rept.Param = ""
         Return rept
     End Function
-    Public Shared Function GetContractRenewalReport() As CacheContractRenewal
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split("|")
-        Dim paramZone As String = paramValues(0).Split(":")(1)
-        Dim paramDateStart() As String = paramValues(1).Split(":")
-        Dim paramDateEnd() As String = paramValues(2).Split(":")
-        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart(1).ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart(1).ToString()))
-        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd(1).ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd(1).ToString()))
+    Public Shared Function GetContractRenewalReport2(startDate As Date) As CacheContractRenewal
+        Dim x As String
+        x = ""
+        Return Nothing
+    End Function
+    Public Shared Function GetContractRenewalReport(startDate As Date, endDate As Date, zoneDescription As String) As CacheContractRenewal
         Dim rept As New CacheContractRenewal
 
         Dim retobj As List(Of FMS.Business.DataObjects.usp_GetContractRenewalsReport)
-        If Not paramZone.Equals("") Then
-            retobj = FMS.Business.DataObjects.usp_GetContractRenewalsReport.GetContractRenewalsReport(startDate, endDate, paramZone).ToList()
+        If Not ZoneDescription.Equals(0) Then
+            retobj = FMS.Business.DataObjects.usp_GetContractRenewalsReport.GetContractRenewalsReport(startDate, endDate, zoneDescription).ToList()
         Else
             retobj = FMS.Business.DataObjects.usp_GetContractRenewalsReport.GetContractRenewalsReport(startDate, endDate).ToList()
         End If

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="ContractRenewalsReport.aspx.vb" Inherits="FMS.WEB.ContractRenewalsReport" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="RunListingByRunNumberReport.aspx.vb" Inherits="FMS.WEB.RunListingByRunNumberReport" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
@@ -25,9 +25,8 @@
              function ShowReport() {
                 AdjustWindowHeightAndWidth();
                 LoadingPanel.Show();
-                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=ContractRenewalReport");
+                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingByRunNumberReport");
              }
-
              $(function () {
                  $('#frmContent').load(function () {
                      $(this).show();
@@ -39,8 +38,8 @@
 <body onload="ShowReport()">
     <form id="form1" runat="server">
         <div>
-            <iframe id="frmContent" src="" style="height:76.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
-            <asp:ObjectDataSource ID="odsZones" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tbZone"></asp:ObjectDataSource>
+            <iframe id="frmContent" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <asp:ObjectDataSource ID="odsCustomers" runat="server" SelectMethod="GetAllOrderByCustomerName" TypeName="FMS.Business.DataObjects.tblCustomers"></asp:ObjectDataSource>
         </div>
         <div>
             <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
