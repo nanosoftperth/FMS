@@ -23,33 +23,6 @@ Partial Public Class LengthOfServiceReport
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''lblGreaterThanYearsService control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblGreaterThanYearsService As Global.DevExpress.Web.ASPxLabel
-
-    '''<summary>
-    '''txtGreaterThanYearsService control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtGreaterThanYearsService As Global.DevExpress.Web.ASPxTextBox
-
-    '''<summary>
-    '''ASPxButton1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxButton1 As Global.DevExpress.Web.ASPxButton
-
-    '''<summary>
     '''LoadingPanel control.
     '''</summary>
     '''<remarks>

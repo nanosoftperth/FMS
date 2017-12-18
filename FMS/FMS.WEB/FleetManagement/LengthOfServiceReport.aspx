@@ -11,14 +11,21 @@
     <title></title>
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
-             function btnProcessReport_Click() {
-                 if (txtGreaterThanYearsService.GetText() != '') {
-                     var jScriptDataStr = "GreaterThan:" + txtGreaterThanYearsService.GetText();
+             function AdjustWindowHeightAndWidth() {
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 $('#frmContent').css({
+                     "height": windowHeight
+                 })
+             }
 
-                     var paramValue = jScriptDataStr;
-                     LoadingPanel.Show();
-                     $("#frmContent").attr("src", "ReportContentPage.aspx?Report=LengthOfServiceReport&param=" + paramValue);
-                 }
+             $(window).resize(function () {
+                 AdjustWindowHeightAndWidth();
+             })
+
+             function ShowReport() {
+                AdjustWindowHeightAndWidth();
+                LoadingPanel.Show();
+                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=LengthOfServiceReport");
              }
 
              $(function () {
@@ -29,26 +36,9 @@
              })
         </script>
 </head>
-<body>
+<body onload="ShowReport()">
     <form id="form1" runat="server">
         <div>
-            <table>
-                <tr>
-                    <td style="padding: 4px;">
-                        <dx:ASPxLabel ID="lblGreaterThanYearsService" runat="server" Text="Greater than Years Service:"></dx:ASPxLabel>
-                    </td>
-                    <td>
-                        <dx:ASPxTextBox ID="txtGreaterThanYearsService" ClientInstanceName="txtGreaterThanYearsService" runat="server" Width="170px"></dx:ASPxTextBox>
-                    </td>
-                    <td style="padding: 4px;">
-                        <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Process">
-                            <ClientSideEvents Click="function(s, e) {
-	                            btnProcessReport_Click(s,e);
-                            }"></ClientSideEvents>
-                        </dx:ASPxButton>
-                    </td>
-                </tr>
-            </table>
             <iframe id="frmContent" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
         </div>
         <div>

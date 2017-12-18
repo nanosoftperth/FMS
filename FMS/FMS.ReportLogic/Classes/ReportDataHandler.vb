@@ -22,6 +22,9 @@ Public Class ReportDataHandler
     Public Shared Function GetZoneList() As List(Of FMS.Business.DataObjects.tbZone)
         Return FMS.Business.DataObjects.tbZone.GetAll()
     End Function
+    Public Shared Function GetRunList() As List(Of FMS.Business.DataObjects.tblRuns)
+        Return FMS.Business.DataObjects.tblRuns.GetTblRuns()
+    End Function
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -647,11 +650,6 @@ Public Class ReportDataHandler
         rept.Param = ""
         Return rept
     End Function
-    Public Shared Function GetContractRenewalReport2(startDate As Date) As CacheContractRenewal
-        Dim x As String
-        x = ""
-        Return Nothing
-    End Function
     Public Shared Function GetContractRenewalReport(startDate As Date, endDate As Date, zoneDescription As String) As CacheContractRenewal
         Dim rept As New CacheContractRenewal
 
@@ -690,9 +688,8 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
-    Public Shared Function GetLengthOfServiceReport() As CacheLengthOfServices
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim gtYears As Integer = Convert.ToInt32(IIf(paramValues(1).ToString().Equals(""), "0", paramValues(1).ToString()))
+    Public Shared Function GetLengthOfServiceReport(lengthOfService As Int32) As CacheLengthOfServices
+        Dim gtYears As Integer = lengthOfService
         Dim rept As New CacheLengthOfServices
         Dim retobj = FMS.Business.DataObjects.usp_GetLengthOfServicesReport.GetLengthOfService(gtYears).ToList()
         Dim objList As New List(Of LengthOfServices)
@@ -949,9 +946,7 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
-    Public Shared Function GetRunValuesReport() As CacheRunValues
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim serviceRun As String = IIf(paramValues(0).ToString().Equals(""), "", paramValues(0).ToString())
+    Public Shared Function GetRunValuesReport(serviceRun As String) As CacheRunValues
         Dim rept As New CacheRunValues
         Dim retobj = FMS.Business.DataObjects.usp_GetRunValuesReport.GetRunValuesReport(serviceRun).ToList()
         Dim objList As New List(Of RunValues)

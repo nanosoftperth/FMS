@@ -10,7 +10,19 @@
     <title></title>
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
-             function btnProcessReport_Click() {
+             function AdjustWindowHeightAndWidth() {
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 $('#frmContent').css({
+                     "height": windowHeight
+                 })
+             }
+
+             $(window).resize(function () {
+                 AdjustWindowHeightAndWidth();
+             })
+
+             function ShowReport() {
+                 AdjustWindowHeightAndWidth();
                  LoadingPanel.Show();
                  $("#frmContent").attr("src", "ReportContentPage.aspx?Report=SiteBySiteZoneReport");
              }
@@ -23,7 +35,7 @@
              })
         </script>
 </head>
-<body onload="btnProcessReport_Click()">
+<body onload="ShowReport()">
     <form id="form1" runat="server" >
         <div>
             <iframe id="frmContent" src="" style="height:96vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>

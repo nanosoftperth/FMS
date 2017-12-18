@@ -20,10 +20,12 @@ Partial Public Class LengthOfServicesReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageFooterBand1 = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
@@ -37,13 +39,13 @@ Partial Public Class LengthOfServicesReport
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.YearsOfService = New DevExpress.XtraReports.Parameters.Parameter()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -73,6 +75,15 @@ Partial Public Class LengthOfServicesReport
         Me.PageFooterBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XrPageInfo1, Me.XrPageInfo2})
         Me.PageFooterBand1.HeightF = 76.91663!
         Me.PageFooterBand1.Name = "PageFooterBand1"
+        '
+        'XrLine1
+        '
+        Me.XrLine1.ForeColor = System.Drawing.Color.Silver
+        Me.XrLine1.LineWidth = 2
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(644.0!, 6.25!)
+        Me.XrLine1.StylePriority.UseForeColor = False
         '
         'XrPageInfo1
         '
@@ -204,6 +215,16 @@ Partial Public Class LengthOfServicesReport
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.Text = "XrLabel1"
         '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetLengthOfServiceReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter1.Name = "lengthOfService"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.YearsOfService]", GetType(Integer))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1})
+        '
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel5, Me.XrLabel18, Me.XrLine2})
@@ -262,26 +283,19 @@ Partial Public Class LengthOfServicesReport
         Me.XrLine2.SizeF = New System.Drawing.SizeF(644.0!, 6.25!)
         Me.XrLine2.StylePriority.UseForeColor = False
         '
-        'XrLine1
+        'YearsOfService
         '
-        Me.XrLine1.ForeColor = System.Drawing.Color.Silver
-        Me.XrLine1.LineWidth = 2
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(644.0!, 6.25!)
-        Me.XrLine1.StylePriority.UseForeColor = False
-        '
-        'ObjectDataSource1
-        '
-        Me.ObjectDataSource1.DataMember = "GetLengthOfServiceReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Me.YearsOfService.Description = "Greater than Years Service:"
+        Me.YearsOfService.Name = "YearsOfService"
+        Me.YearsOfService.Type = GetType(Integer)
+        Me.YearsOfService.ValueInfo = "0"
         '
         'LengthOfServicesReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport, Me.PageHeader})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
         Me.DataSource = Me.ObjectDataSource1
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.YearsOfService})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
@@ -313,4 +327,5 @@ Partial Public Class LengthOfServicesReport
     Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents YearsOfService As DevExpress.XtraReports.Parameters.Parameter
 End Class
