@@ -26,6 +26,8 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Dim XrSummary4 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary5 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary6 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim XrSummary7 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary8 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary9 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
@@ -83,6 +85,8 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel40 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel42 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -497,6 +501,13 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.ObjectDataSource1.DataMember = "GetGainsAndLossesPerAnnumReport"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter1.Name = "startDate"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
+        Parameter2.Name = "endDate"
+        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2})
         '
         'PageHeader
         '
@@ -683,11 +694,26 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel42.Summary = XrSummary9
         Me.XrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
+        'StartDate
+        '
+        Me.StartDate.Description = "Start Date"
+        Me.StartDate.Name = "StartDate"
+        Me.StartDate.Type = GetType(Date)
+        Me.StartDate.ValueInfo = "2000-01-01"
+        '
+        'EndDate
+        '
+        Me.EndDate.Description = "End Date"
+        Me.EndDate.Name = "EndDate"
+        Me.EndDate.Type = GetType(Date)
+        Me.EndDate.ValueInfo = "2000-01-01"
+        '
         'GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport, Me.PageHeader, Me.ReportFooter})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
         Me.DataSource = Me.ObjectDataSource1
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.StartDate, Me.EndDate})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
@@ -749,4 +775,6 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents StartDate As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents EndDate As DevExpress.XtraReports.Parameters.Parameter
 End Class

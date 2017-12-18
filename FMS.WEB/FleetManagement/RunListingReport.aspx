@@ -13,36 +13,69 @@
          <script type="text/javascript">
              function AdjustWindowHeightAndWidth() {
                  var windowHeight = $(window).height() - $(".headerTop").height() - 20;
-                 $('#frmContent').css({
+                 $('#frmContentRunListing').css({
                      "height": windowHeight
-                 })
+                 });
+                 $('#frmContentRunListingByNumber').css({
+                     "height": windowHeight
+                 });
              }
 
              $(window).resize(function () {
                  AdjustWindowHeightAndWidth();
              })
 
-             function ShowReport() {
+             function ShowRunListingReport() {
                 AdjustWindowHeightAndWidth();
-                LoadingPanel.Show();
-                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RunListingReport");
+                RunListingLoadingPanel.Show();
+                $("#frmContentRunListing").attr("src", "ReportContentPage.aspx?Report=RunListingReport");
+             }
+             function ShowRunListingByNumberReport() {
+                 AdjustWindowHeightAndWidth();
+                 RunListingByNumberLoadingPanel.Show();
+                 $("#frmContentRunListingByNumber").attr("src", "ReportContentPage.aspx?Report=RunListingByRunNumberReport");
              }
              $(function () {
-                 $('#frmContent').load(function () {
+                 $('#frmContentRunListing').load(function () {
                      $(this).show();
-                     LoadingPanel.Hide();
+                     RunListingLoadingPanel.Hide();
+                 });
+                 $('#frmContentRunListingByNumber').load(function () {
+                     $(this).show();
+                     RunListingByNumberLoadingPanel.Hide();
                  });
              })
         </script>
 </head>
-<body onload="ShowReport()">
+<body onload="ShowRunListingReport();ShowRunListingByNumberReport();">
     <form id="form1" runat="server">
         <div>
-            <iframe id="frmContent" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
-            <asp:ObjectDataSource ID="odsCustomers" runat="server" SelectMethod="GetAllOrderByCustomerName" TypeName="FMS.Business.DataObjects.tblCustomers"></asp:ObjectDataSource>
+            <dx:ASPxPageControl ID="RunListingsPageControl" runat="server" ClientInstanceName="RunListingsPageControl" >
+                <TabPages>
+                    <dx:TabPage Name="RunListing" Text="Run Listing">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                <iframe id="frmContentRunListing" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                    <dx:TabPage Name="RunListingByNumber" Text="Run Listing By Number">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                <iframe id="frmContentRunListingByNumber" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                </TabPages>
+            </dx:ASPxPageControl>
         </div>
         <div>
-            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+            <dx:ASPxLoadingPanel ID="RunListingLoadingPanel" runat="server" ClientInstanceName="RunListingLoadingPanel"
+                Modal="True">
+            </dx:ASPxLoadingPanel>
+        </div>
+        <div>
+            <dx:ASPxLoadingPanel ID="RunListingByNumberLoadingPanel" runat="server" ClientInstanceName="RunListingByNumberLoadingPanel"
                 Modal="True">
             </dx:ASPxLoadingPanel>
         </div>

@@ -11,75 +11,73 @@
     <title></title>
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
-             function btnProcessReport_Click() {
-                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
-
-                 var paramValue = encodeURIComponent(jScriptDataStr);
-                 LoadingPanel.Show();
-                 $("#frmContent").attr("src", "ReportContentPage.aspx?Report=GainsAndLossesPerAnnumReport&param=" + paramValue);
+             function AdjustWindowHeightAndWidth() {
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 $('#frmContentGainsAndLossesPAReport').css({
+                     "height": windowHeight
+                 });
+                 $('#frmContentGainsAndLossesSummaryReport').css({
+                     "height": windowHeight
+                 });
              }
 
-             function btnProcessSummaryReport_Click() {
-                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
+             $(window).resize(function () {
+                 AdjustWindowHeightAndWidth();
+             })
 
-                 var paramValue = encodeURIComponent(jScriptDataStr);
-                 LoadingPanel.Show();
-                 $("#frmContent").attr("src", "ReportContentPage.aspx?Report=GainsAndLossesPerAnnumSummaryReport&param=" + paramValue);
+             function ShowPAReport() {
+                 AdjustWindowHeightAndWidth();
+                 GainsAndLossessPALoadingPanel.Show();
+                 $("#frmContentGainsAndLossesPAReport").attr("src", "ReportContentPage.aspx?Report=GainsAndLossesPerAnnumReport");
+             }
+
+             function ShowSummaryReport() {
+                 AdjustWindowHeightAndWidth();
+                 GainsAndLossessSummaryLoadingPanel.Show();
+                 $("#frmContentGainsAndLossesSummaryReport").attr("src", "ReportContentPage.aspx?Report=GainsAndLossesPerAnnumSummaryReport");
              }
 
              $(function () {
-                 $('#frmContent').load(function () {
+                 $('#frmContentGainsAndLossesPAReport').load(function () {
                      $(this).show();
-                     LoadingPanel.Hide();
+                     GainsAndLossessPALoadingPanel.Hide();
+                 });
+                 $('#frmContentGainsAndLossesSummaryReport').load(function () {
+                     $(this).show();
+                     GainsAndLossessSummaryLoadingPanel.Hide();
                  });
              })
         </script>
 </head>
-<body>
+<body onload="ShowPAReport();ShowSummaryReport();">
     <form id="form1" runat="server">
         <div>
-            <table>
-                <tr>
-                    <td><dx:ASPxLabel ID="lblDtFrom" runat="server" Text="From Date:"></dx:ASPxLabel></td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <dx:ASPxDateEdit ID="dtFrom" ClientInstanceName="dtFrom" runat="server"></dx:ASPxDateEdit>
-                    </td>
-                </tr>
-                <tr>
-                    <td><dx:ASPxLabel ID="lblDtTo" runat="server" Text="To Date:"></dx:ASPxLabel></td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <dx:ASPxDateEdit ID="dtTo" ClientInstanceName="dtTo" runat="server"></dx:ASPxDateEdit>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="padding: 4px 0 0 40px;text-align:right">
-                        <table>
-                            <tr>
-                                <td>
-                                    <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="PA Value" width="90px">
-                                        <ClientSideEvents Click="function(s, e) {
-	                                        btnProcessReport_Click(s,e);
-                                        }"></ClientSideEvents>
-                                    </dx:ASPxButton>
-                                </td>
-                                <td>
-                                    <dx:ASPxButton ID="ASPxButton2" AutoPostBack="false" runat="server" Text="PA Summary">
-                                        <ClientSideEvents Click="function(s, e) {
-	                                        btnProcessSummaryReport_Click(s,e);
-                                        }"></ClientSideEvents>
-                                    </dx:ASPxButton>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            <iframe id="frmContent" src="" style="height:82vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <dx:ASPxPageControl ID="GainsAndLossesPaSummaryPageControl" runat="server" ClientInstanceName="GainsAndLossesPaSummaryPageControl" >
+                <TabPages>
+                    <dx:TabPage Name="GainsAndLossesPA" Text="PA Value">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                <iframe id="frmContentGainsAndLossesPAReport" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                    <dx:TabPage Name="GainsAndLossesPASummary" Text="PA Summary">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                <iframe id="frmContentGainsAndLossesSummaryReport" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                </TabPages>
+            </dx:ASPxPageControl>
         </div>
         <div>
-            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+            <dx:ASPxLoadingPanel ID="GainsAndLossessPALoadingPanel" runat="server" ClientInstanceName="GainsAndLossessPALoadingPanel"
+                Modal="True">
+            </dx:ASPxLoadingPanel>
+        </div>
+        <div>
+            <dx:ASPxLoadingPanel ID="GainsAndLossessSummaryLoadingPanel" runat="server" ClientInstanceName="GainsAndLossessSummaryLoadingPanel"
                 Modal="True">
             </dx:ASPxLoadingPanel>
         </div>

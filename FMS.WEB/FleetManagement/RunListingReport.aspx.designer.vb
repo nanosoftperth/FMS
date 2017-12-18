@@ -23,6 +23,15 @@ Partial Public Class RunListingReport
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
+    '''RunListingsPageControl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RunListingsPageControl As Global.DevExpress.Web.ASPxPageControl
+
+    '''<summary>
     '''odsCustomers control.
     '''</summary>
     '''<remarks>
@@ -32,11 +41,20 @@ Partial Public Class RunListingReport
     Protected WithEvents odsCustomers As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''LoadingPanel control.
+    '''RunListingLoadingPanel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents LoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
+    Protected WithEvents RunListingLoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
+
+    '''<summary>
+    '''RunListingByNumberLoadingPanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RunListingByNumberLoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
 End Class
