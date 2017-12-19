@@ -182,6 +182,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reports\AnnualAnalysisReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\AuditContractReport.Designer.vb">
       <DependentUpon>AuditContractReport.vb</DependentUpon>
     </Compile>
@@ -406,6 +409,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AnnualAnalysisReport.resx">
+      <DependentUpon>AnnualAnalysisReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\AuditContractReport.resx">
       <DependentUpon>AuditContractReport.vb</DependentUpon>
