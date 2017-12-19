@@ -25,6 +25,9 @@ Public Class ReportDataHandler
     Public Shared Function GetRunList() As List(Of FMS.Business.DataObjects.tblRuns)
         Return FMS.Business.DataObjects.tblRuns.GetTblRuns()
     End Function
+    Public Shared Function GetCustomerList() As List(Of FMS.Business.DataObjects.tblCustomers)
+        Return FMS.Business.DataObjects.tblCustomers.GetAllOrderByCustomerName()
+    End Function
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -754,9 +757,7 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
-    Public Shared Function GetMYOBCustomerInvoiceReport() As CacheMYOBCustomerInvoice
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim custName As String = IIf(paramValues(1).ToString().Equals(""), "", paramValues(1).ToString())
+    Public Shared Function GetMYOBCustomerInvoiceReport(custName As String) As CacheMYOBCustomerInvoice
         Dim rept As New CacheMYOBCustomerInvoice
         Dim retobj = FMS.Business.DataObjects.usp_GetMYOBCustomerInvoiceReport.GetMYOBCustomerInvoiceReport(custName).ToList()
         Dim objList As New List(Of MYOBCustomerInvoice)
@@ -847,13 +848,7 @@ Public Class ReportDataHandler
         Return rept
     End Function
 
-    Public Shared Function GetStandardAuditReport() As CacheStandardAudit
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim paramDateStart As String = paramValues(0)
-        Dim paramDateEnd As String = paramValues(1)
-        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
-        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
-
+    Public Shared Function GetStandardAuditReport(startDate As Date, endDate As Date) As CacheStandardAudit
         Dim rept As New CacheStandardAudit
         Dim retobj = FMS.Business.DataObjects.usp_GetStandardAuditReport.GetStandardAuditReport(startDate, endDate).ToList()
         Dim objList As New List(Of StandardAudit)
@@ -877,13 +872,7 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
-    Public Shared Function GetAuditContractReport() As CacheAuditContract
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim paramDateStart As String = paramValues(0)
-        Dim paramDateEnd As String = paramValues(1)
-        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
-        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
-
+    Public Shared Function GetAuditContractReport(startDate As Date, endDate As Date) As CacheAuditContract        
         Dim rept As New CacheAuditContract
         Dim retobj = FMS.Business.DataObjects.usp_GetAuditContractReport.GetAuditContractReport(startDate, endDate).ToList()
         Dim objList As New List(Of AuditContract)
@@ -897,13 +886,7 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
-    Public Shared Function GetAuditOfSiteDetailReport() As CacheAuditOfSiteDetail
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
-        Dim paramDateStart As String = paramValues(0)
-        Dim paramDateEnd As String = paramValues(1)
-        Dim startDate As Date = Convert.ToDateTime(IIf(paramDateStart.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateStart.ToString()))
-        Dim endDate As Date = Convert.ToDateTime(IIf(paramDateEnd.ToString().Equals(""), DateTime.Now().ToShortDateString(), paramDateEnd.ToString()))
-
+    Public Shared Function GetAuditOfSiteDetailReport(startDate As Date, endDate As Date) As CacheAuditOfSiteDetail
         Dim rept As New CacheAuditOfSiteDetail
         Dim retobj = FMS.Business.DataObjects.usp_GetAuditOfSiteDetailReport.GetAuditOfSiteDetailReportt(startDate, endDate).ToList()
         Dim objList As New List(Of AuditOfSiteDetail)

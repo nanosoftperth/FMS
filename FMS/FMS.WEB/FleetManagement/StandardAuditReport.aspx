@@ -11,88 +11,65 @@
     <title></title>
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
-             function btnProcessReport_Click() {
-                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
-
-                 var paramValue = encodeURIComponent(jScriptDataStr);
+             function StandardAudit() {
                  LoadingPanel.Show();
-                 $("#frmContent").attr("src", "ReportContentPage.aspx?Report=StandardAuditReport&param=" + paramValue);
+                 $("#frmContentStandardAudit").attr("src", "ReportContentPage.aspx?Report=StandardAuditReport");
              }
 
-             function btnProcessAuditContractCeaseDatesReport_Click() {
-                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
-
-                 var paramValue = encodeURIComponent(jScriptDataStr);
+             function AuditContract() {
                  LoadingPanel.Show();
-                 $("#frmContent").attr("src", "ReportContentPage.aspx?Report=AuditContractReport&param=" + paramValue);
+                 $("#frmContentAuditContract").attr("src", "ReportContentPage.aspx?Report=AuditContractReport");
              }
 
-             function btnProcessAuditOfSiteDetailReport_Click() {
-                 var jScriptDataStr = dtFrom.GetText() + ':' + dtTo.GetText();
-
-                 var paramValue = encodeURIComponent(jScriptDataStr);
+             function AuditOfSiteDetails() {
                  LoadingPanel.Show();
-                 $("#frmContent").attr("src", "ReportContentPage.aspx?Report=AuditOfSiteDetailChangesReport&param=" + paramValue);
+                 $("#frmContentAuditOfSiteDetails").attr("src", "ReportContentPage.aspx?Report=AuditOfSiteDetailChangesReport");
              }
-             
 
              $(function () {
-                 $('#frmContent').load(function () {
+                 $('#frmContentStandardAudit').load(function () {
+                     $(this).show();
+                     LoadingPanel.Hide();
+                 });
+                 $('#frmContentAuditContract').load(function () {
+                     $(this).show();
+                     LoadingPanel.Hide();
+                 });
+                 $('#frmContentAuditOfSiteDetails').load(function () {
                      $(this).show();
                      LoadingPanel.Hide();
                  });
              })
         </script>
 </head>
-<body>
+<body onload="StandardAudit();AuditContract();AuditOfSiteDetails();">
     <form id="form1" runat="server">
         <div>
-            <table>
-                <tr>
-                    <td><dx:ASPxLabel ID="lblDtFrom" runat="server" Text="From Date:"></dx:ASPxLabel></td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <dx:ASPxDateEdit ID="dtFrom" ClientInstanceName="dtFrom" runat="server"></dx:ASPxDateEdit>
-                    </td>
-                </tr>
-                <tr>
-                    <td><dx:ASPxLabel ID="lblDtTo" runat="server" Text="To Date:"></dx:ASPxLabel></td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <dx:ASPxDateEdit ID="dtTo" ClientInstanceName="dtTo" runat="server"></dx:ASPxDateEdit>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="padding: 4px 0 0 40px;text-align:right">
-                        <table>
-                            <tr>
-                                <td>
-                                    <dx:ASPxButton ID="ASPxButton1" AutoPostBack="false" runat="server" Text="Rates or Price" width="90px">
-                                        <ClientSideEvents Click="function(s, e) {
-	                                        btnProcessReport_Click(s,e);
-                                        }"></ClientSideEvents>
-                                    </dx:ASPxButton>
-                                </td>
-                                <td>
-                                    <dx:ASPxButton ID="ASPxButton2" AutoPostBack="false" runat="server" Text="Audit Contract">
-                                        <ClientSideEvents Click="function(s, e) {
-	                                        btnProcessAuditContractCeaseDatesReport_Click(s,e);
-                                        }"></ClientSideEvents>
-                                    </dx:ASPxButton>
-                                </td>
-                                <td>
-                                    <dx:ASPxButton ID="ASPxButton3" AutoPostBack="false" runat="server" Text="Audit Of Site">
-                                        <ClientSideEvents Click="function(s, e) {
-	                                        btnProcessAuditOfSiteDetailReport_Click(s,e);
-                                        }"></ClientSideEvents>
-                                    </dx:ASPxButton>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            <iframe id="frmContent" src="" style="height:82vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <dx:ASPxPageControl ID="StandardAuditPageControl" runat="server" ClientInstanceName="StandardAuditPageControl" >
+                <TabPages>
+                    <dx:TabPage Name="RatesOrPrice" Text="Rates or Price">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                <iframe id="frmContentStandardAudit" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                    <dx:TabPage Name="AuditContract" Text="Audit Contract">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                <iframe id="frmContentAuditContract" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                    <dx:TabPage Name="AuditOfSite" Text="Audit Of Site">
+                        <ContentCollection>
+                            <dx:ContentControl runat="server">
+                                <iframe id="frmContentAuditOfSiteDetails" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+                            </dx:ContentControl>
+                        </ContentCollection>
+                    </dx:TabPage>
+                </TabPages>
+            </dx:ASPxPageControl>
         </div>
         <div>
             <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"

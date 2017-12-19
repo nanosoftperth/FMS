@@ -32,6 +32,8 @@ Partial Public Class StandardAuditReport
         Dim XrSummary10 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary11 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary12 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -39,6 +41,7 @@ Partial Public Class StandardAuditReport
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLine4 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel65 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel64 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel63 = New DevExpress.XtraReports.UI.XRLabel()
@@ -104,7 +107,10 @@ Partial Public Class StandardAuditReport
         Me.XrLabel48 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel49 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel50 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel61 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel60 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel59 = New DevExpress.XtraReports.UI.XRLabel()
@@ -116,10 +122,8 @@ Partial Public Class StandardAuditReport
         Me.XrLabel53 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel52 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel51 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLine4 = New DevExpress.XtraReports.UI.XRLine()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -178,6 +182,16 @@ Partial Public Class StandardAuditReport
         Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine4, Me.XrLabel65, Me.XrLabel64, Me.XrLabel63, Me.XrLabel62, Me.XrLabel7})
         Me.ReportHeaderBand1.HeightF = 95.79167!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
+        '
+        'XrLine4
+        '
+        Me.XrLine4.ForeColor = System.Drawing.SystemColors.InactiveCaption
+        Me.XrLine4.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
+        Me.XrLine4.LineWidth = 5
+        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 25.70833!)
+        Me.XrLine4.Name = "XrLine4"
+        Me.XrLine4.SizeF = New System.Drawing.SizeF(898.0!, 6.25!)
+        Me.XrLine4.StylePriority.UseForeColor = False
         '
         'XrLabel65
         '
@@ -926,11 +940,42 @@ Partial Public Class StandardAuditReport
         Me.XrLabel50.StylePriority.UseForeColor = False
         Me.XrLabel50.Text = "Report Totals:"
         '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetStandardAuditReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter1.Name = "startDate"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
+        Parameter2.Name = "endDate"
+        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2})
+        '
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine2, Me.XrLine1, Me.XrLabel61, Me.XrLabel60, Me.XrLabel59, Me.XrLabel58, Me.XrLabel57, Me.XrLabel56, Me.XrLabel55, Me.XrLabel54, Me.XrLabel53, Me.XrLabel52, Me.XrLabel51})
         Me.PageHeader.HeightF = 73.95834!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLine2
+        '
+        Me.XrLine2.ForeColor = System.Drawing.Color.Navy
+        Me.XrLine2.LineWidth = 2
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0.00004768372!, 64.58334!)
+        Me.XrLine2.Name = "XrLine2"
+        Me.XrLine2.SizeF = New System.Drawing.SizeF(897.9999!, 6.25!)
+        Me.XrLine2.StylePriority.UseForeColor = False
+        '
+        'XrLine1
+        '
+        Me.XrLine1.ForeColor = System.Drawing.Color.Navy
+        Me.XrLine1.LineWidth = 2
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(900.0!, 6.25!)
+        Me.XrLine1.StylePriority.UseForeColor = False
         '
         'XrLabel61
         '
@@ -1099,39 +1144,19 @@ Partial Public Class StandardAuditReport
         Me.XrLabel51.Text = "Change Date"
         Me.XrLabel51.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
-        'XrLine2
+        'StartDate
         '
-        Me.XrLine2.ForeColor = System.Drawing.Color.Navy
-        Me.XrLine2.LineWidth = 2
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0.00004768372!, 64.58334!)
-        Me.XrLine2.Name = "XrLine2"
-        Me.XrLine2.SizeF = New System.Drawing.SizeF(897.9999!, 6.25!)
-        Me.XrLine2.StylePriority.UseForeColor = False
+        Me.StartDate.Description = "Start Date"
+        Me.StartDate.Name = "StartDate"
+        Me.StartDate.Type = GetType(Date)
+        Me.StartDate.ValueInfo = "2000-01-01"
         '
-        'XrLine1
+        'EndDate
         '
-        Me.XrLine1.ForeColor = System.Drawing.Color.Navy
-        Me.XrLine1.LineWidth = 2
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(900.0!, 6.25!)
-        Me.XrLine1.StylePriority.UseForeColor = False
-        '
-        'XrLine4
-        '
-        Me.XrLine4.ForeColor = System.Drawing.SystemColors.InactiveCaption
-        Me.XrLine4.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.XrLine4.LineWidth = 5
-        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 25.70833!)
-        Me.XrLine4.Name = "XrLine4"
-        Me.XrLine4.SizeF = New System.Drawing.SizeF(898.0!, 6.25!)
-        Me.XrLine4.StylePriority.UseForeColor = False
-        '
-        'ObjectDataSource1
-        '
-        Me.ObjectDataSource1.DataMember = "GetStandardAuditReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Me.EndDate.Description = "End Date"
+        Me.EndDate.Name = "EndDate"
+        Me.EndDate.Type = GetType(Date)
+        Me.EndDate.ValueInfo = "2000-01-01"
         '
         'StandardAuditReport
         '
@@ -1141,6 +1166,7 @@ Partial Public Class StandardAuditReport
         Me.Landscape = True
         Me.PageHeight = 850
         Me.PageWidth = 1100
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.StartDate, Me.EndDate})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
@@ -1236,4 +1262,6 @@ Partial Public Class StandardAuditReport
     Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLine4 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents StartDate As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents EndDate As DevExpress.XtraReports.Parameters.Parameter
 End Class

@@ -21,6 +21,9 @@ Partial Public Class MYOBCustomerInvoiceReport
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -63,8 +66,16 @@ Partial Public Class MYOBCustomerInvoiceReport
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.Customer = New DevExpress.XtraReports.Parameters.Parameter()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        '
+        'ObjectDataSource2
+        '
+        Me.ObjectDataSource2.DataMember = "GetCustomerList"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '
         'Detail
         '
@@ -188,7 +199,6 @@ Partial Public Class MYOBCustomerInvoiceReport
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1, Me.ReportFooter})
-        Me.DetailReport.DataMember = "LineValues"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
@@ -357,6 +367,10 @@ Partial Public Class MYOBCustomerInvoiceReport
         Me.ObjectDataSource1.DataMember = "GetMYOBCustomerInvoiceReport"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter1.Name = "custName"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.Customer]", GetType(String))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1})
         '
         'PageHeader
         '
@@ -523,17 +537,31 @@ Partial Public Class MYOBCustomerInvoiceReport
         Me.XrLabel18.Text = "Number"
         Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
+        'Customer
+        '
+        Me.Customer.Description = "Customer"
+        DynamicListLookUpSettings1.DataAdapter = Nothing
+        DynamicListLookUpSettings1.DataMember = Nothing
+        DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource2
+        DynamicListLookUpSettings1.DisplayMember = "CustomerName"
+        DynamicListLookUpSettings1.FilterString = Nothing
+        DynamicListLookUpSettings1.ValueMember = "CustomerName"
+        Me.Customer.LookUpSettings = DynamicListLookUpSettings1
+        Me.Customer.Name = "Customer"
+        '
         'MYOBCustomerInvoiceReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport, Me.PageHeader})
-        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
+        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
         Me.DataSource = Me.ObjectDataSource1
         Me.Landscape = True
         Me.PageHeight = 850
         Me.PageWidth = 1100
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.Customer})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -580,4 +608,6 @@ Partial Public Class MYOBCustomerInvoiceReport
     Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel25 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents ObjectDataSource2 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents Customer As DevExpress.XtraReports.Parameters.Parameter
 End Class
