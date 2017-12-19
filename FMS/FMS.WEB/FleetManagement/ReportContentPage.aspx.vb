@@ -30,6 +30,8 @@
                 Return New FMS.ReportLogic.ContractRenewalReport()
             Case "ServiceSummaryReport"
                 Return New FMS.ReportLogic.ServiceSummaryReport()
+            Case "AnnualAnalysis"
+                Return New FMS.ReportLogic.AnnualAnalysisReport()
             Case "LengthOfServiceReport"
                 Return New FMS.ReportLogic.LengthOfServicesReport()
             Case "CustomerByCustZoneReport"

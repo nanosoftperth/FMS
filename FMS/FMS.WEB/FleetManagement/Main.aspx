@@ -91,8 +91,8 @@
 					  <li><a href="RunValuesReport.aspx" target="iframeMenu">Run Values</a></li>
                       <li><a href="RunValueSummaryReport.aspx" target="iframeMenu">Run Value Summary</a></li>
 					  <li><a href="ServiceSummaryReport.aspx" target="iframeMenu">Service Summary</a></li>
-					  <li>Annual Analysis</li>
-                      <li><a href="LengthOfServiceReport.aspx" target="iframeMenu">Length of Service</a></li>
+                      <li><a href="AnnualAnalysisReport.aspx" target="iframeMenu">Annual Analysis</a></li>
+					  <li><a href="LengthOfServiceReport.aspx" target="iframeMenu">Length of Service</a></li>
 					  <li><a href="CustomerByCustZoneReport.aspx" target="iframeMenu">Customers By Cust Zone</a></li>
 					  <li><a href="CustomerContactDetailsReport.aspx" target="iframeMenu">Customer Contract Details</a></li>
                       <li><a href="SiteListReport.aspx" target="iframeMenu">Site List</a></li>

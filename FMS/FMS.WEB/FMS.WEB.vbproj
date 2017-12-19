@@ -310,6 +310,13 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\AnnualAnalysisReport.aspx.designer.vb">
+      <DependentUpon>AnnualAnalysisReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\AnnualAnalysisReport.aspx.vb">
+      <DependentUpon>AnnualAnalysisReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\AuditChangeReasons.aspx.designer.vb">
       <DependentUpon>AuditChangeReasons.aspx</DependentUpon>
     </Compile>
@@ -399,6 +406,13 @@
     </Compile>
     <Compile Include="FleetManagement\MYOBCustomerInvoiceReport.aspx.vb">
       <DependentUpon>MYOBCustomerInvoiceReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="FleetManagement\ProduceMYOBFile.aspx.designer.vb">
+      <DependentUpon>ProduceMYOBFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\ProduceMYOBFile.aspx.vb">
+      <DependentUpon>ProduceMYOBFile.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="FleetManagement\QuickViewBySuburbReport.aspx.designer.vb">
@@ -1216,6 +1230,7 @@
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="Content\Images\drop.gif" />
+    <Content Include="FleetManagement\AnnualAnalysisReport.aspx" />
     <Content Include="FleetManagement\AuditChangeReasons.aspx" />
     <Content Include="FleetManagement\ContractPreviousSuppliers.aspx" />
     <Content Include="FleetManagement\ContractRenewalsReport.aspx" />
@@ -1229,6 +1244,7 @@
     <Content Include="FleetManagement\InvoiceBasicCheckReport.aspx" />
     <Content Include="FleetManagement\LengthOfServiceReport.aspx" />
     <Content Include="FleetManagement\MYOBCustomerInvoiceReport.aspx" />
+    <Content Include="FleetManagement\ProduceMYOBFile.aspx" />
     <Content Include="FleetManagement\QuickViewBySuburbReport.aspx" />
     <Content Include="FleetManagement\RunFNCycles.aspx" />
     <Content Include="FleetManagement\RunListingByRunNumberReport.aspx" />
@@ -1706,7 +1722,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18352/</IISUrl>
+          <IISUrl>http://localhost:18353/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
