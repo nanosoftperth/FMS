@@ -145,6 +145,14 @@
 
             Return objCustomer
         End Function
+
+        Public Shared Function GetMYOBCustomer() As List(Of DataObjects.tblCustomers)
+            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
+                               Where c.MYOBCustomerNumber Is Nothing
+                               Select New DataObjects.tblCustomers(c)).ToList
+
+            Return objCustomer
+        End Function
         
 #End Region
 #Region "Constructors"

@@ -1,0 +1,41 @@
+﻿Namespace DataObjects
+    Public Class tblParameters
+
+#Region "Properties / enums"
+        Public Property ParId As String
+        Public Property Field1 As String
+        Public Property Field2 As String
+        Public Property Field3 As String
+        Public Property Field4 As String
+        Public Property Field5 As String
+        
+#End Region
+
+#Region "Constructors"
+        Public Sub New()
+
+        End Sub
+        Public Sub New(objTbl As FMS.Business.tblParameter)
+            With objTbl
+                Me.ParId = .ParId
+                Me.Field1 = .Field1
+                Me.Field2 = .Field2
+                Me.Field3 = .Field3
+                Me.Field4 = .Field4
+                Me.Field5 = .Field5
+            End With
+        End Sub
+#End Region
+
+#Region "Get methods"
+        Public Shared Function GetAll() As List(Of DataObjects.tblParameters)
+            Dim objParam = (From p In SingletonAccess.FMSDataContextContignous.tblParameters
+                            Select New DataObjects.tblParameters(p)).ToList()
+            Return objParam
+        End Function
+#End Region
+
+
+    End Class
+
+End Namespace

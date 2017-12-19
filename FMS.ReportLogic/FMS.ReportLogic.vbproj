@@ -299,6 +299,9 @@
     <Compile Include="Reports\MYOBCustomerInvoiceReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\MYOBCustomerNumbers.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\QuickViewBySuburbReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -475,6 +478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\MYOBCustomerInvoiceReport.resx">
       <DependentUpon>MYOBCustomerInvoiceReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MYOBCustomerNumbers.resx">
+      <DependentUpon>MYOBCustomerNumbers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\QuickViewBySuburbReport.resx">
       <DependentUpon>QuickViewBySuburbReport.vb</DependentUpon>

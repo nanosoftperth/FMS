@@ -124,7 +124,8 @@
 					</li>
 					<ul class="sub-menu collapse" id="new">
 					  <li><a href="GenerateRunSheets.aspx" target="iframeMenu">Generate Run Sheets</a></li>
-					  <li>Produce MYOB File</li>
+                      <li><a href="ProduceMYOBFile.aspx" target="iframeMenu">Produce MYOB File</a></li>
+					  <%--<li>Produce MYOB File</li>--%>
 					</ul>
 				</ul>
 		 </div>
