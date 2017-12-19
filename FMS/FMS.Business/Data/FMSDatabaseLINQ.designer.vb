@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSUAT")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMSDev")>  _
 Partial Public Class LINQtoSQLClassesDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -1153,6 +1153,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblzGenerateRunSheets() As System.Data.Linq.Table(Of tblzGenerateRunSheet)
 		Get
 			Return Me.GetTable(Of tblzGenerateRunSheet)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblParameters() As System.Data.Linq.Table(Of tblParameter)
+		Get
+			Return Me.GetTable(Of tblParameter)
 		End Get
 	End Property
 	
@@ -22273,6 +22279,98 @@ Partial Public Class tblzGenerateRunSheet
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
 	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblParameters")>  _
+Partial Public Class tblParameter
+	
+	Private _ParId As String
+	
+	Private _Field1 As String
+	
+	Private _Field2 As String
+	
+	Private _Field3 As String
+	
+	Private _Field4 As String
+	
+	Private _Field5 As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ParId", DbType:="NVarChar(50)")>  _
+	Public Property ParId() As String
+		Get
+			Return Me._ParId
+		End Get
+		Set
+			If (String.Equals(Me._ParId, value) = false) Then
+				Me._ParId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field1", DbType:="NVarChar(50)")>  _
+	Public Property Field1() As String
+		Get
+			Return Me._Field1
+		End Get
+		Set
+			If (String.Equals(Me._Field1, value) = false) Then
+				Me._Field1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field2", DbType:="NVarChar(50)")>  _
+	Public Property Field2() As String
+		Get
+			Return Me._Field2
+		End Get
+		Set
+			If (String.Equals(Me._Field2, value) = false) Then
+				Me._Field2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field3", DbType:="NVarChar(50)")>  _
+	Public Property Field3() As String
+		Get
+			Return Me._Field3
+		End Get
+		Set
+			If (String.Equals(Me._Field3, value) = false) Then
+				Me._Field3 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field4", DbType:="NVarChar(50)")>  _
+	Public Property Field4() As String
+		Get
+			Return Me._Field4
+		End Get
+		Set
+			If (String.Equals(Me._Field4, value) = false) Then
+				Me._Field4 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field5", DbType:="NVarChar(50)")>  _
+	Public Property Field5() As String
+		Get
+			Return Me._Field5
+		End Get
+		Set
+			If (String.Equals(Me._Field5, value) = false) Then
+				Me._Field5 = value
+			End If
+		End Set
+	End Property
 End Class
 
 Partial Public Class aspnet_Roles_GetAllRolesResult

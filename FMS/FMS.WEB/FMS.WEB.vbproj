@@ -408,6 +408,13 @@
       <DependentUpon>MYOBCustomerInvoiceReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\MYOBCustomers.aspx.designer.vb">
+      <DependentUpon>MYOBCustomers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\MYOBCustomers.aspx.vb">
+      <DependentUpon>MYOBCustomers.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\ProduceMYOBFile.aspx.designer.vb">
       <DependentUpon>ProduceMYOBFile.aspx</DependentUpon>
     </Compile>
@@ -1244,6 +1251,7 @@
     <Content Include="FleetManagement\InvoiceBasicCheckReport.aspx" />
     <Content Include="FleetManagement\LengthOfServiceReport.aspx" />
     <Content Include="FleetManagement\MYOBCustomerInvoiceReport.aspx" />
+    <Content Include="FleetManagement\MYOBCustomers.aspx" />
     <Content Include="FleetManagement\ProduceMYOBFile.aspx" />
     <Content Include="FleetManagement\QuickViewBySuburbReport.aspx" />
     <Content Include="FleetManagement\RunFNCycles.aspx" />

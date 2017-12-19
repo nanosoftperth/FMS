@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMSUAT" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMSDev" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMSDev;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSDevConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[AlertSubscriber.deleteme]" Member="AlertSubscriber_deletemes">
     <Type Name="AlertSubscriber_deleteme">
@@ -1188,6 +1188,16 @@
       <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ServiceComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="SortOrder" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblParameters" Member="tblParameters">
+    <Type Name="tblParameter">
+      <Column Name="ParId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

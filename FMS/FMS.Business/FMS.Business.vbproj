@@ -121,6 +121,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblIndustryGroups.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblInvoicingFrequency.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblMonths.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblParameters.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblProjectID.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRateIncreaseReference.vb" />
