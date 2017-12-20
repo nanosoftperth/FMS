@@ -628,7 +628,11 @@ Public Class ReportDataHandler
                                   .SiteName = item.SiteName, .SiteName1 = item.SiteName1, .UnitsHaveMoreThanOneRun = item.UnitsHaveMoreThanOneRun})
         Next
         rept.LineValies = objList
-        rept.Param = IIf(objList.Count > 0, retobj.FirstOrDefault().IndustryDescription, "")
+        If objList.Count > 0 Then
+            rept.Param = retobj.FirstOrDefault().IndustryDescription
+        Else
+            rept.Param = ""
+        End If
 
         Return rept
     End Function

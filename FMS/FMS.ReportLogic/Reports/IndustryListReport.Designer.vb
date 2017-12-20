@@ -627,6 +627,8 @@ Partial Public Class IndustryListReport
         DynamicListLookUpSettings1.ValueMember = "Aid"
         Me.ParamIndustryID.LookUpSettings = DynamicListLookUpSettings1
         Me.ParamIndustryID.Name = "ParamIndustryID"
+        Me.ParamIndustryID.Type = GetType(Integer)
+        Me.ParamIndustryID.ValueInfo = "0"
         '
         'IndustryListReport
         '

@@ -7,11 +7,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+    <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
     <script type="text/javascript">
         function btnProcessReport_Click() {
             LoadingPanel.Show();
-            $("#frmContent").attr("src", "ReportContentPage.aspx?Report=AnnualAnalysis");
+            $("#frmContent").attr("src", "../ReportContentPage.aspx?Report=AnnualAnalysis");
         }
 
         $(function () {

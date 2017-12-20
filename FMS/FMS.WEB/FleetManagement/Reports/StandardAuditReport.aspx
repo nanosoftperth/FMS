@@ -9,21 +9,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-        <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+        <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function StandardAudit() {
                  LoadingPanel.Show();
-                 $("#frmContentStandardAudit").attr("src", "ReportContentPage.aspx?Report=StandardAuditReport");
+                 $("#frmContentStandardAudit").attr("src", "../ReportContentPage.aspx?Report=StandardAuditReport");
              }
 
              function AuditContract() {
                  LoadingPanel.Show();
-                 $("#frmContentAuditContract").attr("src", "ReportContentPage.aspx?Report=AuditContractReport");
+                 $("#frmContentAuditContract").attr("src", "../ReportContentPage.aspx?Report=AuditContractReport");
              }
 
              function AuditOfSiteDetails() {
                  LoadingPanel.Show();
-                 $("#frmContentAuditOfSiteDetails").attr("src", "ReportContentPage.aspx?Report=AuditOfSiteDetailChangesReport");
+                 $("#frmContentAuditOfSiteDetails").attr("src", "../ReportContentPage.aspx?Report=AuditOfSiteDetailChangesReport");
              }
 
              $(function () {
