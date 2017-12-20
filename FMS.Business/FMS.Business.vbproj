@@ -121,6 +121,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblIndustryGroups.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblInvoicingFrequency.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblMonths.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblMYOBInvoicing.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblParameters.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblProjectID.vb" />
@@ -156,6 +157,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetInvoiceBasicCheckReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetLengthOfServicesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetMYOBCustomerInvoiceReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetPreviousInvoiceSummaryReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunDates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunListByRunNumberReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunListingReport.vb" />
