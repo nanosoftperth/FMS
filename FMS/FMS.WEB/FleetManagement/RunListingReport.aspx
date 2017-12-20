@@ -12,7 +12,7 @@
         <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function AdjustWindowHeightAndWidth() {
-                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 75;
                  $('#frmContentRunListing').css({
                      "height": windowHeight
                  });
