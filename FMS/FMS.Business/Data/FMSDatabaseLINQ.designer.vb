@@ -1498,6 +1498,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIncludeServiceInformationReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetPreviousInvoiceSummaryReport")>  _
+	Public Function usp_GetPreviousInvoiceSummaryReport() As ISingleResult(Of usp_GetPreviousInvoiceSummaryReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetPreviousInvoiceSummaryReportResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -31153,6 +31159,83 @@ Partial Public Class usp_GetIncludeServiceInformationReportResult
 		Set
 			If (Me._Customer.Equals(value) = false) Then
 				Me._Customer = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetPreviousInvoiceSummaryReportResult
+	
+	Private _CustomerName As String
+	
+	Private _SumOfAnnualPriceExGST As System.Nullable(Of Double)
+	
+	Private _SumOfInvoiceAmountExGST As System.Nullable(Of Double)
+	
+	Private _SumOfGSTAmount As System.Nullable(Of Double)
+	
+	Private _SumOfInvoiceAmountIncGST As System.Nullable(Of Double)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SumOfAnnualPriceExGST", DbType:="Float")>  _
+	Public Property SumOfAnnualPriceExGST() As System.Nullable(Of Double)
+		Get
+			Return Me._SumOfAnnualPriceExGST
+		End Get
+		Set
+			If (Me._SumOfAnnualPriceExGST.Equals(value) = false) Then
+				Me._SumOfAnnualPriceExGST = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SumOfInvoiceAmountExGST", DbType:="Float")>  _
+	Public Property SumOfInvoiceAmountExGST() As System.Nullable(Of Double)
+		Get
+			Return Me._SumOfInvoiceAmountExGST
+		End Get
+		Set
+			If (Me._SumOfInvoiceAmountExGST.Equals(value) = false) Then
+				Me._SumOfInvoiceAmountExGST = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SumOfGSTAmount", DbType:="Float")>  _
+	Public Property SumOfGSTAmount() As System.Nullable(Of Double)
+		Get
+			Return Me._SumOfGSTAmount
+		End Get
+		Set
+			If (Me._SumOfGSTAmount.Equals(value) = false) Then
+				Me._SumOfGSTAmount = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SumOfInvoiceAmountIncGST", DbType:="Float")>  _
+	Public Property SumOfInvoiceAmountIncGST() As System.Nullable(Of Double)
+		Get
+			Return Me._SumOfInvoiceAmountIncGST
+		End Get
+		Set
+			If (Me._SumOfInvoiceAmountIncGST.Equals(value) = false) Then
+				Me._SumOfInvoiceAmountIncGST = value
 			End If
 		End Set
 	End Property
