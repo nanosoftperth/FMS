@@ -103,6 +103,7 @@
     <Compile Include="Classes\DataObjects\CanBusEventOccuranceLog.vb" />
     <Compile Include="Classes\DataObjects\CanBusLogs.vb" />
     <Compile Include="Classes\DataObjects\CanDataValue.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\CUST.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\FleetClient.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\FleetDocument.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\FleetRun.vb" />
@@ -122,6 +123,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblInvoicingFrequency.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblMonths.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblMYOBInvoicing.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblMYOBMatch.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblParameters.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblProjectID.vb" />
