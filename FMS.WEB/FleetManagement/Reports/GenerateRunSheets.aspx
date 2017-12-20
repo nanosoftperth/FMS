@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-        <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+        <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
         <script type="text/javascript">
             function AdjustWindowHeightAndWidth() {
                 var windowHeight = $(window).height() - $(".headerTop").height() - 75;
@@ -24,12 +24,12 @@
             function ShowDetailReport() {
                 AdjustWindowHeightAndWidth();
                 LoadingPanel.Show();
-                $("#frmContentRunSheetDetail").attr("src", "ReportContentPage.aspx?Report=GenerateRunSheetDetailReport");
+                $("#frmContentRunSheetDetail").attr("src", "../ReportContentPage.aspx?Report=GenerateRunSheetDetailReport");
             }
             function ShowSummaryReport() {
                 AdjustWindowHeightAndWidth();
                 LoadingPanel.Show();
-                $("#frmContentRunSheetSummary").attr("src", "ReportContentPage.aspx?Report=GenerateRunSheetSummaryReport");
+                $("#frmContentRunSheetSummary").attr("src", "../ReportContentPage.aspx?Report=GenerateRunSheetSummaryReport");
             }
 
             $(function () {

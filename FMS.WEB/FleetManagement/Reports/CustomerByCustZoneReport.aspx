@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="ServiceListReport.aspx.vb" Inherits="FMS.WEB.ServiceListReport" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="CustomerByCustZoneReport.aspx.vb" Inherits="FMS.WEB.CustomerByCustZoneReport" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-        <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+        <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function AdjustWindowHeightAndWidth() {
                  var windowHeight = $(window).height() - $(".headerTop").height() - 20;
@@ -25,7 +25,7 @@
              function ShowReport() {
                 AdjustWindowHeightAndWidth();
                 LoadingPanel.Show();
-                $("#frmContent").attr("src", "ReportContentPage.aspx?Report=ServiceListReport");
+                $("#frmContent").attr("src", "../ReportContentPage.aspx?Report=CustomerByCustZoneReport");
              }
 
              $(function () {

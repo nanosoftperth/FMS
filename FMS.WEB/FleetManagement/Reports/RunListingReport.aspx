@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-        <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+        <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function AdjustWindowHeightAndWidth() {
                  var windowHeight = $(window).height() - $(".headerTop").height() - 75;
@@ -28,12 +28,12 @@
              function ShowRunListingReport() {
                 AdjustWindowHeightAndWidth();
                 RunListingLoadingPanel.Show();
-                $("#frmContentRunListing").attr("src", "ReportContentPage.aspx?Report=RunListingReport");
+                $("#frmContentRunListing").attr("src", "../ReportContentPage.aspx?Report=RunListingReport");
              }
              function ShowRunListingByNumberReport() {
                  AdjustWindowHeightAndWidth();
                  RunListingByNumberLoadingPanel.Show();
-                 $("#frmContentRunListingByNumber").attr("src", "ReportContentPage.aspx?Report=RunListingByRunNumberReport");
+                 $("#frmContentRunListingByNumber").attr("src", "../ReportContentPage.aspx?Report=RunListingByRunNumberReport");
              }
              $(function () {
                  $('#frmContentRunListing').load(function () {

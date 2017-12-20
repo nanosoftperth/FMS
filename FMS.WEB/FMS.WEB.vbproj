@@ -310,10 +310,10 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\AnnualAnalysisReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\AnnualAnalysisReport.aspx.designer.vb">
       <DependentUpon>AnnualAnalysisReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\AnnualAnalysisReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\AnnualAnalysisReport.aspx.vb">
       <DependentUpon>AnnualAnalysisReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -331,31 +331,31 @@
       <DependentUpon>ContractPreviousSuppliers.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\ContractRenewalsReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\ContractRenewalsReport.aspx.designer.vb">
       <DependentUpon>ContractRenewalsReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\ContractRenewalsReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\ContractRenewalsReport.aspx.vb">
       <DependentUpon>ContractRenewalsReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\CustomerByCustZoneReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\CustomerByCustZoneReport.aspx.designer.vb">
       <DependentUpon>CustomerByCustZoneReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\CustomerByCustZoneReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\CustomerByCustZoneReport.aspx.vb">
       <DependentUpon>CustomerByCustZoneReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\CustomerContactDetailsReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\CustomerContactDetailsReport.aspx.designer.vb">
       <DependentUpon>CustomerContactDetailsReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\CustomerContactDetailsReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\CustomerContactDetailsReport.aspx.vb">
       <DependentUpon>CustomerContactDetailsReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\DriversLicenseExpiryReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\DriversLicenseExpiryReport.aspx.designer.vb">
       <DependentUpon>DriversLicenseExpiryReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\DriversLicenseExpiryReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\DriversLicenseExpiryReport.aspx.vb">
       <DependentUpon>DriversLicenseExpiryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -366,45 +366,45 @@
       <DependentUpon>FuelLevy.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\GainsAndLossesPerAnnumReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\GainsAndLossesPerAnnumReport.aspx.designer.vb">
       <DependentUpon>GainsAndLossesPerAnnumReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\GainsAndLossesPerAnnumReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\GainsAndLossesPerAnnumReport.aspx.vb">
       <DependentUpon>GainsAndLossesPerAnnumReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\GainsAndLossesReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\GainsAndLossesReport.aspx.designer.vb">
       <DependentUpon>GainsAndLossesReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\GainsAndLossesReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\GainsAndLossesReport.aspx.vb">
       <DependentUpon>GainsAndLossesReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\GenerateRunSheets.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\GenerateRunSheets.aspx.designer.vb">
       <DependentUpon>GenerateRunSheets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\GenerateRunSheets.aspx.vb">
+    <Compile Include="FleetManagement\Reports\GenerateRunSheets.aspx.vb">
       <DependentUpon>GenerateRunSheets.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\InvoiceBasicCheckReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\InvoiceBasicCheckReport.aspx.designer.vb">
       <DependentUpon>InvoiceBasicCheckReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\InvoiceBasicCheckReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\InvoiceBasicCheckReport.aspx.vb">
       <DependentUpon>InvoiceBasicCheckReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\LengthOfServiceReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\LengthOfServiceReport.aspx.designer.vb">
       <DependentUpon>LengthOfServiceReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\LengthOfServiceReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\LengthOfServiceReport.aspx.vb">
       <DependentUpon>LengthOfServiceReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\MYOBCustomerInvoiceReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\MYOBCustomerInvoiceReport.aspx.designer.vb">
       <DependentUpon>MYOBCustomerInvoiceReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\MYOBCustomerInvoiceReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\MYOBCustomerInvoiceReport.aspx.vb">
       <DependentUpon>MYOBCustomerInvoiceReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -422,10 +422,10 @@
       <DependentUpon>ProduceMYOBFile.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\QuickViewBySuburbReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\QuickViewBySuburbReport.aspx.designer.vb">
       <DependentUpon>QuickViewBySuburbReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\QuickViewBySuburbReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\QuickViewBySuburbReport.aspx.vb">
       <DependentUpon>QuickViewBySuburbReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -443,24 +443,24 @@
       <DependentUpon>RunListingByRunNumberReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\RunListingReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\RunListingReport.aspx.designer.vb">
       <DependentUpon>RunListingReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\RunListingReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\RunListingReport.aspx.vb">
       <DependentUpon>RunListingReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\RunValuesReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\RunValuesReport.aspx.designer.vb">
       <DependentUpon>RunValuesReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\RunValuesReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\RunValuesReport.aspx.vb">
       <DependentUpon>RunValuesReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\RunValueSummaryReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\RunValueSummaryReport.aspx.designer.vb">
       <DependentUpon>RunValueSummaryReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\RunValueSummaryReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\RunValueSummaryReport.aspx.vb">
       <DependentUpon>RunValueSummaryReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -478,10 +478,10 @@
       <DependentUpon>ServiceFrequency.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\ServiceListReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\ServiceListReport.aspx.designer.vb">
       <DependentUpon>ServiceListReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\ServiceListReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\ServiceListReport.aspx.vb">
       <DependentUpon>ServiceListReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -492,38 +492,38 @@
       <DependentUpon>Services.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\ServiceSummaryReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\ServiceSummaryReport.aspx.designer.vb">
       <DependentUpon>ServiceSummaryReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\ServiceSummaryReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\ServiceSummaryReport.aspx.vb">
       <DependentUpon>ServiceSummaryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\SiteBySiteZoneReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\SiteBySiteZoneReport.aspx.designer.vb">
       <DependentUpon>SiteBySiteZoneReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\SiteBySiteZoneReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\SiteBySiteZoneReport.aspx.vb">
       <DependentUpon>SiteBySiteZoneReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\SiteListReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\SiteListReport.aspx.designer.vb">
       <DependentUpon>SiteListReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\SiteListReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\SiteListReport.aspx.vb">
       <DependentUpon>SiteListReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\SitesWithNoContractsReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\SitesWithNoContractsReport.aspx.designer.vb">
       <DependentUpon>SitesWithNoContractsReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\SitesWithNoContractsReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\SitesWithNoContractsReport.aspx.vb">
       <DependentUpon>SitesWithNoContractsReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\StandardAuditReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\StandardAuditReport.aspx.designer.vb">
       <DependentUpon>StandardAuditReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\StandardAuditReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\StandardAuditReport.aspx.vb">
       <DependentUpon>StandardAuditReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -715,10 +715,10 @@
       <DependentUpon>InvoicingFrequency.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FleetManagement\IndustryListReport.aspx.designer.vb">
+    <Compile Include="FleetManagement\Reports\IndustryListReport.aspx.designer.vb">
       <DependentUpon>IndustryListReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FleetManagement\IndustryListReport.aspx.vb">
+    <Compile Include="FleetManagement\Reports\IndustryListReport.aspx.vb">
       <DependentUpon>IndustryListReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -1237,37 +1237,37 @@
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="Content\Images\drop.gif" />
-    <Content Include="FleetManagement\AnnualAnalysisReport.aspx" />
+    <Content Include="FleetManagement\Reports\AnnualAnalysisReport.aspx" />
     <Content Include="FleetManagement\AuditChangeReasons.aspx" />
     <Content Include="FleetManagement\ContractPreviousSuppliers.aspx" />
-    <Content Include="FleetManagement\ContractRenewalsReport.aspx" />
-    <Content Include="FleetManagement\CustomerByCustZoneReport.aspx" />
-    <Content Include="FleetManagement\CustomerContactDetailsReport.aspx" />
-    <Content Include="FleetManagement\DriversLicenseExpiryReport.aspx" />
+    <Content Include="FleetManagement\Reports\ContractRenewalsReport.aspx" />
+    <Content Include="FleetManagement\Reports\CustomerByCustZoneReport.aspx" />
+    <Content Include="FleetManagement\Reports\CustomerContactDetailsReport.aspx" />
+    <Content Include="FleetManagement\Reports\DriversLicenseExpiryReport.aspx" />
     <Content Include="FleetManagement\FuelLevy.aspx" />
-    <Content Include="FleetManagement\GainsAndLossesPerAnnumReport.aspx" />
-    <Content Include="FleetManagement\GainsAndLossesReport.aspx" />
-    <Content Include="FleetManagement\GenerateRunSheets.aspx" />
-    <Content Include="FleetManagement\InvoiceBasicCheckReport.aspx" />
-    <Content Include="FleetManagement\LengthOfServiceReport.aspx" />
-    <Content Include="FleetManagement\MYOBCustomerInvoiceReport.aspx" />
+    <Content Include="FleetManagement\Reports\GainsAndLossesPerAnnumReport.aspx" />
+    <Content Include="FleetManagement\Reports\GainsAndLossesReport.aspx" />
+    <Content Include="FleetManagement\Reports\GenerateRunSheets.aspx" />
+    <Content Include="FleetManagement\Reports\InvoiceBasicCheckReport.aspx" />
+    <Content Include="FleetManagement\Reports\LengthOfServiceReport.aspx" />
+    <Content Include="FleetManagement\Reports\MYOBCustomerInvoiceReport.aspx" />
     <Content Include="FleetManagement\MYOBCustomers.aspx" />
     <Content Include="FleetManagement\ProduceMYOBFile.aspx" />
-    <Content Include="FleetManagement\QuickViewBySuburbReport.aspx" />
+    <Content Include="FleetManagement\Reports\QuickViewBySuburbReport.aspx" />
     <Content Include="FleetManagement\RunFNCycles.aspx" />
     <Content Include="FleetManagement\RunListingByRunNumberReport.aspx" />
-    <Content Include="FleetManagement\RunListingReport.aspx" />
-    <Content Include="FleetManagement\RunValuesReport.aspx" />
-    <Content Include="FleetManagement\RunValueSummaryReport.aspx" />
+    <Content Include="FleetManagement\Reports\RunListingReport.aspx" />
+    <Content Include="FleetManagement\Reports\RunValuesReport.aspx" />
+    <Content Include="FleetManagement\Reports\RunValueSummaryReport.aspx" />
     <Content Include="FleetManagement\SalesPerson.aspx" />
     <Content Include="FleetManagement\ServiceFrequency.aspx" />
-    <Content Include="FleetManagement\ServiceListReport.aspx" />
+    <Content Include="FleetManagement\Reports\ServiceListReport.aspx" />
     <Content Include="FleetManagement\Services.aspx" />
-    <Content Include="FleetManagement\ServiceSummaryReport.aspx" />
-    <Content Include="FleetManagement\SiteBySiteZoneReport.aspx" />
-    <Content Include="FleetManagement\SiteListReport.aspx" />
-    <Content Include="FleetManagement\SitesWithNoContractsReport.aspx" />
-    <Content Include="FleetManagement\StandardAuditReport.aspx" />
+    <Content Include="FleetManagement\Reports\ServiceSummaryReport.aspx" />
+    <Content Include="FleetManagement\Reports\SiteBySiteZoneReport.aspx" />
+    <Content Include="FleetManagement\Reports\SiteListReport.aspx" />
+    <Content Include="FleetManagement\Reports\SitesWithNoContractsReport.aspx" />
+    <Content Include="FleetManagement\Reports\StandardAuditReport.aspx" />
     <Content Include="CanBusDisplayProperty.aspx" />
     <Content Include="CanBusPropDispDashboard.aspx" />
     <Content Include="CanBusPropertyDisplay.aspx" />
@@ -1480,7 +1480,7 @@
     <Content Include="FleetManagement\EstablishZones.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="FleetManagement\InvoicingFrequency.aspx" />
-    <Content Include="FleetManagement\IndustryListReport.aspx" />
+    <Content Include="FleetManagement\Reports\IndustryListReport.aspx" />
     <Content Include="FleetManagement\IndustryGroups.aspx" />
     <Content Include="FleetManagement\IndustryGroupPopup.aspx" />
     <Content Include="FleetManagement\Main.aspx" />
@@ -1730,7 +1730,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18353/</IISUrl>
+          <IISUrl>http://localhost:18352/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

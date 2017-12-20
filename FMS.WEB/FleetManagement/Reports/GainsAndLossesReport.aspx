@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-        <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+        <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function AdjustWindowHeightAndWidth() {
                  var windowHeight = $(window).height() - $(".headerTop").height() - 75;
@@ -28,13 +28,13 @@
              function ShowGainsAndLossesReport() {
                  AdjustWindowHeightAndWidth();
                  GainsAndLossessLoadingPanel.Show();
-                 $("#frmContentGainsAndLossesReport").attr("src", "ReportContentPage.aspx?Report=GainsAndLossesReport");
+                 $("#frmContentGainsAndLossesReport").attr("src", "../ReportContentPage.aspx?Report=GainsAndLossesReport");
              }
 
              function ShowGainsAndLossessSummaryReport() {
                  AdjustWindowHeightAndWidth();
                  GainsAndLossessSummaryLoadingPanel.Show();
-                 $("#frmContentGainsAndLossesSummaryReport").attr("src", "ReportContentPage.aspx?Report=GainsAndLossesSummaryReport");
+                 $("#frmContentGainsAndLossesSummaryReport").attr("src", "../ReportContentPage.aspx?Report=GainsAndLossesSummaryReport");
              }
 
              $(function () {

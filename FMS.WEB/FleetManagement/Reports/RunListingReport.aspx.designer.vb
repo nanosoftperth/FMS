@@ -32,15 +32,6 @@ Partial Public Class RunListingReport
     Protected WithEvents RunListingsPageControl As Global.DevExpress.Web.ASPxPageControl
 
     '''<summary>
-    '''odsCustomers control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsCustomers As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
     '''RunListingLoadingPanel control.
     '''</summary>
     '''<remarks>
