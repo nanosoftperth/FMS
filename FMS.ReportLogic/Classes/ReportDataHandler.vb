@@ -28,6 +28,12 @@ Public Class ReportDataHandler
     Public Shared Function GetCustomerList() As List(Of FMS.Business.DataObjects.tblCustomers)
         Return FMS.Business.DataObjects.tblCustomers.GetAllOrderByCustomerName()
     End Function
+    Public Shared Function GetMonthsList() As List(Of FMS.Business.DataObjects.tblMonths)
+        Return FMS.Business.DataObjects.tblMonths.GetAll()
+    End Function
+    Public Shared Function GetRunsGetAllList() As List(Of FMS.Business.DataObjects.tblRuns)
+        Return FMS.Business.DataObjects.tblRuns.GetAll()
+    End Function
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -942,9 +948,18 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
-    Public Shared Function GetGenerateRunSheetsDetailReport() As CacheGenerateRunSheetsDetail
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+    Public Shared Function GetGenerateRunSheetsDetailReport(dateOfRun As Date, month As String, specificRun As String, printCust As Boolean) As CacheGenerateRunSheetsDetail
         Dim rept As New CacheGenerateRunSheetsDetail
+        Dim GenerateRunSheets As New FMS.ReportLogic.GenerateRunSheetsDetail()
+        Dim RunSheet As New FMS.ReportLogic.RunSheets()
+        RunSheet.DateOfRun = dateOfRun
+        RunSheet.DayOfRun = dateOfRun.ToString("dddd")
+        RunSheet.SqlDate = dateOfRun
+        RunSheet.Month = month
+        RunSheet.SpecificRun = specificRun
+        RunSheet.PrintCustomerSignature = printCust
+        rept.ParamMessage = GenerateRunSheets.GenerateRunSheets(RunSheet)
+
         Dim retobj = FMS.Business.DataObjects.usp_GetGenerateRunSheetsDetail.GetGenerateRunSheetsDetail().ToList()
         Dim objList As New List(Of GenerateRunSheetsDetail)
         For Each item In retobj
@@ -955,10 +970,10 @@ Public Class ReportDataHandler
                         .RunNumber = item.RunNumber, .DriverName = item.DriverName, .RunDescription = item.RunDescription, .Notes = item.Notes})
         Next
         rept.LineValues = objList
-        rept.ParamDate = paramValues(0).ToString()
-        rept.ParamDay = paramValues(1).ToString()
+        rept.ParamDate = RunSheet.DateOfRun.ToString()
+        rept.ParamDay = RunSheet.DayOfRun.ToString()
         Dim strForSignature As String = ""
-        If paramValues(2).ToString().Equals("'true'") Then
+        If RunSheet.PrintCustomerSignature.ToString().Equals("True") Then
             strForSignature = "X"
         End If
         rept.ParamSignature = strForSignature
@@ -978,9 +993,18 @@ Public Class ReportDataHandler
         rept.LineValues = objList
         Return rept
     End Function
-    Public Shared Function GetGenerateRunSheetSummaryReport() As CacheGenerateRunSheetSummary
-        Dim paramValues() As String = FMS.Business.ThisSession.ParameterValues.Split(":")
+    Public Shared Function GetGenerateRunSheetSummaryReport(dateOfRun As Date, month As String, specificRun As String, printCust As Boolean) As CacheGenerateRunSheetSummary
         Dim rept As New CacheGenerateRunSheetSummary
+        Dim GenerateRunSheets As New FMS.ReportLogic.GenerateRunSheetsDetail()
+        Dim RunSheet As New FMS.ReportLogic.RunSheets()
+        RunSheet.DateOfRun = dateOfRun
+        RunSheet.DayOfRun = dateOfRun.ToString("dddd")
+        RunSheet.SqlDate = dateOfRun
+        RunSheet.Month = month
+        RunSheet.SpecificRun = specificRun
+        RunSheet.PrintCustomerSignature = printCust
+        rept.ParamMessage = GenerateRunSheets.GenerateRunSheets(RunSheet)
+
         Dim retobj = FMS.Business.DataObjects.usp_GetGenerateRunSheetSummary.GetGenerateRunSheetSummary().ToList()
         Dim objList As New List(Of GenerateRunSheetSummary)
         For Each item In retobj
@@ -988,8 +1012,8 @@ Public Class ReportDataHandler
                         .ServiceCode = item.ServiceCode, .ServiceDescription = item.ServiceDescription, .SumOfServiceUnits = item.SumOfServiceUnits})
         Next
         rept.LineValues = objList
-        rept.ParamDate = paramValues(0).ToString()
-        rept.ParamDay = paramValues(1).ToString()
+        rept.ParamDate = RunSheet.DateOfRun.ToString()
+        rept.ParamDay = RunSheet.DayOfRun.ToString()
         Return rept
     End Function
     Public Sub New()

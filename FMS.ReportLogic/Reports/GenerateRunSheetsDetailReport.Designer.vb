@@ -20,6 +20,14 @@ Partial Public Class GenerateRunSheetsDetailReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
@@ -27,6 +35,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.PageFooterBand1 = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.XrLabel33 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Title = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -35,10 +44,12 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.DataField = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.GroupHeader2 = New DevExpress.XtraReports.UI.GroupHeaderBand()
+        Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
@@ -60,6 +71,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
@@ -68,13 +80,28 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.DateOfRun = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.Month = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.SpecificRun = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.PrintCustomer = New DevExpress.XtraReports.Parameters.Parameter()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        '
+        'ObjectDataSource2
+        '
+        Me.ObjectDataSource2.DataMember = "GetMonthsList"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
+        '
+        'ObjectDataSource3
+        '
+        Me.ObjectDataSource3.DataMember = "GetRunsGetAllList"
+        Me.ObjectDataSource3.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource3.Name = "ObjectDataSource3"
         '
         'Detail
         '
@@ -127,6 +154,21 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.XrPageInfo2.SizeF = New System.Drawing.SizeF(313.0!, 23.0!)
         Me.XrPageInfo2.StyleName = "PageInfo"
         Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'XrLabel33
+        '
+        Me.XrLabel33.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamMessage")})
+        Me.XrLabel33.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel33.ForeColor = System.Drawing.Color.Red
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 87.91671!)
+        Me.XrLabel33.Name = "XrLabel33"
+        Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel33.SizeF = New System.Drawing.SizeF(649.9999!, 23.0!)
+        Me.XrLabel33.StylePriority.UseFont = False
+        Me.XrLabel33.StylePriority.UseForeColor = False
+        Me.XrLabel33.StylePriority.UseTextAlignment = False
+        Me.XrLabel33.Text = "XrLabel33"
+        Me.XrLabel33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
         'ReportHeaderBand1
         '
@@ -190,7 +232,6 @@ Partial Public Class GenerateRunSheetsDetailReport
         'DetailReport
         '
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1, Me.GroupHeader1, Me.GroupHeader2})
-        Me.DetailReport.DataMember = "LineValues"
         Me.DetailReport.DataSource = Me.ObjectDataSource1
         Me.DetailReport.Level = 0
         Me.DetailReport.Name = "DetailReport"
@@ -200,6 +241,13 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrSubreport1})
         Me.Detail1.HeightF = 26.125!
         Me.Detail1.Name = "Detail1"
+        '
+        'XrSubreport1
+        '
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrSubreport1.Name = "XrSubreport1"
+        Me.XrSubreport1.ReportSource = New FMS.ReportLogic.GenerateRunSheetsDetailSubReport()
+        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(649.9999!, 26.125!)
         '
         'GroupHeader1
         '
@@ -236,6 +284,15 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.GroupHeader2.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("Cid", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
         Me.GroupHeader2.HeightF = 148.9583!
         Me.GroupHeader2.Name = "GroupHeader2"
+        '
+        'XrLabel30
+        '
+        Me.XrLabel30.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamSignature")})
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(527.0001!, 74.08333!)
+        Me.XrLabel30.Name = "XrLabel30"
+        Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel30.SizeF = New System.Drawing.SizeF(27.08331!, 23.0!)
+        Me.XrLabel30.Text = "XrLabel30"
         '
         'XrLabel29
         '
@@ -455,6 +512,25 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.XrLabel9.StylePriority.UseForeColor = False
         Me.XrLabel9.Text = "Run"
         '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetGenerateRunSheetsDetailReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter1.Name = "dateOfRun"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.DateOfRun]", GetType(Date))
+        Parameter2.Name = "month"
+        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.Month]", GetType(String))
+        Parameter3.Name = "specificRun"
+        Parameter3.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter3.Value = New DevExpress.DataAccess.Expression("[Parameters.SpecificRun]", GetType(String))
+        Parameter4.Name = "printCust"
+        Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.PrintCustomer]", GetType(Boolean))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2, Parameter3, Parameter4})
+        '
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 20.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -539,62 +615,79 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel32, Me.XrLabel31, Me.XrLabel1, Me.XrLine3, Me.XrLabel4, Me.XrLabel2, Me.XrLabel3, Me.XrLine2, Me.XrLine1, Me.XrLabel5, Me.XrLabel6})
-        Me.PageHeader.HeightF = 84.87503!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel32, Me.XrLabel31, Me.XrLabel1, Me.XrLine3, Me.XrLabel4, Me.XrLabel2, Me.XrLabel3, Me.XrLine2, Me.XrLine1, Me.XrLabel5, Me.XrLabel6, Me.XrLabel33})
+        Me.PageHeader.HeightF = 110.9167!
         Me.PageHeader.Name = "PageHeader"
-        '
-        'XrSubreport1
-        '
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
-        Me.XrSubreport1.Name = "XrSubreport1"
-        Me.XrSubreport1.ReportSource = New FMS.ReportLogic.GenerateRunSheetsDetailSubReport()
-        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(649.9999!, 26.125!)
-        '
-        'ObjectDataSource1
-        '
-        Me.ObjectDataSource1.DataMember = "GetGenerateRunSheetsDetailReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
-        '
-        'XrLabel31
-        '
-        Me.XrLabel31.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamDate")})
-        Me.XrLabel31.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(576.4584!, 0.0!)
-        Me.XrLabel31.Name = "XrLabel31"
-        Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel31.SizeF = New System.Drawing.SizeF(73.54156!, 23.0!)
-        Me.XrLabel31.StylePriority.UseFont = False
-        Me.XrLabel31.Text = "XrLabel31"
         '
         'XrLabel32
         '
         Me.XrLabel32.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamDay")})
-        Me.XrLabel32.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel32.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(576.4584!, 61.87503!)
         Me.XrLabel32.Name = "XrLabel32"
-        Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel32.SizeF = New System.Drawing.SizeF(73.54163!, 21.54168!)
         Me.XrLabel32.StylePriority.UseFont = False
         Me.XrLabel32.Text = "XrLabel32"
         '
-        'XrLabel30
+        'XrLabel31
         '
-        Me.XrLabel30.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamSignature")})
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(527.0001!, 74.08333!)
-        Me.XrLabel30.Name = "XrLabel30"
-        Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel30.SizeF = New System.Drawing.SizeF(27.08331!, 23.0!)
-        Me.XrLabel30.Text = "XrLabel30"
+        Me.XrLabel31.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamDate")})
+        Me.XrLabel31.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(576.4584!, 0.0!)
+        Me.XrLabel31.Name = "XrLabel31"
+        Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel31.SizeF = New System.Drawing.SizeF(73.54156!, 23.0!)
+        Me.XrLabel31.StylePriority.UseFont = False
+        Me.XrLabel31.Text = "XrLabel31"
+        '
+        'DateOfRun
+        '
+        Me.DateOfRun.Description = "Date Of Run"
+        Me.DateOfRun.Name = "DateOfRun"
+        Me.DateOfRun.Type = GetType(Date)
+        Me.DateOfRun.ValueInfo = "2000-01-01"
+        '
+        'Month
+        '
+        Me.Month.Description = "Month"
+        DynamicListLookUpSettings1.DataAdapter = Nothing
+        DynamicListLookUpSettings1.DataMember = Nothing
+        DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource2
+        DynamicListLookUpSettings1.DisplayMember = "MonthDescription"
+        DynamicListLookUpSettings1.ValueMember = "MonthDescription"
+        Me.Month.LookUpSettings = DynamicListLookUpSettings1
+        Me.Month.Name = "Month"
+        '
+        'SpecificRun
+        '
+        Me.SpecificRun.Description = "Specific Run"
+        DynamicListLookUpSettings2.DataAdapter = Nothing
+        DynamicListLookUpSettings2.DataMember = Nothing
+        DynamicListLookUpSettings2.DataSource = Me.ObjectDataSource3
+        DynamicListLookUpSettings2.DisplayMember = "RunDescription"
+        DynamicListLookUpSettings2.ValueMember = "RunNUmber"
+        Me.SpecificRun.LookUpSettings = DynamicListLookUpSettings2
+        Me.SpecificRun.Name = "SpecificRun"
+        '
+        'PrintCustomer
+        '
+        Me.PrintCustomer.Description = "Print Customer Signature"
+        Me.PrintCustomer.Name = "PrintCustomer"
+        Me.PrintCustomer.Type = GetType(Boolean)
+        Me.PrintCustomer.ValueInfo = "False"
         '
         'GenerateRunSheetsDetailReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport, Me.PageHeader})
-        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
+        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource2, Me.ObjectDataSource3, Me.ObjectDataSource1})
         Me.DataSource = Me.ObjectDataSource1
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DateOfRun, Me.Month, Me.SpecificRun, Me.PrintCustomer})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -652,4 +745,11 @@ Partial Public Class GenerateRunSheetsDetailReport
     Friend WithEvents XrLabel32 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel31 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel30 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents DateOfRun As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents Month As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents SpecificRun As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents PrintCustomer As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents ObjectDataSource3 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents ObjectDataSource2 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents XrLabel33 As DevExpress.XtraReports.UI.XRLabel
 End Class
