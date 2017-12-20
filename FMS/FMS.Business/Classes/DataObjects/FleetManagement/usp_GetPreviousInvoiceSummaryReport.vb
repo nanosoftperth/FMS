@@ -19,6 +19,7 @@
                 Me.CustomerName = .CustomerName
                 Me.SumOfAnnualPriceExGST = .SumOfAnnualPriceExGST
                 Me.SumOfInvoiceAmountExGST = .SumOfInvoiceAmountExGST
+                Me.SumOfInvoiceAmountIncGST = .SumOfInvoiceAmountIncGST
                 Me.SumOfGSTAmount = .SumOfGSTAmount
 
             End With
