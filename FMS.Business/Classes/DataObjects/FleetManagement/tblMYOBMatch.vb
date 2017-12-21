@@ -55,6 +55,16 @@
         End Sub
 #End Region
 
+#Region "Extended CRUD"
+        Public Shared Sub DeleteAll()
+            Dim oMYOB As IEnumerable(Of FMS.Business.tblMYOBMatch) = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches()
+                                            Select New DataObjects.tblMYOBMatch(m)).ToList()
+
+            SingletonAccess.FMSDataContextContignous.tblMYOBMatches.DeleteAllOnSubmit(oMYOB)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+        End Sub
+#End Region
+
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblMYOBMatch)
             Dim oMYOB = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches
