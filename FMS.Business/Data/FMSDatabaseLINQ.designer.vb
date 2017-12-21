@@ -559,6 +559,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblParameter(instance As tblParameter)
     End Sub
+  Partial Private Sub InserttblMYOBMatch(instance As tblMYOBMatch)
+    End Sub
+  Partial Private Sub UpdatetblMYOBMatch(instance As tblMYOBMatch)
+    End Sub
+  Partial Private Sub DeletetblMYOBMatch(instance As tblMYOBMatch)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1174,15 +1180,15 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblMYOBMatches() As System.Data.Linq.Table(Of tblMYOBMatch)
-		Get
-			Return Me.GetTable(Of tblMYOBMatch)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblParameters() As System.Data.Linq.Table(Of tblParameter)
 		Get
 			Return Me.GetTable(Of tblParameter)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblMYOBMatches() As System.Data.Linq.Table(Of tblMYOBMatch)
+		Get
+			Return Me.GetTable(Of tblMYOBMatch)
 		End Get
 	End Property
 	
@@ -22656,71 +22662,6 @@ Partial Public Class CUST
 	End Property
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMYOBMatch")>  _
-Partial Public Class tblMYOBMatch
-	
-	Private _Aid As Integer
-	
-	Private _MYOBId As String
-	
-	Private _CustomerName As String
-	
-	Private _ImportedCustomerName As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me._Aid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBId", DbType:="NVarChar(MAX)")>  _
-	Public Property MYOBId() As String
-		Get
-			Return Me._MYOBId
-		End Get
-		Set
-			If (String.Equals(Me._MYOBId, value) = false) Then
-				Me._MYOBId = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(255)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ImportedCustomerName", DbType:="NVarChar(255)")>  _
-	Public Property ImportedCustomerName() As String
-		Get
-			Return Me._ImportedCustomerName
-		End Get
-		Set
-			If (String.Equals(Me._ImportedCustomerName, value) = false) Then
-				Me._ImportedCustomerName = value
-			End If
-		End Set
-	End Property
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblParameters")>  _
 Partial Public Class tblParameter
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -22892,6 +22833,157 @@ Partial Public Class tblParameter
 				Me._Field5 = value
 				Me.SendPropertyChanged("Field5")
 				Me.OnField5Changed
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMYOBMatch")>  _
+Partial Public Class tblMYOBMatch
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _MatchID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _MYOBId As String
+	
+	Private _CustomerName As String
+	
+	Private _ImportedCustomerName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnMatchIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnMatchIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnMYOBIdChanging(value As String)
+    End Sub
+    Partial Private Sub OnMYOBIdChanged()
+    End Sub
+    Partial Private Sub OnCustomerNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerNameChanged()
+    End Sub
+    Partial Private Sub OnImportedCustomerNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnImportedCustomerNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MatchID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property MatchID() As System.Guid
+		Get
+			Return Me._MatchID
+		End Get
+		Set
+			If ((Me._MatchID = value)  _
+						= false) Then
+				Me.OnMatchIDChanging(value)
+				Me.SendPropertyChanging
+				Me._MatchID = value
+				Me.SendPropertyChanged("MatchID")
+				Me.OnMatchIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBId", DbType:="NVarChar(MAX)")>  _
+	Public Property MYOBId() As String
+		Get
+			Return Me._MYOBId
+		End Get
+		Set
+			If (String.Equals(Me._MYOBId, value) = false) Then
+				Me.OnMYOBIdChanging(value)
+				Me.SendPropertyChanging
+				Me._MYOBId = value
+				Me.SendPropertyChanged("MYOBId")
+				Me.OnMYOBIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(255)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me.OnCustomerNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerName = value
+				Me.SendPropertyChanged("CustomerName")
+				Me.OnCustomerNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ImportedCustomerName", DbType:="NVarChar(255)")>  _
+	Public Property ImportedCustomerName() As String
+		Get
+			Return Me._ImportedCustomerName
+		End Get
+		Set
+			If (String.Equals(Me._ImportedCustomerName, value) = false) Then
+				Me.OnImportedCustomerNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ImportedCustomerName = value
+				Me.SendPropertyChanged("ImportedCustomerName")
+				Me.OnImportedCustomerNameChanged
 			End If
 		End Set
 	End Property
