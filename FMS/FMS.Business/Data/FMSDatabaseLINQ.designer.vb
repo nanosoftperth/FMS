@@ -22745,7 +22745,7 @@ End Class
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMYOBMatch")>  _
 Partial Public Class tblMYOBMatch
 	
-	Private _Aid As String
+	Private _Aid As Integer
 	
 	Private _MYOBId As String
 	
@@ -22757,19 +22757,20 @@ Partial Public Class tblMYOBMatch
 		MyBase.New
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="NVarChar(255)")>  _
-	Public Property Aid() As String
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property Aid() As Integer
 		Get
 			Return Me._Aid
 		End Get
 		Set
-			If (String.Equals(Me._Aid, value) = false) Then
+			If ((Me._Aid = value)  _
+						= false) Then
 				Me._Aid = value
 			End If
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBId", DbType:="NVarChar(255)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MYOBId", DbType:="NVarChar(MAX)")>  _
 	Public Property MYOBId() As String
 		Get
 			Return Me._MYOBId
