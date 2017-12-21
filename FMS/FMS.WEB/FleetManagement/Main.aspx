@@ -7,9 +7,24 @@
     <script src="../Content/javascript/tether.js"></script>
     <script src="../Content/javascript/bootstrap.min.js"></script>
     <script src="../Content/javascript/FleetmanagementMenu/FleetManagementMenu.js"></script>
-    
+    <style type="text/css">
+        #ctl00_ctl00_MainPane_Content_MainContent_LoadingPanel {
+            border-style: none!important;
+            background:transparent;
+        }
+        
+    </style>
     <script>
         $(function () {
+            function AdjustLoadingPanel() {
+                var windowWidth = $(window).width() - $('.nav-side-menu').width() - 20;
+                $('#ctl00_ctl00_MainPane_Content_MainContent_LoadingPanel_LD').css({
+                    "width": $('#mainFrame').width(),
+                    "height": $('#mainFrame').height(),
+                    "left": 315,
+                    "top": 130
+                });
+            }
             function AdjustWindowHeightAndWidth() {
                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
                 var windowWidth = $(window).width() - $('.nav-side-menu').width() - 20;
@@ -21,6 +36,10 @@
                     "width": windowWidth
                 });
             }
+
+            $('#menu-content').click(function (event) {
+                AdjustLoadingPanel();
+            })
 
             $('a[target="iframeMenu"]').click(function (event) {
                 LoadingPanel.SetText("");
@@ -34,6 +53,7 @@
             AdjustWindowHeightAndWidth();
             $(window).resize(function () {
                 AdjustWindowHeightAndWidth();
+                AdjustLoadingPanel();
             })
         })
         
@@ -129,12 +149,6 @@
 				</ul>
 		 </div>
 	</div>
-    <%--<div style="float:left; padding-left:305px; " >
-        <iframe name="iframeMenu" onload="this.width=screen.width+140;this.height=(screen.height-15);" style="overflow-y: scroll"></iframe>
-    </div>--%>
-    <%--<div style="float:left; padding-left:305px; " >
-        <iframe name="iframeMenu"  style="overflow-y: auto; height:80vh; width:158vh" id="mainFrame"></iframe>
-    </div>--%>
     <div style="float:left; padding-left:305px; " >
         <iframe name="iframeMenu"  style="overflow-y: auto;" id="mainFrame"></iframe>
     </div>
