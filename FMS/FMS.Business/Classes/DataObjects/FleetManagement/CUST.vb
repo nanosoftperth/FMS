@@ -52,11 +52,31 @@
         End Sub
 #End Region
 
+#Region "Extended CRUD"
+        Public Shared Sub DeleteAll()
+            Dim oCust As IEnumerable(Of FMS.Business.CUST) = (From c In SingletonAccess.FMSDataContextContignous.CUSTs()
+                                            Select New DataObjects.CUST(c)).ToList()
+
+            SingletonAccess.FMSDataContextContignous.CUSTs.DeleteAllOnSubmit(oCust)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+        End Sub
+#End Region
+
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.CUST)
             Dim oCust = (From c In SingletonAccess.FMSDataContextContignous.CUSTs
                             Order By c.CustomerName
                             Select New DataObjects.CUST(c)).ToList
+            Return oCust
+        End Function
+
+        Public Shared Function GetAllExistInTableCustomer() As List(Of DataObjects.CUST)
+
+            Dim oCust = (From c In SingletonAccess.FMSDataContextContignous.CUSTs
+                            Where (From cs In SingletonAccess.FMSDataContextContignous.tblCustomers
+                               Select cs.MYOBCustomerNumber).Contains(c.CardID)
+                            Select New DataObjects.CUST(c)).ToList()
+
             Return oCust
         End Function
         
