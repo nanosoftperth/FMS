@@ -42,8 +42,7 @@ Public Class GenerateRunSheetsDetail
                 ProcessWeekly(RunSheets, rsin)
                 SpecificDates(RunSheets, rsin)
             Next
-            'Return "No runs selected for processing"
-            Return ""
+            Return "No runs selected for processing"
         Else
             Return ""
         End If
