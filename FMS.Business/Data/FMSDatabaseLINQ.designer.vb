@@ -553,6 +553,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblzGenerateRunSheet(instance As tblzGenerateRunSheet)
     End Sub
+  Partial Private Sub InserttblParameter(instance As tblParameter)
+    End Sub
+  Partial Private Sub UpdatetblParameter(instance As tblParameter)
+    End Sub
+  Partial Private Sub DeletetblParameter(instance As tblParameter)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1156,12 +1162,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblParameters() As System.Data.Linq.Table(Of tblParameter)
-		Get
-			Return Me.GetTable(Of tblParameter)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblMYOBInvoicings() As System.Data.Linq.Table(Of tblMYOBInvoicing)
 		Get
 			Return Me.GetTable(Of tblMYOBInvoicing)
@@ -1177,6 +1177,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblMYOBMatches() As System.Data.Linq.Table(Of tblMYOBMatch)
 		Get
 			Return Me.GetTable(Of tblMYOBMatch)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblParameters() As System.Data.Linq.Table(Of tblParameter)
+		Get
+			Return Me.GetTable(Of tblParameter)
 		End Get
 	End Property
 	
@@ -22311,98 +22317,6 @@ Partial Public Class tblzGenerateRunSheet
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblParameters")>  _
-Partial Public Class tblParameter
-	
-	Private _ParId As String
-	
-	Private _Field1 As String
-	
-	Private _Field2 As String
-	
-	Private _Field3 As String
-	
-	Private _Field4 As String
-	
-	Private _Field5 As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ParId", DbType:="NVarChar(50)")>  _
-	Public Property ParId() As String
-		Get
-			Return Me._ParId
-		End Get
-		Set
-			If (String.Equals(Me._ParId, value) = false) Then
-				Me._ParId = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field1", DbType:="NVarChar(50)")>  _
-	Public Property Field1() As String
-		Get
-			Return Me._Field1
-		End Get
-		Set
-			If (String.Equals(Me._Field1, value) = false) Then
-				Me._Field1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field2", DbType:="NVarChar(50)")>  _
-	Public Property Field2() As String
-		Get
-			Return Me._Field2
-		End Get
-		Set
-			If (String.Equals(Me._Field2, value) = false) Then
-				Me._Field2 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field3", DbType:="NVarChar(50)")>  _
-	Public Property Field3() As String
-		Get
-			Return Me._Field3
-		End Get
-		Set
-			If (String.Equals(Me._Field3, value) = false) Then
-				Me._Field3 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field4", DbType:="NVarChar(50)")>  _
-	Public Property Field4() As String
-		Get
-			Return Me._Field4
-		End Get
-		Set
-			If (String.Equals(Me._Field4, value) = false) Then
-				Me._Field4 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field5", DbType:="NVarChar(50)")>  _
-	Public Property Field5() As String
-		Get
-			Return Me._Field5
-		End Get
-		Set
-			If (String.Equals(Me._Field5, value) = false) Then
-				Me._Field5 = value
-			End If
-		End Set
-	End Property
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMYOBInvoicing")>  _
 Partial Public Class tblMYOBInvoicing
 	
@@ -22805,6 +22719,200 @@ Partial Public Class tblMYOBMatch
 			End If
 		End Set
 	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblParameters")>  _
+Partial Public Class tblParameter
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ParameterID As System.Guid
+	
+	Private _ParId As String
+	
+	Private _Field1 As String
+	
+	Private _Field2 As String
+	
+	Private _Field3 As String
+	
+	Private _Field4 As String
+	
+	Private _Field5 As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnParameterIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnParameterIDChanged()
+    End Sub
+    Partial Private Sub OnParIdChanging(value As String)
+    End Sub
+    Partial Private Sub OnParIdChanged()
+    End Sub
+    Partial Private Sub OnField1Changing(value As String)
+    End Sub
+    Partial Private Sub OnField1Changed()
+    End Sub
+    Partial Private Sub OnField2Changing(value As String)
+    End Sub
+    Partial Private Sub OnField2Changed()
+    End Sub
+    Partial Private Sub OnField3Changing(value As String)
+    End Sub
+    Partial Private Sub OnField3Changed()
+    End Sub
+    Partial Private Sub OnField4Changing(value As String)
+    End Sub
+    Partial Private Sub OnField4Changed()
+    End Sub
+    Partial Private Sub OnField5Changing(value As String)
+    End Sub
+    Partial Private Sub OnField5Changed()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ParameterID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ParameterID() As System.Guid
+		Get
+			Return Me._ParameterID
+		End Get
+		Set
+			If ((Me._ParameterID = value)  _
+						= false) Then
+				Me.OnParameterIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ParameterID = value
+				Me.SendPropertyChanged("ParameterID")
+				Me.OnParameterIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ParId", DbType:="NVarChar(50)")>  _
+	Public Property ParId() As String
+		Get
+			Return Me._ParId
+		End Get
+		Set
+			If (String.Equals(Me._ParId, value) = false) Then
+				Me.OnParIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ParId = value
+				Me.SendPropertyChanged("ParId")
+				Me.OnParIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field1", DbType:="NVarChar(50)")>  _
+	Public Property Field1() As String
+		Get
+			Return Me._Field1
+		End Get
+		Set
+			If (String.Equals(Me._Field1, value) = false) Then
+				Me.OnField1Changing(value)
+				Me.SendPropertyChanging
+				Me._Field1 = value
+				Me.SendPropertyChanged("Field1")
+				Me.OnField1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field2", DbType:="NVarChar(50)")>  _
+	Public Property Field2() As String
+		Get
+			Return Me._Field2
+		End Get
+		Set
+			If (String.Equals(Me._Field2, value) = false) Then
+				Me.OnField2Changing(value)
+				Me.SendPropertyChanging
+				Me._Field2 = value
+				Me.SendPropertyChanged("Field2")
+				Me.OnField2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field3", DbType:="NVarChar(50)")>  _
+	Public Property Field3() As String
+		Get
+			Return Me._Field3
+		End Get
+		Set
+			If (String.Equals(Me._Field3, value) = false) Then
+				Me.OnField3Changing(value)
+				Me.SendPropertyChanging
+				Me._Field3 = value
+				Me.SendPropertyChanged("Field3")
+				Me.OnField3Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field4", DbType:="NVarChar(50)")>  _
+	Public Property Field4() As String
+		Get
+			Return Me._Field4
+		End Get
+		Set
+			If (String.Equals(Me._Field4, value) = false) Then
+				Me.OnField4Changing(value)
+				Me.SendPropertyChanging
+				Me._Field4 = value
+				Me.SendPropertyChanged("Field4")
+				Me.OnField4Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Field5", DbType:="NVarChar(50)")>  _
+	Public Property Field5() As String
+		Get
+			Return Me._Field5
+		End Get
+		Set
+			If (String.Equals(Me._Field5, value) = false) Then
+				Me.OnField5Changing(value)
+				Me.SendPropertyChanging
+				Me._Field5 = value
+				Me.SendPropertyChanged("Field5")
+				Me.OnField5Changed
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class
 
 Partial Public Class aspnet_Roles_GetAllRolesResult
