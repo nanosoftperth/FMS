@@ -1221,14 +1221,6 @@
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblMYOBMatch" Member="tblMYOBMatches">
-    <Type Name="tblMYOBMatch">
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MYOBId" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ImportedCustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblParameters" Member="tblParameters">
     <Type Name="tblParameter">
       <Column Name="ParameterID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1238,6 +1230,15 @@
       <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblMYOBMatch" Member="tblMYOBMatches">
+    <Type Name="tblMYOBMatch">
+      <Column Name="MatchID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MYOBId" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ImportedCustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
