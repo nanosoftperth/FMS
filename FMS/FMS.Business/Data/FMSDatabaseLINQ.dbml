@@ -1190,16 +1190,6 @@
       <Column Name="SortOrder" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblParameters" Member="tblParameters">
-    <Type Name="tblParameter">
-      <Column Name="ParId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblMYOBInvoicing" Member="tblMYOBInvoicings">
     <Type Name="tblMYOBInvoicing">
       <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -1237,6 +1227,17 @@
       <Column Name="MYOBId" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="ImportedCustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblParameters" Member="tblParameters">
+    <Type Name="tblParameter">
+      <Column Name="ParameterID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ParId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
