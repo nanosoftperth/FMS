@@ -11,7 +11,7 @@
             Dim objCustomerAgent As New FMS.Business.tblCustomerAgent
             With objCustomerAgent
                 .CustomerAgentID = Guid.NewGuid
-                .AID = tblProjectID.CustomerAgentIDCreateOrUpdate()
+                .AID = tblProjectID.CustomerAgentIDCreateOrUpdate(CustomerAgent.ApplicationID)
                 .ApplicationID = CustomerAgent.ApplicationID
                 .CustomerAgentName = CustomerAgent.CustomerAgentName
             End With

@@ -13,7 +13,7 @@
             Dim objRateIncreaseReference As New FMS.Business.tblRateIncreaseReference
             With objRateIncreaseReference
                 .RateIncreaseID = Guid.NewGuid
-                .Aid = tblProjectID.RateIncreaseIDCreateOrUpdate()
+                .Aid = tblProjectID.RateIncreaseIDCreateOrUpdate(RateIncreaseReference.ApplicationID)
                 .ApplicationID = RateIncreaseReference.ApplicationID
                 .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
                 .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
