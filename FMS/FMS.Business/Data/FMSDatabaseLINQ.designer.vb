@@ -481,12 +481,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblCIRReason(instance As tblCIRReason)
     End Sub
-  Partial Private Sub InserttbZone(instance As tbZone)
-    End Sub
-  Partial Private Sub UpdatetbZone(instance As tbZone)
-    End Sub
-  Partial Private Sub DeletetbZone(instance As tbZone)
-    End Sub
   Partial Private Sub InserttblCustomerRating(instance As tblCustomerRating)
     End Sub
   Partial Private Sub UpdatetblCustomerRating(instance As tblCustomerRating)
@@ -565,10 +559,16 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblMYOBMatch(instance As tblMYOBMatch)
     End Sub
+  Partial Private Sub InserttbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub UpdatetbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub DeletetbZone(instance As tbZone)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
+        MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -1090,12 +1090,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
-		Get
-			Return Me.GetTable(Of tbZone)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblCustomerRatings() As System.Data.Linq.Table(Of tblCustomerRating)
 		Get
 			Return Me.GetTable(Of tblCustomerRating)
@@ -1189,6 +1183,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblMYOBMatches() As System.Data.Linq.Table(Of tblMYOBMatch)
 		Get
 			Return Me.GetTable(Of tblMYOBMatch)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
+		Get
+			Return Me.GetTable(Of tbZone)
 		End Get
 	End Property
 	
@@ -20058,113 +20058,6 @@ Partial Public Class tblCIRReason
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tbZones")>  _
-Partial Public Class tbZone
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ZoneID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _AreaDescription As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnZoneIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnZoneIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnAreaDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnAreaDescriptionChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ZoneID() As System.Guid
-		Get
-			Return Me._ZoneID
-		End Get
-		Set
-			If ((Me._ZoneID = value)  _
-						= false) Then
-				Me.OnZoneIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ZoneID = value
-				Me.SendPropertyChanged("ZoneID")
-				Me.OnZoneIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
-	Public Property AreaDescription() As String
-		Get
-			Return Me._AreaDescription
-		End Get
-		Set
-			If (String.Equals(Me._AreaDescription, value) = false) Then
-				Me.OnAreaDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._AreaDescription = value
-				Me.SendPropertyChanged("AreaDescription")
-				Me.OnAreaDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerRating")>  _
 Partial Public Class tblCustomerRating
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -22984,6 +22877,135 @@ Partial Public Class tblMYOBMatch
 				Me._ImportedCustomerName = value
 				Me.SendPropertyChanged("ImportedCustomerName")
 				Me.OnImportedCustomerNameChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tbZones")>  _
+Partial Public Class tbZone
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ZoneID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _AreaDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnZoneIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnZoneIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnAreaDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ZoneID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ZoneID() As System.Guid
+		Get
+			Return Me._ZoneID
+		End Get
+		Set
+			If ((Me._ZoneID = value)  _
+						= false) Then
+				Me.OnZoneIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ZoneID = value
+				Me.SendPropertyChanged("ZoneID")
+				Me.OnZoneIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
+	Public Property AreaDescription() As String
+		Get
+			Return Me._AreaDescription
+		End Get
+		Set
+			If (String.Equals(Me._AreaDescription, value) = false) Then
+				Me.OnAreaDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._AreaDescription = value
+				Me.SendPropertyChanged("AreaDescription")
+				Me.OnAreaDescriptionChanged
 			End If
 		End Set
 	End Property
