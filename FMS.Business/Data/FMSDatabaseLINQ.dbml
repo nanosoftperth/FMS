@@ -1034,13 +1034,6 @@
       <Column Name="NoOfWeeks" Type="System.Single" DbType="Real" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblCustomerAgents" Member="tblCustomerAgents">
-    <Type Name="tblCustomerAgent">
-      <Column Name="CustomerAgentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="AID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblContractCeaseReasons" Member="tblContractCeaseReasons">
     <Type Name="tblContractCeaseReason">
       <Column Name="CeaseReasonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1240,6 +1233,14 @@
       <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="AreaDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCustomerAgents" Member="tblCustomerAgents">
+    <Type Name="tblCustomerAgent">
+      <Column Name="CustomerAgentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

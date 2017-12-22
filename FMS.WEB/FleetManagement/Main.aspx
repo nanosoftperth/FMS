@@ -155,7 +155,7 @@
     <div>
         <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" 
             Modal="True">
-            <Image Url="../Content/Images/drop.gif"/>
+            <Image URL="../Content/Images/Gear Set.gif"/>
         </dx:ASPxLoadingPanel>
     </div>
 </asp:Content>

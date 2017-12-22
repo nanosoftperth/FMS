@@ -9,16 +9,20 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <dx:ASPxGridView ID="CustomerAgentsGridView" KeyFieldName="CustomerAgentID" DataSourceID="odsCustomerAgents" Theme="SoftOrange" runat="server">
+        <dx:ASPxGridView ID="CustomerAgentsGridView" KeyFieldName="CustomerAgentID" DataSourceID="odsCustomerAgents" 
+            Theme="SoftOrange" runat="server" AutoGenerateColumns="False"
+            OnRowInserting="CustomerAgentsGridView_RowInserting"
+            OnRowUpdating="CustomerAgentsGridView_RowUpdating"
+            OnRowDeleting="CustomerAgentsGridView_RowDeleting">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
-            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1" />
             <SettingsPopup>
-                <EditForm  Modal="true" 
-                    VerticalAlign="WindowCenter" 
-                    HorizontalAlign="WindowCenter" width="300px" />
+                <EditForm Modal="true"
+                    VerticalAlign="WindowCenter"
+                    HorizontalAlign="WindowCenter" Width="300px" />
             </SettingsPopup>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
@@ -27,7 +31,11 @@
                 <dx:GridViewDataTextColumn FieldName="CustomerAgentName" VisibleIndex="3"></dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
-        <asp:ObjectDataSource ID="odsCustomerAgents" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerAgent" DataObjectTypeName="FMS.Business.DataObjects.tblCustomerAgent" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsCustomerAgents" runat="server" SelectMethod="GetAllByApplicationID" TypeName="FMS.Business.DataObjects.tblCustomerAgent" DataObjectTypeName="FMS.Business.DataObjects.tblCustomerAgent" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">
+            <SelectParameters>
+                <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appID"></asp:SessionParameter>
+            </SelectParameters>
+        </asp:ObjectDataSource>
     </form>
 </body>
 </html>
