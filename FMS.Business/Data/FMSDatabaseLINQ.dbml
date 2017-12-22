@@ -1018,13 +1018,6 @@
       <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblIndustryGroups" Member="tblIndustryGroups">
-    <Type Name="tblIndustryGroup">
-      <Column Name="IndustryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblInvoicingFrequency" Member="tblInvoicingFrequencies">
     <Type Name="tblInvoicingFrequency">
       <Column Name="InvoiceFrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1118,29 +1111,6 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="AL_Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblProjectID" Member="tblProjectIDs">
-    <Type Name="tblProjectID">
-      <Column Name="ProjectID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CustomersID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SitesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IndustryGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InvoiceFrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CustomerAgentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CeaseReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CIRReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZoneID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CustomerRatingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RateIncreaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PreviousSupplierID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FortnightlyCyclesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RevenueChangeReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ServicesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SalesPersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FuelLevyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunSheetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblzGenerateRunSheets" Member="tblzGenerateRunSheets">
@@ -1243,6 +1213,38 @@
       <Column Name="ServiceCode" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
       <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="CostOfService" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblIndustryGroups" Member="tblIndustryGroups">
+    <Type Name="tblIndustryGroup">
+      <Column Name="IndustryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblProjectID" Member="tblProjectIDs">
+    <Type Name="tblProjectID">
+      <Column Name="ProjectID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CustomersID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SitesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IndustryGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceFrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerAgentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CeaseReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CIRReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZoneID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerRatingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RateIncreaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PreviousSupplierID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FortnightlyCyclesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RevenueChangeReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServicesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SalesPersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FuelLevyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunSheetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
@@ -1416,14 +1418,6 @@
       <Column Name="DriverName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="InActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Source" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.usp_GetIndustryGroup" Method="usp_GetIndustryGroup">
-    <ElementType Name="usp_GetIndustryGroupResult">
-      <Column Name="IndustryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.usp_GetCustomers" Method="usp_GetCustomers">
@@ -2112,5 +2106,14 @@
   </Function>
   <Function Name="dbo.usp_UpdateCustomersBaseOnCardID" Method="usp_UpdateCustomersBaseOnCardID">
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_GetIndustryGroup" Method="usp_GetIndustryGroup">
+    <ElementType Name="usp_GetIndustryGroupResult">
+      <Column Name="IndustryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

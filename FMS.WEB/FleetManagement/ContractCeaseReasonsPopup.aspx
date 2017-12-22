@@ -25,7 +25,7 @@
                 <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                 <Settings ShowPreview="true" />
                 <SettingsPager PageSize="10" />
-                <SettingsEditing Mode="PopupEditForm"/>
+                <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
                 <SettingsPopup>
                     <EditForm  Modal="true" 
                         VerticalAlign="WindowCenter" 

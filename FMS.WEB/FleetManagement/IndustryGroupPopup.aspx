@@ -9,12 +9,15 @@
 <body>
     <form id="form1" runat="server">
     <div style="text-align:center">
-        <dx:ASPxGridView ID="IndustryGroupsGridView" KeyFieldName="IndustryID" DataSourceID="odsIndustryGroups" runat="server" AutoGenerateColumns="False">
+        <dx:ASPxGridView ID="IndustryGroupsGridView" KeyFieldName="IndustryID" DataSourceID="odsIndustryGroups" runat="server" AutoGenerateColumns="False"
+            OnRowInserting="IndustryGroupsGridView_RowInserting"
+            OnRowUpdating="IndustryGroupsGridView_RowUpdating"
+            OnRowDeleting="IndustryGroupsGridView_RowDeleting">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
-            <SettingsEditing Mode="PopupEditForm"/>
+            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
             <SettingsPopup>
                 <EditForm  Modal="true" 
                     VerticalAlign="WindowCenter" 
@@ -27,7 +30,11 @@
                 <dx:GridViewDataTextColumn FieldName="IndustryDescription" VisibleIndex="3"></dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
-        <asp:ObjectDataSource ID="odsIndustryGroups" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblIndustryGroups" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblIndustryGroups" UpdateMethod="Update"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsIndustryGroups" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblIndustryGroups" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAllByApplicationID" TypeName="FMS.Business.DataObjects.tblIndustryGroups" UpdateMethod="Update">
+            <SelectParameters>
+                <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appID"></asp:SessionParameter>
+            </SelectParameters>
+        </asp:ObjectDataSource>
     </div>
     </form>
 </body>

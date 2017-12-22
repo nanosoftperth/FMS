@@ -11,7 +11,7 @@
             Dim objZone As New FMS.Business.tbZone
             With objZone
                 .ZoneID = Guid.NewGuid
-                .Aid = tblProjectID.ZoneIDCreateOrUpdate()
+                .Aid = tblProjectID.ZoneIDCreateOrUpdate(Zone.ApplicationID)
                 .ApplicationID = Zone.ApplicationID
                 .AreaDescription = Zone.AreaDescription
             End With
