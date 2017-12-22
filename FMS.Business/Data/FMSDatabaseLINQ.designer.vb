@@ -481,12 +481,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblCustomerRating(instance As tblCustomerRating)
     End Sub
-  Partial Private Sub InserttblRateIncreaseReference(instance As tblRateIncreaseReference)
-    End Sub
-  Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
-    End Sub
-  Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
-    End Sub
   Partial Private Sub InserttblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
   Partial Private Sub UpdatetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
@@ -564,6 +558,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
     End Sub
   Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
+    End Sub
+  Partial Private Sub InserttblRateIncreaseReference(instance As tblRateIncreaseReference)
+    End Sub
+  Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
+    End Sub
+  Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
   #End Region
 	
@@ -1090,12 +1090,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
-		Get
-			Return Me.GetTable(Of tblRateIncreaseReference)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblRunFortnightlyCycles() As System.Data.Linq.Table(Of tblRunFortnightlyCycle)
 		Get
 			Return Me.GetTable(Of tblRunFortnightlyCycle)
@@ -1189,6 +1183,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
 		Get
 			Return Me.GetTable(Of tblCustomerAgent)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
+		Get
+			Return Me.GetTable(Of tblRateIncreaseReference)
 		End Get
 	End Property
 	
@@ -20124,159 +20124,6 @@ Partial Public Class tblCustomerRating
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRateIncreaseReference")>  _
-Partial Public Class tblRateIncreaseReference
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _RateIncreaseID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _RateIncreaseDescription As String
-	
-	Private _AnnualIncreaseApplies As Boolean
-	
-	Private _AlreadyDoneThisYear As Boolean
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnRateIncreaseIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnRateIncreaseIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnRateIncreaseDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnRateIncreaseDescriptionChanged()
-    End Sub
-    Partial Private Sub OnAnnualIncreaseAppliesChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnAnnualIncreaseAppliesChanged()
-    End Sub
-    Partial Private Sub OnAlreadyDoneThisYearChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnAlreadyDoneThisYearChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property RateIncreaseID() As System.Guid
-		Get
-			Return Me._RateIncreaseID
-		End Get
-		Set
-			If ((Me._RateIncreaseID = value)  _
-						= false) Then
-				Me.OnRateIncreaseIDChanging(value)
-				Me.SendPropertyChanging
-				Me._RateIncreaseID = value
-				Me.SendPropertyChanged("RateIncreaseID")
-				Me.OnRateIncreaseIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseDescription", DbType:="NVarChar(25)")>  _
-	Public Property RateIncreaseDescription() As String
-		Get
-			Return Me._RateIncreaseDescription
-		End Get
-		Set
-			If (String.Equals(Me._RateIncreaseDescription, value) = false) Then
-				Me.OnRateIncreaseDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._RateIncreaseDescription = value
-				Me.SendPropertyChanged("RateIncreaseDescription")
-				Me.OnRateIncreaseDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualIncreaseApplies", DbType:="Bit NOT NULL")>  _
-	Public Property AnnualIncreaseApplies() As Boolean
-		Get
-			Return Me._AnnualIncreaseApplies
-		End Get
-		Set
-			If ((Me._AnnualIncreaseApplies = value)  _
-						= false) Then
-				Me.OnAnnualIncreaseAppliesChanging(value)
-				Me.SendPropertyChanging
-				Me._AnnualIncreaseApplies = value
-				Me.SendPropertyChanged("AnnualIncreaseApplies")
-				Me.OnAnnualIncreaseAppliesChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AlreadyDoneThisYear", DbType:="Bit NOT NULL")>  _
-	Public Property AlreadyDoneThisYear() As Boolean
-		Get
-			Return Me._AlreadyDoneThisYear
-		End Get
-		Set
-			If ((Me._AlreadyDoneThisYear = value)  _
-						= false) Then
-				Me.OnAlreadyDoneThisYearChanging(value)
-				Me.SendPropertyChanging
-				Me._AlreadyDoneThisYear = value
-				Me.SendPropertyChanged("AlreadyDoneThisYear")
-				Me.OnAlreadyDoneThisYearChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRunFortnightlyCycles")>  _
 Partial Public Class tblRunFortnightlyCycle
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -23028,6 +22875,181 @@ Partial Public Class tblCustomerAgent
 				Me._CustomerAgentName = value
 				Me.SendPropertyChanged("CustomerAgentName")
 				Me.OnCustomerAgentNameChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRateIncreaseReference")>  _
+Partial Public Class tblRateIncreaseReference
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RateIncreaseID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _RateIncreaseDescription As String
+	
+	Private _AnnualIncreaseApplies As Boolean
+	
+	Private _AlreadyDoneThisYear As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRateIncreaseIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnRateIncreaseDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnRateIncreaseDescriptionChanged()
+    End Sub
+    Partial Private Sub OnAnnualIncreaseAppliesChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnAnnualIncreaseAppliesChanged()
+    End Sub
+    Partial Private Sub OnAlreadyDoneThisYearChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnAlreadyDoneThisYearChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RateIncreaseID() As System.Guid
+		Get
+			Return Me._RateIncreaseID
+		End Get
+		Set
+			If ((Me._RateIncreaseID = value)  _
+						= false) Then
+				Me.OnRateIncreaseIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RateIncreaseID = value
+				Me.SendPropertyChanged("RateIncreaseID")
+				Me.OnRateIncreaseIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RateIncreaseDescription", DbType:="NVarChar(25)")>  _
+	Public Property RateIncreaseDescription() As String
+		Get
+			Return Me._RateIncreaseDescription
+		End Get
+		Set
+			If (String.Equals(Me._RateIncreaseDescription, value) = false) Then
+				Me.OnRateIncreaseDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._RateIncreaseDescription = value
+				Me.SendPropertyChanged("RateIncreaseDescription")
+				Me.OnRateIncreaseDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualIncreaseApplies", DbType:="Bit NOT NULL")>  _
+	Public Property AnnualIncreaseApplies() As Boolean
+		Get
+			Return Me._AnnualIncreaseApplies
+		End Get
+		Set
+			If ((Me._AnnualIncreaseApplies = value)  _
+						= false) Then
+				Me.OnAnnualIncreaseAppliesChanging(value)
+				Me.SendPropertyChanging
+				Me._AnnualIncreaseApplies = value
+				Me.SendPropertyChanged("AnnualIncreaseApplies")
+				Me.OnAnnualIncreaseAppliesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AlreadyDoneThisYear", DbType:="Bit NOT NULL")>  _
+	Public Property AlreadyDoneThisYear() As Boolean
+		Get
+			Return Me._AlreadyDoneThisYear
+		End Get
+		Set
+			If ((Me._AlreadyDoneThisYear = value)  _
+						= false) Then
+				Me.OnAlreadyDoneThisYearChanging(value)
+				Me.SendPropertyChanging
+				Me._AlreadyDoneThisYear = value
+				Me.SendPropertyChanged("AlreadyDoneThisYear")
+				Me.OnAlreadyDoneThisYearChanged
 			End If
 		End Set
 	End Property
