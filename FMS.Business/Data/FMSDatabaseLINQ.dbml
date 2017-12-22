@@ -1089,15 +1089,6 @@
       <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblServices" Member="tblServices">
-    <Type Name="tblService">
-      <Column Name="ServicesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Sid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ServiceCode" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
-      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CostOfService" Type="System.Single" DbType="Real" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblSalesPersons" Member="tblSalesPersons">
     <Type Name="tblSalesPerson">
       <Column Name="SalesPersonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1242,6 +1233,16 @@
       <Column Name="RateIncreaseDescription" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
       <Column Name="AnnualIncreaseApplies" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="AlreadyDoneThisYear" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblServices" Member="tblServices">
+    <Type Name="tblService">
+      <Column Name="ServicesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Sid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ServiceCode" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CostOfService" Type="System.Single" DbType="Real" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

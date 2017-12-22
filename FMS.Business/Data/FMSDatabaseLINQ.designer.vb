@@ -505,12 +505,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
     End Sub
-  Partial Private Sub InserttblService(instance As tblService)
-    End Sub
-  Partial Private Sub UpdatetblService(instance As tblService)
-    End Sub
-  Partial Private Sub DeletetblService(instance As tblService)
-    End Sub
   Partial Private Sub InserttblSalesPerson(instance As tblSalesPerson)
     End Sub
   Partial Private Sub UpdatetblSalesPerson(instance As tblSalesPerson)
@@ -564,6 +558,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblRateIncreaseReference(instance As tblRateIncreaseReference)
     End Sub
   Partial Private Sub DeletetblRateIncreaseReference(instance As tblRateIncreaseReference)
+    End Sub
+  Partial Private Sub InserttblService(instance As tblService)
+    End Sub
+  Partial Private Sub UpdatetblService(instance As tblService)
+    End Sub
+  Partial Private Sub DeletetblService(instance As tblService)
     End Sub
   #End Region
 	
@@ -1114,12 +1114,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblServices() As System.Data.Linq.Table(Of tblService)
-		Get
-			Return Me.GetTable(Of tblService)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblSalesPersons() As System.Data.Linq.Table(Of tblSalesPerson)
 		Get
 			Return Me.GetTable(Of tblSalesPerson)
@@ -1189,6 +1183,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblRateIncreaseReferences() As System.Data.Linq.Table(Of tblRateIncreaseReference)
 		Get
 			Return Me.GetTable(Of tblRateIncreaseReference)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblServices() As System.Data.Linq.Table(Of tblService)
+		Get
+			Return Me.GetTable(Of tblService)
 		End Get
 	End Property
 	
@@ -20619,157 +20619,6 @@ Partial Public Class tblServiceFrequency
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServices")>  _
-Partial Public Class tblService
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ServicesID As System.Guid
-	
-	Private _Sid As Integer
-	
-	Private _ServiceCode As String
-	
-	Private _ServiceDescription As String
-	
-	Private _CostOfService As System.Nullable(Of Single)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnServicesIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnServicesIDChanged()
-    End Sub
-    Partial Private Sub OnSidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnSidChanged()
-    End Sub
-    Partial Private Sub OnServiceCodeChanging(value As String)
-    End Sub
-    Partial Private Sub OnServiceCodeChanged()
-    End Sub
-    Partial Private Sub OnServiceDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnServiceDescriptionChanged()
-    End Sub
-    Partial Private Sub OnCostOfServiceChanging(value As System.Nullable(Of Single))
-    End Sub
-    Partial Private Sub OnCostOfServiceChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ServicesID() As System.Guid
-		Get
-			Return Me._ServicesID
-		End Get
-		Set
-			If ((Me._ServicesID = value)  _
-						= false) Then
-				Me.OnServicesIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ServicesID = value
-				Me.SendPropertyChanged("ServicesID")
-				Me.OnServicesIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Sid", DbType:="Int NOT NULL")>  _
-	Public Property Sid() As Integer
-		Get
-			Return Me._Sid
-		End Get
-		Set
-			If ((Me._Sid = value)  _
-						= false) Then
-				Me.OnSidChanging(value)
-				Me.SendPropertyChanging
-				Me._Sid = value
-				Me.SendPropertyChanged("Sid")
-				Me.OnSidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
-	Public Property ServiceCode() As String
-		Get
-			Return Me._ServiceCode
-		End Get
-		Set
-			If (String.Equals(Me._ServiceCode, value) = false) Then
-				Me.OnServiceCodeChanging(value)
-				Me.SendPropertyChanging
-				Me._ServiceCode = value
-				Me.SendPropertyChanged("ServiceCode")
-				Me.OnServiceCodeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
-	Public Property ServiceDescription() As String
-		Get
-			Return Me._ServiceDescription
-		End Get
-		Set
-			If (String.Equals(Me._ServiceDescription, value) = false) Then
-				Me.OnServiceDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._ServiceDescription = value
-				Me.SendPropertyChanged("ServiceDescription")
-				Me.OnServiceDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CostOfService", DbType:="Real")>  _
-	Public Property CostOfService() As System.Nullable(Of Single)
-		Get
-			Return Me._CostOfService
-		End Get
-		Set
-			If (Me._CostOfService.Equals(value) = false) Then
-				Me.OnCostOfServiceChanging(value)
-				Me.SendPropertyChanging
-				Me._CostOfService = value
-				Me.SendPropertyChanged("CostOfService")
-				Me.OnCostOfServiceChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSalesPersons")>  _
 Partial Public Class tblSalesPerson
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -23050,6 +22899,179 @@ Partial Public Class tblRateIncreaseReference
 				Me._AlreadyDoneThisYear = value
 				Me.SendPropertyChanged("AlreadyDoneThisYear")
 				Me.OnAlreadyDoneThisYearChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServices")>  _
+Partial Public Class tblService
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ServicesID As System.Guid
+	
+	Private _Sid As Integer
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _ServiceCode As String
+	
+	Private _ServiceDescription As String
+	
+	Private _CostOfService As System.Nullable(Of Single)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnServicesIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnServicesIDChanged()
+    End Sub
+    Partial Private Sub OnSidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSidChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnServiceCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnServiceCodeChanged()
+    End Sub
+    Partial Private Sub OnServiceDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnServiceDescriptionChanged()
+    End Sub
+    Partial Private Sub OnCostOfServiceChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnCostOfServiceChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ServicesID() As System.Guid
+		Get
+			Return Me._ServicesID
+		End Get
+		Set
+			If ((Me._ServicesID = value)  _
+						= false) Then
+				Me.OnServicesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ServicesID = value
+				Me.SendPropertyChanged("ServicesID")
+				Me.OnServicesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Sid", DbType:="Int NOT NULL")>  _
+	Public Property Sid() As Integer
+		Get
+			Return Me._Sid
+		End Get
+		Set
+			If ((Me._Sid = value)  _
+						= false) Then
+				Me.OnSidChanging(value)
+				Me.SendPropertyChanging
+				Me._Sid = value
+				Me.SendPropertyChanged("Sid")
+				Me.OnSidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
+	Public Property ServiceCode() As String
+		Get
+			Return Me._ServiceCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceCode, value) = false) Then
+				Me.OnServiceCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceCode = value
+				Me.SendPropertyChanged("ServiceCode")
+				Me.OnServiceCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me.OnServiceDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._ServiceDescription = value
+				Me.SendPropertyChanged("ServiceDescription")
+				Me.OnServiceDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CostOfService", DbType:="Real")>  _
+	Public Property CostOfService() As System.Nullable(Of Single)
+		Get
+			Return Me._CostOfService
+		End Get
+		Set
+			If (Me._CostOfService.Equals(value) = false) Then
+				Me.OnCostOfServiceChanging(value)
+				Me.SendPropertyChanging
+				Me._CostOfService = value
+				Me.SendPropertyChanged("CostOfService")
+				Me.OnCostOfServiceChanged
 			End If
 		End Set
 	End Property
