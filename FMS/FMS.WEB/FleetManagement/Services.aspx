@@ -9,7 +9,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <dx:ASPxGridView ID="ServicesGridView" KeyFieldName="ServicesID" DataSourceID="odsServices" runat="server" Theme="SoftOrange" AutoGenerateColumns="False">
+        <dx:ASPxGridView ID="ServicesGridView" KeyFieldName="ServicesID" DataSourceID="odsServices" 
+            runat="server" Theme="SoftOrange" AutoGenerateColumns="False"
+            OnRowInserting="ServicesGridView_RowInserting"
+            OnRowUpdating="ServicesGridView_RowUpdating"
+            OnRowDeleting="ServicesGridView_RowDeleting">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
@@ -24,12 +28,16 @@
                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="ServicesID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Sid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="ServiceCode" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="ServiceCode" VisibleIndex="3" PropertiesTextEdit-MaxLength="8"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="ServiceDescription" VisibleIndex="4"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="CostOfService" VisibleIndex="5"></dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
-        <asp:ObjectDataSource ID="odsServices" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblServices" DataObjectTypeName="FMS.Business.DataObjects.tblServices" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsServices" runat="server" SelectMethod="GetAllByApplicationID" TypeName="FMS.Business.DataObjects.tblServices" DataObjectTypeName="FMS.Business.DataObjects.tblServices" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">
+            <SelectParameters>
+                <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appID"></asp:SessionParameter>
+            </SelectParameters>
+        </asp:ObjectDataSource>
     </form>
 </body>
 </html>
