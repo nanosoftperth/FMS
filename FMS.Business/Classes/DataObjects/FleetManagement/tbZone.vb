@@ -3,6 +3,7 @@
 #Region "Properties / enums"
         Public Property ZoneID As System.Guid
         Public Property Aid As Integer
+        Public Property ApplicationID As System.Nullable(Of System.Guid)
         Public Property AreaDescription As String
 #End Region
 #Region "CRUD"
@@ -11,6 +12,7 @@
             With objZone
                 .ZoneID = Guid.NewGuid
                 .Aid = tblProjectID.ZoneIDCreateOrUpdate()
+                .ApplicationID = Zone.ApplicationID
                 .AreaDescription = Zone.AreaDescription
             End With
             SingletonAccess.FMSDataContextContignous.tbZones.InsertOnSubmit(objZone)
@@ -18,7 +20,7 @@
         End Sub
         Public Shared Sub Update(Zone As DataObjects.tbZone)
             Dim objZone As FMS.Business.tbZone = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                                                           Where c.ZoneID.Equals(Zone.ZoneID)).SingleOrDefault
+                                                           Where c.ZoneID.Equals(Zone.ZoneID) And c.ApplicationID.Equals(Zone.ApplicationID)).SingleOrDefault
             With objZone
                 .AreaDescription = Zone.AreaDescription
             End With
@@ -26,7 +28,7 @@
         End Sub
         Public Shared Sub Delete(Zone As DataObjects.tbZone)
             Dim objZone As FMS.Business.tbZone = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                                                         Where c.ZoneID.Equals(Zone.ZoneID)).SingleOrDefault
+                                                         Where c.ZoneID.Equals(Zone.ZoneID) And c.ApplicationID.Equals(Zone.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tbZones.DeleteOnSubmit(objZone)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -34,6 +36,13 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tbZone)
             Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
+                            Order By c.AreaDescription
+                                          Select New DataObjects.tbZone(c)).ToList
+            Return objZones
+        End Function
+        Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tbZone)
+            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
+                            Where c.ApplicationID.Equals(appID)
                             Order By c.AreaDescription
                                           Select New DataObjects.tbZone(c)).ToList
             Return objZones
@@ -54,6 +63,7 @@
             With objTbZone
                 Me.ZoneID = .ZoneID
                 Me.Aid = .Aid
+                Me.ApplicationID = .ApplicationID
                 Me.AreaDescription = .AreaDescription
             End With
         End Sub
