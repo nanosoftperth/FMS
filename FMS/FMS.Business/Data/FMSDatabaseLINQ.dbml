@@ -1058,15 +1058,6 @@
       <Column Name="ToValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblRateIncreaseReference" Member="tblRateIncreaseReferences">
-    <Type Name="tblRateIncreaseReference">
-      <Column Name="RateIncreaseID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RateIncreaseDescription" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="AnnualIncreaseApplies" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="AlreadyDoneThisYear" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblRunFortnightlyCycles" Member="tblRunFortnightlyCycles">
     <Type Name="tblRunFortnightlyCycle">
       <Column Name="FortnightlyCyclesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1241,6 +1232,16 @@
       <Column Name="AID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRateIncreaseReference" Member="tblRateIncreaseReferences">
+    <Type Name="tblRateIncreaseReference">
+      <Column Name="RateIncreaseID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RateIncreaseDescription" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="AnnualIncreaseApplies" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AlreadyDoneThisYear" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

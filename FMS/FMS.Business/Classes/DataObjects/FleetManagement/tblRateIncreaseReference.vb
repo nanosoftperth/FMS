@@ -3,6 +3,7 @@
 #Region "Properties / enums"
         Public Property RateIncreaseID As System.Guid
         Public Property Aid As Integer
+        Public Property ApplicationID As System.Nullable(Of System.Guid)
         Public Property RateIncreaseDescription As String
         Public Property AnnualIncreaseApplies As Boolean
         Public Property AlreadyDoneThisYear As Boolean
@@ -13,6 +14,7 @@
             With objRateIncreaseReference
                 .RateIncreaseID = Guid.NewGuid
                 .Aid = tblProjectID.RateIncreaseIDCreateOrUpdate()
+                .ApplicationID = RateIncreaseReference.ApplicationID
                 .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
                 .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
                 .AlreadyDoneThisYear = RateIncreaseReference.AlreadyDoneThisYear
@@ -22,7 +24,7 @@
         End Sub
         Public Shared Sub Update(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                                           Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID)).SingleOrDefault
+                                                           Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
             With objRateIncreaseReference
                 .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
                 .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
@@ -32,7 +34,7 @@
         End Sub
         Public Shared Sub Delete(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID)).SingleOrDefault
+                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences.DeleteOnSubmit(objRateIncreaseReference)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -40,6 +42,13 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblRateIncreaseReference)
             Dim objRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
+                                            Order By c.RateIncreaseDescription
+                                          Select New DataObjects.tblRateIncreaseReference(c)).ToList
+            Return objRateIncreaseReference
+        End Function
+        Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tblRateIncreaseReference)
+            Dim objRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
+                                            Where c.ApplicationID.Equals(appID)
                                             Order By c.RateIncreaseDescription
                                           Select New DataObjects.tblRateIncreaseReference(c)).ToList
             Return objRateIncreaseReference
@@ -53,6 +62,7 @@
             With objTblRateIncreaseReference
                 Me.RateIncreaseID = .RateIncreaseID
                 Me.Aid = .Aid
+                Me.ApplicationID = .ApplicationID
                 Me.RateIncreaseDescription = .RateIncreaseDescription
                 Me.AnnualIncreaseApplies = .AnnualIncreaseApplies
                 Me.AlreadyDoneThisYear = .AlreadyDoneThisYear
