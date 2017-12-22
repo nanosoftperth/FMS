@@ -2,10 +2,12 @@
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not Request("aid") Is Nothing AndAlso Not Request("aid").Equals("") Then
-            Dim getIndustrySortOrder = FMS.Business.DataObjects.tblIndustryGroups.GetIndustryGroupSortOrder(Request("aid"), FMS.Business.ThisSession.ApplicationID)
-            If Not getIndustrySortOrder Is Nothing Then
-                IndustryGroupsGridView.StartEdit(getIndustrySortOrder.IndustrySortOrder - 1)
+        If Not Page.IsPostBack Then
+            If Not Request("aid") Is Nothing AndAlso Not Request("aid").Equals("") Then
+                Dim getIndustrySortOrder = FMS.Business.DataObjects.tblIndustryGroups.GetIndustryGroupSortOrder(Request("aid"), FMS.Business.ThisSession.ApplicationID)
+                If Not getIndustrySortOrder Is Nothing Then
+                    IndustryGroupsGridView.StartEdit(getIndustrySortOrder.IndustrySortOrder - 1)
+                End If
             End If
         End If
     End Sub

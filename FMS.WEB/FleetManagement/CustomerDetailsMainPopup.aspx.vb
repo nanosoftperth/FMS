@@ -3,10 +3,12 @@ Public Class CustomerDetailsMainPopup
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not Request("CID") Is Nothing AndAlso Not Request("CID").Equals("") Then
-            Dim getCustomerSortOrder = FMS.Business.DataObjects.tblCustomers.GetACustomerByCID(Request("CID"))
-            If Not getCustomerSortOrder Is Nothing Then
-                CustomersGridView.StartEdit(getCustomerSortOrder.CustomerSortOrder - 1)
+        If Not Page.IsPostBack Then
+            If Not Request("CID") Is Nothing AndAlso Not Request("CID").Equals("") Then
+                Dim getCustomerSortOrder = FMS.Business.DataObjects.tblCustomers.GetACustomerByCID(Request("CID"))
+                If Not getCustomerSortOrder Is Nothing Then
+                    CustomersGridView.StartEdit(getCustomerSortOrder.CustomerSortOrder - 1)
+                End If
             End If
         End If
     End Sub
