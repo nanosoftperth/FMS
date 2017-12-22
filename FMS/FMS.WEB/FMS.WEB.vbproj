@@ -1237,6 +1237,7 @@
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="Content\Images\drop.gif" />
+    <Content Include="Content\Images\Gear Set.gif" />
     <Content Include="FleetManagement\Reports\AnnualAnalysisReport.aspx" />
     <Content Include="FleetManagement\AuditChangeReasons.aspx" />
     <Content Include="FleetManagement\ContractPreviousSuppliers.aspx" />

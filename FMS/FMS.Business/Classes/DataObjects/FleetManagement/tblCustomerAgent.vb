@@ -3,6 +3,7 @@
 #Region "Properties / enums"
         Public Property CustomerAgentID As System.Guid
         Public Property AID As Integer
+        Public Property ApplicationID As System.Nullable(Of System.Guid)
         Public Property CustomerAgentName As String
 #End Region
 #Region "CRUD"
@@ -11,6 +12,7 @@
             With objCustomerAgent
                 .CustomerAgentID = Guid.NewGuid
                 .AID = tblProjectID.CustomerAgentIDCreateOrUpdate()
+                .ApplicationID = CustomerAgent.ApplicationID
                 .CustomerAgentName = CustomerAgent.CustomerAgentName
             End With
             SingletonAccess.FMSDataContextContignous.tblCustomerAgents.InsertOnSubmit(objCustomerAgent)
@@ -18,7 +20,7 @@
         End Sub
         Public Shared Sub Update(CustomerAgent As DataObjects.tblCustomerAgent)
             Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                                                           Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID)).SingleOrDefault
+                                                           Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID) And c.ApplicationID.Equals(CustomerAgent.ApplicationID)).SingleOrDefault
             With objCustomerAgent
                 .CustomerAgentName = CustomerAgent.CustomerAgentName
             End With
@@ -26,7 +28,7 @@
         End Sub
         Public Shared Sub Delete(CustomerAgent As DataObjects.tblCustomerAgent)
             Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                                                         Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID)).SingleOrDefault
+                                                         Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID) And c.ApplicationID.Equals(CustomerAgent.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblCustomerAgents.DeleteOnSubmit(objCustomerAgent)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -35,6 +37,13 @@
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerAgent)
             Dim objCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
                             Order By c.CustomerAgentName
+                                          Select New DataObjects.tblCustomerAgent(c)).ToList
+            Return objCustomerAgent
+        End Function
+        Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tblCustomerAgent)
+            Dim objCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
+                                    Where c.ApplicationID.Equals(appID)
+                                    Order By c.CustomerAgentName
                                           Select New DataObjects.tblCustomerAgent(c)).ToList
             Return objCustomerAgent
         End Function
@@ -47,6 +56,7 @@
             With objTblCustomerAgent
                 Me.CustomerAgentID = .CustomerAgentID
                 Me.AID = .AID
+                Me.ApplicationID = .ApplicationID
                 Me.CustomerAgentName = .CustomerAgentName
             End With
         End Sub

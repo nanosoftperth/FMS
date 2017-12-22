@@ -463,12 +463,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblInvoicingFrequency(instance As tblInvoicingFrequency)
     End Sub
-  Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
-    End Sub
-  Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
-    End Sub
-  Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
-    End Sub
   Partial Private Sub InserttblContractCeaseReason(instance As tblContractCeaseReason)
     End Sub
   Partial Private Sub UpdatetblContractCeaseReason(instance As tblContractCeaseReason)
@@ -564,6 +558,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetbZone(instance As tbZone)
     End Sub
   Partial Private Sub DeletetbZone(instance As tbZone)
+    End Sub
+  Partial Private Sub InserttblCustomerAgent(instance As tblCustomerAgent)
+    End Sub
+  Partial Private Sub UpdatetblCustomerAgent(instance As tblCustomerAgent)
+    End Sub
+  Partial Private Sub DeletetblCustomerAgent(instance As tblCustomerAgent)
     End Sub
   #End Region
 	
@@ -1072,12 +1072,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
-		Get
-			Return Me.GetTable(Of tblCustomerAgent)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblContractCeaseReasons() As System.Data.Linq.Table(Of tblContractCeaseReason)
 		Get
 			Return Me.GetTable(Of tblContractCeaseReason)
@@ -1189,6 +1183,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tbZones() As System.Data.Linq.Table(Of tbZone)
 		Get
 			Return Me.GetTable(Of tbZone)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCustomerAgents() As System.Data.Linq.Table(Of tblCustomerAgent)
+		Get
+			Return Me.GetTable(Of tblCustomerAgent)
 		End Get
 	End Property
 	
@@ -19737,113 +19737,6 @@ Partial Public Class tblInvoicingFrequency
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerAgents")>  _
-Partial Public Class tblCustomerAgent
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _CustomerAgentID As System.Guid
-	
-	Private _AID As Integer
-	
-	Private _CustomerAgentName As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnCustomerAgentIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnCustomerAgentIDChanged()
-    End Sub
-    Partial Private Sub OnAIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAIDChanged()
-    End Sub
-    Partial Private Sub OnCustomerAgentNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnCustomerAgentNameChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CustomerAgentID() As System.Guid
-		Get
-			Return Me._CustomerAgentID
-		End Get
-		Set
-			If ((Me._CustomerAgentID = value)  _
-						= false) Then
-				Me.OnCustomerAgentIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerAgentID = value
-				Me.SendPropertyChanged("CustomerAgentID")
-				Me.OnCustomerAgentIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AID", DbType:="Int NOT NULL")>  _
-	Public Property AID() As Integer
-		Get
-			Return Me._AID
-		End Get
-		Set
-			If ((Me._AID = value)  _
-						= false) Then
-				Me.OnAIDChanging(value)
-				Me.SendPropertyChanging
-				Me._AID = value
-				Me.SendPropertyChanged("AID")
-				Me.OnAIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerAgentName() As String
-		Get
-			Return Me._CustomerAgentName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerAgentName, value) = false) Then
-				Me.OnCustomerAgentNameChanging(value)
-				Me.SendPropertyChanging
-				Me._CustomerAgentName = value
-				Me.SendPropertyChanged("CustomerAgentName")
-				Me.OnCustomerAgentNameChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblContractCeaseReasons")>  _
 Partial Public Class tblContractCeaseReason
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -23006,6 +22899,135 @@ Partial Public Class tbZone
 				Me._AreaDescription = value
 				Me.SendPropertyChanged("AreaDescription")
 				Me.OnAreaDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCustomerAgents")>  _
+Partial Public Class tblCustomerAgent
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CustomerAgentID As System.Guid
+	
+	Private _AID As Integer
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _CustomerAgentName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCustomerAgentIDChanged()
+    End Sub
+    Partial Private Sub OnAIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerAgentNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CustomerAgentID() As System.Guid
+		Get
+			Return Me._CustomerAgentID
+		End Get
+		Set
+			If ((Me._CustomerAgentID = value)  _
+						= false) Then
+				Me.OnCustomerAgentIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentID = value
+				Me.SendPropertyChanged("CustomerAgentID")
+				Me.OnCustomerAgentIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AID", DbType:="Int NOT NULL")>  _
+	Public Property AID() As Integer
+		Get
+			Return Me._AID
+		End Get
+		Set
+			If ((Me._AID = value)  _
+						= false) Then
+				Me.OnAIDChanging(value)
+				Me.SendPropertyChanging
+				Me._AID = value
+				Me.SendPropertyChanged("AID")
+				Me.OnAIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerAgentName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerAgentName() As String
+		Get
+			Return Me._CustomerAgentName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerAgentName, value) = false) Then
+				Me.OnCustomerAgentNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerAgentName = value
+				Me.SendPropertyChanged("CustomerAgentName")
+				Me.OnCustomerAgentNameChanged
 			End If
 		End Set
 	End Property
