@@ -302,10 +302,19 @@
     <Compile Include="Reports\MYOBCustomerNumbers.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\MYOBMatchList.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PreviousInvoiceSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\QuickViewBySuburbReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ReportGeoFence_byDriverPDF.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RevenueReportByZone.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RoleListReport.vb">
@@ -482,11 +491,20 @@
     <EmbeddedResource Include="Reports\MYOBCustomerNumbers.resx">
       <DependentUpon>MYOBCustomerNumbers.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MYOBMatchList.resx">
+      <DependentUpon>MYOBMatchList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PreviousInvoiceSummaryReport.resx">
+      <DependentUpon>PreviousInvoiceSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\QuickViewBySuburbReport.resx">
       <DependentUpon>QuickViewBySuburbReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportGeoFence_byDriverPDF.resx">
       <DependentUpon>ReportGeoFence_byDriverPDF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RevenueReportByZone.resx">
+      <DependentUpon>RevenueReportByZone.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RoleListReport.resx">
       <DependentUpon>RoleListReport.vb</DependentUpon>

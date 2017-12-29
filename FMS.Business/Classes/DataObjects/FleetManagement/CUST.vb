@@ -70,14 +70,30 @@
             Return oCust
         End Function
 
-        Public Shared Function GetAllExistInTableCustomer() As List(Of DataObjects.CUST)
+        Public Shared Function GetAllExistInTableCustomer() As List(Of DataObjects.tblCustomers)
+            Dim oCust = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
+                           Where (From cs In SingletonAccess.FMSDataContextContignous.CUSTs
+                              Select cs.CardID).Contains(c.MYOBCustomerNumber)
+                           Select New DataObjects.tblCustomers(c)).ToList()
 
-            Dim oCust = (From c In SingletonAccess.FMSDataContextContignous.CUSTs
-                            Where (From cs In SingletonAccess.FMSDataContextContignous.tblCustomers
-                               Select cs.MYOBCustomerNumber).Contains(c.CardID)
-                            Select New DataObjects.CUST(c)).ToList()
+            'Dim oCust = (From c In SingletonAccess.FMSDataContextContignous.CUSTs
+            '                Where (From cs In SingletonAccess.FMSDataContextContignous.tblCustomers
+            '                   Select cs.MYOBCustomerNumber).Contains(c.CardID)
+            '                Select New DataObjects.CUST(c)).ToList()
 
             Return oCust
+        End Function
+
+        Public Shared Function UpdateCustomerBasedOnCardID() As Boolean
+            Try
+                SingletonAccess.FMSDataContextContignous.usp_UpdateCustomersBaseOnCardID()
+
+                Return True
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
         
 #End Region

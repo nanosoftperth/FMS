@@ -20,6 +20,8 @@
                 Return New FMS.ReportLogic.GenerateRunSheetsDetailReport()
             Case "IndustryListReport"
                 Return New FMS.ReportLogic.IndustryListReport()
+            Case "RevenueReportByZone"
+                Return New FMS.ReportLogic.RevenueReportByZone()
             Case "QuickViewBySuburbReport"
                 Return New FMS.ReportLogic.QuickViewBySuburbReport()
             Case "ServiceListReport"
