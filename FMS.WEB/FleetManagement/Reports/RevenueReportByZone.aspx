@@ -11,7 +11,7 @@
     <script type="text/javascript">
         function btnProcessReport_Click() {
             LoadingPanel.Show();
-            $("#frmContent").attr("src", "ReportContentPage.aspx?Report=RevenueReportByZone");
+            $("#frmContent").attr("src", "../ReportContentPage.aspx?Report=RevenueReportByZone");
         }
 
         $(function () {
