@@ -88,14 +88,16 @@
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
-        Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
@@ -116,6 +118,7 @@
         Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
         Me.SubBand1 = New DevExpress.XtraReports.UI.SubBand()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ObjectDataSource4 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
@@ -151,15 +154,24 @@
         Me.IncludeServiceInformation = New DevExpress.XtraReports.Parameters.Parameter()
         Me.CustomerList = New DevExpress.XtraReports.Parameters.Parameter()
         Me.SiteList = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.ObjectDataSource4 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        '
+        'ObjectDataSource2
+        '
+        Me.ObjectDataSource2.DataMember = "GetAllOrderByCustomerName"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.Business.DataObjects.tblCustomers)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
+        '
+        'ObjectDataSource3
+        '
+        Me.ObjectDataSource3.DataMember = "GetAll"
+        Me.ObjectDataSource3.DataSource = GetType(FMS.Business.DataObjects.tblSites)
+        Me.ObjectDataSource3.Name = "ObjectDataSource3"
         '
         'Detail
         '
@@ -384,6 +396,19 @@
         XrSummary1.FormatString = "{0:0.00}"
         Me.XrLabel20.Summary = XrSummary1
         Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'ObjectDataSource4
+        '
+        Me.ObjectDataSource4.DataMember = "GetAllIncludeServiceInformationPerCustomerAndCID"
+        Me.ObjectDataSource4.DataSource = GetType(FMS.Business.DataObjects.usp_GetIncludeServiceInformationReport)
+        Me.ObjectDataSource4.Name = "ObjectDataSource4"
+        Parameter1.Name = "Customer"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.CustomerList]", GetType(Integer))
+        Parameter2.Name = "CID"
+        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.SiteList]", GetType(Integer))
+        Me.ObjectDataSource4.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2})
         '
         'XrLabel19
         '
@@ -744,19 +769,6 @@
         Me.SiteList.Type = GetType(Integer)
         Me.SiteList.ValueInfo = "0"
         '
-        'ObjectDataSource4
-        '
-        Me.ObjectDataSource4.DataMember = "GetAllIncludeServiceInformationPerCustomerAndCID"
-        Me.ObjectDataSource4.DataSource = GetType(FMS.Business.DataObjects.usp_GetIncludeServiceInformationReport)
-        Me.ObjectDataSource4.Name = "ObjectDataSource4"
-        Parameter1.Name = "Customer"
-        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.CustomerList]", GetType(Integer))
-        Parameter2.Name = "CID"
-        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.SiteList]", GetType(Integer))
-        Me.ObjectDataSource4.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2})
-        '
         'ObjectDataSource1
         '
         Me.ObjectDataSource1.DataMember = "GetAllSiteListReport"
@@ -770,18 +782,6 @@
         Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.SiteList]", GetType(Integer))
         Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter3, Parameter4})
         '
-        'ObjectDataSource2
-        '
-        Me.ObjectDataSource2.DataMember = "GetAllOrderByCustomerName"
-        Me.ObjectDataSource2.DataSource = GetType(FMS.Business.DataObjects.tblCustomers)
-        Me.ObjectDataSource2.Name = "ObjectDataSource2"
-        '
-        'ObjectDataSource3
-        '
-        Me.ObjectDataSource3.DataMember = "GetAll"
-        Me.ObjectDataSource3.DataSource = GetType(FMS.Business.DataObjects.tblSites)
-        Me.ObjectDataSource3.Name = "ObjectDataSource3"
-        '
         'SiteListReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.GroupHeaderBand1, Me.GroupHeaderBand2, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.PageHeader})
@@ -793,10 +793,10 @@
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"
-        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub

@@ -27,6 +27,34 @@
         End Sub
 #End Region
 
+#Region "CRUD"
+        Public Shared Sub Create(param As DataObjects.tblParameters)
+            Dim objParam As New FMS.Business.tblParameter
+            With objParam
+                .ParameterID = Guid.NewGuid
+                .ParId = param.ParId
+                .Field1 = param.Field1
+
+            End With
+            SingletonAccess.FMSDataContextContignous.tblParameters.InsertOnSubmit(objParam)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+        End Sub
+
+        Public Shared Sub Update(param As DataObjects.tblParameters)
+            Dim objParam As FMS.Business.tblParameter = (From p In SingletonAccess.FMSDataContextContignous.tblParameters
+                                                           Where p.ParId.Equals(param.ParId)).Single
+            With objParam
+                .ParId = param.ParId
+                .Field1 = param.Field1
+                .Field2 = param.Field2
+                .Field3 = param.Field3
+                .Field4 = param.Field4
+
+            End With
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+        End Sub
+#End Region
+
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblParameters)
             Dim objParam = (From p In SingletonAccess.FMSDataContextContignous.tblParameters

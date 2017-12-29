@@ -58,6 +58,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web" />
@@ -159,12 +160,15 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetInvoiceBasicCheckReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetLengthOfServicesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetMYOBCustomerInvoiceReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetMYOBFileList.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetPreviousInvoiceSummaryReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRevenueReportByZone.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunDates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunListByRunNumberReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunListingReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunValuesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunValueSummaryReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSalesReportSuburb.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetServiceSummaryReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSiteListReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSitesAndCustomerServices.vb" />

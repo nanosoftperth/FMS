@@ -263,39 +263,15 @@
 
             Next
 
-
-
-
-            'Dim objSites = (From s In SingletonAccess.FMSDataContextNew.tblSites
-            '                Where s.PostCode = postcode
-            '               Select New DataObjects.tblSites(s)).ToList()
-
-            'Where s.PostCode.Equals(postcode)
-            'Order By s.SiteName
-
-
-            'Dim objSites = (From s In DataObjects.tblSites.GetAll()
-            '                Select New DataObjects.tblSites() With {.SiteID = s.SiteID, .Cid = s.Cid, .SiteName = s.SiteName, .Customer = s.Customer, .AddressLine1 = s.AddressLine1,
-            '                                                        .AddressLine2 = s.AddressLine2, .AddressLine3 = s.AddressLine3, .AddressLine4 = s.AddressLine4, .Suburb = s.Suburb,
-            '                                                        .State = s.State, .PostCode = s.PostCode, .PhoneNo = s.PhoneNo, .FaxNo = s.FaxNo, .SiteContactName = s.SiteContactName,
-            '                                                        .SiteContactPhone = s.SiteContactPhone, .SiteContactFax = s.SiteContactFax, .SiteContactMobile = s.SiteContactMobile,
-            '                                                        .SiteContactEmail = s.SiteContactEmail, .PostalAddressLine1 = s.PostalAddressLine1, .PostalAddressLine2 = s.PostalAddressLine2,
-            '                                                        .PostalSuburb = s.PostalSuburb, .PostalState = s.PostalState, .PostalPostCode = s.PostalPostCode, .SiteStartDate = s.SiteStartDate,
-            '                                                        .SitePeriod = s.SitePeriod, .SiteContractExpiry = s.SiteContractExpiry, .SiteCeaseDate = s.SiteCeaseDate, .SiteCeaseReason = s.SiteCeaseReason,
-            '                                                        .InvoiceFrequency = s.InvoiceFrequency, .InvoiceCommencing = s.InvoiceCommencing, .IndustryGroup = s.IndustryGroup, .PreviousSupplier = s.PreviousSupplier,
-            '                                                        .LostBusinessTo = s.LostBusinessTo, .SalesPerson = s.SalesPerson, .InitialServiceAgreementNo = s.InitialServiceAgreementNo, .InvoiceMonth1 = s.InvoiceMonth1,
-            '                                                        .InvoiceMonth2 = s.InvoiceMonth2, .InvoiceMonth3 = s.InvoiceMonth3, .InvoiceMonth4 = s.InvoiceMonth4,
-            '                                                        .GeneralSiteServiceComments = s.GeneralSiteServiceComments, .TotalUnits = s.TotalUnits, .TotalAmount = s.TotalAmount, .Zone = s.Zone,
-            '                                                        .ZoneSortOrder = s.ZoneSortOrder, .SeparateInvoice = s.SeparateInvoice, .PurchaseOrderNumber = s.PurchaseOrderNumber, .chkSitesExcludeFuelLevy = s.chkSitesExcludeFuelLevy,
-            '                                                        .cmbRateIncrease = s.cmbRateIncrease, .StateSortOrder = s.StateSortOrder, .CustomerSortOrder = s.CustomerSortOrder,
-            '                                                        .IndustrySortOrder = s.IndustrySortOrder, .PreviousSupplierSortOrder = s.PreviousSupplierSortOrder, .SalesPersonSortOrder = s.SalesPersonSortOrder,
-            '                                                        .InitialContractPeriodSortOrder = s.InitialContractPeriodSortOrder, .ContractCeaseReasonsSortOrder = s.ContractCeaseReasonsSortOrder,
-            '                                                        .LostBusinessToSortOrder = s.LostBusinessToSortOrder, .InvoicingFrequencySortOrder = s.InvoicingFrequencySortOrder,
-            '                                                        .cmbRateIncreaseSortOrder = s.cmbRateIncreaseSortOrder, .CustomerName = s.CustomerName, .CustomerRating = s.CustomerRating,
-            '                                                        .CustomerRatingDesc = s.CustomerRatingDesc}).SingleOrDefault
             Return objSites
         End Function
 
+        Public Shared Function GetAllOrderyBySuburb() As List(Of DataObjects.tblSites)
+            Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
+                            Order By c.Suburb
+                            Select New DataObjects.tblSites(c)).ToList
+            Return objSites
+        End Function
 
 #End Region
 #Region "Constructors"
