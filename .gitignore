@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/BackgoundCalcs.ConsoleTest/obj/Debug
+/FMS.Business/obj/Debug
+/FMS.Datalistener.CalAmp/obj/Debug
+/FMS.Datalistener.Web/bin
+/FMS.WEBAPI/bin
+/FMS.WEBAPI/obj/Debug
+/FMS.WEB/bin
+/FMS.WEB/obj/Debug
+/FMS.SimulatorService/obj/Debug
+/FMS.TestConsole/obj/Debug
+/FMS.Simulator/obj/Debug
+/FMS.ServiceAccess/obj/Debug
+/FMS.ServiceAccess/bin
+/FMS.ReportLogic/obj/Debug
+/FMS.ReportService/obj/Debug
+/FMS.ReportServer/obj/Debug
+/FMS.Datalistener.Web/obj/Debug
+/FMS.Datalistener.Owin.CalAmp/obj/Debug
+/FMS.Datalistener.CalAmp.Web/obj/Debug
+/FMS.BackgroundCalcs.Service/obj/Debug
+/FMS.AdminApplication/obj/Debug
