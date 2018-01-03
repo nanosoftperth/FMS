@@ -25,6 +25,7 @@
     <IISExpressUseClassicPipelineMode />
     <UpgradeBackupLocation />
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -308,6 +309,13 @@
     </Compile>
     <Compile Include="AlarmsAndEvents.aspx.vb">
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FleetManagement\PublicHolidayRegister.aspx.designer.vb">
+      <DependentUpon>PublicHolidayRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\PublicHolidayRegister.aspx.vb">
+      <DependentUpon>PublicHolidayRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FleetManagement\Reports\AnnualAnalysisReport.aspx.designer.vb">
@@ -711,6 +719,20 @@
     <Compile Include="FleetManagement\EstablishZones.aspx.vb">
       <DependentUpon>EstablishZones.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="FleetManagement\TurnOnOffAuditing.aspx.designer.vb">
+      <DependentUpon>TurnOnOffAuditing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\TurnOnOffAuditing.aspx.vb">
+      <DependentUpon>TurnOnOffAuditing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FleetManagement\UserSecurity.aspx.designer.vb">
+      <DependentUpon>UserSecurity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\UserSecurity.aspx.vb">
+      <DependentUpon>UserSecurity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ImageHandler.ashx.vb">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
@@ -1245,6 +1267,7 @@
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="Content\Images\drop.gif" />
     <Content Include="Content\Images\Gear Set.gif" />
+    <Content Include="FleetManagement\PublicHolidayRegister.aspx" />
     <Content Include="FleetManagement\Reports\AnnualAnalysisReport.aspx" />
     <Content Include="FleetManagement\AuditChangeReasons.aspx" />
     <Content Include="FleetManagement\ContractPreviousSuppliers.aspx" />
@@ -1493,6 +1516,8 @@
     <Content Include="FleetManagement\IndustryGroups.aspx" />
     <Content Include="FleetManagement\IndustryGroupPopup.aspx" />
     <Content Include="FleetManagement\Main.aspx" />
+    <Content Include="FleetManagement\TurnOnOffAuditing.aspx" />
+    <Content Include="FleetManagement\UserSecurity.aspx" />
     <Content Include="MainMenu.master" />
     <Content Include="Main_Test.aspx" />
     <Content Include="NoAccessPage.aspx" />

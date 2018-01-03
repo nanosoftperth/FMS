@@ -128,6 +128,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblParameters.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblProjectID.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblPublicHolidayRegister.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRateIncreaseReference.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRevenueChangeReason.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRunFortnightlyCycle.vb" />
@@ -139,6 +140,8 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblSiteReSignDetails.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblSites.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblStates.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblUserGroups.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblUserSecurity.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblzGenerateRunSheets.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tbZone.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetAllDrivers.vb" />
