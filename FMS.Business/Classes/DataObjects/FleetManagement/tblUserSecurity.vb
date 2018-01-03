@@ -80,13 +80,11 @@
                 Me.CmdSalesPersons = .CmdSalesPersons
                 Me.CmdCeaseReasons = .CmdCeaseReasons
                 Me.CmdPreviousSuppliers = .CmdPreviousSuppliers
-                Me.CmdCIRReasons = .CmdCIRReasons
                 Me.CmdCycles = .CmdCycles
                 Me.CmdTurnOffAuditing = .CmdTurnOffAuditing
                 Me.CmdAuditChangeReason = .CmdAuditChangeReason
                 Me.CmdAreas = .CmdAreas
                 Me.Command55 = .Command55
-                Me.cmdUserSecurity = .cmdUserSecurity
                 Me.CmdContractRenewalReport = .CmdContractRenewalReport
                 Me.CmdQuickViewBySuburb = .CmdQuickViewBySuburb
                 Me.CmdAuditReport = .CmdAuditReport
@@ -112,9 +110,11 @@
 
 #Region "CRUD"
         Public Shared Sub Create(sec As DataObjects.tblUserSecurity)
+            Dim appID = ThisSession.ApplicationID
+
             Dim obj As New FMS.Business.tblUserSecurity
             With obj
-                .ApplicationId = sec.ApplicationId
+                .ApplicationId = appID
                 .usersecID = Guid.NewGuid
                 .txtUserName = sec.txtUserName
                 .Administrator = sec.Administrator
@@ -131,17 +131,14 @@
                 .CmdIndustryGroups = sec.CmdIndustryGroups
                 .CmdInvoicingFrequency = sec.CmdInvoicingFrequency
                 .CmdPubHolReg = sec.CmdPubHolReg
-                .Command50 = sec.Command50
                 .CmdSalesPersons = sec.CmdSalesPersons
                 .CmdCeaseReasons = sec.CmdCeaseReasons
-                .CmdPreviousSuppliers = sec.CmdPreviousSuppliers
                 .CmdCIRReasons = sec.CmdCIRReasons
                 .CmdCycles = sec.CmdCycles
                 .CmdTurnOffAuditing = sec.CmdTurnOffAuditing
                 .CmdAuditChangeReason = sec.CmdAuditChangeReason
                 .CmdAreas = sec.CmdAreas
                 .Command55 = sec.Command55
-                .cmdUserSecurity = sec.cmdUserSecurity
                 .CmdContractRenewalReport = sec.CmdContractRenewalReport
                 .CmdQuickViewBySuburb = sec.CmdQuickViewBySuburb
                 .CmdAuditReport = sec.CmdAuditReport
@@ -166,8 +163,10 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(sec As DataObjects.tblUserSecurity)
+            Dim appID = ThisSession.ApplicationID
+
             Dim obj As FMS.Business.tblUserSecurity = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-                                                       Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId.Equals(sec.ApplicationId)).SingleOrDefault
+                                                       Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId = appID).SingleOrDefault
             With obj
                 .txtUserName = sec.txtUserName
                 .Administrator = sec.Administrator
@@ -184,17 +183,13 @@
                 .CmdIndustryGroups = sec.CmdIndustryGroups
                 .CmdInvoicingFrequency = sec.CmdInvoicingFrequency
                 .CmdPubHolReg = sec.CmdPubHolReg
-                .Command50 = sec.Command50
                 .CmdSalesPersons = sec.CmdSalesPersons
                 .CmdCeaseReasons = sec.CmdCeaseReasons
-                .CmdPreviousSuppliers = sec.CmdPreviousSuppliers
-                .CmdCIRReasons = sec.CmdCIRReasons
                 .CmdCycles = sec.CmdCycles
                 .CmdTurnOffAuditing = sec.CmdTurnOffAuditing
                 .CmdAuditChangeReason = sec.CmdAuditChangeReason
                 .CmdAreas = sec.CmdAreas
                 .Command55 = sec.Command55
-                .cmdUserSecurity = sec.cmdUserSecurity
                 .CmdContractRenewalReport = sec.CmdContractRenewalReport
                 .CmdQuickViewBySuburb = sec.CmdQuickViewBySuburb
                 .CmdAuditReport = sec.CmdAuditReport
@@ -218,8 +213,10 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(sec As DataObjects.tblUserSecurity)
+            Dim appID = ThisSession.ApplicationID
+
             Dim obj As FMS.Business.tblUserSecurity = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-                                                       Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId.Equals(sec.ApplicationId)).SingleOrDefault
+                                                       Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId.Equals(appID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblUserSecurities.DeleteOnSubmit(obj)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -228,6 +225,7 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblUserSecurity)
             Dim obj = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
+                       Order By u.txtUserName
                        Select New DataObjects.tblUserSecurity(u)).ToList
 
             Return obj
