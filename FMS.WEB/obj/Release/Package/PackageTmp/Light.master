@@ -1,0 +1,29 @@
+<%@ Master Language="VB" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="Light.master.vb" Inherits="FMS.WEB.LightMaster" %>
+
+<%-- DXCOMMENT: Page Light.master is a master page for Account pages --%>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <div class="content">
+
+
+        <link href="/Content/bootstrap.css" rel="stylesheet" />
+
+        <div style="position: absolute; bottom: 10px; top: 150px; left: 15%; right: 15%">
+
+            <dx:ASPxRoundPanel ContentHeight="100%" ID="ASPxRoundPanel1" runat="server" Width="95%" EnableTheming="True" Theme="Moderno" HeaderText="User Management Page" Height="282px">
+                <PanelCollection>
+
+                    <dx:PanelContent runat="server">
+                        
+
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                        
+                    </dx:PanelContent>
+                </PanelCollection>
+
+            </dx:ASPxRoundPanel>
+
+
+        </div>
+    </div>
+
+</asp:Content>

@@ -1,0 +1,267 @@
+<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Root.master.vb" Inherits="FMS.WEB.RootMaster" %>
+
+<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
+
+<%-- DXCOMMENT: Page Root.master is a master page that contains the root layout (it includes Header, Cental Area, and Footer) --%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <%--  --%>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0,minimum-scale=1.0" />
+    <title></title>
+    <script>
+        var divider = 0; 
+    </script>
+
+    <style type="text/css">
+        p.MsoNormal {
+            margin-top: 0cm;
+            margin-right: 0cm;
+            margin-bottom: 10.0pt;
+            margin-left: 0cm;
+            /*line-height: 115%;*/
+            font-size: 11.0pt;
+            font-family: "Arial","sans-serif";
+        }
+
+        .headerMenu {
+        }
+    </style>
+ 
+</head>
+<body runat="server" id="Body">
+    <form id="form1" runat="server">
+
+        <%-- ======================== SCRIPTS ======================== --%>
+        <script src='<%= ResolveUrl("~/Content/javascript/jquery-3.1.0.min.js")%>?version=<%=WebVersion%>'></script>
+        <script src='<%= ResolveUrl("~/Content/javascript/page.js")%>?version=<%=WebVersion%>'></script>
+
+        <%-- ======================== STYLE SHEETS ======================== --%>
+        <link rel="stylesheet" type="text/css" href='<%= ResolveUrl("~/Content/Site.css")%>?version=<%=WebVersion%>' />
+        <link rel="stylesheet" type="text/css" href='<%= ResolveUrl("~/Content/bootstrap.css")%>?version=<%=WebVersion%>' />
+
+
+        <dx:ASPxPanel ID="HeaderPane"
+            runat="server"
+            FixedPosition="WindowTop"
+            ClientInstanceName="headerPane"
+            CssClass="headerPane"
+            Collapsible="true"
+            Theme="Metropolis">
+
+            <SettingsAdaptivity CollapseAtWindowInnerWidth="500" />
+            <Styles>
+                <Panel CssClass="panel"></Panel>
+                <ExpandedPanel CssClass="expandedPanel"></ExpandedPanel>
+                <ExpandBar CssClass="bar"></ExpandBar>
+            </Styles>
+            <PanelCollection>
+                <dx:PanelContent runat="server" SupportsDisabledAttribute="True">
+                    <div class="headerTop">
+
+
+                        <style type="text/css">
+                            .uniqcoButtonCSSClass {
+                                float: right;
+                                position: absolute;
+                                right: 300px;
+                                top: 30px;
+                            }
+                        </style>
+
+
+                        <dx:ASPxButton
+                            ClientInstanceName="btnUniqco"
+                            ID="btnUniqco"
+                            runat="server"
+                            ClientVisible="false"
+                            Text="return to uniqco"
+                            CssClass="uniqcoButtonCSSClass"
+                            Theme="Metropolis">
+                        </dx:ASPxButton>
+
+                        <dx:ASPxBinaryImage
+                            CssClass="headerLogo"
+                            ClientInstanceName="headerLogo"
+                            ID="binaryImageLogo"
+                            runat="server">
+                        </dx:ASPxBinaryImage>
+
+
+                        <div class="templateTitle">
+
+                            <div style="float: left; padding-left: 20px;"></div>
+
+                            <div style="float: left; padding-top: 5px; margin-top: 5px; padding-left: 5px;">
+
+                                <style type="text/css">
+                                   
+                                </style>
+
+
+                                <p class="MsoNormal">
+                                    <b>
+ 
+                                        <span runat="server" id="header_companyName" class="headerCustom" style="color: #466289;">Nanosoft</span>
+                                        <span runat="server" id="header_applicationName" class="headerCustom" style="color: #FA6121;">&nbsp;&nbsp;Vehicle Monitoring Platform API</span>
+
+                                    </b>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="loginControl">
+                            <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                                <AnonymousTemplate>
+
+                                    <a href="~/Account/Login.aspx" runat="server" id="loginLink">Log In</a>
+                                    | 
+                                    <a href="~/Account/Register.aspx" runat="server" id="registerLink">Register</a>
+                                </AnonymousTemplate>
+                                <LoggedInTemplate>
+                                    Welcome <span class="bold">
+
+                                        <asp:LoginName ID="HeadLoginName" runat="server" />
+                                    </span>! [
+                                    <dx:ASPxHyperLink ID="HeadManage" ClientInstanceName="HeadManage" Cursor="pointer" runat="server" Text="Manage">
+                                        <ClientSideEvents Click="function(s,e){
+                                                    ASPxPopupClientControl.ShowAtElement(s.GetMainElement());
+                                                }" />
+                                    </dx:ASPxHyperLink>
+                                    ]
+                                </LoggedInTemplate>
+                            </asp:LoginView>
+                        </div>
+
+
+                        <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="220px" Height="100%"
+                            MaxWidth="800px" MaxHeight="800px" MinHeight="50px" MinWidth="150px" ID="pcMain"
+                            ShowFooter="False" PopupElementID="HeadManage" ShowHeader="false"
+                            runat="server" ShowCloseButton="false" EnableViewState="false" PopupHorizontalAlign="RightSides" PopupAnimationType="None" CloseAnimationType="Fade" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
+                            <ContentCollection>
+                                <dx:PopupControlContentControl runat="server">
+                                    <asp:Panel ID="Panel1" runat="server">
+                                        <table style="margin: 2px;">
+                                            <tr>
+                                                <td>
+                                                    <div style="border-radius: 50%; overflow: hidden; background-color: #fa9921">
+                                                        <img src="/Content/Images/icon-user-default.png" style="height: 60px" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <table style="margin-left: 10px; height: 60px">
+                                                        <tr>
+                                                            <td style="font-size: 15px">
+                                                                <asp:LoginName ID="HeadLoginName" runat="server" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="font-size: 9px">
+                                                                <table>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <dx:ASPxHyperLink ID="lnkUserChangePassword" NavigateUrl="Account\ChangePasswordRequest.aspx" ClientInstanceName="lnkUserChangePassword" Cursor="pointer" runat="server" Text="Change Password"></dx:ASPxHyperLink>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" CssClass="dxeHyperlink_Metropolis" LogoutPageUrl="~/" />
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </asp:Panel>
+                                </dx:PopupControlContentControl>
+                            </ContentCollection>
+                        </dx:ASPxPopupControl>
+
+
+                        <div class="headerMenu">
+                            <%-- DXCOMMENT: Configure the header menu --%>
+                            <dx:ASPxMenu ID="HeaderMenu" 
+                                runat="server" 
+                                CssClass="headerMenu" 
+                                ClientInstanceName="headerMenu" 
+                                ItemAutoWidth="False" 
+                                Width="100%" 
+                                DataSourceID="XmlDataSourceHeader" 
+                                EnableTheming="True" 
+                                Theme="Metropolis" 
+                                Font-Bold="True" 
+                                Font-Size="Medium"                                 
+                                EnableAdaptivity="True" 
+                                EncodeHtml="False">
+
+                                </dx:ASPxMenu>                      
+
+                        </div>
+
+
+                    </div>
+
+                </dx:PanelContent>
+            </PanelCollection>
+            <ExpandBarTemplate>
+                <div class="templateTitle">
+                    <a id="TitleLink" href="~/" runat="server">Fleet Management</a>
+                </div>
+            </ExpandBarTemplate>
+        </dx:ASPxPanel>
+
+
+
+        <script type="text/javascript">
+            function updateHeaderMenuOrientation() {
+                var orientation = headerPane.IsExpandable() ? 'Vertical' : 'Horizontal';
+                if (orientation !== headerMenu.GetOrientation())
+                    headerMenu.SetOrientation(orientation);
+
+                RootMasterControlsInitialised();
+            }
+        </script>
+
+        <dx:ASPxGlobalEvents runat="server">
+            <ClientSideEvents ControlsInitialized="updateHeaderMenuOrientation" 
+                BrowserWindowResized="updateHeaderMenuOrientation" />
+        </dx:ASPxGlobalEvents>
+
+
+        <dx:ASPxPanel ID="MainPane" runat="server" CssClass="mainContentPane">
+            <PanelCollection>
+                <dx:PanelContent runat="server" SupportsDisabledAttribute="True">
+                    <asp:ContentPlaceHolder ID="Content" runat="server" />
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxPanel>
+         
+
+        <%-- DXCOMMENT: Configure a datasource for the header menu --%>
+        <asp:XmlDataSource ID="XmlDataSourceHeader" runat="server" DataFile="~/App_Data/TopMenu_v1.2.xml"
+            XPath="/items/*"></asp:XmlDataSource>
+
+        <script type="text/javascript">
+
+            // Requires jQuery!
+            //jQuery.ajax({
+            //    url: "https://nanosoft.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/mivkc6/100024/c/1000.670.2/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=7bbbd1e1",
+            //    type: "get",
+            //    cache: true,
+            //    dataType: "script"
+            //});
+
+
+        </script>
+
+    </form>
+</body>
+</html>

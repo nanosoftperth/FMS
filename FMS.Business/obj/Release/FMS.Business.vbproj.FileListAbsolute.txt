@@ -1,0 +1,14 @@
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\FMS.Business.dll.config
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\FMS.Business.dll
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\FMS.Business.pdb
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\FMS.Business.xml
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\Newtonsoft.Json.dll
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\OSIsoft.AFSDK.dll
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\Newtonsoft.Json.xml
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\bin\Release\OSIsoft.AFSDK.xml
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\obj\Release\FMS.Business.vbprojResolveAssemblyReference.cache
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\obj\Release\FMS.Business.Resources.resources
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\obj\Release\FMS.Business.vbproj.GenerateResource.Cache
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\obj\Release\FMS.Business.dll
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\obj\Release\FMS.Business.xml
+C:\Cesar_Workspace\Projects\FMS\FMS.Business\obj\Release\FMS.Business.pdb
