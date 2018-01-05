@@ -16,6 +16,8 @@
         End Sub
         Public Sub New(objTblDrivers As FMS.Business.tblDriver)
             With objTblDrivers
+                Me.ApplicationId = .ApplicationId
+                Me.DriverID = .DriverID
                 Me.Did = .Did
                 Me.DriverName = .DriverName
                 Me.DriversLicenseExpiryDate = .DriversLicenseExpiryDate

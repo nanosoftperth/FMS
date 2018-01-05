@@ -583,6 +583,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblDriver(instance As tblDriver)
     End Sub
+  Partial Private Sub InserttblDriverCommentsReason(instance As tblDriverCommentsReason)
+    End Sub
+  Partial Private Sub UpdatetblDriverCommentsReason(instance As tblDriverCommentsReason)
+    End Sub
+  Partial Private Sub DeletetblDriverCommentsReason(instance As tblDriverCommentsReason)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1225,6 +1231,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblDrivers() As System.Data.Linq.Table(Of tblDriver)
 		Get
 			Return Me.GetTable(Of tblDriver)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblDriverCommentsReasons() As System.Data.Linq.Table(Of tblDriverCommentsReason)
+		Get
+			Return Me.GetTable(Of tblDriverCommentsReason)
 		End Get
 	End Property
 	
@@ -24564,6 +24576,112 @@ Partial Public Class tblDriver
 				Me._Inactive = value
 				Me.SendPropertyChanged("Inactive")
 				Me.OnInactiveChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblDriverCommentsReason")>  _
+Partial Public Class tblDriverCommentsReason
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationId As System.Nullable(Of System.Guid)
+	
+	Private _Aid As Integer
+	
+	Private _CommentDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIdChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCommentDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnCommentDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If (Me._ApplicationId.Equals(value) = false) Then
+				Me.OnApplicationIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationId = value
+				Me.SendPropertyChanged("ApplicationId")
+				Me.OnApplicationIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDescription", DbType:="NVarChar(25)")>  _
+	Public Property CommentDescription() As String
+		Get
+			Return Me._CommentDescription
+		End Get
+		Set
+			If (String.Equals(Me._CommentDescription, value) = false) Then
+				Me.OnCommentDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._CommentDescription = value
+				Me.SendPropertyChanged("CommentDescription")
+				Me.OnCommentDescriptionChanged
 			End If
 		End Set
 	End Property

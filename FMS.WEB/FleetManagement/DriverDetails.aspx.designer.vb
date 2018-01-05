@@ -32,11 +32,74 @@ Partial Public Class DriverDetails
     Protected WithEvents ASPxLabel1 As Global.DevExpress.Web.ASPxLabel
     
     '''<summary>
-    '''Grid control.
+    '''gvDriver control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Grid As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents gvDriver As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
+    '''btnComment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnComment As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''btnAllocate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAllocate As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''pupComment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pupComment As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''lblRecAdded control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRecAdded As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''odsDriver control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDriver As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsDriverComments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDriverComments As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsListComments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsListComments As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
