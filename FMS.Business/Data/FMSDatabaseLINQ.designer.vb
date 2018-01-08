@@ -589,6 +589,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblDriverCommentsReason(instance As tblDriverCommentsReason)
     End Sub
+  Partial Private Sub InserttblDriverComment(instance As tblDriverComment)
+    End Sub
+  Partial Private Sub UpdatetblDriverComment(instance As tblDriverComment)
+    End Sub
+  Partial Private Sub DeletetblDriverComment(instance As tblDriverComment)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1240,6 +1246,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property tblDriverComments() As System.Data.Linq.Table(Of tblDriverComment)
+		Get
+			Return Me.GetTable(Of tblDriverComment)
+		End Get
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")>  _
 	Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
@@ -1599,6 +1611,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetSalesReportSuburb() As ISingleResult(Of usp_GetSalesReportSuburbResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSalesReportSuburbResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_UpdateRunsBasedOnRunDriver")>  _
+	Public Function usp_UpdateRunsBasedOnRunDriver(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="OldRunDriver", DbType:="Int")> ByVal oldRunDriver As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="NewRunDriver", DbType:="Int")> ByVal newRunDriver As System.Nullable(Of Integer)) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), oldRunDriver, newRunDriver)
+		Return CType(result.ReturnValue,Integer)
 	End Function
 End Class
 
@@ -3183,7 +3201,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4827,7 +4845,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -5216,7 +5234,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -17223,7 +17241,7 @@ Partial Public Class FleetDocument
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -24705,6 +24723,178 @@ Partial Public Class tblDriverCommentsReason
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblDriverComments")>  _
+Partial Public Class tblDriverComment
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationId As System.Nullable(Of System.Guid)
+	
+	Private _Aid As Integer
+	
+	Private _Did As System.Nullable(Of Short)
+	
+	Private _CommentDate As System.Nullable(Of Date)
+	
+	Private _CommentReason As System.Nullable(Of Short)
+	
+	Private _Comments As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIdChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnDidChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnDidChanged()
+    End Sub
+    Partial Private Sub OnCommentDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCommentDateChanged()
+    End Sub
+    Partial Private Sub OnCommentReasonChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnCommentReasonChanged()
+    End Sub
+    Partial Private Sub OnCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnCommentsChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If (Me._ApplicationId.Equals(value) = false) Then
+				Me.OnApplicationIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationId = value
+				Me.SendPropertyChanged("ApplicationId")
+				Me.OnApplicationIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Did", DbType:="SmallInt")>  _
+	Public Property Did() As System.Nullable(Of Short)
+		Get
+			Return Me._Did
+		End Get
+		Set
+			If (Me._Did.Equals(value) = false) Then
+				Me.OnDidChanging(value)
+				Me.SendPropertyChanging
+				Me._Did = value
+				Me.SendPropertyChanged("Did")
+				Me.OnDidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDate", DbType:="DateTime")>  _
+	Public Property CommentDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CommentDate
+		End Get
+		Set
+			If (Me._CommentDate.Equals(value) = false) Then
+				Me.OnCommentDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CommentDate = value
+				Me.SendPropertyChanged("CommentDate")
+				Me.OnCommentDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentReason", DbType:="SmallInt")>  _
+	Public Property CommentReason() As System.Nullable(Of Short)
+		Get
+			Return Me._CommentReason
+		End Get
+		Set
+			If (Me._CommentReason.Equals(value) = false) Then
+				Me.OnCommentReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._CommentReason = value
+				Me.SendPropertyChanged("CommentReason")
+				Me.OnCommentReasonChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Comments", DbType:="NVarChar(MAX)")>  _
+	Public Property Comments() As String
+		Get
+			Return Me._Comments
+		End Get
+		Set
+			If (String.Equals(Me._Comments, value) = false) Then
+				Me.OnCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._Comments = value
+				Me.SendPropertyChanged("Comments")
+				Me.OnCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -24996,7 +25186,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

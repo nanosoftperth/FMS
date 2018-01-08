@@ -1322,6 +1322,16 @@
       <Column Name="CommentDescription" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblDriverComments" Member="tblDriverComments">
+    <Type Name="tblDriverComment">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Did" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CommentReason" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
@@ -2244,5 +2254,10 @@
       <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.usp_UpdateRunsBasedOnRunDriver" Method="usp_UpdateRunsBasedOnRunDriver">
+    <Parameter Name="OldRunDriver" Parameter="oldRunDriver" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NewRunDriver" Parameter="newRunDriver" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

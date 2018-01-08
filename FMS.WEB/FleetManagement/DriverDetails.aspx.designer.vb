@@ -68,13 +68,103 @@ Partial Public Class DriverDetails
     Protected WithEvents pupComment As Global.DevExpress.Web.ASPxPopupControl
     
     '''<summary>
-    '''lblRecAdded control.
+    '''lblComment control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblRecAdded As Global.DevExpress.Web.ASPxLabel
+    Protected WithEvents lblComment As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''gvDriverCommentReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvDriverCommentReason As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
+    '''btnCloseComments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCloseComments As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''pupAllocate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pupAllocate As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''ASPxLabel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel2 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''ASPxLabel3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel3 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''cboDriverFrom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboDriverFrom As Global.DevExpress.Web.ASPxComboBox
+    
+    '''<summary>
+    '''ASPxLabel4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel4 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''cboDriverTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboDriverTo As Global.DevExpress.Web.ASPxComboBox
+    
+    '''<summary>
+    '''btnChangeRun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnChangeRun As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''btnCloseAllocate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCloseAllocate As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''odsDriver control.
@@ -95,11 +185,29 @@ Partial Public Class DriverDetails
     Protected WithEvents odsDriverComments As Global.System.Web.UI.WebControls.ObjectDataSource
     
     '''<summary>
-    '''odsListComments control.
+    '''odsDriverCommentsReason control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsListComments As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsDriverCommentsReason As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsAllocateDriverFrom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsAllocateDriverFrom As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsAllocateDriverTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsAllocateDriverTo As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
