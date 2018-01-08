@@ -85,6 +85,14 @@
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
+        Public Shared Sub UpdateCustomerValue(cid As Integer, custVal As Double)
+            Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
+                                                           Where c.Cid.Equals(cid)).SingleOrDefault
+            With objCustomer
+                .CustomerValue = custVal
+            End With
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+        End Sub
         Public Shared Sub Delete(Customer As DataObjects.tblCustomers)
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
                                                            Where c.Cid.Equals(Customer.Cid)).SingleOrDefault

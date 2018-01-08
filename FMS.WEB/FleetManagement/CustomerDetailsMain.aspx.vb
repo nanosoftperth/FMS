@@ -68,10 +68,9 @@ Public Class CustomerDetailsMain
 
         e.NewValues("CustomerContactName") = txtCustomerContactName.Text
         Dim dblCustomerValue As System.Nullable(Of Double) = 0
-        If txtPerAnnumValue.Text.Equals("") Then
-            dblCustomerValue = 0
-        Else
-            dblCustomerValue = Convert.ToDouble(txtPerAnnumValue.Text)
+        Dim dblCustValue As Double = 0
+        If Double.TryParse(txtPerAnnumValue.Text, dblCustValue) Then
+            dblCustomerValue = dblCustValue
         End If
         e.NewValues("CustomerValue") = dblCustomerValue
         e.NewValues("CustomerPhone") = txtCustomerPhone.Text
@@ -98,6 +97,7 @@ Public Class CustomerDetailsMain
     <System.Web.Services.WebMethod()>
     Public Shared Function UpdateValue(ByVal Cid As Integer)
         Dim objCustUpdateValue = FMS.Business.DataObjects.usp_GetCustomerUpdateValue.GetCustomerUpdateValue(Cid)
+        FMS.Business.DataObjects.tblCustomers.UpdateCustomerValue(objCustUpdateValue.Cid, objCustUpdateValue.TotalAmount)
 
         Return objCustUpdateValue
     End Function
