@@ -60,6 +60,15 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
 #End Region
+
+#Region "Extended CRUD"
+        Public Shared Sub ChangeRun(FromDriver As Integer, ToDriver As Integer)
+
+            SingletonAccess.FMSDataContextContignous.usp_UpdateRunsBasedOnRunDriver(FromDriver, ToDriver)
+
+        End Sub
+#End Region
+
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblRuns)
             Dim objRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
