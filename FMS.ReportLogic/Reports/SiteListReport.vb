@@ -169,7 +169,7 @@
         '
         'ObjectDataSource3
         '
-        Me.ObjectDataSource3.DataMember = "GetAll"
+        Me.ObjectDataSource3.DataMember = "GetAllPerApplication"
         Me.ObjectDataSource3.DataSource = GetType(FMS.Business.DataObjects.tblSites)
         Me.ObjectDataSource3.Name = "ObjectDataSource3"
         '
@@ -186,7 +186,7 @@
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(675.7302!, 0.0!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(675.7302!, 0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(107.2698!, 18.0!)
@@ -196,7 +196,7 @@
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(559.4188!, 0.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(559.4188!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(108.3114!, 18.0!)
@@ -206,7 +206,7 @@
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(442.6887!, 0.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(442.6887!, 0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(108.3114!, 18.0!)
@@ -216,7 +216,7 @@
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(265.3064!, 0.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(265.3064!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(168.2212!, 18.0!)
@@ -324,7 +324,7 @@
         Me.XrLabel37.CanGrow = False
         Me.XrLabel37.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "SiteName")})
         Me.XrLabel37.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(5.999979!, 0.0!)
+        Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(5.999979!, 0!)
         Me.XrLabel37.Name = "XrLabel37"
         Me.XrLabel37.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel37.SizeF = New System.Drawing.SizeF(251.3064!, 18.0!)
@@ -593,7 +593,7 @@
         '
         Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "CustomerName")})
         Me.XrLabel2.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(6.00001!, 0.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(6.00001!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(638.0!, 36.0!)
@@ -603,7 +603,7 @@
         '
         'GroupHeaderBand2
         '
-        Me.GroupHeaderBand2.HeightF = 0.0!
+        Me.GroupHeaderBand2.HeightF = 0!
         Me.GroupHeaderBand2.Name = "GroupHeaderBand2"
         Me.GroupHeaderBand2.StyleName = "FieldCaption"
         '
@@ -708,13 +708,13 @@
         '
         'XrLine3
         '
-        Me.XrLine3.LocationFloat = New DevExpress.Utils.PointFloat(1.999998!, 0.0!)
+        Me.XrLine3.LocationFloat = New DevExpress.Utils.PointFloat(1.999998!, 0!)
         Me.XrLine3.Name = "XrLine3"
         Me.XrLine3.SizeF = New System.Drawing.SizeF(781.0001!, 2.083333!)
         '
         'XrLine4
         '
-        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 38.45833!)
+        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 38.45833!)
         Me.XrLine4.Name = "XrLine4"
         Me.XrLine4.SizeF = New System.Drawing.SizeF(783.0!, 2.083332!)
         '
@@ -736,14 +736,14 @@
         '
         'IncludeServiceInformation
         '
-        Me.IncludeServiceInformation.Description = "IncludeServiceInformation:"
+        Me.IncludeServiceInformation.Description = "Include Service Information:"
         Me.IncludeServiceInformation.Name = "IncludeServiceInformation"
         Me.IncludeServiceInformation.Type = GetType(Boolean)
         Me.IncludeServiceInformation.ValueInfo = "False"
         '
         'CustomerList
         '
-        Me.CustomerList.Description = "CustomerList"
+        Me.CustomerList.Description = "Customer List:"
         DynamicListLookUpSettings1.DataAdapter = Nothing
         DynamicListLookUpSettings1.DataMember = Nothing
         DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource2
@@ -757,7 +757,7 @@
         '
         'SiteList
         '
-        Me.SiteList.Description = "SiteList:"
+        Me.SiteList.Description = "Site List:"
         DynamicListLookUpSettings2.DataAdapter = Nothing
         DynamicListLookUpSettings2.DataMember = Nothing
         DynamicListLookUpSettings2.DataSource = Me.ObjectDataSource3

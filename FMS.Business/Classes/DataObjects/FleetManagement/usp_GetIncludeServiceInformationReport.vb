@@ -2,6 +2,7 @@
     Public Class usp_GetIncludeServiceInformationReport
 
 #Region "Properties / enums"
+        Public Property ApplicationId As Guid
         Public Property CID As System.Nullable(Of Integer)
         Public Property ServiceCode As String
         Public Property ServiceDescription As String
@@ -19,6 +20,7 @@
         End Sub
         Public Sub New(IncludeServiceInformation As FMS.Business.usp_GetIncludeServiceInformationReportResult)
             With IncludeServiceInformation
+                Me.ApplicationId = .applicationid
                 Me.CID = .Cid
                 Me.ServiceCode = .ServiceCode
                 Me.ServiceDescription = .ServiceDescription
@@ -53,23 +55,26 @@
         End Function
 
         Public Shared Function GetAllIncludeServiceInformationPerCustomerAndCID(Customer As Integer, Optional CID As Integer = 0) As List(Of DataObjects.usp_GetIncludeServiceInformationReport)
+            Dim appId = ThisSession.ApplicationID
+
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
             Dim objList As New List(Of DataObjects.usp_GetIncludeServiceInformationReport)
 
             If (Customer = 0) Then
                 If (CID = 0) Then
                     objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                                    Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
+                               Where s.applicationid = appId
+                               Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
                 End If
             Else
                 If (CID = 0) Then
                     objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                                    Where s.Customer = Customer
-                                    Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
+                               Where s.Customer = Customer And s.applicationid = appId
+                               Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
                 Else
                     objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                                    Where s.Customer = Customer And s.Cid = CID
-                                    Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
+                               Where s.Customer = Customer And s.Cid = CID And s.applicationid = appId
+                               Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
                 End If
             End If
 

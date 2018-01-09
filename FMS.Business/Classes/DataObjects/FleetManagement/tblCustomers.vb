@@ -116,8 +116,10 @@
             Return objCustomer
         End Function
         Public Shared Function GetAllOrderByCustomerName() As List(Of DataObjects.tblCustomers)
+            Dim appId = ThisSession.ApplicationID
 
             Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
+                               Where c.ApplicationID = appId
                                Order By c.CustomerName
                                Select New DataObjects.tblCustomers(c)).ToList
 

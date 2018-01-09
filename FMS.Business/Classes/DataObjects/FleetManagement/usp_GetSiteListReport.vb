@@ -2,7 +2,7 @@
     Public Class usp_GetSiteListReport
 
 #Region "Properties / enums"
-
+        Public Property ApplicationId As System.Nullable(Of Guid)
         Public Property CustomerName As String
         Public Property SiteID As System.Nullable(Of Guid)
         Public Property SiteName As String
@@ -32,6 +32,7 @@
         End Sub
         Public Sub New(objSiteList As FMS.Business.usp_GetSiteListReportResult)
             With objSiteList
+                Me.ApplicationId = .ApplicationID
                 Me.CustomerName = .CustomerName
                 Me.SiteName = .SiteName
                 Me.SiteID = .SiteID
@@ -73,23 +74,26 @@
         End Function
 
         Public Shared Function GetAllSiteListReport(Customer As Integer, Optional CID As Integer = 0) As List(Of DataObjects.usp_GetSiteListReport)
+            Dim appId = ThisSession.ApplicationID
+
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
             Dim objSiteList As New List(Of DataObjects.usp_GetSiteListReport)
 
             If (Customer = 0) Then
                 If (CID = 0) Then
                     objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                    Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                                   Where s.ApplicationID = appId
+                                   Select New DataObjects.usp_GetSiteListReport(s)).ToList
                 End If
             Else
                 If (CID = 0) Then
                     objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                    Where s.Customer = Customer
-                                    Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                                   Where s.Customer = Customer And s.ApplicationID = appId
+                                   Select New DataObjects.usp_GetSiteListReport(s)).ToList
                 Else
                     objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                    Where s.Customer = Customer And s.Cid = CID
-                                    Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                                   Where s.Customer = Customer And s.Cid = CID And s.ApplicationID = appId
+                                   Select New DataObjects.usp_GetSiteListReport(s)).ToList
                 End If
             End If
 

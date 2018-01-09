@@ -1,6 +1,7 @@
 ﻿Namespace DataObjects
     Public Class tblSites
 #Region "Properties / enums"
+        Public Property ApplicationId As System.Guid
         Public Property SiteID As System.Guid
         Public Property Cid As Integer
         Public Property SiteName As String
@@ -67,8 +68,10 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Site As DataObjects.tblSites)
+            Dim appId = ThisSession.ApplicationID
             Dim objSite As New FMS.Business.tblSite
             With objSite
+                .ApplicationId = appId
                 .SiteID = Guid.NewGuid
                 .Cid = tblProjectID.SiteIDCreateOrUpdate
                 .SiteName = Site.SiteName
@@ -121,8 +124,10 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(Site As DataObjects.tblSites)
+            Dim appId = ThisSession.ApplicationID
+
             Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                           Where c.Cid.Equals(Site.Cid)).SingleOrDefault
+                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId = appId).SingleOrDefault
             With objSite
                 .SiteName = Site.SiteName
                 .Customer = Site.Customer
@@ -173,8 +178,10 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Site As DataObjects.tblSites)
+            Dim appId = ThisSession.ApplicationID
+
             Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                         Where c.Cid.Equals(Site.Cid)).SingleOrDefault
+                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId = appId).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblSites.DeleteOnSubmit(objSite)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -273,6 +280,16 @@
             Return objSites
         End Function
 
+        Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblSites)
+            Dim AppId = ThisSession.ApplicationID
+
+            Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
+                            Where c.ApplicationId = AppId
+                            Order By c.SiteName
+                            Select New DataObjects.tblSites(c)).ToList
+            Return objSites
+        End Function
+
 #End Region
 #Region "Constructors"
         Public Sub New()
@@ -280,6 +297,7 @@
         End Sub
         Public Sub New(objTblSite As FMS.Business.tblSite)
             With objTblSite
+                Me.ApplicationId = .ApplicationId
                 Me.SiteID = .SiteID
                 Me.Cid = .Cid
                 Me.SiteName = .SiteName
