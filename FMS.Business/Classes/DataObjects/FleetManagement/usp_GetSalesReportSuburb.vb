@@ -2,6 +2,7 @@
     Public Class usp_GetSalesReportSuburb
 
 #Region "Properties / enums"
+        Public Property ApplicationId As System.Guid
         Public Property Customer As System.Nullable(Of Integer)
         Public Property Cid As System.Nullable(Of Integer)
         Public Property SiteName As String
@@ -20,6 +21,7 @@
         End Sub
         Public Sub New(obj As FMS.Business.usp_GetSalesReportSuburbResult)
             With obj
+                Me.ApplicationId = .ApplicationId
                 Me.Customer = .Customer
                 Me.Cid = .Cid
                 Me.SiteName = .SiteName
@@ -28,23 +30,27 @@
                 Me.ServicePrice = .ServicePrice
                 Me.PerAnnumCharge = .PerAnnumCharge
                 Me.UnitsHaveMoreThanOneRun = .UnitsHaveMoreThanOneRun
-                
+
             End With
         End Sub
 #End Region
 
 #Region "Get methods"
         Public Shared Function GetAllSalesReportSuburb() As List(Of DataObjects.usp_GetSalesReportSuburb)
+            Dim appId = ThisSession.ApplicationID
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
             Dim objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSalesReportSuburb()
-                            Select New DataObjects.usp_GetSalesReportSuburb(s)).ToList
+                           Where s.ApplicationId = appId
+                           Select New DataObjects.usp_GetSalesReportSuburb(s)).ToList
             Return objList
         End Function
         Public Shared Function GetAllSalesReportSuburbPerCID(cid As Integer) As List(Of DataObjects.usp_GetSalesReportSuburb)
+            Dim appId = ThisSession.ApplicationID
+
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
             Dim objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSalesReportSuburb()
-                           Where s.Cid = cid
-                            Select New DataObjects.usp_GetSalesReportSuburb(s)).ToList
+                           Where s.Cid = cid And s.ApplicationId = appId
+                           Select New DataObjects.usp_GetSalesReportSuburb(s)).ToList
             Return objList
         End Function
 

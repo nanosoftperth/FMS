@@ -51,7 +51,16 @@
             Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
                             Where c.Aid.Equals(zID)
                             Order By c.AreaDescription
-                                          Select New DataObjects.tbZone(c)).SingleOrDefault
+                            Select New DataObjects.tbZone(c)).SingleOrDefault
+            Return objZones
+        End Function
+
+        Public Shared Function GetAllForRevenueReport() As List(Of DataObjects.tbZone)
+            Dim appId = ThisSession.ApplicationID
+            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
+                            Where c.ApplicationID = appId
+                            Order By c.AreaDescription
+                            Select New DataObjects.tbZone(c)).ToList
             Return objZones
         End Function
 #End Region

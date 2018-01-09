@@ -151,7 +151,7 @@
         '
         'ObjectDataSource2
         '
-        Me.ObjectDataSource2.DataMember = "GetAll"
+        Me.ObjectDataSource2.DataMember = "GetAllForRevenueReport"
         Me.ObjectDataSource2.DataSource = GetType(FMS.Business.DataObjects.tbZone)
         Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '

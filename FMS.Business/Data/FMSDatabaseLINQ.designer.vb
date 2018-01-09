@@ -1577,18 +1577,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetIndustryGroupResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueReportByZone")>  _
-	Public Function usp_GetRevenueReportByZone() As ISingleResult(Of usp_GetRevenueReportByZoneResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRevenueReportByZoneResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSalesReportSuburb")>  _
-	Public Function usp_GetSalesReportSuburb() As ISingleResult(Of usp_GetSalesReportSuburbResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSalesReportSuburbResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_UpdateRunsBasedOnRunDriver")>  _
 	Public Function usp_UpdateRunsBasedOnRunDriver(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="OldRunDriver", DbType:="Int")> ByVal oldRunDriver As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="NewRunDriver", DbType:="Int")> ByVal newRunDriver As System.Nullable(Of Integer)) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), oldRunDriver, newRunDriver)
@@ -1623,6 +1611,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetAnnualAnalysisReport() As ISingleResult(Of usp_GetAnnualAnalysisReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAnnualAnalysisReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueReportByZone")>  _
+	Public Function usp_GetRevenueReportByZone() As ISingleResult(Of usp_GetRevenueReportByZoneResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRevenueReportByZoneResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSalesReportSuburb")>  _
+	Public Function usp_GetSalesReportSuburb() As ISingleResult(Of usp_GetSalesReportSuburbResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSalesReportSuburbResult))
 	End Function
 End Class
 
@@ -33088,288 +33088,6 @@ Partial Public Class usp_GetIndustryGroupResult
 	End Property
 End Class
 
-Partial Public Class usp_GetRevenueReportByZoneResult
-	
-	Private _AreaDescription As String
-	
-	Private _CustomerName As String
-	
-	Private _CustomerContactName As String
-	
-	Private _AddressLine1 As String
-	
-	Private _AddressLine2 As String
-	
-	Private _AddLine2 As String
-	
-	Private _SuburbLine As String
-	
-	Private _CustomerPhone As String
-	
-	Private _Cid As Integer
-	
-	Private _Zone As System.Nullable(Of Integer)
-	
-	Private _Suburb As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
-	Public Property AreaDescription() As String
-		Get
-			Return Me._AreaDescription
-		End Get
-		Set
-			If (String.Equals(Me._AreaDescription, value) = false) Then
-				Me._AreaDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerContactName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerContactName() As String
-		Get
-			Return Me._CustomerContactName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerContactName, value) = false) Then
-				Me._CustomerContactName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine1() As String
-		Get
-			Return Me._AddressLine1
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine1, value) = false) Then
-				Me._AddressLine1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine2() As String
-		Get
-			Return Me._AddressLine2
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine2, value) = false) Then
-				Me._AddressLine2 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddLine2", DbType:="NVarChar(50)")>  _
-	Public Property AddLine2() As String
-		Get
-			Return Me._AddLine2
-		End Get
-		Set
-			If (String.Equals(Me._AddLine2, value) = false) Then
-				Me._AddLine2 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SuburbLine", DbType:="NVarChar(31)")>  _
-	Public Property SuburbLine() As String
-		Get
-			Return Me._SuburbLine
-		End Get
-		Set
-			If (String.Equals(Me._SuburbLine, value) = false) Then
-				Me._SuburbLine = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(22)")>  _
-	Public Property CustomerPhone() As String
-		Get
-			Return Me._CustomerPhone
-		End Get
-		Set
-			If (String.Equals(Me._CustomerPhone, value) = false) Then
-				Me._CustomerPhone = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
-	Public Property Cid() As Integer
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If ((Me._Cid = value)  _
-						= false) Then
-				Me._Cid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
-	Public Property Zone() As System.Nullable(Of Integer)
-		Get
-			Return Me._Zone
-		End Get
-		Set
-			If (Me._Zone.Equals(value) = false) Then
-				Me._Zone = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(22)")>  _
-	Public Property Suburb() As String
-		Get
-			Return Me._Suburb
-		End Get
-		Set
-			If (String.Equals(Me._Suburb, value) = false) Then
-				Me._Suburb = value
-			End If
-		End Set
-	End Property
-End Class
-
-Partial Public Class usp_GetSalesReportSuburbResult
-	
-	Private _Customer As System.Nullable(Of Short)
-	
-	Private _Cid As Integer
-	
-	Private _ServiceDescription As String
-	
-	Private _ServiceUnits As System.Nullable(Of Single)
-	
-	Private _ServicePrice As System.Nullable(Of Single)
-	
-	Private _PerAnnumCharge As System.Nullable(Of Single)
-	
-	Private _SiteName As String
-	
-	Private _UnitsHaveMoreThanOneRun As System.Nullable(Of Boolean)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
-	Public Property Customer() As System.Nullable(Of Short)
-		Get
-			Return Me._Customer
-		End Get
-		Set
-			If (Me._Customer.Equals(value) = false) Then
-				Me._Customer = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
-	Public Property Cid() As Integer
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If ((Me._Cid = value)  _
-						= false) Then
-				Me._Cid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
-	Public Property ServiceDescription() As String
-		Get
-			Return Me._ServiceDescription
-		End Get
-		Set
-			If (String.Equals(Me._ServiceDescription, value) = false) Then
-				Me._ServiceDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
-	Public Property ServiceUnits() As System.Nullable(Of Single)
-		Get
-			Return Me._ServiceUnits
-		End Get
-		Set
-			If (Me._ServiceUnits.Equals(value) = false) Then
-				Me._ServiceUnits = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicePrice", DbType:="Real")>  _
-	Public Property ServicePrice() As System.Nullable(Of Single)
-		Get
-			Return Me._ServicePrice
-		End Get
-		Set
-			If (Me._ServicePrice.Equals(value) = false) Then
-				Me._ServicePrice = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
-	Public Property PerAnnumCharge() As System.Nullable(Of Single)
-		Get
-			Return Me._PerAnnumCharge
-		End Get
-		Set
-			If (Me._PerAnnumCharge.Equals(value) = false) Then
-				Me._PerAnnumCharge = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsHaveMoreThanOneRun", DbType:="Bit")>  _
-	Public Property UnitsHaveMoreThanOneRun() As System.Nullable(Of Boolean)
-		Get
-			Return Me._UnitsHaveMoreThanOneRun
-		End Get
-		Set
-			If (Me._UnitsHaveMoreThanOneRun.Equals(value) = false) Then
-				Me._UnitsHaveMoreThanOneRun = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetPreviousInvoiceSummaryReportResult
 	
 	Private _ApplicationId As System.Nullable(Of System.Guid)
@@ -34486,6 +34204,316 @@ Partial Public Class usp_GetAnnualAnalysisReportResult
 		Set
 			If (Me._IndustryGroup.Equals(value) = false) Then
 				Me._IndustryGroup = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetRevenueReportByZoneResult
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _AreaDescription As String
+	
+	Private _CustomerName As String
+	
+	Private _CustomerContactName As String
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _AddLine2 As String
+	
+	Private _SuburbLine As String
+	
+	Private _CustomerPhone As String
+	
+	Private _Cid As Integer
+	
+	Private _Zone As System.Nullable(Of Integer)
+	
+	Private _Suburb As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me._ApplicationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AreaDescription", DbType:="NVarChar(50)")>  _
+	Public Property AreaDescription() As String
+		Get
+			Return Me._AreaDescription
+		End Get
+		Set
+			If (String.Equals(Me._AreaDescription, value) = false) Then
+				Me._AreaDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerContactName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerContactName() As String
+		Get
+			Return Me._CustomerContactName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerContactName, value) = false) Then
+				Me._CustomerContactName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me._AddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me._AddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddLine2() As String
+		Get
+			Return Me._AddLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddLine2, value) = false) Then
+				Me._AddLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SuburbLine", DbType:="NVarChar(31)")>  _
+	Public Property SuburbLine() As String
+		Get
+			Return Me._SuburbLine
+		End Get
+		Set
+			If (String.Equals(Me._SuburbLine, value) = false) Then
+				Me._SuburbLine = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(22)")>  _
+	Public Property CustomerPhone() As String
+		Get
+			Return Me._CustomerPhone
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPhone, value) = false) Then
+				Me._CustomerPhone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="Int")>  _
+	Public Property Zone() As System.Nullable(Of Integer)
+		Get
+			Return Me._Zone
+		End Get
+		Set
+			If (Me._Zone.Equals(value) = false) Then
+				Me._Zone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(22)")>  _
+	Public Property Suburb() As String
+		Get
+			Return Me._Suburb
+		End Get
+		Set
+			If (String.Equals(Me._Suburb, value) = false) Then
+				Me._Suburb = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetSalesReportSuburbResult
+	
+	Private _ApplicationId As System.Nullable(Of System.Guid)
+	
+	Private _Customer As System.Nullable(Of Short)
+	
+	Private _Cid As Integer
+	
+	Private _ServiceDescription As String
+	
+	Private _ServiceUnits As System.Nullable(Of Single)
+	
+	Private _ServicePrice As System.Nullable(Of Single)
+	
+	Private _PerAnnumCharge As System.Nullable(Of Single)
+	
+	Private _SiteName As String
+	
+	Private _UnitsHaveMoreThanOneRun As System.Nullable(Of Boolean)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If (Me._ApplicationId.Equals(value) = false) Then
+				Me._ApplicationId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
+	Public Property Customer() As System.Nullable(Of Short)
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (Me._Customer.Equals(value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
+	Public Property ServiceUnits() As System.Nullable(Of Single)
+		Get
+			Return Me._ServiceUnits
+		End Get
+		Set
+			If (Me._ServiceUnits.Equals(value) = false) Then
+				Me._ServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicePrice", DbType:="Real")>  _
+	Public Property ServicePrice() As System.Nullable(Of Single)
+		Get
+			Return Me._ServicePrice
+		End Get
+		Set
+			If (Me._ServicePrice.Equals(value) = false) Then
+				Me._ServicePrice = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
+	Public Property PerAnnumCharge() As System.Nullable(Of Single)
+		Get
+			Return Me._PerAnnumCharge
+		End Get
+		Set
+			If (Me._PerAnnumCharge.Equals(value) = false) Then
+				Me._PerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsHaveMoreThanOneRun", DbType:="Bit")>  _
+	Public Property UnitsHaveMoreThanOneRun() As System.Nullable(Of Boolean)
+		Get
+			Return Me._UnitsHaveMoreThanOneRun
+		End Get
+		Set
+			If (Me._UnitsHaveMoreThanOneRun.Equals(value) = false) Then
+				Me._UnitsHaveMoreThanOneRun = value
 			End If
 		End Set
 	End Property

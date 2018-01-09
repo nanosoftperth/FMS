@@ -2,6 +2,7 @@
     Public Class usp_GetRevenueReportByZone
 
 #Region "Properties / enums"
+        Public Property ApplicationId As System.Guid
         Public Property AreaDescription As String
         Public Property CustomerName As String
         Public Property CustomerContactName As String
@@ -23,6 +24,7 @@
         End Sub
         Public Sub New(obj As FMS.Business.usp_GetRevenueReportByZoneResult)
             With obj
+                Me.ApplicationId = .ApplicationID
                 Me.AreaDescription = .AreaDescription
                 Me.CustomerName = .CustomerName
                 Me.CustomerContactName = .CustomerContactName
@@ -40,17 +42,19 @@
 
 #Region "Get methods"
         Public Shared Function GetAll(ReportType As String, Optional zone As Integer = 0, Optional suburb As String = "") As List(Of DataObjects.usp_GetRevenueReportByZone)
+            Dim appId = ThisSession.ApplicationID
+
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
             Dim objList As New List(Of DataObjects.usp_GetRevenueReportByZone)
 
             If ReportType = "Suburb" Then
                 objList = (From r In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone
-                                    Where r.Suburb = suburb.TrimStart.TrimEnd
-                                    Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
+                           Where r.Suburb = suburb.TrimStart.TrimEnd And r.ApplicationID = appId
+                           Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
             Else
                 objList = (From r In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone
-                                    Where r.Zone = zone
-                                    Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
+                           Where r.Zone = zone And r.ApplicationID = appId
+                           Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
 
             End If
 

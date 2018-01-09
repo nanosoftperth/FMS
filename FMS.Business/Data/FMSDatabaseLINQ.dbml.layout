@@ -425,7 +425,7 @@
         <classShapeMoniker Id="8062320b-c128-48c8-be48-c54e2049992d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 20.8958968098958); (4.5 : 21.375); (5.75 : 21.375); (5.75 : 21.5729484049479); (9.25 : 21.5729484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.5 : 20.8958968098958); (4.5 : 21.375); (5.75 : 21.375); (5.75 : 21.5729484049479); (8.91666666666667 : 21.5729484049479 : JumpStart); (9.08333333333333 : 21.5729484049479 : JumpEnd); (9.25 : 21.5729484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/aspnet_Role/aspnet_Role_aspnet_UsersInRole" />
       <nodes>
         <classShapeMoniker Id="ed6132df-257e-4f99-8b16-1a5ec67c17ed" />
@@ -446,7 +446,7 @@
         <classShapeMoniker Id="da3b045a-72fc-4d66-9d6c-80ba904bebae" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 18.1386946614583); (3.10416666666667 : 18.1386946614583 : JumpStart); (3.27083333333333 : 18.1386946614583 : JumpEnd); (6.25 : 18.1386946614583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 18.1386946614583); (3.10416666666667 : 18.1386946614583 : JumpStart); (3.27083333333333 : 18.1386946614583 : JumpEnd); (3.29166666666667 : 18.1386946614583 : JumpStart); (3.45833333333333 : 18.1386946614583 : JumpEnd); (5.97916666666667 : 18.1386946614583 : JumpStart); (6.14583333333333 : 18.1386946614583 : JumpEnd); (6.25 : 18.1386946614583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/Feature/Feature_ApplicationFeatureRole" />
       <nodes>
         <classShapeMoniker Id="3bf06c57-53c1-4b43-92da-1bb8774c78e3" />
@@ -472,7 +472,7 @@
         <elementListCompartment Id="19d1b3a4-2208-49d0-bdd1-1e602c4c580a" absoluteBounds="3.765, 2.085, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.86620198567708); (3.75 : 2.86620198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.86620198567708); (3.75 : 2.86620198567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LINQtoSQLClassesDataContext/ApplicationDriver/ApplicationDriver_ApplicationBooking" />
       <nodes>
         <classShapeMoniker Id="db1ab280-7a3c-4912-b0a7-b9972ce0ed24" />
