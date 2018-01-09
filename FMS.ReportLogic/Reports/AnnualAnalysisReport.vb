@@ -144,7 +144,7 @@
         '
         'ObjectDataSource2
         '
-        Me.ObjectDataSource2.DataMember = "GetAll"
+        Me.ObjectDataSource2.DataMember = "GetAllPerApplication"
         Me.ObjectDataSource2.DataSource = GetType(FMS.Business.DataObjects.tblCustomerRating)
         Me.ObjectDataSource2.Name = "ObjectDataSource2"
         '

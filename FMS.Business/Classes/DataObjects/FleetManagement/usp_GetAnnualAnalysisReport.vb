@@ -2,6 +2,7 @@
     Public Class usp_GetAnnualAnalysisReport
 
 #Region "Properties / enums"
+        Public Property ApplicationId As Guid
         Public Property Frequency As String
         Public Property CustomerName As String
         Public Property Suburb As String
@@ -26,6 +27,7 @@
         End Sub
         Public Sub New(objAnnualAnalysis As FMS.Business.usp_GetAnnualAnalysisReportResult)
             With objAnnualAnalysis
+                Me.ApplicationId = .ApplicationID
                 Me.Frequency = .Frequency
                 Me.CustomerName = .CustomerName
                 Me.Suburb = .Suburb
@@ -41,7 +43,7 @@
                 Me.SiteCeaseDate = .SiteCeaseDate
                 Me.CeaseReasonDescription = .CeaseReasonDescription
                 Me.IndustryGroup = .IndustryGroup
-                
+
             End With
         End Sub
 #End Region
@@ -54,11 +56,12 @@
             Return objAnnualAnalysis
         End Function
         Public Shared Function GetAllAnnualAnalysisReportPerCustomerRating(Rating As Integer) As List(Of DataObjects.usp_GetAnnualAnalysisReport)
+            Dim appId = ThisSession.ApplicationID
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
 
             Dim objAnnualAnalysis = (From a In SingletonAccess.FMSDataContextContignous.usp_GetAnnualAnalysisReport()
-                                     Where a.CustomerRating = Rating
-                            Select New DataObjects.usp_GetAnnualAnalysisReport(a)).ToList
+                                     Where a.CustomerRating = Rating And a.ApplicationID = appId
+                                     Select New DataObjects.usp_GetAnnualAnalysisReport(a)).ToList
             Return objAnnualAnalysis
         End Function
 

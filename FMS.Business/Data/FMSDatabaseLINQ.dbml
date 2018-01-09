@@ -945,16 +945,6 @@
       <Column Name="CIRReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblCustomerRating" Member="tblCustomerRatings">
-    <Type Name="tblCustomerRating">
-      <Column Name="CustomerRatingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerRating" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerRatingDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FromValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ToValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblRunFortnightlyCycles" Member="tblRunFortnightlyCycles">
     <Type Name="tblRunFortnightlyCycle">
       <Column Name="FortnightlyCyclesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1334,6 +1324,17 @@
       <Column Name="PurchaseOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="chkSitesExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCustomerRating" Member="tblCustomerRatings">
+    <Type Name="tblCustomerRating">
+      <Column Name="CustomerRatingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerRating" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerRatingDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FromValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ToValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
@@ -2027,25 +2028,6 @@
     <Parameter Name="userid" Type="System.Guid" DbType="UniqueIdentifier" />
     <ElementType IdRef="ID1" />
   </Function>
-  <Function Name="dbo.usp_GetAnnualAnalysisReport" Method="usp_GetAnnualAnalysisReport">
-    <ElementType Name="usp_GetAnnualAnalysisReportResult">
-      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="SiteContractExpiry" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SiteCeaseReason" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SiteStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="CeaseReasonDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="IndustryGroup" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetGenerateRunSheetsDetail" Method="usp_GetGenerateRunSheetsDetail">
     <ElementType Name="usp_GetGenerateRunSheetsDetailResult">
       <Column Name="SortOrder" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
@@ -2267,6 +2249,26 @@
       <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Customer" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetAnnualAnalysisReport" Method="usp_GetAnnualAnalysisReport">
+    <ElementType Name="usp_GetAnnualAnalysisReportResult">
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="SiteContractExpiry" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SiteCeaseReason" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SiteStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CeaseReasonDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="IndustryGroup" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
