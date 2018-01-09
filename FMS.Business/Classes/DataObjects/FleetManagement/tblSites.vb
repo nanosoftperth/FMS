@@ -249,8 +249,9 @@
 
         ' For Report - CAN 18
         Public Shared Function GetAllByPostalCode(postcode As Integer) As List(Of DataObjects.tblSites)
+            Dim appId = ThisSession.ApplicationID
             Dim lstSites = (From s In SingletonAccess.FMSDataContextNew.tblSites
-                            Where s.PostCode = postcode
+                            Where s.PostCode = postcode And s.ApplicationId = appId
                             Select New DataObjects.tblSites(s)).ToList()
 
             Dim objSites As New List(Of DataObjects.tblSites)
