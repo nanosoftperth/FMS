@@ -266,7 +266,7 @@ Public Class ProduceMYOBFile
         Dim row As New InvoicingFrequencyList
 
         '------ Get Invoicing Frequency
-        Dim objInvoicingFrequency = FMS.Business.DataObjects.tblInvoicingFrequency.GetAll().Where(Function(i) i.IId = ifID).ToList()
+        Dim objInvoicingFrequency = FMS.Business.DataObjects.tblInvoicingFrequency.GetAllPerApplication().Where(Function(i) i.IId = ifID).ToList()
         'Dim objInvoicingFrequency = FMS.Business.DataObjects.tblInvoicingFrequency.GetAll().Where(Function(i) i.IId = rMYOB.InvoiceFrequency).ToList()
 
         If (objInvoicingFrequency.Count > 0) Then
@@ -374,7 +374,9 @@ Public Class ProduceMYOBFile
         Dim strSvcDesc As String = ""
 
         If (CSID > 0) Then
-            Dim oSvc = FMS.Business.DataObjects.tblServices.GetAll().Where(Function(s) s.Sid = CSID).ToList()
+            Dim appId = FMS.Business.ThisSession.ApplicationID
+            Dim oSvc = FMS.Business.DataObjects.tblServices.GetAll().Where(Function(s) s.Sid = CSID _
+                            And s.ApplicationID = appId).ToList()
 
             If (oSvc.Count > 0) Then
                 pgeSvcCode = oSvc.FirstOrDefault.ServiceCode
@@ -411,32 +413,6 @@ Public Class ProduceMYOBFile
 
         End If
 
-    End Sub
-
-    '--- Create Fuel record
-    Protected Sub CreateFuelRecord()
-        'rsOut.AddNew()
-        'rsOut!CustomerNumber = LastMYOBCustomerNo
-        'rsOut!CustomerName = Replace(LastCustomerName, Sep, "")
-        'rsOut!invoicenumber = NextInvoiceNumber
-        'rsOut!InvoiceDate = InvoiceDate
-        'rsOut!customerpurchaseordernumber = ""
-        'rsOut!quantity = 1
-        'rsOut!ProductCode = FuelCode
-        'rsOut!ProductDescription = FuelDescription & " @ " & LastSiteName
-        'rsOut!annualpriceexgst = sglTotalInvoiceAmountExGST
-        'rsOut!annualpriceincgst = sglTotalInvoiceAmountIncGST
-        'rsOut!invoiceamountexgst = sglTotalInvoiceAmountExGST
-        'rsOut!invoiceamountincgst = sglTotalInvoiceAmountIncGST
-        'rsOut!discount = 0
-        'rsOut!journalmemo = "Sale " & Replace(LastCustomerName, Sep, "")
-        'rsOut!SiteName = LastSiteName
-
-        'rsOut!job = "01"
-        'rsOut!taxcode = "GST"
-        'rsOut!gstamount = sglTotalInvoiceGSTAmount
-        'rsOut!Category = txtInvoicingFrequency
-        'rsOut.Update()
     End Sub
 
     Protected Sub btnProcess_Click(sender As Object, e As EventArgs)

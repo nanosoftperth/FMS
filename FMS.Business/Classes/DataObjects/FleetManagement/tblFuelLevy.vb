@@ -1,6 +1,7 @@
 ﻿Namespace DataObjects
     Public Class tblFuelLevy
 #Region "Properties / enums"
+        Public Property ApplicationId As System.Guid
         Public Property FuelLevyID As System.Guid
         Public Property Aid As Integer
         Public Property Code As String
@@ -10,8 +11,11 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(FuelLevy As DataObjects.tblFuelLevy)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objFuelLevy As New FMS.Business.tblFuelLevy
             With objFuelLevy
+                .ApplicationId = appID
                 .FuelLevyID = Guid.NewGuid
                 .Aid = tblProjectID.FuelLevyIDCreateOrUpdate()
                 .Code = FuelLevy.Code
@@ -23,8 +27,10 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(FuelLevy As DataObjects.tblFuelLevy)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objFuelLevy As FMS.Business.tblFuelLevy = (From c In SingletonAccess.FMSDataContextContignous.tblFuelLevies
-                                                           Where c.FuelLevyID.Equals(FuelLevy.FuelLevyID)).SingleOrDefault
+                                                           Where c.FuelLevyID.Equals(FuelLevy.FuelLevyID) And c.ApplicationId = appID).SingleOrDefault
             With objFuelLevy
                 .Code = FuelLevy.Code
                 .Description = FuelLevy.Description
@@ -34,18 +40,24 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(FuelLevy As DataObjects.tblFuelLevy)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objFuelLevy As FMS.Business.tblFuelLevy = (From c In SingletonAccess.FMSDataContextContignous.tblFuelLevies
-                                                         Where c.FuelLevyID.Equals(FuelLevy.FuelLevyID)).SingleOrDefault
+                                                           Where c.FuelLevyID.Equals(FuelLevy.FuelLevyID) And c.ApplicationId = appID).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblFuelLevies.DeleteOnSubmit(objFuelLevy)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblFuelLevy)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objFuelLevy = (From c In SingletonAccess.FMSDataContextContignous.tblFuelLevies
-                            Order By c.Description
-                            Select New DataObjects.tblFuelLevy(c)).ToList
+                               Where c.ApplicationId = appID
+                               Order By c.Description
+                               Select New DataObjects.tblFuelLevy(c)).ToList
             Return objFuelLevy
+
         End Function
 #End Region
 #Region "Constructors"
@@ -54,6 +66,7 @@
         End Sub
         Public Sub New(objFuellevy As FMS.Business.tblFuelLevy)
             With objFuellevy
+                Me.ApplicationId = .ApplicationId
                 Me.FuelLevyID = .FuelLevyID
                 Me.Aid = .Aid
                 Me.Code = .Code

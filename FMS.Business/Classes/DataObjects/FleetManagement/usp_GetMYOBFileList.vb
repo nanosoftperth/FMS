@@ -2,6 +2,7 @@
     Public Class usp_GetMYOBFileList
 
 #Region "Properties / enums"
+        Public Property ApplicationId As System.Guid
         Public Property MYOBCustomerNumber As String
         Public Property CustomerName As String
         Public Property chkCustomerExcludeFuelLevy As Boolean
@@ -34,6 +35,7 @@
         Public Sub New(objTbl As FMS.Business.usp_GetMYOBFileListResult)
 
             With objTbl
+                Me.ApplicationId = .ApplicationID
                 Me.MYOBCustomerNumber = .MYOBCustomerNumber
                 Me.CustomerName = .CustomerName
                 Me.chkCustomerExcludeFuelLevy = .chkCustomerExcludeFuelLevy
@@ -63,12 +65,14 @@
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.usp_GetMYOBFileList)
+            Dim appID = ThisSession.ApplicationID
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
             Dim objAnnualAnalysis = (From a In SingletonAccess.FMSDataContextContignous.usp_GetMYOBFileList()
-                            Select New DataObjects.usp_GetMYOBFileList(a)).ToList
+                                     Where a.ApplicationID = appID
+                                     Select New DataObjects.usp_GetMYOBFileList(a)).ToList
             Return objAnnualAnalysis
         End Function
-        
+
 #End Region
 
     End Class

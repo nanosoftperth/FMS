@@ -95,13 +95,14 @@ Namespace DataObjects
 
 #Region "Extended CRUD"
         Public Shared Sub DeleteAll()
-            '--- Use this technique to faster delete the records from tblMYOBMatch
+            '--- Use this technique to faster execution on deletion of records from tblMYOBMatch
+            Dim appID = ThisSession.ApplicationID
             Dim strConnection As String = System.Configuration.ConfigurationManager.ConnectionStrings("ApplicationServices").ConnectionString
             Dim connection As SqlConnection
             Dim adapter As SqlDataAdapter = New SqlDataAdapter()
             Dim sql As String = Nothing
             connection = New SqlConnection(strConnection)
-            sql = "delete from tblMYOBInvoicing"
+            sql = "delete from tblMYOBInvoicing where applicationid = '" + appID.ToString() + "'"
 
             connection.Open()
             adapter.DeleteCommand = connection.CreateCommand()

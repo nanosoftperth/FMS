@@ -931,32 +931,6 @@
       <Column Name="BusinessLocationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.tblCustomers" Member="tblCustomers">
-    <Type Name="tblCustomer">
-      <Column Name="CustomerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerMobile" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerFax" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="CustomerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CustomerAgent" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="Zone" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CustomerValue" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="InactiveCustomer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerCommencementDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="chkCustomerExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblSites" Member="tblSites">
     <Type Name="tblSite">
       <Column Name="SiteID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1006,15 +980,6 @@
       <Column Name="PurchaseOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="chkSitesExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblInvoicingFrequency" Member="tblInvoicingFrequencies">
-    <Type Name="tblInvoicingFrequency">
-      <Column Name="InvoiceFrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="IId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceId" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
-      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="NoOfWeeks" Type="System.Single" DbType="Real" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblContractCeaseReasons" Member="tblContractCeaseReasons">
@@ -1079,16 +1044,6 @@
       <Column Name="SalesPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SalesPersonStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="SalesPersonComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblFuelLevy" Member="tblFuelLevies">
-    <Type Name="tblFuelLevy">
-      <Column Name="FuelLevyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="Percentage" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="MYOBInvoiceCode" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.vw_GetVehicleLocations" Member="vw_GetVehicleLocations">
@@ -1331,6 +1286,54 @@
       <Column Name="GSTAmount" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="Category" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCustomers" Member="tblCustomers">
+    <Type Name="tblCustomer">
+      <Column Name="CustomerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerMobile" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerFax" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomerAgent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Zone" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="InactiveCustomer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerCommencementDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="chkCustomerExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cmbRateIncrease" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblFuelLevy" Member="tblFuelLevies">
+    <Type Name="tblFuelLevy">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FuelLevyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="Percentage" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MYOBInvoiceCode" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblInvoicingFrequency" Member="tblInvoicingFrequencies">
+    <Type Name="tblInvoicingFrequency">
+      <Column Name="InvoiceFrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceId" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="NoOfWeeks" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
@@ -2181,15 +2184,6 @@
       <Column Name="Customer" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetPreviousInvoiceSummaryReport" Method="usp_GetPreviousInvoiceSummaryReport">
-    <ElementType Name="usp_GetPreviousInvoiceSummaryReportResult">
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SumOfAnnualPriceExGST" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SumOfInvoiceAmountExGST" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SumOfGSTAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SumOfInvoiceAmountIncGST" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_UpdateCustomersBaseOnCardID" Method="usp_UpdateCustomersBaseOnCardID">
     <Return Type="System.Int32" />
   </Function>
@@ -2200,33 +2194,6 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.usp_GetMYOBFileList" Method="usp_GetMYOBFileList">
-    <ElementType Name="usp_GetMYOBFileListResult">
-      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="InvoiceFrequency" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceAddress" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="InvoiceAddress2" Type="System.String" DbType="NVarChar(67)" CanBeNull="true" />
-      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PurchaseOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SiteName1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SeparateInvoice" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceMonth1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InvoiceMonth2" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InvoiceMonth3" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InvoiceMonth4" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="chkSitesExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="chkCustomerExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.usp_GetRevenueReportByZone" Method="usp_GetRevenueReportByZone">
@@ -2260,5 +2227,43 @@
     <Parameter Name="OldRunDriver" Parameter="oldRunDriver" Type="System.Int32" DbType="Int" />
     <Parameter Name="NewRunDriver" Parameter="newRunDriver" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_GetPreviousInvoiceSummaryReport" Method="usp_GetPreviousInvoiceSummaryReport">
+    <ElementType Name="usp_GetPreviousInvoiceSummaryReportResult">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SumOfAnnualPriceExGST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SumOfInvoiceAmountExGST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SumOfGSTAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SumOfInvoiceAmountIncGST" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetMYOBFileList" Method="usp_GetMYOBFileList">
+    <ElementType Name="usp_GetMYOBFileListResult">
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InvoiceFrequency" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceAddress" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="InvoiceAddress2" Type="System.String" DbType="NVarChar(67)" CanBeNull="true" />
+      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PurchaseOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SiteName1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SeparateInvoice" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceMonth1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceMonth2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceMonth3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceMonth4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="chkSitesExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="chkCustomerExcludeFuelLevy" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

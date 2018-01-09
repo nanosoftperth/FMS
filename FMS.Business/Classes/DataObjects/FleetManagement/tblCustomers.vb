@@ -1,6 +1,7 @@
 ﻿Namespace DataObjects
     Public Class tblCustomers
 #Region "Properties / enums"
+        Public Property ApplicationId As System.Guid
         Public Property CustomerID As System.Guid
         Public Property Cid As Integer
         Public Property CustomerName As String
@@ -30,8 +31,11 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(customer As DataObjects.tblCustomers)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objCustomer As New FMS.Business.tblCustomer
             With objCustomer
+                .ApplicationID = appid
                 .CustomerID = Guid.NewGuid
                 .Cid = tblProjectID.CustomerIDCreateOrUpdate()
                 .CustomerName = customer.CustomerName
@@ -59,8 +63,10 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(customer As DataObjects.tblCustomers)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(customer.Cid)).SingleOrDefault
+                                                           Where c.Cid.Equals(customer.Cid) And c.ApplicationID = appID).SingleOrDefault
             With objCustomer
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
@@ -94,8 +100,10 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Customer As DataObjects.tblCustomers)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(Customer.Cid)).SingleOrDefault
+                                                           Where c.Cid.Equals(Customer.Cid) And c.ApplicationID = appID).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblCustomers.DeleteOnSubmit(objCustomer)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -104,7 +112,7 @@
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomers)
             Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
                                Select New DataObjects.tblCustomers(c)).ToList
-            
+
             Return objCustomer
         End Function
         Public Shared Function GetAllOrderByCustomerName() As List(Of DataObjects.tblCustomers)
@@ -134,6 +142,7 @@
 
             Return objCustomer
         End Function
+
         Public Shared Function GetACustomerByCID(cid As Integer) As DataObjects.tblCustomers
 
             Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomers
@@ -155,13 +164,15 @@
         End Function
 
         Public Shared Function GetMYOBCustomer() As List(Of DataObjects.tblCustomers)
+            Dim appID = ThisSession.ApplicationID
+
             Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                               Where c.MYOBCustomerNumber Is Nothing
+                               Where c.MYOBCustomerNumber Is Nothing And c.ApplicationID = appID
                                Select New DataObjects.tblCustomers(c)).ToList
 
             Return objCustomer
         End Function
-        
+
 #End Region
 #Region "Constructors"
         Public Sub New()
