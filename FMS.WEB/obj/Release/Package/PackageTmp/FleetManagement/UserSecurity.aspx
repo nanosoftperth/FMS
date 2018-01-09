@@ -18,6 +18,7 @@
         <br />
         <dx:ASPxGridView ID="Grid" runat="server" AutoGenerateColumns="false" 
             KeyFieldName="usersecID" DataSourceID="odsUsers" Width="100%" OnRowUpdating="Grid_RowUpdating">
+            <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
                     ShowNewButtonInHeader="True" ShowDeleteButton="True"

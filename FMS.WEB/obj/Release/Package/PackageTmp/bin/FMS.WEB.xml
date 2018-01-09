@@ -778,6 +778,204 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.DriverDetails._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._ASPxLabel1">
+<summary>
+ASPxLabel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._gvDriver">
+<summary>
+gvDriver control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._btnComment">
+<summary>
+btnComment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._btnAllocate">
+<summary>
+btnAllocate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._pupComment">
+<summary>
+pupComment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._lblComment">
+<summary>
+lblComment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._gvDriverCommentReason">
+<summary>
+gvDriverCommentReason control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._btnCloseComments">
+<summary>
+btnCloseComments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._pupAllocate">
+<summary>
+pupAllocate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._ASPxLabel2">
+<summary>
+ASPxLabel2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._ASPxLabel3">
+<summary>
+ASPxLabel3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._cboDriverFrom">
+<summary>
+cboDriverFrom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._ASPxLabel4">
+<summary>
+ASPxLabel4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._cboDriverTo">
+<summary>
+cboDriverTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._btnChangeRun">
+<summary>
+btnChangeRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._btnCloseAllocate">
+<summary>
+btnCloseAllocate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._odsDriver">
+<summary>
+odsDriver control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._odsDriverComments">
+<summary>
+odsDriverComments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._odsDriverCommentsReason">
+<summary>
+odsDriverCommentsReason control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._odsAllocateDriverFrom">
+<summary>
+odsAllocateDriverFrom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._odsAllocateDriverTo">
+<summary>
+odsAllocateDriverTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.PublicHolidayRegister._form1">
 <summary>
 form1 control.

@@ -31,6 +31,7 @@
                 <dx:GridViewDataTextColumn FieldName="ServiceCode" VisibleIndex="3" PropertiesTextEdit-MaxLength="8"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="ServiceDescription" VisibleIndex="4"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="CostOfService" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                <dx:GridViewCommandColumn ButtonType="Button" Caption="Driver Comment Reasons" VisibleIndex="5"></dx:GridViewCommandColumn>
             </Columns>
         </dx:ASPxGridView>
         <asp:ObjectDataSource ID="odsServices" runat="server" SelectMethod="GetAllByApplicationID" TypeName="FMS.Business.DataObjects.tblServices" DataObjectTypeName="FMS.Business.DataObjects.tblServices" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">

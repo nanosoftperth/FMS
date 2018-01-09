@@ -118,6 +118,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomerRating.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomerServices.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblDriverComments.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblDriverCommentsReason.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblDrivers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblFuelLevy.vb" />

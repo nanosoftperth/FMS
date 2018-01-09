@@ -318,6 +318,13 @@
       <DependentUpon>DriverDetails.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\MatchMYOBNamesContents.aspx.designer.vb">
+      <DependentUpon>MatchMYOBNamesContents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\MatchMYOBNamesContents.aspx.vb">
+      <DependentUpon>MatchMYOBNamesContents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\PublicHolidayRegister.aspx.designer.vb">
       <DependentUpon>PublicHolidayRegister.aspx</DependentUpon>
     </Compile>
@@ -1275,6 +1282,7 @@
     <Content Include="Content\Images\drop.gif" />
     <Content Include="Content\Images\Gear Set.gif" />
     <Content Include="FleetManagement\DriverDetails.aspx" />
+    <Content Include="FleetManagement\MatchMYOBNamesContents.aspx" />
     <Content Include="FleetManagement\PublicHolidayRegister.aspx" />
     <Content Include="FleetManagement\Reports\AnnualAnalysisReport.aspx" />
     <Content Include="FleetManagement\AuditChangeReasons.aspx" />
