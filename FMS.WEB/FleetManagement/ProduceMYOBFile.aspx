@@ -2,7 +2,6 @@
 
 <%@ Register Assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -75,13 +74,23 @@
             //alert('test: ' + value);
         }
 
+        function showLoadingProcess() {
+            lpProcess.SetText("Processing Invoices. This may take a while. Please wait...");
+            lpProcess.Show();
+            //lpProcess.ShowInElementByID(cltbtnProcess.name);
+        }
+
+        function HideLoadingProcess() {
+            lpProcess.Hide();
+        }
+
         
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <dx:ASPxCheckBox ID="ASPxCheckBox1" runat="server" Text="Keep Form Open"></dx:ASPxCheckBox>
+        <dx:ASPxCheckBox ID="ASPxCheckBox1" runat="server" Text="Keep Form Open" Visible="false"></dx:ASPxCheckBox>
     </div>
     <div id="DivMain">
         <table>
@@ -229,7 +238,13 @@
             </tr>
             <tr>
                 <td>
-                    <dx:ASPxButton ID="btnProcess" runat="server" Text="Process" Width="200px" OnClick="btnProcess_Click"></dx:ASPxButton>
+                    <dx:ASPxButton ID="btnProcess" runat="server" Text="Process" Width="200px" OnClick="btnProcess_Click"
+                        ClientInstanceName="cltbtnProcess">
+                        <ClientSideEvents Click="function(s, e) {
+                            showLoadingProcess();    
+							
+						}" />
+                    </dx:ASPxButton>
                     <dx:ASPxPopupControl ID="puDialogBox" runat="server" ClientInstanceName="popupControl" 
                         Height="83px" Modal="True" CloseAction="CloseButton" Width="200px" AllowDragging="True" 
                         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ShowHeader="False">
@@ -284,6 +299,7 @@
         </table>
         <dx:ASPxLoadingPanel ID="idLoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
             Modal="True">
+
         </dx:ASPxLoadingPanel>
         <script type="text/javascript">
             function Reportcontent_ControlsInitialised() {
@@ -305,6 +321,18 @@
             Modal="True">
         </dx:ASPxLoadingPanel>
     </div>
+        <div style="position: center">
+            <dx:ASPxLoadingPanel ID="lpProcess" runat="server" 
+                ClientInstanceName="lpProcess">
+            </dx:ASPxLoadingPanel>
+            
+        </div>
+        <dx:ASPxCallback ID="cbProcess" runat="server" 
+            ClientInstanceName="cltcbProcess" oncallback="cbProcess_Callback">
+            <ClientSideEvents EndCallback="function(s, e) {
+			    HideLoadingProcess();
+		        }" />
+        </dx:ASPxCallback>
     </form>
 </body>
 </html>

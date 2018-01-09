@@ -1118,30 +1118,6 @@
       <Column Name="SortOrder" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblMYOBInvoicing" Member="tblMYOBInvoicings">
-    <Type Name="tblMYOBInvoicing">
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="InvoiceNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CustomerPurchaseOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Quantity" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ProductDescription" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="AnnualPriceExGST" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="AnnualPriceIncGST" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="Discount" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="InvoiceAmountExGST" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="InvoiceAmountIncGST" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="Job" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="JournalMemo" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
-      <Column Name="TaxCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="GSTAmount" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="Category" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CUST" Member="CUSTs">
     <Type Name="CUST">
       <Column Name="ID" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -1330,6 +1306,31 @@
       <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CommentReason" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblMYOBInvoicing" Member="tblMYOBInvoicings">
+    <Type Name="tblMYOBInvoicing">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CustomerPurchaseOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductDescription" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="AnnualPriceExGST" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="AnnualPriceIncGST" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Discount" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceAmountExGST" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="InvoiceAmountIncGST" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Job" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="JournalMemo" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="TaxCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GSTAmount" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

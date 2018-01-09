@@ -6,6 +6,7 @@ Namespace DataObjects
     Public Class tblMYOBInvoicing
 
 #Region "Properties / enums"
+        Public Property ApplicationId As Guid
         Public Property Aid As System.Nullable(Of Integer)
         Public Property CustomerNumber As String
         Public Property CustomerName As String
@@ -62,10 +63,12 @@ Namespace DataObjects
 
 #Region "CRUD"
         Public Shared Sub CreateAll(myob As List(Of DataObjects.tblMYOBInvoicing))
-            
+            Dim appID = ThisSession.ApplicationID
+
             For Each rMYOB In myob
                 Dim oMYOB As New FMS.Business.tblMYOBInvoicing
                 With oMYOB
+                    .ApplicationId = appID
                     .CustomerNumber = rMYOB.CustomerNumber
                     .CustomerName = rMYOB.CustomerName
                     .InvoiceNumber = rMYOB.InvoiceNumber

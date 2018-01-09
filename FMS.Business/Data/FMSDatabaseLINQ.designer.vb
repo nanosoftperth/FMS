@@ -595,6 +595,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblDriverComment(instance As tblDriverComment)
     End Sub
+  Partial Private Sub InserttblMYOBInvoicing(instance As tblMYOBInvoicing)
+    End Sub
+  Partial Private Sub UpdatetblMYOBInvoicing(instance As tblMYOBInvoicing)
+    End Sub
+  Partial Private Sub DeletetblMYOBInvoicing(instance As tblMYOBInvoicing)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1156,12 +1162,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblMYOBInvoicings() As System.Data.Linq.Table(Of tblMYOBInvoicing)
-		Get
-			Return Me.GetTable(Of tblMYOBInvoicing)
-		End Get
-	End Property
-	
 	Public ReadOnly Property CUSTs() As System.Data.Linq.Table(Of CUST)
 		Get
 			Return Me.GetTable(Of CUST)
@@ -1249,6 +1249,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblDriverComments() As System.Data.Linq.Table(Of tblDriverComment)
 		Get
 			Return Me.GetTable(Of tblDriverComment)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblMYOBInvoicings() As System.Data.Linq.Table(Of tblMYOBInvoicing)
+		Get
+			Return Me.GetTable(Of tblMYOBInvoicing)
 		End Get
 	End Property
 	
@@ -21150,295 +21156,6 @@ Partial Public Class tblzGenerateRunSheet
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMYOBInvoicing")>  _
-Partial Public Class tblMYOBInvoicing
-	
-	Private _Aid As Integer
-	
-	Private _CustomerNumber As String
-	
-	Private _CustomerName As String
-	
-	Private _InvoiceNumber As String
-	
-	Private _InvoiceDate As System.Nullable(Of Date)
-	
-	Private _CustomerPurchaseOrderNumber As String
-	
-	Private _Quantity As System.Nullable(Of Short)
-	
-	Private _ProductCode As String
-	
-	Private _ProductDescription As String
-	
-	Private _AnnualPriceExGST As System.Nullable(Of Single)
-	
-	Private _AnnualPriceIncGST As System.Nullable(Of Single)
-	
-	Private _Discount As String
-	
-	Private _InvoiceAmountExGST As System.Nullable(Of Single)
-	
-	Private _InvoiceAmountIncGST As System.Nullable(Of Single)
-	
-	Private _Job As String
-	
-	Private _JournalMemo As String
-	
-	Private _TaxCode As String
-	
-	Private _GSTAmount As System.Nullable(Of Single)
-	
-	Private _Category As String
-	
-	Private _SiteName As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me._Aid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerNumber", DbType:="NVarChar(50)")>  _
-	Public Property CustomerNumber() As String
-		Get
-			Return Me._CustomerNumber
-		End Get
-		Set
-			If (String.Equals(Me._CustomerNumber, value) = false) Then
-				Me._CustomerNumber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceNumber", DbType:="NVarChar(50)")>  _
-	Public Property InvoiceNumber() As String
-		Get
-			Return Me._InvoiceNumber
-		End Get
-		Set
-			If (String.Equals(Me._InvoiceNumber, value) = false) Then
-				Me._InvoiceNumber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceDate", DbType:="DateTime")>  _
-	Public Property InvoiceDate() As System.Nullable(Of Date)
-		Get
-			Return Me._InvoiceDate
-		End Get
-		Set
-			If (Me._InvoiceDate.Equals(value) = false) Then
-				Me._InvoiceDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPurchaseOrderNumber", DbType:="NVarChar(50)")>  _
-	Public Property CustomerPurchaseOrderNumber() As String
-		Get
-			Return Me._CustomerPurchaseOrderNumber
-		End Get
-		Set
-			If (String.Equals(Me._CustomerPurchaseOrderNumber, value) = false) Then
-				Me._CustomerPurchaseOrderNumber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Quantity", DbType:="SmallInt")>  _
-	Public Property Quantity() As System.Nullable(Of Short)
-		Get
-			Return Me._Quantity
-		End Get
-		Set
-			If (Me._Quantity.Equals(value) = false) Then
-				Me._Quantity = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductCode", DbType:="NVarChar(50)")>  _
-	Public Property ProductCode() As String
-		Get
-			Return Me._ProductCode
-		End Get
-		Set
-			If (String.Equals(Me._ProductCode, value) = false) Then
-				Me._ProductCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductDescription", DbType:="NVarChar(200)")>  _
-	Public Property ProductDescription() As String
-		Get
-			Return Me._ProductDescription
-		End Get
-		Set
-			If (String.Equals(Me._ProductDescription, value) = false) Then
-				Me._ProductDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualPriceExGST", DbType:="Real")>  _
-	Public Property AnnualPriceExGST() As System.Nullable(Of Single)
-		Get
-			Return Me._AnnualPriceExGST
-		End Get
-		Set
-			If (Me._AnnualPriceExGST.Equals(value) = false) Then
-				Me._AnnualPriceExGST = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualPriceIncGST", DbType:="Real")>  _
-	Public Property AnnualPriceIncGST() As System.Nullable(Of Single)
-		Get
-			Return Me._AnnualPriceIncGST
-		End Get
-		Set
-			If (Me._AnnualPriceIncGST.Equals(value) = false) Then
-				Me._AnnualPriceIncGST = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Discount", DbType:="NVarChar(50)")>  _
-	Public Property Discount() As String
-		Get
-			Return Me._Discount
-		End Get
-		Set
-			If (String.Equals(Me._Discount, value) = false) Then
-				Me._Discount = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountExGST", DbType:="Real")>  _
-	Public Property InvoiceAmountExGST() As System.Nullable(Of Single)
-		Get
-			Return Me._InvoiceAmountExGST
-		End Get
-		Set
-			If (Me._InvoiceAmountExGST.Equals(value) = false) Then
-				Me._InvoiceAmountExGST = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountIncGST", DbType:="Real")>  _
-	Public Property InvoiceAmountIncGST() As System.Nullable(Of Single)
-		Get
-			Return Me._InvoiceAmountIncGST
-		End Get
-		Set
-			If (Me._InvoiceAmountIncGST.Equals(value) = false) Then
-				Me._InvoiceAmountIncGST = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Job", DbType:="NVarChar(50)")>  _
-	Public Property Job() As String
-		Get
-			Return Me._Job
-		End Get
-		Set
-			If (String.Equals(Me._Job, value) = false) Then
-				Me._Job = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_JournalMemo", DbType:="NVarChar(120)")>  _
-	Public Property JournalMemo() As String
-		Get
-			Return Me._JournalMemo
-		End Get
-		Set
-			If (String.Equals(Me._JournalMemo, value) = false) Then
-				Me._JournalMemo = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TaxCode", DbType:="NVarChar(50)")>  _
-	Public Property TaxCode() As String
-		Get
-			Return Me._TaxCode
-		End Get
-		Set
-			If (String.Equals(Me._TaxCode, value) = false) Then
-				Me._TaxCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GSTAmount", DbType:="Real")>  _
-	Public Property GSTAmount() As System.Nullable(Of Single)
-		Get
-			Return Me._GSTAmount
-		End Get
-		Set
-			If (Me._GSTAmount.Equals(value) = false) Then
-				Me._GSTAmount = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Category", DbType:="NVarChar(50)")>  _
-	Public Property Category() As String
-		Get
-			Return Me._Category
-		End Get
-		Set
-			If (String.Equals(Me._Category, value) = false) Then
-				Me._Category = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CUST")>  _
 Partial Public Class CUST
 	
@@ -24872,6 +24589,508 @@ Partial Public Class tblDriverComment
 				Me._Comments = value
 				Me.SendPropertyChanged("Comments")
 				Me.OnCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMYOBInvoicing")>  _
+Partial Public Class tblMYOBInvoicing
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ApplicationId As System.Nullable(Of System.Guid)
+	
+	Private _Aid As Integer
+	
+	Private _CustomerNumber As String
+	
+	Private _CustomerName As String
+	
+	Private _InvoiceNumber As String
+	
+	Private _InvoiceDate As System.Nullable(Of Date)
+	
+	Private _CustomerPurchaseOrderNumber As String
+	
+	Private _Quantity As System.Nullable(Of Short)
+	
+	Private _ProductCode As String
+	
+	Private _ProductDescription As String
+	
+	Private _AnnualPriceExGST As System.Nullable(Of Single)
+	
+	Private _AnnualPriceIncGST As System.Nullable(Of Single)
+	
+	Private _Discount As String
+	
+	Private _InvoiceAmountExGST As System.Nullable(Of Single)
+	
+	Private _InvoiceAmountIncGST As System.Nullable(Of Single)
+	
+	Private _Job As String
+	
+	Private _JournalMemo As String
+	
+	Private _TaxCode As String
+	
+	Private _GSTAmount As System.Nullable(Of Single)
+	
+	Private _Category As String
+	
+	Private _SiteName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnApplicationIdChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIdChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCustomerNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerNumberChanged()
+    End Sub
+    Partial Private Sub OnCustomerNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerNameChanged()
+    End Sub
+    Partial Private Sub OnInvoiceNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnInvoiceNumberChanged()
+    End Sub
+    Partial Private Sub OnInvoiceDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnInvoiceDateChanged()
+    End Sub
+    Partial Private Sub OnCustomerPurchaseOrderNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerPurchaseOrderNumberChanged()
+    End Sub
+    Partial Private Sub OnQuantityChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnQuantityChanged()
+    End Sub
+    Partial Private Sub OnProductCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnProductCodeChanged()
+    End Sub
+    Partial Private Sub OnProductDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnProductDescriptionChanged()
+    End Sub
+    Partial Private Sub OnAnnualPriceExGSTChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnAnnualPriceExGSTChanged()
+    End Sub
+    Partial Private Sub OnAnnualPriceIncGSTChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnAnnualPriceIncGSTChanged()
+    End Sub
+    Partial Private Sub OnDiscountChanging(value As String)
+    End Sub
+    Partial Private Sub OnDiscountChanged()
+    End Sub
+    Partial Private Sub OnInvoiceAmountExGSTChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnInvoiceAmountExGSTChanged()
+    End Sub
+    Partial Private Sub OnInvoiceAmountIncGSTChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnInvoiceAmountIncGSTChanged()
+    End Sub
+    Partial Private Sub OnJobChanging(value As String)
+    End Sub
+    Partial Private Sub OnJobChanged()
+    End Sub
+    Partial Private Sub OnJournalMemoChanging(value As String)
+    End Sub
+    Partial Private Sub OnJournalMemoChanged()
+    End Sub
+    Partial Private Sub OnTaxCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnTaxCodeChanged()
+    End Sub
+    Partial Private Sub OnGSTAmountChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnGSTAmountChanged()
+    End Sub
+    Partial Private Sub OnCategoryChanging(value As String)
+    End Sub
+    Partial Private Sub OnCategoryChanged()
+    End Sub
+    Partial Private Sub OnSiteNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If (Me._ApplicationId.Equals(value) = false) Then
+				Me.OnApplicationIdChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationId = value
+				Me.SendPropertyChanged("ApplicationId")
+				Me.OnApplicationIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerNumber", DbType:="NVarChar(50)")>  _
+	Public Property CustomerNumber() As String
+		Get
+			Return Me._CustomerNumber
+		End Get
+		Set
+			If (String.Equals(Me._CustomerNumber, value) = false) Then
+				Me.OnCustomerNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerNumber = value
+				Me.SendPropertyChanged("CustomerNumber")
+				Me.OnCustomerNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me.OnCustomerNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerName = value
+				Me.SendPropertyChanged("CustomerName")
+				Me.OnCustomerNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceNumber", DbType:="NVarChar(50)")>  _
+	Public Property InvoiceNumber() As String
+		Get
+			Return Me._InvoiceNumber
+		End Get
+		Set
+			If (String.Equals(Me._InvoiceNumber, value) = false) Then
+				Me.OnInvoiceNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceNumber = value
+				Me.SendPropertyChanged("InvoiceNumber")
+				Me.OnInvoiceNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceDate", DbType:="DateTime")>  _
+	Public Property InvoiceDate() As System.Nullable(Of Date)
+		Get
+			Return Me._InvoiceDate
+		End Get
+		Set
+			If (Me._InvoiceDate.Equals(value) = false) Then
+				Me.OnInvoiceDateChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceDate = value
+				Me.SendPropertyChanged("InvoiceDate")
+				Me.OnInvoiceDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPurchaseOrderNumber", DbType:="NVarChar(50)")>  _
+	Public Property CustomerPurchaseOrderNumber() As String
+		Get
+			Return Me._CustomerPurchaseOrderNumber
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPurchaseOrderNumber, value) = false) Then
+				Me.OnCustomerPurchaseOrderNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerPurchaseOrderNumber = value
+				Me.SendPropertyChanged("CustomerPurchaseOrderNumber")
+				Me.OnCustomerPurchaseOrderNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Quantity", DbType:="SmallInt")>  _
+	Public Property Quantity() As System.Nullable(Of Short)
+		Get
+			Return Me._Quantity
+		End Get
+		Set
+			If (Me._Quantity.Equals(value) = false) Then
+				Me.OnQuantityChanging(value)
+				Me.SendPropertyChanging
+				Me._Quantity = value
+				Me.SendPropertyChanged("Quantity")
+				Me.OnQuantityChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductCode", DbType:="NVarChar(50)")>  _
+	Public Property ProductCode() As String
+		Get
+			Return Me._ProductCode
+		End Get
+		Set
+			If (String.Equals(Me._ProductCode, value) = false) Then
+				Me.OnProductCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductCode = value
+				Me.SendPropertyChanged("ProductCode")
+				Me.OnProductCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductDescription", DbType:="NVarChar(200)")>  _
+	Public Property ProductDescription() As String
+		Get
+			Return Me._ProductDescription
+		End Get
+		Set
+			If (String.Equals(Me._ProductDescription, value) = false) Then
+				Me.OnProductDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductDescription = value
+				Me.SendPropertyChanged("ProductDescription")
+				Me.OnProductDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualPriceExGST", DbType:="Real")>  _
+	Public Property AnnualPriceExGST() As System.Nullable(Of Single)
+		Get
+			Return Me._AnnualPriceExGST
+		End Get
+		Set
+			If (Me._AnnualPriceExGST.Equals(value) = false) Then
+				Me.OnAnnualPriceExGSTChanging(value)
+				Me.SendPropertyChanging
+				Me._AnnualPriceExGST = value
+				Me.SendPropertyChanged("AnnualPriceExGST")
+				Me.OnAnnualPriceExGSTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnnualPriceIncGST", DbType:="Real")>  _
+	Public Property AnnualPriceIncGST() As System.Nullable(Of Single)
+		Get
+			Return Me._AnnualPriceIncGST
+		End Get
+		Set
+			If (Me._AnnualPriceIncGST.Equals(value) = false) Then
+				Me.OnAnnualPriceIncGSTChanging(value)
+				Me.SendPropertyChanging
+				Me._AnnualPriceIncGST = value
+				Me.SendPropertyChanged("AnnualPriceIncGST")
+				Me.OnAnnualPriceIncGSTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Discount", DbType:="NVarChar(50)")>  _
+	Public Property Discount() As String
+		Get
+			Return Me._Discount
+		End Get
+		Set
+			If (String.Equals(Me._Discount, value) = false) Then
+				Me.OnDiscountChanging(value)
+				Me.SendPropertyChanging
+				Me._Discount = value
+				Me.SendPropertyChanged("Discount")
+				Me.OnDiscountChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountExGST", DbType:="Real")>  _
+	Public Property InvoiceAmountExGST() As System.Nullable(Of Single)
+		Get
+			Return Me._InvoiceAmountExGST
+		End Get
+		Set
+			If (Me._InvoiceAmountExGST.Equals(value) = false) Then
+				Me.OnInvoiceAmountExGSTChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceAmountExGST = value
+				Me.SendPropertyChanged("InvoiceAmountExGST")
+				Me.OnInvoiceAmountExGSTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountIncGST", DbType:="Real")>  _
+	Public Property InvoiceAmountIncGST() As System.Nullable(Of Single)
+		Get
+			Return Me._InvoiceAmountIncGST
+		End Get
+		Set
+			If (Me._InvoiceAmountIncGST.Equals(value) = false) Then
+				Me.OnInvoiceAmountIncGSTChanging(value)
+				Me.SendPropertyChanging
+				Me._InvoiceAmountIncGST = value
+				Me.SendPropertyChanged("InvoiceAmountIncGST")
+				Me.OnInvoiceAmountIncGSTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Job", DbType:="NVarChar(50)")>  _
+	Public Property Job() As String
+		Get
+			Return Me._Job
+		End Get
+		Set
+			If (String.Equals(Me._Job, value) = false) Then
+				Me.OnJobChanging(value)
+				Me.SendPropertyChanging
+				Me._Job = value
+				Me.SendPropertyChanged("Job")
+				Me.OnJobChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_JournalMemo", DbType:="NVarChar(120)")>  _
+	Public Property JournalMemo() As String
+		Get
+			Return Me._JournalMemo
+		End Get
+		Set
+			If (String.Equals(Me._JournalMemo, value) = false) Then
+				Me.OnJournalMemoChanging(value)
+				Me.SendPropertyChanging
+				Me._JournalMemo = value
+				Me.SendPropertyChanged("JournalMemo")
+				Me.OnJournalMemoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TaxCode", DbType:="NVarChar(50)")>  _
+	Public Property TaxCode() As String
+		Get
+			Return Me._TaxCode
+		End Get
+		Set
+			If (String.Equals(Me._TaxCode, value) = false) Then
+				Me.OnTaxCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._TaxCode = value
+				Me.SendPropertyChanged("TaxCode")
+				Me.OnTaxCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GSTAmount", DbType:="Real")>  _
+	Public Property GSTAmount() As System.Nullable(Of Single)
+		Get
+			Return Me._GSTAmount
+		End Get
+		Set
+			If (Me._GSTAmount.Equals(value) = false) Then
+				Me.OnGSTAmountChanging(value)
+				Me.SendPropertyChanging
+				Me._GSTAmount = value
+				Me.SendPropertyChanged("GSTAmount")
+				Me.OnGSTAmountChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Category", DbType:="NVarChar(50)")>  _
+	Public Property Category() As String
+		Get
+			Return Me._Category
+		End Get
+		Set
+			If (String.Equals(Me._Category, value) = false) Then
+				Me.OnCategoryChanging(value)
+				Me.SendPropertyChanging
+				Me._Category = value
+				Me.SendPropertyChanged("Category")
+				Me.OnCategoryChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me.OnSiteNameChanging(value)
+				Me.SendPropertyChanging
+				Me._SiteName = value
+				Me.SendPropertyChanged("SiteName")
+				Me.OnSiteNameChanged
 			End If
 		End Set
 	End Property

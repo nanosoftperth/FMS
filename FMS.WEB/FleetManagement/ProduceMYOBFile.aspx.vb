@@ -50,10 +50,12 @@ Public Class ProduceMYOBFile
 
             '--- Get First and Last InvoiceNumber
             Dim oMI = FMS.Business.DataObjects.tblMYOBInvoicing.GetAllOrderByInvoiceNumber()
-            Dim InvoiceNumberStart = oMI.FirstOrDefault.InvoiceNumber
-            Dim InvoiceNumberEnd = oMI.LastOrDefault.InvoiceNumber
-            txtInvStartNo.Text = InvoiceNumberEnd
 
+            If (oMI.Count > 0) Then
+                Dim InvoiceNumberStart = oMI.FirstOrDefault.InvoiceNumber
+                Dim InvoiceNumberEnd = oMI.LastOrDefault.InvoiceNumber
+                txtInvStartNo.Text = InvoiceNumberEnd
+            End If
 
         End If
 
@@ -349,7 +351,7 @@ Public Class ProduceMYOBFile
                 temp6 = temp6 + 1
             End If
 
-            tempdate = Date.FromOADate(temp5 + "/" + temp6 + "/" + temp3)
+            tempdate = Convert.ToDateTime(temp5.ToString() + "/" + temp6.ToString() + "/" + temp3.ToString())
             tempdate = tempdate.AddDays(-1)
             temp1 = Day(tempdate)
 
@@ -373,8 +375,15 @@ Public Class ProduceMYOBFile
 
         If (CSID > 0) Then
             Dim oSvc = FMS.Business.DataObjects.tblServices.GetAll().Where(Function(s) s.Sid = CSID).ToList()
-            pgeSvcCode = oSvc.FirstOrDefault.ServiceCode
-            pgeSvcDesc = oSvc.FirstOrDefault.ServiceDescription
+
+            If (oSvc.Count > 0) Then
+                pgeSvcCode = oSvc.FirstOrDefault.ServiceCode
+                pgeSvcDesc = oSvc.FirstOrDefault.ServiceDescription
+            Else
+                pgeSvcCode = ""
+                pgeSvcDesc = "Unknown"
+            End If
+
         Else
             pgeSvcCode = ""
             pgeSvcDesc = "Unknown"
@@ -451,7 +460,7 @@ Public Class ProduceMYOBFile
             Dim intInvNum As Integer = Convert.ToInt64(txtInvStartNo.Text)
 
             '--- Delete tblMYOBInvoicing records (Commented for now)
-            'FMS.Business.DataObjects.tblMYOBInvoicing.DeleteAll()
+            FMS.Business.DataObjects.tblMYOBInvoicing.DeleteAll()
 
             Dim objMI As New List(Of FMS.Business.DataObjects.tblMYOBInvoicing)
 
@@ -471,11 +480,11 @@ Public Class ProduceMYOBFile
 
                 '------ Get Invoice Date
                 Dim InvoiceDate = GetInvoiceDate(rMYOB.InvoiceCommencing, dteStart.Value, objIF.FirstOrDefault.InvoiceId,
-                                                    cboMonth.Value, rMYOB.InvoiceMonth1, rMYOB.InvoiceMonth2, rMYOB.InvoiceMonth3,
-                                                    rMYOB.InvoiceMonth4)
+                                                    cboMonth.Value, IIf(IsDBNull(rMYOB.InvoiceMonth1), 0, rMYOB.InvoiceMonth1), IIf(IsDBNull(rMYOB.InvoiceMonth2), 0, rMYOB.InvoiceMonth2), IIf(IsDBNull(rMYOB.InvoiceMonth3), 0, rMYOB.InvoiceMonth3),
+                                                    IIf(IsDBNull(rMYOB.InvoiceMonth4), 0, rMYOB.InvoiceMonth4))
                 rowMI.InvoiceDate = InvoiceDate
                 rowMI.CustomerPurchaseOrderNumber = rMYOB.PurchaseOrderNumber
-                rowMI.Quantity = IIf(ExcludeCustomerFuel = False, 1, rMYOB.ServiceUnits)
+                rowMI.Quantity = Convert.ToDouble(IIf(ExcludeCustomerFuel = False, 1, rMYOB.ServiceUnits))
 
                 If (IsDBNull(rMYOB.CSid) = False) Then
                     GetServiceDescription(rMYOB.CSid)
@@ -505,11 +514,17 @@ Public Class ProduceMYOBFile
                 rowMI.Category = objIF.FirstOrDefault.Frequency
                 rowMI.SiteName = rMYOB.SiteName
 
+                objMI.Add(rowMI)
+
             Next
+
+            FMS.Business.DataObjects.tblMYOBInvoicing.CreateAll(objMI)
 
         Else
 
         End If
+
+        Me.lpProcess.Visible = False
 
 
     End Sub
@@ -534,4 +549,14 @@ Public Class ProduceMYOBFile
         puDialogBox.ShowOnPageLoad = False
 
     End Sub
+
+    Protected Sub cbProcess_Callback(source As Object, e As CallbackEventArgs)
+        System.Threading.Thread.Sleep(3000)
+    End Sub
+
+    'Protected Sub cbProcess_Callback(ByVal source As Object, ByVal e As DevExpress.Web.ASPxCallback.CallbackEventArgs)
+    '    ' emulate a long lasting operation
+    '    System.Threading.Thread.Sleep(3000)
+
+    'End Sub
 End Class
