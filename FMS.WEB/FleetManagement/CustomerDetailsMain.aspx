@@ -197,7 +197,9 @@
                                     <dx:ASPxTextBox ID="txtCustomerContactName" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerContactName") %>'></dx:ASPxTextBox>
                                 </div>
                                 <div class="col-md-3">
-                                    <dx:ASPxTextBox ID="txtPerAnnumValue" ClientInstanceName="txtPerAnnumValue" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("CustomerValue") %>'></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="txtPerAnnumValue" ClientInstanceName="txtPerAnnumValue" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("CustomerValue") %>'>
+                                        
+                                    </dx:ASPxTextBox>
                                 </div>
                             </div>
                             <div class="row">
