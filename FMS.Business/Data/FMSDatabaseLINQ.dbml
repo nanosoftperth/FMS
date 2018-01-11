@@ -2273,4 +2273,20 @@
       <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetGainAndLossesBySalesPersonReport" Method="usp_GetGainAndLossesBySalesPersonReport">
+    <ElementType Name="usp_GetGainAndLossesBySalesPersonReportResult">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="AreaDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalesPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
