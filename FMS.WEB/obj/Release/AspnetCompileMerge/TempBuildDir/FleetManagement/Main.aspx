@@ -117,8 +117,7 @@
                       <li><a href="Reports/SiteListReport.aspx" target="iframeMenu">Site List</a></li>
 					  <li><a href="Reports/IndustryListReport.aspx" target="iframeMenu">Industry List</a></li>
                       <li><a href="Reports/RevenueReportByZone.aspx" target="iframeMenu">Revenue Report By Zone</a></li>
-					  <%--<li>Revenue Report By Zone</li>--%>
-                      <li>Gains & Losses (Sales)</li>
+                      <li><a href="Reports/GainsAndLossesBySalesPerson.aspx" target="iframeMenu">Gains & Losses (Sales)</a></li>
 					  <li><a href="Reports/DriversLicenseExpiryReport.aspx" target="iframeMenu">Driver License Expiry</a></li>
 					  <li>Per Annum Value</li>
 					  <li><a href="Reports/SitesWithNoContractsReport.aspx" target="iframeMenu">Sites With No Contracts</a></li>
@@ -147,6 +146,11 @@
                       <li><a href="ProduceMYOBFile.aspx" target="iframeMenu">Produce MYOB File</a></li>
 					  <%--<li>Produce MYOB File</li>--%>
 					</ul>
+                    <li>
+					  <a href="ClientAssignments.aspx" target="iframeMenu">
+					  <i class="fa fa fa-sitemap"></i> Client Assignments
+					  </a>
+					</li>
 				</ul>
 		 </div>
 	</div>

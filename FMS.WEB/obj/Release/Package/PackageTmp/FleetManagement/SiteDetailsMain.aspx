@@ -204,18 +204,18 @@
                         <div class="row">
                             <div class="col-md-1"><b>Customer&nbsp;Rating:</b></div>
                             <div style="width:15px;"></div>
-                            <dx:ASPxTextBox ID="txtCustomerRating" ClientInstanceName="txtCustomerRating" Width="30px" runat="server" Text='<%# Eval("CustomerRating") %>'></dx:ASPxTextBox>
-                            <dx:ASPxTextBox ID="txtCustomerRatingDesc" ClientInstanceName="txtCustomerRatingDesc" Width="100px" runat="server" Text='<%# Eval("CustomerRatingDesc") %>'></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID="txtCustomerRating" ClientInstanceName="txtCustomerRating" Width="30px" runat="server" Text='<%# Eval("CustomerRating") %>' ReadOnly="true"></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID="txtCustomerRatingDesc" ClientInstanceName="txtCustomerRatingDesc" Width="100px" runat="server" Text='<%# Eval("CustomerRatingDesc") %>' ReadOnly="true"></dx:ASPxTextBox>
                             <div class="col-md-1" style="text-align:right"><b>Customer</b></div>
-                            <dx:ASPxTextBox ID="txtCustomerName" ClientInstanceName="txtCustomerName" runat="server" Text='<%# Eval("CustomerName") %>'></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID="txtCustomerName" ClientInstanceName="txtCustomerName" runat="server" Text='<%# Eval("CustomerName") %>' ReadOnly="true"></dx:ASPxTextBox>
                             <div style="width:10px;"></div>
                             <b>Site</b>
                             <div style="width:5px;"></div>
-                            <dx:ASPxTextBox ID="txtSiteNameMain" ClientInstanceName="txtSiteNameMain" runat="server" Text='<%# Eval("SiteName") %>'></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID="txtSiteNameMain" ClientInstanceName="txtSiteNameMain" runat="server" Text='<%# Eval("SiteName") %>' ReadOnly="true"></dx:ASPxTextBox>
                             <div style="width:5px;"></div>
                             <b>Site ID:</b>
                             <div style="width:5px;"></div>
-                            <dx:ASPxTextBox ID="txtSiteIDMain" ClientInstanceName="txtSiteIDMain" Width="40px" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID="txtSiteIDMain" ClientInstanceName="txtSiteIDMain" Width="40px" runat="server" Text='<%# Eval("CID") %>' ReadOnly="true"></dx:ASPxTextBox>
                         </div>
                         <dx:ASPxPageControl ID="SiteDetailsPageControl" runat="server" ClientInstanceName="SiteDetailsPageControl" >
                             <ClientSideEvents TabClick="function(s,e){

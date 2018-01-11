@@ -778,6 +778,132 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ClientAssignments._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._FleetManagementPageControl">
+<summary>
+FleetManagementPageControl control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._RunGridView">
+<summary>
+RunGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsRun">
+<summary>
+odsRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsRunMultiDocs">
+<summary>
+odsRunMultiDocs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._ClientGridView">
+<summary>
+ClientGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsClient">
+<summary>
+odsClient control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsMultiDocs">
+<summary>
+odsMultiDocs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsCustomerList">
+<summary>
+odsCustomerList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._RunCompletionGridView">
+<summary>
+RunCompletionGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsRunCompletion">
+<summary>
+odsRunCompletion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsTblDrivers">
+<summary>
+odsTblDrivers control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._RunClientGridView">
+<summary>
+RunClientGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsRunClient">
+<summary>
+odsRunClient control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.DriverDetails._form1">
 <summary>
 form1 control.
@@ -970,6 +1096,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.DriverDetails._odsAllocateDriverTo">
 <summary>
 odsAllocateDriverTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.MatchMYOBNamesContents._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.MatchMYOBNamesContents._docvwer">
+<summary>
+docvwer control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.MatchMYOBNamesContents._btnCloseMYOBMatchList">
+<summary>
+btnCloseMYOBMatchList control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1204,6 +1357,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.FuelLevy._odsFuelLevy">
 <summary>
 odsFuelLevy control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.GainsAndLossesBySalesPerson._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.GainsAndLossesBySalesPerson._LoadingPanel">
+<summary>
+LoadingPanel control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1708,6 +1879,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ProduceMYOBFile._LoadingPanel">
 <summary>
 LoadingPanel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ProduceMYOBFile._lpProcess">
+<summary>
+lpProcess control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ProduceMYOBFile._cbProcess">
+<summary>
+cbProcess control.
 </summary>
 <remarks>
 Auto-generated field.
