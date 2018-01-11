@@ -155,6 +155,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetCustomerContactDetailsReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetCustomerUpdateValue.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetDriversLicenseExpiryReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGainAndLossesBySalesPersonReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGainsAndLossesPerAnnumReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGainsAndLossesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetGenerateRunSheetsDetail.vb" />

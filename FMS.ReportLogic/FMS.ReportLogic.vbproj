@@ -233,6 +233,9 @@
     <Compile Include="Reports\FeatureAccessListReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\GainsAndLossesBySalesPerson.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\GainsAndLossesReport.Designer.vb">
       <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
     </Compile>
@@ -454,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FeatureAccessListReport.resx">
       <DependentUpon>FeatureAccessListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesBySalesPerson.resx">
+      <DependentUpon>GainsAndLossesBySalesPerson.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\GainsAndLossesReport.resx">
       <DependentUpon>GainsAndLossesReport.vb</DependentUpon>

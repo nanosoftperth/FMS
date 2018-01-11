@@ -395,6 +395,13 @@
       <DependentUpon>FuelLevy.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\Reports\GainsAndLossesBySalesPerson.aspx.designer.vb">
+      <DependentUpon>GainsAndLossesBySalesPerson.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\Reports\GainsAndLossesBySalesPerson.aspx.vb">
+      <DependentUpon>GainsAndLossesBySalesPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\Reports\GainsAndLossesPerAnnumReport.aspx.designer.vb">
       <DependentUpon>GainsAndLossesPerAnnumReport.aspx</DependentUpon>
     </Compile>
@@ -1300,6 +1307,7 @@
     <Content Include="FleetManagement\Reports\CustomerContactDetailsReport.aspx" />
     <Content Include="FleetManagement\Reports\DriversLicenseExpiryReport.aspx" />
     <Content Include="FleetManagement\FuelLevy.aspx" />
+    <Content Include="FleetManagement\Reports\GainsAndLossesBySalesPerson.aspx" />
     <Content Include="FleetManagement\Reports\GainsAndLossesPerAnnumReport.aspx" />
     <Content Include="FleetManagement\Reports\GainsAndLossesReport.aspx" />
     <Content Include="FleetManagement\Reports\GenerateRunSheets.aspx" />
