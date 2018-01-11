@@ -105,14 +105,14 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         'Detail
         '
-        Me.Detail.HeightF = 0.0!
+        Me.Detail.HeightF = 0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLine1
         '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 32.99999!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.99999!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(649.9999!, 2.083332!)
         '
@@ -160,7 +160,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.XrLabel33.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamMessage")})
         Me.XrLabel33.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel33.ForeColor = System.Drawing.Color.Red
-        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 87.91671!)
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(0!, 87.91671!)
         Me.XrLabel33.Name = "XrLabel33"
         Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel33.SizeF = New System.Drawing.SizeF(649.9999!, 23.0!)
@@ -172,14 +172,14 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         'ReportHeaderBand1
         '
-        Me.ReportHeaderBand1.HeightF = 0.0!
+        Me.ReportHeaderBand1.HeightF = 0!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
         '
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 20.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel3.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(224.75!, 0.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(224.75!, 0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(180.7083!, 33.0!)
@@ -244,7 +244,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         'XrSubreport1
         '
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrSubreport1.Name = "XrSubreport1"
         Me.XrSubreport1.ReportSource = New FMS.ReportLogic.GenerateRunSheetsDetailSubReport()
         Me.XrSubreport1.SizeF = New System.Drawing.SizeF(649.9999!, 26.125!)
@@ -261,7 +261,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel7.ForeColor = System.Drawing.Color.Blue
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(131.25!, 23.0!)
@@ -272,7 +272,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         'XrLabel8
         '
         Me.XrLabel8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.DriverName")})
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(131.25!, 0.0!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(131.25!, 0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(274.2083!, 23.0!)
@@ -334,7 +334,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel26.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel26.ForeColor = System.Drawing.Color.Black
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 77.9583!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(0!, 77.9583!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel26.SizeF = New System.Drawing.SizeF(48.41663!, 23.0!)
@@ -345,7 +345,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         'XrLabel25
         '
         Me.XrLabel25.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.GeneralSiteServiceComments")})
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 100.9583!)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(0!, 100.9583!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(594.0!, 48.00002!)
@@ -453,7 +453,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         'XrLabel14
         '
         Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteName")})
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 28.08332!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.08332!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
@@ -463,7 +463,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel13.ForeColor = System.Drawing.Color.Blue
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(569.2917!, 0.0!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(569.2917!, 0!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(47.375!, 23.0!)
@@ -475,7 +475,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel12.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SortOrder")})
         Me.XrLabel12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(616.6667!, 0.0!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(616.6667!, 0!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(33.33331!, 23.0!)
@@ -485,7 +485,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         'XrLabel11
         '
         Me.XrLabel11.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.RunDescription")})
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(288.7917!, 0.0!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(288.7917!, 0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel11.SizeF = New System.Drawing.SizeF(165.625!, 23.0!)
@@ -494,7 +494,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         'XrLabel10
         '
         Me.XrLabel10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.RunNumber")})
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(258.5833!, 0.0!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(258.5833!, 0!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(30.20834!, 23.0!)
@@ -504,7 +504,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel9.ForeColor = System.Drawing.Color.Blue
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(224.75!, 0.0!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(224.75!, 0!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(33.8333!, 23.0!)
@@ -535,7 +535,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 20.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel1.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(211.9583!, 33.0!)
@@ -548,7 +548,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel2.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(527.0001!, 0.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(527.0001!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(49.45831!, 21.54167!)
@@ -574,7 +574,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLine2.ForeColor = System.Drawing.Color.Blue
         Me.XrLine2.LineWidth = 3
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 46.37502!)
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 46.37502!)
         Me.XrLine2.Name = "XrLine2"
         Me.XrLine2.SizeF = New System.Drawing.SizeF(649.9999!, 5.208336!)
         Me.XrLine2.StylePriority.UseForeColor = False
@@ -605,7 +605,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel6.ForeColor = System.Drawing.Color.Blue
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 61.87503!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 61.87503!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(131.25!, 23.0!)
@@ -634,7 +634,7 @@ Partial Public Class GenerateRunSheetsDetailReport
         '
         Me.XrLabel31.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "ParamDate")})
         Me.XrLabel31.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(576.4584!, 0.0!)
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(576.4584!, 0!)
         Me.XrLabel31.Name = "XrLabel31"
         Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel31.SizeF = New System.Drawing.SizeF(73.54156!, 23.0!)
@@ -646,7 +646,6 @@ Partial Public Class GenerateRunSheetsDetailReport
         Me.DateOfRun.Description = "Date Of Run"
         Me.DateOfRun.Name = "DateOfRun"
         Me.DateOfRun.Type = GetType(Date)
-        Me.DateOfRun.ValueInfo = "2000-01-01"
         '
         'Month
         '

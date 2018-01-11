@@ -311,6 +311,13 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\ClientAssignments.aspx.designer.vb">
+      <DependentUpon>ClientAssignments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\ClientAssignments.aspx.vb">
+      <DependentUpon>ClientAssignments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\DriverDetails.aspx.designer.vb">
       <DependentUpon>DriverDetails.aspx</DependentUpon>
     </Compile>
@@ -1281,6 +1288,7 @@
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="Content\Images\drop.gif" />
     <Content Include="Content\Images\Gear Set.gif" />
+    <Content Include="FleetManagement\ClientAssignments.aspx" />
     <Content Include="FleetManagement\DriverDetails.aspx" />
     <Content Include="FleetManagement\MatchMYOBNamesContents.aspx" />
     <Content Include="FleetManagement\PublicHolidayRegister.aspx" />
