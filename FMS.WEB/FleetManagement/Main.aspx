@@ -147,6 +147,11 @@
                       <li><a href="ProduceMYOBFile.aspx" target="iframeMenu">Produce MYOB File</a></li>
 					  <%--<li>Produce MYOB File</li>--%>
 					</ul>
+                    <li>
+					  <a href="ClientAssignments.aspx" target="iframeMenu">
+					  <i class="fa fa fa-sitemap"></i> Client Assignments
+					  </a>
+					</li>
 				</ul>
 		 </div>
 	</div>
