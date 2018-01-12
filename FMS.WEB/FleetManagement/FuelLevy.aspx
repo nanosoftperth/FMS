@@ -31,7 +31,8 @@
                 <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="3"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Percentage" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                <%--<dx:GridViewDataTextColumn FieldName="Percentage" VisibleIndex="5"></dx:GridViewDataTextColumn>--%>
+                <dx:GridViewDataSpinEditColumn FieldName="Percentage" VisibleIndex="5" PropertiesSpinEdit-Height="20"></dx:GridViewDataSpinEditColumn>
                 <dx:GridViewDataTextColumn FieldName="MYOBInvoiceCode" VisibleIndex="6"></dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
