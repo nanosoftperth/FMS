@@ -26,8 +26,8 @@
                 <dx:GridViewDataTextColumn FieldName="RID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="CustomerRating" VisibleIndex="3"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="CustomerRatingDesc" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="FromValue" VisibleIndex="5"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="ToValue" VisibleIndex="6"></dx:GridViewDataTextColumn>
+                <dx:GridViewDataSpinEditColumn FieldName="FromValue" VisibleIndex="5" PropertiesSpinEdit-Height="20"></dx:GridViewDataSpinEditColumn>
+                <dx:GridViewDataSpinEditColumn FieldName="ToValue" VisibleIndex="6" PropertiesSpinEdit-Height="20"></dx:GridViewDataSpinEditColumn>
             </Columns>
         </dx:ASPxGridView>
         <asp:ObjectDataSource ID="odsCustomerRating" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCustomerRating" DataObjectTypeName="FMS.Business.DataObjects.tblCustomerRating" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
