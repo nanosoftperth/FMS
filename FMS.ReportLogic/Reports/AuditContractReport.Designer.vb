@@ -54,7 +54,7 @@ Partial Public Class AuditContractReport
         '
         'Detail
         '
-        Me.Detail.HeightF = 0.0!
+        Me.Detail.HeightF = 0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -125,7 +125,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 20.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel7.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 55.5!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0!, 55.5!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(650.0001!, 33.0!)
@@ -193,7 +193,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.NewContractCeasedate", "{0:M/d/yyyy}")})
         Me.XrLabel4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(523.9583!, 0.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(523.9583!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -204,7 +204,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.OldContractCeasedate", "{0:M/d/yyyy}")})
         Me.XrLabel3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(412.5!, 0.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(412.5!, 0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -215,7 +215,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.Customer")})
         Me.XrLabel2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 0.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(300.0!, 23.0!)
@@ -226,7 +226,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ChangeDate", "{0:dd-MMM-yy}")})
         Me.XrLabel1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -252,7 +252,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel8.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(523.9582!, 0.0!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(523.9582!, 0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(100.0!, 22.29166!)
@@ -267,7 +267,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel6.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(412.5001!, 0.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(412.5001!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(100.0!, 22.29166!)
@@ -282,7 +282,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel5.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 0.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(300.0!, 22.29166!)
@@ -297,7 +297,7 @@ Partial Public Class AuditContractReport
         '
         Me.XrLabel51.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel51.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel51.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel51.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel51.Name = "XrLabel51"
         Me.XrLabel51.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel51.SizeF = New System.Drawing.SizeF(100.0!, 22.29166!)
@@ -313,14 +313,12 @@ Partial Public Class AuditContractReport
         Me.StartDate.Description = "Start Date"
         Me.StartDate.Name = "StartDate"
         Me.StartDate.Type = GetType(Date)
-        Me.StartDate.ValueInfo = "2000-01-01"
         '
         'EndDate
         '
         Me.EndDate.Description = "End Date"
         Me.EndDate.Name = "EndDate"
         Me.EndDate.Type = GetType(Date)
-        Me.EndDate.ValueInfo = "2000-01-01"
         '
         'AuditContractReport
         '

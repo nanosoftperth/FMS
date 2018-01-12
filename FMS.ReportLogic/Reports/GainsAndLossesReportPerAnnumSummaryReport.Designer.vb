@@ -92,7 +92,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         'Detail
         '
-        Me.Detail.HeightF = 0.0!
+        Me.Detail.HeightF = 0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -151,14 +151,14 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLine4.ForeColor = System.Drawing.SystemColors.InactiveCaption
         Me.XrLine4.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
         Me.XrLine4.LineWidth = 5
-        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 43.0625!)
+        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.0625!)
         Me.XrLine4.Name = "XrLine4"
         Me.XrLine4.SizeF = New System.Drawing.SizeF(650.0!, 6.25!)
         Me.XrLine4.StylePriority.UseForeColor = False
         '
         'XrLabel12
         '
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 49.3125!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(0!, 49.3125!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(647.9999!, 33.0!)
@@ -218,7 +218,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLine3.ForeColor = System.Drawing.SystemColors.InactiveCaption
         Me.XrLine3.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
         Me.XrLine3.LineWidth = 5
-        Me.XrLine3.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 114.1875!)
+        Me.XrLine3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 114.1875!)
         Me.XrLine3.Name = "XrLine3"
         Me.XrLine3.SizeF = New System.Drawing.SizeF(650.0!, 6.25!)
         Me.XrLine3.StylePriority.UseForeColor = False
@@ -274,7 +274,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         'Detail1
         '
-        Me.Detail1.HeightF = 0.0!
+        Me.Detail1.HeightF = 0!
         Me.Detail1.Name = "Detail1"
         '
         'GroupHeader1
@@ -289,7 +289,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel1.ForeColor = System.Drawing.Color.Black
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(95.83334!, 23.0!)
@@ -302,7 +302,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLabel16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SalesPerson")})
         Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(95.83337!, 0.0!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(95.83337!, 0!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -312,19 +312,19 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         'GroupHeader2
         '
         Me.GroupHeader2.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("PAType", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
-        Me.GroupHeader2.HeightF = 0.0!
+        Me.GroupHeader2.HeightF = 0!
         Me.GroupHeader2.Level = 1
         Me.GroupHeader2.Name = "GroupHeader2"
         '
         'GroupHeader3
         '
         Me.GroupHeader3.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("Site", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
-        Me.GroupHeader3.HeightF = 0.0!
+        Me.GroupHeader3.HeightF = 0!
         Me.GroupHeader3.Name = "GroupHeader3"
         '
         'GroupFooter1
         '
-        Me.GroupFooter1.HeightF = 0.0!
+        Me.GroupFooter1.HeightF = 0!
         Me.GroupFooter1.Name = "GroupFooter1"
         '
         'GroupFooter2
@@ -341,7 +341,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel6.CanGrow = False
         Me.XrLabel6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.PAType")})
         Me.XrLabel6.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(58.75009!, 0.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(58.75009!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(123.5416!, 23.0!)
@@ -353,7 +353,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel2.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel2.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(182.2917!, 0.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(182.2917!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(64.58318!, 23.0!)
@@ -369,7 +369,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLabel3.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.OldPerAnnumCharge")})
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(246.8749!, 0.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(246.8749!, 0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -384,7 +384,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLabel4.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.NewPerAnnumCharge")})
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(346.8749!, 0.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(346.8749!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -400,7 +400,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel5.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.PADiff")})
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(446.8749!, 0.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(446.8749!, 0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -425,7 +425,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel8.CanGrow = False
         Me.XrLabel8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SalesPerson")})
         Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(58.75009!, 0.0!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(58.75009!, 0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(85.83334!, 23.0!)
@@ -438,7 +438,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel7.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel7.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(144.5834!, 0.0!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(144.5834!, 0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(102.2915!, 23.0!)
@@ -454,7 +454,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLabel24.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel24.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.OldPerAnnumCharge")})
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(246.8749!, 0.0!)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(246.8749!, 0!)
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel24.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -469,7 +469,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLabel25.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel25.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.NewPerAnnumCharge")})
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(346.8749!, 0.0!)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(346.8749!, 0!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -485,7 +485,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.XrLabel26.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel26.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.PADiff")})
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(446.8749!, 0.0!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(446.8749!, 0!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel26.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
@@ -519,7 +519,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLine2.ForeColor = System.Drawing.Color.Navy
         Me.XrLine2.LineWidth = 2
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 32.99999!)
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.99999!)
         Me.XrLine2.Name = "XrLine2"
         Me.XrLine2.SizeF = New System.Drawing.SizeF(650.0!, 6.25!)
         Me.XrLine2.StylePriority.UseForeColor = False
@@ -528,7 +528,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLine1.ForeColor = System.Drawing.Color.Navy
         Me.XrLine1.LineWidth = 2
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(650.0!, 6.25!)
         Me.XrLine1.StylePriority.UseForeColor = False
@@ -615,7 +615,7 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         '
         Me.XrLabel18.Font = New System.Drawing.Font("Times New Roman", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel18.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 10.00001!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.00001!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(36.45833!, 23.0!)
@@ -699,14 +699,12 @@ Partial Public Class GainsAndLossesReportPerAnnumSummaryReport
         Me.StartDate.Description = "Start Date"
         Me.StartDate.Name = "StartDate"
         Me.StartDate.Type = GetType(Date)
-        Me.StartDate.ValueInfo = "2000-01-01"
         '
         'EndDate
         '
         Me.EndDate.Description = "End Date"
         Me.EndDate.Name = "EndDate"
         Me.EndDate.Type = GetType(Date)
-        Me.EndDate.ValueInfo = "2000-01-01"
         '
         'GainsAndLossesReportPerAnnumSummaryReport
         '
