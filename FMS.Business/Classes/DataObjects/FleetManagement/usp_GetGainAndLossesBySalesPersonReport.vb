@@ -60,12 +60,26 @@ Namespace DataObjects
         Public Shared Function GetAllPerApplicationWithStartEndDate(StartDate As Date, EndDate As Date) As List(Of DataObjects.usp_GetGainAndLossesBySalesPersonReport)
             Dim appId = ThisSession.ApplicationID
 
+            Dim sDate As Date
+            Dim eDate As Date
+
+            Dim culture As CultureInfo = CultureInfo.CurrentCulture
+
+            If (culture.Name = "en-AU") Then
+                sDate = StartDate.ToString("MM/dd/yyyy")
+                eDate = EndDate.ToString("MM/dd/yyyy")
+            Else
+                sDate = StartDate.ToString("dd/MM/yyyy")
+                eDate = EndDate.ToString("dd/MM/yyyy")
+            End If
+
             Dim obj = (From g In SingletonAccess.FMSDataContextContignous.usp_GetGainAndLossesBySalesPersonReport
                        Where g.ApplicationId = appId And
-                           (g.SiteStartDate >= StartDate And g.SiteStartDate <= EndDate) Or
-                           (g.SiteCeaseDate >= StartDate And g.SiteCeaseDate <= EndDate)
+                           (g.SiteStartDate >= sDate And g.SiteStartDate <= eDate) Or
+                           (g.SiteCeaseDate >= sDate And g.SiteCeaseDate <= eDate)
                        Order By g.AreaDescription
                        Select New DataObjects.usp_GetGainAndLossesBySalesPersonReport(g)).ToList()
+
 
 
             Return obj

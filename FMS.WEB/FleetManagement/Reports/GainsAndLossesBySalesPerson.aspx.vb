@@ -1,4 +1,5 @@
-﻿Public Class GainsAndLossesBySalesPerson
+﻿Imports System.Globalization
+Public Class GainsAndLossesBySalesPerson
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
