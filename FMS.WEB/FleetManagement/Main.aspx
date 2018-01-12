@@ -113,7 +113,7 @@
                       <li><a href="Reports/AnnualAnalysisReport.aspx" target="iframeMenu">Annual Analysis</a></li>
 					  <li><a href="Reports/LengthOfServiceReport.aspx" target="iframeMenu">Length of Service</a></li>
 					  <li><a href="Reports/CustomerByCustZoneReport.aspx" target="iframeMenu">Customers By Cust Zone</a></li>
-					  <li><a href="Reports/CustomerContactDetailsReport.aspx" target="iframeMenu">Customer Contract Details</a></li>
+					  <li><a href="Reports/CustomerContactDetailsReport.aspx" target="iframeMenu">Customer Contact Details</a></li>
                       <li><a href="Reports/SiteListReport.aspx" target="iframeMenu">Site List</a></li>
 					  <li><a href="Reports/IndustryListReport.aspx" target="iframeMenu">Industry List</a></li>
                       <li><a href="Reports/RevenueReportByZone.aspx" target="iframeMenu">Revenue Report By Zone</a></li>
