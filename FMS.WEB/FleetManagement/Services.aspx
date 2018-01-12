@@ -30,7 +30,7 @@
                 <dx:GridViewDataTextColumn FieldName="Sid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="ServiceCode" VisibleIndex="3" PropertiesTextEdit-MaxLength="8"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="ServiceDescription" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="CostOfService" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                <dx:GridViewDataSpinEditColumn FieldName="CostOfService" VisibleIndex="5" PropertiesSpinEdit-Height="20"></dx:GridViewDataSpinEditColumn>
                 <dx:GridViewCommandColumn ButtonType="Button" Caption="Driver Comment Reasons" VisibleIndex="5"></dx:GridViewCommandColumn>
             </Columns>
         </dx:ASPxGridView>
