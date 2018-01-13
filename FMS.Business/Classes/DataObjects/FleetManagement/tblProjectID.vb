@@ -114,10 +114,11 @@
             If IndustryGroupID Is Nothing Then
                 Dim tblIndustryGroupAId As FMS.Business.tblIndustryGroup = GetLatestIndustryGroupID(appID)
                 IndustryGroupID = tblIndustryGroupAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.IndustryGroupID.Equals(IndustryGroupID)).SingleOrDefault
+                              Where c.IndustryGroupID.Equals(IndustryGroupID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -201,10 +202,11 @@
             If CustomerAgentID Is Nothing Then
                 Dim tblCustomerAgentIId As FMS.Business.tblCustomerAgent = GetLatestCustomerAgentID(appID)
                 CustomerAgentID = tblCustomerAgentIId.AID
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.CustomerAgentID.Equals(CustomerAgentID)).SingleOrDefault
+                              Where c.CustomerAgentID.Equals(CustomerAgentID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -223,13 +225,14 @@
         End Function
 #End Region
 #Region "tblContractCeaseReasons"
-        Private Shared Function GetLatestCeaseReasonID() As FMS.Business.tblContractCeaseReason
+        Private Shared Function GetLatestCeaseReasonID(appID As System.Guid) As FMS.Business.tblContractCeaseReason
             Return (From c In SingletonAccess.FMSDataContextContignous.tblContractCeaseReasons
-                       Order By c.Aid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Aid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function CeaseReasonIDCreate() As Integer
-            Dim tblCeaseReasonAId As FMS.Business.tblContractCeaseReason = GetLatestCeaseReasonID()
+        Private Shared Function CeaseReasonIDCreate(appID As System.Guid) As Integer
+            Dim tblCeaseReasonAId As FMS.Business.tblContractCeaseReason = GetLatestCeaseReasonID(appID)
             Dim objCeaseReasonID As New FMS.Business.tblProjectID
             With objCeaseReasonID
                 .ProjectID = Guid.NewGuid()
@@ -239,15 +242,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objCeaseReasonID.CeaseReasonID
         End Function
-        Private Shared Function CeaseReasonIDUpdate(CeaseReasonID As Object) As Integer
+        Private Shared Function CeaseReasonIDUpdate(CeaseReasonID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If CeaseReasonID Is Nothing Then
-                Dim tblCeaseReasonAId As FMS.Business.tblContractCeaseReason = GetLatestCeaseReasonID()
+                Dim tblCeaseReasonAId As FMS.Business.tblContractCeaseReason = GetLatestCeaseReasonID(appID)
                 CeaseReasonID = tblCeaseReasonAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.CeaseReasonID.Equals(CeaseReasonID)).SingleOrDefault
+                              Where c.CeaseReasonID.Equals(CeaseReasonID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -256,12 +260,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.CeaseReasonID
         End Function
-        Public Shared Function CeaseReasonIDCreateOrUpdate() As Integer
+        Public Shared Function CeaseReasonIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objCeaseReason = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objCeaseReason Is Nothing AndAlso objCeaseReason.Count().Equals(0) Then
-                Return CeaseReasonIDCreate()
+                Return CeaseReasonIDCreate(appID)
             Else
-                Return CeaseReasonIDUpdate(objCeaseReason.SingleOrDefault().CeaseReasonID)
+                Return CeaseReasonIDUpdate(objCeaseReason.SingleOrDefault().CeaseReasonID, appID)
             End If
         End Function
 #End Region
@@ -331,10 +335,11 @@
             If ZoneID Is Nothing Then
                 Dim tblZoneAId As FMS.Business.tbZone = GetLatestZoneID(appID)
                 ZoneID = tblZoneAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.ZoneID.Equals(ZoneID)).SingleOrDefault
+                              Where c.ZoneID.Equals(ZoneID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -418,10 +423,11 @@
             If RateIncreaseID Is Nothing Then
                 Dim tblRateIncreaseAId As FMS.Business.tblRateIncreaseReference = GetLatestRateIncreaseID(appID)
                 RateIncreaseID = tblRateIncreaseAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.RateIncreaseID.Equals(RateIncreaseID)).SingleOrDefault
+                              Where c.RateIncreaseID.Equals(RateIncreaseID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -634,10 +640,11 @@
             If ServicesID Is Nothing Then
                 Dim tblServicesSId As FMS.Business.tblService = GetLatestServicesID(appID)
                 ServicesID = tblServicesSId.Sid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.ServicesID.Equals(ServicesID)).SingleOrDefault
+                              Where c.ServicesID.Equals(ServicesID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -656,13 +663,14 @@
         End Function
 #End Region
 #Region "tblSalesPersons"
-        Private Shared Function GetLatestSalesPersonID() As FMS.Business.tblSalesPerson
+        Private Shared Function GetLatestSalesPersonID(appID As System.Guid) As FMS.Business.tblSalesPerson
             Return (From c In SingletonAccess.FMSDataContextContignous.tblSalesPersons
-                       Order By c.Aid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Aid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function SalesPersonIDCreate() As Integer
-            Dim tblSalesPersonAId As FMS.Business.tblSalesPerson = GetLatestSalesPersonID()
+        Private Shared Function SalesPersonIDCreate(appID As System.Guid) As Integer
+            Dim tblSalesPersonAId As FMS.Business.tblSalesPerson = GetLatestSalesPersonID(appID)
             Dim objSalesPersonID As New FMS.Business.tblProjectID
             With objSalesPersonID
                 .ProjectID = Guid.NewGuid()
@@ -672,15 +680,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objSalesPersonID.SalesPersonID
         End Function
-        Private Shared Function SalesPersonIDUpdate(SalesPersonID As Object) As Integer
+        Private Shared Function SalesPersonIDUpdate(SalesPersonID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If SalesPersonID Is Nothing Then
-                Dim tblSalesPersonAId As FMS.Business.tblSalesPerson = GetLatestSalesPersonID()
+                Dim tblSalesPersonAId As FMS.Business.tblSalesPerson = GetLatestSalesPersonID(appID)
                 SalesPersonID = tblSalesPersonAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.SalesPersonID.Equals(SalesPersonID)).SingleOrDefault
+                              Where c.SalesPersonID.Equals(SalesPersonID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -689,23 +698,24 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.SalesPersonID
         End Function
-        Public Shared Function SalesPersonIDCreateOrUpdate() As Integer
+        Public Shared Function SalesPersonIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objSalesPersonID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objSalesPersonID Is Nothing AndAlso objSalesPersonID.Count().Equals(0) Then
-                Return SalesPersonIDCreate()
+                Return SalesPersonIDCreate(appID)
             Else
-                Return SalesPersonIDUpdate(objSalesPersonID.SingleOrDefault().SalesPersonID)
+                Return SalesPersonIDUpdate(objSalesPersonID.SingleOrDefault().SalesPersonID, appID)
             End If
         End Function
 #End Region
 #Region "tblFuelLevy"
-        Private Shared Function GetLatestFuelLevyID() As FMS.Business.tblFuelLevy
+        Private Shared Function GetLatestFuelLevyID(appID As System.Guid) As FMS.Business.tblFuelLevy
             Return (From c In SingletonAccess.FMSDataContextContignous.tblFuelLevies
-                       Order By c.Aid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationId.Equals(appID)
+                    Order By c.Aid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function FuelLevyIDCreate() As Integer
-            Dim tblFuelLevyAId As FMS.Business.tblFuelLevy = GetLatestFuelLevyID()
+        Private Shared Function FuelLevyIDCreate(appID As System.Guid) As Integer
+            Dim tblFuelLevyAId As FMS.Business.tblFuelLevy = GetLatestFuelLevyID(appID)
             Dim objFuelLevyID As New FMS.Business.tblProjectID
             With objFuelLevyID
                 .ProjectID = Guid.NewGuid()
@@ -715,15 +725,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objFuelLevyID.FuelLevyID
         End Function
-        Private Shared Function FuelLevyIDUpdate(FuelLevyID As Object) As Integer
+        Private Shared Function FuelLevyIDUpdate(FuelLevyID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If FuelLevyID Is Nothing Then
-                Dim tblFuelLevyAId As FMS.Business.tblFuelLevy = GetLatestFuelLevyID()
+                Dim tblFuelLevyAId As FMS.Business.tblFuelLevy = GetLatestFuelLevyID(appID)
                 FuelLevyID = tblFuelLevyAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.FuelLevyID.Equals(FuelLevyID)).SingleOrDefault
+                              Where c.FuelLevyID.Equals(FuelLevyID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -732,12 +743,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.FuelLevyID
         End Function
-        Public Shared Function FuelLevyIDCreateOrUpdate() As Integer
+        Public Shared Function FuelLevyIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objFuelLevyID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objFuelLevyID Is Nothing AndAlso objFuelLevyID.Count().Equals(0) Then
-                Return FuelLevyIDCreate()
+                Return FuelLevyIDCreate(appID)
             Else
-                Return FuelLevyIDUpdate(objFuelLevyID.SingleOrDefault().FuelLevyID)
+                Return FuelLevyIDUpdate(objFuelLevyID.SingleOrDefault().FuelLevyID, appID)
             End If
         End Function
 #End Region

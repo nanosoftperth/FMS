@@ -17,7 +17,7 @@
             With objFuelLevy
                 .ApplicationId = appID
                 .FuelLevyID = Guid.NewGuid
-                .Aid = tblProjectID.FuelLevyIDCreateOrUpdate()
+                .Aid = tblProjectID.FuelLevyIDCreateOrUpdate(appID)
                 .Code = FuelLevy.Code
                 .Description = FuelLevy.Description
                 .Percentage = FuelLevy.Percentage

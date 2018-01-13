@@ -11,10 +11,11 @@
 #Region "CRUD"
         Public Shared Sub Create(sPerson As DataObjects.tblSalesPersons)
             Dim objSalesPerson As New FMS.Business.tblSalesPerson
+            Dim appId = ThisSession.ApplicationID
             With objSalesPerson
                 .SalesPersonID = Guid.NewGuid
-                .ApplicationID = ThisSession.ApplicationID
-                .Aid = tblProjectID.SalesPersonIDCreateOrUpdate()
+                .ApplicationID = appId
+                .Aid = tblProjectID.SalesPersonIDCreateOrUpdate(appId)
                 .SalesPerson = sPerson.SalesPerson
                 .SalesPersonStartDate = sPerson.SalesPersonStartDate
                 .SalesPersonComments = sPerson.SalesPersonComments
