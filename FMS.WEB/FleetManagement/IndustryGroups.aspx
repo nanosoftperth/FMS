@@ -14,7 +14,10 @@
             OnRowInserting="IndustryGroupsGridView_RowInserting"
             OnRowUpdating="IndustryGroupsGridView_RowUpdating"
             OnRowDeleting="IndustryGroupsGridView_RowDeleting">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Industry Groups</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
