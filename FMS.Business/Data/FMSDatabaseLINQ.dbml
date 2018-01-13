@@ -959,15 +959,6 @@
       <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblSalesPersons" Member="tblSalesPersons">
-    <Type Name="tblSalesPerson">
-      <Column Name="SalesPersonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SalesPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SalesPersonStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="SalesPersonComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.vw_GetVehicleLocations" Member="vw_GetVehicleLocations">
     <Type Name="vw_GetVehicleLocation">
       <Column Name="LocationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -1336,6 +1327,16 @@
       <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSalesPersons" Member="tblSalesPersons">
+    <Type Name="tblSalesPerson">
+      <Column Name="SalesPersonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SalesPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalesPersonStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SalesPersonComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
