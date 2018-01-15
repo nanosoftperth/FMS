@@ -445,12 +445,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
-  Partial Private Sub InserttblPreviousSupplier(instance As tblPreviousSupplier)
-    End Sub
-  Partial Private Sub UpdatetblPreviousSupplier(instance As tblPreviousSupplier)
-    End Sub
-  Partial Private Sub DeletetblPreviousSupplier(instance As tblPreviousSupplier)
-    End Sub
   Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
     End Sub
   Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
@@ -600,6 +594,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblRun(instance As tblRun)
     End Sub
   Partial Private Sub DeletetblRun(instance As tblRun)
+    End Sub
+  Partial Private Sub InserttblPreviousSupplier(instance As tblPreviousSupplier)
+    End Sub
+  Partial Private Sub UpdatetblPreviousSupplier(instance As tblPreviousSupplier)
+    End Sub
+  Partial Private Sub DeletetblPreviousSupplier(instance As tblPreviousSupplier)
     End Sub
   #End Region
 	
@@ -1090,12 +1090,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblPreviousSuppliers() As System.Data.Linq.Table(Of tblPreviousSupplier)
-		Get
-			Return Me.GetTable(Of tblPreviousSupplier)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
 		Get
 			Return Me.GetTable(Of tblServiceFrequency)
@@ -1258,6 +1252,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property tblPreviousSuppliers() As System.Data.Linq.Table(Of tblPreviousSupplier)
+		Get
+			Return Me.GetTable(Of tblPreviousSupplier)
+		End Get
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")>  _
 	Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
@@ -1353,12 +1353,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetCustomers() As ISingleResult(Of usp_GetCustomersResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomersResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetPreviousSupplier")>  _
-	Public Function usp_GetPreviousSupplier() As ISingleResult(Of usp_GetPreviousSupplierResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetPreviousSupplierResult))
 	End Function
 	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerServices")>  _
@@ -1629,6 +1623,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetContractCeaseReasons(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetContractCeaseReasonsResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetContractCeaseReasonsResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetPreviousSupplier")>  _
+	Public Function usp_GetPreviousSupplier(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetPreviousSupplierResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetPreviousSupplierResult))
 	End Function
 End Class
 
@@ -17783,113 +17783,6 @@ Partial Public Class tblRevenueChangeReason
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblPreviousSuppliers")>  _
-Partial Public Class tblPreviousSupplier
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _PreviousSupplierID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _PreviousSupplier As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnPreviousSupplierIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnPreviousSupplierIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnPreviousSupplierChanging(value As String)
-    End Sub
-    Partial Private Sub OnPreviousSupplierChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplierID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property PreviousSupplierID() As System.Guid
-		Get
-			Return Me._PreviousSupplierID
-		End Get
-		Set
-			If ((Me._PreviousSupplierID = value)  _
-						= false) Then
-				Me.OnPreviousSupplierIDChanging(value)
-				Me.SendPropertyChanging
-				Me._PreviousSupplierID = value
-				Me.SendPropertyChanged("PreviousSupplierID")
-				Me.OnPreviousSupplierIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="NVarChar(50)")>  _
-	Public Property PreviousSupplier() As String
-		Get
-			Return Me._PreviousSupplier
-		End Get
-		Set
-			If (String.Equals(Me._PreviousSupplier, value) = false) Then
-				Me.OnPreviousSupplierChanging(value)
-				Me.SendPropertyChanging
-				Me._PreviousSupplier = value
-				Me.SendPropertyChanged("PreviousSupplier")
-				Me.OnPreviousSupplierChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServiceFrequency")>  _
 Partial Public Class tblServiceFrequency
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -25273,6 +25166,135 @@ Partial Public Class tblRun
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblPreviousSuppliers")>  _
+Partial Public Class tblPreviousSupplier
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _PreviousSupplierID As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Aid As Integer
+	
+	Private _PreviousSupplier As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnPreviousSupplierIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnPreviousSupplierIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnPreviousSupplierChanging(value As String)
+    End Sub
+    Partial Private Sub OnPreviousSupplierChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplierID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property PreviousSupplierID() As System.Guid
+		Get
+			Return Me._PreviousSupplierID
+		End Get
+		Set
+			If ((Me._PreviousSupplierID = value)  _
+						= false) Then
+				Me.OnPreviousSupplierIDChanging(value)
+				Me.SendPropertyChanging
+				Me._PreviousSupplierID = value
+				Me.SendPropertyChanged("PreviousSupplierID")
+				Me.OnPreviousSupplierIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="NVarChar(50)")>  _
+	Public Property PreviousSupplier() As String
+		Get
+			Return Me._PreviousSupplier
+		End Get
+		Set
+			If (String.Equals(Me._PreviousSupplier, value) = false) Then
+				Me.OnPreviousSupplierChanging(value)
+				Me.SendPropertyChanging
+				Me._PreviousSupplier = value
+				Me.SendPropertyChanged("PreviousSupplier")
+				Me.OnPreviousSupplierChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -26765,71 +26787,6 @@ Partial Public Class usp_GetCustomersResult
 		Set
 			If (Me._CustomerSortOrder.Equals(value) = false) Then
 				Me._CustomerSortOrder = value
-			End If
-		End Set
-	End Property
-End Class
-
-Partial Public Class usp_GetPreviousSupplierResult
-	
-	Private _PreviousSupplierID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _PreviousSupplier As String
-	
-	Private _SortOrder As System.Nullable(Of Long)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplierID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property PreviousSupplierID() As System.Guid
-		Get
-			Return Me._PreviousSupplierID
-		End Get
-		Set
-			If ((Me._PreviousSupplierID = value)  _
-						= false) Then
-				Me._PreviousSupplierID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me._Aid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="NVarChar(50)")>  _
-	Public Property PreviousSupplier() As String
-		Get
-			Return Me._PreviousSupplier
-		End Get
-		Set
-			If (String.Equals(Me._PreviousSupplier, value) = false) Then
-				Me._PreviousSupplier = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
-	Public Property SortOrder() As System.Nullable(Of Long)
-		Get
-			Return Me._SortOrder
-		End Get
-		Set
-			If (Me._SortOrder.Equals(value) = false) Then
-				Me._SortOrder = value
 			End If
 		End Set
 	End Property
@@ -34726,6 +34683,71 @@ Partial Public Class usp_GetContractCeaseReasonsResult
 		Set
 			If (String.Equals(Me._CeaseReasonDescription, value) = false) Then
 				Me._CeaseReasonDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
+	Public Property SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._SortOrder
+		End Get
+		Set
+			If (Me._SortOrder.Equals(value) = false) Then
+				Me._SortOrder = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetPreviousSupplierResult
+	
+	Private _PreviousSupplierID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _PreviousSupplier As String
+	
+	Private _SortOrder As System.Nullable(Of Long)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplierID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property PreviousSupplierID() As System.Guid
+		Get
+			Return Me._PreviousSupplierID
+		End Get
+		Set
+			If ((Me._PreviousSupplierID = value)  _
+						= false) Then
+				Me._PreviousSupplierID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me._Aid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreviousSupplier", DbType:="NVarChar(50)")>  _
+	Public Property PreviousSupplier() As String
+		Get
+			Return Me._PreviousSupplier
+		End Get
+		Set
+			If (String.Equals(Me._PreviousSupplier, value) = false) Then
+				Me._PreviousSupplier = value
 			End If
 		End Set
 	End Property
