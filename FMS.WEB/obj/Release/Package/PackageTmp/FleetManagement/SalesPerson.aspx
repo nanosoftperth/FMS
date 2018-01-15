@@ -15,7 +15,10 @@
 <body>
     <form id="form1" runat="server">
         <dx:ASPxGridView ID="SalesPersonGridView" KeyFieldName="SalesPersonID" DataSourceID="odsSalesPerson" runat="server" Theme="SoftOrange" AutoGenerateColumns="False">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Sales Persons</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />

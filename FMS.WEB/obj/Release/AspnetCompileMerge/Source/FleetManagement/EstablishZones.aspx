@@ -14,7 +14,10 @@
             OnRowInserting="EstablishZonesGridView_RowInserting" 
             OnRowUpdating="EstablishZonesGridView_RowUpdating"
             OnRowDeleting="EstablishZonesGridView_RowDeleting">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Zones</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />

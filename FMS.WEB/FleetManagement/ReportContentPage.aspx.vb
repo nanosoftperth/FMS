@@ -30,6 +30,8 @@
                 Return New FMS.ReportLogic.ServiceListReport()
             Case "DriversLicenseExpiryReport"
                 Return New FMS.ReportLogic.DriversLicenseExpiryReport()
+            Case "PerAnnumValue"
+                Return New FMS.ReportLogic.PerAnnumValuesReport()
             Case "ContractRenewalReport"
                 Return New FMS.ReportLogic.ContractRenewalReport()
             Case "ServiceSummaryReport"

@@ -119,7 +119,7 @@
                       <li><a href="Reports/RevenueReportByZone.aspx" target="iframeMenu">Revenue Report By Zone</a></li>
                       <li><a href="Reports/GainsAndLossesBySalesPerson.aspx" target="iframeMenu">Gains & Losses (Sales)</a></li>
 					  <li><a href="Reports/DriversLicenseExpiryReport.aspx" target="iframeMenu">Driver License Expiry</a></li>
-					  <li>Per Annum Value</li>
+                      <li><a href="Reports/PerAnnumValueReport.aspx" target="iframeMenu">Per Annum Value</a></li>
 					  <li><a href="Reports/SitesWithNoContractsReport.aspx" target="iframeMenu">Sites With No Contracts</a></li>
 					  <li><a href="Reports/SiteBySiteZoneReport.aspx" target="iframeMenu">Sites By Site Zone</a></li>
 					</ul>

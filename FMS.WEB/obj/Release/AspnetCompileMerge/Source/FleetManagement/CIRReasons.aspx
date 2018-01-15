@@ -10,7 +10,10 @@
 <body>
     <form id="form1" runat="server">
         <dx:ASPxGridView ID="CIRReasonsGridView" KeyFieldName="ReasonID" DataSourceID="odsCIRReasons" runat="server" Theme="SoftOrange" AutoGenerateColumns="False">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>CIR Reasons</TitlePanel>
+            </Templates> 
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />

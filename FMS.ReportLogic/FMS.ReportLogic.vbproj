@@ -308,6 +308,9 @@
     <Compile Include="Reports\MYOBMatchList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\PerAnnumValuesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\PreviousInvoiceSummaryReport.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -499,6 +502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\MYOBMatchList.resx">
       <DependentUpon>MYOBMatchList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PerAnnumValuesReport.resx">
+      <DependentUpon>PerAnnumValuesReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\PreviousInvoiceSummaryReport.resx">
       <DependentUpon>PreviousInvoiceSummaryReport.vb</DependentUpon>

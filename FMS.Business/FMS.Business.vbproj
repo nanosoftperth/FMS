@@ -167,6 +167,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetLengthOfServicesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetMYOBCustomerInvoiceReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetMYOBFileList.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetPerAnnumValuesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetPreviousInvoiceSummaryReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRevenueReportByZone.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunDates.vb" />
@@ -200,6 +201,7 @@
     <Compile Include="Classes\DataObjects\Feature.vb" />
     <Compile Include="Classes\DataObjects\ApplicationFeatureRole.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetTblRuns.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_UpdateCustomeRating.vb" />
     <Compile Include="Classes\DataObjects\FleetMapMarker.vb" />
     <Compile Include="Classes\DataObjects\GeoFenceDeviceCollision.vb" />
     <Compile Include="Classes\DataObjects\Group.vb" />

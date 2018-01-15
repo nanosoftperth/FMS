@@ -261,3 +261,4 @@ C:\Cesar_Workspace\Projects\FMS\FMS.ReportLogic\obj\Release\FMS.ReportLogic.dll
 C:\Cesar_Workspace\Projects\FMS\FMS.ReportLogic\obj\Release\FMS.ReportLogic.xml
 C:\Cesar_Workspace\Projects\FMS\FMS.ReportLogic\obj\Release\FMS.ReportLogic.pdb
 C:\Cesar_Workspace\Projects\FMS\FMS.ReportLogic\obj\Release\FMS.ReportLogic.GainsAndLossesBySalesPerson.resources
+C:\Cesar_Workspace\Projects\FMS\FMS.ReportLogic\obj\Release\FMS.ReportLogic.PerAnnumValuesReport.resources

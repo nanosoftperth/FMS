@@ -113,13 +113,13 @@
                       <li><a href="Reports/AnnualAnalysisReport.aspx" target="iframeMenu">Annual Analysis</a></li>
 					  <li><a href="Reports/LengthOfServiceReport.aspx" target="iframeMenu">Length of Service</a></li>
 					  <li><a href="Reports/CustomerByCustZoneReport.aspx" target="iframeMenu">Customers By Cust Zone</a></li>
-					  <li><a href="Reports/CustomerContactDetailsReport.aspx" target="iframeMenu">Customer Contract Details</a></li>
+					  <li><a href="Reports/CustomerContactDetailsReport.aspx" target="iframeMenu">Customer Contact Details</a></li>
                       <li><a href="Reports/SiteListReport.aspx" target="iframeMenu">Site List</a></li>
 					  <li><a href="Reports/IndustryListReport.aspx" target="iframeMenu">Industry List</a></li>
                       <li><a href="Reports/RevenueReportByZone.aspx" target="iframeMenu">Revenue Report By Zone</a></li>
                       <li><a href="Reports/GainsAndLossesBySalesPerson.aspx" target="iframeMenu">Gains & Losses (Sales)</a></li>
 					  <li><a href="Reports/DriversLicenseExpiryReport.aspx" target="iframeMenu">Driver License Expiry</a></li>
-					  <li>Per Annum Value</li>
+                      <li><a href="Reports/PerAnnumValueReport.aspx" target="iframeMenu">Per Annum Value</a></li>
 					  <li><a href="Reports/SitesWithNoContractsReport.aspx" target="iframeMenu">Sites With No Contracts</a></li>
 					  <li><a href="Reports/SiteBySiteZoneReport.aspx" target="iframeMenu">Sites By Site Zone</a></li>
 					</ul>

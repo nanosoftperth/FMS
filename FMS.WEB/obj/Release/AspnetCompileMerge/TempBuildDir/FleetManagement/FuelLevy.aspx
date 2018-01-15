@@ -15,7 +15,10 @@
 <body>
     <form id="form1" runat="server">
         <dx:ASPxGridView ID="FuelLevyGridView" KeyFieldName="FuelLevyID" DataSourceID="odsFuelLevy" runat="server" Theme="SoftOrange" AutoGenerateColumns="False">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Fuel Levy</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
@@ -31,7 +34,8 @@
                 <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="3"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Percentage" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                <%--<dx:GridViewDataTextColumn FieldName="Percentage" VisibleIndex="5"></dx:GridViewDataTextColumn>--%>
+                <dx:GridViewDataSpinEditColumn FieldName="Percentage" VisibleIndex="5" PropertiesSpinEdit-Height="20"></dx:GridViewDataSpinEditColumn>
                 <dx:GridViewDataTextColumn FieldName="MYOBInvoiceCode" VisibleIndex="6"></dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>

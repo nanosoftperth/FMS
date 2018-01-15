@@ -794,19 +794,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>d+UQ/aS8HpU3FjmhHHBL3Tl9i46L6GC9d2u/8njdBuI=</dsig:DigestValue>
+        <dsig:DigestValue>yS775upqsb/sVNSDcX7y4HYAZiBLuD6+Y3bq8SYTOPY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FMS.Business.dll" size="1252352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FMS.Business.dll" size="1265152">
       <assemblyIdentity name="FMS.Business" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7BdMSN5SdB7FZRf3P5JjbRiN3TzF8l0/LH50KZ4DeH8=</dsig:DigestValue>
+        <dsig:DigestValue>dWxguZtfGAScpAngpGrAZGuyYIvUEMR+4QSzWOxxuOc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

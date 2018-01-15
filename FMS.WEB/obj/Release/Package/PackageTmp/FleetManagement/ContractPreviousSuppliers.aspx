@@ -10,7 +10,10 @@
 <body>
     <form id="form1" runat="server">
         <dx:ASPxGridView ID="ContractPreviousSuppliersGridView" KeyFieldName="PreviousSupplierID" DataSourceID="odsContractPreviousSuppliers" runat="server" Theme="SoftOrange" AutoGenerateColumns="False">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Contract Previous Suppliers</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />

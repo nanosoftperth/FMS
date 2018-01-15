@@ -14,7 +14,10 @@
             OnRowInserting="RateIncreasesGridView_RowInserting"
             OnRowUpdating="RateIncreasesGridView_RowUpdating"
             OnRowDeleting="RateIncreasesGridView_RowDeleting">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Rate Increases</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />

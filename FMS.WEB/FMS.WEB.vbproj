@@ -458,6 +458,13 @@
       <DependentUpon>ProduceMYOBFile.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\Reports\PerAnnumValueReport.aspx.designer.vb">
+      <DependentUpon>PerAnnumValueReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\Reports\PerAnnumValueReport.aspx.vb">
+      <DependentUpon>PerAnnumValueReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\Reports\QuickViewBySuburbReport.aspx.designer.vb">
       <DependentUpon>QuickViewBySuburbReport.aspx</DependentUpon>
     </Compile>
@@ -1316,6 +1323,7 @@
     <Content Include="FleetManagement\Reports\MYOBCustomerInvoiceReport.aspx" />
     <Content Include="FleetManagement\MYOBCustomers.aspx" />
     <Content Include="FleetManagement\ProduceMYOBFile.aspx" />
+    <Content Include="FleetManagement\Reports\PerAnnumValueReport.aspx" />
     <Content Include="FleetManagement\Reports\QuickViewBySuburbReport.aspx" />
     <Content Include="FleetManagement\Reports\RevenueReportByZone.aspx" />
     <Content Include="FleetManagement\RunFNCycles.aspx" />

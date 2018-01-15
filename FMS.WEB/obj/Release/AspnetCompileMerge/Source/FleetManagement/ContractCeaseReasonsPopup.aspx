@@ -21,7 +21,10 @@
     <form id="form1" runat="server">
         <div class="centerBlock">
             <dx:ASPxGridView ID="ContractCeaseReasonsGridView" KeyFieldName="CeaseReasonID" DataSourceID="odsContractCeaseReasons" runat="server" AutoGenerateColumns="False">
-                <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                <Settings ShowGroupPanel="True" ShowFilterRow="True"  ShowTitlePanel="true"></Settings>
+                <Templates>
+                    <TitlePanel>Contract Cease Reasons</TitlePanel>
+                </Templates>
                 <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                 <Settings ShowPreview="true" />
                 <SettingsPager PageSize="10" />

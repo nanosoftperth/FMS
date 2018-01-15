@@ -10,7 +10,10 @@
 <body>
     <form id="form1" runat="server">
         <dx:ASPxGridView ID="ServiceFrequencyGridView" KeyFieldName="FrequencyID" DataSourceID="odsServiceFrequency" runat="server" Theme="SoftOrange" AutoGenerateColumns="False">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Service Frequency</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
@@ -25,7 +28,7 @@
                 <dx:GridViewDataTextColumn FieldName="FrequencyID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="FID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="FrequencyDescription" VisibleIndex="3"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Factor" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                <dx:GridViewDataSpinEditColumn FieldName="Factor" VisibleIndex="4" PropertiesSpinEdit-Height="20"></dx:GridViewDataSpinEditColumn>
                 <dx:GridViewDataCheckColumn FieldName="Periodical" VisibleIndex="5"></dx:GridViewDataCheckColumn>
                 <dx:GridViewDataTextColumn FieldName="Notes" VisibleIndex="6"></dx:GridViewDataTextColumn>
             </Columns>
