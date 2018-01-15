@@ -493,13 +493,14 @@
         End Function
 #End Region
 #Region "tblRunFortnightlyCycles"
-        Private Shared Function GetLatestFortnightlyCyclesID() As FMS.Business.tblRunFortnightlyCycle
+        Private Shared Function GetLatestFortnightlyCyclesID(appID As System.Guid) As FMS.Business.tblRunFortnightlyCycle
             Return (From c In SingletonAccess.FMSDataContextContignous.tblRunFortnightlyCycles
-                       Order By c.Aid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Aid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function FortnightlyCyclesIDCreate() As Integer
-            Dim tblFortnightlyCyclesAId As FMS.Business.tblRunFortnightlyCycle = GetLatestFortnightlyCyclesID()
+        Private Shared Function FortnightlyCyclesIDCreate(appID As System.Guid) As Integer
+            Dim tblFortnightlyCyclesAId As FMS.Business.tblRunFortnightlyCycle = GetLatestFortnightlyCyclesID(appID)
             Dim objFortnightlyCyclesID As New FMS.Business.tblProjectID
             With objFortnightlyCyclesID
                 .ProjectID = Guid.NewGuid()
@@ -509,15 +510,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objFortnightlyCyclesID.FortnightlyCyclesID
         End Function
-        Private Shared Function FortnightlyCyclesIDUpdate(FortnightlyCyclesID As Object) As Integer
+        Private Shared Function FortnightlyCyclesIDUpdate(FortnightlyCyclesID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If FortnightlyCyclesID Is Nothing Then
-                Dim tblFortnightlyCyclesAId As FMS.Business.tblRunFortnightlyCycle = GetLatestFortnightlyCyclesID()
+                Dim tblFortnightlyCyclesAId As FMS.Business.tblRunFortnightlyCycle = GetLatestFortnightlyCyclesID(appID)
                 FortnightlyCyclesID = tblFortnightlyCyclesAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.FortnightlyCyclesID.Equals(FortnightlyCyclesID)).SingleOrDefault
+                              Where c.FortnightlyCyclesID.Equals(FortnightlyCyclesID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -526,12 +528,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.FortnightlyCyclesID
         End Function
-        Public Shared Function FortnightlyCyclesIDCreateOrUpdate() As Integer
+        Public Shared Function FortnightlyCyclesIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objFortnightlyCyclesID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objFortnightlyCyclesID Is Nothing AndAlso objFortnightlyCyclesID.Count().Equals(0) Then
-                Return FortnightlyCyclesIDCreate()
+                Return FortnightlyCyclesIDCreate(appID)
             Else
-                Return FortnightlyCyclesIDUpdate(objFortnightlyCyclesID.SingleOrDefault().FortnightlyCyclesID)
+                Return FortnightlyCyclesIDUpdate(objFortnightlyCyclesID.SingleOrDefault().FortnightlyCyclesID, appID)
             End If
         End Function
 #End Region

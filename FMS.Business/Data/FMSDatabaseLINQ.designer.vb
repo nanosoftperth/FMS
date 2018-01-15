@@ -427,12 +427,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
     End Sub
-  Partial Private Sub InserttblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
-    End Sub
-  Partial Private Sub UpdatetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
-    End Sub
-  Partial Private Sub DeletetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
-    End Sub
   Partial Private Sub InserttblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
   Partial Private Sub UpdatetblRevenueChangeReason(instance As tblRevenueChangeReason)
@@ -600,6 +594,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblCIRReason(instance As tblCIRReason)
     End Sub
   Partial Private Sub DeletetblCIRReason(instance As tblCIRReason)
+    End Sub
+  Partial Private Sub InserttblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
+    End Sub
+  Partial Private Sub UpdatetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
+    End Sub
+  Partial Private Sub DeletetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
   #End Region
 	
@@ -1072,12 +1072,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblRunFortnightlyCycles() As System.Data.Linq.Table(Of tblRunFortnightlyCycle)
-		Get
-			Return Me.GetTable(Of tblRunFortnightlyCycle)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblRevenueChangeReasons() As System.Data.Linq.Table(Of tblRevenueChangeReason)
 		Get
 			Return Me.GetTable(Of tblRevenueChangeReason)
@@ -1255,6 +1249,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblCIRReasons() As System.Data.Linq.Table(Of tblCIRReason)
 		Get
 			Return Me.GetTable(Of tblCIRReason)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRunFortnightlyCycles() As System.Data.Linq.Table(Of tblRunFortnightlyCycle)
+		Get
+			Return Me.GetTable(Of tblRunFortnightlyCycle)
 		End Get
 	End Property
 	
@@ -1499,12 +1499,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunListByRunNumberReportResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetFortNightlyCycles")>  _
-	Public Function usp_GetFortNightlyCycles() As ISingleResult(Of usp_GetFortNightlyCyclesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetFortNightlyCyclesResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueChangeReason")>  _
 	Public Function usp_GetRevenueChangeReason() As ISingleResult(Of usp_GetRevenueChangeReasonResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -1629,6 +1623,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetPreviousSupplier(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetPreviousSupplierResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetPreviousSupplierResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetFortNightlyCycles")>  _
+	Public Function usp_GetFortNightlyCycles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetFortNightlyCyclesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetFortNightlyCyclesResult))
 	End Function
 End Class
 
@@ -17462,113 +17462,6 @@ Partial Public Class VehicleLocation
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRunFortnightlyCycles")>  _
-Partial Public Class tblRunFortnightlyCycle
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _FortnightlyCyclesID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _CycleDescription As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnFortnightlyCyclesIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnFortnightlyCyclesIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnCycleDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnCycleDescriptionChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FortnightlyCyclesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property FortnightlyCyclesID() As System.Guid
-		Get
-			Return Me._FortnightlyCyclesID
-		End Get
-		Set
-			If ((Me._FortnightlyCyclesID = value)  _
-						= false) Then
-				Me.OnFortnightlyCyclesIDChanging(value)
-				Me.SendPropertyChanging
-				Me._FortnightlyCyclesID = value
-				Me.SendPropertyChanged("FortnightlyCyclesID")
-				Me.OnFortnightlyCyclesIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CycleDescription", DbType:="NVarChar(50)")>  _
-	Public Property CycleDescription() As String
-		Get
-			Return Me._CycleDescription
-		End Get
-		Set
-			If (String.Equals(Me._CycleDescription, value) = false) Then
-				Me.OnCycleDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._CycleDescription = value
-				Me.SendPropertyChanged("CycleDescription")
-				Me.OnCycleDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRevenueChangeReason")>  _
 Partial Public Class tblRevenueChangeReason
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -25317,6 +25210,135 @@ Partial Public Class tblCIRReason
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRunFortnightlyCycles")>  _
+Partial Public Class tblRunFortnightlyCycle
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _FortnightlyCyclesID As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Aid As Integer
+	
+	Private _CycleDescription As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnFortnightlyCyclesIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFortnightlyCyclesIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCycleDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnCycleDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FortnightlyCyclesID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property FortnightlyCyclesID() As System.Guid
+		Get
+			Return Me._FortnightlyCyclesID
+		End Get
+		Set
+			If ((Me._FortnightlyCyclesID = value)  _
+						= false) Then
+				Me.OnFortnightlyCyclesIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FortnightlyCyclesID = value
+				Me.SendPropertyChanged("FortnightlyCyclesID")
+				Me.OnFortnightlyCyclesIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CycleDescription", DbType:="NVarChar(50)")>  _
+	Public Property CycleDescription() As String
+		Get
+			Return Me._CycleDescription
+		End Get
+		Set
+			If (String.Equals(Me._CycleDescription, value) = false) Then
+				Me.OnCycleDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._CycleDescription = value
+				Me.SendPropertyChanged("CycleDescription")
+				Me.OnCycleDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -31749,71 +31771,6 @@ Partial Public Class usp_GetRunListByRunNumberReportResult
 	End Property
 End Class
 
-Partial Public Class usp_GetFortNightlyCyclesResult
-	
-	Private _FortnightlyCyclesID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _CycleDescription As String
-	
-	Private _SortOrder As System.Nullable(Of Long)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FortnightlyCyclesID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property FortnightlyCyclesID() As System.Guid
-		Get
-			Return Me._FortnightlyCyclesID
-		End Get
-		Set
-			If ((Me._FortnightlyCyclesID = value)  _
-						= false) Then
-				Me._FortnightlyCyclesID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me._Aid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CycleDescription", DbType:="NVarChar(50)")>  _
-	Public Property CycleDescription() As String
-		Get
-			Return Me._CycleDescription
-		End Get
-		Set
-			If (String.Equals(Me._CycleDescription, value) = false) Then
-				Me._CycleDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
-	Public Property SortOrder() As System.Nullable(Of Long)
-		Get
-			Return Me._SortOrder
-		End Get
-		Set
-			If (Me._SortOrder.Equals(value) = false) Then
-				Me._SortOrder = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetRevenueChangeReasonResult
 	
 	Private _RevenueChangeReasonID As System.Guid
@@ -34770,6 +34727,71 @@ Partial Public Class usp_GetPreviousSupplierResult
 		Set
 			If (String.Equals(Me._PreviousSupplier, value) = false) Then
 				Me._PreviousSupplier = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
+	Public Property SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._SortOrder
+		End Get
+		Set
+			If (Me._SortOrder.Equals(value) = false) Then
+				Me._SortOrder = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetFortNightlyCyclesResult
+	
+	Private _FortnightlyCyclesID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _CycleDescription As String
+	
+	Private _SortOrder As System.Nullable(Of Long)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FortnightlyCyclesID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property FortnightlyCyclesID() As System.Guid
+		Get
+			Return Me._FortnightlyCyclesID
+		End Get
+		Set
+			If ((Me._FortnightlyCyclesID = value)  _
+						= false) Then
+				Me._FortnightlyCyclesID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me._Aid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CycleDescription", DbType:="NVarChar(50)")>  _
+	Public Property CycleDescription() As String
+		Get
+			Return Me._CycleDescription
+		End Get
+		Set
+			If (String.Equals(Me._CycleDescription, value) = false) Then
+				Me._CycleDescription = value
 			End If
 		End Set
 	End Property
