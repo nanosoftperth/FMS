@@ -270,13 +270,14 @@
         End Function
 #End Region
 #Region "tblCIRReason"
-        Private Shared Function GetLatestCIRReasonID() As FMS.Business.tblCIRReason
+        Private Shared Function GetLatestCIRReasonID(appID As System.Guid) As FMS.Business.tblCIRReason
             Return (From c In SingletonAccess.FMSDataContextContignous.tblCIRReasons
-                       Order By c.CId Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.CId Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function CIRReasonIDCreate() As Integer
-            Dim tblCIRReasonCId As FMS.Business.tblCIRReason = GetLatestCIRReasonID()
+        Private Shared Function CIRReasonIDCreate(appID As System.Guid) As Integer
+            Dim tblCIRReasonCId As FMS.Business.tblCIRReason = GetLatestCIRReasonID(appID)
             Dim objCIRReasonID As New FMS.Business.tblProjectID
             With objCIRReasonID
                 .ProjectID = Guid.NewGuid()
@@ -286,15 +287,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objCIRReasonID.CIRReasonID
         End Function
-        Private Shared Function CIRReasonIDUpdate(CIRReasonID As Object) As Integer
+        Private Shared Function CIRReasonIDUpdate(CIRReasonID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If CIRReasonID Is Nothing Then
-                Dim tblCIRReasonCId As FMS.Business.tblCIRReason = GetLatestCIRReasonID()
+                Dim tblCIRReasonCId As FMS.Business.tblCIRReason = GetLatestCIRReasonID(appID)
                 CIRReasonID = tblCIRReasonCId.CId
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.CIRReasonID.Equals(CIRReasonID)).SingleOrDefault
+                              Where c.CIRReasonID.Equals(CIRReasonID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -303,12 +305,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.CIRReasonID
         End Function
-        Public Shared Function CIRReasonIDCreateOrUpdate() As Integer
+        Public Shared Function CIRReasonIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objCIRReason = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objCIRReason Is Nothing AndAlso objCIRReason.Count().Equals(0) Then
-                Return CIRReasonIDCreate()
+                Return CIRReasonIDCreate(appID)
             Else
-                Return CIRReasonIDUpdate(objCIRReason.SingleOrDefault().CIRReasonID)
+                Return CIRReasonIDUpdate(objCIRReason.SingleOrDefault().CIRReasonID, appID)
             End If
         End Function
 #End Region
@@ -446,13 +448,14 @@
         End Function
 #End Region
 #Region "tblPreviousSuppliers"
-        Private Shared Function GetLatestPreviousSupplierID() As FMS.Business.tblPreviousSupplier
+        Private Shared Function GetLatestPreviousSupplierID(appID As System.Guid) As FMS.Business.tblPreviousSupplier
             Return (From c In SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers
-                       Order By c.Aid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Aid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function PreviousSupplierIDCreate() As Integer
-            Dim tblPreviousSupplierAId As FMS.Business.tblPreviousSupplier = GetLatestPreviousSupplierID()
+        Private Shared Function PreviousSupplierIDCreate(appID As System.Guid) As Integer
+            Dim tblPreviousSupplierAId As FMS.Business.tblPreviousSupplier = GetLatestPreviousSupplierID(appID)
             Dim objPreviousSupplierID As New FMS.Business.tblProjectID
             With objPreviousSupplierID
                 .ProjectID = Guid.NewGuid()
@@ -462,15 +465,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objPreviousSupplierID.PreviousSupplierID
         End Function
-        Private Shared Function PreviousSupplierIDUpdate(PreviousSupplierID As Object) As Integer
+        Private Shared Function PreviousSupplierIDUpdate(PreviousSupplierID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If PreviousSupplierID Is Nothing Then
-                Dim tblPreviousSupplierAId As FMS.Business.tblPreviousSupplier = GetLatestPreviousSupplierID()
+                Dim tblPreviousSupplierAId As FMS.Business.tblPreviousSupplier = GetLatestPreviousSupplierID(appID)
                 PreviousSupplierID = tblPreviousSupplierAId.Aid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.PreviousSupplierID.Equals(PreviousSupplierID)).SingleOrDefault
+                              Where c.PreviousSupplierID.Equals(PreviousSupplierID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -479,12 +483,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.PreviousSupplierID
         End Function
-        Public Shared Function PreviousSupplierIDCreateOrUpdate() As Integer
+        Public Shared Function PreviousSupplierIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objPreviousSupplierID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objPreviousSupplierID Is Nothing AndAlso objPreviousSupplierID.Count().Equals(0) Then
-                Return PreviousSupplierIDCreate()
+                Return PreviousSupplierIDCreate(appID)
             Else
-                Return PreviousSupplierIDUpdate(objPreviousSupplierID.SingleOrDefault().PreviousSupplierID)
+                Return PreviousSupplierIDUpdate(objPreviousSupplierID.SingleOrDefault().PreviousSupplierID, appID)
             End If
         End Function
 #End Region

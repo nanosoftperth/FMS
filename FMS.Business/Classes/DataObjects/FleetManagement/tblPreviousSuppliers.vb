@@ -14,7 +14,7 @@
             With objTblPreviousSupplier
                 .PreviousSupplierID = Guid.NewGuid
                 .ApplicationID = appId
-                .Aid = tblProjectID.PreviousSupplierIDCreateOrUpdate()
+                .Aid = tblProjectID.PreviousSupplierIDCreateOrUpdate(appId)
                 .PreviousSupplier = PSupplier.PreviousSupplier
             End With
             SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers.InsertOnSubmit(objTblPreviousSupplier)
