@@ -914,13 +914,6 @@
       <Column Name="BusinessLocationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.tblRevenueChangeReason" Member="tblRevenueChangeReasons">
-    <Type Name="tblRevenueChangeReason">
-      <Column Name="RevenueChangeReasonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RevenueChangeReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblServiceFrequency" Member="tblServiceFrequencies">
     <Type Name="tblServiceFrequency">
       <Column Name="FrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1341,6 +1334,14 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CycleDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRevenueChangeReason" Member="tblRevenueChangeReasons">
+    <Type Name="tblRevenueChangeReason">
+      <Column Name="RevenueChangeReasonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RevenueChangeReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
@@ -1997,14 +1998,6 @@
       <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetRevenueChangeReason" Method="usp_GetRevenueChangeReason">
-    <ElementType Name="usp_GetRevenueChangeReasonResult">
-      <Column Name="RevenueChangeReasonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RevenueChangeReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetVehiclesForUser" Method="usp_GetVehiclesForUser">
     <Parameter Name="userid" Type="System.Guid" DbType="UniqueIdentifier" />
     <ElementType IdRef="ID1" />
@@ -2294,6 +2287,15 @@
       <Column Name="FortnightlyCyclesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CycleDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetRevenueChangeReason" Method="usp_GetRevenueChangeReason">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetRevenueChangeReasonResult">
+      <Column Name="RevenueChangeReasonID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RevenueChangeReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>

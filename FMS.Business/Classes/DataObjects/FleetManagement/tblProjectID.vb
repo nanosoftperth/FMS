@@ -538,13 +538,14 @@
         End Function
 #End Region
 #Region "tblRevenueChangeReason"
-        Private Shared Function GetLatestRevenueChangeReasonID() As FMS.Business.tblRevenueChangeReason
+        Private Shared Function GetLatestRevenueChangeReasonID(appID As System.Guid) As FMS.Business.tblRevenueChangeReason
             Return (From c In SingletonAccess.FMSDataContextContignous.tblRevenueChangeReasons
-                       Order By c.Rid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Rid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function RevenueChangeReasonIDCreate() As Integer
-            Dim tblRevenueChangeReasonRId As FMS.Business.tblRevenueChangeReason = GetLatestRevenueChangeReasonID()
+        Private Shared Function RevenueChangeReasonIDCreate(appID As System.Guid) As Integer
+            Dim tblRevenueChangeReasonRId As FMS.Business.tblRevenueChangeReason = GetLatestRevenueChangeReasonID(appID)
             Dim objRevenueChangeReasonID As New FMS.Business.tblProjectID
             With objRevenueChangeReasonID
                 .ProjectID = Guid.NewGuid()
@@ -554,15 +555,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objRevenueChangeReasonID.RevenueChangeReasonID
         End Function
-        Private Shared Function RevenueChangeReasonIDUpdate(RevenueChangeReasonID As Object) As Integer
+        Private Shared Function RevenueChangeReasonIDUpdate(RevenueChangeReasonID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If RevenueChangeReasonID Is Nothing Then
-                Dim tblRevenueChangeReasonRId As FMS.Business.tblRevenueChangeReason = GetLatestRevenueChangeReasonID()
+                Dim tblRevenueChangeReasonRId As FMS.Business.tblRevenueChangeReason = GetLatestRevenueChangeReasonID(appID)
                 RevenueChangeReasonID = tblRevenueChangeReasonRId.Rid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.RevenueChangeReasonID.Equals(RevenueChangeReasonID)).SingleOrDefault
+                              Where c.RevenueChangeReasonID.Equals(RevenueChangeReasonID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -571,12 +573,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.RevenueChangeReasonID
         End Function
-        Public Shared Function RevenueChangeReasonIDCreateOrUpdate() As Integer
+        Public Shared Function RevenueChangeReasonIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objRevenueChangeReasonID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objRevenueChangeReasonID Is Nothing AndAlso objRevenueChangeReasonID.Count().Equals(0) Then
-                Return RevenueChangeReasonIDCreate()
+                Return RevenueChangeReasonIDCreate(appID)
             Else
-                Return RevenueChangeReasonIDUpdate(objRevenueChangeReasonID.SingleOrDefault().RevenueChangeReasonID)
+                Return RevenueChangeReasonIDUpdate(objRevenueChangeReasonID.SingleOrDefault().RevenueChangeReasonID, appID)
             End If
         End Function
 #End Region

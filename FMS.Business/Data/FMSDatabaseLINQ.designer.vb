@@ -427,12 +427,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
     End Sub
-  Partial Private Sub InserttblRevenueChangeReason(instance As tblRevenueChangeReason)
-    End Sub
-  Partial Private Sub UpdatetblRevenueChangeReason(instance As tblRevenueChangeReason)
-    End Sub
-  Partial Private Sub DeletetblRevenueChangeReason(instance As tblRevenueChangeReason)
-    End Sub
   Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
     End Sub
   Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
@@ -600,6 +594,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
     End Sub
   Partial Private Sub DeletetblRunFortnightlyCycle(instance As tblRunFortnightlyCycle)
+    End Sub
+  Partial Private Sub InserttblRevenueChangeReason(instance As tblRevenueChangeReason)
+    End Sub
+  Partial Private Sub UpdatetblRevenueChangeReason(instance As tblRevenueChangeReason)
+    End Sub
+  Partial Private Sub DeletetblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
   #End Region
 	
@@ -1072,12 +1072,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblRevenueChangeReasons() As System.Data.Linq.Table(Of tblRevenueChangeReason)
-		Get
-			Return Me.GetTable(Of tblRevenueChangeReason)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
 		Get
 			Return Me.GetTable(Of tblServiceFrequency)
@@ -1255,6 +1249,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblRunFortnightlyCycles() As System.Data.Linq.Table(Of tblRunFortnightlyCycle)
 		Get
 			Return Me.GetTable(Of tblRunFortnightlyCycle)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRevenueChangeReasons() As System.Data.Linq.Table(Of tblRevenueChangeReason)
+		Get
+			Return Me.GetTable(Of tblRevenueChangeReason)
 		End Get
 	End Property
 	
@@ -1499,12 +1499,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunListByRunNumberReportResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueChangeReason")>  _
-	Public Function usp_GetRevenueChangeReason() As ISingleResult(Of usp_GetRevenueChangeReasonResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRevenueChangeReasonResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetVehiclesForUser")>  _
 	Public Function usp_GetVehiclesForUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="UniqueIdentifier")> ByVal userid As System.Nullable(Of System.Guid)) As ISingleResult(Of ApplicationVehicle)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), userid)
@@ -1629,6 +1623,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetFortNightlyCycles(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetFortNightlyCyclesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetFortNightlyCyclesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRevenueChangeReason")>  _
+	Public Function usp_GetRevenueChangeReason(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetRevenueChangeReasonResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRevenueChangeReasonResult))
 	End Function
 End Class
 
@@ -17462,113 +17462,6 @@ Partial Public Class VehicleLocation
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRevenueChangeReason")>  _
-Partial Public Class tblRevenueChangeReason
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _RevenueChangeReasonID As System.Guid
-	
-	Private _Rid As Integer
-	
-	Private _RevenueChangeReason As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnRevenueChangeReasonIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnRevenueChangeReasonIDChanged()
-    End Sub
-    Partial Private Sub OnRidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnRidChanged()
-    End Sub
-    Partial Private Sub OnRevenueChangeReasonChanging(value As String)
-    End Sub
-    Partial Private Sub OnRevenueChangeReasonChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property RevenueChangeReasonID() As System.Guid
-		Get
-			Return Me._RevenueChangeReasonID
-		End Get
-		Set
-			If ((Me._RevenueChangeReasonID = value)  _
-						= false) Then
-				Me.OnRevenueChangeReasonIDChanging(value)
-				Me.SendPropertyChanging
-				Me._RevenueChangeReasonID = value
-				Me.SendPropertyChanged("RevenueChangeReasonID")
-				Me.OnRevenueChangeReasonIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
-	Public Property Rid() As Integer
-		Get
-			Return Me._Rid
-		End Get
-		Set
-			If ((Me._Rid = value)  _
-						= false) Then
-				Me.OnRidChanging(value)
-				Me.SendPropertyChanging
-				Me._Rid = value
-				Me.SendPropertyChanged("Rid")
-				Me.OnRidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")>  _
-	Public Property RevenueChangeReason() As String
-		Get
-			Return Me._RevenueChangeReason
-		End Get
-		Set
-			If (String.Equals(Me._RevenueChangeReason, value) = false) Then
-				Me.OnRevenueChangeReasonChanging(value)
-				Me.SendPropertyChanging
-				Me._RevenueChangeReason = value
-				Me.SendPropertyChanged("RevenueChangeReason")
-				Me.OnRevenueChangeReasonChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServiceFrequency")>  _
 Partial Public Class tblServiceFrequency
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -25339,6 +25232,135 @@ Partial Public Class tblRunFortnightlyCycle
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRevenueChangeReason")>  _
+Partial Public Class tblRevenueChangeReason
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RevenueChangeReasonID As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Rid As Integer
+	
+	Private _RevenueChangeReason As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnRidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnRidChanged()
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonChanging(value As String)
+    End Sub
+    Partial Private Sub OnRevenueChangeReasonChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReasonID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RevenueChangeReasonID() As System.Guid
+		Get
+			Return Me._RevenueChangeReasonID
+		End Get
+		Set
+			If ((Me._RevenueChangeReasonID = value)  _
+						= false) Then
+				Me.OnRevenueChangeReasonIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RevenueChangeReasonID = value
+				Me.SendPropertyChanged("RevenueChangeReasonID")
+				Me.OnRevenueChangeReasonIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
+	Public Property Rid() As Integer
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If ((Me._Rid = value)  _
+						= false) Then
+				Me.OnRidChanging(value)
+				Me.SendPropertyChanging
+				Me._Rid = value
+				Me.SendPropertyChanged("Rid")
+				Me.OnRidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")>  _
+	Public Property RevenueChangeReason() As String
+		Get
+			Return Me._RevenueChangeReason
+		End Get
+		Set
+			If (String.Equals(Me._RevenueChangeReason, value) = false) Then
+				Me.OnRevenueChangeReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._RevenueChangeReason = value
+				Me.SendPropertyChanged("RevenueChangeReason")
+				Me.OnRevenueChangeReasonChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -31771,71 +31793,6 @@ Partial Public Class usp_GetRunListByRunNumberReportResult
 	End Property
 End Class
 
-Partial Public Class usp_GetRevenueChangeReasonResult
-	
-	Private _RevenueChangeReasonID As System.Guid
-	
-	Private _Rid As Integer
-	
-	Private _RevenueChangeReason As String
-	
-	Private _SortOrder As System.Nullable(Of Long)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReasonID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property RevenueChangeReasonID() As System.Guid
-		Get
-			Return Me._RevenueChangeReasonID
-		End Get
-		Set
-			If ((Me._RevenueChangeReasonID = value)  _
-						= false) Then
-				Me._RevenueChangeReasonID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
-	Public Property Rid() As Integer
-		Get
-			Return Me._Rid
-		End Get
-		Set
-			If ((Me._Rid = value)  _
-						= false) Then
-				Me._Rid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")>  _
-	Public Property RevenueChangeReason() As String
-		Get
-			Return Me._RevenueChangeReason
-		End Get
-		Set
-			If (String.Equals(Me._RevenueChangeReason, value) = false) Then
-				Me._RevenueChangeReason = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
-	Public Property SortOrder() As System.Nullable(Of Long)
-		Get
-			Return Me._SortOrder
-		End Get
-		Set
-			If (Me._SortOrder.Equals(value) = false) Then
-				Me._SortOrder = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetGenerateRunSheetsDetailResult
 	
 	Private _SortOrder As String
@@ -34792,6 +34749,71 @@ Partial Public Class usp_GetFortNightlyCyclesResult
 		Set
 			If (String.Equals(Me._CycleDescription, value) = false) Then
 				Me._CycleDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="BigInt")>  _
+	Public Property SortOrder() As System.Nullable(Of Long)
+		Get
+			Return Me._SortOrder
+		End Get
+		Set
+			If (Me._SortOrder.Equals(value) = false) Then
+				Me._SortOrder = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetRevenueChangeReasonResult
+	
+	Private _RevenueChangeReasonID As System.Guid
+	
+	Private _Rid As Integer
+	
+	Private _RevenueChangeReason As String
+	
+	Private _SortOrder As System.Nullable(Of Long)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReasonID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property RevenueChangeReasonID() As System.Guid
+		Get
+			Return Me._RevenueChangeReasonID
+		End Get
+		Set
+			If ((Me._RevenueChangeReasonID = value)  _
+						= false) Then
+				Me._RevenueChangeReasonID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
+	Public Property Rid() As Integer
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If ((Me._Rid = value)  _
+						= false) Then
+				Me._Rid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RevenueChangeReason", DbType:="NVarChar(50)")>  _
+	Public Property RevenueChangeReason() As String
+		Get
+			Return Me._RevenueChangeReason
+		End Get
+		Set
+			If (String.Equals(Me._RevenueChangeReason, value) = false) Then
+				Me._RevenueChangeReason = value
 			End If
 		End Set
 	End Property
