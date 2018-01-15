@@ -583,13 +583,14 @@
         End Function
 #End Region
 #Region "tblServiceFrequency"
-        Private Shared Function GetLatestFrequencyID() As FMS.Business.tblServiceFrequency
+        Private Shared Function GetLatestFrequencyID(appID As System.Guid) As FMS.Business.tblServiceFrequency
             Return (From c In SingletonAccess.FMSDataContextContignous.tblServiceFrequencies
-                       Order By c.Fid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Fid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function FrequencyIDCreate() As Integer
-            Dim tblFrequencyFId As FMS.Business.tblServiceFrequency = GetLatestFrequencyID()
+        Private Shared Function FrequencyIDCreate(appID As System.Guid) As Integer
+            Dim tblFrequencyFId As FMS.Business.tblServiceFrequency = GetLatestFrequencyID(appID)
             Dim objFrequencyID As New FMS.Business.tblProjectID
             With objFrequencyID
                 .ProjectID = Guid.NewGuid()
@@ -599,15 +600,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objFrequencyID.FrequencyID
         End Function
-        Private Shared Function FrequencyIDUpdate(FrequencyID As Object) As Integer
+        Private Shared Function FrequencyIDUpdate(FrequencyID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If FrequencyID Is Nothing Then
-                Dim tblFrequencyFId As FMS.Business.tblServiceFrequency = GetLatestFrequencyID()
+                Dim tblFrequencyFId As FMS.Business.tblServiceFrequency = GetLatestFrequencyID(appID)
                 FrequencyID = tblFrequencyFId.Fid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.FrequencyID.Equals(FrequencyID)).SingleOrDefault
+                              Where c.FrequencyID.Equals(FrequencyID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -616,12 +618,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.FrequencyID
         End Function
-        Public Shared Function FrequencyIDCreateOrUpdate() As Integer
+        Public Shared Function FrequencyIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objFrequencyID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objFrequencyID Is Nothing AndAlso objFrequencyID.Count().Equals(0) Then
-                Return FrequencyIDCreate()
+                Return FrequencyIDCreate(appID)
             Else
-                Return FrequencyIDUpdate(objFrequencyID.SingleOrDefault().FrequencyID)
+                Return FrequencyIDUpdate(objFrequencyID.SingleOrDefault().FrequencyID, appID)
             End If
         End Function
 #End Region

@@ -28,7 +28,7 @@
                 <dx:GridViewDataTextColumn FieldName="FrequencyID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="FID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="FrequencyDescription" VisibleIndex="3"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Factor" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                <dx:GridViewDataSpinEditColumn FieldName="Factor" VisibleIndex="4" PropertiesSpinEdit-Height="20"></dx:GridViewDataSpinEditColumn>
                 <dx:GridViewDataCheckColumn FieldName="Periodical" VisibleIndex="5"></dx:GridViewDataCheckColumn>
                 <dx:GridViewDataTextColumn FieldName="Notes" VisibleIndex="6"></dx:GridViewDataTextColumn>
             </Columns>

@@ -427,12 +427,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteVehicleLocation(instance As VehicleLocation)
     End Sub
-  Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
-    End Sub
-  Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
-    End Sub
-  Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
-    End Sub
   Partial Private Sub InserttblzGenerateRunSheet(instance As tblzGenerateRunSheet)
     End Sub
   Partial Private Sub UpdatetblzGenerateRunSheet(instance As tblzGenerateRunSheet)
@@ -600,6 +594,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblRevenueChangeReason(instance As tblRevenueChangeReason)
     End Sub
   Partial Private Sub DeletetblRevenueChangeReason(instance As tblRevenueChangeReason)
+    End Sub
+  Partial Private Sub InserttblServiceFrequency(instance As tblServiceFrequency)
+    End Sub
+  Partial Private Sub UpdatetblServiceFrequency(instance As tblServiceFrequency)
+    End Sub
+  Partial Private Sub DeletetblServiceFrequency(instance As tblServiceFrequency)
     End Sub
   #End Region
 	
@@ -1072,12 +1072,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
-		Get
-			Return Me.GetTable(Of tblServiceFrequency)
-		End Get
-	End Property
-	
 	Public ReadOnly Property vw_GetVehicleLocations() As System.Data.Linq.Table(Of vw_GetVehicleLocation)
 		Get
 			Return Me.GetTable(Of vw_GetVehicleLocation)
@@ -1255,6 +1249,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblRevenueChangeReasons() As System.Data.Linq.Table(Of tblRevenueChangeReason)
 		Get
 			Return Me.GetTable(Of tblRevenueChangeReason)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblServiceFrequencies() As System.Data.Linq.Table(Of tblServiceFrequency)
+		Get
+			Return Me.GetTable(Of tblServiceFrequency)
 		End Get
 	End Property
 	
@@ -17462,180 +17462,6 @@ Partial Public Class VehicleLocation
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServiceFrequency")>  _
-Partial Public Class tblServiceFrequency
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _FrequencyID As System.Guid
-	
-	Private _Fid As Integer
-	
-	Private _FrequencyDescription As String
-	
-	Private _Factor As System.Nullable(Of Single)
-	
-	Private _Periodical As Boolean
-	
-	Private _Notes As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnFrequencyIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnFrequencyIDChanged()
-    End Sub
-    Partial Private Sub OnFidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnFidChanged()
-    End Sub
-    Partial Private Sub OnFrequencyDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnFrequencyDescriptionChanged()
-    End Sub
-    Partial Private Sub OnFactorChanging(value As System.Nullable(Of Single))
-    End Sub
-    Partial Private Sub OnFactorChanged()
-    End Sub
-    Partial Private Sub OnPeriodicalChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnPeriodicalChanged()
-    End Sub
-    Partial Private Sub OnNotesChanging(value As String)
-    End Sub
-    Partial Private Sub OnNotesChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property FrequencyID() As System.Guid
-		Get
-			Return Me._FrequencyID
-		End Get
-		Set
-			If ((Me._FrequencyID = value)  _
-						= false) Then
-				Me.OnFrequencyIDChanging(value)
-				Me.SendPropertyChanging
-				Me._FrequencyID = value
-				Me.SendPropertyChanged("FrequencyID")
-				Me.OnFrequencyIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fid", DbType:="Int NOT NULL")>  _
-	Public Property Fid() As Integer
-		Get
-			Return Me._Fid
-		End Get
-		Set
-			If ((Me._Fid = value)  _
-						= false) Then
-				Me.OnFidChanging(value)
-				Me.SendPropertyChanging
-				Me._Fid = value
-				Me.SendPropertyChanged("Fid")
-				Me.OnFidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyDescription", DbType:="NVarChar(50)")>  _
-	Public Property FrequencyDescription() As String
-		Get
-			Return Me._FrequencyDescription
-		End Get
-		Set
-			If (String.Equals(Me._FrequencyDescription, value) = false) Then
-				Me.OnFrequencyDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._FrequencyDescription = value
-				Me.SendPropertyChanged("FrequencyDescription")
-				Me.OnFrequencyDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Factor", DbType:="Real")>  _
-	Public Property Factor() As System.Nullable(Of Single)
-		Get
-			Return Me._Factor
-		End Get
-		Set
-			If (Me._Factor.Equals(value) = false) Then
-				Me.OnFactorChanging(value)
-				Me.SendPropertyChanging
-				Me._Factor = value
-				Me.SendPropertyChanged("Factor")
-				Me.OnFactorChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Periodical", DbType:="Bit NOT NULL")>  _
-	Public Property Periodical() As Boolean
-		Get
-			Return Me._Periodical
-		End Get
-		Set
-			If ((Me._Periodical = value)  _
-						= false) Then
-				Me.OnPeriodicalChanging(value)
-				Me.SendPropertyChanging
-				Me._Periodical = value
-				Me.SendPropertyChanged("Periodical")
-				Me.OnPeriodicalChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="NVarChar(MAX)")>  _
-	Public Property Notes() As String
-		Get
-			Return Me._Notes
-		End Get
-		Set
-			If (String.Equals(Me._Notes, value) = false) Then
-				Me.OnNotesChanging(value)
-				Me.SendPropertyChanging
-				Me._Notes = value
-				Me.SendPropertyChanged("Notes")
-				Me.OnNotesChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.vw_GetVehicleLocations")>  _
 Partial Public Class vw_GetVehicleLocation
 	
@@ -25338,6 +25164,202 @@ Partial Public Class tblRevenueChangeReason
 				Me._RevenueChangeReason = value
 				Me.SendPropertyChanged("RevenueChangeReason")
 				Me.OnRevenueChangeReasonChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblServiceFrequency")>  _
+Partial Public Class tblServiceFrequency
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _FrequencyID As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Fid As Integer
+	
+	Private _FrequencyDescription As String
+	
+	Private _Factor As System.Nullable(Of Single)
+	
+	Private _Periodical As Boolean
+	
+	Private _Notes As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnFrequencyIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnFrequencyIDChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnFidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnFidChanged()
+    End Sub
+    Partial Private Sub OnFrequencyDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnFrequencyDescriptionChanged()
+    End Sub
+    Partial Private Sub OnFactorChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnFactorChanged()
+    End Sub
+    Partial Private Sub OnPeriodicalChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnPeriodicalChanged()
+    End Sub
+    Partial Private Sub OnNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnNotesChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property FrequencyID() As System.Guid
+		Get
+			Return Me._FrequencyID
+		End Get
+		Set
+			If ((Me._FrequencyID = value)  _
+						= false) Then
+				Me.OnFrequencyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FrequencyID = value
+				Me.SendPropertyChanged("FrequencyID")
+				Me.OnFrequencyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fid", DbType:="Int NOT NULL")>  _
+	Public Property Fid() As Integer
+		Get
+			Return Me._Fid
+		End Get
+		Set
+			If ((Me._Fid = value)  _
+						= false) Then
+				Me.OnFidChanging(value)
+				Me.SendPropertyChanging
+				Me._Fid = value
+				Me.SendPropertyChanged("Fid")
+				Me.OnFidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FrequencyDescription", DbType:="NVarChar(50)")>  _
+	Public Property FrequencyDescription() As String
+		Get
+			Return Me._FrequencyDescription
+		End Get
+		Set
+			If (String.Equals(Me._FrequencyDescription, value) = false) Then
+				Me.OnFrequencyDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._FrequencyDescription = value
+				Me.SendPropertyChanged("FrequencyDescription")
+				Me.OnFrequencyDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Factor", DbType:="Real")>  _
+	Public Property Factor() As System.Nullable(Of Single)
+		Get
+			Return Me._Factor
+		End Get
+		Set
+			If (Me._Factor.Equals(value) = false) Then
+				Me.OnFactorChanging(value)
+				Me.SendPropertyChanging
+				Me._Factor = value
+				Me.SendPropertyChanged("Factor")
+				Me.OnFactorChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Periodical", DbType:="Bit NOT NULL")>  _
+	Public Property Periodical() As Boolean
+		Get
+			Return Me._Periodical
+		End Get
+		Set
+			If ((Me._Periodical = value)  _
+						= false) Then
+				Me.OnPeriodicalChanging(value)
+				Me.SendPropertyChanging
+				Me._Periodical = value
+				Me.SendPropertyChanged("Periodical")
+				Me.OnPeriodicalChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Notes", DbType:="NVarChar(MAX)")>  _
+	Public Property Notes() As String
+		Get
+			Return Me._Notes
+		End Get
+		Set
+			If (String.Equals(Me._Notes, value) = false) Then
+				Me.OnNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._Notes = value
+				Me.SendPropertyChanged("Notes")
+				Me.OnNotesChanged
 			End If
 		End Set
 	End Property

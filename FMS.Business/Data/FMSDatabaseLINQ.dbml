@@ -914,16 +914,6 @@
       <Column Name="BusinessLocationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.tblServiceFrequency" Member="tblServiceFrequencies">
-    <Type Name="tblServiceFrequency">
-      <Column Name="FrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Fid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FrequencyDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Factor" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="Periodical" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.vw_GetVehicleLocations" Member="vw_GetVehicleLocations">
     <Type Name="vw_GetVehicleLocation">
       <Column Name="LocationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -1342,6 +1332,17 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RevenueChangeReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblServiceFrequency" Member="tblServiceFrequencies">
+    <Type Name="tblServiceFrequency">
+      <Column Name="FrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Fid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FrequencyDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Periodical" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
