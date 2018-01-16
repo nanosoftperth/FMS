@@ -60,6 +60,14 @@ Public Class UserSecurity
 
     End Sub
 
+    Protected Sub Grid_StartRowEditing(sender As Object, e As ASPxStartRowEditingEventArgs)
+        Grid.SettingsText.PopupEditFormCaption = "Edit User"
+    End Sub
+
+    Protected Sub Grid_InitNewRow(sender As Object, e As ASPxDataInitNewRowEventArgs)
+        Grid.SettingsText.PopupEditFormCaption = "Create New User"
+    End Sub
+
     'Private Sub dgvVehicles_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs) Handles dgvVehicles.RowUpdating
     '    e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
     '    e.NewValues("BusinessLocation") = GetBusinessLocation()
