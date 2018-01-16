@@ -16,7 +16,7 @@
             With objCustomerRating
                 .ApplicationId = appId
                 .CustomerRatingID = Guid.NewGuid
-                .Rid = tblProjectID.CustomerRatingIDCreateOrUpdate()
+                .Rid = tblProjectID.CustomerRatingIDCreateOrUpdate(appId)
                 .CustomerRating = CustomerRate.CustomerRating
                 .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
                 .FromValue = CustomerRate.FromValue

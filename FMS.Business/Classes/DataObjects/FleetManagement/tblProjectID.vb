@@ -360,13 +360,14 @@
         End Function
 #End Region
 #Region "tblCustomerRating"
-        Private Shared Function GetLatestCustomerRatingID() As FMS.Business.tblCustomerRating
+        Private Shared Function GetLatestCustomerRatingID(appID As System.Guid) As FMS.Business.tblCustomerRating
             Return (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
-                       Order By c.Rid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationId.Equals(appID)
+                    Order By c.Rid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function CustomerRatingIDCreate() As Integer
-            Dim tblCustomerRatingRId As FMS.Business.tblCustomerRating = GetLatestCustomerRatingID()
+        Private Shared Function CustomerRatingIDCreate(appID As System.Guid) As Integer
+            Dim tblCustomerRatingRId As FMS.Business.tblCustomerRating = GetLatestCustomerRatingID(appID)
             Dim objCustomerRatingID As New FMS.Business.tblProjectID
             With objCustomerRatingID
                 .ProjectID = Guid.NewGuid()
@@ -376,15 +377,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objCustomerRatingID.CustomerRatingID
         End Function
-        Private Shared Function CustomerRatingIDUpdate(CustomerRatingID As Object) As Integer
+        Private Shared Function CustomerRatingIDUpdate(CustomerRatingID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If CustomerRatingID Is Nothing Then
-                Dim tblCustomerRatingRId As FMS.Business.tblCustomerRating = GetLatestCustomerRatingID()
+                Dim tblCustomerRatingRId As FMS.Business.tblCustomerRating = GetLatestCustomerRatingID(appID)
                 CustomerRatingID = tblCustomerRatingRId.Rid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.CustomerRatingID.Equals(CustomerRatingID)).SingleOrDefault
+                              Where c.CustomerRatingID.Equals(CustomerRatingID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -393,12 +395,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.CustomerRatingID
         End Function
-        Public Shared Function CustomerRatingIDCreateOrUpdate() As Integer
+        Public Shared Function CustomerRatingIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objCustomerRatingID = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objCustomerRatingID Is Nothing AndAlso objCustomerRatingID.Count().Equals(0) Then
-                Return CustomerRatingIDCreate()
+                Return CustomerRatingIDCreate(appID)
             Else
-                Return CustomerRatingIDUpdate(objCustomerRatingID.SingleOrDefault().CustomerRatingID)
+                Return CustomerRatingIDUpdate(objCustomerRatingID.SingleOrDefault().CustomerRatingID, appID)
             End If
         End Function
 #End Region
