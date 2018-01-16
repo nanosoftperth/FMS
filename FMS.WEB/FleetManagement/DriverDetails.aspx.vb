@@ -52,4 +52,16 @@ Public Class DriverDetails
         pupAllocate.ShowOnPageLoad = False
 
     End Sub
+
+    Protected Sub gvDriver_StartRowEditing(sender As Object, e As Data.ASPxStartRowEditingEventArgs)
+        gvDriver.SettingsText.PopupEditFormCaption = "Edit Driver Details"
+    End Sub
+
+    Protected Sub gvDriver_InitNewRow(sender As Object, e As Data.ASPxDataInitNewRowEventArgs)
+        gvDriver.SettingsText.PopupEditFormCaption = "Create New Driver Details"
+    End Sub
+
+    Protected Sub gvComments_StartRowEditing(sender As Object, e As Data.ASPxStartRowEditingEventArgs)
+        sender.SettingsText.PopupEditFormCaption = "Edit Driver Comment"
+    End Sub
 End Class
