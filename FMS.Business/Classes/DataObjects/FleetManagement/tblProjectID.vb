@@ -4,15 +4,14 @@
 #End Region
 #Region "CRUD"
 #Region "tblCustomer"
-        Private Shared Function GetLatestCustomerID() As FMS.Business.tblCustomer
+        Private Shared Function GetLatestCustomerID(appID As System.Guid) As FMS.Business.tblCustomer
             Return (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                       Order By c.Cid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Cid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function CustomerIDCreate() As Integer
-            Dim objCustId = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                       Order By c.Cid Descending
-                       Select c).FirstOrDefault()
+        Private Shared Function CustomerIDCreate(appID As System.Guid) As Integer
+            Dim objCustId As FMS.Business.tblCustomer = GetLatestCustomerID(appID)
             Dim objCustomerID As New FMS.Business.tblProjectID
             With objCustomerID
                 .ProjectID = Guid.NewGuid()
@@ -22,15 +21,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objCustomerID.CustomersID
         End Function
-        Private Shared Function CustomerIDUpdate(CustomerID As Object) As Integer
+        Private Shared Function CustomerIDUpdate(CustomerID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If CustomerID Is Nothing Then
-                Dim tblCustomerCId As FMS.Business.tblCustomer = GetLatestCustomerID()
+                Dim tblCustomerCId As FMS.Business.tblCustomer = GetLatestCustomerID(appID)
                 CustomerID = tblCustomerCId.Cid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.CustomersID.Equals(CustomerID)).SingleOrDefault
+                              Where c.CustomersID.Equals(CustomerID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -39,12 +39,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.CustomersID
         End Function
-        Public Shared Function CustomerIDCreateOrUpdate() As Integer
+        Public Shared Function CustomerIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objCustomer = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objCustomer Is Nothing AndAlso objCustomer.Count().Equals(0) Then
-                Return CustomerIDCreate()
+                Return CustomerIDCreate(appID)
             Else
-                Return CustomerIDUpdate(objCustomer.SingleOrDefault().CustomersID)
+                Return CustomerIDUpdate(objCustomer.SingleOrDefault().CustomersID, appID)
             End If
         End Function
 #End Region

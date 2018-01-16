@@ -12,7 +12,7 @@
 <script src="../Content/javascript/jquery-1.10.2.min.js"></script>
 <style>
     .container {
-        width: 700px;
+        width: 600px;
     }
 </style>
 <style>
@@ -106,7 +106,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerName" runat="server" Text="Customer&nbsp;Name:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <dx:ASPxTextBox ID="txtCustomerName" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("CustomerName") %>'></dx:ASPxTextBox>
                                 </div>
                                 <div class="col-md-1">
@@ -140,7 +140,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblSuburb" runat="server" Text="Suburb:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <div class="container">
                                         <div class="row row-md-margin-top">
                                             <dx:ASPxTextBox ID="txtSuburb" runat="server" Width="111px" MaxLength="22" Text='<%# Eval("Suburb") %>'></dx:ASPxTextBox>&nbsp;

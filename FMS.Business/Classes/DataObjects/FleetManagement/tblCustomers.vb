@@ -37,7 +37,7 @@
             With objCustomer
                 .ApplicationID = appid
                 .CustomerID = Guid.NewGuid
-                .Cid = tblProjectID.CustomerIDCreateOrUpdate()
+                .Cid = tblProjectID.CustomerIDCreateOrUpdate(appID)
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
                 .AddressLine2 = customer.AddressLine2
@@ -63,10 +63,8 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(customer As DataObjects.tblCustomers)
-            Dim appID = ThisSession.ApplicationID
-
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(customer.Cid) And c.ApplicationID = appID).SingleOrDefault
+                                                           Where c.Cid.Equals(customer.Cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             With objCustomer
                 .CustomerName = customer.CustomerName
                 .AddressLine1 = customer.AddressLine1
@@ -93,17 +91,15 @@
         End Sub
         Public Shared Sub UpdateCustomerValue(cid As Integer, custVal As Double)
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(cid)).SingleOrDefault
+                                                           Where c.Cid.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             With objCustomer
                 .CustomerValue = custVal
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Customer As DataObjects.tblCustomers)
-            Dim appID = ThisSession.ApplicationID
-
             Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(Customer.Cid) And c.ApplicationID = appID).SingleOrDefault
+                                                           Where c.Cid.Equals(Customer.Cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblCustomers.DeleteOnSubmit(objCustomer)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
