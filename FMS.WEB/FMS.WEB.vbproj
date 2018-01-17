@@ -535,6 +535,13 @@
       <DependentUpon>ServiceListReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\ServiceRunManagement.aspx.designer.vb">
+      <DependentUpon>ServiceRunManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\ServiceRunManagement.aspx.vb">
+      <DependentUpon>ServiceRunManagement.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\Services.aspx.designer.vb">
       <DependentUpon>Services.aspx</DependentUpon>
     </Compile>
@@ -1334,6 +1341,7 @@
     <Content Include="FleetManagement\SalesPerson.aspx" />
     <Content Include="FleetManagement\ServiceFrequency.aspx" />
     <Content Include="FleetManagement\Reports\ServiceListReport.aspx" />
+    <Content Include="FleetManagement\ServiceRunManagement.aspx" />
     <Content Include="FleetManagement\Services.aspx" />
     <Content Include="FleetManagement\Reports\ServiceSummaryReport.aspx" />
     <Content Include="FleetManagement\Reports\SiteBySiteZoneReport.aspx" />
