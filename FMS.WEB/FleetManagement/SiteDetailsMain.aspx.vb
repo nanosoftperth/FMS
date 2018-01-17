@@ -224,6 +224,10 @@ Public Class SiteDetailsMain
         'GetCustomerServiceRowUpdatingRowInserting(e, True)
         UpdateInsertCustomerServiceRowUpdatingRowInserting(e, True)
     End Sub
+    Protected Sub CustomerServiceGridView_CancelRowEditing(sender As Object, e As Data.ASPxStartRowEditingEventArgs)
+        FMS.Business.DataObjects.tblCustomerServices.GetCustomerServiceID = Guid.Empty
+        e.Cancel = False
+    End Sub
     Protected Sub GetCustomerServiceRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
         Dim SiteDetailsPageControl As ASPxPageControl = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("SiteDetailsPageControl"), ASPxPageControl)
         Dim CustomerServiceGrid As ASPxGridView = TryCast(SiteDetailsPageControl.FindControl("CustomerServiceGridView"), ASPxGridView)
@@ -415,6 +419,7 @@ Public Class SiteDetailsMain
             If FMS.Business.DataObjects.tblCustomerServices.GetCustomerServiceID.Equals(Guid.Empty) Then
                 CustomerServices.CId = hdnSiteCid.Text
                 FMS.Business.DataObjects.tblCustomerServices.Create(CustomerServices)
+
             Else
                 CustomerServices.CustomerServiceID = FMS.Business.DataObjects.tblCustomerServices.GetCustomerServiceID
                 CustomerServices.CId = hdnSiteCid.Text
@@ -505,6 +510,8 @@ Public Class SiteDetailsMain
         Dim objSites = FMS.Business.DataObjects.tblCustomerServices.GetRecalculatedServices(siteId)
         Return objSites
     End Function
+
+
 #End Region
 
 

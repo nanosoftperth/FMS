@@ -73,7 +73,10 @@
     <form id="form1" runat="server">
         <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" 
                 KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
-                <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+                <Templates>
+                    <TitlePanel>Customers Details</TitlePanel>
+                </Templates>
                 <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                 <Columns>
                     <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>

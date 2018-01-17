@@ -171,7 +171,10 @@
         </div>
         <dx:ASPxGridView ID="SiteDetailsGridView" runat="server" DataSourceID="odsSiteDetails" AutoGenerateColumns="False" 
             KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" OnRowInserting="SiteDetailsGridView_RowInserting">
-            <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+            <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
+            <Templates>
+                <TitlePanel>Sites</TitlePanel>
+            </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
@@ -694,6 +697,7 @@
                                                 <div class="col-md-2">
                                                     <dx:ASPxGridView ID="CustomerServiceGridView" KeyFieldName="CustomerServiceID" Theme="SoftOrange"
                                                         DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False" Width="900px" 
+                                                        OnCancelRowEditing="CustomerServiceGridView_CancelRowEditing" 
                                                         OnRowUpdating="CustomerServiceGridView_RowUpdating" OnRowInserting="CustomerServiceGridView_RowInserting">
                                                         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>

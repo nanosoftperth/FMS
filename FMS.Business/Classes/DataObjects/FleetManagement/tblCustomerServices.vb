@@ -2,6 +2,7 @@
     Public Class tblCustomerServices
 #Region "Properties / enums"
         Public Property CustomerServiceID As System.Guid
+        Public Property ApplicationID As System.Nullable(Of System.Guid)
         Public Property ID As Integer
         Public Property CSid As System.Nullable(Of Integer)
         Public Property CId As System.Nullable(Of Integer)
@@ -36,8 +37,11 @@
 #Region "CRUD"
         Public Shared Sub Create(CustomerService As DataObjects.tblCustomerServices)
             Dim objCustomerService As New FMS.Business.tblCustomerService
+            Dim appId = ThisSession.ApplicationID
             With objCustomerService
                 .CustomerServiceID = Guid.NewGuid
+                .ApplicationID = appId
+                .ID = tblProjectID.CustomerServicesIDCreateOrUpdate(appId)
                 .CSid = CustomerService.CSid
                 .CId = CustomerService.CId
                 .ServiceFrequencyCode = CustomerService.ServiceFrequencyCode
@@ -63,7 +67,7 @@
         End Sub
         Public Shared Sub Update(CustomerService As DataObjects.tblCustomerServices)
             Dim objCustomerService As FMS.Business.tblCustomerService = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                                                           Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID)).SingleOrDefault
+                                                                         Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             With objCustomerService
                 .CSid = CustomerService.CSid
                 .CId = CustomerService.CId
@@ -88,7 +92,7 @@
         End Sub
         Public Shared Sub Delete(CustomerService As DataObjects.tblCustomerServices)
             Dim objCustomerService As FMS.Business.tblCustomerService = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                                                         Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID)).SingleOrDefault
+                                                                         Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblCustomerServices.DeleteOnSubmit(objCustomerService)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -98,20 +102,21 @@
 
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerServices)
             Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
+                            Where c.ApplicationID.Equals(ThisSession.ApplicationID)
                             Order By c.CSid
-                                          Select New DataObjects.tblCustomerServices(c)).ToList
+                            Select New DataObjects.tblCustomerServices(c)).ToList
             Return objZones
         End Function
         Public Shared Function GetAllByCid(cid As Integer) As List(Of DataObjects.tblCustomerServices)
             Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                            Where c.CId.Equals(cid)
-                            Order By c.CSid
-                                          Select New DataObjects.tblCustomerServices(c)).ToList
+                                       Where c.CId.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                       Order By c.CSid
+                                       Select New DataObjects.tblCustomerServices(c)).ToList
             Return objCustomerServices
         End Function
         Public Shared Function GetRecalculatedServices(cid As Integer) As DataObjects.ReCalculatedServices
             Dim objCustomers = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                                Where c.CId.Equals(cid))
+                                Where c.CId.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID))
             Dim totalPerAnnum As Double
             Dim totalServiceUnits As Double
             For Each cust In objCustomers
@@ -134,10 +139,11 @@
             Return recalculate
         End Function
         Public Shared Function GetAllByCidWithSortOrders(cid As Integer) As List(Of DataObjects.tblCustomerServices)
-            Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerServices
-                            Where c.CId.Equals(cid)
-                            Order By c.CSid
-                                          Select New DataObjects.tblCustomerServices() With {.CustomerServiceID = c.CustomerServiceID, .ID = c.ID,
+            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerServices(ThisSession.ApplicationID)
+                                       Where c.CId.Equals(cid)
+                                       Order By c.CSid
+                                       Select New DataObjects.tblCustomerServices() With {.CustomerServiceID = c.CustomerServiceID, .ID = c.ID,
                                                                                              .CSid = c.CSid, .CId = c.CId, .ServiceFrequencyCode = c.ServiceFrequencyCode,
                                                                                              .ServiceUnits = c.ServiceUnits, .ServicePrice = c.ServicePrice,
                                                                                              .PerAnnumCharge = c.PerAnnumCharge, .ServiceRun = c.ServiceRun,
@@ -162,6 +168,7 @@
         Public Sub New(objCustomerService As FMS.Business.tblCustomerService)
             With objCustomerService
                 Me.CustomerServiceID = .CustomerServiceID
+                Me.ApplicationID = .ApplicationID
                 Me.ID = .ID
                 Me.CSid = .CSid
                 Me.CId = .CId

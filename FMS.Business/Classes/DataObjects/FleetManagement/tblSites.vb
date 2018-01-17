@@ -73,7 +73,7 @@
             With objSite
                 .ApplicationId = appId
                 .SiteID = Guid.NewGuid
-                .Cid = tblProjectID.SiteIDCreateOrUpdate
+                .Cid = tblProjectID.SiteIDCreateOrUpdate(appId)
                 .SiteName = Site.SiteName
                 .Customer = Site.Customer
                 .AddressLine1 = Site.AddressLine1
@@ -124,10 +124,8 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(Site As DataObjects.tblSites)
-            Dim appId = ThisSession.ApplicationID
-
             Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId = appId).SingleOrDefault
+                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId.Equals(ThisSession.ApplicationID)).SingleOrDefault
             With objSite
                 .SiteName = Site.SiteName
                 .Customer = Site.Customer
@@ -178,10 +176,8 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Site As DataObjects.tblSites)
-            Dim appId = ThisSession.ApplicationID
-
             Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId = appId).SingleOrDefault
+                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId.Equals(ThisSession.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblSites.DeleteOnSubmit(objSite)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -189,20 +185,21 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblSites)
             Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
+                            Where c.ApplicationId.Equals(ThisSession.ApplicationID)
                             Order By c.SiteName
                             Select New DataObjects.tblSites(c)).ToList
             Return objSites
         End Function
         Public Shared Function GetAllByCustomer(cust As Integer) As List(Of DataObjects.tblSites)
             Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                            Where c.Customer.Equals(cust) And (Not c.Customer Is Nothing And Not c.Customer.Equals(0))
+                            Where c.Customer.Equals(cust) And (Not c.Customer Is Nothing And Not c.Customer.Equals(0) And c.ApplicationId.Equals(ThisSession.ApplicationID))
                             Order By c.SiteName
                             Select New DataObjects.tblSites(c)).ToList
             Return objSites
         End Function
         Public Shared Function GetAllBySiteID(cid As Integer) As DataObjects.tblSites
             Dim objSites = (From s In DataObjects.tblSites.GetAllWithZoneSortOrder()
-                            Where s.Cid.Equals(cid)
+                            Where s.Cid.Equals(cid) And s.ApplicationId.Equals(ThisSession.ApplicationID)
                             Order By s.SiteName
                             Select New DataObjects.tblSites() With {.SiteID = s.SiteID, .Cid = s.Cid, .SiteName = s.SiteName, .Customer = s.Customer, .AddressLine1 = s.AddressLine1,
                                                                     .AddressLine2 = s.AddressLine2, .AddressLine3 = s.AddressLine3, .AddressLine4 = s.AddressLine4, .Suburb = s.Suburb,
@@ -225,7 +222,8 @@
             Return objSites
         End Function
         Public Shared Function GetAllWithZoneSortOrder() As List(Of DataObjects.tblSites)
-            Dim objSites = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSites
+            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            Dim objSites = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSites(ThisSession.ApplicationID)
                             Select New DataObjects.tblSites() With {.SiteID = s.SiteID, .Cid = s.Cid, .SiteName = s.SiteName, .Customer = s.Customer, .AddressLine1 = s.AddressLine1,
                                                                     .AddressLine2 = s.AddressLine2, .AddressLine3 = s.AddressLine3, .AddressLine4 = s.AddressLine4, .Suburb = s.Suburb,
                                                                     .State = s.State, .PostCode = s.PostCode, .PhoneNo = s.PhoneNo, .FaxNo = s.FaxNo, .SiteContactName = s.SiteContactName,

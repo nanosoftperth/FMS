@@ -49,13 +49,14 @@
         End Function
 #End Region
 #Region "tblSites"
-        Private Shared Function GetLatestSiteID() As FMS.Business.tblSite
+        Private Shared Function GetLatestSiteID(appID As System.Guid) As FMS.Business.tblSite
             Return (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                       Order By c.Cid Descending
-                       Select c).FirstOrDefault()
+                    Where c.ApplicationId.Equals(appID)
+                    Order By c.Cid Descending
+                    Select c).FirstOrDefault()
         End Function
-        Private Shared Function SiteIDCreate() As Integer
-            Dim tblSiteCId As FMS.Business.tblSite = GetLatestSiteID()
+        Private Shared Function SiteIDCreate(appID As System.Guid) As Integer
+            Dim tblSiteCId As FMS.Business.tblSite = GetLatestSiteID(appID)
             Dim objSiteID As New FMS.Business.tblProjectID
             With objSiteID
                 .ProjectID = Guid.NewGuid()
@@ -65,15 +66,16 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objSiteID.SitesID
         End Function
-        Private Shared Function SiteIDUpdate(SiteID As Object) As Integer
+        Private Shared Function SiteIDUpdate(SiteID As Object, appID As System.Guid) As Integer
             Dim objProject As FMS.Business.tblProjectID = Nothing
             If SiteID Is Nothing Then
-                Dim tblSiteCId As FMS.Business.tblSite = GetLatestSiteID()
+                Dim tblSiteCId As FMS.Business.tblSite = GetLatestSiteID(appID)
                 SiteID = tblSiteCId.Cid
-                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs).FirstOrDefault()
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
             Else
                 objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-                                                  Where c.SitesID.Equals(SiteID)).SingleOrDefault
+                              Where c.SitesID.Equals(SiteID) And c.ApplicationID.Equals(appID)).SingleOrDefault
             End If
 
             With objProject
@@ -82,12 +84,12 @@
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
             Return objProject.SitesID
         End Function
-        Public Shared Function SiteIDCreateOrUpdate() As Integer
+        Public Shared Function SiteIDCreateOrUpdate(appID As System.Guid) As Integer
             Dim objSites = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
             If Not objSites Is Nothing AndAlso objSites.Count().Equals(0) Then
-                Return SiteIDCreate()
+                Return SiteIDCreate(appID)
             Else
-                Return SiteIDUpdate(objSites.SingleOrDefault().SitesID)
+                Return SiteIDUpdate(objSites.SingleOrDefault().SitesID, appID)
             End If
         End Function
 #End Region
@@ -804,6 +806,141 @@
                 Return RunSheetIDCreate()
             Else
                 Return RunSheetIDUpdate(objRunSheetID.SingleOrDefault().RunSheetID)
+            End If
+        End Function
+#End Region
+#Region "tblSiteReSignDetails"
+        Private Shared Function GetLatestSiteReSignDetailsID(appID As System.Guid) As FMS.Business.tblSiteReSignDetail
+            Return (From c In SingletonAccess.FMSDataContextContignous.tblSiteReSignDetails
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.Cid Descending
+                    Select c).FirstOrDefault()
+        End Function
+        Private Shared Function SiteReSignDetailsIDCreate(appID As System.Guid) As Integer
+            Dim tblSiteReSignDetailsCId As FMS.Business.tblSiteReSignDetail = GetLatestSiteReSignDetailsID(appID)
+            Dim objSiteReSignDetailsID As New FMS.Business.tblProjectID
+            With objSiteReSignDetailsID
+                .ProjectID = Guid.NewGuid()
+                .ReSignDetailsID = tblSiteReSignDetailsCId.Cid + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.tblProjectIDs.InsertOnSubmit(objSiteReSignDetailsID)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objSiteReSignDetailsID.ReSignDetailsID
+        End Function
+        Private Shared Function SiteReSignDetailsIDUpdate(ReSignDetailsID As Object, appID As System.Guid) As Integer
+            Dim objProject As FMS.Business.tblProjectID = Nothing
+            If ReSignDetailsID Is Nothing Then
+                Dim tblSiteReSignDetailsCId As FMS.Business.tblSiteReSignDetail = GetLatestSiteReSignDetailsID(appID)
+                ReSignDetailsID = tblSiteReSignDetailsCId.Cid
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
+            Else
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ReSignDetailsID.Equals(ReSignDetailsID) And c.ApplicationID.Equals(appID)).SingleOrDefault
+            End If
+
+            With objProject
+                .ReSignDetailsID = ReSignDetailsID + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objProject.ReSignDetailsID
+        End Function
+        Public Shared Function SiteReSignDetailsIDCreateOrUpdate(appID As System.Guid) As Integer
+            Dim objSiteReSignDetails = SingletonAccess.FMSDataContextContignous.tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
+            If Not objSiteReSignDetails Is Nothing AndAlso objSiteReSignDetails.Count().Equals(0) Then
+                Return SiteReSignDetailsIDCreate(appID)
+            Else
+                Return SiteReSignDetailsIDUpdate(objSiteReSignDetails.SingleOrDefault().ReSignDetailsID, appID)
+            End If
+        End Function
+#End Region
+#Region "tblCustomerServices"
+        Private Shared Function GetLatestCustomerServicesID(appID As System.Guid) As FMS.Business.tblCustomerService
+            Return (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.ID Descending
+                    Select c).FirstOrDefault()
+        End Function
+        Private Shared Function CustomerServicesIDCreate(appID As System.Guid) As Integer
+            Dim tblCustomerServicesId As FMS.Business.tblCustomerService = GetLatestCustomerServicesID(appID)
+            Dim objCustomerServicesID As New FMS.Business.tblProjectID
+            With objCustomerServicesID
+                .ProjectID = Guid.NewGuid()
+                .CustomerServicesID = tblCustomerServicesId.ID + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.tblProjectIDs.InsertOnSubmit(objCustomerServicesID)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objCustomerServicesID.CustomerServicesID
+        End Function
+        Private Shared Function CustomerServicesIDUpdate(CustomerServicesID As Object, appID As System.Guid) As Integer
+            Dim objProject As FMS.Business.tblProjectID = Nothing
+            If CustomerServicesID Is Nothing Then
+                Dim tblCustomerServicesId As FMS.Business.tblCustomerService = GetLatestCustomerServicesID(appID)
+                CustomerServicesID = tblCustomerServicesId.ID
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
+            Else
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.CustomerServicesID.Equals(CustomerServicesID) And c.ApplicationID.Equals(appID)).SingleOrDefault
+            End If
+
+            With objProject
+                .CustomerServicesID = CustomerServicesID + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objProject.CustomerServicesID
+        End Function
+        Public Shared Function CustomerServicesIDCreateOrUpdate(appID As System.Guid) As Integer
+            Dim objCustomerServices = SingletonAccess.FMSDataContextContignous.tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
+            If Not objCustomerServices Is Nothing AndAlso objCustomerServices.Count().Equals(0) Then
+                Return CustomerServicesIDCreate(appID)
+            Else
+                Return CustomerServicesIDUpdate(objCustomerServices.SingleOrDefault().CustomerServicesID, appID)
+            End If
+        End Function
+#End Region
+#Region "tblCIRHistory"
+        Private Shared Function GetLatestCIRHistoryID(appID As System.Guid) As FMS.Business.tblCIRHistory
+            Return (From c In SingletonAccess.FMSDataContextContignous.tblCIRHistories
+                    Where c.ApplicationID.Equals(appID)
+                    Order By c.NCId Descending
+                    Select c).FirstOrDefault()
+        End Function
+        Private Shared Function CIRHistoryIDCreate(appID As System.Guid) As Integer
+            Dim tblCIRHistoryNCId As FMS.Business.tblCIRHistory = GetLatestCIRHistoryID(appID)
+            Dim objCIRHistoryID As New FMS.Business.tblProjectID
+            With objCIRHistoryID
+                .ProjectID = Guid.NewGuid()
+                .CIRHistoryID = tblCIRHistoryNCId.NCId + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.tblProjectIDs.InsertOnSubmit(objCIRHistoryID)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objCIRHistoryID.CIRHistoryID
+        End Function
+        Private Shared Function CIRHistoryIDUpdate(CIRHistoryID As Object, appID As System.Guid) As Integer
+            Dim objProject As FMS.Business.tblProjectID = Nothing
+            If CIRHistoryID Is Nothing Then
+                Dim tblCIRHistoryId As FMS.Business.tblCIRHistory = GetLatestCIRHistoryID(appID)
+                CIRHistoryID = tblCIRHistoryId.NCId
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
+            Else
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.CIRHistoryID.Equals(CIRHistoryID) And c.ApplicationID.Equals(appID)).SingleOrDefault
+            End If
+
+            With objProject
+                .CIRHistoryID = CIRHistoryID + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objProject.CIRHistoryID
+        End Function
+        Public Shared Function CIRHistoryIDCreateOrUpdate(appID As System.Guid) As Integer
+            Dim objCIRHistory = SingletonAccess.FMSDataContextContignous.tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
+            If Not objCIRHistory Is Nothing AndAlso objCIRHistory.Count().Equals(0) Then
+                Return CIRHistoryIDCreate(appID)
+            Else
+                Return CIRHistoryIDUpdate(objCIRHistory.SingleOrDefault().CIRHistoryID, appID)
             End If
         End Function
 #End Region
