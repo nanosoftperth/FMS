@@ -1308,7 +1308,9 @@
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="Content\Images\drop.gif" />
+    <Content Include="Content\Images\FilterRecord.png" />
     <Content Include="Content\Images\Gear Set.gif" />
+    <Content Include="Content\Images\SearchRecord.png" />
     <Content Include="FleetManagement\ClientAssignments.aspx" />
     <Content Include="FleetManagement\DriverDetails.aspx" />
     <Content Include="FleetManagement\MatchMYOBNamesContents.aspx" />
@@ -1812,7 +1814,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18352/</IISUrl>
+          <IISUrl>http://localhost:18351/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
