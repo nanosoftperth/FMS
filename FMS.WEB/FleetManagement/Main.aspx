@@ -64,6 +64,11 @@
 			<div class="menu-list">
 	  
 				<ul id="menu-content" class="menu-content collapse out">
+                    <li>
+					  <a href="ServiceRunManagement.aspx" target="iframeMenu">
+					  <i class="fa fa-list-alt fa-lg"></i> Service Run Management 
+					  </a>
+					</li>
 					<li>
 					  <a href="CustomerDetailsMain.aspx" target="iframeMenu">
 					  <i class="fa fa-address-card-o"></i> Customers Details 

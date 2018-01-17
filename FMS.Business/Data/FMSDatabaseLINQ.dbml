@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMSUAT" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMSUAT;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSUATConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMSDev" Class="LINQtoSQLClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-VULTR;Initial Catalog=FMSDev;Integrated Security=True" SettingsObjectName="FMS.Business.My.MySettings" SettingsPropertyName="FMSDevConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[AlertSubscriber.deleteme]" Member="AlertSubscriber_deletemes">
     <Type Name="AlertSubscriber_deleteme">
       <Column Name="AlertSubscriberID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2320,6 +2320,18 @@
       <Column Name="NCRReason" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="NCRReasonSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="DriverSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetServiceRunDates" Method="usp_GetServiceRunDates">
+    <Parameter Name="ApplicationId" Parameter="applicationId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetServiceRunDatesResult">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DRid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

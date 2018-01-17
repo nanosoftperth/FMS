@@ -535,6 +535,13 @@
       <DependentUpon>ServiceListReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\ServiceRunManagement.aspx.designer.vb">
+      <DependentUpon>ServiceRunManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\ServiceRunManagement.aspx.vb">
+      <DependentUpon>ServiceRunManagement.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\Services.aspx.designer.vb">
       <DependentUpon>Services.aspx</DependentUpon>
     </Compile>
@@ -1301,7 +1308,9 @@
     <Content Include="App_Data\TopMenu_v1.2.xml" />
     <Content Include="App_Data\TopMenu_v1.1.xml" />
     <Content Include="Content\Images\drop.gif" />
+    <Content Include="Content\Images\FilterRecord.png" />
     <Content Include="Content\Images\Gear Set.gif" />
+    <Content Include="Content\Images\SearchRecord.png" />
     <Content Include="FleetManagement\ClientAssignments.aspx" />
     <Content Include="FleetManagement\DriverDetails.aspx" />
     <Content Include="FleetManagement\MatchMYOBNamesContents.aspx" />
@@ -1334,6 +1343,7 @@
     <Content Include="FleetManagement\SalesPerson.aspx" />
     <Content Include="FleetManagement\ServiceFrequency.aspx" />
     <Content Include="FleetManagement\Reports\ServiceListReport.aspx" />
+    <Content Include="FleetManagement\ServiceRunManagement.aspx" />
     <Content Include="FleetManagement\Services.aspx" />
     <Content Include="FleetManagement\Reports\ServiceSummaryReport.aspx" />
     <Content Include="FleetManagement\Reports\SiteBySiteZoneReport.aspx" />
@@ -1804,7 +1814,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18352/</IISUrl>
+          <IISUrl>http://localhost:18351/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
