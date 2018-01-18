@@ -13,8 +13,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetRunValuesReport(ServiceRun As String) As List(Of DataObjects.usp_GetRunValuesReport)
-            Dim objRunValues = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRunValuesReport(ServiceRun)
-                            Select New DataObjects.usp_GetRunValuesReport(c)).ToList
+            Dim objRunValues = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRunValuesReport(ServiceRun, ThisSession.ApplicationID)
+                                Select New DataObjects.usp_GetRunValuesReport(c)).ToList
             Return objRunValues
         End Function
 #End Region

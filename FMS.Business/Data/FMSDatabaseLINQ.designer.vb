@@ -1445,12 +1445,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValuesReport")>  _
-	Public Function usp_GetRunValuesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ServiceRun", DbType:="VarChar(20)")> ByVal serviceRun As String) As ISingleResult(Of usp_GetRunValuesReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), serviceRun)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValuesReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValueSummaryReport")>  _
 	Public Function usp_GetRunValueSummaryReport() As ISingleResult(Of usp_GetRunValueSummaryReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetRunListByRunNumberReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetRunListByRunNumberReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunListByRunNumberReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunValuesReport")>  _
+	Public Function usp_GetRunValuesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ServiceRun", DbType:="VarChar(20)")> ByVal serviceRun As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetRunValuesReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), serviceRun, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunValuesReportResult))
 	End Function
 End Class
 
@@ -29663,139 +29663,6 @@ Partial Public Class usp_GetSitesBySiteZoneReportResult
 	End Property
 End Class
 
-Partial Public Class usp_GetRunValuesReportResult
-	
-	Private _SiteName As String
-	
-	Private _Add As String
-	
-	Private _AddLastLine As String
-	
-	Private _ServiceDescription As String
-	
-	Private _ServiceUnits As System.Nullable(Of Single)
-	
-	Private _PerAnnumCharge As System.Nullable(Of Single)
-	
-	Private _ServiceRun As System.Nullable(Of Short)
-	
-	Private _RunDescription As String
-	
-	Private _SiteCeaseDate As System.Nullable(Of Date)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Add]", Storage:="_Add", DbType:="NVarChar(102)")>  _
-	Public Property Add() As String
-		Get
-			Return Me._Add
-		End Get
-		Set
-			If (String.Equals(Me._Add, value) = false) Then
-				Me._Add = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddLastLine", DbType:="NVarChar(67)")>  _
-	Public Property AddLastLine() As String
-		Get
-			Return Me._AddLastLine
-		End Get
-		Set
-			If (String.Equals(Me._AddLastLine, value) = false) Then
-				Me._AddLastLine = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
-	Public Property ServiceDescription() As String
-		Get
-			Return Me._ServiceDescription
-		End Get
-		Set
-			If (String.Equals(Me._ServiceDescription, value) = false) Then
-				Me._ServiceDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
-	Public Property ServiceUnits() As System.Nullable(Of Single)
-		Get
-			Return Me._ServiceUnits
-		End Get
-		Set
-			If (Me._ServiceUnits.Equals(value) = false) Then
-				Me._ServiceUnits = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
-	Public Property PerAnnumCharge() As System.Nullable(Of Single)
-		Get
-			Return Me._PerAnnumCharge
-		End Get
-		Set
-			If (Me._PerAnnumCharge.Equals(value) = false) Then
-				Me._PerAnnumCharge = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRun", DbType:="SmallInt")>  _
-	Public Property ServiceRun() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceRun
-		End Get
-		Set
-			If (Me._ServiceRun.Equals(value) = false) Then
-				Me._ServiceRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(33)")>  _
-	Public Property RunDescription() As String
-		Get
-			Return Me._RunDescription
-		End Get
-		Set
-			If (String.Equals(Me._RunDescription, value) = false) Then
-				Me._RunDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
-	Public Property SiteCeaseDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteCeaseDate
-		End Get
-		Set
-			If (Me._SiteCeaseDate.Equals(value) = false) Then
-				Me._SiteCeaseDate = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetRunValueSummaryReportResult
 	
 	Private _RunDescription As String
@@ -35152,6 +35019,139 @@ Partial Public Class usp_GetRunListByRunNumberReportResult
 		Set
 			If (Me._Rid.Equals(value) = false) Then
 				Me._Rid = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetRunValuesReportResult
+	
+	Private _SiteName As String
+	
+	Private _Add As String
+	
+	Private _AddLastLine As String
+	
+	Private _ServiceDescription As String
+	
+	Private _ServiceUnits As System.Nullable(Of Single)
+	
+	Private _PerAnnumCharge As System.Nullable(Of Single)
+	
+	Private _ServiceRun As System.Nullable(Of Short)
+	
+	Private _RunDescription As String
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[Add]", Storage:="_Add", DbType:="NVarChar(102)")>  _
+	Public Property Add() As String
+		Get
+			Return Me._Add
+		End Get
+		Set
+			If (String.Equals(Me._Add, value) = false) Then
+				Me._Add = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddLastLine", DbType:="NVarChar(67)")>  _
+	Public Property AddLastLine() As String
+		Get
+			Return Me._AddLastLine
+		End Get
+		Set
+			If (String.Equals(Me._AddLastLine, value) = false) Then
+				Me._AddLastLine = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
+	Public Property ServiceUnits() As System.Nullable(Of Single)
+		Get
+			Return Me._ServiceUnits
+		End Get
+		Set
+			If (Me._ServiceUnits.Equals(value) = false) Then
+				Me._ServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
+	Public Property PerAnnumCharge() As System.Nullable(Of Single)
+		Get
+			Return Me._PerAnnumCharge
+		End Get
+		Set
+			If (Me._PerAnnumCharge.Equals(value) = false) Then
+				Me._PerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRun", DbType:="SmallInt")>  _
+	Public Property ServiceRun() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceRun
+		End Get
+		Set
+			If (Me._ServiceRun.Equals(value) = false) Then
+				Me._ServiceRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(255)")>  _
+	Public Property RunDescription() As String
+		Get
+			Return Me._RunDescription
+		End Get
+		Set
+			If (String.Equals(Me._RunDescription, value) = false) Then
+				Me._RunDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
 			End If
 		End Set
 	End Property
