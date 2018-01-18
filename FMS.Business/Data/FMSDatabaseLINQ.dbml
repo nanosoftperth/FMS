@@ -1807,12 +1807,6 @@
       <Column Name="PostalPostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetRunValueSummaryReport" Method="usp_GetRunValueSummaryReport">
-    <ElementType Name="usp_GetRunValueSummaryReportResult">
-      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(33)" CanBeNull="true" />
-      <Column Name="SumOfPerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetRunDates" Method="usp_GetRunDates">
     <Parameter Name="Rid" Parameter="rid" Type="System.Int32" DbType="Int" />
     <ElementType Name="usp_GetRunDatesResult">
@@ -2336,6 +2330,13 @@
       <Column Name="ServiceRun" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetRunValueSummaryReport" Method="usp_GetRunValueSummaryReport">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetRunValueSummaryReportResult">
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SumOfPerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
