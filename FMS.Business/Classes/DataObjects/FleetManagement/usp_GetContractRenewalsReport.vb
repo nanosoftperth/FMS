@@ -16,13 +16,13 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetContractRenewalsReport(StartDate As Date, EndDate As Date) As List(Of DataObjects.usp_GetContractRenewalsReport)
-            Dim ContractRenewalsReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetContractRenewalsReport(StartDate, EndDate)
+            Dim ContractRenewalsReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetContractRenewalsReport(StartDate, EndDate, ThisSession.ApplicationID)
                                           Order By c.AreaDescription
                                           Select New DataObjects.usp_GetContractRenewalsReport(c)).ToList
             Return ContractRenewalsReport
         End Function
         Public Shared Function GetContractRenewalsReport(StartDate As Date, EndDate As Date, Zone As String) As List(Of DataObjects.usp_GetContractRenewalsReport)
-            Dim ContractRenewalsReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetContractRenewalsReport(StartDate, EndDate)
+            Dim ContractRenewalsReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetContractRenewalsReport(StartDate, EndDate, ThisSession.ApplicationID)
                                           Where Not c.AreaDescription Is Nothing AndAlso c.AreaDescription.Equals(Zone)
                                           Order By c.AreaDescription
                                           Select New DataObjects.usp_GetContractRenewalsReport(c)).ToList
