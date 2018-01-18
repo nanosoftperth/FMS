@@ -9,8 +9,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetServiceSummay() As List(Of DataObjects.usp_GetServiceSummaryReport)
-            Dim objServiceSummary = (From c In SingletonAccess.FMSDataContextContignous.usp_GetServiceSummaryReport
-                            Select New DataObjects.usp_GetServiceSummaryReport(c)).ToList
+            Dim objServiceSummary = (From c In SingletonAccess.FMSDataContextContignous.usp_GetServiceSummaryReport(ThisSession.ApplicationID)
+                                     Select New DataObjects.usp_GetServiceSummaryReport(c)).ToList
             Return objServiceSummary
         End Function
 #End Region

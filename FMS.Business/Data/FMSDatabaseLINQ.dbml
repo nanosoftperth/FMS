@@ -1585,15 +1585,6 @@
       <Column Name="Renewal" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetServiceSummaryReport" Method="usp_GetServiceSummaryReport">
-    <ElementType Name="usp_GetServiceSummaryReportResult">
-      <Column Name="FrequencyDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ServiceCode" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
-      <Column Name="ServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetLengthOfServicesReport" Method="usp_GetLengthOfServicesReport">
     <Parameter Name="GreaterThanYears" Parameter="greaterThanYears" Type="System.Int32" DbType="Int" />
     <ElementType Name="usp_GetLengthOfServicesReportResult">
@@ -2337,6 +2328,16 @@
     <ElementType Name="usp_GetRunValueSummaryReportResult">
       <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="SumOfPerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetServiceSummaryReport" Method="usp_GetServiceSummaryReport">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetServiceSummaryReportResult">
+      <Column Name="FrequencyDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServiceCode" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
