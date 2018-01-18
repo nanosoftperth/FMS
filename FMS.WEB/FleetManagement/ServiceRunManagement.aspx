@@ -40,6 +40,7 @@
                                             </dx:ASPxDateEdit>
                                         </td>
                                         <td style="width: 20%">
+                                            <asp:Button ID="Button1" runat="server" Text="try" onclick="Button1_Click"/>
                                         </td>
                                         <td style="width: 10%; text-align: right; padding-right: 5px;">
                                             <dx:ASPxImage ID="imgFilter" runat="server" ImageUrl="../Content/Images/FilterRecord.png" 
@@ -58,7 +59,9 @@
                                     </tr>
                                 </table>
                                 <br />
-                                <dx:ASPxGridView ID="gvServiceRun" ClientInstanceName="gvServiceRun" 
+                                <dx:ASPxGridView ID="gvServiceRun" runat="server">
+		                        </dx:ASPxGridView>
+                                <%--<dx:ASPxGridView ID="gvServiceRun" ClientInstanceName="gvServiceRun" 
                                     DataSourceID="odsRunDates" runat="server" 
                                     EnableTheming="True" 
                                     Theme="SoftOrange" AutoGenerateColumns="False">
@@ -78,7 +81,7 @@
                                         </dx:GridViewDataDateColumn>
                                     </Columns>
 
-                                </dx:ASPxGridView>
+                                </dx:ASPxGridView>--%>
                             </dx:ContentControl>
                         </ContentCollection>
                     </dx:TabPage>
