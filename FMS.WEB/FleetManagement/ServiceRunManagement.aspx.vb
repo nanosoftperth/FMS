@@ -1,12 +1,25 @@
 ﻿Imports System.Reflection
 Imports System.Reflection.Emit
+Imports DevExpress.Web
+Imports DevExpress.Web.ASPxGridView
 
 Public Class ServiceRunManagement
     Inherits System.Web.UI.Page
 
 #Region "Events"
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If (Not IsPostBack = False) Then
+            Dim dtServRun As DataTable
 
+            dtServRun = DirectCast(Session("ServiceRunTable"), DataTable)
+
+            If (IsNothing(dtServRun) = False) Then
+                Me.gvServiceRun.DataSource = dtServRun
+                Me.gvServiceRun.DataBind()
+            End If
+
+
+        End If
     End Sub
     Protected Sub dteStart_ValueChanged(sender As Object, e As EventArgs)
         'Dim ListDates = GetRunDates(Me.dteStart.Value, Me.dteEnd.Value)
@@ -27,6 +40,79 @@ Public Class ServiceRunManagement
 #End Region
 
 #Region "Methods and Functions for Service Run"
+
+    Protected Sub PopulateServiceRunGrid()
+
+        Dim dtService = ServiceRunTable()
+
+        If (dtService.Columns.Count > 0) Then
+
+            '--- Create Grid Columns
+            Me.gvServiceRun.Columns.Clear()
+
+            Dim table As DataTable = ServiceRunTable()
+            For Each dataColumn As DataColumn In table.Columns
+
+                Dim dtype = dataColumn.DataType.FullName
+
+                If dataColumn.DataType.FullName = "System.Int32" Or dataColumn.DataType.FullName = "System.String" Then
+                    Dim column As New GridViewDataTextColumn()
+                    column.FieldName = dataColumn.ColumnName
+
+                    'set additional column properties
+                    column.Caption = dataColumn.ColumnName
+                    Me.gvServiceRun.Columns.Add(column)
+
+                End If
+
+                If dataColumn.DataType.FullName = "System.DateTime" Then
+                    Dim column As New GridViewDataDateColumn()
+                    column.FieldName = dataColumn.ColumnName
+
+                    'set additional column properties
+                    column.Caption = dataColumn.ColumnName
+                    Me.gvServiceRun.Columns.Add(column)
+
+                End If
+
+            Next dataColumn
+
+        End If
+
+        '----- Create Rows
+        '--- Create Run Dates
+        Dim dates = GetServiceRunDates(Me.dteStart.Value, Me.dteEnd.Value)
+
+        If (dates.Count > 0) Then
+
+            Dim row As DataRow
+            Dim id As Integer = 1
+
+            For Each dte In dates
+
+                row = dtService.NewRow()
+
+                row("id") = id
+                row("RunDate") = dte.RunDate.ToString("dd MMM")
+                dtService.Rows.Add(row)
+
+                '--- increament ID
+                id = id + 1
+
+            Next
+
+            Session("ServiceRunTable") = dtService
+
+            Me.gvServiceRun.DataSource = dtService
+            Me.gvServiceRun.DataBind()
+
+        End If
+
+    End Sub
+
+    Protected Sub PopulateServiceRunTable()
+
+    End Sub
 
     Public Shared Function ServiceRunTable() As DataTable
 
@@ -51,7 +137,6 @@ Public Class ServiceRunManagement
 
     End Function
 
-
     Public Shared Function CreateServiceRunFieldList() As List(Of ServiceRunFields)
 
         Dim fields As New List(Of ServiceRunFields)
@@ -68,7 +153,7 @@ Public Class ServiceRunManagement
         Dim fldDate As New ServiceRunFields
 
         fldDate.FieldName = "RunDate"
-        fldDate.FieldProperty = GetType(Date)
+        fldDate.FieldProperty = GetType(String)
 
         fields.Add(fldDate)
 
@@ -95,13 +180,28 @@ Public Class ServiceRunManagement
 
         End If
 
-        '    Dim dts = GetServiceRunDates(startdate, enddate)
+        '--- Create Driver's Column(s)
+        Dim oDrivers = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplicationAndDistinctDriverName()
 
-        '    With gvServiceRun
-        '        .AutoGenerateColumns = True
-        '        .DataSource = dts
-        '        .DataBind()
-        '    End With
+        If (oDrivers.Count > 0) Then
+
+            For Each d In oDrivers
+
+                Dim fldDvrID As New ServiceRunFields
+
+                fldDvrID.FieldName = "DriverID_" + d.id.ToString()
+                fldDvrID.FieldProperty = GetType(Integer)
+                fields.Add(fldDvrID)
+
+                Dim fldDriver As New ServiceRunFields
+
+                fldDriver.FieldName = d.Name
+                fldDriver.FieldProperty = GetType(String)
+                fields.Add(fldDriver)
+
+            Next
+
+        End If
 
         Return fields
 
@@ -133,30 +233,30 @@ Public Class ServiceRunManagement
 
     End Function
 
-    'Public Shared Function GetServiceRunDates(StartDate As Date, EndDate As Date) As List(Of RunDates)
-    '    Dim dateCtr = DateDiff(DateInterval.Day, StartDate, EndDate.AddDays(1))
+    Public Shared Function GetServiceRunDates(StartDate As Date, EndDate As Date) As List(Of ServiceRunDates)
+        Dim dateCtr = DateDiff(DateInterval.Day, StartDate, EndDate.AddDays(1))
 
-    '    Dim listDates As New List(Of RunDates)
+        Dim listDates As New List(Of ServiceRunDates)
 
-    '    If (dateCtr > 0) Then
+        If (dateCtr > 0) Then
 
-    '        For nRow = 0 To dateCtr - 1
-    '            Dim row As New RunDates
+            For nRow = 0 To dateCtr - 1
+                Dim row As New ServiceRunDates
 
-    '            If (nRow = 0) Then
-    '                row.RunDate = StartDate
-    '            Else
-    '                row.RunDate = StartDate.AddDays(nRow)
-    '            End If
+                If (nRow = 0) Then
+                    row.RunDate = StartDate
+                Else
+                    row.RunDate = StartDate.AddDays(nRow)
+                End If
 
-    '            listDates.Add(row)
+                listDates.Add(row)
 
-    '        Next
+            Next
 
-    '    End If
+        End If
 
-    '    Return listDates
-    'End Function
+        Return listDates
+    End Function
 
     'Public Shared Function GetServiceRunDates(StartDate As Date, EndDate As Date) As List(Of RunDates)
 
@@ -234,7 +334,7 @@ Public Class ServiceRunManagement
     Protected Sub Button1_Click(sender As Object, e As EventArgs)
 
 
-        ServiceRunTable()
+        PopulateServiceRunGrid()
 
         'Dim dateko As New Dictionary(Of String, Type)
 
@@ -248,6 +348,8 @@ Public Class ServiceRunManagement
 
 
     End Sub
+
+
 
 #End Region
 

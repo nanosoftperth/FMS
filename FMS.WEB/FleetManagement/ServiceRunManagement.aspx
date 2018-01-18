@@ -59,7 +59,7 @@
                                     </tr>
                                 </table>
                                 <br />
-                                <dx:ASPxGridView ID="gvServiceRun" runat="server">
+                                <dx:ASPxGridView ID="gvServiceRun" runat="server" ClientInstanceName="gvServiceRun">
 		                        </dx:ASPxGridView>
                                 <%--<dx:ASPxGridView ID="gvServiceRun" ClientInstanceName="gvServiceRun" 
                                     DataSourceID="odsRunDates" runat="server" 
