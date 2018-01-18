@@ -20,8 +20,9 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetRunListingReport() As List(Of DataObjects.usp_GetRunListByRunNumberReport)
-            Dim objRunListing = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRunListByRunNumberReport
-                            Select New DataObjects.usp_GetRunListByRunNumberReport(c)).ToList
+            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            Dim objRunListing = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRunListByRunNumberReport(ThisSession.ApplicationID)
+                                 Select New DataObjects.usp_GetRunListByRunNumberReport(c)).ToList
             Return objRunListing
         End Function
 #End Region
