@@ -95,9 +95,61 @@ Public Class ServiceRunManagement
 
                 row = dtService.NewRow()
 
-                row("id") = id
-                row("RunDate") = dte.RunDate.ToString("dd MMM")
+                For Each col In dtService.Columns
+
+                    Dim colName = DirectCast(col, System.Data.DataColumn).ColumnName
+
+                    Dim techNdx = colName.IndexOf("TechID")
+                    If (techNdx > -1) Then
+                        row(colName) = 0
+                    Else
+
+                        Dim drvNdx = colName.IndexOf("DriverID")
+                        If (drvNdx > -1) Then
+                            row(colName) = 1
+                        Else
+
+                            Select Case colName.ToUpper()
+                                Case "ID"
+                                    row(colName) = id
+                                Case "RUNDATE"
+                                    row(colName) = dte.RunDate.ToString("dd MMM")
+
+                            End Select
+
+
+                        End If
+
+                    End If
+
+
+
+
+
+                    'If (colName = "id") Then
+                    '    row(colName) = id
+                    'End If
+                    'If (colName = "RunDate") Then
+                    '    row(colName) = dte.RunDate.ToString("dd MMM")
+                    'End If
+
+                    'Dim techID = colName.Substring(1, 6)
+
+                    'Dim obj As Object = ""
+
+                Next
+
+                'row("id") = id
+                'row("RunDate") = dte.RunDate.ToString("dd MMM")
+
+
+
+
+
                 dtService.Rows.Add(row)
+
+
+
 
                 '--- increament ID
                 id = id + 1

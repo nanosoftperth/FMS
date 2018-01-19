@@ -4,12 +4,22 @@
 
 #Region "Properties / enums"
         Public Property ApplicationId As System.Guid
-        Public Property Did As Integer
         Public Property DriverName As String
-        Public Property DRid As Integer
+        Public Property Did As Integer
         Public Property DateOfRun As Date
+        Public Property wkday As String
+        Public Property Rid As Integer
         Public Property RunNUmber As Integer
         Public Property RunDescription As String
+        Public Property MondayRun As Boolean
+        Public Property TuesdayRun As Boolean
+        Public Property WednesdayRun As Boolean
+        Public Property ThursdayRun As Boolean
+        Public Property FridayRun As Boolean
+        Public Property SaturdayRun As Boolean
+        Public Property SundayRun As Boolean
+        Public Property InactiveRun As Boolean
+
 #End Region
 
 #Region "Constructors"
@@ -19,12 +29,20 @@
         Public Sub New(obj As FMS.Business.usp_GetServiceRunDatesResult)
             With obj
                 Me.ApplicationId = .ApplicationId
-                Me.Did = .Did
                 Me.DriverName = .DriverName
-                Me.DRid = .DRid
+                Me.Did = .Did
                 Me.DateOfRun = .DateOfRun
+                Me.wkday = .wkday
+                Me.Rid = .Rid
                 Me.RunNUmber = .RunNUmber
                 Me.RunDescription = .RunDescription
+                Me.MondayRun = .MondayRun
+                Me.TuesdayRun = .TuesdayRun
+                Me.WednesdayRun = .WednesdayRun
+                Me.ThursdayRun = .ThursdayRun
+                Me.FridayRun = .FridayRun
+                Me.SaturdayRun = .SaturdayRun
+                Me.SundayRun = .SundayRun
             End With
         End Sub
 #End Region
@@ -62,33 +80,6 @@
                 Next
 
             End If
-
-
-
-
-
-            'Dim obj = (From s In SingletonAccess.FMSDataContextContignous.usp_GetServiceRunDates(appId).AsEnumerable()
-            '           Order By s.Did, s.DriverName
-            '           Select s.Did, s.DriverName).Distinct().ToList()
-
-            'Dim obj = (From s In SingletonAccess.FMSDataContextContignous.usp_GetServiceRunDates(appId)
-            '           Select s.Did, s.DriverName)
-            'Distinct
-
-
-            'Dim customerOrders = From cust In customers, ord In orders
-            '                     Where cust.CustomerID = ord.CustomerID
-            '                     Select cust.CompanyName, ord.OrderDate
-            '                     Distinct
-
-            'Dim DriverList As New List(Of Drivers)
-
-            'For Each d In obj
-            '    Dim row As New Drivers
-
-            '    row.id = 
-
-            'Next
 
             Return DriverList
 
