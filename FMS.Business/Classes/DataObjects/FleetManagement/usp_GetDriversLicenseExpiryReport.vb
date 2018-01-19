@@ -12,9 +12,9 @@
 #Region "Get methods"
 
         Public Shared Function GetDriversLicenseExpiryReport() As List(Of DataObjects.usp_GetDriversLicenseExpiryReport)
-            Dim lstGetDriversLicenseExpiryReport = (From d In SingletonAccess.FMSDataContextContignous.usp_GetDriversLicenseExpiryReport
-                                    Order By d.DriverName
-                                 Select New DataObjects.usp_GetDriversLicenseExpiryReport(d)).ToList()
+            Dim lstGetDriversLicenseExpiryReport = (From d In SingletonAccess.FMSDataContextContignous.usp_GetDriversLicenseExpiryReport(ThisSession.ApplicationID)
+                                                    Order By d.DriverName
+                                                    Select New DataObjects.usp_GetDriversLicenseExpiryReport(d)).ToList()
             Return lstGetDriversLicenseExpiryReport
         End Function
 

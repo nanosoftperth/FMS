@@ -1554,17 +1554,6 @@
       <Column Name="CustomerSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetDriversLicenseExpiryReport" Method="usp_GetDriversLicenseExpiryReport">
-    <ElementType Name="usp_GetDriversLicenseExpiryReportResult">
-      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DriversLicenseNo" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="DriversLicenseExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Renewal" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetSitesWithNoContractsReport" Method="usp_GetSitesWithNoContractsReport">
     <ElementType Name="usp_GetSitesWithNoContractsReportResult">
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -2344,6 +2333,18 @@
       <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="PostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetDriversLicenseExpiryReport" Method="usp_GetDriversLicenseExpiryReport">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetDriversLicenseExpiryReportResult">
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DriversLicenseNo" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="DriversLicenseExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Renewal" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>
