@@ -1367,12 +1367,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetDriversLicenseExpiryReportResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetLengthOfServicesReport")>  _
-	Public Function usp_GetLengthOfServicesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="GreaterThanYears", DbType:="Int")> ByVal greaterThanYears As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetLengthOfServicesReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), greaterThanYears)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetLengthOfServicesReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetCustomerByCustZone")>  _
 	Public Function usp_GetCustomerByCustZone() As ISingleResult(Of usp_GetCustomerByCustZoneResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetServiceRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationId", DbType:="UniqueIdentifier")> ByVal applicationId As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetServiceRunDatesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationId, startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetServiceRunDatesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetLengthOfServicesReport")>  _
+	Public Function usp_GetLengthOfServicesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="GreaterThanYears", DbType:="Int")> ByVal greaterThanYears As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetLengthOfServicesReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), greaterThanYears, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetLengthOfServicesReportResult))
 	End Function
 End Class
 
@@ -27357,55 +27357,6 @@ Partial Public Class usp_GetDriversLicenseExpiryReportResult
 	End Property
 End Class
 
-Partial Public Class usp_GetLengthOfServicesReportResult
-	
-	Private _Years As System.Nullable(Of Integer)
-	
-	Private _sitestartdate As System.Nullable(Of Date)
-	
-	Private _SiteName As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Years", DbType:="Int")>  _
-	Public Property Years() As System.Nullable(Of Integer)
-		Get
-			Return Me._Years
-		End Get
-		Set
-			If (Me._Years.Equals(value) = false) Then
-				Me._Years = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_sitestartdate", DbType:="Date")>  _
-	Public Property sitestartdate() As System.Nullable(Of Date)
-		Get
-			Return Me._sitestartdate
-		End Get
-		Set
-			If (Me._sitestartdate.Equals(value) = false) Then
-				Me._sitestartdate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetCustomerByCustZoneResult
 	
 	Private _ZoneDescription As String
@@ -35152,6 +35103,55 @@ Partial Public Class usp_GetServiceRunDatesResult
 		Set
 			If (String.Equals(Me._RunDescription, value) = false) Then
 				Me._RunDescription = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetLengthOfServicesReportResult
+	
+	Private _Years As System.Nullable(Of Integer)
+	
+	Private _sitestartdate As System.Nullable(Of Date)
+	
+	Private _SiteName As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Years", DbType:="Int")>  _
+	Public Property Years() As System.Nullable(Of Integer)
+		Get
+			Return Me._Years
+		End Get
+		Set
+			If (Me._Years.Equals(value) = false) Then
+				Me._Years = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_sitestartdate", DbType:="Date")>  _
+	Public Property sitestartdate() As System.Nullable(Of Date)
+		Get
+			Return Me._sitestartdate
+		End Get
+		Set
+			If (Me._sitestartdate.Equals(value) = false) Then
+				Me._sitestartdate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
 			End If
 		End Set
 	End Property

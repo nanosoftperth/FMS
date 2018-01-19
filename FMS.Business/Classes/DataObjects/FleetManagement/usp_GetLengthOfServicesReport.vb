@@ -7,8 +7,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetLengthOfService(GTYears As Integer) As List(Of DataObjects.usp_GetLengthOfServicesReport)
-            Dim objLengthOfService = (From c In SingletonAccess.FMSDataContextContignous.usp_GetLengthOfServicesReport(GTYears)
-                            Select New DataObjects.usp_GetLengthOfServicesReport(c)).ToList
+            Dim objLengthOfService = (From c In SingletonAccess.FMSDataContextContignous.usp_GetLengthOfServicesReport(GTYears, ThisSession.ApplicationID)
+                                      Select New DataObjects.usp_GetLengthOfServicesReport(c)).ToList
             Return objLengthOfService
         End Function
 #End Region
