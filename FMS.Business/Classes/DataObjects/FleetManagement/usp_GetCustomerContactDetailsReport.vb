@@ -19,8 +19,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetCustomerContactDetailsReport() As List(Of DataObjects.usp_GetCustomerContactDetailsReport)
-            Dim CustomerContactDetails = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerContactDetailsReport
-                            Select New DataObjects.usp_GetCustomerContactDetailsReport(c)).ToList
+            Dim CustomerContactDetails = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerContactDetailsReport(ThisSession.ApplicationID)
+                                          Select New DataObjects.usp_GetCustomerContactDetailsReport(c)).ToList
             Return CustomerContactDetails
         End Function
 #End Region
