@@ -10,8 +10,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetSitesWithNoContract() As List(Of DataObjects.usp_GetSitesWithNoContractsReport)
-            Dim objSitesWithNoContract = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesWithNoContractsReport
-                            Select New DataObjects.usp_GetSitesWithNoContractsReport(c)).ToList
+            Dim objSitesWithNoContract = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesWithNoContractsReport(ThisSession.ApplicationID)
+                                          Select New DataObjects.usp_GetSitesWithNoContractsReport(c)).ToList
             Return objSitesWithNoContract
         End Function
 #End Region

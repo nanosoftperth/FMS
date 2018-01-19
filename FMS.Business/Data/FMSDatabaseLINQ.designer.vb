@@ -1355,12 +1355,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomersResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesWithNoContractsReport")>  _
-	Public Function usp_GetSitesWithNoContractsReport() As ISingleResult(Of usp_GetSitesWithNoContractsReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesWithNoContractsReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetInvoiceBasicCheckReport")>  _
 	Public Function usp_GetInvoiceBasicCheckReport() As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetDriversLicenseExpiryReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetDriversLicenseExpiryReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetDriversLicenseExpiryReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesWithNoContractsReport")>  _
+	Public Function usp_GetSitesWithNoContractsReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSitesWithNoContractsReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesWithNoContractsReportResult))
 	End Function
 End Class
 
@@ -27030,97 +27030,6 @@ Partial Public Class usp_GetCustomersResult
 	End Property
 End Class
 
-Partial Public Class usp_GetSitesWithNoContractsReportResult
-	
-	Private _CustomerName As String
-	
-	Private _SiteName As String
-	
-	Private _SitePeriod As System.Nullable(Of Integer)
-	
-	Private _SiteStartDate As System.Nullable(Of Date)
-	
-	Private _ContractPeriodDesc As String
-	
-	Private _SiteCeaseDate As System.Nullable(Of Date)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SitePeriod", DbType:="Int")>  _
-	Public Property SitePeriod() As System.Nullable(Of Integer)
-		Get
-			Return Me._SitePeriod
-		End Get
-		Set
-			If (Me._SitePeriod.Equals(value) = false) Then
-				Me._SitePeriod = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteStartDate", DbType:="Date")>  _
-	Public Property SiteStartDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteStartDate
-		End Get
-		Set
-			If (Me._SiteStartDate.Equals(value) = false) Then
-				Me._SiteStartDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContractPeriodDesc", DbType:="NVarChar(50)")>  _
-	Public Property ContractPeriodDesc() As String
-		Get
-			Return Me._ContractPeriodDesc
-		End Get
-		Set
-			If (String.Equals(Me._ContractPeriodDesc, value) = false) Then
-				Me._ContractPeriodDesc = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
-	Public Property SiteCeaseDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteCeaseDate
-		End Get
-		Set
-			If (Me._SiteCeaseDate.Equals(value) = false) Then
-				Me._SiteCeaseDate = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetInvoiceBasicCheckReportResult
 	
 	Private _CustomerName As String
@@ -35152,6 +35061,97 @@ Partial Public Class usp_GetDriversLicenseExpiryReportResult
 		Set
 			If (String.Equals(Me._Renewal, value) = false) Then
 				Me._Renewal = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetSitesWithNoContractsReportResult
+	
+	Private _CustomerName As String
+	
+	Private _SiteName As String
+	
+	Private _SitePeriod As System.Nullable(Of Integer)
+	
+	Private _SiteStartDate As System.Nullable(Of Date)
+	
+	Private _ContractPeriodDesc As String
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SitePeriod", DbType:="Int")>  _
+	Public Property SitePeriod() As System.Nullable(Of Integer)
+		Get
+			Return Me._SitePeriod
+		End Get
+		Set
+			If (Me._SitePeriod.Equals(value) = false) Then
+				Me._SitePeriod = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteStartDate", DbType:="Date")>  _
+	Public Property SiteStartDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteStartDate
+		End Get
+		Set
+			If (Me._SiteStartDate.Equals(value) = false) Then
+				Me._SiteStartDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContractPeriodDesc", DbType:="NVarChar(50)")>  _
+	Public Property ContractPeriodDesc() As String
+		Get
+			Return Me._ContractPeriodDesc
+		End Get
+		Set
+			If (String.Equals(Me._ContractPeriodDesc, value) = false) Then
+				Me._ContractPeriodDesc = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
 			End If
 		End Set
 	End Property

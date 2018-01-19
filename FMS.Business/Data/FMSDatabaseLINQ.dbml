@@ -1554,16 +1554,6 @@
       <Column Name="CustomerSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetSitesWithNoContractsReport" Method="usp_GetSitesWithNoContractsReport">
-    <ElementType Name="usp_GetSitesWithNoContractsReportResult">
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SitePeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SiteStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ContractPeriodDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetInvoiceBasicCheckReport" Method="usp_GetInvoiceBasicCheckReport">
     <ElementType Name="usp_GetInvoiceBasicCheckReportResult">
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -2345,6 +2335,17 @@
       <Column Name="DriversLicenseExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Renewal" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetSitesWithNoContractsReport" Method="usp_GetSitesWithNoContractsReport">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetSitesWithNoContractsReportResult">
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SitePeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SiteStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ContractPeriodDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
