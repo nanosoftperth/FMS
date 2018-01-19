@@ -17,8 +17,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetSitesBySiteZone() As List(Of DataObjects.usp_GetSitesBySiteZoneReport)
-            Dim objSitesBySiteZone = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesBySiteZoneReport
-                            Select New DataObjects.usp_GetSitesBySiteZoneReport(c)).ToList
+            Dim objSitesBySiteZone = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesBySiteZoneReport(ThisSession.ApplicationID)
+                                      Select New DataObjects.usp_GetSitesBySiteZoneReport(c)).ToList
             Return objSitesBySiteZone
         End Function
 #End Region

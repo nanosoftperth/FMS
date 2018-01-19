@@ -1397,12 +1397,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditOfSiteDetailReportResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesBySiteZoneReport")>  _
-	Public Function usp_GetSitesBySiteZoneReport() As ISingleResult(Of usp_GetSitesBySiteZoneReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunDates")>  _
 	Public Function usp_GetRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetRunDatesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid)
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetServiceRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationId", DbType:="UniqueIdentifier")> ByVal applicationId As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetServiceRunDatesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationId, startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetServiceRunDatesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesBySiteZoneReport")>  _
+	Public Function usp_GetSitesBySiteZoneReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSitesBySiteZoneReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
 	End Function
 End Class
 
@@ -28564,196 +28564,6 @@ Partial Public Class usp_GetAuditOfSiteDetailReportResult
 	End Property
 End Class
 
-Partial Public Class usp_GetSitesBySiteZoneReportResult
-	
-	Private _Zone As String
-	
-	Private _Cid As Integer
-	
-	Private _SiteName As String
-	
-	Private _Customer As System.Nullable(Of Short)
-	
-	Private _AddressLine1 As String
-	
-	Private _AddressLine2 As String
-	
-	Private _AddressLine3 As String
-	
-	Private _Suburb As String
-	
-	Private _PostCode As System.Nullable(Of Short)
-	
-	Private _PostalAddressLine1 As String
-	
-	Private _PostalAddressLine2 As String
-	
-	Private _PostalSuburb As String
-	
-	Private _PostalPostCode As System.Nullable(Of Short)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="NVarChar(50)")>  _
-	Public Property Zone() As String
-		Get
-			Return Me._Zone
-		End Get
-		Set
-			If (String.Equals(Me._Zone, value) = false) Then
-				Me._Zone = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
-	Public Property Cid() As Integer
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If ((Me._Cid = value)  _
-						= false) Then
-				Me._Cid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
-	Public Property Customer() As System.Nullable(Of Short)
-		Get
-			Return Me._Customer
-		End Get
-		Set
-			If (Me._Customer.Equals(value) = false) Then
-				Me._Customer = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine1() As String
-		Get
-			Return Me._AddressLine1
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine1, value) = false) Then
-				Me._AddressLine1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine2() As String
-		Get
-			Return Me._AddressLine2
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine2, value) = false) Then
-				Me._AddressLine2 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine3", DbType:="NVarChar(50)")>  _
-	Public Property AddressLine3() As String
-		Get
-			Return Me._AddressLine3
-		End Get
-		Set
-			If (String.Equals(Me._AddressLine3, value) = false) Then
-				Me._AddressLine3 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(50)")>  _
-	Public Property Suburb() As String
-		Get
-			Return Me._Suburb
-		End Get
-		Set
-			If (String.Equals(Me._Suburb, value) = false) Then
-				Me._Suburb = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="SmallInt")>  _
-	Public Property PostCode() As System.Nullable(Of Short)
-		Get
-			Return Me._PostCode
-		End Get
-		Set
-			If (Me._PostCode.Equals(value) = false) Then
-				Me._PostCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine1", DbType:="NVarChar(50)")>  _
-	Public Property PostalAddressLine1() As String
-		Get
-			Return Me._PostalAddressLine1
-		End Get
-		Set
-			If (String.Equals(Me._PostalAddressLine1, value) = false) Then
-				Me._PostalAddressLine1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine2", DbType:="NVarChar(50)")>  _
-	Public Property PostalAddressLine2() As String
-		Get
-			Return Me._PostalAddressLine2
-		End Get
-		Set
-			If (String.Equals(Me._PostalAddressLine2, value) = false) Then
-				Me._PostalAddressLine2 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSuburb", DbType:="NVarChar(50)")>  _
-	Public Property PostalSuburb() As String
-		Get
-			Return Me._PostalSuburb
-		End Get
-		Set
-			If (String.Equals(Me._PostalSuburb, value) = false) Then
-				Me._PostalSuburb = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalPostCode", DbType:="SmallInt")>  _
-	Public Property PostalPostCode() As System.Nullable(Of Short)
-		Get
-			Return Me._PostalPostCode
-		End Get
-		Set
-			If (Me._PostalPostCode.Equals(value) = false) Then
-				Me._PostalPostCode = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetRunDatesResult
 	
 	Private _RID As System.Nullable(Of Integer)
@@ -35285,6 +35095,196 @@ Partial Public Class usp_GetServiceRunDatesResult
 			If ((Me._InactiveRun = value)  _
 						= false) Then
 				Me._InactiveRun = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetSitesBySiteZoneReportResult
+	
+	Private _Zone As String
+	
+	Private _Cid As Integer
+	
+	Private _SiteName As String
+	
+	Private _Customer As System.Nullable(Of Short)
+	
+	Private _AddressLine1 As String
+	
+	Private _AddressLine2 As String
+	
+	Private _AddressLine3 As String
+	
+	Private _Suburb As String
+	
+	Private _PostCode As System.Nullable(Of Short)
+	
+	Private _PostalAddressLine1 As String
+	
+	Private _PostalAddressLine2 As String
+	
+	Private _PostalSuburb As String
+	
+	Private _PostalPostCode As System.Nullable(Of Short)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Zone", DbType:="NVarChar(50)")>  _
+	Public Property Zone() As String
+		Get
+			Return Me._Zone
+		End Get
+		Set
+			If (String.Equals(Me._Zone, value) = false) Then
+				Me._Zone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int NOT NULL")>  _
+	Public Property Cid() As Integer
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If ((Me._Cid = value)  _
+						= false) Then
+				Me._Cid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="SmallInt")>  _
+	Public Property Customer() As System.Nullable(Of Short)
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (Me._Customer.Equals(value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine1() As String
+		Get
+			Return Me._AddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine1, value) = false) Then
+				Me._AddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine2() As String
+		Get
+			Return Me._AddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine2, value) = false) Then
+				Me._AddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AddressLine3", DbType:="NVarChar(50)")>  _
+	Public Property AddressLine3() As String
+		Get
+			Return Me._AddressLine3
+		End Get
+		Set
+			If (String.Equals(Me._AddressLine3, value) = false) Then
+				Me._AddressLine3 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Suburb", DbType:="NVarChar(50)")>  _
+	Public Property Suburb() As String
+		Get
+			Return Me._Suburb
+		End Get
+		Set
+			If (String.Equals(Me._Suburb, value) = false) Then
+				Me._Suburb = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostCode", DbType:="SmallInt")>  _
+	Public Property PostCode() As System.Nullable(Of Short)
+		Get
+			Return Me._PostCode
+		End Get
+		Set
+			If (Me._PostCode.Equals(value) = false) Then
+				Me._PostCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine1", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine1() As String
+		Get
+			Return Me._PostalAddressLine1
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine1, value) = false) Then
+				Me._PostalAddressLine1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalAddressLine2", DbType:="NVarChar(50)")>  _
+	Public Property PostalAddressLine2() As String
+		Get
+			Return Me._PostalAddressLine2
+		End Get
+		Set
+			If (String.Equals(Me._PostalAddressLine2, value) = false) Then
+				Me._PostalAddressLine2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalSuburb", DbType:="NVarChar(50)")>  _
+	Public Property PostalSuburb() As String
+		Get
+			Return Me._PostalSuburb
+		End Get
+		Set
+			If (String.Equals(Me._PostalSuburb, value) = false) Then
+				Me._PostalSuburb = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PostalPostCode", DbType:="SmallInt")>  _
+	Public Property PostalPostCode() As System.Nullable(Of Short)
+		Get
+			Return Me._PostalPostCode
+		End Get
+		Set
+			If (Me._PostalPostCode.Equals(value) = false) Then
+				Me._PostalPostCode = value
 			End If
 		End Set
 	End Property
