@@ -19,8 +19,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetIndustryListReportByIndustryID(industryID As Integer) As List(Of DataObjects.usp_GetIndustryListReport)
-            Dim IndustryListReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetIndustryListReport(industryID)
-                                        Select New DataObjects.usp_GetIndustryListReport(c)).ToList
+            Dim IndustryListReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetIndustryListReport(industryID, ThisSession.ApplicationID)
+                                      Select New DataObjects.usp_GetIndustryListReport(c)).ToList
             Return IndustryListReport
         End Function
 #End Region

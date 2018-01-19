@@ -1554,26 +1554,6 @@
       <Column Name="CustomerSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetIndustryListReport" Method="usp_GetIndustryListReport">
-    <Parameter Name="IndustryID" Parameter="industryID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="usp_GetIndustryListReportResult">
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="SiteName1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="PostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetDriversLicenseExpiryReport" Method="usp_GetDriversLicenseExpiryReport">
     <ElementType Name="usp_GetDriversLicenseExpiryReportResult">
       <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -2343,6 +2323,27 @@
       <Column Name="CustomerAgentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="CustomerRating" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="CustomerRatingDesc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetIndustryListReport" Method="usp_GetIndustryListReport">
+    <Parameter Name="IndustryID" Parameter="industryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetIndustryListReportResult">
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="PerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="SiteName1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IndustryDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UnitsHaveMoreThanOneRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="MYOBCustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
