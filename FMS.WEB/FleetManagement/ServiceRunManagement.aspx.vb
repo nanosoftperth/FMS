@@ -43,14 +43,14 @@ Public Class ServiceRunManagement
 
     Protected Sub PopulateServiceRunGrid()
 
-        Dim dtService = ServiceRunTable()
+        Dim dtService = ServiceRunTable(Me.dteStart.Value, Me.dteEnd.Value)
 
         If (dtService.Columns.Count > 0) Then
 
             '--- Create Grid Columns
             Me.gvServiceRun.Columns.Clear()
 
-            Dim table As DataTable = ServiceRunTable()
+            Dim table As DataTable = ServiceRunTable(Me.dteStart.Value, Me.dteEnd.Value)
             For Each dataColumn As DataColumn In table.Columns
 
                 Dim dtype = dataColumn.DataType.FullName
@@ -81,6 +81,9 @@ Public Class ServiceRunManagement
 
         '----- Create Rows
         '--- Create Run Dates
+
+        Dim listSrvRun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(Me.dteStart.Value, Me.dteEnd.Value)
+
         Dim dates = GetServiceRunDates(Me.dteStart.Value, Me.dteEnd.Value)
 
         If (dates.Count > 0) Then
@@ -114,9 +117,10 @@ Public Class ServiceRunManagement
 
     End Sub
 
-    Public Shared Function ServiceRunTable() As DataTable
+    Public Shared Function ServiceRunTable(StartDate As Date, EndDate As Date) As DataTable
 
-        Dim fields = CreateServiceRunFieldList()
+
+        Dim fields = CreateServiceRunFieldList(StartDate, EndDate)
 
         Dim table As DataTable = New DataTable()
         table.TableName = "tblServiceRun"
@@ -137,7 +141,7 @@ Public Class ServiceRunManagement
 
     End Function
 
-    Public Shared Function CreateServiceRunFieldList() As List(Of ServiceRunFields)
+    Public Shared Function CreateServiceRunFieldList(StartDate As Date, EndDate As Date) As List(Of ServiceRunFields)
 
         Dim fields As New List(Of ServiceRunFields)
 
@@ -181,7 +185,7 @@ Public Class ServiceRunManagement
         End If
 
         '--- Create Driver's Column(s)
-        Dim oDrivers = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplicationAndDistinctDriverName()
+        Dim oDrivers = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplicationAndDistinctDriverName(StartDate, EndDate)
 
         If (oDrivers.Count > 0) Then
 
