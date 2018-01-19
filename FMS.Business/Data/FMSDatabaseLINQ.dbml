@@ -1585,20 +1585,6 @@
       <Column Name="Renewal" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetCustomerByCustZone" Method="usp_GetCustomerByCustZone">
-    <ElementType Name="usp_GetCustomerByCustZoneResult">
-      <Column Name="ZoneDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="StateCode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetCustomerContactDetailsReport" Method="usp_GetCustomerContactDetailsReport">
     <ElementType Name="usp_GetCustomerContactDetailsReportResult">
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -2341,6 +2327,21 @@
       <Column Name="Years" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="sitestartdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetCustomerByCustZone" Method="usp_GetCustomerByCustZone">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetCustomerByCustZoneResult">
+      <Column Name="ZoneDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StateCode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

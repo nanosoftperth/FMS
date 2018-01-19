@@ -14,8 +14,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetCustByCustZone() As List(Of DataObjects.usp_GetCustomerByCustZone)
-            Dim objCustByCustZone = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerByCustZone
-                            Select New DataObjects.usp_GetCustomerByCustZone(c)).ToList
+            Dim objCustByCustZone = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerByCustZone(ThisSession.ApplicationID)
+                                     Select New DataObjects.usp_GetCustomerByCustZone(c)).ToList
             Return objCustByCustZone
         End Function
 #End Region
