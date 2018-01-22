@@ -16,7 +16,7 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetMYOBCustomerInvoiceReport(CustomerName As String) As List(Of DataObjects.usp_GetMYOBCustomerInvoiceReport)
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.usp_GetMYOBCustomerInvoiceReport(CustomerName)
+            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.usp_GetMYOBCustomerInvoiceReport(CustomerName, ThisSession.ApplicationID)
                             Select New DataObjects.usp_GetMYOBCustomerInvoiceReport(c)).ToList
             Return objZones
         End Function

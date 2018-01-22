@@ -1355,12 +1355,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomersResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetMYOBCustomerInvoiceReport")>  _
-	Public Function usp_GetMYOBCustomerInvoiceReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CustomerName", DbType:="NVarChar(50)")> ByVal customerName As String) As ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), customerName)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunDates")>  _
 	Public Function usp_GetRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetRunDatesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid)
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetInvoiceBasicCheckReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetInvoiceBasicCheckReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetMYOBCustomerInvoiceReport")>  _
+	Public Function usp_GetMYOBCustomerInvoiceReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CustomerName", DbType:="NVarChar(50)")> ByVal customerName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), customerName, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
 	End Function
 End Class
 
@@ -27030,181 +27030,6 @@ Partial Public Class usp_GetCustomersResult
 	End Property
 End Class
 
-Partial Public Class usp_GetMYOBCustomerInvoiceReportResult
-	
-	Private _CustomerName As String
-	
-	Private _CustomerNumber As String
-	
-	Private _InvoiceNumber As String
-	
-	Private _InvoiceDate As System.Nullable(Of Date)
-	
-	Private _CustomerPurchaseOrderNumber As String
-	
-	Private _Quantity As System.Nullable(Of Short)
-	
-	Private _ProductCode As String
-	
-	Private _ProductDescription As String
-	
-	Private _InvoiceAmountExGST As System.Nullable(Of Single)
-	
-	Private _InvoiceAmountIncGST As System.Nullable(Of Single)
-	
-	Private _GSTAmount As System.Nullable(Of Single)
-	
-	Private _SiteName As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerNumber", DbType:="NVarChar(50)")>  _
-	Public Property CustomerNumber() As String
-		Get
-			Return Me._CustomerNumber
-		End Get
-		Set
-			If (String.Equals(Me._CustomerNumber, value) = false) Then
-				Me._CustomerNumber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceNumber", DbType:="NVarChar(50)")>  _
-	Public Property InvoiceNumber() As String
-		Get
-			Return Me._InvoiceNumber
-		End Get
-		Set
-			If (String.Equals(Me._InvoiceNumber, value) = false) Then
-				Me._InvoiceNumber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceDate", DbType:="DateTime")>  _
-	Public Property InvoiceDate() As System.Nullable(Of Date)
-		Get
-			Return Me._InvoiceDate
-		End Get
-		Set
-			If (Me._InvoiceDate.Equals(value) = false) Then
-				Me._InvoiceDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPurchaseOrderNumber", DbType:="NVarChar(50)")>  _
-	Public Property CustomerPurchaseOrderNumber() As String
-		Get
-			Return Me._CustomerPurchaseOrderNumber
-		End Get
-		Set
-			If (String.Equals(Me._CustomerPurchaseOrderNumber, value) = false) Then
-				Me._CustomerPurchaseOrderNumber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Quantity", DbType:="SmallInt")>  _
-	Public Property Quantity() As System.Nullable(Of Short)
-		Get
-			Return Me._Quantity
-		End Get
-		Set
-			If (Me._Quantity.Equals(value) = false) Then
-				Me._Quantity = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductCode", DbType:="NVarChar(50)")>  _
-	Public Property ProductCode() As String
-		Get
-			Return Me._ProductCode
-		End Get
-		Set
-			If (String.Equals(Me._ProductCode, value) = false) Then
-				Me._ProductCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductDescription", DbType:="NVarChar(200)")>  _
-	Public Property ProductDescription() As String
-		Get
-			Return Me._ProductDescription
-		End Get
-		Set
-			If (String.Equals(Me._ProductDescription, value) = false) Then
-				Me._ProductDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountExGST", DbType:="Real")>  _
-	Public Property InvoiceAmountExGST() As System.Nullable(Of Single)
-		Get
-			Return Me._InvoiceAmountExGST
-		End Get
-		Set
-			If (Me._InvoiceAmountExGST.Equals(value) = false) Then
-				Me._InvoiceAmountExGST = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountIncGST", DbType:="Real")>  _
-	Public Property InvoiceAmountIncGST() As System.Nullable(Of Single)
-		Get
-			Return Me._InvoiceAmountIncGST
-		End Get
-		Set
-			If (Me._InvoiceAmountIncGST.Equals(value) = false) Then
-				Me._InvoiceAmountIncGST = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GSTAmount", DbType:="Real")>  _
-	Public Property GSTAmount() As System.Nullable(Of Single)
-		Get
-			Return Me._GSTAmount
-		End Get
-		Set
-			If (Me._GSTAmount.Equals(value) = false) Then
-				Me._GSTAmount = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetRunDatesResult
 	
 	Private _RID As System.Nullable(Of Integer)
@@ -35285,6 +35110,181 @@ Partial Public Class usp_GetInvoiceBasicCheckReportResult
 		Set
 			If (String.Equals(Me._MonthDescription, value) = false) Then
 				Me._MonthDescription = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetMYOBCustomerInvoiceReportResult
+	
+	Private _CustomerName As String
+	
+	Private _CustomerNumber As String
+	
+	Private _InvoiceNumber As String
+	
+	Private _InvoiceDate As System.Nullable(Of Date)
+	
+	Private _CustomerPurchaseOrderNumber As String
+	
+	Private _Quantity As System.Nullable(Of Short)
+	
+	Private _ProductCode As String
+	
+	Private _ProductDescription As String
+	
+	Private _InvoiceAmountExGST As System.Nullable(Of Single)
+	
+	Private _InvoiceAmountIncGST As System.Nullable(Of Single)
+	
+	Private _GSTAmount As System.Nullable(Of Single)
+	
+	Private _SiteName As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerNumber", DbType:="NVarChar(50)")>  _
+	Public Property CustomerNumber() As String
+		Get
+			Return Me._CustomerNumber
+		End Get
+		Set
+			If (String.Equals(Me._CustomerNumber, value) = false) Then
+				Me._CustomerNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceNumber", DbType:="NVarChar(50)")>  _
+	Public Property InvoiceNumber() As String
+		Get
+			Return Me._InvoiceNumber
+		End Get
+		Set
+			If (String.Equals(Me._InvoiceNumber, value) = false) Then
+				Me._InvoiceNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceDate", DbType:="DateTime")>  _
+	Public Property InvoiceDate() As System.Nullable(Of Date)
+		Get
+			Return Me._InvoiceDate
+		End Get
+		Set
+			If (Me._InvoiceDate.Equals(value) = false) Then
+				Me._InvoiceDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPurchaseOrderNumber", DbType:="NVarChar(50)")>  _
+	Public Property CustomerPurchaseOrderNumber() As String
+		Get
+			Return Me._CustomerPurchaseOrderNumber
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPurchaseOrderNumber, value) = false) Then
+				Me._CustomerPurchaseOrderNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Quantity", DbType:="SmallInt")>  _
+	Public Property Quantity() As System.Nullable(Of Short)
+		Get
+			Return Me._Quantity
+		End Get
+		Set
+			If (Me._Quantity.Equals(value) = false) Then
+				Me._Quantity = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductCode", DbType:="NVarChar(50)")>  _
+	Public Property ProductCode() As String
+		Get
+			Return Me._ProductCode
+		End Get
+		Set
+			If (String.Equals(Me._ProductCode, value) = false) Then
+				Me._ProductCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductDescription", DbType:="NVarChar(200)")>  _
+	Public Property ProductDescription() As String
+		Get
+			Return Me._ProductDescription
+		End Get
+		Set
+			If (String.Equals(Me._ProductDescription, value) = false) Then
+				Me._ProductDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountExGST", DbType:="Real")>  _
+	Public Property InvoiceAmountExGST() As System.Nullable(Of Single)
+		Get
+			Return Me._InvoiceAmountExGST
+		End Get
+		Set
+			If (Me._InvoiceAmountExGST.Equals(value) = false) Then
+				Me._InvoiceAmountExGST = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceAmountIncGST", DbType:="Real")>  _
+	Public Property InvoiceAmountIncGST() As System.Nullable(Of Single)
+		Get
+			Return Me._InvoiceAmountIncGST
+		End Get
+		Set
+			If (Me._InvoiceAmountIncGST.Equals(value) = false) Then
+				Me._InvoiceAmountIncGST = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GSTAmount", DbType:="Real")>  _
+	Public Property GSTAmount() As System.Nullable(Of Single)
+		Get
+			Return Me._GSTAmount
+		End Get
+		Set
+			If (Me._GSTAmount.Equals(value) = false) Then
+				Me._GSTAmount = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
 			End If
 		End Set
 	End Property
