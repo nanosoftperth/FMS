@@ -47,8 +47,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetStandardAuditReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetStandardAuditReport)
-            Dim objStandardAudit = (From c In SingletonAccess.FMSDataContextContignous.usp_GetStandardAuditReport(sDate, eDate)
-                            Select New DataObjects.usp_GetStandardAuditReport(c)).ToList
+            Dim objStandardAudit = (From c In SingletonAccess.FMSDataContextContignous.usp_GetStandardAuditReport(sDate, eDate, ThisSession.ApplicationID)
+                                    Select New DataObjects.usp_GetStandardAuditReport(c)).ToList
             Return objStandardAudit
         End Function
 #End Region
