@@ -16,8 +16,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetAuditOfSiteDetailReportt(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetAuditOfSiteDetailReport)
-            Dim objAuditOfSiteDetail = (From c In SingletonAccess.FMSDataContextContignous.usp_GetAuditOfSiteDetailReport(sDate, eDate)
-                            Select New DataObjects.usp_GetAuditOfSiteDetailReport(c)).ToList
+            Dim objAuditOfSiteDetail = (From c In SingletonAccess.FMSDataContextContignous.usp_GetAuditOfSiteDetailReport(sDate, eDate, ThisSession.ApplicationID)
+                                        Select New DataObjects.usp_GetAuditOfSiteDetailReport(c)).ToList
             Return objAuditOfSiteDetail
         End Function
 #End Region

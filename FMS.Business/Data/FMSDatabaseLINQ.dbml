@@ -1581,24 +1581,6 @@
       <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetAuditOfSiteDetailReport" Method="usp_GetAuditOfSiteDetailReport">
-    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
-    <ElementType Name="usp_GetAuditOfSiteDetailReportResult">
-      <Column Name="FieldType" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="Customer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Site" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="OldContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="NewContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="OldInvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="NewInvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="OldInvoicingFrequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="NewInvoicingFrequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="OldContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="NewContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetRunDates" Method="usp_GetRunDates">
     <Parameter Name="Rid" Parameter="rid" Type="System.Int32" DbType="Int" />
     <ElementType Name="usp_GetRunDatesResult">
@@ -2360,6 +2342,25 @@
       <Column Name="Customer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="OldContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="NewContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetAuditOfSiteDetailReport" Method="usp_GetAuditOfSiteDetailReport">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetAuditOfSiteDetailReportResult">
+      <Column Name="FieldType" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Customer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Site" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OldContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NewContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OldInvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NewInvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OldInvoicingFrequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="NewInvoicingFrequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="OldContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NewContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
