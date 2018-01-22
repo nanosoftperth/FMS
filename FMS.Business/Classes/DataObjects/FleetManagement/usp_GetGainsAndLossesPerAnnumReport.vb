@@ -19,8 +19,8 @@
 #Region "Get methods"
         Public Shared Function GetGainsAndLossesPerAnnumReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetGainsAndLossesPerAnnumReport)
             SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objGainsAndLossesPerAnnum = (From c In SingletonAccess.FMSDataContextContignous.usp_GetGainsAndLossesPerAnnumReport(sDate, eDate)
-                            Select New DataObjects.usp_GetGainsAndLossesPerAnnumReport(c)).ToList
+            Dim objGainsAndLossesPerAnnum = (From c In SingletonAccess.FMSDataContextContignous.usp_GetGainsAndLossesPerAnnumReport(sDate, eDate, ThisSession.ApplicationID)
+                                             Select New DataObjects.usp_GetGainsAndLossesPerAnnumReport(c)).ToList
             Return objGainsAndLossesPerAnnum
         End Function
 #End Region
