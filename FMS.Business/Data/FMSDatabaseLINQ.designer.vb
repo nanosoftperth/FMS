@@ -1367,12 +1367,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditContractReport")>  _
-	Public Function usp_GetAuditContractReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditContractReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditContractReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditOfSiteDetailReport")>  _
 	Public Function usp_GetAuditOfSiteDetailReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetAuditOfSiteDetailReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetStandardAuditReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetStandardAuditReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate, appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetStandardAuditReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetAuditContractReport")>  _
+	Public Function usp_GetAuditContractReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetAuditContractReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditContractReportResult))
 	End Function
 End Class
 
@@ -27296,83 +27296,6 @@ Partial Public Class usp_GetMYOBCustomerInvoiceReportResult
 	End Property
 End Class
 
-Partial Public Class usp_GetAuditContractReportResult
-	
-	Private _FieldType As String
-	
-	Private _ChangeDate As System.Nullable(Of Date)
-	
-	Private _Customer As String
-	
-	Private _OldContractCeasedate As System.Nullable(Of Date)
-	
-	Private _NewContractCeasedate As System.Nullable(Of Date)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType", DbType:="NVarChar(5)")>  _
-	Public Property FieldType() As String
-		Get
-			Return Me._FieldType
-		End Get
-		Set
-			If (String.Equals(Me._FieldType, value) = false) Then
-				Me._FieldType = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")>  _
-	Public Property ChangeDate() As System.Nullable(Of Date)
-		Get
-			Return Me._ChangeDate
-		End Get
-		Set
-			If (Me._ChangeDate.Equals(value) = false) Then
-				Me._ChangeDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="NVarChar(50)")>  _
-	Public Property Customer() As String
-		Get
-			Return Me._Customer
-		End Get
-		Set
-			If (String.Equals(Me._Customer, value) = false) Then
-				Me._Customer = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractCeasedate", DbType:="Date")>  _
-	Public Property OldContractCeasedate() As System.Nullable(Of Date)
-		Get
-			Return Me._OldContractCeasedate
-		End Get
-		Set
-			If (Me._OldContractCeasedate.Equals(value) = false) Then
-				Me._OldContractCeasedate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractCeasedate", DbType:="Date")>  _
-	Public Property NewContractCeasedate() As System.Nullable(Of Date)
-		Get
-			Return Me._NewContractCeasedate
-		End Get
-		Set
-			If (Me._NewContractCeasedate.Equals(value) = false) Then
-				Me._NewContractCeasedate = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetAuditOfSiteDetailReportResult
 	
 	Private _FieldType As String
@@ -35285,6 +35208,83 @@ Partial Public Class usp_GetStandardAuditReportResult
 		Set
 			If (String.Equals(Me._CustormerSiteCeaseDate, value) = false) Then
 				Me._CustormerSiteCeaseDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetAuditContractReportResult
+	
+	Private _FieldType As String
+	
+	Private _ChangeDate As System.Nullable(Of Date)
+	
+	Private _Customer As String
+	
+	Private _OldContractCeasedate As System.Nullable(Of Date)
+	
+	Private _NewContractCeasedate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FieldType", DbType:="NVarChar(5)")>  _
+	Public Property FieldType() As String
+		Get
+			Return Me._FieldType
+		End Get
+		Set
+			If (String.Equals(Me._FieldType, value) = false) Then
+				Me._FieldType = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")>  _
+	Public Property ChangeDate() As System.Nullable(Of Date)
+		Get
+			Return Me._ChangeDate
+		End Get
+		Set
+			If (Me._ChangeDate.Equals(value) = false) Then
+				Me._ChangeDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Customer", DbType:="NVarChar(50)")>  _
+	Public Property Customer() As String
+		Get
+			Return Me._Customer
+		End Get
+		Set
+			If (String.Equals(Me._Customer, value) = false) Then
+				Me._Customer = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldContractCeasedate", DbType:="Date")>  _
+	Public Property OldContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._OldContractCeasedate
+		End Get
+		Set
+			If (Me._OldContractCeasedate.Equals(value) = false) Then
+				Me._OldContractCeasedate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewContractCeasedate", DbType:="Date")>  _
+	Public Property NewContractCeasedate() As System.Nullable(Of Date)
+		Get
+			Return Me._NewContractCeasedate
+		End Get
+		Set
+			If (Me._NewContractCeasedate.Equals(value) = false) Then
+				Me._NewContractCeasedate = value
 			End If
 		End Set
 	End Property

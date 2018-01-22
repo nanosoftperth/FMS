@@ -9,8 +9,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetAuditContractReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetAuditContractReport)
-            Dim objAuditContract = (From c In SingletonAccess.FMSDataContextContignous.usp_GetAuditContractReport(sDate, eDate)
-                            Select New DataObjects.usp_GetAuditContractReport(c)).ToList
+            Dim objAuditContract = (From c In SingletonAccess.FMSDataContextContignous.usp_GetAuditContractReport(sDate, eDate, ThisSession.ApplicationID)
+                                    Select New DataObjects.usp_GetAuditContractReport(c)).ToList
             Return objAuditContract
         End Function
 #End Region
