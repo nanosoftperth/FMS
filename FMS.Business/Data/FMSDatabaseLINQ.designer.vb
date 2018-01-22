@@ -1355,12 +1355,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetCustomersResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetInvoiceBasicCheckReport")>  _
-	Public Function usp_GetInvoiceBasicCheckReport() As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetInvoiceBasicCheckReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetMYOBCustomerInvoiceReport")>  _
 	Public Function usp_GetMYOBCustomerInvoiceReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CustomerName", DbType:="NVarChar(50)")> ByVal customerName As String) As ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), customerName)
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetAuditOfSiteDetailReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetAuditOfSiteDetailReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate, appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetAuditOfSiteDetailReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetInvoiceBasicCheckReport")>  _
+	Public Function usp_GetInvoiceBasicCheckReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetInvoiceBasicCheckReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetInvoiceBasicCheckReportResult))
 	End Function
 End Class
 
@@ -27030,97 +27030,6 @@ Partial Public Class usp_GetCustomersResult
 	End Property
 End Class
 
-Partial Public Class usp_GetInvoiceBasicCheckReportResult
-	
-	Private _CustomerName As String
-	
-	Private _SiteName As String
-	
-	Private _SiteCeaseDate As System.Nullable(Of Date)
-	
-	Private _Frequency As String
-	
-	Private _InvoiceCommencing As System.Nullable(Of Date)
-	
-	Private _MonthDescription As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
-	Public Property SiteName() As String
-		Get
-			Return Me._SiteName
-		End Get
-		Set
-			If (String.Equals(Me._SiteName, value) = false) Then
-				Me._SiteName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
-	Public Property SiteCeaseDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteCeaseDate
-		End Get
-		Set
-			If (Me._SiteCeaseDate.Equals(value) = false) Then
-				Me._SiteCeaseDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Frequency", DbType:="NVarChar(22)")>  _
-	Public Property Frequency() As String
-		Get
-			Return Me._Frequency
-		End Get
-		Set
-			If (String.Equals(Me._Frequency, value) = false) Then
-				Me._Frequency = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceCommencing", DbType:="Date")>  _
-	Public Property InvoiceCommencing() As System.Nullable(Of Date)
-		Get
-			Return Me._InvoiceCommencing
-		End Get
-		Set
-			If (Me._InvoiceCommencing.Equals(value) = false) Then
-				Me._InvoiceCommencing = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MonthDescription", DbType:="NVarChar(15)")>  _
-	Public Property MonthDescription() As String
-		Get
-			Return Me._MonthDescription
-		End Get
-		Set
-			If (String.Equals(Me._MonthDescription, value) = false) Then
-				Me._MonthDescription = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetMYOBCustomerInvoiceReportResult
 	
 	Private _CustomerName As String
@@ -35285,6 +35194,97 @@ Partial Public Class usp_GetAuditOfSiteDetailReportResult
 		Set
 			If (Me._ChangeDate.Equals(value) = false) Then
 				Me._ChangeDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetInvoiceBasicCheckReportResult
+	
+	Private _CustomerName As String
+	
+	Private _SiteName As String
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Private _Frequency As String
+	
+	Private _InvoiceCommencing As System.Nullable(Of Date)
+	
+	Private _MonthDescription As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(50)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me._CustomerName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteName", DbType:="NVarChar(50)")>  _
+	Public Property SiteName() As String
+		Get
+			Return Me._SiteName
+		End Get
+		Set
+			If (String.Equals(Me._SiteName, value) = false) Then
+				Me._SiteName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Frequency", DbType:="NVarChar(22)")>  _
+	Public Property Frequency() As String
+		Get
+			Return Me._Frequency
+		End Get
+		Set
+			If (String.Equals(Me._Frequency, value) = false) Then
+				Me._Frequency = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InvoiceCommencing", DbType:="Date")>  _
+	Public Property InvoiceCommencing() As System.Nullable(Of Date)
+		Get
+			Return Me._InvoiceCommencing
+		End Get
+		Set
+			If (Me._InvoiceCommencing.Equals(value) = false) Then
+				Me._InvoiceCommencing = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MonthDescription", DbType:="NVarChar(15)")>  _
+	Public Property MonthDescription() As String
+		Get
+			Return Me._MonthDescription
+		End Get
+		Set
+			If (String.Equals(Me._MonthDescription, value) = false) Then
+				Me._MonthDescription = value
 			End If
 		End Set
 	End Property

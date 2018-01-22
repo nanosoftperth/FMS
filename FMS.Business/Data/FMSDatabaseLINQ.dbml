@@ -1554,16 +1554,6 @@
       <Column Name="CustomerSortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetInvoiceBasicCheckReport" Method="usp_GetInvoiceBasicCheckReport">
-    <ElementType Name="usp_GetInvoiceBasicCheckReportResult">
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="MonthDescription" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetMYOBCustomerInvoiceReport" Method="usp_GetMYOBCustomerInvoiceReport">
     <Parameter Name="CustomerName" Parameter="customerName" Type="System.String" DbType="NVarChar(50)" />
     <ElementType Name="usp_GetMYOBCustomerInvoiceReportResult">
@@ -2361,6 +2351,17 @@
       <Column Name="OldContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="NewContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetInvoiceBasicCheckReport" Method="usp_GetInvoiceBasicCheckReport">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetInvoiceBasicCheckReportResult">
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SiteCeaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Frequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="InvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MonthDescription" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

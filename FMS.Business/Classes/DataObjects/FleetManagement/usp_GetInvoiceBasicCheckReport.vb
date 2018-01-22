@@ -10,8 +10,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetInvoiceBasicCheckReport() As List(Of DataObjects.usp_GetInvoiceBasicCheckReport)
-            Dim objInvoiveBasicCheckReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetInvoiceBasicCheckReport
-                            Select New DataObjects.usp_GetInvoiceBasicCheckReport(c)).ToList
+            Dim objInvoiveBasicCheckReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetInvoiceBasicCheckReport(ThisSession.ApplicationID)
+                                              Select New DataObjects.usp_GetInvoiceBasicCheckReport(c)).ToList
             Return objInvoiveBasicCheckReport
         End Function
 #End Region
