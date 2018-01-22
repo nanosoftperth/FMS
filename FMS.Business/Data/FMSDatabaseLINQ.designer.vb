@@ -1367,12 +1367,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesReport")>  _
-	Public Function usp_GetGainsAndLossesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesReportResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGainsAndLossesReportResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesPerAnnumReport")>  _
 	Public Function usp_GetGainsAndLossesPerAnnumReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetGainsAndLossesPerAnnumReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate)
@@ -1647,6 +1641,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetSitesBySiteZoneReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSitesBySiteZoneReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesBySiteZoneReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGainsAndLossesReport")>  _
+	Public Function usp_GetGainsAndLossesReport(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetGainsAndLossesReportResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), startDate, endDate, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGainsAndLossesReportResult))
 	End Function
 End Class
 
@@ -3231,7 +3231,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4875,7 +4875,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -5264,7 +5264,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -15976,7 +15976,7 @@ Partial Public Class FleetDocument
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -25824,7 +25824,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -27291,209 +27291,6 @@ Partial Public Class usp_GetMYOBCustomerInvoiceReportResult
 		Set
 			If (String.Equals(Me._SiteName, value) = false) Then
 				Me._SiteName = value
-			End If
-		End Set
-	End Property
-End Class
-
-Partial Public Class usp_GetGainsAndLossesReportResult
-	
-	Private _SalesPerson As String
-	
-	Private _Site As String
-	
-	Private _EffectiveDate As System.Nullable(Of Date)
-	
-	Private _ServiceCode As String
-	
-	Private _ServiceDescription As String
-	
-	Private _OldServiceUnits As System.Nullable(Of Double)
-	
-	Private _NewServiceUnits As System.Nullable(Of Double)
-	
-	Private _UnitsDiff As System.Nullable(Of Double)
-	
-	Private _UnitType As String
-	
-	Private _OldPerAnnumCharge As System.Nullable(Of Double)
-	
-	Private _NewPerAnnumCharge As System.Nullable(Of Double)
-	
-	Private _PADiff As System.Nullable(Of Double)
-	
-	Private _PAType As String
-	
-	Private _ChangeDate As System.Nullable(Of Date)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPerson", DbType:="NVarChar(50)")>  _
-	Public Property SalesPerson() As String
-		Get
-			Return Me._SalesPerson
-		End Get
-		Set
-			If (String.Equals(Me._SalesPerson, value) = false) Then
-				Me._SalesPerson = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Site", DbType:="NVarChar(50)")>  _
-	Public Property Site() As String
-		Get
-			Return Me._Site
-		End Get
-		Set
-			If (String.Equals(Me._Site, value) = false) Then
-				Me._Site = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EffectiveDate", DbType:="Date")>  _
-	Public Property EffectiveDate() As System.Nullable(Of Date)
-		Get
-			Return Me._EffectiveDate
-		End Get
-		Set
-			If (Me._EffectiveDate.Equals(value) = false) Then
-				Me._EffectiveDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
-	Public Property ServiceCode() As String
-		Get
-			Return Me._ServiceCode
-		End Get
-		Set
-			If (String.Equals(Me._ServiceCode, value) = false) Then
-				Me._ServiceCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
-	Public Property ServiceDescription() As String
-		Get
-			Return Me._ServiceDescription
-		End Get
-		Set
-			If (String.Equals(Me._ServiceDescription, value) = false) Then
-				Me._ServiceDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldServiceUnits", DbType:="Float")>  _
-	Public Property OldServiceUnits() As System.Nullable(Of Double)
-		Get
-			Return Me._OldServiceUnits
-		End Get
-		Set
-			If (Me._OldServiceUnits.Equals(value) = false) Then
-				Me._OldServiceUnits = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewServiceUnits", DbType:="Float")>  _
-	Public Property NewServiceUnits() As System.Nullable(Of Double)
-		Get
-			Return Me._NewServiceUnits
-		End Get
-		Set
-			If (Me._NewServiceUnits.Equals(value) = false) Then
-				Me._NewServiceUnits = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsDiff", DbType:="Float")>  _
-	Public Property UnitsDiff() As System.Nullable(Of Double)
-		Get
-			Return Me._UnitsDiff
-		End Get
-		Set
-			If (Me._UnitsDiff.Equals(value) = false) Then
-				Me._UnitsDiff = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitType", DbType:="VarChar(4) NOT NULL", CanBeNull:=false)>  _
-	Public Property UnitType() As String
-		Get
-			Return Me._UnitType
-		End Get
-		Set
-			If (String.Equals(Me._UnitType, value) = false) Then
-				Me._UnitType = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldPerAnnumCharge", DbType:="Float")>  _
-	Public Property OldPerAnnumCharge() As System.Nullable(Of Double)
-		Get
-			Return Me._OldPerAnnumCharge
-		End Get
-		Set
-			If (Me._OldPerAnnumCharge.Equals(value) = false) Then
-				Me._OldPerAnnumCharge = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewPerAnnumCharge", DbType:="Float")>  _
-	Public Property NewPerAnnumCharge() As System.Nullable(Of Double)
-		Get
-			Return Me._NewPerAnnumCharge
-		End Get
-		Set
-			If (Me._NewPerAnnumCharge.Equals(value) = false) Then
-				Me._NewPerAnnumCharge = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PADiff", DbType:="Float")>  _
-	Public Property PADiff() As System.Nullable(Of Double)
-		Get
-			Return Me._PADiff
-		End Get
-		Set
-			If (Me._PADiff.Equals(value) = false) Then
-				Me._PADiff = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PAType", DbType:="VarChar(4) NOT NULL", CanBeNull:=false)>  _
-	Public Property PAType() As String
-		Get
-			Return Me._PAType
-		End Get
-		Set
-			If (String.Equals(Me._PAType, value) = false) Then
-				Me._PAType = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")>  _
-	Public Property ChangeDate() As System.Nullable(Of Date)
-		Get
-			Return Me._ChangeDate
-		End Get
-		Set
-			If (Me._ChangeDate.Equals(value) = false) Then
-				Me._ChangeDate = value
 			End If
 		End Set
 	End Property
@@ -35285,6 +35082,209 @@ Partial Public Class usp_GetSitesBySiteZoneReportResult
 		Set
 			If (Me._PostalPostCode.Equals(value) = false) Then
 				Me._PostalPostCode = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetGainsAndLossesReportResult
+	
+	Private _SalesPerson As String
+	
+	Private _Site As String
+	
+	Private _EffectiveDate As System.Nullable(Of Date)
+	
+	Private _ServiceCode As String
+	
+	Private _ServiceDescription As String
+	
+	Private _OldServiceUnits As System.Nullable(Of Double)
+	
+	Private _NewServiceUnits As System.Nullable(Of Double)
+	
+	Private _UnitsDiff As System.Nullable(Of Double)
+	
+	Private _UnitType As String
+	
+	Private _OldPerAnnumCharge As System.Nullable(Of Double)
+	
+	Private _NewPerAnnumCharge As System.Nullable(Of Double)
+	
+	Private _PADiff As System.Nullable(Of Double)
+	
+	Private _PAType As String
+	
+	Private _ChangeDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SalesPerson", DbType:="NVarChar(50)")>  _
+	Public Property SalesPerson() As String
+		Get
+			Return Me._SalesPerson
+		End Get
+		Set
+			If (String.Equals(Me._SalesPerson, value) = false) Then
+				Me._SalesPerson = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Site", DbType:="NVarChar(50)")>  _
+	Public Property Site() As String
+		Get
+			Return Me._Site
+		End Get
+		Set
+			If (String.Equals(Me._Site, value) = false) Then
+				Me._Site = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EffectiveDate", DbType:="Date")>  _
+	Public Property EffectiveDate() As System.Nullable(Of Date)
+		Get
+			Return Me._EffectiveDate
+		End Get
+		Set
+			If (Me._EffectiveDate.Equals(value) = false) Then
+				Me._EffectiveDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceCode", DbType:="NVarChar(8)")>  _
+	Public Property ServiceCode() As String
+		Get
+			Return Me._ServiceCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceCode, value) = false) Then
+				Me._ServiceCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceDescription", DbType:="NVarChar(50)")>  _
+	Public Property ServiceDescription() As String
+		Get
+			Return Me._ServiceDescription
+		End Get
+		Set
+			If (String.Equals(Me._ServiceDescription, value) = false) Then
+				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldServiceUnits", DbType:="Float")>  _
+	Public Property OldServiceUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._OldServiceUnits
+		End Get
+		Set
+			If (Me._OldServiceUnits.Equals(value) = false) Then
+				Me._OldServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewServiceUnits", DbType:="Float")>  _
+	Public Property NewServiceUnits() As System.Nullable(Of Double)
+		Get
+			Return Me._NewServiceUnits
+		End Get
+		Set
+			If (Me._NewServiceUnits.Equals(value) = false) Then
+				Me._NewServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsDiff", DbType:="Float")>  _
+	Public Property UnitsDiff() As System.Nullable(Of Double)
+		Get
+			Return Me._UnitsDiff
+		End Get
+		Set
+			If (Me._UnitsDiff.Equals(value) = false) Then
+				Me._UnitsDiff = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitType", DbType:="VarChar(4) NOT NULL", CanBeNull:=false)>  _
+	Public Property UnitType() As String
+		Get
+			Return Me._UnitType
+		End Get
+		Set
+			If (String.Equals(Me._UnitType, value) = false) Then
+				Me._UnitType = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OldPerAnnumCharge", DbType:="Float")>  _
+	Public Property OldPerAnnumCharge() As System.Nullable(Of Double)
+		Get
+			Return Me._OldPerAnnumCharge
+		End Get
+		Set
+			If (Me._OldPerAnnumCharge.Equals(value) = false) Then
+				Me._OldPerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NewPerAnnumCharge", DbType:="Float")>  _
+	Public Property NewPerAnnumCharge() As System.Nullable(Of Double)
+		Get
+			Return Me._NewPerAnnumCharge
+		End Get
+		Set
+			If (Me._NewPerAnnumCharge.Equals(value) = false) Then
+				Me._NewPerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PADiff", DbType:="Float")>  _
+	Public Property PADiff() As System.Nullable(Of Double)
+		Get
+			Return Me._PADiff
+		End Get
+		Set
+			If (Me._PADiff.Equals(value) = false) Then
+				Me._PADiff = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PAType", DbType:="VarChar(4) NOT NULL", CanBeNull:=false)>  _
+	Public Property PAType() As String
+		Get
+			Return Me._PAType
+		End Get
+		Set
+			If (String.Equals(Me._PAType, value) = false) Then
+				Me._PAType = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeDate", DbType:="Date")>  _
+	Public Property ChangeDate() As System.Nullable(Of Date)
+		Get
+			Return Me._ChangeDate
+		End Get
+		Set
+			If (Me._ChangeDate.Equals(value) = false) Then
+				Me._ChangeDate = value
 			End If
 		End Set
 	End Property

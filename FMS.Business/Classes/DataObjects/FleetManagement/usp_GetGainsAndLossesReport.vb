@@ -18,8 +18,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetGainsAndLossesReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetGainsAndLossesReport)
-            Dim objGainsAndLosses = (From c In SingletonAccess.FMSDataContextContignous.usp_GetGainsAndLossesReport(sDate, eDate)
-                            Select New DataObjects.usp_GetGainsAndLossesReport(c)).ToList
+            Dim objGainsAndLosses = (From c In SingletonAccess.FMSDataContextContignous.usp_GetGainsAndLossesReport(sDate, eDate, ThisSession.ApplicationID)
+                                     Select New DataObjects.usp_GetGainsAndLossesReport(c)).ToList
             Return objGainsAndLosses
         End Function
 #End Region
