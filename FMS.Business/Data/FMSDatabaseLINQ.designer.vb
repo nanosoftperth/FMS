@@ -1379,12 +1379,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGenerateRunSheetsDetailSubResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSpecificDates")>  _
-	Public Function usp_GetSpecificDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="SqlDate", DbType:="VarChar(20)")> ByVal sqlDate As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="VarChar(10)")> ByVal rid As String) As ISingleResult(Of usp_GetSpecificDatesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), sqlDate, rid)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSpecificDatesResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGenerateRunSheetSummary")>  _
 	Public Function usp_GetGenerateRunSheetSummary() As ISingleResult(Of usp_GetGenerateRunSheetSummaryResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -1653,6 +1647,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetSitesAndCustomerServices(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSitesAndCustomerServicesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid, appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesAndCustomerServicesResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSpecificDates")>  _
+	Public Function usp_GetSpecificDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="SqlDate", DbType:="VarChar(20)")> ByVal sqlDate As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="VarChar(10)")> ByVal rid As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSpecificDatesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), sqlDate, rid, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSpecificDatesResult))
 	End Function
 End Class
 
@@ -27527,84 +27527,6 @@ Partial Public Class usp_GetGenerateRunSheetsDetailSubResult
 	End Property
 End Class
 
-Partial Public Class usp_GetSpecificDatesResult
-	
-	Private _DRid As Integer
-	
-	Private _Rid As System.Nullable(Of Integer)
-	
-	Private _DateOfRun As System.Nullable(Of Date)
-	
-	Private _DateOfRun1 As System.Nullable(Of Date)
-	
-	Private _Rid1 As System.Nullable(Of Integer)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DRid", DbType:="Int NOT NULL")>  _
-	Public Property DRid() As Integer
-		Get
-			Return Me._DRid
-		End Get
-		Set
-			If ((Me._DRid = value)  _
-						= false) Then
-				Me._DRid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int")>  _
-	Public Property Rid() As System.Nullable(Of Integer)
-		Get
-			Return Me._Rid
-		End Get
-		Set
-			If (Me._Rid.Equals(value) = false) Then
-				Me._Rid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOfRun", DbType:="DateTime")>  _
-	Public Property DateOfRun() As System.Nullable(Of Date)
-		Get
-			Return Me._DateOfRun
-		End Get
-		Set
-			If (Me._DateOfRun.Equals(value) = false) Then
-				Me._DateOfRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOfRun1", DbType:="DateTime")>  _
-	Public Property DateOfRun1() As System.Nullable(Of Date)
-		Get
-			Return Me._DateOfRun1
-		End Get
-		Set
-			If (Me._DateOfRun1.Equals(value) = false) Then
-				Me._DateOfRun1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid1", DbType:="Int")>  _
-	Public Property Rid1() As System.Nullable(Of Integer)
-		Get
-			Return Me._Rid1
-		End Get
-		Set
-			If (Me._Rid1.Equals(value) = false) Then
-				Me._Rid1 = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetGenerateRunSheetSummaryResult
 	
 	Private _ServiceCode As String
@@ -35418,6 +35340,98 @@ Partial Public Class usp_GetSitesAndCustomerServicesResult
 		Set
 			If (Me._SiteCeaseDate.Equals(value) = false) Then
 				Me._SiteCeaseDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetSpecificDatesResult
+	
+	Private _DRid As Integer
+	
+	Private _Rid As System.Nullable(Of Integer)
+	
+	Private _DateOfRun As System.Nullable(Of Date)
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _DateOfRun1 As System.Nullable(Of Date)
+	
+	Private _Rid1 As System.Nullable(Of Integer)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DRid", DbType:="Int NOT NULL")>  _
+	Public Property DRid() As Integer
+		Get
+			Return Me._DRid
+		End Get
+		Set
+			If ((Me._DRid = value)  _
+						= false) Then
+				Me._DRid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int")>  _
+	Public Property Rid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If (Me._Rid.Equals(value) = false) Then
+				Me._Rid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOfRun", DbType:="DateTime")>  _
+	Public Property DateOfRun() As System.Nullable(Of Date)
+		Get
+			Return Me._DateOfRun
+		End Get
+		Set
+			If (Me._DateOfRun.Equals(value) = false) Then
+				Me._DateOfRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me._ApplicationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOfRun1", DbType:="DateTime")>  _
+	Public Property DateOfRun1() As System.Nullable(Of Date)
+		Get
+			Return Me._DateOfRun1
+		End Get
+		Set
+			If (Me._DateOfRun1.Equals(value) = false) Then
+				Me._DateOfRun1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid1", DbType:="Int")>  _
+	Public Property Rid1() As System.Nullable(Of Integer)
+		Get
+			Return Me._Rid1
+		End Get
+		Set
+			If (Me._Rid1.Equals(value) = false) Then
+				Me._Rid1 = value
 			End If
 		End Set
 	End Property
