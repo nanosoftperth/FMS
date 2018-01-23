@@ -2,6 +2,7 @@
     Public Class tblRuns
 #Region "Properties / enums"
         Public Property RunID As System.Guid
+        Public Property ApplicationID As System.Nullable(Of System.Guid)
         Public Property Rid As Integer
         Public Property RunNUmber As System.Nullable(Of Integer)
         Public Property RunDescription As String
@@ -20,6 +21,8 @@
             Dim objRun As New FMS.Business.tblRun
             With objRun
                 .RunID = Guid.NewGuid
+                .ApplicationID = ThisSession.ApplicationID
+                .Rid = tblProjectID.RunIDCreateOrUpdate(ThisSession.ApplicationID)
                 .RunNUmber = Run.RunNUmber
                 .RunDescription = Run.RunDescription
                 .RunDriver = Run.RunDriver
@@ -37,7 +40,7 @@
         End Sub
         Public Shared Sub Update(Run As DataObjects.tblRuns)
             Dim objRun As FMS.Business.tblRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                                                           Where c.Rid.Equals(Run.Rid)).SingleOrDefault
+                                                 Where c.Rid.Equals(Run.Rid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             With objRun
                 .RunNUmber = Run.RunNUmber
                 .RunDescription = Run.RunDescription
@@ -55,7 +58,7 @@
         End Sub
         Public Shared Sub Delete(Run As DataObjects.tblRuns)
             Dim objRun As FMS.Business.tblRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                                                         Where c.Rid.Equals(Run.Rid)).SingleOrDefault
+                                                 Where c.Rid.Equals(Run.Rid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblRuns.DeleteOnSubmit(objRun)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -72,15 +75,16 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblRuns)
             Dim objRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                            Order By c.RunDescription
-                            Select New DataObjects.tblRuns(c)).ToList
+                          Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                          Order By c.RunDescription
+                          Select New DataObjects.tblRuns(c)).ToList
             Return objRun
         End Function
         Public Shared Function GetTblRuns() As List(Of DataObjects.tblRuns)
             Dim objRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                            Order By c.RunDescription
-                            Where c.RunDescription IsNot Nothing
-                            Select New DataObjects.tblRuns(c)).ToList
+                          Order By c.RunDescription
+                          Where c.RunDescription IsNot Nothing And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                          Select New DataObjects.tblRuns(c)).ToList
             Return objRun
         End Function
 #End Region
@@ -91,6 +95,7 @@
         Public Sub New(objRun As FMS.Business.tblRun)
             With objRun
                 Me.RunID = .RunID
+                Me.ApplicationID = .ApplicationID
                 Me.Rid = .Rid
                 Me.RunNUmber = .RunNUmber
                 Me.RunDescription = .RunDescription
