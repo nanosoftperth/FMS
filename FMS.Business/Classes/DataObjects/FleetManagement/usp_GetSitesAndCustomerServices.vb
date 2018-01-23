@@ -26,8 +26,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetSitesAndCustomerServices(rid As Integer) As List(Of DataObjects.usp_GetSitesAndCustomerServices)
-            Dim objSitesAndCustomers = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesAndCustomerServices(rid)
-                            Select New DataObjects.usp_GetSitesAndCustomerServices(c)).ToList
+            Dim objSitesAndCustomers = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesAndCustomerServices(rid, ThisSession.ApplicationID)
+                                        Select New DataObjects.usp_GetSitesAndCustomerServices(c)).ToList
             Return objSitesAndCustomers
         End Function
 #End Region

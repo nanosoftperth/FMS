@@ -1385,12 +1385,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSpecificDatesResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesAndCustomerServices")>  _
-	Public Function usp_GetSitesAndCustomerServices(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer)) As ISingleResult(Of usp_GetSitesAndCustomerServicesResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesAndCustomerServicesResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetGenerateRunSheetSummary")>  _
 	Public Function usp_GetGenerateRunSheetSummary() As ISingleResult(Of usp_GetGenerateRunSheetSummaryResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -1653,6 +1647,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetTblRuns(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="SpecificRun", DbType:="VarChar(10)")> ByVal specificRun As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetTblRunsResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), specificRun, appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetTblRunsResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSitesAndCustomerServices")>  _
+	Public Function usp_GetSitesAndCustomerServices(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="Int")> ByVal rid As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetSitesAndCustomerServicesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), rid, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetSitesAndCustomerServicesResult))
 	End Function
 End Class
 
@@ -27605,324 +27605,6 @@ Partial Public Class usp_GetSpecificDatesResult
 	End Property
 End Class
 
-Partial Public Class usp_GetSitesAndCustomerServicesResult
-	
-	Private _CustomerServiceID As System.Guid
-	
-	Private _ID As Integer
-	
-	Private _CSid As System.Nullable(Of Integer)
-	
-	Private _CId As System.Nullable(Of Integer)
-	
-	Private _ServiceFrequencyCode As System.Nullable(Of Short)
-	
-	Private _ServiceUnits As System.Nullable(Of Single)
-	
-	Private _ServicePrice As System.Nullable(Of Single)
-	
-	Private _PerAnnumCharge As System.Nullable(Of Single)
-	
-	Private _ServiceRun As System.Nullable(Of Short)
-	
-	Private _ServiceComments As String
-	
-	Private _UnitsHaveMoreThanOneRun As Boolean
-	
-	Private _ServiceFrequency1 As System.Nullable(Of Short)
-	
-	Private _ServiceFrequency2 As System.Nullable(Of Short)
-	
-	Private _ServiceFrequency3 As System.Nullable(Of Short)
-	
-	Private _ServiceFrequency4 As System.Nullable(Of Short)
-	
-	Private _ServiceFrequency5 As System.Nullable(Of Short)
-	
-	Private _ServiceFrequency6 As System.Nullable(Of Short)
-	
-	Private _ServiceFrequency7 As System.Nullable(Of Short)
-	
-	Private _ServiceFrequency8 As System.Nullable(Of Short)
-	
-	Private _ServiceSortOrderCode As String
-	
-	Private _ServiceRun1 As System.Nullable(Of Short)
-	
-	Private _SiteCeaseDate As System.Nullable(Of Date)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerServiceID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property CustomerServiceID() As System.Guid
-		Get
-			Return Me._CustomerServiceID
-		End Get
-		Set
-			If ((Me._CustomerServiceID = value)  _
-						= false) Then
-				Me._CustomerServiceID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", DbType:="Int NOT NULL")>  _
-	Public Property ID() As Integer
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me._ID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CSid", DbType:="Int")>  _
-	Public Property CSid() As System.Nullable(Of Integer)
-		Get
-			Return Me._CSid
-		End Get
-		Set
-			If (Me._CSid.Equals(value) = false) Then
-				Me._CSid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CId", DbType:="Int")>  _
-	Public Property CId() As System.Nullable(Of Integer)
-		Get
-			Return Me._CId
-		End Get
-		Set
-			If (Me._CId.Equals(value) = false) Then
-				Me._CId = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequencyCode", DbType:="SmallInt")>  _
-	Public Property ServiceFrequencyCode() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequencyCode
-		End Get
-		Set
-			If (Me._ServiceFrequencyCode.Equals(value) = false) Then
-				Me._ServiceFrequencyCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
-	Public Property ServiceUnits() As System.Nullable(Of Single)
-		Get
-			Return Me._ServiceUnits
-		End Get
-		Set
-			If (Me._ServiceUnits.Equals(value) = false) Then
-				Me._ServiceUnits = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicePrice", DbType:="Real")>  _
-	Public Property ServicePrice() As System.Nullable(Of Single)
-		Get
-			Return Me._ServicePrice
-		End Get
-		Set
-			If (Me._ServicePrice.Equals(value) = false) Then
-				Me._ServicePrice = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
-	Public Property PerAnnumCharge() As System.Nullable(Of Single)
-		Get
-			Return Me._PerAnnumCharge
-		End Get
-		Set
-			If (Me._PerAnnumCharge.Equals(value) = false) Then
-				Me._PerAnnumCharge = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRun", DbType:="SmallInt")>  _
-	Public Property ServiceRun() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceRun
-		End Get
-		Set
-			If (Me._ServiceRun.Equals(value) = false) Then
-				Me._ServiceRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceComments", DbType:="NVarChar(MAX)")>  _
-	Public Property ServiceComments() As String
-		Get
-			Return Me._ServiceComments
-		End Get
-		Set
-			If (String.Equals(Me._ServiceComments, value) = false) Then
-				Me._ServiceComments = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsHaveMoreThanOneRun", DbType:="Bit NOT NULL")>  _
-	Public Property UnitsHaveMoreThanOneRun() As Boolean
-		Get
-			Return Me._UnitsHaveMoreThanOneRun
-		End Get
-		Set
-			If ((Me._UnitsHaveMoreThanOneRun = value)  _
-						= false) Then
-				Me._UnitsHaveMoreThanOneRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency1", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency1() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency1
-		End Get
-		Set
-			If (Me._ServiceFrequency1.Equals(value) = false) Then
-				Me._ServiceFrequency1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency2", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency2() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency2
-		End Get
-		Set
-			If (Me._ServiceFrequency2.Equals(value) = false) Then
-				Me._ServiceFrequency2 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency3", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency3() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency3
-		End Get
-		Set
-			If (Me._ServiceFrequency3.Equals(value) = false) Then
-				Me._ServiceFrequency3 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency4", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency4() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency4
-		End Get
-		Set
-			If (Me._ServiceFrequency4.Equals(value) = false) Then
-				Me._ServiceFrequency4 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency5", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency5() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency5
-		End Get
-		Set
-			If (Me._ServiceFrequency5.Equals(value) = false) Then
-				Me._ServiceFrequency5 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency6", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency6() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency6
-		End Get
-		Set
-			If (Me._ServiceFrequency6.Equals(value) = false) Then
-				Me._ServiceFrequency6 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency7", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency7() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency7
-		End Get
-		Set
-			If (Me._ServiceFrequency7.Equals(value) = false) Then
-				Me._ServiceFrequency7 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency8", DbType:="SmallInt")>  _
-	Public Property ServiceFrequency8() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceFrequency8
-		End Get
-		Set
-			If (Me._ServiceFrequency8.Equals(value) = false) Then
-				Me._ServiceFrequency8 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceSortOrderCode", DbType:="NVarChar(12)")>  _
-	Public Property ServiceSortOrderCode() As String
-		Get
-			Return Me._ServiceSortOrderCode
-		End Get
-		Set
-			If (String.Equals(Me._ServiceSortOrderCode, value) = false) Then
-				Me._ServiceSortOrderCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRun1", DbType:="SmallInt")>  _
-	Public Property ServiceRun1() As System.Nullable(Of Short)
-		Get
-			Return Me._ServiceRun1
-		End Get
-		Set
-			If (Me._ServiceRun1.Equals(value) = false) Then
-				Me._ServiceRun1 = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
-	Public Property SiteCeaseDate() As System.Nullable(Of Date)
-		Get
-			Return Me._SiteCeaseDate
-		End Get
-		Set
-			If (Me._SiteCeaseDate.Equals(value) = false) Then
-				Me._SiteCeaseDate = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetGenerateRunSheetSummaryResult
 	
 	Private _ServiceCode As String
@@ -35404,6 +35086,338 @@ Partial Public Class usp_GetTblRunsResult
 			If ((Me._InactiveRun1 = value)  _
 						= false) Then
 				Me._InactiveRun1 = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetSitesAndCustomerServicesResult
+	
+	Private _CustomerServiceID As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _ID As Integer
+	
+	Private _CSid As System.Nullable(Of Integer)
+	
+	Private _CId As System.Nullable(Of Integer)
+	
+	Private _ServiceFrequencyCode As System.Nullable(Of Short)
+	
+	Private _ServiceUnits As System.Nullable(Of Single)
+	
+	Private _ServicePrice As System.Nullable(Of Single)
+	
+	Private _PerAnnumCharge As System.Nullable(Of Single)
+	
+	Private _ServiceRun As System.Nullable(Of Short)
+	
+	Private _ServiceComments As String
+	
+	Private _UnitsHaveMoreThanOneRun As Boolean
+	
+	Private _ServiceFrequency1 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency2 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency3 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency4 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency5 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency6 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency7 As System.Nullable(Of Short)
+	
+	Private _ServiceFrequency8 As System.Nullable(Of Short)
+	
+	Private _ServiceSortOrderCode As String
+	
+	Private _ServiceRun1 As System.Nullable(Of Short)
+	
+	Private _SiteCeaseDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerServiceID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property CustomerServiceID() As System.Guid
+		Get
+			Return Me._CustomerServiceID
+		End Get
+		Set
+			If ((Me._CustomerServiceID = value)  _
+						= false) Then
+				Me._CustomerServiceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me._ApplicationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", DbType:="Int NOT NULL")>  _
+	Public Property ID() As Integer
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me._ID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CSid", DbType:="Int")>  _
+	Public Property CSid() As System.Nullable(Of Integer)
+		Get
+			Return Me._CSid
+		End Get
+		Set
+			If (Me._CSid.Equals(value) = false) Then
+				Me._CSid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CId", DbType:="Int")>  _
+	Public Property CId() As System.Nullable(Of Integer)
+		Get
+			Return Me._CId
+		End Get
+		Set
+			If (Me._CId.Equals(value) = false) Then
+				Me._CId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequencyCode", DbType:="SmallInt")>  _
+	Public Property ServiceFrequencyCode() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequencyCode
+		End Get
+		Set
+			If (Me._ServiceFrequencyCode.Equals(value) = false) Then
+				Me._ServiceFrequencyCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceUnits", DbType:="Real")>  _
+	Public Property ServiceUnits() As System.Nullable(Of Single)
+		Get
+			Return Me._ServiceUnits
+		End Get
+		Set
+			If (Me._ServiceUnits.Equals(value) = false) Then
+				Me._ServiceUnits = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServicePrice", DbType:="Real")>  _
+	Public Property ServicePrice() As System.Nullable(Of Single)
+		Get
+			Return Me._ServicePrice
+		End Get
+		Set
+			If (Me._ServicePrice.Equals(value) = false) Then
+				Me._ServicePrice = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PerAnnumCharge", DbType:="Real")>  _
+	Public Property PerAnnumCharge() As System.Nullable(Of Single)
+		Get
+			Return Me._PerAnnumCharge
+		End Get
+		Set
+			If (Me._PerAnnumCharge.Equals(value) = false) Then
+				Me._PerAnnumCharge = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRun", DbType:="SmallInt")>  _
+	Public Property ServiceRun() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceRun
+		End Get
+		Set
+			If (Me._ServiceRun.Equals(value) = false) Then
+				Me._ServiceRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceComments", DbType:="NVarChar(MAX)")>  _
+	Public Property ServiceComments() As String
+		Get
+			Return Me._ServiceComments
+		End Get
+		Set
+			If (String.Equals(Me._ServiceComments, value) = false) Then
+				Me._ServiceComments = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitsHaveMoreThanOneRun", DbType:="Bit NOT NULL")>  _
+	Public Property UnitsHaveMoreThanOneRun() As Boolean
+		Get
+			Return Me._UnitsHaveMoreThanOneRun
+		End Get
+		Set
+			If ((Me._UnitsHaveMoreThanOneRun = value)  _
+						= false) Then
+				Me._UnitsHaveMoreThanOneRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency1", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency1() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency1
+		End Get
+		Set
+			If (Me._ServiceFrequency1.Equals(value) = false) Then
+				Me._ServiceFrequency1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency2", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency2() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency2
+		End Get
+		Set
+			If (Me._ServiceFrequency2.Equals(value) = false) Then
+				Me._ServiceFrequency2 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency3", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency3() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency3
+		End Get
+		Set
+			If (Me._ServiceFrequency3.Equals(value) = false) Then
+				Me._ServiceFrequency3 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency4", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency4() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency4
+		End Get
+		Set
+			If (Me._ServiceFrequency4.Equals(value) = false) Then
+				Me._ServiceFrequency4 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency5", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency5() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency5
+		End Get
+		Set
+			If (Me._ServiceFrequency5.Equals(value) = false) Then
+				Me._ServiceFrequency5 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency6", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency6() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency6
+		End Get
+		Set
+			If (Me._ServiceFrequency6.Equals(value) = false) Then
+				Me._ServiceFrequency6 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency7", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency7() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency7
+		End Get
+		Set
+			If (Me._ServiceFrequency7.Equals(value) = false) Then
+				Me._ServiceFrequency7 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceFrequency8", DbType:="SmallInt")>  _
+	Public Property ServiceFrequency8() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceFrequency8
+		End Get
+		Set
+			If (Me._ServiceFrequency8.Equals(value) = false) Then
+				Me._ServiceFrequency8 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceSortOrderCode", DbType:="NVarChar(12)")>  _
+	Public Property ServiceSortOrderCode() As String
+		Get
+			Return Me._ServiceSortOrderCode
+		End Get
+		Set
+			If (String.Equals(Me._ServiceSortOrderCode, value) = false) Then
+				Me._ServiceSortOrderCode = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ServiceRun1", DbType:="SmallInt")>  _
+	Public Property ServiceRun1() As System.Nullable(Of Short)
+		Get
+			Return Me._ServiceRun1
+		End Get
+		Set
+			If (Me._ServiceRun1.Equals(value) = false) Then
+				Me._ServiceRun1 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SiteCeaseDate", DbType:="Date")>  _
+	Public Property SiteCeaseDate() As System.Nullable(Of Date)
+		Get
+			Return Me._SiteCeaseDate
+		End Get
+		Set
+			If (Me._SiteCeaseDate.Equals(value) = false) Then
+				Me._SiteCeaseDate = value
 			End If
 		End Set
 	End Property
