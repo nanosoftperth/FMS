@@ -876,21 +876,6 @@
       <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblzGenerateRunSheets" Member="tblzGenerateRunSheets">
-    <Type Name="tblzGenerateRunSheet">
-      <Column Name="RunSheetId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RunNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunDriver" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ServiceComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="SortOrder" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CUST" Member="CUSTs">
     <Type Name="CUST">
       <Column Name="ID" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -1349,6 +1334,22 @@
       <Column Name="ServiceFrequency7" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="ServiceFrequency8" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="ServiceSortOrderCode" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblzGenerateRunSheets" Member="tblzGenerateRunSheets">
+    <Type Name="tblzGenerateRunSheet">
+      <Column Name="RunSheetId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RunNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDriver" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServiceComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
