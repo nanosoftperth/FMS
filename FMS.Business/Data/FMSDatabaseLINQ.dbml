@@ -1196,23 +1196,6 @@
       <Column Name="CeaseReasonDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblRuns" Member="tblRuns">
-    <Type Name="tblRun">
-      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblPreviousSuppliers" Member="tblPreviousSuppliers">
     <Type Name="tblPreviousSupplier">
       <Column Name="PreviousSupplierID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1350,6 +1333,24 @@
       <Column Name="ServiceComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="SortOrder" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRuns" Member="tblRuns">
+    <Type Name="tblRun">
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
