@@ -11,17 +11,41 @@
     <title></title>
         <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
+             function AdjustWindowHeightAndWidth() {
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 75;
+                 var windowWidth = $(window).width() - $('.nav-side-menu').width() - 75;
+                 $('#frmContentStandardAudit').css({
+                     "height": windowHeight,
+                     "width": windowWidth
+                 });
+                 $('#frmContentAuditContract').css({
+                     "height": windowHeight,
+                     "width": windowWidth
+                 });
+                 $('#frmContentAuditOfSiteDetails').css({
+                     "height": windowHeight,
+                     "width": windowWidth
+                 });
+             }
+
+             $(window).resize(function () {
+                 AdjustWindowHeightAndWidth();
+             })
+
              function StandardAudit() {
+                 AdjustWindowHeightAndWidth();
                  LoadingPanel.Show();
                  $("#frmContentStandardAudit").attr("src", "../ReportContentPage.aspx?Report=StandardAuditReport");
              }
 
              function AuditContract() {
+                 AdjustWindowHeightAndWidth();
                  LoadingPanel.Show();
                  $("#frmContentAuditContract").attr("src", "../ReportContentPage.aspx?Report=AuditContractReport");
              }
 
              function AuditOfSiteDetails() {
+                 AdjustWindowHeightAndWidth();
                  LoadingPanel.Show();
                  $("#frmContentAuditOfSiteDetails").attr("src", "../ReportContentPage.aspx?Report=AuditOfSiteDetailChangesReport");
              }

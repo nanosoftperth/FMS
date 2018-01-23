@@ -12,12 +12,15 @@
         <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
              function AdjustWindowHeightAndWidth() {
-                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 75;
+                 var windowWidth = $(window).width() - $('.nav-side-menu').width() - 75;
                  $('#frmContentGainsAndLossesPAReport').css({
-                     "height": windowHeight
+                     "height": windowHeight,
+                     "width": windowWidth
                  });
                  $('#frmContentGainsAndLossesSummaryReport').css({
-                     "height": windowHeight
+                     "height": windowHeight,
+                     "width": windowWidth
                  });
              }
 

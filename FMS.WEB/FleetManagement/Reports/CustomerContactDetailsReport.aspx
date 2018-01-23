@@ -12,8 +12,10 @@
          <script type="text/javascript">
              function AdjustWindowHeightAndWidth() {
                  var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 var windowWidth = $(window).width() - $('.nav-side-menu').width() - 20;
                  $('#frmContent').css({
-                     "height": windowHeight
+                     "height": windowHeight,
+                     "width": windowWidth
                  })
              }
 
