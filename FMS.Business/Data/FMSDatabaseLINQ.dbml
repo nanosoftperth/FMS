@@ -1604,25 +1604,6 @@
       <Column Name="RunNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetTblRuns" Method="usp_GetTblRuns">
-    <Parameter Name="SpecificRun" Parameter="specificRun" Type="System.String" DbType="VarChar(10)" />
-    <ElementType Name="usp_GetTblRunsResult">
-      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(33)" CanBeNull="true" />
-      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="InactiveRun1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetSpecificDates" Method="usp_GetSpecificDates">
     <Parameter Name="SqlDate" Parameter="sqlDate" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="Rid" Parameter="rid" Type="System.String" DbType="VarChar(10)" />
@@ -2373,6 +2354,27 @@
       <Column Name="RunCompletionID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="RunDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetTblRuns" Method="usp_GetTblRuns">
+    <Parameter Name="SpecificRun" Parameter="specificRun" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetTblRunsResult">
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InactiveRun1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

@@ -12,6 +12,7 @@
         Public Property ProductId As System.Nullable(Of Integer)
         Public Property ServiceComments As String
         Public Property SortOrder As String
+        Public Property ApplicationID As System.Nullable(Of System.Guid)
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(GenerateRunSheets As DataObjects.tblzGenerateRunSheets)
@@ -28,6 +29,7 @@
                 .ProductId = GenerateRunSheets.ProductId
                 .ServiceComments = GenerateRunSheets.ServiceComments
                 .SortOrder = GenerateRunSheets.SortOrder
+                .ApplicationID = ThisSession.ApplicationID
             End With
             SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets.InsertOnSubmit(objGenerateRunSheet)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
@@ -50,13 +52,14 @@
         End Sub
         Public Shared Sub Delete(GenerateRunSheets As DataObjects.tblzGenerateRunSheets)
             Dim objGenerateRunSheets As FMS.Business.tblzGenerateRunSheet = (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
-                                                         Where c.RunSheetId.Equals(GenerateRunSheets.RunSheetId)).SingleOrDefault
+                                                                             Where c.RunSheetId.Equals(GenerateRunSheets.RunSheetId) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets.DeleteOnSubmit(objGenerateRunSheets)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub DeleteAllGenerateRunSheets()
             Dim objGenerateRunSheets = (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
-                            Select c).ToList()
+                                        Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                        Select c).ToList()
             SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets.DeleteAllOnSubmit(objGenerateRunSheets)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
@@ -64,7 +67,8 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblzGenerateRunSheets)
             Dim objGenerateRunSheets = (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
-                            Select New DataObjects.tblzGenerateRunSheets(c)).ToList
+                                        Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                        Select New DataObjects.tblzGenerateRunSheets(c)).ToList
             Return objGenerateRunSheets
         End Function
 #End Region
@@ -85,6 +89,7 @@
                 Me.ProductId = .ProductId
                 Me.ServiceComments = .ServiceComments
                 Me.SortOrder = .SortOrder
+                Me.ApplicationID = .ApplicationID
             End With
         End Sub
 #End Region

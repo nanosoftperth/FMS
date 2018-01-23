@@ -1379,12 +1379,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGenerateRunSheetsDetailSubResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetTblRuns")>  _
-	Public Function usp_GetTblRuns(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="SpecificRun", DbType:="VarChar(10)")> ByVal specificRun As String) As ISingleResult(Of usp_GetTblRunsResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), specificRun)
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetTblRunsResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetSpecificDates")>  _
 	Public Function usp_GetSpecificDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="SqlDate", DbType:="VarChar(20)")> ByVal sqlDate As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Rid", DbType:="VarChar(10)")> ByVal rid As String) As ISingleResult(Of usp_GetSpecificDatesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), sqlDate, rid)
@@ -1653,6 +1647,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetNotCompletedRun() As ISingleResult(Of usp_GetNotCompletedRunResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetNotCompletedRunResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetTblRuns")>  _
+	Public Function usp_GetTblRuns(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="SpecificRun", DbType:="VarChar(10)")> ByVal specificRun As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetTblRunsResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), specificRun, appID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetTblRunsResult))
 	End Function
 End Class
 
@@ -27527,220 +27527,6 @@ Partial Public Class usp_GetGenerateRunSheetsDetailSubResult
 	End Property
 End Class
 
-Partial Public Class usp_GetTblRunsResult
-	
-	Private _RunID As System.Guid
-	
-	Private _Rid As Integer
-	
-	Private _RunNUmber As System.Nullable(Of Integer)
-	
-	Private _RunDescription As String
-	
-	Private _RunDriver As System.Nullable(Of Short)
-	
-	Private _MondayRun As Boolean
-	
-	Private _TuesdayRun As Boolean
-	
-	Private _WednesdayRun As Boolean
-	
-	Private _ThursdayRun As Boolean
-	
-	Private _FridayRun As Boolean
-	
-	Private _SaturdayRun As Boolean
-	
-	Private _SundayRun As Boolean
-	
-	Private _InactiveRun As Boolean
-	
-	Private _InactiveRun1 As Boolean
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL")>  _
-	Public Property RunID() As System.Guid
-		Get
-			Return Me._RunID
-		End Get
-		Set
-			If ((Me._RunID = value)  _
-						= false) Then
-				Me._RunID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int NOT NULL")>  _
-	Public Property Rid() As Integer
-		Get
-			Return Me._Rid
-		End Get
-		Set
-			If ((Me._Rid = value)  _
-						= false) Then
-				Me._Rid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunNUmber", DbType:="Int")>  _
-	Public Property RunNUmber() As System.Nullable(Of Integer)
-		Get
-			Return Me._RunNUmber
-		End Get
-		Set
-			If (Me._RunNUmber.Equals(value) = false) Then
-				Me._RunNUmber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(33)")>  _
-	Public Property RunDescription() As String
-		Get
-			Return Me._RunDescription
-		End Get
-		Set
-			If (String.Equals(Me._RunDescription, value) = false) Then
-				Me._RunDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDriver", DbType:="SmallInt")>  _
-	Public Property RunDriver() As System.Nullable(Of Short)
-		Get
-			Return Me._RunDriver
-		End Get
-		Set
-			If (Me._RunDriver.Equals(value) = false) Then
-				Me._RunDriver = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MondayRun", DbType:="Bit NOT NULL")>  _
-	Public Property MondayRun() As Boolean
-		Get
-			Return Me._MondayRun
-		End Get
-		Set
-			If ((Me._MondayRun = value)  _
-						= false) Then
-				Me._MondayRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TuesdayRun", DbType:="Bit NOT NULL")>  _
-	Public Property TuesdayRun() As Boolean
-		Get
-			Return Me._TuesdayRun
-		End Get
-		Set
-			If ((Me._TuesdayRun = value)  _
-						= false) Then
-				Me._TuesdayRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WednesdayRun", DbType:="Bit NOT NULL")>  _
-	Public Property WednesdayRun() As Boolean
-		Get
-			Return Me._WednesdayRun
-		End Get
-		Set
-			If ((Me._WednesdayRun = value)  _
-						= false) Then
-				Me._WednesdayRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ThursdayRun", DbType:="Bit NOT NULL")>  _
-	Public Property ThursdayRun() As Boolean
-		Get
-			Return Me._ThursdayRun
-		End Get
-		Set
-			If ((Me._ThursdayRun = value)  _
-						= false) Then
-				Me._ThursdayRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FridayRun", DbType:="Bit NOT NULL")>  _
-	Public Property FridayRun() As Boolean
-		Get
-			Return Me._FridayRun
-		End Get
-		Set
-			If ((Me._FridayRun = value)  _
-						= false) Then
-				Me._FridayRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SaturdayRun", DbType:="Bit NOT NULL")>  _
-	Public Property SaturdayRun() As Boolean
-		Get
-			Return Me._SaturdayRun
-		End Get
-		Set
-			If ((Me._SaturdayRun = value)  _
-						= false) Then
-				Me._SaturdayRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SundayRun", DbType:="Bit NOT NULL")>  _
-	Public Property SundayRun() As Boolean
-		Get
-			Return Me._SundayRun
-		End Get
-		Set
-			If ((Me._SundayRun = value)  _
-						= false) Then
-				Me._SundayRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveRun", DbType:="Bit NOT NULL")>  _
-	Public Property InactiveRun() As Boolean
-		Get
-			Return Me._InactiveRun
-		End Get
-		Set
-			If ((Me._InactiveRun = value)  _
-						= false) Then
-				Me._InactiveRun = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveRun1", DbType:="Bit NOT NULL")>  _
-	Public Property InactiveRun1() As Boolean
-		Get
-			Return Me._InactiveRun1
-		End Get
-		Set
-			If ((Me._InactiveRun1 = value)  _
-						= false) Then
-				Me._InactiveRun1 = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetSpecificDatesResult
 	
 	Private _DRid As Integer
@@ -35391,6 +35177,233 @@ Partial Public Class usp_GetNotCompletedRunResult
 		Set
 			If (Me._RunDate.Equals(value) = false) Then
 				Me._RunDate = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetTblRunsResult
+	
+	Private _RunID As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _Rid As System.Nullable(Of Integer)
+	
+	Private _RunNUmber As System.Nullable(Of Integer)
+	
+	Private _RunDescription As String
+	
+	Private _RunDriver As System.Nullable(Of Short)
+	
+	Private _MondayRun As Boolean
+	
+	Private _TuesdayRun As Boolean
+	
+	Private _WednesdayRun As Boolean
+	
+	Private _ThursdayRun As Boolean
+	
+	Private _FridayRun As Boolean
+	
+	Private _SaturdayRun As Boolean
+	
+	Private _SundayRun As Boolean
+	
+	Private _InactiveRun As Boolean
+	
+	Private _InactiveRun1 As Boolean
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property RunID() As System.Guid
+		Get
+			Return Me._RunID
+		End Get
+		Set
+			If ((Me._RunID = value)  _
+						= false) Then
+				Me._RunID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me._ApplicationID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int")>  _
+	Public Property Rid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If (Me._Rid.Equals(value) = false) Then
+				Me._Rid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunNUmber", DbType:="Int")>  _
+	Public Property RunNUmber() As System.Nullable(Of Integer)
+		Get
+			Return Me._RunNUmber
+		End Get
+		Set
+			If (Me._RunNUmber.Equals(value) = false) Then
+				Me._RunNUmber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(255)")>  _
+	Public Property RunDescription() As String
+		Get
+			Return Me._RunDescription
+		End Get
+		Set
+			If (String.Equals(Me._RunDescription, value) = false) Then
+				Me._RunDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDriver", DbType:="SmallInt")>  _
+	Public Property RunDriver() As System.Nullable(Of Short)
+		Get
+			Return Me._RunDriver
+		End Get
+		Set
+			If (Me._RunDriver.Equals(value) = false) Then
+				Me._RunDriver = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MondayRun", DbType:="Bit NOT NULL")>  _
+	Public Property MondayRun() As Boolean
+		Get
+			Return Me._MondayRun
+		End Get
+		Set
+			If ((Me._MondayRun = value)  _
+						= false) Then
+				Me._MondayRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TuesdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property TuesdayRun() As Boolean
+		Get
+			Return Me._TuesdayRun
+		End Get
+		Set
+			If ((Me._TuesdayRun = value)  _
+						= false) Then
+				Me._TuesdayRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WednesdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property WednesdayRun() As Boolean
+		Get
+			Return Me._WednesdayRun
+		End Get
+		Set
+			If ((Me._WednesdayRun = value)  _
+						= false) Then
+				Me._WednesdayRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ThursdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property ThursdayRun() As Boolean
+		Get
+			Return Me._ThursdayRun
+		End Get
+		Set
+			If ((Me._ThursdayRun = value)  _
+						= false) Then
+				Me._ThursdayRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FridayRun", DbType:="Bit NOT NULL")>  _
+	Public Property FridayRun() As Boolean
+		Get
+			Return Me._FridayRun
+		End Get
+		Set
+			If ((Me._FridayRun = value)  _
+						= false) Then
+				Me._FridayRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SaturdayRun", DbType:="Bit NOT NULL")>  _
+	Public Property SaturdayRun() As Boolean
+		Get
+			Return Me._SaturdayRun
+		End Get
+		Set
+			If ((Me._SaturdayRun = value)  _
+						= false) Then
+				Me._SaturdayRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SundayRun", DbType:="Bit NOT NULL")>  _
+	Public Property SundayRun() As Boolean
+		Get
+			Return Me._SundayRun
+		End Get
+		Set
+			If ((Me._SundayRun = value)  _
+						= false) Then
+				Me._SundayRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveRun", DbType:="Bit NOT NULL")>  _
+	Public Property InactiveRun() As Boolean
+		Get
+			Return Me._InactiveRun
+		End Get
+		Set
+			If ((Me._InactiveRun = value)  _
+						= false) Then
+				Me._InactiveRun = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_InactiveRun1", DbType:="Bit NOT NULL")>  _
+	Public Property InactiveRun1() As Boolean
+		Get
+			Return Me._InactiveRun1
+		End Get
+		Set
+			If ((Me._InactiveRun1 = value)  _
+						= false) Then
+				Me._InactiveRun1 = value
 			End If
 		End Set
 	End Property

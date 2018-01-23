@@ -20,6 +20,7 @@ Public Class GenerateRunSheetsDetail
     Public Property DriverName As String
     Public Property RunDescription As String
     Public Property Notes As String
+    Public Property ApplicationID As System.Nullable(Of System.Guid)
 
     Public SkipThisOne As Boolean = False
     Public strTemp As String

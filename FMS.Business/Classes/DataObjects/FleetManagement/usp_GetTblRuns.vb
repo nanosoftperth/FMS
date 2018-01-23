@@ -18,8 +18,8 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetTblRuns(SpecificRun As String) As List(Of DataObjects.usp_GetTblRuns)
-            Dim objTblRun = (From c In SingletonAccess.FMSDataContextContignous.usp_GetTblRuns(SpecificRun)
-                                          Select New DataObjects.usp_GetTblRuns(c)).ToList
+            Dim objTblRun = (From c In SingletonAccess.FMSDataContextContignous.usp_GetTblRuns(SpecificRun, ThisSession.ApplicationID)
+                             Select New DataObjects.usp_GetTblRuns(c)).ToList
             Return objTblRun
         End Function
 #End Region
