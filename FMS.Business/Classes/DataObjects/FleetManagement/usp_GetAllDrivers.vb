@@ -7,11 +7,10 @@
         Public Property Source As String
 #End Region
 #Region "Get methods"
-
         Public Shared Function GetAllDrivers() As List(Of DataObjects.usp_GetAllDrivers)
             Dim lstGetAllDrivers = (From d In SingletonAccess.FMSDataContextContignous.usp_GetAllDrivers
                                     Order By d.DriverName
-                                 Select New DataObjects.usp_GetAllDrivers(d)).ToList()
+                                    Select New DataObjects.usp_GetAllDrivers(d)).ToList()
             Return lstGetAllDrivers
         End Function
 

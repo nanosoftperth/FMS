@@ -1648,6 +1648,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), customerName, appID)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetMYOBCustomerInvoiceReportResult))
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetNotCompletedRun")>  _
+	Public Function usp_GetNotCompletedRun() As ISingleResult(Of usp_GetNotCompletedRunResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetNotCompletedRunResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -35285,6 +35291,84 @@ Partial Public Class usp_GetMYOBCustomerInvoiceReportResult
 		Set
 			If (String.Equals(Me._SiteName, value) = false) Then
 				Me._SiteName = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetNotCompletedRunResult
+	
+	Private _RunID As System.Guid
+	
+	Private _RunName As String
+	
+	Private _RunCompletionID As System.Nullable(Of System.Guid)
+	
+	Private _DriverID As System.Nullable(Of System.Guid)
+	
+	Private _RunDate As System.Nullable(Of Date)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property RunID() As System.Guid
+		Get
+			Return Me._RunID
+		End Get
+		Set
+			If ((Me._RunID = value)  _
+						= false) Then
+				Me._RunID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunName", DbType:="NVarChar(50)")>  _
+	Public Property RunName() As String
+		Get
+			Return Me._RunName
+		End Get
+		Set
+			If (String.Equals(Me._RunName, value) = false) Then
+				Me._RunName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunCompletionID", DbType:="UniqueIdentifier")>  _
+	Public Property RunCompletionID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._RunCompletionID
+		End Get
+		Set
+			If (Me._RunCompletionID.Equals(value) = false) Then
+				Me._RunCompletionID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverID", DbType:="UniqueIdentifier")>  _
+	Public Property DriverID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._DriverID
+		End Get
+		Set
+			If (Me._DriverID.Equals(value) = false) Then
+				Me._DriverID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDate", DbType:="DateTime")>  _
+	Public Property RunDate() As System.Nullable(Of Date)
+		Get
+			Return Me._RunDate
+		End Get
+		Set
+			If (Me._RunDate.Equals(value) = false) Then
+				Me._RunDate = value
 			End If
 		End Set
 	End Property

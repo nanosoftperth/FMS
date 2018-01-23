@@ -59,49 +59,13 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents dteEnd As Global.DevExpress.Web.ASPxDateEdit
     
     '''<summary>
-    '''Button1 control.
+    '''btnLoad control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''imgFilter control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgFilter As Global.DevExpress.Web.ASPxImage
-    
-    '''<summary>
-    '''lblFilter control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFilter As Global.DevExpress.Web.ASPxLabel
-    
-    '''<summary>
-    '''imgSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgSearch As Global.DevExpress.Web.ASPxImage
-    
-    '''<summary>
-    '''ASPxLabel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxLabel1 As Global.DevExpress.Web.ASPxLabel
+    Protected WithEvents btnLoad As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''gvServiceRun control.
@@ -113,11 +77,47 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents gvServiceRun As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
-    '''odsRunDates control.
+    '''puUnassignedRun control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsRunDates As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents puUnassignedRun As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''lblSelectRun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSelectRun As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''cboRun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboRun As Global.DevExpress.Web.ASPxComboBox
+    
+    '''<summary>
+    '''btnCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancel As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''gvRun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvRun As Global.DevExpress.Web.ASPxGridView
 End Class

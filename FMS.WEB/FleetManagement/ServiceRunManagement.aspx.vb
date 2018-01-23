@@ -37,6 +37,45 @@ Public Class ServiceRunManagement
 
     End Sub
 
+    Protected Sub btnLoad_Click(sender As Object, e As EventArgs)
+        Dim blnValidate As Boolean = False
+
+        If (IsDate(Me.dteStart.Value) = True) Then
+            If (IsDate(Me.dteEnd.Value) = True) Then
+                If (Me.dteStart.Value <= Me.dteEnd.Value) Then
+                    blnValidate = True
+                Else
+                    ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date date should be earlier date or same date of end date.');", True)
+                End If
+            Else
+                ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('End date date should be a valid date.');", True)
+                blnValidate = False
+            End If
+        Else
+            ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date should be a valid date.');", True)
+        End If
+
+        If blnValidate = True Then
+            PopulateServiceRunGrid()
+        End If
+
+
+    End Sub
+
+    Protected Sub gvServiceRun_HtmlDataCellPrepared(sender As Object, e As ASPxGridViewTableDataCellEventArgs)
+
+        Dim htmlId As String = String.Format("cell_{0}_{1}", e.VisibleIndex, e.DataColumn.FieldName)
+        Dim cellClickHandler As String = String.Format("onCellClick(""{0}"", ""{1}"", ""{2}"")", e.DataColumn.FieldName, e.GetValue(e.DataColumn.FieldName), htmlId)
+        e.Cell.Attributes.Add("onclick", cellClickHandler)
+        e.Cell.Attributes.Add("id", htmlId)
+
+    End Sub
+
+    Protected Sub btnCancel_Click(sender As Object, e As EventArgs)
+        puUnassignedRun.ShowOnPageLoad = False
+    End Sub
+
+
 #End Region
 
 #Region "Methods and Functions for Service Run"
@@ -47,6 +86,9 @@ Public Class ServiceRunManagement
 
         If (dtService.Columns.Count > 0) Then
 
+            '--- Enable search panel
+            Me.gvServiceRun.SettingsSearchPanel.Visible = True
+
             '--- Create Grid Columns
             Me.gvServiceRun.Columns.Clear()
 
@@ -54,23 +96,51 @@ Public Class ServiceRunManagement
             For Each dataColumn As DataColumn In table.Columns
 
                 Dim dtype = dataColumn.DataType.FullName
+                Dim blnTech As Boolean = False
+                Dim blnDrvr As Boolean = False
 
                 If dataColumn.DataType.FullName = "System.Int32" Or dataColumn.DataType.FullName = "System.String" Then
+
+                    Dim techNdx = dataColumn.ColumnName.IndexOf("TechID")
+                    If (techNdx > -1) Then
+                        blnTech = True
+                    End If
+
+                    Dim drvNdx = dataColumn.ColumnName.IndexOf("DriverID")
+                    If (drvNdx > -1) Then
+                        blnDrvr = True
+                    End If
+
                     Dim column As New GridViewDataTextColumn()
                     column.FieldName = dataColumn.ColumnName
 
                     'set additional column properties
-                    column.Caption = dataColumn.ColumnName
+                    If dataColumn.ColumnName = "RunDate" Then
+                        column.Caption = " "
+                    Else
+                        column.Caption = dataColumn.ColumnName
+                    End If
+
+
+                    If (blnTech = True Or blnDrvr = True Or dataColumn.ColumnName = "ID") Then
+                        column.Visible = False
+                    End If
+
+                    'column.HeaderStyle.Border.BorderStyle = WebControls.BorderStyle.None
+
                     Me.gvServiceRun.Columns.Add(column)
 
                 End If
 
                 If dataColumn.DataType.FullName = "System.DateTime" Then
+
                     Dim column As New GridViewDataDateColumn()
                     column.FieldName = dataColumn.ColumnName
 
                     'set additional column properties
                     column.Caption = dataColumn.ColumnName
+                    'column.HeaderStyle.Border.BorderStyle = WebControls.BorderStyle.None
+
                     Me.gvServiceRun.Columns.Add(column)
 
                 End If
@@ -90,6 +160,11 @@ Public Class ServiceRunManagement
 
             Dim row As DataRow
             Dim id As Integer = 1
+            Dim currDvrID = 0
+            Dim prevDvrID = 0
+            Dim dayname As String = ""
+            Dim dvrID As Integer = 0
+            Dim objRun As New List(Of FMS.Business.DataObjects.usp_GetServiceRunDates)
 
             For Each dte In dates
 
@@ -106,50 +181,71 @@ Public Class ServiceRunManagement
 
                         Dim drvNdx = colName.IndexOf("DriverID")
                         If (drvNdx > -1) Then
-                            row(colName) = 1
+
+                            dayname = dte.RunDate.ToString("dddd")
+                            Dim dNdx = colName.IndexOf("_") + 1
+                            dvrID = Convert.ToInt32(colName.Substring(dNdx, colName.Length - dNdx))
+
+                            currDvrID = dvrID
+
+                            row(colName) = dvrID
+
                         Else
 
-                            Select Case colName.ToUpper()
-                                Case "ID"
-                                    row(colName) = id
-                                Case "RUNDATE"
-                                    row(colName) = dte.RunDate.ToString("dd MMM")
+                            If (colName.ToUpper() = currDvrID.ToString().ToUpper()) Then
 
-                            End Select
+                                Select Case dayname.ToUpper()
+                                    Case "MONDAY"
+                                        Dim run = listSrvRun.Where(Function(r) r.MondayRun = True And r.Did = currDvrID).FirstOrDefault()
+                                        row(colName) = "Run " + run.RunNUmber.ToString()
 
+                                    Case "TUESDAY"
+                                        Dim run = listSrvRun.Where(Function(r) r.TuesdayRun = True And r.Did = currDvrID).FirstOrDefault()
+                                        row(colName) = "Run " + run.RunNUmber.ToString()
+
+                                    Case "WEDNESDAY"
+                                        Dim run = listSrvRun.Where(Function(r) r.WednesdayRun = True And r.Did = currDvrID).FirstOrDefault()
+                                        row(colName) = "Run " + run.RunNUmber.ToString()
+
+                                    Case "THURSDAY"
+                                        Dim run = listSrvRun.Where(Function(r) r.ThursdayRun = True And r.Did = currDvrID).FirstOrDefault()
+                                        row(colName) = "Run " + run.RunNUmber.ToString()
+
+                                    Case "FRIDAY"
+                                        Dim run = listSrvRun.Where(Function(r) r.FridayRun = True And r.Did = currDvrID).FirstOrDefault()
+                                        row(colName) = "Run " + run.RunNUmber.ToString()
+
+                                    Case "SATURDAY"
+                                        Dim run = listSrvRun.Where(Function(r) r.SaturdayRun = True And r.Did = currDvrID).FirstOrDefault()
+                                        row(colName) = "Run " + run.RunNUmber.ToString()
+
+                                    Case "SUNDAY"
+                                        Dim run = listSrvRun.Where(Function(r) r.SundayRun = True And r.Did = currDvrID).FirstOrDefault()
+                                        row(colName) = "Run " + run.RunNUmber.ToString()
+
+
+                                End Select
+
+                            Else
+
+                                Select Case colName.ToUpper()
+                                    Case "ID"
+                                        row(colName) = id
+                                    Case "RUNDATE"
+                                        row(colName) = dte.RunDate.ToString("dd MMM")
+
+                                End Select
+
+
+                            End If
 
                         End If
 
                     End If
 
-
-
-
-
-                    'If (colName = "id") Then
-                    '    row(colName) = id
-                    'End If
-                    'If (colName = "RunDate") Then
-                    '    row(colName) = dte.RunDate.ToString("dd MMM")
-                    'End If
-
-                    'Dim techID = colName.Substring(1, 6)
-
-                    'Dim obj As Object = ""
-
                 Next
 
-                'row("id") = id
-                'row("RunDate") = dte.RunDate.ToString("dd MMM")
-
-
-
-
-
                 dtService.Rows.Add(row)
-
-
-
 
                 '--- increament ID
                 id = id + 1
@@ -339,73 +435,13 @@ Public Class ServiceRunManagement
 
     End Class
 
+
+
+
 #End Region
 
 
 #Region "Test Code/Garbage Codes"
-
-
-
-
-    Public Shared Function CreateClass(ByVal className As String, ByVal properties As Dictionary(Of String, Type)) As Type
-
-        Dim myDomain As AppDomain = AppDomain.CurrentDomain
-        Dim myAsmName As New AssemblyName("MyAssembly")
-        Dim myAssembly As AssemblyBuilder = myDomain.DefineDynamicAssembly(myAsmName, AssemblyBuilderAccess.Run)
-
-        Dim myModule As ModuleBuilder = myAssembly.DefineDynamicModule("MyModule")
-
-        Dim myType As TypeBuilder = myModule.DefineType(className, TypeAttributes.Public)
-
-        myType.DefineDefaultConstructor(MethodAttributes.Public)
-
-        For Each o In properties
-
-            Dim prop As PropertyBuilder = myType.DefineProperty(o.Key, PropertyAttributes.HasDefault, o.Value, Nothing)
-
-            Dim field As FieldBuilder = myType.DefineField("_" + o.Key, GetType(Integer), FieldAttributes.[Private])
-
-            Dim getter As MethodBuilder = myType.DefineMethod("get_" + o.Key, MethodAttributes.[Public] Or MethodAttributes.SpecialName Or MethodAttributes.HideBySig, o.Value, Type.EmptyTypes)
-            Dim getterIL As ILGenerator = getter.GetILGenerator()
-            getterIL.Emit(OpCodes.Ldarg_0)
-            getterIL.Emit(OpCodes.Ldfld, field)
-            getterIL.Emit(OpCodes.Ret)
-
-            Dim setter As MethodBuilder = myType.DefineMethod("set_" + o.Key, MethodAttributes.[Public] Or MethodAttributes.SpecialName Or MethodAttributes.HideBySig, Nothing, New Type() {o.Value})
-            Dim setterIL As ILGenerator = setter.GetILGenerator()
-            setterIL.Emit(OpCodes.Ldarg_0)
-            setterIL.Emit(OpCodes.Ldarg_1)
-            setterIL.Emit(OpCodes.Stfld, field)
-            setterIL.Emit(OpCodes.Ret)
-
-            prop.SetGetMethod(getter)
-            prop.SetSetMethod(setter)
-
-        Next
-
-        Return myType.CreateType()
-
-    End Function
-
-    Protected Sub Button1_Click(sender As Object, e As EventArgs)
-
-
-        PopulateServiceRunGrid()
-
-        'Dim dateko As New Dictionary(Of String, Type)
-
-        'Dim cls = CreateClass("sample", dateko)
-
-        'Dim obj As New cls
-
-        'Dim o As Object = ""
-
-
-
-
-    End Sub
-
-
 
 #End Region
 
