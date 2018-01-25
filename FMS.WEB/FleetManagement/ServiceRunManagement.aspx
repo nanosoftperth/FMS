@@ -9,7 +9,7 @@
     <link href="../Content/grid/bootstrap.css" rel="stylesheet" />
     <link href="../Content/grid/grid.css" rel="stylesheet" />
     <style>
-         .ServiceRunHeader td
+        .ServiceRunHeader td
         {
             border: none !important;
 
@@ -26,24 +26,8 @@
     </style>
 
     <script type="text/javascript">
-        var FocusedCell;
-        function onCellClick(columnName, cellValue, htmlId) {
-            var strVal = cellValue.substr(0, 3).toUpperCase();
-            if (strVal == 'RUN')
-            {
-                puUnassignedRun.Show();
-            };
-            
-            //alert(cellValue);
-            //if (FocusedCell != null) {
-            //    FocusedCell.style.color = '';
-            //    FocusedCell.style.border = '';
-            //}
-            //FocusedCell = document.getElementById(htmlId);
-            //FocusedCell.style.color = 'Red';
-            //FocusedCell.style.border = '1px solid Red';
-            //clientLabelField.SetText(columnName);
-            //clientTextBoxCellValue.SetText(cellValue);
+        function ShowPopup() {
+            alert('Show popup');
         }
     </script>
 
