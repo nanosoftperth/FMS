@@ -8,6 +8,7 @@
         Public Property DriversLicenseNo As String
         Public Property DriversLicenseExpiryDate As System.Nullable(Of Date)
         Public Property Inactive As Boolean
+        Public Property Technician As Boolean
 #End Region
 
 #Region "Constructors"
@@ -23,6 +24,7 @@
                 Me.DriversLicenseExpiryDate = .DriversLicenseExpiryDate
                 Me.DriversLicenseNo = .DriversLicenseNo
                 Me.Inactive = .Inactive
+                Me.Technician = .Technician
             End With
         End Sub
 #End Region
@@ -38,6 +40,7 @@
                 .DriversLicenseNo = dvr.DriversLicenseNo
                 .DriversLicenseExpiryDate = dvr.DriversLicenseExpiryDate
                 .Inactive = dvr.Inactive
+                .Technician = dvr.Technician
 
             End With
             SingletonAccess.FMSDataContextContignous.tblDrivers.InsertOnSubmit(obj)
@@ -53,6 +56,7 @@
                 .DriversLicenseNo = dvr.DriversLicenseNo
                 .DriversLicenseExpiryDate = dvr.DriversLicenseExpiryDate
                 .Inactive = dvr.Inactive
+                .Technician = dvr.Technician
 
             End With
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
