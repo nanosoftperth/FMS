@@ -460,16 +460,19 @@ Public Class ServiceRunManagement
         Dim Technicians As New List(Of Technician)
         'Dim strTech As String = "Technician"
 
-        Dim listrun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(StartDate, EndDate)
-        Dim listTechRuns = listrun.Where(Function(r) r.RunDescription.Substring(0, 2) = "WR").ToList()
+        'Dim listrun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(StartDate, EndDate)
+        'Dim listTechRuns = listrun.Where(Function(r) r.RunDescription.Substring(0, 2) = "WR").ToList()
 
-        If (listTechRuns.Count > 0) Then
+        Dim techs = FMS.Business.DataObjects.tblDrivers.GetAll().Where(Function(d) d.Technician = 1 _
+                                                                                  And d.Inactive = 0)
 
-            For Each run In listTechRuns
+        If (techs.Count > 0) Then
+
+            For Each t In techs
                 Dim Tech As New Technician
 
-                Tech.TechID = "TechID_" + run.Did.ToString()
-                Tech.Techname = "Tech_" + run.DriverName
+                Tech.TechID = "TechID_" + t.Did.ToString()
+                Tech.Techname = "Tech_" + t.DriverName
 
                 Technicians.Add(Tech)
 

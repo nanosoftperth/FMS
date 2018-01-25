@@ -8,7 +8,7 @@
         Public Property DriversLicenseNo As String
         Public Property DriversLicenseExpiryDate As System.Nullable(Of Date)
         Public Property Inactive As Boolean
-        Public Property Technician As Boolean
+        Public Property Technician As System.Nullable(Of Boolean)
 #End Region
 
 #Region "Constructors"
