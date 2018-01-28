@@ -2227,6 +2227,149 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ServiceRunManagement._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._carTabPage">
+<summary>
+carTabPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._ccServRun">
+<summary>
+ccServRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._dteStart">
+<summary>
+dteStart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._dteEnd">
+<summary>
+dteEnd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnLoad">
+<summary>
+btnLoad control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._gvServiceRun">
+<summary>
+gvServiceRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._gvRun">
+<summary>
+gvRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._puUnassignedRun">
+<summary>
+puUnassignedRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._lblSelectRun">
+<summary>
+lblSelectRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._cboRun">
+<summary>
+cboRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._puCompleteRun">
+<summary>
+puCompleteRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._cbxCompleteRun">
+<summary>
+cbxCompleteRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnCancelComplte">
+<summary>
+btnCancelComplte control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:FMS.WEB.ServiceRunManagement.GetTechnician(System.DateTime,System.DateTime)">
+ <summary>
+ This is just for testing
+ the content of the function will be change as soon as we know how to get
+ the technicians
+ </summary>
+ <returns></returns>
+</member>
 <member name="F:FMS.WEB.Services._form1">
 <summary>
 form1 control.

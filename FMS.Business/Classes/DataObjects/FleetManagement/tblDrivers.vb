@@ -97,6 +97,18 @@
                               Select New DataObjects.tblDrivers(d)).ToList
             Return getDrivers
         End Function
+
+        Public Shared Function GetTechnicianPerApplicationMinusInActive() As List(Of DataObjects.tblDrivers)
+            Dim appID = ThisSession.ApplicationID
+
+            Dim getDrivers = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
+                              Where d.ApplicationId = appID _
+                                  And d.Technician = True _
+                                  And d.Inactive = False
+                              Order By d.DriverName
+                              Select New DataObjects.tblDrivers(d)).ToList
+            Return getDrivers
+        End Function
 #End Region
 
     End Class

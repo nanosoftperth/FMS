@@ -19,6 +19,7 @@
             </tr>
             <tr>
                 <td>
+                    <br />
                     <dx:ASPxButton ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click"></dx:ASPxButton>
                 </td>                
             </tr>

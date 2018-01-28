@@ -9,11 +9,14 @@
         <script type="text/javascript">
             function AdjustWindowHeightAndWidth() {
                 var windowHeight = $(window).height() - $(".headerTop").height() - 75;
+                var windowWidth = $(window).width() - $('.nav-side-menu').width() - 75;
                 $('#frmContentRunSheetDetail').css({
-                    "height": windowHeight
+                    "height": windowHeight,
+                    "width": windowWidth
                 });
                 $('#frmContentRunSheetSummary').css({
-                    "height": windowHeight
+                    "height": windowHeight,
+                    "width": windowWidth
                 });
             }
 

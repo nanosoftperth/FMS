@@ -17,8 +17,17 @@
         </div>
         <br />
         <dx:ASPxGridView ID="Grid" runat="server" AutoGenerateColumns="false" 
-            KeyFieldName="usersecID" DataSourceID="odsUsers" Width="100%" OnRowUpdating="Grid_RowUpdating">
+            KeyFieldName="usersecID" DataSourceID="odsUsers" Width="100%" OnRowUpdating="Grid_RowUpdating"
+            OnStartRowEditing="Grid_StartRowEditing" OnInitNewRow="Grid_InitNewRow">
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+            <Settings ShowPreview="true" />
+            <SettingsPager PageSize="10" />
+            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+            <SettingsPopup>
+                <EditForm  Modal="true" 
+                    VerticalAlign="WindowCenter" 
+                    HorizontalAlign="WindowCenter" width="700px" />
+            </SettingsPopup>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
                     ShowNewButtonInHeader="True" ShowDeleteButton="True"
@@ -54,6 +63,7 @@
                 </dx:GridViewBandColumn>
                 <dx:GridViewBandColumn Caption="Main Menu Items" HeaderStyle-HorizontalAlign="Center">
                     <Columns>
+                       
                         <dx:GridViewDataCheckColumn FieldName="lblCustomerDetails" VisibleIndex="5" Visible="true" Caption="Customer Details"></dx:GridViewDataCheckColumn>
                         <dx:GridViewDataCheckColumn FieldName="lblSites" VisibleIndex="6" Visible="true" Caption="Sites"></dx:GridViewDataCheckColumn>
                         <dx:GridViewDataCheckColumn FieldName="lblMaintenance" VisibleIndex="7" Visible="true" Caption="Maintenance"></dx:GridViewDataCheckColumn>

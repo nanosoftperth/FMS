@@ -16,8 +16,16 @@
         </div>
         <dx:ASPxGridView ID="gvDriver" runat="server" AutoGenerateColumns="false" 
             KeyFieldName="DriverID" DataSourceID="odsDriver" Width="100%"
-            OnHtmlRowPrepared="gvDriver_HtmlRowPrepared">
+            OnHtmlRowPrepared="gvDriver_HtmlRowPrepared" 
+            OnStartRowEditing="gvDriver_StartRowEditing" OnInitNewRow="gvDriver_InitNewRow">
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+            <SettingsPopup>
+                <EditForm Modal="true" 
+                    VerticalAlign="WindowCenter" 
+                    HorizontalAlign="WindowCenter" width="400px" 
+                    />           
+            </SettingsPopup>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
                     ShowNewButtonInHeader="True" ShowDeleteButton="True"
@@ -36,8 +44,16 @@
                     <dx:ASPxLabel runat="server" text="Comments" Font-Bold="true" />
                     <br />
                     <dx:ASPxGridView ID="gvComments" runat="server" AutoGenerateColumns="false" 
-                        KeyFieldName="Aid" DataSourceID="odsDriverComments" Width="100%">
+                        KeyFieldName="Aid" DataSourceID="odsDriverComments" Width="100%"
+                        OnStartRowEditing="gvComments_StartRowEditing">
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                        <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+                        <SettingsPopup>
+                            <EditForm Modal="true" 
+                                VerticalAlign="WindowCenter" 
+                                HorizontalAlign="WindowCenter" width="400px" 
+                                />           
+                        </SettingsPopup>
                         <Columns>
                             <dx:GridViewCommandColumn ShowEditButton="True" 
                                 ShowNewButtonInHeader="True" ShowDeleteButton="True"

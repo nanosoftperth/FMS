@@ -11,7 +11,21 @@
     <title></title>
         <script src="../../Content/javascript/jquery-1.10.2.min.js" ></script>
          <script type="text/javascript">
+             function AdjustWindowHeightAndWidth() {
+                 var windowHeight = $(window).height() - $(".headerTop").height() - 20;
+                 var windowWidth = $(window).width() - $('.nav-side-menu').width() - 20;
+                 $('#frmContent').css({
+                     "height": windowHeight,
+                     "width": windowWidth
+                 })
+             }
+
+             $(window).resize(function () {
+                 AdjustWindowHeightAndWidth();
+             })
+
              function ShowReport() {
+                AdjustWindowHeightAndWidth();
                 LoadingPanel.Show();
                 $("#frmContent").attr("src", "../ReportContentPage.aspx?Report=MYOBCustomerInvoiceReport");
              }

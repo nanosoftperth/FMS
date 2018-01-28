@@ -77,6 +77,15 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents gvServiceRun As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''gvRun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvRun As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
     '''puUnassignedRun control.
     '''</summary>
     '''<remarks>
@@ -113,11 +122,29 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents btnCancel As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
-    '''gvRun control.
+    '''puCompleteRun control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvRun As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents puCompleteRun As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''cbxCompleteRun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbxCompleteRun As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''btnCancelComplte control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelComplte As Global.DevExpress.Web.ASPxButton
 End Class
