@@ -5,23 +5,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Service Run Management</title>
-    <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+    <script src="../Content/javascript/jquery-1.10.2.min.js"></script>
     <link href="../Content/grid/bootstrap.css" rel="stylesheet" />
     <link href="../Content/grid/grid.css" rel="stylesheet" />
     <style>
-        .ServiceRunHeader td
-        {
+        .ServiceRunHeader td {
             border: none !important;
-
             width: 50%;
             height: 100px;
-            text-align:center;
+            text-align: center;
             vertical-align: middle;
             -webkit-transform: rotate(320deg);
             -moz-transform: rotate(320deg);
             -o-transform: rotate(320deg);
             writing-mode: tb-rl;
-            
         }
     </style>
 
@@ -29,11 +26,87 @@
         function ShowPopup() {
             clientpuUnassignedRun.Show();
         }
-
         function ContextMenuServiceRun(s, e) {
+            var cellInfo = GetCellInfo(s, ASPxClientUtils.GetEventSource(e.htmlEvent));
+            if (!cellInfo) return;
+            var args = cellInfo.split("_");
+            var visibleIndex = parseInt(args[0]);
+            var fieldName = s.cpDataColumnMap[parseInt(args[1])];
+
+            var TechExist = fieldName.indexOf("Tech");
+            var DriverExist = fieldName.indexOf("Driver");
+            var TechID = ""
+            var DriderID = ""
+
+            if (TechExist > -1) {
+                var ndx = fieldName.indexOf("_") + 1;
+                TechID = fieldName.substring(ndx, fieldName.length);
+            }
+
+            if (DriverExist > -1) {
+                var ndx = fieldName.indexOf("_") + 1;
+                DriderID = fieldName.substring(ndx, fieldName.length);
+            }
+
+            var src = ASPxClientUtils.GetEventSource(e.htmlEvent);
+            clientlblDriverID.SetText(src.innerText);
+
+            //alert('tech: ' + TechID + ' - ' + 'driver: ' + DriderID);
+            //alert("VisibleIndex = " + visibleIndex + "\nFieldName = " + fieldName);
+
+            //var src = ASPxClientUtils.GetEventSource(e.htmlEvent);
+            //clientlblDriverID.SetText(src.innerText);
+
             clientpuCompleteRun.Show();
-            
+
         }
+
+        function GetCellInfo(grid, element) {
+            var gridMainElement = grid.GetMainElement();
+            while (element && element !== gridMainElement && element.tagName !== "BODY") {
+                var cellInfo = element.getAttribute("data-CI");
+                if (cellInfo)
+                    return cellInfo;
+                element = element.parentNode;
+            }
+        }
+
+        //function Grid_ContextMenu(s, e) {
+
+
+        //    //var cellInfo = GetCellInfo(s, ASPxClientUtils.GetEventSource(e.htmlEvent));
+        //    //if (!cellInfo) return;
+        //    //var args = cellInfo.split("_");
+        //    //var visibleIndex = parseInt(args[0]);
+        //    //var fieldName = s.cpDataColumnMap[parseInt(args[1])];
+        //    //var strCellInfo = cellInfo;
+        //    //var strargs = args;
+
+        //    //alert(fieldName);
+        //    ////alert("VisibleIndex = " + visibleIndex + "\nFieldName = " + fieldName);
+        //    ////clientpuUnassignedRun.Show();
+        //}
+
+        //function OnGridFocusedRowChanged() {
+        //    // Query the server for the "EmployeeID" and "Notes" fields from the focused row 
+        //    // The values will be returned to the OnGetRowValues() function
+        //    //DetailNotes.SetText("Loading...");
+        //    grid.GetRowValues(grid.GetFocusedRowIndex(), 'EmployeeID;Notes', OnGetRowValues);
+        //}
+
+        //// Value array contains "EmployeeID" and "Notes" field values returned from the server 
+        //function OnGetRowValues(values) {
+        //    DetailImage.SetImageUrl("FocusedRow.aspx?Photo=" + values[0]);
+        //    DetailImage.SetVisible(true);
+        //    DetailNotes.SetText(values[1]);
+        //}
+
+
+
+        //function ContextMenuServiceRun(s, e) {
+        //    clientpuCompleteRun.Show();
+
+        //}
 
         //function ContextMenuServiceRun(event) {
         //    clientpuCompleteRun.Show();
@@ -50,7 +123,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <dx:ASPxPageControl ID="carTabPage" Width="100%" runat="server" 
+            <dx:ASPxPageControl ID="carTabPage" Width="100%" runat="server"
                 CssClass="dxtcFixed" ActiveTabIndex="0" EnableHierarchyRecreation="True">
                 <TabPages>
                     <dx:TabPage Text="Service Run">
@@ -59,29 +132,29 @@
                                 <table style="width: 100%">
                                     <tr>
                                         <td style="width: 20%">
-                                            <dx:ASPxDateEdit id="dteStart" runat="server" NullText="Start Date" Width="95%"
+                                            <dx:ASPxDateEdit ID="dteStart" runat="server" NullText="Start Date" Width="95%"
                                                 AutoPostBack="false" OnValueChanged="dteStart_ValueChanged">
                                                 <TimeSectionProperties>
-                                                <TimeEditProperties>
-                                                <ClearButton Visibility="Auto"></ClearButton>
-                                                </TimeEditProperties>
+                                                    <TimeEditProperties>
+                                                        <ClearButton Visibility="Auto"></ClearButton>
+                                                    </TimeEditProperties>
                                                 </TimeSectionProperties>
                                                 <ClearButton Visibility="Auto"></ClearButton>
                                             </dx:ASPxDateEdit>
                                         </td>
                                         <td style="width: 20%; text-align: left">
-                                            <dx:ASPxDateEdit id="dteEnd" runat="server" NullText="End Date" Width="95%"
+                                            <dx:ASPxDateEdit ID="dteEnd" runat="server" NullText="End Date" Width="95%"
                                                 AutoPostBack="false" OnValueChanged="dteEnd_ValueChanged">
                                                 <TimeSectionProperties>
-                                                <TimeEditProperties>
-                                                <ClearButton Visibility="Auto"></ClearButton>
-                                                </TimeEditProperties>
+                                                    <TimeEditProperties>
+                                                        <ClearButton Visibility="Auto"></ClearButton>
+                                                    </TimeEditProperties>
                                                 </TimeSectionProperties>
                                                 <ClearButton Visibility="Auto"></ClearButton>
                                             </dx:ASPxDateEdit>
                                         </td>
                                         <td style="width: 20%">
-                                            <asp:Button ID="btnLoad" runat="server" Text="Load" onclick="btnLoad_Click"/>
+                                            <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" />
                                         </td>
                                         <td style="width: 10%; text-align: right; padding-right: 5px;">
                                             <%--<dx:ASPxImage ID="imgFilter" runat="server" ImageUrl="../Content/Images/FilterRecord.png" 
@@ -102,13 +175,20 @@
                                 <br />
                                 <dx:ASPxGridView ID="gvServiceRun" runat="server" ClientInstanceName="gvServiceRun"
                                     OnHtmlDataCellPrepared="gvServiceRun_HtmlDataCellPrepared"
+                                    OnCustomJSProperties="gvServiceRun_CustomJSProperties"
                                     FocusedCellChanging=""
                                     EnableTheming="True" Theme="SoftOrange">
                                     <Styles>
                                         <Header CssClass="ServiceRunHeader" />
                                     </Styles>
-                                    <ClientSideEvents ContextMenu="ContextMenuServiceRun" />
-		                        </dx:ASPxGridView>
+                                    <ClientSideEvents ContextMenu=" function(s, e) { 
+                                        if (e.objectType == 'row') {
+                                            ContextMenuServiceRun(s,e);
+                                        }
+                                    } " />
+                                    <%--<ClientSideEvents ContextMenu="Grid_ContextMenu" />--%>
+                                    <%--<ClientSideEvents FocusedRowChanged="function(s, e) { OnGridFocusedRowChanged(); }" />--%>
+                                </dx:ASPxGridView>
                                 <%--<dx:ASPxPopupControl ID="puUnassignedRun" runat="server" ClientInstanceName="puUnassignedRun" 
                                     Height="83px" Modal="True" CloseAction="CloseButton" Width="300px" 
                                     AllowDragging="True" PopupHorizontalAlign="WindowCenter" 
@@ -131,22 +211,20 @@
                                         </dx:PopupControlContentControl>
                                     </ContentCollection>
                                 </dx:ASPxPopupControl>--%>
-                                
                             </dx:ContentControl>
                         </ContentCollection>
                     </dx:TabPage>
                     <dx:TabPage Text="Run Definition">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                <dx:ASPxGridView ID="gvRun" runat="server" ClientInstanceName="gvServiceRun">                                    
-		                        </dx:ASPxGridView>
+                                <dx:ASPxGridView ID="gvRun" runat="server" ClientInstanceName="gvServiceRun">
+                                </dx:ASPxGridView>
                             </dx:ContentControl>
                         </ContentCollection>
                     </dx:TabPage>
                     <dx:TabPage Text=" Data Entry">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-                                
                             </dx:ContentControl>
                         </ContentCollection>
                     </dx:TabPage>
@@ -187,9 +265,42 @@
                                     <dx:ASPxCheckBox ID="cbxCompleteRun" runat="server" Text="Run Completed"></dx:ASPxCheckBox>
                                     <%--<dx:ASPxLabel ID="lblCompleteRun" runat="server" Text="Complte Run"></dx:ASPxLabel>--%>
                                 </td>
-                                <%--<td>
-                                    <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" AutoPostBack="true"></dx:ASPxComboBox>
-                                </td>--%>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <dx:ASPxLabel ID="lblDriverID" ClientInstanceName="clientlblDriverID" runat="server" Text="">
+                                    </dx:ASPxLabel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <dx:ASPxDateEdit ID="dteCompleted" runat="server" NullText="Date Completed"
+                                        AutoPostBack="false">
+                                        <TimeSectionProperties>
+                                            <TimeEditProperties>
+                                                <ClearButton Visibility="Auto"></ClearButton>
+                                            </TimeEditProperties>
+                                        </TimeSectionProperties>
+                                        <ClearButton Visibility="Auto"></ClearButton>
+                                    </dx:ASPxDateEdit>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <dx:ASPxComboBox runat="server" ID="cboDriverCompleted" DropDownStyle="DropDownList" IncrementalFilteringMode="StartsWith"
+                                        TextField="DriverName" ValueField="Did" Width="100%" DataSourceID="odsDriver"
+                                        EnableSynchronization="False">
+                                       <%-- <ClientSideEvents SelectedIndexChanged="function(s, e) { OnCountryChanged(s); }" />--%>
+                                    </dx:ASPxComboBox>
+                                    <%--<dx:ASPxComboBox ID="cboDriverCompleted" runat="server" AutoPostBack="true" DataSourceID="odsDriver">
+                                        <ClearButton Visibility="Auto"></ClearButton>
+                                    </dx:ASPxComboBox>--%>
+                                </td>
                             </tr>
                         </table>
                         <br />
@@ -207,6 +318,8 @@
                 
             </SelectParameters>
         </asp:ObjectDataSource>--%>
+        <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
+
     </form>
 </body>
 </html>

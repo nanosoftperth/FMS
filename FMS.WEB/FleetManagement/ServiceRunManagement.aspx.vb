@@ -63,7 +63,7 @@ Public Class ServiceRunManagement
     End Sub
 
     Protected Sub gvServiceRun_HtmlDataCellPrepared(sender As Object, e As ASPxGridViewTableDataCellEventArgs)
-
+        Dim rundate As Date
 
         Dim ndxTech = e.DataColumn.FieldName.IndexOf("Tech_")
         If (ndxTech > -1) Then
@@ -81,29 +81,27 @@ Public Class ServiceRunManagement
             End If
         End If
 
+        If (e.DataColumn.FieldName = "RunDate") Then
+
+            rundate = e.CellValue
+
+            Dim ctrDate = DateDiff(DateInterval.Day, Me.dteStart.Value, Me.dteEnd.Value)
+            Dim StartDate As Date = Me.dteStart.Value
+
+            For loopctr = 0 To ctrDate
+
+                Dim currDate = StartDate.AddDays(0)
+
+            Next
+
+        End If
 
         If (IsDBNull(e.Cell) = False) Then
             e.Cell.Attributes.Add("onclick", "ShowPopup();")
-            'e.Cell.Attributes.Add("oncontextmenu", "ContextMenuServiceRun(event)")
+            'e.Cell.Attributes.Add("oncontextmenu", "ContextMenuServiceRun(s,e)")
         End If
 
-        If (e.DataColumn.FieldName = "") Then
-
-        End If
-
-        '    If (e.DataColumn.FieldName!= "Budget") Then Return;
-        'If (Convert.ToInt32(e.CellValue) < 100000) Then
-        '            e.Cell.BackColor = System.Drawing.Color.LightCyan;
-
-
-        'If (e.Cell!= null) Then {
-        '    e.Cell.Attributes.Add("onclick", "ShowEditPopup('" + e.Cell.ClientID + "','" + e.DataColumn.FieldName + "','" + e.KeyValue + "','" + e.CellValue + "');");
-        '}
-
-        'Dim htmlId As String = String.Format("cell_{0}_{1}", e.VisibleIndex, e.DataColumn.FieldName)
-        'Dim cellClickHandler As String = String.Format("onCellClick(""{0}"", ""{1}"", ""{2}"")", e.DataColumn.FieldName, e.GetValue(e.DataColumn.FieldName), htmlId)
-        'e.Cell.Attributes.Add("onclick", cellClickHandler)
-        'e.Cell.Attributes.Add("id", htmlId)
+        e.Cell.Attributes("data-CI") = String.Format("{0}_{1}", e.VisibleIndex, gvServiceRun.DataColumns.IndexOf(e.DataColumn)) ' cell info
 
     End Sub
 
@@ -113,6 +111,10 @@ Public Class ServiceRunManagement
     Protected Sub btnCancelComplte_Click(sender As Object, e As EventArgs)
         puCompleteRun.ShowOnPageLoad = False
     End Sub
+    Protected Sub gvServiceRun_CustomJSProperties(sender As Object, e As ASPxGridViewClientJSPropertiesEventArgs)
+        e.Properties("cpDataColumnMap") = gvServiceRun.DataColumns.ToDictionary(Function(c) gvServiceRun.DataColumns.IndexOf(c), Function(c) c.FieldName)
+    End Sub
+
 
 
 
@@ -697,6 +699,8 @@ Public Class ServiceRunManagement
 
 
     End Class
+
+
 
 
 
