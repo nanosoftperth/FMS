@@ -1,4 +1,5 @@
-﻿Imports DevExpress.Web
+﻿Imports System.Globalization
+Imports DevExpress.Web
 
 Public Class CustomerDetailsMain
     Inherits System.Web.UI.Page
@@ -10,6 +11,7 @@ Public Class CustomerDetailsMain
         GetCustomersRowUpdatingRowInserting(e, True)
     End Sub
     Protected Sub GetCustomersRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
+        System.Threading.Thread.CurrentThread.CurrentCulture = New CultureInfo("en-US")
         Dim txtCustomerID As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtCustomerID"), ASPxTextBox)
         Dim txtCustomerName As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtCustomerName"), ASPxTextBox)
         Dim txtViewID As ASPxTextBox = TryCast(CustomersGridView.FindEditFormTemplateControl("txtViewID"), ASPxTextBox)

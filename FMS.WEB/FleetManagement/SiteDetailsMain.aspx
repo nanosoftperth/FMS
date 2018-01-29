@@ -17,6 +17,23 @@
         }
     </style>
     <script>
+        function AdjustPopupHeight() {
+            var windowHeight = $(window).height() - $(".headerTop").height();
+            var popupHeight = 480;
+            var popupEdit = $('.dxgvPopupEditForm_SoftOrange');
+            if (windowHeight < 500) {
+                var computed = 530 - windowHeight;
+                popupEdit.css({ "height": popupHeight - computed });
+            } else {
+                popupEdit.css({ "height": popupHeight });
+            }
+        }
+        $(window).resize(function () {
+            AdjustPopupHeight();
+        })
+        $(window).mousemove(function () {
+            AdjustPopupHeight();
+        })
         function ShowCustomerWindow() {
             viewPopup.SetHeaderText("Customer Details");
             viewPopup.Show();
@@ -140,19 +157,11 @@
             alert("to follow...");
         }
         function SetServiceEnabledDisabled(e) {
-            //var collection = obj;
-            //for (var key in collection.elements) {
-            //    var control = collection.elements[key];
-            //    if (control != null && hdnSiteCid.GetText() != '')
-            //        control.SetEnabled(false);
-            //}
-            
             if (hdnSiteCid.GetText() != "") {
                 SiteDetailsPageControl.tabs[3].SetEnabled(true);
             } else {
                 SiteDetailsPageControl.tabs[3].SetEnabled(false);
             }
-
         }
         function SetServiceInitialize(e) {
             if (hdnSiteCid.GetText() != "") {
@@ -194,7 +203,7 @@
             <SettingsPopup>
                 <EditForm  Modal="true" 
                     VerticalAlign="WindowCenter" 
-                    HorizontalAlign="WindowCenter"/>                
+                    HorizontalAlign="WindowCenter" Height="480px"/>                
             </SettingsPopup>
             <Templates>
                 <EditForm>
@@ -275,7 +284,7 @@
                                                 <div class="col-md-7">
                                                     <div class="container">
                                                         <div class="row row-md-margin-top">
-                                                            <dx:ASPxTextBox ID="txtSuburb" runat="server" Width="111px" MaxLength="22" Text='<%# Eval("Suburb") %>'></dx:ASPxTextBox>&nbsp;
+                                                            <dx:ASPxTextBox ID="txtSuburb" runat="server" Width="111px" MaxLength="50" Text='<%# Eval("Suburb") %>'></dx:ASPxTextBox>&nbsp;
                                                             <dx:ASPxLabel ID="lblState" runat="server" Text="State:"></dx:ASPxLabel>&nbsp;
                                                             <dx:ASPxComboBox ID="cbState" DataSourceID="odsStates" runat="server" Width="112px" SelectedIndex='<%# Eval("StateSortOrder") - 1 %>'  Height="20px" TextField="StateDesc" ValueField="StateCode"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <dx:ASPxLabel ID="lblPCode" runat="server" Text="P/Code:"></dx:ASPxLabel>&nbsp;
@@ -431,7 +440,7 @@
                                                     <dx:ASPxLabel ID="lblInitialServiceAgreementNo" runat="server" Text="Initial&nbsp;Service&nbsp;Agreement&nbsp;No:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <dx:ASPxTextBox ID="txtInitialServiceAgreementNo" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("InitialServiceAgreementNo") %>'></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="txtInitialServiceAgreementNo" runat="server" Width="260px" MaxLength="22" Text='<%# Eval("InitialServiceAgreementNo") %>'></dx:ASPxTextBox>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -503,7 +512,7 @@
                                                                     <ClearButton Visibility="Auto"></ClearButton>
                                                                 </PropertiesComboBox>
                                                             </dx:GridViewDataComboBoxColumn> 
-                                                            <dx:GridViewDataTextColumn FieldName="ServiceAgreementNo" VisibleIndex="6" Visible="true"></dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="ServiceAgreementNo" VisibleIndex="6" Visible="true" PropertiesTextEdit-MaxLength="50"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataComboBoxColumn FieldName="SalesPerson" Caption="Sales Person" VisibleIndex="7" >
                                                                 <PropertiesComboBox DataSourceID="odsSalesPerson" TextField="SalesPerson" ValueField="Aid" Width="150px">
                                                                     <ClearButton Visibility="Auto"></ClearButton>
@@ -578,7 +587,7 @@
                                                     <dx:ASPxLabel ID="lblInvoiceCommencing" runat="server" Text="Invoice&nbsp;Commencing:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <dx:ASPxDateEdit ID="dtInvoiceCommencing" ClientInstanceName="dtInvoiceCommencing" runat="server" Date='<%# Eval("InvoiceCommencing")%>'></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="dtInvoiceCommencing" ClientInstanceName="dtInvoiceCommencing" runat="server"  Date='<%# Eval("InvoiceCommencing")%>'></dx:ASPxDateEdit>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -758,15 +767,15 @@
                                                                                 </div>
                                                                                 <div style="width:10px;"></div>
                                                                                 <div class="col-md-1">
-                                                                                    <dx:ASPxTextBox ID="txtServiceUnits" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("ServiceUnits")%>'></dx:ASPxTextBox>
+                                                                                    <dx:ASPxSpinEdit ID="txtServiceUnits" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("ServiceUnits")%>'></dx:ASPxSpinEdit>
                                                                                 </div>
                                                                                 <div style="width:10px;"></div>
                                                                                 <div class="col-md-1">
-                                                                                    <dx:ASPxTextBox ID="txtServicePrice" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("ServicePrice")%>'></dx:ASPxTextBox>
+                                                                                    <dx:ASPxSpinEdit ID="txtServicePrice" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("ServicePrice")%>'></dx:ASPxSpinEdit>
                                                                                 </div>
                                                                                 <div style="width:15px;"></div>
                                                                                 <div class="col-md-1">
-                                                                                    <dx:ASPxTextBox ID="txtPerAnnumCharge" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("PerAnnumCharge")%>'></dx:ASPxTextBox>
+                                                                                    <dx:ASPxSpinEdit ID="txtPerAnnumCharge" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("PerAnnumCharge")%>'></dx:ASPxSpinEdit>
                                                                                 </div>
                                                                                 <div style="width:15px;"></div>
                                                                                 <div class="col-md-2">
@@ -833,7 +842,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                         <div style="position:absolute;z-index:1;left:750px;top:155px">
+                                                                         <div style="position:absolute;z-index:1;left:750px;top:185px">
                                                                              <dx:ASPxLabel ID="ASPxLabel9" runat="server" Text="Comments" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                          </div>
                                                                         <div style="position:absolute;z-index:1;left:700px;">
@@ -946,7 +955,7 @@
                                                                         <dx:ASPxDateEdit ID="dtNCRDate" ClientInstanceName="dtNCRDate" runat="server" Date='<%# Eval("NCRDate") %>'></dx:ASPxDateEdit>
                                                                     </div>
                                                                     <div class="col-md-1">
-                                                                        <dx:ASPxTextBox ID="txtNCRNumber" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("NCRNumber")%>'></dx:ASPxTextBox>
+                                                                        <dx:ASPxSpinEdit ID="txtNCRNumber" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("NCRNumber")%>'></dx:ASPxSpinEdit>
                                                                     </div>
                                                                     <div class="col-md-2">
                                                                         <dx:ASPxComboBox ID="cbReason" ClientInstanceName="cbReason" DataSourceID="odsReason" runat="server" Width="180px" Height="20px" 

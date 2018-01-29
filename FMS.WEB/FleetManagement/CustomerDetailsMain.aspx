@@ -21,6 +21,26 @@
     }
 </style>
 <script type="text/javascript">
+    function AdjustPopupHeight() {
+        var windowHeight = $(window).height() - $(".headerTop").height();
+        var popupHeight = 660;
+        var popupEdit = $('.dxgvPopupEditForm_SoftOrange');
+        if (windowHeight < 700) {
+            var computed = 700 - windowHeight;
+            popupEdit.css({ "height": popupHeight - computed });
+        } else {
+            popupEdit.css({ "height": popupHeight });
+        }
+    }
+
+    $(window).resize(function () {
+        AdjustPopupHeight();
+    })
+
+    $(window).mousemove(function () {
+        AdjustPopupHeight();
+    })
+
     function ViewSitesClick(custID) {
         hdnCID.SetText(custID);
         SiteGridView.Refresh();
@@ -28,13 +48,13 @@
     }
 
     function ShowLoginWindow() {
-        //viewPopup.ShowAtPos(100, 10);
         viewPopup.Show();
     }
 
     function CalculateCommencementDate(comm) {
         if (comm != "") {
-            var date1 = new Date(comm);
+            var commDate = comm.split('/')[1] + '/' + comm.split('/')[0] + '/' + comm.split('/')[2];
+            var date1 = new Date(commDate);
             var dateNow = new Date();
             var dateNowToDays = new Date(dateNow.toLocaleDateString()) 
             var diff = new Date(dateNowToDays - date1);
@@ -71,8 +91,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" 
-                KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting">
+        <dx:ASPxGridView ID="CustomersGridView" runat="server" DataSourceID="odsCustomer" AutoGenerateColumns="False" ClientInstanceName="CustomersGridView" 
+                KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="CustomersGridView_RowUpdating" OnRowInserting="CustomersGridView_RowInserting" CssClass="testClass">
                 <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
                 <Templates>
                     <TitlePanel>Customers Details</TitlePanel>
@@ -95,11 +115,11 @@
                 <SettingsPopup>
                     <EditForm  Modal="true" 
                         VerticalAlign="WindowCenter" 
-                        HorizontalAlign="WindowCenter" width="200px"/>                
+                        HorizontalAlign="WindowCenter" width="200px" Height="660px"/>
                 </SettingsPopup>
                 <Templates>
                     <EditForm>
-                        <div class="container">
+                        <div class="container" >
                             <div style="display:none">
                                 <dx:ASPxTextBox  id="txtCustomerID" ClientInstanceName="custID" runat="server" Text='<%# Eval("CustomerID") %>'></dx:ASPxTextBox>
                             </div>
@@ -210,7 +230,7 @@
                                     <dx:ASPxLabel ID="lblCustomerPhone" runat="server" Text="Customer&nbsp;Phone:" Width="100px"></dx:ASPxLabel>
                                 </div>
                                 <div class="col-md-3">
-                                    <dx:ASPxTextBox ID="txtCustomerPhone" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerPhone")%>'></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="txtCustomerPhone" runat="server" Width="170px" MaxLength="22" Text='<%# Eval("CustomerPhone")%>'></dx:ASPxTextBox>
                                 </div>
                                 <div class="col-md-3">
                                     <dx:ASPxButton ID="btnUpdateValue" runat="server" AutoPostBack="false" Text="Update Value">
@@ -225,7 +245,7 @@
                                     <dx:ASPxLabel ID="lblCustomerMobile" runat="server" Text="Customer&nbsp;Mobile:" Width="100px"></dx:ASPxLabel>
                                 </div>
                                 <div class="col-md-3">
-                                    <dx:ASPxTextBox ID="txtCustomerMobile" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerMobile")%>'></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="txtCustomerMobile" runat="server" Width="170px" MaxLength="22" Text='<%# Eval("CustomerMobile")%>'></dx:ASPxTextBox>
                                 </div>
                             </div>
                             <div class="row">
@@ -233,7 +253,7 @@
                                     <dx:ASPxLabel ID="lblCustomerFax" runat="server" Text="Customer&nbsp;Fax:" Width="100px"></dx:ASPxLabel>
                                 </div>
                                 <div class="col-md-3">
-                                    <dx:ASPxTextBox ID="txtCustomerFax" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerFax")%>'></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="txtCustomerFax" runat="server" Width="170px" MaxLength="22" Text='<%# Eval("CustomerFax")%>'></dx:ASPxTextBox>
                                 </div>
                             </div>
                             <div class="row">

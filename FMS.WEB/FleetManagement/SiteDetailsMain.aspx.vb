@@ -1,4 +1,5 @@
-﻿Imports DevExpress.Web
+﻿Imports System.Globalization
+Imports DevExpress.Web
 Public Class SiteDetailsMain
     Inherits System.Web.UI.Page
 
@@ -24,6 +25,7 @@ Public Class SiteDetailsMain
 
     End Sub
     Protected Sub GetSiteDetailsRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
+        System.Threading.Thread.CurrentThread.CurrentCulture = New CultureInfo("en-US")
         Try
             Dim SiteDetailsPageControl As ASPxPageControl = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("SiteDetailsPageControl"), ASPxPageControl)
             Dim txtSiteName As ASPxTextBox = TryCast(SiteDetailsPageControl.FindControl("txtSiteName"), ASPxTextBox)
@@ -325,9 +327,9 @@ Public Class SiteDetailsMain
         Dim CustomerServiceGrid As ASPxGridView = TryCast(SiteDetailsPageControl.FindControl("CustomerServiceGridView"), ASPxGridView)
         Dim cbServices As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServices"), ASPxComboBox)
         Dim cbFrequency As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbFrequency"), ASPxComboBox)
-        Dim txtServiceUnits As ASPxTextBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtServiceUnits"), ASPxTextBox)
-        Dim txtServicePrice As ASPxTextBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtServicePrice"), ASPxTextBox)
-        Dim txtPerAnnumCharge As ASPxTextBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtPerAnnumCharge"), ASPxTextBox)
+        Dim txtServiceUnits As ASPxSpinEdit = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtServiceUnits"), ASPxSpinEdit)
+        Dim txtServicePrice As ASPxSpinEdit = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtServicePrice"), ASPxSpinEdit)
+        Dim txtPerAnnumCharge As ASPxSpinEdit = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("txtPerAnnumCharge"), ASPxSpinEdit)
         Dim cbServiceRun As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceRun"), ASPxComboBox)
         Dim chkUnitsHaveMoreThanOneRun As ASPxCheckBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("chkUnitsHaveMoreThanOneRun"), ASPxCheckBox)
         Dim cbServiceFrequency1 As ASPxComboBox = TryCast(CustomerServiceGrid.FindEditFormTemplateControl("cbServiceFrequency1"), ASPxComboBox)
@@ -445,10 +447,11 @@ Public Class SiteDetailsMain
     End Sub
 
     Protected Sub CIRHistoryGridViewRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
+        System.Threading.Thread.CurrentThread.CurrentCulture = New CultureInfo("en-US")
         Dim SiteDetailsPageControl As ASPxPageControl = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("SiteDetailsPageControl"), ASPxPageControl)
         Dim CIRHistoryGridView As ASPxGridView = TryCast(SiteDetailsPageControl.FindControl("CIRHistoryGridView"), ASPxGridView)
         Dim dtNCRDate As ASPxDateEdit = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("dtNCRDate"), ASPxDateEdit)
-        Dim txtNCRNumber As ASPxTextBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("txtNCRNumber"), ASPxTextBox)
+        Dim txtNCRNumber As ASPxSpinEdit = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("txtNCRNumber"), ASPxSpinEdit)
         Dim cbReason As ASPxComboBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("cbReason"), ASPxComboBox)
         Dim cbDrivers As ASPxComboBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("cbDrivers"), ASPxComboBox)
         Dim txtNCRRecordedBY As ASPxTextBox = TryCast(CIRHistoryGridView.FindEditFormTemplateControl("txtNCRRecordedBY"), ASPxTextBox)
@@ -488,6 +491,7 @@ Public Class SiteDetailsMain
     End Sub
 
     Protected Sub SiteCommentsGridViewRowUpdatingRowInserting(e As Object, blnInserting As Boolean)
+        System.Threading.Thread.CurrentThread.CurrentCulture = New CultureInfo("en-US")
         Dim SiteDetailsPageControl As ASPxPageControl = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("SiteDetailsPageControl"), ASPxPageControl)
         Dim SiteCommentsGridView As ASPxGridView = TryCast(SiteDetailsPageControl.FindControl("SiteCommentsGridView"), ASPxGridView)
         Dim dtCommentDate As ASPxDateEdit = TryCast(SiteCommentsGridView.FindEditFormTemplateControl("dtCommentDate"), ASPxDateEdit)
