@@ -23,9 +23,35 @@
     </style>
 
     <script type="text/javascript">
-        function ShowPopup() {
+        function ShowPopup(rundate) {
+            var jsDate = clientdteStart.GetDate();
+            var syear = jsDate.getFullYear(); // where getFullYear returns the year (four digits)
+            var smonth = jsDate.getMonth(); // where getMonth returns the month (from 0-11)
+            var sday = jsDate.getDate();   // where getDate returns the day of the month (from 1-31)
+
+            var jeDate = clientdteEnd.GetDate();
+            var eyear = jeDate.getFullYear();
+            var emonth = jeDate.getMonth();
+            var eday = jeDate.getDate();
+
+            var startdate = new Date(syear, smonth, sday);
+            var intDateDiff = GetDateDiff(jsDate, jeDate);
+            var tmpdate = new Date(jsDate.setDate(2));
+
+
+
+            alert(rundate);
             clientpuUnassignedRun.Show();
         }
+
+        //datediff in days
+        function GetDateDiff(d1, d2) {
+            var t2 = d2.getTime();
+            var t1 = d1.getTime();
+
+            return parseInt((t2 - t1) / (24 * 3600 * 1000));
+        };
+
         function ContextMenuServiceRun(s, e) {
             var cellInfo = GetCellInfo(s, ASPxClientUtils.GetEventSource(e.htmlEvent));
             if (!cellInfo) return;
@@ -49,7 +75,7 @@
             }
 
             var src = ASPxClientUtils.GetEventSource(e.htmlEvent);
-            clientlblDriverID.SetText(src.innerText);
+            //clientlblDriverID.SetText(src.innerText);
 
             //alert('tech: ' + TechID + ' - ' + 'driver: ' + DriderID);
             //alert("VisibleIndex = " + visibleIndex + "\nFieldName = " + fieldName);
@@ -69,6 +95,33 @@
                     return cellInfo;
                 element = element.parentNode;
             }
+        }
+
+        // function is called on changing focused row 
+        function OnGridFocusedRowChanged(s,e) {
+            var cellInfo = GetCellInfo(s, ASPxClientUtils.GetEventSource(e.htmlEvent));
+            if (!cellInfo) return;
+            var args = cellInfo.split("_");
+            var visibleIndex = parseInt(args[0]);
+            var fieldName = s.cpDataColumnMap[parseInt(args[1])];
+            alert(fieldName);
+
+            // The single value will be returned to the OnGetRowValues() function      
+            //clientgvServiceRun.GetRowValues(clientgvServiceRun.GetFocusedRowIndex(), 'RunDate', OnGetRowValues);
+        }
+        // Value contains the "EmployeeID" field value returned from the server, not the list of values 
+        function OnGetRowValues(Value) {
+
+            if (Value != null)
+            {
+                alert(Value);
+                
+            }
+
+            // Right code 
+            //alert(Value);
+            // This code will cause an error 
+            // alert(Value[0]); 
         }
 
         //function Grid_ContextMenu(s, e) {
@@ -133,6 +186,7 @@
                                     <tr>
                                         <td style="width: 20%">
                                             <dx:ASPxDateEdit ID="dteStart" runat="server" NullText="Start Date" Width="95%"
+                                                ClientInstanceName="clientdteStart"
                                                 AutoPostBack="false" OnValueChanged="dteStart_ValueChanged">
                                                 <TimeSectionProperties>
                                                     <TimeEditProperties>
@@ -144,6 +198,7 @@
                                         </td>
                                         <td style="width: 20%; text-align: left">
                                             <dx:ASPxDateEdit ID="dteEnd" runat="server" NullText="End Date" Width="95%"
+                                                ClientInstanceName="clientdteEnd"
                                                 AutoPostBack="false" OnValueChanged="dteEnd_ValueChanged">
                                                 <TimeSectionProperties>
                                                     <TimeEditProperties>
@@ -173,11 +228,12 @@
                                     </tr>
                                 </table>
                                 <br />
-                                <dx:ASPxGridView ID="gvServiceRun" runat="server" ClientInstanceName="gvServiceRun"
+                                <dx:ASPxGridView ID="gvServiceRun" runat="server" ClientInstanceName="clientgvServiceRun"
                                     OnHtmlDataCellPrepared="gvServiceRun_HtmlDataCellPrepared"
-                                    OnCustomJSProperties="gvServiceRun_CustomJSProperties"
-                                    FocusedCellChanging=""
-                                    EnableTheming="True" Theme="SoftOrange">
+                                    OnCustomJSProperties="gvServiceRun_CustomJSProperties"  
+                                    EnableTheming="True" Theme="SoftOrange"
+                                    KeyFieldName="ID">
+                                    <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
                                     <Styles>
                                         <Header CssClass="ServiceRunHeader" />
                                     </Styles>
@@ -186,6 +242,10 @@
                                             ContextMenuServiceRun(s,e);
                                         }
                                     } " />
+
+                                    <ClientSideEvents FocusedRowChanged="function(s, e) {
+                                        Alert('Test');                                      
+                                        }" />
                                     <%--<ClientSideEvents ContextMenu="Grid_ContextMenu" />--%>
                                     <%--<ClientSideEvents FocusedRowChanged="function(s, e) { OnGridFocusedRowChanged(); }" />--%>
                                 </dx:ASPxGridView>
@@ -268,8 +328,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <dx:ASPxLabel ID="lblDriverID" ClientInstanceName="clientlblDriverID" runat="server" Text="">
-                                    </dx:ASPxLabel>
+                                    <%--<dx:ASPxLabel ID="lblDriverID" ClientInstanceName="clientlblDriverID" runat="server" Text="">
+                                    </dx:ASPxLabel>--%>
                                 </td>
                             </tr>
                             <tr>
@@ -319,6 +379,12 @@
             </SelectParameters>
         </asp:ObjectDataSource>--%>
         <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsUnassignedRuns" runat="server" SelectMethod="GetAllPerApplication" TypeName="FMS.Business.DataObjects.usp_GetUnAssignedRuns">
+            <SelectParameters>
+                <asp:Parameter Name="StartDate" Type="DateTime" />
+                <asp:Parameter Name="EndDate" Type="DateTime" />
+            </SelectParameters>
+        </asp:ObjectDataSource>
 
     </form>
 </body>

@@ -140,15 +140,6 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents cbxCompleteRun As Global.DevExpress.Web.ASPxCheckBox
     
     '''<summary>
-    '''lblDriverID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDriverID As Global.DevExpress.Web.ASPxLabel
-    
-    '''<summary>
     '''dteCompleted control.
     '''</summary>
     '''<remarks>
@@ -183,4 +174,13 @@ Partial Public Class ServiceRunManagement
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsDriver As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsUnassignedRuns control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsUnassignedRuns As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

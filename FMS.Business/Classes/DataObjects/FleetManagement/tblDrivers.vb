@@ -36,6 +36,7 @@
             Dim obj As New FMS.Business.tblDriver
             With obj
                 .ApplicationId = appID
+                .DriverID = Guid.NewGuid()
                 .DriverName = dvr.DriverName
                 .DriversLicenseNo = dvr.DriversLicenseNo
                 .DriversLicenseExpiryDate = dvr.DriversLicenseExpiryDate

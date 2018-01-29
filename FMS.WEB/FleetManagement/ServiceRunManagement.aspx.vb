@@ -81,23 +81,32 @@ Public Class ServiceRunManagement
             End If
         End If
 
+        Dim currDate As Date
+
         If (e.DataColumn.FieldName = "RunDate") Then
 
             rundate = e.CellValue
 
-            Dim ctrDate = DateDiff(DateInterval.Day, Me.dteStart.Value, Me.dteEnd.Value)
-            Dim StartDate As Date = Me.dteStart.Value
+            'Dim ctrDate = DateDiff(DateInterval.Day, Me.dteStart.Value, Me.dteEnd.Value)
+            'Dim StartDate As Date = Me.dteStart.Value
 
-            For loopctr = 0 To ctrDate
+            'For loopctr = 0 To ctrDate - 1
 
-                Dim currDate = StartDate.AddDays(0)
+            '    currDate = StartDate.AddDays(loopctr)
+            '    Dim currDay = currDate.ToString("dd MMM")
 
-            Next
+            '    If (e.CellValue = currDay) Then
+            '        Exit For
+            '    End If
+
+            '    Dim obj As Object = ""
+
+            'Next
 
         End If
 
         If (IsDBNull(e.Cell) = False) Then
-            e.Cell.Attributes.Add("onclick", "ShowPopup();")
+            'e.Cell.Attributes.Add("onclick", "ShowPopup('" + rundate + "');")
             'e.Cell.Attributes.Add("oncontextmenu", "ContextMenuServiceRun(s,e)")
         End If
 

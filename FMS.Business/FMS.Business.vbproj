@@ -202,6 +202,7 @@
     <Compile Include="Classes\DataObjects\Feature.vb" />
     <Compile Include="Classes\DataObjects\ApplicationFeatureRole.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetTblRuns.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetUnAssignedRuns.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_UpdateCustomeRating.vb" />
     <Compile Include="Classes\DataObjects\FleetMapMarker.vb" />
     <Compile Include="Classes\DataObjects\GeoFenceDeviceCollision.vb" />
