@@ -66,19 +66,22 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.FleetDocument)
             Dim fleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                             Select New DataObjects.FleetDocument(i)).ToList()
+                                 Order By i.Description
+                                 Select New DataObjects.FleetDocument(i)).ToList()
             Return fleetDocument
         End Function
         Public Shared Function GetAllByClient(CID As Guid) As List(Of DataObjects.FleetDocument)
             Dim fleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                Where i.ClientID.Equals(CID)
-                                Select New DataObjects.FleetDocument(i)).ToList()
+                                 Order By i.Description
+                                 Where i.ClientID.Equals(CID)
+                                 Select New DataObjects.FleetDocument(i)).ToList()
             Return fleetDocument
         End Function
         Public Shared Function GetAllByRun(RID As Guid) As List(Of DataObjects.FleetDocument)
             Dim fleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                Where i.RunID.Equals(RID)
-                                Select New DataObjects.FleetDocument(i)).ToList()
+                                 Order By i.Description
+                                 Where i.RunID.Equals(RID)
+                                 Select New DataObjects.FleetDocument(i)).ToList()
             Return fleetDocument
         End Function
 #End Region

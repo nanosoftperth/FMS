@@ -41,6 +41,7 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.FleetRun)
             Dim fleetRuns = (From i In SingletonAccess.FMSDataContextContignous.FleetRuns
+                             Order By i.RunName
                              Select New DataObjects.FleetRun(i)).ToList()
             Return fleetRuns
         End Function

@@ -37,14 +37,16 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.FleetClient)
             Dim fleetClients = (From i In SingletonAccess.FMSDataContextContignous.FleetClients
-                                 Join c In SingletonAccess.FMSDataContextContignous.tblCustomers On
+                                Join c In SingletonAccess.FMSDataContextContignous.tblCustomers On
                                  i.CustomerID Equals c.Cid
+                                Order By c.CustomerName
                                 Select New DataObjects.FleetClient() With {.Name = c.CustomerName, .ClientID = i.ClientID, .CustomerID = c.Cid}).ToList()
             Return fleetClients
         End Function
         Public Shared Function GetAllCustomer() As List(Of DataObjects.FleetClient)
             Dim fleetCustomers = (From i In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                   Select New DataObjects.FleetClient() With {.Name = i.CustomerName, .Address = i.AddressLine1, .CustomerID = i.Cid}).ToList()
+                                  Order By i.CustomerName
+                                  Select New DataObjects.FleetClient() With {.Name = i.CustomerName, .Address = i.AddressLine1, .CustomerID = i.Cid}).ToList()
             Return fleetCustomers
         End Function
 #End Region

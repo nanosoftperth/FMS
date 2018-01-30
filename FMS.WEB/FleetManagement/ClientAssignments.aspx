@@ -119,7 +119,7 @@
                             <Columns>
                                 <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunCompletionID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataComboBoxColumn FieldName="RunID" Caption="Run Name" VisibleIndex="2">
+                                <dx:GridViewDataComboBoxColumn FieldName="RunID" Caption="Run Name" VisibleIndex="2" SortIndex="0" SortOrder="Ascending">
                                     <PropertiesComboBox DataSourceID="odsRun" TextField="RunName" ValueField="RunID">
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
@@ -151,7 +151,7 @@
                             <Columns>
                                 <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunClientID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataComboBoxColumn FieldName="RunID" Caption="Run Name" VisibleIndex="2">
+                                <dx:GridViewDataComboBoxColumn FieldName="RunID" Caption="Run Name" VisibleIndex="2" SortIndex="0" SortOrder="Ascending">
                                     <PropertiesComboBox DataSourceID="odsRun" TextField="RunName" ValueField="RunID">
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
