@@ -34,6 +34,7 @@
                                                         Where i.RunID = RunId).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.FleetRuns.DeleteOnSubmit(fleetRun)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            FMS.Business.DataObjects.FleetDocument.DeleteByRunID(RunId)
         End Sub
 #End Region
 

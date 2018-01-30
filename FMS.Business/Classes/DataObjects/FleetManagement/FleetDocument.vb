@@ -38,9 +38,29 @@
         Public Shared Sub Delete(Document As DataObjects.FleetDocument)
             Dim DocumentID As System.Guid = Document.DocumentID
             Dim fleetDocument As FMS.Business.FleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                                        Where i.DocumentID = DocumentID).SingleOrDefault
+                                                               Where i.DocumentID = DocumentID).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.FleetDocuments.DeleteOnSubmit(fleetDocument)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
+        End Sub
+        Public Shared Sub DeleteByRunID(RunID As Guid)
+            Dim DocRunID As System.Guid = RunID
+            Dim fleetDocs = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
+                             Where i.RunID = DocRunID).ToList()
+            For Each fleetDoc In fleetDocs
+                Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
+                SingletonAccess.FMSDataContextContignous.FleetDocuments.DeleteOnSubmit(fleetDocument)
+                SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Next
+        End Sub
+        Public Shared Sub DeleteByClientID(ClientID As Guid)
+            Dim DocClientID As System.Guid = ClientID
+            Dim fleetDocs = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
+                             Where i.ClientID = DocClientID).ToList()
+            For Each fleetDoc In fleetDocs
+                Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
+                SingletonAccess.FMSDataContextContignous.FleetDocuments.DeleteOnSubmit(fleetDocument)
+                SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Next
         End Sub
 #End Region
 #Region "Get methods"

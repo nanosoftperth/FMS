@@ -31,6 +31,7 @@
                                                         Where i.ClientID = ClientID).SingleOrDefault
             SingletonAccess.FMSDataContextContignous.FleetClients.DeleteOnSubmit(fleetClient)
             SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            FMS.Business.DataObjects.FleetDocument.DeleteByClientID(ClientID)
         End Sub
 #End Region
 #Region "Get methods"
