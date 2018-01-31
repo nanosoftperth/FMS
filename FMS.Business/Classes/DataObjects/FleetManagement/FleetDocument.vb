@@ -10,79 +10,121 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Document As DataObjects.FleetDocument)
-            Dim fleetDocument As New FMS.Business.FleetDocument
-            With fleetDocument
-                .DocumentID = Guid.NewGuid
-                .ClientID = Document.ClientID
-                .RunID = Document.RunID
-                .Description = Document.Description
-                .PhotoBinary = Document.PhotoBinary
-                .CreatedDate = Date.Now
+            With New LINQtoSQLClassesDataContext
+                Dim fleetDocument As New FMS.Business.FleetDocument
+                With fleetDocument
+                    .DocumentID = Guid.NewGuid
+                    .ClientID = Document.ClientID
+                    .RunID = Document.RunID
+                    .Description = Document.Description
+                    .PhotoBinary = Document.PhotoBinary
+                    .CreatedDate = Date.Now
+                End With
+                .FleetDocuments.InsertOnSubmit(fleetDocument)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.FleetDocuments.InsertOnSubmit(fleetDocument)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(Document As DataObjects.FleetDocument)
-            Dim fleetDocument As FMS.Business.FleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                                        Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
-            With fleetDocument
-                .DocumentID = Document.DocumentID
-                .ClientID = Document.ClientID
-                .RunID = Document.RunID
-                .Description = Document.Description
-                .PhotoBinary = Document.PhotoBinary
-                .CreatedDate = Date.Now
+            With New LINQtoSQLClassesDataContext
+                Dim fleetDocument As FMS.Business.FleetDocument = (From i In .FleetDocuments
+                                                                   Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
+                With fleetDocument
+                    .DocumentID = Document.DocumentID
+                    .ClientID = Document.ClientID
+                    .RunID = Document.RunID
+                    .Description = Document.Description
+                    .PhotoBinary = Document.PhotoBinary
+                    .CreatedDate = Date.Now
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Document As DataObjects.FleetDocument)
-            Dim DocumentID As System.Guid = Document.DocumentID
-            Dim fleetDocument As FMS.Business.FleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                                               Where i.DocumentID = DocumentID).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.FleetDocuments.DeleteOnSubmit(fleetDocument)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim fleetDocument As FMS.Business.FleetDocument = (From i In .FleetDocuments
+                                                                   Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
+                .FleetDocuments.DeleteOnSubmit(fleetDocument)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
         Public Shared Sub DeleteByRunID(RunID As Guid)
-            Dim DocRunID As System.Guid = RunID
-            Dim fleetDocs = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                             Where i.RunID = DocRunID).ToList()
-            For Each fleetDoc In fleetDocs
-                Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
-                SingletonAccess.FMSDataContextContignous.FleetDocuments.DeleteOnSubmit(fleetDocument)
-                SingletonAccess.FMSDataContextContignous.SubmitChanges()
-            Next
+            With New LINQtoSQLClassesDataContext
+                Dim fleetDocs = (From i In .FleetDocuments
+                                 Where i.RunID.Equals(RunID)).ToList()
+                For Each fleetDoc In fleetDocs
+                    Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
+                    .FleetDocuments.DeleteOnSubmit(fleetDocument)
+                    .SubmitChanges()
+                Next
+                .Dispose()
+            End With
         End Sub
         Public Shared Sub DeleteByClientID(ClientID As Guid)
-            Dim DocClientID As System.Guid = ClientID
-            Dim fleetDocs = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                             Where i.ClientID = DocClientID).ToList()
-            For Each fleetDoc In fleetDocs
-                Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
-                SingletonAccess.FMSDataContextContignous.FleetDocuments.DeleteOnSubmit(fleetDocument)
-                SingletonAccess.FMSDataContextContignous.SubmitChanges()
-            Next
+            With New LINQtoSQLClassesDataContext
+                Dim fleetDocs = (From i In .FleetDocuments
+                                 Where i.ClientID.Equals(ClientID)).ToList()
+                For Each fleetDoc In fleetDocs
+                    Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
+                    .FleetDocuments.DeleteOnSubmit(fleetDoc)
+                    .SubmitChanges()
+                Next
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.FleetDocument)
-            Dim fleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                 Order By i.Description
-                                 Select New DataObjects.FleetDocument(i)).ToList()
-            Return fleetDocument
+            Try
+                Dim fleetDocuments As New List(Of DataObjects.FleetDocument)
+
+                With New LINQtoSQLClassesDataContext
+
+                    fleetDocuments = (From i In .FleetDocuments
+                                      Order By i.Description
+                                      Select New DataObjects.FleetDocument(i)).ToList()
+                    .Dispose()
+                End With
+
+                Return fleetDocuments
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllByClient(CID As Guid) As List(Of DataObjects.FleetDocument)
-            Dim fleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                 Order By i.Description
-                                 Where i.ClientID.Equals(CID)
-                                 Select New DataObjects.FleetDocument(i)).ToList()
-            Return fleetDocument
+            Try
+                Dim fleetDocuments As New List(Of DataObjects.FleetDocument)
+
+                With New LINQtoSQLClassesDataContext
+                    fleetDocuments = (From i In .FleetDocuments
+                                      Order By i.Description
+                                      Where i.ClientID.Equals(CID)
+                                      Select New DataObjects.FleetDocument(i)).ToList()
+                    .Dispose()
+                End With
+
+                Return fleetDocuments
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllByRun(RID As Guid) As List(Of DataObjects.FleetDocument)
-            Dim fleetDocument = (From i In SingletonAccess.FMSDataContextContignous.FleetDocuments
-                                 Order By i.Description
-                                 Where i.RunID.Equals(RID)
-                                 Select New DataObjects.FleetDocument(i)).ToList()
-            Return fleetDocument
+            Try
+                Dim fleetDocuments As New List(Of DataObjects.FleetDocument)
+
+                With New LINQtoSQLClassesDataContext
+                    fleetDocuments = (From i In .FleetDocuments
+                                      Order By i.Description
+                                      Where i.RunID.Equals(RID)
+                                      Select New DataObjects.FleetDocument(i)).ToList()
+                    .Dispose()
+                End With
+                Return fleetDocuments
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

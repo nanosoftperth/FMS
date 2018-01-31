@@ -8,42 +8,61 @@
 
 #Region "CRUD"
         Public Shared Sub Create(Run As DataObjects.FleetRun)
-            Dim fleetRun As New FMS.Business.FleetRun
-            With fleetRun
-                .RunID = Guid.NewGuid
-                .RunName = Run.RunName
-                .KeyNumber = Run.KeyNumber
+            With New LINQtoSQLClassesDataContext
+                Dim fleetRun As New FMS.Business.FleetRun
+                With fleetRun
+                    .RunID = Guid.NewGuid
+                    .RunName = Run.RunName
+                    .KeyNumber = Run.KeyNumber
+                End With
+                .FleetRuns.InsertOnSubmit(fleetRun)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.FleetRuns.InsertOnSubmit(fleetRun)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(Run As DataObjects.FleetRun)
-            Dim fleetRun As FMS.Business.FleetRun = (From i In SingletonAccess.FMSDataContextContignous.FleetRuns
-                                                        Where i.RunID.Equals(Run.RunID)).SingleOrDefault
-
-            With fleetRun
-                .RunID = Run.RunID
-                .RunName = Run.RunName
-                .KeyNumber = Run.KeyNumber
+            With New LINQtoSQLClassesDataContext
+                Dim fleetRun As FMS.Business.FleetRun = (From i In .FleetRuns
+                                                         Where i.RunID.Equals(Run.RunID)).SingleOrDefault
+                With fleetRun
+                    .RunID = Run.RunID
+                    .RunName = Run.RunName
+                    .KeyNumber = Run.KeyNumber
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Run As DataObjects.FleetRun)
-            Dim RunId As System.Guid = Run.RunID
-            Dim fleetRun As FMS.Business.FleetRun = (From i In SingletonAccess.FMSDataContextContignous.FleetRuns
-                                                        Where i.RunID = RunId).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.FleetRuns.DeleteOnSubmit(fleetRun)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
-            FMS.Business.DataObjects.FleetDocument.DeleteByRunID(RunId)
+            With New LINQtoSQLClassesDataContext
+                Dim fleetRun As FMS.Business.FleetRun = (From i In .FleetRuns
+                                                         Where i.RunID.Equals(Run.RunID)).SingleOrDefault
+                .FleetRuns.DeleteOnSubmit(fleetRun)
+                .SubmitChanges()
+                .Dispose()
+            End With
+            FMS.Business.DataObjects.FleetDocument.DeleteByRunID(Run.RunID)
         End Sub
 #End Region
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.FleetRun)
-            Dim fleetRuns = (From i In SingletonAccess.FMSDataContextContignous.FleetRuns
-                             Order By i.RunName
-                             Select New DataObjects.FleetRun(i)).ToList()
-            Return fleetRuns
+            Try
+                Dim fleetRuns As New List(Of DataObjects.FleetRun)
+
+                With New LINQtoSQLClassesDataContext
+
+                    fleetRuns = (From i In .FleetRuns
+                                 Order By i.RunName
+                                 Select New DataObjects.FleetRun(i)).ToList
+                    .Dispose()
+                End With
+
+                Return fleetRuns
+
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 

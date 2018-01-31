@@ -8,46 +8,76 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Client As DataObjects.FleetClient)
-            Dim fleetClient As New FMS.Business.FleetClient
-            With fleetClient
-                .ClientID = Guid.NewGuid
-                .CustomerID = Client.CustomerID
+            With New LINQtoSQLClassesDataContext
+                Dim fleetClient As New FMS.Business.FleetClient
+                With fleetClient
+                    .ClientID = Guid.NewGuid
+                    .CustomerID = Client.CustomerID
+                End With
+                .FleetClients.InsertOnSubmit(fleetClient)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.FleetClients.InsertOnSubmit(fleetClient)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(Client As DataObjects.FleetClient)
-            Dim fleetClient As FMS.Business.FleetClient = (From i In SingletonAccess.FMSDataContextContignous.FleetClients
-                                                        Where i.ClientID.Equals(Client.ClientID)).SingleOrDefault
-            With fleetClient
-                .ClientID = Client.ClientID
-                .CustomerID = Client.CustomerID
+            With New LINQtoSQLClassesDataContext
+                Dim fleetClient As FMS.Business.FleetClient = (From i In .FleetClients
+                                                               Where i.ClientID.Equals(Client.ClientID)).SingleOrDefault
+                With fleetClient
+                    .ClientID = Client.ClientID
+                    .CustomerID = Client.CustomerID
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Client As DataObjects.FleetClient)
-            Dim ClientID As System.Guid = Client.ClientID
-            Dim fleetClient As FMS.Business.FleetClient = (From i In SingletonAccess.FMSDataContextContignous.FleetClients
-                                                        Where i.ClientID = ClientID).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.FleetClients.DeleteOnSubmit(fleetClient)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
-            FMS.Business.DataObjects.FleetDocument.DeleteByClientID(ClientID)
+            With New LINQtoSQLClassesDataContext
+                Dim fleetClient As FMS.Business.FleetClient = (From i In .FleetClients
+                                                               Where i.ClientID.Equals(Client.ClientID)).SingleOrDefault
+                .FleetClients.DeleteOnSubmit(fleetClient)
+                .SubmitChanges()
+                .Dispose()
+            End With
+            FMS.Business.DataObjects.FleetDocument.DeleteByClientID(Client.ClientID)
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.FleetClient)
-            Dim fleetClients = (From i In SingletonAccess.FMSDataContextContignous.FleetClients
-                                Join c In SingletonAccess.FMSDataContextContignous.tblCustomers On
-                                 i.CustomerID Equals c.Cid
-                                Order By c.CustomerName
-                                Select New DataObjects.FleetClient() With {.Name = c.CustomerName, .ClientID = i.ClientID, .CustomerID = c.Cid}).ToList()
-            Return fleetClients
+            Try
+                Dim fleetClients As New List(Of DataObjects.FleetClient)
+
+                With New LINQtoSQLClassesDataContext
+                    fleetClients = (From i In .FleetClients
+                                    Join c In .tblCustomers On
+                                  i.CustomerID Equals c.Cid
+                                    Order By c.CustomerName
+                                    Select New DataObjects.FleetClient() With {.Name = c.CustomerName, .ClientID = i.ClientID, .CustomerID = c.Cid}).ToList()
+                    .Dispose()
+                End With
+
+                Return fleetClients
+
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllCustomer() As List(Of DataObjects.FleetClient)
-            Dim fleetCustomers = (From i In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                  Order By i.CustomerName
-                                  Select New DataObjects.FleetClient() With {.Name = i.CustomerName, .Address = i.AddressLine1, .CustomerID = i.Cid}).ToList()
-            Return fleetCustomers
+            Try
+                Dim fleetCustomers As New List(Of DataObjects.FleetClient)
+
+                With New LINQtoSQLClassesDataContext
+
+                    fleetCustomers = (From i In .tblCustomers
+                                      Order By i.CustomerName
+                                      Select New DataObjects.FleetClient() With {.Name = i.CustomerName, .Address = i.AddressLine1, .CustomerID = i.Cid}).ToList()
+                    .Dispose()
+                End With
+
+                Return fleetCustomers
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"
