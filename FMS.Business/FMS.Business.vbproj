@@ -133,6 +133,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblPublicHolidayRegister.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRateIncreaseReference.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRevenueChangeReason.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblRunDates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRunFortnightlyCycle.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRuns.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblSalesPersons.vb" />

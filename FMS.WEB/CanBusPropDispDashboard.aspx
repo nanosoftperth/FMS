@@ -1130,7 +1130,6 @@
 
                 }
 
-
                 bln_blink = true;
 
                 blink_ctr = blink_ctr + 1;

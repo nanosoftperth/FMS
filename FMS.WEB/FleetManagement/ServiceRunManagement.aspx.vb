@@ -2,6 +2,7 @@
 Imports System.Reflection.Emit
 Imports DevExpress.Web
 Imports DevExpress.Web.ASPxGridView
+Imports System.Web.Services
 
 Public Class ServiceRunManagement
     Inherits System.Web.UI.Page
@@ -63,7 +64,7 @@ Public Class ServiceRunManagement
     End Sub
 
     Protected Sub gvServiceRun_HtmlDataCellPrepared(sender As Object, e As ASPxGridViewTableDataCellEventArgs)
-        Dim rundate As Date
+        Dim rundate As String = ""
 
         Dim ndxTech = e.DataColumn.FieldName.IndexOf("Tech_")
         If (ndxTech > -1) Then
@@ -81,32 +82,36 @@ Public Class ServiceRunManagement
             End If
         End If
 
-        Dim currDate As Date
 
-        If (e.DataColumn.FieldName = "RunDate") Then
 
-            rundate = e.CellValue
 
-            'Dim ctrDate = DateDiff(DateInterval.Day, Me.dteStart.Value, Me.dteEnd.Value)
-            'Dim StartDate As Date = Me.dteStart.Value
 
-            'For loopctr = 0 To ctrDate - 1
+        'Dim currDate As Date
 
-            '    currDate = StartDate.AddDays(loopctr)
-            '    Dim currDay = currDate.ToString("dd MMM")
+        'If (e.DataColumn.FieldName = "RunDate") Then
 
-            '    If (e.CellValue = currDay) Then
-            '        Exit For
-            '    End If
+        '    rundate = e.CellValue.ToString()
 
-            '    Dim obj As Object = ""
+        '    'Dim ctrDate = DateDiff(DateInterval.Day, Me.dteStart.Value, Me.dteEnd.Value)
+        '    'Dim StartDate As Date = Me.dteStart.Value
 
-            'Next
+        '    'For loopctr = 0 To ctrDate - 1
 
-        End If
+        '    '    currDate = StartDate.AddDays(loopctr)
+        '    '    Dim currDay = currDate.ToString("dd MMM")
+
+        '    '    If (e.CellValue = currDay) Then
+        '    '        Exit For
+        '    '    End If
+
+        '    '    Dim obj As Object = ""
+
+        '    'Next
+
+        'End If
 
         If (IsDBNull(e.Cell) = False) Then
-            'e.Cell.Attributes.Add("onclick", "ShowPopup('" + rundate + "');")
+            e.Cell.Attributes.Add("onclick", "ShowPopup('" + e.DataColumn.FieldName + "');")
             'e.Cell.Attributes.Add("oncontextmenu", "ContextMenuServiceRun(s,e)")
         End If
 
@@ -125,11 +130,32 @@ Public Class ServiceRunManagement
     End Sub
 
 
-
-
 #End Region
 
 #Region "Methods and Functions for Service Run"
+    <WebMethod>
+    Public Shared Function GetUnAssignedRuns(DateRun As Date) As List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
+        Dim ListRuns = New List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
+
+        Dim objList = FMS.Business.DataObjects.usp_GetUnAssignedRuns.GetAllPerApplication(DateRun, DateRun).ToList()
+
+        If (objList.Count > 0) Then
+
+            For Each item In objList
+                Dim row = New FMS.Business.DataObjects.usp_GetUnAssignedRuns
+
+                row.ApplicationId = item.ApplicationId
+                row.DateOfRun = item.DateOfRun
+                row.Rid = item.Rid
+                row.RunDescription = item.RunDescription
+                row.RunNUmber = item.RunNUmber
+                ListRuns.Add(row)
+            Next
+
+        End If
+        Return ListRuns
+    End Function
+
 
     Protected Sub PopulateServiceRunGrid()
         '--- Get
@@ -491,10 +517,6 @@ Public Class ServiceRunManagement
 
     End Sub
 
-    Protected Sub PopulateServiceRunTable()
-
-    End Sub
-
     Public Shared Function ServiceRunTable(StartDate As Date, EndDate As Date) As DataTable
 
         '--- Create Table Fields or Columns
@@ -613,12 +635,6 @@ Public Class ServiceRunManagement
 
     End Function
 
-    ''' <summary>
-    ''' This is just for testing
-    ''' the content of the function will be change as soon as we know how to get
-    ''' the technicians
-    ''' </summary>
-    ''' <returns></returns>
     Public Shared Function GetTechnician(StartDate As Date, EndDate As Date) As List(Of Technician)
         Dim Technicians As New List(Of Technician)
         'Dim strTech As String = "Technician"
@@ -638,22 +654,6 @@ Public Class ServiceRunManagement
             Next
 
         End If
-
-
-        'Dim listTech = fms
-
-
-        'For nRow = 1 To 3
-        '    Dim Tech As New Technician
-
-        '    Dim techname = strTech + nRow.ToString()
-
-        '    Tech.TechID = "TechID_" + nRow.ToString()
-        '    Tech.Techname = techname
-
-        '    Technicians.Add(Tech)
-
-        'Next
 
         Return Technicians
 

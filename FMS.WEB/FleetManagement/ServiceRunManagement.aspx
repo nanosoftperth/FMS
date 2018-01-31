@@ -23,28 +23,92 @@
     </style>
 
     <script type="text/javascript">
-        function ShowPopup(rundate) {
-            var jsDate = clientdteStart.GetDate();
-            var syear = jsDate.getFullYear(); // where getFullYear returns the year (four digits)
-            var smonth = jsDate.getMonth(); // where getMonth returns the month (from 0-11)
-            var sday = jsDate.getDate();   // where getDate returns the day of the month (from 1-31)
+        function ShowPopup(fieldname) {
+            //var sFullDate = new Date();
+            //var jsDate = clientdteStart.GetDate();
+            //var syear = jsDate.getFullYear(); // where getFullYear returns the year (four digits)
+            //var smonth = jsDate.getMonth(); // where getMonth returns the month (from 0-11)
+            //var sday = jsDate.getDate();   // where getDate returns the day of the month (from 1-31)
+            //sFullDate.setFullYear(syear, smonth, sday);
+            ////alert(sFullDate);
+            ////alert(clientdteStart.GetDate() + ' = ' + jsDate);
+            //var eFullDate = new Date();
+            //var jeDate = clientdteEnd.GetDate();
+            //var eyear = jeDate.getFullYear();
+            //var emonth = jeDate.getMonth();
+            //var eday = jeDate.getDate();
+            //eFullDate.setFullYear(eyear, emonth, eday);
+            //alert(clientdteEnd.GetDate() + ' = ' + jeDate);
+            //var startdate = new Date(eyear, emonth, eday);
 
-            var jeDate = clientdteEnd.GetDate();
-            var eyear = jeDate.getFullYear();
-            var emonth = jeDate.getMonth();
-            var eday = jeDate.getDate();
+            var intDateDiff = GetDateDiff(clientdteStart.GetDate(), clientdteEnd.GetDate());
 
-            var startdate = new Date(syear, smonth, sday);
-            var intDateDiff = GetDateDiff(jsDate, jeDate);
-            var tmpdate = new Date(jsDate.setDate(2));
+            setCookie('SRStartDate', clientdteStart.GetDate(), 1)
+            setCookie('SREndDate', clientdteEnd.GetDate(), 1)
+            setCookie('SRNumDays', intDateDiff, 1)
 
+            var DriverID = 0
+            var Driver = fieldname.indexOf('Driver_');
+            if (Driver > -1)
+            {
+                var ndx = fieldname.indexOf('_');
+                if (ndx > -1)
+                {
+                    DriverID = fieldname.substring(ndx + 1, fieldname.length);
+                    setCookie('DriverID', DriverID, 1)
+                }
+            }
 
+            var Tech = fieldname.indexOf('Tech_');
+            if (Tech > -1) {
+                var ndx = fieldname.indexOf('_');
+                if (ndx > -1) {
+                    DriverID = fieldname.substring(ndx + 1, fieldname.length);
+                    setCookie('TechID', DriverID, 1)
+                }
+            }
 
-            alert(rundate);
-            clientpuUnassignedRun.Show();
+            //alert(DriverID);
+            //clientpuUnassignedRun.Show();
         }
 
-        //datediff in days
+        //Create Cookie
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        //Get Cookie value
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        //Check cookie if exists (return true or false)
+        function checkCookie(cookiename) {
+            var valCookie = getCookie(cookiename);
+            if (valCookie != "") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        //Get datediff in days
         function GetDateDiff(d1, d2) {
             var t2 = d2.getTime();
             var t1 = d1.getTime();
@@ -98,76 +162,127 @@
         }
 
         // function is called on changing focused row 
-        function OnGridFocusedRowChanged(s,e) {
-            var cellInfo = GetCellInfo(s, ASPxClientUtils.GetEventSource(e.htmlEvent));
-            if (!cellInfo) return;
-            var args = cellInfo.split("_");
-            var visibleIndex = parseInt(args[0]);
-            var fieldName = s.cpDataColumnMap[parseInt(args[1])];
-            alert(fieldName);
+        function OnGridFocusedRowChanged() {
+            //var cellInfo = GetCellInfo(s, ASPxClientUtils.GetEventSource(e.htmlEvent));
+            //if (!cellInfo) return;
+            //var args = cellInfo.split("_");
+            //var visibleIndex = parseInt(args[0]);
+            //var fieldName = s.cpDataColumnMap[parseInt(args[1])];
+            //alert(fieldName);
+            //var fldname = clientgvServiceRun.GetColumn(1);
+            //var ndx = clientgvServiceRun.GetFocusedRowIndex();
+            //alert(fieldname);
 
             // The single value will be returned to the OnGetRowValues() function      
-            //clientgvServiceRun.GetRowValues(clientgvServiceRun.GetFocusedRowIndex(), 'RunDate', OnGetRowValues);
+            clientgvServiceRun.GetRowValues(clientgvServiceRun.GetFocusedRowIndex(), 'RunDate', OnGetRowValues);
         }
         // Value contains the "EmployeeID" field value returned from the server, not the list of values 
         function OnGetRowValues(Value) {
 
             if (Value != null)
             {
-                alert(Value);
-                
-            }
+                var TranDate = '';
+                var strEndDate = '';
 
-            // Right code 
-            //alert(Value);
-            // This code will cause an error 
-            // alert(Value[0]); 
+                var sdateexist = checkCookie('SRStartDate');
+
+                if (sdateexist == true)
+                {
+                    var sdate = getCookie('SRStartDate');
+                    var edate = getCookie('SREndDate');
+                    var numdays = getCookie('SRNumDays');
+
+                    for (i = 0; i < numdays - 1; i++) {
+                        var d = new Date(sdate);
+                        d.setDate(d.getDate() + i);
+                        tmpdate = formatDate(d);    //
+                        
+                        if (tmpdate == Value)
+                        {
+                            TranDate = formatDateTommddyyyy(d);
+                            break;                           
+                        }                       
+                    }
+
+                    if (TranDate.length > 0)
+                    {
+                        //setCookie('RepDate', TranDate, 1)
+                        //$('#RepDate').val(TranDate);
+
+                        PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
+                       
+                    }
+
+                }
+
+                clientpuUnassignedRun.Show();      
+            }          
         }
 
-        //function Grid_ContextMenu(s, e) {
+        //Populate UnAssigned Runs ComboBox
+        function OnSuccess(response) {
+            clientcboRun.ClearItems();
+            for (var i in response) {
+                clientcboRun.AddItem(response[i].RunDescription, response[i].RunNUmber);
+            }
+        }
 
+        function UnAssignedRun_OnSelectedIndexChanged(s, e) {
+            var id = s.GetSelectedItem().value;
+            //alert(id);
+            //PageMethods.GetData(id, OnSuccess);
+        }
 
-        //    //var cellInfo = GetCellInfo(s, ASPxClientUtils.GetEventSource(e.htmlEvent));
-        //    //if (!cellInfo) return;
-        //    //var args = cellInfo.split("_");
-        //    //var visibleIndex = parseInt(args[0]);
-        //    //var fieldName = s.cpDataColumnMap[parseInt(args[1])];
-        //    //var strCellInfo = cellInfo;
-        //    //var strargs = args;
+        //Get date in mmddyyyy format
+        function formatDateTommddyyyy(date) {
+            var strDay = '';
+            var strMonth = '';
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
 
-        //    //alert(fieldName);
-        //    ////alert("VisibleIndex = " + visibleIndex + "\nFieldName = " + fieldName);
-        //    ////clientpuUnassignedRun.Show();
-        //}
+            if (day.toString().length < 2) {
+                strDay = '0' + day.toString();
+            }
+            else {
+                strDay = day.toString();
+            }
 
-        //function OnGridFocusedRowChanged() {
-        //    // Query the server for the "EmployeeID" and "Notes" fields from the focused row 
-        //    // The values will be returned to the OnGetRowValues() function
-        //    //DetailNotes.SetText("Loading...");
-        //    grid.GetRowValues(grid.GetFocusedRowIndex(), 'EmployeeID;Notes', OnGetRowValues);
-        //}
+            if (month.toString().length < 2) {
+                strMonth = '0' + month.toString();
+            }
+            else {
+                strMonth = month.toString();
+            }
 
-        //// Value array contains "EmployeeID" and "Notes" field values returned from the server 
-        //function OnGetRowValues(values) {
-        //    DetailImage.SetImageUrl("FocusedRow.aspx?Photo=" + values[0]);
-        //    DetailImage.SetVisible(true);
-        //    DetailNotes.SetText(values[1]);
-        //}
+            return strMonth + '/' + strDay + '/' + year;
+        }
 
+        //Get date in dd mmm format
+        function formatDate(date) {
+            var monthNames = [
+                "Jan", "Feb", "Mar",
+                "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct",
+                "Nov", "Dec"
+            ];
 
+            var strDay = '';
+            var day = date.getDate();
+            var monthIndex = date.getMonth();
+            var year = date.getFullYear();
 
-        //function ContextMenuServiceRun(s, e) {
-        //    clientpuCompleteRun.Show();
-
-        //}
-
-        //function ContextMenuServiceRun(event) {
-        //    clientpuCompleteRun.Show();
-        //    //if (popupMenu.GetVisible())
-        //    //    popupMenu.Hide();
-        //    //if (!popupMenu.GetVisible())
-        //    //    popupMenu.ShowAtPos(ASPxClientUtils.GetEventX(evt), ASPxClientUtils.GetEventY(evt));
-        //}
+            if (day.toString().length < 2) {
+                strDay = '0' + day.toString();
+            }
+            else
+            {
+                strDay = day.toString();
+            }
+            
+            return strDay + ' ' + monthNames[monthIndex];
+        }
+     
 
     </script>
 
@@ -175,6 +290,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
         <div>
             <dx:ASPxPageControl ID="carTabPage" Width="100%" runat="server"
                 CssClass="dxtcFixed" ActiveTabIndex="0" EnableHierarchyRecreation="True">
@@ -243,9 +359,7 @@
                                         }
                                     } " />
 
-                                    <ClientSideEvents FocusedRowChanged="function(s, e) {
-                                        Alert('Test');                                      
-                                        }" />
+                                    <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged" />
                                     <%--<ClientSideEvents ContextMenu="Grid_ContextMenu" />--%>
                                     <%--<ClientSideEvents FocusedRowChanged="function(s, e) { OnGridFocusedRowChanged(); }" />--%>
                                 </dx:ASPxGridView>
@@ -302,7 +416,20 @@
                                     <dx:ASPxLabel ID="lblSelectRun" runat="server" Text="Select Run "></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxComboBox ID="cboRun" runat="server" AutoPostBack="true"></dx:ASPxComboBox>
+                                    <dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String" 
+                                        ClientInstanceName="clientcboRun">
+                                        <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
+                                    </dx:ASPxComboBox>
+                                    <%--<dx:ASPxComboBox ID="cboRun" runat="server" AutoPostBack="false"
+                                        DataSourceID="odsUnassignedRuns" TextField="RunDescription" ValueField="RunNUmber"
+                                        Width="285px" SelectedIndex="0" CallbackPageSize="15" EnableCallbackMode="True" 
+                                        EnableViewState="false">
+                                    </dx:ASPxComboBox>--%>
+                                    <%--<dx:ASPxComboBox ID="cboRun" runat="server" AutoPostBack="true"></dx:ASPxComboBox>--%>
+                                    <%--<dx:ASPxComboBox ID="cboRun" ClientInstanceName="clientcboRun" runat="server" 
+                                        DataSourceID="odsUnassignedRuns"TextField="RunDescription" ValueField="RunNUmber"
+                                        Width="285px" SelectedIndex="0" CallbackPageSize="15" EnableCallbackMode="True" 
+                                        EnableViewState="false"></dx:ASPxComboBox>--%>
                                 </td>
                             </tr>
                         </table>
@@ -379,12 +506,14 @@
             </SelectParameters>
         </asp:ObjectDataSource>--%>
         <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
-        <asp:ObjectDataSource ID="odsUnassignedRuns" runat="server" SelectMethod="GetAllPerApplication" TypeName="FMS.Business.DataObjects.usp_GetUnAssignedRuns">
+        <%--<asp:ObjectDataSource ID="odsUnassignedRuns" runat="server" SelectMethod="GetAllPerApplication" 
+            TypeName="FMS.Business.DataObjects.usp_GetUnAssignedRuns" EnableViewState="False">
             <SelectParameters>
-                <asp:Parameter Name="StartDate" Type="DateTime" />
-                <asp:Parameter Name="EndDate" Type="DateTime" />
+                <asp:ControlParameter ControlID="idRepDate" Name="StartDate" PropertyName="Value" Type="Object" />
+                <asp:ControlParameter ControlID="idRepDate" Name="EndDate" PropertyName="Value" Type="Object" />
             </SelectParameters>
-        </asp:ObjectDataSource>
+        </asp:ObjectDataSource>--%>
+        
 
     </form>
 </body>
