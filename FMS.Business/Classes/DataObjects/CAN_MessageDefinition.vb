@@ -104,7 +104,12 @@ Namespace DataObjects
 
                     Else
 
-                        Me._Resolution_Multiplier = CDec(res)
+                         'if there is no valid resolution to be reached, then return 1
+                        Dim testDec As Decimal = 1
+                        Dim isValidDecimal = Decimal.TryParse(res, testDec)
+
+                        Me._Resolution_Multiplier = If(isValidDecimal, testDec, 1)
+                                                                                                                                                
                     End If
 
 
