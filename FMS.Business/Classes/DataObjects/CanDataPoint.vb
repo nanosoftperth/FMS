@@ -767,7 +767,7 @@
                         binStr = binarystring.Substring(startchar, spnLengthBits)
 
                         'if all we have is 1's, then this is a "not available" value
-                        cv.IsValid = binStr.Length > 1 AndAlso binStr.Contains("0")
+                        cv.IsValid = binStr.Length < 1 OrElse binStr.Contains("0")
 
                         If CheckIsValid AndAlso Not cv.IsValid Then Exit Sub
 
