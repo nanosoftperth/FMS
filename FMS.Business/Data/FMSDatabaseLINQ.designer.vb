@@ -367,12 +367,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblMonth(instance As tblMonth)
     End Sub
-  Partial Private Sub InserttblSiteComment(instance As tblSiteComment)
-    End Sub
-  Partial Private Sub UpdatetblSiteComment(instance As tblSiteComment)
-    End Sub
-  Partial Private Sub DeletetblSiteComment(instance As tblSiteComment)
-    End Sub
   Partial Private Sub InsertFleetClient(instance As FleetClient)
     End Sub
   Partial Private Sub UpdateFleetClient(instance As FleetClient)
@@ -606,6 +600,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblProjectID(instance As tblProjectID)
     End Sub
   Partial Private Sub DeletetblProjectID(instance As tblProjectID)
+    End Sub
+  Partial Private Sub InserttblSiteComment(instance As tblSiteComment)
+    End Sub
+  Partial Private Sub UpdatetblSiteComment(instance As tblSiteComment)
+    End Sub
+  Partial Private Sub DeletetblSiteComment(instance As tblSiteComment)
     End Sub
   #End Region
 	
@@ -1018,12 +1018,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblSiteComments() As System.Data.Linq.Table(Of tblSiteComment)
-		Get
-			Return Me.GetTable(Of tblSiteComment)
-		End Get
-	End Property
-	
 	Public ReadOnly Property FleetClients() As System.Data.Linq.Table(Of FleetClient)
 		Get
 			Return Me.GetTable(Of FleetClient)
@@ -1267,6 +1261,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblProjectIDs() As System.Data.Linq.Table(Of tblProjectID)
 		Get
 			Return Me.GetTable(Of tblProjectID)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblSiteComments() As System.Data.Linq.Table(Of tblSiteComment)
+		Get
+			Return Me.GetTable(Of tblSiteComment)
 		End Get
 	End Property
 	
@@ -3255,7 +3255,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4899,7 +4899,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -5288,7 +5288,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -15600,157 +15600,6 @@ Partial Public Class tblMonth
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSiteComments")>  _
-Partial Public Class tblSiteComment
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _CommentsID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _Cid As System.Nullable(Of Short)
-	
-	Private _CommentDate As System.Nullable(Of Date)
-	
-	Private _Comments As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnCommentsIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnCommentsIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnCidChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnCidChanged()
-    End Sub
-    Partial Private Sub OnCommentDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnCommentDateChanged()
-    End Sub
-    Partial Private Sub OnCommentsChanging(value As String)
-    End Sub
-    Partial Private Sub OnCommentsChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentsID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CommentsID() As System.Guid
-		Get
-			Return Me._CommentsID
-		End Get
-		Set
-			If ((Me._CommentsID = value)  _
-						= false) Then
-				Me.OnCommentsIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CommentsID = value
-				Me.SendPropertyChanged("CommentsID")
-				Me.OnCommentsIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="SmallInt")>  _
-	Public Property Cid() As System.Nullable(Of Short)
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If (Me._Cid.Equals(value) = false) Then
-				Me.OnCidChanging(value)
-				Me.SendPropertyChanging
-				Me._Cid = value
-				Me.SendPropertyChanged("Cid")
-				Me.OnCidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDate", DbType:="DateTime")>  _
-	Public Property CommentDate() As System.Nullable(Of Date)
-		Get
-			Return Me._CommentDate
-		End Get
-		Set
-			If (Me._CommentDate.Equals(value) = false) Then
-				Me.OnCommentDateChanging(value)
-				Me.SendPropertyChanging
-				Me._CommentDate = value
-				Me.SendPropertyChanged("CommentDate")
-				Me.OnCommentDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Comments", DbType:="NVarChar(MAX)")>  _
-	Public Property Comments() As String
-		Get
-			Return Me._Comments
-		End Get
-		Set
-			If (String.Equals(Me._Comments, value) = false) Then
-				Me.OnCommentsChanging(value)
-				Me.SendPropertyChanging
-				Me._Comments = value
-				Me.SendPropertyChanged("Comments")
-				Me.OnCommentsChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.FleetClient")>  _
 Partial Public Class FleetClient
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -16000,7 +15849,7 @@ Partial Public Class FleetDocument
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property PhotoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._PhotoBinary
@@ -25795,6 +25644,179 @@ Partial Public Class tblProjectID
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSiteComments")>  _
+Partial Public Class tblSiteComment
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CommentsID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _Cid As System.Nullable(Of Short)
+	
+	Private _CommentDate As System.Nullable(Of Date)
+	
+	Private _Comments As String
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCommentsIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCommentsIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnCommentDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCommentDateChanged()
+    End Sub
+    Partial Private Sub OnCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnCommentsChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentsID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CommentsID() As System.Guid
+		Get
+			Return Me._CommentsID
+		End Get
+		Set
+			If ((Me._CommentsID = value)  _
+						= false) Then
+				Me.OnCommentsIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CommentsID = value
+				Me.SendPropertyChanged("CommentsID")
+				Me.OnCommentsIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="SmallInt")>  _
+	Public Property Cid() As System.Nullable(Of Short)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDate", DbType:="DateTime")>  _
+	Public Property CommentDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CommentDate
+		End Get
+		Set
+			If (Me._CommentDate.Equals(value) = false) Then
+				Me.OnCommentDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CommentDate = value
+				Me.SendPropertyChanged("CommentDate")
+				Me.OnCommentDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Comments", DbType:="NVarChar(MAX)")>  _
+	Public Property Comments() As String
+		Get
+			Return Me._Comments
+		End Get
+		Set
+			If (String.Equals(Me._Comments, value) = false) Then
+				Me.OnCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._Comments = value
+				Me.SendPropertyChanged("Comments")
+				Me.OnCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -26086,7 +26108,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj

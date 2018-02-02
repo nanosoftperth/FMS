@@ -806,15 +806,6 @@
       <Column Name="MonthDescription" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblSiteComments" Member="tblSiteComments">
-    <Type Name="tblSiteComment">
-      <Column Name="CommentsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.FleetClient" Member="FleetClients">
     <Type Name="FleetClient">
       <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1362,6 +1353,16 @@
       <Column Name="CIRHistoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RunID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CommentsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSiteComments" Member="tblSiteComments">
+    <Type Name="tblSiteComment">
+      <Column Name="CommentsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
