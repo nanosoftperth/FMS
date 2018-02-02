@@ -779,10 +779,10 @@
         <elementListCompartment Id="14aa79f9-9e6d-427e-ba10-26095d29f47e" absoluteBounds="2.515, 32.085, 1.9700000000000002, 5.0569254557291661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="128c5796-425c-4f2a-a3dc-eb38a6f1f422" absoluteBounds="7.375, 45.75, 2, 1.9631982421875">
+    <classShape Id="e0340fd8-b6c1-4670-ab36-d9f161e2d342" absoluteBounds="7.5, 45.625, 2, 1.9631982421875">
       <DataClassMoniker Name="/LINQtoSQLClassesDataContext/tblSiteComment" />
       <nestedChildShapes>
-        <elementListCompartment Id="853c2725-b586-4bdd-827f-2545731f5e29" absoluteBounds="7.39, 46.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="657cf656-3174-408f-9beb-1a52ee51719f" absoluteBounds="7.515, 46.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

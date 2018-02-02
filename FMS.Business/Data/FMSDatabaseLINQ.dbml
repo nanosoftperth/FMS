@@ -1358,7 +1358,7 @@
   <Table Name="dbo.tblSiteComments" Member="tblSiteComments">
     <Type Name="tblSiteComment">
       <Column Name="CommentsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />

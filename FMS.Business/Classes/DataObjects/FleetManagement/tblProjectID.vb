@@ -990,49 +990,57 @@
         End Function
 #End Region
 #Region "tblSiteComments"
-        'Private Shared Function GetLatestCommentsID(appID As System.Guid) As FMS.Business.tbl
-        '    Return (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-        '            Where c.ApplicationID.Equals(appID)
-        '            Order By c.Rid Descending
-        '            Select c).FirstOrDefault()
-        'End Function
-        'Private Shared Function RunIDCreate(appID As System.Guid) As Integer
-        '    Dim tblRunRid As FMS.Business.tblRun = GetLatestRunID(appID)
-        '    Dim objRunID As New FMS.Business.tblProjectID
-        '    With objRunID
-        '        .ProjectID = Guid.NewGuid()
-        '        .RunID = tblRunRid.Rid + 1
-        '    End With
-        '    SingletonAccess.FMSDataContextContignous.tblProjectIDs.InsertOnSubmit(objRunID)
-        '    SingletonAccess.FMSDataContextContignous.SubmitChanges()
-        '    Return objRunID.RunID
-        'End Function
-        'Private Shared Function RunIDUpdate(RunID As Object, appID As System.Guid) As Integer
-        '    Dim objProject As FMS.Business.tblProjectID = Nothing
-        '    If RunID Is Nothing Then
-        '        Dim tblRunId As FMS.Business.tblRun = GetLatestRunID(appID)
-        '        RunID = tblRunId.Rid
-        '        objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-        '                      Where c.ApplicationID.Equals(appID)).FirstOrDefault()
-        '    Else
-        '        objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
-        '                      Where c.RunID.Equals(RunID) And c.ApplicationID.Equals(appID)).SingleOrDefault
-        '    End If
+        Private Shared Function GetLatestSiteCommentsID(appID As System.Guid) As FMS.Business.tblSiteComment
+            With New LINQtoSQLClassesDataContext
+                Return (From c In .tblSiteComments
+                        Where c.ApplicationID.Equals(appID)
+                        Order By c.Aid Descending
+                        Select c).FirstOrDefault()
+            End With
+        End Function
+        Private Shared Function SiteCommentsIDCreate(appID As System.Guid) As Integer
+            With New LINQtoSQLClassesDataContext
+                Dim tblSiteCommentsId As FMS.Business.tblSiteComment = GetLatestSiteCommentsID(appID)
+                Dim objSiteCommentsId As New FMS.Business.tblProjectID
+                With objSiteCommentsId
+                    .ProjectID = Guid.NewGuid()
+                    .CommentsID = tblSiteCommentsId.Aid + 1
+                End With
+                .tblProjectIDs.InsertOnSubmit(objSiteCommentsId)
+                .SubmitChanges()
+                Return objSiteCommentsId.RunID
+            End With
+        End Function
+        Private Shared Function SiteCommentsIDUpdate(SiteCommentsID As Object, appID As System.Guid) As Integer
+            With New LINQtoSQLClassesDataContext
+                Dim objProject As FMS.Business.tblProjectID = Nothing
+                If SiteCommentsID Is Nothing Then
+                    Dim tblSiteCommentsId As FMS.Business.tblSiteComment = GetLatestSiteCommentsID(appID)
+                    SiteCommentsID = tblSiteCommentsId.Aid
+                    objProject = (From c In .tblProjectIDs
+                                  Where c.ApplicationID.Equals(appID)).FirstOrDefault()
+                Else
+                    objProject = (From c In .tblProjectIDs
+                                  Where c.RunID.Equals(SiteCommentsID) And c.ApplicationID.Equals(appID)).SingleOrDefault
+                End If
 
-        '    With objProject
-        '        .RunID = RunID + 1
-        '    End With
-        '    SingletonAccess.FMSDataContextContignous.SubmitChanges()
-        '    Return objProject.RunID
-        'End Function
-        'Public Shared Function RunIDCreateOrUpdate(appID As System.Guid) As Integer
-        '    Dim objRun = SingletonAccess.FMSDataContextContignous.tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
-        '    If Not objRun Is Nothing AndAlso objRun.Count().Equals(0) Then
-        '        Return RunIDCreate(appID)
-        '    Else
-        '        Return RunIDUpdate(objRun.SingleOrDefault().RunID, appID)
-        '    End If
-        'End Function
+                With objProject
+                    .CommentsID = SiteCommentsID + 1
+                End With
+                .SubmitChanges()
+                Return objProject.CommentsID
+            End With
+        End Function
+        Public Shared Function SiteCommentsIDCreateOrUpdate(appID As System.Guid) As Integer
+            With New LINQtoSQLClassesDataContext
+                Dim objSiteComments = SingletonAccess.FMSDataContextContignous.tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
+                If Not objSiteComments Is Nothing AndAlso objSiteComments.Count().Equals(0) Then
+                    Return SiteCommentsIDCreate(appID)
+                Else
+                    Return SiteCommentsIDUpdate(objSiteComments.SingleOrDefault().CommentsID, appID)
+                End If
+            End With
+        End Function
 #End Region
 #End Region
 #Region "Constructors"
