@@ -68,134 +68,160 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Site As DataObjects.tblSites)
-            Dim appId = ThisSession.ApplicationID
-            Dim objSite As New FMS.Business.tblSite
-            With objSite
-                .ApplicationId = appId
-                .SiteID = Guid.NewGuid
-                .Cid = tblProjectID.SiteIDCreateOrUpdate(appId)
-                .SiteName = Site.SiteName
-                .Customer = Site.Customer
-                .AddressLine1 = Site.AddressLine1
-                .AddressLine2 = Site.AddressLine2
-                .AddressLine3 = Site.AddressLine3
-                .AddressLine4 = Site.AddressLine4
-                .Suburb = Site.Suburb
-                .State = Site.State
-                .PostCode = Site.PostCode
-                .PhoneNo = Site.PhoneNo
-                .FaxNo = Site.FaxNo
-                .SiteContactName = Site.SiteContactName
-                .SiteContactPhone = Site.SiteContactPhone
-                .SiteContactFax = Site.SiteContactFax
-                .SiteContactMobile = Site.SiteContactMobile
-                .SiteContactEmail = Site.SiteContactEmail
-                .PostalAddressLine1 = Site.PostalAddressLine1
-                .PostalAddressLine2 = Site.PostalAddressLine2
-                .PostalSuburb = Site.PostalSuburb
-                .PostalState = Site.PostalState
-                .PostalPostCode = Site.PostalPostCode
-                .SiteStartDate = Site.SiteStartDate
-                .SitePeriod = Site.SitePeriod
-                .SiteContractExpiry = Site.SiteContractExpiry
-                .SiteCeaseDate = Site.SiteCeaseDate
-                .SiteCeaseReason = Site.SiteCeaseReason
-                .InvoiceFrequency = Site.InvoiceFrequency
-                .InvoiceCommencing = Site.InvoiceCommencing
-                .IndustryGroup = Site.IndustryGroup
-                .PreviousSupplier = Site.PreviousSupplier
-                .LostBusinessTo = Site.LostBusinessTo
-                .SalesPerson = Site.SalesPerson
-                .InitialServiceAgreementNo = Site.InitialServiceAgreementNo
-                .InvoiceMonth1 = Site.InvoiceMonth1
-                .InvoiceMonth2 = Site.InvoiceMonth2
-                .InvoiceMonth3 = Site.InvoiceMonth3
-                .InvoiceMonth4 = Site.InvoiceMonth4
-                .GeneralSiteServiceComments = Site.GeneralSiteServiceComments
-                .TotalUnits = Site.TotalUnits
-                .TotalAmount = Site.TotalAmount
-                .Zone = Site.Zone
-                .SeparateInvoice = Site.SeparateInvoice
-                .PurchaseOrderNumber = Site.PurchaseOrderNumber
-                .chkSitesExcludeFuelLevy = Site.chkSitesExcludeFuelLevy
-                .cmbRateIncrease = Site.cmbRateIncrease
+            With New LINQtoSQLClassesDataContext
+                Dim appId = ThisSession.ApplicationID
+                Dim objSite As New FMS.Business.tblSite
+                With objSite
+                    .ApplicationId = appId
+                    .SiteID = Guid.NewGuid
+                    .Cid = tblProjectID.SiteIDCreateOrUpdate(appId)
+                    .SiteName = Site.SiteName
+                    .Customer = Site.Customer
+                    .AddressLine1 = Site.AddressLine1
+                    .AddressLine2 = Site.AddressLine2
+                    .AddressLine3 = Site.AddressLine3
+                    .AddressLine4 = Site.AddressLine4
+                    .Suburb = Site.Suburb
+                    .State = Site.State
+                    .PostCode = Site.PostCode
+                    .PhoneNo = Site.PhoneNo
+                    .FaxNo = Site.FaxNo
+                    .SiteContactName = Site.SiteContactName
+                    .SiteContactPhone = Site.SiteContactPhone
+                    .SiteContactFax = Site.SiteContactFax
+                    .SiteContactMobile = Site.SiteContactMobile
+                    .SiteContactEmail = Site.SiteContactEmail
+                    .PostalAddressLine1 = Site.PostalAddressLine1
+                    .PostalAddressLine2 = Site.PostalAddressLine2
+                    .PostalSuburb = Site.PostalSuburb
+                    .PostalState = Site.PostalState
+                    .PostalPostCode = Site.PostalPostCode
+                    .SiteStartDate = Site.SiteStartDate
+                    .SitePeriod = Site.SitePeriod
+                    .SiteContractExpiry = Site.SiteContractExpiry
+                    .SiteCeaseDate = Site.SiteCeaseDate
+                    .SiteCeaseReason = Site.SiteCeaseReason
+                    .InvoiceFrequency = Site.InvoiceFrequency
+                    .InvoiceCommencing = Site.InvoiceCommencing
+                    .IndustryGroup = Site.IndustryGroup
+                    .PreviousSupplier = Site.PreviousSupplier
+                    .LostBusinessTo = Site.LostBusinessTo
+                    .SalesPerson = Site.SalesPerson
+                    .InitialServiceAgreementNo = Site.InitialServiceAgreementNo
+                    .InvoiceMonth1 = Site.InvoiceMonth1
+                    .InvoiceMonth2 = Site.InvoiceMonth2
+                    .InvoiceMonth3 = Site.InvoiceMonth3
+                    .InvoiceMonth4 = Site.InvoiceMonth4
+                    .GeneralSiteServiceComments = Site.GeneralSiteServiceComments
+                    .TotalUnits = Site.TotalUnits
+                    .TotalAmount = Site.TotalAmount
+                    .Zone = Site.Zone
+                    .SeparateInvoice = Site.SeparateInvoice
+                    .PurchaseOrderNumber = Site.PurchaseOrderNumber
+                    .chkSitesExcludeFuelLevy = Site.chkSitesExcludeFuelLevy
+                    .cmbRateIncrease = Site.cmbRateIncrease
+                End With
+                .tblSites.InsertOnSubmit(objSite)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblSites.InsertOnSubmit(objSite)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(Site As DataObjects.tblSites)
-            Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objSite
-                .SiteName = Site.SiteName
-                .Customer = Site.Customer
-                .AddressLine1 = Site.AddressLine1
-                .AddressLine2 = Site.AddressLine2
-                .AddressLine3 = Site.AddressLine3
-                .AddressLine4 = Site.AddressLine4
-                .Suburb = Site.Suburb
-                .State = Site.State
-                .PostCode = Site.PostCode
-                .PhoneNo = Site.PhoneNo
-                .FaxNo = Site.FaxNo
-                .SiteContactName = Site.SiteContactName
-                .SiteContactPhone = Site.SiteContactPhone
-                .SiteContactFax = Site.SiteContactFax
-                .SiteContactMobile = Site.SiteContactMobile
-                .SiteContactEmail = Site.SiteContactEmail
-                .PostalAddressLine1 = Site.PostalAddressLine1
-                .PostalAddressLine2 = Site.PostalAddressLine2
-                .PostalSuburb = Site.PostalSuburb
-                .PostalState = Site.PostalState
-                .PostalPostCode = Site.PostalPostCode
-                .SiteStartDate = Site.SiteStartDate
-                .SitePeriod = Site.SitePeriod
-                .SiteContractExpiry = Site.SiteContractExpiry
-                .SiteCeaseDate = Site.SiteCeaseDate
-                .SiteCeaseReason = Site.SiteCeaseReason
-                .InvoiceFrequency = Site.InvoiceFrequency
-                .InvoiceCommencing = Site.InvoiceCommencing
-                .IndustryGroup = Site.IndustryGroup
-                .PreviousSupplier = Site.PreviousSupplier
-                .LostBusinessTo = Site.LostBusinessTo
-                .SalesPerson = Site.SalesPerson
-                .InitialServiceAgreementNo = Site.InitialServiceAgreementNo
-                .InvoiceMonth1 = Site.InvoiceMonth1
-                .InvoiceMonth2 = Site.InvoiceMonth2
-                .InvoiceMonth3 = Site.InvoiceMonth3
-                .InvoiceMonth4 = Site.InvoiceMonth4
-                .GeneralSiteServiceComments = Site.GeneralSiteServiceComments
-                .TotalUnits = Site.TotalUnits
-                .TotalAmount = Site.TotalAmount
-                .Zone = Site.Zone
-                .SeparateInvoice = Site.SeparateInvoice
-                .PurchaseOrderNumber = Site.PurchaseOrderNumber
-                .chkSitesExcludeFuelLevy = Site.chkSitesExcludeFuelLevy
-                .cmbRateIncrease = Site.cmbRateIncrease
+            With New LINQtoSQLClassesDataContext
+                Dim objSite As FMS.Business.tblSite = (From c In .tblSites
+                                                       Where c.Cid.Equals(Site.Cid) And c.ApplicationId.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objSite
+                    .SiteName = Site.SiteName
+                    .Customer = Site.Customer
+                    .AddressLine1 = Site.AddressLine1
+                    .AddressLine2 = Site.AddressLine2
+                    .AddressLine3 = Site.AddressLine3
+                    .AddressLine4 = Site.AddressLine4
+                    .Suburb = Site.Suburb
+                    .State = Site.State
+                    .PostCode = Site.PostCode
+                    .PhoneNo = Site.PhoneNo
+                    .FaxNo = Site.FaxNo
+                    .SiteContactName = Site.SiteContactName
+                    .SiteContactPhone = Site.SiteContactPhone
+                    .SiteContactFax = Site.SiteContactFax
+                    .SiteContactMobile = Site.SiteContactMobile
+                    .SiteContactEmail = Site.SiteContactEmail
+                    .PostalAddressLine1 = Site.PostalAddressLine1
+                    .PostalAddressLine2 = Site.PostalAddressLine2
+                    .PostalSuburb = Site.PostalSuburb
+                    .PostalState = Site.PostalState
+                    .PostalPostCode = Site.PostalPostCode
+                    .SiteStartDate = Site.SiteStartDate
+                    .SitePeriod = Site.SitePeriod
+                    .SiteContractExpiry = Site.SiteContractExpiry
+                    .SiteCeaseDate = Site.SiteCeaseDate
+                    .SiteCeaseReason = Site.SiteCeaseReason
+                    .InvoiceFrequency = Site.InvoiceFrequency
+                    .InvoiceCommencing = Site.InvoiceCommencing
+                    .IndustryGroup = Site.IndustryGroup
+                    .PreviousSupplier = Site.PreviousSupplier
+                    .LostBusinessTo = Site.LostBusinessTo
+                    .SalesPerson = Site.SalesPerson
+                    .InitialServiceAgreementNo = Site.InitialServiceAgreementNo
+                    .InvoiceMonth1 = Site.InvoiceMonth1
+                    .InvoiceMonth2 = Site.InvoiceMonth2
+                    .InvoiceMonth3 = Site.InvoiceMonth3
+                    .InvoiceMonth4 = Site.InvoiceMonth4
+                    .GeneralSiteServiceComments = Site.GeneralSiteServiceComments
+                    .TotalUnits = Site.TotalUnits
+                    .TotalAmount = Site.TotalAmount
+                    .Zone = Site.Zone
+                    .SeparateInvoice = Site.SeparateInvoice
+                    .PurchaseOrderNumber = Site.PurchaseOrderNumber
+                    .chkSitesExcludeFuelLevy = Site.chkSitesExcludeFuelLevy
+                    .cmbRateIncrease = Site.cmbRateIncrease
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Site As DataObjects.tblSites)
-            Dim objSite As FMS.Business.tblSite = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                                                   Where c.Cid.Equals(Site.Cid) And c.ApplicationId.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblSites.DeleteOnSubmit(objSite)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objSite As FMS.Business.tblSite = (From c In .tblSites
+                                                       Where c.Cid.Equals(Site.Cid) And c.ApplicationId.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblSites.DeleteOnSubmit(objSite)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblSites)
-            Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                            Where c.ApplicationId.Equals(ThisSession.ApplicationID)
-                            Order By c.SiteName
-                            Select New DataObjects.tblSites(c)).ToList
-            Return objSites
+            Try
+                Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    objSites = (From c In .tblSites
+                                Where c.ApplicationId.Equals(ThisSession.ApplicationID)
+                                Order By c.SiteName
+                                Select New DataObjects.tblSites(c)).ToList
+
+                    .Dispose()
+                End With
+                Return objSites
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllByCustomer(cust As Integer) As List(Of DataObjects.tblSites)
-            Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                            Where c.Customer.Equals(cust) And (Not c.Customer Is Nothing And Not c.Customer.Equals(0) And c.ApplicationId.Equals(ThisSession.ApplicationID))
-                            Order By c.SiteName
-                            Select New DataObjects.tblSites(c)).ToList
-            Return objSites
+            Try
+                Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    objSites = (From c In .tblSites
+                                Where c.Customer.Equals(cust) And (Not c.Customer Is Nothing And Not c.Customer.Equals(0) And c.ApplicationId.Equals(ThisSession.ApplicationID))
+                                Order By c.SiteName
+                                Select New DataObjects.tblSites(c)).ToList
+                    .Dispose()
+                End With
+                Return objSites
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllBySiteID(cid As Integer) As DataObjects.tblSites
             Dim objSites = (From s In DataObjects.tblSites.GetAllWithZoneSortOrder()
@@ -222,27 +248,34 @@
             Return objSites
         End Function
         Public Shared Function GetAllWithZoneSortOrder() As List(Of DataObjects.tblSites)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objSites = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSites(ThisSession.ApplicationID)
-                            Select New DataObjects.tblSites() With {.SiteID = s.SiteID, .Cid = s.Cid, .SiteName = s.SiteName, .Customer = s.Customer, .AddressLine1 = s.AddressLine1,
-                                                                    .AddressLine2 = s.AddressLine2, .AddressLine3 = s.AddressLine3, .AddressLine4 = s.AddressLine4, .Suburb = s.Suburb,
-                                                                    .State = s.State, .PostCode = s.PostCode, .PhoneNo = s.PhoneNo, .FaxNo = s.FaxNo, .SiteContactName = s.SiteContactName,
-                                                                    .SiteContactPhone = s.SiteContactPhone, .SiteContactFax = s.SiteContactFax, .SiteContactMobile = s.SiteContactMobile,
-                                                                    .SiteContactEmail = s.SiteContactEmail, .PostalAddressLine1 = s.PostalAddressLine1, .PostalAddressLine2 = s.PostalAddressLine2,
-                                                                    .PostalSuburb = s.PostalSuburb, .PostalState = s.PostalState, .PostalPostCode = s.PostalPostCode, .SiteStartDate = s.SiteStartDate,
-                                                                    .SitePeriod = s.SitePeriod, .SiteContractExpiry = s.SiteContractExpiry, .SiteCeaseDate = s.SiteCeaseDate, .SiteCeaseReason = s.SiteCeaseReason,
-                                                                    .InvoiceFrequency = s.InvoiceFrequency, .InvoiceCommencing = s.InvoiceCommencing, .IndustryGroup = s.IndustryGroup, .PreviousSupplier = s.PreviousSupplier,
-                                                                    .LostBusinessTo = s.LostBusinessTo, .SalesPerson = s.SalesPerson, .InitialServiceAgreementNo = s.InitialServiceAgreementNo, .InvoiceMonth1 = s.InvoiceMonth1,
-                                                                    .InvoiceMonth2 = s.InvoiceMonth2, .InvoiceMonth3 = s.InvoiceMonth3, .InvoiceMonth4 = s.InvoiceMonth4,
-                                                                    .GeneralSiteServiceComments = s.GeneralSiteServiceComments, .TotalUnits = s.TotalUnits, .TotalAmount = s.TotalAmount, .Zone = s.Zone,
-                                                                    .ZoneSortOrder = s.ZoneSortOrder, .SeparateInvoice = s.SeparateInvoice, .PurchaseOrderNumber = s.PurchaseOrderNumber, .chkSitesExcludeFuelLevy = s.chkSitesExcludeFuelLevy,
-                                                                    .cmbRateIncrease = s.cmbRateIncrease, .StateSortOrder = s.StateSortOrder, .CustomerSortOrder = s.CustomerSortOrder,
-                                                                    .IndustrySortOrder = s.IndustrySortOrder, .PreviousSupplierSortOrder = s.PreviousSupplierSortOrder, .SalesPersonSortOrder = s.SalesPersonSortOrder,
-                                                                    .InitialContractPeriodSortOrder = s.InitialContractPeriodSortOrder, .ContractCeaseReasonsSortOrder = s.ContractCeaseReasonsSortOrder,
-                                                                    .LostBusinessToSortOrder = s.LostBusinessToSortOrder, .InvoicingFrequencySortOrder = s.InvoicingFrequencySortOrder,
-                                                                    .cmbRateIncreaseSortOrder = s.cmbRateIncreaseSortOrder, .CustomerName = s.CustomerName, .CustomerRating = s.CustomerRating,
-                                                                    .CustomerRatingDesc = s.CustomerRatingDesc}).ToList
-            Return objSites
+            Try
+                Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    objSites = (From s In .usp_GetSites(ThisSession.ApplicationID)
+                                Select New DataObjects.tblSites() With {.SiteID = s.SiteID, .Cid = s.Cid, .SiteName = s.SiteName, .Customer = s.Customer, .AddressLine1 = s.AddressLine1,
+                                                                            .AddressLine2 = s.AddressLine2, .AddressLine3 = s.AddressLine3, .AddressLine4 = s.AddressLine4, .Suburb = s.Suburb,
+                                                                            .State = s.State, .PostCode = s.PostCode, .PhoneNo = s.PhoneNo, .FaxNo = s.FaxNo, .SiteContactName = s.SiteContactName,
+                                                                            .SiteContactPhone = s.SiteContactPhone, .SiteContactFax = s.SiteContactFax, .SiteContactMobile = s.SiteContactMobile,
+                                                                            .SiteContactEmail = s.SiteContactEmail, .PostalAddressLine1 = s.PostalAddressLine1, .PostalAddressLine2 = s.PostalAddressLine2,
+                                                                            .PostalSuburb = s.PostalSuburb, .PostalState = s.PostalState, .PostalPostCode = s.PostalPostCode, .SiteStartDate = s.SiteStartDate,
+                                                                            .SitePeriod = s.SitePeriod, .SiteContractExpiry = s.SiteContractExpiry, .SiteCeaseDate = s.SiteCeaseDate, .SiteCeaseReason = s.SiteCeaseReason,
+                                                                            .InvoiceFrequency = s.InvoiceFrequency, .InvoiceCommencing = s.InvoiceCommencing, .IndustryGroup = s.IndustryGroup, .PreviousSupplier = s.PreviousSupplier,
+                                                                            .LostBusinessTo = s.LostBusinessTo, .SalesPerson = s.SalesPerson, .InitialServiceAgreementNo = s.InitialServiceAgreementNo, .InvoiceMonth1 = s.InvoiceMonth1,
+                                                                            .InvoiceMonth2 = s.InvoiceMonth2, .InvoiceMonth3 = s.InvoiceMonth3, .InvoiceMonth4 = s.InvoiceMonth4,
+                                                                            .GeneralSiteServiceComments = s.GeneralSiteServiceComments, .TotalUnits = s.TotalUnits, .TotalAmount = s.TotalAmount, .Zone = s.Zone,
+                                                                            .ZoneSortOrder = s.ZoneSortOrder, .SeparateInvoice = s.SeparateInvoice, .PurchaseOrderNumber = s.PurchaseOrderNumber, .chkSitesExcludeFuelLevy = s.chkSitesExcludeFuelLevy,
+                                                                            .cmbRateIncrease = s.cmbRateIncrease, .StateSortOrder = s.StateSortOrder, .CustomerSortOrder = s.CustomerSortOrder,
+                                                                            .IndustrySortOrder = s.IndustrySortOrder, .PreviousSupplierSortOrder = s.PreviousSupplierSortOrder, .SalesPersonSortOrder = s.SalesPersonSortOrder,
+                                                                            .InitialContractPeriodSortOrder = s.InitialContractPeriodSortOrder, .ContractCeaseReasonsSortOrder = s.ContractCeaseReasonsSortOrder,
+                                                                            .LostBusinessToSortOrder = s.LostBusinessToSortOrder, .InvoicingFrequencySortOrder = s.InvoicingFrequencySortOrder,
+                                                                            .cmbRateIncreaseSortOrder = s.cmbRateIncreaseSortOrder, .CustomerName = s.CustomerName, .CustomerRating = s.CustomerRating,
+                                                                            .CustomerRatingDesc = s.CustomerRatingDesc}).ToList
+                    .Dispose()
+                End With
+                Return objSites
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
         ' For Report - CAN 18

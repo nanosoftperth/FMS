@@ -13,56 +13,82 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(SiteReSignDetails As DataObjects.tblSiteReSignDetails)
-            Dim objSiteReSignDetails As New FMS.Business.tblSiteReSignDetail
-            Dim appId = ThisSession.ApplicationID
-            With objSiteReSignDetails
-                .ResignHistoryID = Guid.NewGuid
-                .ApplicationID = appId
-                .Cid = tblProjectID.SiteReSignDetailsIDCreateOrUpdate(appId)
-                .SiteCId = SiteReSignDetails.SiteCId
-                .ReSignDate = SiteReSignDetails.ReSignDate
-                .ReSignPeriod = SiteReSignDetails.ReSignPeriod
-                .ServiceAgreementNo = SiteReSignDetails.ServiceAgreementNo
-                .SalesPerson = SiteReSignDetails.SalesPerson
-                .ContractExpiryDate = SiteReSignDetails.ContractExpiryDate
+            With New LINQtoSQLClassesDataContext
+                Dim objSiteReSignDetails As New FMS.Business.tblSiteReSignDetail
+                Dim appId = ThisSession.ApplicationID
+                With objSiteReSignDetails
+                    .ResignHistoryID = Guid.NewGuid
+                    .ApplicationID = appId
+                    .Cid = tblProjectID.SiteReSignDetailsIDCreateOrUpdate(appId)
+                    .SiteCId = SiteReSignDetails.SiteCId
+                    .ReSignDate = SiteReSignDetails.ReSignDate
+                    .ReSignPeriod = SiteReSignDetails.ReSignPeriod
+                    .ServiceAgreementNo = SiteReSignDetails.ServiceAgreementNo
+                    .SalesPerson = SiteReSignDetails.SalesPerson
+                    .ContractExpiryDate = SiteReSignDetails.ContractExpiryDate
+                End With
+                .tblSiteReSignDetails.InsertOnSubmit(objSiteReSignDetails)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblSiteReSignDetails.InsertOnSubmit(objSiteReSignDetails)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(SiteReSignDetails As DataObjects.tblSiteReSignDetails)
-            Dim objSiteReSignDetails As FMS.Business.tblSiteReSignDetail = (From c In SingletonAccess.FMSDataContextContignous.tblSiteReSignDetails
-                                                                            Where c.ResignHistoryID.Equals(SiteReSignDetails.ResignHistoryID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objSiteReSignDetails
-                .SiteCId = SiteReSignDetails.SiteCId
-                .ReSignDate = SiteReSignDetails.ReSignDate
-                .ReSignPeriod = SiteReSignDetails.ReSignPeriod
-                .ServiceAgreementNo = SiteReSignDetails.ServiceAgreementNo
-                .SalesPerson = SiteReSignDetails.SalesPerson
-                .ContractExpiryDate = SiteReSignDetails.ContractExpiryDate
+            With New LINQtoSQLClassesDataContext
+                Dim objSiteReSignDetails As FMS.Business.tblSiteReSignDetail = (From c In .tblSiteReSignDetails
+                                                                                Where c.ResignHistoryID.Equals(SiteReSignDetails.ResignHistoryID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objSiteReSignDetails
+                    .SiteCId = SiteReSignDetails.SiteCId
+                    .ReSignDate = SiteReSignDetails.ReSignDate
+                    .ReSignPeriod = SiteReSignDetails.ReSignPeriod
+                    .ServiceAgreementNo = SiteReSignDetails.ServiceAgreementNo
+                    .SalesPerson = SiteReSignDetails.SalesPerson
+                    .ContractExpiryDate = SiteReSignDetails.ContractExpiryDate
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(SiteReSignDetails As DataObjects.tblSiteReSignDetails)
-            Dim objSiteReSignDetails As FMS.Business.tblSiteReSignDetail = (From c In SingletonAccess.FMSDataContextContignous.tblSiteReSignDetails
-                                                                            Where c.ResignHistoryID.Equals(SiteReSignDetails.ResignHistoryID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblSiteReSignDetails.DeleteOnSubmit(objSiteReSignDetails)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objSiteReSignDetails As FMS.Business.tblSiteReSignDetail = (From c In .tblSiteReSignDetails
+                                                                                Where c.ResignHistoryID.Equals(SiteReSignDetails.ResignHistoryID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+
+                .tblSiteReSignDetails.DeleteOnSubmit(objSiteReSignDetails)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblSiteReSignDetails)
-            Dim objSiteResignDetails = (From c In SingletonAccess.FMSDataContextContignous.tblSiteReSignDetails
-                                        Where c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                        Order By c.ReSignDate
-                                        Select New DataObjects.tblSiteReSignDetails(c)).ToList
-            Return objSiteResignDetails
+            Try
+                Dim objSiteResignDetails As New List(Of DataObjects.tblSiteReSignDetails)
+                With New LINQtoSQLClassesDataContext
+                    objSiteResignDetails = (From c In .tblSiteReSignDetails
+                                            Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                            Order By c.ReSignDate
+                                            Select New DataObjects.tblSiteReSignDetails(c)).ToList
+                    .Dispose()
+                End With
+                Return objSiteResignDetails
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllSiteID(siteID As Integer) As List(Of DataObjects.tblSiteReSignDetails)
-            Dim objSiteResignDetails = (From c In SingletonAccess.FMSDataContextContignous.tblSiteReSignDetails
-                                        Where c.SiteCId.Equals(siteID) And c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                        Order By c.ReSignDate
-                                        Select New DataObjects.tblSiteReSignDetails(c)).ToList
-            Return objSiteResignDetails
+            Try
+                Dim objSiteResignDetails As New List(Of DataObjects.tblSiteReSignDetails)
+                With New LINQtoSQLClassesDataContext
+                    objSiteResignDetails = (From c In .tblSiteReSignDetails
+                                            Where c.SiteCId.Equals(siteID) And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                            Order By c.ReSignDate
+                                            Select New DataObjects.tblSiteReSignDetails(c)).ToList
+                    .Dispose()
+                End With
+                Return objSiteResignDetails
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

@@ -190,7 +190,7 @@
                 <dx:GridViewDataTextColumn FieldName="SiteID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="SiteName" VisibleIndex="3"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Customer" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="CustomerName" VisibleIndex="4"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="AddressLine1" VisibleIndex="5"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Suburb" VisibleIndex="6" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="State" VisibleIndex="7" Visible="false"></dx:GridViewDataTextColumn>
@@ -286,11 +286,11 @@
                                                         <div class="row row-md-margin-top">
                                                             <dx:ASPxTextBox ID="txtSuburb" runat="server" Width="111px" MaxLength="50" Text='<%# Eval("Suburb") %>'></dx:ASPxTextBox>&nbsp;
                                                             <dx:ASPxLabel ID="lblState" runat="server" Text="State:"></dx:ASPxLabel>&nbsp;
-                                                            <dx:ASPxComboBox ID="cbState" DataSourceID="odsStates" runat="server" Width="112px" SelectedIndex='<%# Eval("StateSortOrder") - 1 %>'  Height="20px" TextField="StateDesc" ValueField="StateCode"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <dx:ASPxComboBox ID="cbState" DataSourceID="odsStates" PopupVerticalAlign="Below" PopupHorizontalAlign="RightSides" runat="server" Width="112px" SelectedIndex='<%# Eval("StateSortOrder") - 1 %>'  Height="20px" TextField="StateDesc" ValueField="StateCode"></dx:ASPxComboBox>&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <dx:ASPxLabel ID="lblPCode" runat="server" Text="P/Code:"></dx:ASPxLabel>&nbsp;
                                                             <dx:ASPxTextBox ID="txtPCode" runat="server" Width="50px" MaxLength="22" Text='<%# Eval("PostCode") %>'></dx:ASPxTextBox>&nbsp;
                                                             <dx:ASPxLabel ID="lblZone" runat="server" Text="Zone:"></dx:ASPxLabel>&nbsp;
-                                                            <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ZoneSortOrder") - 1%>' TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                                            <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" PopupVerticalAlign="Below" PopupHorizontalAlign="RightSides" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ZoneSortOrder") - 1%>' TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -300,7 +300,7 @@
                                                     <dx:ASPxLabel ID="lblCustomer" runat="server" Text="Customer:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <dx:ASPxComboBox ID="cbCustomer" ClientInstanceName="cbCustomer" DataSourceID="odsCustomers" runat="server" Width="260px" Height="20px" 
+                                                    <dx:ASPxComboBox ID="cbCustomer" ClientInstanceName="cbCustomer" DataSourceID="odsCustomers" PopupVerticalAlign="WindowCenter" PopupHorizontalAlign="RightSides" runat="server" Width="260px" Height="20px" 
                                                          CallbackPageSize="30" SelectedIndex='<%# Eval("CustomerSortOrder") - 1%>'  TextField="CustomerName" ValueField="Cid">
                                                         <Columns>                                   
                                                             <dx:ListBoxColumn FieldName="CustomerName" Width="130px" />
@@ -324,7 +324,7 @@
                                                     <dx:ASPxLabel ID="lblIndustryGroup" runat="server" Text="Industry Group:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxComboBox ID="cbIndustryGroup" ClientInstanceName="cbIndustryGroup" DataSourceID="odsIndustryGroups" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("IndustrySortOrder") - 1%>' TextField="IndustryDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="cbIndustryGroup" ClientInstanceName="cbIndustryGroup" PopupVerticalAlign="WindowCenter" PopupHorizontalAlign="RightSides" DataSourceID="odsIndustryGroups" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("IndustrySortOrder") - 1%>' TextField="IndustryDescription" ValueField="Aid"></dx:ASPxComboBox>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <dx:ASPxButton ID="btnIndustryGroup" ClientInstanceName="btnIndustryGroup" AutoPostBack="false" runat="server" Text="Industry Group">
@@ -388,7 +388,7 @@
                                                     <dx:ASPxLabel ID="lblPreviousSupplier" runat="server" Text="Previous Supplier:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxComboBox ID="cbPreviousSupplier" ClientInstanceName="cbPreviousSupplier" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("PreviousSupplierSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="cbPreviousSupplier" ClientInstanceName="cbPreviousSupplier" DataSourceID="odsPreviousSuppliers" PopupHorizontalAlign="RightSides" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("PreviousSupplierSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <dx:ASPxButton ID="btnPreviousSupplier" ClientInstanceName="btnPreviousSupplier" AutoPostBack="false" runat="server" Text="View Previous Suppliers">
@@ -406,13 +406,13 @@
                                                     <dx:ASPxLabel ID="lblInitialContract" runat="server" Text="Initial&nbsp;Contract&nbsp;Start&nbsp;Date:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxDateEdit ID="dtContractStartDate" ClientInstanceName="dtContractStartDate" runat="server" Date='<%# Eval("SiteStartDate") %>'></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="dtContractStartDate" ClientInstanceName="dtContractStartDate" PopupHorizontalAlign="RightSides"  runat="server" Date='<%# Eval("SiteStartDate") %>'></dx:ASPxDateEdit>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <dx:ASPxLabel ID="lblSiteContractExpiry" runat="server" Text="Site&nbsp;Contract&nbsp;Expiry:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <dx:ASPxDateEdit ID="dtContractExpiryDate" ClientInstanceName="dtContractExpiryDate" runat="server" Date='<%# Eval("SiteContractExpiry")%>'></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="dtContractExpiryDate" ClientInstanceName="dtContractExpiryDate" PopupHorizontalAlign="RightSides" runat="server" Date='<%# Eval("SiteContractExpiry")%>'></dx:ASPxDateEdit>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -420,7 +420,7 @@
                                                     <dx:ASPxLabel ID="lblSalesPerson" runat="server" Text="Sales Person:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxComboBox ID="cbSalesPerson" DataSourceID="odsSalesPerson" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("SalesPersonSortOrder") - 1%>' TextField="SalesPerson" ValueField="Aid"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="cbSalesPerson" DataSourceID="odsSalesPerson" runat="server" PopupHorizontalAlign="RightSides" Width="170px" Height="20px" SelectedIndex='<%# Eval("SalesPersonSortOrder") - 1%>' TextField="SalesPerson" ValueField="Aid"></dx:ASPxComboBox>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -428,7 +428,7 @@
                                                     <dx:ASPxLabel ID="lblInitialContractPeriod" runat="server" Text="Initial&nbsp;Contract&nbsp;Period:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxComboBox ID="cbInitialContractPeriod" DataSourceID="odsInitialContractPeriod" runat="server" Width="170px" Height="20px" 
+                                                    <dx:ASPxComboBox ID="cbInitialContractPeriod" DataSourceID="odsInitialContractPeriod" PopupHorizontalAlign="RightSides" runat="server" Width="170px" Height="20px" 
                                                         CallbackPageSize="30" SelectedIndex='<%# Eval("InitialContractPeriodSortOrder") - 1%>' TextField="ContractPeriodDesc" ValueField="Aid">
                                                         <Columns>                                   
                                                             <dx:ListBoxColumn FieldName="ContractPeriodDesc" Width="130px" />
@@ -448,7 +448,7 @@
                                                     <dx:ASPxLabel ID="lblContractCeaseDate" runat="server" Text="Contract Cease Date:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxDateEdit ID="dtContractCeaseDate" ClientInstanceName="dtContractCeaseDate" runat="server" Date='<%# Eval("SiteCeaseDate") %>'></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="dtContractCeaseDate" ClientInstanceName="dtContractCeaseDate" PopupHorizontalAlign="Center" runat="server" Date='<%# Eval("SiteCeaseDate") %>'></dx:ASPxDateEdit>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -456,7 +456,7 @@
                                                     <dx:ASPxLabel ID="lblContractCeaseReason" runat="server" Text="Contract Cease Reason:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxComboBox ID="cbSiteCeaseReason" ClientInstanceName="cbSiteCeaseReason" DataSourceID="odsSiteCeaseReason" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ContractCeaseReasonsSortOrder") - 1%>' TextField="CeaseReasonDescription" ValueField="Aid"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="cbSiteCeaseReason" ClientInstanceName="cbSiteCeaseReason" PopupHorizontalAlign="RightSides" DataSourceID="odsSiteCeaseReason" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ContractCeaseReasonsSortOrder") - 1%>' TextField="CeaseReasonDescription" ValueField="Aid"></dx:ASPxComboBox>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <dx:ASPxButton ID="btnViewCeasedReasons" ClientInstanceName="btnViewCeasedReasons" AutoPostBack="false" runat="server" Text="View Ceased Reasons">
@@ -474,7 +474,7 @@
                                                     <dx:ASPxLabel ID="lblLostBusinessTo" runat="server" Text="Lost Business To:" Width="100px"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <dx:ASPxComboBox ID="cbLostBusinessTo" ClientInstanceName="cbLostBusinessTo" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("LostBusinessToSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="cbLostBusinessTo" ClientInstanceName="cbLostBusinessTo" PopupHorizontalAlign="RightSides" DataSourceID="odsPreviousSuppliers" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("LostBusinessToSortOrder") - 1%>' TextField="PreviousSupplier" ValueField="Aid"></dx:ASPxComboBox>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <dx:ASPxButton ID="btnLostBusinessTo" ClientInstanceName="btnLostBusinessTo" AutoPostBack="false" runat="server" Text="View Lost Business To">
@@ -502,7 +502,7 @@
                                                             <dx:GridViewDataTextColumn FieldName="ResignHistoryID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataTextColumn FieldName="SiteCId" VisibleIndex="3" Visible="false" ></dx:GridViewDataTextColumn>
-                                                            <dx:GridViewDataDateColumn FieldName="ReSignDate" VisibleIndex="4" Visible="true"></dx:GridViewDataDateColumn>
+                                                            <dx:GridViewDataDateColumn FieldName="ReSignDate" VisibleIndex="4" Visible="true" ></dx:GridViewDataDateColumn>
                                                             <dx:GridViewDataComboBoxColumn FieldName="ReSignPeriod" Caption="Re-Sign Period" VisibleIndex="5" >
                                                                 <PropertiesComboBox DataSourceID="odsInitialContractPeriod" TextField="ContractPeriodDesc" ValueField="Aid" Width="150px">
                                                                     <Columns>                                   
@@ -514,7 +514,7 @@
                                                             </dx:GridViewDataComboBoxColumn> 
                                                             <dx:GridViewDataTextColumn FieldName="ServiceAgreementNo" VisibleIndex="6" Visible="true" PropertiesTextEdit-MaxLength="50"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataComboBoxColumn FieldName="SalesPerson" Caption="Sales Person" VisibleIndex="7" >
-                                                                <PropertiesComboBox DataSourceID="odsSalesPerson" TextField="SalesPerson" ValueField="Aid" Width="150px">
+                                                                <PropertiesComboBox DataSourceID="odsSalesPerson" TextField="SalesPerson" ValueField="Aid" Width="150px" PopupVerticalAlign="Above">
                                                                     <ClearButton Visibility="Auto"></ClearButton>
                                                                 </PropertiesComboBox>
                                                             </dx:GridViewDataComboBoxColumn> 
@@ -750,13 +750,20 @@
                                                                         <div class="col-md-2">
                                                                             <dx:ASPxLabel ID="ASPxLabel8" runat="server" Text="Run / Driver" Font-Bold="true" Width="100px"></dx:ASPxLabel>
                                                                         </div>
+                                                                        <div class="col-md-1">
+                                                                            <dx:ASPxLabel ID="ASPxLabel9" runat="server" Text="Comments" Font-Bold="true" Width="100px"></dx:ASPxLabel>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-10">
                                                                             <div class="row">
                                                                                 <div class="col-md-1">
                                                                                     <dx:ASPxComboBox ID="cbServices" ClientInstanceName="cbServices" DataSourceID="odsServices" runat="server" Width="140px" Height="20px" 
-                                                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("ServicesSortOrder") - 1%>' TextField="ServiceDescription" ValueField="sid">                                                        
+                                                                                        CallbackPageSize="30" SelectedIndex='<%# Eval("ServicesSortOrder") - 1%>' TextField="ServiceDescription" ValueField="sid" IncrementalFilteringMode="StartsWith">                                                        
+                                                                                        <Columns>
+                                                                                            <dx:ListBoxColumn FieldName="ServiceDescription" Width="200px" />
+                                                                                            <dx:ListBoxColumn FieldName="ServiceCode" Width="80px"/>
+                                                                                        </Columns>
                                                                                     </dx:ASPxComboBox>
                                                                                 </div>
                                                                                 <div style="width:50px;"></div>
@@ -842,11 +849,8 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                         <div style="position:absolute;z-index:1;left:750px;top:185px">
-                                                                             <dx:ASPxLabel ID="ASPxLabel9" runat="server" Text="Comments" Font-Bold="true" Width="100px"></dx:ASPxLabel>
-                                                                         </div>
                                                                         <div style="position:absolute;z-index:1;left:700px;">
-                                                                            <dx:ASPxMemo ID="txtServiceComments" runat="server" class="dxeMemoEditAreaSys" Width="180px" Height="90px" Text='<%# Eval("ServiceComments")%>'></dx:ASPxMemo>
+                                                                            <dx:ASPxMemo ID="txtServiceComments" runat="server" class="dxeMemoEditAreaSys" Width="180px" Height="110px" Text='<%# Eval("ServiceComments")%>'></dx:ASPxMemo>
                                                                         </div>     
                                                                     </div>
                                                                 </div>
@@ -952,7 +956,7 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-2">
-                                                                        <dx:ASPxDateEdit ID="dtNCRDate" ClientInstanceName="dtNCRDate" runat="server" Date='<%# Eval("NCRDate") %>'></dx:ASPxDateEdit>
+                                                                        <dx:ASPxDateEdit ID="dtNCRDate" PopupVerticalAlign="Below"   ClientInstanceName="dtNCRDate" runat="server" Date='<%# Eval("NCRDate") %>'></dx:ASPxDateEdit>
                                                                     </div>
                                                                     <div class="col-md-1">
                                                                         <dx:ASPxSpinEdit ID="txtNCRNumber" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("NCRNumber")%>'></dx:ASPxSpinEdit>

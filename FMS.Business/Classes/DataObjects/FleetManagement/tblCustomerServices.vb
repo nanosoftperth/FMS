@@ -36,129 +36,168 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(CustomerService As DataObjects.tblCustomerServices)
-            Dim objCustomerService As New FMS.Business.tblCustomerService
-            Dim appId = ThisSession.ApplicationID
-            With objCustomerService
-                .CustomerServiceID = Guid.NewGuid
-                .ApplicationID = appId
-                .ID = tblProjectID.CustomerServicesIDCreateOrUpdate(appId)
-                .CSid = CustomerService.CSid
-                .CId = CustomerService.CId
-                .ServiceFrequencyCode = CustomerService.ServiceFrequencyCode
-                .ServiceUnits = CustomerService.ServiceUnits
-                .ServicePrice = CustomerService.ServicePrice
-                .PerAnnumCharge = CustomerService.PerAnnumCharge
-                .ServiceRun = CustomerService.ServiceRun
-                .ServiceComments = CustomerService.ServiceComments
-                .UnitsHaveMoreThanOneRun = CustomerService.UnitsHaveMoreThanOneRun
-                .ServiceFrequency1 = CustomerService.ServiceFrequency1
-                .ServiceFrequency2 = CustomerService.ServiceFrequency2
-                .ServiceFrequency3 = CustomerService.ServiceFrequency3
-                .ServiceFrequency4 = CustomerService.ServiceFrequency4
-                .ServiceFrequency5 = CustomerService.ServiceFrequency5
-                .ServiceFrequency6 = CustomerService.ServiceFrequency6
-                .ServiceFrequency7 = CustomerService.ServiceFrequency7
-                .ServiceFrequency8 = CustomerService.ServiceFrequency8
-                .ServiceSortOrderCode = CustomerService.ServiceSortOrderCode
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomerService As New FMS.Business.tblCustomerService
+                Dim appId = ThisSession.ApplicationID
+                With objCustomerService
+                    .CustomerServiceID = Guid.NewGuid
+                    .ApplicationID = appId
+                    .ID = tblProjectID.CustomerServicesIDCreateOrUpdate(appId)
+                    .CSid = CustomerService.CSid
+                    .CId = CustomerService.CId
+                    .ServiceFrequencyCode = CustomerService.ServiceFrequencyCode
+                    .ServiceUnits = CustomerService.ServiceUnits
+                    .ServicePrice = CustomerService.ServicePrice
+                    .PerAnnumCharge = CustomerService.PerAnnumCharge
+                    .ServiceRun = CustomerService.ServiceRun
+                    .ServiceComments = CustomerService.ServiceComments
+                    .UnitsHaveMoreThanOneRun = CustomerService.UnitsHaveMoreThanOneRun
+                    .ServiceFrequency1 = CustomerService.ServiceFrequency1
+                    .ServiceFrequency2 = CustomerService.ServiceFrequency2
+                    .ServiceFrequency3 = CustomerService.ServiceFrequency3
+                    .ServiceFrequency4 = CustomerService.ServiceFrequency4
+                    .ServiceFrequency5 = CustomerService.ServiceFrequency5
+                    .ServiceFrequency6 = CustomerService.ServiceFrequency6
+                    .ServiceFrequency7 = CustomerService.ServiceFrequency7
+                    .ServiceFrequency8 = CustomerService.ServiceFrequency8
+                    .ServiceSortOrderCode = CustomerService.ServiceSortOrderCode
+                End With
+                GetCustomerServiceID = objCustomerService.CustomerServiceID
+                .tblCustomerServices.InsertOnSubmit(objCustomerService)
+                .SubmitChanges()
+                .Dispose()
             End With
-            GetCustomerServiceID = objCustomerService.CustomerServiceID
-            SingletonAccess.FMSDataContextContignous.tblCustomerServices.InsertOnSubmit(objCustomerService)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(CustomerService As DataObjects.tblCustomerServices)
-            Dim objCustomerService As FMS.Business.tblCustomerService = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                                                                         Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objCustomerService
-                .CSid = CustomerService.CSid
-                .CId = CustomerService.CId
-                .ServiceFrequencyCode = CustomerService.ServiceFrequencyCode
-                .ServiceUnits = CustomerService.ServiceUnits
-                .ServicePrice = CustomerService.ServicePrice
-                .PerAnnumCharge = CustomerService.PerAnnumCharge
-                .ServiceRun = CustomerService.ServiceRun
-                .ServiceComments = CustomerService.ServiceComments
-                .UnitsHaveMoreThanOneRun = CustomerService.UnitsHaveMoreThanOneRun
-                .ServiceFrequency1 = CustomerService.ServiceFrequency1
-                .ServiceFrequency2 = CustomerService.ServiceFrequency2
-                .ServiceFrequency3 = CustomerService.ServiceFrequency3
-                .ServiceFrequency4 = CustomerService.ServiceFrequency4
-                .ServiceFrequency5 = CustomerService.ServiceFrequency5
-                .ServiceFrequency6 = CustomerService.ServiceFrequency6
-                .ServiceFrequency7 = CustomerService.ServiceFrequency7
-                .ServiceFrequency8 = CustomerService.ServiceFrequency8
-                .ServiceSortOrderCode = CustomerService.ServiceSortOrderCode
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomerService As FMS.Business.tblCustomerService = (From c In .tblCustomerServices
+                                                                             Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objCustomerService
+                    .CSid = CustomerService.CSid
+                    .CId = CustomerService.CId
+                    .ServiceFrequencyCode = CustomerService.ServiceFrequencyCode
+                    .ServiceUnits = CustomerService.ServiceUnits
+                    .ServicePrice = CustomerService.ServicePrice
+                    .PerAnnumCharge = CustomerService.PerAnnumCharge
+                    .ServiceRun = CustomerService.ServiceRun
+                    .ServiceComments = CustomerService.ServiceComments
+                    .UnitsHaveMoreThanOneRun = CustomerService.UnitsHaveMoreThanOneRun
+                    .ServiceFrequency1 = CustomerService.ServiceFrequency1
+                    .ServiceFrequency2 = CustomerService.ServiceFrequency2
+                    .ServiceFrequency3 = CustomerService.ServiceFrequency3
+                    .ServiceFrequency4 = CustomerService.ServiceFrequency4
+                    .ServiceFrequency5 = CustomerService.ServiceFrequency5
+                    .ServiceFrequency6 = CustomerService.ServiceFrequency6
+                    .ServiceFrequency7 = CustomerService.ServiceFrequency7
+                    .ServiceFrequency8 = CustomerService.ServiceFrequency8
+                    .ServiceSortOrderCode = CustomerService.ServiceSortOrderCode
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(CustomerService As DataObjects.tblCustomerServices)
-            Dim objCustomerService As FMS.Business.tblCustomerService = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                                                                         Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblCustomerServices.DeleteOnSubmit(objCustomerService)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomerService As FMS.Business.tblCustomerService = (From c In .tblCustomerServices
+                                                                             Where c.CustomerServiceID.Equals(CustomerService.CustomerServiceID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblCustomerServices.DeleteOnSubmit(objCustomerService)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Property GetCustomerServiceID() As Guid
 
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerServices)
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                            Where c.ApplicationID.Equals(ThisSession.ApplicationID)
-                            Order By c.CSid
-                            Select New DataObjects.tblCustomerServices(c)).ToList
-            Return objZones
+            Try
+                Dim objZones As New List(Of DataObjects.tblCustomerServices)
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .tblCustomerServices
+                                Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                Order By c.CSid
+                                Select New DataObjects.tblCustomerServices(c)).ToList
+                    .Dispose()
+                End With
+                Return objZones
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllByCid(cid As Integer) As List(Of DataObjects.tblCustomerServices)
-            Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                                       Where c.CId.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                       Order By c.CSid
-                                       Select New DataObjects.tblCustomerServices(c)).ToList
-            Return objCustomerServices
+            Try
+                Dim objCustomerServices As New List(Of DataObjects.tblCustomerServices)
+                With New LINQtoSQLClassesDataContext
+                    objCustomerServices = (From c In .tblCustomerServices
+                                           Where c.CId.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                           Order By c.CSid
+                                           Select New DataObjects.tblCustomerServices(c)).ToList
+                    .Dispose()
+                End With
+                Return objCustomerServices
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetRecalculatedServices(cid As Integer) As DataObjects.ReCalculatedServices
-            Dim objCustomers = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerServices
-                                Where c.CId.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID))
-            Dim totalPerAnnum As Double
-            Dim totalServiceUnits As Double
-            For Each cust In objCustomers
-                If Not cust.PerAnnumCharge Is Nothing Then
-                    Dim dblPerAnnum As Double = 0
-                    If Double.TryParse(cust.PerAnnumCharge, dblPerAnnum) Then
-                        totalPerAnnum += dblPerAnnum
-                    End If
-                End If
-                If Not cust.ServiceUnits Is Nothing Then
-                    Dim dblServiceUnits As Double = 0
-                    If Double.TryParse(cust.ServiceUnits, dblServiceUnits) Then
-                        totalServiceUnits += dblServiceUnits
-                    End If
-                End If
-            Next
-            Dim recalculate As New DataObjects.ReCalculatedServices()
-            recalculate.PerAnnumCharge = totalPerAnnum
-            recalculate.ServiceUnits = totalServiceUnits
-            Return recalculate
+            Try
+                Dim recalculate As New DataObjects.ReCalculatedServices()
+                With New LINQtoSQLClassesDataContext
+                    Dim objCustomers = (From c In .tblCustomerServices
+                                        Where c.CId.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID))
+                    Dim totalPerAnnum As Double
+                    Dim totalServiceUnits As Double
+                    For Each cust In objCustomers
+                        If Not cust.PerAnnumCharge Is Nothing Then
+                            Dim dblPerAnnum As Double = 0
+                            If Double.TryParse(cust.PerAnnumCharge, dblPerAnnum) Then
+                                totalPerAnnum += dblPerAnnum
+                            End If
+                        End If
+                        If Not cust.ServiceUnits Is Nothing Then
+                            Dim dblServiceUnits As Double = 0
+                            If Double.TryParse(cust.ServiceUnits, dblServiceUnits) Then
+                                totalServiceUnits += dblServiceUnits
+                            End If
+                        End If
+                    Next
+                    recalculate.PerAnnumCharge = totalPerAnnum
+                    recalculate.ServiceUnits = totalServiceUnits
+                    .Dispose()
+                End With
+                Return recalculate
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllByCidWithSortOrders(cid As Integer) As List(Of DataObjects.tblCustomerServices)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objCustomerServices = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerServices(ThisSession.ApplicationID)
-                                       Where c.CId.Equals(cid)
-                                       Order By c.CSid
-                                       Select New DataObjects.tblCustomerServices() With {.CustomerServiceID = c.CustomerServiceID, .ID = c.ID,
-                                                                                             .CSid = c.CSid, .CId = c.CId, .ServiceFrequencyCode = c.ServiceFrequencyCode,
-                                                                                             .ServiceUnits = c.ServiceUnits, .ServicePrice = c.ServicePrice,
-                                                                                             .PerAnnumCharge = c.PerAnnumCharge, .ServiceRun = c.ServiceRun,
-                                                                                             .ServiceComments = c.ServiceComments, .UnitsHaveMoreThanOneRun = c.UnitsHaveMoreThanOneRun,
-                                                                                             .ServiceFrequency1 = c.ServiceFrequency1, .ServiceFrequency2 = c.ServiceFrequency2,
-                                                                                             .ServiceFrequency3 = c.ServiceFrequency3, .ServiceFrequency4 = c.ServiceFrequency4,
-                                                                                             .ServiceFrequency5 = c.ServiceFrequency5, .ServiceFrequency6 = c.ServiceFrequency6,
-                                                                                             .ServiceFrequency7 = c.ServiceFrequency7, .ServiceFrequency8 = c.ServiceFrequency8,
-                                                                                             .ServiceSortOrderCode = c.ServiceSortOrderCode, .ServicesSortOrder = c.ServicesSortOrder,
-                                                                                             .ServiceFrequencySortOrder = c.ServiceFrequencySortOrder, .ServiceRunSortOrder = c.ServiceRunSortOrder,
-                                                                                             .ServiceFrequency1SortOrder = c.ServiceFrequency1SortOrder, .ServiceFrequency2SortOrder = c.ServiceFrequency2SortOrder,
-                                                                                             .ServiceFrequency3SortOrder = c.ServiceFrequency3SortOrder, .ServiceFrequency4SortOrder = c.ServiceFrequency4SortOrder,
-                                                                                             .ServiceFrequency5SortOrder = c.ServiceFrequency5SortOrder, .ServiceFrequency6SortOrder = c.ServiceFrequency6SortOrder,
-                                                                                             .ServiceFrequency7SortOrder = c.ServiceFrequency7SortOrder, .ServiceFrequency8SortOrder = c.ServiceFrequency8SortOrder}).ToList
-            Return objCustomerServices
+            Try
+                Dim objCustomerServices As New List(Of DataObjects.tblCustomerServices)
+                With New LINQtoSQLClassesDataContext
+                    objCustomerServices = (From c In .usp_GetCustomerServices(ThisSession.ApplicationID)
+                                           Where c.CId.Equals(cid)
+                                           Order By c.CSid
+                                           Select New DataObjects.tblCustomerServices() With {.CustomerServiceID = c.CustomerServiceID, .ID = c.ID,
+                                                                                                     .CSid = c.CSid, .CId = c.CId, .ServiceFrequencyCode = c.ServiceFrequencyCode,
+                                                                                                     .ServiceUnits = c.ServiceUnits, .ServicePrice = c.ServicePrice,
+                                                                                                     .PerAnnumCharge = c.PerAnnumCharge, .ServiceRun = c.ServiceRun,
+                                                                                                     .ServiceComments = c.ServiceComments, .UnitsHaveMoreThanOneRun = c.UnitsHaveMoreThanOneRun,
+                                                                                                     .ServiceFrequency1 = c.ServiceFrequency1, .ServiceFrequency2 = c.ServiceFrequency2,
+                                                                                                     .ServiceFrequency3 = c.ServiceFrequency3, .ServiceFrequency4 = c.ServiceFrequency4,
+                                                                                                     .ServiceFrequency5 = c.ServiceFrequency5, .ServiceFrequency6 = c.ServiceFrequency6,
+                                                                                                     .ServiceFrequency7 = c.ServiceFrequency7, .ServiceFrequency8 = c.ServiceFrequency8,
+                                                                                                     .ServiceSortOrderCode = c.ServiceSortOrderCode, .ServicesSortOrder = c.ServicesSortOrder,
+                                                                                                     .ServiceFrequencySortOrder = c.ServiceFrequencySortOrder, .ServiceRunSortOrder = c.ServiceRunSortOrder,
+                                                                                                     .ServiceFrequency1SortOrder = c.ServiceFrequency1SortOrder, .ServiceFrequency2SortOrder = c.ServiceFrequency2SortOrder,
+                                                                                                     .ServiceFrequency3SortOrder = c.ServiceFrequency3SortOrder, .ServiceFrequency4SortOrder = c.ServiceFrequency4SortOrder,
+                                                                                                     .ServiceFrequency5SortOrder = c.ServiceFrequency5SortOrder, .ServiceFrequency6SortOrder = c.ServiceFrequency6SortOrder,
+                                                                                                     .ServiceFrequency7SortOrder = c.ServiceFrequency7SortOrder, .ServiceFrequency8SortOrder = c.ServiceFrequency8SortOrder}).ToList
+                    .Dispose()
+                End With
+                Return objCustomerServices
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

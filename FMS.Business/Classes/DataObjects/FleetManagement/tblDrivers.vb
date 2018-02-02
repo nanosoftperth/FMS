@@ -75,6 +75,7 @@
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblDrivers)
             Dim getDrivers = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
+                              Where d.Inactive.Equals(True) And d.ApplicationId = ThisSession.ApplicationID
                               Order By d.DriverName
                               Select New DataObjects.tblDrivers(d)).ToList
             Return getDrivers

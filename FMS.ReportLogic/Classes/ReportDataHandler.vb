@@ -667,7 +667,7 @@ Public Class ReportDataHandler
         Dim rept As New CacheContractRenewal
 
         Dim retobj As List(Of FMS.Business.DataObjects.usp_GetContractRenewalsReport)
-        If Not ZoneDescription.Equals(0) Then
+        If Not zoneDescription.Equals("") Then
             retobj = FMS.Business.DataObjects.usp_GetContractRenewalsReport.GetContractRenewalsReport(startDate, endDate, zoneDescription).ToList()
         Else
             retobj = FMS.Business.DataObjects.usp_GetContractRenewalsReport.GetContractRenewalsReport(startDate, endDate).ToList()

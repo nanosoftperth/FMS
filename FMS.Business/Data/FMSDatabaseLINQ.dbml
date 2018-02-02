@@ -1315,6 +1315,26 @@
       <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.tblDrivers" Member="tblDrivers">
+    <Type Name="tblDriver">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DriversLicenseNo" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="DriversLicenseExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Technician" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRunDates" Member="tblRunDates">
+    <Type Name="tblRunDate">
+      <Column Name="DRid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.tblProjectID" Member="tblProjectIDs">
     <Type Name="tblProjectID">
       <Column Name="ProjectID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1341,26 +1361,7 @@
       <Column Name="CustomerServicesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CIRHistoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RunID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblDrivers" Member="tblDrivers">
-    <Type Name="tblDriver">
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DriversLicenseNo" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Column Name="DriversLicenseExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Technician" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblRunDates" Member="tblRunDates">
-    <Type Name="tblRunDate">
-      <Column Name="DRid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CommentsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
