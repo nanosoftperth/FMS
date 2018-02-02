@@ -13,7 +13,7 @@
         Public Shared Function GetTagName(deviceid As String, standard As String, pgn As Integer) As String
         
           'HACK: required as we gave the unimog the silly name of zagro_unimog ?! !
-            If standard.ToLower = "Zagro" Then standard &= "unimog"
+            If standard.ToLower = "Zagro" Then standard &= "_unimog"
             
             Return String.Format(TAG_STRING_FORMAT, deviceid, standard, pgn)
         End Function
