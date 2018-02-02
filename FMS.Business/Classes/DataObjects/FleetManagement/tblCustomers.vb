@@ -31,144 +31,190 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(customer As DataObjects.tblCustomers)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
 
-            Dim objCustomer As New FMS.Business.tblCustomer
-            With objCustomer
-                .ApplicationID = appid
-                .CustomerID = Guid.NewGuid
-                .Cid = tblProjectID.CustomerIDCreateOrUpdate(appID)
-                .CustomerName = customer.CustomerName
-                .AddressLine1 = customer.AddressLine1
-                .AddressLine2 = customer.AddressLine2
-                .State = customer.State
-                .Suburb = customer.Suburb
-                .PostCode = customer.PostCode
-                .CustomerContactName = customer.CustomerContactName
-                .CustomerPhone = customer.CustomerPhone
-                .CustomerMobile = customer.CustomerMobile
-                .CustomerFax = customer.CustomerFax
-                .CustomerComments = customer.CustomerComments
-                .CustomerAgent = customer.CustomerAgent
-                .CustomerRating = customer.CustomerRating
-                .Zone = customer.Zone
-                .MYOBCustomerNumber = customer.MYOBCustomerNumber
-                .CustomerValue = customer.CustomerValue
-                .InactiveCustomer = customer.InactiveCustomer
-                .CustomerCommencementDate = customer.CustomerCommencementDate
-                .chkCustomerExcludeFuelLevy = customer.chkCustomerExcludeFuelLevy
-                .cmbRateIncrease = customer.cmbRateIncrease
+                Dim objCustomer As New FMS.Business.tblCustomer
+                With objCustomer
+                    .ApplicationID = appID
+                    .CustomerID = Guid.NewGuid
+                    .Cid = tblProjectID.CustomerIDCreateOrUpdate(appID)
+                    .CustomerName = customer.CustomerName
+                    .AddressLine1 = customer.AddressLine1
+                    .AddressLine2 = customer.AddressLine2
+                    .State = customer.State
+                    .Suburb = customer.Suburb
+                    .PostCode = customer.PostCode
+                    .CustomerContactName = customer.CustomerContactName
+                    .CustomerPhone = customer.CustomerPhone
+                    .CustomerMobile = customer.CustomerMobile
+                    .CustomerFax = customer.CustomerFax
+                    .CustomerComments = customer.CustomerComments
+                    .CustomerAgent = customer.CustomerAgent
+                    .CustomerRating = customer.CustomerRating
+                    .Zone = customer.Zone
+                    .MYOBCustomerNumber = customer.MYOBCustomerNumber
+                    .CustomerValue = customer.CustomerValue
+                    .InactiveCustomer = customer.InactiveCustomer
+                    .CustomerCommencementDate = customer.CustomerCommencementDate
+                    .chkCustomerExcludeFuelLevy = customer.chkCustomerExcludeFuelLevy
+                    .cmbRateIncrease = customer.cmbRateIncrease
+                End With
+
+                .tblCustomers.InsertOnSubmit(objCustomer)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblCustomers.InsertOnSubmit(objCustomer)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(customer As DataObjects.tblCustomers)
-            Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(customer.Cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objCustomer
-                .CustomerName = customer.CustomerName
-                .AddressLine1 = customer.AddressLine1
-                .AddressLine2 = customer.AddressLine2
-                .State = customer.State
-                .Suburb = customer.Suburb
-                .PostCode = customer.PostCode
-                .CustomerContactName = customer.CustomerContactName
-                .CustomerPhone = customer.CustomerPhone
-                .CustomerMobile = customer.CustomerMobile
-                .CustomerFax = customer.CustomerFax
-                .CustomerComments = customer.CustomerComments
-                .CustomerAgent = customer.CustomerAgent
-                .CustomerRating = customer.CustomerRating
-                .Zone = customer.Zone
-                .MYOBCustomerNumber = customer.MYOBCustomerNumber
-                .CustomerValue = customer.CustomerValue
-                .InactiveCustomer = customer.InactiveCustomer
-                .CustomerCommencementDate = customer.CustomerCommencementDate
-                .chkCustomerExcludeFuelLevy = customer.chkCustomerExcludeFuelLevy
-                .cmbRateIncrease = customer.cmbRateIncrease
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomer As FMS.Business.tblCustomer = (From c In .tblCustomers
+                                                               Where c.Cid.Equals(customer.Cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objCustomer
+                    .CustomerName = customer.CustomerName
+                    .AddressLine1 = customer.AddressLine1
+                    .AddressLine2 = customer.AddressLine2
+                    .State = customer.State
+                    .Suburb = customer.Suburb
+                    .PostCode = customer.PostCode
+                    .CustomerContactName = customer.CustomerContactName
+                    .CustomerPhone = customer.CustomerPhone
+                    .CustomerMobile = customer.CustomerMobile
+                    .CustomerFax = customer.CustomerFax
+                    .CustomerComments = customer.CustomerComments
+                    .CustomerAgent = customer.CustomerAgent
+                    .CustomerRating = customer.CustomerRating
+                    .Zone = customer.Zone
+                    .MYOBCustomerNumber = customer.MYOBCustomerNumber
+                    .CustomerValue = customer.CustomerValue
+                    .InactiveCustomer = customer.InactiveCustomer
+                    .CustomerCommencementDate = customer.CustomerCommencementDate
+                    .chkCustomerExcludeFuelLevy = customer.chkCustomerExcludeFuelLevy
+                    .cmbRateIncrease = customer.cmbRateIncrease
+                End With
+
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub UpdateCustomerValue(cid As Integer, custVal As Double)
-            Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objCustomer
-                .CustomerValue = custVal
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomer As FMS.Business.tblCustomer = (From c In .tblCustomers
+                                                               Where c.Cid.Equals(cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objCustomer
+                    .CustomerValue = custVal
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(Customer As DataObjects.tblCustomers)
-            Dim objCustomer As FMS.Business.tblCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                                                           Where c.Cid.Equals(Customer.Cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblCustomers.DeleteOnSubmit(objCustomer)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomer As FMS.Business.tblCustomer = (From c In .tblCustomers
+                                                               Where c.Cid.Equals(Customer.Cid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblCustomers.DeleteOnSubmit(objCustomer)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomers)
-            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                               Select New DataObjects.tblCustomers(c)).ToList
-
-            Return objCustomer
+            Try
+                Dim objCustomer As New List(Of DataObjects.tblCustomers)
+                With New LINQtoSQLClassesDataContext
+                    objCustomer = (From c In .tblCustomers
+                                   Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                   Select New DataObjects.tblCustomers(c)).ToList
+                    .Dispose()
+                End With
+                Return objCustomer
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllOrderByCustomerName() As List(Of DataObjects.tblCustomers)
-            Dim appId = ThisSession.ApplicationID
-
-            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                               Where c.ApplicationID = appId
-                               Order By c.CustomerName
-                               Select New DataObjects.tblCustomers(c)).ToList
-
-            Return objCustomer
+            Try
+                Dim objCustomer As New List(Of DataObjects.tblCustomers)
+                With New LINQtoSQLClassesDataContext
+                    objCustomer = (From c In .tblCustomers
+                                   Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                   Order By c.CustomerName
+                                   Select New DataObjects.tblCustomers(c)).ToList
+                    .Dispose()
+                End With
+                Return objCustomer
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
         Public Shared Function GetAllWithZoneSortOrder() As List(Of DataObjects.tblCustomers)
+            Try
+                Dim objCustomer As New List(Of DataObjects.tblCustomers)
+                With New LINQtoSQLClassesDataContext
+                    objCustomer = (From c In .usp_GetCustomers
+                                   Select New DataObjects.tblCustomers() With {.AddressLine1 = c.AddressLine1, .AddressLine2 = c.AddressLine2,
+                                                                                .chkCustomerExcludeFuelLevy = c.chkCustomerExcludeFuelLevy, .Cid = c.Cid,
+                                                                                .cmbRateIncrease = c.cmbRateIncrease, .CustomerAgent = c.CustomerAgent,
+                                                                                .CustomerCommencementDate = c.CustomerCommencementDate, .CustomerComments = c.CustomerComments,
+                                                                                .CustomerContactName = c.CustomerContactName, .CustomerFax = c.CustomerFax,
+                                                                                .CustomerID = c.CustomerID, .CustomerMobile = c.CustomerMobile,
+                                                                                .CustomerName = c.CustomerName, .CustomerPhone = c.CustomerPhone,
+                                                                                .CustomerRating = c.CustomerRating, .CustomerValue = c.CustomerValue,
+                                                                                .InactiveCustomer = c.InactiveCustomer, .MYOBCustomerNumber = c.MYOBCustomerNumber,
+                                                                                .PostCode = c.PostCode, .State = c.State, .Suburb = c.Suburb, .Zone = c.Zone,
+                                                                                .ZoneSortOrder = c.ZoneSortOrder, .AgentSortOrder = c.AgentSortOrder,
+                                                                                .RateIncreaseSortOrder = c.RateIncreaseSortOrder}).ToList
 
-            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomers
-                               Select New DataObjects.tblCustomers() With {.AddressLine1 = c.AddressLine1, .AddressLine2 = c.AddressLine2,
-                                                                           .chkCustomerExcludeFuelLevy = c.chkCustomerExcludeFuelLevy, .Cid = c.Cid,
-                                                                           .cmbRateIncrease = c.cmbRateIncrease, .CustomerAgent = c.CustomerAgent,
-                                                                           .CustomerCommencementDate = c.CustomerCommencementDate, .CustomerComments = c.CustomerComments,
-                                                                           .CustomerContactName = c.CustomerContactName, .CustomerFax = c.CustomerFax,
-                                                                           .CustomerID = c.CustomerID, .CustomerMobile = c.CustomerMobile,
-                                                                           .CustomerName = c.CustomerName, .CustomerPhone = c.CustomerPhone,
-                                                                           .CustomerRating = c.CustomerRating, .CustomerValue = c.CustomerValue,
-                                                                           .InactiveCustomer = c.InactiveCustomer, .MYOBCustomerNumber = c.MYOBCustomerNumber,
-                                                                           .PostCode = c.PostCode, .State = c.State, .Suburb = c.Suburb, .Zone = c.Zone,
-                                                                           .ZoneSortOrder = c.ZoneSortOrder, .AgentSortOrder = c.AgentSortOrder,
-                                                                           .RateIncreaseSortOrder = c.RateIncreaseSortOrder}).ToList
-
-            Return objCustomer
+                    .Dispose()
+                End With
+                Return objCustomer
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
         Public Shared Function GetACustomerByCID(cid As Integer) As DataObjects.tblCustomers
-
-            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomers
-                               Where c.Cid.Equals(cid)
-                               Select New DataObjects.tblCustomers() With {.AddressLine1 = c.AddressLine1, .AddressLine2 = c.AddressLine2,
-                                                                           .chkCustomerExcludeFuelLevy = c.chkCustomerExcludeFuelLevy, .Cid = c.Cid,
-                                                                           .cmbRateIncrease = c.cmbRateIncrease, .CustomerAgent = c.CustomerAgent,
-                                                                           .CustomerCommencementDate = c.CustomerCommencementDate, .CustomerComments = c.CustomerComments,
-                                                                           .CustomerContactName = c.CustomerContactName, .CustomerFax = c.CustomerFax,
-                                                                           .CustomerID = c.CustomerID, .CustomerMobile = c.CustomerMobile,
-                                                                           .CustomerName = c.CustomerName, .CustomerPhone = c.CustomerPhone,
-                                                                           .CustomerRating = c.CustomerRating, .CustomerValue = c.CustomerValue,
-                                                                           .InactiveCustomer = c.InactiveCustomer, .MYOBCustomerNumber = c.MYOBCustomerNumber,
-                                                                           .PostCode = c.PostCode, .State = c.State, .Suburb = c.Suburb, .Zone = c.Zone,
-                                                                           .ZoneSortOrder = c.ZoneSortOrder, .AgentSortOrder = c.AgentSortOrder,
-                                                                           .RateIncreaseSortOrder = c.RateIncreaseSortOrder, .CustomerSortOrder = c.CustomerSortOrder}).SingleOrDefault
-
-            Return objCustomer
+            Try
+                Dim objCustomer As DataObjects.tblCustomers
+                With New LINQtoSQLClassesDataContext
+                    objCustomer = (From c In .usp_GetCustomers
+                                   Where c.Cid.Equals(cid)
+                                   Select New DataObjects.tblCustomers() With {.AddressLine1 = c.AddressLine1, .AddressLine2 = c.AddressLine2,
+                                                                               .chkCustomerExcludeFuelLevy = c.chkCustomerExcludeFuelLevy, .Cid = c.Cid,
+                                                                               .cmbRateIncrease = c.cmbRateIncrease, .CustomerAgent = c.CustomerAgent,
+                                                                               .CustomerCommencementDate = c.CustomerCommencementDate, .CustomerComments = c.CustomerComments,
+                                                                               .CustomerContactName = c.CustomerContactName, .CustomerFax = c.CustomerFax,
+                                                                               .CustomerID = c.CustomerID, .CustomerMobile = c.CustomerMobile,
+                                                                               .CustomerName = c.CustomerName, .CustomerPhone = c.CustomerPhone,
+                                                                               .CustomerRating = c.CustomerRating, .CustomerValue = c.CustomerValue,
+                                                                               .InactiveCustomer = c.InactiveCustomer, .MYOBCustomerNumber = c.MYOBCustomerNumber,
+                                                                               .PostCode = c.PostCode, .State = c.State, .Suburb = c.Suburb, .Zone = c.Zone,
+                                                                               .ZoneSortOrder = c.ZoneSortOrder, .AgentSortOrder = c.AgentSortOrder,
+                                                                               .RateIncreaseSortOrder = c.RateIncreaseSortOrder, .CustomerSortOrder = c.CustomerSortOrder}).SingleOrDefault
+                    .Dispose()
+                End With
+                Return objCustomer
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
         Public Shared Function GetMYOBCustomer() As List(Of DataObjects.tblCustomers)
-            Dim appID = ThisSession.ApplicationID
+            Try
+                Dim objCustomer As New List(Of DataObjects.tblCustomers)
+                With New LINQtoSQLClassesDataContext
+                    objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
+                                   Where c.MYOBCustomerNumber Is Nothing And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                   Select New DataObjects.tblCustomers(c)).ToList
 
-            Dim objCustomer = (From c In SingletonAccess.FMSDataContextContignous.tblCustomers
-                               Where c.MYOBCustomerNumber Is Nothing And c.ApplicationID = appID
-                               Select New DataObjects.tblCustomers(c)).ToList
-
-            Return objCustomer
+                    .Dispose()
+                End With
+                Return objCustomer
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
 #End Region

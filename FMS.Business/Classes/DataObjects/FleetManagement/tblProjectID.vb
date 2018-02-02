@@ -991,29 +991,33 @@
 #End Region
 #Region "tblSiteComments"
         Private Shared Function GetLatestSiteCommentsID(appID As System.Guid) As FMS.Business.tblSiteComment
+            Dim siteComment As FMS.Business.tblSiteComment
             With New LINQtoSQLClassesDataContext
-                Return (From c In .tblSiteComments
-                        Where c.ApplicationID.Equals(appID)
-                        Order By c.Aid Descending
-                        Select c).FirstOrDefault()
+                siteComment = (From c In .tblSiteComments
+                               Where c.ApplicationID.Equals(appID)
+                               Order By c.Aid Descending
+                               Select c).FirstOrDefault()
+                .Dispose()
             End With
+            Return siteComment
         End Function
         Private Shared Function SiteCommentsIDCreate(appID As System.Guid) As Integer
+            Dim tblSiteCommentsId As FMS.Business.tblSiteComment = GetLatestSiteCommentsID(appID)
+            Dim objSiteCommentsId As New FMS.Business.tblProjectID
             With New LINQtoSQLClassesDataContext
-                Dim tblSiteCommentsId As FMS.Business.tblSiteComment = GetLatestSiteCommentsID(appID)
-                Dim objSiteCommentsId As New FMS.Business.tblProjectID
                 With objSiteCommentsId
                     .ProjectID = Guid.NewGuid()
                     .CommentsID = tblSiteCommentsId.Aid + 1
                 End With
                 .tblProjectIDs.InsertOnSubmit(objSiteCommentsId)
                 .SubmitChanges()
-                Return objSiteCommentsId.RunID
+                .Dispose()
             End With
+            Return objSiteCommentsId.RunID
         End Function
         Private Shared Function SiteCommentsIDUpdate(SiteCommentsID As Object, appID As System.Guid) As Integer
+            Dim objProject As FMS.Business.tblProjectID = Nothing
             With New LINQtoSQLClassesDataContext
-                Dim objProject As FMS.Business.tblProjectID = Nothing
                 If SiteCommentsID Is Nothing Then
                     Dim tblSiteCommentsId As FMS.Business.tblSiteComment = GetLatestSiteCommentsID(appID)
                     SiteCommentsID = tblSiteCommentsId.Aid
@@ -1021,25 +1025,28 @@
                                   Where c.ApplicationID.Equals(appID)).FirstOrDefault()
                 Else
                     objProject = (From c In .tblProjectIDs
-                                  Where c.RunID.Equals(SiteCommentsID) And c.ApplicationID.Equals(appID)).SingleOrDefault
+                                  Where c.CommentsID.Equals(SiteCommentsID) And c.ApplicationID.Equals(appID)).SingleOrDefault
                 End If
 
                 With objProject
                     .CommentsID = SiteCommentsID + 1
                 End With
                 .SubmitChanges()
-                Return objProject.CommentsID
+                .Dispose()
             End With
+            Return objProject.CommentsID
         End Function
         Public Shared Function SiteCommentsIDCreateOrUpdate(appID As System.Guid) As Integer
+            Dim objSiteComments As New List(Of FMS.Business.tblProjectID)
             With New LINQtoSQLClassesDataContext
-                Dim objSiteComments = SingletonAccess.FMSDataContextContignous.tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
-                If Not objSiteComments Is Nothing AndAlso objSiteComments.Count().Equals(0) Then
-                    Return SiteCommentsIDCreate(appID)
-                Else
-                    Return SiteCommentsIDUpdate(objSiteComments.SingleOrDefault().CommentsID, appID)
-                End If
+                objSiteComments = .tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
+                .Dispose()
             End With
+            If Not objSiteComments Is Nothing AndAlso objSiteComments.Count().Equals(0) Then
+                Return SiteCommentsIDCreate(appID)
+            Else
+                Return SiteCommentsIDUpdate(objSiteComments.SingleOrDefault().CommentsID, appID)
+            End If
         End Function
 #End Region
 #End Region

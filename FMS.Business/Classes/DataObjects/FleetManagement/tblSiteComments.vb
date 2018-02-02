@@ -11,8 +11,11 @@
         Public Shared Sub Create(SiteComments As DataObjects.tblSiteComments)
             With New LINQtoSQLClassesDataContext
                 Dim objSiteComment As New FMS.Business.tblSiteComment
+                Dim appID = ThisSession.ApplicationID
                 With objSiteComment
                     .CommentsID = Guid.NewGuid
+                    .ApplicationID = appID
+                    .Aid = tblProjectID.SiteCommentsIDCreateOrUpdate(appID)
                     .Cid = SiteComments.Cid
                     .CommentDate = SiteComments.CommentDate
                     .Comments = SiteComments.Comments
