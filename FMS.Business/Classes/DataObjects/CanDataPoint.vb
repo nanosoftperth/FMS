@@ -23,6 +23,24 @@
 
 #End Region
 
+    
+                   ''' <summary>
+            ''' Takes a number such as 4.5 and does the following:
+            ''' (4 * 8) + 4 = 36
+            ''' 4 * 8 (bits in a byte) + ( (5 -1))
+            ''' </summary>            
+            Private Function ConvertDecToBinPos(dec As Decimal) As Integer
+
+                Dim strs() = CStr(dec).Split("."c)
+
+                Dim i As Integer = (CInt(strs(0)) - 1) * 8
+
+                If strs.Length > 1 Then i += CInt(strs(1) - 1)
+
+                Return i
+
+            End Function
+    
 
 
         ''' <summary>
@@ -493,8 +511,8 @@
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
-
-                If msg_def.Standard = "NANO1000" Then calcMethod = AddressOf j1939
+                If msg_def.Standard = "NANO1000" Then calcMethod = AddressOf j1939                                                            
+                If msg_def.Standard = "Zagro" Then calcMethod = AddressOf j1939
 
                 'HACK: for efficiency. Do not do a lengthly check for validity if there are more than one values being returned.
                 'below needs tidying up, has been added for efficiency
@@ -758,13 +776,25 @@
 
                         Dim binarystring As String = [String].Join([String].Empty, cv.RawValue.[Select](Function(c) Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, "0"c)))
 
-                        Dim splts() As String = spnStartBit.Split("-")(0).Split("."c)
+                        'sometimes the "pos" is reversed depending on the endianess of the source system
+                        'for eaxmple 01000000 and 00000001 can bot be = 1 depending on the source system. 
+                        'a way to work aroundthis is to swap the pos from 1-4 to 4-1. Here we need to determine what fotmat is being used and
+                        'change the start bit depending side has the bigger value (i.e. 1-4 and 4-1 should both start at 1)
 
-                        Dim startchar As Integer = (CInt(splts(0)) - 1) * 8
+                        Dim lowestPos As Integer = 0
 
-                        If splts.Length > 1 Then startchar += (CInt(splts(1)) - 1)
+                        Dim splts() As String = spnStartBit.Split("-")
 
-                        binStr = binarystring.Substring(startchar, spnLengthBits)
+                        lowestPos = ConvertDecToBinPos(splts(0))
+
+                        If splts.Count > 1 Then
+
+                            Dim rightPos As Integer = ConvertDecToBinPos(splts(1))
+                            lowestPos = If(lowestPos > rightPos, rightPos, lowestPos)
+                        End If
+
+
+                        binStr = binarystring.Substring(lowestPos, spnLengthBits)
 
                         'if all we have is 1's, then this is a "not available" value
                         cv.IsValid = binStr.Length <= 1 OrElse binStr.Contains("0")
