@@ -31,35 +31,72 @@
 
 #Region "CRUD"
         Public Shared Sub Create(param As DataObjects.tblParameters)
-            Dim AppID = ThisSession.ApplicationID
+            Try
+                Dim AppID = ThisSession.ApplicationID
 
-            Dim objParam As New FMS.Business.tblParameter
-            With objParam
-                .ParameterID = Guid.NewGuid
-                .ParId = param.ParId
-                .Field1 = param.Field1
-                .ApplicationId = AppID
+                With New LINQtoSQLClassesDataContext
+                    Dim obj As New FMS.Business.tblParameter
 
-            End With
-            SingletonAccess.FMSDataContextContignous.tblParameters.InsertOnSubmit(objParam)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                    With obj
+                        .ParameterID = Guid.NewGuid
+                        .ParId = param.ParId
+                        .Field1 = param.Field1
+                        .ApplicationId = AppID
+
+                    End With
+
+                    .tblParameters.InsertOnSubmit(obj)
+                    .SubmitChanges()
+                    .Dispose()
+                End With
+
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Sub
 
         Public Shared Sub Update(param As DataObjects.tblParameters)
-            Dim AppID = ThisSession.ApplicationID
+            Try
 
-            Dim objParam As FMS.Business.tblParameter = (From p In SingletonAccess.FMSDataContextContignous.tblParameters
-                                                         Where p.ParId.Equals(param.ParId) And p.ApplicationId = AppID).Single
-            With objParam
-                .ParId = param.ParId
-                .Field1 = param.Field1
-                .Field2 = param.Field2
-                .Field3 = param.Field3
-                .Field4 = param.Field4
-                .ApplicationId = AppID
+                With New LINQtoSQLClassesDataContext
 
+                    Dim AppID = ThisSession.ApplicationID
+                    Dim obj As FMS.Business.tblParameter = (From p In .tblParameters
+                                                            Where p.ParId.Equals(param.ParId) And p.ApplicationId = AppID).Single
+                    With obj
+                        .ParId = param.ParId
+                        .Field1 = param.Field1
+                        .Field2 = param.Field2
+                        .Field3 = param.Field3
+                        .Field4 = param.Field4
+                        .ApplicationId = AppID
+
+                    End With
+
+                    .SubmitChanges()
+                    .Dispose()
+
+                End With
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+        End Sub
+
+        Public Shared Sub Delete(param As DataObjects.tblParameters)
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+
+                Dim obj As FMS.Business.tblParameter = (From p In .tblParameters
+                                                        Where p.ParId.Equals(param.ParId) And p.ApplicationId = appID).SingleOrDefault
+                .tblParameters.DeleteOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
 #End Region
 

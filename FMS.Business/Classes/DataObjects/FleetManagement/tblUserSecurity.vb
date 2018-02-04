@@ -169,59 +169,6 @@
 
         End Sub
 
-        'Public Shared Sub Create(sec As DataObjects.tblUserSecurity)
-        '    Dim appID = ThisSession.ApplicationID
-
-        '    Dim obj As New FMS.Business.tblUserSecurity
-        '    With obj
-        '        .ApplicationId = appID
-        '        .usersecID = Guid.NewGuid
-        '        .txtUserName = sec.txtUserName
-        '        .Administrator = sec.Administrator
-        '        .UserPassword = sec.UserPassword
-        '        .UserGroup = sec.UserGroup
-        '        .lblCustomerDetails = sec.lblCustomerDetails
-        '        .lblSites = sec.lblSites
-        '        .lblMaintenance = sec.lblMaintenance
-        '        .lblReports = sec.lblReports
-        '        .lblOtherProcesses = sec.lblOtherProcesses
-        '        .cmdServices = sec.cmdServices
-        '        .Toggle41 = sec.Toggle41
-        '        .Toggle42 = sec.Toggle42
-        '        .CmdIndustryGroups = sec.CmdIndustryGroups
-        '        .CmdInvoicingFrequency = sec.CmdInvoicingFrequency
-        '        .CmdPubHolReg = sec.CmdPubHolReg
-        '        .CmdSalesPersons = sec.CmdSalesPersons
-        '        .CmdCeaseReasons = sec.CmdCeaseReasons
-        '        .CmdCIRReasons = sec.CmdCIRReasons
-        '        .CmdCycles = sec.CmdCycles
-        '        .CmdTurnOffAuditing = sec.CmdTurnOffAuditing
-        '        .CmdAuditChangeReason = sec.CmdAuditChangeReason
-        '        .CmdAreas = sec.CmdAreas
-        '        .Command55 = sec.Command55
-        '        .CmdContractRenewalReport = sec.CmdContractRenewalReport
-        '        .CmdQuickViewBySuburb = sec.CmdQuickViewBySuburb
-        '        .CmdAuditReport = sec.CmdAuditReport
-        '        .CmdProductsReport = sec.CmdProductsReport
-        '        .CmdRunReport = sec.CmdRunReport
-        '        .Command13 = sec.Command13
-        '        .CmdCustomerSummary = sec.CmdCustomerSummary
-        '        .CmdSiteReport = sec.CmdSiteReport
-        '        .Command9 = sec.Command9
-        '        .Command10 = sec.Command10
-        '        .CmdSalesSummaryDislocations = .CmdSalesSummaryDislocations
-        '        .CmdDrivesLicenseExpiry = .CmdDrivesLicenseExpiry
-        '        .Command14 = sec.Command14
-        '        .cmdServiceSummary = sec.cmdServiceSummary
-        '        .cmdRunValue = sec.cmdRunValue
-        '        .cmdInvoicing = sec.cmdInvoicing
-        '        .cmdLengthOfService = sec.cmdLengthOfService
-        '        .cmdRunValue2 = sec.cmdRunValue2
-        '        .cmdSitesWithNoContract = sec.cmdSitesWithNoContract
-        '    End With
-        '    SingletonAccess.FMSDataContextContignous.tblUserSecurities.InsertOnSubmit(obj)
-        '    SingletonAccess.FMSDataContextContignous.SubmitChanges()
-        'End Sub
         Public Shared Sub Update(sec As DataObjects.tblUserSecurity)
             With New LINQtoSQLClassesDataContext
 
