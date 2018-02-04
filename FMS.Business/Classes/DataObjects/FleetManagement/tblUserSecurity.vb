@@ -110,132 +110,282 @@
 
 #Region "CRUD"
         Public Shared Sub Create(sec As DataObjects.tblUserSecurity)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
 
-            Dim obj As New FMS.Business.tblUserSecurity
-            With obj
-                .ApplicationId = appID
-                .usersecID = Guid.NewGuid
-                .txtUserName = sec.txtUserName
-                .Administrator = sec.Administrator
-                .UserPassword = sec.UserPassword
-                .UserGroup = sec.UserGroup
-                .lblCustomerDetails = sec.lblCustomerDetails
-                .lblSites = sec.lblSites
-                .lblMaintenance = sec.lblMaintenance
-                .lblReports = sec.lblReports
-                .lblOtherProcesses = sec.lblOtherProcesses
-                .cmdServices = sec.cmdServices
-                .Toggle41 = sec.Toggle41
-                .Toggle42 = sec.Toggle42
-                .CmdIndustryGroups = sec.CmdIndustryGroups
-                .CmdInvoicingFrequency = sec.CmdInvoicingFrequency
-                .CmdPubHolReg = sec.CmdPubHolReg
-                .CmdSalesPersons = sec.CmdSalesPersons
-                .CmdCeaseReasons = sec.CmdCeaseReasons
-                .CmdCIRReasons = sec.CmdCIRReasons
-                .CmdCycles = sec.CmdCycles
-                .CmdTurnOffAuditing = sec.CmdTurnOffAuditing
-                .CmdAuditChangeReason = sec.CmdAuditChangeReason
-                .CmdAreas = sec.CmdAreas
-                .Command55 = sec.Command55
-                .CmdContractRenewalReport = sec.CmdContractRenewalReport
-                .CmdQuickViewBySuburb = sec.CmdQuickViewBySuburb
-                .CmdAuditReport = sec.CmdAuditReport
-                .CmdProductsReport = sec.CmdProductsReport
-                .CmdRunReport = sec.CmdRunReport
-                .Command13 = sec.Command13
-                .CmdCustomerSummary = sec.CmdCustomerSummary
-                .CmdSiteReport = sec.CmdSiteReport
-                .Command9 = sec.Command9
-                .Command10 = sec.Command10
-                .CmdSalesSummaryDislocations = .CmdSalesSummaryDislocations
-                .CmdDrivesLicenseExpiry = .CmdDrivesLicenseExpiry
-                .Command14 = sec.Command14
-                .cmdServiceSummary = sec.cmdServiceSummary
-                .cmdRunValue = sec.cmdRunValue
-                .cmdInvoicing = sec.cmdInvoicing
-                .cmdLengthOfService = sec.cmdLengthOfService
-                .cmdRunValue2 = sec.cmdRunValue2
-                .cmdSitesWithNoContract = sec.cmdSitesWithNoContract
+                Dim obj As New FMS.Business.tblUserSecurity
+                With obj
+                    .ApplicationId = appID
+                    .usersecID = Guid.NewGuid
+                    .txtUserName = sec.txtUserName
+                    .Administrator = sec.Administrator
+                    .UserPassword = sec.UserPassword
+                    .UserGroup = sec.UserGroup
+                    .lblCustomerDetails = IIf(sec.lblCustomerDetails.HasValue, sec.lblCustomerDetails, False)
+                    .lblSites = IIf(sec.lblSites.HasValue, sec.lblSites, False)
+                    .lblMaintenance = IIf(sec.lblMaintenance.HasValue, sec.lblMaintenance, False)
+                    .lblReports = IIf(sec.lblReports.HasValue, sec.lblReports, False)
+                    .lblOtherProcesses = IIf(sec.lblOtherProcesses.HasValue, sec.lblOtherProcesses, False)
+                    .cmdServices = IIf(sec.cmdServices.HasValue, sec.cmdServices, False)
+                    .Toggle41 = IIf(sec.Toggle41.HasValue, sec.Toggle41, False)
+                    .Toggle42 = IIf(sec.Toggle42.HasValue, sec.Toggle42, False)
+                    .CmdIndustryGroups = IIf(sec.CmdIndustryGroups.HasValue, sec.CmdIndustryGroups, False)
+                    .CmdInvoicingFrequency = IIf(sec.CmdInvoicingFrequency.HasValue, sec.CmdInvoicingFrequency, False)
+                    .CmdPubHolReg = IIf(sec.CmdPubHolReg.HasValue, sec.CmdPubHolReg, False)
+                    .CmdSalesPersons = IIf(sec.CmdSalesPersons.HasValue, sec.CmdSalesPersons, False)
+                    .CmdCeaseReasons = IIf(sec.CmdCeaseReasons.HasValue, sec.CmdCeaseReasons, False)
+                    .CmdCIRReasons = IIf(sec.CmdCIRReasons.HasValue, sec.CmdCIRReasons, False)
+                    .CmdCycles = IIf(sec.CmdCycles.HasValue, sec.CmdCycles, False)
+                    .CmdTurnOffAuditing = IIf(sec.CmdTurnOffAuditing.HasValue, sec.CmdTurnOffAuditing, False)
+                    .CmdAuditChangeReason = IIf(sec.CmdAuditChangeReason.HasValue, sec.CmdAuditChangeReason, False)
+                    .CmdAreas = IIf(sec.CmdAreas.HasValue, sec.CmdAreas, False)
+                    .Command55 = IIf(sec.Command55.HasValue, sec.Command55, False)
+                    .CmdContractRenewalReport = IIf(sec.CmdContractRenewalReport.HasValue, sec.CmdContractRenewalReport, False)
+                    .CmdQuickViewBySuburb = IIf(sec.CmdQuickViewBySuburb.HasValue, sec.CmdQuickViewBySuburb, False)
+                    .CmdAuditReport = IIf(sec.CmdAuditReport.HasValue, sec.CmdAuditReport, False)
+                    .CmdProductsReport = IIf(sec.CmdProductsReport.HasValue, sec.CmdProductsReport, False)
+                    .CmdRunReport = IIf(sec.CmdRunReport.HasValue, sec.CmdRunReport, False)
+                    .Command13 = IIf(sec.Command13.HasValue, sec.Command13, False)
+                    .CmdCustomerSummary = IIf(sec.CmdCustomerSummary.HasValue, sec.CmdCustomerSummary, False)
+                    .CmdSiteReport = IIf(sec.CmdSiteReport.HasValue, sec.CmdSiteReport, False)
+                    .Command9 = IIf(sec.Command9.HasValue, sec.Command9, False)
+                    .Command10 = IIf(sec.Command10.HasValue, sec.Command10, False)
+                    .CmdSalesSummaryDislocations = IIf(sec.CmdSalesSummaryDislocations.HasValue, sec.CmdSalesSummaryDislocations, False)
+                    .CmdDrivesLicenseExpiry = IIf(sec.CmdDrivesLicenseExpiry.HasValue, sec.CmdDrivesLicenseExpiry, False)
+                    .Command14 = IIf(sec.Command14.HasValue, sec.Command14, False)
+                    .cmdServiceSummary = IIf(sec.cmdServiceSummary.HasValue, sec.cmdServiceSummary, False)
+                    .cmdRunValue = IIf(sec.cmdRunValue.HasValue, sec.cmdRunValue, False)
+                    .cmdInvoicing = IIf(sec.cmdInvoicing.HasValue, sec.cmdInvoicing, False)
+                    .cmdLengthOfService = IIf(sec.cmdLengthOfService.HasValue, sec.cmdLengthOfService, False)
+                    .cmdRunValue2 = IIf(sec.cmdRunValue2.HasValue, sec.cmdRunValue2, False)
+                    .cmdSitesWithNoContract = IIf(sec.cmdSitesWithNoContract.HasValue, sec.cmdSitesWithNoContract, False)
+                End With
+
+                .tblUserSecurities.InsertOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.tblUserSecurities.InsertOnSubmit(obj)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
-        Public Shared Sub Update(sec As DataObjects.tblUserSecurity)
-            Dim appID = ThisSession.ApplicationID
 
-            Dim obj As FMS.Business.tblUserSecurity = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-                                                       Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId = appID).SingleOrDefault
-            With obj
-                .txtUserName = sec.txtUserName
-                .Administrator = sec.Administrator
-                .UserPassword = sec.UserPassword
-                .UserGroup = sec.UserGroup
-                .lblCustomerDetails = sec.lblCustomerDetails
-                .lblSites = sec.lblSites
-                .lblMaintenance = sec.lblMaintenance
-                .lblReports = sec.lblReports
-                .lblOtherProcesses = sec.lblOtherProcesses
-                .cmdServices = sec.cmdServices
-                .Toggle41 = sec.Toggle41
-                .Toggle42 = sec.Toggle42
-                .CmdIndustryGroups = sec.CmdIndustryGroups
-                .CmdInvoicingFrequency = sec.CmdInvoicingFrequency
-                .CmdPubHolReg = sec.CmdPubHolReg
-                .CmdSalesPersons = sec.CmdSalesPersons
-                .CmdCeaseReasons = sec.CmdCeaseReasons
-                .CmdCycles = sec.CmdCycles
-                .CmdTurnOffAuditing = sec.CmdTurnOffAuditing
-                .CmdAuditChangeReason = sec.CmdAuditChangeReason
-                .CmdAreas = sec.CmdAreas
-                .Command55 = sec.Command55
-                .CmdContractRenewalReport = sec.CmdContractRenewalReport
-                .CmdQuickViewBySuburb = sec.CmdQuickViewBySuburb
-                .CmdAuditReport = sec.CmdAuditReport
-                .CmdProductsReport = sec.CmdProductsReport
-                .CmdRunReport = sec.CmdRunReport
-                .Command13 = sec.Command13
-                .CmdCustomerSummary = sec.CmdCustomerSummary
-                .CmdSiteReport = sec.CmdSiteReport
-                .Command9 = sec.Command9
-                .Command10 = sec.Command10
-                .CmdSalesSummaryDislocations = .CmdSalesSummaryDislocations
-                .CmdDrivesLicenseExpiry = .CmdDrivesLicenseExpiry
-                .Command14 = sec.Command14
-                .cmdServiceSummary = sec.cmdServiceSummary
-                .cmdRunValue = sec.cmdRunValue
-                .cmdInvoicing = sec.cmdInvoicing
-                .cmdLengthOfService = sec.cmdLengthOfService
-                .cmdRunValue2 = sec.cmdRunValue2
-                .cmdSitesWithNoContract = sec.cmdSitesWithNoContract
+        'Public Shared Sub Create(sec As DataObjects.tblUserSecurity)
+        '    Dim appID = ThisSession.ApplicationID
+
+        '    Dim obj As New FMS.Business.tblUserSecurity
+        '    With obj
+        '        .ApplicationId = appID
+        '        .usersecID = Guid.NewGuid
+        '        .txtUserName = sec.txtUserName
+        '        .Administrator = sec.Administrator
+        '        .UserPassword = sec.UserPassword
+        '        .UserGroup = sec.UserGroup
+        '        .lblCustomerDetails = sec.lblCustomerDetails
+        '        .lblSites = sec.lblSites
+        '        .lblMaintenance = sec.lblMaintenance
+        '        .lblReports = sec.lblReports
+        '        .lblOtherProcesses = sec.lblOtherProcesses
+        '        .cmdServices = sec.cmdServices
+        '        .Toggle41 = sec.Toggle41
+        '        .Toggle42 = sec.Toggle42
+        '        .CmdIndustryGroups = sec.CmdIndustryGroups
+        '        .CmdInvoicingFrequency = sec.CmdInvoicingFrequency
+        '        .CmdPubHolReg = sec.CmdPubHolReg
+        '        .CmdSalesPersons = sec.CmdSalesPersons
+        '        .CmdCeaseReasons = sec.CmdCeaseReasons
+        '        .CmdCIRReasons = sec.CmdCIRReasons
+        '        .CmdCycles = sec.CmdCycles
+        '        .CmdTurnOffAuditing = sec.CmdTurnOffAuditing
+        '        .CmdAuditChangeReason = sec.CmdAuditChangeReason
+        '        .CmdAreas = sec.CmdAreas
+        '        .Command55 = sec.Command55
+        '        .CmdContractRenewalReport = sec.CmdContractRenewalReport
+        '        .CmdQuickViewBySuburb = sec.CmdQuickViewBySuburb
+        '        .CmdAuditReport = sec.CmdAuditReport
+        '        .CmdProductsReport = sec.CmdProductsReport
+        '        .CmdRunReport = sec.CmdRunReport
+        '        .Command13 = sec.Command13
+        '        .CmdCustomerSummary = sec.CmdCustomerSummary
+        '        .CmdSiteReport = sec.CmdSiteReport
+        '        .Command9 = sec.Command9
+        '        .Command10 = sec.Command10
+        '        .CmdSalesSummaryDislocations = .CmdSalesSummaryDislocations
+        '        .CmdDrivesLicenseExpiry = .CmdDrivesLicenseExpiry
+        '        .Command14 = sec.Command14
+        '        .cmdServiceSummary = sec.cmdServiceSummary
+        '        .cmdRunValue = sec.cmdRunValue
+        '        .cmdInvoicing = sec.cmdInvoicing
+        '        .cmdLengthOfService = sec.cmdLengthOfService
+        '        .cmdRunValue2 = sec.cmdRunValue2
+        '        .cmdSitesWithNoContract = sec.cmdSitesWithNoContract
+        '    End With
+        '    SingletonAccess.FMSDataContextContignous.tblUserSecurities.InsertOnSubmit(obj)
+        '    SingletonAccess.FMSDataContextContignous.SubmitChanges()
+        'End Sub
+        Public Shared Sub Update(sec As DataObjects.tblUserSecurity)
+            With New LINQtoSQLClassesDataContext
+
+                Dim appID = ThisSession.ApplicationID
+
+                Dim obj As FMS.Business.tblUserSecurity = (From u In .tblUserSecurities
+                                                           Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId = appID).SingleOrDefault
+                With obj
+                    .txtUserName = sec.txtUserName
+                    .Administrator = sec.Administrator
+                    .UserPassword = sec.UserPassword
+                    .UserGroup = sec.UserGroup
+                    .lblCustomerDetails = IIf(sec.lblCustomerDetails.HasValue, sec.lblCustomerDetails, False)
+                    .lblSites = IIf(sec.lblSites.HasValue, sec.lblSites, False)
+                    .lblMaintenance = IIf(sec.lblMaintenance.HasValue, sec.lblMaintenance, False)
+                    .lblReports = IIf(sec.lblReports.HasValue, sec.lblReports, False)
+                    .lblOtherProcesses = IIf(sec.lblOtherProcesses.HasValue, sec.lblOtherProcesses, False)
+                    .cmdServices = IIf(sec.cmdServices.HasValue, sec.cmdServices, False)
+                    .Toggle41 = IIf(sec.Toggle41.HasValue, sec.Toggle41, False)
+                    .Toggle42 = IIf(sec.Toggle42.HasValue, sec.Toggle42, False)
+                    .CmdIndustryGroups = IIf(sec.CmdIndustryGroups.HasValue, sec.CmdIndustryGroups, False)
+                    .CmdInvoicingFrequency = IIf(sec.CmdInvoicingFrequency.HasValue, sec.CmdInvoicingFrequency, False)
+                    .CmdPubHolReg = IIf(sec.CmdPubHolReg.HasValue, sec.CmdPubHolReg, False)
+                    .CmdSalesPersons = IIf(sec.CmdSalesPersons.HasValue, sec.CmdSalesPersons, False)
+                    .CmdCeaseReasons = IIf(sec.CmdCeaseReasons.HasValue, sec.CmdCeaseReasons, False)
+                    .CmdCIRReasons = IIf(sec.CmdCIRReasons.HasValue, sec.CmdCIRReasons, False)
+                    .CmdCycles = IIf(sec.CmdCycles.HasValue, sec.CmdCycles, False)
+                    .CmdTurnOffAuditing = IIf(sec.CmdTurnOffAuditing.HasValue, sec.CmdTurnOffAuditing, False)
+                    .CmdAuditChangeReason = IIf(sec.CmdAuditChangeReason.HasValue, sec.CmdAuditChangeReason, False)
+                    .CmdAreas = IIf(sec.CmdAreas.HasValue, sec.CmdAreas, False)
+                    .Command55 = IIf(sec.Command55.HasValue, sec.Command55, False)
+                    .CmdContractRenewalReport = IIf(sec.CmdContractRenewalReport.HasValue, sec.CmdContractRenewalReport, False)
+                    .CmdQuickViewBySuburb = IIf(sec.CmdQuickViewBySuburb.HasValue, sec.CmdQuickViewBySuburb, False)
+                    .CmdAuditReport = IIf(sec.CmdAuditReport.HasValue, sec.CmdAuditReport, False)
+                    .CmdProductsReport = IIf(sec.CmdProductsReport.HasValue, sec.CmdProductsReport, False)
+                    .CmdRunReport = IIf(sec.CmdRunReport.HasValue, sec.CmdRunReport, False)
+                    .Command13 = IIf(sec.Command13.HasValue, sec.Command13, False)
+                    .CmdCustomerSummary = IIf(sec.CmdCustomerSummary.HasValue, sec.CmdCustomerSummary, False)
+                    .CmdSiteReport = IIf(sec.CmdSiteReport.HasValue, sec.CmdSiteReport, False)
+                    .Command9 = IIf(sec.Command9.HasValue, sec.Command9, False)
+                    .Command10 = IIf(sec.Command10.HasValue, sec.Command10, False)
+                    .CmdSalesSummaryDislocations = IIf(sec.CmdSalesSummaryDislocations.HasValue, sec.CmdSalesSummaryDislocations, False)
+                    .CmdDrivesLicenseExpiry = IIf(sec.CmdDrivesLicenseExpiry.HasValue, sec.CmdDrivesLicenseExpiry, False)
+                    .Command14 = IIf(sec.Command14.HasValue, sec.Command14, False)
+                    .cmdServiceSummary = IIf(sec.cmdServiceSummary.HasValue, sec.cmdServiceSummary, False)
+                    .cmdRunValue = IIf(sec.cmdRunValue.HasValue, sec.cmdRunValue, False)
+                    .cmdInvoicing = IIf(sec.cmdInvoicing.HasValue, sec.cmdInvoicing, False)
+                    .cmdLengthOfService = IIf(sec.cmdLengthOfService.HasValue, sec.cmdLengthOfService, False)
+                    .cmdRunValue2 = IIf(sec.cmdRunValue2.HasValue, sec.cmdRunValue2, False)
+                    .cmdSitesWithNoContract = IIf(sec.cmdSitesWithNoContract.HasValue, sec.cmdSitesWithNoContract, False)
+
+                    '.txtUserName = sec.txtUserName
+                    '.Administrator = sec.Administrator
+                    '.UserPassword = sec.UserPassword
+                    '.UserGroup = sec.UserGroup
+                    '.lblCustomerDetails = sec.lblCustomerDetails
+                    '.lblSites = sec.lblSites
+                    '.lblMaintenance = sec.lblMaintenance
+                    '.lblReports = sec.lblReports
+                    '.lblOtherProcesses = sec.lblOtherProcesses
+                    '.cmdServices = sec.cmdServices
+                    '.Toggle41 = sec.Toggle41
+                    '.Toggle42 = sec.Toggle42
+                    '.CmdIndustryGroups = sec.CmdIndustryGroups
+                    '.CmdInvoicingFrequency = sec.CmdInvoicingFrequency
+                    '.CmdPubHolReg = sec.CmdPubHolReg
+                    '.CmdSalesPersons = sec.CmdSalesPersons
+                    '.CmdCeaseReasons = sec.CmdCeaseReasons
+                    '.CmdCycles = sec.CmdCycles
+                    '.CmdTurnOffAuditing = sec.CmdTurnOffAuditing
+                    '.CmdAuditChangeReason = sec.CmdAuditChangeReason
+                    '.CmdAreas = sec.CmdAreas
+                    '.Command55 = sec.Command55
+                    '.CmdContractRenewalReport = sec.CmdContractRenewalReport
+                    '.CmdQuickViewBySuburb = sec.CmdQuickViewBySuburb
+                    '.CmdAuditReport = sec.CmdAuditReport
+                    '.CmdProductsReport = sec.CmdProductsReport
+                    '.CmdRunReport = sec.CmdRunReport
+                    '.Command13 = sec.Command13
+                    '.CmdCustomerSummary = sec.CmdCustomerSummary
+                    '.CmdSiteReport = sec.CmdSiteReport
+                    '.Command9 = sec.Command9
+                    '.Command10 = sec.Command10
+                    '.CmdSalesSummaryDislocations = .CmdSalesSummaryDislocations
+                    '.CmdDrivesLicenseExpiry = .CmdDrivesLicenseExpiry
+                    '.Command14 = sec.Command14
+                    '.cmdServiceSummary = sec.cmdServiceSummary
+                    '.cmdRunValue = sec.cmdRunValue
+                    '.cmdInvoicing = sec.cmdInvoicing
+                    '.cmdLengthOfService = sec.cmdLengthOfService
+                    '.cmdRunValue2 = sec.cmdRunValue2
+                    '.cmdSitesWithNoContract = sec.cmdSitesWithNoContract
+                End With
+
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Delete(sec As DataObjects.tblUserSecurity)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
 
-            Dim obj As FMS.Business.tblUserSecurity = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-                                                       Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId.Equals(appID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblUserSecurities.DeleteOnSubmit(obj)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                Dim obj As FMS.Business.tblUserSecurity = (From u In .tblUserSecurities
+                                                           Where u.usersecID.Equals(sec.usersecID) And u.ApplicationId.Equals(appID)).SingleOrDefault
+                .tblUserSecurities.DeleteOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
+            End With
+
         End Sub
 #End Region
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblUserSecurity)
-            Dim obj = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-                       Order By u.txtUserName
-                       Select New DataObjects.tblUserSecurity(u)).ToList
+            Try
+                Dim obj As New List(Of DataObjects.tblUserSecurity)
 
-            Return obj
+                With New LINQtoSQLClassesDataContext
+                    obj = (From u In .tblUserSecurities
+                           Order By u.txtUserName
+                           Select New DataObjects.tblUserSecurity(u)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllPerUserName(UserName As String) As List(Of DataObjects.tblUserSecurity)
-            Dim obj = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-                       Select New DataObjects.tblUserSecurity(u)).ToList
+            Try
+                Dim obj As New List(Of DataObjects.tblUserSecurity)
 
-            Return obj
+                With New LINQtoSQLClassesDataContext
+
+                    obj = (From u In .tblUserSecurities
+                           Select New DataObjects.tblUserSecurity(u)).ToList
+
+                End With
+
+                Return obj
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
+
+
+
+
+        'Public Shared Function GetAll() As List(Of DataObjects.tblUserSecurity)
+        '    Dim obj = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
+        '               Order By u.txtUserName
+        '               Select New DataObjects.tblUserSecurity(u)).ToList
+
+        '    Return obj
+        'End Function
+        'Public Shared Function GetAllPerUserName(UserName As String) As List(Of DataObjects.tblUserSecurity)
+        '    Dim obj = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
+        '               Select New DataObjects.tblUserSecurity(u)).ToList
+
+        '    Return obj
+        'End Function
 
 
 

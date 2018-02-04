@@ -17,8 +17,11 @@
         </div>
         <br />
         <dx:ASPxGridView ID="Grid" runat="server" AutoGenerateColumns="false" 
-            KeyFieldName="usersecID" DataSourceID="odsUsers" Width="100%" OnRowUpdating="Grid_RowUpdating"
-            OnStartRowEditing="Grid_StartRowEditing" OnInitNewRow="Grid_InitNewRow">
+            KeyFieldName="usersecID" DataSourceID="odsUsers" Width="100%" 
+            OnRowInserting="Grid_RowInserting"
+            OnRowUpdating="Grid_RowUpdating"
+            OnStartRowEditing="Grid_StartRowEditing" 
+            OnInitNewRow="Grid_InitNewRow">
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
@@ -39,13 +42,14 @@
                     <Columns>
                         <dx:GridViewDataTextColumn FieldName="txtUserName" VisibleIndex="2" Visible="true" Caption="User Name"></dx:GridViewDataTextColumn>
                         <dx:GridViewDataCheckColumn FieldName="Administrator" VisibleIndex="3" Visible="true" Caption="Administrator"></dx:GridViewDataCheckColumn>
-                        <dx:GridViewDataTextColumn FieldName="UserPassword" VisibleIndex="4" Visible="true" Caption="Password">
-                            <PropertiesTextEdit Password="True" ClientInstanceName="psweditor"></PropertiesTextEdit>
+                        <dx:GridViewDataTextColumn FieldName="UserPassword" VisibleIndex="4" Visible="true" 
+                            Caption="Password" PropertiesTextEdit-Password="true">
+                            <%--<PropertiesTextEdit Password="True" ClientInstanceName="psweditor"></PropertiesTextEdit>
                             <EditItemTemplate>
                                 <dx:ASPxTextBox ID="txtPassword" runat="server" AutoGenerateColumns="false"
                                     OnInit="txtPassword_Init">                                 
                                 </dx:ASPxTextBox>
-                            </EditItemTemplate>
+                            </EditItemTemplate>--%>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="UserGroup" VisibleIndex="4" Visible="true" Caption="User Group">
                             <EditItemTemplate>

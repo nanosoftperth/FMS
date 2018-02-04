@@ -39,15 +39,33 @@ Public Class UserSecurity
 
     End Sub
 
-    Protected Sub Grid_RowUpdating(sender As Object, e As ASPxDataUpdatingEventArgs)
-        Dim colPassword = CType(Grid.Columns("UserPassword"), GridViewDataColumn)
-        Dim strPassword = CType(Grid.FindEditRowCellTemplateControl(colPassword, "txtPassword"), ASPxTextBox)
+    Protected Sub Grid_RowInserting(sender As Object, e As ASPxDataInsertingEventArgs)
 
         Dim colGroup = CType(Grid.Columns("UserGroup"), GridViewDataColumn)
         Dim strGroup = CType(Grid.FindEditRowCellTemplateControl(colGroup, "cboUserGroup"), ASPxComboBox)
 
-        e.NewValues("UserPassword") = strPassword.Text
         e.NewValues("UserGroup") = strGroup.Value
+
+    End Sub
+
+    Protected Sub Grid_RowUpdating(sender As Object, e As ASPxDataUpdatingEventArgs)
+        'Dim strPassword = CType(sender.GetRowValues(sender, "UserPassword"), String)
+        'Dim colPassword = CType(Grid.Columns("UserPassword"), GridViewDataColumn)
+        'Dim strPassword = CType(Grid.FindEditRowCellTemplateControl(colPassword, "txtPassword"), ASPxTextBox)
+        'object keyValue = ASPxGridView1.GetRowValues(ASPxGridView1.EditingRowVisibleIndex, "Oid");
+        'Dim colUName = Grid.GetRowValues(Grid.EditingRowVisibleIndex, "UserPassword")
+        Dim obj As Object = e.NewValues("txtPassword")
+
+        Dim uname = e.NewValues("txtUserName")
+        Dim newNome = e.NewValues("UserPassword")
+
+        Dim colGroup = CType(Grid.Columns("UserGroup"), GridViewDataColumn)
+        Dim strGroup = CType(Grid.FindEditRowCellTemplateControl(colGroup, "cboUserGroup"), ASPxComboBox)
+
+        'e.NewValues("UserPassword") = strPassword.Text
+        e.NewValues("UserGroup") = strGroup.Value
+
+        '===========================
         'Dim tags = TryCast(lookup.GridView.GetSelectedFieldValues(lookup.KeyFieldName), List(Of Object))
 
         'Dim tags = TryCast(lookup.GridView.GetSelectedFieldValues(lookup.KeyFieldName), List(Of Object))
@@ -67,6 +85,8 @@ Public Class UserSecurity
     Protected Sub Grid_InitNewRow(sender As Object, e As ASPxDataInitNewRowEventArgs)
         Grid.SettingsText.PopupEditFormCaption = "Create New User"
     End Sub
+
+
 
     'Private Sub dgvVehicles_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs) Handles dgvVehicles.RowUpdating
     '    e.NewValues("ApplicationID") = FMS.Business.ThisSession.ApplicationID
