@@ -47,19 +47,24 @@ Namespace DataObjects
 #Region "Get methods"
 
         Public Shared Function GetAllPerApplicationWithStartEndDate(StartDate As Date, EndDate As Date) As List(Of DataObjects.usp_GetGainAndLossesBySalesPersonReport)
-            Dim appId = ThisSession.ApplicationID
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetGainAndLossesBySalesPersonReport)
 
-            Dim obj = (From g In SingletonAccess.FMSDataContextContignous.usp_GetGainAndLossesBySalesPersonReport(StartDate, EndDate)
-                       Where g.ApplicationId = appId
-                       Order By g.AreaDescription
-                       Select New DataObjects.usp_GetGainAndLossesBySalesPersonReport(g)).ToList()
+                With New LINQtoSQLClassesDataContext
+                    obj = (From g In .usp_GetGainAndLossesBySalesPersonReport(StartDate, EndDate)
+                           Where g.ApplicationId = appId
+                           Order By g.AreaDescription
+                           Select New DataObjects.usp_GetGainAndLossesBySalesPersonReport(g)).ToList()
 
+                End With
 
+                Return obj
 
-            Return obj
-
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
-
 
 #End Region
 
