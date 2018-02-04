@@ -206,7 +206,9 @@
 
                     if (TranDate.length > 0)
                     {
-                        //setCookie('RepDate', TranDate, 1)
+                        var d = new Date(TranDate);
+                        tmpdate = formatDateTddmmyyyy(d);
+                        setCookie('RepDate', tmpdate, 1)
                         //$('#RepDate').val(TranDate);
 
                         PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
@@ -256,6 +258,31 @@
             }
 
             return strMonth + '/' + strDay + '/' + year;
+        }
+
+        //Get date in ddmmyyyy format
+        function formatDateTddmmyyyy(date) {
+            var strDay = '';
+            var strMonth = '';
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (day.toString().length < 2) {
+                strDay = '0' + day.toString();
+            }
+            else {
+                strDay = day.toString();
+            }
+
+            if (month.toString().length < 2) {
+                strMonth = '0' + month.toString();
+            }
+            else {
+                strMonth = month.toString();
+            }
+
+            return strDay + '/' + strMonth + '/' + year;
         }
 
         //Get date in dd mmm format
@@ -419,21 +446,14 @@
                                     <dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String" 
                                         ClientInstanceName="clientcboRun">
                                         <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
-                                    </dx:ASPxComboBox>
-                                    <%--<dx:ASPxComboBox ID="cboRun" runat="server" AutoPostBack="false"
-                                        DataSourceID="odsUnassignedRuns" TextField="RunDescription" ValueField="RunNUmber"
-                                        Width="285px" SelectedIndex="0" CallbackPageSize="15" EnableCallbackMode="True" 
-                                        EnableViewState="false">
-                                    </dx:ASPxComboBox>--%>
-                                    <%--<dx:ASPxComboBox ID="cboRun" runat="server" AutoPostBack="true"></dx:ASPxComboBox>--%>
-                                    <%--<dx:ASPxComboBox ID="cboRun" ClientInstanceName="clientcboRun" runat="server" 
-                                        DataSourceID="odsUnassignedRuns"TextField="RunDescription" ValueField="RunNUmber"
-                                        Width="285px" SelectedIndex="0" CallbackPageSize="15" EnableCallbackMode="True" 
-                                        EnableViewState="false"></dx:ASPxComboBox>--%>
+                                    </dx:ASPxComboBox>                                    
                                 </td>
                             </tr>
                         </table>
                         <br />
+                        <dx:ASPxButton ID="btnSelectServiceRun" runat="server" Text="Select Run"
+                            OnClick="btnSelectServiceRun_Click">
+                        </dx:ASPxButton>
                         <dx:ASPxButton ID="btnCancel" runat="server" Text="Cancel"
                             OnClick="btnCancel_Click">
                         </dx:ASPxButton>
@@ -498,6 +518,24 @@
                 </ContentCollection>
             </dx:ASPxPopupControl>
         </div>
+        <dx:ASPxPopupControl ID="puDialog" runat="server" ClientInstanceName="clientpuDialog"
+                Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
+                AllowDragging="True" PopupHorizontalAlign="WindowCenter"
+                PopupVerticalAlign="WindowCenter" ShowHeader="False">
+            <ContentCollection>
+                <dx:PopupControlContentControl runat="server">
+                    <dx:ASPxLabel ID="lblDialog" runat="server" Text="Your Text Here">
+                    </dx:ASPxLabel>
+                    <br />
+                    <dx:ASPxButton ID="btnDialogOK" runat="server" Text="OK"
+                        OnClick="btnDialogOK_Click">
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="btnDialogCancel" runat="server" Text="Cancel"
+                        OnClick="btnDialogCancel_Click">
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
         <%--<asp:ObjectDataSource ID="odsRunDates" runat="server" SelectMethod="GetRunDates" TypeName="FMS.WEB.ServiceRunManagement">
             <SelectParameters>
                 <asp:ControlParameter ControlID="carTabPage$dteStart" Name="StartDate" PropertyName="Value" Type="DateTime" />

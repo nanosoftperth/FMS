@@ -82,34 +82,6 @@ Public Class ServiceRunManagement
             End If
         End If
 
-
-
-
-
-        'Dim currDate As Date
-
-        'If (e.DataColumn.FieldName = "RunDate") Then
-
-        '    rundate = e.CellValue.ToString()
-
-        '    'Dim ctrDate = DateDiff(DateInterval.Day, Me.dteStart.Value, Me.dteEnd.Value)
-        '    'Dim StartDate As Date = Me.dteStart.Value
-
-        '    'For loopctr = 0 To ctrDate - 1
-
-        '    '    currDate = StartDate.AddDays(loopctr)
-        '    '    Dim currDay = currDate.ToString("dd MMM")
-
-        '    '    If (e.CellValue = currDay) Then
-        '    '        Exit For
-        '    '    End If
-
-        '    '    Dim obj As Object = ""
-
-        '    'Next
-
-        'End If
-
         If (IsDBNull(e.Cell) = False) Then
             e.Cell.Attributes.Add("onclick", "ShowPopup('" + e.DataColumn.FieldName + "');")
             'e.Cell.Attributes.Add("oncontextmenu", "ContextMenuServiceRun(s,e)")
@@ -128,11 +100,153 @@ Public Class ServiceRunManagement
     Protected Sub gvServiceRun_CustomJSProperties(sender As Object, e As ASPxGridViewClientJSPropertiesEventArgs)
         e.Properties("cpDataColumnMap") = gvServiceRun.DataColumns.ToDictionary(Function(c) gvServiceRun.DataColumns.IndexOf(c), Function(c) c.FieldName)
     End Sub
+    Protected Sub btnSelectServiceRun_Click(sender As Object, e As EventArgs)
 
+        '--- Set proerty value for tblRunDates
+        'Dim RunID = Me.cboRun.Value
+        'Dim RunDesc = Me.cboRun.Text
+        Dim DriverID As Integer = 0
+        Dim TransDate As Date = Now
+
+        If Not Request.Cookies("DriverID") Is Nothing Then
+            DriverID = Server.HtmlEncode(Request.Cookies("DriverID").Value)
+        End If
+
+        If Not Request.Cookies("RepDate") Is Nothing Then
+            TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
+        End If
+
+        Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
+                                                                                                                           x.Did = DriverID).ToList()
+        If (objRuns.Count > 0) Then
+            Session("ListRun") = objRuns
+
+            Me.lblDialog.Text = "Run exist on this date for this driver. Update it?"
+            Me.puDialog.ShowOnPageLoad = True
+
+        End If
+
+        Dim rowRundate = New FMS.Business.DataObjects.tblRunDates
+
+        rowRundate.ApplicationID = FMS.Business.ThisSession.ApplicationID
+        rowRundate.Rid = DriverID
+        rowRundate.DateOfRun = TransDate
+
+        '--- Set property values for tblRuns
+        Dim blnSun = False
+        Dim blnMon = False
+        Dim blnTue = False
+        Dim blnWed = False
+        Dim blnThu = False
+        Dim blnFri = False
+        Dim blnSat = False
+        'Dim ndxRID = 0
+
+        'Dim ListRuns = FMS.Business.DataObjects.tblRuns.GetAll.OrderByDescending(Function(x) x.Rid)
+
+        'If (ListRuns.Count > 0) Then
+        '    ndxRID = ListRuns.FirstOrDefault.Rid + 1
+        'End If
+
+        Dim DayOfWeek = TransDate.DayOfWeek.ToString()
+
+        Select Case DayOfWeek
+            Case "Sunday"
+                blnSun = True
+            Case "Monday"
+                blnMon = True
+            Case "Tuesday"
+                blnTue = True
+            Case "Wednesday"
+                blnWed = True
+            Case "Thursday"
+                blnThu = True
+            Case "Friday"
+                blnFri = True
+            Case "Saturday"
+                blnSat = True
+        End Select
+
+        Dim rowRuns = New FMS.Business.DataObjects.tblRuns
+
+        'rowRuns.Rid = ndxRID
+        rowRuns.RunNUmber = Convert.ToInt32(Me.cboRun.Value)
+        rowRuns.RunDescription = Me.cboRun.Text
+        rowRuns.RunDriver = DriverID
+        rowRuns.SundayRun = blnSun
+        rowRuns.MondayRun = blnMon
+        rowRuns.TuesdayRun = blnTue
+        rowRuns.WednesdayRun = blnWed
+        rowRuns.ThursdayRun = blnThu
+        rowRuns.FridayRun = blnFri
+        rowRuns.SaturdayRun = blnSat
+        rowRuns.InactiveRun = False
+
+        'FMS.Business.DataObjects.tblRunDates.Create(rowRundate)
+        'FMS.Business.DataObjects.tblRuns.Create(rowRuns)
+
+        puUnassignedRun.ShowOnPageLoad = False
+        btnLoad_Click(sender, e)
+    End Sub
+
+    Protected Sub btnDialogOK_Click(sender As Object, e As EventArgs)
+
+        Dim ListRun = Session("ListRun")
+
+        If (ListRun IsNot Nothing) Then
+            Dim oList As New FMS.Business.DataObjects.usp_GetServiceRunDates
+
+            For Each item In ListRun
+
+                oList.Did = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).Did
+                oList.DateOfRun = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).DateOfRun
+
+            Next
+
+
+
+            'Dim DriverID = oList.Did
+
+        End If
+
+        'Session("DialogAns") = True
+        'Me.puDialog.ShowOnPageLoad = False
+    End Sub
+
+    Protected Sub btnDialogCancel_Click(sender As Object, e As EventArgs)
+        Session("DialogAns") = False
+        Me.puDialog.ShowOnPageLoad = False
+    End Sub
+
+#End Region
+
+#Region "Dialog Popup"
+    'Protected Sub btnDialogOK_Click(sender As Object, e As EventArgs)
+    '    Session("DialogReturn") = "OK"
+    '    Dim obj = ""
+    'End Sub
+    'Protected Sub btnDialogCancel_Click(sender As Object, e As EventArgs)
+    '    Session("DialogReturn") = "Cancel"
+    '    Dim obj = ""
+    'End Sub
+    'Protected Function ShowDialog(DialogMsg As String) As Boolean
+    '    Me.lblDialog.Text = DialogMsg
+    '    Me.puDialog.ShowOnPageLoad = True
+
+    '    Dim ans As String = Session("DialogReturn")
+
+    '    If (ans.ToUpper = "OK") Then
+    '        Return True
+    '    Else
+    '        Return False
+    '    End If
+
+    'End Function
 
 #End Region
 
 #Region "Methods and Functions for Service Run"
+
     <WebMethod>
     Public Shared Function GetUnAssignedRuns(DateRun As Date) As List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
         Dim ListRuns = New List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
@@ -321,6 +435,12 @@ Public Class ServiceRunManagement
                         If (idxDID > -1) Then
                             Dim locNdx = colName.IndexOf("_") + 1
                             dvrID = Convert.ToInt32(colName.Substring(locNdx, colName.Length - locNdx))
+
+                            '--- test driver 45
+                            If (dvrID = 45) Then
+                                Dim obj = ""
+                            End If
+                            '---- end test
 
                             Select Case dayname.ToUpper()
                                 Case "MONDAY"
@@ -708,11 +828,6 @@ Public Class ServiceRunManagement
 
 
     End Class
-
-
-
-
-
 
 
 

@@ -122,6 +122,15 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents cboRun As Global.DevExpress.Web.ASPxComboBox
     
     '''<summary>
+    '''btnSelectServiceRun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSelectServiceRun As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
     '''btnCancel control.
     '''</summary>
     '''<remarks>
@@ -174,6 +183,42 @@ Partial Public Class ServiceRunManagement
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancelComplte As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''puDialog control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents puDialog As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''lblDialog control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDialog As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''btnDialogOK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDialogOK As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''btnDialogCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDialogCancel As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''odsDriver control.
