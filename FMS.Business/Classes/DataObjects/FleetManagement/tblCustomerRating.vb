@@ -46,21 +46,79 @@
         End Sub
 #End Region
 #Region "Get methods"
+        'Public Shared Function GetAllAnnualAnalysisReportPerCustomerRating(Rating As Integer) As List(Of DataObjects.usp_GetAnnualAnalysisReport)
+        '    Try
+        '        Dim appId = ThisSession.ApplicationID
+        '        Dim obj As New List(Of DataObjects.usp_GetAnnualAnalysisReport)
+
+        '        With New LINQtoSQLClassesDataContext
+        '            obj = (From a In .usp_GetAnnualAnalysisReport
+        '                   Where a.CustomerRating = Rating And a.ApplicationID = appId
+        '                   Select New DataObjects.usp_GetAnnualAnalysisReport(a)).ToList
+        '            .Dispose()
+        '        End With
+
+        '        Return obj
+        '    Catch ex As Exception
+        '        Throw ex
+        '    End Try
+        'End Function
+
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerRating)
-            Dim objCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
-                                     Order By c.CustomerRatingDesc
-                                     Select New DataObjects.tblCustomerRating(c)).ToList
-            Return objCustomerRating
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblCustomerRating)
+
+                With New LINQtoSQLClassesDataContext
+
+                    obj = (From c In .tblCustomerRatings
+                           Order By c.CustomerRatingDesc
+                           Select New DataObjects.tblCustomerRating(c)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
         Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblCustomerRating)
-            Dim appId = ThisSession.ApplicationID
-            Dim objCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
-                                     Where c.ApplicationId = appId
-                                     Order By c.CustomerRatingDesc
-                                     Select New DataObjects.tblCustomerRating(c)).ToList
-            Return objCustomerRating
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblCustomerRating)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From c In .tblCustomerRatings
+                           Where c.ApplicationId = appId
+                           Order By c.CustomerRatingDesc
+                           Select New DataObjects.tblCustomerRating(c)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
+
+        'Public Shared Function GetAll() As List(Of DataObjects.tblCustomerRating)
+        '    Dim objCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
+        '                             Order By c.CustomerRatingDesc
+        '                             Select New DataObjects.tblCustomerRating(c)).ToList
+        '    Return objCustomerRating
+        'End Function
+
+        'Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblCustomerRating)
+        '    Dim appId = ThisSession.ApplicationID
+        '    Dim objCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
+        '                             Where c.ApplicationId = appId
+        '                             Order By c.CustomerRatingDesc
+        '                             Select New DataObjects.tblCustomerRating(c)).ToList
+        '    Return objCustomerRating
+        'End Function
 #End Region
 #Region "Constructors"
         Public Sub New()
