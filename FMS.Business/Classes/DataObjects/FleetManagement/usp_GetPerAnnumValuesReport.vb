@@ -22,12 +22,22 @@
 
 #Region "Get methods"
         Public Shared Function GetAllPerApplication() As List(Of DataObjects.usp_GetPerAnnumValuesReport)
-            Dim appId = ThisSession.ApplicationID
+            Try
+                Dim obj As New List(Of DataObjects.usp_GetPerAnnumValuesReport)
+                Dim appId = ThisSession.ApplicationID
 
-            Dim obj = (From v In SingletonAccess.FMSDataContextContignous.usp_GetPerAnnumValuesReport
-                       Where v.ApplicationID = appId
-                       Select New DataObjects.usp_GetPerAnnumValuesReport(v)).ToList
-            Return obj
+                With New LINQtoSQLClassesDataContext
+                    obj = (From v In .usp_GetPerAnnumValuesReport
+                           Where v.ApplicationID = appId
+                           Select New DataObjects.usp_GetPerAnnumValuesReport(v)).ToList
+                    .Dispose()
+                End With
+
+                Return obj
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
 
