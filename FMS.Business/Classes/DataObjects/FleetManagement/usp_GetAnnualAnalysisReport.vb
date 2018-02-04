@@ -50,19 +50,36 @@
 
 #Region "Get methods"
         Public Shared Function GetAllAnnualAnalysisReport() As List(Of DataObjects.usp_GetAnnualAnalysisReport)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objAnnualAnalysis = (From a In SingletonAccess.FMSDataContextContignous.usp_GetAnnualAnalysisReport()
-                            Select New DataObjects.usp_GetAnnualAnalysisReport(a)).ToList
-            Return objAnnualAnalysis
+            Try
+                Dim obj As New List(Of DataObjects.usp_GetAnnualAnalysisReport)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From a In .usp_GetAnnualAnalysisReport
+                           Select New DataObjects.usp_GetAnnualAnalysisReport(a)).ToList
+                    .Dispose()
+                End With
+
+                Return obj
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllAnnualAnalysisReportPerCustomerRating(Rating As Integer) As List(Of DataObjects.usp_GetAnnualAnalysisReport)
-            Dim appId = ThisSession.ApplicationID
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetAnnualAnalysisReport)
 
-            Dim objAnnualAnalysis = (From a In SingletonAccess.FMSDataContextContignous.usp_GetAnnualAnalysisReport()
-                                     Where a.CustomerRating = Rating And a.ApplicationID = appId
-                                     Select New DataObjects.usp_GetAnnualAnalysisReport(a)).ToList
-            Return objAnnualAnalysis
+                With New LINQtoSQLClassesDataContext
+                    obj = (From a In .usp_GetAnnualAnalysisReport
+                           Where a.CustomerRating = Rating And a.ApplicationID = appId
+                           Select New DataObjects.usp_GetAnnualAnalysisReport(a)).ToList
+                    .Dispose()
+                End With
+
+                Return obj
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
 #End Region

@@ -179,6 +179,13 @@ FMS.Business
  </summary>
  <remarks></remarks>
 </member>
+<member name="M:FMS.Business.DataObjects.CanDataPoint.ConvertDecToBinPos(System.Decimal)">
+ <summary>
+ Takes a number such as 4.5 and does the following:
+ (4 * 8) + 4 = 36
+ 4 * 8 (bits in a byte) + ( (5 -1))
+ </summary>            
+</member>
 <member name="M:FMS.Business.DataObjects.CanDataPoint.GetLast100Values(System.String,System.String)">
  <summary>
  Required for binding of a devexpress control to show the last 100 values of a standard/spn

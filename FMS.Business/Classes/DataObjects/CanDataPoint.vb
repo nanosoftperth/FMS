@@ -789,11 +789,13 @@
 
                         Dim splts() As String = spnStartBit.Split("-")
 
-                        lowestPos = ConvertDecToBinPos(splts(0))
+                        'lowestPos = ConvertDecToBinPos(splts(0))
+                        lowestPos = FMS.Business.DataObjects.CanDataPoint.ConvertDecToBinary(splts(0))
 
                         If splts.Count > 1 Then
 
-                            Dim rightPos As Integer = ConvertDecToBinPos(splts(1))
+                            'Dim rightPos As Integer = ConvertDecToBinPos(splts(1))
+                            Dim rightPos As Integer = FMS.Business.DataObjects.CanDataPoint.ConvertDecToBinary(splts(1))
                             lowestPos = If(lowestPos > rightPos, rightPos, lowestPos)
                         End If
 
