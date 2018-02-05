@@ -31,85 +31,140 @@
 
 #Region "CRUD"
         Public Shared Sub Create(dvr As DataObjects.tblDrivers)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New FMS.Business.tblDriver
 
-            Dim obj As New FMS.Business.tblDriver
-            With obj
-                .ApplicationId = appID
-                .DriverID = Guid.NewGuid()
-                .DriverName = dvr.DriverName
-                .DriversLicenseNo = dvr.DriversLicenseNo
-                .DriversLicenseExpiryDate = dvr.DriversLicenseExpiryDate
-                .Inactive = dvr.Inactive
-                .Technician = dvr.Technician
+                With obj
+                    .ApplicationId = appID
+                    .DriverID = Guid.NewGuid()
+                    .DriverName = dvr.DriverName
+                    .DriversLicenseNo = dvr.DriversLicenseNo
+                    .DriversLicenseExpiryDate = dvr.DriversLicenseExpiryDate
+                    .Inactive = dvr.Inactive
+                    .Technician = dvr.Technician
+
+                End With
+
+                .tblDrivers.InsertOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
 
             End With
-            SingletonAccess.FMSDataContextContignous.tblDrivers.InsertOnSubmit(obj)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Update(dvr As DataObjects.tblDrivers)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
 
-            Dim obj As FMS.Business.tblDriver = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
-                                                 Where d.DriverID.Equals(dvr.DriverID) And d.ApplicationId = appID).SingleOrDefault
-            With obj
-                .DriverName = dvr.DriverName
-                .DriversLicenseNo = dvr.DriversLicenseNo
-                .DriversLicenseExpiryDate = dvr.DriversLicenseExpiryDate
-                .Inactive = dvr.Inactive
-                .Technician = dvr.Technician
+                Dim obj As FMS.Business.tblDriver = (From d In .tblDrivers
+                                                     Where d.DriverID.Equals(dvr.DriverID) And d.ApplicationId = appID).SingleOrDefault
+                With obj
+                    .DriverName = dvr.DriverName
+                    .DriversLicenseNo = dvr.DriversLicenseNo
+                    .DriversLicenseExpiryDate = dvr.DriversLicenseExpiryDate
+                    .Inactive = dvr.Inactive
+                    .Technician = dvr.Technician
+
+                End With
+
+                .SubmitChanges()
+                .Dispose()
 
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Delete(dvr As DataObjects.tblDrivers)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As FMS.Business.tblDriver = (From d In .tblDrivers
+                                                     Where d.DriverID.Equals(dvr.DriverID) And d.ApplicationId.Equals(appID)).SingleOrDefault
+                .tblDrivers.DeleteOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
 
-            Dim obj As FMS.Business.tblDriver = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
-                                                 Where d.DriverID.Equals(dvr.DriverID) And d.ApplicationId.Equals(appID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblDrivers.DeleteOnSubmit(obj)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            End With
+
         End Sub
 #End Region
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblDrivers)
-            Dim getDrivers = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
-                              Where d.Inactive.Equals(True) And d.ApplicationId = ThisSession.ApplicationID
-                              Order By d.DriverName
-                              Select New DataObjects.tblDrivers(d)).ToList
-            Return getDrivers
+            Try
+                Dim obj As New List(Of DataObjects.tblDrivers)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From d In .tblDrivers
+                           Where d.Inactive.Equals(True) And d.ApplicationId = ThisSession.ApplicationID
+                           Order By d.DriverName
+                           Select New DataObjects.tblDrivers(d)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
-
         Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblDrivers)
-            Dim appID = ThisSession.ApplicationID
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblDrivers)
 
-            Dim getDrivers = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
-                              Where d.ApplicationId = appID
-                              Order By d.DriverName
-                              Select New DataObjects.tblDrivers(d)).ToList
-            Return getDrivers
+                With New LINQtoSQLClassesDataContext
+                    obj = (From d In .tblDrivers
+                           Where d.ApplicationId = appID
+                           Order By d.DriverName
+                           Select New DataObjects.tblDrivers(d)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllPerApplicationMinusInActive() As List(Of DataObjects.tblDrivers)
-            Dim appID = ThisSession.ApplicationID
 
-            Dim getDrivers = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
-                              Where d.ApplicationId = appID And d.Inactive = 0
-                              Order By d.DriverName
-                              Select New DataObjects.tblDrivers(d)).ToList
-            Return getDrivers
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblDrivers)
+                With New LINQtoSQLClassesDataContext
+                    obj = (From d In .tblDrivers
+                           Where d.ApplicationId = appID And d.Inactive = 0
+                           Order By d.DriverName
+                           Select New DataObjects.tblDrivers(d)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+
         End Function
-
         Public Shared Function GetTechnicianPerApplicationMinusInActive() As List(Of DataObjects.tblDrivers)
-            Dim appID = ThisSession.ApplicationID
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblDrivers)
 
-            Dim getDrivers = (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
-                              Where d.ApplicationId = appID _
+                With New LINQtoSQLClassesDataContext
+                    obj = (From d In .tblDrivers
+                           Where d.ApplicationId = appID _
                                   And d.Technician = True _
                                   And d.Inactive = False
-                              Order By d.DriverName
-                              Select New DataObjects.tblDrivers(d)).ToList
-            Return getDrivers
+                           Order By d.DriverName
+                           Select New DataObjects.tblDrivers(d)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 

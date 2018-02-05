@@ -23,46 +23,69 @@
 
 #Region "CRUD"
         Public Shared Sub Create(dvr As DataObjects.tblDriverCommentsReason)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New FMS.Business.tblDriverCommentsReason
+                With obj
+                    .ApplicationId = appID
+                    .CommentDescription = dvr.CommentDescription
 
-            Dim obj As New FMS.Business.tblDriverCommentsReason
-            With obj
-                .ApplicationId = appID
-                .CommentDescription = dvr.CommentDescription
+                End With
+
+                .tblDriverCommentsReasons.InsertOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
 
             End With
-            SingletonAccess.FMSDataContextContignous.tblDriverCommentsReasons.InsertOnSubmit(obj)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Update(dvr As DataObjects.tblDriverCommentsReason)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As FMS.Business.tblDriverCommentsReason = (From d In .tblDriverCommentsReasons
+                                                                   Where d.Aid.Equals(dvr.Aid) And d.ApplicationId = appID).SingleOrDefault
+                With obj
+                    .CommentDescription = dvr.CommentDescription
+                End With
 
-            Dim obj As FMS.Business.tblDriverCommentsReason = (From d In SingletonAccess.FMSDataContextContignous.tblDriverCommentsReasons
-                                                               Where d.Aid.Equals(dvr.Aid) And d.ApplicationId = appID).SingleOrDefault
-            With obj
-                .CommentDescription = dvr.CommentDescription
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Delete(dvr As DataObjects.tblDriverCommentsReason)
-            Dim appID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As FMS.Business.tblDriverCommentsReason = (From d In .tblDriverCommentsReasons
+                                                                   Where d.Aid.Equals(dvr.Aid) And d.ApplicationId.Equals(appID)).SingleOrDefault
 
-            Dim obj As FMS.Business.tblDriverCommentsReason = (From d In SingletonAccess.FMSDataContextContignous.tblDriverCommentsReasons
-                                                               Where d.Aid.Equals(dvr.Aid) And d.ApplicationId.Equals(appID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblDriverCommentsReasons.DeleteOnSubmit(obj)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                .tblDriverCommentsReasons.DeleteOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
+
+            End With
+
         End Sub
 #End Region
 
 #Region "Get methods"
         Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblDriverCommentsReason)
-            Dim appID = ThisSession.ApplicationID
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblDriverCommentsReason)
+                With New LINQtoSQLClassesDataContext
+                    obj = (From d In .tblDriverCommentsReasons
+                           Where d.ApplicationId = appID
+                           Order By d.CommentDescription
+                           Select New DataObjects.tblDriverCommentsReason(d)).ToList
+                End With
+                Return obj
 
-            Dim getDrivers = (From d In SingletonAccess.FMSDataContextContignous.tblDriverCommentsReasons
-                              Where d.ApplicationId = appID
-                              Order By d.CommentDescription
-                              Select New DataObjects.tblDriverCommentsReason(d)).ToList
-            Return getDrivers
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 
