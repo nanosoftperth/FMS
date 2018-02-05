@@ -65,12 +65,21 @@
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.usp_GetMYOBFileList)
-            Dim appID = ThisSession.ApplicationID
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objAnnualAnalysis = (From a In SingletonAccess.FMSDataContextContignous.usp_GetMYOBFileList()
-                                     Where a.ApplicationID = appID
-                                     Select New DataObjects.usp_GetMYOBFileList(a)).ToList
-            Return objAnnualAnalysis
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetMYOBFileList)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From a In .usp_GetMYOBFileList()
+                           Where a.ApplicationID = appID
+                           Select New DataObjects.usp_GetMYOBFileList(a)).ToList
+                End With
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
 #End Region

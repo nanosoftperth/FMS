@@ -63,33 +63,42 @@ Namespace DataObjects
 
 #Region "CRUD"
         Public Shared Sub CreateAll(myob As List(Of DataObjects.tblMYOBInvoicing))
-            Dim appID = ThisSession.ApplicationID
 
-            For Each rMYOB In myob
-                Dim oMYOB As New FMS.Business.tblMYOBInvoicing
-                With oMYOB
-                    .ApplicationId = appID
-                    .CustomerNumber = rMYOB.CustomerNumber
-                    .CustomerName = rMYOB.CustomerName
-                    .InvoiceNumber = rMYOB.InvoiceNumber
-                    .InvoiceDate = rMYOB.InvoiceDate
-                    .CustomerPurchaseOrderNumber = rMYOB.CustomerPurchaseOrderNumber
-                    .Quantity = rMYOB.Quantity
-                    .ProductCode = rMYOB.ProductCode
-                    .ProductDescription = rMYOB.ProductDescription
-                    .AnnualPriceExGST = rMYOB.AnnualPriceExGST
-                    .AnnualPriceIncGST = rMYOB.AnnualPriceIncGST
-                    .Job = rMYOB.Job
-                    .JournalMemo = rMYOB.JournalMemo
-                    .TaxCode = rMYOB.TaxCode
-                    .GSTAmount = rMYOB.GSTAmount
-                    .Category = rMYOB.Category
-                    .SiteName = rMYOB.SiteName
-                End With
-                SingletonAccess.FMSDataContextContignous.tblMYOBInvoicings.InsertOnSubmit(oMYOB)
-            Next
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New FMS.Business.tblMYOBInvoicing
 
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                For Each rMYOB In myob
+                    Dim oMYOB As New FMS.Business.tblMYOBInvoicing
+                    With oMYOB
+                        .ApplicationId = appID
+                        .CustomerNumber = rMYOB.CustomerNumber
+                        .CustomerName = rMYOB.CustomerName
+                        .InvoiceNumber = rMYOB.InvoiceNumber
+                        .InvoiceDate = rMYOB.InvoiceDate
+                        .CustomerPurchaseOrderNumber = rMYOB.CustomerPurchaseOrderNumber
+                        .Quantity = rMYOB.Quantity
+                        .ProductCode = rMYOB.ProductCode
+                        .ProductDescription = rMYOB.ProductDescription
+                        .AnnualPriceExGST = rMYOB.AnnualPriceExGST
+                        .AnnualPriceIncGST = rMYOB.AnnualPriceIncGST
+                        .Job = rMYOB.Job
+                        .JournalMemo = rMYOB.JournalMemo
+                        .TaxCode = rMYOB.TaxCode
+                        .GSTAmount = rMYOB.GSTAmount
+                        .Category = rMYOB.Category
+                        .SiteName = rMYOB.SiteName
+                    End With
+
+                    .tblMYOBInvoicings.InsertOnSubmit(oMYOB)
+
+                Next
+
+                .SubmitChanges()
+                .Dispose()
+
+            End With
+
         End Sub
 #End Region
 
@@ -114,18 +123,39 @@ Namespace DataObjects
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblMYOBInvoicing)
-            Dim objMYOB = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBInvoicings
-                               Select New DataObjects.tblMYOBInvoicing(m)).ToList
+            Try
+                Dim obj As New List(Of DataObjects.tblMYOBInvoicing)
 
-            Return objMYOB
+                With New LINQtoSQLClassesDataContext
+                    obj = (From i In .tblMYOBInvoicings
+                           Select New DataObjects.tblMYOBInvoicing(i)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
         Public Shared Function GetAllOrderByInvoiceNumber() As List(Of DataObjects.tblMYOBInvoicing)
-            Dim objMYOB = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBInvoicings
-                            Order By m.InvoiceNumber
-                               Select New DataObjects.tblMYOBInvoicing(m)).ToList
 
-            Return objMYOB
+            Try
+                Dim obj As New List(Of DataObjects.tblMYOBInvoicing)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From i In .tblMYOBInvoicings
+                           Order By i.InvoiceNumber
+                           Select New DataObjects.tblMYOBInvoicing(i)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
 #End Region

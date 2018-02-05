@@ -10,54 +10,94 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(InvoicingFrequency As DataObjects.tblInvoicingFrequency)
-            Dim appID = ThisSession.ApplicationID
-            Dim objInvoicingFrequency As New FMS.Business.tblInvoicingFrequency
-            With objInvoicingFrequency
-                .ApplicationId = appID
-                .InvoiceFrequencyID = Guid.NewGuid
-                .IId = tblProjectID.InvoiceFrequencyIDCreateOrUpdate()
-                .InvoiceId = InvoicingFrequency.InvoiceId
-                .Frequency = InvoicingFrequency.Frequency
-                .NoOfWeeks = InvoicingFrequency.NoOfWeeks
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New FMS.Business.tblInvoicingFrequency
+
+                With obj
+                    .ApplicationId = appID
+                    .InvoiceFrequencyID = Guid.NewGuid
+                    .IId = tblProjectID.InvoiceFrequencyIDCreateOrUpdate()
+                    .InvoiceId = InvoicingFrequency.InvoiceId
+                    .Frequency = InvoicingFrequency.Frequency
+                    .NoOfWeeks = InvoicingFrequency.NoOfWeeks
+                End With
+
+                .tblInvoicingFrequencies.InsertOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.tblInvoicingFrequencies.InsertOnSubmit(objInvoicingFrequency)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Update(InvoicingFrequency As DataObjects.tblInvoicingFrequency)
-            Dim appID = ThisSession.ApplicationID
-            Dim objInvoicingFrequency As FMS.Business.tblInvoicingFrequency = (From c In SingletonAccess.FMSDataContextContignous.tblInvoicingFrequencies
-                                                                               Where c.InvoiceFrequencyID.Equals(InvoicingFrequency.InvoiceFrequencyID) And c.ApplicationId = appID).SingleOrDefault
-            With objInvoicingFrequency
-                .InvoiceId = InvoicingFrequency.InvoiceId
-                .Frequency = InvoicingFrequency.Frequency
-                .NoOfWeeks = InvoicingFrequency.NoOfWeeks
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As FMS.Business.tblInvoicingFrequency = (From c In .tblInvoicingFrequencies
+                                                                 Where c.InvoiceFrequencyID.Equals(InvoicingFrequency.InvoiceFrequencyID) And c.ApplicationId = appID).SingleOrDefault
+                With obj
+                    .InvoiceId = InvoicingFrequency.InvoiceId
+                    .Frequency = InvoicingFrequency.Frequency
+                    .NoOfWeeks = InvoicingFrequency.NoOfWeeks
+                End With
+
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Delete(InvoicingFrequency As DataObjects.tblInvoicingFrequency)
-            Dim appID = ThisSession.ApplicationID
-            Dim objInvoicingFrequency As FMS.Business.tblInvoicingFrequency = (From c In SingletonAccess.FMSDataContextContignous.tblInvoicingFrequencies
-                                                                               Where c.InvoiceFrequencyID.Equals(InvoicingFrequency.InvoiceFrequencyID) And c.ApplicationId = appID).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblInvoicingFrequencies.DeleteOnSubmit(objInvoicingFrequency)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As FMS.Business.tblInvoicingFrequency = (From c In .tblInvoicingFrequencies
+                                                                 Where c.InvoiceFrequencyID.Equals(InvoicingFrequency.InvoiceFrequencyID) And c.ApplicationId = appID).SingleOrDefault
+
+                .tblInvoicingFrequencies.DeleteOnSubmit(obj)
+                .SubmitChanges()
+            End With
+
+
+
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblInvoicingFrequency)
-            Dim objInvoicingFrequency = (From c In SingletonAccess.FMSDataContextContignous.tblInvoicingFrequencies
-                                         Order By c.IId
-                                         Select New DataObjects.tblInvoicingFrequency(c)).ToList
-            Return objInvoicingFrequency
+            Try
+                Dim obj As New List(Of DataObjects.tblInvoicingFrequency)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From c In .tblInvoicingFrequencies
+                           Order By c.IId
+                           Select New DataObjects.tblInvoicingFrequency(c)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
         Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblInvoicingFrequency)
-            Dim appID = ThisSession.ApplicationID
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblInvoicingFrequency)
 
-            Dim objInvoicingFrequency = (From c In SingletonAccess.FMSDataContextContignous.tblInvoicingFrequencies
-                                         Where c.ApplicationId = appID
-                                         Order By c.IId
-                                         Select New DataObjects.tblInvoicingFrequency(c)).ToList
-            Return objInvoicingFrequency
+                With New LINQtoSQLClassesDataContext
+                    obj = (From c In .tblInvoicingFrequencies
+                           Where c.ApplicationId = appID
+                           Order By c.IId
+                           Select New DataObjects.tblInvoicingFrequency(c)).ToList
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 #Region "Constructors"

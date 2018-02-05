@@ -112,8 +112,8 @@
         Public Shared Sub Create(sec As DataObjects.tblUserSecurity)
             With New LINQtoSQLClassesDataContext
                 Dim appID = ThisSession.ApplicationID
-
                 Dim obj As New FMS.Business.tblUserSecurity
+
                 With obj
                     .ApplicationId = appID
                     .usersecID = Guid.NewGuid
@@ -168,7 +168,6 @@
             End With
 
         End Sub
-
         Public Shared Sub Update(sec As DataObjects.tblUserSecurity)
             With New LINQtoSQLClassesDataContext
 
@@ -316,25 +315,6 @@
                 Throw ex
             End Try
         End Function
-
-
-
-
-        'Public Shared Function GetAll() As List(Of DataObjects.tblUserSecurity)
-        '    Dim obj = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-        '               Order By u.txtUserName
-        '               Select New DataObjects.tblUserSecurity(u)).ToList
-
-        '    Return obj
-        'End Function
-        'Public Shared Function GetAllPerUserName(UserName As String) As List(Of DataObjects.tblUserSecurity)
-        '    Dim obj = (From u In SingletonAccess.FMSDataContextContignous.tblUserSecurities
-        '               Select New DataObjects.tblUserSecurity(u)).ToList
-
-        '    Return obj
-        'End Function
-
-
 
 #End Region
 
