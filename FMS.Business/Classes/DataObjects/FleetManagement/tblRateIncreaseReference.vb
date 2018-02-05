@@ -10,48 +10,59 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
-            Dim objRateIncreaseReference As New FMS.Business.tblRateIncreaseReference
-            With objRateIncreaseReference
-                .RateIncreaseID = Guid.NewGuid
-                .Aid = tblProjectID.RateIncreaseIDCreateOrUpdate(RateIncreaseReference.ApplicationID)
-                .ApplicationID = RateIncreaseReference.ApplicationID
-                .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
-                .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
-                .AlreadyDoneThisYear = RateIncreaseReference.AlreadyDoneThisYear
+            With New LINQtoSQLClassesDataContext
+                Dim objRateIncreaseReference As New FMS.Business.tblRateIncreaseReference
+                With objRateIncreaseReference
+                    .RateIncreaseID = Guid.NewGuid
+                    .Aid = tblProjectID.RateIncreaseIDCreateOrUpdate(RateIncreaseReference.ApplicationID)
+                    .ApplicationID = RateIncreaseReference.ApplicationID
+                    .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
+                    .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
+                    .AlreadyDoneThisYear = RateIncreaseReference.AlreadyDoneThisYear
+                End With
+                .tblRateIncreaseReferences.InsertOnSubmit(objRateIncreaseReference)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences.InsertOnSubmit(objRateIncreaseReference)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
-            Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                                           Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
-            With objRateIncreaseReference
-                .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
-                .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
-                .AlreadyDoneThisYear = RateIncreaseReference.AlreadyDoneThisYear
+            With New LINQtoSQLClassesDataContext
+                Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In .tblRateIncreaseReferences
+                                                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
+                With objRateIncreaseReference
+                    .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
+                    .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
+                    .AlreadyDoneThisYear = RateIncreaseReference.AlreadyDoneThisYear
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
-            Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences.DeleteOnSubmit(objRateIncreaseReference)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In .tblRateIncreaseReferences
+                                                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
+                .tblRateIncreaseReferences.DeleteOnSubmit(objRateIncreaseReference)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
-        Public Shared Function GetAll() As List(Of DataObjects.tblRateIncreaseReference)
-            Dim objRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                            Order By c.RateIncreaseDescription
-                                          Select New DataObjects.tblRateIncreaseReference(c)).ToList
-            Return objRateIncreaseReference
-        End Function
         Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tblRateIncreaseReference)
-            Dim objRateIncreaseReference = (From c In SingletonAccess.FMSDataContextContignous.tblRateIncreaseReferences
-                                            Where c.ApplicationID.Equals(appID)
-                                            Order By c.RateIncreaseDescription
-                                          Select New DataObjects.tblRateIncreaseReference(c)).ToList
-            Return objRateIncreaseReference
+            Try
+                Dim objRateIncreaseReference As New List(Of DataObjects.tblRateIncreaseReference)
+                With New LINQtoSQLClassesDataContext
+                    objRateIncreaseReference = (From c In .tblRateIncreaseReferences
+                                                Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                                Order By c.RateIncreaseDescription
+                                                Select New DataObjects.tblRateIncreaseReference(c)).ToList
+                    .Dispose()
+                End With
+                Return objRateIncreaseReference
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

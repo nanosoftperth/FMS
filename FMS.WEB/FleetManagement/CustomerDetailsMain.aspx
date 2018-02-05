@@ -44,10 +44,10 @@
     function ViewSitesClick(custID) {
         hdnCID.SetText(custID);
         SiteGridView.Refresh();
-        ShowLoginWindow();
+        ShowPopupWindow();
     }
 
-    function ShowLoginWindow() {
+    function ShowPopupWindow() {
         viewPopup.Show();
     }
 

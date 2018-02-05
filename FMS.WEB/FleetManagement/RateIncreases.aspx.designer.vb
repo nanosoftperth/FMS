@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class RateIncreases
-
+    
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class RateIncreases
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
+    
     '''<summary>
     '''RateIncreasesGridView control.
     '''</summary>
@@ -30,7 +30,106 @@ Partial Public Class RateIncreases
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RateIncreasesGridView As Global.DevExpress.Web.ASPxGridView
-
+    
+    '''<summary>
+    '''viewPopup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents viewPopup As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
+    
+    '''<summary>
+    '''ASPxLabel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel1 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''txtRateIncreaseDescription control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRateIncreaseDescription As Global.DevExpress.Web.ASPxTextBox
+    
+    '''<summary>
+    '''ASPxLabel3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel3 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''chkReportOnlyNoRateIncrease control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkReportOnlyNoRateIncrease As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''ASPxLabel4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel4 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''dtEffectiveDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dtEffectiveDate As Global.DevExpress.Web.ASPxDateEdit
+    
+    '''<summary>
+    '''ASPxLabel5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel5 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''aspxButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents aspxButton1 As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''aspxButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents aspxButton As Global.DevExpress.Web.ASPxButton
+    
     '''<summary>
     '''odsRateIncreases control.
     '''</summary>
