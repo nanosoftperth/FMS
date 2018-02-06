@@ -56,6 +56,7 @@ Namespace DataObjects
                            Where g.ApplicationId = appId
                            Order By g.AreaDescription
                            Select New DataObjects.usp_GetGainAndLossesBySalesPersonReport(g)).ToList()
+                    .Dispose()
 
                 End With
 

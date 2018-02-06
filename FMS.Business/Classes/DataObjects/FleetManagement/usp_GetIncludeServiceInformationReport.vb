@@ -40,48 +40,68 @@
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.usp_GetIncludeServiceInformationReport)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objList = (From i In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                            Select New DataObjects.usp_GetIncludeServiceInformationReport(i)).ToList
-            Return objList
+            Try
+                Dim objList As New List(Of DataObjects.usp_GetIncludeServiceInformationReport)
+                With New LINQtoSQLClassesDataContext
+                    .CommandTimeout = 180
+                    objList = (From i In .usp_GetIncludeServiceInformationReport()
+                               Select New DataObjects.usp_GetIncludeServiceInformationReport(i)).ToList
+                    .Dispose()
+                End With
+                Return objList
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
         Public Shared Function GetAllIncludeServiceInformationPerCustomer(Customer As Integer) As List(Of DataObjects.usp_GetIncludeServiceInformationReport)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            Try
+                Dim objList As New List(Of DataObjects.usp_GetIncludeServiceInformationReport)
+                With New LINQtoSQLClassesDataContext
+                    .CommandTimeout = 180
 
-            Dim objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                                     Where s.Customer = Customer
-                            Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
-            Return objList
+                    objList = (From s In .usp_GetIncludeServiceInformationReport()
+                               Where s.Customer = Customer
+                               Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
+                    .Dispose()
+                End With
+                Return objList
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
-
         Public Shared Function GetAllIncludeServiceInformationPerCustomerAndCID(Customer As Integer, Optional CID As Integer = 0) As List(Of DataObjects.usp_GetIncludeServiceInformationReport)
-            Dim appId = ThisSession.ApplicationID
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim objList As New List(Of DataObjects.usp_GetIncludeServiceInformationReport)
+                With New LINQtoSQLClassesDataContext
+                    If (Customer = 0) Then
+                        If (CID = 0) Then
+                            objList = (From s In .usp_GetIncludeServiceInformationReport()
+                                       Where s.applicationid = appId
+                                       Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
+                        End If
+                    Else
+                        If (CID = 0) Then
+                            objList = (From s In .usp_GetIncludeServiceInformationReport()
+                                       Where s.Customer = Customer And s.applicationid = appId
+                                       Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
+                        Else
+                            objList = (From s In .usp_GetIncludeServiceInformationReport()
+                                       Where s.Customer = Customer And s.Cid = CID And s.applicationid = appId
+                                       Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
+                        End If
+                    End If
+                    .Dispose()
+                End With
+                Return objList
 
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objList As New List(Of DataObjects.usp_GetIncludeServiceInformationReport)
+            Catch ex As Exception
+                Throw ex
+            End Try
 
-            If (Customer = 0) Then
-                If (CID = 0) Then
-                    objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                               Where s.applicationid = appId
-                               Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
-                End If
-            Else
-                If (CID = 0) Then
-                    objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                               Where s.Customer = Customer And s.applicationid = appId
-                               Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
-                Else
-                    objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetIncludeServiceInformationReport()
-                               Where s.Customer = Customer And s.Cid = CID And s.applicationid = appId
-                               Select New DataObjects.usp_GetIncludeServiceInformationReport(s)).ToList
-                End If
-            End If
-
-            'Dim objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-            '                         Where s.Customer = Customer
-            '                Select New DataObjects.usp_GetSiteListReport(s)).ToList
-            Return objList
         End Function
 
 #End Region

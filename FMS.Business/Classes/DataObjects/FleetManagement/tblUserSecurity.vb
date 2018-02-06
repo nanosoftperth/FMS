@@ -291,6 +291,7 @@
                     obj = (From u In .tblUserSecurities
                            Order By u.txtUserName
                            Select New DataObjects.tblUserSecurity(u)).ToList
+                    .Dispose()
                 End With
 
                 Return obj
@@ -307,6 +308,7 @@
 
                     obj = (From u In .tblUserSecurities
                            Select New DataObjects.tblUserSecurity(u)).ToList
+                    .Dispose()
 
                 End With
 

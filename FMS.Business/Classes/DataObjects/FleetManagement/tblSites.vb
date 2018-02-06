@@ -336,13 +336,22 @@
         End Function
 
         Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblSites)
-            Dim AppId = ThisSession.ApplicationID
+            Try
+                Dim AppId = ThisSession.ApplicationID
+                Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    objSites = (From c In .tblSites
+                                Where c.ApplicationId = AppId
+                                Order By c.SiteName
+                                Select New DataObjects.tblSites(c)).ToList
+                    .Dispose()
+                End With
+                Return objSites
 
-            Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                            Where c.ApplicationId = AppId
-                            Order By c.SiteName
-                            Select New DataObjects.tblSites(c)).ToList
-            Return objSites
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
 #End Region
