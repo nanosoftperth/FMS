@@ -1326,6 +1326,27 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblSiteComments" Member="tblSiteComments">
+    <Type Name="tblSiteComment">
+      <Column Name="CommentsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCUAScheduleOfRates" Member="tblCUAScheduleOfRates">
+    <Type Name="tblCUAScheduleOfRate">
+      <Column Name="RatesId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RatesAutoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Service" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="FromUnits" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ToUnits" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="UnitPrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.tblProjectID" Member="tblProjectIDs">
     <Type Name="tblProjectID">
       <Column Name="ProjectID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1353,27 +1374,7 @@
       <Column Name="CIRHistoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RunID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CommentsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblSiteComments" Member="tblSiteComments">
-    <Type Name="tblSiteComment">
-      <Column Name="CommentsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Cid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblCUAScheduleOfRates" Member="tblCUAScheduleOfRates">
-    <Type Name="tblCUAScheduleOfRate">
-      <Column Name="RatesId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="RatesAutoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Service" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="FromUnits" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="ToUnits" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="UnitPrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="RatesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

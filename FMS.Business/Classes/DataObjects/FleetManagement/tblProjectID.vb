@@ -1049,6 +1049,66 @@
             End If
         End Function
 #End Region
+#Region "tblCUAScheduleOfRates"
+        Private Shared Function GetLatestRatesID(appID As System.Guid) As FMS.Business.tblCUAScheduleOfRate
+            Dim CUAScheduleOfRates As FMS.Business.tblCUAScheduleOfRate
+            With New LINQtoSQLClassesDataContext
+                CUAScheduleOfRates = (From c In .tblCUAScheduleOfRates
+                                      Where c.ApplicationID.Equals(appID)
+                                      Order By c.RatesAutoId Descending
+                                      Select c).FirstOrDefault()
+                .Dispose()
+            End With
+            Return CUAScheduleOfRates
+        End Function
+        Private Shared Function RatesIDCreate(appID As System.Guid) As Integer
+            Dim tblCUAScheduleOfRatesId As FMS.Business.tblCUAScheduleOfRate = GetLatestRatesID(appID)
+            Dim objProjectId As New FMS.Business.tblProjectID
+            With New LINQtoSQLClassesDataContext
+                With objProjectId
+                    .ProjectID = Guid.NewGuid()
+                    .RatesID = tblCUAScheduleOfRatesId.RatesAutoId + 1
+                End With
+                .tblProjectIDs.InsertOnSubmit(objProjectId)
+                .SubmitChanges()
+                .Dispose()
+            End With
+            Return objProjectId.RatesID
+        End Function
+        Private Shared Function RatesIDUpdate(RatesID As Object, appID As System.Guid) As Integer
+            Dim objProject As FMS.Business.tblProjectID = Nothing
+            With New LINQtoSQLClassesDataContext
+                If RatesID Is Nothing Then
+                    Dim tblRatesID As FMS.Business.tblCUAScheduleOfRate = GetLatestRatesID(appID)
+                    RatesID = tblRatesID.RatesAutoId
+                    objProject = (From c In .tblProjectIDs
+                                  Where c.ApplicationID.Equals(appID)).FirstOrDefault()
+                Else
+                    objProject = (From c In .tblProjectIDs
+                                  Where c.RatesID.Equals(RatesID) And c.ApplicationID.Equals(appID)).SingleOrDefault
+                End If
+
+                With objProject
+                    .RatesID = RatesID + 1
+                End With
+                .SubmitChanges()
+                .Dispose()
+            End With
+            Return objProject.RatesID
+        End Function
+        Public Shared Function RatesIDCreateOrUpdate(appID As System.Guid) As Integer
+            Dim objProject As New List(Of FMS.Business.tblProjectID)
+            With New LINQtoSQLClassesDataContext
+                objProject = .tblProjectIDs.Where(Function(x) x.ApplicationID.Equals(appID)).ToList()
+                .Dispose()
+            End With
+            If Not objProject Is Nothing AndAlso objProject.Count().Equals(0) Then
+                Return RatesIDCreate(appID)
+            Else
+                Return RatesIDUpdate(objProject.SingleOrDefault().RatesID, appID)
+            End If
+        End Function
+#End Region
 #End Region
 #Region "Constructors"
         Public Sub New()

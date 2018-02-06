@@ -114,6 +114,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblCIRReason.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblContractCeaseReasons.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblContractPeriods.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblCUAScheduleOfRates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomerAgent.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomerRating.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblCustomers.vb" />

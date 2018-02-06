@@ -595,12 +595,6 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblRunDate(instance As tblRunDate)
     End Sub
-  Partial Private Sub InserttblProjectID(instance As tblProjectID)
-    End Sub
-  Partial Private Sub UpdatetblProjectID(instance As tblProjectID)
-    End Sub
-  Partial Private Sub DeletetblProjectID(instance As tblProjectID)
-    End Sub
   Partial Private Sub InserttblSiteComment(instance As tblSiteComment)
     End Sub
   Partial Private Sub UpdatetblSiteComment(instance As tblSiteComment)
@@ -612,6 +606,12 @@ Partial Public Class LINQtoSQLClassesDataContext
   Partial Private Sub UpdatetblCUAScheduleOfRate(instance As tblCUAScheduleOfRate)
     End Sub
   Partial Private Sub DeletetblCUAScheduleOfRate(instance As tblCUAScheduleOfRate)
+    End Sub
+  Partial Private Sub InserttblProjectID(instance As tblProjectID)
+    End Sub
+  Partial Private Sub UpdatetblProjectID(instance As tblProjectID)
+    End Sub
+  Partial Private Sub DeletetblProjectID(instance As tblProjectID)
     End Sub
   #End Region
 	
@@ -1264,12 +1264,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property tblProjectIDs() As System.Data.Linq.Table(Of tblProjectID)
-		Get
-			Return Me.GetTable(Of tblProjectID)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblSiteComments() As System.Data.Linq.Table(Of tblSiteComment)
 		Get
 			Return Me.GetTable(Of tblSiteComment)
@@ -1279,6 +1273,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblCUAScheduleOfRates() As System.Data.Linq.Table(Of tblCUAScheduleOfRate)
 		Get
 			Return Me.GetTable(Of tblCUAScheduleOfRate)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblProjectIDs() As System.Data.Linq.Table(Of tblProjectID)
+		Get
+			Return Me.GetTable(Of tblProjectID)
 		End Get
 	End Property
 	
@@ -25066,6 +25066,374 @@ Partial Public Class tblRunDate
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSiteComments")>  _
+Partial Public Class tblSiteComment
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CommentsID As System.Guid
+	
+	Private _Aid As Integer
+	
+	Private _Cid As System.Nullable(Of Short)
+	
+	Private _CommentDate As System.Nullable(Of Date)
+	
+	Private _Comments As String
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCommentsIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnCommentsIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnCommentDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCommentDateChanged()
+    End Sub
+    Partial Private Sub OnCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnCommentsChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentsID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CommentsID() As System.Guid
+		Get
+			Return Me._CommentsID
+		End Get
+		Set
+			If ((Me._CommentsID = value)  _
+						= false) Then
+				Me.OnCommentsIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CommentsID = value
+				Me.SendPropertyChanged("CommentsID")
+				Me.OnCommentsIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
+				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="SmallInt")>  _
+	Public Property Cid() As System.Nullable(Of Short)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDate", DbType:="DateTime")>  _
+	Public Property CommentDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CommentDate
+		End Get
+		Set
+			If (Me._CommentDate.Equals(value) = false) Then
+				Me.OnCommentDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CommentDate = value
+				Me.SendPropertyChanged("CommentDate")
+				Me.OnCommentDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Comments", DbType:="NVarChar(MAX)")>  _
+	Public Property Comments() As String
+		Get
+			Return Me._Comments
+		End Get
+		Set
+			If (String.Equals(Me._Comments, value) = false) Then
+				Me.OnCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._Comments = value
+				Me.SendPropertyChanged("Comments")
+				Me.OnCommentsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCUAScheduleOfRates")>  _
+Partial Public Class tblCUAScheduleOfRate
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RatesId As System.Guid
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+	Private _RatesAutoId As Integer
+	
+	Private _Service As System.Nullable(Of Short)
+	
+	Private _FromUnits As System.Nullable(Of Short)
+	
+	Private _ToUnits As System.Nullable(Of Short)
+	
+	Private _UnitPrice As System.Nullable(Of Single)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRatesIdChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRatesIdChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    Partial Private Sub OnRatesAutoIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnRatesAutoIdChanged()
+    End Sub
+    Partial Private Sub OnServiceChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnServiceChanged()
+    End Sub
+    Partial Private Sub OnFromUnitsChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnFromUnitsChanged()
+    End Sub
+    Partial Private Sub OnToUnitsChanging(value As System.Nullable(Of Short))
+    End Sub
+    Partial Private Sub OnToUnitsChanged()
+    End Sub
+    Partial Private Sub OnUnitPriceChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnUnitPriceChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RatesId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RatesId() As System.Guid
+		Get
+			Return Me._RatesId
+		End Get
+		Set
+			If ((Me._RatesId = value)  _
+						= false) Then
+				Me.OnRatesIdChanging(value)
+				Me.SendPropertyChanging
+				Me._RatesId = value
+				Me.SendPropertyChanged("RatesId")
+				Me.OnRatesIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RatesAutoId", DbType:="Int NOT NULL")>  _
+	Public Property RatesAutoId() As Integer
+		Get
+			Return Me._RatesAutoId
+		End Get
+		Set
+			If ((Me._RatesAutoId = value)  _
+						= false) Then
+				Me.OnRatesAutoIdChanging(value)
+				Me.SendPropertyChanging
+				Me._RatesAutoId = value
+				Me.SendPropertyChanged("RatesAutoId")
+				Me.OnRatesAutoIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Service", DbType:="SmallInt")>  _
+	Public Property Service() As System.Nullable(Of Short)
+		Get
+			Return Me._Service
+		End Get
+		Set
+			If (Me._Service.Equals(value) = false) Then
+				Me.OnServiceChanging(value)
+				Me.SendPropertyChanging
+				Me._Service = value
+				Me.SendPropertyChanged("Service")
+				Me.OnServiceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromUnits", DbType:="SmallInt")>  _
+	Public Property FromUnits() As System.Nullable(Of Short)
+		Get
+			Return Me._FromUnits
+		End Get
+		Set
+			If (Me._FromUnits.Equals(value) = false) Then
+				Me.OnFromUnitsChanging(value)
+				Me.SendPropertyChanging
+				Me._FromUnits = value
+				Me.SendPropertyChanged("FromUnits")
+				Me.OnFromUnitsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToUnits", DbType:="SmallInt")>  _
+	Public Property ToUnits() As System.Nullable(Of Short)
+		Get
+			Return Me._ToUnits
+		End Get
+		Set
+			If (Me._ToUnits.Equals(value) = false) Then
+				Me.OnToUnitsChanging(value)
+				Me.SendPropertyChanging
+				Me._ToUnits = value
+				Me.SendPropertyChanged("ToUnits")
+				Me.OnToUnitsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitPrice", DbType:="Real")>  _
+	Public Property UnitPrice() As System.Nullable(Of Single)
+		Get
+			Return Me._UnitPrice
+		End Get
+		Set
+			If (Me._UnitPrice.Equals(value) = false) Then
+				Me.OnUnitPriceChanging(value)
+				Me.SendPropertyChanging
+				Me._UnitPrice = value
+				Me.SendPropertyChanged("UnitPrice")
+				Me.OnUnitPriceChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblProjectID")>  _
 Partial Public Class tblProjectID
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -25121,6 +25489,8 @@ Partial Public Class tblProjectID
 	Private _RunID As System.Nullable(Of Integer)
 	
 	Private _CommentsID As System.Nullable(Of Integer)
+	
+	Private _RatesID As System.Nullable(Of Integer)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -25228,6 +25598,10 @@ Partial Public Class tblProjectID
     Partial Private Sub OnCommentsIDChanging(value As System.Nullable(Of Integer))
     End Sub
     Partial Private Sub OnCommentsIDChanged()
+    End Sub
+    Partial Private Sub OnRatesIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnRatesIDChanged()
     End Sub
     #End Region
 	
@@ -25637,370 +26011,18 @@ Partial Public Class tblProjectID
 		End Set
 	End Property
 	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSiteComments")>  _
-Partial Public Class tblSiteComment
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _CommentsID As System.Guid
-	
-	Private _Aid As Integer
-	
-	Private _Cid As System.Nullable(Of Short)
-	
-	Private _CommentDate As System.Nullable(Of Date)
-	
-	Private _Comments As String
-	
-	Private _ApplicationID As System.Nullable(Of System.Guid)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnCommentsIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnCommentsIDChanged()
-    End Sub
-    Partial Private Sub OnAidChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnAidChanged()
-    End Sub
-    Partial Private Sub OnCidChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnCidChanged()
-    End Sub
-    Partial Private Sub OnCommentDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnCommentDateChanged()
-    End Sub
-    Partial Private Sub OnCommentsChanging(value As String)
-    End Sub
-    Partial Private Sub OnCommentsChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentsID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CommentsID() As System.Guid
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RatesID", DbType:="Int")>  _
+	Public Property RatesID() As System.Nullable(Of Integer)
 		Get
-			Return Me._CommentsID
+			Return Me._RatesID
 		End Get
 		Set
-			If ((Me._CommentsID = value)  _
-						= false) Then
-				Me.OnCommentsIDChanging(value)
+			If (Me._RatesID.Equals(value) = false) Then
+				Me.OnRatesIDChanging(value)
 				Me.SendPropertyChanging
-				Me._CommentsID = value
-				Me.SendPropertyChanged("CommentsID")
-				Me.OnCommentsIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
-	Public Property Aid() As Integer
-		Get
-			Return Me._Aid
-		End Get
-		Set
-			If ((Me._Aid = value)  _
-						= false) Then
-				Me.OnAidChanging(value)
-				Me.SendPropertyChanging
-				Me._Aid = value
-				Me.SendPropertyChanged("Aid")
-				Me.OnAidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="SmallInt")>  _
-	Public Property Cid() As System.Nullable(Of Short)
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If (Me._Cid.Equals(value) = false) Then
-				Me.OnCidChanging(value)
-				Me.SendPropertyChanging
-				Me._Cid = value
-				Me.SendPropertyChanged("Cid")
-				Me.OnCidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDate", DbType:="DateTime")>  _
-	Public Property CommentDate() As System.Nullable(Of Date)
-		Get
-			Return Me._CommentDate
-		End Get
-		Set
-			If (Me._CommentDate.Equals(value) = false) Then
-				Me.OnCommentDateChanging(value)
-				Me.SendPropertyChanging
-				Me._CommentDate = value
-				Me.SendPropertyChanged("CommentDate")
-				Me.OnCommentDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Comments", DbType:="NVarChar(MAX)")>  _
-	Public Property Comments() As String
-		Get
-			Return Me._Comments
-		End Get
-		Set
-			If (String.Equals(Me._Comments, value) = false) Then
-				Me.OnCommentsChanging(value)
-				Me.SendPropertyChanging
-				Me._Comments = value
-				Me.SendPropertyChanged("Comments")
-				Me.OnCommentsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
-	Public Property ApplicationID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If (Me._ApplicationID.Equals(value) = false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCUAScheduleOfRates")>  _
-Partial Public Class tblCUAScheduleOfRate
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _RatesId As System.Guid
-	
-	Private _ApplicationID As System.Nullable(Of System.Guid)
-	
-	Private _RatesAutoId As Integer
-	
-	Private _Service As System.Nullable(Of Short)
-	
-	Private _FromUnits As System.Nullable(Of Short)
-	
-	Private _ToUnits As System.Nullable(Of Short)
-	
-	Private _UnitPrice As System.Nullable(Of Single)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnRatesIdChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnRatesIdChanged()
-    End Sub
-    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnApplicationIDChanged()
-    End Sub
-    Partial Private Sub OnRatesAutoIdChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnRatesAutoIdChanged()
-    End Sub
-    Partial Private Sub OnServiceChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnServiceChanged()
-    End Sub
-    Partial Private Sub OnFromUnitsChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnFromUnitsChanged()
-    End Sub
-    Partial Private Sub OnToUnitsChanging(value As System.Nullable(Of Short))
-    End Sub
-    Partial Private Sub OnToUnitsChanged()
-    End Sub
-    Partial Private Sub OnUnitPriceChanging(value As System.Nullable(Of Single))
-    End Sub
-    Partial Private Sub OnUnitPriceChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RatesId", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property RatesId() As System.Guid
-		Get
-			Return Me._RatesId
-		End Get
-		Set
-			If ((Me._RatesId = value)  _
-						= false) Then
-				Me.OnRatesIdChanging(value)
-				Me.SendPropertyChanging
-				Me._RatesId = value
-				Me.SendPropertyChanged("RatesId")
-				Me.OnRatesIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
-	Public Property ApplicationID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._ApplicationID
-		End Get
-		Set
-			If (Me._ApplicationID.Equals(value) = false) Then
-				Me.OnApplicationIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ApplicationID = value
-				Me.SendPropertyChanged("ApplicationID")
-				Me.OnApplicationIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RatesAutoId", DbType:="Int NOT NULL")>  _
-	Public Property RatesAutoId() As Integer
-		Get
-			Return Me._RatesAutoId
-		End Get
-		Set
-			If ((Me._RatesAutoId = value)  _
-						= false) Then
-				Me.OnRatesAutoIdChanging(value)
-				Me.SendPropertyChanging
-				Me._RatesAutoId = value
-				Me.SendPropertyChanged("RatesAutoId")
-				Me.OnRatesAutoIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Service", DbType:="SmallInt")>  _
-	Public Property Service() As System.Nullable(Of Short)
-		Get
-			Return Me._Service
-		End Get
-		Set
-			If (Me._Service.Equals(value) = false) Then
-				Me.OnServiceChanging(value)
-				Me.SendPropertyChanging
-				Me._Service = value
-				Me.SendPropertyChanged("Service")
-				Me.OnServiceChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromUnits", DbType:="SmallInt")>  _
-	Public Property FromUnits() As System.Nullable(Of Short)
-		Get
-			Return Me._FromUnits
-		End Get
-		Set
-			If (Me._FromUnits.Equals(value) = false) Then
-				Me.OnFromUnitsChanging(value)
-				Me.SendPropertyChanging
-				Me._FromUnits = value
-				Me.SendPropertyChanged("FromUnits")
-				Me.OnFromUnitsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToUnits", DbType:="SmallInt")>  _
-	Public Property ToUnits() As System.Nullable(Of Short)
-		Get
-			Return Me._ToUnits
-		End Get
-		Set
-			If (Me._ToUnits.Equals(value) = false) Then
-				Me.OnToUnitsChanging(value)
-				Me.SendPropertyChanging
-				Me._ToUnits = value
-				Me.SendPropertyChanged("ToUnits")
-				Me.OnToUnitsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UnitPrice", DbType:="Real")>  _
-	Public Property UnitPrice() As System.Nullable(Of Single)
-		Get
-			Return Me._UnitPrice
-		End Get
-		Set
-			If (Me._UnitPrice.Equals(value) = false) Then
-				Me.OnUnitPriceChanging(value)
-				Me.SendPropertyChanging
-				Me._UnitPrice = value
-				Me.SendPropertyChanged("UnitPrice")
-				Me.OnUnitPriceChanged
+				Me._RatesID = value
+				Me.SendPropertyChanged("RatesID")
+				Me.OnRatesIDChanged
 			End If
 		End Set
 	End Property
