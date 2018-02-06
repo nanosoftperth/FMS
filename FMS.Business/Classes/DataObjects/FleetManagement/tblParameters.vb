@@ -102,12 +102,21 @@
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblParameters)
-            Dim AppID = ThisSession.ApplicationID
+            Try
+                Dim AppID = ThisSession.ApplicationID
+                Dim objParam As New List(Of DataObjects.tblParameters)
 
-            Dim objParam = (From p In SingletonAccess.FMSDataContextContignous.tblParameters
-                            Where p.ApplicationId = AppID
-                            Select New DataObjects.tblParameters(p)).ToList()
-            Return objParam
+                With New LINQtoSQLClassesDataContext
+                    objParam = (From p In .tblParameters
+                                Where p.ApplicationId = AppID
+                                Select New DataObjects.tblParameters(p)).ToList()
+                    .Dispose()
+                End With
+                Return objParam
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 
