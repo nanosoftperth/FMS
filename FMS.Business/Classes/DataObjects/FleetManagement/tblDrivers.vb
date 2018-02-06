@@ -98,6 +98,9 @@
                            Where d.Inactive.Equals(True) And d.ApplicationId = ThisSession.ApplicationID
                            Order By d.DriverName
                            Select New DataObjects.tblDrivers(d)).ToList
+
+                    .Dispose()
+
                 End With
 
                 Return obj
@@ -117,6 +120,8 @@
                            Where d.ApplicationId = appID
                            Order By d.DriverName
                            Select New DataObjects.tblDrivers(d)).ToList
+                    .Dispose()
+
                 End With
 
                 Return obj
@@ -135,6 +140,8 @@
                            Where d.ApplicationId = appID And d.Inactive = 0
                            Order By d.DriverName
                            Select New DataObjects.tblDrivers(d)).ToList
+                    .Dispose()
+
                 End With
 
                 Return obj
@@ -157,6 +164,7 @@
                                   And d.Inactive = False
                            Order By d.DriverName
                            Select New DataObjects.tblDrivers(d)).ToList
+                    .Dispose()
                 End With
 
                 Return obj
