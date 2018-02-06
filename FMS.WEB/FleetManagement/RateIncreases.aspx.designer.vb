@@ -32,13 +32,13 @@ Partial Public Class RateIncreases
     Protected WithEvents RateIncreasesGridView As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
-    '''viewPopup control.
+    '''viewUpdateRates control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents viewPopup As Global.DevExpress.Web.ASPxPopupControl
+    Protected WithEvents viewUpdateRates As Global.DevExpress.Web.ASPxPopupControl
     
     '''<summary>
     '''Panel2 control.
@@ -129,6 +129,105 @@ Partial Public Class RateIncreases
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aspxButton As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''viewCuaRates control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents viewCuaRates As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''ASPxPanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxPanel1 As Global.DevExpress.Web.ASPxPanel
+    
+    '''<summary>
+    '''ServicesGridView control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ServicesGridView As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
+    '''aspxButton2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents aspxButton2 As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''aspxButton3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents aspxButton3 As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''odsServicesView control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsServicesView As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''viewProcessCuaRates control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents viewProcessCuaRates As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''ASPxPanel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxPanel2 As Global.DevExpress.Web.ASPxPanel
+    
+    '''<summary>
+    '''ASPxLabel6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxLabel6 As Global.DevExpress.Web.ASPxLabel
+    
+    '''<summary>
+    '''aspxButton4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents aspxButton4 As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''aspxButton5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents aspxButton5 As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''odsRateIncreases control.

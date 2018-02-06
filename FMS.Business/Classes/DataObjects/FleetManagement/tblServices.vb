@@ -63,9 +63,10 @@
 
                 With New LINQtoSQLClassesDataContext
                     obj = (From c In .tblServices
-                           Where Not c.ServiceCode Is Nothing
+                           Where Not c.ServiceCode Is Nothing And c.ApplicationID.Equals(ThisSession.ApplicationID)
                            Order By c.ServiceCode
                            Select New DataObjects.tblServices(c)).ToList
+                    .Dispose()
                 End With
                 Return obj
 

@@ -1365,6 +1365,17 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblCUAScheduleOfRates" Member="tblCUAScheduleOfRates">
+    <Type Name="tblCUAScheduleOfRate">
+      <Column Name="RatesId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RatesAutoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Service" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="FromUnits" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ToUnits" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="UnitPrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
