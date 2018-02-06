@@ -37,21 +37,43 @@
 
 #Region "Get methods"
         Public Shared Function GetAllSalesReportSuburb() As List(Of DataObjects.usp_GetSalesReportSuburb)
-            Dim appId = ThisSession.ApplicationID
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSalesReportSuburb()
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetSalesReportSuburb)
+
+                With New LINQtoSQLClassesDataContext
+                    .CommandTimeout = 180
+
+                    obj = (From s In .usp_GetSalesReportSuburb()
                            Where s.ApplicationId = appId
                            Select New DataObjects.usp_GetSalesReportSuburb(s)).ToList
-            Return objList
+                    .Dispose()
+                End With
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
         Public Shared Function GetAllSalesReportSuburbPerCID(cid As Integer) As List(Of DataObjects.usp_GetSalesReportSuburb)
-            Dim appId = ThisSession.ApplicationID
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetSalesReportSuburb)
 
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSalesReportSuburb()
+                With New LINQtoSQLClassesDataContext
+                    .CommandTimeout = 180
+                    obj = (From s In .usp_GetSalesReportSuburb()
                            Where s.Cid = cid And s.ApplicationId = appId
                            Select New DataObjects.usp_GetSalesReportSuburb(s)).ToList
-            Return objList
+                    .Dispose()
+                End With
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
 

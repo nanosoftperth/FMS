@@ -42,34 +42,67 @@
 
 #Region "Get methods"
         Public Shared Function GetAll(ReportType As String, Optional zone As Integer = 0, Optional suburb As String = "") As List(Of DataObjects.usp_GetRevenueReportByZone)
-            Dim appId = ThisSession.ApplicationID
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetRevenueReportByZone)
 
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objList As New List(Of DataObjects.usp_GetRevenueReportByZone)
+                With New LINQtoSQLClassesDataContext
+                    .CommandTimeout = 180
 
-            If ReportType = "Suburb" Then
-                objList = (From r In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone
-                           Where r.Suburb = suburb.TrimStart.TrimEnd And r.ApplicationID = appId
-                           Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
-            Else
-                objList = (From r In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone
-                           Where r.Zone = zone And r.ApplicationID = appId
-                           Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
+                    If ReportType = "Suburb" Then
+                        obj = (From r In .usp_GetRevenueReportByZone
+                               Where r.Suburb = suburb.TrimStart.TrimEnd And r.ApplicationID = appId
+                               Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
+                    Else
+                        obj = (From r In .usp_GetRevenueReportByZone
+                               Where r.Zone = zone And r.ApplicationID = appId
+                               Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
 
-            End If
+                    End If
+
+                    For Each row In obj
+                        Dim sls = FMS.Business.DataObjects.usp_GetSalesReportSuburb.GetAllSalesReportSuburbPerCID(row.Cid)
+
+                        If sls.Count > 0 Then
+                            row.Sales = sls
+                        End If
+                    Next
+                    .Dispose()
+                End With
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+            'Dim appId = ThisSession.ApplicationID
+
+            'SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            'Dim objList As New List(Of DataObjects.usp_GetRevenueReportByZone)
+
+            'If ReportType = "Suburb" Then
+            '    objList = (From r In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone
+            '               Where r.Suburb = suburb.TrimStart.TrimEnd And r.ApplicationID = appId
+            '               Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
+            'Else
+            '    objList = (From r In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone
+            '               Where r.Zone = zone And r.ApplicationID = appId
+            '               Select New DataObjects.usp_GetRevenueReportByZone(r)).ToList
+
+            'End If
 
 
-            For Each row In objList
-                Dim sls = FMS.Business.DataObjects.usp_GetSalesReportSuburb.GetAllSalesReportSuburbPerCID(row.Cid)
+            'For Each row In objList
+            '    Dim sls = FMS.Business.DataObjects.usp_GetSalesReportSuburb.GetAllSalesReportSuburbPerCID(row.Cid)
 
-                If sls.Count > 0 Then
-                    row.Sales = sls
-                End If
+            '    If sls.Count > 0 Then
+            '        row.Sales = sls
+            '    End If
 
-            Next
-            'Dim objLengthOfService = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone(report)
-            '                Select New DataObjects.usp_GetRevenueReportByZone(c)).ToList
-            Return objList
+            'Next
+            ''Dim objLengthOfService = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRevenueReportByZone(report)
+            ''                Select New DataObjects.usp_GetRevenueReportByZone(c)).ToList
+            'Return objList
         End Function
 #End Region
 

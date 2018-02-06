@@ -8,60 +8,120 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Zone As DataObjects.tbZone)
-            Dim objZone As New FMS.Business.tbZone
-            With objZone
-                .ZoneID = Guid.NewGuid
-                .Aid = tblProjectID.ZoneIDCreateOrUpdate(Zone.ApplicationID)
-                .ApplicationID = Zone.ApplicationID
-                .AreaDescription = Zone.AreaDescription
+            With New LINQtoSQLClassesDataContext
+                Dim objZone As New FMS.Business.tbZone
+
+                With objZone
+                    .ZoneID = Guid.NewGuid
+                    .Aid = tblProjectID.ZoneIDCreateOrUpdate(Zone.ApplicationID)
+                    .ApplicationID = Zone.ApplicationID
+                    .AreaDescription = Zone.AreaDescription
+                End With
+
+                .tbZones.InsertOnSubmit(objZone)
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.tbZones.InsertOnSubmit(objZone)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Update(Zone As DataObjects.tbZone)
-            Dim objZone As FMS.Business.tbZone = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                                                           Where c.ZoneID.Equals(Zone.ZoneID) And c.ApplicationID.Equals(Zone.ApplicationID)).SingleOrDefault
-            With objZone
-                .AreaDescription = Zone.AreaDescription
+            With New LINQtoSQLClassesDataContext
+                Dim objZone As FMS.Business.tbZone = (From c In .tbZones
+                                                      Where c.ZoneID.Equals(Zone.ZoneID) And c.ApplicationID.Equals(Zone.ApplicationID)).SingleOrDefault
+                With objZone
+                    .AreaDescription = Zone.AreaDescription
+                End With
+
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Delete(Zone As DataObjects.tbZone)
-            Dim objZone As FMS.Business.tbZone = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                                                         Where c.ZoneID.Equals(Zone.ZoneID) And c.ApplicationID.Equals(Zone.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tbZones.DeleteOnSubmit(objZone)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objZone As FMS.Business.tbZone = (From c In .tbZones
+                                                      Where c.ZoneID.Equals(Zone.ZoneID) And c.ApplicationID.Equals(Zone.ApplicationID)).SingleOrDefault
+
+                .tbZones.DeleteOnSubmit(objZone)
+                .SubmitChanges()
+                .Dispose()
+            End With
+
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tbZone)
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                            Order By c.AreaDescription
-                                          Select New DataObjects.tbZone(c)).ToList
-            Return objZones
+            Try
+                Dim objZones As New List(Of DataObjects.tbZone)
+
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .tbZones
+                                Order By c.AreaDescription
+                                Select New DataObjects.tbZone(c)).ToList
+                    .Dispose()
+                End With
+
+                Return objZones
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
         Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tbZone)
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                            Where c.ApplicationID.Equals(appID)
-                            Order By c.AreaDescription
-                                          Select New DataObjects.tbZone(c)).ToList
-            Return objZones
+            Try
+                Dim objZones As New List(Of DataObjects.tbZone)
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .tbZones
+                                Where c.ApplicationID.Equals(appID)
+                                Order By c.AreaDescription
+                                Select New DataObjects.tbZone(c)).ToList
+                    .Dispose()
+                End With
+                Return objZones
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
         Public Shared Function GetZoneSortOrder(zID As Integer) As DataObjects.tbZone
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                            Where c.Aid.Equals(zID)
-                            Order By c.AreaDescription
-                            Select New DataObjects.tbZone(c)).SingleOrDefault
-            Return objZones
+            Try
+                Dim objZones As New DataObjects.tbZone
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .tbZones
+                                Where c.Aid.Equals(zID)
+                                Order By c.AreaDescription
+                                Select New DataObjects.tbZone(c)).ToList().SingleOrDefault
+                    .Dispose()
+                End With
+                Return objZones
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
         Public Shared Function GetAllForRevenueReport() As List(Of DataObjects.tbZone)
-            Dim appId = ThisSession.ApplicationID
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.tbZones
-                            Where c.ApplicationID = appId
-                            Order By c.AreaDescription
-                            Select New DataObjects.tbZone(c)).ToList
-            Return objZones
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim objZones As New List(Of DataObjects.tbZone)
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .tbZones
+                                Where c.ApplicationID = appId
+                                Order By c.AreaDescription
+                                Select New DataObjects.tbZone(c)).ToList
+                    .Dispose()
+                End With
+                Return objZones
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 #Region "Constructors"

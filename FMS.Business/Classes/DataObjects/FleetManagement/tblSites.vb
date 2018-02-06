@@ -304,6 +304,8 @@
 
                     Next
 
+                    .Dispose()
+
                 End With
 
                 Return objSites
@@ -315,12 +317,22 @@
         End Function
 
         Public Shared Function GetAllOrderyBySuburb() As List(Of DataObjects.tblSites)
-            Dim appId = ThisSession.ApplicationID
-            Dim objSites = (From c In SingletonAccess.FMSDataContextContignous.tblSites
-                            Where c.ApplicationId = appId
-                            Order By c.Suburb
-                            Select New DataObjects.tblSites(c)).ToList
-            Return objSites
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    objSites = (From c In .tblSites
+                                Where c.ApplicationId = appId
+                                Order By c.Suburb
+                                Select New DataObjects.tblSites(c)).ToList
+                    .Dispose()
+                End With
+                Return objSites
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
         Public Shared Function GetAllPerApplication() As List(Of DataObjects.tblSites)
