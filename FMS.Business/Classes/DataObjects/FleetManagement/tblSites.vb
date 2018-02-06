@@ -280,29 +280,38 @@
 
         ' For Report - CAN 18
         Public Shared Function GetAllByPostalCode(postcode As Integer) As List(Of DataObjects.tblSites)
-            Dim appId = ThisSession.ApplicationID
-            Dim lstSites = (From s In SingletonAccess.FMSDataContextNew.tblSites
-                            Where s.PostCode = postcode And s.ApplicationId = appId
-                            Select New DataObjects.tblSites(s)).ToList()
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim objSites As New List(Of DataObjects.tblSites)
 
-            Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    Dim lstSites = (From s In .tblSites
+                                    Where s.PostCode = postcode And s.ApplicationId = appId
+                                    Select New DataObjects.tblSites(s)).ToList()
 
-            For Each site In lstSites
-                Dim row As New DataObjects.tblSites
+                    For Each site In lstSites
+                        Dim row As New DataObjects.tblSites
 
-                row.SiteID = site.SiteID
-                row.SiteName = site.SiteName
-                row.AddressLine1 = site.AddressLine1 + " " + site.AddressLine2
-                row.Suburb = site.Suburb
-                row.PostCode = site.PostCode
-                row.SiteContactName = site.SiteContactName
-                row.SiteContactPhone = site.SiteContactPhone
+                        row.SiteID = site.SiteID
+                        row.SiteName = site.SiteName
+                        row.AddressLine1 = site.AddressLine1 + " " + site.AddressLine2
+                        row.Suburb = site.Suburb
+                        row.PostCode = site.PostCode
+                        row.SiteContactName = site.SiteContactName
+                        row.SiteContactPhone = site.SiteContactPhone
 
-                objSites.Add(row)
+                        objSites.Add(row)
 
-            Next
+                    Next
 
-            Return objSites
+                End With
+
+                Return objSites
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
         Public Shared Function GetAllOrderyBySuburb() As List(Of DataObjects.tblSites)
