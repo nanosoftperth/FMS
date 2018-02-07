@@ -92,6 +92,7 @@
                            Where d.ApplicationId = appID
                            Order By d.CommentDate
                            Select New DataObjects.tblDriverComments(d)).ToList
+                    .Dispose()
                 End With
                 Return obj
 
