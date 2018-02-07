@@ -83,6 +83,7 @@
                            Where Not c.ServiceCode Is Nothing And c.ApplicationID.Equals(appID)
                            Order By c.ServiceCode
                            Select New DataObjects.tblServices(c)).ToList
+                    .Dispose()
                 End With
                 Return obj
 
@@ -98,6 +99,7 @@
                     obj = (From c In .tblServices
                            Order By c.ServiceDescription
                            Select New DataObjects.tblServices(c)).ToList
+                    .Dispose()
 
                 End With
                 Return obj

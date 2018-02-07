@@ -70,6 +70,7 @@
                     obj = (From c In .tblInvoicingFrequencies
                            Order By c.IId
                            Select New DataObjects.tblInvoicingFrequency(c)).ToList
+                    .Dispose()
                 End With
 
                 Return obj
@@ -90,6 +91,7 @@
                            Where c.ApplicationId = appID
                            Order By c.IId
                            Select New DataObjects.tblInvoicingFrequency(c)).ToList
+                    .Dispose()
                 End With
 
                 Return obj

@@ -73,6 +73,7 @@
                     obj = (From a In .usp_GetMYOBFileList()
                            Where a.ApplicationID = appID
                            Select New DataObjects.usp_GetMYOBFileList(a)).ToList
+                    .Dispose()
                 End With
                 Return obj
 

@@ -30,12 +30,23 @@
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.usp_GetPreviousInvoiceSummaryReport)
-            Dim appID = ThisSession.ApplicationID
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim objInv As New List(Of DataObjects.usp_GetPreviousInvoiceSummaryReport)
 
-            Dim objInv = (From i In SingletonAccess.FMSDataContextContignous.usp_GetPreviousInvoiceSummaryReport
-                          Where i.ApplicationId = appID
-                          Select New DataObjects.usp_GetPreviousInvoiceSummaryReport(i)).ToList()
-            Return objInv
+                With New LINQtoSQLClassesDataContext
+                    objInv = (From i In .usp_GetPreviousInvoiceSummaryReport
+                              Where i.ApplicationId = appID
+                              Select New DataObjects.usp_GetPreviousInvoiceSummaryReport(i)).ToList()
+                    .Dispose()
+
+                End With
+
+                Return objInv
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 
 #End Region

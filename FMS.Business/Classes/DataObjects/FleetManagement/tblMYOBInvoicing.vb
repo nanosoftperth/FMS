@@ -129,6 +129,7 @@ Namespace DataObjects
                 With New LINQtoSQLClassesDataContext
                     obj = (From i In .tblMYOBInvoicings
                            Select New DataObjects.tblMYOBInvoicing(i)).ToList
+                    .Dispose()
                 End With
 
                 Return obj
@@ -148,6 +149,7 @@ Namespace DataObjects
                     obj = (From i In .tblMYOBInvoicings
                            Order By i.InvoiceNumber
                            Select New DataObjects.tblMYOBInvoicing(i)).ToList
+                    .Dispose()
                 End With
 
                 Return obj

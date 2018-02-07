@@ -76,6 +76,7 @@
                            Where c.ApplicationId = appID
                            Order By c.Description
                            Select New DataObjects.tblFuelLevy(c)).ToList
+                    .Dispose()
 
                 End With
 
