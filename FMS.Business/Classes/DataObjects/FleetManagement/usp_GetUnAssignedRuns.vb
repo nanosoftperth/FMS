@@ -45,12 +45,22 @@
         'End Function
 
         Public Shared Function GetAllPerApplication(StartDate As Date, EndDate As Date) As List(Of DataObjects.usp_GetUnAssignedRuns)
-            Dim appId = ThisSession.ApplicationID
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetUnAssignedRuns)
+                With New LINQtoSQLClassesDataContext
+                    obj = (From r In .usp_GetUnAssignedRuns(appId, StartDate, EndDate)
+                           Order By r.RunDescription
+                           Select New DataObjects.usp_GetUnAssignedRuns(r)).ToList
+                    .Dispose()
+                End With
 
-            Dim obj = (From r In SingletonAccess.FMSDataContextContignous.usp_GetUnAssignedRuns(appId, StartDate, EndDate)
-                       Order By r.RunDescription
-                       Select New DataObjects.usp_GetUnAssignedRuns(r)).ToList
-            Return obj
+                Return obj
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+
         End Function
 #End Region
 

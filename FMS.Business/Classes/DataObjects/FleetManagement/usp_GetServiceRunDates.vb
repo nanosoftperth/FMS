@@ -49,39 +49,62 @@
 
 #Region "Get methods"
         Public Shared Function GetAllPerApplication(StartDate As Date, EndDate As Date) As List(Of DataObjects.usp_GetServiceRunDates)
-            Dim appId = ThisSession.ApplicationID
-            Dim obj = (From s In SingletonAccess.FMSDataContextContignous.usp_GetServiceRunDates(appId, StartDate, EndDate)
-                       Order By s.Did, s.DriverName
-                       Select New DataObjects.usp_GetServiceRunDates(s)).ToList
-            Return obj
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.usp_GetServiceRunDates)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From s In .usp_GetServiceRunDates(appId, StartDate, EndDate)
+                           Order By s.Did, s.DriverName
+                           Select New DataObjects.usp_GetServiceRunDates(s)).ToList
+                    .Dispose()
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
         Public Shared Function GetAllPerApplicationAndDistinctDriverName(StartDate As Date, EndDate As Date) As List(Of Drivers)
-            Dim appId = ThisSession.ApplicationID
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim obj As New List(Of Drivers)
 
-            Dim obj = (From s In SingletonAccess.FMSDataContextContignous.usp_GetServiceRunDates(appId, StartDate, EndDate)
-                       Order By s.Did, s.DriverName
-                       Select s.Did, s.DriverName).ToList.GroupBy(Function(x) x.DriverName)
+                With New LINQtoSQLClassesDataContext
+                    obj = (From s In .usp_GetServiceRunDates(appId, StartDate, EndDate)
+                           Order By s.Did, s.DriverName
+                           Select s.Did, s.DriverName).ToList.GroupBy(Function(x) x.DriverName)
+                    .Dispose()
 
-            Dim DriverList As New List(Of Drivers)
+                End With
 
-            If (obj.Count > 0) Then
+                Dim DriverList As New List(Of Drivers)
 
-                Dim ctr As Integer = 0
+                If (obj.Count > 0) Then
 
-                For Each g In obj
+                    Dim ctr As Integer = 0
 
-                    Dim Row As New Drivers
+                    For Each g In obj
 
-                    Row.id = g(0).Did
-                    Row.Name = g(0).DriverName
+                        Dim Row As New Drivers
 
-                    DriverList.Add(Row)
+                        Row.id = g(0).Did
+                        Row.Name = g(0).DriverName
 
-                Next
+                        DriverList.Add(Row)
 
-            End If
+                    Next
 
-            Return DriverList
+                End If
+
+                Return DriverList
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+
 
         End Function
 #End Region
