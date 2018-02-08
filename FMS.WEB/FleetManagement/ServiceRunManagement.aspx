@@ -224,6 +224,7 @@
         //Populate UnAssigned Runs ComboBox
         function OnSuccess(response) {
             clientcboRun.ClearItems();
+            clientcboRun.AddItem("--None--", 0);
             for (var i in response) {
                 clientcboRun.AddItem(response[i].RunDescription, response[i].RunNUmber);
             }
@@ -511,8 +512,11 @@
                             </tr>
                         </table>
                         <br />
-                        <dx:ASPxButton ID="btnCancelComplte" runat="server" Text="Cancel"
-                            OnClick="btnCancelComplte_Click">
+                        <dx:ASPxButton ID="btnCompleteRun" runat="server" Text="Complete"
+                            OnClick="btnCompleteRun_Click">
+                        </dx:ASPxButton>
+                        <dx:ASPxButton ID="btnCancelComplete" runat="server" Text="Cancel"
+                            OnClick="btnCancelComplete_Click">
                         </dx:ASPxButton>
                     </dx:PopupControlContentControl>
                 </ContentCollection>

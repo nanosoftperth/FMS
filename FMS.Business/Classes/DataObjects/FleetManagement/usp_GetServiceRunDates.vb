@@ -71,33 +71,35 @@
             Try
                 Dim appId = ThisSession.ApplicationID
                 Dim obj As New List(Of Drivers)
+                Dim DriverList As New List(Of Drivers)
 
                 With New LINQtoSQLClassesDataContext
                     obj = (From s In .usp_GetServiceRunDates(appId, StartDate, EndDate)
                            Order By s.Did, s.DriverName
                            Select s.Did, s.DriverName).ToList.GroupBy(Function(x) x.DriverName)
+
                     .Dispose()
 
                 End With
 
-                Dim DriverList As New List(Of Drivers)
-
                 If (obj.Count > 0) Then
 
-                    Dim ctr As Integer = 0
+                    'Dim ctr As Integer = 0
 
-                    For Each g In obj
+                    'For Each g In obj
 
-                        Dim Row As New Drivers
+                    '    Dim Row As New Drivers
 
-                        Row.id = g(0).Did
-                        Row.Name = g(0).DriverName
+                    '    Row.id = g(0).Did
+                    '    Row.Name = g(0).DriverName
 
-                        DriverList.Add(Row)
+                    '    DriverList.Add(Row)
 
-                    Next
+                    'Next
 
                 End If
+
+
 
                 Return DriverList
             Catch ex As Exception

@@ -18,49 +18,67 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Run As DataObjects.tblRuns)
-            Dim objRun As New FMS.Business.tblRun
-            With objRun
-                .RunID = Guid.NewGuid
-                .ApplicationID = ThisSession.ApplicationID
-                .Rid = tblProjectID.RunIDCreateOrUpdate(ThisSession.ApplicationID)
-                .RunNUmber = Run.RunNUmber
-                .RunDescription = Run.RunDescription
-                .RunDriver = Run.RunDriver
-                .MondayRun = Run.MondayRun
-                .TuesdayRun = Run.TuesdayRun
-                .WednesdayRun = Run.WednesdayRun
-                .ThursdayRun = Run.ThursdayRun
-                .FridayRun = Run.FridayRun
-                .SaturdayRun = Run.SaturdayRun
-                .SundayRun = Run.SundayRun
-                .InactiveRun = Run.InactiveRun
+            With New LINQtoSQLClassesDataContext
+
+                Dim objRun As New FMS.Business.tblRun
+                With objRun
+                    .RunID = Guid.NewGuid
+                    .ApplicationID = ThisSession.ApplicationID
+                    .Rid = tblProjectID.RunIDCreateOrUpdate(ThisSession.ApplicationID)
+                    .RunNUmber = Run.RunNUmber
+                    .RunDescription = Run.RunDescription
+                    .RunDriver = Run.RunDriver
+                    .MondayRun = Run.MondayRun
+                    .TuesdayRun = Run.TuesdayRun
+                    .WednesdayRun = Run.WednesdayRun
+                    .ThursdayRun = Run.ThursdayRun
+                    .FridayRun = Run.FridayRun
+                    .SaturdayRun = Run.SaturdayRun
+                    .SundayRun = Run.SundayRun
+                    .InactiveRun = Run.InactiveRun
+                End With
+
+                .tblRuns.InsertOnSubmit(objRun)
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.tblRuns.InsertOnSubmit(objRun)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Update(Run As DataObjects.tblRuns)
-            Dim objRun As FMS.Business.tblRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                                                 Where c.Rid.Equals(Run.Rid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objRun
-                .RunNUmber = Run.RunNUmber
-                .RunDescription = Run.RunDescription
-                .RunDriver = Run.RunDriver
-                .MondayRun = Run.MondayRun
-                .TuesdayRun = Run.TuesdayRun
-                .WednesdayRun = Run.WednesdayRun
-                .ThursdayRun = Run.ThursdayRun
-                .FridayRun = Run.FridayRun
-                .SaturdayRun = Run.SaturdayRun
-                .SundayRun = Run.SundayRun
-                .InactiveRun = Run.InactiveRun
+            With New LINQtoSQLClassesDataContext
+
+                Dim objRun As FMS.Business.tblRun = (From c In .tblRuns
+                                                     Where c.Rid.Equals(Run.Rid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objRun
+                    .RunNUmber = Run.RunNUmber
+                    .RunDescription = Run.RunDescription
+                    .RunDriver = Run.RunDriver
+                    .MondayRun = Run.MondayRun
+                    .TuesdayRun = Run.TuesdayRun
+                    .WednesdayRun = Run.WednesdayRun
+                    .ThursdayRun = Run.ThursdayRun
+                    .FridayRun = Run.FridayRun
+                    .SaturdayRun = Run.SaturdayRun
+                    .SundayRun = Run.SundayRun
+                    .InactiveRun = Run.InactiveRun
+                End With
+
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
         End Sub
         Public Shared Sub Delete(Run As DataObjects.tblRuns)
-            Dim objRun As FMS.Business.tblRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                                                 Where c.Rid.Equals(Run.Rid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblRuns.DeleteOnSubmit(objRun)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objRun As FMS.Business.tblRun = (From c In .tblRuns
+                                                     Where c.Rid.Equals(Run.Rid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblRuns.DeleteOnSubmit(objRun)
+                .SubmitChanges()
+                .Dispose()
+            End With
+
         End Sub
 #End Region
 
@@ -70,22 +88,75 @@
             SingletonAccess.FMSDataContextContignous.usp_UpdateRunsBasedOnRunDriver(FromDriver, ToDriver)
 
         End Sub
+        Public Shared Sub ChangeRun(RunDriver As Integer, RunNumber As Integer, Run As DataObjects.tblRuns)
+            With New LINQtoSQLClassesDataContext
+                Dim objRun As FMS.Business.tblRun = (From c In .tblRuns
+                                                     Where c.RunDriver.Equals(RunDriver) And c.ApplicationID.Equals(ThisSession.ApplicationID) _
+                                                         And c.RunNUmber.Equals(RunNumber)).SingleOrDefault
+                With objRun
+                    .RunNUmber = Run.RunNUmber
+                    .RunDescription = Run.RunDescription
+
+                End With
+
+                .SubmitChanges()
+                .Dispose()
+
+            End With
+
+        End Sub
+
+        Public Shared Sub DeleteRun(Run As DataObjects.tblRuns)
+            With New LINQtoSQLClassesDataContext
+                Dim objRun As FMS.Business.tblRun = (From c In .tblRuns
+                                                     Where c.RunDriver.Equals(Run.RunDriver) And c.ApplicationID.Equals(ThisSession.ApplicationID) _
+                                                         And c.RunNUmber.Equals(Run.RunNUmber)).SingleOrDefault
+                .tblRuns.DeleteOnSubmit(objRun)
+                .SubmitChanges()
+                .Dispose()
+
+            End With
+
+        End Sub
+
 #End Region
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblRuns)
-            Dim objRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                          Where c.ApplicationID.Equals(ThisSession.ApplicationID)
-                          Order By c.RunDescription
-                          Select New DataObjects.tblRuns(c)).ToList
-            Return objRun
+            Try
+                Dim objRun As New List(Of DataObjects.tblRuns)
+
+                With New LINQtoSQLClassesDataContext
+                    objRun = (From c In .tblRuns
+                              Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                              Order By c.RunDescription
+                              Select New DataObjects.tblRuns(c)).ToList
+                    .Dispose()
+                End With
+                Return objRun
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
         Public Shared Function GetTblRuns() As List(Of DataObjects.tblRuns)
-            Dim objRun = (From c In SingletonAccess.FMSDataContextContignous.tblRuns
-                          Order By c.RunDescription
-                          Where c.RunDescription IsNot Nothing And c.ApplicationID.Equals(ThisSession.ApplicationID)
-                          Select New DataObjects.tblRuns(c)).ToList
-            Return objRun
+            Try
+                Dim objRun As New List(Of DataObjects.tblRuns)
+                With New LINQtoSQLClassesDataContext
+                    objRun = (From c In .tblRuns
+                              Order By c.RunDescription
+                              Where c.RunDescription IsNot Nothing And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                              Select New DataObjects.tblRuns(c)).ToList
+                    .Dispose()
+                End With
+                Return objRun
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+
         End Function
 #End Region
 #Region "Constructors"

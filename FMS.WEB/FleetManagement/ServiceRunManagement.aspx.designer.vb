@@ -176,13 +176,22 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents cboDriverCompleted As Global.DevExpress.Web.ASPxComboBox
     
     '''<summary>
-    '''btnCancelComplte control.
+    '''btnCompleteRun control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnCancelComplte As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents btnCompleteRun As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''btnCancelComplete control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelComplete As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''puDialog control.
