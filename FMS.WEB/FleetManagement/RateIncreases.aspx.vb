@@ -24,4 +24,8 @@ Public Class RateIncreases
         e.NewValues("AnnualIncreaseApplies") = chkAnnualIncreaseApplies.Checked
         e.NewValues("AlreadyDoneThisYear") = chkAlreadyDoneThisYear.Checked
     End Sub
+
+    Protected Sub ScheduleOfRatesGridView_BeforePerformDataSelect(sender As Object, e As EventArgs)
+        FMS.Business.ThisSession.ServiceID = FMS.Business.DataObjects.tblCUAScheduleOfRates.GetServiceIdInt(CType(sender, ASPxGridView).GetMasterRowKeyValue())
+    End Sub
 End Class

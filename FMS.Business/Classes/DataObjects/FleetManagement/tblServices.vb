@@ -64,7 +64,7 @@
                 With New LINQtoSQLClassesDataContext
                     obj = (From c In .tblServices
                            Where Not c.ServiceCode Is Nothing And c.ApplicationID.Equals(ThisSession.ApplicationID)
-                           Order By c.ServiceCode
+                           Order By c.ServiceDescription
                            Select New DataObjects.tblServices(c)).ToList
                     .Dispose()
                 End With
@@ -103,6 +103,22 @@
 
                 End With
                 Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+        End Function
+        Public Shared Function GetServiceBySid(ServiceId As Guid) As Integer
+            Try
+                Dim intRet As Integer
+                With New LINQtoSQLClassesDataContext
+                    intRet = (From c In .tblServices
+                              Where c.ServicesID.Equals(ServiceId) And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                              Select New DataObjects.tblServices(c)).FirstOrDefault.Sid
+                    .Dispose()
+                End With
+                Return intRet
 
             Catch ex As Exception
                 Throw ex

@@ -60,6 +60,14 @@ Public Class ThisSession
         End Set
     End Property
 
+    Public Shared Property ServiceID As Integer
+        Get
+            Return HttpContext.Current.Session("ServiceID")
+        End Get
+        Set(value As Integer)
+            HttpContext.Current.Session("ServiceID") = value
+        End Set
+    End Property
     Public Shared Property ApplicationID As Guid
         Get
             Return HttpContext.Current.Session("ApplicationID")

@@ -49,7 +49,7 @@
         End Sub
 #End Region
 #Region "Get methods"
-        Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tblRateIncreaseReference)
+        Public Shared Function GetAll() As List(Of DataObjects.tblRateIncreaseReference)
             Try
                 Dim objRateIncreaseReference As New List(Of DataObjects.tblRateIncreaseReference)
                 With New LINQtoSQLClassesDataContext

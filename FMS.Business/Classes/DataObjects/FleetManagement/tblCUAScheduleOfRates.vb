@@ -18,7 +18,7 @@
                     .RatesId = Guid.NewGuid
                     .ApplicationID = AppID
                     .RatesAutoId = tblProjectID.RatesIDCreateOrUpdate(AppID)
-                    .Service = CuaScheduleOfRates.Service
+                    .Service = ThisSession.ServiceID
                     .FromUnits = CuaScheduleOfRates.FromUnits
                     .ToUnits = CuaScheduleOfRates.ToUnits
                     .UnitPrice = CuaScheduleOfRates.UnitPrice
@@ -33,7 +33,6 @@
                 Dim tblCUAScheduleOfRate As FMS.Business.tblCUAScheduleOfRate = (From i In .tblCUAScheduleOfRates
                                                                                  Where i.RatesAutoId.Equals(CuaScheduleOfRates.RatesAutoId)).SingleOrDefault
                 With tblCUAScheduleOfRate
-                    .Service = CuaScheduleOfRates.Service
                     .FromUnits = CuaScheduleOfRates.FromUnits
                     .ToUnits = CuaScheduleOfRates.ToUnits
                     .UnitPrice = CuaScheduleOfRates.UnitPrice
@@ -70,19 +69,26 @@
                 Throw ex
             End Try
         End Function
-        Public Shared Function GetAllCustomer() As List(Of DataObjects.FleetClient)
+        Public Shared Function GetCUAScheduleOfRatesByService(service As Integer) As List(Of DataObjects.tblCUAScheduleOfRates)
             Try
-                Dim fleetCustomers As New List(Of DataObjects.FleetClient)
+                Dim tblCUAScheduleOfRates As New List(Of DataObjects.tblCUAScheduleOfRates)
 
                 With New LINQtoSQLClassesDataContext
-
-                    fleetCustomers = (From i In .tblCustomers
-                                      Order By i.CustomerName
-                                      Select New DataObjects.FleetClient() With {.Name = i.CustomerName, .Address = i.AddressLine1, .CustomerID = i.Cid}).ToList()
+                    tblCUAScheduleOfRates = (From i In .tblCUAScheduleOfRates
+                                             Where i.Service.Equals(service) And i.ApplicationID.Equals(ThisSession.ApplicationID)
+                                             Select New DataObjects.tblCUAScheduleOfRates(i)).ToList()
                     .Dispose()
                 End With
 
-                Return fleetCustomers
+                Return tblCUAScheduleOfRates
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Shared Function GetServiceIdInt(ServiceId As Guid) As Integer
+            Try
+                Return FMS.Business.DataObjects.tblServices.GetServiceBySid(ServiceId)
             Catch ex As Exception
                 Throw ex
             End Try
