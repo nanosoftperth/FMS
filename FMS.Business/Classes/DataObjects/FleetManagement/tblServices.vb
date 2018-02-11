@@ -25,6 +25,7 @@
 
                 .tblServices.InsertOnSubmit(obj)
                 .SubmitChanges()
+                .Dispose()
             End With
 
         End Sub

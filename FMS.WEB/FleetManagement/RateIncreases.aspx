@@ -66,9 +66,23 @@
             ShowMyAlertWindow();
         }
         function ProceedCuaProcess() {
+            ProcessCuaRateIncrease('xyz');
             document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
             myAlertWithYesNoButton.Hide();
             ShowMyAlertWindow();
+        }
+        function ProcessCuaRateIncrease(param1) {
+            $.ajax({
+                type: "POST",
+                url: 'RateIncreases.aspx/ProcessCuaRateIncrease',
+                dataType: "json",
+                data: JSON.stringify({ param1: param1 }),
+                contentType: "application/json",
+                crossDomain: true,
+                success: function (data) {
+
+                }
+            });
         }
     </script>
 </head>

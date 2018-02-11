@@ -28,4 +28,23 @@ Public Class RateIncreases
     Protected Sub ScheduleOfRatesGridView_BeforePerformDataSelect(sender As Object, e As EventArgs)
         FMS.Business.ThisSession.ServiceID = FMS.Business.DataObjects.tblCUAScheduleOfRates.GetServiceIdInt(CType(sender, ASPxGridView).GetMasterRowKeyValue())
     End Sub
+
+#Region "WebMethods"
+    <System.Web.Services.WebMethod()>
+    Public Shared Function ProcessCuaRateIncrease(ByVal param1 As String)
+        UpdateRates()
+        GetNewRate()
+        UpdateReportFile()
+        UpdateAuditReportFile()
+        Return Nothing
+    End Function
+    Private Shared Sub UpdateRates()
+    End Sub
+    Private Shared Sub GetNewRate()
+    End Sub
+    Private Shared Sub UpdateReportFile()
+    End Sub
+    Private Shared Sub UpdateAuditReportFile()
+    End Sub
+#End Region
 End Class

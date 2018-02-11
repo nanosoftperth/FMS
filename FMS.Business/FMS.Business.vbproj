@@ -132,6 +132,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblPreviousSuppliers.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblProjectID.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblPublicHolidayRegister.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblRateIncrease.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRateIncreaseReference.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRevenueChangeAudit.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRevenueChangeReason.vb" />
