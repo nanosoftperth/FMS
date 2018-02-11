@@ -28,7 +28,7 @@
         Public Shared Sub Update(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
             With New LINQtoSQLClassesDataContext
                 Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In .tblRateIncreaseReferences
-                                                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
+                                                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
                 With objRateIncreaseReference
                     .RateIncreaseDescription = RateIncreaseReference.RateIncreaseDescription
                     .AnnualIncreaseApplies = RateIncreaseReference.AnnualIncreaseApplies
@@ -41,7 +41,7 @@
         Public Shared Sub Delete(RateIncreaseReference As DataObjects.tblRateIncreaseReference)
             With New LINQtoSQLClassesDataContext
                 Dim objRateIncreaseReference As FMS.Business.tblRateIncreaseReference = (From c In .tblRateIncreaseReferences
-                                                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(RateIncreaseReference.ApplicationID)).SingleOrDefault
+                                                                                         Where c.RateIncreaseID.Equals(RateIncreaseReference.RateIncreaseID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
                 .tblRateIncreaseReferences.DeleteOnSubmit(objRateIncreaseReference)
                 .SubmitChanges()
                 .Dispose()

@@ -1379,6 +1379,7 @@
   </Table>
   <Table Name="dbo.tblRevenueChangeAudit" Member="tblRevenueChangeAudits">
     <Type Name="tblRevenueChangeAudit">
+      <Column Name="ChangeAuditID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />

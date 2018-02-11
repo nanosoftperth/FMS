@@ -613,6 +613,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblProjectID(instance As tblProjectID)
     End Sub
+  Partial Private Sub InserttblRevenueChangeAudit(instance As tblRevenueChangeAudit)
+    End Sub
+  Partial Private Sub UpdatetblRevenueChangeAudit(instance As tblRevenueChangeAudit)
+    End Sub
+  Partial Private Sub DeletetblRevenueChangeAudit(instance As tblRevenueChangeAudit)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -26054,6 +26060,11 @@ End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRevenueChangeAudit")>  _
 Partial Public Class tblRevenueChangeAudit
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ChangeAuditID As System.Guid
 	
 	Private _Aid As Integer
 	
@@ -26109,9 +26120,148 @@ Partial Public Class tblRevenueChangeAudit
 	
 	Private _ApplicationID As System.Nullable(Of System.Guid)
 	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnChangeAuditIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnChangeAuditIDChanged()
+    End Sub
+    Partial Private Sub OnAidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnAidChanged()
+    End Sub
+    Partial Private Sub OnCSidChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCSidChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnCustomerChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerChanged()
+    End Sub
+    Partial Private Sub OnSiteChanging(value As String)
+    End Sub
+    Partial Private Sub OnSiteChanged()
+    End Sub
+    Partial Private Sub OnOldServiceUnitsChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnOldServiceUnitsChanged()
+    End Sub
+    Partial Private Sub OnOldServicePriceChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnOldServicePriceChanged()
+    End Sub
+    Partial Private Sub OnOldPerAnnumChargeChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnOldPerAnnumChargeChanged()
+    End Sub
+    Partial Private Sub OnNewServiceUnitsChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnNewServiceUnitsChanged()
+    End Sub
+    Partial Private Sub OnNewServicePriceChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnNewServicePriceChanged()
+    End Sub
+    Partial Private Sub OnNewPerAnnumChargeChanging(value As System.Nullable(Of Double))
+    End Sub
+    Partial Private Sub OnNewPerAnnumChargeChanged()
+    End Sub
+    Partial Private Sub OnChangeReasonCodeChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnChangeReasonCodeChanged()
+    End Sub
+    Partial Private Sub OnUserChanging(value As String)
+    End Sub
+    Partial Private Sub OnUserChanged()
+    End Sub
+    Partial Private Sub OnChangeDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnChangeDateChanged()
+    End Sub
+    Partial Private Sub OnChangeTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnChangeTimeChanged()
+    End Sub
+    Partial Private Sub OnEffectiveDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnEffectiveDateChanged()
+    End Sub
+    Partial Private Sub OnOldContractCeasedateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnOldContractCeasedateChanged()
+    End Sub
+    Partial Private Sub OnNewContractCeasedateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnNewContractCeasedateChanged()
+    End Sub
+    Partial Private Sub OnOldInvoiceCommencingChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnOldInvoiceCommencingChanged()
+    End Sub
+    Partial Private Sub OnNewInvoiceCommencingChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnNewInvoiceCommencingChanged()
+    End Sub
+    Partial Private Sub OnOldInvoicingFrequencyChanging(value As String)
+    End Sub
+    Partial Private Sub OnOldInvoicingFrequencyChanged()
+    End Sub
+    Partial Private Sub OnNewInvoicingFrequencyChanging(value As String)
+    End Sub
+    Partial Private Sub OnNewInvoicingFrequencyChanged()
+    End Sub
+    Partial Private Sub OnOldContractStartDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnOldContractStartDateChanged()
+    End Sub
+    Partial Private Sub OnNewContractStartDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnNewContractStartDateChanged()
+    End Sub
+    Partial Private Sub OnFieldTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnFieldTypeChanged()
+    End Sub
+    Partial Private Sub OnOldServiceChanging(value As String)
+    End Sub
+    Partial Private Sub OnOldServiceChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    #End Region
+	
 	Public Sub New()
 		MyBase.New
+		OnCreated
 	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChangeAuditID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ChangeAuditID() As System.Guid
+		Get
+			Return Me._ChangeAuditID
+		End Get
+		Set
+			If ((Me._ChangeAuditID = value)  _
+						= false) Then
+				Me.OnChangeAuditIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ChangeAuditID = value
+				Me.SendPropertyChanged("ChangeAuditID")
+				Me.OnChangeAuditIDChanged
+			End If
+		End Set
+	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
 	Public Property Aid() As Integer
@@ -26121,7 +26271,11 @@ Partial Public Class tblRevenueChangeAudit
 		Set
 			If ((Me._Aid = value)  _
 						= false) Then
+				Me.OnAidChanging(value)
+				Me.SendPropertyChanging
 				Me._Aid = value
+				Me.SendPropertyChanged("Aid")
+				Me.OnAidChanged
 			End If
 		End Set
 	End Property
@@ -26133,7 +26287,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._CSid.Equals(value) = false) Then
+				Me.OnCSidChanging(value)
+				Me.SendPropertyChanging
 				Me._CSid = value
+				Me.SendPropertyChanged("CSid")
+				Me.OnCSidChanged
 			End If
 		End Set
 	End Property
@@ -26145,7 +26303,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._Cid.Equals(value) = false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
 				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
 			End If
 		End Set
 	End Property
@@ -26157,7 +26319,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (String.Equals(Me._Customer, value) = false) Then
+				Me.OnCustomerChanging(value)
+				Me.SendPropertyChanging
 				Me._Customer = value
+				Me.SendPropertyChanged("Customer")
+				Me.OnCustomerChanged
 			End If
 		End Set
 	End Property
@@ -26169,7 +26335,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (String.Equals(Me._Site, value) = false) Then
+				Me.OnSiteChanging(value)
+				Me.SendPropertyChanging
 				Me._Site = value
+				Me.SendPropertyChanged("Site")
+				Me.OnSiteChanged
 			End If
 		End Set
 	End Property
@@ -26181,7 +26351,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._OldServiceUnits.Equals(value) = false) Then
+				Me.OnOldServiceUnitsChanging(value)
+				Me.SendPropertyChanging
 				Me._OldServiceUnits = value
+				Me.SendPropertyChanged("OldServiceUnits")
+				Me.OnOldServiceUnitsChanged
 			End If
 		End Set
 	End Property
@@ -26193,7 +26367,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._OldServicePrice.Equals(value) = false) Then
+				Me.OnOldServicePriceChanging(value)
+				Me.SendPropertyChanging
 				Me._OldServicePrice = value
+				Me.SendPropertyChanged("OldServicePrice")
+				Me.OnOldServicePriceChanged
 			End If
 		End Set
 	End Property
@@ -26205,7 +26383,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._OldPerAnnumCharge.Equals(value) = false) Then
+				Me.OnOldPerAnnumChargeChanging(value)
+				Me.SendPropertyChanging
 				Me._OldPerAnnumCharge = value
+				Me.SendPropertyChanged("OldPerAnnumCharge")
+				Me.OnOldPerAnnumChargeChanged
 			End If
 		End Set
 	End Property
@@ -26217,7 +26399,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._NewServiceUnits.Equals(value) = false) Then
+				Me.OnNewServiceUnitsChanging(value)
+				Me.SendPropertyChanging
 				Me._NewServiceUnits = value
+				Me.SendPropertyChanged("NewServiceUnits")
+				Me.OnNewServiceUnitsChanged
 			End If
 		End Set
 	End Property
@@ -26229,7 +26415,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._NewServicePrice.Equals(value) = false) Then
+				Me.OnNewServicePriceChanging(value)
+				Me.SendPropertyChanging
 				Me._NewServicePrice = value
+				Me.SendPropertyChanged("NewServicePrice")
+				Me.OnNewServicePriceChanged
 			End If
 		End Set
 	End Property
@@ -26241,7 +26431,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._NewPerAnnumCharge.Equals(value) = false) Then
+				Me.OnNewPerAnnumChargeChanging(value)
+				Me.SendPropertyChanging
 				Me._NewPerAnnumCharge = value
+				Me.SendPropertyChanged("NewPerAnnumCharge")
+				Me.OnNewPerAnnumChargeChanged
 			End If
 		End Set
 	End Property
@@ -26253,7 +26447,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._ChangeReasonCode.Equals(value) = false) Then
+				Me.OnChangeReasonCodeChanging(value)
+				Me.SendPropertyChanging
 				Me._ChangeReasonCode = value
+				Me.SendPropertyChanged("ChangeReasonCode")
+				Me.OnChangeReasonCodeChanged
 			End If
 		End Set
 	End Property
@@ -26265,7 +26463,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (String.Equals(Me._User, value) = false) Then
+				Me.OnUserChanging(value)
+				Me.SendPropertyChanging
 				Me._User = value
+				Me.SendPropertyChanged("User")
+				Me.OnUserChanged
 			End If
 		End Set
 	End Property
@@ -26277,7 +26479,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._ChangeDate.Equals(value) = false) Then
+				Me.OnChangeDateChanging(value)
+				Me.SendPropertyChanging
 				Me._ChangeDate = value
+				Me.SendPropertyChanged("ChangeDate")
+				Me.OnChangeDateChanged
 			End If
 		End Set
 	End Property
@@ -26289,7 +26495,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._ChangeTime.Equals(value) = false) Then
+				Me.OnChangeTimeChanging(value)
+				Me.SendPropertyChanging
 				Me._ChangeTime = value
+				Me.SendPropertyChanged("ChangeTime")
+				Me.OnChangeTimeChanged
 			End If
 		End Set
 	End Property
@@ -26301,7 +26511,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._EffectiveDate.Equals(value) = false) Then
+				Me.OnEffectiveDateChanging(value)
+				Me.SendPropertyChanging
 				Me._EffectiveDate = value
+				Me.SendPropertyChanged("EffectiveDate")
+				Me.OnEffectiveDateChanged
 			End If
 		End Set
 	End Property
@@ -26313,7 +26527,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._OldContractCeasedate.Equals(value) = false) Then
+				Me.OnOldContractCeasedateChanging(value)
+				Me.SendPropertyChanging
 				Me._OldContractCeasedate = value
+				Me.SendPropertyChanged("OldContractCeasedate")
+				Me.OnOldContractCeasedateChanged
 			End If
 		End Set
 	End Property
@@ -26325,7 +26543,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._NewContractCeasedate.Equals(value) = false) Then
+				Me.OnNewContractCeasedateChanging(value)
+				Me.SendPropertyChanging
 				Me._NewContractCeasedate = value
+				Me.SendPropertyChanged("NewContractCeasedate")
+				Me.OnNewContractCeasedateChanged
 			End If
 		End Set
 	End Property
@@ -26337,7 +26559,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._OldInvoiceCommencing.Equals(value) = false) Then
+				Me.OnOldInvoiceCommencingChanging(value)
+				Me.SendPropertyChanging
 				Me._OldInvoiceCommencing = value
+				Me.SendPropertyChanged("OldInvoiceCommencing")
+				Me.OnOldInvoiceCommencingChanged
 			End If
 		End Set
 	End Property
@@ -26349,7 +26575,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._NewInvoiceCommencing.Equals(value) = false) Then
+				Me.OnNewInvoiceCommencingChanging(value)
+				Me.SendPropertyChanging
 				Me._NewInvoiceCommencing = value
+				Me.SendPropertyChanged("NewInvoiceCommencing")
+				Me.OnNewInvoiceCommencingChanged
 			End If
 		End Set
 	End Property
@@ -26361,7 +26591,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (String.Equals(Me._OldInvoicingFrequency, value) = false) Then
+				Me.OnOldInvoicingFrequencyChanging(value)
+				Me.SendPropertyChanging
 				Me._OldInvoicingFrequency = value
+				Me.SendPropertyChanged("OldInvoicingFrequency")
+				Me.OnOldInvoicingFrequencyChanged
 			End If
 		End Set
 	End Property
@@ -26373,7 +26607,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (String.Equals(Me._NewInvoicingFrequency, value) = false) Then
+				Me.OnNewInvoicingFrequencyChanging(value)
+				Me.SendPropertyChanging
 				Me._NewInvoicingFrequency = value
+				Me.SendPropertyChanged("NewInvoicingFrequency")
+				Me.OnNewInvoicingFrequencyChanged
 			End If
 		End Set
 	End Property
@@ -26385,7 +26623,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._OldContractStartDate.Equals(value) = false) Then
+				Me.OnOldContractStartDateChanging(value)
+				Me.SendPropertyChanging
 				Me._OldContractStartDate = value
+				Me.SendPropertyChanged("OldContractStartDate")
+				Me.OnOldContractStartDateChanged
 			End If
 		End Set
 	End Property
@@ -26397,7 +26639,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._NewContractStartDate.Equals(value) = false) Then
+				Me.OnNewContractStartDateChanging(value)
+				Me.SendPropertyChanging
 				Me._NewContractStartDate = value
+				Me.SendPropertyChanged("NewContractStartDate")
+				Me.OnNewContractStartDateChanged
 			End If
 		End Set
 	End Property
@@ -26409,7 +26655,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (String.Equals(Me._FieldType, value) = false) Then
+				Me.OnFieldTypeChanging(value)
+				Me.SendPropertyChanging
 				Me._FieldType = value
+				Me.SendPropertyChanged("FieldType")
+				Me.OnFieldTypeChanged
 			End If
 		End Set
 	End Property
@@ -26421,7 +26671,11 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (String.Equals(Me._OldService, value) = false) Then
+				Me.OnOldServiceChanging(value)
+				Me.SendPropertyChanging
 				Me._OldService = value
+				Me.SendPropertyChanged("OldService")
+				Me.OnOldServiceChanged
 			End If
 		End Set
 	End Property
@@ -26433,10 +26687,32 @@ Partial Public Class tblRevenueChangeAudit
 		End Get
 		Set
 			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
 				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
 			End If
 		End Set
 	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class
 
 Partial Public Class aspnet_Roles_GetAllRolesResult
