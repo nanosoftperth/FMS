@@ -66,7 +66,9 @@
             ShowMyAlertWindow();
         }
         function ProceedCuaProcess() {
-            alert('processing...');
+            document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
+            myAlertWithYesNoButton.Hide();
+            ShowMyAlertWindow();
         }
     </script>
 </head>
@@ -230,7 +232,6 @@
                                 <div class="container">
                                     <div class="row">
                                         <div style="align-items:center">
-                                            
                                             <dx:ASPxGridView ID="ServicesGridView" KeyFieldName="ServicesID" ClientInstanceName="ServicesGridView" DataSourceID="odsServicesView" runat="server" 
                                                 AutoGenerateColumns="False" Theme="SoftOrange" Width="620px" >
                                                 <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
@@ -257,6 +258,12 @@
                                                             </Columns>
                                                             <Settings ShowPreview="true" />
                                                             <SettingsPager PageSize="5" />
+                                                            <SettingsEditing Mode="PopupEditForm"/>
+                                                            <SettingsPopup>
+                                                                <EditForm  Modal="true" 
+                                                                    VerticalAlign="WindowCenter" 
+                                                                    HorizontalAlign="WindowCenter" Height="100px"/>                
+                                                            </SettingsPopup>
                                                         </dx:ASPxGridView>
                                                         <dx:ASPxButton ID="aspxButton4" Width="80px" runat="server" BackColor="Orange" AutoPostBack="false" Text="Process Rate Increases"><ClientSideEvents Click="function(s,e) {
                                                                 ViewCuaProcessRatesClick(hdnServiceID.GetText());

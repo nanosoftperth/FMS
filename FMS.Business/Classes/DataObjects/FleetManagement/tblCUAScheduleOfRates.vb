@@ -31,7 +31,7 @@
         Public Shared Sub Update(CuaScheduleOfRates As DataObjects.tblCUAScheduleOfRates)
             With New LINQtoSQLClassesDataContext
                 Dim tblCUAScheduleOfRate As FMS.Business.tblCUAScheduleOfRate = (From i In .tblCUAScheduleOfRates
-                                                                                 Where i.RatesAutoId.Equals(CuaScheduleOfRates.RatesAutoId)).SingleOrDefault
+                                                                                 Where i.RatesAutoId.Equals(CuaScheduleOfRates.RatesAutoId) And i.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
                 With tblCUAScheduleOfRate
                     .FromUnits = CuaScheduleOfRates.FromUnits
                     .ToUnits = CuaScheduleOfRates.ToUnits
@@ -44,7 +44,7 @@
         Public Shared Sub Delete(CuaScheduleOfRates As DataObjects.tblCUAScheduleOfRates)
             With New LINQtoSQLClassesDataContext
                 Dim tblCUAScheduleOfRate As FMS.Business.tblCUAScheduleOfRate = (From i In .tblCUAScheduleOfRates
-                                                                                 Where i.RatesAutoId.Equals(CuaScheduleOfRates.RatesAutoId)).SingleOrDefault
+                                                                                 Where i.RatesAutoId.Equals(CuaScheduleOfRates.RatesAutoId) And i.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
                 .tblCUAScheduleOfRates.DeleteOnSubmit(tblCUAScheduleOfRate)
                 .SubmitChanges()
                 .Dispose()

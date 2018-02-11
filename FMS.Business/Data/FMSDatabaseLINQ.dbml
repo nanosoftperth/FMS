@@ -1377,6 +1377,37 @@
       <Column Name="RatesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblRevenueChangeAudit" Member="tblRevenueChangeAudits">
+    <Type Name="tblRevenueChangeAudit">
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Customer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Site" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OldServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="OldServicePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="OldPerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NewServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NewServicePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NewPerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ChangeReasonCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ChangeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ChangeTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EffectiveDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OldContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NewContractCeasedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OldInvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NewInvoiceCommencing" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OldInvoicingFrequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="NewInvoicingFrequency" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="OldContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NewContractStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FieldType" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="OldService" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
