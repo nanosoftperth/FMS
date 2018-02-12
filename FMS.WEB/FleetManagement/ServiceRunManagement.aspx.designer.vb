@@ -86,15 +86,6 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents gvServiceRun As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
-    '''gvRun control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gvRun As Global.DevExpress.Web.ASPxGridView
-    
-    '''<summary>
     '''puUnassignedRun control.
     '''</summary>
     '''<remarks>
@@ -174,6 +165,15 @@ Partial Public Class ServiceRunManagement
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboDriverCompleted As Global.DevExpress.Web.ASPxComboBox
+    
+    '''<summary>
+    '''txtCompletedNotes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCompletedNotes As Global.DevExpress.Web.ASPxTextBox
     
     '''<summary>
     '''btnCompleteRun control.

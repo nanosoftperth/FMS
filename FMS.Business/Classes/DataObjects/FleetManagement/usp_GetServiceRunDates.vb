@@ -19,6 +19,8 @@
         Public Property SaturdayRun As Boolean
         Public Property SundayRun As Boolean
         Public Property InactiveRun As Boolean
+        Public Property DriverID As Guid
+        Public Property RunID As Guid
 
 #End Region
 
@@ -42,7 +44,8 @@
                 Me.ThursdayRun = .ThursdayRun
                 Me.FridayRun = .FridayRun
                 Me.SaturdayRun = .SaturdayRun
-                Me.SundayRun = .SundayRun
+                Me.DriverID = .DriverID
+                Me.RunID = .RunID
             End With
         End Sub
 #End Region
@@ -67,6 +70,7 @@
             End Try
 
         End Function
+
         Public Shared Function GetAllPerApplicationAndDistinctDriverName(StartDate As Date, EndDate As Date) As List(Of Drivers)
             Try
                 Dim appId = ThisSession.ApplicationID
