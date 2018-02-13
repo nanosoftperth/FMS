@@ -5,6 +5,55 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+        <script src="../Content/javascript/jquery-1.10.2.min.js"></script>
+    <script>
+        function RunClicked(s, e) {
+            $.ajax({
+                type: "POST",
+                url: "ClientAssignments.aspx/GetRunValues",
+                dataType: "json",
+                data: JSON.stringify({ Rid: s.GetValue() }),
+                contentType: "application/json",
+                crossDomain: true,
+                success: function (data) {
+                    if (data.d != null) {
+                        RunNumber.SetValue(data.d.RunNUmber);
+                        RunDriver.SetValue(data.d.RunDriver)
+                        RunName.SetValue(data.d.RunDescription)
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        function ClientCustomerClicked(s, e) {
+            $.ajax({
+                type: "POST",
+                url: "ClientAssignments.aspx/GetClientCustomerValues",
+                dataType: "json",
+                data: JSON.stringify({ Cid: s.GetValue() }),
+                contentType: "application/json",
+                crossDomain: true,
+                success: function (data) {
+                    if (data.d != null) {
+                        Name.SetValue(data.d.CustomerName);
+                        Address.SetValue(data.d.AddressLine1)
+                        AddressLine2.SetValue(data.d.AddressLine2)
+                        Suburb.SetValue(data.d.Suburb)
+                        PostCode.SetValue(data.d.PostCode)
+                        CustomerContactName.SetValue(data.d.CustomerContactName)
+                        CustomerPhone.SetValue(data.d.CustomerPhone)
+                        CustomerMobile.SetValue(data.d.CustomerMobile)
+                        CustomerFax.SetValue(data.d.CustomerFax)
+                        CustomerComments.SetValue(data.d.CustomerComments)
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -43,8 +92,21 @@
                             <Columns>
                                 <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="RunName" VisibleIndex="2" Visible="true"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="KeyNumber" VisibleIndex="3" Visible="true" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataComboBoxColumn FieldName="Rid" Caption="Run Description" VisibleIndex="2">
+                                    <PropertiesComboBox DataSourceID="odsRunsList" TextField="RunDescription" ValueField="Rid">
+                                        <ClientSideEvents SelectedIndexChanged="function(s,e){RunClicked(s,e);}" />
+                                        <ClearButton Visibility="Auto">
+                                        </ClearButton>
+                                    </PropertiesComboBox>
+                                </dx:GridViewDataComboBoxColumn> 
+                                <dx:GridViewDataComboBoxColumn FieldName="RunDriver" Caption="Run Driver" VisibleIndex="3" PropertiesComboBox-ClientInstanceName="RunDriver" ReadOnly="true">
+                                    <PropertiesComboBox DataSourceID="odsDriverList" TextField="DriverName" ValueField="Did">
+                                        <ClearButton Visibility="Auto">
+                                        </ClearButton>
+                                    </PropertiesComboBox>
+                                </dx:GridViewDataComboBoxColumn> 
+                                <dx:GridViewDataTextColumn FieldName="RunNumber" VisibleIndex="4" PropertiesTextEdit-ClientInstanceName="RunNumber" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="RunName" VisibleIndex="5" PropertiesTextEdit-ClientInstanceName="RunName" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
                             </Columns>
                             <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
@@ -55,6 +117,8 @@
                                 <asp:SessionParameter SessionField="RunID" DbType="Guid" Name="RID"></asp:SessionParameter>
                             </SelectParameters>
                         </asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsRunsList" runat="server" SelectMethod="GetRunList" TypeName="FMS.Business.DataObjects.FleetRun"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsDriverList" runat="server" SelectMethod="GetAllPerApplication" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
@@ -92,10 +156,21 @@
                                 <dx:GridViewDataTextColumn FieldName="ClientID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataComboBoxColumn FieldName="CustomerID" Caption="Customer Name" VisibleIndex="2">
                                     <PropertiesComboBox DataSourceID="odsCustomerList" TextField="Name" ValueField="CustomerID">
+                                        <ClientSideEvents SelectedIndexChanged="function(s,e){ClientCustomerClicked(s,e);}" />
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
                                     </PropertiesComboBox>
                                 </dx:GridViewDataComboBoxColumn> 
+                                <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="3" PropertiesTextEdit-ClientInstanceName="Name" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="50"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="4" PropertiesTextEdit-ClientInstanceName="Address" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="200"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="AddressLine2" VisibleIndex="5" PropertiesTextEdit-ClientInstanceName="AddressLine2" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="200"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Suburb" VisibleIndex="6" PropertiesTextEdit-ClientInstanceName="Suburb" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="22"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="PostCode" VisibleIndex="7" PropertiesTextEdit-ClientInstanceName="PostCode" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="4"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="CustomerContactName" VisibleIndex="8" PropertiesTextEdit-ClientInstanceName="CustomerContactName" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="50"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="CustomerPhone" VisibleIndex="9" PropertiesTextEdit-ClientInstanceName="CustomerPhone" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="22"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="CustomerMobile" VisibleIndex="10" PropertiesTextEdit-ClientInstanceName="CustomerMobile" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="22"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="CustomerFax" VisibleIndex="11" PropertiesTextEdit-ClientInstanceName="CustomerFax" Visible="true" ReadOnly="true" PropertiesTextEdit-MaxLength="22"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="CustomerComments" VisibleIndex="12" PropertiesTextEdit-ClientInstanceName="CustomerComments" Visible="true" ReadOnly="true"></dx:GridViewDataTextColumn>
                             </Columns>
                                 <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />

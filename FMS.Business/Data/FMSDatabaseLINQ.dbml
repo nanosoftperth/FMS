@@ -806,14 +806,6 @@
       <Column Name="MonthDescription" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.FleetClient" Member="FleetClients">
-    <Type Name="FleetClient">
-      <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.FleetDocuments" Member="FleetDocuments">
     <Type Name="FleetDocument">
       <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -822,13 +814,6 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PhotoBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.FleetRun" Member="FleetRuns">
-    <Type Name="FleetRun">
-      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RunName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KeyNumber" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.FleetRunClient" Member="FleetRunClients">
@@ -1428,6 +1413,31 @@
       <Column Name="RatesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ChangeAuditID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RateIncreasesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FleetRun" Member="FleetRuns">
+    <Type Name="FleetRun">
+      <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RunName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FleetClient" Member="FleetClients">
+    <Type Name="FleetClient">
+      <Column Name="ClientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Suburb" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="CustomerContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerMobile" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerFax" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
+      <Column Name="CustomerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

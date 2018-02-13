@@ -57,4 +57,15 @@ Public Class ClientAssignments
 
         hyperLink.NavigateUrl = [String].Format("javascript:{0}.DeleteRow({1})", container.Grid.ClientInstanceName, container.VisibleIndex)
     End Sub
+    <System.Web.Services.WebMethod()>
+    Public Shared Function GetRunValues(ByVal Rid As Integer)
+        Dim objRuns = FMS.Business.DataObjects.tblRuns.GetTblRunByRId(Rid)
+        Return objRuns
+    End Function
+    <System.Web.Services.WebMethod()>
+    Public Shared Function GetClientCustomerValues(ByVal Cid As Integer)
+        Dim objRuns = FMS.Business.DataObjects.tblCustomers.GetACustomerByCID(Cid)
+        Return objRuns
+    End Function
+
 End Class

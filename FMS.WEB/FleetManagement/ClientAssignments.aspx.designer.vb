@@ -59,6 +59,24 @@ Partial Public Class ClientAssignments
     Protected WithEvents odsRunMultiDocs As Global.System.Web.UI.WebControls.ObjectDataSource
     
     '''<summary>
+    '''odsRunsList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsRunsList As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsDriverList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsDriverList As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
     '''ClientGridView control.
     '''</summary>
     '''<remarks>

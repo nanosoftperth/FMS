@@ -5,6 +5,14 @@
         Public Property Name As String
         Public Property Address As String
         Public Property CustomerID As System.Nullable(Of Integer)
+        Public Property AddressLine2 As String
+        Public Property Suburb As String
+        Public Property PostCode As String
+        Public Property CustomerContactName As String
+        Public Property CustomerPhone As String
+        Public Property CustomerMobile As String
+        Public Property CustomerFax As String
+        Public Property CustomerComments As String
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Client As DataObjects.FleetClient)
@@ -13,6 +21,16 @@
                 With fleetClient
                     .ClientID = Guid.NewGuid
                     .CustomerID = Client.CustomerID
+                    .Name = Client.Name
+                    .Address = Client.Address
+                    .AddressLine2 = Client.AddressLine2
+                    .Suburb = Client.Suburb
+                    .PostCode = Client.PostCode
+                    .CustomerContactName = Client.CustomerContactName
+                    .CustomerPhone = Client.CustomerPhone
+                    .CustomerMobile = Client.CustomerMobile
+                    .CustomerFax = Client.CustomerFax
+                    .CustomerComments = Client.CustomerComments
                 End With
                 .FleetClients.InsertOnSubmit(fleetClient)
                 .SubmitChanges()
@@ -26,6 +44,16 @@
                 With fleetClient
                     .ClientID = Client.ClientID
                     .CustomerID = Client.CustomerID
+                    .Name = Client.Name
+                    .Address = Client.Address
+                    .AddressLine2 = Client.AddressLine2
+                    .Suburb = Client.Suburb
+                    .PostCode = Client.PostCode
+                    .CustomerContactName = Client.CustomerContactName
+                    .CustomerPhone = Client.CustomerPhone
+                    .CustomerMobile = Client.CustomerMobile
+                    .CustomerFax = Client.CustomerFax
+                    .CustomerComments = Client.CustomerComments
                 End With
                 .SubmitChanges()
                 .Dispose()
@@ -52,7 +80,10 @@
                                     Join c In .tblCustomers On
                                   i.CustomerID Equals c.Cid
                                     Order By c.CustomerName
-                                    Select New DataObjects.FleetClient() With {.Name = c.CustomerName, .ClientID = i.ClientID, .CustomerID = c.Cid}).ToList()
+                                    Select New DataObjects.FleetClient() With {.Name = c.CustomerName, .ClientID = i.ClientID, .CustomerID = c.Cid,
+                                        .Address = c.AddressLine1, .AddressLine2 = c.AddressLine2, .Suburb = c.Suburb, .PostCode = c.PostCode,
+                                        .CustomerContactName = c.CustomerContactName, .CustomerPhone = c.CustomerPhone, .CustomerMobile = c.CustomerMobile,
+                                        .CustomerFax = c.CustomerFax, .CustomerComments = c.CustomerComments}).ToList()
                     .Dispose()
                 End With
 
@@ -79,6 +110,13 @@
                 Throw ex
             End Try
         End Function
+        Public Shared Function GetAllCustomerByCustomerID(ByVal Cid As Integer) As DataObjects.tblCustomers
+            Try
+                Return DataObjects.tblCustomers.GetACustomerByCID(Cid)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()
@@ -90,6 +128,14 @@
                 Me.CustomerID = .CustomerID
                 Me.Name = .Name
                 Me.Address = .Address
+                Me.AddressLine2 = .AddressLine2
+                Me.Suburb = .Suburb
+                Me.PostCode = .PostCode
+                Me.CustomerContactName = .CustomerContactName
+                Me.CustomerPhone = .CustomerPhone
+                Me.CustomerMobile = .CustomerMobile
+                Me.CustomerFax = .CustomerFax
+                Me.CustomerComments = .CustomerComments
             End With
         End Sub
 #End Region

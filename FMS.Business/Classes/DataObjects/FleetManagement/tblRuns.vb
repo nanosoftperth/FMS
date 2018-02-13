@@ -158,6 +158,24 @@
 
 
         End Function
+        Public Shared Function GetTblRunByRId(ByVal Rid As Integer) As DataObjects.tblRuns
+            Try
+                Dim objRun As New DataObjects.tblRuns
+                With New LINQtoSQLClassesDataContext
+                    objRun = (From c In .tblRuns
+                              Order By c.RunDescription
+                              Where c.RunDescription IsNot Nothing And c.ApplicationID.Equals(ThisSession.ApplicationID) And c.Rid.Equals(Rid)
+                              Select New DataObjects.tblRuns(c)).FirstOrDefault
+                    .Dispose()
+                End With
+                Return objRun
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()
