@@ -6,7 +6,7 @@
         Public Property Rid As Integer
         Public Property RunNUmber As System.Nullable(Of Integer)
         Public Property RunDescription As String
-        Public Property RunDriver As System.Nullable(Of Short)
+        Public Property RunDriver As System.Nullable(Of Integer)
         Public Property MondayRun As Boolean
         Public Property TuesdayRun As Boolean
         Public Property WednesdayRun As Boolean

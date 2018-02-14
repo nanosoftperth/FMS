@@ -12,15 +12,15 @@ Public Class ClientAssignments
     End Sub
 
     Private Sub odsRunMultiDocs_Deleting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsRunMultiDocs.Deleting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).RunID = FMS.Business.ThisSession.RunID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).Rid = FMS.Business.ThisSession.RunID
     End Sub
 
     Private Sub odsRunMultiDocs_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsRunMultiDocs.Inserting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).RunID = FMS.Business.ThisSession.RunID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).Rid = FMS.Business.ThisSession.RunID
     End Sub
 
     Private Sub odsRunMultiDocs_Updating(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsRunMultiDocs.Updating
-        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).RunID = FMS.Business.ThisSession.RunID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).Rid = FMS.Business.ThisSession.RunID
     End Sub
 
     Public Sub ClientGridView_BeforePerformDataSelect(sender As Object, e As System.EventArgs)
@@ -28,15 +28,15 @@ Public Class ClientAssignments
     End Sub
 
     Private Sub odsMultiDocs_Deleting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsMultiDocs.Deleting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).ClientID = FMS.Business.ThisSession.ClientID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).Cid = FMS.Business.ThisSession.ClientID
     End Sub
 
     Private Sub odsMultiDocs_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsMultiDocs.Inserting
-        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).ClientID = FMS.Business.ThisSession.ClientID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).Cid = FMS.Business.ThisSession.ClientID
     End Sub
 
     Private Sub odsMultiDocs_Updating(sender As Object, e As ObjectDataSourceMethodEventArgs) Handles odsMultiDocs.Updating
-        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).ClientID = FMS.Business.ThisSession.ClientID
+        CType(e.InputParameters(0), FMS.Business.DataObjects.FleetDocument).Cid = FMS.Business.ThisSession.ClientID
     End Sub
 
     Protected Sub hyperLinkNew_Init(sender As Object, e As EventArgs)

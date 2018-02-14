@@ -42,20 +42,20 @@ Public Class ThisSession
         End Set
     End Property
 
-    Public Shared Property ClientID As Guid
+    Public Shared Property ClientID As Integer
         Get
             Return HttpContext.Current.Session("ClientID")
         End Get
-        Set(value As Guid)
+        Set(value As Integer)
             HttpContext.Current.Session("ClientID") = value
         End Set
     End Property
 
-    Public Shared Property RunID As Guid
+    Public Shared Property RunID As Integer
         Get
             Return HttpContext.Current.Session("RunID")
         End Get
-        Set(value As Guid)
+        Set(value As Integer)
             HttpContext.Current.Session("RunID") = value
         End Set
     End Property
