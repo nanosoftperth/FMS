@@ -36,7 +36,8 @@
                 <dx:GridViewDataTextColumn FieldName="DriverName" VisibleIndex="4" Visible="true"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="DriversLicenseNo" VisibleIndex="5" Visible="true"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataDateColumn FieldName="DriversLicenseExpiryDate" VisibleIndex="6" Visible="true"></dx:GridViewDataDateColumn>
-                <dx:GridViewDataCheckColumn FieldName="Inactive" VisibleIndex="7" Visible="true"></dx:GridViewDataCheckColumn>
+                <dx:GridViewDataCheckColumn FieldName="Technician" VisibleIndex="7" Visible="true"></dx:GridViewDataCheckColumn>
+                <dx:GridViewDataCheckColumn FieldName="Inactive" VisibleIndex="8" Visible="true"></dx:GridViewDataCheckColumn>
                 
             </Columns>
             <Templates>

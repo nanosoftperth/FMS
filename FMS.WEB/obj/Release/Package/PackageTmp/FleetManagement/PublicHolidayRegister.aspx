@@ -20,6 +20,7 @@
             SettingsBehavior-ConfirmDelete="true"
             SettingsText-ConfirmDelete="Are you sure you wish to delete the holiday?"
             Theme="SoftOrange" AutoGenerateColumns="False">
+            <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
                     ShowNewButtonInHeader="True" ShowDeleteButton="True"

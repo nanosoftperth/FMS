@@ -77,6 +77,7 @@
     Friend WithEvents XrLabel19 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents SelectAllSite As DevExpress.XtraReports.Parameters.Parameter
 
     'Required by the Designer
     Private components As System.ComponentModel.IContainer
@@ -96,6 +97,7 @@
         Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter5 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
@@ -155,6 +157,7 @@
         Me.CustomerList = New DevExpress.XtraReports.Parameters.Parameter()
         Me.SiteList = New DevExpress.XtraReports.Parameters.Parameter()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.SelectAllSite = New DevExpress.XtraReports.Parameters.Parameter()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -780,7 +783,17 @@
         Parameter4.Name = "CID"
         Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
         Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.SiteList]", GetType(Integer))
-        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter3, Parameter4})
+        Parameter5.Name = "AllSite"
+        Parameter5.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.SelectAllSite]", GetType(Boolean))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter3, Parameter4, Parameter5})
+        '
+        'SelectAllSite
+        '
+        Me.SelectAllSite.Description = "Select All Site"
+        Me.SelectAllSite.Name = "SelectAllSite"
+        Me.SelectAllSite.Type = GetType(Boolean)
+        Me.SelectAllSite.ValueInfo = "False"
         '
         'SiteListReport
         '
@@ -789,7 +802,7 @@
         Me.DataSource = Me.ObjectDataSource1
         Me.FormattingRuleSheet.AddRange(New DevExpress.XtraReports.UI.FormattingRule() {Me.FormattingRule1})
         Me.Margins = New System.Drawing.Printing.Margins(28, 29, 100, 100)
-        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.IncludeServiceInformation, Me.CustomerList, Me.SiteList})
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.IncludeServiceInformation, Me.CustomerList, Me.SelectAllSite, Me.SiteList})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.1"

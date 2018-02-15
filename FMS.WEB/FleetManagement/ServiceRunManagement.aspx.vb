@@ -20,8 +20,18 @@ Public Class ServiceRunManagement
                 Me.gvServiceRun.DataBind()
             End If
 
+            'Me.dteStart.Value = DateSerial(Now.Year, Now.Month, 1)
+            'Me.dteEnd.Value = DateSerial(Now.Year, Now.Month + 1, 0)
 
         End If
+    End Sub
+
+    Protected Sub dteStart_Init(sender As Object, e As EventArgs)
+        dteStart.Date = DateSerial(Now.Year, Now.Month, 1)
+    End Sub
+
+    Protected Sub dteEnd_Init(sender As Object, e As EventArgs)
+        dteEnd.Date = DateSerial(Now.Year, Now.Month + 1, 0)
     End Sub
     Protected Sub dteStart_ValueChanged(sender As Object, e As EventArgs)
 
@@ -53,6 +63,33 @@ Public Class ServiceRunManagement
 
 
     End Sub
+
+    Protected Sub LoadGrid()
+        Dim blnValidate As Boolean = False
+
+        If (IsDate(Me.dteStart.Value) = True) Then
+            If (IsDate(Me.dteEnd.Value) = True) Then
+                If (Me.dteStart.Value <= Me.dteEnd.Value) Then
+                    blnValidate = True
+                Else
+                    ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date date should be earlier date or same date of end date.');", True)
+                End If
+            Else
+                ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('End date date should be a valid date.');", True)
+                blnValidate = False
+            End If
+        Else
+            ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date should be a valid date.');", True)
+        End If
+
+        If blnValidate = True Then
+            PopulateServiceRunGrid()
+        End If
+
+
+    End Sub
+
+
     Protected Sub gvServiceRun_HtmlDataCellPrepared(sender As Object, e As ASPxGridViewTableDataCellEventArgs)
         Dim Rundate As String = ""
         Dim TmpRundate As String = ""
@@ -368,6 +405,7 @@ Public Class ServiceRunManagement
 #End Region
 
 #Region "Methods and Functions for Service Run"
+
     <WebMethod>
     Public Shared Function RemoveFleetRunCompletion(RunDate As Date, DriverID As Integer, RunNumber As Integer) As Boolean
 
@@ -507,6 +545,11 @@ Public Class ServiceRunManagement
                         Dim tNdx = dataColumn.ColumnName.IndexOf("_") + 1
                         Dim techname = dataColumn.ColumnName.Substring(tNdx, dataColumn.ColumnName.Length - tNdx)
 
+                        If (IsNumeric(techname) = True) Then
+                            techname = "Technician " + techname
+                        End If
+
+
                         column.Caption = techname
                     End If
 
@@ -514,6 +557,10 @@ Public Class ServiceRunManagement
                         column.HeaderStyle.BackColor = Drawing.Color.Green
                         Dim dvrNdx = dataColumn.ColumnName.IndexOf("_") + 1
                         Dim drivername = dataColumn.ColumnName.Substring(dvrNdx, dataColumn.ColumnName.Length - dvrNdx)
+
+                        If (IsNumeric(drivername) = True) Then
+                            drivername = "Driver " + drivername
+                        End If
 
                         column.Caption = drivername
                     End If
@@ -786,6 +833,8 @@ Public Class ServiceRunManagement
 
                 Dim fldTechnician As New ServiceRunFields
 
+
+
                 fldTechnician.FieldName = t.Techname
                 fldTechnician.FieldProperty = GetType(String)
                 fields.Add(fldTechnician)
@@ -893,6 +942,10 @@ Public Class ServiceRunManagement
 
 
     End Class
+
+
+
+
 
 #End Region
 

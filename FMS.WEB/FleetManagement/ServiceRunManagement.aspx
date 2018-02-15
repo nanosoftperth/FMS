@@ -32,11 +32,9 @@
 
             var DriverID = 0
             var Driver = fieldname.indexOf('Driver_');
-            if (Driver > -1)
-            {
+            if (Driver > -1) {
                 var ndx = fieldname.indexOf('_');
-                if (ndx > -1)
-                {
+                if (ndx > -1) {
                     DriverID = fieldname.substring(ndx + 1, fieldname.length);
                     setCookie('DriverID', DriverID, 1)
                     setCookie('DriverType', "DriverOnly", 1)
@@ -52,7 +50,7 @@
                     setCookie('DriverType', "Tech", 1)
                 }
             }
-            
+
         }
 
         //Create Cookie
@@ -157,9 +155,9 @@
                 var d = new Date(TranDate);
                 tmpdate = formatDateTddmmyyyy(d);
                 setCookie('RepDate', tmpdate, 1)
-                
+
             }
-            
+
             PageMethods.IsFleetRunCompleted(TranDate, DriverID, RunNumber, OnSuccessCompleted)
 
             //Show pop up only on drivers
@@ -168,7 +166,7 @@
             if (driverType == "DriverOnly") {
                 clientpuCompleteRun.Show();
             }
-            
+
         }
         //Populate UnAssigned Runs ComboBox
         function OnSuccessCompleted(response) {
@@ -179,23 +177,23 @@
                     var notes = response[i].Notes;
                     var driverid = response[i].DriverID;
 
-                    clientdteCompleted.SetDate(rundate);  
+                    clientdteCompleted.SetDate(rundate);
                     clientcboDriverCompleted.SetValue(driverid);
                     clienttxtCompletedNotes.SetText(notes);
                 }
 
             }
-            else {                
+            else {
 
                 clientcbxCompleteRun.SetChecked(false);
 
-                clientdteCompleted.SetDate(null);  
-                clientcboDriverCompleted.SetValue(null);  
+                clientdteCompleted.SetDate(null);
+                clientcboDriverCompleted.SetValue(null);
                 clienttxtCompletedNotes.SetText(null);
             }
-           
+
         }
-        
+
         function GetCellInfo(grid, element) {
             var gridMainElement = grid.GetMainElement();
             while (element && element !== gridMainElement && element.tagName !== "BODY") {
@@ -207,22 +205,20 @@
         }
 
         // function is called on changing focused row 
-        function OnGridFocusedRowChanged() {            
+        function OnGridFocusedRowChanged() {
             clientgvServiceRun.GetRowValues(clientgvServiceRun.GetFocusedRowIndex(), 'RunDate', OnGetRowValues);
         }
 
         // Value contains the "EmployeeID" field value returned from the server, not the list of values 
         function OnGetRowValues(Value) {
 
-            if (Value != null)
-            {
+            if (Value != null) {
                 var TranDate = '';
                 var strEndDate = '';
 
                 var sdateexist = checkCookie('SRStartDate');
 
-                if (sdateexist == true)
-                {
+                if (sdateexist == true) {
                     var sdate = getCookie('SRStartDate');
                     var edate = getCookie('SREndDate');
                     var numdays = getCookie('SRNumDays');
@@ -231,22 +227,20 @@
                         var d = new Date(sdate);
                         d.setDate(d.getDate() + i);
                         tmpdate = formatDate(d);    //
-                        
-                        if (tmpdate == Value)
-                        {
+
+                        if (tmpdate == Value) {
                             TranDate = formatDateTommddyyyy(d);
-                            break;                           
-                        }                       
+                            break;
+                        }
                     }
 
-                    if (TranDate.length > 0)
-                    {
+                    if (TranDate.length > 0) {
                         var d = new Date(TranDate);
                         tmpdate = formatDateTddmmyyyy(d);
                         setCookie('RepDate', tmpdate, 1)
-                        
+
                         PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
-                       
+
                     }
 
                 }
@@ -254,13 +248,12 @@
                 //Show pop up only on drivers
                 var driverType = getCookie('DriverType');
 
-                if (driverType == "DriverOnly")
-                {
-                    clientpuUnassignedRun.Show();      
+                if (driverType == "DriverOnly") {
+                    clientpuUnassignedRun.Show();
                 }
 
-               
-            }          
+
+            }
         }
 
         //Populate UnAssigned Runs ComboBox
@@ -273,7 +266,7 @@
         }
 
         function UnAssignedRun_OnSelectedIndexChanged(s, e) {
-            var id = s.GetSelectedItem().value;           
+            var id = s.GetSelectedItem().value;
         }
 
         //Get date in mmddyyyy format
@@ -343,14 +336,27 @@
             if (day.toString().length < 2) {
                 strDay = '0' + day.toString();
             }
-            else
-            {
+            else {
                 strDay = day.toString();
             }
-            
+
             return strDay + ' ' + monthNames[monthIndex];
         }
-     
+
+        //Call Load Grid
+        function CallLoadGrid(e)
+        {
+            alert('test');
+            $.ajax({
+                type: "POST",
+                url: "ServiceRunManagement.aspx/LoadGrid",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+
+            });
+        }
+
 
     </script>
 
@@ -359,6 +365,10 @@
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+
+            
         <div>
             <dx:ASPxPageControl ID="carTabPage" Width="100%" runat="server"
                 CssClass="dxtcFixed" ActiveTabIndex="1" EnableHierarchyRecreation="True">
@@ -370,7 +380,7 @@
                                     <tr>
                                         <td style="width: 20%">
                                             <dx:ASPxDateEdit ID="dteStart" runat="server" NullText="Start Date" Width="95%"
-                                                ClientInstanceName="clientdteStart"
+                                                ClientInstanceName="clientdteStart" OnInit="dteStart_Init"
                                                 AutoPostBack="false" OnValueChanged="dteStart_ValueChanged">
                                                 <TimeSectionProperties>
                                                     <TimeEditProperties>
@@ -382,7 +392,7 @@
                                         </td>
                                         <td style="width: 20%; text-align: left">
                                             <dx:ASPxDateEdit ID="dteEnd" runat="server" NullText="End Date" Width="95%"
-                                                ClientInstanceName="clientdteEnd"
+                                                ClientInstanceName="clientdteEnd" OnInit="dteEnd_Init"
                                                 AutoPostBack="false" OnValueChanged="dteEnd_ValueChanged">
                                                 <TimeSectionProperties>
                                                     <TimeEditProperties>
@@ -393,7 +403,17 @@
                                             </dx:ASPxDateEdit>
                                         </td>
                                         <td style="width: 20%">
-                                            <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" />
+                                            <%--<dx:ASPxButton ID="sample" runat="server" AutoPostBack="false" Text="Load" 
+                                                OnClick="btnLoad_Click" BackColor="Gray" ForeColor="Black">                                                        
+                                            </dx:ASPxButton>--%>
+                                            <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" />  
+                                            <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                <ContentTemplate>
+                                                    
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>--%>
+                                                                                     
+                                            
                                         </td>
                                         <td style="width: 10%; text-align: right; padding-right: 5px;">
                                             <%--<dx:ASPxImage ID="imgFilter" runat="server" ImageUrl="../Content/Images/FilterRecord.png" 
@@ -406,7 +426,7 @@
                                             <%--<dx:ASPxImage ID="imgSearch" runat="server" ImageUrl="../Content/Images/SearchRecord.png" 
                                                 Width="15px" Height="15px"></dx:ASPxImage>--%>
                                         </td>
-                                        <td style="width: 10%; padding-left: ">
+                                        <td style="width: 10%; padding-left: 5px;">
                                             <%--<dx:ASPxLabel ID="ASPxLabel1" runat="server" text="Search"></dx:ASPxLabel>--%>
                                         </td>
                                     </tr>
@@ -414,12 +434,13 @@
                                 <br />
                                 <dx:ASPxGridView ID="gvServiceRun" runat="server" ClientInstanceName="clientgvServiceRun"
                                     OnHtmlDataCellPrepared="gvServiceRun_HtmlDataCellPrepared"
-                                    OnCustomJSProperties="gvServiceRun_CustomJSProperties"  
+                                    OnCustomJSProperties="gvServiceRun_CustomJSProperties"
                                     EnableTheming="True" Theme="SoftOrange"
                                     KeyFieldName="ID">
-                                    <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
+                                    <SettingsBehavior AllowFocusedRow="true"></SettingsBehavior>
                                     <Styles>
                                         <Header CssClass="ServiceRunHeader" />
+                                        <FocusedRow BackColor="Transparent" ForeColor="Black"></FocusedRow>
                                     </Styles>
                                     <ClientSideEvents ContextMenu=" function(s, e) { 
                                         if (e.objectType == 'row') {
@@ -428,13 +449,13 @@
                                     } " />
 
                                     <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged" />
-                                    
+
                                 </dx:ASPxGridView>
-                                
+
                             </dx:ContentControl>
                         </ContentCollection>
                     </dx:TabPage>
-                   
+
                 </TabPages>
             </dx:ASPxPageControl>
             <dx:ASPxPopupControl ID="puUnassignedRun" runat="server" ClientInstanceName="clientpuUnassignedRun"
@@ -449,10 +470,10 @@
                                     <dx:ASPxLabel ID="lblSelectRun" runat="server" Text="Select Run "></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String" 
+                                    <dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String"
                                         ClientInstanceName="clientcboRun">
                                         <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
-                                    </dx:ASPxComboBox>                                    
+                                    </dx:ASPxComboBox>
                                 </td>
                             </tr>
                         </table>
@@ -461,7 +482,7 @@
                             OnClick="btnSelectServiceRun_Click">
                         </dx:ASPxButton>
                         <dx:ASPxButton ID="btnCancel" runat="server" Text="Cancel"
-                            OnClick="btnCancel_Click">
+                            OnClick="btnCancel_Click" AutoPostBack="false">
                         </dx:ASPxButton>
                     </dx:PopupControlContentControl>
                 </ContentCollection>
@@ -475,8 +496,9 @@
                         <table>
                             <tr>
                                 <td>
-                                    <dx:ASPxCheckBox ID="cbxCompleteRun" runat="server" Text="Run Completed (Uncheck to delete completed run)" 
-                                        ClientInstanceName="clientcbxCompleteRun"></dx:ASPxCheckBox>
+                                    <dx:ASPxCheckBox ID="cbxCompleteRun" runat="server" Text="Run Completed (Uncheck to delete completed run)"
+                                        ClientInstanceName="clientcbxCompleteRun">
+                                    </dx:ASPxCheckBox>
                                     <%--<dx:ASPxLabel ID="lblCompleteRun" runat="server" Text="Complte Run"></dx:ASPxLabel>--%>
                                 </td>
                             </tr>
@@ -510,16 +532,15 @@
                                         TextField="DriverName" ValueField="DriverID" Width="100%" DataSourceID="odsDriver"
                                         EnableSynchronization="False" ClientInstanceName="clientcboDriverCompleted"
                                         NullText="Select Driver">
-                                       
                                     </dx:ASPxComboBox>
-                                    
+
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                     <dx:ASPxTextBox runat="server" id="txtCompletedNotes" ClientInstanceName="clienttxtCompletedNotes"
-                                         NullText="Enter Notes">
-                                     </dx:ASPxTextBox>
+                                    <dx:ASPxTextBox runat="server" ID="txtCompletedNotes" ClientInstanceName="clienttxtCompletedNotes"
+                                        NullText="Enter Notes">
+                                    </dx:ASPxTextBox>
                                 </td>
                             </tr>
                         </table>
@@ -535,9 +556,9 @@
             </dx:ASPxPopupControl>
         </div>
         <dx:ASPxPopupControl ID="puDialog" runat="server" ClientInstanceName="clientpuDialog"
-                Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
-                AllowDragging="True" PopupHorizontalAlign="WindowCenter"
-                PopupVerticalAlign="WindowCenter" ShowHeader="False">
+            Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
+            AllowDragging="True" PopupHorizontalAlign="WindowCenter"
+            PopupVerticalAlign="WindowCenter" ShowHeader="False">
             <ContentCollection>
                 <dx:PopupControlContentControl runat="server">
                     <dx:ASPxLabel ID="lblDialog" runat="server" Text="Your Text Here">
@@ -552,9 +573,10 @@
                 </dx:PopupControlContentControl>
             </ContentCollection>
         </dx:ASPxPopupControl>
-        
+
         <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
-        
+        </ContentTemplate>
+        </asp:UpdatePanel>
     </form>
 </body>
 </html>

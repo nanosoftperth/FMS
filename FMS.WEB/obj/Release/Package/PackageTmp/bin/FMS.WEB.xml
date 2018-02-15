@@ -2236,6 +2236,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ServiceRunManagement._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ServiceRunManagement._carTabPage">
 <summary>
 carTabPage control.
@@ -2290,15 +2299,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.ServiceRunManagement._gvRun">
-<summary>
-gvRun control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:FMS.WEB.ServiceRunManagement._puUnassignedRun">
 <summary>
 puUnassignedRun control.
@@ -2320,6 +2320,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ServiceRunManagement._cboRun">
 <summary>
 cboRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnSelectServiceRun">
+<summary>
+btnSelectServiceRun control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2353,22 +2362,95 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.ServiceRunManagement._btnCancelComplte">
+<member name="F:FMS.WEB.ServiceRunManagement._dteCompleted">
 <summary>
-btnCancelComplte control.
+dteCompleted control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="M:FMS.WEB.ServiceRunManagement.GetTechnician(System.DateTime,System.DateTime)">
- <summary>
- This is just for testing
- the content of the function will be change as soon as we know how to get
- the technicians
- </summary>
- <returns></returns>
+<member name="F:FMS.WEB.ServiceRunManagement._cboDriverCompleted">
+<summary>
+cboDriverCompleted control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._txtCompletedNotes">
+<summary>
+txtCompletedNotes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnCompleteRun">
+<summary>
+btnCompleteRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnCancelComplete">
+<summary>
+btnCancelComplete control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._puDialog">
+<summary>
+puDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._lblDialog">
+<summary>
+lblDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnDialogOK">
+<summary>
+btnDialogOK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._btnDialogCancel">
+<summary>
+btnDialogCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsDriver">
+<summary>
+odsDriver control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member>
 <member name="F:FMS.WEB.Services._form1">
 <summary>
@@ -4222,6 +4304,348 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.RateIncreases._RateIncreasesGridView">
 <summary>
 RateIncreasesGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._viewUpdateRates">
+<summary>
+viewUpdateRates control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._Panel2">
+<summary>
+Panel2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel1">
+<summary>
+ASPxLabel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._txtRateIncreaseDescription">
+<summary>
+txtRateIncreaseDescription control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel3">
+<summary>
+ASPxLabel3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._chkReportOnlyNoRateIncrease">
+<summary>
+chkReportOnlyNoRateIncrease control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel4">
+<summary>
+ASPxLabel4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._dtEffectiveDate">
+<summary>
+dtEffectiveDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel5">
+<summary>
+ASPxLabel5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._aspxButton1">
+<summary>
+aspxButton1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._aspxButton">
+<summary>
+aspxButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._viewCuaRates">
+<summary>
+viewCuaRates control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxPanel1">
+<summary>
+ASPxPanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ServicesGridView">
+<summary>
+ServicesGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._odsServicesView">
+<summary>
+odsServicesView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._odsCUAScheduleOfRates">
+<summary>
+odsCUAScheduleOfRates control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._viewProcessCuaRates">
+<summary>
+viewProcessCuaRates control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxPanel2">
+<summary>
+ASPxPanel2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel7">
+<summary>
+ASPxLabel7 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._cuaTxtIndustryGroup">
+<summary>
+cuaTxtIndustryGroup control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._cuaTxtIndustryGroupCode">
+<summary>
+cuaTxtIndustryGroupCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel8">
+<summary>
+ASPxLabel8 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._cuaTxtService">
+<summary>
+cuaTxtService control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._cuaTxtServiceCode">
+<summary>
+cuaTxtServiceCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel9">
+<summary>
+ASPxLabel9 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._cuaChkReportOnlyNoRateIncrease">
+<summary>
+cuaChkReportOnlyNoRateIncrease control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel10">
+<summary>
+ASPxLabel10 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._cuaDtEffectiveDate">
+<summary>
+cuaDtEffectiveDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxLabel6">
+<summary>
+ASPxLabel6 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._aspxButton4">
+<summary>
+aspxButton4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._aspxButton5">
+<summary>
+aspxButton5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._myAlert">
+<summary>
+myAlert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._Panel1">
+<summary>
+Panel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxButton7">
+<summary>
+ASPxButton7 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._myAlertWithYesNoButton">
+<summary>
+myAlertWithYesNoButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._ASPxPanel3">
+<summary>
+ASPxPanel3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._btnCuaYes">
+<summary>
+btnCuaYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._btnCuaNo">
+<summary>
+btnCuaNo control.
 </summary>
 <remarks>
 Auto-generated field.
