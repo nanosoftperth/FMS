@@ -61,6 +61,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml" />
@@ -238,6 +239,7 @@
     <Compile Include="Classes\ThisSession.vb" />
     <Compile Include="Classes\TimeZoneHelper.vb" />
     <Compile Include="Common\DictionarySerializer.vb" />
+    <Compile Include="Common\FileMaintenance.vb" />
     <Compile Include="Common\Utility.vb" />
     <Compile Include="Data\FMSDatabaseLINQ.designer.vb">
       <AutoGen>True</AutoGen>

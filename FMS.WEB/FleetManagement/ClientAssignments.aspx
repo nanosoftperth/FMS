@@ -52,7 +52,7 @@
                 }
             });
         }
-        
+
     </script>
 </head>
 <body>
@@ -63,13 +63,13 @@
             <dx:TabPage Name="Run" Text="Run">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="RunGridView" runat="server" DataSourceID="odsTblRuns" KeyFieldName="Rid" Width="550px" Theme="SoftOrange">
+                        <dx:ASPxGridView ID="RunGridView" runat="server" DataSourceID="odsTblRuns" KeyFieldName="Rid" Width="550px" Theme="SoftOrange" AutoGenerateColumns="False">
                             <SettingsDetail ShowDetailRow="true" />
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                             <Templates>
                                 <DetailRow>
-                                    <dx:ASPxGridView ID="RunDocGridView" runat="server" ClientInstanceName="RunDocGridView" DataSourceID="odsRunMultiDocs" KeyFieldName="DocumentID" Width="550px" Theme="SoftOrange" 
+                                    <dx:ASPxGridView ID="RunDocGridView" runat="server" ClientInstanceName="RunDocGridView" DataSourceID="odsRunMultiDocs" KeyFieldName="DocumentID" Width="550px" Theme="SoftOrange"
                                         AutoGenerateColumns="False" EditFormLayoutProperties-SettingsItems-VerticalAlign="Top" OnBeforePerformDataSelect="RunGridView_BeforePerformDataSelect">
                                         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -80,7 +80,7 @@
                                             <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="2" Visible="true"></dx:GridViewDataTextColumn>
                                             <dx:GridViewDataBinaryImageColumn FieldName="PhotoBinary">
                                                 <PropertiesBinaryImage ImageHeight="170px" ImageWidth="160px">
-                                                    <EditingSettings Enabled="true" UploadSettings-UploadValidationSettings-MaxFileSize="4194304"/> 
+                                                    <EditingSettings Enabled="true" UploadSettings-UploadValidationSettings-MaxFileSize="4194304" />
                                                 </PropertiesBinaryImage>
                                             </dx:GridViewDataBinaryImageColumn>
                                         </Columns>
@@ -90,12 +90,19 @@
                                 </DetailRow>
                             </Templates>
                             <Columns>
+                                <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="1" PropertiesTextEdit-ClientInstanceName="RunNumber" Visible="false" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Rid" VisibleIndex="2" PropertiesTextEdit-ClientInstanceName="RunName" Visible="true" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Rid" VisibleIndex="2" PropertiesTextEdit-ClientInstanceName="RunName" Visible="false" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunNUmber" VisibleIndex="3"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="RunDescription" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="RunDriver" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="RunDescription" VisibleIndex="4" SortOrder="Ascending"></dx:GridViewDataTextColumn>
+                                <%--<dx:GridViewDataTextColumn FieldName="RunDriver" VisibleIndex="5"></dx:GridViewDataTextColumn>--%>
+                                <dx:GridViewDataComboBoxColumn FieldName="RunDriver" Caption="Run Driver" VisibleIndex="2" SortIndex="0" SortOrder="Ascending">
+                                    <PropertiesComboBox DataSourceID="odsDriverList" TextField="DriverName" ValueField="Did">
+                                        <ClearButton Visibility="Auto">
+                                        </ClearButton>
+                                    </PropertiesComboBox>
+                                </dx:GridViewDataComboBoxColumn>  
                                 <dx:GridViewDataCheckColumn FieldName="MondayRun" VisibleIndex="6"></dx:GridViewDataCheckColumn>
                                 <dx:GridViewDataCheckColumn FieldName="TuesdayRun" VisibleIndex="7"></dx:GridViewDataCheckColumn>
                                 <dx:GridViewDataCheckColumn FieldName="WednesdayRun" VisibleIndex="8"></dx:GridViewDataCheckColumn>
@@ -108,7 +115,7 @@
                             <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
                         </dx:ASPxGridView>
-                        <asp:ObjectDataSource ID="odsTblRuns" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsTblRuns" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns" DataObjectTypeName="FMS.Business.DataObjects.tblRuns" DeleteMethod="DeleteRun" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
                         <asp:ObjectDataSource ID="odsRun" runat="server" DataObjectTypeName="FMS.Business.DataObjects.FleetRun" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.FleetRun" UpdateMethod="Update"></asp:ObjectDataSource>
                         <asp:ObjectDataSource ID="odsRunMultiDocs" runat="server" SelectMethod="GetAllByRunRID" TypeName="FMS.Business.DataObjects.FleetDocument" DataObjectTypeName="FMS.Business.DataObjects.FleetDocument" UpdateMethod="Update" DeleteMethod="Delete" InsertMethod="Create">
                             <SelectParameters>
@@ -183,7 +190,6 @@
                                                 <ClearButton Visibility="Auto"></ClearButton>
                                             </TimeEditProperties>
                                         </TimeSectionProperties>
-
                                         <ClearButton Visibility="Auto"></ClearButton>
                                     </PropertiesDateEdit>
                                 </dx:GridViewDataDateColumn>

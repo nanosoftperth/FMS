@@ -1,13 +1,13 @@
-﻿Namespace DataObjects
+﻿Imports FMS.Business.DataObjects.FileMaintenance
+Namespace DataObjects
     Public Class FleetDocument
 #Region "Properties / enums"
         Public Property DocumentID As System.Guid
         Public Property Cid As System.Nullable(Of Integer)
-        Public Property ClientID As System.Nullable(Of System.Guid)
         Public Property Rid As System.Nullable(Of Integer)
-        Public Property RunID As System.Nullable(Of System.Guid)
         Public Property Description As String
         Public Property PhotoBinary() As Byte()
+        Public Property PhotoLocation As String
         Public Property CreatedDate As System.Nullable(Of Date)
 #End Region
 #Region "CRUD"
@@ -17,11 +17,9 @@
                 With fleetDocument
                     .DocumentID = Guid.NewGuid
                     .Cid = Document.Cid
-                    .ClientID = Document.ClientID
                     .Rid = Document.Rid
-                    .RunID = Document.RunID
                     .Description = Document.Description
-                    .PhotoBinary = Document.PhotoBinary
+                    .PhotoLocation = SaveImageToFolder(Document.PhotoBinary, Document.Cid, Document.Rid)
                     .CreatedDate = Date.Now
                 End With
                 .FleetDocuments.InsertOnSubmit(fleetDocument)
@@ -30,17 +28,16 @@
             End With
         End Sub
         Public Shared Sub Update(Document As DataObjects.FleetDocument)
+
             With New LINQtoSQLClassesDataContext
                 Dim fleetDocument As FMS.Business.FleetDocument = (From i In .FleetDocuments
                                                                    Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
                 With fleetDocument
                     .DocumentID = Document.DocumentID
                     .Cid = Document.Cid
-                    .ClientID = Document.ClientID
                     .Rid = Document.Rid
-                    .RunID = Document.RunID
                     .Description = Document.Description
-                    .PhotoBinary = Document.PhotoBinary
+                    .PhotoLocation = SaveImageToFolder(Document.PhotoBinary, Document.Cid, Document.Rid, fleetDocument.PhotoLocation)
                     .CreatedDate = Date.Now
                 End With
                 .SubmitChanges()
@@ -48,18 +45,20 @@
             End With
         End Sub
         Public Shared Sub Delete(Document As DataObjects.FleetDocument)
+            Dim fleetDocument As FMS.Business.FleetDocument
             With New LINQtoSQLClassesDataContext
-                Dim fleetDocument As FMS.Business.FleetDocument = (From i In .FleetDocuments
-                                                                   Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
+                fleetDocument = (From i In .FleetDocuments
+                                 Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
                 .FleetDocuments.DeleteOnSubmit(fleetDocument)
                 .SubmitChanges()
                 .Dispose()
             End With
+            DeleteImageFile(fleetDocument.PhotoLocation)
         End Sub
         Public Shared Sub DeleteByRunID(RunID As Guid)
             With New LINQtoSQLClassesDataContext
                 Dim fleetDocs = (From i In .FleetDocuments
-                                 Where i.RunID.Equals(RunID)).ToList()
+                                 Where i.Rid.Equals(RunID)).ToList()
                 For Each fleetDoc In fleetDocs
                     Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
                     .FleetDocuments.DeleteOnSubmit(fleetDocument)
@@ -71,7 +70,7 @@
         Public Shared Sub DeleteByClientID(ClientID As Guid)
             With New LINQtoSQLClassesDataContext
                 Dim fleetDocs = (From i In .FleetDocuments
-                                 Where i.ClientID.Equals(ClientID)).ToList()
+                                 Where i.Cid.Equals(ClientID)).ToList()
                 For Each fleetDoc In fleetDocs
                     Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
                     .FleetDocuments.DeleteOnSubmit(fleetDoc)
@@ -106,7 +105,7 @@
                 With New LINQtoSQLClassesDataContext
                     fleetDocuments = (From i In .FleetDocuments
                                       Order By i.Description
-                                      Where i.ClientID.Equals(CID)
+                                      Where i.Cid.Equals(CID)
                                       Select New DataObjects.FleetDocument(i)).ToList()
                     .Dispose()
                 End With
@@ -128,6 +127,10 @@
                     .Dispose()
                 End With
 
+                For Each fDoc In fleetDocuments
+                    fDoc.PhotoBinary = imgToByteConverter(fDoc.PhotoLocation)
+                Next
+
                 Return fleetDocuments
             Catch ex As Exception
                 Throw ex
@@ -140,7 +143,7 @@
                 With New LINQtoSQLClassesDataContext
                     fleetDocuments = (From i In .FleetDocuments
                                       Order By i.Description
-                                      Where i.RunID.Equals(RID)
+                                      Where i.Rid.Equals(RID)
                                       Select New DataObjects.FleetDocument(i)).ToList()
                     .Dispose()
                 End With
@@ -160,6 +163,11 @@
                                       Select New DataObjects.FleetDocument(i)).ToList()
                     .Dispose()
                 End With
+
+                For Each fDoc In fleetDocuments
+                    fDoc.PhotoBinary = imgToByteConverter(fDoc.PhotoLocation)
+                Next
+
                 Return fleetDocuments
             Catch ex As Exception
                 Throw ex
@@ -174,11 +182,9 @@
             With objDocument
                 Me.DocumentID = .DocumentID
                 Me.Cid = .Cid
-                Me.ClientID = .ClientID
                 Me.Rid = .Rid
-                Me.RunID = .RunID
                 Me.Description = .Description
-                Me.PhotoBinary = .PhotoBinary.ToArray
+                Me.PhotoLocation = .PhotoLocation
                 Me.CreatedDate = .CreatedDate
             End With
         End Sub
