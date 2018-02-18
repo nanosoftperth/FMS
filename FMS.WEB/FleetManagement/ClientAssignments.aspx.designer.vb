@@ -131,22 +131,22 @@ Partial Public Class ClientAssignments
     Protected WithEvents odsCustomerList As Global.System.Web.UI.WebControls.ObjectDataSource
     
     '''<summary>
-    '''RunCompletionGridView control.
+    '''GetRunsForAssignmentGridView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RunCompletionGridView As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents GetRunsForAssignmentGridView As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
-    '''odsRunCompletion control.
+    '''odsGetRunsForAssignment control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsRunCompletion As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsGetRunsForAssignment As Global.System.Web.UI.WebControls.ObjectDataSource
     
     '''<summary>
     '''odsTblDrivers control.

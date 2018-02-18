@@ -67,5 +67,4 @@ Public Class ClientAssignments
         Dim objRuns = FMS.Business.DataObjects.tblCustomers.GetACustomerByCID(Cid)
         Return objRuns
     End Function
-
 End Class

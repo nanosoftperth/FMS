@@ -178,6 +178,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunDates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunListByRunNumberReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunListingReport.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunsForAssignment.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunValuesReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetRunValueSummaryReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\usp_GetSalesReportSuburb.vb" />

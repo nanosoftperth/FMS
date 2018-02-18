@@ -277,31 +277,30 @@
             <dx:TabPage Name="RunCompletion" Text="Run Assignments">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="RunCompletionGridView" runat="server" DataSourceID="odsRunCompletion" KeyFieldName="RunCompletionID" Width="550px" Theme="SoftOrange">
+                        <dx:ASPxGridView ID="GetRunsForAssignmentGridView" runat="server" KeyFieldName="UniqueID" DataSourceID="odsGetRunsForAssignment" 
+                            Width="750px" Theme="SoftOrange" AutoGenerateColumns="False">
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                            <SettingsEditing EditFormColumnCount="3" />
                             <Columns>
-                                <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
-                                <dx:GridViewDataTextColumn FieldName="RunCompletionID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataComboBoxColumn FieldName="RunID" Caption="Run Name" VisibleIndex="2" SortIndex="0" SortOrder="Ascending">
-                                    <PropertiesComboBox DataSourceID="odsRun" TextField="RunName" ValueField="RunID">
+                                <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True">
+                                </dx:GridViewCommandColumn>
+                                <dx:GridViewDataTextColumn FieldName="UniqueID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Rid" VisibleIndex="1" Visible="true" ReadOnly="true"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="RunNUmber" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="RunDescription" VisibleIndex="3" SortOrder="Ascending"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataComboBoxColumn FieldName="DriverId" Caption="Driver Name" VisibleIndex="4" SortIndex="0" SortOrder="Ascending">
+                                    <PropertiesComboBox DataSourceID="odsDriverList" TextField="DriverName" ValueField="Did">
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
                                     </PropertiesComboBox>
                                 </dx:GridViewDataComboBoxColumn>  
-                                <dx:GridViewDataComboBoxColumn FieldName="DriverID" Caption="Driver Name" VisibleIndex="3">
-                                    <PropertiesComboBox DataSourceID="odsTblDrivers" TextField="DriverName" ValueField="DriverID">
-                                        <ClearButton Visibility="Auto">
-                                        </ClearButton>
-                                    </PropertiesComboBox>
-                                </dx:GridViewDataComboBoxColumn>  
-                                <dx:GridViewDataDateColumn FieldName="RunDate" VisibleIndex="4" Visible="true"></dx:GridViewDataDateColumn>
-                                <dx:GridViewDataTextColumn FieldName="Notes" VisibleIndex="5" Visible="true"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataDateColumn FieldName="DateOfRun" VisibleIndex="5" Visible="true"></dx:GridViewDataDateColumn>
                             </Columns>
-                                <Settings ShowPreview="true" />
+                            <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
                         </dx:ASPxGridView>
-                        <asp:ObjectDataSource ID="odsRunCompletion" runat="server" DataObjectTypeName="FMS.Business.DataObjects.FleetRunCompletion" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.FleetRunCompletion" UpdateMethod="Update"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsGetRunsForAssignment" runat="server" DataObjectTypeName="FMS.Business.DataObjects.usp_GetRunsForAssignment" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.usp_GetRunsForAssignment" UpdateMethod="Update"></asp:ObjectDataSource>
                         <asp:ObjectDataSource ID="odsTblDrivers" runat="server" SelectMethod="GetAllDrivers" TypeName="FMS.Business.DataObjects.usp_GetAllDrivers"></asp:ObjectDataSource>
                     </dx:ContentControl>
                 </ContentCollection>
