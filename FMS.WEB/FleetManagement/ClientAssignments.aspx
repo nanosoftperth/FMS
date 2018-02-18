@@ -7,52 +7,6 @@
     <title></title>
         <script src="../Content/javascript/jquery-1.10.2.min.js"></script>
     <script>
-        function RunClicked(s, e) {
-            $.ajax({
-                type: "POST",
-                url: "ClientAssignments.aspx/GetRunValues",
-                dataType: "json",
-                data: JSON.stringify({ Rid: s.GetValue() }),
-                contentType: "application/json",
-                crossDomain: true,
-                success: function (data) {
-                    if (data.d != null) {
-                        RunNumber.SetValue(data.d.RunNUmber);
-                        RunDriver.SetValue(data.d.RunDriver)
-                        RunName.SetValue(data.d.RunDescription)
-                    }
-                },
-                error: function () {
-                }
-            });
-        }
-        function ClientCustomerClicked(s, e) {
-            $.ajax({
-                type: "POST",
-                url: "ClientAssignments.aspx/GetClientCustomerValues",
-                dataType: "json",
-                data: JSON.stringify({ Cid: s.GetValue() }),
-                contentType: "application/json",
-                crossDomain: true,
-                success: function (data) {
-                    if (data.d != null) {
-                        Name.SetValue(data.d.CustomerName);
-                        Address.SetValue(data.d.AddressLine1)
-                        AddressLine2.SetValue(data.d.AddressLine2)
-                        Suburb.SetValue(data.d.Suburb)
-                        PostCode.SetValue(data.d.PostCode)
-                        CustomerContactName.SetValue(data.d.CustomerContactName)
-                        CustomerPhone.SetValue(data.d.CustomerPhone)
-                        CustomerMobile.SetValue(data.d.CustomerMobile)
-                        CustomerFax.SetValue(data.d.CustomerFax)
-                        CustomerComments.SetValue(data.d.CustomerComments)
-                    }
-                },
-                error: function () {
-                }
-            });
-        }
-
     </script>
 </head>
 <body>
