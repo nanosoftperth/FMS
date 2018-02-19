@@ -120,8 +120,10 @@
             var sdateexist = checkCookie('SRStartDate');
 
             if (TechExist > -1) {
-                var ndx = fieldName.indexOf("_") + 1;
-                TechID = fieldName.substring(ndx, fieldName.length);
+                var ndxS = fieldName.indexOf("_") + 1;
+                var ndxE = fieldName.indexOf("-");
+                TechID = fieldName.substring(ndxS, ndxE);
+                DriverID = TechID
                 setCookie('DriverType', "Tech", 1)
             }
 
@@ -165,14 +167,17 @@
 
             }
 
-            PageMethods.IsFleetRunCompleted(TranDate, DriverID, RunNumber, OnSuccessCompleted)
+            //PageMethods.IsFleetRunCompleted(TranDate, DriverID, RunNumber, OnSuccessCompleted)
+            PageMethods.IsFleetRunCompleted(TranDate, fieldName, RunNumber, OnSuccessCompleted)
+
+            clientpuCompleteRun.Show();
 
             //Show pop up only on drivers
-            var driverType = getCookie('DriverType');
+            //var driverType = getCookie('DriverType');
 
-            if (driverType == "DriverOnly") {
-                clientpuCompleteRun.Show();
-            }
+            //if (driverType == "DriverOnly") {
+            //    clientpuCompleteRun.Show();
+            //}
 
         }
         //Populate UnAssigned Runs ComboBox
@@ -248,7 +253,7 @@
 
                         //PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
                         showLoadingProcess('Loading Run Definitions. Please wait...')
-                        PageMethods.GetUnAssignedRuns(OnSuccess);
+                        PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
 
                     }
 

@@ -287,7 +287,6 @@ Public Class ServiceRunManagement
                     End If
 
                     Me.puDialog.ShowOnPageLoad = False
-
                     btnLoad_Click(sender, e)
 
                 End If
@@ -305,9 +304,9 @@ Public Class ServiceRunManagement
                     TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
                 End If
 
-                If Not Request.Cookies("RunNumber") Is Nothing Then
-                    RunNumber = Server.HtmlEncode(Request.Cookies("RunNumber").Value)
-                End If
+                'If Not Request.Cookies("RunNumber") Is Nothing Then
+                '    RunNumber = Server.HtmlEncode(Request.Cookies("RunNumber").Value)
+                'End If
 
                 Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
                                                                                             x.Driver = DriverID).FirstOrDefault()
@@ -324,6 +323,7 @@ Public Class ServiceRunManagement
                                 ListFleetRunCompletion.RunID = run.RunID
                                 ListFleetRunCompletion.DriverID = Guid.Parse(Me.cboDriverCompleted.Value.ToString())
                                 ListFleetRunCompletion.RunDate = Me.dteCompleted.Value
+                                ListFleetRunCompletion.Notes = Me.txtCompletedNotes.Text
 
                                 FMS.Business.DataObjects.FleetRunCompletion.Update(ListFleetRunCompletion)
 
@@ -348,6 +348,8 @@ Public Class ServiceRunManagement
 
                 End If
 
+                Me.puDialog.ShowOnPageLoad = False
+                btnLoad_Click(sender, e)
         End Select
     End Sub
     Protected Sub btnDialogCancel_Click(sender As Object, e As EventArgs)
@@ -367,9 +369,9 @@ Public Class ServiceRunManagement
             TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
         End If
 
-        If Not Request.Cookies("RunNumber") Is Nothing Then
-            RunNumber = Server.HtmlEncode(Request.Cookies("RunNumber").Value)
-        End If
+        'If Not Request.Cookies("RunNumber") Is Nothing Then
+        '    RunNumber = Server.HtmlEncode(Request.Cookies("RunNumber").Value)
+        'End If
 
         Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
                                                                                             x.Driver = DriverID).FirstOrDefault()
@@ -385,7 +387,6 @@ Public Class ServiceRunManagement
                 frc.DriverID = Guid.Parse(Me.cboDriverCompleted.Value.ToString())
                 frc.RunDate = Me.dteCompleted.Value
                 frc.Notes = Me.txtCompletedNotes.Text
-                Dim o As Object = ""
 
                 FMS.Business.DataObjects.FleetRunCompletion.Create(frc)
 
@@ -448,17 +449,34 @@ Public Class ServiceRunManagement
 
     End Function
     <WebMethod>
-    Public Shared Function IsFleetRunCompleted(RunDate As Date, DriverID As Integer, RunNumber As Integer) As List(Of FMS.Business.DataObjects.FleetRunCompletion)
-        Dim RunID As Guid
-        Dim DvrID As Guid
+    Public Shared Function IsFleetRunCompleted(RunDate As Date, fieldname As String, RunNumber As String) As List(Of FMS.Business.DataObjects.FleetRunCompletion)
+        Dim RunID As New Guid
+        Dim DriverID As New Guid
 
-        Dim listSrvRun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(RunDate, RunDate).Where(
-            Function(r) r.Driver = DriverID And r.RunNUmber = RunNumber).FirstOrDefault()
+        Dim Did = fieldname.Substring(fieldname.IndexOf("_") + 1, fieldname.IndexOf("-") - (fieldname.IndexOf("_") + 1))
+
+        Dim objDriver = FMS.Business.DataObjects.tblDrivers.GetAllPerApplication().Where(Function(d) d.Did = Did).FirstOrDefault()
+
+        If (objDriver IsNot Nothing) Then
+            DriverID = objDriver.DriverID
+        End If
+
+        Dim listSrvRun = New FMS.Business.DataObjects.usp_GetServiceRunDates
+
+        Dim nDxTech = fieldname.IndexOf("Tech")
+        If (nDxTech > -1) Then
+            listSrvRun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(RunDate, RunDate).Where(
+            Function(r) r.DriverID = DriverID And r.RunDescription.Contains(RunNumber)).FirstOrDefault()
+        End If
+
+        Dim nDxDriver = fieldname.IndexOf("Driver")
+        If (nDxDriver > -1) Then
+            listSrvRun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(RunDate, RunDate).Where(
+            Function(r) r.DriverID = DriverID And r.Rid = RunNumber).FirstOrDefault()
+        End If
 
         If (listSrvRun IsNot Nothing) Then
             RunID = listSrvRun.RunID
-            DvrID = listSrvRun.DriverID
-
         End If
 
         Dim objListCompletion As New List(Of FMS.Business.DataObjects.FleetRunCompletion)
@@ -475,58 +493,106 @@ Public Class ServiceRunManagement
                 rowrun.Notes = run.Notes
 
                 objListCompletion.Add(rowrun)
-
             Next
-
         End If
+
+        'Dim listSrvRun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(RunDate, RunDate).Where(
+        '    Function(r) r.Driver = DriverID And r.RunNUmber = RunNumber).FirstOrDefault()
+
+        'If (listSrvRun IsNot Nothing) Then
+        '    RunID = listSrvRun.RunID
+        '    DvrID = listSrvRun.DriverID
+
+        'End If
+
+        'Dim objListCompletion As New List(Of FMS.Business.DataObjects.FleetRunCompletion)
+        'Dim objList = FMS.Business.DataObjects.FleetRunCompletion.GetAll().Where(Function(r) r.RunID = RunID).ToList()
+
+        'If (objList.Count > 0) Then
+        '    For Each run In objList
+        '        Dim rowrun As New FMS.Business.DataObjects.FleetRunCompletion
+
+        '        rowrun.DriverID = run.DriverID
+        '        rowrun.RunCompletionID = run.RunCompletionID
+        '        rowrun.RunDate = run.RunDate
+        '        rowrun.RunID = run.RunID
+        '        rowrun.Notes = run.Notes
+
+        '        objListCompletion.Add(rowrun)
+
+        '    Next
+
+        'End If
 
         Return objListCompletion
 
     End Function
     <WebMethod>
-    Public Shared Function GetUnAssignedRuns() As List(Of FMS.Business.DataObjects.tblRuns)
-        Dim ListRuns = New List(Of FMS.Business.DataObjects.tblRuns)
+    Public Shared Function GetUnAssignedRuns(Rundate As Date) As List(Of FMS.Business.DataObjects.usp_GetRunDatesWithRuns)
+        Dim ListRuns = New List(Of FMS.Business.DataObjects.usp_GetRunDatesWithRuns)
 
-        Dim objList = FMS.Business.DataObjects.tblRuns.GetAll().GroupBy(Function(g) g.RunDescription).Select(Function(s) s.First)
+        Dim objList = FMS.Business.DataObjects.usp_GetRunDatesWithRuns.GetAll(Rundate).ToList()
 
         If (objList.Count > 0) Then
 
             For Each item In objList
-                Dim row = New FMS.Business.DataObjects.tblRuns
-                row.ApplicationID = item.ApplicationID
-                row.RunID = item.RunID
-                row.Rid = item.Rid
-                row.RunNUmber = item.RunNUmber
-                row.RunDescription = item.RunDescription
-                row.RunDriver = item.RunDriver
-                row.InactiveRun = item.InactiveRun
-                'row.DateOfRun = item.DateOfRun
-                'row.Rid = item.Rid
-                'row.RunDescription = item.RunDescription
-                'row.RunNUmber = item.RunNUmber
-                ListRuns.Add(row)
+                Dim row = New FMS.Business.DataObjects.usp_GetRunDatesWithRuns
 
+                row.Rid = item.Rid
+                row.RunDescription = item.RunDescription
+
+                ListRuns.Add(row)
 
             Next
 
         End If
 
-        'Dim objList = FMS.Business.DataObjects.usp_GetUnAssignedRuns.GetAllPerApplication(DateRun, DateRun).ToList()
+
+        'Dim objList = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(Rundate, Rundate)
 
         'If (objList.Count > 0) Then
 
         '    For Each item In objList
-        '        Dim row = New FMS.Business.DataObjects.usp_GetUnAssignedRuns
+        '        Dim row = New FMS.Business.DataObjects.usp_GetServiceRunDates
 
         '        row.ApplicationId = item.ApplicationId
-        '        row.DateOfRun = item.DateOfRun
+        '        row.RunID = item.RunID
         '        row.Rid = item.Rid
-        '        row.RunDescription = item.RunDescription
         '        row.RunNUmber = item.RunNUmber
-        '        ListRuns.Add(row)
+        '        row.RunDescription = item.RunDescription
+        '        row.DateOfRun = item.DateOfRun
+        '        row.Driver = item.Driver
+        '        row.DriverName = item.DriverName
+        '        row.DriverID = item.DriverID
+
         '    Next
 
         'End If
+
+        'Dim objList = FMS.Business.DataObjects.tblRuns.GetAll().GroupBy(Function(g) g.RunDescription).Select(Function(s) s.First)
+
+        'If (objList.Count > 0) Then
+
+        '    For Each item In objList
+        '        Dim row = New FMS.Business.DataObjects.tblRuns
+        '        row.ApplicationID = item.ApplicationID
+        '        row.RunID = item.RunID
+        '        row.Rid = item.Rid
+        '        row.RunNUmber = item.RunNUmber
+        '        row.RunDescription = item.RunDescription
+        '        row.RunDriver = item.RunDriver
+        '        row.InactiveRun = item.InactiveRun
+        '        'row.DateOfRun = item.DateOfRun
+        '        'row.Rid = item.Rid
+        '        'row.RunDescription = item.RunDescription
+        '        'row.RunNUmber = item.RunNUmber
+        '        ListRuns.Add(row)
+
+
+        '    Next
+
+        'End If
+
         Return ListRuns
     End Function
     'Public Shared Function GetUnAssignedRuns(DateRun As Date) As List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)

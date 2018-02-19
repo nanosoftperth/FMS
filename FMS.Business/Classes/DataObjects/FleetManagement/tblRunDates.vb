@@ -98,6 +98,24 @@
         End Sub
 #End Region
 #Region "Get methods"
+        Public Shared Function GetAll() As List(Of DataObjects.tblRunDates)
+            Try
+                Dim objRunDates As New List(Of DataObjects.tblRunDates)
+
+                With New LINQtoSQLClassesDataContext
+                    objRunDates = (From c In .tblRunDates
+                                   Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                   Select New DataObjects.tblRunDates(c)).ToList
+                    .Dispose()
+                End With
+
+                Return objRunDates
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
         Public Shared Function GetRunDatesByRunID(rid As Integer) As List(Of DataObjects.tblRunDates)
             Try
                 Dim objRunDates As New List(Of DataObjects.tblRunDates)

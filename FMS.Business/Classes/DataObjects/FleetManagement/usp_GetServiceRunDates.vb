@@ -5,7 +5,7 @@
 #Region "Properties / enums"
         Public Property ApplicationId As System.Guid
         Public Property RunID As Guid
-        Public Property Driver As Integer
+        Public Property Driver As System.Nullable(Of Integer)
         Public Property Rid As Integer
         Public Property RunNUmber As Integer
         Public Property RunDescription As String
@@ -120,6 +120,8 @@
 
 
         End Function
+
+
 #End Region
 
         Public Class Drivers
