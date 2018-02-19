@@ -239,6 +239,15 @@ Partial Public Class ServiceRunManagement
     Protected WithEvents btnDialogCancel As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
+    '''LoadingPanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LoadingPanel As Global.DevExpress.Web.ASPxLoadingPanel
+    
+    '''<summary>
     '''odsDriver control.
     '''</summary>
     '''<remarks>

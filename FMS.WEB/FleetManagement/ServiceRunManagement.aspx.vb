@@ -163,7 +163,8 @@ Public Class ServiceRunManagement
                 Dim rowRundate = New FMS.Business.DataObjects.tblRunDates
 
                 rowRundate.ApplicationID = FMS.Business.ThisSession.ApplicationID
-                rowRundate.Rid = DriverID
+                rowRundate.Rid = Me.cboRun.Value
+                rowRundate.Driver = DriverID
                 rowRundate.DateOfRun = TransDate
 
                 '--- Set property values for tblRuns
@@ -179,19 +180,19 @@ Public Class ServiceRunManagement
 
                 Select Case DayOfWeek
                     Case "Sunday"
-                        blnSun = True
+                        blnSun = False
                     Case "Monday"
-                        blnMon = True
+                        blnMon = False
                     Case "Tuesday"
-                        blnTue = True
+                        blnTue = False
                     Case "Wednesday"
-                        blnWed = True
+                        blnWed = False
                     Case "Thursday"
-                        blnThu = True
+                        blnThu = False
                     Case "Friday"
-                        blnFri = True
+                        blnFri = False
                     Case "Saturday"
-                        blnSat = True
+                        blnSat = False
                 End Select
 
                 Dim rowRuns = New FMS.Business.DataObjects.tblRuns
@@ -210,7 +211,7 @@ Public Class ServiceRunManagement
                 rowRuns.InactiveRun = False
 
                 FMS.Business.DataObjects.tblRunDates.Create(rowRundate)
-                FMS.Business.DataObjects.tblRuns.Create(rowRuns)
+                'FMS.Business.DataObjects.tblRuns.Create(rowRuns)
 
             End If
 
@@ -235,37 +236,54 @@ Public Class ServiceRunManagement
                     DriverID = Server.HtmlEncode(Request.Cookies("DriverID").Value)
                 End If
 
+                If Not Request.Cookies("RepDate") Is Nothing Then
+                    TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
+                End If
+
+
                 If (ListRun IsNot Nothing) Then
 
                     If (Me.cboRun.Value = 0) Then
-                        If Not Request.Cookies("RepDate") Is Nothing Then
-                            TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
-                        End If
+
                         Dim objRunDate = New FMS.Business.DataObjects.tblRunDates
-
                         objRunDate.DateOfRun = TransDate
-                        objRunDate.Rid = DriverID
+                        objRunDate.Driver = DriverID
 
-                        Dim objRun = New FMS.Business.DataObjects.tblRuns
-                        For Each item In ListRun
-                            runNum = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).RunNUmber
-                        Next
-                        objRun.RunNUmber = runNum
-                        objRun.RunDriver = DriverID
+                        'Dim objRun = New FMS.Business.DataObjects.tblRuns
+                        'For Each item In ListRun
+                        '    runNum = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).RunNUmber
+                        'Next
+                        'objRun.RunNUmber = runNum
+                        'objRun.RunDriver = DriverID
 
-                        FMS.Business.DataObjects.tblRuns.DeleteRun(objRun)
+                        'FMS.Business.DataObjects.tblRuns.DeleteRun(objRun)
                         FMS.Business.DataObjects.tblRunDates.DeleteRunDate(objRunDate)
 
                     Else
-                        Dim objRun = New FMS.Business.DataObjects.tblRuns
-                        objRun.RunNUmber = Convert.ToInt32(Me.cboRun.Value)
-                        objRun.RunDescription = Me.cboRun.Text
+                        Dim objRunDate = New FMS.Business.DataObjects.tblRunDates
+                        objRunDate.DateOfRun = TransDate
+                        objRunDate.Driver = DriverID
 
-                        For Each item In ListRun
-                            runNum = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).RunNUmber
-                        Next
+                        FMS.Business.DataObjects.tblRunDates.DeleteRunDate(objRunDate)
 
-                        FMS.Business.DataObjects.tblRuns.ChangeRun(DriverID, runNum, objRun)
+                        Dim rowRundate = New FMS.Business.DataObjects.tblRunDates
+
+                        rowRundate.ApplicationID = FMS.Business.ThisSession.ApplicationID
+                        rowRundate.Rid = Me.cboRun.Value
+                        rowRundate.Driver = DriverID
+                        rowRundate.DateOfRun = TransDate
+
+                        FMS.Business.DataObjects.tblRunDates.Create(rowRundate)
+
+                        'Dim objRun = New FMS.Business.DataObjects.tblRuns
+                        'objRun.RunNUmber = Convert.ToInt32(Me.cboRun.Value)
+                        'objRun.RunDescription = Me.cboRun.Text
+
+                        'For Each item In ListRun
+                        '    runNum = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).RunNUmber
+                        'Next
+
+                        'FMS.Business.DataObjects.tblRuns.ChangeRun(DriverID, runNum, objRun)
                     End If
 
                     Me.puDialog.ShowOnPageLoad = False

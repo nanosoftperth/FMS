@@ -88,7 +88,7 @@
         Public Shared Sub DeleteRunDate(Run As DataObjects.tblRunDates)
             With New LINQtoSQLClassesDataContext
                 Dim objRun As FMS.Business.tblRunDate = (From r In .tblRunDates
-                                                         Where r.Rid.Equals(Run.Rid) And r.ApplicationID.Equals(ThisSession.ApplicationID) _
+                                                         Where r.Driver.Equals(Run.Driver) And r.ApplicationID.Equals(ThisSession.ApplicationID) _
                                                              And r.DateOfRun.Equals(Run.DateOfRun)).SingleOrDefault
                 .tblRunDates.DeleteOnSubmit(objRun)
                 .SubmitChanges()

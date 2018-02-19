@@ -39,6 +39,7 @@
                 if (ndxS > -1) {
                     DriverID = fieldname.substring(ndxS + 1, ndxE);
                     setCookie('TechID', DriverID, 1)
+                    setCookie('DriverID', DriverID, 1)
                     setCookie('DriverType', "Tech", 1)
                 }
             }
@@ -246,18 +247,21 @@
                         setCookie('RepDate', tmpdate, 1)
 
                         //PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
+                        showLoadingProcess('Loading Run Definitions. Please wait...')
                         PageMethods.GetUnAssignedRuns(OnSuccess);
 
                     }
 
                 }
 
-                //Show pop up only on drivers
-                var driverType = getCookie('DriverType');
+                clientpuUnassignedRun.Show();
 
-                if (driverType == "DriverOnly") {
-                    clientpuUnassignedRun.Show();
-                }
+                //Show pop up only on drivers
+                //var driverType = getCookie('DriverType');
+
+                //if (driverType == "DriverOnly") {
+                //    clientpuUnassignedRun.Show();
+                //}
 
             }
         }
@@ -269,6 +273,8 @@
             for (var i in response) {
                 clientcboRun.AddItem(response[i].RunDescription, response[i].Rid);
             }
+
+            HideLoadingProcess();
         }
 
         function UnAssignedRun_OnSelectedIndexChanged(s, e) {
@@ -363,6 +369,16 @@
             });
         }
 
+
+        function showLoadingProcess(msg) {
+            LoadingPanel.SetText(msg);
+            LoadingPanel.Show();
+            //lpProcess.ShowInElementByID(cltbtnProcess.name);
+        }
+
+        function HideLoadingProcess() {
+            LoadingPanel.Hide();
+        }
 
     </script>
 
@@ -557,7 +573,9 @@
                 </dx:PopupControlContentControl>
             </ContentCollection>
         </dx:ASPxPopupControl>
-
+        <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+            Modal="True">
+        </dx:ASPxLoadingPanel>
         <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
         </ContentTemplate>
         </asp:UpdatePanel>
