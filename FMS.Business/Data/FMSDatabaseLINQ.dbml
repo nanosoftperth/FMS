@@ -1422,6 +1422,23 @@
       <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.tblRunDates" Member="tblRunDates">
+    <Type Name="tblRunDate">
+      <Column Name="DRid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Driver" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRunSites" Member="tblRunSites">
+    <Type Name="tblRunSite">
+      <Column Name="RunSiteID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.FleetDocuments" Member="FleetDocuments">
     <Type Name="FleetDocument">
       <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1430,14 +1447,6 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PhotoLocation" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblRunDates" Member="tblRunDates">
-    <Type Name="tblRunDate">
-      <Column Name="DRid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Driver" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
@@ -2459,17 +2468,6 @@
       <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetRunsForAssignment" Method="usp_GetRunsForAssignment">
-    <ElementType Name="usp_GetRunsForAssignmentResult">
-      <Column Name="UniqueID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DriverId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetServiceRunDates" Method="usp_GetServiceRunDates">
     <Parameter Name="ApplicationId" Parameter="applicationId" Type="System.Guid" DbType="UniqueIdentifier" />
     <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="DateTime" />
@@ -2486,12 +2484,15 @@
       <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetRunDatesWithRuns" Method="usp_GetRunDatesWithRuns">
-    <ElementType Name="usp_GetRunDatesWithRunsResult">
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+  <Function Name="dbo.usp_GetRunsForAssignment" Method="usp_GetRunsForAssignment">
+    <ElementType Name="usp_GetRunsForAssignmentResult">
+      <Column Name="UniqueID" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
       <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DriverId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DateOfRun" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

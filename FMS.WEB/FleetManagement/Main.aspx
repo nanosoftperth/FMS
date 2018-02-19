@@ -153,7 +153,7 @@
 					</ul>
                     <li>
 					  <a href="ClientAssignments.aspx" target="iframeMenu">
-					  <i class="fa fa fa-sitemap"></i> Client Assignments
+					  <i class="fa fa fa-sitemap"></i> Run and Site Assignments
 					  </a>
 					</li>
 				</ul>

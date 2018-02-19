@@ -17,16 +17,29 @@
             <dx:TabPage Name="Run" Text="Run">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="RunGridView" runat="server" DataSourceID="odsTblRuns" KeyFieldName="Rid" Width="550px" Theme="SoftOrange" AutoGenerateColumns="False">
+                        <dx:ASPxGridView ID="RunGridView" runat="server" DataSourceID="odsTblRuns" KeyFieldName="Rid" Width="550px" Theme="SoftOrange" AutoGenerateColumns="False"
+                            OnRowValidating="RunGridView_RowValidating">
                             <SettingsDetail ShowDetailRow="true" />
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="3"/>
+                            <SettingsPopup>
+                                <EditForm  Modal="true" 
+                                    VerticalAlign="WindowCenter" 
+                                    HorizontalAlign="WindowCenter" width="700px" Height="150px"/>
+                            </SettingsPopup>
                             <Templates>
                                 <DetailRow>
                                     <dx:ASPxGridView ID="RunDocGridView" runat="server" ClientInstanceName="RunDocGridView" DataSourceID="odsRunMultiDocs" KeyFieldName="DocumentID" Width="550px" Theme="SoftOrange"
                                         AutoGenerateColumns="False" EditFormLayoutProperties-SettingsItems-VerticalAlign="Top" OnBeforePerformDataSelect="RunGridView_BeforePerformDataSelect">
                                         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                        <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+                                        <SettingsPopup>
+                                            <EditForm  Modal="true" 
+                                                VerticalAlign="WindowCenter" 
+                                                HorizontalAlign="WindowCenter" width="400px" Height="250px"/>
+                                        </SettingsPopup>
                                         <Columns>
                                             <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="DocumentID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -50,7 +63,6 @@
                                 <dx:GridViewDataTextColumn FieldName="Rid" VisibleIndex="2" PropertiesTextEdit-ClientInstanceName="RunName" Visible="false" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunNUmber" VisibleIndex="3"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunDescription" VisibleIndex="4" SortOrder="Ascending"></dx:GridViewDataTextColumn>
-                                <%--<dx:GridViewDataTextColumn FieldName="RunDriver" VisibleIndex="5"></dx:GridViewDataTextColumn>--%>
                                 <dx:GridViewDataComboBoxColumn FieldName="RunDriver" Caption="Run Driver" VisibleIndex="2" SortIndex="0" SortOrder="Ascending">
                                     <PropertiesComboBox DataSourceID="odsDriverList" TextField="DriverName" ValueField="Did">
                                         <ClearButton Visibility="Auto">
@@ -94,6 +106,12 @@
                                         AutoGenerateColumns="False" EditFormLayoutProperties-SettingsItems-VerticalAlign="Top" OnBeforePerformDataSelect="ClientGridView_BeforePerformDataSelect">
                                         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                        <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+                                        <SettingsPopup>
+                                            <EditForm  Modal="true" 
+                                                VerticalAlign="WindowCenter" 
+                                                HorizontalAlign="WindowCenter" width="400px" Height="250px"/>
+                                        </SettingsPopup>
                                         <Columns>
                                             <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="DocumentID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -232,17 +250,22 @@
                 <ContentCollection>
                     <dx:ContentControl runat="server">
                         <dx:ASPxGridView ID="GetRunsForAssignmentGridView" runat="server" KeyFieldName="UniqueID" DataSourceID="odsGetRunsForAssignment" 
-                            Width="750px" Theme="SoftOrange" AutoGenerateColumns="False">
+                            Width="750px" Theme="SoftOrange" AutoGenerateColumns="False" OnRowValidating="GetRunsForAssignmentGridView_RowValidating">
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
-                            <SettingsEditing EditFormColumnCount="3" />
+                            <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
+                            <SettingsPopup>
+                                <EditForm  Modal="true" 
+                                    VerticalAlign="WindowCenter" 
+                                    HorizontalAlign="WindowCenter" width="400px" Height="120px"/>
+                            </SettingsPopup>
                             <Columns>
                                 <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True">
                                 </dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="UniqueID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Rid" VisibleIndex="1" Visible="true" ReadOnly="true"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Rid" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="RunNUmber" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="RunDescription" VisibleIndex="3" SortOrder="Ascending"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="RunDescription" VisibleIndex="3" ReadOnly="true" SortOrder="Ascending"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataComboBoxColumn FieldName="DriverId" Caption="Driver Name" VisibleIndex="4" SortIndex="0" SortOrder="Ascending">
                                     <PropertiesComboBox DataSourceID="odsDriverList" TextField="DriverName" ValueField="Did">
                                         <ClearButton Visibility="Auto">
@@ -259,32 +282,41 @@
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
-            <dx:TabPage Name="RunClient" Text="Run Client">
+            <dx:TabPage Name="RunClient" Text="Run Site">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="RunClientGridView" runat="server" DataSourceID="odsRunClient" KeyFieldName="RunClientID" Width="550px" Theme="SoftOrange">
+                        <dx:ASPxGridView ID="RunSiteGridView" runat="server" DataSourceID="odsRunSite" KeyFieldName="RunSiteID" Width="550px" 
+                            Theme="SoftOrange" AutoGenerateColumns="False" OnRowValidating="RunSiteGridView_RowValidating">
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                            <SettingsEditing Mode="PopupEditForm"/>
+                            <SettingsPopup>
+                                <EditForm  Modal="true" 
+                                    VerticalAlign="WindowCenter" 
+                                    HorizontalAlign="WindowCenter" width="400px" Height="100px"/>
+                            </SettingsPopup>
                             <Columns>
-                                <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
-                                <dx:GridViewDataTextColumn FieldName="RunClientID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataComboBoxColumn FieldName="RunID" Caption="Run Name" VisibleIndex="2" SortIndex="0" SortOrder="Ascending">
-                                    <PropertiesComboBox DataSourceID="odsRun" TextField="RunName" ValueField="RunID">
+                                <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True">
+                                </dx:GridViewCommandColumn>
+                                <dx:GridViewDataTextColumn FieldName="RunSiteID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataComboBoxColumn FieldName="Rid" VisibleIndex="1" Caption="Run">
+                                    <PropertiesComboBox DataSourceID="odsTblRuns" TextField="RunDescription" ValueField="Rid">
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
                                     </PropertiesComboBox>
-                                </dx:GridViewDataComboBoxColumn>  
-                                <dx:GridViewDataComboBoxColumn FieldName="ClientID" Caption="Client" VisibleIndex="3">
-                                    <PropertiesComboBox DataSourceID="odsClient" TextField="Name" ValueField="ClientID">
+                                </dx:GridViewDataComboBoxColumn>
+                                <dx:GridViewDataComboBoxColumn FieldName="Cid" VisibleIndex="2" Caption="Site">
+                                    <PropertiesComboBox DataSourceID="odsSites" TextField="SiteName" ValueField="Cid">
                                         <ClearButton Visibility="Auto">
                                         </ClearButton>
                                     </PropertiesComboBox>
-                                </dx:GridViewDataComboBoxColumn>  
+                                </dx:GridViewDataComboBoxColumn>
+                                <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
                             </Columns>
-                                <Settings ShowPreview="true" />
+                            <Settings ShowPreview="true" />
                             <SettingsPager PageSize="10" />
                         </dx:ASPxGridView>
-                        <asp:ObjectDataSource ID="odsRunClient" runat="server" DataObjectTypeName="FMS.Business.DataObjects.FleetRunClient" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.FleetRunClient" UpdateMethod="Update"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource ID="odsRunSite" runat="server" DataObjectTypeName="FMS.Business.DataObjects.tblRunSite" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRunSite" UpdateMethod="Update"></asp:ObjectDataSource>
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>

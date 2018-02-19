@@ -176,6 +176,24 @@
 
 
         End Function
+        Public Shared Function GetTblRunByRunNumberRunDescription(ByVal RunNumber As Integer, ByVal RunDescription As String) As DataObjects.tblRuns
+            Try
+                Dim objRun As New DataObjects.tblRuns
+                With New LINQtoSQLClassesDataContext
+                    objRun = (From c In .tblRuns
+                              Order By c.RunDescription
+                              Where c.RunNUmber.Equals(RunNumber) And c.RunDescription.Equals(RunDescription) And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                              Select New DataObjects.tblRuns(c)).FirstOrDefault
+                    .Dispose()
+                End With
+                Return objRun
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()

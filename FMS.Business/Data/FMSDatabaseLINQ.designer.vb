@@ -613,17 +613,23 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblRun(instance As tblRun)
     End Sub
-  Partial Private Sub InsertFleetDocument(instance As FleetDocument)
-    End Sub
-  Partial Private Sub UpdateFleetDocument(instance As FleetDocument)
-    End Sub
-  Partial Private Sub DeleteFleetDocument(instance As FleetDocument)
-    End Sub
   Partial Private Sub InserttblRunDate(instance As tblRunDate)
     End Sub
   Partial Private Sub UpdatetblRunDate(instance As tblRunDate)
     End Sub
   Partial Private Sub DeletetblRunDate(instance As tblRunDate)
+    End Sub
+  Partial Private Sub InserttblRunSite(instance As tblRunSite)
+    End Sub
+  Partial Private Sub UpdatetblRunSite(instance As tblRunSite)
+    End Sub
+  Partial Private Sub DeletetblRunSite(instance As tblRunSite)
+    End Sub
+  Partial Private Sub InsertFleetDocument(instance As FleetDocument)
+    End Sub
+  Partial Private Sub UpdateFleetDocument(instance As FleetDocument)
+    End Sub
+  Partial Private Sub DeleteFleetDocument(instance As FleetDocument)
     End Sub
   #End Region
 	
@@ -1294,15 +1300,21 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property FleetDocuments() As System.Data.Linq.Table(Of FleetDocument)
-		Get
-			Return Me.GetTable(Of FleetDocument)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblRunDates() As System.Data.Linq.Table(Of tblRunDate)
 		Get
 			Return Me.GetTable(Of tblRunDate)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblRunSites() As System.Data.Linq.Table(Of tblRunSite)
+		Get
+			Return Me.GetTable(Of tblRunSite)
+		End Get
+	End Property
+	
+	Public ReadOnly Property FleetDocuments() As System.Data.Linq.Table(Of FleetDocument)
+		Get
+			Return Me.GetTable(Of FleetDocument)
 		End Get
 	End Property
 	
@@ -1703,22 +1715,16 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetUnAssignedRunsResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunsForAssignment")>  _
-	Public Function usp_GetRunsForAssignment() As ISingleResult(Of usp_GetRunsForAssignmentResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunsForAssignmentResult))
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetServiceRunDates")>  _
 	Public Function usp_GetServiceRunDates(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationId", DbType:="UniqueIdentifier")> ByVal applicationId As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="StartDate", DbType:="DateTime")> ByVal startDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="EndDate", DbType:="DateTime")> ByVal endDate As System.Nullable(Of Date)) As ISingleResult(Of usp_GetServiceRunDatesResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationId, startDate, endDate)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetServiceRunDatesResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunDatesWithRuns")>  _
-	Public Function usp_GetRunDatesWithRuns() As ISingleResult(Of usp_GetRunDatesWithRunsResult)
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetRunsForAssignment")>  _
+	Public Function usp_GetRunsForAssignment() As ISingleResult(Of usp_GetRunsForAssignmentResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunDatesWithRunsResult))
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRunsForAssignmentResult))
 	End Function
 End Class
 
@@ -27074,178 +27080,6 @@ Partial Public Class tblRun
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.FleetDocuments")>  _
-Partial Public Class FleetDocument
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _DocumentID As System.Guid
-	
-	Private _Cid As System.Nullable(Of Integer)
-	
-	Private _Rid As System.Nullable(Of Integer)
-	
-	Private _Description As String
-	
-	Private _PhotoLocation As String
-	
-	Private _CreatedDate As System.Nullable(Of Date)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnDocumentIDChanging(value As System.Guid)
-    End Sub
-    Partial Private Sub OnDocumentIDChanged()
-    End Sub
-    Partial Private Sub OnCidChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnCidChanged()
-    End Sub
-    Partial Private Sub OnRidChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnRidChanged()
-    End Sub
-    Partial Private Sub OnDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnDescriptionChanged()
-    End Sub
-    Partial Private Sub OnPhotoLocationChanging(value As String)
-    End Sub
-    Partial Private Sub OnPhotoLocationChanged()
-    End Sub
-    Partial Private Sub OnCreatedDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnCreatedDateChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DocumentID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property DocumentID() As System.Guid
-		Get
-			Return Me._DocumentID
-		End Get
-		Set
-			If ((Me._DocumentID = value)  _
-						= false) Then
-				Me.OnDocumentIDChanging(value)
-				Me.SendPropertyChanging
-				Me._DocumentID = value
-				Me.SendPropertyChanged("DocumentID")
-				Me.OnDocumentIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int")>  _
-	Public Property Cid() As System.Nullable(Of Integer)
-		Get
-			Return Me._Cid
-		End Get
-		Set
-			If (Me._Cid.Equals(value) = false) Then
-				Me.OnCidChanging(value)
-				Me.SendPropertyChanging
-				Me._Cid = value
-				Me.SendPropertyChanged("Cid")
-				Me.OnCidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int")>  _
-	Public Property Rid() As System.Nullable(Of Integer)
-		Get
-			Return Me._Rid
-		End Get
-		Set
-			If (Me._Rid.Equals(value) = false) Then
-				Me.OnRidChanging(value)
-				Me.SendPropertyChanging
-				Me._Rid = value
-				Me.SendPropertyChanged("Rid")
-				Me.OnRidChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(50)")>  _
-	Public Property Description() As String
-		Get
-			Return Me._Description
-		End Get
-		Set
-			If (String.Equals(Me._Description, value) = false) Then
-				Me.OnDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._Description = value
-				Me.SendPropertyChanged("Description")
-				Me.OnDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoLocation", DbType:="VarChar(500)")>  _
-	Public Property PhotoLocation() As String
-		Get
-			Return Me._PhotoLocation
-		End Get
-		Set
-			If (String.Equals(Me._PhotoLocation, value) = false) Then
-				Me.OnPhotoLocationChanging(value)
-				Me.SendPropertyChanging
-				Me._PhotoLocation = value
-				Me.SendPropertyChanged("PhotoLocation")
-				Me.OnPhotoLocationChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CreatedDate", DbType:="DateTime")>  _
-	Public Property CreatedDate() As System.Nullable(Of Date)
-		Get
-			Return Me._CreatedDate
-		End Get
-		Set
-			If (Me._CreatedDate.Equals(value) = false) Then
-				Me.OnCreatedDateChanging(value)
-				Me.SendPropertyChanging
-				Me._CreatedDate = value
-				Me.SendPropertyChanged("CreatedDate")
-				Me.OnCreatedDateChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRunDates")>  _
 Partial Public Class tblRunDate
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -27357,6 +27191,328 @@ Partial Public Class tblRunDate
 				Me._Driver = value
 				Me.SendPropertyChanged("Driver")
 				Me.OnDriverChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblRunSites")>  _
+Partial Public Class tblRunSite
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _RunSiteID As System.Guid
+	
+	Private _Rid As System.Nullable(Of Integer)
+	
+	Private _Cid As System.Nullable(Of Integer)
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnRunSiteIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnRunSiteIDChanged()
+    End Sub
+    Partial Private Sub OnRidChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnRidChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunSiteID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property RunSiteID() As System.Guid
+		Get
+			Return Me._RunSiteID
+		End Get
+		Set
+			If ((Me._RunSiteID = value)  _
+						= false) Then
+				Me.OnRunSiteIDChanging(value)
+				Me.SendPropertyChanging
+				Me._RunSiteID = value
+				Me.SendPropertyChanged("RunSiteID")
+				Me.OnRunSiteIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int")>  _
+	Public Property Rid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If (Me._Rid.Equals(value) = false) Then
+				Me.OnRidChanging(value)
+				Me.SendPropertyChanging
+				Me._Rid = value
+				Me.SendPropertyChanged("Rid")
+				Me.OnRidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int")>  _
+	Public Property Cid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationID
+		End Get
+		Set
+			If (Me._ApplicationID.Equals(value) = false) Then
+				Me.OnApplicationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ApplicationID = value
+				Me.SendPropertyChanged("ApplicationID")
+				Me.OnApplicationIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.FleetDocuments")>  _
+Partial Public Class FleetDocument
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _DocumentID As System.Guid
+	
+	Private _Cid As System.Nullable(Of Integer)
+	
+	Private _Rid As System.Nullable(Of Integer)
+	
+	Private _Description As String
+	
+	Private _PhotoLocation As String
+	
+	Private _CreatedDate As System.Nullable(Of Date)
+	
+	Private _ApplicationID As System.Nullable(Of System.Guid)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnDocumentIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnDocumentIDChanged()
+    End Sub
+    Partial Private Sub OnCidChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCidChanged()
+    End Sub
+    Partial Private Sub OnRidChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnRidChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    Partial Private Sub OnPhotoLocationChanging(value As String)
+    End Sub
+    Partial Private Sub OnPhotoLocationChanged()
+    End Sub
+    Partial Private Sub OnCreatedDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCreatedDateChanged()
+    End Sub
+    Partial Private Sub OnApplicationIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnApplicationIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DocumentID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property DocumentID() As System.Guid
+		Get
+			Return Me._DocumentID
+		End Get
+		Set
+			If ((Me._DocumentID = value)  _
+						= false) Then
+				Me.OnDocumentIDChanging(value)
+				Me.SendPropertyChanging
+				Me._DocumentID = value
+				Me.SendPropertyChanged("DocumentID")
+				Me.OnDocumentIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cid", DbType:="Int")>  _
+	Public Property Cid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Cid
+		End Get
+		Set
+			If (Me._Cid.Equals(value) = false) Then
+				Me.OnCidChanging(value)
+				Me.SendPropertyChanging
+				Me._Cid = value
+				Me.SendPropertyChanged("Cid")
+				Me.OnCidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int")>  _
+	Public Property Rid() As System.Nullable(Of Integer)
+		Get
+			Return Me._Rid
+		End Get
+		Set
+			If (Me._Rid.Equals(value) = false) Then
+				Me.OnRidChanging(value)
+				Me.SendPropertyChanging
+				Me._Rid = value
+				Me.SendPropertyChanged("Rid")
+				Me.OnRidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(50)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PhotoLocation", DbType:="VarChar(500)")>  _
+	Public Property PhotoLocation() As String
+		Get
+			Return Me._PhotoLocation
+		End Get
+		Set
+			If (String.Equals(Me._PhotoLocation, value) = false) Then
+				Me.OnPhotoLocationChanging(value)
+				Me.SendPropertyChanging
+				Me._PhotoLocation = value
+				Me.SendPropertyChanged("PhotoLocation")
+				Me.OnPhotoLocationChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CreatedDate", DbType:="DateTime")>  _
+	Public Property CreatedDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CreatedDate
+		End Get
+		Set
+			If (Me._CreatedDate.Equals(value) = false) Then
+				Me.OnCreatedDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CreatedDate = value
+				Me.SendPropertyChanged("CreatedDate")
+				Me.OnCreatedDateChanged
 			End If
 		End Set
 	End Property
@@ -37109,111 +37265,6 @@ Partial Public Class usp_GetUnAssignedRunsResult
 	End Property
 End Class
 
-Partial Public Class usp_GetRunsForAssignmentResult
-	
-	Private _UniqueID As System.Nullable(Of System.Guid)
-	
-	Private _Rid As System.Nullable(Of Integer)
-	
-	Private _RunNUmber As System.Nullable(Of Integer)
-	
-	Private _RunDescription As String
-	
-	Private _DriverId As System.Nullable(Of Integer)
-	
-	Private _DriverName As String
-	
-	Private _DateOfRun As System.Nullable(Of Date)
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UniqueID", DbType:="UniqueIdentifier")>  _
-	Public Property UniqueID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._UniqueID
-		End Get
-		Set
-			If (Me._UniqueID.Equals(value) = false) Then
-				Me._UniqueID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rid", DbType:="Int")>  _
-	Public Property Rid() As System.Nullable(Of Integer)
-		Get
-			Return Me._Rid
-		End Get
-		Set
-			If (Me._Rid.Equals(value) = false) Then
-				Me._Rid = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunNUmber", DbType:="Int")>  _
-	Public Property RunNUmber() As System.Nullable(Of Integer)
-		Get
-			Return Me._RunNUmber
-		End Get
-		Set
-			If (Me._RunNUmber.Equals(value) = false) Then
-				Me._RunNUmber = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(255)")>  _
-	Public Property RunDescription() As String
-		Get
-			Return Me._RunDescription
-		End Get
-		Set
-			If (String.Equals(Me._RunDescription, value) = false) Then
-				Me._RunDescription = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverId", DbType:="Int")>  _
-	Public Property DriverId() As System.Nullable(Of Integer)
-		Get
-			Return Me._DriverId
-		End Get
-		Set
-			If (Me._DriverId.Equals(value) = false) Then
-				Me._DriverId = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverName", DbType:="NVarChar(50)")>  _
-	Public Property DriverName() As String
-		Get
-			Return Me._DriverName
-		End Get
-		Set
-			If (String.Equals(Me._DriverName, value) = false) Then
-				Me._DriverName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOfRun", DbType:="DateTime")>  _
-	Public Property DateOfRun() As System.Nullable(Of Date)
-		Get
-			Return Me._DateOfRun
-		End Get
-		Set
-			If (Me._DateOfRun.Equals(value) = false) Then
-				Me._DateOfRun = value
-			End If
-		End Set
-	End Property
-End Class
-
 Partial Public Class usp_GetServiceRunDatesResult
 	
 	Private _ApplicationID As System.Nullable(Of System.Guid)
@@ -37349,40 +37400,34 @@ Partial Public Class usp_GetServiceRunDatesResult
 	End Property
 End Class
 
-Partial Public Class usp_GetRunDatesWithRunsResult
+Partial Public Class usp_GetRunsForAssignmentResult
 	
-	Private _ApplicationID As System.Nullable(Of System.Guid)
-	
-	Private _DateOfRun As System.Nullable(Of Date)
+	Private _UniqueID As String
 	
 	Private _Rid As System.Nullable(Of Integer)
 	
+	Private _RunNUmber As System.Nullable(Of Integer)
+	
 	Private _RunDescription As String
+	
+	Private _DriverId As System.Nullable(Of Integer)
+	
+	Private _DriverName As String
+	
+	Private _DateOfRun As System.Nullable(Of Date)
 	
 	Public Sub New()
 		MyBase.New
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationID", DbType:="UniqueIdentifier")>  _
-	Public Property ApplicationID() As System.Nullable(Of System.Guid)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UniqueID", DbType:="VarChar(8000)")>  _
+	Public Property UniqueID() As String
 		Get
-			Return Me._ApplicationID
+			Return Me._UniqueID
 		End Get
 		Set
-			If (Me._ApplicationID.Equals(value) = false) Then
-				Me._ApplicationID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOfRun", DbType:="DateTime")>  _
-	Public Property DateOfRun() As System.Nullable(Of Date)
-		Get
-			Return Me._DateOfRun
-		End Get
-		Set
-			If (Me._DateOfRun.Equals(value) = false) Then
-				Me._DateOfRun = value
+			If (String.Equals(Me._UniqueID, value) = false) Then
+				Me._UniqueID = value
 			End If
 		End Set
 	End Property
@@ -37399,6 +37444,18 @@ Partial Public Class usp_GetRunDatesWithRunsResult
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunNUmber", DbType:="Int")>  _
+	Public Property RunNUmber() As System.Nullable(Of Integer)
+		Get
+			Return Me._RunNUmber
+		End Get
+		Set
+			If (Me._RunNUmber.Equals(value) = false) Then
+				Me._RunNUmber = value
+			End If
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RunDescription", DbType:="NVarChar(255)")>  _
 	Public Property RunDescription() As String
 		Get
@@ -37407,6 +37464,42 @@ Partial Public Class usp_GetRunDatesWithRunsResult
 		Set
 			If (String.Equals(Me._RunDescription, value) = false) Then
 				Me._RunDescription = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverId", DbType:="Int")>  _
+	Public Property DriverId() As System.Nullable(Of Integer)
+		Get
+			Return Me._DriverId
+		End Get
+		Set
+			If (Me._DriverId.Equals(value) = false) Then
+				Me._DriverId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DriverName", DbType:="NVarChar(50)")>  _
+	Public Property DriverName() As String
+		Get
+			Return Me._DriverName
+		End Get
+		Set
+			If (String.Equals(Me._DriverName, value) = false) Then
+				Me._DriverName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateOfRun", DbType:="DateTime")>  _
+	Public Property DateOfRun() As System.Nullable(Of Date)
+		Get
+			Return Me._DateOfRun
+		End Get
+		Set
+			If (Me._DateOfRun.Equals(value) = false) Then
+				Me._DateOfRun = value
 			End If
 		End Set
 	End Property
