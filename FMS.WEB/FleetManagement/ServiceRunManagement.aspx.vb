@@ -466,27 +466,72 @@ Public Class ServiceRunManagement
 
     End Function
     <WebMethod>
-    Public Shared Function GetUnAssignedRuns(DateRun As Date) As List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
-        Dim ListRuns = New List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
+    Public Shared Function GetUnAssignedRuns() As List(Of FMS.Business.DataObjects.tblRuns)
+        Dim ListRuns = New List(Of FMS.Business.DataObjects.tblRuns)
 
-        Dim objList = FMS.Business.DataObjects.usp_GetUnAssignedRuns.GetAllPerApplication(DateRun, DateRun).ToList()
+        Dim objList = FMS.Business.DataObjects.tblRuns.GetAll().GroupBy(Function(g) g.RunDescription).Select(Function(s) s.First)
 
         If (objList.Count > 0) Then
 
             For Each item In objList
-                Dim row = New FMS.Business.DataObjects.usp_GetUnAssignedRuns
-
-                row.ApplicationId = item.ApplicationId
-                row.DateOfRun = item.DateOfRun
+                Dim row = New FMS.Business.DataObjects.tblRuns
+                row.ApplicationID = item.ApplicationID
+                row.RunID = item.RunID
                 row.Rid = item.Rid
-                row.RunDescription = item.RunDescription
                 row.RunNUmber = item.RunNUmber
+                row.RunDescription = item.RunDescription
+                row.RunDriver = item.RunDriver
+                row.InactiveRun = item.InactiveRun
+                'row.DateOfRun = item.DateOfRun
+                'row.Rid = item.Rid
+                'row.RunDescription = item.RunDescription
+                'row.RunNUmber = item.RunNUmber
                 ListRuns.Add(row)
+
+
             Next
 
         End If
+
+        'Dim objList = FMS.Business.DataObjects.usp_GetUnAssignedRuns.GetAllPerApplication(DateRun, DateRun).ToList()
+
+        'If (objList.Count > 0) Then
+
+        '    For Each item In objList
+        '        Dim row = New FMS.Business.DataObjects.usp_GetUnAssignedRuns
+
+        '        row.ApplicationId = item.ApplicationId
+        '        row.DateOfRun = item.DateOfRun
+        '        row.Rid = item.Rid
+        '        row.RunDescription = item.RunDescription
+        '        row.RunNUmber = item.RunNUmber
+        '        ListRuns.Add(row)
+        '    Next
+
+        'End If
         Return ListRuns
     End Function
+    'Public Shared Function GetUnAssignedRuns(DateRun As Date) As List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
+    '    Dim ListRuns = New List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
+
+    '    Dim objList = FMS.Business.DataObjects.usp_GetUnAssignedRuns.GetAllPerApplication(DateRun, DateRun).ToList()
+
+    '    If (objList.Count > 0) Then
+
+    '        For Each item In objList
+    '            Dim row = New FMS.Business.DataObjects.usp_GetUnAssignedRuns
+
+    '            row.ApplicationId = item.ApplicationId
+    '            row.DateOfRun = item.DateOfRun
+    '            row.Rid = item.Rid
+    '            row.RunDescription = item.RunDescription
+    '            row.RunNUmber = item.RunNUmber
+    '            ListRuns.Add(row)
+    '        Next
+
+    '    End If
+    '    Return ListRuns
+    'End Function
     Protected Sub PopulateServiceRunGrid()
         '--- Get
         Dim dtService = ServiceRunTable(Me.dteStart.Value, Me.dteEnd.Value)

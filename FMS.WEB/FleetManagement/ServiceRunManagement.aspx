@@ -31,25 +31,31 @@
             setCookie('SRNumDays', intDateDiff, 1)
 
             var DriverID = 0
+
+            var Tech = fieldname.indexOf('Tech_');
+            if (Tech > -1) {
+                var ndxS = fieldname.indexOf('_');
+                var ndxE = fieldname.indexOf('-');
+                if (ndxS > -1) {
+                    DriverID = fieldname.substring(ndxS + 1, ndxE);
+                    setCookie('TechID', DriverID, 1)
+                    setCookie('DriverType', "Tech", 1)
+                }
+            }
+
+
             var Driver = fieldname.indexOf('Driver_');
             if (Driver > -1) {
-                var ndx = fieldname.indexOf('_');
-                if (ndx > -1) {
-                    DriverID = fieldname.substring(ndx + 1, fieldname.length);
+                var ndxS = fieldname.indexOf('_');
+                var ndxE = fieldname.indexOf('-');
+                if (ndxS > -1) {
+                    DriverID = fieldname.substring(ndxS + 1, ndxE);
                     setCookie('DriverID', DriverID, 1)
                     setCookie('DriverType', "DriverOnly", 1)
                 }
             }
 
-            var Tech = fieldname.indexOf('Tech_');
-            if (Tech > -1) {
-                var ndx = fieldname.indexOf('_');
-                if (ndx > -1) {
-                    DriverID = fieldname.substring(ndx + 1, fieldname.length);
-                    setCookie('TechID', DriverID, 1)
-                    setCookie('DriverType', "Tech", 1)
-                }
-            }
+            
 
         }
 
@@ -239,7 +245,8 @@
                         tmpdate = formatDateTddmmyyyy(d);
                         setCookie('RepDate', tmpdate, 1)
 
-                        PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
+                        //PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
+                        PageMethods.GetUnAssignedRuns(OnSuccess);
 
                     }
 
@@ -252,7 +259,6 @@
                     clientpuUnassignedRun.Show();
                 }
 
-
             }
         }
 
@@ -261,7 +267,7 @@
             clientcboRun.ClearItems();
             clientcboRun.AddItem("--None--", 0);
             for (var i in response) {
-                clientcboRun.AddItem(response[i].RunDescription, response[i].RunNUmber);
+                clientcboRun.AddItem(response[i].RunDescription, response[i].Rid);
             }
         }
 
