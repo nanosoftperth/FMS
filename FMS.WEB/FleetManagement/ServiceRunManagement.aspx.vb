@@ -117,7 +117,7 @@ Public Class ServiceRunManagement
 
         Dim ndxRundate = e.DataColumn.FieldName.IndexOf("RunDate")
         If (ndxRundate > -1) Then
-            rundate = e.CellValue
+            Rundate = e.CellValue
 
         End If
 
@@ -149,7 +149,7 @@ Public Class ServiceRunManagement
         End If
 
         Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
-                                                                                                                           x.Did = DriverID).ToList()
+                                                                                                                           x.Driver = DriverID).ToList()
         If (objRuns.Count > 0) Then
             Session("ListRun") = objRuns
             Session("ShowDiagFrom") = "SELECTSERVICERUN"
@@ -292,7 +292,7 @@ Public Class ServiceRunManagement
                 End If
 
                 Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
-                                                                                            x.Did = DriverID).FirstOrDefault()
+                                                                                            x.Driver = DriverID).FirstOrDefault()
                 If (objRuns IsNot Nothing) Then
                     Dim objFleetRunCompletion = FMS.Business.DataObjects.FleetRunCompletion.GetAll().Where(Function(f) _
                                                                                                             f.RunID = objRuns.RunID).ToList()
@@ -354,7 +354,7 @@ Public Class ServiceRunManagement
         End If
 
         Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
-                                                                                            x.Did = DriverID).FirstOrDefault()
+                                                                                            x.Driver = DriverID).FirstOrDefault()
         If (objRuns IsNot Nothing) Then
 
             Dim objFleetRunCompletion = FMS.Business.DataObjects.FleetRunCompletion.GetAll().Where(Function(f) f.RunID = objRuns.RunID)
@@ -413,7 +413,7 @@ Public Class ServiceRunManagement
         Dim DvrID As Guid
 
         Dim listSrvRun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(RunDate, RunDate).Where(
-            Function(r) r.Did = DriverID And r.RunNUmber = RunNumber).FirstOrDefault()
+            Function(r) r.Driver = DriverID And r.RunNUmber = RunNumber).FirstOrDefault()
 
         If (listSrvRun IsNot Nothing) Then
             RunID = listSrvRun.RunID
@@ -435,7 +435,7 @@ Public Class ServiceRunManagement
         Dim DvrID As Guid
 
         Dim listSrvRun = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(RunDate, RunDate).Where(
-            Function(r) r.Did = DriverID And r.RunNUmber = RunNumber).FirstOrDefault()
+            Function(r) r.Driver = DriverID And r.RunNUmber = RunNumber).FirstOrDefault()
 
         If (listSrvRun IsNot Nothing) Then
             RunID = listSrvRun.RunID
@@ -542,20 +542,19 @@ Public Class ServiceRunManagement
 
                     If blnTechName = True Then
                         column.HeaderStyle.BackColor = Drawing.Color.Orange
-                        Dim tNdx = dataColumn.ColumnName.IndexOf("_") + 1
+                        Dim tNdx = dataColumn.ColumnName.IndexOf("-") + 1
                         Dim techname = dataColumn.ColumnName.Substring(tNdx, dataColumn.ColumnName.Length - tNdx)
 
                         If (IsNumeric(techname) = True) Then
                             techname = "Technician " + techname
                         End If
 
-
                         column.Caption = techname
                     End If
 
                     If blnDrvrName = True Then
                         column.HeaderStyle.BackColor = Drawing.Color.Green
-                        Dim dvrNdx = dataColumn.ColumnName.IndexOf("_") + 1
+                        Dim dvrNdx = dataColumn.ColumnName.IndexOf("-") + 1
                         Dim drivername = dataColumn.ColumnName.Substring(dvrNdx, dataColumn.ColumnName.Length - dvrNdx)
 
                         If (IsNumeric(drivername) = True) Then
@@ -597,35 +596,28 @@ Public Class ServiceRunManagement
         Dim dates = GetServiceRunDates(Me.dteStart.Value, Me.dteEnd.Value)
 
         If (dates.Count > 0) Then
-
             Dim row As DataRow
             Dim id As Integer = 1
-            Dim currDvrID = 0
-            Dim prevDvrID = 0
-            Dim dayname As String = ""
-            Dim dvrID As Integer = 0
             Dim techID As Integer = 0
+            Dim dvrID As Integer = 0
 
             Dim objRun As New List(Of FMS.Business.DataObjects.usp_GetServiceRunDates)
 
             For Each dte In dates
                 Dim strTechRun As String = ""
-                Dim strDvrRun As String = ""
                 Dim strRunNum As String = ""
-
-                dayname = dte.RunDate.ToString("dddd")
 
                 row = dtService.NewRow()
 
                 For Each col In dtService.Columns
 
                     Dim strColName As String = ""
-
                     Dim colName = DirectCast(col, System.Data.DataColumn).ColumnName
 
                     If (colName.ToUpper() = "ID") Or (colName.ToUpper() = "RUNDATE") Then
                         strColName = colName
                     Else
+
                         '--- technician cols
                         Dim idxTech = colName.IndexOf("Tech_")
                         If (idxTech > -1) Then
@@ -637,8 +629,10 @@ Public Class ServiceRunManagement
                             Dim locNdx = colName.IndexOf("_") + 1
                             techID = Convert.ToInt32(colName.Substring(locNdx, colName.Length - locNdx))
 
-                            Dim val = listSrvRun.Where(Function(x) x.Did = techID _
-                                                        And x.RunDescription.Substring(0, 2) = "WR" _
+                            'Dim val = listSrvRun.Where(Function(x) x.Did = techID _
+                            '                            And x.RunDescription.Substring(0, 2) = "WR" _
+                            '                            And x.DateOfRun = dte.RunDate).ToList()
+                            Dim val = listSrvRun.Where(Function(x) x.Driver = techID _
                                                         And x.DateOfRun = dte.RunDate).ToList()
 
                             If (val.Count > 0) Then
@@ -658,64 +652,15 @@ Public Class ServiceRunManagement
                             Dim locNdx = colName.IndexOf("_") + 1
                             dvrID = Convert.ToInt32(colName.Substring(locNdx, colName.Length - locNdx))
 
-                            '--- test driver 45
-                            If (dvrID = 45) Then
-                                Dim obj = ""
+                            Dim run = listSrvRun.Where(Function(r) r.Driver = dvrID _
+                                                           And r.DateOfRun = dte.RunDate).ToList()
+
+                            If (run.Count > 0) Then
+                                strRunNum = "Run " + run.FirstOrDefault.Rid.ToString()
                             End If
-                            '---- end test
-
-                            Select Case dayname.ToUpper()
-                                Case "MONDAY"
-                                    Dim run = listSrvRun.Where(Function(r) r.MondayRun = True And r.Did = dvrID _
-                                                                   And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
-                                    If (run.Count > 0) Then
-                                        strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
-                                    End If
-
-                                Case "TUESDAY"
-                                    Dim run = listSrvRun.Where(Function(r) r.TuesdayRun = True And r.Did = dvrID _
-                                                                   And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
-                                    If (run.Count > 0) Then
-                                        strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
-                                    End If
-
-                                Case "WEDNESDAY"
-                                    Dim run = listSrvRun.Where(Function(r) r.WednesdayRun = True And r.Did = dvrID _
-                                                                   And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
-                                    If (run.Count > 0) Then
-                                        strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
-                                    End If
-
-                                Case "THURSDAY"
-                                    Dim run = listSrvRun.Where(Function(r) r.ThursdayRun = True And r.Did = dvrID _
-                                                                   And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
-                                    If (run.Count > 0) Then
-                                        strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
-                                    End If
-
-                                Case "FRIDAY"
-                                    Dim run = listSrvRun.Where(Function(r) r.FridayRun = True And r.Did = dvrID _
-                                                                   And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
-                                    If (run.Count > 0) Then
-                                        strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
-                                    End If
-
-                                Case "SATURDAY"
-                                    Dim run = listSrvRun.Where(Function(r) r.SaturdayRun = True And r.Did = dvrID _
-                                                                   And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
-                                    If (run.Count > 0) Then
-                                        strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
-                                    End If
-
-                                Case "SUNDAY"
-                                    Dim run = listSrvRun.Where(Function(r) r.SundayRun = True And r.Did = dvrID _
-                                                                   And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
-                                    If (run.Count > 0) Then
-                                        strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
-                                    End If
-                            End Select
 
                         End If
+
 
                     End If
 
@@ -726,6 +671,7 @@ Public Class ServiceRunManagement
                             row(colName) = dte.RunDate.ToString("dd MMM")
                         Case "TECH_"
                             row(colName) = strTechRun
+                            strTechRun = ""
                         Case "DRIVER_"
                             row(colName) = strRunNum
                             strRunNum = ""
@@ -746,6 +692,158 @@ Public Class ServiceRunManagement
             Me.gvServiceRun.DataBind()
 
         End If
+
+
+        'If (dates.Count > 0) Then
+
+        '    Dim row As DataRow
+        '    Dim id As Integer = 1
+        '    Dim currDvrID = 0
+        '    Dim prevDvrID = 0
+        '    Dim dayname As String = ""
+        '    Dim dvrID As Integer = 0
+        '    Dim techID As Integer = 0
+
+        '    Dim objRun As New List(Of FMS.Business.DataObjects.usp_GetServiceRunDates)
+
+        '    For Each dte In dates
+        '        Dim strTechRun As String = ""
+        '        Dim strDvrRun As String = ""
+        '        Dim strRunNum As String = ""
+
+        '        dayname = dte.RunDate.ToString("dddd")
+
+        '        row = dtService.NewRow()
+
+        '        For Each col In dtService.Columns
+
+        '            Dim strColName As String = ""
+
+        '            Dim colName = DirectCast(col, System.Data.DataColumn).ColumnName
+
+        '            If (colName.ToUpper() = "ID") Or (colName.ToUpper() = "RUNDATE") Then
+        '                strColName = colName
+        '            Else
+        '                '--- technician cols
+        '                Dim idxTech = colName.IndexOf("Tech_")
+        '                If (idxTech > -1) Then
+        '                    strColName = "TECH_"
+        '                End If
+
+        '                Dim idxTID = colName.IndexOf("TechID_")
+        '                If (idxTID > -1) Then
+        '                    Dim locNdx = colName.IndexOf("_") + 1
+        '                    techID = Convert.ToInt32(colName.Substring(locNdx, colName.Length - locNdx))
+
+        '                    Dim val = listSrvRun.Where(Function(x) x.Did = techID _
+        '                                                And x.RunDescription.Substring(0, 2) = "WR" _
+        '                                                And x.DateOfRun = dte.RunDate).ToList()
+
+        '                    If (val.Count > 0) Then
+        '                        strTechRun = val.FirstOrDefault.RunDescription.Substring(3, val.FirstOrDefault.RunDescription.Length - 3)
+        '                    End If
+
+        '                End If
+
+        '                '--- Drivers cols
+        '                Dim idxDvr = colName.IndexOf("Driver_")
+        '                If (idxDvr > -1) Then
+        '                    strColName = "Driver_"
+        '                End If
+
+        '                Dim idxDID = colName.IndexOf("DriverID_")
+        '                If (idxDID > -1) Then
+        '                    Dim locNdx = colName.IndexOf("_") + 1
+        '                    dvrID = Convert.ToInt32(colName.Substring(locNdx, colName.Length - locNdx))
+
+        '                    '--- test driver 45
+        '                    If (dvrID = 45) Then
+        '                        Dim obj = ""
+        '                    End If
+        '                    '---- end test
+
+        '                    Select Case dayname.ToUpper()
+        '                        Case "MONDAY"
+        '                            Dim run = listSrvRun.Where(Function(r) r.MondayRun = True And r.Did = dvrID _
+        '                                                           And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
+        '                            If (run.Count > 0) Then
+        '                                strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
+        '                            End If
+
+        '                        Case "TUESDAY"
+        '                            Dim run = listSrvRun.Where(Function(r) r.TuesdayRun = True And r.Did = dvrID _
+        '                                                           And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
+        '                            If (run.Count > 0) Then
+        '                                strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
+        '                            End If
+
+        '                        Case "WEDNESDAY"
+        '                            Dim run = listSrvRun.Where(Function(r) r.WednesdayRun = True And r.Did = dvrID _
+        '                                                           And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
+        '                            If (run.Count > 0) Then
+        '                                strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
+        '                            End If
+
+        '                        Case "THURSDAY"
+        '                            Dim run = listSrvRun.Where(Function(r) r.ThursdayRun = True And r.Did = dvrID _
+        '                                                           And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
+        '                            If (run.Count > 0) Then
+        '                                strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
+        '                            End If
+
+        '                        Case "FRIDAY"
+        '                            Dim run = listSrvRun.Where(Function(r) r.FridayRun = True And r.Did = dvrID _
+        '                                                           And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
+        '                            If (run.Count > 0) Then
+        '                                strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
+        '                            End If
+
+        '                        Case "SATURDAY"
+        '                            Dim run = listSrvRun.Where(Function(r) r.SaturdayRun = True And r.Did = dvrID _
+        '                                                           And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
+        '                            If (run.Count > 0) Then
+        '                                strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
+        '                            End If
+
+        '                        Case "SUNDAY"
+        '                            Dim run = listSrvRun.Where(Function(r) r.SundayRun = True And r.Did = dvrID _
+        '                                                           And r.RunDescription.Substring(0, 2) IsNot "WR").ToList()
+        '                            If (run.Count > 0) Then
+        '                                strRunNum = "Run " + run.FirstOrDefault.RunNUmber.ToString()
+        '                            End If
+        '                    End Select
+
+        '                End If
+
+        '            End If
+
+        '            Select Case strColName.ToUpper()
+        '                Case "ID"
+        '                    row(colName) = id
+        '                Case "RUNDATE"
+        '                    row(colName) = dte.RunDate.ToString("dd MMM")
+        '                Case "TECH_"
+        '                    row(colName) = strTechRun
+        '                Case "DRIVER_"
+        '                    row(colName) = strRunNum
+        '                    strRunNum = ""
+        '            End Select
+
+        '        Next
+
+        '        dtService.Rows.Add(row)
+
+        '        '--- increament ID
+        '        id = id + 1
+
+        '    Next
+
+        '    Session("ServiceRunTable") = dtService
+
+        '    Me.gvServiceRun.DataSource = dtService
+        '    Me.gvServiceRun.DataBind()
+
+        'End If
 
     End Sub
 
@@ -863,7 +961,7 @@ Public Class ServiceRunManagement
 
                 Dim fldDriver As New ServiceRunFields
 
-                fldDriver.FieldName = "Driver_" + d.DriverName
+                fldDriver.FieldName = "Driver_" + d.Did.ToString() + "-" + d.DriverName
                 fldDriver.FieldProperty = GetType(String)
                 fields.Add(fldDriver)
 
@@ -885,7 +983,7 @@ Public Class ServiceRunManagement
                 Dim Tech As New Technician
 
                 Tech.TechID = "TechID_" + t.Did.ToString()
-                Tech.Techname = "Tech_" + t.DriverName
+                Tech.Techname = "Tech_" + t.Did.ToString() + "-" + t.DriverName
 
                 Technicians.Add(Tech)
 

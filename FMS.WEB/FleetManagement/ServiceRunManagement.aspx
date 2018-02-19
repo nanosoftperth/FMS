@@ -376,10 +376,11 @@
                     <dx:TabPage Text="Service Run">
                         <ContentCollection>
                             <dx:ContentControl ID="ccServRun" runat="server">
-                                <table style="width: 100%">
+                                <table>
                                     <tr>
-                                        <td style="width: 20%">
-                                            <dx:ASPxDateEdit ID="dteStart" runat="server" NullText="Start Date" Width="95%"
+                                        <td style="width: 160px">
+                                            <dx:ASPxDateEdit ID="dteStart" runat="server" NullText="Start Date" 
+                                                Width="150px"
                                                 ClientInstanceName="clientdteStart" OnInit="dteStart_Init"
                                                 AutoPostBack="false" OnValueChanged="dteStart_ValueChanged">
                                                 <TimeSectionProperties>
@@ -390,8 +391,9 @@
                                                 <ClearButton Visibility="Auto"></ClearButton>
                                             </dx:ASPxDateEdit>
                                         </td>
-                                        <td style="width: 20%; text-align: left">
-                                            <dx:ASPxDateEdit ID="dteEnd" runat="server" NullText="End Date" Width="95%"
+                                        <td style="width: 160px">
+                                            <dx:ASPxDateEdit ID="dteEnd" runat="server" NullText="End Date" 
+                                                Width="150px"
                                                 ClientInstanceName="clientdteEnd" OnInit="dteEnd_Init"
                                                 AutoPostBack="false" OnValueChanged="dteEnd_ValueChanged">
                                                 <TimeSectionProperties>
@@ -402,32 +404,8 @@
                                                 <ClearButton Visibility="Auto"></ClearButton>
                                             </dx:ASPxDateEdit>
                                         </td>
-                                        <td style="width: 20%">
-                                            <%--<dx:ASPxButton ID="sample" runat="server" AutoPostBack="false" Text="Load" 
-                                                OnClick="btnLoad_Click" BackColor="Gray" ForeColor="Black">                                                        
-                                            </dx:ASPxButton>--%>
+                                        <td>
                                             <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" />  
-                                            <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                                <ContentTemplate>
-                                                    
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>--%>
-                                                                                     
-                                            
-                                        </td>
-                                        <td style="width: 10%; text-align: right; padding-right: 5px;">
-                                            <%--<dx:ASPxImage ID="imgFilter" runat="server" ImageUrl="../Content/Images/FilterRecord.png" 
-                                                Width="15px" Height="15px"></dx:ASPxImage>--%>
-                                        </td>
-                                        <td style="width: 10%; text-align: left">
-                                            <%--<dx:ASPxLabel ID="lblFilter" runat="server" text="Filter"></dx:ASPxLabel>--%>
-                                        </td>
-                                        <td style="width: 10%; text-align: right; padding-right: 5px;">
-                                            <%--<dx:ASPxImage ID="imgSearch" runat="server" ImageUrl="../Content/Images/SearchRecord.png" 
-                                                Width="15px" Height="15px"></dx:ASPxImage>--%>
-                                        </td>
-                                        <td style="width: 10%; padding-left: 5px;">
-                                            <%--<dx:ASPxLabel ID="ASPxLabel1" runat="server" text="Search"></dx:ASPxLabel>--%>
                                         </td>
                                     </tr>
                                 </table>

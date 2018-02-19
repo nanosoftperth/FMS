@@ -4,23 +4,27 @@
 
 #Region "Properties / enums"
         Public Property ApplicationId As System.Guid
-        Public Property DriverName As String
-        Public Property Did As Integer
-        Public Property DateOfRun As Date
-        Public Property wkday As String
+        Public Property RunID As Guid
+        Public Property Driver As Integer
         Public Property Rid As Integer
         Public Property RunNUmber As Integer
         Public Property RunDescription As String
-        Public Property MondayRun As Boolean
-        Public Property TuesdayRun As Boolean
-        Public Property WednesdayRun As Boolean
-        Public Property ThursdayRun As Boolean
-        Public Property FridayRun As Boolean
-        Public Property SaturdayRun As Boolean
-        Public Property SundayRun As Boolean
-        Public Property InactiveRun As Boolean
+        Public Property DateOfRun As Date
+        Public Property DriverName As String
         Public Property DriverID As Guid
-        Public Property RunID As Guid
+
+        'Public Property Did As Integer
+        'Public Property wkday As String
+        'Public Property MondayRun As Boolean
+        'Public Property TuesdayRun As Boolean
+        'Public Property WednesdayRun As Boolean
+        'Public Property ThursdayRun As Boolean
+        'Public Property FridayRun As Boolean
+        'Public Property SaturdayRun As Boolean
+        'Public Property SundayRun As Boolean
+        'Public Property InactiveRun As Boolean
+
+
 
 #End Region
 
@@ -30,22 +34,25 @@
         End Sub
         Public Sub New(obj As FMS.Business.usp_GetServiceRunDatesResult)
             With obj
-                Me.ApplicationId = .ApplicationId
-                Me.DriverName = .DriverName
-                Me.Did = .Did
-                Me.DateOfRun = .DateOfRun
-                Me.wkday = .wkday
+                Me.ApplicationId = .ApplicationID
+                Me.RunID = .RunID
                 Me.Rid = .Rid
                 Me.RunNUmber = .RunNUmber
                 Me.RunDescription = .RunDescription
-                Me.MondayRun = .MondayRun
-                Me.TuesdayRun = .TuesdayRun
-                Me.WednesdayRun = .WednesdayRun
-                Me.ThursdayRun = .ThursdayRun
-                Me.FridayRun = .FridayRun
-                Me.SaturdayRun = .SaturdayRun
+                Me.DateOfRun = .DateOfRun
+                Me.Driver = .Driver
+                Me.DriverName = .DriverName
                 Me.DriverID = .DriverID
-                Me.RunID = .RunID
+
+                'Me.Did = .Did
+                'Me.wkday = .wkday
+                'Me.MondayRun = .MondayRun
+                'Me.TuesdayRun = .TuesdayRun
+                'Me.WednesdayRun = .WednesdayRun
+                'Me.ThursdayRun = .ThursdayRun
+                'Me.FridayRun = .FridayRun
+                'Me.SaturdayRun = .SaturdayRun
+
             End With
         End Sub
 #End Region
@@ -58,7 +65,7 @@
 
                 With New LINQtoSQLClassesDataContext
                     obj = (From s In .usp_GetServiceRunDates(appId, StartDate, EndDate)
-                           Order By s.Did, s.DriverName
+                           Order By s.Driver, s.DriverName
                            Select New DataObjects.usp_GetServiceRunDates(s)).ToList
                     .Dispose()
                 End With
@@ -79,8 +86,8 @@
 
                 With New LINQtoSQLClassesDataContext
                     obj = (From s In .usp_GetServiceRunDates(appId, StartDate, EndDate)
-                           Order By s.Did, s.DriverName
-                           Select s.Did, s.DriverName).ToList.GroupBy(Function(x) x.DriverName)
+                           Order By s.Driver, s.DriverName
+                           Select s.Driver, s.DriverName).ToList.GroupBy(Function(x) x.DriverName)
 
                     .Dispose()
 
