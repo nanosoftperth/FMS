@@ -9,6 +9,7 @@ Namespace DataObjects
         Public Property PhotoBinary() As Byte()
         Public Property PhotoLocation As String
         Public Property CreatedDate As System.Nullable(Of Date)
+        Public Property ApplicationID As System.Nullable(Of System.Guid)
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Document As DataObjects.FleetDocument)
@@ -21,6 +22,7 @@ Namespace DataObjects
                     .Description = Document.Description
                     .PhotoLocation = SaveImageToFolder(Document.PhotoBinary, Document.Cid, Document.Rid)
                     .CreatedDate = Date.Now
+                    .ApplicationID = ThisSession.ApplicationID
                 End With
                 .FleetDocuments.InsertOnSubmit(fleetDocument)
                 .SubmitChanges()
@@ -31,7 +33,7 @@ Namespace DataObjects
 
             With New LINQtoSQLClassesDataContext
                 Dim fleetDocument As FMS.Business.FleetDocument = (From i In .FleetDocuments
-                                                                   Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
+                                                                   Where i.DocumentID.Equals(Document.DocumentID) And i.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
                 With fleetDocument
                     .DocumentID = Document.DocumentID
                     .Cid = Document.Cid
@@ -39,6 +41,7 @@ Namespace DataObjects
                     .Description = Document.Description
                     .PhotoLocation = SaveImageToFolder(Document.PhotoBinary, Document.Cid, Document.Rid, fleetDocument.PhotoLocation)
                     .CreatedDate = Date.Now
+                    .ApplicationID = ThisSession.ApplicationID
                 End With
                 .SubmitChanges()
                 .Dispose()
@@ -48,7 +51,7 @@ Namespace DataObjects
             Dim fleetDocument As FMS.Business.FleetDocument
             With New LINQtoSQLClassesDataContext
                 fleetDocument = (From i In .FleetDocuments
-                                 Where i.DocumentID.Equals(Document.DocumentID)).SingleOrDefault
+                                 Where i.DocumentID.Equals(Document.DocumentID) And i.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
                 .FleetDocuments.DeleteOnSubmit(fleetDocument)
                 .SubmitChanges()
                 .Dispose()
@@ -58,7 +61,7 @@ Namespace DataObjects
         Public Shared Sub DeleteByRunID(RunID As Guid)
             With New LINQtoSQLClassesDataContext
                 Dim fleetDocs = (From i In .FleetDocuments
-                                 Where i.Rid.Equals(RunID)).ToList()
+                                 Where i.Rid.Equals(RunID) And i.ApplicationID.Equals(ThisSession.ApplicationID)).ToList()
                 For Each fleetDoc In fleetDocs
                     Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
                     .FleetDocuments.DeleteOnSubmit(fleetDocument)
@@ -70,7 +73,7 @@ Namespace DataObjects
         Public Shared Sub DeleteByClientID(ClientID As Guid)
             With New LINQtoSQLClassesDataContext
                 Dim fleetDocs = (From i In .FleetDocuments
-                                 Where i.Cid.Equals(ClientID)).ToList()
+                                 Where i.Cid.Equals(ClientID) And i.ApplicationID.Equals(ThisSession.ApplicationID)).ToList()
                 For Each fleetDoc In fleetDocs
                     Dim fleetDocument As FMS.Business.FleetDocument = fleetDoc
                     .FleetDocuments.DeleteOnSubmit(fleetDoc)
@@ -186,6 +189,7 @@ Namespace DataObjects
                 Me.Description = .Description
                 Me.PhotoLocation = .PhotoLocation
                 Me.CreatedDate = .CreatedDate
+                Me.ApplicationID = .ApplicationID
             End With
         End Sub
 #End Region

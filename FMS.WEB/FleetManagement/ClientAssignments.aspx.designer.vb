@@ -158,20 +158,20 @@ Partial Public Class ClientAssignments
     Protected WithEvents odsTblDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
     
     '''<summary>
-    '''RunClientGridView control.
+    '''RunSiteGridView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RunClientGridView As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents RunSiteGridView As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
-    '''odsRunClient control.
+    '''odsRunSite control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents odsRunClient As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents odsRunSite As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

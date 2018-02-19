@@ -1,7 +1,7 @@
 ﻿Namespace DataObjects
     Public Class usp_GetRunsForAssignment
 #Region "Properties / enums"
-        Public Property UniqueID As System.Nullable(Of System.Guid)
+        Public Property UniqueID As String
         Public Property Rid As System.Nullable(Of Integer)
         Public Property RunNUmber As System.Nullable(Of Integer)
         Public Property RunDescription As String
@@ -16,10 +16,11 @@
                 .Dispose()
 
             End With
-
         End Sub
         Public Shared Sub Update(GetRunsForAssignment As DataObjects.usp_GetRunsForAssignment)
             Dim runDates As New tblRunDates()
+            Dim Rid As Integer = GetRunsForAssignment.UniqueID.Split("-")(1)
+            GetRunsForAssignment.Rid = Rid
             Dim runDatesByRunID = tblRunDates.GetRunDatesByRunID(GetRunsForAssignment.Rid)
             Dim blnRunDates As Boolean = True
             If GetRunsForAssignment.DateOfRun Is Nothing Then

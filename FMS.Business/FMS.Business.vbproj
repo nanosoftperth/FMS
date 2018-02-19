@@ -140,6 +140,7 @@
     <Compile Include="Classes\DataObjects\FleetManagement\tblRunDates.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRunFortnightlyCycle.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblRuns.vb" />
+    <Compile Include="Classes\DataObjects\FleetManagement\tblRunSite.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblSalesPersons.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblServiceFrequency.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\tblServices.vb" />

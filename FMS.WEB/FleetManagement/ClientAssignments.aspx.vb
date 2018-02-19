@@ -67,4 +67,59 @@ Public Class ClientAssignments
         Dim objRuns = FMS.Business.DataObjects.tblCustomers.GetACustomerByCID(Cid)
         Return objRuns
     End Function
+    Protected Sub RunGridView_RowValidating(sender As Object, e As Data.ASPxDataValidationEventArgs)
+        Dim RunGridUpdating = Session("RunGridViewUpdating")
+        Dim runNumber As Integer = e.NewValues("RunNUmber")
+        Dim runDesc As String = e.NewValues("RunDescription")
+        Dim runs = FMS.Business.DataObjects.tblRuns.GetTblRunByRunNumberRunDescription(runNumber, runDesc.Trim())
+        If e.IsNewRow Then
+            If RunGridUpdating Is Nothing Then
+                Exit Sub
+            End If
+
+            If Not runs Is Nothing Then
+                e.RowError = "Run number and description already exists."
+            End If
+        Else
+            Dim iKeys As Integer = e.Keys(0)
+            If runs.Rid <> iKeys And runs.RunDescription.Equals(runDesc) And runs.RunNUmber.Equals(runNumber) Then
+                e.RowError = "Run number and description already exists."
+            End If
+        End If
+    End Sub
+    Protected Sub GetRunsForAssignmentGridView_RowValidating(sender As Object, e As Data.ASPxDataValidationEventArgs)
+        If e.NewValues("DateOfRun") Is Nothing Then
+            e.RowError = "Date of run must not be empty."
+        End If
+    End Sub
+
+    Protected Sub RunSiteGridView_RowValidating(sender As Object, e As Data.ASPxDataValidationEventArgs)
+        If e.NewValues("Rid") Is Nothing And e.NewValues("Cid") Is Nothing Then
+            e.RowError = "Run and Site is empty."
+            Exit Sub
+        End If
+        If e.NewValues("Rid") Is Nothing Then
+            e.RowError = "Run is empty."
+            Exit Sub
+        End If
+        If e.NewValues("Cid") Is Nothing Then
+            e.RowError = "Site is empty."
+            Exit Sub
+        End If
+        Dim rid As Integer = e.NewValues("Rid")
+        Dim cid As Integer = e.NewValues("Cid")
+        Dim runSite = FMS.Business.DataObjects.tblRunSite.GetRunSiteByRidCid(rid, cid)
+        If e.IsNewRow Then
+            If Not runSite Is Nothing Then
+                e.RowError = "Run and Site already exists."
+            End If
+        Else
+            Dim uniqueIdentifierKeys = e.Keys(0)
+            If runSite.RunSiteID <> uniqueIdentifierKeys And runSite.Rid.Equals(rid) And runSite.Cid.Equals(cid) Then
+                e.RowError = "Run and Site already exists."
+            End If
+        End If
+
+
+    End Sub
 End Class
