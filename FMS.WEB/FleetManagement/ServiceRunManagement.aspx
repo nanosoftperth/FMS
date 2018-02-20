@@ -24,6 +24,12 @@
 
     <script type="text/javascript">
         function ShowPopup(fieldname) {
+
+            //var FocusedCell;
+            //FocusedCell = document.getElementById(htmlId);
+            //FocusedCell.style.color = 'Red';
+            //FocusedCell.style.border = '1px solid Red';
+
             var intDateDiff = GetDateDiff(clientdteStart.GetDate(), clientdteEnd.GetDate());
 
             setCookie('SRStartDate', clientdteStart.GetDate(), 1)
@@ -56,7 +62,7 @@
                 }
             }
 
-            
+
 
         }
 
@@ -361,8 +367,7 @@
         }
 
         //Call Load Grid
-        function CallLoadGrid(e)
-        {
+        function CallLoadGrid(e) {
             alert('test');
             $.ajax({
                 type: "POST",
@@ -373,7 +378,6 @@
 
             });
         }
-
 
         function showLoadingProcess(msg) {
             LoadingPanel.SetText(msg);
@@ -394,195 +398,196 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-
-            
-        <div>
-            <dx:ASPxPageControl ID="carTabPage" Width="100%" runat="server"
-                CssClass="dxtcFixed" ActiveTabIndex="1" EnableHierarchyRecreation="True">
-                <TabPages>
-                    <dx:TabPage Text="Service Run">
-                        <ContentCollection>
-                            <dx:ContentControl ID="ccServRun" runat="server">
-                                <table>
-                                    <tr>
-                                        <td style="width: 160px">
-                                            <dx:ASPxDateEdit ID="dteStart" runat="server" NullText="Start Date" 
-                                                Width="150px"
-                                                ClientInstanceName="clientdteStart" OnInit="dteStart_Init"
-                                                AutoPostBack="false" OnValueChanged="dteStart_ValueChanged">
-                                                <TimeSectionProperties>
-                                                    <TimeEditProperties>
+                <div>
+                    <dx:ASPxPageControl ID="carTabPage" Width="100%" runat="server"
+                        CssClass="dxtcFixed" ActiveTabIndex="0" EnableHierarchyRecreation="True">
+                        <TabPages>
+                            <dx:TabPage Text="Service Run">
+                                <ContentCollection>
+                                    <dx:ContentControl ID="ccServRun" runat="server">
+                                        <table>
+                                            <tr>
+                                                <td style="width: 160px">
+                                                    <dx:ASPxDateEdit ID="dteStart" runat="server" NullText="Start Date"
+                                                        Width="150px"
+                                                        ClientInstanceName="clientdteStart" OnInit="dteStart_Init"
+                                                        AutoPostBack="false">
+                                                        <TimeSectionProperties>
+                                                            <TimeEditProperties>
+                                                                <ClearButton Visibility="Auto"></ClearButton>
+                                                            </TimeEditProperties>
+                                                        </TimeSectionProperties>
                                                         <ClearButton Visibility="Auto"></ClearButton>
-                                                    </TimeEditProperties>
-                                                </TimeSectionProperties>
-                                                <ClearButton Visibility="Auto"></ClearButton>
-                                            </dx:ASPxDateEdit>
-                                        </td>
-                                        <td style="width: 160px">
-                                            <dx:ASPxDateEdit ID="dteEnd" runat="server" NullText="End Date" 
-                                                Width="150px"
-                                                ClientInstanceName="clientdteEnd" OnInit="dteEnd_Init"
-                                                AutoPostBack="false" OnValueChanged="dteEnd_ValueChanged">
-                                                <TimeSectionProperties>
-                                                    <TimeEditProperties>
+                                                    </dx:ASPxDateEdit>
+                                                </td>
+                                                <td style="width: 160px">
+                                                    <dx:ASPxDateEdit ID="dteEnd" runat="server" NullText="End Date"
+                                                        Width="150px"
+                                                        ClientInstanceName="clientdteEnd" OnInit="dteEnd_Init"
+                                                        AutoPostBack="false">
+                                                        <TimeSectionProperties>
+                                                            <TimeEditProperties>
+                                                                <ClearButton Visibility="Auto"></ClearButton>
+                                                            </TimeEditProperties>
+                                                        </TimeSectionProperties>
                                                         <ClearButton Visibility="Auto"></ClearButton>
-                                                    </TimeEditProperties>
-                                                </TimeSectionProperties>
-                                                <ClearButton Visibility="Auto"></ClearButton>
-                                            </dx:ASPxDateEdit>
-                                        </td>
-                                        <td>
-                                            <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" />  
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br />
-                                <dx:ASPxGridView ID="gvServiceRun" runat="server" ClientInstanceName="clientgvServiceRun"
-                                    OnHtmlDataCellPrepared="gvServiceRun_HtmlDataCellPrepared"
-                                    OnCustomJSProperties="gvServiceRun_CustomJSProperties"
-                                    EnableTheming="True" Theme="SoftOrange"
-                                    KeyFieldName="ID">
-                                    <SettingsBehavior AllowFocusedRow="true"></SettingsBehavior>
-                                    <Styles>
-                                        <Header CssClass="ServiceRunHeader" />
-                                        <FocusedRow BackColor="Transparent" ForeColor="Black"></FocusedRow>
-                                    </Styles>
-                                    <ClientSideEvents ContextMenu=" function(s, e) { 
+                                                    </dx:ASPxDateEdit>
+                                                </td>
+                                                <td>
+                                                    <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <br />
+                                        <dx:ASPxGridView ID="gvServiceRun" runat="server" ClientInstanceName="clientgvServiceRun"
+                                            OnHtmlDataCellPrepared="gvServiceRun_HtmlDataCellPrepared"
+                                            OnCustomJSProperties="gvServiceRun_CustomJSProperties"
+                                            EnableTheming="True" Theme="SoftOrange"
+                                            KeyFieldName="ID">
+                                            <SettingsPager PageSize="100" SEOFriendly="Enabled">
+                                                <PageSizeItemSettings Visible="true" />
+                                            </SettingsPager>
+                                            <SettingsBehavior AllowFocusedRow="true"></SettingsBehavior>
+                                            <Styles>
+                                                <Header CssClass="ServiceRunHeader" />
+                                                <FocusedRow BackColor="Transparent" ForeColor="Black"></FocusedRow>
+                                            </Styles>
+                                            <ClientSideEvents ContextMenu=" function(s, e) { 
                                         if (e.objectType == 'row') {
                                             ContextMenuServiceRun(s,e);
                                         }
                                     } " />
 
-                                    <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged" />
+                                            <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged" />
 
-                                </dx:ASPxGridView>
+                                        </dx:ASPxGridView>
 
-                            </dx:ContentControl>
+                                    </dx:ContentControl>
+                                </ContentCollection>
+                            </dx:TabPage>
+
+                        </TabPages>
+                    </dx:ASPxPageControl>
+                    <dx:ASPxPopupControl ID="puUnassignedRun" runat="server" ClientInstanceName="clientpuUnassignedRun"
+                        Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
+                        AllowDragging="True" PopupHorizontalAlign="WindowCenter"
+                        PopupVerticalAlign="WindowCenter" ShowHeader="False">
+                        <ContentCollection>
+                            <dx:PopupControlContentControl runat="server">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxLabel ID="lblSelectRun" runat="server" Text="Select Run "></dx:ASPxLabel>
+                                        </td>
+                                        <td>
+                                            <dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String"
+                                                ClientInstanceName="clientcboRun">
+                                                <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
+                                            </dx:ASPxComboBox>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <dx:ASPxButton ID="btnSelectServiceRun" runat="server" Text="Select Run"
+                                    OnClick="btnSelectServiceRun_Click">
+                                </dx:ASPxButton>
+                                <dx:ASPxButton ID="btnCancel" runat="server" Text="Cancel"
+                                    OnClick="btnCancel_Click" AutoPostBack="false">
+                                </dx:ASPxButton>
+                            </dx:PopupControlContentControl>
                         </ContentCollection>
-                    </dx:TabPage>
-
-                </TabPages>
-            </dx:ASPxPageControl>
-            <dx:ASPxPopupControl ID="puUnassignedRun" runat="server" ClientInstanceName="clientpuUnassignedRun"
-                Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
-                AllowDragging="True" PopupHorizontalAlign="WindowCenter"
-                PopupVerticalAlign="WindowCenter" ShowHeader="False">
-                <ContentCollection>
-                    <dx:PopupControlContentControl runat="server">
-                        <table>
-                            <tr>
-                                <td>
-                                    <dx:ASPxLabel ID="lblSelectRun" runat="server" Text="Select Run "></dx:ASPxLabel>
-                                </td>
-                                <td>
-                                    <dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String"
-                                        ClientInstanceName="clientcboRun">
-                                        <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
-                                    </dx:ASPxComboBox>
-                                </td>
-                            </tr>
-                        </table>
-                        <br />
-                        <dx:ASPxButton ID="btnSelectServiceRun" runat="server" Text="Select Run"
-                            OnClick="btnSelectServiceRun_Click">
-                        </dx:ASPxButton>
-                        <dx:ASPxButton ID="btnCancel" runat="server" Text="Cancel"
-                            OnClick="btnCancel_Click" AutoPostBack="false">
-                        </dx:ASPxButton>
-                    </dx:PopupControlContentControl>
-                </ContentCollection>
-            </dx:ASPxPopupControl>
-            <dx:ASPxPopupControl ID="puCompleteRun" runat="server" ClientInstanceName="clientpuCompleteRun"
-                Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
-                AllowDragging="True" PopupHorizontalAlign="WindowCenter"
-                PopupVerticalAlign="WindowCenter" ShowHeader="False">
-                <ContentCollection>
-                    <dx:PopupControlContentControl runat="server">
-                        <table>
-                            <tr>
-                                <td>
-                                    <dx:ASPxCheckBox ID="cbxCompleteRun" runat="server" Text="Run Completed (Uncheck to delete completed run)"
-                                        ClientInstanceName="clientcbxCompleteRun">
-                                    </dx:ASPxCheckBox>
-                                    <%--<dx:ASPxLabel ID="lblCompleteRun" runat="server" Text="Complte Run"></dx:ASPxLabel>--%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <%--<dx:ASPxLabel ID="lblDriverID" ClientInstanceName="clientlblDriverID" runat="server" Text="">
+                    </dx:ASPxPopupControl>
+                    <dx:ASPxPopupControl ID="puCompleteRun" runat="server" ClientInstanceName="clientpuCompleteRun"
+                        Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
+                        AllowDragging="True" PopupHorizontalAlign="WindowCenter"
+                        PopupVerticalAlign="WindowCenter" ShowHeader="False">
+                        <ContentCollection>
+                            <dx:PopupControlContentControl runat="server">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxCheckBox ID="cbxCompleteRun" runat="server" Text="Run Completed (Uncheck to delete completed run)"
+                                                ClientInstanceName="clientcbxCompleteRun">
+                                            </dx:ASPxCheckBox>
+                                            <%--<dx:ASPxLabel ID="lblCompleteRun" runat="server" Text="Complte Run"></dx:ASPxLabel>--%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <%--<dx:ASPxLabel ID="lblDriverID" ClientInstanceName="clientlblDriverID" runat="server" Text="">
                                     </dx:ASPxLabel>--%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <dx:ASPxDateEdit ID="dteCompleted" runat="server" NullText="Date Completed"
-                                        ClientInstanceName="clientdteCompleted" AutoPostBack="false">
-                                        <TimeSectionProperties>
-                                            <TimeEditProperties>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxDateEdit ID="dteCompleted" runat="server" NullText="Date Completed"
+                                                ClientInstanceName="clientdteCompleted" AutoPostBack="false">
+                                                <TimeSectionProperties>
+                                                    <TimeEditProperties>
+                                                        <ClearButton Visibility="Auto"></ClearButton>
+                                                    </TimeEditProperties>
+                                                </TimeSectionProperties>
                                                 <ClearButton Visibility="Auto"></ClearButton>
-                                            </TimeEditProperties>
-                                        </TimeSectionProperties>
-                                        <ClearButton Visibility="Auto"></ClearButton>
-                                    </dx:ASPxDateEdit>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <dx:ASPxComboBox runat="server" ID="cboDriverCompleted" DropDownStyle="DropDownList" IncrementalFilteringMode="StartsWith"
-                                        TextField="DriverName" ValueField="DriverID" Width="100%" DataSourceID="odsDriver"
-                                        EnableSynchronization="False" ClientInstanceName="clientcboDriverCompleted"
-                                        NullText="Select Driver">
-                                    </dx:ASPxComboBox>
+                                            </dx:ASPxDateEdit>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxComboBox runat="server" ID="cboDriverCompleted" DropDownStyle="DropDownList" IncrementalFilteringMode="StartsWith"
+                                                TextField="DriverName" ValueField="DriverID" Width="100%" DataSourceID="odsDriver"
+                                                EnableSynchronization="False" ClientInstanceName="clientcboDriverCompleted"
+                                                NullText="Select Driver">
+                                            </dx:ASPxComboBox>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <dx:ASPxTextBox runat="server" ID="txtCompletedNotes" ClientInstanceName="clienttxtCompletedNotes"
-                                        NullText="Enter Notes">
-                                    </dx:ASPxTextBox>
-                                </td>
-                            </tr>
-                        </table>
-                        <br />
-                        <dx:ASPxButton ID="btnCompleteRun" runat="server" Text="Set"
-                            OnClick="btnCompleteRun_Click">
-                        </dx:ASPxButton>
-                        <dx:ASPxButton ID="btnCancelComplete" runat="server" Text="Cancel"
-                            OnClick="btnCancelComplete_Click">
-                        </dx:ASPxButton>
-                    </dx:PopupControlContentControl>
-                </ContentCollection>
-            </dx:ASPxPopupControl>
-        </div>
-        <dx:ASPxPopupControl ID="puDialog" runat="server" ClientInstanceName="clientpuDialog"
-            Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
-            AllowDragging="True" PopupHorizontalAlign="WindowCenter"
-            PopupVerticalAlign="WindowCenter" ShowHeader="False">
-            <ContentCollection>
-                <dx:PopupControlContentControl runat="server">
-                    <dx:ASPxLabel ID="lblDialog" runat="server" Text="Your Text Here">
-                    </dx:ASPxLabel>
-                    <br />
-                    <dx:ASPxButton ID="btnDialogOK" runat="server" Text="OK"
-                        OnClick="btnDialogOK_Click">
-                    </dx:ASPxButton>
-                    <dx:ASPxButton ID="btnDialogCancel" runat="server" Text="Cancel"
-                        OnClick="btnDialogCancel_Click">
-                    </dx:ASPxButton>
-                </dx:PopupControlContentControl>
-            </ContentCollection>
-        </dx:ASPxPopupControl>
-        <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
-            Modal="True">
-        </dx:ASPxLoadingPanel>
-        <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
-        </ContentTemplate>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <dx:ASPxTextBox runat="server" ID="txtCompletedNotes" ClientInstanceName="clienttxtCompletedNotes"
+                                                NullText="Enter Notes">
+                                            </dx:ASPxTextBox>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <dx:ASPxButton ID="btnCompleteRun" runat="server" Text="Set"
+                                    OnClick="btnCompleteRun_Click">
+                                </dx:ASPxButton>
+                                <dx:ASPxButton ID="btnCancelComplete" runat="server" Text="Cancel"
+                                    OnClick="btnCancelComplete_Click">
+                                </dx:ASPxButton>
+                            </dx:PopupControlContentControl>
+                        </ContentCollection>
+                    </dx:ASPxPopupControl>
+                </div>
+                <dx:ASPxPopupControl ID="puDialog" runat="server" ClientInstanceName="clientpuDialog"
+                    Height="83px" Modal="True" CloseAction="CloseButton" Width="300px"
+                    AllowDragging="True" PopupHorizontalAlign="WindowCenter"
+                    PopupVerticalAlign="WindowCenter" ShowHeader="False">
+                    <ContentCollection>
+                        <dx:PopupControlContentControl runat="server">
+                            <dx:ASPxLabel ID="lblDialog" runat="server" Text="Your Text Here">
+                            </dx:ASPxLabel>
+                            <br />
+                            <dx:ASPxButton ID="btnDialogOK" runat="server" Text="OK"
+                                OnClick="btnDialogOK_Click">
+                            </dx:ASPxButton>
+                            <dx:ASPxButton ID="btnDialogCancel" runat="server" Text="Cancel"
+                                OnClick="btnDialogCancel_Click">
+                            </dx:ASPxButton>
+                        </dx:PopupControlContentControl>
+                    </ContentCollection>
+                </dx:ASPxPopupControl>
+                <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"
+                    Modal="True">
+                </dx:ASPxLoadingPanel>
+                <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
+            </ContentTemplate>
         </asp:UpdatePanel>
     </form>
 </body>

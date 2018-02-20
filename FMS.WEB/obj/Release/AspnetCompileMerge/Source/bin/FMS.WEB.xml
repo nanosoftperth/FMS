@@ -805,6 +805,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ClientAssignments._odsTblRuns">
+<summary>
+odsTblRuns control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ClientAssignments._odsRun">
 <summary>
 odsRun control.
@@ -823,9 +832,36 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ClientAssignments._odsRunsList">
+<summary>
+odsRunsList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsDriverList">
+<summary>
+odsDriverList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ClientAssignments._ClientGridView">
 <summary>
 ClientGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsSites">
+<summary>
+odsSites control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -859,18 +895,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.ClientAssignments._RunCompletionGridView">
+<member name="F:FMS.WEB.ClientAssignments._GetRunsForAssignmentGridView">
 <summary>
-RunCompletionGridView control.
+GetRunsForAssignmentGridView control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.ClientAssignments._odsRunCompletion">
+<member name="F:FMS.WEB.ClientAssignments._odsGetRunsForAssignment">
 <summary>
-odsRunCompletion control.
+odsGetRunsForAssignment control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -886,18 +922,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.ClientAssignments._RunClientGridView">
+<member name="F:FMS.WEB.ClientAssignments._RunSiteGridView">
 <summary>
-RunClientGridView control.
+RunSiteGridView control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.ClientAssignments._odsRunClient">
+<member name="F:FMS.WEB.ClientAssignments._odsRunSite">
 <summary>
-odsRunClient control.
+odsRunSite control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2245,6 +2281,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ServiceRunManagement._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ServiceRunManagement._carTabPage">
 <summary>
 carTabPage control.
@@ -2293,6 +2338,150 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ServiceRunManagement._gvServiceRun">
 <summary>
 gvServiceRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._RunGridView">
+<summary>
+RunGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsTblRuns">
+<summary>
+odsTblRuns control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsRun">
+<summary>
+odsRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsRunMultiDocs">
+<summary>
+odsRunMultiDocs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsRunsList">
+<summary>
+odsRunsList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsDriverList">
+<summary>
+odsDriverList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._ClientGridView">
+<summary>
+ClientGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsSites">
+<summary>
+odsSites control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsClient">
+<summary>
+odsClient control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsMultiDocs">
+<summary>
+odsMultiDocs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsCustomerList">
+<summary>
+odsCustomerList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._GetRunsForAssignmentGridView">
+<summary>
+GetRunsForAssignmentGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsGetRunsForAssignment">
+<summary>
+odsGetRunsForAssignment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsTblDrivers">
+<summary>
+odsTblDrivers control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._RunSiteGridView">
+<summary>
+RunSiteGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._odsRunSite">
+<summary>
+odsRunSite control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2437,6 +2626,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ServiceRunManagement._btnDialogCancel">
 <summary>
 btnDialogCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceRunManagement._LoadingPanel">
+<summary>
+LoadingPanel control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2734,123 +2932,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.CIRReasons._odsCIRReasons">
 <summary>
 odsCIRReasons control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._FleetManagementPageControl">
-<summary>
-FleetManagementPageControl control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._RunGridView">
-<summary>
-RunGridView control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsRun">
-<summary>
-odsRun control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsRunMultiDocs">
-<summary>
-odsRunMultiDocs control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._ClientGridView">
-<summary>
-ClientGridView control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsClient">
-<summary>
-odsClient control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsMultiDocs">
-<summary>
-odsMultiDocs control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsCustomerList">
-<summary>
-odsCustomerList control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._RunCompletionGridView">
-<summary>
-RunCompletionGridView control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsRunCompletion">
-<summary>
-odsRunCompletion control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsTblDrivers">
-<summary>
-odsTblDrivers control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._RunClientGridView">
-<summary>
-RunClientGridView control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetManagement._odsRunClient">
-<summary>
-odsRunClient control.
 </summary>
 <remarks>
 Auto-generated field.

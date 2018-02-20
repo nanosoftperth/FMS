@@ -3,13 +3,16 @@ Imports System.Reflection.Emit
 Imports DevExpress.Web
 Imports DevExpress.Web.ASPxGridView
 Imports System.Web.Services
+Imports System.Drawing
 
 Public Class ServiceRunManagement
     Inherits System.Web.UI.Page
 
 #Region "Events"
     Private priRundate As String
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         If (Not IsPostBack = False) Then
             Dim dtServRun As DataTable
 
@@ -33,12 +36,7 @@ Public Class ServiceRunManagement
     Protected Sub dteEnd_Init(sender As Object, e As EventArgs)
         dteEnd.Date = DateSerial(Now.Year, Now.Month + 1, 0)
     End Sub
-    Protected Sub dteStart_ValueChanged(sender As Object, e As EventArgs)
 
-    End Sub
-    Protected Sub dteEnd_ValueChanged(sender As Object, e As EventArgs)
-
-    End Sub
     Protected Sub btnLoad_Click(sender As Object, e As EventArgs)
         Dim blnValidate As Boolean = False
 
@@ -64,41 +62,18 @@ Public Class ServiceRunManagement
 
     End Sub
 
-    Protected Sub LoadGrid()
-        Dim blnValidate As Boolean = False
-
-        If (IsDate(Me.dteStart.Value) = True) Then
-            If (IsDate(Me.dteEnd.Value) = True) Then
-                If (Me.dteStart.Value <= Me.dteEnd.Value) Then
-                    blnValidate = True
-                Else
-                    ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date date should be earlier date or same date of end date.');", True)
-                End If
-            Else
-                ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('End date date should be a valid date.');", True)
-                blnValidate = False
-            End If
-        Else
-            ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date should be a valid date.');", True)
-        End If
-
-        If blnValidate = True Then
-            PopulateServiceRunGrid()
-        End If
-
-
-    End Sub
-
-
     Protected Sub gvServiceRun_HtmlDataCellPrepared(sender As Object, e As ASPxGridViewTableDataCellEventArgs)
         Dim Rundate As String = ""
         Dim TmpRundate As String = ""
+
+        Dim htmlId As String = String.Format("cell_{0}_{1}", e.VisibleIndex, e.DataColumn.FieldName)
 
         Dim ndxTech = e.DataColumn.FieldName.IndexOf("Tech_")
         If (ndxTech > -1) Then
             Dim cellVal = e.CellValue
             If (cellVal.ToString().Length) > 0 Then
-                e.Cell.BackColor = System.Drawing.Color.Beige
+                'e.Cell.BackColor = System.Drawing.Color.Beige
+                e.Cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#fffb02")
             End If
         End If
 
@@ -106,11 +81,13 @@ Public Class ServiceRunManagement
         If (ndxDvr > -1) Then
             Dim cellVal = e.CellValue
             If (cellVal.ToString().Length) > 0 Then
-                e.Cell.BackColor = System.Drawing.Color.Aqua
+                'e.Cell.BackColor = System.Drawing.Color.Aqua
+                e.Cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#f702ff")
             End If
         End If
 
         If (IsDBNull(e.Cell) = False) Then
+            'e.Cell.Attributes.Add("onclick", "ShowPopup('" + e.DataColumn.FieldName + "', '" + htmlId + "');")
             e.Cell.Attributes.Add("onclick", "ShowPopup('" + e.DataColumn.FieldName + "');")
 
         End If
@@ -670,7 +647,10 @@ Public Class ServiceRunManagement
                     End If
 
                     If blnTechName = True Then
-                        column.HeaderStyle.BackColor = Drawing.Color.Orange
+
+                        ' Set Header Color for Technician
+                        'column.HeaderStyle.BackColor = Drawing.Color.Orange
+                        column.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#0228ff")
                         Dim tNdx = dataColumn.ColumnName.IndexOf("-") + 1
                         Dim techname = dataColumn.ColumnName.Substring(tNdx, dataColumn.ColumnName.Length - tNdx)
 
@@ -682,7 +662,10 @@ Public Class ServiceRunManagement
                     End If
 
                     If blnDrvrName = True Then
-                        column.HeaderStyle.BackColor = Drawing.Color.Green
+
+                        ' Set Header Color for Driver Only
+                        'column.HeaderStyle.BackColor = Drawing.Color.Green
+                        column.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#ff7c02")
                         Dim dvrNdx = dataColumn.ColumnName.IndexOf("-") + 1
                         Dim drivername = dataColumn.ColumnName.Substring(dvrNdx, dataColumn.ColumnName.Length - dvrNdx)
 
@@ -1175,6 +1158,7 @@ Public Class ServiceRunManagement
 
 
 #End Region
+
 
 
 
