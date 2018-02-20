@@ -3,7 +3,7 @@
 #Region "Properties / enums"
         Public Property DRid As Integer
         Public Property ApplicationID As System.Nullable(Of System.Guid)
-        Public Property Rid As Integer
+        Public Property Rid As System.Nullable(Of Integer)
         Public Property DateOfRun As Date
         Public Property Driver As System.Nullable(Of Integer)
 #End Region
@@ -90,6 +90,10 @@
                 Dim objRun As FMS.Business.tblRunDate = (From r In .tblRunDates
                                                          Where r.Driver.Equals(Run.Driver) And r.ApplicationID.Equals(ThisSession.ApplicationID) _
                                                              And r.DateOfRun.Equals(Run.DateOfRun)).SingleOrDefault
+                If (objRun Is Nothing) Then
+                    Exit Sub
+                End If
+
                 .tblRunDates.DeleteOnSubmit(objRun)
                 .SubmitChanges()
                 .Dispose()

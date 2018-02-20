@@ -255,4 +255,13 @@ Partial Public Class ServiceRunManagement
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsDriver As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsRuns control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsRuns As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class

@@ -258,8 +258,8 @@
                         setCookie('RepDate', tmpdate, 1)
 
                         //PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
-                        showLoadingProcess('Loading Run Definitions. Please wait...')
-                        PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
+                        //showLoadingProcess('Loading Run Definitions. Please wait...')
+                        //PageMethods.GetUnAssignedRuns(TranDate, OnSuccess);
 
                     }
 
@@ -480,17 +480,29 @@
                                             <dx:ASPxLabel ID="lblSelectRun" runat="server" Text="Select Run "></dx:ASPxLabel>
                                         </td>
                                         <td>
-                                            <dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String"
-                                                ClientInstanceName="clientcboRun">
+                                            <dx:ASPxComboBox ID="cboRun" runat="server" DropDownStyle="DropDownList" DataSourceID="odsRuns"
+                                                ValueField="Rid" ValueType="System.Int32" TextFormatString="{0}" Width="100%"
+                                                NullText="Select Run">
+                                                <Columns>
+                                                    <dx:ListBoxColumn FieldName="RunDescription" Width="300px" />                                             
+                                                </Columns>
                                                 <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
+                                                <ClearButton Visibility="Auto">
+                                                </ClearButton>
                                             </dx:ASPxComboBox>
+                                            <%--<dx:ASPxComboBox ID="cboRun" runat="server" ValueType="System.String"
+                                                ClientInstanceName="clientcboRun" DataSourceID="odsRuns">
+                                                <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
+                                                <ClearButton Visibility="Auto">
+                                                </ClearButton>
+                                            </dx:ASPxComboBox>--%>
                                         </td>
                                     </tr>
                                 </table>
                                 <br />
                                 <dx:ASPxButton ID="btnSelectServiceRun" runat="server" Text="Select Run"
                                     OnClick="btnSelectServiceRun_Click">
-                                </dx:ASPxButton>
+                                </dx:ASPxButton>                                
                                 <dx:ASPxButton ID="btnCancel" runat="server" Text="Cancel"
                                     OnClick="btnCancel_Click" AutoPostBack="false">
                                 </dx:ASPxButton>
@@ -587,6 +599,7 @@
                     Modal="True">
                 </dx:ASPxLoadingPanel>
                 <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplicationMinusInActive" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="odsRuns" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns"></asp:ObjectDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
