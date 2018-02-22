@@ -23,9 +23,6 @@ Public Class ServiceRunManagement
                 Me.gvServiceRun.DataBind()
             End If
 
-            'Me.dteStart.Value = DateSerial(Now.Year, Now.Month, 1)
-            'Me.dteEnd.Value = DateSerial(Now.Year, Now.Month + 1, 0)
-
         End If
     End Sub
 
@@ -58,7 +55,6 @@ Public Class ServiceRunManagement
         If blnValidate = True Then
             PopulateServiceRunGrid()
         End If
-
 
     End Sub
 
@@ -106,6 +102,7 @@ Public Class ServiceRunManagement
 
     End Sub
     Protected Sub btnCancel_Click(sender As Object, e As EventArgs)
+        Me.gvServiceRun.FocusedRowIndex = -1
         puUnassignedRun.ShowOnPageLoad = False
     End Sub
     Protected Sub gvServiceRun_CustomJSProperties(sender As Object, e As ASPxGridViewClientJSPropertiesEventArgs)
@@ -130,7 +127,6 @@ Public Class ServiceRunManagement
         Dim objRunDate = FMS.Business.DataObjects.tblRunDates.GetRunDatesByRunID(tmpRid).Where(Function(rd) rd.DateOfRun = TransDate).ToList()
 
         If (objRunDate.Count > 0) Then
-            'ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('This run is already assigned to another driver or technician for this date. Please select another run.');", True)
             Session("ShowDiagFrom") = "SERVICERUNEXISTFORDATE"
             btnDialogOK.Text = "Remove"
             Me.lblDialog.Text = "This run is already assigned to this driver or another driver or technician for this date. Please select another run."
@@ -140,11 +136,21 @@ Public Class ServiceRunManagement
             Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
                                                                                                                            x.Driver = DriverID).ToList()
             If (objRuns.Count > 0) Then
-                Session("ListRun") = objRuns
-                Session("ShowDiagFrom") = "SELECTSERVICERUN"
 
-                Me.lblDialog.Text = "Run exist on this date for this driver. Update it?"
-                Me.puDialog.ShowOnPageLoad = True
+                If (Me.cboRun.Text = "") Then
+                    Session("ListRun") = objRuns
+                    Session("ShowDiagFrom") = "DELETEEXISTINGRUN"
+
+                    Me.lblDialog.Text = "Run exist on this date for this driver. Delete it?"
+                    Me.puDialog.ShowOnPageLoad = True
+
+                Else
+                    Session("ListRun") = objRuns
+                    Session("ShowDiagFrom") = "SELECTSERVICERUN"
+                    Me.lblDialog.Text = "Run exist on this date for this driver. Update it?"
+                    Me.puDialog.ShowOnPageLoad = True
+
+                End If
 
             Else
 
@@ -200,17 +206,16 @@ Public Class ServiceRunManagement
                     rowRuns.InactiveRun = False
 
                     FMS.Business.DataObjects.tblRunDates.Create(rowRundate)
-                    'FMS.Business.DataObjects.tblRuns.Create(rowRuns)
 
                 End If
 
             End If
 
+            PageReload()
+            Me.gvServiceRun.FocusedRowIndex = -1
             puUnassignedRun.ShowOnPageLoad = False
-            btnLoad_Click(sender, e)
 
         End If
-
 
     End Sub
     Protected Sub btnDialogOK_Click(sender As Object, e As EventArgs)
@@ -218,6 +223,34 @@ Public Class ServiceRunManagement
         Dim DiagType = Session("ShowDiagFrom")
 
         Select Case DiagType.ToString().ToUpper()
+            Case "DELETEEXISTINGRUN"
+                Dim DriverID As Integer = 0
+                Dim TransDate As Date = Now
+                Dim runNum As Integer = 0
+
+                Dim ListRun = Session("ListRun")
+
+                If Not Request.Cookies("DriverID") Is Nothing Then
+                    DriverID = Server.HtmlEncode(Request.Cookies("DriverID").Value)
+                End If
+
+                If Not Request.Cookies("RepDate") Is Nothing Then
+                    TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
+                End If
+
+                If (ListRun IsNot Nothing) Then
+                    Dim objRunDate = New FMS.Business.DataObjects.tblRunDates
+                    objRunDate.DateOfRun = TransDate
+                    objRunDate.Driver = DriverID
+
+                    FMS.Business.DataObjects.tblRunDates.DeleteRunDate(objRunDate)
+
+                End If
+
+                PageReload()
+                Me.gvServiceRun.FocusedRowIndex = -1
+                Me.puDialog.ShowOnPageLoad = False
+
             Case "SERVICERUNEXISTFORDATE"
                 Dim DriverID As Integer = 0
                 Dim TransDate As Date = Now
@@ -239,10 +272,9 @@ Public Class ServiceRunManagement
 
                 FMS.Business.DataObjects.tblRunDates.DeleteRunDate(objRunDate)
 
+                PageReload()
                 btnDialogOK.Text = "OK"
                 Me.puDialog.ShowOnPageLoad = False
-                btnLoad_Click(sender, e)
-
 
             Case "SELECTSERVICERUN"
                 Dim DriverID As Integer = 0
@@ -259,10 +291,9 @@ Public Class ServiceRunManagement
                     TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
                 End If
 
-
                 If (ListRun IsNot Nothing) Then
 
-                    If (Me.cboRun.Value = 0) Then
+                    If (Me.cboRun.Value = 9367) Then
 
                         Dim objRunDate = New FMS.Business.DataObjects.tblRunDates
                         objRunDate.DateOfRun = TransDate
@@ -305,8 +336,9 @@ Public Class ServiceRunManagement
                         'FMS.Business.DataObjects.tblRuns.ChangeRun(DriverID, runNum, objRun)
                     End If
 
+                    PageReload()
                     Me.puDialog.ShowOnPageLoad = False
-                    btnLoad_Click(sender, e)
+                    Me.gvServiceRun.FocusedRowIndex = -1
 
                 End If
 
@@ -367,12 +399,14 @@ Public Class ServiceRunManagement
 
                 End If
 
+                PageReload()
                 Me.puDialog.ShowOnPageLoad = False
-                btnLoad_Click(sender, e)
+
         End Select
     End Sub
     Protected Sub btnDialogCancel_Click(sender As Object, e As EventArgs)
         Session("DialogAns") = False
+        Me.gvServiceRun.FocusedRowIndex = -1
         Me.puDialog.ShowOnPageLoad = False
     End Sub
     Protected Sub btnCompleteRun_Click(sender As Object, e As EventArgs)
@@ -426,11 +460,6 @@ Public Class ServiceRunManagement
 
             End If
 
-            'For Each run In objRuns
-            '    Dim RundID = run.RunID
-            '    Dim DvrID = run.DriverID
-
-            'Next
         End If
 
         puCompleteRun.ShowOnPageLoad = False
@@ -443,6 +472,29 @@ Public Class ServiceRunManagement
 #End Region
 
 #Region "Methods and Functions for Service Run"
+
+    Private Sub PageReload()
+        Dim blnValidate As Boolean = False
+
+        If (IsDate(Me.dteStart.Value) = True) Then
+            If (IsDate(Me.dteEnd.Value) = True) Then
+                If (Me.dteStart.Value <= Me.dteEnd.Value) Then
+                    blnValidate = True
+                Else
+                    ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date date should be earlier date or same date of end date.');", True)
+                End If
+            Else
+                ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('End date date should be a valid date.');", True)
+                blnValidate = False
+            End If
+        Else
+            ClientScript.RegisterStartupScript(Me.[GetType](), "srvrunalert", "alert('Start date should be a valid date.');", True)
+        End If
+
+        If blnValidate = True Then
+            PopulateServiceRunGrid()
+        End If
+    End Sub
 
     <WebMethod>
     Public Shared Function RemoveFleetRunCompletion(RunDate As Date, DriverID As Integer, RunNumber As Integer) As Boolean
@@ -612,11 +664,8 @@ Public Class ServiceRunManagement
 
         'End If
 
-
-
         Return ListRuns
     End Function
-
 
     'Public Shared Function GetUnAssignedRuns(DateRun As Date) As List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
     '    Dim ListRuns = New List(Of FMS.Business.DataObjects.usp_GetUnAssignedRuns)
@@ -639,9 +688,6 @@ Public Class ServiceRunManagement
     '    End If
     '    Return ListRuns
     'End Function
-
-
-
 
     Protected Sub PopulateServiceRunGrid()
         '--- Get
@@ -1093,8 +1139,6 @@ Public Class ServiceRunManagement
 
                 Dim fldTechnician As New ServiceRunFields
 
-
-
                 fldTechnician.FieldName = t.Techname
                 fldTechnician.FieldProperty = GetType(String)
                 fields.Add(fldTechnician)
@@ -1104,10 +1148,6 @@ Public Class ServiceRunManagement
         End If
 
         '--- Create Driver's Column(s)
-        'Dim oDrivers = FMS.Business.DataObjects.tblDrivers.GetAllPerApplication().Where(Function(d) _
-        '                                                                                 d.Inactive = False _
-        '                                                                                 And (d.Technician <> vbNull _
-        '                                                                                 And d.Technician = False)).ToList()
         Dim oDrivers = FMS.Business.DataObjects.tblDrivers.GetAllPerApplication().Where(Function(d) _
                                                                                          d.Inactive = False _
                                                                                          And (d.Technician Is Nothing _

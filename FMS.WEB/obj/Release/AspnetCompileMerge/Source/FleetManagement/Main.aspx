@@ -64,11 +64,7 @@
 			<div class="menu-list">
 	  
 				<ul id="menu-content" class="menu-content collapse out">
-                    <li>
-					  <a href="ServiceRunManagement.aspx" target="iframeMenu">
-					  <i class="fa fa-list-alt fa-lg"></i> Service Run Management 
-					  </a>
-					</li>
+                    
 					<li>
 					  <a href="CustomerDetailsMain.aspx" target="iframeMenu">
 					  <i class="fa fa-address-card-o"></i> Customers Details 
@@ -151,6 +147,11 @@
                       <li><a href="ProduceMYOBFile.aspx" target="iframeMenu">Produce MYOB File</a></li>
 					  <%--<li>Produce MYOB File</li>--%>
 					</ul>
+                    <li>
+					  <a href="ServiceRunManagement.aspx" target="iframeMenu">
+					  <i class="fa fa-list-alt fa-lg"></i> Service Run Management 
+					  </a>
+					</li>
                     <li>
 					  <a href="ClientAssignments.aspx" target="iframeMenu">
 					  <i class="fa fa fa-sitemap"></i> Run and Site Assignments

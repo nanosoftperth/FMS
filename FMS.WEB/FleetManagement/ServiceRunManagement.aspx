@@ -134,8 +134,9 @@
             }
 
             if (DriverExist > -1) {
-                var ndx = fieldName.indexOf("_") + 1;
-                DriverID = fieldName.substring(ndx, fieldName.length);
+                var ndxS = fieldName.indexOf("_") + 1;
+                var ndxE = fieldName.indexOf("-");
+                DriverID = fieldName.substring(ndxS, ndxE);
                 setCookie('DriverType', "DriverOnly", 1)
             }
 
@@ -458,8 +459,8 @@
                                         }
                                     } " />
 
-                                            <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged" />
-
+                                            <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged"/>
+                                           
                                         </dx:ASPxGridView>
 
                                     </dx:ContentControl>
