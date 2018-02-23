@@ -101,6 +101,23 @@ Public Class ThisSession
         End Set
     End Property
 
+    Public Shared Property ImageType As String
+        Get
+            Return HttpContext.Current.Session("ImageType")
+        End Get
+        Set(value As String)
+            HttpContext.Current.Session("ImageType") = value
+        End Set
+    End Property
+    Public Shared Property ImageLocByByteArray As Byte()
+        Get
+            Return HttpContext.Current.Session("ImageLocByByteArray")
+        End Get
+        Set(value As Byte())
+            HttpContext.Current.Session("ImageLocByByteArray") = value
+        End Set
+    End Property
+
     Public Shared Property header_logoBinary As Object
         Get
             Return HttpContext.Current.Session("header_logoBinary")

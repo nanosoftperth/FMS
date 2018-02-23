@@ -4,32 +4,52 @@ Imports System.Web
 Namespace DataObjects
     Public Class FileMaintenance
 
-        Public Shared Function SaveImageToFolder(PhotoImg As Byte(), cid As Integer?, rid As Integer?, Optional ByVal oldImage As String = "") As String
+        Public Shared Function SaveImageToFolder(PhotoImg As Byte(), Optional ByVal oldImage As String = "") As String
             Try
-                Dim folderLocation As String = "Images\Bin"
-                If Not cid Is Nothing Then
-                    folderLocation = "Images\Site"
-                End If
-                If Not rid Is Nothing Then
-                    folderLocation = "Images\Run"
-                End If
+                Dim folderLocation As String = "Files"
 
-                Dim folderLoc As String = folderLocation
-                Dim folderPath As String = HttpContext.Current.Server.MapPath(folderLoc)
-                Dim folderFilename As String = folderPath + "\" + Guid.NewGuid().ToString("N") + ".jpg"
+                Dim fileName As String = Guid.NewGuid().ToString("N") + ".jpg"
+                Dim folderPath As String = HttpContext.Current.Server.MapPath(folderLocation)
+                Dim folderFilename As String = folderPath + "\" + fileName
+                Dim oldFileLoc As String = HttpContext.Current.Server.MapPath(folderLocation + "/" + oldImage)
 
                 If Not Directory.Exists(folderPath) Then
                     Directory.CreateDirectory(folderPath)
                 End If
 
-                If Not oldImage.Equals("") Then
-                    If File.Exists(oldImage) Then
-                        File.Delete(oldImage)
+                If Not oldFileLoc.Equals("") Then
+                    If File.Exists(oldFileLoc) Then
+                        File.Delete(oldFileLoc)
                     End If
                 End If
 
                 SaveToFile(PhotoImg, folderFilename)
-                Return folderFilename
+                Return fileName
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Shared Function SavePdfToFolder(pdfFile As Byte(), Optional ByVal oldPdf As String = "") As String
+            Try
+                Dim folderLocation As String = "Files"
+
+                Dim fileName As String = Guid.NewGuid().ToString("N") + ".pdf"
+                Dim folderPath As String = HttpContext.Current.Server.MapPath(folderLocation)
+                Dim folderFilename As String = folderPath + "\" + fileName
+                Dim oldFileLoc As String = HttpContext.Current.Server.MapPath(folderLocation + "/" + oldPdf)
+
+                If Not Directory.Exists(folderPath) Then
+                    Directory.CreateDirectory(folderPath)
+                End If
+
+                If Not oldFileLoc.Equals("") Then
+                    If File.Exists(oldFileLoc) Then
+                        File.Delete(oldFileLoc)
+                    End If
+                End If
+
+                ByteToPdfConverter(pdfFile, folderFilename)
+                Return fileName
             Catch ex As Exception
                 Throw ex
             End Try
@@ -49,6 +69,22 @@ Namespace DataObjects
 
             Return bt
         End Function
+        Public Shared Function PdfToByteConverter(ByVal pdfLoc As String) As Byte()
+            Dim fInfo As New FileInfo(pdfLoc)
+            Dim numBytes As Long = fInfo.Length
+
+            Dim fStream As New FileStream(pdfLoc, FileMode.Open, FileAccess.Read)
+            Dim br As New BinaryReader(fStream)
+            Dim bt As Byte() = br.ReadBytes(CInt(numBytes))
+
+            Return bt
+        End Function
+        Public Shared Sub ByteToPdfConverter(ByVal pdfByte As Byte(), fname As String)
+            Dim bt As Byte() = pdfByte
+            Dim fStream As New FileStream(fname, FileMode.OpenOrCreate)
+            fStream.Write(bt, 0, bt.Length)
+            fStream.Close()
+        End Sub
         Public Shared Sub SaveToFile(ByVal byteArr As Byte(), fname As String)
             Try
                 Dim buff As Byte() = byteArr
@@ -62,8 +98,9 @@ Namespace DataObjects
             End Try
         End Sub
         Public Shared Sub DeleteImageFile(imageFile As String)
-            If File.Exists(imageFile) Then
-                File.Delete(imageFile)
+            Dim imgFileLoc As String = HttpContext.Current.Server.MapPath("Files/" + imageFile)
+            If File.Exists(imgFileLoc) Then
+                File.Delete(imgFileLoc)
             End If
         End Sub
     End Class

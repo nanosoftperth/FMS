@@ -1,4 +1,5 @@
 ﻿Imports FMS.Business.DataObjects.FileMaintenance
+Imports System.Web
 Namespace DataObjects
     Public Class FleetDocument
 #Region "Properties / enums"
@@ -20,7 +21,11 @@ Namespace DataObjects
                     .Cid = Document.Cid
                     .Rid = Document.Rid
                     .Description = Document.Description
-                    .PhotoLocation = SaveImageToFolder(Document.PhotoBinary, Document.Cid, Document.Rid)
+                    If ThisSession.ImageType.Equals("pdf") Then
+                        .PhotoLocation = SavePdfToFolder(ThisSession.ImageLocByByteArray)
+                    Else
+                        .PhotoLocation = SaveImageToFolder(ThisSession.ImageLocByByteArray)
+                    End If
                     .CreatedDate = Date.Now
                     .ApplicationID = ThisSession.ApplicationID
                 End With
@@ -39,7 +44,12 @@ Namespace DataObjects
                     .Cid = Document.Cid
                     .Rid = Document.Rid
                     .Description = Document.Description
-                    .PhotoLocation = SaveImageToFolder(Document.PhotoBinary, Document.Cid, Document.Rid, fleetDocument.PhotoLocation)
+                    If ThisSession.ImageType.Equals("pdf") Then
+                        .PhotoLocation = SavePdfToFolder(ThisSession.ImageLocByByteArray, fleetDocument.PhotoLocation)
+                    Else
+                        .PhotoLocation = SaveImageToFolder(ThisSession.ImageLocByByteArray, fleetDocument.PhotoLocation)
+                    End If
+
                     .CreatedDate = Date.Now
                     .ApplicationID = ThisSession.ApplicationID
                 End With
@@ -131,7 +141,13 @@ Namespace DataObjects
                 End With
 
                 For Each fDoc In fleetDocuments
-                    fDoc.PhotoBinary = imgToByteConverter(fDoc.PhotoLocation)
+                    Dim fileType As String = fDoc.PhotoLocation.Split("\").Reverse.ToArray(0).Split(".")(1).ToString()
+                    If fileType.Equals("pdf") Then
+                        Dim pdfFileImage As String = "~/FleetManagement/Files/PdfFileImage/PDFFile.png"
+                        fDoc.PhotoBinary = imgToByteConverter(HttpContext.Current.Server.MapPath(pdfFileImage))
+                    Else
+                        fDoc.PhotoBinary = imgToByteConverter(HttpContext.Current.Server.MapPath("Files/" + fDoc.PhotoLocation))
+                    End If
                 Next
 
                 Return fleetDocuments
@@ -168,7 +184,13 @@ Namespace DataObjects
                 End With
 
                 For Each fDoc In fleetDocuments
-                    fDoc.PhotoBinary = imgToByteConverter(fDoc.PhotoLocation)
+                    Dim fileType As String = fDoc.PhotoLocation.Split("\").Reverse.ToArray(0).Split(".")(1).ToString()
+                    If fileType.Equals("pdf") Then
+                        Dim pdfFileImage As String = "~/FleetManagement/Files/PdfFileImage/PDFFile.png"
+                        fDoc.PhotoBinary = imgToByteConverter(HttpContext.Current.Server.MapPath(pdfFileImage))
+                    Else
+                        fDoc.PhotoBinary = imgToByteConverter(HttpContext.Current.Server.MapPath("Files/" + fDoc.PhotoLocation))
+                    End If
                 Next
 
                 Return fleetDocuments

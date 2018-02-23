@@ -17,6 +17,12 @@
         }
     </style>
     <script>
+        function OnFileUploadComplete(s, e) {
+            if (e.callbackData !== "") {
+                lblFileName.SetText(e.callbackData);
+            }
+        }
+
         function AdjustPopupHeight() {
             if ($('.dxgvPopupEditForm_SoftOrange').height() > 400) {
                 var windowHeight = $(window).height() - $(".headerTop").height();
@@ -178,13 +184,13 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="2">
+            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="0">
                 <TabPages>
                     <dx:TabPage Name="Run" Text="Run">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
                                 <dx:ASPxGridView ID="RunGridView" runat="server" DataSourceID="odsTblRuns" KeyFieldName="Rid" Width="550px" Theme="SoftOrange" AutoGenerateColumns="False"
-                                    OnRowValidating="RunGridView_RowValidating">
+                                    OnRowValidating="RunGridView_RowValidating" SettingsDetail-AllowOnlyOneMasterRowExpanded="true">
                                     <SettingsDetail ShowDetailRow="true" />
                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -192,7 +198,7 @@
                                     <SettingsPopup>
                                         <EditForm  Modal="true" 
                                             VerticalAlign="WindowCenter" 
-                                            HorizontalAlign="WindowCenter" width="700px" Height="200px"/>
+                                            HorizontalAlign="WindowCenter" width="700px" Height="300px"/>
                                     </SettingsPopup>
                                     <Templates>
                                         <DetailRow>
@@ -204,18 +210,39 @@
                                                 <SettingsPopup>
                                                     <EditForm  Modal="true" 
                                                         VerticalAlign="WindowCenter" 
-                                                        HorizontalAlign="WindowCenter" width="400px" Height="250px"/>
+                                                        HorizontalAlign="WindowCenter" width="400px" Height="400px"/>
                                                 </SettingsPopup>
                                                 <Columns>
                                                     <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                                     <dx:GridViewDataTextColumn FieldName="DocumentID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn FieldName="RunID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="Rid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="2" Visible="true"></dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataBinaryImageColumn FieldName="PhotoBinary">
+                                                    <dx:GridViewDataBinaryImageColumn FieldName="PhotoBinary" Caption="Image File" VisibleIndex="4">
                                                         <PropertiesBinaryImage ImageHeight="170px" ImageWidth="160px">
-                                                            <EditingSettings Enabled="true" UploadSettings-UploadValidationSettings-MaxFileSize="4194304" />
+                                                            <EditingSettings Enabled="false" UploadSettings-UploadValidationSettings-MaxFileSize="4194304">
+                                                            </EditingSettings>
                                                         </PropertiesBinaryImage>
                                                     </dx:GridViewDataBinaryImageColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="PhotoLocation" Caption="Url" UnboundType="Object" VisibleIndex="3">
+                                                        <DataItemTemplate>
+                                                            <dx:ASPxHyperLink ID="RunHyperLink" OnLoad="RunHyperLink_Load" runat="server" Target="_blank" Text="No data uploaded">
+                                                            </dx:ASPxHyperLink>
+                                                        </DataItemTemplate>
+                                                        <EditItemTemplate>
+                                                            <dx:ASPxLabel ID="lblAllowebMimeType" runat="server" Text="Allowed image types: jpeg, jpg, png, pdf" Font-Size="8pt" />
+                                                            <br />
+                                                            <dx:ASPxLabel ID="lblMaxFileSize" runat="server" Text="Maximum file size: 4Mb" Font-Size="8pt" />
+                                                            <br />
+                                                            <dx:ASPxUploadControl ID="RunFileUpload" ShowProgressPanel="true" UploadMode="Auto" AutoStartUpload="true" FileUploadMode="OnPageLoad"
+                                                                OnFileUploadComplete="RunFileUpload_FileUploadComplete" runat="server">
+                                                                <ValidationSettings MaxFileSize="4194304" MaxFileSizeErrorText="Size of the uploaded file exceeds maximum file size" AllowedFileExtensions=".jpg,.jpeg,.png,.pdf">
+                                                                </ValidationSettings>
+                                                                <ClientSideEvents FileUploadComplete="OnFileUploadComplete"  />
+                                                            </dx:ASPxUploadControl>
+                                                            <br />
+                                                            <dx:ASPxLabel ID="lblFileName" runat="server" ClientInstanceName="lblFileName" Font-Size="20pt" Width="50px" Style="width: 11em; word-wrap: break-word;"/>
+                                                        </EditItemTemplate>
+                                                    </dx:GridViewDataTextColumn>
                                                 </Columns>
                                                 <Settings ShowPreview="true" />
                                                 <SettingsPager PageSize="10" />
@@ -266,7 +293,8 @@
                                     <dx:ASPxTextBox ID="hdnStoreCid" ClientInstanceName="hdnStoreCid" AutoPostBack="true" runat="server" Text=""></dx:ASPxTextBox>    
                                 </div>
                                 <dx:ASPxGridView ID="SiteDetailsGridView" runat="server" DataSourceID="odsSiteDetails" AutoGenerateColumns="False" 
-                                    KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" OnRowInserting="SiteDetailsGridView_RowInserting">
+                                    KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" 
+                                    OnRowInserting="SiteDetailsGridView_RowInserting" SettingsDetail-AllowOnlyOneMasterRowExpanded="true">
                                     <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
                                     <SettingsDetail ShowDetailRow="true" />
                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -281,18 +309,38 @@
                                                 <SettingsPopup>
                                                     <EditForm  Modal="true" 
                                                         VerticalAlign="WindowCenter" 
-                                                        HorizontalAlign="WindowCenter" width="400px" Height="250px"/>
+                                                        HorizontalAlign="WindowCenter" width="400px" Height="400px"/>
                                                 </SettingsPopup>
                                                 <Columns>
                                                     <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
                                                     <dx:GridViewDataTextColumn FieldName="DocumentID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn FieldName="ClientID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="2" Visible="true"></dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataBinaryImageColumn FieldName="PhotoBinary">
                                                         <PropertiesBinaryImage ImageHeight="170px" ImageWidth="160px">
-                                                            <EditingSettings Enabled="true" UploadSettings-UploadValidationSettings-MaxFileSize="4194304" />
+                                                            <EditingSettings Enabled="false" UploadSettings-UploadValidationSettings-MaxFileSize="4194304" />
                                                         </PropertiesBinaryImage>
                                                     </dx:GridViewDataBinaryImageColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="PhotoLocation" Caption="Url" UnboundType="Object" VisibleIndex="3">
+                                                        <DataItemTemplate>
+                                                            <dx:ASPxHyperLink ID="RunHyperLink" OnLoad="RunHyperLink_Load" runat="server" Target="_blank" Text="No data uploaded">
+                                                            </dx:ASPxHyperLink>
+                                                        </DataItemTemplate>
+                                                        <EditItemTemplate>
+                                                            <dx:ASPxLabel ID="lblAllowebMimeType" runat="server" Text="Allowed image types: jpeg, jpg, png, pdf" Font-Size="8pt" />
+                                                            <br />
+                                                            <dx:ASPxLabel ID="lblMaxFileSize" runat="server" Text="Maximum file size: 4Mb" Font-Size="8pt" />
+                                                            <br />
+                                                            <dx:ASPxUploadControl ID="RunFileUpload" ShowProgressPanel="true" UploadMode="Auto" AutoStartUpload="true" FileUploadMode="OnPageLoad"
+                                                                OnFileUploadComplete="RunFileUpload_FileUploadComplete" runat="server">
+                                                                <ValidationSettings MaxFileSize="4194304" MaxFileSizeErrorText="Size of the uploaded file exceeds maximum file size" AllowedFileExtensions=".jpg,.jpeg,.png,.pdf">
+                                                                </ValidationSettings>
+                                                                <ClientSideEvents FileUploadComplete="OnFileUploadComplete"  />
+                                                            </dx:ASPxUploadControl>
+                                                            <br />
+                                                            <dx:ASPxLabel ID="lblFileName" runat="server" ClientInstanceName="lblFileName" Font-Size="20pt" Width="50px" Style="width: 11em; word-wrap: break-word;"/>
+                                                        </EditItemTemplate>
+                                                    </dx:GridViewDataTextColumn>
                                                 </Columns>
                                                 <Settings ShowPreview="true" />
                                                 <SettingsPager PageSize="10" />

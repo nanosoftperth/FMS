@@ -1,4 +1,5 @@
 ﻿Imports System.Globalization
+Imports System.IO
 Imports DevExpress.Web
 
 Public Class ClientAssignments
@@ -635,7 +636,30 @@ Public Class ClientAssignments
         Dim objSites = FMS.Business.DataObjects.tblCustomerServices.GetRecalculatedServices(siteId)
         Return objSites
     End Function
+    Protected Sub RunHyperLink_Load(sender As Object, e As EventArgs)
+        Dim hLink As ASPxHyperLink = TryCast(sender, ASPxHyperLink)
+        Dim grd As GridViewDataItemTemplateContainer = TryCast(hLink.NamingContainer, GridViewDataItemTemplateContainer)
+        If (Not String.IsNullOrWhiteSpace(grd.Text)) AndAlso (Not String.IsNullOrWhiteSpace(grd.Text)) Then
+            Dim fileType As String = grd.Text.Split(".")(1).ToString()
+            If fileType.Equals("pdf") Then
+                hLink.Text = "Pdf File"
+            Else
+                hLink.Text = "Image File"
+            End If
+            hLink.NavigateUrl = HttpContext.Current.Server.MapPath("Files/" + grd.Text)
+        End If
+    End Sub
+    Protected Sub RunFileUpload_FileUploadComplete(ByVal sender As Object, ByVal e As DevExpress.Web.FileUploadCompleteEventArgs)
+        If e.IsValid Then
+            Dim fileType As String = e.UploadedFile.FileName.Split(".")(1).ToString()
+            Dim fileName As String = Guid.NewGuid().ToString("N") + "." + fileType
+            Dim path As String = ""
 
+            FMS.Business.ThisSession.ImageType = fileType
+            FMS.Business.ThisSession.ImageLocByByteArray = e.UploadedFile.FileBytes
 
+            e.CallbackData = e.UploadedFile.FileName.ToString()
+        End If
+    End Sub
 #End Region
 End Class
