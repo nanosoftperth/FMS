@@ -68,7 +68,6 @@ Public Class ServiceRunManagement
         If (ndxTech > -1) Then
             Dim cellVal = e.CellValue
             If (cellVal.ToString().Length) > 0 Then
-                'e.Cell.BackColor = System.Drawing.Color.Beige
                 e.Cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#fffb02")
             End If
         End If
@@ -77,13 +76,11 @@ Public Class ServiceRunManagement
         If (ndxDvr > -1) Then
             Dim cellVal = e.CellValue
             If (cellVal.ToString().Length) > 0 Then
-                'e.Cell.BackColor = System.Drawing.Color.Aqua
                 e.Cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#f702ff")
             End If
         End If
 
         If (IsDBNull(e.Cell) = False) Then
-            'e.Cell.Attributes.Add("onclick", "ShowPopup('" + e.DataColumn.FieldName + "', '" + htmlId + "');")
             e.Cell.Attributes.Add("onclick", "ShowPopup('" + e.DataColumn.FieldName + "');")
 
         End If
@@ -299,14 +296,6 @@ Public Class ServiceRunManagement
                         objRunDate.DateOfRun = TransDate
                         objRunDate.Driver = DriverID
 
-                        'Dim objRun = New FMS.Business.DataObjects.tblRuns
-                        'For Each item In ListRun
-                        '    runNum = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).RunNUmber
-                        'Next
-                        'objRun.RunNUmber = runNum
-                        'objRun.RunDriver = DriverID
-
-                        'FMS.Business.DataObjects.tblRuns.DeleteRun(objRun)
                         FMS.Business.DataObjects.tblRunDates.DeleteRunDate(objRunDate)
 
                     Else
@@ -325,15 +314,6 @@ Public Class ServiceRunManagement
 
                         FMS.Business.DataObjects.tblRunDates.Create(rowRundate)
 
-                        'Dim objRun = New FMS.Business.DataObjects.tblRuns
-                        'objRun.RunNUmber = Convert.ToInt32(Me.cboRun.Value)
-                        'objRun.RunDescription = Me.cboRun.Text
-
-                        'For Each item In ListRun
-                        '    runNum = DirectCast(item, FMS.Business.DataObjects.usp_GetServiceRunDates).RunNUmber
-                        'Next
-
-                        'FMS.Business.DataObjects.tblRuns.ChangeRun(DriverID, runNum, objRun)
                     End If
 
                     PageReload()
@@ -354,10 +334,6 @@ Public Class ServiceRunManagement
                 If Not Request.Cookies("RepDate") Is Nothing Then
                     TransDate = Server.HtmlEncode(Request.Cookies("RepDate").Value)
                 End If
-
-                'If Not Request.Cookies("RunNumber") Is Nothing Then
-                '    RunNumber = Server.HtmlEncode(Request.Cookies("RunNumber").Value)
-                'End If
 
                 Dim objRuns = FMS.Business.DataObjects.usp_GetServiceRunDates.GetAllPerApplication(TransDate, TransDate).Where(Function(x) _
                                                                                             x.Driver = DriverID).FirstOrDefault()

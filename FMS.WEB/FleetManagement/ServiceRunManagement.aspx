@@ -503,9 +503,11 @@
                                 <br />
                                 <dx:ASPxButton ID="btnSelectServiceRun" runat="server" Text="Select Run"
                                     OnClick="btnSelectServiceRun_Click">
+                                    <ClientSideEvents Click="function(s, e){clientpuUnassignedRun.HideWindow(clientpuUnassignedRun.GetWindow(0)); }" />
                                 </dx:ASPxButton>                                
                                 <dx:ASPxButton ID="btnCancel" runat="server" Text="Cancel"
                                     OnClick="btnCancel_Click" AutoPostBack="false">
+                                    <ClientSideEvents Click="function(s, e){clientpuUnassignedRun.HideWindow(clientpuUnassignedRun.GetWindow(0)); }" />
                                 </dx:ASPxButton>
                             </dx:PopupControlContentControl>
                         </ContentCollection>
@@ -570,9 +572,11 @@
                                 <br />
                                 <dx:ASPxButton ID="btnCompleteRun" runat="server" Text="Set"
                                     OnClick="btnCompleteRun_Click">
+                                    <ClientSideEvents Click="function(s, e){clientpuCompleteRun.HideWindow(clientpuCompleteRun.GetWindow(0)); }" />
                                 </dx:ASPxButton>
                                 <dx:ASPxButton ID="btnCancelComplete" runat="server" Text="Cancel"
                                     OnClick="btnCancelComplete_Click">
+                                    <ClientSideEvents Click="function(s, e){clientpuCompleteRun.HideWindow(clientpuCompleteRun.GetWindow(0)); }" />
                                 </dx:ASPxButton>
                             </dx:PopupControlContentControl>
                         </ContentCollection>
@@ -589,9 +593,11 @@
                             <br />
                             <dx:ASPxButton ID="btnDialogOK" runat="server" Text="OK"
                                 OnClick="btnDialogOK_Click">
+                                <ClientSideEvents Click="function(s, e){clientpuDialog.HideWindow(clientpuDialog.GetWindow(0)); }" />
                             </dx:ASPxButton>
                             <dx:ASPxButton ID="btnDialogCancel" runat="server" Text="Cancel"
                                 OnClick="btnDialogCancel_Click">
+                                <ClientSideEvents Click="function(s, e){clientpuDialog.HideWindow(clientpuDialog.GetWindow(0)); }" />
                             </dx:ASPxButton>
                         </dx:PopupControlContentControl>
                     </ContentCollection>
