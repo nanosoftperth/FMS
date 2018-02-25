@@ -637,6 +637,7 @@ Public Class ClientAssignments
         Return objSites
     End Function
     Protected Sub RunHyperLink_Load(sender As Object, e As EventArgs)
+        Dim urlFile As String = "http://" + HttpContext.Current.Request.Url.Authority + "/fleetmanagement/files/"
         Dim hLink As ASPxHyperLink = TryCast(sender, ASPxHyperLink)
         Dim grd As GridViewDataItemTemplateContainer = TryCast(hLink.NamingContainer, GridViewDataItemTemplateContainer)
         If (Not String.IsNullOrWhiteSpace(grd.Text)) AndAlso (Not String.IsNullOrWhiteSpace(grd.Text)) Then
@@ -646,7 +647,7 @@ Public Class ClientAssignments
             Else
                 hLink.Text = "Image File"
             End If
-            hLink.NavigateUrl = HttpContext.Current.Server.MapPath("Files/" + grd.Text)
+            hLink.NavigateUrl = urlFile + grd.Text
         End If
     End Sub
     Protected Sub RunFileUpload_FileUploadComplete(ByVal sender As Object, ByVal e As DevExpress.Web.FileUploadCompleteEventArgs)
