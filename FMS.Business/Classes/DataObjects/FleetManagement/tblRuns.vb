@@ -15,6 +15,7 @@
         Public Property SaturdayRun As Boolean
         Public Property SundayRun As Boolean
         Public Property InactiveRun As Boolean
+        Public Property Notes As String
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(Run As DataObjects.tblRuns)
@@ -36,6 +37,7 @@
                     .SaturdayRun = Run.SaturdayRun
                     .SundayRun = Run.SundayRun
                     .InactiveRun = Run.InactiveRun
+                    .Notes = Run.Notes
                 End With
 
                 .tblRuns.InsertOnSubmit(objRun)
@@ -62,6 +64,7 @@
                     .SaturdayRun = Run.SaturdayRun
                     .SundayRun = Run.SundayRun
                     .InactiveRun = Run.InactiveRun
+                    .Notes = Run.Notes
                 End With
 
                 .SubmitChanges()
