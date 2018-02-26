@@ -270,6 +270,7 @@
                                         <dx:GridViewDataCheckColumn FieldName="SaturdayRun" VisibleIndex="11"></dx:GridViewDataCheckColumn>
                                         <dx:GridViewDataCheckColumn FieldName="SundayRun" VisibleIndex="12"></dx:GridViewDataCheckColumn>
                                         <dx:GridViewDataCheckColumn FieldName="InactiveRun" VisibleIndex="13"></dx:GridViewDataCheckColumn>
+                                        <dx:GridViewDataTextColumn FieldName="Notes" VisibleIndex="14"></dx:GridViewDataTextColumn>
                                     </Columns>
                                     <Settings ShowPreview="true" />
                                     <SettingsPager PageSize="10" />

@@ -146,3 +146,4 @@ C:\Cesar_Workspace\Projects\FMS\FMS\FMS.WEBAPI\bin\OSIsoft.AFSDK.xml
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.WEBAPI\obj\Release\FMS.WEBAPI.csprojResolveAssemblyReference.cache
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.WEBAPI\obj\Release\FMS.WEBAPI.dll
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.WEBAPI\obj\Release\FMS.WEBAPI.pdb
+C:\Cesar_Workspace\Projects\FMS\FMS\FMS.WEBAPI\obj\Release\FMS.WEBAPI.csproj.CoreCompileInputs.cache

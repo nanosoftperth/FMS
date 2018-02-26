@@ -26,3 +26,4 @@ C:\Cesar_Workspace\Projects\FMS\FMS\FMS.Business\obj\Release\FMS.Business.vbproj
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.Business\obj\Release\FMS.Business.dll
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.Business\obj\Release\FMS.Business.xml
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.Business\obj\Release\FMS.Business.pdb
+C:\Cesar_Workspace\Projects\FMS\FMS\FMS.Business\obj\Release\FMS.Business.vbproj.CoreCompileInputs.cache

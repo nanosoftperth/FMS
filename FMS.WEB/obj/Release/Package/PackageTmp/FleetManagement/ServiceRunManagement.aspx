@@ -24,12 +24,6 @@
 
     <script type="text/javascript">
         function ShowPopup(fieldname) {
-
-            //var FocusedCell;
-            //FocusedCell = document.getElementById(htmlId);
-            //FocusedCell.style.color = 'Red';
-            //FocusedCell.style.border = '1px solid Red';
-
             var intDateDiff = GetDateDiff(clientdteStart.GetDate(), clientdteEnd.GetDate());
 
             setCookie('SRStartDate', clientdteStart.GetDate(), 1)
@@ -61,8 +55,6 @@
                     setCookie('DriverType', "DriverOnly", 1)
                 }
             }
-
-
 
         }
 
@@ -178,13 +170,6 @@
             PageMethods.IsFleetRunCompleted(TranDate, fieldName, RunNumber, OnSuccessCompleted)
 
             clientpuCompleteRun.Show();
-
-            //Show pop up only on drivers
-            //var driverType = getCookie('DriverType');
-
-            //if (driverType == "DriverOnly") {
-            //    clientpuCompleteRun.Show();
-            //}
 
         }
         //Populate UnAssigned Runs ComboBox
@@ -445,8 +430,9 @@
                                             OnCustomJSProperties="gvServiceRun_CustomJSProperties"
                                             EnableTheming="True" Theme="SoftOrange"
                                             KeyFieldName="ID">
-                                            <SettingsPager PageSize="100" SEOFriendly="Enabled">
-                                                <PageSizeItemSettings Visible="true" />
+                                            <SettingsPager PageSize="100">
+                                                <PageSizeItemSettings Items="10, 20, 50, 100" Visible="true">
+                                                </PageSizeItemSettings>
                                             </SettingsPager>
                                             <SettingsBehavior AllowFocusedRow="true"></SettingsBehavior>
                                             <Styles>
@@ -459,8 +445,8 @@
                                         }
                                     } " />
 
-                                            <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged"/>
-                                           
+                                            <ClientSideEvents FocusedRowChanged="OnGridFocusedRowChanged" />
+
                                         </dx:ASPxGridView>
 
                                     </dx:ContentControl>
@@ -485,7 +471,7 @@
                                                 ValueField="Rid" ValueType="System.Int32" TextFormatString="{0}" Width="100%"
                                                 NullText="Select Run">
                                                 <Columns>
-                                                    <dx:ListBoxColumn FieldName="RunDescription" Width="300px" />                                             
+                                                    <dx:ListBoxColumn FieldName="RunDescription" Width="300px" />
                                                 </Columns>
                                                 <ClientSideEvents SelectedIndexChanged="UnAssignedRun_OnSelectedIndexChanged" />
                                                 <ClearButton Visibility="Auto">
@@ -503,9 +489,11 @@
                                 <br />
                                 <dx:ASPxButton ID="btnSelectServiceRun" runat="server" Text="Select Run"
                                     OnClick="btnSelectServiceRun_Click">
-                                </dx:ASPxButton>                                
+                                    <ClientSideEvents Click="function(s, e){clientpuUnassignedRun.HideWindow(clientpuUnassignedRun.GetWindow(0)); }" />
+                                </dx:ASPxButton>
                                 <dx:ASPxButton ID="btnCancel" runat="server" Text="Cancel"
                                     OnClick="btnCancel_Click" AutoPostBack="false">
+                                    <ClientSideEvents Click="function(s, e){clientpuUnassignedRun.HideWindow(clientpuUnassignedRun.GetWindow(0)); }" />
                                 </dx:ASPxButton>
                             </dx:PopupControlContentControl>
                         </ContentCollection>
@@ -570,9 +558,11 @@
                                 <br />
                                 <dx:ASPxButton ID="btnCompleteRun" runat="server" Text="Set"
                                     OnClick="btnCompleteRun_Click">
+                                    <ClientSideEvents Click="function(s, e){clientpuCompleteRun.HideWindow(clientpuCompleteRun.GetWindow(0)); }" />
                                 </dx:ASPxButton>
                                 <dx:ASPxButton ID="btnCancelComplete" runat="server" Text="Cancel"
                                     OnClick="btnCancelComplete_Click">
+                                    <ClientSideEvents Click="function(s, e){clientpuCompleteRun.HideWindow(clientpuCompleteRun.GetWindow(0)); }" />
                                 </dx:ASPxButton>
                             </dx:PopupControlContentControl>
                         </ContentCollection>
@@ -589,9 +579,11 @@
                             <br />
                             <dx:ASPxButton ID="btnDialogOK" runat="server" Text="OK"
                                 OnClick="btnDialogOK_Click">
+                                <ClientSideEvents Click="function(s, e){clientpuDialog.HideWindow(clientpuDialog.GetWindow(0)); }" />
                             </dx:ASPxButton>
                             <dx:ASPxButton ID="btnDialogCancel" runat="server" Text="Cancel"
                                 OnClick="btnDialogCancel_Click">
+                                <ClientSideEvents Click="function(s, e){clientpuDialog.HideWindow(clientpuDialog.GetWindow(0)); }" />
                             </dx:ASPxButton>
                         </dx:PopupControlContentControl>
                     </ContentCollection>

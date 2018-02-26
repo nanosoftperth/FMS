@@ -218,6 +218,7 @@
                 Me.SaturdayRun = .SaturdayRun
                 Me.SundayRun = .SundayRun
                 Me.InactiveRun = .InactiveRun
+                Me.Notes = .Notes
             End With
         End Sub
 #End Region

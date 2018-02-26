@@ -210,3 +210,4 @@ C:\Cesar_Workspace\Projects\FMS\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAcc
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.dll
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.xml
 C:\Cesar_Workspace\Projects\FMS\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.pdb
+C:\Cesar_Workspace\Projects\FMS\FMS\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.vbproj.CoreCompileInputs.cache
