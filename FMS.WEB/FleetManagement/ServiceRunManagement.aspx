@@ -24,12 +24,6 @@
 
     <script type="text/javascript">
         function ShowPopup(fieldname) {
-
-            //var FocusedCell;
-            //FocusedCell = document.getElementById(htmlId);
-            //FocusedCell.style.color = 'Red';
-            //FocusedCell.style.border = '1px solid Red';
-
             var intDateDiff = GetDateDiff(clientdteStart.GetDate(), clientdteEnd.GetDate());
 
             setCookie('SRStartDate', clientdteStart.GetDate(), 1)
@@ -61,9 +55,7 @@
                     setCookie('DriverType', "DriverOnly", 1)
                 }
             }
-
-
-
+            
         }
 
         //Create Cookie
@@ -178,14 +170,7 @@
             PageMethods.IsFleetRunCompleted(TranDate, fieldName, RunNumber, OnSuccessCompleted)
 
             clientpuCompleteRun.Show();
-
-            //Show pop up only on drivers
-            //var driverType = getCookie('DriverType');
-
-            //if (driverType == "DriverOnly") {
-            //    clientpuCompleteRun.Show();
-            //}
-
+            
         }
         //Populate UnAssigned Runs ComboBox
         function OnSuccessCompleted(response) {
