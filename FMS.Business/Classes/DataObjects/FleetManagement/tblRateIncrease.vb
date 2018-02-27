@@ -77,6 +77,15 @@
                 .Dispose()
             End With
         End Sub
+        Public Shared Sub DeleteAll()
+            With New LINQtoSQLClassesDataContext
+                Dim obj As List(Of FMS.Business.tblRateIncrease) = (From c In .tblRateIncreases
+                                                                    Where c.ApplicationID.Equals(ThisSession.ApplicationID)).ToList()
+                .tblRateIncreases.DeleteAllOnSubmit(obj)
+                .SubmitChanges()
+                .Dispose()
+            End With
+        End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblRateIncrease)

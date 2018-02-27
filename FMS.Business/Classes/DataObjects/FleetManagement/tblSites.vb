@@ -181,6 +181,18 @@
                 .Dispose()
             End With
         End Sub
+        Public Shared Sub UpdateTotalUnitsAndTotalAmount(siteID As Integer, totalUnits As Double?, totalAmount As Double?)
+            With New LINQtoSQLClassesDataContext
+                Dim objSite As FMS.Business.tblSite = (From c In .tblSites
+                                                       Where c.Cid.Equals(siteID) And c.ApplicationId.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objSite
+                    .TotalUnits = totalUnits
+                    .TotalAmount = totalAmount
+                End With
+                .SubmitChanges()
+                .Dispose()
+            End With
+        End Sub
         Public Shared Sub Delete(Site As DataObjects.tblSites)
             With New LINQtoSQLClassesDataContext
                 Dim objSite As FMS.Business.tblSite = (From c In .tblSites
@@ -198,6 +210,23 @@
                 With New LINQtoSQLClassesDataContext
                     objSites = (From c In .tblSites
                                 Where c.ApplicationId.Equals(ThisSession.ApplicationID)
+                                Order By c.SiteName
+                                Select New DataObjects.tblSites(c)).ToList
+
+                    .Dispose()
+                End With
+                Return objSites
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Shared Function GetSitesByIndustryGroupAndCeasedateIsNull(IndustryGroup As Integer) As List(Of DataObjects.tblSites)
+            Try
+                Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    objSites = (From c In .tblSites
+                                Where c.ApplicationId.Equals(ThisSession.ApplicationID) And
+                                    c.IndustryGroup.Equals(IndustryGroup) And c.SiteCeaseDate Is Nothing
                                 Order By c.SiteName
                                 Select New DataObjects.tblSites(c)).ToList
 
