@@ -195,8 +195,49 @@
                 Throw ex
             End Try
 
+        End Function
+
+        Public Shared Function GetExistingRunWithRundate(ByVal RunNumber As Integer, ByVal RunDescription As String) As Boolean
+            Try
+                'Dim objRun As New DataObjects.tblRuns
+                'With New LINQtoSQLClassesDataContext
+                '    objRun = (From r In .tblRuns
+                '              Join rd In .tblRunDates
+                '                  On r.Rid Equals rd.Rid
+                '              Where r.ApplicationID.Equals(ThisSession.ApplicationID) And r.RunNUmber = RunNumber And r.RunDescription = RunDescription
+                '             Select Case New DataObjects.tblRuns(r)
+                '    .Dispose()
+                'End With
+
+                Dim objRun As New DataObjects.tblRuns
+                With New LINQtoSQLClassesDataContext
+                    objRun = (From r In .tblRuns
+                              Join rd In .tblRunDates
+                                  On r.Rid Equals rd.Rid
+                              Where r.RunNUmber.Equals(RunNumber) And r.RunDescription.Equals(RunDescription) And r.ApplicationID.Equals(ThisSession.ApplicationID)
+                              Select New DataObjects.tblRuns(r)).FirstOrDefault
+                    .Dispose()
+                End With
+
+                If (objRun IsNot Nothing) Then
+                    Return True
+                Else
+                    Return False
+                End If
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+            'Dim petOwnersJoin = From pers In people
+            '                    Join pet In pets
+            '                    On pet.Owner Equals pers
+            '                    Select pers.FirstName, PetName = pet.Name
+
 
         End Function
+
+
 #End Region
 #Region "Constructors"
         Public Sub New()

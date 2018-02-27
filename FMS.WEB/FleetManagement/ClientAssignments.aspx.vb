@@ -75,13 +75,14 @@ Public Class ClientAssignments
         Dim runDesc As String = e.NewValues("RunDescription")
         Dim runs = FMS.Business.DataObjects.tblRuns.GetTblRunByRunNumberRunDescription(runNumber, runDesc.Trim())
         If e.IsNewRow Then
+            If Not runs Is Nothing Then
+                e.RowError = "Run number and description already exists."
+            End If
+
             If RunGridUpdating Is Nothing Then
                 Exit Sub
             End If
 
-            If Not runs Is Nothing Then
-                e.RowError = "Run number and description already exists."
-            End If
         Else
             If Not runs Is Nothing Then
                 Dim iKeys As Integer = e.Keys(0)
@@ -90,6 +91,14 @@ Public Class ClientAssignments
                 End If
             End If
         End If
+
+        'Cesar: check for existing runnumber and description
+        Dim isPreviousExist = FMS.Business.DataObjects.tblRuns.GetExistingRunWithRundate(runNumber, runDesc)
+
+        If (isPreviousExist = True) Then
+            e.RowError = "Cannot be edited/save. Run was used previously."
+        End If
+
     End Sub
     Protected Sub GetRunsForAssignmentGridView_RowValidating(sender As Object, e As Data.ASPxDataValidationEventArgs)
         If e.NewValues("DateOfRun") Is Nothing Then
@@ -662,5 +671,17 @@ Public Class ClientAssignments
             e.CallbackData = e.UploadedFile.FileName.ToString()
         End If
     End Sub
+    <System.Web.Services.WebMethod()>
+    Public Shared Function IsRunExist() As Boolean
+
+        Try
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+
 #End Region
 End Class
