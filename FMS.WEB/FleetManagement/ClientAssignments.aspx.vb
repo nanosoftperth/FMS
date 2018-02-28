@@ -1,11 +1,13 @@
 ﻿Imports System.Globalization
 Imports System.IO
+Imports System.Web.UI
 Imports DevExpress.Web
 
 Public Class ClientAssignments
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
 
     End Sub
 
@@ -671,17 +673,46 @@ Public Class ClientAssignments
             e.CallbackData = e.UploadedFile.FileName.ToString()
         End If
     End Sub
-    <System.Web.Services.WebMethod()>
-    Public Shared Function IsRunExist() As Boolean
 
+
+#End Region
+
+#Region "Run-Groupings"
+    Protected Sub RunGridView_CustomCallback(ByVal sender As Object, ByVal e As ASPxGridViewCustomCallbackEventArgs)
+        ApplyLayout(Int32.Parse(e.Parameters))
+    End Sub
+    Private Sub ApplyLayout(ByVal layoutIndex As Integer)
+        Me.RunGridView.BeginUpdate()
         Try
-            Return True
-        Catch ex As Exception
-            Throw ex
+            Me.RunGridView.ClearSort()
+            Select Case layoutIndex
+                Case 0
+                    CType(Me.RunGridView.Columns("RunNUmber"), GridViewDataTextColumn).GroupIndex = -1
+                Case 1
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("RunNUmber"))
+                Case 2
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("RunDescription"))
+                Case 3
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("MondayRun"))
+                Case 4
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("TuesdayRun"))
+                Case 5
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("WednesdayRun"))
+                Case 6
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("ThursdayRun"))
+                Case 7
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("FridayRun"))
+                Case 8
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("SaturdayRun"))
+                Case 9
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("SundayRun"))
+                Case 10
+                    Me.RunGridView.GroupBy(Me.RunGridView.Columns("Notes"))
+            End Select
+        Finally
+            Me.RunGridView.EndUpdate()
         End Try
-
-    End Function
-
-
+        Me.RunGridView.ExpandAll()
+    End Sub
 #End Region
 End Class
