@@ -42,29 +42,26 @@ Public Class RateIncreases
 
         'Delete previous rate increases from reporting table
         'Criteria = "DELETE * FROM tblRateIncreases"
-        'FMS.Business.DataObjects.tblRateIncrease.DeleteAll()
+        FMS.Business.DataObjects.tblRateIncrease.DeleteAll()
 
-        Dim SitesSqlCriteria = FMS.Business.DataObjects.tblSites.GetSitesByIndustryGroupAndCeasedateIsNull(IndustryGroupCode)
+        Dim SitesSqlCriteria = FMS.Business.DataObjects.tblSites.GetSitesByIndustryGroupAndCeasedateIsNull(IndustryGroupCode, Sid)
 
         For Each cSite In SitesSqlCriteria
             SiteId = cSite.Cid
             SiteName = cSite.SiteName
             CustomerId = cSite.Customer
-            If cSite.Customer <> "" And Not cSite.Customer Is Nothing And cSite.Customer <> 0 Then
+            If Not cSite.Customer Is Nothing And cSite.Customer <> 0 Then
                 UpdateRates(Sid, cSite.Cid, ReportOnly)
                 FMS.Business.DataObjects.tblSites.UpdateTotalUnitsAndTotalAmount(cSite.Cid, TotUnits, TotCharge)
                 TotUnits = 0
                 TotCharge = 0
             End If
         Next
-        varLastCustomer = VarCurrentCustomer
+        VarLastCustomer = VarCurrentCustomer
 
         'DoCmd.OpenReport "repCUARateIncreases", acViewPreview
         'MsgBox vbCrLf & "Processing of rate increases complete - Thank you and have a nice day" & vbCrLf
 
-        'GetNewRate()
-        UpdateReportFile()
-        UpdateAuditReportFile()
         Return Nothing
     End Function
     Private Shared Sub UpdateRates(csid As Integer, cid As Integer, reportOnly As Boolean)
@@ -133,7 +130,7 @@ Public Class RateIncreases
             .NewServiceUnits = ServiceUnits
             .OldServicePrice = oldserviceprice
             .NewServicePrice = NewServicePrice
-            .User = FMS.Business.ThisSession.User.UserName 'Forms!frmmain!txtUserName
+            .User = FMS.Business.ThisSession.User.UserName
             .ChangeDate = Date.Now()
             .ChangeTime = DateTime.Now()
             .ChangeReasonCode = 13
@@ -153,8 +150,8 @@ Public Class RateIncreases
     Public Shared Property ServiceUnits As Integer
     Public Shared Property VarLastCustomer As Integer
     Public Shared Property VarCurrentCustomer As Integer
-    Public Shared Property CustomerId As Integer
-    Private Shared Property SiteName As Integer
+    Public Shared Property CustomerId As System.Nullable(Of Integer)
+    Private Shared Property SiteName As String
     Private Shared Property SiteId As Integer
     Private Shared Property ServiceCode As Integer
     Private Shared Property SiteCSid As Integer

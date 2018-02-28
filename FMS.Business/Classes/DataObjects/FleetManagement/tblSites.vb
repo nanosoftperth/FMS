@@ -220,16 +220,11 @@
                 Throw ex
             End Try
         End Function
-        Public Shared Function GetSitesByIndustryGroupAndCeasedateIsNull(IndustryGroup As Integer) As List(Of DataObjects.tblSites)
+        Public Shared Function GetSitesByIndustryGroupAndCeasedateIsNull(industryGroup As Integer, cSId As Integer) As List(Of FMS.Business.usp_GetCUARateIncreasesResult)
             Try
-                Dim objSites As New List(Of DataObjects.tblSites)
+                Dim objSites As New List(Of FMS.Business.usp_GetCUARateIncreasesResult)
                 With New LINQtoSQLClassesDataContext
-                    objSites = (From c In .tblSites
-                                Where c.ApplicationId.Equals(ThisSession.ApplicationID) And
-                                    c.IndustryGroup.Equals(IndustryGroup) And c.SiteCeaseDate Is Nothing
-                                Order By c.SiteName
-                                Select New DataObjects.tblSites(c)).ToList
-
+                    objSites = .usp_GetCUARateIncreases(industryGroup, cSId).ToList()
                     .Dispose()
                 End With
                 Return objSites
