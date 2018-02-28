@@ -227,6 +227,7 @@
                     objSites = (From c In .tblSites
                                 Where c.ApplicationId.Equals(ThisSession.ApplicationID) And
                                     c.IndustryGroup.Equals(IndustryGroup) And c.SiteCeaseDate Is Nothing
+                                Order By c.SiteName
                                 Select New DataObjects.tblSites(c)).ToList
 
                     .Dispose()
