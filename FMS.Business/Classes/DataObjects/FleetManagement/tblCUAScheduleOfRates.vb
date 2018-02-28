@@ -86,6 +86,24 @@
                 Throw ex
             End Try
         End Function
+        Public Shared Function GetCUAScheduleOfRatesByServiceOrderbyFromUnits(service As Integer) As List(Of DataObjects.tblCUAScheduleOfRates)
+            Try
+                Dim tblCUAScheduleOfRates As New List(Of DataObjects.tblCUAScheduleOfRates)
+
+                With New LINQtoSQLClassesDataContext
+                    tblCUAScheduleOfRates = (From i In .tblCUAScheduleOfRates
+                                             Where i.Service.Equals(service) And i.ApplicationID.Equals(ThisSession.ApplicationID)
+                                             Order By i.FromUnits
+                                             Select New DataObjects.tblCUAScheduleOfRates(i)).ToList()
+                    .Dispose()
+                End With
+
+                Return tblCUAScheduleOfRates
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
         Public Shared Function GetServiceIdInt(ServiceId As Guid) As Integer
             Try
                 Return FMS.Business.DataObjects.tblServices.GetServiceBySid(ServiceId)

@@ -66,17 +66,23 @@
             ShowMyAlertWindow();
         }
         function ProceedCuaProcess() {
-            ProcessCuaRateIncrease('xyz');
+            ProcessCuaRateIncrease();
             document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
             myAlertWithYesNoButton.Hide();
             ShowMyAlertWindow();
         }
-        function ProcessCuaRateIncrease(param1) {
+        function ProcessCuaRateIncrease() {
+            var param = {
+                ReportOnly: cuaChkReportOnlyNoRateIncrease.GetChecked(),
+                Sid: cuaTxtServiceCode.GetValue(),
+                IndustryGroupCode: cuaTxtIndustryGroupCode.GetValue(),
+                EffectiveDate: cuaDtEffectiveDate.GetValue()
+            }
             $.ajax({
                 type: "POST",
                 url: 'RateIncreases.aspx/ProcessCuaRateIncrease',
                 dataType: "json",
-                data: JSON.stringify({ param1: param1 }),
+                data: JSON.stringify({'objCuaRateIncrease':param}),
                 contentType: "application/json",
                 crossDomain: true,
                 success: function (data) {
@@ -418,7 +424,7 @@
                     <Paddings PaddingBottom="5px" />
                 </ContentStyle>
             </dx:ASPxPopupControl>
-         <dx:ASPxPopupControl ID="myAlertWithYesNoButton" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+        <dx:ASPxPopupControl ID="myAlertWithYesNoButton" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
                 PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="myAlertWithYesNoButton"
                 HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
                 <ContentCollection>

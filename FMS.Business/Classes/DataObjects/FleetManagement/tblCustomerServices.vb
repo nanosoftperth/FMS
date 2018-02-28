@@ -96,6 +96,18 @@
                 .Dispose()
             End With
         End Sub
+        Public Shared Sub UpdateServicePricePerAnnumCharge(custServiceID As Integer, servicePrice As Double, perAnnumCharge As Double)
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomerService As FMS.Business.tblCustomerService = (From c In .tblCustomerServices
+                                                                             Where c.ID.Equals(custServiceID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objCustomerService
+                    .ServicePrice = servicePrice
+                    .PerAnnumCharge = perAnnumCharge
+                End With
+                .SubmitChanges()
+                .Dispose()
+            End With
+        End Sub
         Public Shared Sub Delete(CustomerService As DataObjects.tblCustomerServices)
             With New LINQtoSQLClassesDataContext
                 Dim objCustomerService As FMS.Business.tblCustomerService = (From c In .tblCustomerServices
@@ -115,6 +127,22 @@
                 With New LINQtoSQLClassesDataContext
                     objZones = (From c In .tblCustomerServices
                                 Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                Order By c.CSid
+                                Select New DataObjects.tblCustomerServices(c)).ToList
+                    .Dispose()
+                End With
+                Return objZones
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Shared Function GetCustomerServicesByCsidAndCid(csid As Integer, cid As Integer) As List(Of DataObjects.tblCustomerServices)
+            Try
+                Dim objZones As New List(Of DataObjects.tblCustomerServices)
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .tblCustomerServices
+                                Where c.ApplicationID.Equals(ThisSession.ApplicationID) And
+                                    c.CSid.Equals(csid) And c.CId.Equals(cid)
                                 Order By c.CSid
                                 Select New DataObjects.tblCustomerServices(c)).ToList
                     .Dispose()
