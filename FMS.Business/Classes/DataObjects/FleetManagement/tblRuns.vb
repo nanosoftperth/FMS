@@ -121,6 +121,17 @@
             End With
 
         End Sub
+        Public Shared Sub DeleteRunByRid(Run As DataObjects.tblRuns)
+            With New LINQtoSQLClassesDataContext
+                Dim objRun As FMS.Business.tblRun = (From c In .tblRuns
+                                                     Where c.Rid.Equals(Run.Rid) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblRuns.DeleteOnSubmit(objRun)
+                .SubmitChanges()
+                .Dispose()
+
+            End With
+
+        End Sub
 
 #End Region
 

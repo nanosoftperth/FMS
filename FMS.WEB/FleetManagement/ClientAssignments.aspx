@@ -343,7 +343,7 @@
                                     <SettingsPager PageSize="10" />
                                     <Settings ShowGroupPanel="true" />
                                 </dx:ASPxGridView>
-                                <asp:ObjectDataSource ID="odsTblRuns" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns" DataObjectTypeName="FMS.Business.DataObjects.tblRuns" DeleteMethod="DeleteRun" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
+                                <asp:ObjectDataSource ID="odsTblRuns" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns" DataObjectTypeName="FMS.Business.DataObjects.tblRuns" DeleteMethod="DeleteRunByRid" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
                                 <asp:ObjectDataSource ID="odsRun" runat="server" DataObjectTypeName="FMS.Business.DataObjects.FleetRun" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.FleetRun" UpdateMethod="Update"></asp:ObjectDataSource>
                                 <asp:ObjectDataSource ID="odsRunMultiDocs" runat="server" SelectMethod="GetAllByRunRID" TypeName="FMS.Business.DataObjects.FleetDocument" DataObjectTypeName="FMS.Business.DataObjects.FleetDocument" UpdateMethod="Update" DeleteMethod="Delete" InsertMethod="Create">
                                     <SelectParameters>
