@@ -372,4 +372,22 @@ Partial Public Class ClientAssignments
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsRunSite As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''gvRunCompletion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvRunCompletion As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
+    '''odsRunCompletion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsRunCompletion As Global.System.Web.UI.WebControls.ObjectDataSource
 End Class
