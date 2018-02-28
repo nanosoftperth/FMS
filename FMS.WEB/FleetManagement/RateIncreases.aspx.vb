@@ -50,9 +50,9 @@ Public Class RateIncreases
             SiteId = cSite.Cid
             SiteName = cSite.SiteName
             CustomerId = cSite.Customer
-            If cSite.Customer <> "" And Not cSite.Customer Is Nothing And cSite.Customer <> 0 Then
+            If Not cSite.Customer Is Nothing And cSite.Customer <> 0 Then
                 UpdateRates(Sid, cSite.Cid, ReportOnly)
-                FMS.Business.DataObjects.tblSites.UpdateTotalUnitsAndTotalAmount(cSite.Cid, TotUnits, TotCharge)
+                'FMS.Business.DataObjects.tblSites.UpdateTotalUnitsAndTotalAmount(cSite.Cid, TotUnits, TotCharge)
                 TotUnits = 0
                 TotCharge = 0
             End If
@@ -63,8 +63,8 @@ Public Class RateIncreases
         'MsgBox vbCrLf & "Processing of rate increases complete - Thank you and have a nice day" & vbCrLf
 
         'GetNewRate()
-        UpdateReportFile()
-        UpdateAuditReportFile()
+        'UpdateReportFile()
+        'UpdateAuditReportFile()
         Return Nothing
     End Function
     Private Shared Sub UpdateRates(csid As Integer, cid As Integer, reportOnly As Boolean)
@@ -76,18 +76,18 @@ Public Class RateIncreases
                 ServiceUnits = custServ.ServiceUnits
                 ServiceCode = custServ.CSid
                 If ServiceCode = ServiceCodeToUpdate Then
-                    GetNewRate(ServiceCodeToUpdate)
+                    'GetNewRate(ServiceCodeToUpdate)
                     oldserviceprice = custServ.ServicePrice
                     OldPerAnnumCharge = custServ.PerAnnumCharge
                     NewPerAnnumCharge = (NewServicePrice * custServ.ServiceUnits)
-                    UpdateReportFile()
+                    'UpdateReportFile()
                     TotCharge = TotCharge + NewServicePrice
                     TotUnits = TotUnits + ServiceUnits
                     If reportOnly = False And NewServicePrice <> 0 Then
-                        UpdateAuditReportFile()
+                        'UpdateAuditReportFile()
 
                         'Update customer service entry with new values
-                        FMS.Business.DataObjects.tblCustomerServices.UpdateServicePricePerAnnumCharge(custServ.ID, NewServicePrice, NewPerAnnumCharge)
+                        'FMS.Business.DataObjects.tblCustomerServices.UpdateServicePricePerAnnumCharge(custServ.ID, NewServicePrice, NewPerAnnumCharge)
                     End If
                 Else
                     TotCharge = TotCharge + oldserviceprice
@@ -153,8 +153,8 @@ Public Class RateIncreases
     Public Shared Property ServiceUnits As Integer
     Public Shared Property VarLastCustomer As Integer
     Public Shared Property VarCurrentCustomer As Integer
-    Public Shared Property CustomerId As Integer
-    Private Shared Property SiteName As Integer
+    Public Shared Property CustomerId As System.Nullable(Of Integer)
+    Private Shared Property SiteName As String
     Private Shared Property SiteId As Integer
     Private Shared Property ServiceCode As Integer
     Private Shared Property SiteCSid As Integer
