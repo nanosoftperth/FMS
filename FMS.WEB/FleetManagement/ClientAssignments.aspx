@@ -187,7 +187,7 @@
             var reponse = OnSuccessCreateRun;
 
         }
-       
+
 
 
 
@@ -201,10 +201,57 @@
                     <dx:TabPage Name="Run" Text="Run">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <dx:ASPxComboBox runat="server" ID="cbFields" ValueType="System.Int32" SelectedIndex="0" Theme="SoftOrange" Caption="Group by">
+                                                    <Items>
+                                                        <dx:ListEditItem Text="None" Value="0" />
+                                                        <dx:ListEditItem Text="Run Number" Value="1" />
+                                                        <dx:ListEditItem Text="Run Description" Value="2" />
+                                                        <dx:ListEditItem Text="Monday Run" Value="3" />
+                                                        <dx:ListEditItem Text="Tuesday Run" Value="4" />
+                                                        <dx:ListEditItem Text="Wednesday Run" Value="5" />
+                                                        <dx:ListEditItem Text="Thursday Run" Value="6" />
+                                                        <dx:ListEditItem Text="Friday Run" Value="7" />
+                                                        <dx:ListEditItem Text="Saturday Run" Value="8" />
+                                                        <dx:ListEditItem Text="Sunday Run" Value="9" />
+                                                        <dx:ListEditItem Text="Notes" Value="10" />
+                                                    </Items>
+                                                    <ClientSideEvents SelectedIndexChanged="function(s) { clientRunGridView.PerformCallback(s.GetValue()) }" />
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                        </td>
+                                        <td style="width: 20px">
+
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <dx:ASPxButton runat="server" ID="btnCollapse" Text="Collapse All Rows" UseSubmitBehavior="false" Theme="SoftOrange" Width="100px"
+                                                    AutoPostBack="false">
+                                                    <ClientSideEvents Click="function() { clientRunGridView.CollapseAll() }" />
+                                                </dx:ASPxButton>
+                                            </div>
+                                        </td>
+                                        <td style="width: 5px">
+
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <dx:ASPxButton runat="server" ID="btnExpand" Text="Expand All Rows" UseSubmitBehavior="false" Theme="SoftOrange" Width="100px"
+                                                    AutoPostBack="false">
+                                                    <ClientSideEvents Click="function() { clientRunGridView.ExpandAll() }" />
+                                                </dx:ASPxButton>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <dx:ASPxGridView ID="RunGridView" runat="server" DataSourceID="odsTblRuns" KeyFieldName="Rid" Width="550px" Theme="SoftOrange" AutoGenerateColumns="False"
                                     OnRowValidating="RunGridView_RowValidating"
                                     SettingsDetail-AllowOnlyOneMasterRowExpanded="true"
-                                    ClientInstanceName="clientRunGridView">
+                                    ClientInstanceName="clientRunGridView"
+                                    OnCustomCallback="RunGridView_CustomCallback">
                                     <SettingsDetail ShowDetailRow="true" />
                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
@@ -212,7 +259,7 @@
                                     <SettingsPopup>
                                         <EditForm Modal="true"
                                             VerticalAlign="WindowCenter"
-                                            HorizontalAlign="WindowCenter" Width="700px" Height="300px" />                                            
+                                            HorizontalAlign="WindowCenter" Width="700px" Height="300px" />
                                     </SettingsPopup>
                                     <Templates>
                                         <%--<EditForm>
@@ -268,8 +315,8 @@
                                             </dx:ASPxGridView>
                                         </DetailRow>
                                     </Templates>
-                                    <Columns>                                        
-                                        <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="true" ShowDeleteButton="True">                                            
+                                    <Columns>
+                                        <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="true" ShowDeleteButton="True">
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="RunID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="1" PropertiesTextEdit-ClientInstanceName="RunNumber" Visible="false" PropertiesTextEdit-MaxLength="10"></dx:GridViewDataTextColumn>
@@ -294,6 +341,7 @@
                                     </Columns>
                                     <Settings ShowPreview="true" />
                                     <SettingsPager PageSize="10" />
+                                    <Settings ShowGroupPanel="true" />
                                 </dx:ASPxGridView>
                                 <asp:ObjectDataSource ID="odsTblRuns" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRuns" DataObjectTypeName="FMS.Business.DataObjects.tblRuns" DeleteMethod="DeleteRun" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
                                 <asp:ObjectDataSource ID="odsRun" runat="server" DataObjectTypeName="FMS.Business.DataObjects.FleetRun" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.FleetRun" UpdateMethod="Update"></asp:ObjectDataSource>

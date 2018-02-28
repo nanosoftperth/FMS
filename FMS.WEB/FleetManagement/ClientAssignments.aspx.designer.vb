@@ -32,6 +32,33 @@ Partial Public Class ClientAssignments
     Protected WithEvents FleetManagementPageControl As Global.DevExpress.Web.ASPxPageControl
     
     '''<summary>
+    '''cbFields control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbFields As Global.DevExpress.Web.ASPxComboBox
+    
+    '''<summary>
+    '''btnCollapse control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCollapse As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''btnExpand control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExpand As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
     '''RunGridView control.
     '''</summary>
     '''<remarks>
