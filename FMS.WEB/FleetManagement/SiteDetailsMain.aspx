@@ -190,6 +190,10 @@
                 popupDelete_SiteServices.SetHeaderText("Delete Item");
                 popupDelete_SiteServices.Show();
             }
+            if (item == 'Comments') {
+                popupDelete_Comments.SetHeaderText("Delete Item");
+                popupDelete_Comments.Show();
+            }
         }
         function OnClickYes(s, e, item) {
             if (item == 'SiteDetail') {
@@ -203,6 +207,10 @@
             if (item == 'SiteServices') {
                 cltCustomerServiceGridView.DeleteRow(visibleIndex);
                 popupDelete_SiteServices.Hide();
+            }
+            if (item == 'Comments') {
+                cltSiteCommentsGridView.DeleteRow(visibleIndex);
+                popupDelete_Comments.Hide();
             }
         }
         //function OnClickNo_SiteDetail(s, e, item) {
@@ -1093,13 +1101,22 @@
                                                 <div class="col-md-2">
                                                     <dx:ASPxGridView ID="SiteCommentsGridView" KeyFieldName="CommentsID"
                                                         DataSourceID="odsSiteComments" runat="server" Theme="SoftOrange" AutoGenerateColumns="False" Width="900px"
-                                                        OnRowUpdating="SiteCommentsGridView_RowUpdating" OnRowInserting="SiteCommentsGridView_RowInserting">
+                                                        OnRowUpdating="SiteCommentsGridView_RowUpdating" OnRowInserting="SiteCommentsGridView_RowInserting"
+                                                        ClientInstanceName="cltSiteCommentsGridView">
                                                         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                                                         <Settings ShowPreview="true" />
                                                         <SettingsPager PageSize="10" />
+                                                        <ClientSideEvents CustomButtonClick="function(s, e)
+                                                            {
+                                                                OnCustomButtonClick(s, e, 'Comments');
+                                                            }" />
                                                         <Columns>
-                                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                                                                <CustomButtons>
+                                                                    <dx:GridViewCommandColumnCustomButton ID="deleteButton_Comments" Text="Delete" />
+                                                                </CustomButtons>
+                                                            </dx:GridViewCommandColumn>
                                                             <dx:GridViewDataTextColumn FieldName="CommentsID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
@@ -1218,6 +1235,23 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_SiteServices" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_SiteServices.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_Comments" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_Comments" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_Comments" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'Comments');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_Comments" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_Comments.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>

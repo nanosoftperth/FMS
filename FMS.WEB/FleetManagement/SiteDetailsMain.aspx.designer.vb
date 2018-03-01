@@ -149,6 +149,33 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents noButton_SiteServices As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
+    '''DeleteDialog_Comments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_Comments As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_Comments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_Comments As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_Comments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_Comments As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
     '''odsDrivers control.
     '''</summary>
     '''<remarks>
