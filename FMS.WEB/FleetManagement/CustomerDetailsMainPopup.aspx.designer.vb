@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class CustomerDetailsMainPopup
-
+    
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
+    
     '''<summary>
     '''CustomersGridView control.
     '''</summary>
@@ -30,7 +30,16 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CustomersGridView As Global.DevExpress.Web.ASPxGridView
-
+    
+    '''<summary>
+    '''deleteButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents deleteButton As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
     '''<summary>
     '''viewPopup control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents viewPopup As Global.DevExpress.Web.ASPxPopupControl
-
+    
     '''<summary>
     '''Panel2 control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
-
+    
     '''<summary>
     '''SiteGridView control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SiteGridView As Global.DevExpress.Web.ASPxGridView
-
+    
     '''<summary>
     '''hdnCID control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hdnCID As Global.DevExpress.Web.ASPxTextBox
-
+    
     '''<summary>
     '''odsSitesView control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsSitesView As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsRateIncreaseReference control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsRateIncreaseReference As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsCustomerAgents control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsCustomerAgents As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsZones control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsZones As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsStates control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsStates As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsCustomerRating control.
     '''</summary>
@@ -120,7 +129,7 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsCustomerRating As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsCustomer control.
     '''</summary>
@@ -129,4 +138,31 @@ Partial Public Class CustomerDetailsMainPopup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsCustomer As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''DeleteDialog control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton As Global.DevExpress.Web.ASPxButton
 End Class
