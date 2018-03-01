@@ -122,6 +122,33 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents noButton_ResignHistory As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
+    '''DeleteDialog_SiteServices control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_SiteServices As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_SiteServices control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_SiteServices As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_SiteServices control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_SiteServices As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
     '''odsDrivers control.
     '''</summary>
     '''<remarks>

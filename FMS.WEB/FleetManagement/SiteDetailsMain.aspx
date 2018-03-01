@@ -186,6 +186,10 @@
                 popupDelete_ResignHistory.SetHeaderText("Delete Item");
                 popupDelete_ResignHistory.Show();
             }
+            if (item == 'SiteServices') {
+                popupDelete_SiteServices.SetHeaderText("Delete Item");
+                popupDelete_SiteServices.Show();
+            }
         }
         function OnClickYes(s, e, item) {
             if (item == 'SiteDetail') {
@@ -195,6 +199,10 @@
             if (item == 'ResignHistory') {
                 cltResignHistoryGridView.DeleteRow(visibleIndex);
                 popupDelete_ResignHistory.Hide();
+            }
+            if (item == 'SiteServices') {
+                cltCustomerServiceGridView.DeleteRow(visibleIndex);
+                popupDelete_SiteServices.Hide();
             }
         }
         //function OnClickNo_SiteDetail(s, e, item) {
@@ -772,13 +780,22 @@
                                                     <dx:ASPxGridView ID="CustomerServiceGridView" KeyFieldName="CustomerServiceID" Theme="SoftOrange"
                                                         DataSourceID="odsCustomerService" runat="server" AutoGenerateColumns="False" Width="900px"
                                                         OnCancelRowEditing="CustomerServiceGridView_CancelRowEditing"
-                                                        OnRowUpdating="CustomerServiceGridView_RowUpdating" OnRowInserting="CustomerServiceGridView_RowInserting">
+                                                        OnRowUpdating="CustomerServiceGridView_RowUpdating" OnRowInserting="CustomerServiceGridView_RowInserting"
+                                                        ClientInstanceName="cltCustomerServiceGridView">
                                                         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                                                         <Settings ShowPreview="true" />
                                                         <SettingsPager PageSize="5" />
+                                                        <ClientSideEvents CustomButtonClick="function(s, e)
+                                                            {
+                                                                OnCustomButtonClick(s, e, 'SiteServices');
+                                                            }" />
                                                         <Columns>
-                                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                                                                <CustomButtons>
+                                                                    <dx:GridViewCommandColumnCustomButton ID="deleteButton_SiteServices" Text="Delete" />
+                                                                </CustomButtons>
+                                                            </dx:GridViewCommandColumn>
                                                             <dx:GridViewDataTextColumn FieldName="CustomerServiceID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                                             <dx:GridViewDataTextColumn FieldName="CId" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
@@ -1184,6 +1201,23 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_ResignHistory" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_ResignHistory.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_SiteServices" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_SiteServices" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_SiteServices" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'SiteServices');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_SiteServices" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_SiteServices.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
