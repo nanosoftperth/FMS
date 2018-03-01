@@ -170,6 +170,34 @@
                 SiteDetailsPageControl.tabs[3].SetEnabled(false);
             }
         }
+
+
+        //Cesar: Use for Delete Dialog Box (SiteDetail)
+        var visibleIndex;
+        function OnCustomButtonClick(s, e, item) {
+            visibleIndex = e.visibleIndex;
+
+            if (item == 'SiteDetail')
+            {
+                popupDelete_SiteDetail.SetHeaderText("Delete Item");
+                popupDelete_SiteDetail.Show();
+            }            
+        }
+        function OnClickYes(s, e, item) {
+            if (item == 'SiteDetail')
+            {
+                cltgvSiteDetail.DeleteRow(visibleIndex);
+                popupDelete_SiteDetail.Hide();
+            }            
+        }
+        //function OnClickNo_SiteDetail(s, e, item) {
+        //    if (item == 'SiteDetail')
+        //    {
+        //        popupDelete_SiteDetail.Hide();
+        //    }
+            
+        //}
+
     
 </script>
 </head>
@@ -179,14 +207,23 @@
             <dx:ASPxTextBox ID="hdnStoreCid" ClientInstanceName="hdnStoreCid" AutoPostBack="true" runat="server" Text=""></dx:ASPxTextBox>    
         </div>
         <dx:ASPxGridView ID="SiteDetailsGridView" runat="server" DataSourceID="odsSiteDetails" AutoGenerateColumns="False" 
-            KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" OnRowInserting="SiteDetailsGridView_RowInserting">
+            KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" OnRowInserting="SiteDetailsGridView_RowInserting"
+            ClientInstanceName="cltgvSiteDetail">
             <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
             <Templates>
                 <TitlePanel>Sites</TitlePanel>
             </Templates>
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+            <ClientSideEvents CustomButtonClick="function(s, e)
+                {
+                    OnCustomButtonClick(s, e, 'SiteDetail');
+                }" /> 
             <Columns>
-                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" >
+                    <CustomButtons>
+                        <dx:GridViewCommandColumnCustomButton ID="btnDelete_SiteDetail" Text="Delete" />
+                    </CustomButtons>
+                </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="SiteID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="SiteName" VisibleIndex="3"></dx:GridViewDataTextColumn>
@@ -1096,6 +1133,23 @@
             <ContentStyle>
                 <Paddings PaddingBottom="5px" />
             </ContentStyle>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_SiteDetail" runat="server" Text="Are you sure you want to delete this?" 
+            ClientInstanceName="popupDelete_SiteDetail" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'SiteDetail');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_SiteDetail.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
         </dx:ASPxPopupControl>
         <asp:ObjectDataSource ID="odsDrivers" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
         <asp:ObjectDataSource ID="odsReason" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCIRReason"></asp:ObjectDataSource>

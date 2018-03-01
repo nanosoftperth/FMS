@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class SiteDetailsMain
-
+    
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
+    
     '''<summary>
     '''hdnStoreCid control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hdnStoreCid As Global.DevExpress.Web.ASPxTextBox
-
+    
     '''<summary>
     '''SiteDetailsGridView control.
     '''</summary>
@@ -39,7 +39,16 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SiteDetailsGridView As Global.DevExpress.Web.ASPxGridView
-
+    
+    '''<summary>
+    '''btnDelete_SiteDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_SiteDetail As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
     '''<summary>
     '''viewPopup control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents viewPopup As Global.DevExpress.Web.ASPxPopupControl
-
+    
     '''<summary>
     '''Panel2 control.
     '''</summary>
@@ -57,7 +66,34 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
-
+    
+    '''<summary>
+    '''DeleteDialog_SiteDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_SiteDetail As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton As Global.DevExpress.Web.ASPxButton
+    
     '''<summary>
     '''odsDrivers control.
     '''</summary>
@@ -66,7 +102,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsReason control.
     '''</summary>
@@ -75,7 +111,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsReason As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsServiceFrequency control.
     '''</summary>
@@ -84,7 +120,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsServiceFrequency As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsServiceRun control.
     '''</summary>
@@ -93,7 +129,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsServiceRun As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsFrequency control.
     '''</summary>
@@ -102,7 +138,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsFrequency As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsServices control.
     '''</summary>
@@ -111,7 +147,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsServices As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsRateIncrease control.
     '''</summary>
@@ -120,7 +156,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsRateIncrease As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsInvoiceMonth control.
     '''</summary>
@@ -129,7 +165,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsInvoiceMonth As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsInvoiceFrequency control.
     '''</summary>
@@ -138,7 +174,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsInvoiceFrequency As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsSiteCeaseReason control.
     '''</summary>
@@ -147,7 +183,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsSiteCeaseReason As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsInitialContractPeriod control.
     '''</summary>
@@ -156,7 +192,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsInitialContractPeriod As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsSalesPerson control.
     '''</summary>
@@ -165,7 +201,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsSalesPerson As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsPreviousSuppliers control.
     '''</summary>
@@ -174,7 +210,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsPreviousSuppliers As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsIndustryGroups control.
     '''</summary>
@@ -183,7 +219,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsIndustryGroups As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsCustomers control.
     '''</summary>
@@ -192,7 +228,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsCustomers As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsZones control.
     '''</summary>
@@ -201,7 +237,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsZones As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsStates control.
     '''</summary>
@@ -210,7 +246,7 @@ Partial Public Class SiteDetailsMain
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsStates As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsSiteDetails control.
     '''</summary>
