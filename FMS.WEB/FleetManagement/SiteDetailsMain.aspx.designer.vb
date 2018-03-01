@@ -77,22 +77,49 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents DeleteDialog_SiteDetail As Global.DevExpress.Web.ASPxPopupControl
     
     '''<summary>
-    '''yesButton control.
+    '''yesButton_SiteDetail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents yesButton As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents yesButton_SiteDetail As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
-    '''noButton control.
+    '''noButton_SiteDetail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents noButton As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents noButton_SiteDetail As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_ResignHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_ResignHistory As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_ResignHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_ResignHistory As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_ResignHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_ResignHistory As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''odsDrivers control.
