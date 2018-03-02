@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class CIRReasons
-
+    
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class CIRReasons
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
+    
     '''<summary>
     '''CIRReasonsGridView control.
     '''</summary>
@@ -30,7 +30,43 @@ Partial Public Class CIRReasons
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CIRReasonsGridView As Global.DevExpress.Web.ASPxGridView
-
+    
+    '''<summary>
+    '''deleteButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents deleteButton As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
+    '''DeleteDialog control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton As Global.DevExpress.Web.ASPxButton
+    
     '''<summary>
     '''odsCIRReasons control.
     '''</summary>
