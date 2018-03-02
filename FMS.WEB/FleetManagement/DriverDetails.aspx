@@ -8,6 +8,23 @@
     <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
     <link href="../Content/grid/bootstrap.css" rel="stylesheet" />
     <link href="../Content/grid/grid.css" rel="stylesheet" />
+    <script>
+        //Cesar: Use for Delete Dialog Box
+        var visibleIndex;
+        function OnCustomButtonClick(s, e) {
+            visibleIndex = e.visibleIndex;
+            popupDelete.SetHeaderText("Delete Item");
+            popupDelete.Show();
+        }
+        function OnClickYes(s, e) {
+            cltgvDriver.DeleteRow(visibleIndex);
+            popupDelete.Hide();
+        }
+        function OnClickNo(s, e) {
+            popupDelete.Hide();
+        }
+
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -17,7 +34,8 @@
         <dx:ASPxGridView ID="gvDriver" runat="server" AutoGenerateColumns="false" 
             KeyFieldName="DriverID" DataSourceID="odsDriver" Width="100%"
             OnHtmlRowPrepared="gvDriver_HtmlRowPrepared" 
-            OnStartRowEditing="gvDriver_StartRowEditing" OnInitNewRow="gvDriver_InitNewRow">
+            OnStartRowEditing="gvDriver_StartRowEditing" OnInitNewRow="gvDriver_InitNewRow"
+            Theme="SoftOrange" ClientInstanceName="cltgvDriver">
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
             <SettingsPopup>
@@ -26,10 +44,15 @@
                     HorizontalAlign="WindowCenter" width="400px" 
                     />           
             </SettingsPopup>
+            <ClientSideEvents CustomButtonClick="OnCustomButtonClick" /> 
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
-                    ShowNewButtonInHeader="True" ShowDeleteButton="True"
-                    VisibleIndex="0" ></dx:GridViewCommandColumn>
+                    ShowNewButtonInHeader="True"
+                    VisibleIndex="0" >
+                    <CustomButtons>
+                        <dx:GridViewCommandColumnCustomButton ID="deleteButton" Text="Delete" />
+                    </CustomButtons>
+                </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="DriverID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Did" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="ApplicationId" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
@@ -197,6 +220,20 @@
                     </table>
                     <br />
                     
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog" runat="server" Text="Are you sure you want to delete this?" 
+            ClientInstanceName="popupDelete" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickYes" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickNo" />
+                    </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
         </dx:ASPxPopupControl>
