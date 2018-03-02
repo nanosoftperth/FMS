@@ -41,6 +41,42 @@ Partial Public Class UserSecurity
     Protected WithEvents Grid As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''deleteButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents deleteButton As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
+    '''DeleteDialog control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
     '''odsUsers control.
     '''</summary>
     '''<remarks>
