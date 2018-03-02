@@ -7,6 +7,24 @@
     <title>Public Holiday Register</title>
     <link href="../Content/grid/bootstrap.css" rel="stylesheet" />
     <link href="../Content/grid/grid.css" rel="stylesheet" />
+    <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
+    <script>
+        //Cesar: Use for Delete Dialog Box
+        var visibleIndex;
+        function OnCustomButtonClick(s, e) {
+            visibleIndex = e.visibleIndex;
+            popupDelete.SetHeaderText("Delete Item");
+            popupDelete.Show();
+        }
+        function OnClickYes(s, e) {
+            gvPublicHolidayRegister.DeleteRow(visibleIndex);
+            popupDelete.Hide();
+        }
+        function OnClickNo(s, e) {
+            popupDelete.Hide();
+        }
+
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -16,20 +34,37 @@
         <br />
         <dx:ASPxGridView ID="gvPublicHolidayRegister" ClientInstanceName="gvPublicHolidayRegister" 
             KeyFieldName="Aid" DataSourceID="odsHolidays" runat="server" 
-            EnableTheming="True" 
-            SettingsBehavior-ConfirmDelete="true"
-            SettingsText-ConfirmDelete="Are you sure you wish to delete the holiday?"
+            EnableTheming="True"             
             Theme="SoftOrange" AutoGenerateColumns="False">
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+            <ClientSideEvents CustomButtonClick="OnCustomButtonClick" /> 
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
-                    ShowNewButtonInHeader="True" ShowDeleteButton="True"
-                    VisibleIndex="0" ></dx:GridViewCommandColumn>
+                    ShowNewButtonInHeader="True"
+                    VisibleIndex="0" >
+                    <CustomButtons>
+                        <dx:GridViewCommandColumnCustomButton ID="deleteButton" Text="Delete" />
+                    </CustomButtons>
+                </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataDateColumn FieldName="PublicHolidayDate" VisibleIndex="2" Visible="true"></dx:GridViewDataDateColumn>
                 <dx:GridViewDataTextColumn FieldName="PublicHolidayDescription" VisibleIndex="3"></dx:GridViewDataTextColumn>
             </Columns>
         </dx:ASPxGridView>
+        <dx:ASPxPopupControl ID="DeleteDialog" runat="server" Text="Are you sure you want to delete this?" 
+            ClientInstanceName="popupDelete" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickYes" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickNo" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
     <%--<dx:ASPxGridView ID="gvPublicHolidayRegister" KeyFieldName="AID" DataSourceID="odsHolidays" runat="server" 
             Theme="SoftOrange" AutoGenerateColumns="False">
             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
