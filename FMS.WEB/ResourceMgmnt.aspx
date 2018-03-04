@@ -93,10 +93,10 @@
                 popupDelete_AssignDriversVehicles.SetHeaderText("Delete Item");
                 popupDelete_AssignDriversVehicles.Show();
             }
-            //if (item == 'RunDoc') {
-            //    popupDelete_RunDoc.SetHeaderText("Delete Item");
-            //    popupDelete_RunDoc.Show();
-            //}
+            if (item == 'Bookings') {
+                popupDelete_Bookings.SetHeaderText("Delete Item");
+                popupDelete_Bookings.Show();
+            }
             //if (item == 'RunSite') {
             //    popupDelete_RunSite.SetHeaderText("Delete Item");
             //    popupDelete_RunSite.Show();
@@ -115,10 +115,10 @@
                 dgvApplicationVehicleDriver.DeleteRow(visibleIndex);
                 popupDelete_AssignDriversVehicles.Hide();
             }
-            //if (item == 'RunDoc') {
-            //    RunDocGridView.DeleteRow(visibleIndex);
-            //    popupDelete_RunDoc.Hide();
-            //}
+            if (item == 'Bookings') {
+                dgvDetailBookings.DeleteRow(visibleIndex);
+                popupDelete_Bookings.Hide();
+            }
             //if (item == 'RunSite') {
             //    cltRunSiteGridView.DeleteRow(visibleIndex);
             //    popupDelete_RunSite.Hide();
@@ -164,7 +164,7 @@
                 <img style="width: 200px;" src="Content/Images/mC-settings.png" />
             </td>
             <td>
-                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="0">
+                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="3">
                     <TabPages>
                         <dx:TabPage Text="Assign Drivers to Vehicles">
                             <ContentCollection>
@@ -785,8 +785,15 @@
                                                 </dx:EditModeCommandLayoutItem>
                                             </Items>
                                         </EditFormLayoutProperties>
+                                        <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'Bookings');
+                                        }" />
                                         <Columns>
-                                            <dx:GridViewCommandColumn VisibleIndex="0" Width="100px" ShowNewButtonInHeader="True" ShowEditButton="True" ShowDeleteButton="True">
+                                            <dx:GridViewCommandColumn VisibleIndex="0" Width="100px" ShowNewButtonInHeader="True" ShowEditButton="True">
+                                                <CustomButtons>
+                                                    <dx:GridViewCommandColumnCustomButton ID="btnDelete_Bookings" Text="Delete" />
+                                                </CustomButtons>
                                             </dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationBookingId" Visible="false" ShowInCustomizationForm="True" VisibleIndex="1">
                                             </dx:GridViewDataTextColumn>
@@ -918,6 +925,23 @@
                 </dx:ASPxButton>
                 <dx:ASPxButton ID="noButton_AssignDriversVehicles" runat="server" Text="No" AutoPostBack="false">
                     <ClientSideEvents Click="function(){ popupDelete_AssignDriversVehicles.Hide(); }" />
+                </dx:ASPxButton>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_Bookings" runat="server" Text="Are you sure you want to delete this?"
+        ClientInstanceName="popupDelete_Bookings" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+        <ContentCollection>
+            <dx:PopupControlContentControl>
+                <br />
+                <dx:ASPxButton ID="yesButton_Bookings" runat="server" Text="Yes" AutoPostBack="false">
+                    <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'Bookings');
+                            }" />
+                </dx:ASPxButton>
+                <dx:ASPxButton ID="noButton_Bookings" runat="server" Text="No" AutoPostBack="false">
+                    <ClientSideEvents Click="function(){ popupDelete_Bookings.Hide(); }" />
                 </dx:ASPxButton>
             </dx:PopupControlContentControl>
         </ContentCollection>

@@ -248,6 +248,15 @@ Partial Public Class ResourceMgmnt
     Protected WithEvents dgvDetailBookings As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_Bookings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_Bookings As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''odsBookingContact control.
     '''</summary>
     '''<remarks>
@@ -300,4 +309,31 @@ Partial Public Class ResourceMgmnt
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noButton_AssignDriversVehicles As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_Bookings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_Bookings As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_Bookings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_Bookings As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_Bookings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_Bookings As Global.DevExpress.Web.ASPxButton
 End Class
