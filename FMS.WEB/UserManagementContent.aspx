@@ -192,10 +192,14 @@
                     popupDelete_Roles.SetHeaderText("Delete Item");
                     popupDelete_Roles.Show();
                 }
-                //if (item == 'RunSite') {
-                //    popupDelete_RunSite.SetHeaderText("Delete Item");
-                //    popupDelete_RunSite.Show();
-                //}
+                if (item == 'RolesAccessFeature') {
+                    popupDelete_RolesAccessFeature.SetHeaderText("Delete Item");
+                    popupDelete_RolesAccessFeature.Show();
+                }
+                if (item == 'BusinessLocation') {
+                    popupDelete_BusinessLocation.SetHeaderText("Delete Item");
+                    popupDelete_BusinessLocation.Show();
+                }
                 //if (item == 'SiteTab') {
                 //    popupDelete_SiteTab.SetHeaderText("Delete Item");
                 //    popupDelete_SiteTab.Show();
@@ -214,10 +218,14 @@
                     dgvRoles.DeleteRow(visibleIndex);
                     popupDelete_Roles.Hide();
                 }
-                //if (item == 'RunSite') {
-                //    cltRunSiteGridView.DeleteRow(visibleIndex);
-                //    popupDelete_RunSite.Hide();
-                //}
+                if (item == 'RolesAccessFeature') {
+                    dgvRoleAccessToFeatures.DeleteRow(visibleIndex);
+                    popupDelete_RolesAccessFeature.Hide();
+                }
+                if (item == 'BusinessLocation') {
+                    cltdgvBusinessLocations.DeleteRow(visibleIndex);
+                    popupDelete_BusinessLocation.Hide();
+                }
                 //if (item == 'SiteTab') {
                 //    cltSiteDetailsGridView.DeleteRow(visibleIndex);
                 //    popupDelete_SiteTab.Hide();
@@ -244,7 +252,7 @@
 
         <div class="centreme">
 
-            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="1"
+            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="5"
                 EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 
@@ -482,6 +490,10 @@
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
                                     <SettingsSearchPanel Visible="True" />
+                                    <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'RolesAccessFeature');
+                                        }" />
                                     <Templates>
                                         <EditForm>
                                     <dx:ASPxGridViewTemplateReplacement runat="server" ID="tr" ReplacementType="EditFormEditors">
@@ -498,7 +510,10 @@
                                 </EditForm>
                                     </Templates>
                                     <Columns>
-                                        <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                        <dx:GridViewCommandColumn ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                            <CustomButtons>
+                                                <dx:GridViewCommandColumnCustomButton ID="btnDelete_RolesAccessFeature" Text="Delete" />
+                                            </CustomButtons>
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationFeatureRoleID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
                                         </dx:GridViewDataTextColumn>
@@ -570,8 +585,6 @@
                     <dx:TabPage Name="tab_ApplicationSettings" Text="Application Settings">
                         <ContentCollection>
                             <dx:ContentControl runat="server">
-
-
                                 <table>
                                     <tr>
                                         <td style="vertical-align: top;">
@@ -738,19 +751,24 @@
                         <ContentCollection>
                             <dx:ContentControl runat="server">
 
-
                                 <div>
-
                                     <dx:ASPxGridView
                                         ID="dgvBusinessLocations"
                                         runat="server"
                                         AutoGenerateColumns="False"
                                         DataSourceID="odsApplicationLocations"
                                         KeyFieldName="ApplicationLocationID"
-                                        Theme="SoftOrange">
-
+                                        Theme="SoftOrange"
+                                        ClientInstanceName="cltdgvBusinessLocations">
+                                        <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'BusinessLocation');
+                                        }" />
                                         <Columns>
-                                            <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                            <dx:GridViewCommandColumn ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                                <CustomButtons>
+                                                    <dx:GridViewCommandColumnCustomButton ID="btnDelete_BusinessLocation" Text="Delete" />
+                                                </CustomButtons>
                                             </dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationLocationID" Visible="False" VisibleIndex="6">
                                             </dx:GridViewDataTextColumn>
@@ -1058,6 +1076,40 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_Roles" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_Roles.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_RolesAccessFeature" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_RolesAccessFeature" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_RolesAccessFeature" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'RolesAccessFeature');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_RolesAccessFeature" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_RolesAccessFeature.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_BusinessLocation" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_BusinessLocation" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_BusinessLocation" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'BusinessLocation');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_BusinessLocation" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_BusinessLocation.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>

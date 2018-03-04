@@ -122,6 +122,15 @@ Partial Public Class Test
     Protected WithEvents dgvRoleAccessToFeatures As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_RolesAccessFeature control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_RolesAccessFeature As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''odsApplicationFeatureRoles control.
     '''</summary>
     '''<remarks>
@@ -255,6 +264,15 @@ Partial Public Class Test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvBusinessLocations As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
+    '''btnDelete_BusinessLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_BusinessLocation As Global.DevExpress.Web.GridViewCommandColumnCustomButton
     
     '''<summary>
     '''odsApplicationLocations control.
@@ -489,4 +507,58 @@ Partial Public Class Test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noButton_Roles As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_RolesAccessFeature control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_RolesAccessFeature As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_RolesAccessFeature control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_RolesAccessFeature As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_RolesAccessFeature control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_RolesAccessFeature As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_BusinessLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_BusinessLocation As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_BusinessLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_BusinessLocation As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_BusinessLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_BusinessLocation As Global.DevExpress.Web.ASPxButton
 End Class
