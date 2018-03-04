@@ -140,6 +140,15 @@ Partial Public Class ClientAssignments
     Protected WithEvents SiteDetailsGridView As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_SiteTab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_SiteTab As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''viewPopup control.
     '''</summary>
     '''<remarks>
@@ -489,4 +498,31 @@ Partial Public Class ClientAssignments
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noButton_RunSite As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_SiteTab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_SiteTab As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_SiteTab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_SiteTab As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_SiteTab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_SiteTab As Global.DevExpress.Web.ASPxButton
 End Class

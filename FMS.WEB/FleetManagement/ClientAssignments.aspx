@@ -206,10 +206,10 @@
                 popupDelete_RunSite.SetHeaderText("Delete Item");
                 popupDelete_RunSite.Show();
             }
-            //if (item == 'Comments') {
-            //    popupDelete_Comments.SetHeaderText("Delete Item");
-            //    popupDelete_Comments.Show();
-            //}
+            if (item == 'SiteTab') {
+                popupDelete_SiteTab.SetHeaderText("Delete Item");
+                popupDelete_SiteTab.Show();
+            }
         }
         function OnClickYes(s, e, item) {
             if (item == 'RunTab') {
@@ -224,10 +224,10 @@
                 cltRunSiteGridView.DeleteRow(visibleIndex);
                 popupDelete_RunSite.Hide();
             }
-            //if (item == 'Comments') {
-            //    cltSiteCommentsGridView.DeleteRow(visibleIndex);
-            //    popupDelete_Comments.Hide();
-            //}
+            if (item == 'SiteTab') {
+                cltSiteDetailsGridView.DeleteRow(visibleIndex);
+                popupDelete_SiteTab.Hide();
+            }
         }
 
     </script>
@@ -235,7 +235,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="3">
+            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="0">
                 <TabPages>
                     <dx:TabPage Name="Run" Text="Run">
                         <ContentCollection>
@@ -423,10 +423,14 @@
                                 </div>
                                 <dx:ASPxGridView ID="SiteDetailsGridView" runat="server" DataSourceID="odsSiteDetails" AutoGenerateColumns="False"
                                     KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating"
-                                    OnRowInserting="SiteDetailsGridView_RowInserting" SettingsDetail-AllowOnlyOneMasterRowExpanded="true">
+                                    OnRowInserting="SiteDetailsGridView_RowInserting" SettingsDetail-AllowOnlyOneMasterRowExpanded="true" ClientInstanceName="cltSiteDetailsGridView">
                                     <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
                                     <SettingsDetail ShowDetailRow="true" />
                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                    <ClientSideEvents CustomButtonClick="function(s, e)
+                                    {
+                                        OnCustomButtonClick(s, e, 'SiteTab');
+                                    }" />
                                     <Templates>
                                         <TitlePanel>Sites</TitlePanel>
                                         <DetailRow>
@@ -1352,7 +1356,11 @@
 </EditForm>
                                     </Templates>
                                     <Columns>
-                                        <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                        <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                                            <CustomButtons>
+                                                <dx:GridViewCommandColumnCustomButton ID="btnDelete_SiteTab" Text="Delete" />
+                                            </CustomButtons>
+                                        </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="SiteID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="SiteName" VisibleIndex="3"></dx:GridViewDataTextColumn>
@@ -2476,6 +2484,23 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_RunSite" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_RunSite.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_SiteTab" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_SiteTab" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_SiteTab" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'SiteTab');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_SiteTab" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_SiteTab.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
