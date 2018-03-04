@@ -68,6 +68,15 @@ Partial Public Class ClientAssignments
     Protected WithEvents RunGridView As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_Run control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_Run As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''odsTblRuns control.
     '''</summary>
     '''<remarks>
@@ -390,4 +399,58 @@ Partial Public Class ClientAssignments
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsRunCompletion As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''DeleteDialog_SiteDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_SiteDetail As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_SiteDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_SiteDetail As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_SiteDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_SiteDetail As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_RunDoc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_RunDoc As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''ASPxButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButton1 As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''ASPxButton2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButton2 As Global.DevExpress.Web.ASPxButton
 End Class
