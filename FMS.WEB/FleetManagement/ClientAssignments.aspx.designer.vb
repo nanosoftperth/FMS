@@ -374,6 +374,15 @@ Partial Public Class ClientAssignments
     Protected WithEvents RunSiteGridView As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_RunSite control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_RunSite As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''odsRunSite control.
     '''</summary>
     '''<remarks>
@@ -437,20 +446,47 @@ Partial Public Class ClientAssignments
     Protected WithEvents DeleteDialog_RunDoc As Global.DevExpress.Web.ASPxPopupControl
     
     '''<summary>
-    '''ASPxButton1 control.
+    '''yesButton_RunDoc control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ASPxButton1 As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents yesButton_RunDoc As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
-    '''ASPxButton2 control.
+    '''noButton_RunDoc control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ASPxButton2 As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents noButton_RunDoc As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_RunSite control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_RunSite As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_RunSite control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_RunSite As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_RunSite control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_RunSite As Global.DevExpress.Web.ASPxButton
 End Class

@@ -202,10 +202,10 @@
                 popupDelete_RunDoc.SetHeaderText("Delete Item");
                 popupDelete_RunDoc.Show();
             }
-            //if (item == 'SiteServices') {
-            //    popupDelete_SiteServices.SetHeaderText("Delete Item");
-            //    popupDelete_SiteServices.Show();
-            //}
+            if (item == 'RunSite') {
+                popupDelete_RunSite.SetHeaderText("Delete Item");
+                popupDelete_RunSite.Show();
+            }
             //if (item == 'Comments') {
             //    popupDelete_Comments.SetHeaderText("Delete Item");
             //    popupDelete_Comments.Show();
@@ -220,10 +220,10 @@
                 RunDocGridView.DeleteRow(visibleIndex);
                 popupDelete_RunDoc.Hide();
             }
-            //if (item == 'SiteServices') {
-            //    cltCustomerServiceGridView.DeleteRow(visibleIndex);
-            //    popupDelete_SiteServices.Hide();
-            //}
+            if (item == 'RunSite') {
+                cltRunSiteGridView.DeleteRow(visibleIndex);
+                popupDelete_RunSite.Hide();
+            }
             //if (item == 'Comments') {
             //    cltSiteCommentsGridView.DeleteRow(visibleIndex);
             //    popupDelete_Comments.Hide();
@@ -235,7 +235,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="0">
+            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="3">
                 <TabPages>
                     <dx:TabPage Name="Run" Text="Run">
                         <ContentCollection>
@@ -2343,7 +2343,8 @@
                         <ContentCollection>
                             <dx:ContentControl runat="server">
                                 <dx:ASPxGridView ID="RunSiteGridView" runat="server" DataSourceID="odsRunSite" KeyFieldName="RunSiteID" Width="550px"
-                                    Theme="SoftOrange" AutoGenerateColumns="False" OnRowValidating="RunSiteGridView_RowValidating">
+                                    Theme="SoftOrange" AutoGenerateColumns="False" OnRowValidating="RunSiteGridView_RowValidating"
+                                    ClientInstanceName="cltRunSiteGridView">
                                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                                     <SettingsEditing Mode="PopupEditForm" />
@@ -2352,8 +2353,15 @@
                                             VerticalAlign="WindowCenter"
                                             HorizontalAlign="WindowCenter" Width="400px" Height="100px" />
                                     </SettingsPopup>
+                                    <ClientSideEvents CustomButtonClick="function(s, e)
+                                    {
+                                        OnCustomButtonClick(s, e, 'RunSite');
+                                    }" />
                                     <Columns>
-                                        <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True">
+                                        <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True">
+                                            <CustomButtons>
+                                                <dx:GridViewCommandColumnCustomButton ID="btnDelete_RunSite" Text="Delete" />
+                                            </CustomButtons>
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="RunSiteID" VisibleIndex="0" Visible="false"></dx:GridViewDataTextColumn>
                                         <dx:GridViewDataComboBoxColumn FieldName="Rid" VisibleIndex="1" Caption="Run">
@@ -2443,14 +2451,31 @@
             <ContentCollection>
                 <dx:PopupControlContentControl>
                     <br />
-                    <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Yes" AutoPostBack="false">
+                    <dx:ASPxButton ID="yesButton_RunDoc" runat="server" Text="Yes" AutoPostBack="false">
                         <ClientSideEvents Click="function(s, e)
                             {
                                 OnClickYes(s, e, 'RunDoc');
                             }" />
                     </dx:ASPxButton>
-                    <dx:ASPxButton ID="ASPxButton2" runat="server" Text="No" AutoPostBack="false">
+                    <dx:ASPxButton ID="noButton_RunDoc" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_RunDoc.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_RunSite" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_RunSite" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_RunSite" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'RunSite');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_RunSite" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_RunSite.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
