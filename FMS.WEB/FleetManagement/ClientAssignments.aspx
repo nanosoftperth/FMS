@@ -210,11 +210,15 @@
                 popupDelete_SiteTab.SetHeaderText("Delete Item");
                 popupDelete_SiteTab.Show();
             }
+            if (item == 'SiteDoc') {
+                popupDelete_SiteDoc.SetHeaderText("Delete Item");
+                popupDelete_SiteDoc.Show();
+            }
         }
         function OnClickYes(s, e, item) {
             if (item == 'RunTab') {
                 clientRunGridView.DeleteRow(visibleIndex);
-                popupDelete_Run.Hide();
+                popupDelete_SiteDoc.Hide();
             }
             if (item == 'RunDoc') {
                 RunDocGridView.DeleteRow(visibleIndex);
@@ -227,6 +231,10 @@
             if (item == 'SiteTab') {
                 cltSiteDetailsGridView.DeleteRow(visibleIndex);
                 popupDelete_SiteTab.Hide();
+            }
+            if (item == 'SiteDoc') {
+                DocGridView.DeleteRow(visibleIndex);
+                popupDelete_SiteDoc.Hide();
             }
         }
 
@@ -444,8 +452,16 @@
                                                         VerticalAlign="WindowCenter"
                                                         HorizontalAlign="WindowCenter" Width="400px" Height="400px" />
                                                 </SettingsPopup>
+                                                <ClientSideEvents CustomButtonClick="function(s, e)
+                                                    {
+                                                        OnCustomButtonClick(s, e, 'SiteDoc');
+                                                    }" />
                                                 <Columns>
-                                                    <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                    <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowNewButtonInHeader="True">
+                                                        <CustomButtons>
+                                                             <dx:GridViewCommandColumnCustomButton ID="btnDelete_SiteDoc" Text="Delete" />
+                                                        </CustomButtons>
+                                                    </dx:GridViewCommandColumn>
                                                     <dx:GridViewDataTextColumn FieldName="DocumentID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn FieldName="Cid" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="2" Visible="true"></dx:GridViewDataTextColumn>
@@ -2501,6 +2517,23 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_SiteTab" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_SiteTab.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_SiteDoc" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_SiteDoc" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_SiteDoc" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'SiteDoc');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_SiteDoc" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_SiteDoc.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
