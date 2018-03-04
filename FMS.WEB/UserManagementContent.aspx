@@ -179,6 +179,55 @@
 
             //End for vehicle list logic
 
+            //Cesar: Use for Delete Dialog Box (SiteDetail)
+            var visibleIndex;
+            function OnCustomButtonClick(s, e, item) {
+                visibleIndex = e.visibleIndex;
+
+                if (item == 'Users') {
+                    popupDelete_User.SetHeaderText("Delete Item");
+                    popupDelete_User.Show();
+                }
+                //if (item == 'RunDoc') {
+                //    popupDelete_RunDoc.SetHeaderText("Delete Item");
+                //    popupDelete_RunDoc.Show();
+                //}
+                //if (item == 'RunSite') {
+                //    popupDelete_RunSite.SetHeaderText("Delete Item");
+                //    popupDelete_RunSite.Show();
+                //}
+                //if (item == 'SiteTab') {
+                //    popupDelete_SiteTab.SetHeaderText("Delete Item");
+                //    popupDelete_SiteTab.Show();
+                //}
+                //if (item == 'SiteDoc') {
+                //    popupDelete_SiteDoc.SetHeaderText("Delete Item");
+                //    popupDelete_SiteDoc.Show();
+                //}
+            }
+            function OnClickYes(s, e, item) {
+                if (item == 'Users') {
+                    dgvUsers.DeleteRow(visibleIndex);
+                    popupDelete_User.Hide();
+                }
+                //if (item == 'RunDoc') {
+                //    RunDocGridView.DeleteRow(visibleIndex);
+                //    popupDelete_RunDoc.Hide();
+                //}
+                //if (item == 'RunSite') {
+                //    cltRunSiteGridView.DeleteRow(visibleIndex);
+                //    popupDelete_RunSite.Hide();
+                //}
+                //if (item == 'SiteTab') {
+                //    cltSiteDetailsGridView.DeleteRow(visibleIndex);
+                //    popupDelete_SiteTab.Hide();
+                //}
+                //if (item == 'SiteDoc') {
+                //    DocGridView.DeleteRow(visibleIndex);
+                //    popupDelete_SiteDoc.Hide();
+                //}
+            }
+
         </script>
 
         <div id="aui-flag-container" style="display: none;">
@@ -195,7 +244,7 @@
 
         <div class="centreme">
 
-            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="3"
+            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0"
                 EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 
@@ -217,7 +266,7 @@
 
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
-                                    <SettingsBehavior ConfirmDelete="true" />
+                                   <%-- <SettingsBehavior ConfirmDelete="true" />--%>
                                     <Settings ShowGroupPanel="True" />
                                     <ClientSideEvents EndCallback="function(s,e){
                                             if (s.cpHasInserted) {
@@ -225,6 +274,10 @@
                                                 delete s.cpHasInserted;
 
                                             }
+                                        }" />
+                                    <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'Users');
                                         }" />
                                     <Templates>
                                         <EditForm>
@@ -242,7 +295,10 @@
                                         </EditForm>
                                     </Templates>
                                     <Columns>
-                                        <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="true" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                        <dx:GridViewCommandColumn ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                            <CustomButtons>
+                                                <dx:GridViewCommandColumnCustomButton ID="btnDelete_Users" Text="Delete" />
+                                            </CustomButtons>
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" VisibleIndex="1" Visible="False">
                                         </dx:GridViewDataTextColumn>
@@ -965,6 +1021,23 @@
 
 
         </div>
+        <dx:ASPxPopupControl ID="DeleteDialog_User" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_User" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_User" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'Users');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_User" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_User.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
     </form>
 </body>
 </html>
