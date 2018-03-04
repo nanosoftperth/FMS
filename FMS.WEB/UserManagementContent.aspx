@@ -188,10 +188,10 @@
                     popupDelete_User.SetHeaderText("Delete Item");
                     popupDelete_User.Show();
                 }
-                //if (item == 'RunDoc') {
-                //    popupDelete_RunDoc.SetHeaderText("Delete Item");
-                //    popupDelete_RunDoc.Show();
-                //}
+                if (item == 'Roles') {
+                    popupDelete_Roles.SetHeaderText("Delete Item");
+                    popupDelete_Roles.Show();
+                }
                 //if (item == 'RunSite') {
                 //    popupDelete_RunSite.SetHeaderText("Delete Item");
                 //    popupDelete_RunSite.Show();
@@ -210,10 +210,10 @@
                     dgvUsers.DeleteRow(visibleIndex);
                     popupDelete_User.Hide();
                 }
-                //if (item == 'RunDoc') {
-                //    RunDocGridView.DeleteRow(visibleIndex);
-                //    popupDelete_RunDoc.Hide();
-                //}
+                if (item == 'Roles') {
+                    dgvRoles.DeleteRow(visibleIndex);
+                    popupDelete_Roles.Hide();
+                }
                 //if (item == 'RunSite') {
                 //    cltRunSiteGridView.DeleteRow(visibleIndex);
                 //    popupDelete_RunSite.Hide();
@@ -244,7 +244,7 @@
 
         <div class="centreme">
 
-            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0"
+            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="1"
                 EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 
@@ -415,8 +415,15 @@
                                     </Templates>
                                     <SettingsPager PageSize="50">
                                     </SettingsPager>
+                                    <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'Roles');
+                                        }" />
                                     <Columns>
-                                        <dx:GridViewCommandColumn Width="100px" ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                        <dx:GridViewCommandColumn Width="100px" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                            <CustomButtons>
+                                                <dx:GridViewCommandColumnCustomButton ID="btnDelete_Roles" Text="Delete" />
+                                            </CustomButtons>
                                         </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationID" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
                                         </dx:GridViewDataTextColumn>
@@ -1034,6 +1041,23 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_User" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_User.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_Roles" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_Roles" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_Roles" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'Roles');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_Roles" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_Roles.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>

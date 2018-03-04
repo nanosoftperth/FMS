@@ -68,6 +68,15 @@ Partial Public Class Test
     Protected WithEvents dgvRoles As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_Roles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_Roles As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''odsRolesUsers control.
     '''</summary>
     '''<remarks>
@@ -453,4 +462,31 @@ Partial Public Class Test
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noButton_User As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_Roles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_Roles As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_Roles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_Roles As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_Roles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_Roles As Global.DevExpress.Web.ASPxButton
 End Class
