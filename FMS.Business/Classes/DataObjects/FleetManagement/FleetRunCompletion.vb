@@ -1,21 +1,18 @@
 ﻿Namespace DataObjects
     Public Class FleetRunCompletion
 #Region "Properties / enums"
-        Public Property ApplicationID As System.Nullable(Of System.Guid)
         Public Property RunCompletionID As System.Guid
         Public Property RunID As System.Guid
         Public Property DriverID As System.Nullable(Of System.Guid)
         Public Property DID As System.Nullable(Of Integer)
         Public Property RunDate As System.Nullable(Of Date)
         Public Property Notes As String
-
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(RunCompletion As DataObjects.FleetRunCompletion)
             With New LINQtoSQLClassesDataContext
                 Dim fleetRunCompletion As New FMS.Business.FleetRunCompletion
                 With fleetRunCompletion
-                    .ApplicationID = ThisSession.ApplicationID
                     .RunCompletionID = Guid.NewGuid
                     .RunID = RunCompletion.RunID
                     .DriverID = RunCompletion.DriverID
@@ -61,7 +58,6 @@
 
                 With New LINQtoSQLClassesDataContext
                     fleetRunCompletions = (From i In .FleetRunCompletions
-                                           Where i.ApplicationID.Equals(ThisSession.ApplicationID)
                                            Select New DataObjects.FleetRunCompletion(i)).ToList()
                     .Dispose()
                 End With
@@ -71,7 +67,6 @@
                 Throw ex
             End Try
         End Function
-
 #End Region
 #Region "Constructors"
         Public Sub New()

@@ -208,6 +208,9 @@ Public Class SiteDetailsMain
 
     Protected Sub ResignHistoryGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
         Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        If hdnSiteCid.Text = "" Then
+            hdnSiteCid.Text = FMS.Business.ThisSession.SiteID
+        End If
         e.NewValues("SiteCId") = hdnSiteCid.Text
     End Sub
 
@@ -442,6 +445,9 @@ Public Class SiteDetailsMain
 
     Protected Sub CIRHistoryGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
         Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        If hdnSiteCid.Text = "" Then
+            hdnSiteCid.Text = FMS.Business.ThisSession.SiteID
+        End If
         e.NewValues("Cid") = hdnSiteCid.Text
         CIRHistoryGridViewRowUpdatingRowInserting(e, True)
     End Sub
@@ -486,6 +492,9 @@ Public Class SiteDetailsMain
 
     Protected Sub SiteCommentsGridView_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
         Dim hdnSiteCid As ASPxTextBox = TryCast(SiteDetailsGridView.FindEditFormTemplateControl("hdnSiteCid"), ASPxTextBox)
+        If hdnSiteCid.Text = "" Then
+            hdnSiteCid.Text = FMS.Business.ThisSession.SiteID
+        End If
         e.NewValues("Cid") = hdnSiteCid.Text
         SiteCommentsGridViewRowUpdatingRowInserting(e, True)
     End Sub
@@ -514,6 +523,14 @@ Public Class SiteDetailsMain
         Dim objSites = FMS.Business.DataObjects.tblCustomerServices.GetRecalculatedServices(siteId)
         Return objSites
     End Function
+
+    Protected Sub SiteDetailsGridView_CancelRowEditing(sender As Object, e As Data.ASPxStartRowEditingEventArgs)
+        FMS.Business.ThisSession.SiteID = 0
+    End Sub
+
+    Protected Sub SiteDetailsGridView_InitNewRow(sender As Object, e As Data.ASPxDataInitNewRowEventArgs)
+        FMS.Business.ThisSession.SiteID = FMS.Business.DataObjects.tblProjectID.SiteIDCreateOrUpdate(FMS.Business.ThisSession.ApplicationID)
+    End Sub
 
 
 #End Region

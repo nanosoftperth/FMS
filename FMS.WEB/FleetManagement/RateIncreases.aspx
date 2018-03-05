@@ -17,7 +17,7 @@
         }
     </style>
     <script type="text/javascript">
-        function ViewCuaRatesClick(ID) {
+        function ViewCuaRatesClick() {
             ShowCuaRatesWindow();
         }
         function ShowCuaRatesWindow() {
@@ -31,7 +31,7 @@
         function ShowCuaProcessRatesWindow() {
             viewProcessCuaRates.Show();
         }
-        function ViewUpdateRatesClick(ID) {
+        function ViewUpdateRatesClick() {
             ShowUpdateRatesWindow();
         }
         function ShowUpdateRatesWindow() {
@@ -67,9 +67,29 @@
         }
         function ProceedCuaProcess() {
             ProcessCuaRateIncrease();
-            document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
-            myAlertWithYesNoButton.Hide();
-            ShowMyAlertWindow();
+        }
+        function ProcessUpdateRatesClick() {
+            if (txtPercentageIncrease.GetText() == '') {
+                document.getElementById("pMessage").innerHTML = "Please enter a percentage increase.";
+                ShowMyAlertWindow();
+            } else {
+                ProcessUpdateRates(txtPercentageIncrease.GetText(), ChkReportOnlyNoRateIncrease.GetChecked());
+            }
+        }
+        function ProcessUpdateRates(percentageIncrease, reportOnly) {
+            $.ajax({
+                type: "POST",
+                url: 'RateIncreases.aspx/ProcessRateIncrease',
+                dataType: "json",
+                data: JSON.stringify({ 'percentageIncrease': percentageIncrease,'reportOnly':reportOnly }),
+                contentType: "application/json",
+                crossDomain: true,
+                success: function (data) {
+                    //document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
+                    //myAlertWithYesNoButton.Hide();
+                    //ShowMyAlertWindow();
+                }
+            });
         }
         function ProcessCuaRateIncrease() {
             var param = {
@@ -86,7 +106,9 @@
                 contentType: "application/json",
                 crossDomain: true,
                 success: function (data) {
-
+                    document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
+                    myAlertWithYesNoButton.Hide();
+                    ShowMyAlertWindow();
                 }
             });
         }
@@ -159,12 +181,12 @@
                     <div style="text-align: right; padding: 2px; padding-top:60px">
                         <dx:ASPxButton ID="aspxButton1" runat="server" AutoPostBack="false" Text="CUA Rate Increases">
                             <ClientSideEvents Click="function(s,e) {
-                                            ViewCuaRatesClick('xxx');
+                                            ViewCuaRatesClick();
                                         }" />
                                 </dx:ASPxButton>
                         <dx:ASPxButton ID="aspxButton" runat="server" AutoPostBack="false" Text="Update Rates">
                             <ClientSideEvents Click="function(s,e) {
-                                            ViewUpdateRatesClick('xxx');
+                                            ViewUpdateRatesClick();
                                         }" />
                         </dx:ASPxButton>
                         &nbsp;&nbsp;&nbsp;
@@ -192,7 +214,7 @@
                                             <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Percentage&nbsp;Increase:" Width="150px"></dx:ASPxLabel>
                                         </div>
                                         <div class="col-md-3">
-                                            <dx:ASPxTextBox ID="txtRateIncreaseDescription" ClientInstanceName="txtRateIncreaseDescription" runat="server" Width="300px" Text='<%# Eval("RateIncreaseDescription") %>'></dx:ASPxTextBox>
+                                            <dx:ASPxSpinEdit ID="txtPercentageIncrease" ClientInstanceName="txtPercentageIncrease" runat="server" Width="100px" Text='<%# Eval("RateIncreaseDescription") %>'></dx:ASPxSpinEdit>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -200,7 +222,7 @@
                                             <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="Report&nbsp;Only&nbsp;-&nbsp;No&nbsp;rate&nbsp;increase:" Width="150px"></dx:ASPxLabel>
                                         </div>
                                         <div class="col-md-3">
-                                            <dx:ASPxCheckBox ID="chkReportOnlyNoRateIncrease" runat="server"></dx:ASPxCheckBox>
+                                            <dx:ASPxCheckBox ID="chkReportOnlyNoRateIncrease" ClientInstanceName="ChkReportOnlyNoRateIncrease" runat="server"></dx:ASPxCheckBox>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -223,9 +245,9 @@
                                     </div>
                                 </div>
                                 <div style="text-align: right; padding: 2px; padding-top:60px">
-                                    <dx:ASPxButton ID="aspxButton1" Width="80px" runat="server" AutoPostBack="false" Text="Process"><%--<ClientSideEvents Click="function(s,e) {
-                                            ViewSitesClick('xxx');
-                                        }" />--%>
+                                    <dx:ASPxButton ID="aspxButton1" Width="80px" runat="server" AutoPostBack="false" Text="Process"><ClientSideEvents Click="function(s,e) {
+                                            ProcessUpdateRatesClick();
+                                        }" />
                                     </dx:ASPxButton>
                                     <dx:ASPxButton ID="aspxButton"  Width="80px" runat="server" AutoPostBack="false" Text="Exit">                                        
                                         <ClientSideEvents Click="function(s, e) { viewUpdateRates.Hide(); }" />

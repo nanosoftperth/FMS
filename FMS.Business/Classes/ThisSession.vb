@@ -68,6 +68,14 @@ Public Class ThisSession
             HttpContext.Current.Session("ServiceID") = value
         End Set
     End Property
+    Public Shared Property SiteID As Integer
+        Get
+            Return HttpContext.Current.Session("SiteID")
+        End Get
+        Set(value As Integer)
+            HttpContext.Current.Session("SiteID") = value
+        End Set
+    End Property
     Public Shared Property ApplicationID As Guid
         Get
             Return HttpContext.Current.Session("ApplicationID")

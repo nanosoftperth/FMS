@@ -74,7 +74,11 @@
                 With objSite
                     .ApplicationId = appId
                     .SiteID = Guid.NewGuid
-                    .Cid = tblProjectID.SiteIDCreateOrUpdate(appId)
+                    If FMS.Business.ThisSession.SiteID = 0 Then
+                        .Cid = tblProjectID.SiteIDCreateOrUpdate(appId)
+                    Else
+                        .Cid = FMS.Business.ThisSession.SiteID
+                    End If
                     .SiteName = Site.SiteName
                     .Customer = Site.Customer
                     .AddressLine1 = Site.AddressLine1
@@ -125,6 +129,7 @@
                 .SubmitChanges()
                 .Dispose()
             End With
+            FMS.Business.ThisSession.SiteID = 0
         End Sub
         Public Shared Sub Update(Site As DataObjects.tblSites)
             With New LINQtoSQLClassesDataContext
@@ -225,6 +230,22 @@
                 Dim objSites As New List(Of FMS.Business.usp_GetCUARateIncreasesResult)
                 With New LINQtoSQLClassesDataContext
                     objSites = .usp_GetCUARateIncreases(industryGroup, cSId).ToList()
+                    .Dispose()
+                End With
+                Return objSites
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Shared Function GetAllSitesSiteCeaseDateIsNull() As List(Of DataObjects.tblSites)
+            Try
+                Dim objSites As New List(Of DataObjects.tblSites)
+                With New LINQtoSQLClassesDataContext
+                    objSites = (From c In .tblSites
+                                Where c.ApplicationId.Equals(ThisSession.ApplicationID)
+                                Order By c.SiteName
+                                Select New DataObjects.tblSites(c)).ToList
+
                     .Dispose()
                 End With
                 Return objSites

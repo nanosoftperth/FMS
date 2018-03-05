@@ -230,7 +230,10 @@
             <dx:ASPxTextBox ID="hdnStoreCid" ClientInstanceName="hdnStoreCid" AutoPostBack="true" runat="server" Text=""></dx:ASPxTextBox>
         </div>
         <dx:ASPxGridView ID="SiteDetailsGridView" runat="server" DataSourceID="odsSiteDetails" AutoGenerateColumns="False"
-            KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" OnRowInserting="SiteDetailsGridView_RowInserting"
+            KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating" 
+            OnRowInserting="SiteDetailsGridView_RowInserting" 
+            OnCancelRowEditing="SiteDetailsGridView_CancelRowEditing"
+            OnInitNewRow="SiteDetailsGridView_InitNewRow"
             ClientInstanceName="cltgvSiteDetail">
             <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
             <Templates>

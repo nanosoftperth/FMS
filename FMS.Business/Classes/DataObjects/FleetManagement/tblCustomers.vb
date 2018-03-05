@@ -133,6 +133,20 @@
                 Throw ex
             End Try
         End Function
+        Public Shared Function GetCustomerByCustomerID(customerID As Integer) As List(Of DataObjects.tblCustomers)
+            Try
+                Dim objCustomer As New List(Of DataObjects.tblCustomers)
+                With New LINQtoSQLClassesDataContext
+                    objCustomer = (From c In .tblCustomers
+                                   Where c.ApplicationID.Equals(ThisSession.ApplicationID) And c.Cid.Equals(customerID)
+                                   Select New DataObjects.tblCustomers(c)).ToList
+                    .Dispose()
+                End With
+                Return objCustomer
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
         Public Shared Function GetAllOrderByCustomerName() As List(Of DataObjects.tblCustomers)
             Try
                 Dim objCustomer As New List(Of DataObjects.tblCustomers)
