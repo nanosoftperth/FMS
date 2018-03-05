@@ -44,6 +44,55 @@
                         $(this).delay(2500).toggle('slow');
                     });
         }
+
+        //Cesar: Use for Delete Dialog Box (SiteDetail)
+        var visibleIndex;
+        function OnCustomButtonClick(s, e, item) {
+            visibleIndex = e.visibleIndex;
+
+            if (item == 'AlertConfig') {
+                popupDelete_AlertConfig.SetHeaderText("Delete Item");
+                popupDelete_AlertConfig.Show();
+            }
+            //if (item == 'RunDoc') {
+            //    popupDelete_RunDoc.SetHeaderText("Delete Item");
+            //    popupDelete_RunDoc.Show();
+            //}
+            //if (item == 'RunSite') {
+            //    popupDelete_RunSite.SetHeaderText("Delete Item");
+            //    popupDelete_RunSite.Show();
+            //}
+            //if (item == 'SiteTab') {
+            //    popupDelete_SiteTab.SetHeaderText("Delete Item");
+            //    popupDelete_SiteTab.Show();
+            //}
+            //if (item == 'SiteDoc') {
+            //    popupDelete_SiteDoc.SetHeaderText("Delete Item");
+            //    popupDelete_SiteDoc.Show();
+            //}
+        }
+        function OnClickYes(s, e, item) {
+            if (item == 'AlertConfig') {
+                dgvApplicationAlerts.DeleteRow(visibleIndex);
+                popupDelete_AlertConfig.Hide();
+            }
+            //if (item == 'RunDoc') {
+            //    RunDocGridView.DeleteRow(visibleIndex);
+            //    popupDelete_RunDoc.Hide();
+            //}
+            //if (item == 'RunSite') {
+            //    cltRunSiteGridView.DeleteRow(visibleIndex);
+            //    popupDelete_RunSite.Hide();
+            //}
+            //if (item == 'SiteTab') {
+            //    cltSiteDetailsGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteTab.Hide();
+            //}
+            //if (item == 'SiteDoc') {
+            //    DocGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteDoc.Hide();
+            //}
+        }
     </script>
 
     <style type="text/css">
@@ -94,11 +143,18 @@
                                             </div>
                                         </EditForm>
                             </Templates>
+                            <ClientSideEvents CustomButtonClick="function(s, e)
+                            {
+                                OnCustomButtonClick(s, e, 'AlertConfig');
+                            }" />
                             <Columns>
 
                                 <%--command column definition--%>
 
-                                <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                <dx:GridViewCommandColumn ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                    <CustomButtons>
+                                        <dx:GridViewCommandColumnCustomButton ID="btnDelete_AlertConfig" Text="Delete" />
+                                    </CustomButtons>
                                 </dx:GridViewCommandColumn>
 
                                 <%--field names etc--%>
@@ -175,7 +231,6 @@
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
-
             <dx:TabPage Text="Geo-Fence Explorer">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
@@ -481,4 +536,21 @@
             </dx:TabPage>
         </TabPages>
     </dx:ASPxPageControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_AlertConfig" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_AlertConfig" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_AlertConfig" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'AlertConfig');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_AlertConfig" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_AlertConfig.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
 </asp:Content>

@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class AlarmsAndAlerts
-
+    
     '''<summary>
     '''ASPxPageControl1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ASPxPageControl1 As Global.DevExpress.Web.ASPxPageControl
-
+    
     '''<summary>
     '''dgvApplicationAlerts control.
     '''</summary>
@@ -30,7 +30,16 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvApplicationAlerts As Global.DevExpress.Web.ASPxGridView
-
+    
+    '''<summary>
+    '''btnDelete_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_AlertConfig As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
     '''<summary>
     '''odsAlerts control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsAlerts As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsDrivers control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsDrivers As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsGeoFences control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsGeoFences As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsSubscribers control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsSubscribers As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsEnumVals control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsEnumVals As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''ASPxLabel1 control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ASPxLabel1 As Global.DevExpress.Web.ASPxLabel
-
+    
     '''<summary>
     '''dateEditStartTime control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dateEditStartTime As Global.DevExpress.Web.ASPxDateEdit
-
+    
     '''<summary>
     '''ASPxLabel2 control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ASPxLabel2 As Global.DevExpress.Web.ASPxLabel
-
+    
     '''<summary>
     '''dateEditEndtime control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dateEditEndtime As Global.DevExpress.Web.ASPxDateEdit
-
+    
     '''<summary>
     '''ASPxButton1 control.
     '''</summary>
@@ -120,7 +129,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ASPxButton1 As Global.DevExpress.Web.ASPxButton
-
+    
     '''<summary>
     '''gridExport control.
     '''</summary>
@@ -129,7 +138,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gridExport As Global.DevExpress.Web.ASPxGridViewExporter
-
+    
     '''<summary>
     '''dgvGeoFences control.
     '''</summary>
@@ -138,7 +147,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvGeoFences As Global.DevExpress.Web.ASPxGridView
-
+    
     '''<summary>
     '''odsGeoFenceReport control.
     '''</summary>
@@ -147,7 +156,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsGeoFenceReport As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''labelGroups control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents labelGroups As Global.DevExpress.Web.ASPxLabel
-
+    
     '''<summary>
     '''labelMembers control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents labelMembers As Global.DevExpress.Web.ASPxLabel
-
+    
     '''<summary>
     '''ASPxLabel3 control.
     '''</summary>
@@ -174,7 +183,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ASPxLabel3 As Global.DevExpress.Web.ASPxLabel
-
+    
     '''<summary>
     '''dgvGroups control.
     '''</summary>
@@ -183,7 +192,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvGroups As Global.DevExpress.Web.ASPxGridView
-
+    
     '''<summary>
     '''odsGroups control.
     '''</summary>
@@ -192,7 +201,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsGroups As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''dgvPotentialGroupMembers control.
     '''</summary>
@@ -201,7 +210,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvPotentialGroupMembers As Global.DevExpress.Web.ASPxGridView
-
+    
     '''<summary>
     '''odsSubscriber control.
     '''</summary>
@@ -210,7 +219,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsSubscriber As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''btnAdd control.
     '''</summary>
@@ -219,7 +228,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAdd As Global.DevExpress.Web.ASPxButton
-
+    
     '''<summary>
     '''btnRemove control.
     '''</summary>
@@ -228,7 +237,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnRemove As Global.DevExpress.Web.ASPxButton
-
+    
     '''<summary>
     '''dgvGroupMembers control.
     '''</summary>
@@ -237,7 +246,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvGroupMembers As Global.DevExpress.Web.ASPxGridView
-
+    
     '''<summary>
     '''dgvAlertTypeOccurences control.
     '''</summary>
@@ -246,7 +255,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgvAlertTypeOccurences As Global.DevExpress.Web.ASPxGridView
-
+    
     '''<summary>
     '''odsATOAlarmTypeOccurance control.
     '''</summary>
@@ -255,7 +264,7 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsATOAlarmTypeOccurance As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''odsATOAlertType control.
     '''</summary>
@@ -264,4 +273,31 @@ Partial Public Class AlarmsAndAlerts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents odsATOAlertType As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''DeleteDialog_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_AlertConfig As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_AlertConfig As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_AlertConfig As Global.DevExpress.Web.ASPxButton
 End Class
