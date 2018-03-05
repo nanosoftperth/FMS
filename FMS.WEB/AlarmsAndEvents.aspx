@@ -1,9 +1,59 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="AlarmsAndEvents.aspx.vb" Inherits="FMS.WEB.AlarmsAndEvents" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="../Content/javascript/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
            
         })
+
+        //Cesar: Use for Delete Dialog Box
+        var visibleIndex;
+        function OnCustomButtonClick(s, e, item) {
+            visibleIndex = e.visibleIndex;
+
+            if (item == 'EventConfig') {
+                popupDelete_EventConfig.SetHeaderText("Delete Item");
+                popupDelete_EventConfig.Show();
+            }
+            //if (item == 'RunDoc') {
+            //    popupDelete_RunDoc.SetHeaderText("Delete Item");
+            //    popupDelete_RunDoc.Show();
+            //}
+            //if (item == 'RunSite') {
+            //    popupDelete_RunSite.SetHeaderText("Delete Item");
+            //    popupDelete_RunSite.Show();
+            //}
+            //if (item == 'SiteTab') {
+            //    popupDelete_SiteTab.SetHeaderText("Delete Item");
+            //    popupDelete_SiteTab.Show();
+            //}
+            //if (item == 'SiteDoc') {
+            //    popupDelete_SiteDoc.SetHeaderText("Delete Item");
+            //    popupDelete_SiteDoc.Show();
+            //}
+        }
+        function OnClickYes(s, e, item) {
+            if (item == 'EventConfig') {
+                cltEventConfig.DeleteRow(visibleIndex);
+                popupDelete_EventConfig.Hide();
+            }
+            //if (item == 'RunDoc') {
+            //    RunDocGridView.DeleteRow(visibleIndex);
+            //    popupDelete_RunDoc.Hide();
+            //}
+            //if (item == 'RunSite') {
+            //    cltRunSiteGridView.DeleteRow(visibleIndex);
+            //    popupDelete_RunSite.Hide();
+            //}
+            //if (item == 'SiteTab') {
+            //    cltSiteDetailsGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteTab.Hide();
+            //}
+            //if (item == 'SiteDoc') {
+            //    DocGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteDoc.Hide();
+            //}
+        }
     </script>
     <style>
         .ddlCenter {
@@ -18,11 +68,19 @@
                     <dx:ContentControl runat="server">     
                         <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="odsEventConfiguration" AutoGenerateColumns="False" 
                             KeyFieldName="CAN_EventDefinitionID" Width="550px" OnRowValidating="ASPxGridView1_RowValidating" Theme="SoftOrange"
-                            OnCellEditorInitialize="ASPxGridView1_CellEditorInitialize">
+                            OnCellEditorInitialize="ASPxGridView1_CellEditorInitialize" ClientInstanceName="cltEventConfig">
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                            <ClientSideEvents CustomButtonClick="function(s, e)
+                            {
+                                OnCustomButtonClick(s, e, 'EventConfig');
+                            }" />
                             <Columns>
-                                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                                    <CustomButtons>
+                                        <dx:GridViewCommandColumnCustomButton ID="btnDelete_EventConfig" Text="Delete" />
+                                    </CustomButtons>
+                                </dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventDefinitionID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="VehicleID" VisibleIndex="9"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="Metric" VisibleIndex="10"></dx:GridViewDataTextColumn>
@@ -228,5 +286,22 @@
             </dx:TabPage>
         </TabPages>
     </dx:ASPxPageControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_EventConfig" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_EventConfig" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_EventConfig" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'EventConfig');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_EventConfig" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_EventConfig.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
 </asp:Content>
 

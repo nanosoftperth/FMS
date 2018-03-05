@@ -61,7 +61,8 @@
                         </table>
 
 
-                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="odsAuditObjs">
+                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
+                            DataSourceID="odsAuditObjs" Theme="SoftOrange">
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
                             <SettingsPager PageSize="1000"></SettingsPager>

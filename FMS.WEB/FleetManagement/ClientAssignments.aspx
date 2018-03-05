@@ -216,26 +216,26 @@
             }
         }
         function OnClickYes(s, e, item) {
-            if (item == 'RunTab') {
-                clientRunGridView.DeleteRow(visibleIndex);
-                popupDelete_SiteDoc.Hide();
-            }
-            if (item == 'RunDoc') {
-                RunDocGridView.DeleteRow(visibleIndex);
-                popupDelete_RunDoc.Hide();
-            }
-            if (item == 'RunSite') {
-                cltRunSiteGridView.DeleteRow(visibleIndex);
-                popupDelete_RunSite.Hide();
-            }
-            if (item == 'SiteTab') {
-                cltSiteDetailsGridView.DeleteRow(visibleIndex);
-                popupDelete_SiteTab.Hide();
-            }
-            if (item == 'SiteDoc') {
-                DocGridView.DeleteRow(visibleIndex);
-                popupDelete_SiteDoc.Hide();
-            }
+            //if (item == 'RunTab') {
+            //    clientRunGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteDoc.Hide();
+            //}
+            //if (item == 'RunDoc') {
+            //    RunDocGridView.DeleteRow(visibleIndex);
+            //    popupDelete_RunDoc.Hide();
+            //}
+            //if (item == 'RunSite') {
+            //    cltRunSiteGridView.DeleteRow(visibleIndex);
+            //    popupDelete_RunSite.Hide();
+            //}
+            //if (item == 'SiteTab') {
+            //    cltSiteDetailsGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteTab.Hide();
+            //}
+            //if (item == 'SiteDoc') {
+            //    DocGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteDoc.Hide();
+            //}
         }
 
     </script>
