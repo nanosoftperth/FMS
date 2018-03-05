@@ -73,6 +73,8 @@
                 document.getElementById("pMessage").innerHTML = "Please enter a percentage increase.";
                 ShowMyAlertWindow();
             } else {
+                LoadingPanel.SetText("");
+                LoadingPanel.Show();
                 ProcessUpdateRates(txtPercentageIncrease.GetText(), ChkReportOnlyNoRateIncrease.GetChecked());
             }
         }
@@ -85,9 +87,10 @@
                 contentType: "application/json",
                 crossDomain: true,
                 success: function (data) {
-                    //document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
-                    //myAlertWithYesNoButton.Hide();
-                    //ShowMyAlertWindow();
+                    document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
+                    myAlertWithYesNoButton.Hide();
+                    ShowMyAlertWindow();
+                    LoadingPanel.Hide();
                 }
             });
         }
@@ -241,7 +244,7 @@
                                             <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="Report&nbsp;Only&nbsp;-&nbsp;No&nbsp;rate&nbsp;increase:" Width="150px"></dx:ASPxLabel>
                                         </div>
                                         <div class="col-md-3">
-                                            <dx:ASPxCheckBox ID="chkReportOnlyNoRateIncrease" ClientInstanceName="ChkReportOnlyNoRateIncrease" runat="server"></dx:ASPxCheckBox>
+                                            <dx:ASPxCheckBox ID="chkReportOnlyNoRateIncrease" ClientInstanceName="ChkReportOnlyNoRateIncrease" runat="server" Checked="true"></dx:ASPxCheckBox>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -512,6 +515,12 @@
         </dx:ASPxPopupControl>
         <asp:ObjectDataSource ID="odsRateIncreases" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference" DataObjectTypeName="FMS.Business.DataObjects.tblRateIncreaseReference" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">
         </asp:ObjectDataSource>
+        <div>
+            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" 
+                Modal="True">
+                <Image URL="../Content/Images/Gear Set.gif"/>
+            </dx:ASPxLoadingPanel>
+        </div>
     </form>
 </body>
 </html>

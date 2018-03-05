@@ -64,6 +64,21 @@
                 Throw ex
             End Try
         End Function
+        Public Shared Function GetRateIncreaseReferenceAlreadyDoneThisYear(aid As Integer) As DataObjects.tblRateIncreaseReference
+            Try
+                Dim objRateIncreaseReference As New DataObjects.tblRateIncreaseReference
+                With New LINQtoSQLClassesDataContext
+                    objRateIncreaseReference = (From c In .tblRateIncreaseReferences
+                                                Where c.ApplicationID.Equals(ThisSession.ApplicationID) And c.Aid.Equals(aid)
+                                                Order By c.RateIncreaseDescription
+                                                Select New DataObjects.tblRateIncreaseReference(c)).FirstOrDefault()
+                    .Dispose()
+                End With
+                Return objRateIncreaseReference
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 #End Region
 #Region "Constructors"
         Public Sub New()

@@ -243,7 +243,7 @@
                 With New LINQtoSQLClassesDataContext
                     objSites = (From c In .tblSites
                                 Where c.ApplicationId.Equals(ThisSession.ApplicationID)
-                                Order By c.SiteName
+                                Order By c.Customer
                                 Select New DataObjects.tblSites(c)).ToList
 
                     .Dispose()
