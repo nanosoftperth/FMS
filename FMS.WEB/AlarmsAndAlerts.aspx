@@ -58,18 +58,7 @@
                 popupDelete_AlertGroups.SetHeaderText("Delete Item");
                 popupDelete_AlertGroups.Show();
             }
-            //if (item == 'RunSite') {
-            //    popupDelete_RunSite.SetHeaderText("Delete Item");
-            //    popupDelete_RunSite.Show();
-            //}
-            //if (item == 'SiteTab') {
-            //    popupDelete_SiteTab.SetHeaderText("Delete Item");
-            //    popupDelete_SiteTab.Show();
-            //}
-            //if (item == 'SiteDoc') {
-            //    popupDelete_SiteDoc.SetHeaderText("Delete Item");
-            //    popupDelete_SiteDoc.Show();
-            //}
+            
         }
         function OnClickYes(s, e, item) {
             if (item == 'AlertConfig') {
@@ -80,18 +69,7 @@
                 dgvGroups.DeleteRow(visibleIndex);
                 popupDelete_AlertGroups.Hide();
             }
-            //if (item == 'RunSite') {
-            //    cltRunSiteGridView.DeleteRow(visibleIndex);
-            //    popupDelete_RunSite.Hide();
-            //}
-            //if (item == 'SiteTab') {
-            //    cltSiteDetailsGridView.DeleteRow(visibleIndex);
-            //    popupDelete_SiteTab.Hide();
-            //}
-            //if (item == 'SiteDoc') {
-            //    DocGridView.DeleteRow(visibleIndex);
-            //    popupDelete_SiteDoc.Hide();
-            //}
+            
         }
     </script>
 

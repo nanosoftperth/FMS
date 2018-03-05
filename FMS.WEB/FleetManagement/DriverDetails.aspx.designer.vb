@@ -41,13 +41,13 @@ Partial Public Class DriverDetails
     Protected WithEvents gvDriver As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
-    '''deleteButton control.
+    '''deleteButton_Main control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents deleteButton As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    Protected WithEvents deleteButton_Main As Global.DevExpress.Web.GridViewCommandColumnCustomButton
     
     '''<summary>
     '''btnComment control.
@@ -176,31 +176,58 @@ Partial Public Class DriverDetails
     Protected WithEvents btnCloseAllocate As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
-    '''DeleteDialog control.
+    '''DeleteDialog_Main control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DeleteDialog As Global.DevExpress.Web.ASPxPopupControl
+    Protected WithEvents DeleteDialog_Main As Global.DevExpress.Web.ASPxPopupControl
     
     '''<summary>
-    '''yesButton control.
+    '''yesButton_Main control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents yesButton As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents yesButton_Main As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
-    '''noButton control.
+    '''noButton_Main control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents noButton As Global.DevExpress.Web.ASPxButton
+    Protected WithEvents noButton_Main As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_Comments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_Comments As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_Comments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_Comments As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_Comments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_Comments As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''odsDriver control.

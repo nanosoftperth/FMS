@@ -10,20 +10,31 @@
     <link href="../Content/grid/grid.css" rel="stylesheet" />
     <script>
         //Cesar: Use for Delete Dialog Box
-        var visibleIndex;
-        function OnCustomButtonClick(s, e) {
+        function OnCustomButtonClick(s, e, item) {
             visibleIndex = e.visibleIndex;
-            popupDelete.SetHeaderText("Delete Item");
-            popupDelete.Show();
-        }
-        function OnClickYes(s, e) {
-            cltgvDriver.DeleteRow(visibleIndex);
-            popupDelete.Hide();
-        }
-        function OnClickNo(s, e) {
-            popupDelete.Hide();
-        }
 
+            if (item == 'Main') {
+                popupDelete_Main.SetHeaderText("Delete Item");
+                popupDelete_Main.Show();
+            }
+            if (item == 'Comments') {
+                popupDelete_Comments.SetHeaderText("Delete Item");
+                popupDelete_Comments.Show();
+            }
+
+        }
+        function OnClickYes(s, e, item) {
+            if (item == 'Main') {
+                cltgvDriver.DeleteRow(visibleIndex);
+                popupDelete_Main.Hide();
+            }
+            if (item == 'Comments') {
+                cltgvComments.DeleteRow(visibleIndex);
+                popupDelete_Comments.Hide();
+            }
+
+        }
+        
     </script>
 </head>
 <body>
@@ -44,13 +55,16 @@
                     HorizontalAlign="WindowCenter" width="400px" 
                     />           
             </SettingsPopup>
-            <ClientSideEvents CustomButtonClick="OnCustomButtonClick" /> 
+            <ClientSideEvents CustomButtonClick="function(s, e)
+            {
+                OnCustomButtonClick(s, e, 'Main');
+            }" />
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
                     ShowNewButtonInHeader="True"
                     VisibleIndex="0" >
                     <CustomButtons>
-                        <dx:GridViewCommandColumnCustomButton ID="deleteButton" Text="Delete" />
+                        <dx:GridViewCommandColumnCustomButton ID="deleteButton_Main" Text="Delete" />
                     </CustomButtons>
                 </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="DriverID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
@@ -60,16 +74,15 @@
                 <dx:GridViewDataTextColumn FieldName="DriversLicenseNo" VisibleIndex="5" Visible="true"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataDateColumn FieldName="DriversLicenseExpiryDate" VisibleIndex="6" Visible="true"></dx:GridViewDataDateColumn>
                 <dx:GridViewDataCheckColumn FieldName="Technician" VisibleIndex="7" Visible="true"></dx:GridViewDataCheckColumn>
-                <dx:GridViewDataCheckColumn FieldName="Inactive" VisibleIndex="8" Visible="true"></dx:GridViewDataCheckColumn>
-                
+                <dx:GridViewDataCheckColumn FieldName="Inactive" VisibleIndex="8" Visible="true"></dx:GridViewDataCheckColumn>                
             </Columns>
             <Templates>
                 <DetailRow>
                     <dx:ASPxLabel runat="server" text="Comments" Font-Bold="true" />
                     <br />
                     <dx:ASPxGridView ID="gvComments" runat="server" AutoGenerateColumns="false" 
-                        KeyFieldName="Aid" DataSourceID="odsDriverComments" Width="100%"
-                        OnStartRowEditing="gvComments_StartRowEditing">
+                        KeyFieldName="Aid" DataSourceID="odsDriverComments" Width="100%" Theme="SoftOrange"
+                        OnStartRowEditing="gvComments_StartRowEditing" ClientInstanceName="cltgvComments">
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
                         <SettingsPopup>
@@ -78,10 +91,17 @@
                                 HorizontalAlign="WindowCenter" width="400px" 
                                 />           
                         </SettingsPopup>
+                        <ClientSideEvents CustomButtonClick="function(s, e)
+                        {
+                            OnCustomButtonClick(s, e, 'Comments');
+                        }" />
                         <Columns>
                             <dx:GridViewCommandColumn ShowEditButton="True" 
-                                ShowNewButtonInHeader="True" ShowDeleteButton="True"
-                                VisibleIndex="0" ></dx:GridViewCommandColumn>
+                                ShowNewButtonInHeader="True" VisibleIndex="0" >
+                                <CustomButtons>
+                                    <dx:GridViewCommandColumnCustomButton ID="deleteButton_Comments" Text="Delete" />
+                                </CustomButtons>
+                            </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="ApplicationId" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="Did" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
@@ -223,16 +243,36 @@
                 </dx:PopupControlContentControl>
             </ContentCollection>
         </dx:ASPxPopupControl>
-        <dx:ASPxPopupControl ID="DeleteDialog" runat="server" Text="Are you sure you want to delete this?" 
-            ClientInstanceName="popupDelete" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+        <dx:ASPxPopupControl ID="DeleteDialog_Main" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_Main" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
             <ContentCollection>
                 <dx:PopupControlContentControl>
                     <br />
-                    <dx:ASPxButton ID="yesButton" runat="server" Text="Yes" AutoPostBack="false">
-                        <ClientSideEvents Click="OnClickYes" />
+                    <dx:ASPxButton ID="yesButton_Main" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'Main');
+                            }" />
                     </dx:ASPxButton>
-                    <dx:ASPxButton ID="noButton" runat="server" Text="No" AutoPostBack="false">
-                        <ClientSideEvents Click="OnClickNo" />
+                    <dx:ASPxButton ID="noButton_Main" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_Main.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_Comments" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_Comments" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_Comments" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'Comments');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_Comments" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_Comments.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
