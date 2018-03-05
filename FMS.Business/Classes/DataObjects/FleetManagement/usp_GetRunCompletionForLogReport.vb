@@ -7,7 +7,7 @@
         Public Property DriverID As System.Nullable(Of System.Guid)
         Public Property RunDate As Date
         Public Property Notes As String
-        Public Property RunNUmber As System.Nullable(Of Integer)
+        Public Property RunNumber As System.Nullable(Of Integer)
         Public Property RunDescription As String
         Public Property DID As System.Nullable(Of Integer)
         Public Property DriverName As String
@@ -25,7 +25,7 @@
                 Me.DriverID = .DriverID
                 Me.RunDate = .RunDate
                 Me.Notes = .Notes
-                Me.RunNUmber = .RunNUmber
+                Me.RunNumber = .RunNUmber
                 Me.RunDescription = .RunDescription
                 Me.DID = .Did
                 Me.DriverName = DriverName

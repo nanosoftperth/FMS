@@ -243,7 +243,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="0">
+            <dx:ASPxPageControl ID="FleetManagementPageControl" runat="server" ActiveTabIndex="4">
                 <TabPages>
                     <dx:TabPage Name="Run" Text="Run">
                         <ContentCollection>
