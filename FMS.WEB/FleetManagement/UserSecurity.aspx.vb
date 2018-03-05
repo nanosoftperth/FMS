@@ -84,6 +84,7 @@ Public Class UserSecurity
 
     Protected Sub Grid_InitNewRow(sender As Object, e As ASPxDataInitNewRowEventArgs)
         Grid.SettingsText.PopupEditFormCaption = "Create New User"
+        e.NewValues("Administrator") = False
     End Sub
 
 
