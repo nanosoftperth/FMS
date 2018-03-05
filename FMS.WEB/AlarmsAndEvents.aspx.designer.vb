@@ -95,6 +95,15 @@ Partial Public Class AlarmsAndEvents
     Protected WithEvents gvAlertConfiguration As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_AlertConfig As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''odsAlertConfiguration control.
     '''</summary>
     '''<remarks>
@@ -165,4 +174,31 @@ Partial Public Class AlarmsAndEvents
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noButton_EventConfig As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_AlertConfig As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_AlertConfig As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_AlertConfig control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_AlertConfig As Global.DevExpress.Web.ASPxButton
 End Class

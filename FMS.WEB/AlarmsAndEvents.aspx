@@ -15,10 +15,10 @@
                 popupDelete_EventConfig.SetHeaderText("Delete Item");
                 popupDelete_EventConfig.Show();
             }
-            //if (item == 'RunDoc') {
-            //    popupDelete_RunDoc.SetHeaderText("Delete Item");
-            //    popupDelete_RunDoc.Show();
-            //}
+            if (item == 'AlertConfig') {
+                popupDelete_AlertConfig.SetHeaderText("Delete Item");
+                popupDelete_AlertConfig.Show();
+            }
             //if (item == 'RunSite') {
             //    popupDelete_RunSite.SetHeaderText("Delete Item");
             //    popupDelete_RunSite.Show();
@@ -37,10 +37,10 @@
                 cltEventConfig.DeleteRow(visibleIndex);
                 popupDelete_EventConfig.Hide();
             }
-            //if (item == 'RunDoc') {
-            //    RunDocGridView.DeleteRow(visibleIndex);
-            //    popupDelete_RunDoc.Hide();
-            //}
+            if (item == 'AlertConfig') {
+                cltgvAlertConfiguration.DeleteRow(visibleIndex);
+                popupDelete_AlertConfig.Hide();
+            }
             //if (item == 'RunSite') {
             //    cltRunSiteGridView.DeleteRow(visibleIndex);
             //    popupDelete_RunSite.Hide();
@@ -165,11 +165,21 @@
             <dx:TabPage Name="AlertConfiguration" Text="Alert Configuration">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
-                        <dx:ASPxGridView ID="gvAlertConfiguration" DataSourceID="odsAlertConfiguration" runat="server" AutoGenerateColumns="False" KeyFieldName="CanAlertDefinitionIDUnique" Theme="SoftOrange">
+                        <dx:ASPxGridView ID="gvAlertConfiguration" DataSourceID="odsAlertConfiguration" 
+                            runat="server" AutoGenerateColumns="False" KeyFieldName="CanAlertDefinitionIDUnique" 
+                            Theme="SoftOrange" ClientInstanceName="cltgvAlertConfiguration">
                             <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                            <ClientSideEvents CustomButtonClick="function(s, e)
+                            {
+                                OnCustomButtonClick(s, e, 'AlertConfig');
+                            }" />
                             <Columns>
-                                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                                    <CustomButtons>
+                                        <dx:GridViewCommandColumnCustomButton ID="btnDelete_AlertConfig" Text="Delete" />
+                                    </CustomButtons>
+                                </dx:GridViewCommandColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_AlertDefinitionID" VisibleIndex="9" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="CAN_EventDefinitionID" VisibleIndex="8" Visible="false"></dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="SubscriberNativeID" VisibleIndex="7" Visible="false"></dx:GridViewDataTextColumn>
@@ -299,6 +309,23 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_EventConfig" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_EventConfig.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_AlertConfig" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_AlertConfig" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_AlertConfig" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'AlertConfig');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_AlertConfig" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_AlertConfig.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
