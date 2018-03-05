@@ -54,10 +54,10 @@
                 popupDelete_AlertConfig.SetHeaderText("Delete Item");
                 popupDelete_AlertConfig.Show();
             }
-            //if (item == 'RunDoc') {
-            //    popupDelete_RunDoc.SetHeaderText("Delete Item");
-            //    popupDelete_RunDoc.Show();
-            //}
+            if (item == 'AlertGroups') {
+                popupDelete_AlertGroups.SetHeaderText("Delete Item");
+                popupDelete_AlertGroups.Show();
+            }
             //if (item == 'RunSite') {
             //    popupDelete_RunSite.SetHeaderText("Delete Item");
             //    popupDelete_RunSite.Show();
@@ -76,10 +76,10 @@
                 dgvApplicationAlerts.DeleteRow(visibleIndex);
                 popupDelete_AlertConfig.Hide();
             }
-            //if (item == 'RunDoc') {
-            //    RunDocGridView.DeleteRow(visibleIndex);
-            //    popupDelete_RunDoc.Hide();
-            //}
+            if (item == 'AlertGroups') {
+                dgvGroups.DeleteRow(visibleIndex);
+                popupDelete_AlertGroups.Hide();
+            }
             //if (item == 'RunSite') {
             //    cltRunSiteGridView.DeleteRow(visibleIndex);
             //    popupDelete_RunSite.Hide();
@@ -376,12 +376,21 @@
                             <tr>
 
                                 <td style="padding-left: 20px;" valign="top">
-                                    <dx:ASPxGridView ID="dgvGroups" ClientInstanceName="dgvGroups" KeyFieldName="GroupID" SettingsBehavior-AllowFocusedRow="true" runat="server" AutoGenerateColumns="False" DataSourceID="odsGroups">
+                                    <dx:ASPxGridView ID="dgvGroups" ClientInstanceName="dgvGroups" KeyFieldName="GroupID" 
+                                        SettingsBehavior-AllowFocusedRow="true" runat="server" AutoGenerateColumns="False" 
+                                        DataSourceID="odsGroups">
                                         <ClientSideEvents FocusedRowChanged="function(s,e){dgvGroups_FocusedRowChanged(s,e);}" />
-
                                         <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
+                                        <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'AlertGroups');
+                                        }" />
                                         <Columns>
-                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                                                <CustomButtons>
+                                                    <dx:GridViewCommandColumnCustomButton ID="btnDelete_AlertGroups" Text="Delete" />
+                                                </CustomButtons>
+                                            </dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="GroupID" VisibleIndex="1" Visible="False"></dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="GroupName" VisibleIndex="3"></dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="2" Visible="False"></dx:GridViewDataTextColumn>
@@ -549,6 +558,23 @@
                     </dx:ASPxButton>
                     <dx:ASPxButton ID="noButton_AlertConfig" runat="server" Text="No" AutoPostBack="false">
                         <ClientSideEvents Click="function(){ popupDelete_AlertConfig.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_AlertGroups" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_AlertGroups" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_AlertGroups" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'AlertGroups');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_AlertGroups" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_AlertGroups.Hide(); }" />
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
