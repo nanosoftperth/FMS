@@ -95,6 +95,15 @@ Partial Public Class DriverDetails
     Protected WithEvents gvDriverCommentReason As Global.DevExpress.Web.ASPxGridView
     
     '''<summary>
+    '''btnDelete_CommentReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete_CommentReason As Global.DevExpress.Web.GridViewCommandColumnCustomButton
+    
+    '''<summary>
     '''btnCloseComments control.
     '''</summary>
     '''<remarks>
@@ -228,6 +237,33 @@ Partial Public Class DriverDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noButton_Comments As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''DeleteDialog_CommentReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DeleteDialog_CommentReason As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''yesButton_CommentReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents yesButton_CommentReason As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''noButton_Bookings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noButton_Bookings As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''odsDriver control.

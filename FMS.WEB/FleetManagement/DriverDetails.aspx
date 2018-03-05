@@ -17,9 +17,9 @@
                 popupDelete_Main.SetHeaderText("Delete Item");
                 popupDelete_Main.Show();
             }
-            if (item == 'Comments') {
-                popupDelete_Comments.SetHeaderText("Delete Item");
-                popupDelete_Comments.Show();
+            if (item == 'CommentReason') {
+                popupDelete_CommentReason.SetHeaderText("Delete Item");
+                popupDelete_CommentReason.Show();
             }
 
         }
@@ -28,9 +28,9 @@
                 cltgvDriver.DeleteRow(visibleIndex);
                 popupDelete_Main.Hide();
             }
-            if (item == 'Comments') {
-                cltgvComments.DeleteRow(visibleIndex);
-                popupDelete_Comments.Hide();
+            if (item == 'CommentReason') {
+                cltgvDriverCommentReason.DeleteRow(visibleIndex);
+                popupDelete_CommentReason.Hide();
             }
 
         }
@@ -145,12 +145,20 @@
                         <tr>
                             <td>
                                 <dx:ASPxGridView ID="gvDriverCommentReason" runat="server" AutoGenerateColumns="false" 
-                                    KeyFieldName="Aid" DataSourceID="odsDriverCommentsReason" Width="100%">
-                                    <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                    KeyFieldName="Aid" DataSourceID="odsDriverCommentsReason" Width="100%"
+                                    ClientInstanceName="cltgvDriverCommentReason" Theme="SoftOrange">
+                                    <SettingsSearchPanel Visible="True" ></SettingsSearchPanel>
+                                    <ClientSideEvents CustomButtonClick="function(s, e)
+                                    {
+                                        OnCustomButtonClick(s, e, 'CommentReason');
+                                    }" />
                                     <Columns>
                                         <dx:GridViewCommandColumn ShowEditButton="True" 
-                                            ShowNewButtonInHeader="True" ShowDeleteButton="True"
-                                            VisibleIndex="0" ></dx:GridViewCommandColumn>
+                                            ShowNewButtonInHeader="True" VisibleIndex="0">
+                                            <CustomButtons>
+                                                <dx:GridViewCommandColumnCustomButton ID="btnDelete_CommentReason" Text="Delete" />
+                                            </CustomButtons>
+                                        </dx:GridViewCommandColumn>
                                         <dx:GridViewDataTextColumn FieldName="Aid" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="ApplicationId" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="CommentDescription" VisibleIndex="3" Visible="true" Width="500px">
@@ -277,6 +285,23 @@
                 </dx:PopupControlContentControl>
             </ContentCollection>
         </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog_CommentReason" runat="server" Text="Are you sure you want to delete this?"
+        ClientInstanceName="popupDelete_CommentReason" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+        <ContentCollection>
+            <dx:PopupControlContentControl>
+                <br />
+                <dx:ASPxButton ID="yesButton_CommentReason" runat="server" Text="Yes" AutoPostBack="false">
+                    <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'CommentReason');
+                            }" />
+                </dx:ASPxButton>
+                <dx:ASPxButton ID="noButton_Bookings" runat="server" Text="No" AutoPostBack="false">
+                    <ClientSideEvents Click="function(){ popupDelete_CommentReason.Hide(); }" />
+                </dx:ASPxButton>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
         <asp:ObjectDataSource ID="odsDriver" runat="server" SelectMethod="GetAllPerApplication" 
             TypeName="FMS.Business.DataObjects.tblDrivers" 
             DataObjectTypeName="FMS.Business.DataObjects.tblDrivers" 
