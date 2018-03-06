@@ -1325,38 +1325,6 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblProjectID" Member="tblProjectIDs">
-    <Type Name="tblProjectID">
-      <Column Name="ProjectID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="CustomersID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SitesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IndustryGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InvoiceFrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CustomerAgentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CeaseReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CIRReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZoneID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CustomerRatingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RateIncreaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PreviousSupplierID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FortnightlyCyclesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RevenueChangeReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ServicesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SalesPersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FuelLevyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunSheetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ReSignDetailsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CustomerServicesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CIRHistoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CommentsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RatesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ChangeAuditID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RateIncreasesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.FleetRun" Member="FleetRuns">
     <Type Name="FleetRun">
       <Column Name="RunID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1450,6 +1418,39 @@
       <Column Name="DriversLicenseExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Technician" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblProjectID" Member="tblProjectIDs">
+    <Type Name="tblProjectID">
+      <Column Name="ProjectID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CustomersID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SitesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IndustryGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceFrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerAgentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CeaseReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CIRReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZoneID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerRatingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RateIncreaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PreviousSupplierID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FortnightlyCyclesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RevenueChangeReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FrequencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServicesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SalesPersonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FuelLevyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunSheetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReSignDetailsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerServicesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CIRHistoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CommentsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RatesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChangeAuditID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RateIncreasesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Did" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
