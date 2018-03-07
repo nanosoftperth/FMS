@@ -37,6 +37,7 @@
 
                 With obj
                     .ApplicationId = appID
+                    .Did = tblProjectID.DriverIDCreateOrUpdate(appID)
                     .DriverID = Guid.NewGuid()
                     .DriverName = dvr.DriverName
                     .DriversLicenseNo = dvr.DriversLicenseNo

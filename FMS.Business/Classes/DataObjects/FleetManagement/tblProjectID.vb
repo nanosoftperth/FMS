@@ -1109,6 +1109,55 @@
             End If
         End Function
 #End Region
+
+#Region "tblDrivers"
+        Public Shared Function DriverIDCreateOrUpdate(appID As System.Guid) As Integer
+            Dim objDriver = SingletonAccess.FMSDataContextContignous.tblProjectIDs.ToList()
+            If Not objDriver Is Nothing AndAlso objDriver.Count().Equals(0) Then
+                Return DriverIDCreate(appID)
+            Else
+                Return DriverIDUpdate(objDriver.SingleOrDefault().Did, appID)
+            End If
+        End Function
+
+        Private Shared Function GetLatestDriverID(appID As System.Guid) As FMS.Business.tblDriver
+
+            Return (From d In SingletonAccess.FMSDataContextContignous.tblDrivers
+                    Where d.ApplicationId.Equals(appID)
+                    Order By d.Did Descending
+                    Select d).FirstOrDefault()
+        End Function
+        Private Shared Function DriverIDCreate(appID As System.Guid) As Integer
+            Dim objDvrId As FMS.Business.tblDriver = GetLatestDriverID(appID)
+            Dim objDriverID As New FMS.Business.tblProjectID
+            With objDriverID
+                .ProjectID = Guid.NewGuid()
+                .Did = objDvrId.Did + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.tblProjectIDs.InsertOnSubmit(objDriverID)
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objDriverID.Did
+        End Function
+        Private Shared Function DriverIDUpdate(DriverID As Object, appID As System.Guid) As Integer
+            Dim objProject As FMS.Business.tblProjectID = Nothing
+            If DriverID Is Nothing Then
+                Dim tblDriverDid As FMS.Business.tblDriver = GetLatestDriverID(appID)
+                DriverID = tblDriverDid.Did
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.ApplicationID.Equals(appID)).FirstOrDefault()
+            Else
+                objProject = (From c In SingletonAccess.FMSDataContextContignous.tblProjectIDs
+                              Where c.Did.Equals(DriverID) And c.ApplicationID.Equals(appID)).SingleOrDefault
+            End If
+
+            With objProject
+                .Did = DriverID + 1
+            End With
+            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Return objProject.Did
+        End Function
+
+#End Region
 #End Region
 #Region "Constructors"
         Public Sub New()
