@@ -5,7 +5,7 @@
         Public Property RunNum As String
         Public Property RunNo As String
         Public Property RunDescription As String
-        Public Property RunDriver As System.Nullable(Of Short)
+        Public Property RunDriver As System.Nullable(Of Integer)
         Public Property DriverName As String
         Public Property MondayRun As Boolean
         Public Property TuesdayRun As Boolean

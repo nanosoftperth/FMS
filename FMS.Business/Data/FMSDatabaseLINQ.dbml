@@ -2058,45 +2058,6 @@
       <Column Name="PerAnnumCharge" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_GetRunListingReport" Method="usp_GetRunListingReport">
-    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
-    <ElementType Name="usp_GetRunListingReportResult">
-      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunNum" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
-      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.usp_GetRunListByRunNumberReport" Method="usp_GetRunListByRunNumberReport">
-    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
-    <ElementType Name="usp_GetRunListByRunNumberReportResult">
-      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RunNum" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
-      <Column Name="RunNo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="RunDriver" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.usp_GetRunValuesReport" Method="usp_GetRunValuesReport">
     <Parameter Name="ServiceRun" Parameter="serviceRun" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
@@ -2572,6 +2533,45 @@
       <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetRunListingReport" Method="usp_GetRunListingReport">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetRunListingReportResult">
+      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunNum" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="RunDriver" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetRunListByRunNumberReport" Method="usp_GetRunListByRunNumberReport">
+    <Parameter Name="AppID" Parameter="appID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetRunListByRunNumberReportResult">
+      <Column Name="RunNUmber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunNum" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="RunNo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="RunDescription" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="RunDriver" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DriverName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MondayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TuesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="WednesdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ThursdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FridayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SaturdayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SundayRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InactiveRun" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
