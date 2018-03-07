@@ -2574,4 +2574,24 @@
       <Column Name="Rid" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.usp_GetRateIncreaseCuaReport" Method="usp_GetRateIncreaseCuaReport">
+    <ElementType Name="usp_GetRateIncreaseCuaReportResult">
+      <Column Name="RateIncreasesID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SiteName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CSid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Units" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="OldServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="NewServicePrice" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="OldPerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="NewPerAnnumCharge" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SiteID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Invfreq" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
