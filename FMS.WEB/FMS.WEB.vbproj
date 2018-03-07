@@ -473,6 +473,13 @@
       <DependentUpon>QuickViewBySuburbReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="FleetManagement\Reports\RateIncreaseCuaReport.aspx.designer.vb">
+      <DependentUpon>RateIncreaseCuaReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FleetManagement\Reports\RateIncreaseCuaReport.aspx.vb">
+      <DependentUpon>RateIncreaseCuaReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\Reports\RevenueReportByZone.aspx.designer.vb">
       <DependentUpon>RevenueReportByZone.aspx</DependentUpon>
     </Compile>
@@ -1328,6 +1335,7 @@
     <Content Include="FleetManagement\ProduceMYOBFile.aspx" />
     <Content Include="FleetManagement\Reports\PerAnnumValueReport.aspx" />
     <Content Include="FleetManagement\Reports\QuickViewBySuburbReport.aspx" />
+    <Content Include="FleetManagement\Reports\RateIncreaseCuaReport.aspx" />
     <Content Include="FleetManagement\Reports\RevenueReportByZone.aspx" />
     <Content Include="FleetManagement\RunFNCycles.aspx" />
     <Content Include="FleetManagement\RunListingByRunNumberReport.aspx" />

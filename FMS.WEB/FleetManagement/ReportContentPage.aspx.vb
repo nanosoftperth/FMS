@@ -76,6 +76,8 @@
                 Return New FMS.ReportLogic.RunListingReport()
             Case "RunListingByRunNumberReport"
                 Return New FMS.ReportLogic.RunListByRunNumberReport()
+            Case "RateIncreaseCuaReport"
+                Return New FMS.ReportLogic.RateIncreaseCuaReport()
             Case Else
                 Return Nothing
         End Select

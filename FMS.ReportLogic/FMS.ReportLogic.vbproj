@@ -148,6 +148,7 @@
     <Compile Include="Classes\InvoiceBasicCheck.vb" />
     <Compile Include="Classes\LengthOfServices.vb" />
     <Compile Include="Classes\MYOBCustomerInvoice.vb" />
+    <Compile Include="Classes\RateIncreaseCua.vb" />
     <Compile Include="Classes\RoleAccess.vb" />
     <Compile Include="Classes\RunDates.vb" />
     <Compile Include="Classes\RunListByRunNumber.vb" />
@@ -315,6 +316,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\QuickViewBySuburbReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RateIncreaseCuaReport.Designer.vb">
+      <DependentUpon>RateIncreaseCuaReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RateIncreaseCuaReport.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ReportGeoFence_byDriverPDF.vb">
@@ -511,6 +518,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\QuickViewBySuburbReport.resx">
       <DependentUpon>QuickViewBySuburbReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RateIncreaseCuaReport.resx">
+      <DependentUpon>RateIncreaseCuaReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportGeoFence_byDriverPDF.resx">
       <DependentUpon>ReportGeoFence_byDriverPDF.vb</DependentUpon>

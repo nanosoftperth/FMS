@@ -112,6 +112,7 @@
                     document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
                     myAlertWithYesNoButton.Hide();
                     ShowMyAlertWindow();
+                    window.open('Reports/RateIncreaseCuaReport.aspx?param=' + cuaTxtService.GetValue(), 'Rate Increase', 'Rate Increase');
                 }
             });
         }

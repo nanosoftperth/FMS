@@ -1020,6 +1020,22 @@ Public Class ReportDataHandler
         rept.ParamDay = RunSheet.DayOfRun.ToString()
         Return rept
     End Function
+    Public Shared Function GetRateIncreaseCuaReport() As CacheRateIncreaseCua
+        Dim rept As New CacheRateIncreaseCua
+        Dim retobj = FMS.Business.DataObjects.usp_GetRateIncreaseCuaReport.GetCuaRateIncreaseReport.ToList()
+        Dim objList As New List(Of RateIncreaseCua)
+        For Each item In retobj
+            objList.Add(New RateIncreaseCua() With {
+                        .RateIncreasesID = item.RateIncreasesID, .Aid = item.Aid, .SiteName = item.SiteName,
+                        .CustomerName = item.CustomerName, .CSid = item.CSid, .Units = item.Units, .OldServicePrice = item.OldServicePrice,
+                        .NewServicePrice = item.NewServicePrice, .OldPerAnnumCharge = item.OldPerAnnumCharge, .NewPerAnnumCharge = item.NewPerAnnumCharge,
+                        .CustomerID = item.CustomerID, .SiteID = item.SiteID, .Invfreq = item.Invfreq, .InvStartDate = item.InvStartDate,
+                        .ApplicationID = item.ApplicationID, .ServiceDescription = item.ServiceDescription})
+        Next
+        rept.LineValues = objList
+        rept.Param1 = ThisSession.ParameterValues
+        Return rept
+    End Function
     Public Sub New()
 
     End Sub
