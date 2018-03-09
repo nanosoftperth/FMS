@@ -324,6 +324,12 @@
     <Compile Include="Reports\RateIncreaseCuaReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RateIncreasesReport.Designer.vb">
+      <DependentUpon>RateIncreasesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RateIncreasesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ReportGeoFence_byDriverPDF.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -521,6 +527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RateIncreaseCuaReport.resx">
       <DependentUpon>RateIncreaseCuaReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RateIncreasesReport.resx">
+      <DependentUpon>RateIncreasesReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportGeoFence_byDriverPDF.resx">
       <DependentUpon>ReportGeoFence_byDriverPDF.vb</DependentUpon>

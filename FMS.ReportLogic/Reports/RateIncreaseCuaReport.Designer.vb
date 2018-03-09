@@ -29,6 +29,7 @@ Partial Public Class RateIncreaseCuaReport
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Title = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.FieldCaption = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -48,6 +49,7 @@ Partial Public Class RateIncreaseCuaReport
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
@@ -56,14 +58,12 @@ Partial Public Class RateIncreaseCuaReport
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.HeightF = 0!
+        Me.Detail.HeightF = 0.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -116,6 +116,17 @@ Partial Public Class RateIncreaseCuaReport
         Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel16, Me.XrLabel3})
         Me.ReportHeaderBand1.HeightF = 51.0!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
+        '
+        'XrLabel16
+        '
+        Me.XrLabel16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Param1")})
+        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(279.5624!, 6.00001!)
+        Me.XrLabel16.Name = "XrLabel16"
+        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(368.7501!, 33.0!)
+        Me.XrLabel16.StylePriority.UseFont = False
+        Me.XrLabel16.Text = "XrLabel16"
         '
         'XrLabel3
         '
@@ -189,10 +200,10 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel9.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.NewPerAnnumCharge")})
         Me.XrLabel9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(597.9167!, 0!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(589.7292!, 2.000014!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(46.08325!, 23.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(58.58331!, 23.0!)
         Me.XrLabel9.StylePriority.UseFont = False
         Me.XrLabel9.Text = "XrLabel9"
         '
@@ -200,10 +211,10 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel8.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.OldPerAnnumCharge")})
         Me.XrLabel8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(540.625!, 2.000014!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(531.8957!, 2.000014!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(44.79163!, 23.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(53.52094!, 23.0!)
         Me.XrLabel8.StylePriority.UseFont = False
         Me.XrLabel8.Text = "XrLabel8"
         '
@@ -211,10 +222,10 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.NewServicePrice")})
         Me.XrLabel7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(468.3542!, 2.000014!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(465.229!, 2.000014!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(61.4584!, 23.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(64.58347!, 23.0!)
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.Text = "XrLabel7"
         '
@@ -222,10 +233,10 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.OldServicePrice")})
         Me.XrLabel6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(390.2291!, 2.000014!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(390.229!, 2.000014!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(64.58331!, 23.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(64.58334!, 23.0!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.Text = "XrLabel6"
         '
@@ -266,7 +277,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CustomerName")})
         Me.XrLabel4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(131.25!, 23.0!)
@@ -283,7 +294,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel15.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.NewPerAnnumCharge")})
         Me.XrLabel15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(540.6251!, 10.00001!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(540.625!, 12.5!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(85.6665!, 23.0!)
@@ -318,6 +329,12 @@ Partial Public Class RateIncreaseCuaReport
         Me.XrLabel13.Text = "Totals"
         Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetRateIncreaseCuaReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        '
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel10, Me.XrLabel11, Me.XrLabel12})
@@ -328,7 +345,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel20.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(583.3332!, 0!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(583.3332!, 0.0!)
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel20.SizeF = New System.Drawing.SizeF(64.97931!, 23.0!)
@@ -341,7 +358,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel19.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel19.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(531.8957!, 0!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(531.8957!, 0.0!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel19.SizeF = New System.Drawing.SizeF(51.4375!, 23.0!)
@@ -354,7 +371,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel18.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel18.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(454.8124!, 0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(454.8124!, 0.0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(77.08334!, 23.0!)
@@ -367,7 +384,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel17.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(379.8124!, 0!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(379.8124!, 0.0!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel17.SizeF = New System.Drawing.SizeF(75.0!, 23.0!)
@@ -380,7 +397,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel10.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(113.5417!, 23.0!)
@@ -393,7 +410,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel11.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(142.7083!, 0!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(142.7083!, 0.0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel11.SizeF = New System.Drawing.SizeF(87.5!, 23.0!)
@@ -406,7 +423,7 @@ Partial Public Class RateIncreaseCuaReport
         '
         Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel12.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(336.8541!, 0!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(336.8541!, 0.0!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(42.70837!, 23.0!)
@@ -414,23 +431,6 @@ Partial Public Class RateIncreaseCuaReport
         Me.XrLabel12.StylePriority.UseFont = False
         Me.XrLabel12.StylePriority.UseForeColor = False
         Me.XrLabel12.Text = "Units"
-        '
-        'XrLabel16
-        '
-        Me.XrLabel16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Param1")})
-        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(279.5624!, 6.00001!)
-        Me.XrLabel16.Name = "XrLabel16"
-        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(368.7501!, 33.0!)
-        Me.XrLabel16.StylePriority.UseFont = False
-        Me.XrLabel16.Text = "XrLabel16"
-        '
-        'ObjectDataSource1
-        '
-        Me.ObjectDataSource1.DataMember = "GetRateIncreaseCuaReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
         '
         'RateIncreaseCuaReport
         '

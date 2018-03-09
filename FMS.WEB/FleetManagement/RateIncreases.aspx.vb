@@ -157,7 +157,6 @@ Public Class RateIncreases
         Dim dblPercentage As Double = Convert.ToDouble(percentageIncrease)
         Dim blnReportOnly As Boolean = Convert.ToBoolean(reportOnly)
         Dim objCuaProperties As New CuaRateIncreasProperties
-
         With objCuaProperties
             .TotCharge = 0
             .TotUnits = 0
@@ -182,7 +181,6 @@ Public Class RateIncreases
             Next
             'VarLastCustomer = VarCurrentCustomer
         End With
-
         Return Nothing
     End Function
     Private Shared Sub ProcessUpdateRates(objCuaProperties As CuaRateIncreasProperties, dblPercentage As Double, siteId As Integer, blnReportOnly As Boolean)

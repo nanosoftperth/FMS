@@ -90,6 +90,7 @@
                     document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
                     myAlertWithYesNoButton.Hide();
                     ShowMyAlertWindow();
+                    window.open('Reports/RateIncreasesReport.aspx', 'Rate Increase', 'Rate Increase');
                     LoadingPanel.Hide();
                 }
             });
