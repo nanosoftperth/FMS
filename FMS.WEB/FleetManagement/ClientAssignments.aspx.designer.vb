@@ -167,6 +167,33 @@ Partial Public Class ClientAssignments
     Protected WithEvents Panel2 As Global.DevExpress.Web.ASPxPanel
     
     '''<summary>
+    '''myAlert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents myAlert As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.DevExpress.Web.ASPxPanel
+    
+    '''<summary>
+    '''ASPxButton7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButton7 As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
     '''odsDrivers control.
     '''</summary>
     '''<remarks>

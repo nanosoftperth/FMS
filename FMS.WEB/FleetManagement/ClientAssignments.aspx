@@ -238,6 +238,17 @@
             }
         }
 
+        function InvoiceFrequencySetInvoicingMonths() {
+            document.getElementById("pMessage").innerHTML = "Please re-enter invoicing months where appropriate";
+            cbInvoiceMonth1.SetText();
+            cbInvoiceMonth2.SetText();
+            cbInvoiceMonth3.SetText();
+            cbInvoiceMonth4.SetText();
+            ShowMyAlertWindow();
+        }
+        function ShowMyAlertWindow() {
+            myAlert.Show();
+        }
     </script>
 </head>
 <body>
@@ -267,8 +278,7 @@
                                                         <dx:ListEditItem Text="Notes" Value="10" />
                                                     </Items>
                                                     <ClientSideEvents SelectedIndexChanged="function(s) { clientRunGridView.PerformCallback(s.GetValue()) }" />
-
-<ClearButton Visibility="Auto"></ClearButton>
+                                                    <ClearButton Visibility="Auto"></ClearButton>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </td>
@@ -495,7 +505,7 @@
                                                 <SettingsPager PageSize="10" />
                                             </dx:ASPxGridView>
                                         </DetailRow>
-<EditForm>
+                                        <EditForm>
                                             <div class="container">
                                                 <div style="display: none">
                                                     <dx:ASPxTextBox ID="txtSiteID" ClientInstanceName="siteID" runat="server" Text='<%# Eval("SiteID") %>'></dx:ASPxTextBox>
@@ -1783,6 +1793,9 @@
                                                                         <div class="col-md-2">
                                                                             <dx:ASPxComboBox ID="cbInvoiceFrequency" ClientInstanceName="cbInvoiceFrequency" DataSourceID="odsInvoiceFrequency" runat="server" Width="170px" Height="20px"
                                                                                 CallbackPageSize="30" SelectedIndex='<%# Eval("InvoicingFrequencySortOrder") - 1%>' TextField="Frequency" ValueField="iid">
+                                                                                <ClientSideEvents SelectedIndexChanged="function(s,e){
+                                                                                    InvoiceFrequencySetInvoicingMonths();
+                                                                                }" />
                                                                             </dx:ASPxComboBox>
                                                                         </div>
                                                                         <div class="col-md-2">
@@ -2284,6 +2297,34 @@
                                                     </dx:PanelContent>
                                                 </PanelCollection>
                                             </dx:ASPxPanel>
+                                        </dx:PopupControlContentControl>
+                                    </ContentCollection>
+                                    <ContentStyle>
+                                        <Paddings PaddingBottom="5px" />
+                                    </ContentStyle>
+                                </dx:ASPxPopupControl>
+                                <dx:ASPxPopupControl ID="myAlert" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+                                    PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="myAlert"
+                                    HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
+                                    <ContentCollection>
+                                        <dx:PopupControlContentControl runat="server">
+                                            <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
+                                                <PanelCollection>
+                                                    <dx:PanelContent runat="server">             
+                                                        <p style="font-size:larger; font-weight:bold"  id="pMessage"></p>
+                                                    </dx:PanelContent>
+                                                </PanelCollection>
+                                            </dx:ASPxPanel>  
+                                            <table style="border: none; width:100%">
+                                                <tr style="text-align:right">
+                                                    <td>
+                                                        <dx:ASPxButton ID="ASPxButton7" runat="server" AutoPostBack="False" ClientInstanceName="btnOk"
+                                                            Text="Ok" Width="80px">
+                                                            <ClientSideEvents Click="function(s, e) { myAlert.Hide(); }" />
+                                                        </dx:ASPxButton>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </dx:PopupControlContentControl>
                                     </ContentCollection>
                                     <ContentStyle>
