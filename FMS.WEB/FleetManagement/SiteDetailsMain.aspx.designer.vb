@@ -176,6 +176,33 @@ Partial Public Class SiteDetailsMain
     Protected WithEvents noButton_Comments As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
+    '''myAlert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents myAlert As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.DevExpress.Web.ASPxPanel
+    
+    '''<summary>
+    '''ASPxButton7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxButton7 As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
     '''odsDrivers control.
     '''</summary>
     '''<remarks>

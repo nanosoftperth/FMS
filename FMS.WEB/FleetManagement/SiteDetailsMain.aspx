@@ -221,7 +221,17 @@
 
         //}
 
-
+        function InvoiceFrequencySetInvoicingMonths() {
+            document.getElementById("pMessage").innerHTML = "Please re-enter invoicing months where appropriate";
+            cbInvoiceMonth1.SetText();
+            cbInvoiceMonth2.SetText();
+            cbInvoiceMonth3.SetText();
+            cbInvoiceMonth4.SetText();
+            ShowMyAlertWindow();
+        }
+        function ShowMyAlertWindow() {
+            myAlert.Show();
+        }
     </script>
 </head>
 <body>
@@ -665,6 +675,9 @@
                                                 <div class="col-md-2">
                                                     <dx:ASPxComboBox ID="cbInvoiceFrequency" ClientInstanceName="cbInvoiceFrequency" DataSourceID="odsInvoiceFrequency" runat="server" Width="170px" Height="20px"
                                                         CallbackPageSize="30" SelectedIndex='<%# Eval("InvoicingFrequencySortOrder") - 1%>' TextField="Frequency" ValueField="iid">
+                                                        <ClientSideEvents SelectedIndexChanged="function(s,e){
+                                                            InvoiceFrequencySetInvoicingMonths();
+                                                            }" />
                                                     </dx:ASPxComboBox>
                                                 </div>
                                                 <div class="col-md-2">
@@ -703,7 +716,7 @@
                                                             <dx:ASPxLabel ID="lblRateIncrease" runat="server" Text="Rate&nbsp;Increase&nbsp;:" Width="100px"></dx:ASPxLabel>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <dx:ASPxComboBox ID="cbRateIncrease" DataSourceID="odsRateIncrease" runat="server" Width="170px" Height="20px"
+                                                            <dx:ASPxComboBox ID="cbRateIncrease" ClientInstanceName="cbRateIncrease" DataSourceID="odsRateIncrease" runat="server" Width="170px" Height="20px"
                                                                 CallbackPageSize="30" SelectedIndex='<%# Eval("cmbRateIncreaseSortOrder") - 1%>' TextField="RateIncreaseDescription" ValueField="Aid">
                                                             </dx:ASPxComboBox>
                                                         </div>
@@ -1258,6 +1271,34 @@
                     </dx:ASPxButton>
                 </dx:PopupControlContentControl>
             </ContentCollection>
+        </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="myAlert" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+            PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="myAlert"
+            HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
+            <ContentCollection>
+                <dx:PopupControlContentControl runat="server">
+                    <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
+                        <PanelCollection>
+                            <dx:PanelContent runat="server">             
+                                <p style="font-size:larger; font-weight:bold"  id="pMessage"></p>
+                            </dx:PanelContent>
+                        </PanelCollection>
+                    </dx:ASPxPanel>  
+                    <table style="border: none; width:100%">
+                        <tr style="text-align:right">
+                            <td>
+                                <dx:ASPxButton ID="ASPxButton7" runat="server" AutoPostBack="False" ClientInstanceName="btnOk"
+                                    Text="Ok" Width="80px">
+                                    <ClientSideEvents Click="function(s, e) { myAlert.Hide(); }" />
+                                </dx:ASPxButton>
+                            </td>
+                        </tr>
+                    </table>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+            <ContentStyle>
+                <Paddings PaddingBottom="5px" />
+            </ContentStyle>
         </dx:ASPxPopupControl>
         <asp:ObjectDataSource ID="odsDrivers" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblDrivers"></asp:ObjectDataSource>
         <asp:ObjectDataSource ID="odsReason" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblCIRReason"></asp:ObjectDataSource>
