@@ -233,6 +233,65 @@
         function ShowMyAlertWindow() {
             myAlert.Show();
         }
+
+        function PopulateMonths()
+        {
+            var invfreq = cbInvoiceFrequency.GetValue();
+
+            //Cesar: Quarterly
+            if (invfreq == 4)
+            {
+                var month01val = cbInvoiceMonth1.GetValue();
+
+                //populate 2nd month
+                var month02val = parseInt(month01val) + 3;
+                if (month02val <= 12) {
+                    cbInvoiceMonth2.SetValue(month02val);
+                }
+                else
+                {
+                    month02val = month02val - 12;
+                    cbInvoiceMonth2.SetValue(month02val);
+                }
+
+                //populate 3rd month
+                var month03val = parseInt(month02val) + 3;
+                if (month03val <= 12) {
+                    cbInvoiceMonth3.SetValue(month03val);
+                }
+                else {
+                    month03val = month03val - 12;
+                    cbInvoiceMonth3.SetValue(month03val);
+                }
+
+                //populate 3rd month
+                var month04val = parseInt(month03val) + 3;
+                if (month04val <= 12) {
+                    cbInvoiceMonth4.SetValue(month04val);
+                }
+                else {
+                    month04val = month04val - 12;
+                    cbInvoiceMonth4.SetValue(month04val);
+                }
+                
+            }
+
+            //Cesar: Bi Annual
+            if (invfreq == 6)
+            {
+                var month01val = cbInvoiceMonth1.GetValue();
+
+                //populate 2nd month
+                var month02val = parseInt(month01val) + 6;
+                if (month02val <= 12) {
+                    cbInvoiceMonth2.SetValue(month02val);
+                }
+                else {
+                    month02val = month02val - 12;
+                    cbInvoiceMonth2.SetValue(month02val);
+                }
+            }
+        }
     </script>
 </head>
 <body>
@@ -750,6 +809,7 @@
                                                         <div class="col-md-3">
                                                             <dx:ASPxComboBox ID="cbInvoiceMonth1" ClientInstanceName="cbInvoiceMonth1" DataSourceID="odsInvoiceMonth" runat="server" Width="170px" Height="20px"
                                                                 CallbackPageSize="30" SelectedIndex='<%# Eval("InvoiceMonth1") - 1%>' TextField="MonthDescription" ValueField="MonthNo">
+                                                                <ClientSideEvents SelectedIndexChanged="PopulateMonths" />
                                                             </dx:ASPxComboBox>
                                                         </div>
                                                     </div>
