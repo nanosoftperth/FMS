@@ -44,6 +44,7 @@
             if (cbCustomer.GetValue() != null) {
                 cid = cbCustomer.GetValue();
             }
+            $("#ifrPopup").attr("scrolling", "yes");
             $("#ifrPopup").width(860);
             $("#ifrPopup").height(640);
             $("#ifrPopup").attr("src", httpOrigin + "/FleetManagement/CustomerDetailsMainPopup.aspx?cid=" + cid);
@@ -1188,7 +1189,8 @@
 
         <dx:ASPxPopupControl ID="viewPopup" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
             PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="viewPopup"
-            AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="300px" Height="300px">
+            AllowDragging="True" PopupAnimationType="None" EnableViewState="False" 
+            Width="900px" Height="500px" ScrollBars="Auto">
             <ContentCollection>
                 <dx:PopupControlContentControl runat="server">
                     <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
