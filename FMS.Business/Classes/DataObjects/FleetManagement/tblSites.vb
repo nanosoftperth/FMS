@@ -242,7 +242,7 @@
                 Dim objSites As New List(Of DataObjects.tblSites)
                 With New LINQtoSQLClassesDataContext
                     objSites = (From c In .tblSites
-                                Where c.ApplicationId.Equals(ThisSession.ApplicationID)
+                                Where c.ApplicationId.Equals(ThisSession.ApplicationID) And c.SiteCeaseDate Is Nothing
                                 Order By c.Customer
                                 Select New DataObjects.tblSites(c)).ToList
 
