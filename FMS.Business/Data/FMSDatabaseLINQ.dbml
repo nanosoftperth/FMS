@@ -832,13 +832,6 @@
       <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.CUST" Member="CUSTs">
-    <Type Name="CUST">
-      <Column Name="ID" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CardID" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblMYOBMatch" Member="tblMYOBMatches">
     <Type Name="tblMYOBMatch">
       <Column Name="MatchID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1451,6 +1444,13 @@
       <Column Name="ChangeAuditID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RateIncreasesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Did" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CUST" Member="CUSTs">
+    <Type Name="CUST">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">

@@ -631,6 +631,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeletetblProjectID(instance As tblProjectID)
     End Sub
+  Partial Private Sub InsertCUST(instance As CUST)
+    End Sub
+  Partial Private Sub UpdateCUST(instance As CUST)
+    End Sub
+  Partial Private Sub DeleteCUST(instance As CUST)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1060,12 +1066,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property CUSTs() As System.Data.Linq.Table(Of CUST)
-		Get
-			Return Me.GetTable(Of CUST)
-		End Get
-	End Property
-	
 	Public ReadOnly Property tblMYOBMatches() As System.Data.Linq.Table(Of tblMYOBMatch)
 		Get
 			Return Me.GetTable(Of tblMYOBMatch)
@@ -1315,6 +1315,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public ReadOnly Property tblProjectIDs() As System.Data.Linq.Table(Of tblProjectID)
 		Get
 			Return Me.GetTable(Of tblProjectID)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CUSTs() As System.Data.Linq.Table(Of CUST)
+		Get
+			Return Me.GetTable(Of CUST)
 		End Get
 	End Property
 	
@@ -16013,56 +16019,6 @@ Partial Public Class vw_GetVehicleLocation
 	End Property
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CUST")>  _
-Partial Public Class CUST
-	
-	Private _ID As System.Nullable(Of Double)
-	
-	Private _CardID As String
-	
-	Private _CustomerName As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", DbType:="Float")>  _
-	Public Property ID() As System.Nullable(Of Double)
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If (Me._ID.Equals(value) = false) Then
-				Me._ID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CardID", DbType:="NVarChar(255)")>  _
-	Public Property CardID() As String
-		Get
-			Return Me._CardID
-		End Get
-		Set
-			If (String.Equals(Me._CardID, value) = false) Then
-				Me._CardID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(255)")>  _
-	Public Property CustomerName() As String
-		Get
-			Return Me._CustomerName
-		End Get
-		Set
-			If (String.Equals(Me._CustomerName, value) = false) Then
-				Me._CustomerName = value
-			End If
-		End Set
-	End Property
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblMYOBMatch")>  _
 Partial Public Class tblMYOBMatch
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -27620,6 +27576,112 @@ Partial Public Class tblProjectID
 				Me._Did = value
 				Me.SendPropertyChanged("Did")
 				Me.OnDidChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CUST")>  _
+Partial Public Class CUST
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ID As Integer
+	
+	Private _CardID As String
+	
+	Private _CustomerName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnCardIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnCardIDChanged()
+    End Sub
+    Partial Private Sub OnCustomerNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ID() As Integer
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CardID", DbType:="NVarChar(255)")>  _
+	Public Property CardID() As String
+		Get
+			Return Me._CardID
+		End Get
+		Set
+			If (String.Equals(Me._CardID, value) = false) Then
+				Me.OnCardIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CardID = value
+				Me.SendPropertyChanged("CardID")
+				Me.OnCardIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerName", DbType:="NVarChar(255)")>  _
+	Public Property CustomerName() As String
+		Get
+			Return Me._CustomerName
+		End Get
+		Set
+			If (String.Equals(Me._CustomerName, value) = false) Then
+				Me.OnCustomerNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerName = value
+				Me.SendPropertyChanged("CustomerName")
+				Me.OnCustomerNameChanged
 			End If
 		End Set
 	End Property
