@@ -1448,7 +1448,7 @@
   </Table>
   <Table Name="dbo.CUST" Member="CUSTs">
     <Type Name="CUST">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CardID" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
