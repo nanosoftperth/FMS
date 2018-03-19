@@ -1712,9 +1712,6 @@
       <Column Name="SumOfServiceUnits" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.usp_UpdateCustomersBaseOnCardID" Method="usp_UpdateCustomersBaseOnCardID">
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.usp_GetIndustryGroup" Method="usp_GetIndustryGroup">
     <ElementType Name="usp_GetIndustryGroupResult">
       <Column Name="IndustryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -2593,5 +2590,10 @@
       <Column Name="ApplicationID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ServiceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.usp_UpdateCustomersBaseOnCardID" Method="usp_UpdateCustomersBaseOnCardID">
+    <Parameter Name="ApplicationID" Parameter="applicationID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="CardID" Parameter="cardID" Type="System.String" DbType="NVarChar(255)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

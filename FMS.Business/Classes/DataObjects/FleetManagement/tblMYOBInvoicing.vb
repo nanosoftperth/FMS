@@ -128,6 +128,7 @@ Namespace DataObjects
 
                 With New LINQtoSQLClassesDataContext
                     obj = (From i In .tblMYOBInvoicings
+                           Where i.ApplicationId.Equals(ThisSession.ApplicationID)
                            Select New DataObjects.tblMYOBInvoicing(i)).ToList
                     .Dispose()
                 End With

@@ -1451,12 +1451,6 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetGenerateRunSheetSummaryResult))
 	End Function
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_UpdateCustomersBaseOnCardID")>  _
-	Public Function usp_UpdateCustomersBaseOnCardID() As Integer
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,Integer)
-	End Function
-	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetIndustryGroup")>  _
 	Public Function usp_GetIndustryGroup() As ISingleResult(Of usp_GetIndustryGroupResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -1755,6 +1749,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_GetRateIncreaseCuaReport() As ISingleResult(Of usp_GetRateIncreaseCuaReportResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetRateIncreaseCuaReportResult))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_UpdateCustomersBaseOnCardID")>  _
+	Public Function usp_UpdateCustomersBaseOnCardID(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CardID", DbType:="NVarChar(255)")> ByVal cardID As String) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, cardID)
+		Return CType(result.ReturnValue,Integer)
 	End Function
 End Class
 
