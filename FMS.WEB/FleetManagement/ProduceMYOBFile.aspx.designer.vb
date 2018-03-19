@@ -23,15 +23,6 @@ Partial Public Class ProduceMYOBFile
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
     
     '''<summary>
-    '''ASPxCheckBox1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxCheckBox1 As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
     '''ASPxLabel1 control.
     '''</summary>
     '''<remarks>
@@ -66,6 +57,24 @@ Partial Public Class ProduceMYOBFile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMYOBFilename As Global.DevExpress.Web.ASPxTextBox
+    
+    '''<summary>
+    '''ucCust control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ucCust As Global.DevExpress.Web.ASPxUploadControl
+    
+    '''<summary>
+    '''lblFileName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFileName As Global.DevExpress.Web.ASPxLabel
     
     '''<summary>
     '''ASPxLabel3 control.

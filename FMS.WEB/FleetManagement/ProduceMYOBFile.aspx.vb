@@ -1,6 +1,13 @@
-﻿Imports DevExpress
+﻿Imports System.IO
+Imports DevExpress
 Imports DevExpress.Web
-Imports DevExpress.Web.ASPxWebControl
+Imports System
+Imports System.Web.UI
+Imports System.Reflection
+Imports System.Reflection.Emit
+Imports DevExpress.Web.ASPxGridView
+Imports System.Web.Services
+Imports System.Drawing
 
 Public Class ProduceMYOBFile
     Inherits System.Web.UI.Page
@@ -57,6 +64,12 @@ Public Class ProduceMYOBFile
                 txtInvStartNo.Text = InvoiceNumberEnd
             End If
 
+        Else
+
+            If (Not Session("MYOB_Cust") Is Nothing) Then
+                Me.lblFileName.Text = Session("MYOB_Cust")
+            End If
+
         End If
 
         ' Bind MYOB Customer Numbers
@@ -74,10 +87,69 @@ Public Class ProduceMYOBFile
         ' Init Update Customer record window controls
         lblRecAdded.Visible = False
 
+    End Sub
 
+#Region "FileUploads"
+    Private Const UploadDirectory As String = "~/App_Data/MYOB/"
+    Protected Sub ucCust_FileUploadComplete(sender As Object, e As FileUploadCompleteEventArgs)
+        'Dim Path = Server.MapPath("/")
+        'Dim path2 = Server.MapPath("~")
+
+        Dim folder = Server.MapPath("~/App_Data/MYOB")
+
+        If (Not Directory.Exists(folder)) Then
+            Directory.CreateDirectory(folder)
+        End If
+
+        Dim strFilename = e.UploadedFile.FileName.ToString()
+        Dim SavePath As String = System.IO.Path.Combine(folder, strFilename) 'combines the saveDirectory and the filename to get a fully qualified path.
+
+        If System.IO.File.Exists(SavePath) Then
+            System.IO.File.Delete(SavePath)
+        End If
+
+        'Dim SavePath As String = System.IO.Path.Combine(folder, "cust.txt") 'combines the saveDirectory and the filename to get a fully qualified path.
+
+        'If System.IO.File.Exists(SavePath) Then
+        '    System.IO.File.Delete(SavePath)
+
+        'Else
+        '    'the file doesn't exist
+        'End If
+
+
+        Dim resultExtension As String = Path.GetExtension(e.UploadedFile.FileName)
+        'Dim resultFileName As String = Path.ChangeExtension(Path.GetRandomFileName(), resultExtension)
+        Dim resultFileName As String = e.UploadedFile.FileName.ToString()
+        Dim resultFileUrl As String = UploadDirectory & resultFileName
+        Dim resultFilePath As String = MapPath(resultFileUrl)
+        e.UploadedFile.SaveAs(resultFilePath)
+
+        If e.IsValid Then
+            'Create a Cookie with a suitable Key.
+            Dim nameCookie As New HttpCookie("CustName")
+            'Set the Cookie value.
+            nameCookie.Values("CustName") = strFilename
+            'Set the Expiry date.
+            nameCookie.Expires = DateTime.Now.AddDays(1)
+            'Add the Cookie to Browser.
+            Response.Cookies.Add(nameCookie)
+
+            'Dim fileName As String = e.UploadedFile.FileName.ToString()
+            'Dim fileName As String = Guid.NewGuid().ToString("N") + "." + fileType
+            'Dim path As String = ""
+
+            'FMS.Business.ThisSession.ImageType = fileType
+            'FMS.Business.ThisSession.ImageLocByByteArray = e.UploadedFile.FileBytes
+
+            'Session("MYOB_cust") = "Uploaded File: " + e.UploadedFile.FileName.ToString()
+            e.CallbackData = e.UploadedFile.FileName.ToString()
+
+        End If
 
 
     End Sub
+#End Region
 
 #Region "Init Conctrols"
     Protected Sub InitComboMonth()
@@ -128,10 +200,10 @@ Public Class ProduceMYOBFile
     Protected Sub InitFilenameInputs()
         ' Fill Invoice File Name
         Dim oParam = FMS.Business.DataObjects.tblParameters.GetAll().ToList()
-        txtInvoiceFilename.Text = oParam.Where(Function(m) m.ParId = "MYOBFileName").FirstOrDefault().Field1
+        'txtInvoiceFilename.Text = oParam.Where(Function(m) m.ParId = "MYOBFileName").FirstOrDefault().Field1
 
         ' Fill MYOB Customer File Name
-        txtMYOBFilename.Text = oParam.Where(Function(m) m.ParId = "MYOBCustomerFileName").FirstOrDefault().Field1
+        'txtMYOBFilename.Text = oParam.Where(Function(m) m.ParId = "MYOBCustomerFileName").FirstOrDefault().Field1
 
     End Sub
 
@@ -200,17 +272,33 @@ Public Class ProduceMYOBFile
     Private Function ValidEntries() As Boolean
 
         '--- Validate Entries
-        If txtInvoiceFilename.Text.Length <= 0 Then
-            lblBoxText.Text = "Please enter an output file name starting invoice number"
+        'If txtInvoiceFilename.Text.Length <= 0 Then
+        '    lblBoxText.Text = "Please enter an output file name starting invoice number"
+        '    btnYes.Text = "OK"
+        '    btnNo.Visible = False
+        '    puDialogBox.ShowOnPageLoad = True
+        '    Return False
+        'End If
+
+        Dim invoiceValue As Integer
+        If Not Int32.TryParse(txtInvStartNo.Text, invoiceValue) Then
+            lblBoxText.Text = "Please enter a starting and valid invoice number"
             btnYes.Text = "OK"
             btnNo.Visible = False
             puDialogBox.ShowOnPageLoad = True
             Return False
         End If
 
-        Dim invoiceValue As Integer
-        If Not Int32.TryParse(txtInvStartNo.Text, invoiceValue) Then
-            lblBoxText.Text = "Please enter a starting and valid invoice number"
+        If cboMonth.Value Is Nothing Then
+            lblBoxText.Text = "Please select a invoice month."
+            btnYes.Text = "OK"
+            btnNo.Visible = False
+            puDialogBox.ShowOnPageLoad = True
+            Return False
+        End If
+
+        If dteStart.Value Is Nothing Or dteEnd.Value Is Nothing Then
+            lblBoxText.Text = "Please invoice start and end date."
             btnYes.Text = "OK"
             btnNo.Visible = False
             puDialogBox.ShowOnPageLoad = True
@@ -361,8 +449,8 @@ Public Class ProduceMYOBFile
 
         End If
 
-        'InvoiceDate = temp1 & "/" & CStr(temp2) & "/" & CStr(temp3)     '---> AUS Format
-        InvoiceDate = CStr(temp2) & "/" & temp1 & "/" & CStr(temp3)     '---> PHL Format
+        InvoiceDate = temp1 & "/" & CStr(temp2) & "/" & CStr(temp3)     '---> AUS Format
+        'InvoiceDate = CStr(temp2) & "/" & temp1 & "/" & CStr(temp3)     '---> PHL Format
 
         Return InvoiceDate
 
@@ -416,7 +504,7 @@ Public Class ProduceMYOBFile
     End Sub
 
     Protected Sub btnProcess_Click(sender As Object, e As EventArgs)
-        puDialogBox.PopupVerticalAlign = DevExpress.Web.PopupVerticalAlign.Middle
+        'puDialogBox.PopupVerticalAlign = DevExpress.Web.PopupVerticalAlign.Middle
 
         If ValidEntries() = False Then
             Exit Sub
@@ -443,8 +531,6 @@ Public Class ProduceMYOBFile
             For Each rMYOB In objMYOBFileList
                 Dim rowMI As New FMS.Business.DataObjects.tblMYOBInvoicing
                 Dim ExcludeCustomerFuel = rMYOB.chkCustomerExcludeFuelLevy
-
-                'SiteName	nvarchar(50)	Checked
 
                 rowMI.CustomerNumber = rMYOB.MYOBCustomerNumber
                 rowMI.CustomerName = rMYOB.CustomerName
@@ -496,7 +582,205 @@ Public Class ProduceMYOBFile
 
             FMS.Business.DataObjects.tblMYOBInvoicing.CreateAll(objMI)
 
-        Else
+            Dim objMYOB = FMS.Business.DataObjects.tblMYOBInvoicing.GetAll()
+
+            Response.Cookies("showLP").Value = "NO"
+
+            If (objMYOB.Count > 0) Then
+
+                '--- check folder exist
+                Dim folder = Server.MapPath("~/App_Data/MYOB")
+
+                If (Not Directory.Exists(folder)) Then
+                    Directory.CreateDirectory(folder)
+                End If
+
+                '--- create text file
+                Dim fileLoc = System.IO.Path.Combine(folder, "myob.txt")
+                Dim fs As FileStream = Nothing
+                If (Not File.Exists(fileLoc)) Then
+                    fs = File.Create(fileLoc)
+                    fs.Flush()
+                    fs.Close()
+                Else
+                    File.Delete(fileLoc)
+                    fs = File.Create(fileLoc)
+                    fs.Flush()
+                    fs.Close()
+                End If
+
+                If File.Exists(fileLoc) Then
+                    Dim ThisInv As String
+                    Dim LastInv As String
+                    Dim PrintVar As String
+                    Dim Sep As String = vbTab
+
+                    '--- construct text file header
+                    PrintVar = ""
+                    PrintVar = PrintVar & "Co./Last Name" & Sep
+                    PrintVar = PrintVar & "First Name" & Sep
+                    PrintVar = PrintVar & "Addr 1" & Sep
+                    PrintVar = PrintVar & "Addr 2" & Sep
+                    PrintVar = PrintVar & "Addr 3" & Sep
+                    PrintVar = PrintVar & "Addr 4" & Sep
+                    PrintVar = PrintVar & "Inclusive" & Sep
+                    PrintVar = PrintVar & "Invoice #" & Sep
+                    PrintVar = PrintVar & "Date" & Sep
+                    PrintVar = PrintVar & "Customer PO" & Sep
+                    PrintVar = PrintVar & "Ship Via" & Sep
+                    PrintVar = PrintVar & "Delivery Status" & Sep
+                    PrintVar = PrintVar & "Item Number" & Sep
+                    PrintVar = PrintVar & "Quantity" & Sep
+                    PrintVar = PrintVar & "Description" & Sep
+                    PrintVar = PrintVar & "Price" & Sep
+                    PrintVar = PrintVar & "Inc-Tax Price" & Sep
+                    PrintVar = PrintVar & "Discount" & Sep
+                    PrintVar = PrintVar & "Total" & Sep
+                    PrintVar = PrintVar & "Inc-Tax Total" & Sep
+                    PrintVar = PrintVar & "Job" & Sep
+                    PrintVar = PrintVar & "Comment" & Sep
+                    PrintVar = PrintVar & "Journal Memo" & Sep
+                    PrintVar = PrintVar & "Salesperson Last Name" & Sep
+                    PrintVar = PrintVar & "Salesperson First Name" & Sep
+                    PrintVar = PrintVar & "Shipping Date" & Sep
+                    PrintVar = PrintVar & "Referral Source" & Sep
+                    PrintVar = PrintVar & "Tax Code" & Sep
+                    PrintVar = PrintVar & "Non-GST Amount" & Sep
+                    PrintVar = PrintVar & "GST Amount" & Sep
+                    PrintVar = PrintVar & "LCT Amount" & Sep
+                    PrintVar = PrintVar & "Freight Amount" & Sep
+                    PrintVar = PrintVar & "Inc-Tax Freight Amount" & Sep
+                    PrintVar = PrintVar & "Freight Tax Code" & Sep
+                    PrintVar = PrintVar & "Freight Non-GST Amount" & Sep
+                    PrintVar = PrintVar & "Freight GST Amount" & Sep
+                    PrintVar = PrintVar & "Freight LCT Amount" & Sep
+                    PrintVar = PrintVar & "Sale Status" & Sep
+                    PrintVar = PrintVar & "Currency Code" & Sep
+                    PrintVar = PrintVar & "Exchange Rate" & Sep
+                    PrintVar = PrintVar & "Terms - Payment is Due" & Sep
+                    PrintVar = PrintVar & "Terms - Discount Days" & Sep
+                    PrintVar = PrintVar & "Terms - Balance Due Days" & Sep
+                    PrintVar = PrintVar & "Terms - % Discount" & Sep
+                    PrintVar = PrintVar & "Terms - % Monthly Charge" & Sep
+                    PrintVar = PrintVar & "Amount Paid" & Sep
+                    PrintVar = PrintVar & "Payment Method" & Sep
+                    PrintVar = PrintVar & "Payment Notes" & Sep
+                    PrintVar = PrintVar & "Name on card" & Sep
+                    PrintVar = PrintVar & "Card Number" & Sep
+                    PrintVar = PrintVar & "Expiry Date" & Sep
+                    PrintVar = PrintVar & "Authorisation Code" & Sep
+                    PrintVar = PrintVar & "BSB" & Sep
+                    PrintVar = PrintVar & "Account Number" & Sep
+                    PrintVar = PrintVar & "Drawer/Account Name" & Sep
+                    PrintVar = PrintVar & "Cheque Number" & Sep
+                    PrintVar = PrintVar & "Category" & Sep
+                    PrintVar = PrintVar & "LocationID" & Sep
+                    PrintVar = PrintVar & "CardID" & Sep
+                    PrintVar = PrintVar & "RecordID"
+
+                    Using sw As StreamWriter = New StreamWriter(fileLoc)
+                        '--- print header file
+                        sw.Write(PrintVar)
+
+                        '--- print body file
+                        LastInv = "999999"
+                        For Each row In objMYOB
+                            ThisInv = row.InvoiceNumber
+
+                            If LastInv <> "999999" Or ThisInv <> LastInv Then
+                                'PrintVar = vbCrLf
+                                PrintVar = vbCr
+                                sw.Write(PrintVar)
+                            End If
+
+                            PrintVar = ""
+                            PrintVar = PrintVar & UCase(row.CustomerName) & Sep            'Co./Last Name
+                            PrintVar = PrintVar & Sep                                       'First Name
+                            PrintVar = PrintVar & Sep                                       'Addr 1
+                            PrintVar = PrintVar & Sep                                       'Addr 2
+                            PrintVar = PrintVar & Sep                                       'Addr 3
+                            PrintVar = PrintVar & Sep                                       'Addr 4
+                            PrintVar = PrintVar & Sep                                       'Inclusive
+                            PrintVar = PrintVar & row.InvoiceNumber & Sep                   'Invoice #
+                            PrintVar = PrintVar & row.InvoiceDate & Sep                     'Date
+                            PrintVar = PrintVar & row.CustomerPurchaseOrderNumber & Sep     'Customer PO
+                            PrintVar = PrintVar & Sep                                       'Ship Via
+                            PrintVar = PrintVar & Sep                                       'Delivery Status
+                            PrintVar = PrintVar & row.ProductCode & Sep                     'Item Number
+                            PrintVar = PrintVar & row.Quantity & Sep                        'Quantity
+                            PrintVar = PrintVar & row.ProductDescription & Sep              'Description
+                            PrintVar = PrintVar & row.annualpriceexgst & Sep                'Price
+                            PrintVar = PrintVar & row.annualpriceincgst & Sep               'Inc-Tax Price
+                            PrintVar = PrintVar & row.Discount & Sep                        'Discount
+                            PrintVar = PrintVar & row.invoiceamountexgst & Sep              'Total
+                            PrintVar = PrintVar & row.invoiceamountincgst & Sep             'Inc-Tax Total
+                            PrintVar = PrintVar & row.Job & Sep                             'Job
+                            PrintVar = PrintVar & Sep                                       'Comment
+                            PrintVar = PrintVar & row.JournalMemo & Sep                     'Journal Memo
+                            PrintVar = PrintVar & Sep                                       'Salesperson Last Name
+                            PrintVar = PrintVar & Sep                                       'Salesperson First Name
+                            PrintVar = PrintVar & Sep                                       'Shipping Date
+                            PrintVar = PrintVar & Sep                                       'Referral Source
+                            PrintVar = PrintVar & row.TaxCode & Sep                         'Tax Code
+                            PrintVar = PrintVar & Sep                                       'NON GST Amount
+                            PrintVar = PrintVar & row.GSTAmount & Sep                       'GST Amount
+                            PrintVar = PrintVar & Sep                                       'LCT Amount
+                            PrintVar = PrintVar & Sep                                       'Freight Amount
+                            PrintVar = PrintVar & Sep                                       'Inc-Tax Freight Amount
+                            PrintVar = PrintVar & Sep                                       'Freight Tax Code
+                            PrintVar = PrintVar & Sep                                       'Freight Non-GST Amount
+                            PrintVar = PrintVar & Sep                                       'Freight GST Amount
+                            PrintVar = PrintVar & Sep                                       'Freight LCT Amount
+                            PrintVar = PrintVar & Sep                                       'Sale Status
+                            PrintVar = PrintVar & Sep                                       'Currency Code
+                            PrintVar = PrintVar & Sep                                       'Exchange Rate
+                            PrintVar = PrintVar & Sep                                       'Terms - Payment is Due
+                            PrintVar = PrintVar & Sep                                       'Terms - Discount Days
+                            PrintVar = PrintVar & Sep                                       'Terms - Balance Due Days
+                            PrintVar = PrintVar & Sep                                       'Terms - % Discount
+                            PrintVar = PrintVar & Sep                                       'Terms - % Monthly Charge
+                            PrintVar = PrintVar & Sep                                       'Amount Paid
+                            PrintVar = PrintVar & Sep                                       'Payment Method
+                            PrintVar = PrintVar & Sep                                       'Payment Notes
+                            PrintVar = PrintVar & Sep                                       'Name on Card
+                            PrintVar = PrintVar & Sep                                       'Card Number
+                            PrintVar = PrintVar & Sep                                       'Expiry Date
+                            PrintVar = PrintVar & Sep                                       'Authorisation Code
+                            PrintVar = PrintVar & Sep                                       'BSB
+                            PrintVar = PrintVar & Sep                                       'Account Number
+                            PrintVar = PrintVar & Sep                                       'Drawer/Account Name
+                            PrintVar = PrintVar & Sep                                       'Cheque Number
+                            PrintVar = PrintVar & row.Category & Sep                        'Category
+                            PrintVar = PrintVar & Sep                                       'LocationID
+                            PrintVar = PrintVar & row.CustomerNumber & Sep                  'CardID
+                            PrintVar = PrintVar                                             'RecordID
+
+                            sw.Write(PrintVar)
+                        Next
+
+                        sw.Flush()
+                        sw.Close()
+
+                        '---download file to browser
+                        'Dim path As String = Server.MapPath(strRequest)
+                        Dim file As System.IO.FileInfo = New System.IO.FileInfo(fileLoc)
+                        If file.Exists Then
+                            Response.Clear()
+                            Response.AddHeader("Content-Disposition", "attachment; filename=" & file.Name)
+                            Response.AddHeader("Content-Length", file.Length.ToString())
+                            Response.ContentType = "application/octet-stream"
+                            Response.WriteFile(file.FullName)
+                            Response.End()
+
+                        Else
+                            Response.Write("This file does not exist.")
+                        End If
+
+                        Me.lpProcess.Visible = False
+
+                    End Using
+                End If
+            End If
 
         End If
 
@@ -530,9 +814,15 @@ Public Class ProduceMYOBFile
         System.Threading.Thread.Sleep(3000)
     End Sub
 
-    'Protected Sub cbProcess_Callback(ByVal source As Object, ByVal e As DevExpress.Web.ASPxCallback.CallbackEventArgs)
-    '    ' emulate a long lasting operation
-    '    System.Threading.Thread.Sleep(3000)
+#Region "WebMethods"
+    '<WebMethod>
+    'Public Shared Function Sample(RunDate As Date, DriverID As Integer, RunNumber As Integer) As Boolean
+    '    CheckParameterPerID("MYOBFileName", this.txtInvoiceFilename.Text)
+    '    CheckParameterPerID("MYOBCustomerFileName", txtMYOBFilename.Text)
+    '    Dim objecFuelLevey = GetFuelLevy("FUELL")
 
-    'End Sub
+    'End Function
+
+#End Region
+
 End Class
