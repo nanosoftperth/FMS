@@ -122,7 +122,10 @@ Public Class Helper
             '|    uses the same logic as the vehicle controllers method "GetCanMessageMessage"          |
             '============================================================================================
 
-            If foundVehicle.DeviceID.ToLower.Contains("emaxi") Then
+
+            Dim lst As String = "emaxi13,emaxi15,uniqco19,emaxi16,emaxi17,emaxi12,emaxi18,emaxi14"
+
+            If (lst.ToLower.Contains(foundVehicle.DeviceID.ToLower)) Then
 
                 Try
 
