@@ -1,4 +1,4 @@
-﻿Imports FMS.ServiceAccess
+Imports FMS.ServiceAccess
 Imports FMS.Business
 Imports FMS.ServiceAccess.WebServices
 
@@ -84,7 +84,10 @@ Public Class Helper
                           Order By o.TimeReadingTaken).LastOrDefault
 
         'get the "engine hours on" value for when the first odometer reading (within the start & end date) 
-        Dim engineHoursOn As TimeSpan = foundVehicle.GetVehicleMovementSummary(CDate("01 jan 2016"), odoReading.TimeReadingTaken).EngineHoursOn
+        Dim engineHoursOn As TimeSpan = If(odoReading Is Nothing, TimeSpan.FromHours(0),
+                                           foundVehicle.GetVehicleMovementSummary(CDate("01 jan 2016"),
+                                                                                  odoReading.TimeReadingTaken).EngineHoursOn)
+
 
         'for each date which we want to process:
         For Each loopEndDate As Date In queryDateList.OrderBy(Function(x) x)
@@ -95,6 +98,9 @@ Public Class Helper
             odoReading = (From o In foundVehicle.GetOdometerReadings _
                                Where o.TimeReadingTaken <= loopEndDate _
                                Order By o.TimeReadingTaken).LastOrDefault
+
+            If odoReading Is Nothing Then odoReading = New FMS.Business.DataObjects.ApplicationVehicleOdometerReading() _
+                                                                            With {.OdometerReading = 0, .TimeReadingTaken = Now.AddMonths(-2)}
 
             Dim startDate As Date = odoReading.TimeReadingTaken
 
