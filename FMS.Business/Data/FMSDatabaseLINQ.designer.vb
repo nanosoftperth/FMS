@@ -1758,8 +1758,8 @@ Partial Public Class LINQtoSQLClassesDataContext
 	End Function
 	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetDriverComments")>  _
-	Public Function usp_GetDriverComments(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Did", DbType:="SmallInt")> ByVal did As System.Nullable(Of Short)) As ISingleResult(Of usp_GetDriverCommentsResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), did)
+	Public Function usp_GetDriverComments(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="AppID", DbType:="UniqueIdentifier")> ByVal appID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Did", DbType:="SmallInt")> ByVal did As System.Nullable(Of Short)) As ISingleResult(Of usp_GetDriverCommentsResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), appID, did)
 		Return CType(result.ReturnValue,ISingleResult(Of usp_GetDriverCommentsResult))
 	End Function
 End Class
@@ -38798,6 +38798,8 @@ Partial Public Class usp_GetDriverCommentsResult
 	
 	Private _Did As Integer
 	
+	Private _ApplicationId As System.Nullable(Of System.Guid)
+	
 	Private _Aid As Integer
 	
 	Private _CommentDate As System.Nullable(Of Date)
@@ -38821,6 +38823,18 @@ Partial Public Class usp_GetDriverCommentsResult
 			If ((Me._Did = value)  _
 						= false) Then
 				Me._Did = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApplicationId", DbType:="UniqueIdentifier")>  _
+	Public Property ApplicationId() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._ApplicationId
+		End Get
+		Set
+			If (Me._ApplicationId.Equals(value) = false) Then
+				Me._ApplicationId = value
 			End If
 		End Set
 	End Property
