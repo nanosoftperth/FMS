@@ -19,12 +19,12 @@
                  })
              }
 
-             $(window).resize(function () {
-                 AdjustWindowHeightAndWidth();
-             })
+             //$(window).resize(function () {
+             //    AdjustWindowHeightAndWidth();
+             //})
 
              function btnProcessReport_Click() {
-                 AdjustWindowHeightAndWidth();
+                 //AdjustWindowHeightAndWidth();
                  LoadingPanel.Show();
                  $("#frmContent").attr("src", "../ReportContentPage.aspx?Report=InvoiceBasicCheckReport");
              }

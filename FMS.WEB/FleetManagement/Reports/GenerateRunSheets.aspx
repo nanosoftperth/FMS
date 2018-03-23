@@ -45,12 +45,20 @@
                     LoadingPanel.Hide();
                 });
             })
+            function OnTabClick(s, e) {
+                if (e.tab.GetText() == 'Run Sheet Detail') {
+                    ShowDetailReport();
+                } else {
+                    ShowSummaryReport();
+                }
+            }
         </script>
 </head>
 <body onload="ShowDetailReport();ShowSummaryReport();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="RunSheetsPageControl" runat="server" ClientInstanceName="RunSheetsPageControl">
+                <ClientSideEvents TabClick="OnTabClick" />
                 <TabPages>
                     <dx:TabPage Name="RunSheetDetail" Text="Run Sheet Detail">
                         <ContentCollection>

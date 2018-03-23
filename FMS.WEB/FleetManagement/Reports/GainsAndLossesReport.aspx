@@ -50,12 +50,21 @@
                      GainsAndLossessSummaryLoadingPanel.Hide();
                  });
              })
+
+            function OnTabClick(s, e) {
+                if(e.tab.GetText()=='Units Summary'){
+                    ShowGainsAndLossessSummaryReport();
+                }else{
+                    ShowGainsAndLossesReport();
+                }
+            }
         </script>
 </head>
 <body onload="ShowGainsAndLossesReport();ShowGainsAndLossessSummaryReport();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="GainsAndLossesPageControl" runat="server" ClientInstanceName="RunListingsPageControl" >
+                <ClientSideEvents TabClick="OnTabClick" />
                 <TabPages>
                     <dx:TabPage Name="GainsAndLossesUnits" Text="Units">
                         <ContentCollection>

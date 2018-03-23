@@ -64,12 +64,22 @@
                      LoadingPanel.Hide();
                  });
              })
+             function OnTabClick(s, e) {
+                 if (e.tab.GetText() == 'Rates or Price') {
+                     StandardAudit();
+                 } else if (e.tab.GetText() == 'Audit Contract') {
+                     AuditContract();
+                 } else {
+                     AuditOfSiteDetails();
+                 }
+             }
         </script>
 </head>
 <body onload="StandardAudit();AuditContract();AuditOfSiteDetails();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="StandardAuditPageControl" runat="server" ClientInstanceName="StandardAuditPageControl" >
+                <ClientSideEvents TabClick="OnTabClick" />
                 <TabPages>
                     <dx:TabPage Name="RatesOrPrice" Text="Rates or Price">
                         <ContentCollection>

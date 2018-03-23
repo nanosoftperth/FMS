@@ -50,12 +50,20 @@
                      GainsAndLossessSummaryLoadingPanel.Hide();
                  });
              })
+             function OnTabClick(s, e) {
+                 if (e.tab.GetText() == 'PA Value') {
+                     ShowPAReport();
+                 } else {
+                     ShowSummaryReport();
+                 }
+             }
         </script>
 </head>
 <body onload="ShowPAReport();ShowSummaryReport();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="GainsAndLossesPaSummaryPageControl" runat="server" ClientInstanceName="GainsAndLossesPaSummaryPageControl" >
+                <ClientSideEvents TabClick="OnTabClick" />
                 <TabPages>
                     <dx:TabPage Name="GainsAndLossesPA" Text="PA Value">
                         <ContentCollection>
