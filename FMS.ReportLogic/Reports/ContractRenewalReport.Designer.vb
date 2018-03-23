@@ -20,14 +20,14 @@ Partial Public Class ContractRenewalReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
-        Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim XrSummary3 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary4 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
-        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
@@ -48,30 +48,6 @@ Partial Public Class ContractRenewalReport
         Me.FieldCaption = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DataField = New DevExpress.XtraReports.UI.XRControlStyle()
-        Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
-        Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
-        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GroupHeader2 = New DevExpress.XtraReports.UI.GroupHeaderBand()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GroupHeader3 = New DevExpress.XtraReports.UI.GroupHeaderBand()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GroupFooter2 = New DevExpress.XtraReports.UI.GroupFooterBand()
-        Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
@@ -91,6 +67,30 @@ Partial Public Class ContractRenewalReport
         Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
         Me.Zone = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.DetailReport1 = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail2 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.GroupHeader4 = New DevExpress.XtraReports.UI.GroupHeaderBand()
+        Me.GroupHeader5 = New DevExpress.XtraReports.UI.GroupHeaderBand()
+        Me.GroupHeader6 = New DevExpress.XtraReports.UI.GroupHeaderBand()
+        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GroupFooter3 = New DevExpress.XtraReports.UI.GroupFooterBand()
+        Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -294,242 +294,6 @@ Partial Public Class ContractRenewalReport
         Me.DataField.Name = "DataField"
         Me.DataField.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         '
-        'DetailReport
-        '
-        Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1, Me.GroupHeader1, Me.GroupHeader2, Me.GroupHeader3, Me.GroupFooter2})
-        Me.DetailReport.DataSource = Me.ObjectDataSource1
-        Me.DetailReport.Level = 0
-        Me.DetailReport.Name = "DetailReport"
-        '
-        'Detail1
-        '
-        Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel3, Me.XrLabel7, Me.XrLabel6, Me.XrLabel4})
-        Me.Detail1.HeightF = 25.00001!
-        Me.Detail1.Name = "Detail1"
-        '
-        'XrLabel11
-        '
-        Me.XrLabel11.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.PerAnnumCharge", "{0:0.00}")})
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(566.9167!, 0!)
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(77.08325!, 23.0!)
-        Me.XrLabel11.Text = "XrLabel11"
-        '
-        'XrLabel10
-        '
-        Me.XrLabel10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceUnits")})
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(524.9999!, 0!)
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(38.54163!, 23.0!)
-        Me.XrLabel10.Text = "XrLabel10"
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteContactPhone")})
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(414.5833!, 0!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XrLabel9.Text = "XrLabel9"
-        '
-        'XrLabel3
-        '
-        Me.XrLabel3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteName")})
-        Me.XrLabel3.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(125.0!, 23.0!)
-        Me.XrLabel3.StylePriority.UseFont = False
-        Me.XrLabel3.Text = "XrLabel3"
-        '
-        'XrLabel7
-        '
-        Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteStartDate", "{0:MM/dd/yyyy}")})
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(136.4583!, 0!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(77.08334!, 23.0!)
-        Me.XrLabel7.Text = "XrLabel7"
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ContractPeriodDesc")})
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(229.4167!, 0!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(89.58333!, 23.0!)
-        Me.XrLabel6.Text = "XrLabel6"
-        '
-        'XrLabel4
-        '
-        Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteContractExpiry", "{0:MM/dd/yyyy}")})
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(331.0!, 0!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(80.20834!, 23.0!)
-        Me.XrLabel4.Text = "XrLabel4"
-        '
-        'GroupHeader1
-        '
-        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel16, Me.XrLabel15})
-        Me.GroupHeader1.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("AreaDescription", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
-        Me.GroupHeader1.HeightF = 26.04168!
-        Me.GroupHeader1.Level = 2
-        Me.GroupHeader1.Name = "GroupHeader1"
-        '
-        'XrLabel16
-        '
-        Me.XrLabel16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.AreaDescription")})
-        Me.XrLabel16.Font = New System.Drawing.Font("Arial Narrow", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(71.875!, 0!)
-        Me.XrLabel16.Name = "XrLabel16"
-        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(229.4167!, 23.0!)
-        Me.XrLabel16.StylePriority.UseFont = False
-        Me.XrLabel16.Text = "XrLabel16"
-        '
-        'XrLabel15
-        '
-        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel15.Name = "XrLabel15"
-        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel15.SizeF = New System.Drawing.SizeF(61.70832!, 23.0!)
-        Me.XrLabel15.StylePriority.UseFont = False
-        Me.XrLabel15.StylePriority.UseForeColor = False
-        Me.XrLabel15.Text = "Zone:"
-        '
-        'GroupHeader2
-        '
-        Me.GroupHeader2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrLabel1})
-        Me.GroupHeader2.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("SiteContractExpiry", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
-        Me.GroupHeader2.HeightF = 29.16667!
-        Me.GroupHeader2.Level = 1
-        Me.GroupHeader2.Name = "GroupHeader2"
-        '
-        'XrLabel8
-        '
-        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel8.Name = "XrLabel8"
-        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(113.5417!, 23.0!)
-        Me.XrLabel8.StylePriority.UseFont = False
-        Me.XrLabel8.StylePriority.UseForeColor = False
-        Me.XrLabel8.Text = "Expiry Date:"
-        '
-        'XrLabel1
-        '
-        Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteContractExpiry", "{0:MM/dd/yyyy}")})
-        Me.XrLabel1.Font = New System.Drawing.Font("Arial Narrow", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(117.7083!, 0!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(201.2917!, 23.0!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.Text = "XrLabel1"
-        '
-        'GroupHeader3
-        '
-        Me.GroupHeader3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XrLabel12, Me.XrLabel13, Me.XrLabel14})
-        Me.GroupHeader3.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("CustomerName", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
-        Me.GroupHeader3.HeightF = 23.0!
-        Me.GroupHeader3.Name = "GroupHeader3"
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CustomerName")})
-        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(319.0!, 23.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.StylePriority.UseForeColor = False
-        Me.XrLabel2.Text = "XrLabel2"
-        '
-        'XrLabel12
-        '
-        Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(330.75!, 0!)
-        Me.XrLabel12.Name = "XrLabel12"
-        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(69.0!, 23.0!)
-        Me.XrLabel12.StylePriority.UseFont = False
-        Me.XrLabel12.StylePriority.UseForeColor = False
-        Me.XrLabel12.Text = "Contact:"
-        '
-        'XrLabel13
-        '
-        Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CustomerContactName")})
-        Me.XrLabel13.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(399.75!, 0!)
-        Me.XrLabel13.Name = "XrLabel13"
-        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel13.SizeF = New System.Drawing.SizeF(141.6667!, 23.0!)
-        Me.XrLabel13.StylePriority.UseFont = False
-        Me.XrLabel13.Text = "XrLabel13"
-        '
-        'XrLabel14
-        '
-        Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CustomerPhone")})
-        Me.XrLabel14.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(544.0!, 0!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XrLabel14.StylePriority.UseFont = False
-        Me.XrLabel14.Text = "XrLabel14"
-        '
-        'GroupFooter2
-        '
-        Me.GroupFooter2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel24, Me.XrLabel25, Me.XrLabel26})
-        Me.GroupFooter2.HeightF = 33.00001!
-        Me.GroupFooter2.Name = "GroupFooter2"
-        '
-        'XrLabel24
-        '
-        Me.XrLabel24.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceUnits")})
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(524.9999!, 10.00001!)
-        Me.XrLabel24.Name = "XrLabel24"
-        Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel24.SizeF = New System.Drawing.SizeF(38.54163!, 23.0!)
-        XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Group
-        Me.XrLabel24.Summary = XrSummary1
-        '
-        'XrLabel25
-        '
-        Me.XrLabel25.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.PerAnnumCharge")})
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(566.9167!, 10.00001!)
-        Me.XrLabel25.Name = "XrLabel25"
-        Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel25.SizeF = New System.Drawing.SizeF(77.08325!, 23.0!)
-        XrSummary2.FormatString = "{0:0.00}"
-        XrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group
-        Me.XrLabel25.Summary = XrSummary2
-        '
-        'XrLabel26
-        '
-        Me.XrLabel26.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel26.ForeColor = System.Drawing.Color.Navy
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(399.75!, 10.00001!)
-        Me.XrLabel26.Name = "XrLabel26"
-        Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel26.SizeF = New System.Drawing.SizeF(114.8333!, 23.0!)
-        Me.XrLabel26.StyleName = "Title"
-        Me.XrLabel26.StylePriority.UseFont = False
-        Me.XrLabel26.StylePriority.UseForeColor = False
-        Me.XrLabel26.StylePriority.UseTextAlignment = False
-        Me.XrLabel26.Text = "Customer Totals:"
-        Me.XrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
         'ObjectDataSource1
         '
         Me.ObjectDataSource1.DataMember = "GetContractRenewalReport"
@@ -693,9 +457,9 @@ Partial Public Class ContractRenewalReport
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel27.SizeF = New System.Drawing.SizeF(77.08325!, 23.0!)
-        XrSummary3.FormatString = "{0:0.00}"
-        XrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
-        Me.XrLabel27.Summary = XrSummary3
+        XrSummary1.FormatString = "{0:0.00}"
+        XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
+        Me.XrLabel27.Summary = XrSummary1
         '
         'XrLabel28
         '
@@ -704,8 +468,8 @@ Partial Public Class ContractRenewalReport
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel28.SizeF = New System.Drawing.SizeF(38.54163!, 23.0!)
-        XrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
-        Me.XrLabel28.Summary = XrSummary4
+        XrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
+        Me.XrLabel28.Summary = XrSummary2
         '
         'XrLabel29
         '
@@ -745,9 +509,246 @@ Partial Public Class ContractRenewalReport
         Me.Zone.LookUpSettings = DynamicListLookUpSettings1
         Me.Zone.Name = "Zone"
         '
+        'DetailReport1
+        '
+        Me.DetailReport1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail2, Me.GroupHeader4, Me.GroupHeader5, Me.GroupHeader6, Me.GroupFooter3})
+        Me.DetailReport1.DataMember = "LineValues"
+        Me.DetailReport1.DataSource = Me.ObjectDataSource1
+        Me.DetailReport1.Level = 0
+        Me.DetailReport1.Name = "DetailReport1"
+        '
+        'Detail2
+        '
+        Me.Detail2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrLabel7, Me.XrLabel6, Me.XrLabel4, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11})
+        Me.Detail2.HeightF = 26.04167!
+        Me.Detail2.Name = "Detail2"
+        '
+        'GroupHeader4
+        '
+        Me.GroupHeader4.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel15, Me.XrLabel16})
+        Me.GroupHeader4.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("AreaDescription", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
+        Me.GroupHeader4.HeightF = 29.16667!
+        Me.GroupHeader4.Level = 2
+        Me.GroupHeader4.Name = "GroupHeader4"
+        '
+        'GroupHeader5
+        '
+        Me.GroupHeader5.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrLabel1})
+        Me.GroupHeader5.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("SiteContractExpiry", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
+        Me.GroupHeader5.HeightF = 28.125!
+        Me.GroupHeader5.Level = 1
+        Me.GroupHeader5.Name = "GroupHeader5"
+        '
+        'GroupHeader6
+        '
+        Me.GroupHeader6.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XrLabel12, Me.XrLabel13, Me.XrLabel14})
+        Me.GroupHeader6.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("CustomerName", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
+        Me.GroupHeader6.HeightF = 29.16667!
+        Me.GroupHeader6.Name = "GroupHeader6"
+        '
+        'XrLabel15
+        '
+        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel15.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel15.Name = "XrLabel15"
+        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel15.SizeF = New System.Drawing.SizeF(61.70832!, 23.0!)
+        Me.XrLabel15.StylePriority.UseFont = False
+        Me.XrLabel15.StylePriority.UseForeColor = False
+        Me.XrLabel15.Text = "Zone:"
+        '
+        'XrLabel16
+        '
+        Me.XrLabel16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.AreaDescription")})
+        Me.XrLabel16.Font = New System.Drawing.Font("Arial Narrow", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(71.875!, 0!)
+        Me.XrLabel16.Name = "XrLabel16"
+        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(229.4167!, 23.0!)
+        Me.XrLabel16.StylePriority.UseFont = False
+        Me.XrLabel16.Text = "XrLabel16"
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(113.5417!, 23.0!)
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseForeColor = False
+        Me.XrLabel8.Text = "Expiry Date:"
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteContractExpiry", "{0:MM/dd/yyyy}")})
+        Me.XrLabel1.Font = New System.Drawing.Font("Arial Narrow", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(117.7083!, 0!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(201.2917!, 23.0!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.Text = "XrLabel1"
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CustomerName")})
+        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel2.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 0!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(319.0!, 23.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.StylePriority.UseForeColor = False
+        Me.XrLabel2.Text = "XrLabel2"
+        '
+        'XrLabel12
+        '
+        Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel12.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(330.75!, 0!)
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(69.0!, 23.0!)
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.StylePriority.UseForeColor = False
+        Me.XrLabel12.Text = "Contact:"
+        '
+        'XrLabel13
+        '
+        Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CustomerContactName")})
+        Me.XrLabel13.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(399.75!, 0!)
+        Me.XrLabel13.Name = "XrLabel13"
+        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(141.6667!, 23.0!)
+        Me.XrLabel13.StylePriority.UseFont = False
+        Me.XrLabel13.Text = "XrLabel13"
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.CustomerPhone")})
+        Me.XrLabel14.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(544.0!, 0!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel14.StylePriority.UseFont = False
+        Me.XrLabel14.Text = "XrLabel14"
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteName")})
+        Me.XrLabel3.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(125.0!, 23.0!)
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.Text = "XrLabel3"
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteStartDate", "{0:MM/dd/yyyy}")})
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(136.4583!, 0!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(77.08334!, 23.0!)
+        Me.XrLabel7.Text = "XrLabel7"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ContractPeriodDesc")})
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(229.4167!, 0!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(89.58333!, 23.0!)
+        Me.XrLabel6.Text = "XrLabel6"
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteContractExpiry", "{0:MM/dd/yyyy}")})
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(331.0!, 0!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(80.20834!, 23.0!)
+        Me.XrLabel4.Text = "XrLabel4"
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.SiteContactPhone")})
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(414.5833!, 0!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel9.Text = "XrLabel9"
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceUnits")})
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(524.9998!, 0!)
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(38.54163!, 23.0!)
+        Me.XrLabel10.Text = "XrLabel10"
+        '
+        'XrLabel11
+        '
+        Me.XrLabel11.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.PerAnnumCharge", "{0:0.00}")})
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(566.9166!, 0!)
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(77.08325!, 23.0!)
+        Me.XrLabel11.Text = "XrLabel11"
+        '
+        'GroupFooter3
+        '
+        Me.GroupFooter3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel26, Me.XrLabel24, Me.XrLabel25})
+        Me.GroupFooter3.HeightF = 41.66667!
+        Me.GroupFooter3.Name = "GroupFooter3"
+        '
+        'XrLabel26
+        '
+        Me.XrLabel26.Font = New System.Drawing.Font("Times New Roman", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel26.ForeColor = System.Drawing.Color.Navy
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(399.7499!, 10.00001!)
+        Me.XrLabel26.Name = "XrLabel26"
+        Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel26.SizeF = New System.Drawing.SizeF(114.8333!, 23.0!)
+        Me.XrLabel26.StyleName = "Title"
+        Me.XrLabel26.StylePriority.UseFont = False
+        Me.XrLabel26.StylePriority.UseForeColor = False
+        Me.XrLabel26.StylePriority.UseTextAlignment = False
+        Me.XrLabel26.Text = "Customer Totals:"
+        Me.XrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XrLabel24
+        '
+        Me.XrLabel24.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.ServiceUnits")})
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(524.9998!, 10.00001!)
+        Me.XrLabel24.Name = "XrLabel24"
+        Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel24.SizeF = New System.Drawing.SizeF(38.54163!, 23.0!)
+        XrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Group
+        Me.XrLabel24.Summary = XrSummary3
+        '
+        'XrLabel25
+        '
+        Me.XrLabel25.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "LineValues.PerAnnumCharge")})
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(566.9166!, 10.00001!)
+        Me.XrLabel25.Name = "XrLabel25"
+        Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel25.SizeF = New System.Drawing.SizeF(77.08325!, 23.0!)
+        XrSummary4.FormatString = "{0:0.00}"
+        XrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Group
+        Me.XrLabel25.Summary = XrSummary4
+        '
         'ContractRenewalReport
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.DetailReport, Me.PageHeader, Me.GroupFooter1, Me.ReportFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooterBand1, Me.ReportHeaderBand1, Me.PageHeader, Me.GroupFooter1, Me.ReportFooter, Me.DetailReport1})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
         Me.DataSource = Me.ObjectDataSource1
         Me.FilterString = "[LineValues][[AreaDescription] = ?Parameter1]"
@@ -772,26 +773,6 @@ Partial Public Class ContractRenewalReport
     Friend WithEvents FieldCaption As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents PageInfo As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents DataField As DevExpress.XtraReports.UI.XRControlStyle
-    Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
-    Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
-    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents GroupHeader1 As DevExpress.XtraReports.UI.GroupHeaderBand
-    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents GroupHeader2 As DevExpress.XtraReports.UI.GroupHeaderBand
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents GroupHeader3 As DevExpress.XtraReports.UI.GroupHeaderBand
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
     Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel22 As DevExpress.XtraReports.UI.XRLabel
@@ -803,9 +784,6 @@ Partial Public Class ContractRenewalReport
     Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents GroupFooter1 As DevExpress.XtraReports.UI.GroupFooterBand
-    Friend WithEvents XrLabel26 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel25 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrLabel27 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel28 As DevExpress.XtraReports.UI.XRLabel
@@ -817,10 +795,33 @@ Partial Public Class ContractRenewalReport
     Friend WithEvents XrLabel35 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel34 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel36 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents GroupFooter2 As DevExpress.XtraReports.UI.GroupFooterBand
     Friend WithEvents ObjectDataSource1 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents StartDate As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents EndDate As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents ObjectDataSource2 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents Zone As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents DetailReport1 As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail2 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GroupHeader4 As DevExpress.XtraReports.UI.GroupHeaderBand
+    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GroupHeader5 As DevExpress.XtraReports.UI.GroupHeaderBand
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GroupHeader6 As DevExpress.XtraReports.UI.GroupHeaderBand
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GroupFooter3 As DevExpress.XtraReports.UI.GroupFooterBand
+    Friend WithEvents XrLabel26 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel25 As DevExpress.XtraReports.UI.XRLabel
 End Class

@@ -24,17 +24,17 @@
                  });
              }
 
-             $(window).resize(function () {
-                 AdjustWindowHeightAndWidth();
-             })
+             //$(window).resize(function () {
+             //    AdjustWindowHeightAndWidth();
+             //})
 
              function ShowRunListingReport() {
-                AdjustWindowHeightAndWidth();
+                //AdjustWindowHeightAndWidth();
                 RunListingLoadingPanel.Show();
                 $("#frmContentRunListing").attr("src", "../ReportContentPage.aspx?Report=RunListingReport");
              }
              function ShowRunListingByNumberReport() {
-                 AdjustWindowHeightAndWidth();
+                 //AdjustWindowHeightAndWidth();
                  RunListingByNumberLoadingPanel.Show();
                  $("#frmContentRunListingByNumber").attr("src", "../ReportContentPage.aspx?Report=RunListingByRunNumberReport");
              }
