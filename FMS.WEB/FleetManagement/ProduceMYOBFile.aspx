@@ -91,7 +91,7 @@
                 var hv = getCookie('showLP');
 
                 if (hv == 'NO') {
-                    lpProcess.Hide();
+                    lpProcess.Hide();                   
                 }
                 else
                 {

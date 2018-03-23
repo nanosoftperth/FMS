@@ -43,10 +43,11 @@
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
             <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
-            <SettingsPopup>
+            <SettingsPopup>               
                 <EditForm  Modal="true" 
                     VerticalAlign="WindowCenter" 
-                    HorizontalAlign="WindowCenter" width="700px" />
+                    HorizontalAlign="WindowCenter" width="700px"
+                    Height="450px"/>               
             </SettingsPopup>
             <ClientSideEvents CustomButtonClick="OnCustomButtonClick" /> 
             <Columns>
@@ -88,8 +89,7 @@
                     </Columns>                   
                 </dx:GridViewBandColumn>
                 <dx:GridViewBandColumn Caption="Main Menu Items" HeaderStyle-HorizontalAlign="Center">
-                    <Columns>
-                       
+                    <Columns>                       
                         <dx:GridViewDataCheckColumn FieldName="lblCustomerDetails" VisibleIndex="5" Visible="true" Caption="Customer Details"></dx:GridViewDataCheckColumn>
                         <dx:GridViewDataCheckColumn FieldName="lblSites" VisibleIndex="6" Visible="true" Caption="Sites"></dx:GridViewDataCheckColumn>
                         <dx:GridViewDataCheckColumn FieldName="lblMaintenance" VisibleIndex="7" Visible="true" Caption="Maintenance"></dx:GridViewDataCheckColumn>
@@ -140,7 +140,7 @@
                 
             </Columns>
             <EditFormLayoutProperties>
-                <Items>
+                <Items>                   
                     <dx:GridViewLayoutGroup GroupBoxDecoration="Box" Caption="User" ColCount="2" Width="600px">
                         <Items>
                             <dx:GridViewColumnLayoutItem ColumnName="txtUserName" />
