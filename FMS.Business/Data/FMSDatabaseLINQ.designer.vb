@@ -1756,6 +1756,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, cardID)
 		Return CType(result.ReturnValue,Integer)
 	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetDriverComments")>  _
+	Public Function usp_GetDriverComments(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Did", DbType:="SmallInt")> ByVal did As System.Nullable(Of Short)) As ISingleResult(Of usp_GetDriverCommentsResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), did)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetDriverCommentsResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.[AlertSubscriber.deleteme]")>  _
@@ -38783,6 +38789,99 @@ Partial Public Class usp_GetRateIncreaseCuaReportResult
 		Set
 			If (String.Equals(Me._ServiceDescription, value) = false) Then
 				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetDriverCommentsResult
+	
+	Private _Did As Integer
+	
+	Private _Aid As Integer
+	
+	Private _CommentDate As System.Nullable(Of Date)
+	
+	Private _CommentReason As System.Nullable(Of Short)
+	
+	Private _Comments As String
+	
+	Private _CommentDescription As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Did", DbType:="Int NOT NULL")>  _
+	Public Property Did() As Integer
+		Get
+			Return Me._Did
+		End Get
+		Set
+			If ((Me._Did = value)  _
+						= false) Then
+				Me._Did = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Aid", DbType:="Int NOT NULL")>  _
+	Public Property Aid() As Integer
+		Get
+			Return Me._Aid
+		End Get
+		Set
+			If ((Me._Aid = value)  _
+						= false) Then
+				Me._Aid = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDate", DbType:="DateTime")>  _
+	Public Property CommentDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CommentDate
+		End Get
+		Set
+			If (Me._CommentDate.Equals(value) = false) Then
+				Me._CommentDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentReason", DbType:="SmallInt")>  _
+	Public Property CommentReason() As System.Nullable(Of Short)
+		Get
+			Return Me._CommentReason
+		End Get
+		Set
+			If (Me._CommentReason.Equals(value) = false) Then
+				Me._CommentReason = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Comments", DbType:="NVarChar(MAX)")>  _
+	Public Property Comments() As String
+		Get
+			Return Me._Comments
+		End Get
+		Set
+			If (String.Equals(Me._Comments, value) = false) Then
+				Me._Comments = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CommentDescription", DbType:="NVarChar(25)")>  _
+	Public Property CommentDescription() As String
+		Get
+			Return Me._CommentDescription
+		End Get
+		Set
+			If (String.Equals(Me._CommentDescription, value) = false) Then
+				Me._CommentDescription = value
 			End If
 		End Set
 	End Property

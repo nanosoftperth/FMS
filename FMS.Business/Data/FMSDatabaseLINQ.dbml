@@ -2596,4 +2596,15 @@
     <Parameter Name="CardID" Parameter="cardID" Type="System.String" DbType="NVarChar(255)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.usp_GetDriverComments" Method="usp_GetDriverComments">
+    <Parameter Name="Did" Parameter="did" Type="System.Int16" DbType="SmallInt" />
+    <ElementType Name="usp_GetDriverCommentsResult">
+      <Column Name="Did" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Aid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CommentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CommentReason" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentDescription" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
