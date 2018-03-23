@@ -20,12 +20,12 @@
                  })
              }
 
-             $(window).resize(function () {
-                 AdjustWindowHeightAndWidth();
-             })
+             //$(window).resize(function () {
+             //    AdjustWindowHeightAndWidth();
+             //})
 
              function ShowReport() {
-                 AdjustWindowHeightAndWidth();
+                 //AdjustWindowHeightAndWidth();
                  LoadingPanel.Show();
                  $("#frmContent").attr("src", "../ReportContentPage.aspx?Report=RunValueSummaryReport");
              }

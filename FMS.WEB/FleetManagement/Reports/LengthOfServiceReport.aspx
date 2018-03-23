@@ -20,12 +20,12 @@
                  })
              }
 
-             $(window).resize(function () {
-                 AdjustWindowHeightAndWidth();
-             })
+             //$(window).resize(function () {
+             //    AdjustWindowHeightAndWidth();
+             //})
 
              function ShowReport() {
-                AdjustWindowHeightAndWidth();
+                //AdjustWindowHeightAndWidth();
                 LoadingPanel.Show();
                 $("#frmContent").attr("src", "../ReportContentPage.aspx?Report=LengthOfServiceReport");
              }
@@ -41,7 +41,7 @@
 <body onload="ShowReport()">
     <form id="form1" runat="server">
         <div>
-            <iframe id="frmContent" src="" style="height:88.5vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
+            <iframe id="frmContent" src="" style="height:96vh; width:190vh; border: none; overflow-y: visible;" class="row"></iframe>
         </div>
         <div>
             <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel"

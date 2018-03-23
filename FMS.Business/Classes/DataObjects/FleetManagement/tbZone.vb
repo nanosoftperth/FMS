@@ -58,12 +58,40 @@
 
                 With New LINQtoSQLClassesDataContext
                     objZones = (From c In .tbZones
+                                Where c.ApplicationID.Equals(ThisSession.ApplicationID)
                                 Order By c.AreaDescription
                                 Select New DataObjects.tbZone(c)).ToList
                     .Dispose()
                 End With
 
                 Return objZones
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+        End Function
+        Public Shared Function GetAllWithBlank() As List(Of DataObjects.tbZone)
+            Try
+                Dim objZones As New List(Of DataObjects.tbZone)
+
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .tbZones
+                                Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                Order By c.AreaDescription
+                                Select New DataObjects.tbZone(c)).ToList
+                    .Dispose()
+                End With
+                Dim listZones As New List(Of DataObjects.tbZone)
+                Dim listZoneEmpty As New DataObjects.tbZone
+                listZoneEmpty.Aid = 0
+                listZoneEmpty.AreaDescription = ""
+                listZones.Add(listZoneEmpty)
+                For Each row In objZones
+                    listZones.Add(row)
+                Next
+
+                Return listZones
 
             Catch ex As Exception
                 Throw ex

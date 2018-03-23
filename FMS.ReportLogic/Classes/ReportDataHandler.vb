@@ -20,7 +20,7 @@ Public Class ReportDataHandler
         Return FMS.Business.DataObjects.tblIndustryGroups.GetAll()
     End Function
     Public Shared Function GetZoneList() As List(Of FMS.Business.DataObjects.tbZone)
-        Return FMS.Business.DataObjects.tbZone.GetAll()
+        Return FMS.Business.DataObjects.tbZone.GetAllWithBlank()
     End Function
     Public Shared Function GetRunList() As List(Of FMS.Business.DataObjects.tblRuns)
         Return FMS.Business.DataObjects.tblRuns.GetTblRuns()
