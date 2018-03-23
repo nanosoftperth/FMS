@@ -53,7 +53,7 @@
                 <dx:GridViewDataTextColumn FieldName="IId" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="InvoiceId" VisibleIndex="3" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Frequency" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="NoOfWeeks" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                <dx:GridViewDataSpinEditColumn FieldName="NoOfWeeks" VisibleIndex="5"></dx:GridViewDataSpinEditColumn>
             </Columns>
         </dx:ASPxGridView>
         <dx:ASPxPopupControl ID="DeleteDialog" runat="server" Text="Are you sure you want to delete this?" 
