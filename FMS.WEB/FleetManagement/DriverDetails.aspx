@@ -45,7 +45,9 @@
         <dx:ASPxGridView ID="gvDriver" runat="server" AutoGenerateColumns="false" 
             KeyFieldName="DriverID" DataSourceID="odsDriver" Width="100%"
             OnHtmlRowPrepared="gvDriver_HtmlRowPrepared" 
-            OnStartRowEditing="gvDriver_StartRowEditing" OnInitNewRow="gvDriver_InitNewRow"
+            OnStartRowEditing="gvDriver_StartRowEditing" 
+            OnInitNewRow="gvDriver_InitNewRow"
+            OnDetailRowExpandedChanged="gvDriver_DetailRowExpandedChanged"
             Theme="SoftOrange" ClientInstanceName="cltgvDriver">
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
@@ -306,10 +308,14 @@
             TypeName="FMS.Business.DataObjects.tblDrivers" 
             DataObjectTypeName="FMS.Business.DataObjects.tblDrivers" 
             DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
-        <asp:ObjectDataSource ID="odsDriverComments" runat="server" SelectMethod="GetAllPerApplication" 
+        <asp:ObjectDataSource ID="odsDriverComments" runat="server" SelectMethod="GetAllPerDriver" 
             TypeName="FMS.Business.DataObjects.tblDriverComments" 
             DataObjectTypeName="FMS.Business.DataObjects.tblDriverComments" 
-            DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update"></asp:ObjectDataSource>
+            DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">
+            <SelectParameters>
+                <asp:SessionParameter Name="Did" SessionField="CommentDID" Type="Int32" />
+            </SelectParameters>
+        </asp:ObjectDataSource>
         <asp:ObjectDataSource ID="odsDriverCommentsReason" runat="server" SelectMethod="GetAllPerApplication" 
             TypeName="FMS.Business.DataObjects.tblDriverCommentsReason" 
             DataObjectTypeName="FMS.Business.DataObjects.tblDriverCommentsReason" 

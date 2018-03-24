@@ -88,6 +88,25 @@
             End Try
 
         End Function
+
+        Public Shared Function GetAllPerDriver(Aid As Integer) As List(Of DataObjects.tblDriverCommentsReason)
+            Try
+                Dim appID = ThisSession.ApplicationID
+                Dim obj As New List(Of DataObjects.tblDriverCommentsReason)
+                With New LINQtoSQLClassesDataContext
+                    obj = (From d In .tblDriverCommentsReasons
+                           Where d.ApplicationId = appID And d.Aid = Aid
+                           Order By d.CommentDescription
+                           Select New DataObjects.tblDriverCommentsReason(d)).ToList
+                    .Dispose()
+                End With
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+        End Function
 #End Region
 
     End Class

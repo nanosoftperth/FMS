@@ -2,6 +2,7 @@
 
 Public Class DriverDetails
     Inherits System.Web.UI.Page
+    Private priDID As Integer = 0
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -63,5 +64,13 @@ Public Class DriverDetails
 
     Protected Sub gvComments_StartRowEditing(sender As Object, e As Data.ASPxStartRowEditingEventArgs)
         sender.SettingsText.PopupEditFormCaption = "Edit Driver Comment"
+    End Sub
+
+    Protected Sub gvDriver_DetailRowExpandedChanged(sender As Object, e As ASPxGridViewDetailRowEventArgs)
+        Dim ndx = e.VisibleIndex()
+
+        priDID = sender.GetRowValues(ndx, "Did").ToString()
+
+        Session("CommentDID") = priDID
     End Sub
 End Class
