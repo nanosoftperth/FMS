@@ -3,6 +3,7 @@
 Public Class DriverDetails
     Inherits System.Web.UI.Page
     Private priDID As Integer = 0
+    Private priCommentReasonID As Integer = 0
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -71,6 +72,24 @@ Public Class DriverDetails
 
         priDID = sender.GetRowValues(ndx, "Did").ToString()
 
+        If (sender.GetRowValues(ndx, "CommentReason") = Nothing) Then
+            priCommentReasonID = 0
+        Else
+            priCommentReasonID = sender.GetRowValues(ndx, "CommentReason")
+        End If
+
+
+
         Session("CommentDID") = priDID
+    End Sub
+
+    Protected Sub gvComments_RowInserting(sender As Object, e As Data.ASPxDataInsertingEventArgs)
+        'Dim column = CType(gvDriver.Columns("Did"), GridViewDataColumn)
+        ''Dim lookup = CType(gvDriver.FindEditRowCellTemplateControl(column, "luBusinessLocation"), ASPxTextBox)
+        'Dim tags = gvDriver.GetSelectedFieldValues()
+
+        'Dim val = gvDriver.GetRowValuesByKeyValue(e.NewValues, "Did").ToString()
+
+        e.NewValues("Did") = Session("CommentDID")
     End Sub
 End Class

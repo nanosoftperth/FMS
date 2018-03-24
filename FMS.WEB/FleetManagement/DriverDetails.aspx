@@ -17,6 +17,10 @@
                 popupDelete_Main.SetHeaderText("Delete Item");
                 popupDelete_Main.Show();
             }
+            if (item == 'Comments') {
+                popupDelete_Comments.SetHeaderText("Delete Item");
+                popupDelete_Comments.Show();
+            }
             if (item == 'CommentReason') {
                 popupDelete_CommentReason.SetHeaderText("Delete Item");
                 popupDelete_CommentReason.Show();
@@ -27,6 +31,10 @@
             if (item == 'Main') {
                 cltgvDriver.DeleteRow(visibleIndex);
                 popupDelete_Main.Hide();
+            }
+            if (item == 'Comments') {
+                cltgvComments.DeleteRow(visibleIndex);
+                popupDelete_Comments.Hide();
             }
             if (item == 'CommentReason') {
                 cltgvDriverCommentReason.DeleteRow(visibleIndex);
@@ -84,7 +92,9 @@
                     <br />
                     <dx:ASPxGridView ID="gvComments" runat="server" AutoGenerateColumns="false" 
                         KeyFieldName="Aid" DataSourceID="odsDriverComments" Width="100%" Theme="SoftOrange"
-                        OnStartRowEditing="gvComments_StartRowEditing" ClientInstanceName="cltgvComments">
+                        OnStartRowEditing="gvComments_StartRowEditing" 
+                        OnRowInserting="gvComments_RowInserting"
+                        ClientInstanceName="cltgvComments">
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
                         <SettingsPopup>
