@@ -48,12 +48,20 @@
                      RunListingByNumberLoadingPanel.Hide();
                  });
              })
+             function OnTabClick(s, e) {
+                 if (e.tab.GetText() == 'Run Listing') {
+                     ShowRunListingReport();
+                 } else {
+                     ShowRunListingByNumberReport();
+                 }
+             }
         </script>
 </head>
-<body onload="ShowRunListingReport();ShowRunListingByNumberReport();">
+<body onload="ShowRunListingReport();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="RunListingsPageControl" runat="server" ClientInstanceName="RunListingsPageControl" >
+                <ClientSideEvents TabClick="OnTabClick" />
                 <TabPages>
                     <dx:TabPage Name="RunListing" Text="Run Listing">
                         <ContentCollection>

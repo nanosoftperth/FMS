@@ -60,7 +60,7 @@
             }
         </script>
 </head>
-<body onload="ShowGainsAndLossesReport();ShowGainsAndLossessSummaryReport();">
+<body onload="ShowGainsAndLossesReport();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="GainsAndLossesPageControl" runat="server" ClientInstanceName="RunListingsPageControl" >
