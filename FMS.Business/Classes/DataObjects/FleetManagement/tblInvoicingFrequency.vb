@@ -55,10 +55,8 @@
 
                 .tblInvoicingFrequencies.DeleteOnSubmit(obj)
                 .SubmitChanges()
+                .Dispose()
             End With
-
-
-
         End Sub
 #End Region
 #Region "Get methods"

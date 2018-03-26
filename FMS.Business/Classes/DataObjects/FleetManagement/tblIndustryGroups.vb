@@ -9,57 +9,90 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(IndustryGroup As DataObjects.tblIndustryGroups)
-            Dim objIndustryGroup As New FMS.Business.tblIndustryGroup
-            With objIndustryGroup
-                .IndustryID = Guid.NewGuid
-                .Aid = tblProjectID.IndustryGroupIDCreateOrUpdate(IndustryGroup.ApplicationID)
-                .ApplicationID = IndustryGroup.ApplicationID
-                .IndustryDescription = IndustryGroup.IndustryDescription
+            With New LINQtoSQLClassesDataContext
+                Dim objIndustryGroup As New FMS.Business.tblIndustryGroup
+                With objIndustryGroup
+                    .IndustryID = Guid.NewGuid
+                    .Aid = tblProjectID.IndustryGroupIDCreateOrUpdate(IndustryGroup.ApplicationID)
+                    .ApplicationID = IndustryGroup.ApplicationID
+                    .IndustryDescription = IndustryGroup.IndustryDescription
+                End With
+                .tblIndustryGroups.InsertOnSubmit(objIndustryGroup)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblIndustryGroups.InsertOnSubmit(objIndustryGroup)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(IndustryGroup As DataObjects.tblIndustryGroups)
-            Dim objIndustryGroup As FMS.Business.tblIndustryGroup = (From c In SingletonAccess.FMSDataContextContignous.tblIndustryGroups
-                                                           Where c.IndustryID.Equals(IndustryGroup.IndustryID) And c.ApplicationID.Equals(IndustryGroup.ApplicationID)).SingleOrDefault
-            With objIndustryGroup
-                .IndustryDescription = IndustryGroup.IndustryDescription
+            With New LINQtoSQLClassesDataContext
+                Dim objIndustryGroup As FMS.Business.tblIndustryGroup = (From c In .tblIndustryGroups
+                                                                         Where c.IndustryID.Equals(IndustryGroup.IndustryID) And c.ApplicationID.Equals(IndustryGroup.ApplicationID)).SingleOrDefault
+                With objIndustryGroup
+                    .IndustryDescription = IndustryGroup.IndustryDescription
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(IndustryGroup As DataObjects.tblIndustryGroups)
-            Dim objIndustryGroup As FMS.Business.tblIndustryGroup = (From c In SingletonAccess.FMSDataContextContignous.tblIndustryGroups
-                                                         Where c.IndustryID.Equals(IndustryGroup.IndustryID) And c.ApplicationID.Equals(IndustryGroup.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblIndustryGroups.DeleteOnSubmit(objIndustryGroup)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objIndustryGroup As FMS.Business.tblIndustryGroup = (From c In .tblIndustryGroups
+                                                                         Where c.IndustryID.Equals(IndustryGroup.IndustryID) And c.ApplicationID.Equals(IndustryGroup.ApplicationID)).SingleOrDefault
+                .tblIndustryGroups.DeleteOnSubmit(objIndustryGroup)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblIndustryGroups)
-            Dim objIndustryGroups = (From c In SingletonAccess.FMSDataContextContignous.tblIndustryGroups
-                            Order By c.IndustryDescription
-                            Select New DataObjects.tblIndustryGroups(c)).ToList
-            Return objIndustryGroups
+            Try
+                Dim objIndustryGroups As New List(Of DataObjects.tblIndustryGroups)
+                With New LINQtoSQLClassesDataContext
+                    objIndustryGroups = (From c In .tblIndustryGroups
+                                         Order By c.IndustryDescription
+                                         Select New DataObjects.tblIndustryGroups(c)).ToList
+                    .Dispose()
+                End With
+                Return objIndustryGroups
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tblIndustryGroups)
-            Dim objIndustryGroups = (From c In SingletonAccess.FMSDataContextContignous.tblIndustryGroups
-                                    Where c.ApplicationID.Equals(appID)
-                                    Order By c.IndustryDescription
-                                    Select New DataObjects.tblIndustryGroups(c)).ToList
-            Return objIndustryGroups
+            Try
+                Dim objIndustryGroups As New List(Of DataObjects.tblIndustryGroups)
+                With New LINQtoSQLClassesDataContext
+                    objIndustryGroups = (From c In .tblIndustryGroups
+                                         Where c.ApplicationID.Equals(appID)
+                                         Order By c.IndustryDescription
+                                         Select New DataObjects.tblIndustryGroups(c)).ToList
+                    .Dispose()
+                End With
+                Return objIndustryGroups
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetIndustryGroupSortOrder(aID As Integer, appID As System.Guid) As DataObjects.tblIndustryGroups
-            Dim objIndustryGroup = (From c In SingletonAccess.FMSDataContextContignous.usp_GetIndustryGroup
-                            Where c.Aid.Equals(aID) And c.ApplicationID.Equals(appID)
-                            Order By c.IndustryDescription
-                            Select New DataObjects.tblIndustryGroups() With {.Aid = c.Aid, .IndustryDescription = c.IndustryDescription,
-                                                                             .IndustryID = c.IndustryID, .IndustrySortOrder = c.SortOrder}).SingleOrDefault
-            Return objIndustryGroup
+            Try
+                Dim objIndustryGroup As New DataObjects.tblIndustryGroups
+                With New LINQtoSQLClassesDataContext
+                    objIndustryGroup = (From c In .usp_GetIndustryGroup
+                                        Where c.Aid.Equals(aID) And c.ApplicationID.Equals(appID)
+                                        Order By c.IndustryDescription
+                                        Select New DataObjects.tblIndustryGroups() With {.Aid = c.Aid, .IndustryDescription = c.IndustryDescription,
+                                                                                         .IndustryID = c.IndustryID, .IndustrySortOrder = c.SortOrder}).SingleOrDefault
+                    .Dispose()
+                End With
+                Return objIndustryGroup
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
 #End Region
 #Region "Constructors"
-            Public Sub New()
+        Public Sub New()
 
             End Sub
         Public Sub New(objTblIndustryGroup As FMS.Business.tblIndustryGroup)

@@ -58,11 +58,8 @@
                                                        Where c.FuelLevyID.Equals(FuelLevy.FuelLevyID) And c.ApplicationId = appID).SingleOrDefault
                 .tblFuelLevies.DeleteOnSubmit(obj)
                 .SubmitChanges()
-
+                .Dispose()
             End With
-
-
-
         End Sub
 #End Region
 #Region "Get methods"

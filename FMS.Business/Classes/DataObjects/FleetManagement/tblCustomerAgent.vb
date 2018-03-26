@@ -8,44 +8,70 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(CustomerAgent As DataObjects.tblCustomerAgent)
-            Dim objCustomerAgent As New FMS.Business.tblCustomerAgent
-            With objCustomerAgent
-                .CustomerAgentID = Guid.NewGuid
-                .AID = tblProjectID.CustomerAgentIDCreateOrUpdate(CustomerAgent.ApplicationID)
-                .ApplicationID = CustomerAgent.ApplicationID
-                .CustomerAgentName = CustomerAgent.CustomerAgentName
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomerAgent As New FMS.Business.tblCustomerAgent
+                With objCustomerAgent
+                    .CustomerAgentID = Guid.NewGuid
+                    .AID = tblProjectID.CustomerAgentIDCreateOrUpdate(CustomerAgent.ApplicationID)
+                    .ApplicationID = CustomerAgent.ApplicationID
+                    .CustomerAgentName = CustomerAgent.CustomerAgentName
+                End With
+                .tblCustomerAgents.InsertOnSubmit(objCustomerAgent)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblCustomerAgents.InsertOnSubmit(objCustomerAgent)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(CustomerAgent As DataObjects.tblCustomerAgent)
-            Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                                                           Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID) And c.ApplicationID.Equals(CustomerAgent.ApplicationID)).SingleOrDefault
-            With objCustomerAgent
-                .CustomerAgentName = CustomerAgent.CustomerAgentName
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In .tblCustomerAgents
+                                                                         Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID) And c.ApplicationID.Equals(CustomerAgent.ApplicationID)).SingleOrDefault
+                With objCustomerAgent
+                    .CustomerAgentName = CustomerAgent.CustomerAgentName
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(CustomerAgent As DataObjects.tblCustomerAgent)
-            Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                                                         Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID) And c.ApplicationID.Equals(CustomerAgent.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblCustomerAgents.DeleteOnSubmit(objCustomerAgent)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objCustomerAgent As FMS.Business.tblCustomerAgent = (From c In .tblCustomerAgents
+                                                                         Where c.CustomerAgentID.Equals(CustomerAgent.CustomerAgentID) And c.ApplicationID.Equals(CustomerAgent.ApplicationID)).SingleOrDefault
+                .tblCustomerAgents.DeleteOnSubmit(objCustomerAgent)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblCustomerAgent)
-            Dim objCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                            Order By c.CustomerAgentName
-                                          Select New DataObjects.tblCustomerAgent(c)).ToList
-            Return objCustomerAgent
+            Try
+                Dim objCustomerAgent As New List(Of DataObjects.tblCustomerAgent)
+                With New LINQtoSQLClassesDataContext
+                    objCustomerAgent = (From c In .tblCustomerAgents
+                                        Order By c.CustomerAgentName
+                                        Select New DataObjects.tblCustomerAgent(c)).ToList
+                    .Dispose()
+                End With
+
+                Return objCustomerAgent
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetAllByApplicationID(appID As System.Guid) As List(Of DataObjects.tblCustomerAgent)
-            Dim objCustomerAgent = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerAgents
-                                    Where c.ApplicationID.Equals(appID)
-                                    Order By c.CustomerAgentName
-                                          Select New DataObjects.tblCustomerAgent(c)).ToList
-            Return objCustomerAgent
+            Try
+                Dim objCustomerAgent As New List(Of DataObjects.tblCustomerAgent)
+                With New LINQtoSQLClassesDataContext
+                    objCustomerAgent = (From c In .tblCustomerAgents
+                                        Where c.ApplicationID.Equals(appID)
+                                        Order By c.CustomerAgentName
+                                        Select New DataObjects.tblCustomerAgent(c)).ToList
+                    .Dispose()
+                End With
+                Return objCustomerAgent
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"
