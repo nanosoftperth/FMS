@@ -11,38 +11,47 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(CustomerRate As DataObjects.tblCustomerRating)
-            Dim appId = ThisSession.ApplicationID
-            Dim objCustomerRating As New FMS.Business.tblCustomerRating
-            With objCustomerRating
-                .ApplicationId = appId
-                .CustomerRatingID = Guid.NewGuid
-                .Rid = tblProjectID.CustomerRatingIDCreateOrUpdate(appId)
-                .CustomerRating = CustomerRate.CustomerRating
-                .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
-                .FromValue = CustomerRate.FromValue
-                .ToValue = CustomerRate.ToValue
+            With New LINQtoSQLClassesDataContext
+                Dim appId = ThisSession.ApplicationID
+                Dim objCustomerRating As New FMS.Business.tblCustomerRating
+                With objCustomerRating
+                    .ApplicationId = appId
+                    .CustomerRatingID = Guid.NewGuid
+                    .Rid = tblProjectID.CustomerRatingIDCreateOrUpdate(appId)
+                    .CustomerRating = CustomerRate.CustomerRating
+                    .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
+                    .FromValue = CustomerRate.FromValue
+                    .ToValue = CustomerRate.ToValue
+                End With
+                .tblCustomerRatings.InsertOnSubmit(objCustomerRating)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblCustomerRatings.InsertOnSubmit(objCustomerRating)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(CustomerRate As DataObjects.tblCustomerRating)
-            Dim appId = ThisSession.ApplicationID
-            Dim objCustomerRating As FMS.Business.tblCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
-                                                                       Where c.CustomerRatingID.Equals(CustomerRate.CustomerRatingID) And c.ApplicationId = appId).SingleOrDefault
-            With objCustomerRating
-                .CustomerRating = CustomerRate.CustomerRating
-                .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
-                .FromValue = CustomerRate.FromValue
-                .ToValue = CustomerRate.ToValue
+            With New LINQtoSQLClassesDataContext
+                Dim appId = ThisSession.ApplicationID
+                Dim objCustomerRating As FMS.Business.tblCustomerRating = (From c In .tblCustomerRatings
+                                                                           Where c.CustomerRatingID.Equals(CustomerRate.CustomerRatingID) And c.ApplicationId = appId).SingleOrDefault
+                With objCustomerRating
+                    .CustomerRating = CustomerRate.CustomerRating
+                    .CustomerRatingDesc = CustomerRate.CustomerRatingDesc
+                    .FromValue = CustomerRate.FromValue
+                    .ToValue = CustomerRate.ToValue
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(CustomerRate As DataObjects.tblCustomerRating)
-            Dim appId = ThisSession.ApplicationID
-            Dim objCustomerRating As FMS.Business.tblCustomerRating = (From c In SingletonAccess.FMSDataContextContignous.tblCustomerRatings
-                                                                       Where c.CustomerRatingID.Equals(CustomerRate.CustomerRatingID) And c.ApplicationId = appId).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblCustomerRatings.DeleteOnSubmit(objCustomerRating)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim appId = ThisSession.ApplicationID
+                Dim objCustomerRating As FMS.Business.tblCustomerRating = (From c In .tblCustomerRatings
+                                                                           Where c.CustomerRatingID.Equals(CustomerRate.CustomerRatingID) And c.ApplicationId = appId).SingleOrDefault
+                .tblCustomerRatings.DeleteOnSubmit(objCustomerRating)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
@@ -70,10 +79,10 @@
                 Dim obj As New List(Of DataObjects.tblCustomerRating)
 
                 With New LINQtoSQLClassesDataContext
-
                     obj = (From c In .tblCustomerRatings
                            Order By c.CustomerRatingDesc
                            Select New DataObjects.tblCustomerRating(c)).ToList
+                    .Dispose()
                 End With
 
                 Return obj
@@ -94,6 +103,7 @@
                            Where c.ApplicationId = appId
                            Order By c.CustomerRatingDesc
                            Select New DataObjects.tblCustomerRating(c)).ToList
+                    .Dispose()
                 End With
 
                 Return obj

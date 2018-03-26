@@ -9,18 +9,22 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(PSupplier As DataObjects.tblPreviousSuppliers)
-            Dim objTblPreviousSupplier As New FMS.Business.tblPreviousSupplier
-            Dim appId = ThisSession.ApplicationID
-            With objTblPreviousSupplier
-                .PreviousSupplierID = Guid.NewGuid
-                .ApplicationID = appId
-                .Aid = tblProjectID.PreviousSupplierIDCreateOrUpdate(appId)
-                .PreviousSupplier = PSupplier.PreviousSupplier
+            With New LINQtoSQLClassesDataContext
+                Dim objTblPreviousSupplier As New FMS.Business.tblPreviousSupplier
+                Dim appId = ThisSession.ApplicationID
+                With objTblPreviousSupplier
+                    .PreviousSupplierID = Guid.NewGuid
+                    .ApplicationID = appId
+                    .Aid = tblProjectID.PreviousSupplierIDCreateOrUpdate(appId)
+                    .PreviousSupplier = PSupplier.PreviousSupplier
+                End With
+                .tblPreviousSuppliers.InsertOnSubmit(objTblPreviousSupplier)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers.InsertOnSubmit(objTblPreviousSupplier)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(PSupplier As DataObjects.tblPreviousSuppliers)
+
             Dim objPSupplier As FMS.Business.tblPreviousSupplier = (From c In SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers
                                                                     Where c.PreviousSupplierID.Equals(PSupplier.PreviousSupplierID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
             With objPSupplier

@@ -9,10 +9,18 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblContractPeriods)
-            Dim objContractPeriod = (From c In SingletonAccess.FMSDataContextContignous.tblContractPeriods
-                            Order By c.ContractPeriodDesc
-                            Select New DataObjects.tblContractPeriods(c)).ToList
-            Return objContractPeriod
+            Try
+                Dim objContractPeriod As New List(Of DataObjects.tblContractPeriods)
+                With New LINQtoSQLClassesDataContext
+                    objContractPeriod = (From c In .tblContractPeriods
+                                         Order By c.ContractPeriodDesc
+                                         Select New DataObjects.tblContractPeriods(c)).ToList
+                    .Dispose()
+                End With
+                Return objContractPeriod
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"
