@@ -45,7 +45,7 @@
                 cid = cbCustomer.GetValue();
             }
             $("#ifrPopup").attr("scrolling", "yes");
-            $("#ifrPopup").width(860);
+            $("#ifrPopup").width(780);
             $("#ifrPopup").height(640);
             $("#ifrPopup").attr("src", httpOrigin + "/FleetManagement/CustomerDetailsMainPopup.aspx?cid=" + cid);
             ShowCustomerWindow();
@@ -59,7 +59,7 @@
             if (cbIndustryGroup.GetValue() != null) {
                 aid = cbIndustryGroup.GetValue();
             }
-            $("#ifrPopup").width(460);
+            $("#ifrPopup").width(780);
             $("#ifrPopup").height(450);
             $("#ifrPopup").attr("src", httpOrigin + "/FleetManagement/IndustryGroupPopup.aspx?aid=" + aid);
             ShowIndustryGroupWindow();
@@ -73,7 +73,7 @@
             if (cbPreviousSupplier.GetValue() != null) {
                 cid = cbPreviousSupplier.GetValue();
             }
-            $("#ifrPopup").width(460);
+            $("#ifrPopup").width(780);
             $("#ifrPopup").height(450);
             $("#ifrPopup").attr("src", httpOrigin + "/FleetManagement/PreviousSupplierPopup.aspx?cid=" + cid);
             ShowPreviousSupplierWindow();
@@ -89,7 +89,7 @@
                 aid = cbSiteCeaseReason.GetValue();
             }
 
-            $("#ifrPopup").width(600);
+            $("#ifrPopup").width(780);
             $("#ifrPopup").height(460);
             $("#ifrPopup").attr("src", httpOrigin + "/FleetManagement/ContractCeaseReasonsPopup.aspx?aid=" + aid);
             ShowCeaseReasonsWindow();
@@ -103,7 +103,7 @@
             if (cbLostBusinessTo.GetValue() != null) {
                 aid = cbLostBusinessTo.GetValue();
             }
-            $("#ifrPopup").width(600);
+            $("#ifrPopup").width(780);
             $("#ifrPopup").height(460);
             $("#ifrPopup").attr("src", httpOrigin + "/FleetManagement/PreviousSupplierPopup.aspx?cid=" + aid);
             ShowLostBusinessToWindow();
@@ -336,7 +336,7 @@
             <SettingsPopup>
                 <EditForm Modal="true"
                     VerticalAlign="WindowCenter"
-                    HorizontalAlign="WindowCenter" Height="480px" />
+                    HorizontalAlign="WindowCenter" Height="380px" />
             </SettingsPopup>
             <Templates>
                 <EditForm>
@@ -1250,7 +1250,7 @@
         <dx:ASPxPopupControl ID="viewPopup" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
             PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="viewPopup"
             AllowDragging="True" PopupAnimationType="None" EnableViewState="False" 
-            Width="900px" Height="500px" ScrollBars="Auto">
+            Width="830px" Height="500px" ScrollBars="Auto">
             <ContentCollection>
                 <dx:PopupControlContentControl runat="server">
                     <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="btOK">
