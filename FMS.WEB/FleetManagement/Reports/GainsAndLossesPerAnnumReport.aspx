@@ -59,7 +59,7 @@
              }
         </script>
 </head>
-<body onload="ShowPAReport();ShowSummaryReport();">
+<body onload="ShowPAReport();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="GainsAndLossesPaSummaryPageControl" runat="server" ClientInstanceName="GainsAndLossesPaSummaryPageControl" >

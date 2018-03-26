@@ -441,7 +441,11 @@
                                 </div>
                                 <dx:ASPxGridView ID="SiteDetailsGridView" runat="server" DataSourceID="odsSiteDetails" AutoGenerateColumns="False"
                                     KeyFieldName="Cid" Theme="SoftOrange" OnRowUpdating="SiteDetailsGridView_RowUpdating"
-                                    OnRowInserting="SiteDetailsGridView_RowInserting" SettingsDetail-AllowOnlyOneMasterRowExpanded="true" ClientInstanceName="cltSiteDetailsGridView">
+                                    OnRowInserting="SiteDetailsGridView_RowInserting" 
+                                    OnCancelRowEditing="SiteDetailsGridView_CancelRowEditing"
+                                    OnInitNewRow="SiteDetailsGridView_InitNewRow"
+                                    SettingsDetail-AllowOnlyOneMasterRowExpanded="true" 
+                                    ClientInstanceName="cltSiteDetailsGridView">
                                     <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
                                     <SettingsDetail ShowDetailRow="true" />
                                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>

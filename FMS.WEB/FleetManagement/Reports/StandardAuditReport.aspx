@@ -75,7 +75,7 @@
              }
         </script>
 </head>
-<body onload="StandardAudit();AuditContract();AuditOfSiteDetails();">
+<body onload="StandardAudit();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="StandardAuditPageControl" runat="server" ClientInstanceName="StandardAuditPageControl" >
