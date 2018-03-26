@@ -31,32 +31,70 @@ Namespace DataObjects
 
 #Region "CRUD"
         Public Shared Sub Create(myob As DataObjects.tblMYOBMatch)
-            Dim oMYOB As New FMS.Business.tblMYOBMatch
-            With oMYOB
-                .MatchID = Guid.NewGuid()
-                .MYOBId = myob.MYOBId
-                .CustomerName = myob.CustomerName
-                .ImportedCustomerName = myob.ImportedCustomerName
-            End With
-            SingletonAccess.FMSDataContextContignous.tblMYOBMatches.InsertOnSubmit(oMYOB)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            Try
+                With New LINQtoSQLClassesDataContext
+                    Dim oMYOB As New FMS.Business.tblMYOBMatch
+
+                    With oMYOB
+                        .MatchID = Guid.NewGuid()
+                        .MYOBId = myob.MYOBId
+                        .CustomerName = myob.CustomerName
+                        .ImportedCustomerName = myob.ImportedCustomerName
+                    End With
+
+                    .tblMYOBMatches.InsertOnSubmit(oMYOB)
+                    .SubmitChanges()
+                    .Dispose()
+                End With
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+            'SingletonAccess.FMSDataContextContignous.tblMYOBMatches.InsertOnSubmit(oMYOB)
+            'SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(myob As DataObjects.tblMYOBMatch)
-            Dim oMYOB As FMS.Business.tblMYOBMatch = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches
-                                                        Where m.Aid.Equals(myob.Aid)).SingleOrDefault
-            With oMYOB
-                .MYOBId = myob.MYOBId
-                .CustomerName = myob.CustomerName
-                .ImportedCustomerName = myob.ImportedCustomerName
+
+            With New LINQtoSQLClassesDataContext
+                Dim oMYOB As FMS.Business.tblMYOBMatch = (From m In .tblMYOBMatches
+                                                          Where m.Aid.Equals(myob.Aid)).SingleOrDefault
+                With oMYOB
+                    .MYOBId = myob.MYOBId
+                    .CustomerName = myob.CustomerName
+                    .ImportedCustomerName = myob.ImportedCustomerName
+                End With
+
+                .SubmitChanges()
+                .Dispose()
+
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+            'Dim oMYOB As FMS.Business.tblMYOBMatch = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches
+            '                                          Where m.Aid.Equals(myob.Aid)).SingleOrDefault
+            'With oMYOB
+            '    .MYOBId = myob.MYOBId
+            '    .CustomerName = myob.CustomerName
+            '    .ImportedCustomerName = myob.ImportedCustomerName
+            'End With
+            'SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(myob As DataObjects.tblMYOBMatch)
             Dim id As Integer = myob.Aid
-            Dim oMYOB As FMS.Business.tblMYOBMatch = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches
-                                                        Where m.Aid = id).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblMYOBMatches.DeleteOnSubmit(oMYOB)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+
+            With New LINQtoSQLClassesDataContext
+                Dim oMYOB As FMS.Business.tblMYOBMatch = (From m In .tblMYOBMatches
+                                                          Where m.Aid = id).SingleOrDefault
+                .tblMYOBMatches.DeleteOnSubmit(oMYOB)
+                .SubmitChanges()
+                .Dispose()
+            End With
+
+            'Dim id As Integer = myob.Aid
+            'Dim oMYOB As FMS.Business.tblMYOBMatch = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches
+            '                                          Where m.Aid = id).SingleOrDefault
+            'SingletonAccess.FMSDataContextContignous.tblMYOBMatches.DeleteOnSubmit(oMYOB)
+            'SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
 #End Region
 
@@ -113,27 +151,72 @@ Namespace DataObjects
         End Sub
 
         Public Shared Sub CreateAll(myob As List(Of DataObjects.tblMYOBMatch))
-            For Each rMYOB In myob
-                Dim oMYOB As New FMS.Business.tblMYOBMatch
-                With oMYOB
-                    .MatchID = Guid.NewGuid()
-                    .MYOBId = rMYOB.MYOBId
-                    .CustomerName = rMYOB.CustomerName
-                    .ImportedCustomerName = rMYOB.ImportedCustomerName
-                End With
-                SingletonAccess.FMSDataContextContignous.tblMYOBMatches.InsertOnSubmit(oMYOB)
-            Next
+            Try
+                Dim obj As New List(Of DataObjects.tblMYOBMatch)
 
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                With New LINQtoSQLClassesDataContext
+
+                    For Each rMYOB In myob
+                        Dim oMYOB As New FMS.Business.tblMYOBMatch
+
+                        With oMYOB
+                            .MatchID = Guid.NewGuid()
+                            .MYOBId = rMYOB.MYOBId
+                            .CustomerName = rMYOB.CustomerName
+                            .ImportedCustomerName = rMYOB.ImportedCustomerName
+                        End With
+
+                        .tblMYOBMatches.InsertOnSubmit(oMYOB)
+                    Next
+
+                    .SubmitChanges()
+
+                    .Dispose()
+
+                End With
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+            'For Each rMYOB In myob
+            '    Dim oMYOB As New FMS.Business.tblMYOBMatch
+            '    With oMYOB
+            '        .MatchID = Guid.NewGuid()
+            '        .MYOBId = rMYOB.MYOBId
+            '        .CustomerName = rMYOB.CustomerName
+            '        .ImportedCustomerName = rMYOB.ImportedCustomerName
+            '    End With
+            '    SingletonAccess.FMSDataContextContignous.tblMYOBMatches.InsertOnSubmit(oMYOB)
+            'Next
+
+            'SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
 #End Region
 
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblMYOBMatch)
-            Dim oMYOB = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches
-                            Order By m.CustomerName
-                            Select New DataObjects.tblMYOBMatch(m)).ToList
-            Return oMYOB
+            Try
+                Dim obj As New List(Of DataObjects.tblMYOBMatch)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From m In .tblMYOBMatches
+                           Order By m.CustomerName
+                           Select New DataObjects.tblMYOBMatch(m)).ToList
+                    .Dispose()
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+
+            'Dim oMYOB = (From m In SingletonAccess.FMSDataContextContignous.tblMYOBMatches
+            '             Order By m.CustomerName
+            '             Select New DataObjects.tblMYOBMatch(m)).ToList
+            'Return oMYOB
         End Function
 
 #End Region
