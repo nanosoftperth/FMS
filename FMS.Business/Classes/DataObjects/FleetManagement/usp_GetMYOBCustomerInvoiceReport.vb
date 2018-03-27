@@ -16,9 +16,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetMYOBCustomerInvoiceReport(CustomerName As String) As List(Of DataObjects.usp_GetMYOBCustomerInvoiceReport)
-            Dim objZones = (From c In SingletonAccess.FMSDataContextContignous.usp_GetMYOBCustomerInvoiceReport(CustomerName, ThisSession.ApplicationID)
-                            Select New DataObjects.usp_GetMYOBCustomerInvoiceReport(c)).ToList
-            Return objZones
+            Try
+                Dim objZones As New List(Of DataObjects.usp_GetMYOBCustomerInvoiceReport)
+                With New LINQtoSQLClassesDataContext
+                    objZones = (From c In .usp_GetMYOBCustomerInvoiceReport(CustomerName, ThisSession.ApplicationID)
+                                Select New DataObjects.usp_GetMYOBCustomerInvoiceReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objZones
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

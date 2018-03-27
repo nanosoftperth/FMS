@@ -10,12 +10,19 @@
         Public Property Renewal As String
 #End Region
 #Region "Get methods"
-
         Public Shared Function GetDriversLicenseExpiryReport() As List(Of DataObjects.usp_GetDriversLicenseExpiryReport)
-            Dim lstGetDriversLicenseExpiryReport = (From d In SingletonAccess.FMSDataContextContignous.usp_GetDriversLicenseExpiryReport(ThisSession.ApplicationID)
-                                                    Order By d.DriverName
-                                                    Select New DataObjects.usp_GetDriversLicenseExpiryReport(d)).ToList()
-            Return lstGetDriversLicenseExpiryReport
+            Try
+                Dim lstGetDriversLicenseExpiryReport As New List(Of DataObjects.usp_GetDriversLicenseExpiryReport)
+                With New LINQtoSQLClassesDataContext
+                    lstGetDriversLicenseExpiryReport = (From d In .usp_GetDriversLicenseExpiryReport(ThisSession.ApplicationID)
+                                                        Order By d.DriverName
+                                                        Select New DataObjects.usp_GetDriversLicenseExpiryReport(d)).ToList()
+                    .Dispose()
+                End With
+                Return lstGetDriversLicenseExpiryReport
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
 #End Region

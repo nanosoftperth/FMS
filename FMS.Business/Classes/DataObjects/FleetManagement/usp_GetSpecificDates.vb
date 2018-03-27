@@ -9,9 +9,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetSpecificDates(SqlDate As String, Rid As String) As List(Of DataObjects.usp_GetSpecificDates)
-            Dim objSpecificDates = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSpecificDates(SqlDate, Rid, ThisSession.ApplicationID)
-                                    Select New DataObjects.usp_GetSpecificDates(c)).ToList
-            Return objSpecificDates
+            Try
+                Dim objSpecificDates As New List(Of DataObjects.usp_GetSpecificDates)
+                With New LINQtoSQLClassesDataContext
+                    objSpecificDates = (From c In .usp_GetSpecificDates(SqlDate, Rid, ThisSession.ApplicationID)
+                                        Select New DataObjects.usp_GetSpecificDates(c)).ToList
+                    .Dispose()
+                End With
+                Return objSpecificDates
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

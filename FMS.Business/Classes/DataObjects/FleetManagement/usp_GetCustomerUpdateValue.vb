@@ -7,9 +7,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetCustomerUpdateValue(cid As Integer) As DataObjects.usp_GetCustomerUpdateValue
-            Dim objGetCustomerUpdateValue = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerUpdateValue(cid)
-                                             Select New DataObjects.usp_GetCustomerUpdateValue(c)).SingleOrDefault
-            Return objGetCustomerUpdateValue
+            Try
+                Dim objGetCustomerUpdateValue As New DataObjects.usp_GetCustomerUpdateValue
+                With New LINQtoSQLClassesDataContext
+                    objGetCustomerUpdateValue = (From c In .usp_GetCustomerUpdateValue(cid)
+                                                 Select New DataObjects.usp_GetCustomerUpdateValue(c)).SingleOrDefault
+                    .Dispose()
+                End With
+                Return objGetCustomerUpdateValue
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

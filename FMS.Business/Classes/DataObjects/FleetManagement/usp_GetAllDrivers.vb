@@ -8,12 +8,19 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetAllDrivers() As List(Of DataObjects.usp_GetAllDrivers)
-            Dim lstGetAllDrivers = (From d In SingletonAccess.FMSDataContextContignous.usp_GetAllDrivers
-                                    Order By d.DriverName
-                                    Select New DataObjects.usp_GetAllDrivers(d)).ToList()
-            Return lstGetAllDrivers
+            Try
+                Dim lstGetAllDrivers As New List(Of DataObjects.usp_GetAllDrivers)
+                With New LINQtoSQLClassesDataContext
+                    lstGetAllDrivers = (From d In .usp_GetAllDrivers
+                                        Order By d.DriverName
+                                        Select New DataObjects.usp_GetAllDrivers(d)).ToList()
+                    .Dispose()
+                End With
+                Return lstGetAllDrivers
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
-
 #End Region
 #Region "Constructors"
         Public Sub New()

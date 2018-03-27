@@ -20,9 +20,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetCuaRateIncreaseReport() As List(Of DataObjects.usp_GetRateIncreaseCuaReport)
-            Dim objRunValueSummary = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRateIncreaseCuaReport.Where(Function(x) x.ApplicationID.Equals(ThisSession.ApplicationID))
-                                      Select New DataObjects.usp_GetRateIncreaseCuaReport(c)).ToList
-            Return objRunValueSummary
+            Try
+                Dim objRunValueSummary As New List(Of DataObjects.usp_GetRateIncreaseCuaReport)
+                With New LINQtoSQLClassesDataContext
+                    objRunValueSummary = (From c In .usp_GetRateIncreaseCuaReport.Where(Function(x) x.ApplicationID.Equals(ThisSession.ApplicationID))
+                                          Select New DataObjects.usp_GetRateIncreaseCuaReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objRunValueSummary
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

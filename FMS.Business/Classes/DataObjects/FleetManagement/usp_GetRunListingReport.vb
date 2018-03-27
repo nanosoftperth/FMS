@@ -19,10 +19,18 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetRunListingReport() As List(Of DataObjects.usp_GetRunListingReport)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objRunListing = (From c In SingletonAccess.FMSDataContextContignous.usp_GetRunListingReport(ThisSession.ApplicationID)
-                                 Select New DataObjects.usp_GetRunListingReport(c)).ToList
-            Return objRunListing
+            Try
+                Dim objRunListing As New List(Of DataObjects.usp_GetRunListingReport)
+                With New LINQtoSQLClassesDataContext
+                    .CommandTimeout = 180
+                    objRunListing = (From c In .usp_GetRunListingReport(ThisSession.ApplicationID)
+                                     Select New DataObjects.usp_GetRunListingReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objRunListing
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

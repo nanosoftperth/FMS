@@ -47,9 +47,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetStandardAuditReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetStandardAuditReport)
-            Dim objStandardAudit = (From c In SingletonAccess.FMSDataContextContignous.usp_GetStandardAuditReport(sDate, eDate, ThisSession.ApplicationID)
-                                    Select New DataObjects.usp_GetStandardAuditReport(c)).ToList
-            Return objStandardAudit
+            Try
+                Dim objStandardAudit As New List(Of DataObjects.usp_GetStandardAuditReport)
+                With New LINQtoSQLClassesDataContext
+                    objStandardAudit = (From c In .usp_GetStandardAuditReport(sDate, eDate, ThisSession.ApplicationID)
+                                        Select New DataObjects.usp_GetStandardAuditReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objStandardAudit
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

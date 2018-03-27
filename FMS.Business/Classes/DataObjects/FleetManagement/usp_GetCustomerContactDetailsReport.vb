@@ -19,9 +19,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetCustomerContactDetailsReport() As List(Of DataObjects.usp_GetCustomerContactDetailsReport)
-            Dim CustomerContactDetails = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerContactDetailsReport(ThisSession.ApplicationID)
-                                          Select New DataObjects.usp_GetCustomerContactDetailsReport(c)).ToList
-            Return CustomerContactDetails
+            Try
+                Dim CustomerContactDetails As New List(Of DataObjects.usp_GetCustomerContactDetailsReport)
+                With New LINQtoSQLClassesDataContext
+                    CustomerContactDetails = (From c In .usp_GetCustomerContactDetailsReport(ThisSession.ApplicationID)
+                                              Select New DataObjects.usp_GetCustomerContactDetailsReport(c)).ToList
+                    .Dispose()
+                End With
+                Return CustomerContactDetails
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

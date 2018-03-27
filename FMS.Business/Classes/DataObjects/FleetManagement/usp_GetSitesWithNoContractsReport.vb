@@ -10,9 +10,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetSitesWithNoContract() As List(Of DataObjects.usp_GetSitesWithNoContractsReport)
-            Dim objSitesWithNoContract = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesWithNoContractsReport(ThisSession.ApplicationID)
-                                          Select New DataObjects.usp_GetSitesWithNoContractsReport(c)).ToList
-            Return objSitesWithNoContract
+            Try
+                Dim objSitesWithNoContract As New List(Of DataObjects.usp_GetSitesWithNoContractsReport)
+                With New LINQtoSQLClassesDataContext
+                    objSitesWithNoContract = (From c In .usp_GetSitesWithNoContractsReport(ThisSession.ApplicationID)
+                                              Select New DataObjects.usp_GetSitesWithNoContractsReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objSitesWithNoContract
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

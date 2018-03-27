@@ -26,9 +26,18 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetSitesAndCustomerServices(rid As Integer) As List(Of DataObjects.usp_GetSitesAndCustomerServices)
-            Dim objSitesAndCustomers = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesAndCustomerServices(rid, ThisSession.ApplicationID)
-                                        Select New DataObjects.usp_GetSitesAndCustomerServices(c)).ToList
-            Return objSitesAndCustomers
+            Try
+                Dim objSitesAndCustomers As New List(Of DataObjects.usp_GetSitesAndCustomerServices)
+                With New LINQtoSQLClassesDataContext
+                    objSitesAndCustomers = (From c In .usp_GetSitesAndCustomerServices(rid, ThisSession.ApplicationID)
+                                            Select New DataObjects.usp_GetSitesAndCustomerServices(c)).ToList
+                    .Dispose()
+                End With
+                Return objSitesAndCustomers
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 #Region "Constructors"

@@ -10,9 +10,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetInvoiceBasicCheckReport() As List(Of DataObjects.usp_GetInvoiceBasicCheckReport)
-            Dim objInvoiveBasicCheckReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetInvoiceBasicCheckReport(ThisSession.ApplicationID)
-                                              Select New DataObjects.usp_GetInvoiceBasicCheckReport(c)).ToList
-            Return objInvoiveBasicCheckReport
+            Try
+                Dim objInvoiveBasicCheckReport As New List(Of DataObjects.usp_GetInvoiceBasicCheckReport)
+                With New LINQtoSQLClassesDataContext
+                    objInvoiveBasicCheckReport = (From c In .usp_GetInvoiceBasicCheckReport(ThisSession.ApplicationID)
+                                                  Select New DataObjects.usp_GetInvoiceBasicCheckReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objInvoiveBasicCheckReport
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

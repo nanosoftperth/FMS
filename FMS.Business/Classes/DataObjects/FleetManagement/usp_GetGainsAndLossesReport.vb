@@ -18,9 +18,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetGainsAndLossesReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetGainsAndLossesReport)
-            Dim objGainsAndLosses = (From c In SingletonAccess.FMSDataContextContignous.usp_GetGainsAndLossesReport(sDate, eDate, ThisSession.ApplicationID)
-                                     Select New DataObjects.usp_GetGainsAndLossesReport(c)).ToList
-            Return objGainsAndLosses
+            Try
+                Dim objGainsAndLosses As New List(Of DataObjects.usp_GetGainsAndLossesReport)
+                With New LINQtoSQLClassesDataContext
+                    objGainsAndLosses = (From c In .usp_GetGainsAndLossesReport(sDate, eDate, ThisSession.ApplicationID)
+                                         Select New DataObjects.usp_GetGainsAndLossesReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objGainsAndLosses
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

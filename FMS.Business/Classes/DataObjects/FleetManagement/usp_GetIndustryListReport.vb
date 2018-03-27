@@ -19,9 +19,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetIndustryListReportByIndustryID(industryID As Integer) As List(Of DataObjects.usp_GetIndustryListReport)
-            Dim IndustryListReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetIndustryListReport(industryID, ThisSession.ApplicationID)
-                                      Select New DataObjects.usp_GetIndustryListReport(c)).ToList
-            Return IndustryListReport
+            Try
+                Dim IndustryListReport As New List(Of DataObjects.usp_GetIndustryListReport)
+                With New LINQtoSQLClassesDataContext
+                    IndustryListReport = (From c In .usp_GetIndustryListReport(industryID, ThisSession.ApplicationID)
+                                          Select New DataObjects.usp_GetIndustryListReport(c)).ToList
+                    .Dispose()
+                End With
+                Return IndustryListReport
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

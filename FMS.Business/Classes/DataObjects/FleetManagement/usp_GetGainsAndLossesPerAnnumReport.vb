@@ -18,10 +18,19 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetGainsAndLossesPerAnnumReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetGainsAndLossesPerAnnumReport)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objGainsAndLossesPerAnnum = (From c In SingletonAccess.FMSDataContextContignous.usp_GetGainsAndLossesPerAnnumReport(sDate, eDate, ThisSession.ApplicationID)
-                                             Select New DataObjects.usp_GetGainsAndLossesPerAnnumReport(c)).ToList
-            Return objGainsAndLossesPerAnnum
+            Try
+                Dim objGainsAndLossesPerAnnum As New List(Of DataObjects.usp_GetGainsAndLossesPerAnnumReport)
+                With New LINQtoSQLClassesDataContext
+                    .CommandTimeout = 180
+                    objGainsAndLossesPerAnnum = (From c In .usp_GetGainsAndLossesPerAnnumReport(sDate, eDate, ThisSession.ApplicationID)
+                                                 Select New DataObjects.usp_GetGainsAndLossesPerAnnumReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objGainsAndLossesPerAnnum
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 #Region "Constructors"

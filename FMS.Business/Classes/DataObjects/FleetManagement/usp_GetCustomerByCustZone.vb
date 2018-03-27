@@ -14,9 +14,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetCustByCustZone() As List(Of DataObjects.usp_GetCustomerByCustZone)
-            Dim objCustByCustZone = (From c In SingletonAccess.FMSDataContextContignous.usp_GetCustomerByCustZone(ThisSession.ApplicationID)
-                                     Select New DataObjects.usp_GetCustomerByCustZone(c)).ToList
-            Return objCustByCustZone
+            Try
+                Dim objCustByCustZone As New List(Of DataObjects.usp_GetCustomerByCustZone)
+                With New LINQtoSQLClassesDataContext
+                    objCustByCustZone = (From c In .usp_GetCustomerByCustZone(ThisSession.ApplicationID)
+                                         Select New DataObjects.usp_GetCustomerByCustZone(c)).ToList
+                    .Dispose()
+                End With
+                Return objCustByCustZone
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

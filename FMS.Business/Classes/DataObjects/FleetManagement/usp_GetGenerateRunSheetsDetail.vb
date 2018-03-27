@@ -18,9 +18,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetGenerateRunSheetsDetail() As List(Of DataObjects.usp_GetGenerateRunSheetsDetail)
-            Dim objGeneralRunSheets = (From c In SingletonAccess.FMSDataContextContignous.usp_GetGenerateRunSheetsDetail
-                            Select New DataObjects.usp_GetGenerateRunSheetsDetail(c)).ToList
-            Return objGeneralRunSheets
+            Try
+                Dim objGeneralRunSheets As New List(Of DataObjects.usp_GetGenerateRunSheetsDetail)
+                With New LINQtoSQLClassesDataContext
+                    objGeneralRunSheets = (From c In .usp_GetGenerateRunSheetsDetail
+                                           Select New DataObjects.usp_GetGenerateRunSheetsDetail(c)).ToList
+                    .Dispose()
+                End With
+                Return objGeneralRunSheets
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

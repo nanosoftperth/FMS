@@ -9,9 +9,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetServiceSummay() As List(Of DataObjects.usp_GetServiceSummaryReport)
-            Dim objServiceSummary = (From c In SingletonAccess.FMSDataContextContignous.usp_GetServiceSummaryReport(ThisSession.ApplicationID)
-                                     Select New DataObjects.usp_GetServiceSummaryReport(c)).ToList
-            Return objServiceSummary
+            Try
+                Dim objServiceSummary As New List(Of DataObjects.usp_GetServiceSummaryReport)
+                With New LINQtoSQLClassesDataContext
+                    objServiceSummary = (From c In .usp_GetServiceSummaryReport(ThisSession.ApplicationID)
+                                         Select New DataObjects.usp_GetServiceSummaryReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objServiceSummary
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

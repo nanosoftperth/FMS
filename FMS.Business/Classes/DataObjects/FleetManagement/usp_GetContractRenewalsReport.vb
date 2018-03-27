@@ -16,17 +16,33 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetContractRenewalsReport(StartDate As Date, EndDate As Date) As List(Of DataObjects.usp_GetContractRenewalsReport)
-            Dim ContractRenewalsReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetContractRenewalsReport(StartDate, EndDate, ThisSession.ApplicationID)
-                                          Order By c.AreaDescription
-                                          Select New DataObjects.usp_GetContractRenewalsReport(c)).ToList
-            Return ContractRenewalsReport
+            Try
+                Dim ContractRenewalsReport As New List(Of DataObjects.usp_GetContractRenewalsReport)
+                With New LINQtoSQLClassesDataContext
+                    ContractRenewalsReport = (From c In .usp_GetContractRenewalsReport(StartDate, EndDate, ThisSession.ApplicationID)
+                                              Order By c.AreaDescription
+                                              Select New DataObjects.usp_GetContractRenewalsReport(c)).ToList
+                    .Dispose()
+                End With
+                Return ContractRenewalsReport
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetContractRenewalsReport(StartDate As Date, EndDate As Date, Zone As String) As List(Of DataObjects.usp_GetContractRenewalsReport)
-            Dim ContractRenewalsReport = (From c In SingletonAccess.FMSDataContextContignous.usp_GetContractRenewalsReport(StartDate, EndDate, ThisSession.ApplicationID)
-                                          Where Not c.AreaDescription Is Nothing AndAlso c.AreaDescription.Equals(Zone)
-                                          Order By c.AreaDescription
-                                          Select New DataObjects.usp_GetContractRenewalsReport(c)).ToList
-            Return ContractRenewalsReport
+            Try
+                Dim ContractRenewalsReport As New List(Of DataObjects.usp_GetContractRenewalsReport)
+                With New LINQtoSQLClassesDataContext
+                    ContractRenewalsReport = (From c In .usp_GetContractRenewalsReport(StartDate, EndDate, ThisSession.ApplicationID)
+                                              Where Not c.AreaDescription Is Nothing AndAlso c.AreaDescription.Equals(Zone)
+                                              Order By c.AreaDescription
+                                              Select New DataObjects.usp_GetContractRenewalsReport(c)).ToList
+                    .Dispose()
+                End With
+                Return ContractRenewalsReport
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

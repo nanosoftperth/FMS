@@ -9,9 +9,18 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetAuditContractReport(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetAuditContractReport)
-            Dim objAuditContract = (From c In SingletonAccess.FMSDataContextContignous.usp_GetAuditContractReport(sDate, eDate, ThisSession.ApplicationID)
-                                    Select New DataObjects.usp_GetAuditContractReport(c)).ToList
-            Return objAuditContract
+            Try
+                Dim objAuditContract As New List(Of DataObjects.usp_GetAuditContractReport)
+                With New LINQtoSQLClassesDataContext
+                    objAuditContract = (From c In .usp_GetAuditContractReport(sDate, eDate, ThisSession.ApplicationID)
+                                        Select New DataObjects.usp_GetAuditContractReport(c)).ToList
+                    .Dispose()
+                End With
+
+                Return objAuditContract
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

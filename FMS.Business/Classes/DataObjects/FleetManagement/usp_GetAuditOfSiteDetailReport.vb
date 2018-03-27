@@ -16,9 +16,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetAuditOfSiteDetailReportt(sDate As Date, eDate As Date) As List(Of DataObjects.usp_GetAuditOfSiteDetailReport)
-            Dim objAuditOfSiteDetail = (From c In SingletonAccess.FMSDataContextContignous.usp_GetAuditOfSiteDetailReport(sDate, eDate, ThisSession.ApplicationID)
-                                        Select New DataObjects.usp_GetAuditOfSiteDetailReport(c)).ToList
-            Return objAuditOfSiteDetail
+            Try
+                Dim objAuditOfSiteDetail As New List(Of DataObjects.usp_GetAuditOfSiteDetailReport)
+                With New LINQtoSQLClassesDataContext
+                    objAuditOfSiteDetail = (From c In .usp_GetAuditOfSiteDetailReport(sDate, eDate, ThisSession.ApplicationID)
+                                            Select New DataObjects.usp_GetAuditOfSiteDetailReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objAuditOfSiteDetail
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

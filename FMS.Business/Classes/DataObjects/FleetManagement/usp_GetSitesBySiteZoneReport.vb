@@ -17,9 +17,17 @@
 #End Region
 #Region "Get methods"
         Public Shared Function GetSitesBySiteZone() As List(Of DataObjects.usp_GetSitesBySiteZoneReport)
-            Dim objSitesBySiteZone = (From c In SingletonAccess.FMSDataContextContignous.usp_GetSitesBySiteZoneReport(ThisSession.ApplicationID)
-                                      Select New DataObjects.usp_GetSitesBySiteZoneReport(c)).ToList
-            Return objSitesBySiteZone
+            Try
+                Dim objSitesBySiteZone As New List(Of DataObjects.usp_GetSitesBySiteZoneReport)
+                With New LINQtoSQLClassesDataContext
+                    objSitesBySiteZone = (From c In .usp_GetSitesBySiteZoneReport(ThisSession.ApplicationID)
+                                          Select New DataObjects.usp_GetSitesBySiteZoneReport(c)).ToList
+                    .Dispose()
+                End With
+                Return objSitesBySiteZone
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"
