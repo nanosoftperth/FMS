@@ -59,66 +59,144 @@
 
 #Region "Get methods"
         Public Shared Function GetAllSiteListReport() As List(Of DataObjects.usp_GetSiteListReport)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                            Select New DataObjects.usp_GetSiteListReport(s)).ToList
-            Return objSiteList
+            Try
+                Dim obj As New List(Of DataObjects.usp_GetSiteListReport)
+
+                With New LINQtoSQLClassesDataContext
+                    obj = (From s In .usp_GetSiteListReport()
+                           Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                    .Dispose()
+                End With
+
+                Return obj
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+            'SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            'Dim objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
+            '                   Select New DataObjects.usp_GetSiteListReport(s)).ToList
+            'Return objSiteList
         End Function
         Public Shared Function GetAllSiteListReportPerCustomer(Customer As Integer) As List(Of DataObjects.usp_GetSiteListReport)
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            Try
+                Dim obj As New List(Of DataObjects.usp_GetSiteListReport)
 
-            Dim objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                     Where s.Customer = Customer
-                            Select New DataObjects.usp_GetSiteListReport(s)).ToList
-            Return objSiteList
-        End Function
+                With New LINQtoSQLClassesDataContext
+                    obj = (From s In .usp_GetSiteListReport()
+                           Where s.Customer = Customer
+                           Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                    .Dispose()
+                End With
 
-        Public Shared Function GetAllSiteListReport(Customer As Integer, Optional CID As Integer = 0, Optional AllSite As Boolean = True) As List(Of DataObjects.usp_GetSiteListReport)
-            Dim appId = ThisSession.ApplicationID
+                Return obj
 
-            SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
-            Dim objSiteList As New List(Of DataObjects.usp_GetSiteListReport)
+            Catch ex As Exception
+                Throw ex
+            End Try
 
-            If (AllSite = False) Then
-                If (Customer = 0) Then
-                    If (CID = 0) Then
-                        objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                       Where s.ApplicationID = appId
-                                       Select New DataObjects.usp_GetSiteListReport(s)).ToList
-                    End If
-                Else
-                    If (CID = 0) Then
-                        objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                       Where s.Customer = Customer And s.ApplicationID = appId
-                                       Select New DataObjects.usp_GetSiteListReport(s)).ToList
-                    Else
-                        objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                       Where s.Customer = Customer And s.Cid = CID And s.ApplicationID = appId
-                                       Select New DataObjects.usp_GetSiteListReport(s)).ToList
-                    End If
-                End If
-            Else
-
-                If (Customer = 0) Then
-                    If (CID = 0) Then
-                        objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                       Where s.ApplicationID = appId
-                                       Select New DataObjects.usp_GetSiteListReport(s)).ToList
-                    End If
-                Else
-                    objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
-                                   Where s.Customer = Customer And s.ApplicationID = appId
-                                   Select New DataObjects.usp_GetSiteListReport(s)).ToList
-
-                End If
-
-
-            End If
+            'SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
 
             'Dim objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
             '                         Where s.Customer = Customer
             '                Select New DataObjects.usp_GetSiteListReport(s)).ToList
-            Return objSiteList
+            'Return objSiteList
+        End Function
+
+        Public Shared Function GetAllSiteListReport(Customer As Integer, Optional CID As Integer = 0, Optional AllSite As Boolean = True) As List(Of DataObjects.usp_GetSiteListReport)
+            Try
+                Dim appId = ThisSession.ApplicationID
+                Dim objSiteList As New List(Of DataObjects.usp_GetSiteListReport)
+
+                With New LINQtoSQLClassesDataContext
+
+                    If (AllSite = False) Then
+                        If (Customer = 0) Then
+                            If (CID = 0) Then
+                                objSiteList = (From s In .usp_GetSiteListReport()
+                                               Where s.ApplicationID = appId
+                                               Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                            End If
+                        Else
+                            If (CID = 0) Then
+                                objSiteList = (From s In .usp_GetSiteListReport()
+                                               Where s.Customer = Customer And s.ApplicationID = appId
+                                               Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                            Else
+                                objSiteList = (From s In .usp_GetSiteListReport()
+                                               Where s.Customer = Customer And s.Cid = CID And s.ApplicationID = appId
+                                               Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                            End If
+                        End If
+                    Else
+
+                        If (Customer = 0) Then
+                            If (CID = 0) Then
+                                objSiteList = (From s In .usp_GetSiteListReport()
+                                               Where s.ApplicationID = appId
+                                               Select New DataObjects.usp_GetSiteListReport(s)).ToList
+                            End If
+                        Else
+                            objSiteList = (From s In .usp_GetSiteListReport()
+                                           Where s.Customer = Customer And s.ApplicationID = appId
+                                           Select New DataObjects.usp_GetSiteListReport(s)).ToList
+
+                        End If
+
+                    End If
+
+                End With
+
+                Return objSiteList
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+            'Dim appId = ThisSession.ApplicationID
+
+            'SingletonAccess.FMSDataContextContignous.CommandTimeout = 180
+            'Dim objSiteList As New List(Of DataObjects.usp_GetSiteListReport)
+
+            'If (AllSite = False) Then
+            '    If (Customer = 0) Then
+            '        If (CID = 0) Then
+            '            objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
+            '                           Where s.ApplicationID = appId
+            '                           Select New DataObjects.usp_GetSiteListReport(s)).ToList
+            '        End If
+            '    Else
+            '        If (CID = 0) Then
+            '            objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
+            '                           Where s.Customer = Customer And s.ApplicationID = appId
+            '                           Select New DataObjects.usp_GetSiteListReport(s)).ToList
+            '        Else
+            '            objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
+            '                           Where s.Customer = Customer And s.Cid = CID And s.ApplicationID = appId
+            '                           Select New DataObjects.usp_GetSiteListReport(s)).ToList
+            '        End If
+            '    End If
+            'Else
+
+            '    If (Customer = 0) Then
+            '        If (CID = 0) Then
+            '            objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
+            '                           Where s.ApplicationID = appId
+            '                           Select New DataObjects.usp_GetSiteListReport(s)).ToList
+            '        End If
+            '    Else
+            '        objSiteList = (From s In SingletonAccess.FMSDataContextContignous.usp_GetSiteListReport()
+            '                       Where s.Customer = Customer And s.ApplicationID = appId
+            '                       Select New DataObjects.usp_GetSiteListReport(s)).ToList
+
+            '    End If
+
+
+            'End If
+
+
+            'Return objSiteList
         End Function
 
 
