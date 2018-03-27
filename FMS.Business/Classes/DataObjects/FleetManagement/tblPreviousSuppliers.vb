@@ -24,36 +24,57 @@
             End With
         End Sub
         Public Shared Sub Update(PSupplier As DataObjects.tblPreviousSuppliers)
-
-            Dim objPSupplier As FMS.Business.tblPreviousSupplier = (From c In SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers
-                                                                    Where c.PreviousSupplierID.Equals(PSupplier.PreviousSupplierID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objPSupplier
-                .PreviousSupplier = PSupplier.PreviousSupplier
+            With New LINQtoSQLClassesDataContext
+                Dim objPSupplier As FMS.Business.tblPreviousSupplier = (From c In .tblPreviousSuppliers
+                                                                        Where c.PreviousSupplierID.Equals(PSupplier.PreviousSupplierID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objPSupplier
+                    .PreviousSupplier = PSupplier.PreviousSupplier
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(PSupplier As DataObjects.tblPreviousSuppliers)
-            Dim objPSupplier As FMS.Business.tblPreviousSupplier = (From c In SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers
-                                                                    Where c.PreviousSupplierID.Equals(PSupplier.PreviousSupplierID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers.DeleteOnSubmit(objPSupplier)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objPSupplier As FMS.Business.tblPreviousSupplier = (From c In .tblPreviousSuppliers
+                                                                        Where c.PreviousSupplierID.Equals(PSupplier.PreviousSupplierID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblPreviousSuppliers.DeleteOnSubmit(objPSupplier)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblPreviousSuppliers)
-            Dim objPSupplier = (From c In SingletonAccess.FMSDataContextContignous.tblPreviousSuppliers
-                                Where c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                Order By c.PreviousSupplier
-                                Select New DataObjects.tblPreviousSuppliers(c)).ToList
-            Return objPSupplier
+            Try
+                Dim objPSupplier As New List(Of DataObjects.tblPreviousSuppliers)
+                With New LINQtoSQLClassesDataContext
+                    objPSupplier = (From c In .tblPreviousSuppliers
+                                    Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                    Order By c.PreviousSupplier
+                                    Select New DataObjects.tblPreviousSuppliers(c)).ToList
+                    .Dispose()
+                End With
+                Return objPSupplier
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetPreviousSupplierSortOrder(aID As Integer) As DataObjects.tblPreviousSuppliers
-            Dim objPreviousSupplier = (From c In SingletonAccess.FMSDataContextContignous.usp_GetPreviousSupplier(ThisSession.ApplicationID)
-                                       Where c.Aid.Equals(aID)
-                                       Order By c.PreviousSupplier
-                                       Select New DataObjects.tblPreviousSuppliers() With {.Aid = c.Aid, .PreviousSupplier = c.PreviousSupplier,
-                                                                                            .PreviousSupplierID = c.PreviousSupplierID, .PreviousSupplierSortOrder = c.SortOrder}).SingleOrDefault
-            Return objPreviousSupplier
+            Try
+                Dim objPreviousSupplier As New DataObjects.tblPreviousSuppliers
+                With New LINQtoSQLClassesDataContext
+                    objPreviousSupplier = (From c In .usp_GetPreviousSupplier(ThisSession.ApplicationID)
+                                           Where c.Aid.Equals(aID)
+                                           Order By c.PreviousSupplier
+                                           Select New DataObjects.tblPreviousSuppliers() With {.Aid = c.Aid, .PreviousSupplier = c.PreviousSupplier,
+                                                                                                .PreviousSupplierID = c.PreviousSupplierID, .PreviousSupplierSortOrder = c.SortOrder}).SingleOrDefault
+                    .Dispose()
+                End With
+                Return objPreviousSupplier
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

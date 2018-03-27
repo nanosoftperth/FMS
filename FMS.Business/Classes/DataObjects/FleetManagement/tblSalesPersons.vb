@@ -10,50 +10,75 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(sPerson As DataObjects.tblSalesPersons)
-            Dim objSalesPerson As New FMS.Business.tblSalesPerson
-            Dim appId = ThisSession.ApplicationID
-            With objSalesPerson
-                .SalesPersonID = Guid.NewGuid
-                .ApplicationID = appId
-                .Aid = tblProjectID.SalesPersonIDCreateOrUpdate(appId)
-                .SalesPerson = sPerson.SalesPerson
-                .SalesPersonStartDate = sPerson.SalesPersonStartDate
-                .SalesPersonComments = sPerson.SalesPersonComments
+            With New LINQtoSQLClassesDataContext
+                Dim objSalesPerson As New FMS.Business.tblSalesPerson
+                Dim appId = ThisSession.ApplicationID
+                With objSalesPerson
+                    .SalesPersonID = Guid.NewGuid
+                    .ApplicationID = appId
+                    .Aid = tblProjectID.SalesPersonIDCreateOrUpdate(appId)
+                    .SalesPerson = sPerson.SalesPerson
+                    .SalesPersonStartDate = sPerson.SalesPersonStartDate
+                    .SalesPersonComments = sPerson.SalesPersonComments
+                End With
+                .tblSalesPersons.InsertOnSubmit(objSalesPerson)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblSalesPersons.InsertOnSubmit(objSalesPerson)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(sPerson As DataObjects.tblSalesPersons)
-            Dim objSalesPerson As FMS.Business.tblSalesPerson = (From c In SingletonAccess.FMSDataContextContignous.tblSalesPersons
-                                                                 Where c.SalesPersonID.Equals(sPerson.SalesPersonID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            With objSalesPerson
-                .SalesPerson = sPerson.SalesPerson
-                .SalesPersonStartDate = sPerson.SalesPersonStartDate
-                .SalesPersonComments = sPerson.SalesPersonComments
+            With New LINQtoSQLClassesDataContext
+                Dim objSalesPerson As FMS.Business.tblSalesPerson = (From c In .tblSalesPersons
+                                                                     Where c.SalesPersonID.Equals(sPerson.SalesPersonID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objSalesPerson
+                    .SalesPerson = sPerson.SalesPerson
+                    .SalesPersonStartDate = sPerson.SalesPersonStartDate
+                    .SalesPersonComments = sPerson.SalesPersonComments
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(sPerson As DataObjects.tblSalesPersons)
-            Dim objSalesPerson As FMS.Business.tblSalesPerson = (From c In SingletonAccess.FMSDataContextContignous.tblSalesPersons
-                                                                 Where c.SalesPersonID.Equals(sPerson.SalesPersonID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblSalesPersons.DeleteOnSubmit(objSalesPerson)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objSalesPerson As FMS.Business.tblSalesPerson = (From c In .tblSalesPersons
+                                                                     Where c.SalesPersonID.Equals(sPerson.SalesPersonID) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblSalesPersons.DeleteOnSubmit(objSalesPerson)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblSalesPersons)
-            Dim objSalesPerson = (From c In SingletonAccess.FMSDataContextContignous.tblSalesPersons
-                                  Where c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                  Order By c.SalesPerson
-                                  Select New DataObjects.tblSalesPersons(c)).ToList
-            Return objSalesPerson
+            Try
+                Dim objSalesPerson As New List(Of DataObjects.tblSalesPersons)
+                With New LINQtoSQLClassesDataContext
+                    objSalesPerson = (From c In .tblSalesPersons
+                                      Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                      Order By c.SalesPerson
+                                      Select New DataObjects.tblSalesPersons(c)).ToList
+                    .Dispose()
+                End With
+                Return objSalesPerson
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
         Public Shared Function GetSalesPersonSortOrder(aID As Integer) As DataObjects.tblSalesPersons
-            Dim objSalesPerson = (From c In SingletonAccess.FMSDataContextContignous.tblSalesPersons
-                                  Where c.Aid.Equals(aID) And c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                  Order By c.SalesPerson
-                                  Select New DataObjects.tblSalesPersons(c)).SingleOrDefault
-            Return objSalesPerson
+            Try
+                Dim objSalesPerson As New DataObjects.tblSalesPersons
+                With New LINQtoSQLClassesDataContext
+                    objSalesPerson = (From c In .tblSalesPersons
+                                      Where c.Aid.Equals(aID) And c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                      Order By c.SalesPerson
+                                      Select New DataObjects.tblSalesPersons(c)).SingleOrDefault
+                    .Dispose()
+                End With
+                Return objSalesPerson
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 #End Region
 #Region "Constructors"

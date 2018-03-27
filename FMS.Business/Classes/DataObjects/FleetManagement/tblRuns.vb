@@ -87,9 +87,10 @@
 
 #Region "Extended CRUD"
         Public Shared Sub ChangeRun(FromDriver As Integer, ToDriver As Integer)
-
-            SingletonAccess.FMSDataContextContignous.usp_UpdateRunsBasedOnRunDriver(FromDriver, ToDriver)
-
+            With New LINQtoSQLClassesDataContext
+                .usp_UpdateRunsBasedOnRunDriver(FromDriver, ToDriver)
+                .Dispose()
+            End With
         End Sub
         Public Shared Sub ChangeRun(RunDriver As Integer, RunNumber As Integer, Run As DataObjects.tblRuns)
             With New LINQtoSQLClassesDataContext

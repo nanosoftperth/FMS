@@ -16,60 +16,82 @@
 #End Region
 #Region "CRUD"
         Public Shared Sub Create(GenerateRunSheets As DataObjects.tblzGenerateRunSheets)
-            Dim objGenerateRunSheet As New FMS.Business.tblzGenerateRunSheet
-            With objGenerateRunSheet
-                .RunSheetId = Guid.NewGuid
-                .Aid = tblProjectID.RunSheetIDCreateOrUpdate()
-                .RunNumber = GenerateRunSheets.RunNumber
-                .RunDriver = GenerateRunSheets.RunDriver
-                .RunDescription = GenerateRunSheets.RunDescription
-                .Cid = GenerateRunSheets.Cid
-                .CSid = GenerateRunSheets.CSid
-                .ServiceUnits = GenerateRunSheets.ServiceUnits
-                .ProductId = GenerateRunSheets.ProductId
-                .ServiceComments = GenerateRunSheets.ServiceComments
-                .SortOrder = GenerateRunSheets.SortOrder
-                .ApplicationID = ThisSession.ApplicationID
+            With New LINQtoSQLClassesDataContext
+                Dim objGenerateRunSheet As New FMS.Business.tblzGenerateRunSheet
+                With objGenerateRunSheet
+                    .RunSheetId = Guid.NewGuid
+                    .Aid = tblProjectID.RunSheetIDCreateOrUpdate()
+                    .RunNumber = GenerateRunSheets.RunNumber
+                    .RunDriver = GenerateRunSheets.RunDriver
+                    .RunDescription = GenerateRunSheets.RunDescription
+                    .Cid = GenerateRunSheets.Cid
+                    .CSid = GenerateRunSheets.CSid
+                    .ServiceUnits = GenerateRunSheets.ServiceUnits
+                    .ProductId = GenerateRunSheets.ProductId
+                    .ServiceComments = GenerateRunSheets.ServiceComments
+                    .SortOrder = GenerateRunSheets.SortOrder
+                    .ApplicationID = ThisSession.ApplicationID
+                End With
+                .tblzGenerateRunSheets.InsertOnSubmit(objGenerateRunSheet)
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets.InsertOnSubmit(objGenerateRunSheet)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Update(GenerateRunSheets As DataObjects.tblzGenerateRunSheets)
-            Dim objGenerateRunSheet As FMS.Business.tblzGenerateRunSheet = (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
-                                                           Where c.RunSheetId.Equals(GenerateRunSheets.RunSheetId)).SingleOrDefault
-            With objGenerateRunSheet
-                .RunNumber = GenerateRunSheets.RunNumber
-                .RunDriver = GenerateRunSheets.RunDriver
-                .RunDescription = GenerateRunSheets.RunDescription
-                .Cid = GenerateRunSheets.Cid
-                .CSid = GenerateRunSheets.CSid
-                .ServiceUnits = GenerateRunSheets.ServiceUnits
-                .ProductId = GenerateRunSheets.ProductId
-                .ServiceComments = GenerateRunSheets.ServiceComments
-                .SortOrder = GenerateRunSheets.SortOrder
+            With New LINQtoSQLClassesDataContext
+                Dim objGenerateRunSheet As FMS.Business.tblzGenerateRunSheet = (From c In .tblzGenerateRunSheets
+                                                                                Where c.RunSheetId.Equals(GenerateRunSheets.RunSheetId) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                With objGenerateRunSheet
+                    .RunNumber = GenerateRunSheets.RunNumber
+                    .RunDriver = GenerateRunSheets.RunDriver
+                    .RunDescription = GenerateRunSheets.RunDescription
+                    .Cid = GenerateRunSheets.Cid
+                    .CSid = GenerateRunSheets.CSid
+                    .ServiceUnits = GenerateRunSheets.ServiceUnits
+                    .ProductId = GenerateRunSheets.ProductId
+                    .ServiceComments = GenerateRunSheets.ServiceComments
+                    .SortOrder = GenerateRunSheets.SortOrder
+                End With
+                .SubmitChanges()
+                .Dispose()
             End With
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
         End Sub
         Public Shared Sub Delete(GenerateRunSheets As DataObjects.tblzGenerateRunSheets)
-            Dim objGenerateRunSheets As FMS.Business.tblzGenerateRunSheet = (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
-                                                                             Where c.RunSheetId.Equals(GenerateRunSheets.RunSheetId) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
-            SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets.DeleteOnSubmit(objGenerateRunSheets)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objGenerateRunSheets As FMS.Business.tblzGenerateRunSheet = (From c In .tblzGenerateRunSheets
+                                                                                 Where c.RunSheetId.Equals(GenerateRunSheets.RunSheetId) And c.ApplicationID.Equals(ThisSession.ApplicationID)).SingleOrDefault
+                .tblzGenerateRunSheets.DeleteOnSubmit(objGenerateRunSheets)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
         Public Shared Sub DeleteAllGenerateRunSheets()
-            Dim objGenerateRunSheets = (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
-                                        Where c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                        Select c).ToList()
-            SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets.DeleteAllOnSubmit(objGenerateRunSheets)
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+            With New LINQtoSQLClassesDataContext
+                Dim objGenerateRunSheets = (From c In .tblzGenerateRunSheets
+                                            Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                            Select c).ToList()
+                .tblzGenerateRunSheets.DeleteAllOnSubmit(objGenerateRunSheets)
+                .SubmitChanges()
+                .Dispose()
+            End With
         End Sub
 #End Region
 #Region "Get methods"
         Public Shared Function GetAll() As List(Of DataObjects.tblzGenerateRunSheets)
-            Dim objGenerateRunSheets = (From c In SingletonAccess.FMSDataContextContignous.tblzGenerateRunSheets
-                                        Where c.ApplicationID.Equals(ThisSession.ApplicationID)
-                                        Select New DataObjects.tblzGenerateRunSheets(c)).ToList
-            Return objGenerateRunSheets
+            Try
+                Dim objGenerateRunSheets As New List(Of DataObjects.tblzGenerateRunSheets)
+                With New LINQtoSQLClassesDataContext
+                    objGenerateRunSheets = (From c In .tblzGenerateRunSheets
+                                            Where c.ApplicationID.Equals(ThisSession.ApplicationID)
+                                            Select New DataObjects.tblzGenerateRunSheets(c)).ToList
+                    .Dispose()
+                End With
+
+                Return objGenerateRunSheets
+            Catch ex As Exception
+                Throw ex
+            End Try
+
         End Function
 #End Region
 #Region "Constructors"

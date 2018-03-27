@@ -71,6 +71,7 @@
                                        Where c.Cid.Equals(cid)
                                        Order By c.Comments
                                        Select New DataObjects.tblSiteComments(c)).ToList
+                    .Dispose()
                 End With
                 Return objSiteComments
             Catch ex As Exception
