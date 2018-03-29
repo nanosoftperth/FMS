@@ -1,4 +1,4 @@
-﻿' NOTE: You can use the "Rename" command on the context menu to change the class name "Integrator" in code, svc and config file together.
+' NOTE: You can use the "Rename" command on the context menu to change the class name "Integrator" in code, svc and config file together.
 ' NOTE: In order to launch WCF Test Client for testing this service, please select Integrator.svc or Integrator.svc.vb at the Solution Explorer and start debugging.
 
 Imports FMS.Business
@@ -87,11 +87,27 @@ Public Class Uniqco_Integrator
                 Exit Try
             End If
 
-            For Each vnr As WebServices.VINNumberRequest In VIN_Numbers
+            For Each vin_request As WebServices.VINNumberRequest In VIN_Numbers
 
-                Dim vd = Helper.GetVehicleData(vnr)
 
-                retobj.VINNumberResponses.Add(vd)
+                Dim vin_response As New FMS.ServiceAccess.WebServices.VINNumberResponse
+
+
+                Try
+
+                    vin_response = Helper.GetVehicleData(vin_request)
+
+                Catch ex As Exception
+
+                    vin_response.ErrorMessage = ex.Message
+                    vin_response.WasError = True
+                    retobj.ReturnMessage &= If(String.IsNullOrEmpty(retobj.ReturnMessage), "", ". ") & vin_response.ErrorMessage
+
+                End Try
+
+                retobj.VINNumberResponses.Add(vin_response)
+
+
             Next
 
             retobj.WasSuccess = True
