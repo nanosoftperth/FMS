@@ -204,7 +204,6 @@ Namespace BackgroundCalculations
                 Dim newAlertTypeOccurance As New DataObjects.AlertTypeOccurance
 
                 With newAlertTypeOccurance
-
                     .AlertTypeID = alertDefn.ApplicationAlertTypeID
                     .AlertTypeOccuranceID = Guid.NewGuid
                     .DateSent = Now
@@ -230,9 +229,9 @@ Namespace BackgroundCalculations
                             .SendCarBookingEmail(newAlertTypeOccurance.Emails,
                                                  applicationName,
                                                  thisSubscriber.Name,
-                                                 rslt.Driver_FristName,
+                                                 rslt.DriverName,
                                                  rslt.Vehicle_Name,
-                                                 rslt.Driver_PhoneNumber, actnType)
+                                                 rslt.PhoneNumber, actnType)
 
                     Else
 
