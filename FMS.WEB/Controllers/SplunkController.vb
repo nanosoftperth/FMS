@@ -15,13 +15,112 @@ Imports System.Web.Script.Serialization
 Imports Newtonsoft.Json.Linq
 Imports System.Runtime.Caching
 Imports FMS.WEB.Controllers
+Imports System.Globalization
+Imports System.Web.Http.Results
 
 Public Class SplunkController
     Inherits ApiController
 
-
     'Hi Cesar, we dont want to reference the other controller at all, hopefully we can remove any reference the FMS.WebAPI project at all 
 
+    <System.Web.Http.AcceptVerbs("GET", "POST")>
+    <Route("api/Splunk/SendCANValues")>
+    Public Function SendCANValues(ApplicatoinName As String, StartDate As DateTime, EndDate As DateTime) As IHttpActionResult
+        Try
+            ServicePointManager.ServerCertificateValidationCallback = Function(sender, certificate, chain, sslPolicyErrors) (True)
+
+            Dim middleware = New HttpEventCollectorResendMiddleware(100)
+
+            'Dim ecSender = New HttpEventCollectorSender(New Uri("http://localhost:8088"),            
+            'Dim ecSender = New HttpEventCollectorSender(New Uri("http://demo.nanosoft.com.au:8088"),
+            'Dim ecSender = New HttpEventCollectorSender(New Uri("http://localhost:8088"),
+            Dim ecSender = New HttpEventCollectorSender(New Uri("http://demo.nanosoft.com.au:8088"),
+                    "6179e399-bd29-47d1-954d-ca9313079eb5",
+                    Nothing,
+            HttpEventCollectorSender.SendMode.Sequential,
+            0,
+            0,
+            0,
+            AddressOf middleware.Plugin
+                )
+
+            Dim strAppName As String
+
+            Dim name As String = RegionInfo.CurrentRegion.DisplayName
+
+            Dim currentCulture As CultureInfo
+            currentCulture = CultureInfo.CurrentCulture
+
+            Dim cultureName As CultureInfo = New CultureInfo(currentCulture.Name)
+            Dim shortUsDateFormatString As String = cultureName.DateTimeFormat.ShortDatePattern
+
+            strAppName = ApplicatoinName
+            'Dim sd = Format(StartDate, shortUsDateFormatString + " 12:00:00")
+            'Dim ed = Format(EndDate, shortUsDateFormatString + " 23:59:59")
+            Dim sd = Format(StartDate, shortUsDateFormatString)
+            Dim ed = Format(EndDate, shortUsDateFormatString)
+
+            Dim new_cache_obj = New List(Of String)
+            Dim tblSplunk As List(Of SplunkTable) = New List(Of SplunkTable)
+
+            Dim app = Business.DataObjects.Application.GetFromApplicationName(strAppName)
+            Dim vehicles = Business.DataObjects.ApplicationVehicle.GetAll(app.ApplicationID)
+
+            For Each av As Business.DataObjects.ApplicationVehicle In vehicles
+
+                If (Not av.CAN_Protocol_Type = "j1939") Then
+
+                    For Each x In av.GetAvailableCANTags
+
+                        Dim strTag = String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, IIf(x.Name = Nothing, "", x.Name))
+                        Dim TagValues = GetSPNValues(strTag, sd, ed)
+
+                        For Each ntag In TagValues
+                            Dim nRowSplunk As New SplunkTable
+
+                            nRowSplunk.VehicleName = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).VehicleName
+                            nRowSplunk.Standard = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Standard
+                            nRowSplunk.SPN = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPN
+                            nRowSplunk.SPNValue = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPNValue
+                            nRowSplunk.Description = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Description
+                            nRowSplunk.Time = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Time
+
+                            tblSplunk.Add(nRowSplunk)
+                        Next
+
+                    Next
+
+                End If
+            Next
+
+            If (tblSplunk.Count > 0) Then
+
+                Dim serializer = New JavaScriptSerializer() With {.MaxJsonLength = 819200000}
+                Dim json = serializer.Serialize(tblSplunk).Replace("/", "").Replace("\", "")
+                'Dim json = serializer.Serialize(tblSplunk)
+
+                'Sanitize json before sending
+                Dim sb = New StringBuilder(json)
+                sb.Replace("\\\t", "\t")
+                sb.Replace("\\\n", "\n")
+                sb.Replace("\\\r", "\r")
+
+                'var sb = New StringBuilder(uglyJson);
+                'sb.Replace("\\\t", "\t");
+                'sb.Replace("\\\n", "\n");
+                'sb.Replace("\\\r", "\r");
+                'Return sb.ToString();
+
+
+                ecSender.Send(Guid.NewGuid.ToString, "INFO", Nothing, sb)
+                ecSender.FlushAsync()
+            End If
+
+            Return Json(True)
+        Catch
+            Return Json(False)
+        End Try
+    End Function
 
     '<Route("api/Splunk/GetTagVals")>
     '<HttpPost()>
@@ -30,7 +129,10 @@ Public Class SplunkController
     '<Route("api/Splunk/SendTagValues")>
     '<HttpPost>
     '<ActionName("SendTagValues")>
-    <HttpPost, Route("api/Splunk/SendTagValues")>
+    '<HttpPost, Route("api/Splunk/SendTagValues")>
+    <System.Web.Http.AcceptVerbs("GET", "POST")>
+    <System.Web.Http.HttpGet>
+    <Route("api/Splunk/SendTagValues")>
     Public Function SendTagValues(ApplicatoinName As String, StartDate As DateTime, EndDate As DateTime) As IHttpActionResult
         'Public Function SendTagValues(<FromBody> ApplicatoinName As String) As IHttpActionResult
         Try
@@ -53,9 +155,10 @@ Public Class SplunkController
 
             Dim middleware = New HttpEventCollectorResendMiddleware(100)
 
+            'Dim ecSender = New HttpEventCollectorSender(New Uri("http://localhost:8088"),            
             'Dim ecSender = New HttpEventCollectorSender(New Uri("http://localhost:8088"),
             Dim ecSender = New HttpEventCollectorSender(New Uri("http://demo.nanosoft.com.au:8088"),
-                    "F018028D-5CFF-495F-A06C-1D3D2D80C379",
+                    "6179e399-bd29-47d1-954d-ca9313079eb5",
                     Nothing,
             HttpEventCollectorSender.SendMode.Sequential,
             0,
@@ -73,9 +176,20 @@ Public Class SplunkController
             'Dim sd = DateTime.Parse("09/15/2017")
             'Dim ed = Format(Now, "MM/dd/yyyy")
 
+
+            Dim name As String = RegionInfo.CurrentRegion.DisplayName
+
+            Dim currentCulture As CultureInfo
+            currentCulture = CultureInfo.CurrentCulture
+
+            Dim cultureName As CultureInfo = New CultureInfo(currentCulture.Name)
+            Dim shortUsDateFormatString As String = cultureName.DateTimeFormat.ShortDatePattern
+
             strAppName = ApplicatoinName
-            Dim sd = Format(StartDate, "MM/dd/yyyy")
-            Dim ed = Format(EndDate, "MM/dd/yyyy")
+            Dim sd = Format(StartDate, shortUsDateFormatString)
+            Dim ed = Format(EndDate, shortUsDateFormatString)
+            'Dim sd = Format(StartDate, "MM/dd/yyyy")
+            'Dim ed = Format(EndDate, "MM/dd/yyyy")
 
             'Dim url As String = "http://myserver/method"
             'Dim content As String = "param1=1&param2=2"
@@ -135,7 +249,7 @@ Public Class SplunkController
 
                         'End If
 
-                        Dim strTag = String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, x.Name)
+                        Dim strTag = String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, IIf(x.Name = Nothing, "", x.Name))
                         'Dim TagValues = GetSPNValues(strTag, sd, ed)
                         Dim TagValues = GetSPNValues(strTag, sd, ed)
 
@@ -157,7 +271,7 @@ Public Class SplunkController
                             nRowSplunk.SPNValue = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).SPNValue
                             nRowSplunk.Description = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Description
                             nRowSplunk.Time = DirectCast(ntag, FMS.WEB.SplunkController.SplunkTable).Time
-                            
+
                             'oListSplunk.Add(nRowSplunk)
                             tblSplunk.Add(nRowSplunk)
                         Next
@@ -197,12 +311,14 @@ Public Class SplunkController
                 'Regex.Replace(yourString, "[^A-Za-z0-9\-/]", "")
                 'Console.WriteLine(header.Trim( { " "c, "*"c, "."c } ))
                 ' Dim json = (New JavaScriptSerializer).Serialize(tblSplunk)
-                Dim json = (New JavaScriptSerializer).Serialize(tblSplunk).Replace("/", "").Replace("\", "")
+                Dim serializer = New JavaScriptSerializer() With {.MaxJsonLength = 819200000}
+                Dim json = serializer.Serialize(tblSplunk).Replace("/", "").Replace("\", "")
+                'Dim json = (New JavaScriptSerializer).Serialize(tblSplunk).Replace("/", "").Replace("\", "")
 
-                ecSender.Send(Guid.NewGuid.ToString, "INFO", Nothing, Json)
+                ecSender.Send(Guid.NewGuid.ToString, "INFO", Nothing, json)
                 ecSender.FlushAsync()
             End If
-            
+
 
 
         Catch ex As Exception
@@ -212,6 +328,9 @@ Public Class SplunkController
         Return Ok()
 
     End Function
+
+
+
 
     Public Function GetSPNValues(strTag As String, sd As DateTime, ed As DateTime) As Object
         Try
