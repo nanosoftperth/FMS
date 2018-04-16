@@ -1,4 +1,6 @@
-﻿Imports System.Net.Mail
+﻿Imports System.IO
+Imports System.Net.Mail
+Imports System.Net.Mime
 Imports System.Text
 
 Namespace BackgroundCalculations
@@ -8,45 +10,51 @@ Namespace BackgroundCalculations
         Public Const SMS_PROVIDER As String = "send.smsbroadcast.com.au"
 
         '***************************    EMAIL CONTENT AS OF 05/APR/2016     ***************************
-        Public Const EmailContent As String = _
-        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
+        Public Const EmailContent As String =
+        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine &
         "Driver ""{1}"" {2} location ""{3}"" at {4}. """
 
         'BY RYAN: 
-        Public Const BookingEmailContent_Arriving As String = _
-        "Dear {0}, " & vbNewLine & vbNewLine & _
-        "Your driver is {1} away from your location now." & _
-        "Your drivers name is {2} and is driving a {3}." & vbNewLine & _
-        "Their number is {4}, if you wish to contact them. " & vbNewLine & _
-        "Thank you," & vbNewLine & vbNewLine & _
+        Public Const BookingEmailContent_Arriving As String =
+        "Dear {0}, " & vbNewLine & vbNewLine &
+        "Your driver is {1} away from your location now." &
+        "Your drivers name is {2} and is driving a {3}." & vbNewLine &
+        "Their number is {4}, if you wish to contact them. " & vbNewLine &
+        "Thank you," & vbNewLine & vbNewLine &
         "Nanosoft Automated Services"
 
-        Public Const BookingEmailContent_Leaving As String = _
-        "Dear {0}, " & vbNewLine & vbNewLine & _
-        "Your driver has left and is on their way." & _
-        "Your drivers name is {1} and is driving a {2}." & vbNewLine & _
-        "Their number is {3}, if you wish to contact them. " & vbNewLine & _
-        "Thank you," & vbNewLine & vbNewLine & _
+        Public Const BookingEmailContent_ArrivingWithDriversPhoto As String =
+        "Dear {0}, " & vbNewLine & vbNewLine &
+        "Your driver is {1} away from your location now." &
+        "Your drivers name is {2} and is driving a {3}." & vbNewLine &
+        "Their number is {4}, if you wish to contact them. " & vbNewLine
+
+        Public Const BookingEmailContent_Leaving As String =
+        "Dear {0}, " & vbNewLine & vbNewLine &
+        "Your driver has left and is on their way." &
+        "Your drivers name is {1} and is driving a {2}." & vbNewLine &
+        "Their number is {3}, if you wish to contact them. " & vbNewLine &
+        "Thank you," & vbNewLine & vbNewLine &
         "Nanosoft Automated Services"
 
-        Public Const EmailContentForForgotPassword As String = _
-        "Message from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
-        "You can change your password by clicking the link below : " & vbNewLine & _
-        "{1}" & vbNewLine & _
+        Public Const EmailContentForForgotPassword As String =
+        "Message from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine &
+        "You can change your password by clicking the link below : " & vbNewLine &
+        "{1}" & vbNewLine &
         "The link will expire after 24 hours."
 
-        Public Const EmailContentForNewUser As String = _
-        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine & _
-        "Your account has been successfully created. " & vbNewLine & _
-        "Username :  {1}" & vbNewLine & _
+        Public Const EmailContentForNewUser As String =
+        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine &
+        "Your account has been successfully created. " & vbNewLine &
+        "Username :  {1}" & vbNewLine &
         "Password :  {2}"
 
-        Public Const CanbusAlertEmailContent As String = _
-        "Dear {0}, " & vbNewLine & vbNewLine & _
-        "There has been an alarm fired for {1} on {2} " & vbNewLine & _
-        "This alarm was : {3} " & vbNewLine & _
-        "If you would like more information, please visit {4} " & vbNewLine & _
-        "Thank you," & vbNewLine & vbNewLine & _
+        Public Const CanbusAlertEmailContent As String =
+        "Dear {0}, " & vbNewLine & vbNewLine &
+        "There has been an alarm fired for {1} on {2} " & vbNewLine &
+        "This alarm was : {3} " & vbNewLine &
+        "If you would like more information, please visit {4} " & vbNewLine &
+        "Thank you," & vbNewLine & vbNewLine &
         "Nanosoft Automated Services"
         Friend Shared Function SendAlertMail(emailList As String, companyName As String, RecipientName As String, vehicleName As String, startTime As String, alertType As String, url As String) As String
             Dim RetValue As String = String.Empty
@@ -54,15 +62,15 @@ Namespace BackgroundCalculations
             Try
                 Dim subject = String.Format("Canbus alert from {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(CanbusAlertEmailContent, RecipientName, vehicleName, startTime, alertType, url)
-                SendEmail(emailList, subject, messageBody)
+                sendEmail(emailList, subject, messageBody)
                 RetValue = messageBody
             Catch ex As Exception
                 RetValue = ex.Message
             End Try
             Return RetValue
         End Function
-        Friend Shared Function SendEmail(emailList As String, companyName As String, _
-                                         driverName As String, geofence_Name As String, _
+        Friend Shared Function SendEmail(emailList As String, companyName As String,
+                                         driverName As String, geofence_Name As String,
                                          EntryOrExitTime As Date, typ As DataObjects.AlertType.ActionType) As String
 
 
@@ -76,7 +84,7 @@ Namespace BackgroundCalculations
 
                 messageBody = String.Format(EmailContent, companyName, driverName, enteredorexited, geofence_Name, EntryOrExitTime_formatted)
 
-                SendEmail(emailList, subject, messageBody)
+                sendEmail(emailList, subject, messageBody)
 
             Catch ex As Exception
                 Dim x As String = ex.Message
@@ -93,7 +101,7 @@ Namespace BackgroundCalculations
                                           driverName As String,
                                           cartype As String,
                                           number As String,
-                                          actionType As Business.DataObjects.AlertType.ActionType) As String
+                                          actionType As Business.DataObjects.AlertType.ActionType, Optional ApplicationDriverID As String = "") As String
 
             Dim messageBody As String = String.Empty
 
@@ -107,10 +115,15 @@ Namespace BackgroundCalculations
                         messageBody = String.Format(BookingEmailContent_Leaving, recipient, driverName, cartype, number)
 
                     Case DataObjects.AlertType.ActionType.Enters
-                        messageBody = String.Format(BookingEmailContent_Arriving, recipient, "2 km", driverName, cartype, number)
+                        messageBody = String.Format(BookingEmailContent_ArrivingWithDriversPhoto, recipient, "2 km", driverName, cartype, number)
                 End Select
+                If Not ApplicationDriverID.Equals("") Then
+                    Dim driver = FMS.Business.DataObjects.ApplicationDriver.GetDriverFromID(Guid.Parse(ApplicationDriverID))
+                    sendEmail(emailList, subject, messageBody, driver.PhotoBinary)
+                Else
+                    sendEmail(emailList, subject, messageBody)
+                End If
 
-                SendEmail(emailList, subject, messageBody)
 
             Catch ex As Exception
                 Dim x As String = ex.Message
@@ -126,7 +139,7 @@ Namespace BackgroundCalculations
             Try
                 Dim subject As String = String.Format("request change of user credential / password from {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(EmailContentForForgotPassword, companyName, uri)
-                SendEmail(emailList, subject, messageBody)
+                sendEmail(emailList, subject, messageBody)
             Catch ex As Exception
                 Dim x As String = ex.Message
             End Try
@@ -139,7 +152,7 @@ Namespace BackgroundCalculations
             Try
                 Dim subject As String = String.Format("New user alert from {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(EmailContentForNewUser, companyName, username, password)
-                SendEmail(emailList, subject, messageBody)
+                sendEmail(emailList, subject, messageBody)
             Catch ex As Exception
                 Dim x As String = ex.Message
             End Try
@@ -151,8 +164,8 @@ Namespace BackgroundCalculations
         ''' which converts emails to SMS's
         ''' </summary>
         ''' <param name="textList">a semi-colon seperated list of SMS numbers</param>       
-        Public Shared Function SendSMS(textList As String, companyName As String, _
-                                         driverName As String, geofence_Name As String, _
+        Public Shared Function SendSMS(textList As String, companyName As String,
+                                         driverName As String, geofence_Name As String,
                                          EntryOrExitTime As Date, typ As DataObjects.AlertType.ActionType) As String
 
             'format: (has to be from no-reply@nanosoft.com.au)
@@ -163,9 +176,9 @@ Namespace BackgroundCalculations
             Dim textEmailFormat As String = "{0}@{1}"
 
             'get a list of "04XXXXXXXX@app.wholesalesms.com.au"
-            Dim strList As List(Of String) = (From s In textList.Split(";").ToList _
-                                               Where Not String.IsNullOrEmpty(s.Trim)
-                                               Select String.Format(textEmailFormat, s.Trim, SMS_PROVIDER)).ToList
+            Dim strList As List(Of String) = (From s In textList.Split(";").ToList
+                                              Where Not String.IsNullOrEmpty(s.Trim)
+                                              Select String.Format(textEmailFormat, s.Trim, SMS_PROVIDER)).ToList
 
             For Each s As String In strList
                 textListToEmail &= If(String.IsNullOrEmpty(textListToEmail), "", ";") & s
@@ -182,7 +195,7 @@ Namespace BackgroundCalculations
 
                 subject = subject.Replace(vbNewLine, ". ")
 
-                SendEmail(textListToEmail, subject, subject)
+                sendEmail(textListToEmail, subject, subject)
 
             Catch ex As Exception
                 Dim x As String = ex.Message
@@ -206,9 +219,9 @@ Namespace BackgroundCalculations
             Dim textEmailFormat As String = "{0}@{1}"
 
             'get a list of "04XXXXXXXX@app.wholesalesms.com.au"
-            Dim strList As List(Of String) = (From s In textList.Split(";").ToList _
-                                               Where Not String.IsNullOrEmpty(s.Trim)
-                                               Select String.Format(textEmailFormat, s.Trim, SMS_PROVIDER)).ToList
+            Dim strList As List(Of String) = (From s In textList.Split(";").ToList
+                                              Where Not String.IsNullOrEmpty(s.Trim)
+                                              Select String.Format(textEmailFormat, s.Trim, SMS_PROVIDER)).ToList
 
             For Each s As String In strList
                 textListToEmail &= If(String.IsNullOrEmpty(textListToEmail), "", ";") & s
@@ -220,9 +233,9 @@ Namespace BackgroundCalculations
                 messageBody = String.Format(CanbusAlertEmailContent, RecipientName, vehicleName, startTime, alertType, url)
                 Dim subject = String.Format("Canbus alert from {0}.nanosoft.com.au", companyName)
                 If textListToEmail.Contains("|") Then
-                    SendEmail(textListToEmail.Split("|")(0), subject, messageBody)
+                    sendEmail(textListToEmail.Split("|")(0), subject, messageBody)
                 Else
-                    SendEmail(textListToEmail, subject, messageBody)
+                    sendEmail(textListToEmail, subject, messageBody)
                 End If
 
 
@@ -238,7 +251,62 @@ Namespace BackgroundCalculations
 
             Dim emailAddress As String = String.Format("{0}@{1}", phoneNumber.Trim, SMS_PROVIDER)
 
-            Return SendEmail(emailAddress, message, message)
+            Return sendEmail(emailAddress, message, message)
+
+        End Function
+
+        Public Shared Function sendEmail(recipient As String, subject As String, content As String, driverPhoto As Byte()) As Boolean
+
+            Dim wasSuccess As Boolean = False
+
+            Try
+                Dim MyStream As Stream = New MemoryStream(driverPhoto)
+                'Command line argument must the the SMTP host.
+                With New SmtpClient()
+
+                    .Port = 587
+                    .Host = "smtp.zoho.com"
+                    .EnableSsl = True
+                    .Timeout = 10000
+                    .DeliveryMethod = SmtpDeliveryMethod.Network
+                    .UseDefaultCredentials = False
+                    .Credentials = New System.Net.NetworkCredential("no-reply@nanosoft.com.au", "notastrongpassword")
+
+                    Dim mm As New MailMessage()
+
+                    mm.From = New MailAddress("no-reply@nanosoft.com.au")
+                    mm.Subject = subject.Replace(vbNewLine, ". ")
+                    mm.Body = content
+
+                    Dim BookingEmailThankyou As String =
+                    "Thank you,<br>" & vbNewLine & vbNewLine &
+                    "Nanosoft Automated Services"
+
+                    Dim linkedImage As New LinkedResource(MyStream)
+                    Dim contentID As String = Guid.NewGuid.ToString()
+                    linkedImage.ContentId = contentID
+                    linkedImage.ContentType = New ContentType(MediaTypeNames.Image.Jpeg)
+                    Dim htmlView As AlternateView = System.Net.Mail.AlternateView.CreateAlternateViewFromString(content + "<br> Driver:<br> <img src=cid:" + contentID + "/> <br> " + BookingEmailThankyou, Nothing, "text/html")
+                    htmlView.LinkedResources.Add(linkedImage)
+                    mm.AlternateViews.Add(htmlView)
+
+                    For Each s As String In recipient.Split(";").ToList
+                        mm.To.Add(New Net.Mail.MailAddress(s))
+                    Next
+
+                    mm.BodyEncoding = UTF8Encoding.UTF8
+                    mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
+
+                    .Send(mm)
+                End With
+
+                wasSuccess = True
+
+            Catch ex As Exception
+                Dim message As String = ex.Message
+            End Try
+
+            Return wasSuccess
 
         End Function
 
