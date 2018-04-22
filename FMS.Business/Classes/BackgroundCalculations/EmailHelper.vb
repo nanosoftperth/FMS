@@ -37,6 +37,12 @@ Namespace BackgroundCalculations
         "Thank you," & vbNewLine & vbNewLine &
         "Nanosoft Automated Services"
 
+        Public Const BookingEmailContent_LeavingWithDriversPhoto As String =
+        "Dear {0}, " & vbNewLine & vbNewLine &
+        "Your driver has left and is on their way." &
+        "Your drivers name is {1} and is driving a {2}." & vbNewLine &
+        "Their number is {3}, if you wish to contact them. " & vbNewLine
+
         Public Const EmailContentForForgotPassword As String =
         "Message from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine &
         "You can change your password by clicking the link below : " & vbNewLine &
@@ -112,7 +118,7 @@ Namespace BackgroundCalculations
                 Select Case actionType
 
                     Case DataObjects.AlertType.ActionType.Leaves
-                        messageBody = String.Format(BookingEmailContent_Leaving, recipient, driverName, cartype, number)
+                        messageBody = String.Format(BookingEmailContent_LeavingWithDriversPhoto, recipient, driverName, cartype, number)
 
                     Case DataObjects.AlertType.ActionType.Enters
                         messageBody = String.Format(BookingEmailContent_ArrivingWithDriversPhoto, recipient, "2 km", driverName, cartype, number)
