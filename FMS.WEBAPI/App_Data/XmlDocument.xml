@@ -401,6 +401,15 @@
             Save JSON data to Splunk HTTP Event Collector
             </summary>
         </member>
+        <member name="M:FMS.WEBAPI.Controllers.SplunkAPIController.SendCanValues(System.String,System.String,System.String)">
+            <summary>
+            Send Can Values
+            </summary>
+            <param name="application"></param>
+            <param name="dateStart"></param>
+            <param name="dateEnd"></param>
+            <returns></returns>
+        </member>
         <member name="M:FMS.WEBAPI.Controllers.VehiclesController.Get">
             <summary>
             Get vehicle values
