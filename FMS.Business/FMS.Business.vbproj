@@ -105,6 +105,7 @@
     <Compile Include="Classes\DataObjects\CanBusEventOccuranceLog.vb" />
     <Compile Include="Classes\DataObjects\CanBusLogs.vb" />
     <Compile Include="Classes\DataObjects\CanDataValue.vb" />
+    <Compile Include="Classes\DataObjects\DataLoggerReport.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\CUST.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\FleetClient.vb" />
     <Compile Include="Classes\DataObjects\FleetManagement\FleetDocument.vb" />

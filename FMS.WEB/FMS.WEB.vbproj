@@ -312,6 +312,13 @@
       <DependentUpon>AlarmsAndEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DataLogger7502Report.aspx.designer.vb">
+      <DependentUpon>DataLogger7502Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DataLogger7502Report.aspx.vb">
+      <DependentUpon>DataLogger7502Report.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FleetManagement\ClientAssignments.aspx.designer.vb">
       <DependentUpon>ClientAssignments.aspx</DependentUpon>
     </Compile>
@@ -1319,6 +1326,7 @@
     <Content Include="Content\Images\FilterRecord.png" />
     <Content Include="Content\Images\Gear Set.gif" />
     <Content Include="Content\Images\SearchRecord.png" />
+    <Content Include="DataLogger7502Report.aspx" />
     <Content Include="FleetManagement\ClientAssignments.aspx" />
     <Content Include="FleetManagement\DriverDetails.aspx" />
     <Content Include="FleetManagement\MatchMYOBNamesContents.aspx" />
