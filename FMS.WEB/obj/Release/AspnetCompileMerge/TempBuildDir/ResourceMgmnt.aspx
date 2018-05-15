@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MainLight.master" CodeBehind="ResourceMgmnt.aspx.vb" Inherits="FMS.WEB.ResourceMgmnt" %>
 
-<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
     <link href="/Content/bootstrap.css" rel="stylesheet" />
@@ -11,7 +11,7 @@
             var yyyy = this.getFullYear().toString();
             var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
             var dd = this.getDate().toString();
-            return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]); // padding
+            return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dlod : "0" + dd[0]); // padding
         };
 
         Date.prototype.toStringReasonable = function () {
@@ -84,6 +84,55 @@
             dropDown.isPopupFullCorrectionOn = false;
         }
 
+        //Cesar: Use for Delete Dialog Box (SiteDetail)
+        var visibleIndex;
+        function OnCustomButtonClick(s, e, item) {
+            visibleIndex = e.visibleIndex;
+
+            if (item == 'AssignDriversVehicles') {
+                popupDelete_AssignDriversVehicles.SetHeaderText("Delete Item");
+                popupDelete_AssignDriversVehicles.Show();
+            }
+            if (item == 'Bookings') {
+                popupDelete_Bookings.SetHeaderText("Delete Item");
+                popupDelete_Bookings.Show();
+            }
+            //if (item == 'RunSite') {
+            //    popupDelete_RunSite.SetHeaderText("Delete Item");
+            //    popupDelete_RunSite.Show();
+            //}
+            //if (item == 'SiteTab') {
+            //    popupDelete_SiteTab.SetHeaderText("Delete Item");
+            //    popupDelete_SiteTab.Show();
+            //}
+            //if (item == 'SiteDoc') {
+            //    popupDelete_SiteDoc.SetHeaderText("Delete Item");
+            //    popupDelete_SiteDoc.Show();
+            //}
+        }
+        function OnClickYes(s, e, item) {
+            if (item == 'AssignDriversVehicles') {
+                dgvApplicationVehicleDriver.DeleteRow(visibleIndex);
+                popupDelete_AssignDriversVehicles.Hide();
+            }
+            if (item == 'Bookings') {
+                dgvDetailBookings.DeleteRow(visibleIndex);
+                popupDelete_Bookings.Hide();
+            }
+            //if (item == 'RunSite') {
+            //    cltRunSiteGridView.DeleteRow(visibleIndex);
+            //    popupDelete_RunSite.Hide();
+            //}
+            //if (item == 'SiteTab') {
+            //    cltSiteDetailsGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteTab.Hide();
+            //}
+            //if (item == 'SiteDoc') {
+            //    DocGridView.DeleteRow(visibleIndex);
+            //    popupDelete_SiteDoc.Hide();
+            //}
+        }
+
     </script>
     <style type="text/css">
         .small-nonbold label {
@@ -115,7 +164,7 @@
                 <img style="width: 200px;" src="Content/Images/mC-settings.png" />
             </td>
             <td>
-                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="2">
+                <dx:ASPxPageControl ID="pageControlMain" runat="server" ActiveTabIndex="3">
                     <TabPages>
                         <dx:TabPage Text="Assign Drivers to Vehicles">
                             <ContentCollection>
@@ -197,9 +246,16 @@
                                                                 <BatchEditSettings EditMode="Row"></BatchEditSettings>
                                                             </SettingsEditing>
                                                             <SettingsPager PageSize="20"></SettingsPager>
-
+                                                            <ClientSideEvents CustomButtonClick="function(s, e)
+                                                                {
+                                                                    OnCustomButtonClick(s, e, 'AssignDriversVehicles');
+                                                                }" />
                                                             <Columns>
-                                                                <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                                                <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True">
+                                                                    <CustomButtons>
+                                                                        <dx:GridViewCommandColumnCustomButton ID="btnDelete_AssignDriversVehicles" Text="Delete" />
+                                                                    </CustomButtons>
+                                                                </dx:GridViewCommandColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="ApplicationVehicleDriverTimeID" VisibleIndex="2" Visible="False"></dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataDateColumn PropertiesDateEdit-DisplayFormatString="G" PropertiesDateEdit-EditFormat="DateTime" FieldName="StartDate" VisibleIndex="6">
                                                                     <PropertiesDateEdit>
@@ -473,8 +529,6 @@
                                 </dx:ContentControl>
                             </ContentCollection>
                         </dx:TabPage>
-
-
                         <dx:TabPage Text="Vehicles">
                             <ContentCollection>
                                 <dx:ContentControl runat="server">
@@ -731,8 +785,15 @@
                                                 </dx:EditModeCommandLayoutItem>
                                             </Items>
                                         </EditFormLayoutProperties>
+                                        <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'Bookings');
+                                        }" />
                                         <Columns>
-                                            <dx:GridViewCommandColumn VisibleIndex="0" Width="100px" ShowNewButtonInHeader="True" ShowEditButton="True" ShowDeleteButton="True">
+                                            <dx:GridViewCommandColumn VisibleIndex="0" Width="100px" ShowNewButtonInHeader="True" ShowEditButton="True">
+                                                <CustomButtons>
+                                                    <dx:GridViewCommandColumnCustomButton ID="btnDelete_Bookings" Text="Delete" />
+                                                </CustomButtons>
                                             </dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationBookingId" Visible="false" ShowInCustomizationForm="True" VisibleIndex="1">
                                             </dx:GridViewDataTextColumn>
@@ -851,4 +912,38 @@
             </td>
         </tr>
     </table>
+    <dx:ASPxPopupControl ID="DeleteDialog_AssignDriversVehicles" runat="server" Text="Are you sure you want to delete this?"
+        ClientInstanceName="popupDelete_AssignDriversVehicles" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+        <ContentCollection>
+            <dx:PopupControlContentControl>
+                <br />
+                <dx:ASPxButton ID="yesButton_AssignDriversVehicles" runat="server" Text="Yes" AutoPostBack="false">
+                    <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'AssignDriversVehicles');
+                            }" />
+                </dx:ASPxButton>
+                <dx:ASPxButton ID="noButton_AssignDriversVehicles" runat="server" Text="No" AutoPostBack="false">
+                    <ClientSideEvents Click="function(){ popupDelete_AssignDriversVehicles.Hide(); }" />
+                </dx:ASPxButton>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_Bookings" runat="server" Text="Are you sure you want to delete this?"
+        ClientInstanceName="popupDelete_Bookings" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+        <ContentCollection>
+            <dx:PopupControlContentControl>
+                <br />
+                <dx:ASPxButton ID="yesButton_Bookings" runat="server" Text="Yes" AutoPostBack="false">
+                    <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'Bookings');
+                            }" />
+                </dx:ASPxButton>
+                <dx:ASPxButton ID="noButton_Bookings" runat="server" Text="No" AutoPostBack="false">
+                    <ClientSideEvents Click="function(){ popupDelete_Bookings.Hide(); }" />
+                </dx:ASPxButton>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 </asp:Content>

@@ -1,6 +1,6 @@
 <%@ Control Language="vb" AutoEventWireup="true" Inherits="FMS.WEB.SelectionToolTip" Codebehind="SelectionToolTip.ascx.vb" %>
 
-<%@ Register Assembly="DevExpress.Web.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web"	TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web"	TagPrefix="dx" %>
 
 <div runat="server" id="buttonDiv">
 	<dx:ASPxButton ID="btnShowMenu" runat="server" AutoPostBack="False" AllowFocus="False">

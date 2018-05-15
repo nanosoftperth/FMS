@@ -44,6 +44,33 @@
                         $(this).delay(2500).toggle('slow');
                     });
         }
+
+        //Cesar: Use for Delete Dialog Box (SiteDetail)
+        var visibleIndex;
+        function OnCustomButtonClick(s, e, item) {
+            visibleIndex = e.visibleIndex;
+
+            if (item == 'AlertConfig') {
+                popupDelete_AlertConfig.SetHeaderText("Delete Item");
+                popupDelete_AlertConfig.Show();
+            }
+            if (item == 'AlertGroups') {
+                popupDelete_AlertGroups.SetHeaderText("Delete Item");
+                popupDelete_AlertGroups.Show();
+            }
+            
+        }
+        function OnClickYes(s, e, item) {
+            if (item == 'AlertConfig') {
+                dgvApplicationAlerts.DeleteRow(visibleIndex);
+                popupDelete_AlertConfig.Hide();
+            }
+            if (item == 'AlertGroups') {
+                dgvGroups.DeleteRow(visibleIndex);
+                popupDelete_AlertGroups.Hide();
+            }
+            
+        }
     </script>
 
     <style type="text/css">
@@ -94,11 +121,18 @@
                                             </div>
                                         </EditForm>
                             </Templates>
+                            <ClientSideEvents CustomButtonClick="function(s, e)
+                            {
+                                OnCustomButtonClick(s, e, 'AlertConfig');
+                            }" />
                             <Columns>
 
                                 <%--command column definition--%>
 
-                                <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                <dx:GridViewCommandColumn ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                    <CustomButtons>
+                                        <dx:GridViewCommandColumnCustomButton ID="btnDelete_AlertConfig" Text="Delete" />
+                                    </CustomButtons>
                                 </dx:GridViewCommandColumn>
 
                                 <%--field names etc--%>
@@ -175,7 +209,6 @@
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
-
             <dx:TabPage Text="Geo-Fence Explorer">
                 <ContentCollection>
                     <dx:ContentControl runat="server">
@@ -321,12 +354,21 @@
                             <tr>
 
                                 <td style="padding-left: 20px;" valign="top">
-                                    <dx:ASPxGridView ID="dgvGroups" ClientInstanceName="dgvGroups" KeyFieldName="GroupID" SettingsBehavior-AllowFocusedRow="true" runat="server" AutoGenerateColumns="False" DataSourceID="odsGroups">
+                                    <dx:ASPxGridView ID="dgvGroups" ClientInstanceName="dgvGroups" KeyFieldName="GroupID" 
+                                        SettingsBehavior-AllowFocusedRow="true" runat="server" AutoGenerateColumns="False" 
+                                        DataSourceID="odsGroups">
                                         <ClientSideEvents FocusedRowChanged="function(s,e){dgvGroups_FocusedRowChanged(s,e);}" />
-
                                         <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
+                                        <ClientSideEvents CustomButtonClick="function(s, e)
+                                        {
+                                            OnCustomButtonClick(s, e, 'AlertGroups');
+                                        }" />
                                         <Columns>
-                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
+                                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                                                <CustomButtons>
+                                                    <dx:GridViewCommandColumnCustomButton ID="btnDelete_AlertGroups" Text="Delete" />
+                                                </CustomButtons>
+                                            </dx:GridViewCommandColumn>
                                             <dx:GridViewDataTextColumn FieldName="GroupID" VisibleIndex="1" Visible="False"></dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="GroupName" VisibleIndex="3"></dx:GridViewDataTextColumn>
                                             <dx:GridViewDataTextColumn FieldName="ApplicationID" VisibleIndex="2" Visible="False"></dx:GridViewDataTextColumn>
@@ -481,4 +523,38 @@
             </dx:TabPage>
         </TabPages>
     </dx:ASPxPageControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_AlertConfig" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_AlertConfig" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_AlertConfig" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'AlertConfig');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_AlertConfig" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_AlertConfig.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
+    <dx:ASPxPopupControl ID="DeleteDialog_AlertGroups" runat="server" Text="Are you sure you want to delete this?"
+            ClientInstanceName="popupDelete_AlertGroups" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton_AlertGroups" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="function(s, e)
+                            {
+                                OnClickYes(s, e, 'AlertGroups');
+                            }" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton_AlertGroups" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="function(){ popupDelete_AlertGroups.Hide(); }" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
 </asp:Content>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="MYOBCustomers.aspx.vb" Inherits="FMS.WEB.MYOBCustomers" %>
 
-<%@ Register Assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.XtraReports.v17.2.Web, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <!DOCTYPE html>
 

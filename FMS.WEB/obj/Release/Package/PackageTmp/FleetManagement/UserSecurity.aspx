@@ -8,7 +8,23 @@
     <script src="../Content/javascript/jquery-1.10.2.min.js" ></script>
     <link href="../Content/grid/bootstrap.css" rel="stylesheet" />
     <link href="../Content/grid/grid.css" rel="stylesheet" />
-    
+    <script>
+        //Cesar: Use for Delete Dialog Box
+        var visibleIndex;
+        function OnCustomButtonClick(s, e) {
+            visibleIndex = e.visibleIndex;
+            popupDelete.SetHeaderText("Delete Item");
+            popupDelete.Show();
+        }
+        function OnClickYes(s, e) {
+            cltGrid.DeleteRow(visibleIndex);
+            popupDelete.Hide();
+        }
+        function OnClickNo(s, e) {
+            popupDelete.Hide();
+        }
+
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -17,24 +33,31 @@
         </div>
         <br />
         <dx:ASPxGridView ID="Grid" runat="server" AutoGenerateColumns="false" 
-            KeyFieldName="usersecID" DataSourceID="odsUsers" Width="100%" 
+            KeyFieldName="usersecID" DataSourceID="odsUsers" Width="100%" Theme="SoftOrange"
             OnRowInserting="Grid_RowInserting"
             OnRowUpdating="Grid_RowUpdating"
             OnStartRowEditing="Grid_StartRowEditing" 
-            OnInitNewRow="Grid_InitNewRow">
+            OnInitNewRow="Grid_InitNewRow"
+            ClientInstanceName="cltGrid">
             <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
             <Settings ShowPreview="true" />
             <SettingsPager PageSize="10" />
             <SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"/>
-            <SettingsPopup>
+            <SettingsPopup>               
                 <EditForm  Modal="true" 
                     VerticalAlign="WindowCenter" 
-                    HorizontalAlign="WindowCenter" width="700px" />
+                    HorizontalAlign="WindowCenter" width="700px"
+                    Height="450px"/>               
             </SettingsPopup>
+            <ClientSideEvents CustomButtonClick="OnCustomButtonClick" /> 
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" 
-                    ShowNewButtonInHeader="True" ShowDeleteButton="True"
-                    VisibleIndex="0" ></dx:GridViewCommandColumn>
+                    ShowNewButtonInHeader="True"
+                    VisibleIndex="0" >
+                    <CustomButtons>
+                        <dx:GridViewCommandColumnCustomButton ID="deleteButton" Text="Delete" />
+                    </CustomButtons>
+                </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="usersecID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="ApplicationId" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewBandColumn Caption="User">
@@ -66,8 +89,7 @@
                     </Columns>                   
                 </dx:GridViewBandColumn>
                 <dx:GridViewBandColumn Caption="Main Menu Items" HeaderStyle-HorizontalAlign="Center">
-                    <Columns>
-                       
+                    <Columns>                       
                         <dx:GridViewDataCheckColumn FieldName="lblCustomerDetails" VisibleIndex="5" Visible="true" Caption="Customer Details"></dx:GridViewDataCheckColumn>
                         <dx:GridViewDataCheckColumn FieldName="lblSites" VisibleIndex="6" Visible="true" Caption="Sites"></dx:GridViewDataCheckColumn>
                         <dx:GridViewDataCheckColumn FieldName="lblMaintenance" VisibleIndex="7" Visible="true" Caption="Maintenance"></dx:GridViewDataCheckColumn>
@@ -118,7 +140,7 @@
                 
             </Columns>
             <EditFormLayoutProperties>
-                <Items>
+                <Items>                   
                     <dx:GridViewLayoutGroup GroupBoxDecoration="Box" Caption="User" ColCount="2" Width="600px">
                         <Items>
                             <dx:GridViewColumnLayoutItem ColumnName="txtUserName" />
@@ -185,6 +207,20 @@
             
 
         </dx:ASPxGridView>
+        <dx:ASPxPopupControl ID="DeleteDialog" runat="server" Text="Are you sure you want to delete this?" 
+            ClientInstanceName="popupDelete" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickYes" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickNo" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
         <asp:ObjectDataSource ID="odsUsers" runat="server" SelectMethod="GetAll" 
             TypeName="FMS.Business.DataObjects.tblUserSecurity" 
             DataObjectTypeName="FMS.Business.DataObjects.tblUserSecurity" 

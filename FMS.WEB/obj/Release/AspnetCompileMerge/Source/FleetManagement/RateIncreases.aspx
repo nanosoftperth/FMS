@@ -17,7 +17,7 @@
         }
     </style>
     <script type="text/javascript">
-        function ViewCuaRatesClick(ID) {
+        function ViewCuaRatesClick() {
             ShowCuaRatesWindow();
         }
         function ShowCuaRatesWindow() {
@@ -31,7 +31,7 @@
         function ShowCuaProcessRatesWindow() {
             viewProcessCuaRates.Show();
         }
-        function ViewUpdateRatesClick(ID) {
+        function ViewUpdateRatesClick() {
             ShowUpdateRatesWindow();
         }
         function ShowUpdateRatesWindow() {
@@ -66,23 +66,71 @@
             ShowMyAlertWindow();
         }
         function ProceedCuaProcess() {
-            ProcessCuaRateIncrease('xyz');
-            document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
-            myAlertWithYesNoButton.Hide();
-            ShowMyAlertWindow();
+            ProcessCuaRateIncrease();
         }
-        function ProcessCuaRateIncrease(param1) {
+        function ProcessUpdateRatesClick() {
+            if (txtPercentageIncrease.GetText() == '') {
+                document.getElementById("pMessage").innerHTML = "Please enter a percentage increase.";
+                ShowMyAlertWindow();
+            } else {
+                LoadingPanel.SetText("");
+                LoadingPanel.Show();
+                ProcessUpdateRates(txtPercentageIncrease.GetText(), ChkReportOnlyNoRateIncrease.GetChecked());
+            }
+        }
+        function ProcessUpdateRates(percentageIncrease, reportOnly) {
+            $.ajax({
+                type: "POST",
+                url: 'RateIncreases.aspx/ProcessRateIncrease',
+                dataType: "json",
+                data: JSON.stringify({ 'percentageIncrease': percentageIncrease,'reportOnly':reportOnly }),
+                contentType: "application/json",
+                crossDomain: true,
+                success: function (data) {
+                    document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
+                    myAlertWithYesNoButton.Hide();
+                    ShowMyAlertWindow();
+                    window.open('Reports/RateIncreasesReport.aspx', 'Rate Increase', 'Rate Increase');
+                    LoadingPanel.Hide();
+                }
+            });
+        }
+        function ProcessCuaRateIncrease() {
+            var param = {
+                ReportOnly: cuaChkReportOnlyNoRateIncrease.GetChecked(),
+                Sid: cuaTxtServiceCode.GetValue(),
+                IndustryGroupCode: cuaTxtIndustryGroupCode.GetValue(),
+                EffectiveDate: cuaDtEffectiveDate.GetValue()
+            }
             $.ajax({
                 type: "POST",
                 url: 'RateIncreases.aspx/ProcessCuaRateIncrease',
                 dataType: "json",
-                data: JSON.stringify({ param1: param1 }),
+                data: JSON.stringify({'objCuaRateIncrease':param}),
                 contentType: "application/json",
                 crossDomain: true,
                 success: function (data) {
-
+                    document.getElementById("pMessage").innerHTML = "Processing of rate increases complete - Thank you and have a nice day";
+                    myAlertWithYesNoButton.Hide();
+                    ShowMyAlertWindow();
+                    window.open('Reports/RateIncreaseCuaReport.aspx?param=' + cuaTxtService.GetValue(), 'Rate Increase', 'Rate Increase');
                 }
             });
+        }
+
+        //Cesar: Use for Delete Dialog Box
+        var visibleIndex;
+        function OnCustomButtonClick(s, e) {
+            visibleIndex = e.visibleIndex;
+            popupDelete.SetHeaderText("Delete Item");
+            popupDelete.Show();
+        }
+        function OnClickYes(s, e) {
+            cltRateIncreasesGridView.DeleteRow(visibleIndex);
+            popupDelete.Hide();
+        }
+        function OnClickNo(s, e) {
+            popupDelete.Hide();
         }
     </script>
 </head>
@@ -90,7 +138,7 @@
     <form id="form1" runat="server">
         
         <dx:ASPxGridView ID="RateIncreasesGridView" KeyFieldName="RateIncreaseID" DataSourceID="odsRateIncreases" 
-            Theme="SoftOrange" runat="server" AutoGenerateColumns="False"
+            Theme="SoftOrange" runat="server" AutoGenerateColumns="False" ClientInstanceName="cltRateIncreasesGridView"
             OnRowInserting="RateIncreasesGridView_RowInserting"
             OnRowUpdating="RateIncreasesGridView_RowUpdating">
             <Settings ShowGroupPanel="True" ShowFilterRow="True" ShowTitlePanel="true"></Settings>
@@ -106,8 +154,12 @@
                     VerticalAlign="WindowCenter"
                     HorizontalAlign="WindowCenter" Width="300px" />
             </SettingsPopup>
+            <ClientSideEvents CustomButtonClick="OnCustomButtonClick" />
             <Columns>
-                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True">
+                <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                    <CustomButtons>
+                        <dx:GridViewCommandColumnCustomButton ID="deleteButton" Text="Delete" />
+                    </CustomButtons>
                 </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="RateIncreaseID" VisibleIndex="1" Visible="false"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="AID" VisibleIndex="2" Visible="false"></dx:GridViewDataTextColumn>
@@ -153,12 +205,12 @@
                     <div style="text-align: right; padding: 2px; padding-top:60px">
                         <dx:ASPxButton ID="aspxButton1" runat="server" AutoPostBack="false" Text="CUA Rate Increases">
                             <ClientSideEvents Click="function(s,e) {
-                                            ViewCuaRatesClick('xxx');
+                                            ViewCuaRatesClick();
                                         }" />
                                 </dx:ASPxButton>
                         <dx:ASPxButton ID="aspxButton" runat="server" AutoPostBack="false" Text="Update Rates">
                             <ClientSideEvents Click="function(s,e) {
-                                            ViewUpdateRatesClick('xxx');
+                                            ViewUpdateRatesClick();
                                         }" />
                         </dx:ASPxButton>
                         &nbsp;&nbsp;&nbsp;
@@ -186,7 +238,7 @@
                                             <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Percentage&nbsp;Increase:" Width="150px"></dx:ASPxLabel>
                                         </div>
                                         <div class="col-md-3">
-                                            <dx:ASPxTextBox ID="txtRateIncreaseDescription" ClientInstanceName="txtRateIncreaseDescription" runat="server" Width="300px" Text='<%# Eval("RateIncreaseDescription") %>'></dx:ASPxTextBox>
+                                            <dx:ASPxSpinEdit ID="txtPercentageIncrease" ClientInstanceName="txtPercentageIncrease" runat="server" Width="100px" Text='<%# Eval("RateIncreaseDescription") %>'></dx:ASPxSpinEdit>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -194,7 +246,7 @@
                                             <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="Report&nbsp;Only&nbsp;-&nbsp;No&nbsp;rate&nbsp;increase:" Width="150px"></dx:ASPxLabel>
                                         </div>
                                         <div class="col-md-3">
-                                            <dx:ASPxCheckBox ID="chkReportOnlyNoRateIncrease" runat="server"></dx:ASPxCheckBox>
+                                            <dx:ASPxCheckBox ID="chkReportOnlyNoRateIncrease" ClientInstanceName="ChkReportOnlyNoRateIncrease" runat="server" Checked="true"></dx:ASPxCheckBox>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -217,9 +269,9 @@
                                     </div>
                                 </div>
                                 <div style="text-align: right; padding: 2px; padding-top:60px">
-                                    <dx:ASPxButton ID="aspxButton1" Width="80px" runat="server" AutoPostBack="false" Text="Process"><%--<ClientSideEvents Click="function(s,e) {
-                                            ViewSitesClick('xxx');
-                                        }" />--%>
+                                    <dx:ASPxButton ID="aspxButton1" Width="80px" runat="server" AutoPostBack="false" Text="Process"><ClientSideEvents Click="function(s,e) {
+                                            ProcessUpdateRatesClick();
+                                        }" />
                                     </dx:ASPxButton>
                                     <dx:ASPxButton ID="aspxButton"  Width="80px" runat="server" AutoPostBack="false" Text="Exit">                                        
                                         <ClientSideEvents Click="function(s, e) { viewUpdateRates.Hide(); }" />
@@ -418,7 +470,7 @@
                     <Paddings PaddingBottom="5px" />
                 </ContentStyle>
             </dx:ASPxPopupControl>
-         <dx:ASPxPopupControl ID="myAlertWithYesNoButton" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
+        <dx:ASPxPopupControl ID="myAlertWithYesNoButton" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
                 PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="myAlertWithYesNoButton"
                 HeaderText="Information" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" Width="370px" >        
                 <ContentCollection>
@@ -449,8 +501,28 @@
                     <Paddings PaddingBottom="5px" />
                 </ContentStyle>
             </dx:ASPxPopupControl>
+        <dx:ASPxPopupControl ID="DeleteDialog" runat="server" Text="Are you sure you want to delete this?" 
+            ClientInstanceName="popupDelete" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
+            <ContentCollection>
+                <dx:PopupControlContentControl>
+                    <br />
+                    <dx:ASPxButton ID="yesButton" runat="server" Text="Yes" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickYes" />
+                    </dx:ASPxButton>
+                    <dx:ASPxButton ID="noButton" runat="server" Text="No" AutoPostBack="false">
+                        <ClientSideEvents Click="OnClickNo" />
+                    </dx:ASPxButton>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
         <asp:ObjectDataSource ID="odsRateIncreases" runat="server" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.tblRateIncreaseReference" DataObjectTypeName="FMS.Business.DataObjects.tblRateIncreaseReference" DeleteMethod="Delete" InsertMethod="Create" UpdateMethod="Update">
         </asp:ObjectDataSource>
+        <div>
+            <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" 
+                Modal="True">
+                <Image URL="../Content/Images/Gear Set.gif"/>
+            </dx:ASPxLoadingPanel>
+        </div>
     </form>
 </body>
 </html>

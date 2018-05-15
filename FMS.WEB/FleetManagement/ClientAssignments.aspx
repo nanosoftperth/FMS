@@ -516,8 +516,7 @@
                                                     <dx:ASPxTextBox ID="hdnSiteCid" ClientInstanceName="hdnSiteCid" runat="server" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-1"><b>Customer&nbsp;Rating:</b></div>
-                                                    <div style="width: 15px;"></div>
+                                                     <div class="col-md-1" style="padding-right:110px;"><b>Customer&nbsp;Rating:</b></div>
                                                     <dx:ASPxTextBox ID="txtCustomerRating" ClientInstanceName="txtCustomerRating" Width="30px" runat="server" Text='<%# Eval("CustomerRating") %>' ReadOnly="true"></dx:ASPxTextBox>
                                                     <dx:ASPxTextBox ID="txtCustomerRatingDesc" ClientInstanceName="txtCustomerRatingDesc" Width="100px" runat="server" Text='<%# Eval("CustomerRatingDesc") %>' ReadOnly="true"></dx:ASPxTextBox>
                                                     <div class="col-md-1" style="text-align: right"><b>Customer</b></div>
@@ -1418,8 +1417,7 @@
                                                 </div>
                                                 <div class="row"></div>
                                                 <div class="row">
-                                                    <div class="col-md-1"><b>Customer&nbsp;Rating:</b></div>
-                                                    <div style="width: 15px;"></div>
+                                                     <div class="col-md-1" style="padding-right:110px;"><b>Customer&nbsp;Rating:</b></div>
                                                     <dx:ASPxTextBox ID="txtCustomerRating" ClientInstanceName="txtCustomerRating" Width="30px" runat="server" Text='<%# Eval("CustomerRating") %>' ReadOnly="true"></dx:ASPxTextBox>
                                                     <dx:ASPxTextBox ID="txtCustomerRatingDesc" ClientInstanceName="txtCustomerRatingDesc" Width="100px" runat="server" Text='<%# Eval("CustomerRatingDesc") %>' ReadOnly="true"></dx:ASPxTextBox>
                                                     <div class="col-md-1" style="text-align: right"><b>Customer</b></div>

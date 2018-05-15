@@ -699,7 +699,12 @@ function configDateShowPopup() {
 
             if (!_hasfiredbefore) {
 
-                this.CalendarShowing.FireEvent(this);
+                try {
+                    this.CalendarShowing.FireEvent(this);
+                }
+                catch (err){
+                    var x = err;
+                }
                 ASPxClientDropDownEditBase.prototype.ShowDropDownArea.call(this, isRaiseEvent);
                 _hasfiredbefore = true;
             }

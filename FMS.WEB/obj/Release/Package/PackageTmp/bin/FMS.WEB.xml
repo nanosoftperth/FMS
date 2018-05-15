@@ -427,6 +427,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._btnDelete_AlertConfig">
+<summary>
+btnDelete_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.AlarmsAndAlerts._odsAlerts">
 <summary>
 odsAlerts control.
@@ -580,6 +589,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._btnDelete_AlertGroups">
+<summary>
+btnDelete_AlertGroups control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.AlarmsAndAlerts._odsGroups">
 <summary>
 odsGroups control.
@@ -661,6 +679,60 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._DeleteDialog_AlertConfig">
+<summary>
+DeleteDialog_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._yesButton_AlertConfig">
+<summary>
+yesButton_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._noButton_AlertConfig">
+<summary>
+noButton_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._DeleteDialog_AlertGroups">
+<summary>
+DeleteDialog_AlertGroups control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._yesButton_AlertGroups">
+<summary>
+yesButton_AlertGroups control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndAlerts._noButton_AlertGroups">
+<summary>
+noButton_AlertGroups control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.AlarmsAndEvents._ASPxPageControl1">
 <summary>
 ASPxPageControl1 control.
@@ -673,6 +745,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.AlarmsAndEvents._ASPxGridView1">
 <summary>
 ASPxGridView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndEvents._btnDelete_EventConfig">
+<summary>
+btnDelete_EventConfig control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -733,6 +814,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.AlarmsAndEvents._btnDelete_AlertConfig">
+<summary>
+btnDelete_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.AlarmsAndEvents._odsAlertConfiguration">
 <summary>
 odsAlertConfiguration control.
@@ -778,6 +868,78 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.AlarmsAndEvents._DeleteDialog_EventConfig">
+<summary>
+DeleteDialog_EventConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndEvents._yesButton_EventConfig">
+<summary>
+yesButton_EventConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndEvents._noButton_EventConfig">
+<summary>
+noButton_EventConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndEvents._DeleteDialog_AlertConfig">
+<summary>
+DeleteDialog_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndEvents._yesButton_AlertConfig">
+<summary>
+yesButton_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AlarmsAndEvents._noButton_AlertConfig">
+<summary>
+noButton_AlertConfig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DataLogger7502Report._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DataLogger7502Report._Button1">
+<summary>
+Button1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ClientAssignments._form1">
 <summary>
 form1 control.
@@ -796,9 +958,45 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ClientAssignments._cbFields">
+<summary>
+cbFields control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._btnCollapse">
+<summary>
+btnCollapse control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._btnExpand">
+<summary>
+btnExpand control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ClientAssignments._RunGridView">
 <summary>
 RunGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._btnDelete_Run">
+<summary>
+btnDelete_Run control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -868,6 +1066,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ClientAssignments._btnDelete_SiteTab">
+<summary>
+btnDelete_SiteTab control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ClientAssignments._viewPopup">
 <summary>
 viewPopup control.
@@ -880,6 +1087,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ClientAssignments._Panel2">
 <summary>
 Panel2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._myAlert">
+<summary>
+myAlert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._Panel1">
+<summary>
+Panel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._ASPxButton7">
+<summary>
+ASPxButton7 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1102,9 +1336,171 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ClientAssignments._btnDelete_RunSite">
+<summary>
+btnDelete_RunSite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ClientAssignments._odsRunSite">
 <summary>
 odsRunSite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._gvRunCompletion">
+<summary>
+gvRunCompletion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._odsRunCompletion">
+<summary>
+odsRunCompletion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._DeleteDialog_SiteDetail">
+<summary>
+DeleteDialog_SiteDetail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._yesButton_SiteDetail">
+<summary>
+yesButton_SiteDetail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._noButton_SiteDetail">
+<summary>
+noButton_SiteDetail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._DeleteDialog_RunDoc">
+<summary>
+DeleteDialog_RunDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._yesButton_RunDoc">
+<summary>
+yesButton_RunDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._noButton_RunDoc">
+<summary>
+noButton_RunDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._DeleteDialog_RunSite">
+<summary>
+DeleteDialog_RunSite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._yesButton_RunSite">
+<summary>
+yesButton_RunSite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._noButton_RunSite">
+<summary>
+noButton_RunSite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._DeleteDialog_SiteTab">
+<summary>
+DeleteDialog_SiteTab control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._yesButton_SiteTab">
+<summary>
+yesButton_SiteTab control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._noButton_SiteTab">
+<summary>
+noButton_SiteTab control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._DeleteDialog_SiteDoc">
+<summary>
+DeleteDialog_SiteDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._yesButton_SiteDoc">
+<summary>
+yesButton_SiteDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ClientAssignments._noButton_SiteDoc">
+<summary>
+noButton_SiteDoc control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1132,6 +1528,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.DriverDetails._gvDriver">
 <summary>
 gvDriver control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._deleteButton_Main">
+<summary>
+deleteButton_Main control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1177,6 +1582,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.DriverDetails._gvDriverCommentReason">
 <summary>
 gvDriverCommentReason control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._btnDelete_CommentReason">
+<summary>
+btnDelete_CommentReason control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1258,6 +1672,87 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.DriverDetails._btnCloseAllocate">
 <summary>
 btnCloseAllocate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._DeleteDialog_Main">
+<summary>
+DeleteDialog_Main control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._yesButton_Main">
+<summary>
+yesButton_Main control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._noButton_Main">
+<summary>
+noButton_Main control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._DeleteDialog_Comments">
+<summary>
+DeleteDialog_Comments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._yesButton_Comments">
+<summary>
+yesButton_Comments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._noButton_Comments">
+<summary>
+noButton_Comments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._DeleteDialog_CommentReason">
+<summary>
+DeleteDialog_CommentReason control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._yesButton_CommentReason">
+<summary>
+yesButton_CommentReason control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DriverDetails._noButton_Bookings">
+<summary>
+noButton_Bookings control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1363,6 +1858,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.PublicHolidayRegister._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.PublicHolidayRegister._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.PublicHolidayRegister._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.PublicHolidayRegister._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.PublicHolidayRegister._odsHolidays">
 <summary>
 odsHolidays control.
@@ -1408,6 +1939,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.AuditChangeReasons._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AuditChangeReasons._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AuditChangeReasons._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.AuditChangeReasons._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.AuditChangeReasons._odsAuditChangeReason">
 <summary>
 odsAuditChangeReason control.
@@ -1429,6 +1996,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ContractPreviousSuppliers._ContractPreviousSuppliersGridView">
 <summary>
 ContractPreviousSuppliersGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractPreviousSuppliers._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractPreviousSuppliers._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractPreviousSuppliers._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractPreviousSuppliers._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1555,6 +2158,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.FuelLevy._FuelLevyGridView">
 <summary>
 FuelLevyGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FuelLevy._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FuelLevy._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FuelLevy._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FuelLevy._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1768,15 +2407,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.ProduceMYOBFile._ASPxCheckBox1">
-<summary>
-ASPxCheckBox1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:FMS.WEB.ProduceMYOBFile._ASPxLabel1">
 <summary>
 ASPxLabel1 control.
@@ -1807,6 +2437,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ProduceMYOBFile._txtMYOBFilename">
 <summary>
 txtMYOBFilename control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ProduceMYOBFile._ucCust">
+<summary>
+ucCust control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ProduceMYOBFile._lblFileName">
+<summary>
+lblFileName control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2191,6 +2839,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.RateIncreaseCuaReport._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreaseCuaReport._LoadingPanel">
+<summary>
+LoadingPanel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreasesReport._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreasesReport._LoadingPanel">
+<summary>
+LoadingPanel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.RevenueReportByZone._form1">
 <summary>
 form1 control.
@@ -2221,6 +2905,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.RunFNCycles._RunFNCyclesGridView">
 <summary>
 RunFNCyclesGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RunFNCycles._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RunFNCycles._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RunFNCycles._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RunFNCycles._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2371,6 +3091,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.SalesPerson._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SalesPerson._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SalesPerson._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SalesPerson._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.SalesPerson._odsSalesPerson">
 <summary>
 odsSalesPerson control.
@@ -2392,6 +3148,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ServiceFrequency._ServiceFrequencyGridView">
 <summary>
 ServiceFrequencyGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceFrequency._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceFrequency._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceFrequency._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ServiceFrequency._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2704,6 +3496,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.Services._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Services._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Services._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Services._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.Services._odsServices">
 <summary>
 odsServices control.
@@ -2965,6 +3793,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.CIRReasons._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CIRReasons._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CIRReasons._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CIRReasons._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.CIRReasons._odsCIRReasons">
 <summary>
 odsCIRReasons control.
@@ -2992,6 +3856,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ContractCeaseReasonsPopup._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractCeaseReasonsPopup._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractCeaseReasonsPopup._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractCeaseReasonsPopup._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ContractCeaseReasonsPopup._odsContractCeaseReasons">
 <summary>
 odsContractCeaseReasons control.
@@ -3013,6 +3913,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ContractCeaseReasons._ContractCeaseReasonsGridView">
 <summary>
 ContractCeaseReasonsGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractCeaseReasons._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractCeaseReasons._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractCeaseReasons._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ContractCeaseReasons._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3230,6 +4166,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.CustomerRating._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerRating._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerRating._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerRating._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.CustomerRating._odsCustomerRating">
 <summary>
 odsCustomerRating control.
@@ -3251,6 +4223,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.CustomerDetailsMainPopup._CustomersGridView">
 <summary>
 CustomersGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerDetailsMainPopup._deleteButton">
+<summary>
+deleteButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3356,6 +4337,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.CustomerDetailsMainPopup._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerDetailsMainPopup._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerDetailsMainPopup._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.CustomerDetailsMain._form1">
 <summary>
 form1 control.
@@ -3368,6 +4376,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.CustomerDetailsMain._CustomersGridView">
 <summary>
 CustomersGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerDetailsMain._deleteButton">
+<summary>
+deleteButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3404,6 +4421,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.CustomerDetailsMain._hdnCID">
 <summary>
 hdnCID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerDetailsMain._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerDetailsMain._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerDetailsMain._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3485,6 +4529,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.CustomerAgents._CustomerAgentsGridView">
 <summary>
 CustomerAgentsGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerAgents._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerAgents._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerAgents._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.CustomerAgents._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4004,6 +5084,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.EstablishZones._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.EstablishZones._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.EstablishZones._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.EstablishZones._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.EstablishZones._odsEstablishZones">
 <summary>
 odsEstablishZones control.
@@ -4067,6 +5183,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.UserSecurity._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.UserSecurity._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.UserSecurity._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.UserSecurity._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.UserSecurity._odsUsers">
 <summary>
 odsUsers control.
@@ -4097,6 +5249,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.InvoicingFrequency._InvoicingFrequencyGridView">
 <summary>
 InvoicingFrequencyGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.InvoicingFrequency._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.InvoicingFrequency._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.InvoicingFrequency._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.InvoicingFrequency._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4157,6 +5345,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.IndustryGroups._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.IndustryGroups._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.IndustryGroups._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.IndustryGroups._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.IndustryGroups._odsIndustryGroups">
 <summary>
 odsIndustryGroups control.
@@ -4178,6 +5402,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.IndustryGroupPopup._IndustryGroupsGridView">
 <summary>
 IndustryGroupsGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.IndustryGroupPopup._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.IndustryGroupPopup._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.IndustryGroupPopup._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.IndustryGroupPopup._noButton">
+<summary>
+noButton control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4382,6 +5642,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.PreviousSupplierPopup._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.PreviousSupplierPopup._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.PreviousSupplierPopup._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.PreviousSupplierPopup._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.PreviousSupplierPopup._odsPreviousSupplier">
 <summary>
 odsPreviousSupplier control.
@@ -4427,6 +5723,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.RateIncreases._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.RateIncreases._viewUpdateRates">
 <summary>
 viewUpdateRates control.
@@ -4454,9 +5759,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.RateIncreases._txtRateIncreaseDescription">
+<member name="F:FMS.WEB.RateIncreases._txtPercentageIncrease">
 <summary>
-txtRateIncreaseDescription control.
+txtPercentageIncrease control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4769,9 +6074,45 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.RateIncreases._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.RateIncreases._odsRateIncreases">
 <summary>
 odsRateIncreases control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.RateIncreases._LoadingPanel">
+<summary>
+LoadingPanel control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6966,6 +8307,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ResourceMgmnt._btnDelete_AssignDriversVehicles">
+<summary>
+btnDelete_AssignDriversVehicles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ResourceMgmnt._odsApplicationVehicleDriverTimeslot">
 <summary>
 odsApplicationVehicleDriverTimeslot control.
@@ -7110,6 +8460,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ResourceMgmnt._btnDelete_Bookings">
+<summary>
+btnDelete_Bookings control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ResourceMgmnt._odsBookingContact">
 <summary>
 odsBookingContact control.
@@ -7131,6 +8490,60 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.ResourceMgmnt._odsBooking">
 <summary>
 odsBooking control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ResourceMgmnt._DeleteDialog_AssignDriversVehicles">
+<summary>
+DeleteDialog_AssignDriversVehicles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ResourceMgmnt._yesButton_AssignDriversVehicles">
+<summary>
+yesButton_AssignDriversVehicles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ResourceMgmnt._noButton_AssignDriversVehicles">
+<summary>
+noButton_AssignDriversVehicles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ResourceMgmnt._DeleteDialog_Bookings">
+<summary>
+DeleteDialog_Bookings control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ResourceMgmnt._yesButton_Bookings">
+<summary>
+yesButton_Bookings control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ResourceMgmnt._noButton_Bookings">
+<summary>
+noButton_Bookings control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7335,6 +8748,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.Contacts._deleteButton">
+<summary>
+deleteButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Contacts._DeleteDialog">
+<summary>
+DeleteDialog control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Contacts._yesButton">
+<summary>
+yesButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Contacts._noButton">
+<summary>
+noButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.SiteDetailsMain._form1">
 <summary>
 form1 control.
@@ -7362,6 +8811,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.SiteDetailsMain._btnDelete_SiteDetail">
+<summary>
+btnDelete_SiteDetail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.SiteDetailsMain._viewPopup">
 <summary>
 viewPopup control.
@@ -7374,6 +8832,141 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.SiteDetailsMain._Panel2">
 <summary>
 Panel2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._DeleteDialog_SiteDetail">
+<summary>
+DeleteDialog_SiteDetail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._yesButton_SiteDetail">
+<summary>
+yesButton_SiteDetail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._noButton_SiteDetail">
+<summary>
+noButton_SiteDetail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._DeleteDialog_ResignHistory">
+<summary>
+DeleteDialog_ResignHistory control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._yesButton_ResignHistory">
+<summary>
+yesButton_ResignHistory control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._noButton_ResignHistory">
+<summary>
+noButton_ResignHistory control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._DeleteDialog_SiteServices">
+<summary>
+DeleteDialog_SiteServices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._yesButton_SiteServices">
+<summary>
+yesButton_SiteServices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._noButton_SiteServices">
+<summary>
+noButton_SiteServices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._DeleteDialog_Comments">
+<summary>
+DeleteDialog_Comments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._yesButton_Comments">
+<summary>
+yesButton_Comments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._noButton_Comments">
+<summary>
+noButton_Comments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._myAlert">
+<summary>
+myAlert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._Panel1">
+<summary>
+Panel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.SiteDetailsMain._ASPxButton7">
+<summary>
+ASPxButton7 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8541,6 +10134,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.Test._btnDelete_Users">
+<summary>
+btnDelete_Users control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.Test._odsRoles">
 <summary>
 odsRoles control.
@@ -8553,6 +10155,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.Test._dgvRoles">
 <summary>
 dgvRoles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._btnDelete_Roles">
+<summary>
+btnDelete_Roles control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8598,6 +10209,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.Test._dgvRoleAccessToFeatures">
 <summary>
 dgvRoleAccessToFeatures control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._btnDelete_RolesAccessFeature">
+<summary>
+btnDelete_RolesAccessFeature control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8733,6 +10353,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.Test._dgvBusinessLocations">
 <summary>
 dgvBusinessLocations control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._btnDelete_BusinessLocation">
+<summary>
+btnDelete_BusinessLocation control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8913,6 +10542,114 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.Test._odsVehicles">
 <summary>
 odsVehicles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._DeleteDialog_User">
+<summary>
+DeleteDialog_User control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._yesButton_User">
+<summary>
+yesButton_User control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._noButton_User">
+<summary>
+noButton_User control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._DeleteDialog_Roles">
+<summary>
+DeleteDialog_Roles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._yesButton_Roles">
+<summary>
+yesButton_Roles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._noButton_Roles">
+<summary>
+noButton_Roles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._DeleteDialog_RolesAccessFeature">
+<summary>
+DeleteDialog_RolesAccessFeature control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._yesButton_RolesAccessFeature">
+<summary>
+yesButton_RolesAccessFeature control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._noButton_RolesAccessFeature">
+<summary>
+noButton_RolesAccessFeature control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._DeleteDialog_BusinessLocation">
+<summary>
+DeleteDialog_BusinessLocation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._yesButton_BusinessLocation">
+<summary>
+yesButton_BusinessLocation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.Test._noButton_BusinessLocation">
+<summary>
+noButton_BusinessLocation control.
 </summary>
 <remarks>
 Auto-generated field.

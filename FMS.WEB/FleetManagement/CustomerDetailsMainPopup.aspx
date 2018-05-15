@@ -125,17 +125,17 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerName" runat="server" Text="Customer&nbsp;Name:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtCustomerName" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("CustomerName") %>'></dx:ASPxTextBox>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-1" style="padding-left:60px;">
                                     <dx:ASPxButton ID="btnViewSites" ClientInstanceName="btnViewSites" AutoPostBack="false" runat="server" Text="View Sites">
                                         <ClientSideEvents Click="function(s,e) {
                                          ViewSitesClick(txtViewID.GetText());
                                         }" />
                                     </dx:ASPxButton>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-1" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtViewID" ClientInstanceName="txtViewID" runat="server" Width="50px" Text='<%# Eval("CID") %>'></dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblAddressLine1" runat="server" Text="Address&nbsp;Line&nbsp;1:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtAddressLine1" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("AddressLine1") %>'></dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblAddressLine2" runat="server" Text="Address&nbsp;Line&nbsp;2:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtAddressLine2" runat="server" Width="260px" MaxLength="50" Text='<%# Eval("AddressLine2") %>'></dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblSuburb" runat="server" Text="Suburb:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8" style="padding-left:60px;">
                                     <div class="container">
                                         <div class="row row-md-margin-top">
                                             <dx:ASPxTextBox ID="txtSuburb" runat="server" Width="111px" MaxLength="22" Text='<%# Eval("Suburb") %>'></dx:ASPxTextBox>
@@ -180,7 +180,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustCommencementDate" runat="server" Text="Customer&nbsp;Commencement Date:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-8" style="padding-left:60px;">
                                     <div class="container">
                                         <div class="row row-md-margin-top">
                                             <dx:ASPxDateEdit ID="dtCustCommencementDate" ClientInstanceName="dtCustCommencementDate" runat="server" Date='<%# Eval("CustomerCommencementDate") %>'>
@@ -201,7 +201,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerRating" runat="server" Text="Customer&nbsp;Rating:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxComboBox ID="cbCustomerRating" DataSourceID="odsCustomerRating" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("CustomerRating") - 1 %>' TextField="CustomerRating" ValueField="Rid"></dx:ASPxComboBox>
                                 </div>
                             </div>
@@ -209,10 +209,10 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblZone" runat="server" Text="Zone:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxComboBox ID="cbZone" DataSourceID="odsZones" runat="server" Width="170px" Height="20px" SelectedIndex='<%# Eval("ZoneSortOrder") - 1%>' TextField="AreaDescription" ValueField="Aid"></dx:ASPxComboBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:90px;">
                                     <dx:ASPxLabel ID="lblPerAnnumValue" runat="server" Text="Per Annum Value:" ForeColor="Blue" Font-Bold="true" Width="300px"></dx:ASPxLabel>
                                 </div>
                             </div>
@@ -220,10 +220,10 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerContactName" runat="server" Text="Customer&nbsp;Contact&nbsp;Name:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtCustomerContactName" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerContactName") %>'></dx:ASPxTextBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:90px;">
                                     <dx:ASPxTextBox ID="txtPerAnnumValue" ClientInstanceName="txtPerAnnumValue" runat="server" Width="100px" MaxLength="50" Text='<%# Eval("CustomerValue") %>'></dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -231,10 +231,10 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerPhone" runat="server" Text="Customer&nbsp;Phone:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtCustomerPhone" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerPhone")%>'></dx:ASPxTextBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:90px;">
                                     <dx:ASPxButton ID="btnUpdateValue" runat="server" AutoPostBack="false" Text="Update Value">
                                         <ClientSideEvents Click="function(s,e){
                                             getDataFromServer(txtViewID.GetText());
@@ -246,7 +246,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerMobile" runat="server" Text="Customer&nbsp;Mobile:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtCustomerMobile" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerMobile")%>'></dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -254,7 +254,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerFax" runat="server" Text="Customer&nbsp;Fax:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtCustomerFax" runat="server" Width="170px" MaxLength="50" Text='<%# Eval("CustomerFax")%>'></dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -262,7 +262,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerComments" runat="server" Text="Customer&nbsp;Comments:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxMemo ID="txtCustomerComments" runat="server" Height="100px" Width="270px" class="dxeMemoEditAreaSys" Text='<%# Eval("CustomerComments") %>'></dx:ASPxMemo>
                                 </div>
                             </div>
@@ -270,7 +270,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblCustomerAgentName" runat="server" Text="Customer&nbsp;Agent&nbsp;Name:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxComboBox ID="cbCustomerAgentName" DataSourceID="odsCustomerAgents" runat="server" Width="260px" Height="20px" SelectedIndex='<%# Eval("AgentSortOrder") - 1%>' TextField="CustomerAgentName" ValueField="Aid"></dx:ASPxComboBox>
                                 </div>
                                 <div class="col-md-1"></div>
@@ -283,7 +283,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblMYOBCustomerNumber" runat="server" Text="MYOB&nbsp;Customer&nbsp;Number:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxTextBox ID="txtMYOBCustomerNumber" runat="server" Width="60px" MaxLength="50" Text='<%# Eval("MYOBCustomerNumber")%>'></dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -291,7 +291,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblRateIncrease" runat="server" Text="Rate&nbsp;Increase:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxComboBox ID="cbRateIncrease" DataSourceID="odsRateIncreaseReference" runat="server" Width="100px" Height="20px" SelectedIndex='<%# Eval("RateIncreaseSortOrder") - 1%>' TextField="RateIncreaseDescription" ValueField="Aid"></dx:ASPxComboBox>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblInactiveCustomer" runat="server" Text="Inactive&nbsp;Customer:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxCheckBox ID="chkInActiveCustomer" runat="server" Checked='<%# Eval("InactiveCustomer")%>'></dx:ASPxCheckBox>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                                 <div class="col-md-2">
                                     <dx:ASPxLabel ID="lblExcludeFuelLevy" runat="server" Text="Exclude&nbsp;Fuel&nbsp;Levy:" Width="100px"></dx:ASPxLabel>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-left:60px;">
                                     <dx:ASPxCheckBox ID="chkExcludeFuelLevy" runat="server" Checked='<%# Eval("chkCustomerExcludeFuelLevy")%>'></dx:ASPxCheckBox>
                                 </div>
                             </div>

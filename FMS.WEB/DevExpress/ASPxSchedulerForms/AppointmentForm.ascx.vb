@@ -96,7 +96,7 @@ Partial Public Class AppointmentForm
             End If
             ddResource.JSProperties.Add("cp_Caption_ResourceNone", stringResourceNone)
         Else
-            If (Not Object.Equals(apt.ResourceId, Resource.Empty.Id)) Then
+            If (Not Object.Equals(apt.ResourceId, ResourceEmpty.Id)) Then
                 edtResource.Value = apt.ResourceId.ToString()
             Else
                 edtResource.Value = SchedulerIdHelper.EmptyResourceId

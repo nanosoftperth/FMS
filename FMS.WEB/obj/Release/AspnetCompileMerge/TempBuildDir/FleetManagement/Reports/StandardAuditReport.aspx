@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="StandardAuditReport.aspx.vb" Inherits="FMS.WEB.StandardAuditReport" %>
 
-<%@ Register Assembly="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
-<%@ Register Assembly="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
-<%@ Register Assembly="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.XtraCharts.v17.2.Web, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dxchartsui" %>
+<%@ Register Assembly="DevExpress.XtraCharts.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="cc1" %>
+<%@ Register Assembly="DevExpress.XtraReports.v17.2.Web, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <!DOCTYPE html>
 
@@ -64,12 +64,22 @@
                      LoadingPanel.Hide();
                  });
              })
+             function OnTabClick(s, e) {
+                 if (e.tab.GetText() == 'Rates or Price') {
+                     StandardAudit();
+                 } else if (e.tab.GetText() == 'Audit Contract') {
+                     AuditContract();
+                 } else {
+                     AuditOfSiteDetails();
+                 }
+             }
         </script>
 </head>
-<body onload="StandardAudit();AuditContract();AuditOfSiteDetails();">
+<body onload="StandardAudit();">
     <form id="form1" runat="server">
         <div>
             <dx:ASPxPageControl ID="StandardAuditPageControl" runat="server" ClientInstanceName="StandardAuditPageControl" >
+                <ClientSideEvents TabClick="OnTabClick" />
                 <TabPages>
                     <dx:TabPage Name="RatesOrPrice" Text="Rates or Price">
                         <ContentCollection>

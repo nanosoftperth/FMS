@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07682610-D796-4B97-AC1B-9C03C1715944}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FMS.ReportLogic</RootNamespace>
+    <AssemblyName>FMS.ReportLogic</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>FMS.ReportLogic.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>FMS.ReportLogic.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.DataAccess.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1.UI, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.DataAccess.v15.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DemoData.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.DemoData.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.Xpo.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Pdf.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v15.1.Drawing, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Pdf.v15.1.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.Printing.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.XtraReports.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v15.1.Service, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.XtraReports.v15.1.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.XtraReports.v15.1.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="OSIsoft.AFSDK, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6238be57836698e6, processorArchitecture=MSIL" />
+    <Reference Include="OSIsoft.PISDK, Version=1.4.0.0, Culture=neutral, PublicKeyToken=c3309f0734ba2805, processorArchitecture=AMD64">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OSIsoft.PISDKCommon, Version=1.4.0.0, Culture=neutral, PublicKeyToken=c3309f0734ba2805, processorArchitecture=x86">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OSIsoft.PITimeServer, Version=1.4.0.0, Culture=neutral, PublicKeyToken=c3309f0734ba2805, processorArchitecture=x86">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\AssignVehicletoDriver.vb" />
+    <Compile Include="Classes\AuditContract.vb" />
+    <Compile Include="Classes\AuditOfSiteDetail.vb" />
+    <Compile Include="Classes\AvailableReport.vb" />
+    <Compile Include="Classes\BusinessLocation.vb" />
+    <Compile Include="Classes\Contact.vb" />
+    <Compile Include="Classes\ContractRenewal.vb" />
+    <Compile Include="Classes\CustomerByCustZone.vb" />
+    <Compile Include="Classes\CustomerContactDetails.vb" />
+    <Compile Include="Classes\DriversLicenseExpiry.vb" />
+    <Compile Include="Classes\GainsAndLosses.vb" />
+    <Compile Include="Classes\GainsAndLossesPerAnnum.vb" />
+    <Compile Include="Classes\GenerateRunSheetsDetail.vb" />
+    <Compile Include="Classes\GenerateRunSheetsDetailSub.vb" />
+    <Compile Include="Classes\GenerateRunSheetSummary.vb" />
+    <Compile Include="Classes\IndustryList.vb" />
+    <Compile Include="Classes\InvoiceBasicCheck.vb" />
+    <Compile Include="Classes\LengthOfServices.vb" />
+    <Compile Include="Classes\MYOBCustomerInvoice.vb" />
+    <Compile Include="Classes\RateIncreaseCua.vb" />
+    <Compile Include="Classes\RoleAccess.vb" />
+    <Compile Include="Classes\RunDates.vb" />
+    <Compile Include="Classes\RunListByRunNumber.vb" />
+    <Compile Include="Classes\RunListing.vb" />
+    <Compile Include="Classes\RunValues.vb" />
+    <Compile Include="Classes\RunValueSummary.vb" />
+    <Compile Include="Classes\ServiceList.vb" />
+    <Compile Include="Classes\ServiceSummary.vb" />
+    <Compile Include="Classes\SitesBySiteZone.vb" />
+    <Compile Include="Classes\SitesWithNoContracts.vb" />
+    <Compile Include="Classes\StandardAudit.vb" />
+    <Compile Include="Classes\SystemRoles.vb" />
+    <Compile Include="Classes\Users.vb" />
+    <Compile Include="Classes\Drivers.vb" />
+    <Compile Include="Classes\GeoFenceReport_ByDriver.vb" />
+    <Compile Include="Classes\ReportDataHandler.vb" />
+    <Compile Include="Classes\ReportsGenerators.vb" />
+    <Compile Include="Classes\vehicle.vb" />
+    <Compile Include="ExtentionModule.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Reports\AnnualAnalysisReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AuditContractReport.Designer.vb">
+      <DependentUpon>AuditContractReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\AuditContractReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AuditOfSiteDetailReport.Designer.vb">
+      <DependentUpon>AuditOfSiteDetailReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\AuditOfSiteDetailReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ContactsListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BusinessLocationListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ContractRenewalReport.Designer.vb">
+      <DependentUpon>ContractRenewalReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ContractRenewalReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CustomerByCustZoneReport.Designer.vb">
+      <DependentUpon>CustomerByCustZoneReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CustomerByCustZoneReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CustomerContactDetailsReport.Designer.vb">
+      <DependentUpon>CustomerContactDetailsReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CustomerContactDetailsReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DriverOperatingHoursReportPDF.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DriversLicenseExpiryReport.Designer.vb">
+      <DependentUpon>DriversLicenseExpiryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DriversLicenseExpiryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\FeatureAccessListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesBySalesPerson.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReport.Designer.vb">
+      <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumReport.Designer.vb">
+      <DependentUpon>GainsAndLossesReportPerAnnumReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.Designer.vb">
+      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesSummaryReport.Designer.vb">
+      <DependentUpon>GainsAndLossesSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GainsAndLossesSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetsDetailReport.Designer.vb">
+      <DependentUpon>GenerateRunSheetsDetailReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetsDetailReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetsDetailSubReport.Designer.vb">
+      <DependentUpon>GenerateRunSheetsDetailSubReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetsDetailSubReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetSummaryReport.Designer.vb">
+      <DependentUpon>GenerateRunSheetSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GenerateRunSheetSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\IndustryListReport.Designer.vb">
+      <DependentUpon>IndustryListReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\IndustryListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InvoiceBasicCheckReport.Designer.vb">
+      <DependentUpon>InvoiceBasicCheckReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InvoiceBasicCheckReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\LengthOfServicesReport.Designer.vb">
+      <DependentUpon>LengthOfServicesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\LengthOfServicesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\MYOBCustomerInvoiceReport.Designer.vb">
+      <DependentUpon>MYOBCustomerInvoiceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MYOBCustomerInvoiceReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\MYOBCustomerNumbers.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\MYOBMatchList.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PerAnnumValuesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PreviousInvoiceSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\QuickViewBySuburbReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RateIncreaseCuaReport.Designer.vb">
+      <DependentUpon>RateIncreaseCuaReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RateIncreaseCuaReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RateIncreasesReport.Designer.vb">
+      <DependentUpon>RateIncreasesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RateIncreasesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportGeoFence_byDriverPDF.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RevenueReportByZone.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RoleListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DriverOperatingHoursReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ContactListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RunDatesReport.Designer.vb">
+      <DependentUpon>RunDatesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunDatesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RunListByRunNumberReport.Designer.vb">
+      <DependentUpon>RunListByRunNumberReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunListByRunNumberReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RunListingReport.Designer.vb">
+      <DependentUpon>RunListingReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunListingReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RunValuesReport.Designer.vb">
+      <DependentUpon>RunValuesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunValuesReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RunValueSummaryReport.Designer.vb">
+      <DependentUpon>RunValueSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RunValueSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ServiceListReport.Designer.vb">
+      <DependentUpon>ServiceListReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ServiceListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ServiceSummaryReport.Designer.vb">
+      <DependentUpon>ServiceSummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ServiceSummaryReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\SiteListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\SitesBySiteZoneReport.Designer.vb">
+      <DependentUpon>SitesBySiteZoneReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SitesBySiteZoneReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\SitesWithNoContractsReport.Designer.vb">
+      <DependentUpon>SitesWithNoContractsReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SitesWithNoContractsReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\StandardAuditReport.Designer.vb">
+      <DependentUpon>StandardAuditReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StandardAuditReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\UsersListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportGeoFence_byDriver.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DriversListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ApplicationVehicleDriver.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VehicleListReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VehicleDumpReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VehicleReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VehicleReportPDF.vb">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AnnualAnalysisReport.resx">
+      <DependentUpon>AnnualAnalysisReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AuditContractReport.resx">
+      <DependentUpon>AuditContractReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AuditOfSiteDetailReport.resx">
+      <DependentUpon>AuditOfSiteDetailReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ContactsListReport.resx">
+      <DependentUpon>ContactsListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\BusinessLocationListReport.resx">
+      <DependentUpon>BusinessLocationListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ContractRenewalReport.resx">
+      <DependentUpon>ContractRenewalReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CustomerByCustZoneReport.resx">
+      <DependentUpon>CustomerByCustZoneReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CustomerContactDetailsReport.resx">
+      <DependentUpon>CustomerContactDetailsReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriverOperatingHoursReportPDF.resx">
+      <DependentUpon>DriverOperatingHoursReportPDF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriversLicenseExpiryReport.resx">
+      <DependentUpon>DriversLicenseExpiryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FeatureAccessListReport.resx">
+      <DependentUpon>FeatureAccessListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesBySalesPerson.resx">
+      <DependentUpon>GainsAndLossesBySalesPerson.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesReport.resx">
+      <DependentUpon>GainsAndLossesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesReportPerAnnumReport.resx">
+      <DependentUpon>GainsAndLossesReportPerAnnumReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesReportPerAnnumSummaryReport.resx">
+      <DependentUpon>GainsAndLossesReportPerAnnumSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GainsAndLossesSummaryReport.resx">
+      <DependentUpon>GainsAndLossesSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GenerateRunSheetsDetailReport.resx">
+      <DependentUpon>GenerateRunSheetsDetailReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GenerateRunSheetsDetailSubReport.resx">
+      <DependentUpon>GenerateRunSheetsDetailSubReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GenerateRunSheetSummaryReport.resx">
+      <DependentUpon>GenerateRunSheetSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\IndustryListReport.resx">
+      <DependentUpon>IndustryListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InvoiceBasicCheckReport.resx">
+      <DependentUpon>InvoiceBasicCheckReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LengthOfServicesReport.resx">
+      <DependentUpon>LengthOfServicesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MYOBCustomerInvoiceReport.resx">
+      <DependentUpon>MYOBCustomerInvoiceReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MYOBCustomerNumbers.resx">
+      <DependentUpon>MYOBCustomerNumbers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MYOBMatchList.resx">
+      <DependentUpon>MYOBMatchList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PerAnnumValuesReport.resx">
+      <DependentUpon>PerAnnumValuesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PreviousInvoiceSummaryReport.resx">
+      <DependentUpon>PreviousInvoiceSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\QuickViewBySuburbReport.resx">
+      <DependentUpon>QuickViewBySuburbReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RateIncreaseCuaReport.resx">
+      <DependentUpon>RateIncreaseCuaReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RateIncreasesReport.resx">
+      <DependentUpon>RateIncreasesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportGeoFence_byDriverPDF.resx">
+      <DependentUpon>ReportGeoFence_byDriverPDF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RevenueReportByZone.resx">
+      <DependentUpon>RevenueReportByZone.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RoleListReport.resx">
+      <DependentUpon>RoleListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriverOperatingHoursReport.resx">
+      <DependentUpon>DriverOperatingHoursReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ContactListReport.resx">
+      <DependentUpon>ContactListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunDatesReport.resx">
+      <DependentUpon>RunDatesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunListByRunNumberReport.resx">
+      <DependentUpon>RunListByRunNumberReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunListingReport.resx">
+      <DependentUpon>RunListingReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunValuesReport.resx">
+      <DependentUpon>RunValuesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RunValueSummaryReport.resx">
+      <DependentUpon>RunValueSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ServiceListReport.resx">
+      <DependentUpon>ServiceListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ServiceSummaryReport.resx">
+      <DependentUpon>ServiceSummaryReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SiteListReport.resx">
+      <DependentUpon>SiteListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SitesBySiteZoneReport.resx">
+      <DependentUpon>SitesBySiteZoneReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SitesWithNoContractsReport.resx">
+      <DependentUpon>SitesWithNoContractsReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StandardAuditReport.resx">
+      <DependentUpon>StandardAuditReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\UsersListReport.resx">
+      <DependentUpon>UsersListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportGeoFence_byDriver.resx">
+      <DependentUpon>ReportGeoFence_byDriver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DriversListReport.resx">
+      <DependentUpon>DriversListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ApplicationVehicleDriver.resx">
+      <DependentUpon>ApplicationVehicleDriver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleListReport.resx">
+      <DependentUpon>VehicleListReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleDumpReport.resx">
+      <DependentUpon>VehicleDumpReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleReport.resx">
+      <DependentUpon>VehicleReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleReportPDF.resx">
+      <DependentUpon>VehicleReportPDF.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FMS.Business\FMS.Business.vbproj">
+      <Project>{f3c504d9-37b7-43fd-8971-241551da4794}</Project>
+      <Name>FMS.Business</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

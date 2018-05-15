@@ -295,9 +295,17 @@
 
         Public Shared Function GetFromDeviceID(deviceID As String) As ApplicationVehicle
 
-            Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicles _
-                    Where x.DeviceID = deviceID _
-                    Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
+            Dim objAppVehilcle As New DataObjects.ApplicationVehicle
+            With New LINQtoSQLClassesDataContext
+                objAppVehilcle = (From x In .ApplicationVehicles
+                                  Where x.DeviceID = deviceID
+                                  Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
+                .Dispose()
+            End With
+            Return objAppVehilcle
+            'Return (From x In SingletonAccess.FMSDataContextContignous.ApplicationVehicles _
+            '        Where x.DeviceID = deviceID _
+            '        Select New DataObjects.ApplicationVehicle(x)).ToList.FirstOrDefault()
 
         End Function
 

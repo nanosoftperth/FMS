@@ -34,8 +34,8 @@
 --%>
 <%@ Control Language="vb" AutoEventWireup="true" Inherits="FMS.WEB.RecurrentAppointmentDeleteForm" Codebehind="RecurrentAppointmentDeleteForm.ascx.vb" %>
 
-<%@ Register Assembly="DevExpress.Web.ASPxScheduler.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler" TagPrefix="dxwschs" %>
-<%@ Register Assembly="DevExpress.Web.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.ASPxScheduler.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler" TagPrefix="dxwschs" %>
+<%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <table class="dxscBorderSpacing" style="width:100%; height:100%">
 	<tr>

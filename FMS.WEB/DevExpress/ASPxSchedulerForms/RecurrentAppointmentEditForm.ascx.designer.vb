@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class RecurrentAppointmentEditForm
-
+    
     '''<summary>
     '''Image control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class RecurrentAppointmentEditForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Image As Global.DevExpress.Web.ASPxImage
-
+    
     '''<summary>
     '''lblConfirm control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class RecurrentAppointmentEditForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblConfirm As Global.DevExpress.Web.ASPxLabel
-
+    
     '''<summary>
     '''rbAction control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class RecurrentAppointmentEditForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rbAction As Global.DevExpress.Web.ASPxRadioButtonList
-
+    
     '''<summary>
     '''btnOk control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class RecurrentAppointmentEditForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnOk As Global.DevExpress.Web.ASPxButton
-
+    
     '''<summary>
     '''btnCancel control.
     '''</summary>

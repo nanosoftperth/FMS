@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Main.master" CodeBehind="FleetMap.aspx.vb" Inherits="FMS.WEB.FleetMap" %>
 
-<%@ Register Assembly="DevExpress.Web.ASPxScheduler.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler" TagPrefix="dxwschs" %>
-<%@ Register Assembly="DevExpress.Web.ASPxScheduler.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler.Controls" TagPrefix="dxwschsc" %>
+<%@ Register Assembly="DevExpress.Web.ASPxScheduler.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler" TagPrefix="dxwschs" %>
+<%@ Register Assembly="DevExpress.Web.ASPxScheduler.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler.Controls" TagPrefix="dxwschsc" %>
 
 
 <asp:Content ID="ContentLeft" ContentPlaceHolderID="ContentLeft" runat="server">
@@ -1018,8 +1018,8 @@
 
                                 <ClientSideEvents DropDown="function(s,e){ dateEdit_DropDown(s,e);}"
                                     QueryCloseUp="function(s,e){ dateEdit_QueryCloseUp(s,e);}" />
-                                <CalendarProperties ControlStyle-CssClass="popupDateEdit" ShowClearButton="False" ShowTodayButton="False">
-                                    <ControlStyle CssClass="popupDateEdit"></ControlStyle>
+                                <CalendarProperties Style-CssClass="popupDateEdit" ShowClearButton="False" ShowTodayButton="False">
+                                    <%--<ControlStyle CssClass="popupDateEdit"></ControlStyle>--%>
 
                                     <Style CssClass="popupDateEdit"></Style>
                                 </CalendarProperties>
