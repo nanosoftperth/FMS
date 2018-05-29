@@ -1,4 +1,4 @@
-﻿Namespace DataObjects
+Namespace DataObjects
 
     Public Class CanValue
 
@@ -7,6 +7,11 @@
         Public Property RawValue As String
         Public Property Time As DateTime
         Public Property Value As Object
+
+        ''' <summary>
+        ''' the integer value taken from the hex value (i.e. 00010 = 2 = "parking brake on")
+        ''' </summary>
+        Public Property longVal As Long
 
         Public Property IsValid As Boolean = True
 
