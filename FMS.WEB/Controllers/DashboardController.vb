@@ -1,4 +1,4 @@
-﻿Imports System.Net
+Imports System.Net
 Imports System.Web.Http
 Imports System.Net.Http
 Imports System.Runtime.Caching
@@ -245,9 +245,7 @@ Public Class DashboardController
         End Sub
     End Class
 
-
-
-    Public Function GetTimeSeriesResult(lok As queryRequestType, startTime As Date, endTime As Date) As Object
+Public Function GetTimeSeriesResult(lok As queryRequestType, startTime As Date, endTime As Date) As Object
 
         Dim retobj As New List(Of queryReturnType)
 
@@ -268,15 +266,19 @@ Public Class DashboardController
 
             Dim dataPoints As Long(,) = New Long(cnt - 1, 1) {}
 
+            Dim isStringType As Boolean = False
             Dim i As Integer = 0
+            Dim lng As Long
+
+            If cnt > 0 Then isStringType = Not Long.TryParse(canDataPoint.CanValues.First.ValueStr, lng)
+
 
             For Each cv In canDataPoint.CanValues
 
                 Try
-                    'Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds
 
                     Dim unixTimestamp = CLng(cv.Time.AddHours(-8).Subtract(CDate("01/jan/1970")).TotalSeconds) * 1000
-                    Dim val As Long = cv.Value
+                    Dim val As Long = If(isStringType, cv.longVal, cv.Value)
 
                     If cv.Time >= startTime AndAlso cv.Time <= endTime Then
                         dataPoints(i, 0) = val
@@ -300,6 +302,7 @@ Public Class DashboardController
 
 
     End Function
+
 
 
     Public Class cust_range
