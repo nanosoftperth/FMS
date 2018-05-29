@@ -1,4 +1,6 @@
-﻿Namespace DataObjects
+
+
+Namespace DataObjects
 
     Public Class CanDataPoint
 
@@ -11,10 +13,10 @@
         Public Const TAG_STRING_FORMAT As String = "CAN_{0}_{1}_{2}"
 
         Public Shared Function GetTagName(deviceid As String, standard As String, pgn As Integer) As String
-        
-          'HACK: required as we gave the unimog the silly name of zagro_unimog ?! !
+
+            'HACK: required as we gave the unimog the silly name of zagro_unimog ?! !
             If standard.ToLower = "Zagro" Then standard &= "_unimog"
-            
+
             Return String.Format(TAG_STRING_FORMAT, deviceid, standard, pgn)
         End Function
 
@@ -27,24 +29,6 @@
 
 #End Region
 
-    
-                   ''' <summary>
-            ''' Takes a number such as 4.5 and does the following:
-            ''' (4 * 8) + 4 = 36
-            ''' 4 * 8 (bits in a byte) + ( (5 -1))
-            ''' </summary>            
-            Private Function ConvertDecToBinPos(dec As Decimal) As Integer
-
-                Dim strs() = CStr(dec).Split("."c)
-
-                Dim i As Integer = (CInt(strs(0)) - 1) * 8
-
-                If strs.Length > 1 Then i += CInt(strs(1) - 1)
-
-                Return i
-
-            End Function
-    
 
 
         ''' <summary>
@@ -515,7 +499,9 @@
                 End If
 
                 If msg_def.Standard = "j1939" Then calcMethod = AddressOf j1939
-                If msg_def.Standard = "NANO1000" Then calcMethod = AddressOf j1939                                                            
+
+                If msg_def.Standard = "NANO1000" Then calcMethod = AddressOf j1939
+
                 If msg_def.Standard = "Zagro" Then calcMethod = AddressOf j1939
 
                 'HACK: for efficiency. Do not do a lengthly check for validity if there are more than one values being returned.
@@ -567,6 +553,9 @@
 
                     i /= 2 'divide by 2 apparently?
                     cv.Value = If(i Mod 2 = 0, "Horn OFF", "Horn ON")
+
+                    cv.longVal = If(i Mod 2 = 0, 0, 1)
+
                 Catch ex As Exception
                     cv.Value = "Horn OFF"
                 End Try
@@ -601,8 +590,9 @@
                 Try
                     Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(6))
                     cv.Value = If(i Mod 2 = 0, "Beacon is OFF", "Beacon is ON")
+                    cv.longVal = If(i Mod 2 = 0, 0, 1)
                 Catch ex As Exception
-                    cv.Value = "Beacon is OFF"
+                    ' cv.Value = "Beacon is OFF"
                 End Try
             End Sub
 
@@ -611,8 +601,9 @@
                 Try
                     Dim i As Decimal = CInt(StringToByteArray(cv.RawValue)(7))
                     cv.Value = If(i Mod 2 = 0, "Parking Brake OFF", "Parking Brake ON")
+                    cv.longVal = If(i Mod 2 = 0, 0, 1)
                 Catch ex As Exception
-                    cv.Value = "Parking Brake OFF"
+                    ' cv.Value = "Parking Brake OFF"
                 End Try
             End Sub
 
@@ -649,6 +640,13 @@
 
                     Dim i As Array = cv.RawValue.ToCharArray
                     Dim val As String = i(2).ToString + i(3).ToString
+
+                    Dim intVal As Long = 0
+
+                    Long.TryParse(val, intVal)
+
+                    cv.longVal = intVal
+
                     cv.Value = IIf(val.Equals("06"),
                                    "Diagonal mode road",
                                    IIf(val.Equals("08"),
@@ -763,9 +761,44 @@
                 Return Enumerable.Range(0, hex.Length).Where(Function(x) x Mod 2 = 0).[Select](Function(x) Convert.ToByte(hex.Substring(x, 2), 16)).ToArray()
             End Function
 
+            Private localCanValueCache As New Dictionary(Of Integer, CanValue)
+
+            ''' <summary>
+            ''' Takes a number such as 4.5 and does the following:
+            ''' (4 * 8) + 4 = 36
+            ''' 4 * 8 (bits in a byte) + ( (5 -1))
+            ''' </summary>            
+            Private Function ConvertDecToBinPos(dec As Decimal) As Integer
+
+                Dim strs() = CStr(dec).Split("."c)
+
+                Dim i As Integer = (CInt(strs(0)) - 1) * 8
+
+                If strs.Length > 1 Then i += CInt(strs(1) - 1)
+
+                Return i
+
+            End Function
+
 
             Public Sub j1939(ByRef cv As CanValue, msg_def As CAN_MessageDefinition, Optional CheckIsValid As Boolean = True)
                 Try
+
+
+
+                    Dim hashCode As String = (cv.RawValue & msg_def.GetHashCode).GetHashCode
+
+                    If localCanValueCache.ContainsKey(hashCode) Then
+
+                        With localCanValueCache(hashCode)
+
+                            cv.Value = .Value
+                            cv.IsValid = .IsValid
+                        End With
+
+                        Exit Sub
+
+                    End If
 
                     Dim b() As Byte = StringToByteArray(cv.RawValue)
                     Dim binStr As String = String.Empty
@@ -780,6 +813,7 @@
 
                         Dim binarystring As String = [String].Join([String].Empty, cv.RawValue.[Select](Function(c) Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, "0"c)))
 
+
                         'sometimes the "pos" is reversed depending on the endianess of the source system
                         'for eaxmple 01000000 and 00000001 can bot be = 1 depending on the source system. 
                         'a way to work aroundthis is to swap the pos from 1-4 to 4-1. Here we need to determine what fotmat is being used and
@@ -789,14 +823,14 @@
 
                         Dim splts() As String = spnStartBit.Split("-")
 
-                        'lowestPos = ConvertDecToBinPos(splts(0))
-                        lowestPos = FMS.Business.DataObjects.CanDataPoint.ConvertDecToBinary(splts(0))
+                        lowestPos = ConvertDecToBinPos(splts(0))
 
                         If splts.Count > 1 Then
 
-                            'Dim rightPos As Integer = ConvertDecToBinPos(splts(1))
-                            Dim rightPos As Integer = FMS.Business.DataObjects.CanDataPoint.ConvertDecToBinary(splts(1))
+                            Dim rightPos As Integer = ConvertDecToBinPos(splts(1))
+
                             lowestPos = If(lowestPos > rightPos, rightPos, lowestPos)
+
                         End If
 
 
@@ -815,7 +849,7 @@
 
                         Dim retVal As String = "<<invalid entry>>"
 
-                        For Each s As String In msg_def.Description.Split(vbNewLine)
+                        For Each s As String In msg_def.Description.Split(Chr(10))
 
                             If s.Trim.StartsWith(binStr) Then
 
@@ -834,7 +868,7 @@
                     Dim indx As Integer = 0
                     Dim runningtotal As Double = 0
 
-                    For i As Integer = (msg_def.pos_start - 1) To (msg_def.pos_end - 1) ' Step -1
+                    For i As Integer = (msg_def.pos_start - 1) To (msg_def.pos_end - 1) Step -1
 
                         runningtotal += CInt(b(i)) * Math.Pow(256, indx)
                         indx += 1
@@ -842,10 +876,15 @@
 
                     runningtotal = msg_def.offset + (runningtotal * msg_def.Resolution_Multiplier)
 
+                    'add to the cache
+                    localCanValueCache.Add(hashCode, cv)
+
                     cv.Value = runningtotal
+
                 Catch ex As Exception
                     cv.Value = 0
                 End Try
+
             End Sub
 
             Public Function GetJ1939(ByVal cv As CanValue, msg_def As CAN_MessageDefinition) As Object
