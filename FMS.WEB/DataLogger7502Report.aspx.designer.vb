@@ -30,4 +30,31 @@ Partial Public Class DataLogger7502Report
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''WebChartControl1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents WebChartControl1 As Global.DevExpress.XtraCharts.Web.WebChartControl
+    
+    '''<summary>
+    '''WebChartControl2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents WebChartControl2 As Global.DevExpress.XtraCharts.Web.WebChartControl
+    
+    '''<summary>
+    '''WebChartControl3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents WebChartControl3 As Global.DevExpress.XtraCharts.Web.WebChartControl
 End Class
