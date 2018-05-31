@@ -15,7 +15,34 @@
             <asp:Button ID="Button1" runat="server" Text="Test Class" OnClick="Button1_Click" />
         </div>
         <div>
-            <dx:WebChartControl ID="WebChartControl1" runat="server" Height="500px"
+            <dx:WebChartControl ID="WebChartControl2" runat="server" Height="300px"
+                Width="700px" ClientInstanceName="chart"
+                CrosshairEnabled="False" ToolTipEnabled="False"
+                SeriesDataMember = "Description">
+                <Legend AlignmentHorizontal="Center" AlignmentVertical="BottomOutside" Direction="LeftToRight" Visibility="False">
+                </Legend>
+                <Titles>
+                    <dx:ChartTitle Text="7502 Data Logger"></dx:ChartTitle>
+                </Titles>
+                <SeriesTemplate ArgumentScaleType="DateTime" ArgumentDataMember="DateX" ValueDataMembersSerializable="ValueX" LabelsVisibility="True">
+                    <ViewSerializable>
+                        <dx:StackedLineSeriesView></dx:StackedLineSeriesView>
+                    </ViewSerializable>
+                </SeriesTemplate> 
+                <DiagramSerializable>
+                    <dx:XYDiagram>
+                        <AxisX Title-Text="Years" VisibleInPanesSerializable="-1">
+                            <DateTimeScaleOptions ScaleMode="Manual" MeasureUnit="Minute"/>
+                            <GridLines Visible="True"></GridLines>
+                        </AxisX>
+                        <AxisY Interlaced="True" MinorCount="4"  Title-Text="Speed" Title-Visibility="True" VisibleInPanesSerializable="-1">
+                            <WholeRange AlwaysShowZeroLevel="False"/>
+                        </AxisY>
+                    </dx:XYDiagram>
+                </DiagramSerializable>
+                <BorderOptions Visibility="False" />
+            </dx:WebChartControl>
+            <dx:WebChartControl ID="WebChartControl1" runat="server" Height="400px"
                 Width="700px" ClientInstanceName="chart"
                 CrosshairEnabled="False" ToolTipEnabled="False"
                 OnCustomDrawSeriesPoint="WebChartControl1_CustomDrawSeriesPoint"
@@ -33,7 +60,7 @@
                 </Legend>
                 <BorderOptions Visibility="False" />
                 <Titles>
-                    <dx:ChartTitle Text="7502 Data Logger"></dx:ChartTitle>
+                    <%--<dx:ChartTitle Text="7502 Data Logger"></dx:ChartTitle>--%>
                     <%--<dx:ChartTitle Dock="Bottom" Alignment="Far" Text="From www.cia.gov" Font="Tahoma, 8pt" TextColor="Gray"></dx:ChartTitle>--%>
                 </Titles>
                 <DiagramSerializable>
@@ -50,68 +77,6 @@
                         </defaultpane>
                     </dx:XYDiagram>
                 </DiagramSerializable>
-            </dx:WebChartControl>
-        </div>
-        <div>
-             <dx:WebChartControl ID="WebChartControl2" runat="server" Height="400px"
-                Width="700px" ClientInstanceName="chart"
-                CrosshairEnabled="False" ToolTipEnabled="False"
-                SeriesDataMember = "direction">
-                <Legend AlignmentHorizontal="Center" AlignmentVertical="BottomOutside" Direction="LeftToRight">
-                </Legend>
-                <Titles>
-                    <dx:ChartTitle Text="DevAV Sales"></dx:ChartTitle>
-                </Titles>
-                <SeriesTemplate ArgumentScaleType="DateTime" ArgumentDataMember="DateX" ValueDataMembersSerializable="Value" LabelsVisibility="True">
-                    <ViewSerializable>
-                        <dx:StackedLineSeriesView></dx:StackedLineSeriesView>
-                    </ViewSerializable>
-                </SeriesTemplate> 
-                <DiagramSerializable>
-                    <dx:XYDiagram>
-                        <AxisX Title-Text="Years" VisibleInPanesSerializable="-1">
-                            <DateTimeScaleOptions MeasureUnit="Year" />
-                        </AxisX>
-                        <AxisY Interlaced="True" Title-Text="Millions of Dollars" Title-Visibility="True" VisibleInPanesSerializable="-1">
-                        </AxisY>
-                    </dx:XYDiagram>
-                </DiagramSerializable>
-                <BorderOptions Visibility="False" />
-            </dx:WebChartControl>
-        </div>
-        <div>
-            <dx:WebChartControl ID="WebChartControl3" runat="server" Height="400px" Width="700px"
-                ClientInstanceName="chart" OnCustomCallback="WebChartControl3_CustomCallback"
-                SeriesDataMember="Value">
-                <SeriesTemplate ArgumentDataMember="Description" ValueDataMembersSerializable="Value" LabelsVisibility="False"
-                    CrosshairLabelPattern="{S}: {V}">
-                    <ViewSerializable>
-                        <dx:FullStackedLineSeriesView></dx:FullStackedLineSeriesView>
-                    </ViewSerializable>
-                    <LabelSerializable>
-                        <dx:StackedLineSeriesLabel TextPattern="{VP:P0}">
-                            </dx:StackedLineSeriesLabel>
-                    </LabelSerializable>
-                </SeriesTemplate> 
-                <DiagramSerializable>
-                    <dx:XYDiagram>
-                        <AxisX Title-Text="Description" VisibleInPanesSerializable="-1">
-                            <WholeRange/>
-                            <Label>
-                            </Label>
-                        </AxisX>
-                        <AxisY Title-Text="Value" VisibleInPanesSerializable="-1">
-                            <WholeRange Auto="False" MaxValueSerializable="1" MinValueSerializable="0"/>
-                            <Label TextPattern="{V:P0}">
-                            </Label>
-                        </AxisY>
-                    </dx:XYDiagram>
-                </DiagramSerializable>
-                <BorderOptions Visibility="False"></BorderOptions>
-                <Legend Direction="BottomToTop"></Legend>
-                <Titles>
-                    <dx:ChartTitle Text="Market Share Over Time"></dx:ChartTitle>
-                </Titles>
             </dx:WebChartControl>
         </div>
     </form>

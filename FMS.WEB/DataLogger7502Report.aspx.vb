@@ -9,61 +9,18 @@ Public Class DataLogger7502Report
     End Sub
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs)
-        Dim dt1 As Date = #6/18/2017#
-        Dim dt2 As Date = #5/30/2017#
-        'Dim dt1 As Date = #6/15/2017#
-        'Dim dt2 As Date = #6/16/2017#
+        'Dim dt1 As Date = #6/18/2017#
+        'Dim dt2 As Date = #5/30/2017#
+        Dim dt1 As Date = #6/15/2017 10:00:00 AM#
+        Dim dt2 As Date = #6/15/2017 11:00:00 AM#
         WebChartControl1.DataSource = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection("auto19", dt1, dt2)
         WebChartControl1.DataBind()
 
-        'WebChartControl2.DataSource = FMS.Business.DataObjects.DataLoggerReport.Get7502DataLogger("auto19", dt1, dt2)
-        'WebChartControl2.DataSource = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection("auto19", dt1, dt2)
-        'WebChartControl2.DataBind()
-
-        'WebChartControl2.DataSource = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection("auto19", dt1, dt2)
-        'WebChartControl2.DataBind()
-
-        'WebChartControl3.DataSource = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection("auto19", dt1, dt2)
-        'WebChartControl3.DataBind()
+        WebChartControl2.DataSource = FMS.Business.DataObjects.DataLoggerReport.Get7502DataLogger("auto19", dt1, dt2)
+        WebChartControl2.DataBind()
     End Sub
 
-    Protected Sub WebChartControl3_CustomCallback(ByVal sender As Object, ByVal e As DevExpress.XtraCharts.Web.CustomCallbackEventArgs)
-        'If e.Parameter = "MarkerKind" Then
-        '    PerformMarkerKindAction()
-        'ElseIf e.Parameter = "MarkerSize" Then
-        '    PerformMarkerSizeAction()
-        'ElseIf e.Parameter = "ShowLabels" Then
-        '    PerformShowLabelsAction()
-        'ElseIf e.Parameter = "ValueAsPercent" Then
-        '    PerformValueAsPercentAction()
-        'End If
-    End Sub
-    Private Sub PerformMarkerKindAction()
-        'Dim item As MarkerKindItem = ComboBoxHelper.GetSelectedMarkerKindItem(cbMarkerKind)
-        'Dim pointCount As Integer = 0
-        'Dim starItem As StarMarkerKindItem = TryCast(item, StarMarkerKindItem)
-        'If starItem IsNot Nothing Then
-        '    pointCount = starItem.PointCount
-        'End If
 
-        'Dim view As PointSeriesView = CType(WebChartControl1.SeriesTemplate.View, PointSeriesView)
-        'view.PointMarkerOptions.Kind = item.MarkerKind
-        'If pointCount <> 0 Then
-        '    view.PointMarkerOptions.StarPointCount = pointCount
-        'End If
-    End Sub
-    Private Sub PerformMarkerSizeAction()
-        'Dim size As Integer = Convert.ToInt32(cbMarkerSize.SelectedItem.Text)
-        'CType(WebChartControl1.SeriesTemplate.View, PointSeriesView).PointMarkerOptions.Size = size
-    End Sub
-    Private Sub PerformShowLabelsAction()
-        'WebChartControl1.SeriesTemplate.LabelsVisibility = If(cbShowLabels.Checked, DevExpress.Utils.DefaultBoolean.True, DevExpress.Utils.DefaultBoolean.False)
-        'WebChartControl1.CrosshairEnabled = If(cbShowLabels.Checked, DevExpress.Utils.DefaultBoolean.False, DevExpress.Utils.DefaultBoolean.True)
-    End Sub
-    Private Sub PerformValueAsPercentAction()
-        'Dim labeltextPattern As String = If(cbValueAsPercent.Checked, "{VP:P0}", "{V:F1}")
-        'WebChartControl1.SeriesTemplate.Label.TextPattern = labeltextPattern
-    End Sub
 
     Protected Sub WebChartControl1_CustomDrawSeriesPoint(sender As Object, e As DevExpress.XtraCharts.CustomDrawSeriesPointEventArgs)
         Dim drawOptions = CType(e.SeriesDrawOptions, BarDrawOptions)

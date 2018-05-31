@@ -19,33 +19,24 @@ Namespace DataObjects
             Dim speedList = GetDataLogger(param0) 'pgn:578, spn:1, speed
 
             Dim dtLogger As New List(Of SpeedReportFields)
-            Dim intCounter As Integer = 0
+            Dim currentValue As Integer
+            Dim dtTimeA As DateTime
+            Dim dtTimeCurrent As DateTime
             For d As Integer = 0 To speedList.Count
                 Dim objSpeed As New SpeedReportFields
                 Try
-                    intCounter = intCounter + 1
+                    dtTimeA = speedList(d + 1).Time.ToShortTimeString
+                    dtTimeCurrent = speedList(d).Time.ToShortTimeString
                     objSpeed.Description = "Speed"
-                    objSpeed.CounterX = intCounter
+                    currentValue = speedList(d).Value
                     objSpeed.ValueX = speedList(d).Value
-                    objSpeed.DateX = speedList(d).Time
+                    objSpeed.DateRawX = speedList(d).Time
+                    objSpeed.DateX = speedList(d).Time.ToString("dd/MM/yyyy HH:mm:ss")
+                    dtLogger.Add(objSpeed)
                 Catch ex As Exception
-
                 End Try
-
-                dtLogger.Add(objSpeed)
             Next
-
             Return dtLogger
-        End Function
-        Public Shared Function GetServiceBreakOnOff(deviceid As String, startDate As Date, endDate As Date) As List(Of ReportFields)
-            Dim dtLogger As New List(Of ReportFields)
-            Return dtLogger
-        End Function
-
-        Public Shared Function GetReportList(deviceid As String, startDate As Date, endDate As Date) As DataLogger7502Report
-            Dim x As New DataLogger7502Report
-            x.Direction = GetReportDirection(deviceid, startDate, endDate)
-            Return x
         End Function
 
         Public Shared Function GetReportDirection(deviceid As String, startDate As Date, endDate As Date) As List(Of ReportFields)
@@ -101,10 +92,6 @@ Namespace DataObjects
 
                 Dim pp As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(tagName)
 
-                'Dim startDate As Date = Date.Now.AddDays(1).ToShortDateString
-                'Dim endDate As Date = Date.Now.AddDays(-365).ToShortDateString
-                'Dim startDate As Date = reportParam.StartDate
-                'Dim endDate As Date = reportParam.EndDate
                 Dim startDate As Date = reportParam.StartDate
                 Dim endDate As Date = reportParam.EndDate
                 Dim intCount As Integer = 1
@@ -127,7 +114,7 @@ Namespace DataObjects
 
             Return retobj.CanValues
         End Function
-        Public Shared Sub GetDirection(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
+        Private Shared Sub GetDirection(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
             Dim param0 As New DataLoggerReport
             param0.DeviceId = deviceid
             param0.Standard = "Zagro125"
@@ -206,7 +193,7 @@ Namespace DataObjects
                 dtLogger.Add(reportForward)
             End If
         End Sub
-        Public Shared Sub GetHeadlight(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
+        Private Shared Sub GetHeadlight(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
             Dim loggerData As List(Of String) = GetDeviceDataLogger(deviceid, startDate, endDate)
             Dim blnHeadlightOn As Boolean
             Dim blnHeadlightOff As Boolean
@@ -277,7 +264,7 @@ Namespace DataObjects
                 dtLogger.Add(reportHeadlightOff)
             End If
         End Sub
-        Public Shared Sub GetServiceBrake(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
+        Private Shared Sub GetServiceBrake(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
             Dim blnBrakeAddedOn As Boolean = False
             Dim blnBrakeAddedOff As Boolean = False
             Dim blnBrakeOn As Boolean
@@ -353,7 +340,7 @@ Namespace DataObjects
                 dtLogger.Add(reportServiceBrakeOff)
             End If
         End Sub
-        Public Shared Sub GetParkingBrake(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
+        Private Shared Sub GetParkingBrake(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
             Dim blnBrakeAddedOn1 As Boolean = False
             Dim blnBrakeAddedOff1 As Boolean = False
             Dim blnBrakeOn1 As Boolean
@@ -430,7 +417,7 @@ Namespace DataObjects
                 dtLogger.Add(reportServiceBrakeOff1)
             End If
         End Sub
-        Public Shared Sub GetHorn(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
+        Private Shared Sub GetHorn(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
             Dim blnHornAddedOn As Boolean = False
             Dim blnHornAddedOff As Boolean = False
             Dim blnHornOn As Boolean
@@ -506,7 +493,7 @@ Namespace DataObjects
                 dtLogger.Add(reportHornOff)
             End If
         End Sub
-        Public Shared Sub GetVigilanceTimeOut(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
+        Private Shared Sub GetVigilanceTimeOut(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
             Dim blnVigilanceAddedOn As Boolean = False
             Dim blnVigilanceAddedOff As Boolean = False
             Dim blnVigilanceOn As Boolean
@@ -582,7 +569,7 @@ Namespace DataObjects
                 dtLogger.Add(reportVigilanceOff)
             End If
         End Sub
-        Public Shared Sub GetRoadRailEngaged(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
+        Private Shared Sub GetRoadRailEngaged(ByRef dtLogger As List(Of ReportFields), deviceid As String, startDate As Date, endDate As Date)
             Dim blnAddedOn As Boolean = False
             Dim blnAddedOff As Boolean = False
             Dim blnRoadRailOn As Boolean
@@ -692,9 +679,9 @@ Namespace DataObjects
     End Class
     Public Class SpeedReportFields
         Public Property Description As String
-        Public Property CounterX As Integer
         Public Property ValueX As Integer
         Public Property DateX As DateTime
+        Public Property DateRawX As DateTime
     End Class
 End Namespace
 
