@@ -1036,6 +1036,19 @@ Public Class ReportDataHandler
         rept.Param1 = ThisSession.ParameterValues
         Return rept
     End Function
+    Public Shared Function GetDataLoggerReport() As CacheDataLoggerReport
+        Dim dtLogger As New CacheDataLoggerReport
+        Dim objListLogger As New List(Of ReportFields)
+        Dim dt1 As Date = #6/15/2017 10:00:00 AM#
+        Dim dt2 As Date = #6/15/2017 11:00:00 AM#
+        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection("auto19", dt1, dt2)
+        For Each item In lstLoggerReport
+            objListLogger.Add(New ReportFields() With {.Description = item.Description, .Direction = item.Direction, .Value = item.Value})
+        Next
+        dtLogger.LineValues = objListLogger
+        dtLogger.Param1 = "test"
+        Return dtLogger
+    End Function
     Public Sub New()
 
     End Sub

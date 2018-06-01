@@ -150,6 +150,7 @@ Namespace DataObjects
                             If dblback > 0 Or dblback = 0 Then
                                 reportBack = New ReportFields
                                 reportBack.Direction = "backward-" & inta.ToString()
+                                'reportBack.Direction = "backward"
                                 reportBack.Value = inta 'backward
                                 addForward = True
                                 blnDirectionAddedOn = True
@@ -169,6 +170,7 @@ Namespace DataObjects
                             If dblforward < 0 Or dblforward = 0 Then
                                 reportForward = New ReportFields
                                 reportForward.Direction = "forward-" & intb.ToString()
+                                'reportForward.Direction = "forward"
                                 reportForward.Value = intb 'forward
                                 addBack = True
                                 blnDirectionAddedOff = True

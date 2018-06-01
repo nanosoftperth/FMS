@@ -8,6 +8,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.24&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&libraries=places,visualization"></script>
+    <script src="Content/javascript/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //google.maps.event.addDomListener(window, 'load', initialize);
+
+            //window.onload = initialize;
+            //initialize();
+        });
+        function InitializeMap() {
+
+            var latlng = new google.maps.LatLng(-31.9538987, 115.85823189999996);
+            var myOptions =
+                {
+                    zoom: 8,
+                    center: latlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: true
+                };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+        }
+        
+        window.onload = InitializeMap;
+        
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -78,6 +103,11 @@
                     </dx:XYDiagram>
                 </DiagramSerializable>
             </dx:WebChartControl>
+        </div>
+        <div style="padding: 10px 10px 10px 10px;">
+            <%--<div id="googleMap" style="width: 100%; height: 100%; background-color: gray;"></div>--%>
+            <div id ="map"   style="width: 700px; height: 400px">
+            </div>
         </div>
     </form>
 </body>
