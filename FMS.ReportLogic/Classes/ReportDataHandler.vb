@@ -52,14 +52,14 @@ Public Class ReportDataHandler
             If Not ThisSession.ApplicationID = Guid.Empty Then
 
                 'get the vehicleid (guid)
-                Dim vehicleID As Guid = _
+                Dim vehicleID As Guid =
                     FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
                             .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
 
                 'Find out if the report is already in the cache
-                rept = (From x In ThisSession.CachedVehicleReports _
-                                               Where x.EndDate = endDate _
+                rept = (From x In ThisSession.CachedVehicleReports
+                        Where x.EndDate = endDate _
                                                 AndAlso x.StartDate = startdate _
                                                AndAlso x.VehicleID = vehicleID).SingleOrDefault
                 Dim GET_CAHCHED_REPORT As Boolean = True
@@ -67,7 +67,7 @@ Public Class ReportDataHandler
                 'MAKE the report and add it to the cache if it doesnt exist
                 If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-                    Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
+                    Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) =
                             FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
 
                     rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
@@ -105,7 +105,7 @@ Public Class ReportDataHandler
 
             'If Not ThisSession.ApplicationID = Guid.Empty Then
             ''get the vehicleid (guid)
-            Dim vehicleID As Guid = _
+            Dim vehicleID As Guid =
                 FMS.Business.DataObjects.ApplicationVehicle.GetAll(New Guid(appID)) _
                         .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
@@ -120,7 +120,7 @@ Public Class ReportDataHandler
             'MAKE the report and add it to the cache if it doesnt exist
             'If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-            Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) = _
+            Dim vehicleReportLines As List(Of FMS.Business.ReportGeneration.VehicleActivityReportLine) =
                     FMS.Business.ReportGeneration.ReportGenerator.GetActivityReportLines_ForVehicle(startdate, endDate, vehicleID)
 
             rept = (New CachedVehicleReport With {.VehicleID = vehicleID _
@@ -209,14 +209,14 @@ Public Class ReportDataHandler
         endDate = endDate.AddDays(1)
 
         'get the vehicleid (guid)
-        Dim vehicleID As Guid = _
+        Dim vehicleID As Guid =
             FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
                     .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
 
         'Find out if the report is alreaedy in the cache 
-        Dim rept As CachedDriverOperatingHoursReport = (From x In ThisSession.CachedDriveroperatingHoursReports _
-                                                            Where x.EndDate = endDate _
+        Dim rept As CachedDriverOperatingHoursReport = (From x In ThisSession.CachedDriveroperatingHoursReports
+                                                        Where x.EndDate = endDate _
                                                             AndAlso x.StartDate = startdate _
                                                             AndAlso x.VehicleID = vehicleID).SingleOrDefault
 
@@ -225,7 +225,7 @@ Public Class ReportDataHandler
         'MAKE the report and add it to the cache if it doesnt exist
         If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-            Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours = _
+            Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours =
                     FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID, New Guid(businessLocation))
 
 
@@ -256,7 +256,7 @@ Public Class ReportDataHandler
         startDate = startDate.timezoneToClient
         endDate = endDate.timezoneToClient.AddDays(1)
 
-        retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple. _
+        retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple.
                                                     GetReport(ThisSession.ApplicationID, startDate, endDate)
 
         If FMS.Business.DataObjects.ApplicationDriver.DriverREpresentingEveryone.ApplicationDriverID <> New Guid(driverID) Then
@@ -282,7 +282,7 @@ Public Class ReportDataHandler
         startDate = startDate.timezoneToClient
         endDate = endDate.timezoneToClient.AddDays(1)
 
-        retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple. _
+        retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple.
                                                     GetReport(appID, startDate, endDate)
 
         If FMS.Business.DataObjects.ApplicationDriver.DriverREpresentingEveryone.ApplicationDriverID <> New Guid(driverID) Then
@@ -313,7 +313,7 @@ Public Class ReportDataHandler
         endDate = endDate.AddDays(1)
 
         'get the vehicleid (guid)
-        Dim vehicleID As Guid = _
+        Dim vehicleID As Guid =
             FMS.Business.DataObjects.ApplicationVehicle.GetAll(New Guid(appID)) _
                     .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
@@ -331,7 +331,7 @@ Public Class ReportDataHandler
         'MAKE the report and add it to the cache if it doesnt exist
         If (rept Is Nothing) And (GET_CAHCHED_REPORT) Then
 
-            Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours = _
+            Dim driverOperatingReport As FMS.Business.ReportGeneration.DriverOperatingReportHoursLine.DriverOperatingReportHours =
                     FMS.Business.ReportGeneration.ReportGenerator.GetDriverOperatingHours_ForVehicle(startdate, endDate, vehicleID, New Guid(businessLocation))
 
 
@@ -366,7 +366,7 @@ Public Class ReportDataHandler
 
 
         If Not String.IsNullOrEmpty(driveID) Then
-            retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple. _
+            retobj.ReportLines = FMS.Business.ReportGeneration.GeoFenceReport_Simple.
                                             GetReport(New Guid(appID), startDate, endDate)
 
             If FMS.Business.DataObjects.ApplicationDriver.DriverREpresentingEveryone.ApplicationDriverID <> New Guid(driveID) Then
@@ -560,7 +560,7 @@ Public Class ReportDataHandler
 
             If Not ThisSession.ApplicationID = Guid.Empty Then
                 'get the vehicleid (guid)
-                Dim vehicleID As Guid = _
+                Dim vehicleID As Guid =
                     FMS.Business.DataObjects.ApplicationVehicle.GetAll(ThisSession.ApplicationID) _
                             .Where(Function(x) x.Name.ToLower = vehicleName.ToLower).Single.ApplicationVehileID
 
@@ -882,7 +882,7 @@ Public Class ReportDataHandler
         rept.Param2 = endDate
         Return rept
     End Function
-    Public Shared Function GetAuditContractReport(startDate As Date, endDate As Date) As CacheAuditContract        
+    Public Shared Function GetAuditContractReport(startDate As Date, endDate As Date) As CacheAuditContract
         Dim rept As New CacheAuditContract
         Dim retobj = FMS.Business.DataObjects.usp_GetAuditContractReport.GetAuditContractReport(startDate, endDate).ToList()
         Dim objList As New List(Of AuditContract)
@@ -1048,6 +1048,24 @@ Public Class ReportDataHandler
         dtLogger.LineValues = objListLogger
         dtLogger.Param1 = "test"
         Return dtLogger
+    End Function
+    Public Shared Function GetSpeedDataLoggerReport() As CacheSpeedDataLogger
+        Dim dtSpeedLogger As New CacheSpeedDataLogger
+        Dim objListLogger As New List(Of SpeedDataLogger)
+        Dim dt1 As Date = #6/15/2017 10:00:00 AM#
+        Dim dt2 As Date = #6/15/2017 11:00:00 AM#
+        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetSpeedDataLogger("auto19", dt1, dt2)
+        For Each item In lstLoggerReport
+            objListLogger.Add(New SpeedDataLogger() With {.Description = item.Description, .SpeedDateTime = item.SpeedDateTime, .Value = item.Value})
+        Next
+        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:22:47 AM#, .Value = lstLoggerReport.Count()})
+        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:33:47 AM#, .Value = 200})
+        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:44:47 AM#, .Value = 300})
+        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:55:47 AM#, .Value = 400})
+        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 11:22:47 AM#, .Value = 500})
+        dtSpeedLogger.LineValues = objListLogger
+        dtSpeedLogger.Param1 = "test"
+        Return dtSpeedLogger
     End Function
     Public Sub New()
 

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class DataLoggerReport
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,13 +17,15 @@ Partial Public Class DataLoggerReport
     'NOTE: The following procedure is required by the Designer
     'It can be modified using the Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
         Dim SecondaryAxisX1 As DevExpress.XtraCharts.SecondaryAxisX = New DevExpress.XtraCharts.SecondaryAxisX()
         Dim KeyColorColorizer1 As DevExpress.XtraCharts.KeyColorColorizer = New DevExpress.XtraCharts.KeyColorColorizer()
         Dim StackedBarSeriesView1 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim SplineSeriesView1 As DevExpress.XtraCharts.SplineSeriesView = New DevExpress.XtraCharts.SplineSeriesView()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -42,11 +44,19 @@ Partial Public Class DataLoggerReport
         Me.DetailCaptionBackground3 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrChart2 = New DevExpress.XtraReports.UI.XRChart()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(SecondaryAxisX1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -73,32 +83,32 @@ Partial Public Class DataLoggerReport
         '
         'ReportHeaderBand1
         '
-        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrChart1, Me.XrLabel1})
-        Me.ReportHeaderBand1.HeightF = 628.125!
+        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrChart2, Me.XrChart1, Me.XrLabel1})
+        Me.ReportHeaderBand1.HeightF = 878.125!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
         '
         'XrChart1
         '
         Me.XrChart1.BorderColor = System.Drawing.Color.Black
         Me.XrChart1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
-        XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
-        XyDiagram1.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.[False]
-        XyDiagram1.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.[False]
-        XyDiagram1.DefaultPane.EnableAxisYScrolling = DevExpress.Utils.DefaultBoolean.[False]
-        XyDiagram1.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.[False]
-        XyDiagram1.Rotated = True
+        XyDiagram2.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram2.AxisY.VisibleInPanesSerializable = "-1"
+        XyDiagram2.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.[False]
+        XyDiagram2.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.[False]
+        XyDiagram2.DefaultPane.EnableAxisYScrolling = DevExpress.Utils.DefaultBoolean.[False]
+        XyDiagram2.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.[False]
+        XyDiagram2.Rotated = True
         SecondaryAxisX1.AxisID = 0
         SecondaryAxisX1.Name = "Secondary AxisX 1"
         SecondaryAxisX1.Reverse = True
         SecondaryAxisX1.VisibleInPanesSerializable = "-1"
-        XyDiagram1.SecondaryAxesX.AddRange(New DevExpress.XtraCharts.SecondaryAxisX() {SecondaryAxisX1})
-        Me.XrChart1.Diagram = XyDiagram1
+        XyDiagram2.SecondaryAxesX.AddRange(New DevExpress.XtraCharts.SecondaryAxisX() {SecondaryAxisX1})
+        Me.XrChart1.Diagram = XyDiagram2
         Me.XrChart1.Legend.Border.Visibility = DevExpress.Utils.DefaultBoolean.[True]
         Me.XrChart1.Legend.Direction = DevExpress.XtraCharts.LegendDirection.BottomToTop
         Me.XrChart1.Legend.Name = "Default Legend"
         Me.XrChart1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XrChart1.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 47.91667!)
+        Me.XrChart1.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 287.9167!)
         Me.XrChart1.Name = "XrChart1"
         Me.XrChart1.PaletteRepository.Add("Palette 1", New DevExpress.XtraCharts.Palette("Palette 1", DevExpress.XtraCharts.PaletteScaleMode.Repeat, New DevExpress.XtraCharts.PaletteEntry() {New DevExpress.XtraCharts.PaletteEntry(System.Drawing.Color.Red, System.Drawing.Color.Red), New DevExpress.XtraCharts.PaletteEntry(System.Drawing.Color.Green, System.Drawing.Color.Green)}))
         Me.XrChart1.SeriesDataMember = "LineValues.Direction"
@@ -123,7 +133,7 @@ Partial Public Class DataLoggerReport
         '
         'DetailReportBand1
         '
-        Me.DetailReportBand1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeaderBand1, Me.DetailBand1})
+        Me.DetailReportBand1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeaderBand1, Me.DetailBand1, Me.DetailReport})
         Me.DetailReportBand1.DataMember = "LineValues"
         Me.DetailReportBand1.DataSource = Me.ObjectDataSource1
         Me.DetailReportBand1.Level = 0
@@ -137,7 +147,7 @@ Partial Public Class DataLoggerReport
         '
         'DetailBand1
         '
-        Me.DetailBand1.HeightF = 25.0!
+        Me.DetailBand1.HeightF = 0!
         Me.DetailBand1.Name = "DetailBand1"
         '
         'Title
@@ -226,18 +236,67 @@ Partial Public Class DataLoggerReport
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
         '
+        'ObjectDataSource2
+        '
+        Me.ObjectDataSource2.DataMember = "GetSpeedDataLoggerReport"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
+        '
+        'DetailReport
+        '
+        Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
+        Me.DetailReport.DataMember = "LineValues"
+        Me.DetailReport.DataSource = Me.ObjectDataSource2
+        Me.DetailReport.Level = 0
+        Me.DetailReport.Name = "DetailReport"
+        '
+        'Detail1
+        '
+        Me.Detail1.HeightF = 0!
+        Me.Detail1.Name = "Detail1"
+        '
+        'XrChart2
+        '
+        Me.XrChart2.BorderColor = System.Drawing.Color.Black
+        Me.XrChart2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrChart2.DataSource = Me.ObjectDataSource2
+        XyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Minute
+        XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram1.AxisY.Title.Text = "Speed"
+        XyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
+        XyDiagram1.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.[False]
+        XyDiagram1.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.[False]
+        XyDiagram1.DefaultPane.EnableAxisYScrolling = DevExpress.Utils.DefaultBoolean.[False]
+        XyDiagram1.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.[False]
+        Me.XrChart2.Diagram = XyDiagram1
+        Me.XrChart2.Legend.Name = "Default Legend"
+        Me.XrChart2.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
+        Me.XrChart2.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 32.0!)
+        Me.XrChart2.Name = "XrChart2"
+        Me.XrChart2.SeriesDataMember = "LineValues.Description"
+        Me.XrChart2.SeriesSerializable = New DevExpress.XtraCharts.Series(-1) {}
+        Me.XrChart2.SeriesTemplate.ArgumentDataMember = "LineValues.SpeedDateTime"
+        Me.XrChart2.SeriesTemplate.ValueDataMembersSerializable = "LineValues.Value"
+        Me.XrChart2.SeriesTemplate.View = SplineSeriesView1
+        Me.XrChart2.SizeF = New System.Drawing.SizeF(644.0!, 255.9167!)
+        '
         'DataLoggerReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeaderBand1, Me.DetailReportBand1})
-        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
+        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
         Me.DataSource = Me.ObjectDataSource1
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption1, Me.DetailData1, Me.DetailCaption3, Me.DetailData3, Me.DetailData3_Odd, Me.DetailCaptionBackground3, Me.PageInfo})
         Me.Version = "17.2"
         CType(SecondaryAxisX1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -259,4 +318,8 @@ Partial Public Class DataLoggerReport
     Friend WithEvents DetailCaptionBackground3 As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents PageInfo As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents XrChart1 As DevExpress.XtraReports.UI.XRChart
+    Friend WithEvents ObjectDataSource2 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents XrChart2 As DevExpress.XtraReports.UI.XRChart
 End Class

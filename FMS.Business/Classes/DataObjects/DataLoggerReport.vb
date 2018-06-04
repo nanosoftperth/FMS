@@ -38,6 +38,34 @@ Namespace DataObjects
             Next
             Return dtLogger
         End Function
+        Public Shared Function GetSpeedDataLogger(deviceid As String, startDate As Date, endDate As Date) As List(Of SpeedFields)
+            Dim param0 As New DataLoggerReport
+            param0.DeviceId = deviceid
+            param0.Standard = "Zagro125"
+            param0.Spn = 1
+            param0.StartDate = startDate
+            param0.EndDate = endDate
+            Dim speedList = GetDataLogger(param0) 'pgn:578, spn:1, speed
+
+            Dim dtLogger As New List(Of SpeedFields)
+            Dim currentValue As Integer
+            Dim dtTimeA As DateTime
+            Dim dtTimeCurrent As DateTime
+            For d As Integer = 0 To speedList.Count
+                Dim objSpeed As New SpeedFields
+                Try
+                    dtTimeA = speedList(d + 1).Time.ToShortTimeString
+                    dtTimeCurrent = speedList(d).Time.ToShortTimeString
+                    objSpeed.Description = "Speed"
+                    currentValue = speedList(d).Value
+                    objSpeed.Value = speedList(d).Value
+                    objSpeed.SpeedDateTime = speedList(d).Time
+                    dtLogger.Add(objSpeed)
+                Catch ex As Exception
+                End Try
+            Next
+            Return dtLogger
+        End Function
 
         Public Shared Function GetReportDirection(deviceid As String, startDate As Date, endDate As Date) As List(Of ReportFields)
             Dim dtLogger As New List(Of ReportFields)
@@ -684,6 +712,11 @@ Namespace DataObjects
         Public Property ValueX As Integer
         Public Property DateX As DateTime
         Public Property DateRawX As DateTime
+    End Class
+    Public Class SpeedFields
+        Public Property Description As String
+        Public Property Value As Integer
+        Public Property SpeedDateTime As DateTime
     End Class
 End Namespace
 
