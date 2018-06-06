@@ -11,8 +11,15 @@ Public Class DataLogger7502Report
     Protected Sub Button1_Click(sender As Object, e As EventArgs)
         'Dim dt1 As Date = #6/18/2017#
         'Dim dt2 As Date = #5/30/2017#
-        Dim dt1 As Date = #6/15/2017 10:00:00 AM#
-        Dim dt2 As Date = #6/15/2017 11:00:00 AM#
+        'Dim dt1 As Date = #6/15/2017 10:00:00 AM#
+        'Dim dt2 As Date = #6/15/2017 11:00:00 AM#
+        Dim dt1 As Date = #6/11/2017 11:00:00 AM#
+        Dim dt2 As Date = #6/11/2017 01:00:00 PM#
+
+        Dim x = FMS.Business.DataObjects.DataLoggerReport.GetLatLongLog("auto19", dt1, dt2)
+
+
+        Me.Session("LatLang") = x
         WebChartControl1.DataSource = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection("auto19", dt1, dt2)
         WebChartControl1.DataBind()
 
@@ -56,6 +63,11 @@ Public Class DataLogger7502Report
         If (e.Series.Points.Owner.Tag.ToString().Split("-")(0).Equals("Road Rail Engaged On")) Then
             drawOptions.Color = Color.Red
         ElseIf (e.Series.Points.Owner.Tag.ToString().Split("-")(0).Equals("Road Rail Engaged Off")) Then
+            drawOptions.Color = Color.Green
+        End If
+        If (e.Series.Points.Owner.Tag.ToString().Split("-")(0).Equals("Headlight On")) Then
+            drawOptions.Color = Color.Red
+        ElseIf (e.Series.Points.Owner.Tag.ToString().Split("-")(0).Equals("Headlight Off")) Then
             drawOptions.Color = Color.Green
         End If
 

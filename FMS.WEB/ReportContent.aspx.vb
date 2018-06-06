@@ -89,6 +89,8 @@
     Public Shared Function GetReportFromName(reportName As String) As DevExpress.XtraReports.UI.XtraReport
 
         Select Case reportName
+            Case "uniqcopage"
+                Return New FMS.ReportLogic.DataLoggerReport()
             Case "VehicleReport"
                 Return New FMS.ReportLogic.VehicleReport
             Case "DriverOperatingHoursReport"
@@ -115,7 +117,7 @@
                 Return New FMS.ReportLogic.VehicleDumpReport
             Case Else
                 Return Nothing
-        End Select  
+        End Select
     End Function
 
 End Class

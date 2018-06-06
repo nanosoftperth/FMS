@@ -1054,15 +1054,12 @@ Public Class ReportDataHandler
         Dim objListLogger As New List(Of SpeedDataLogger)
         Dim dt1 As Date = #6/15/2017 10:00:00 AM#
         Dim dt2 As Date = #6/15/2017 11:00:00 AM#
+
         Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetSpeedDataLogger("auto19", dt1, dt2)
         For Each item In lstLoggerReport
             objListLogger.Add(New SpeedDataLogger() With {.Description = item.Description, .SpeedDateTime = item.SpeedDateTime, .Value = item.Value})
         Next
-        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:22:47 AM#, .Value = lstLoggerReport.Count()})
-        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:33:47 AM#, .Value = 200})
-        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:44:47 AM#, .Value = 300})
-        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 10:55:47 AM#, .Value = 400})
-        'objListLogger.Add(New SpeedDataLogger() With {.Description = "Speed", .SpeedDateTime = #6/15/2017 11:22:47 AM#, .Value = 500})
+
         dtSpeedLogger.LineValues = objListLogger
         dtSpeedLogger.Param1 = "test"
         Return dtSpeedLogger

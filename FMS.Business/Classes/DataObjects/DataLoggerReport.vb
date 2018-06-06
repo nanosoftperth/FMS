@@ -1,4 +1,6 @@
-﻿Imports FMS.Business.DataObjects.CanDataPoint
+﻿Imports System.Globalization
+Imports FMS.Business.DataObjects.CanDataPoint
+Imports OSIsoft.AF
 
 Namespace DataObjects
     Public Class DataLoggerReport
@@ -7,8 +9,37 @@ Namespace DataObjects
         Public Property Spn As Integer
         Public Property StartDate As Date
         Public Property EndDate As Date
-        Private Shared listCounter As New List(Of Integer)
+        Public Shared Function GetLatLongLog(deviceid As String, startDate As String, endDate As String) As List(Of DevicePositionLatLong)
+            Dim lstDPLatLong As New List(Of DevicePositionLatLong)
+            Dim myPISystem As PISystem = New PISystems().DefaultPISystem
+            myPISystem.Connect()
+            Dim afdb As AFDatabase = myPISystem.Databases("FMS")
 
+            Dim afnamedcoll As AFNamedCollection(Of Asset.AFElement) =
+                OSIsoft.AF.Asset.AFElement.FindElements(afdb, Nothing, "device",
+                            AFSearchField.Template, True, AFSortField.Name, AFSortOrder.Ascending, 1000)
+
+            Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = "auto19").SingleOrDefault
+            Dim attr_Lat As Asset.AFAttribute = afe.Attributes("lat")
+            Dim attr_Long As Asset.AFAttribute = afe.Attributes("long")
+            Dim st As New OSIsoft.AF.Time.AFTime(startDate, CultureInfo.InvariantCulture)
+            Dim et As New OSIsoft.AF.Time.AFTime(endDate, CultureInfo.InvariantCulture)
+            Dim tr As New OSIsoft.AF.Time.AFTimeRange(st, et)
+            Dim latvals As Asset.AFValues = attr_Lat.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)
+            Dim longVals As Asset.AFValues = attr_Long.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)
+
+            Dim intLatLongCount As Integer = Math.Max(latvals.Count, longVals.Count)
+            For counter As Integer = 0 To intLatLongCount - 1
+                Dim dpLatLong As New DevicePositionLatLong
+                dpLatLong.DeviceName = deviceid
+                dpLatLong.Latitude = latvals(counter).Value
+                dpLatLong.Longitude = longVals(counter).Value
+                dpLatLong.LatitudeDateTime = latvals(counter).Timestamp
+                dpLatLong.LongtitudeDateTime = longVals(counter).Timestamp
+                lstDPLatLong.Add(dpLatLong)
+            Next
+            Return lstDPLatLong
+        End Function
         Public Shared Function Get7502DataLogger(deviceid As String, startDate As Date, endDate As Date) As List(Of SpeedReportFields)
             Dim param0 As New DataLoggerReport
             param0.DeviceId = deviceid
@@ -94,7 +125,6 @@ Namespace DataObjects
 
                 Dim pivds = SingletonAccess.HistorianServer.PIPoints(pipName).Data.RecordedValues(startDate, endDate, PISDK.BoundaryTypeConstants.btInside)
 
-                listCounter.Add(pivds.Count)
                 For Each p As PISDK.PIValue In pivds
                     lstRetVal.Add(p.Value.ToString())
                 Next
@@ -717,6 +747,13 @@ Namespace DataObjects
         Public Property Description As String
         Public Property Value As Integer
         Public Property SpeedDateTime As DateTime
+    End Class
+    Public Class DevicePositionLatLong
+        Public Property DeviceName As String
+        Public Property Latitude As Decimal
+        Public Property Longitude As Decimal
+        Public Property LatitudeDateTime As DateTime
+        Public Property LongtitudeDateTime As DateTime
     End Class
 End Namespace
 
