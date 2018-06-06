@@ -7,3 +7,9 @@ Public Class ReportFields
     Public Property Direction As String
     Public Property Value As Integer
 End Class
+Public Class TimeClass
+    Public Property TimeValue As String
+End Class
+Public Class DeviceChart
+    Public Property DeviceValue As String
+End Class

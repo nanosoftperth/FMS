@@ -22,16 +22,30 @@ Partial Public Class DataLoggerReport
         Me.components = New System.ComponentModel.Container()
         Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
         Dim SplineSeriesView1 As DevExpress.XtraCharts.SplineSeriesView = New DevExpress.XtraCharts.SplineSeriesView()
+        Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
         Dim SecondaryAxisX1 As DevExpress.XtraCharts.SecondaryAxisX = New DevExpress.XtraCharts.SecondaryAxisX()
         Dim KeyColorColorizer1 As DevExpress.XtraCharts.KeyColorColorizer = New DevExpress.XtraCharts.KeyColorColorizer()
         Dim StackedBarSeriesView1 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim Parameter5 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter6 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter7 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter8 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings3 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Me.ObjectDataSource4 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrChart2 = New DevExpress.XtraReports.UI.XRChart()
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.XrChart1 = New DevExpress.XtraReports.UI.XRChart()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.DetailReportBand1 = New DevExpress.XtraReports.UI.DetailReportBand()
@@ -39,6 +53,11 @@ Partial Public Class DataLoggerReport
         Me.DetailBand1 = New DevExpress.XtraReports.UI.DetailBand()
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.DetailReport1 = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail2 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.DetailReport2 = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail3 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Title = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailCaption1 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailData1 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -47,18 +66,34 @@ Partial Public Class DataLoggerReport
         Me.DetailData3_Odd = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailCaptionBackground3 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
-        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.DeviceID = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.StartTime = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.ChartDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.EndTime = New DevExpress.XtraReports.Parameters.Parameter()
+        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(SecondaryAxisX1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        '
+        'ObjectDataSource4
+        '
+        Me.ObjectDataSource4.DataMember = "GetDevicesByApplication"
+        Me.ObjectDataSource4.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource4.Name = "ObjectDataSource4"
+        '
+        'ObjectDataSource3
+        '
+        Me.ObjectDataSource3.DataMember = "GetChartTimeList"
+        Me.ObjectDataSource3.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource3.Name = "ObjectDataSource3"
         '
         'Detail
         '
@@ -120,6 +155,25 @@ Partial Public Class DataLoggerReport
         Me.XrChart2.SeriesTemplate.View = SplineSeriesView1
         Me.XrChart2.SizeF = New System.Drawing.SizeF(644.0!, 189.25!)
         '
+        'ObjectDataSource2
+        '
+        Me.ObjectDataSource2.DataMember = "GetSpeedDataLoggerReport"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
+        Parameter1.Name = "deviceID"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
+        Parameter2.Name = "chartDate"
+        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.ChartDate]", GetType(Date))
+        Parameter3.Name = "startTime"
+        Parameter3.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter3.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
+        Parameter4.Name = "endTime"
+        Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
+        Me.ObjectDataSource2.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2, Parameter3, Parameter4})
+        '
         'XrChart1
         '
         Me.XrChart1.BorderColor = System.Drawing.Color.Black
@@ -166,7 +220,7 @@ Partial Public Class DataLoggerReport
         '
         'DetailReportBand1
         '
-        Me.DetailReportBand1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeaderBand1, Me.DetailBand1, Me.DetailReport})
+        Me.DetailReportBand1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeaderBand1, Me.DetailBand1, Me.DetailReport, Me.DetailReport1, Me.DetailReport2})
         Me.DetailReportBand1.DataMember = "LineValues"
         Me.DetailReportBand1.DataSource = Me.ObjectDataSource1
         Me.DetailReportBand1.Level = 0
@@ -195,6 +249,49 @@ Partial Public Class DataLoggerReport
         '
         Me.Detail1.HeightF = 0!
         Me.Detail1.Name = "Detail1"
+        '
+        'DetailReport1
+        '
+        Me.DetailReport1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail2})
+        Me.DetailReport1.DataSource = Me.ObjectDataSource3
+        Me.DetailReport1.Level = 1
+        Me.DetailReport1.Name = "DetailReport1"
+        '
+        'Detail2
+        '
+        Me.Detail2.HeightF = 0!
+        Me.Detail2.Name = "Detail2"
+        '
+        'DetailReport2
+        '
+        Me.DetailReport2.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail3})
+        Me.DetailReport2.DataSource = Me.ObjectDataSource4
+        Me.DetailReport2.Level = 2
+        Me.DetailReport2.Name = "DetailReport2"
+        '
+        'Detail3
+        '
+        Me.Detail3.HeightF = 100.0!
+        Me.Detail3.Name = "Detail3"
+        '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetDataLoggerReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter5.Name = "deviceID"
+        Parameter5.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
+        Parameter6.Name = "chartDate"
+        Parameter6.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.ChartDate]", GetType(Date))
+        Parameter7.Name = "startTime"
+        Parameter7.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter7.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
+        Parameter8.Name = "endTime"
+        Parameter8.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter5, Parameter6, Parameter7, Parameter8})
         '
         'Title
         '
@@ -276,33 +373,64 @@ Partial Public Class DataLoggerReport
         Me.PageInfo.Name = "PageInfo"
         Me.PageInfo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         '
-        'ObjectDataSource2
+        'DeviceID
         '
-        Me.ObjectDataSource2.DataMember = "GetSpeedDataLoggerReport"
-        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource2.Name = "ObjectDataSource2"
+        Me.DeviceID.Description = "Device ID"
+        DynamicListLookUpSettings1.DataAdapter = Nothing
+        DynamicListLookUpSettings1.DataMember = Nothing
+        DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource4
+        DynamicListLookUpSettings1.DisplayMember = "DeviceValue"
+        DynamicListLookUpSettings1.ValueMember = "DeviceValue"
+        Me.DeviceID.LookUpSettings = DynamicListLookUpSettings1
+        Me.DeviceID.Name = "DeviceID"
         '
-        'ObjectDataSource1
+        'StartTime
         '
-        Me.ObjectDataSource1.DataMember = "GetDataLoggerReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Me.StartTime.Description = "Start Time"
+        DynamicListLookUpSettings2.DataAdapter = Nothing
+        DynamicListLookUpSettings2.DataMember = Nothing
+        DynamicListLookUpSettings2.DataSource = Me.ObjectDataSource3
+        DynamicListLookUpSettings2.DisplayMember = "TimeValue"
+        DynamicListLookUpSettings2.ValueMember = "TimeValue"
+        Me.StartTime.LookUpSettings = DynamicListLookUpSettings2
+        Me.StartTime.Name = "StartTime"
+        '
+        'ChartDate
+        '
+        Me.ChartDate.Description = "Chart Date"
+        Me.ChartDate.Name = "ChartDate"
+        Me.ChartDate.Type = GetType(Date)
+        Me.ChartDate.ValueInfo = "2018-06-06"
+        '
+        'EndTime
+        '
+        Me.EndTime.Description = "End Time"
+        DynamicListLookUpSettings3.DataAdapter = Nothing
+        DynamicListLookUpSettings3.DataMember = Nothing
+        DynamicListLookUpSettings3.DataSource = Me.ObjectDataSource3
+        DynamicListLookUpSettings3.DisplayMember = "TimeValue"
+        DynamicListLookUpSettings3.ValueMember = "TimeValue"
+        Me.EndTime.LookUpSettings = DynamicListLookUpSettings3
+        Me.EndTime.Name = "EndTime"
         '
         'DataLoggerReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeaderBand1, Me.DetailReportBand1})
-        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2})
+        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2, Me.ObjectDataSource3, Me.ObjectDataSource4})
         Me.DataSource = Me.ObjectDataSource1
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DeviceID, Me.ChartDate, Me.StartTime, Me.EndTime})
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption1, Me.DetailData1, Me.DetailCaption3, Me.DetailData3, Me.DetailData3_Odd, Me.DetailCaptionBackground3, Me.PageInfo})
         Me.Version = "17.2"
+        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(SecondaryAxisX1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -330,4 +458,14 @@ Partial Public Class DataLoggerReport
     Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents XrChart2 As DevExpress.XtraReports.UI.XRChart
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents DetailReport1 As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail2 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents ObjectDataSource3 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents DeviceID As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents StartTime As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents ChartDate As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents DetailReport2 As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail3 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents ObjectDataSource4 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents EndTime As DevExpress.XtraReports.Parameters.Parameter
 End Class

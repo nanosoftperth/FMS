@@ -34,6 +34,43 @@ Public Class ReportDataHandler
     Public Shared Function GetRunsGetAllList() As List(Of FMS.Business.DataObjects.tblRuns)
         Return FMS.Business.DataObjects.tblRuns.GetAll()
     End Function
+    Public Shared Function GetDevicesByApplication() As List(Of DeviceChart)
+        Dim dc As New List(Of DeviceChart)
+        Dim lstDevices = FMS.Business.DataObjects.Device.GetDevicesforApplication(ThisSession.ApplicationID)
+        For Each devicex In lstDevices
+            dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
+        Next
+        Return dc
+    End Function
+    Public Shared Function GetChartTimeList() As List(Of TimeClass)
+        Dim lstTime As New List(Of TimeClass)
+
+        lstTime.Add(New TimeClass() With {.TimeValue = "12:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "1:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "2:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "3:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "4:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "5:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "6:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "7:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "8:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "9:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "10:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "11:00:00 AM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "12:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "1:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "2:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "3:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "4:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "5:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "6:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "7:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "8:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "9:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "10:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "11:00:00 PM"})
+        Return lstTime
+    End Function
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.
     ''' If not, then populate the session cache with the report and return that
@@ -1036,7 +1073,7 @@ Public Class ReportDataHandler
         rept.Param1 = ThisSession.ParameterValues
         Return rept
     End Function
-    Public Shared Function GetDataLoggerReport() As CacheDataLoggerReport
+    Public Shared Function GetDataLoggerReport(deviceID As String, chartDate As Date, startTime As String, endTime As String) As CacheDataLoggerReport
         Dim dtLogger As New CacheDataLoggerReport
         Dim objListLogger As New List(Of ReportFields)
         Dim dt1 As Date = #6/15/2017 10:00:00 AM#
@@ -1049,7 +1086,7 @@ Public Class ReportDataHandler
         dtLogger.Param1 = "test"
         Return dtLogger
     End Function
-    Public Shared Function GetSpeedDataLoggerReport() As CacheSpeedDataLogger
+    Public Shared Function GetSpeedDataLoggerReport(deviceID As String, chartDate As Date, startTime As String, endTime As String) As CacheSpeedDataLogger
         Dim dtSpeedLogger As New CacheSpeedDataLogger
         Dim objListLogger As New List(Of SpeedDataLogger)
         Dim dt1 As Date = #6/15/2017 10:00:00 AM#

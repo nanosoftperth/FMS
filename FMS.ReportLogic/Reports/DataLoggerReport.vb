@@ -23,8 +23,8 @@ Public Class DataLoggerReport
 
 
         Dim dt1 As Date = "6/11/2017 11:00:00 AM"
-        'Dim dt2 As Date = "6/11/2017 01:00:00 PM"
-        Dim dt2 As Date = "6/11/2017 11:13:42 AM"
+        Dim dt2 As Date = "6/11/2017 01:00:00 PM"
+        'Dim dt2 As Date = "6/11/2017 11:13:42 AM"
         'Dim dt2 As Date = "6/11/2017 11:11:47 AM"
         Dim lstLatLong = FMS.Business.DataObjects.DataLoggerReport.GetLatLongLog("auto19", dt1, dt2)
         Dim intMaxMark As Integer = 20
