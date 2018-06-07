@@ -16,17 +16,19 @@ Public Class DataLoggerReport
 
     End Sub
     Private Sub XtraReport1_DataSourceDemanded(ByVal sender As Object, ByVal e As EventArgs) Handles Me.DataSourceDemanded
-        'Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?size=512x512&zoom=12&amp;format=png&center=-31.9538987,115.85823189999996&zoom=12&size=700x700&maptype=terrain"
-        'Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=63.259591,-144.667969&zoom=6&size=400x400&markers=color:blue%7Clabel:S%7C62.107733,-145.541936&markers=size:tiny%7Ccolor:green%7CDelta+Junction,AK&markers=size:mid%7Ccolor:0xFFFF00%7Clabel:C%7CTok,AK"
-        'key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g
-        'Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=63.259591,-144.667969&zoom=6&size=400x400&maptype=terrain"
+        Dim dId As String = DeviceID.Value.ToString()
+        Dim sDate As Date = StartDate.Value
+        Dim eDate As Date = EndDate.Value
+        Dim sTime As String = IIf(StartTime.Value.ToString().Equals(""), "1", StartTime.Value.ToString().Split(":")(0))
+        Dim eTime As String = IIf(EndTime.Value.ToString().Equals(""), "24", EndTime.Value.ToString().Split(":")(0))
+        Dim dt1 As Date = sDate.AddHours(sTime)
+        Dim dt2 As Date = eDate.AddHours(eTime)
 
-
-        Dim dt1 As Date = "6/11/2017 11:00:00 AM"
-        Dim dt2 As Date = "6/11/2017 01:00:00 PM"
+        'Dim dt1 As Date = "6/11/2017 11:00:00 AM"
+        'Dim dt2 As Date = "6/11/2017 01:00:00 PM"
         'Dim dt2 As Date = "6/11/2017 11:13:42 AM"
         'Dim dt2 As Date = "6/11/2017 11:11:47 AM"
-        Dim lstLatLong = FMS.Business.DataObjects.DataLoggerReport.GetLatLongLog("auto19", dt1, dt2)
+        Dim lstLatLong = FMS.Business.DataObjects.DataLoggerReport.GetLatLongLog(dId, dt1, dt2)
         Dim intMaxMark As Integer = 20
         Dim intCounted As Integer
         intCounted = Math.Abs((lstLatLong.Count / intMaxMark))
@@ -35,18 +37,23 @@ Public Class DataLoggerReport
         Dim intCounter As Integer = 0
         Dim intCount As Integer = intCounted
         Dim ListCount As Integer = lstLatLong.Count
+        Dim countMark As Integer = 0
         For Each latLong In lstLatLong
             If intCount.Equals(intCounted) Or ListCount <= intMaxMark Then
-                xMarker(intCounter) = "&markers=size:tiny%7Ccolor:red%7Clabel:S%7C" & latLong.Latitude.ToString() & "," & latLong.Longitude.ToString()
-                intCounter += 1
-                intCount = 0
+                If intCounter <= intMaxMark Then
+                    xMarker(intCounter) = "&markers=size:tiny%7Ccolor:red%7Clabel:S%7C" & latLong.Latitude.ToString() & "," & latLong.Longitude.ToString()
+                    intCounter += 1
+                    intCount = 0
+                End If
             End If
             intCount += 1
+            countMark += 1
         Next
         Dim strMarker As String = String.Join("", xMarker)
-        'Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=&size=200x200&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-31.81608833333333,115.81080833333333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-31.916061666666663,115.81092666666667"
-        'Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=10&size=650x650&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-31.81608833333333,115.81080833333333" & strMarker
-        Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=10&size=650x350" & strMarker
+        Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=12&size=720x350" & strMarker
+        If lstLatLong.Count > 0 Then
+            url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=12&size=720x350" & strMarker
+        End If
 
         Using wc As New WebClient()
             Dim bc() As Byte = wc.DownloadData(url)

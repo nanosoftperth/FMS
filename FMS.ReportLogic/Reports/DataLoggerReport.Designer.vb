@@ -26,14 +26,16 @@ Partial Public Class DataLoggerReport
         Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter5 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
         Dim SecondaryAxisX1 As DevExpress.XtraCharts.SecondaryAxisX = New DevExpress.XtraCharts.SecondaryAxisX()
         Dim KeyColorColorizer1 As DevExpress.XtraCharts.KeyColorColorizer = New DevExpress.XtraCharts.KeyColorColorizer()
         Dim StackedBarSeriesView1 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-        Dim Parameter5 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter6 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter7 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter8 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter9 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
+        Dim Parameter10 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim DynamicListLookUpSettings3 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
@@ -68,8 +70,13 @@ Partial Public Class DataLoggerReport
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DeviceID = New DevExpress.XtraReports.Parameters.Parameter()
         Me.StartTime = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.ChartDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndTime = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,15 +126,15 @@ Partial Public Class DataLoggerReport
         '
         'ReportHeaderBand1
         '
-        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrChart2, Me.XrChart1, Me.XrLabel1})
-        Me.ReportHeaderBand1.HeightF = 861.2917!
+        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrPictureBox1, Me.XrChart2, Me.XrChart1, Me.XrLabel1})
+        Me.ReportHeaderBand1.HeightF = 1213.375!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
         '
         'XrPictureBox1
         '
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(5.999979!, 612.9167!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(31.00001!, 863.3746!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(644.0!, 248.3749!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(664.7917!, 350.0001!)
         '
         'XrChart2
         '
@@ -146,14 +153,14 @@ Partial Public Class DataLoggerReport
         Me.XrChart2.Diagram = XyDiagram1
         Me.XrChart2.Legend.Name = "Default Legend"
         Me.XrChart2.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XrChart2.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 32.0!)
+        Me.XrChart2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 100.1661!)
         Me.XrChart2.Name = "XrChart2"
         Me.XrChart2.SeriesDataMember = "LineValues.Description"
         Me.XrChart2.SeriesSerializable = New DevExpress.XtraCharts.Series(-1) {}
         Me.XrChart2.SeriesTemplate.ArgumentDataMember = "LineValues.SpeedDateTime"
         Me.XrChart2.SeriesTemplate.ValueDataMembersSerializable = "LineValues.Value"
         Me.XrChart2.SeriesTemplate.View = SplineSeriesView1
-        Me.XrChart2.SizeF = New System.Drawing.SizeF(644.0!, 189.25!)
+        Me.XrChart2.SizeF = New System.Drawing.SizeF(721.0002!, 279.875!)
         '
         'ObjectDataSource2
         '
@@ -163,16 +170,19 @@ Partial Public Class DataLoggerReport
         Parameter1.Name = "deviceID"
         Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
         Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
-        Parameter2.Name = "chartDate"
+        Parameter2.Name = "startDate"
         Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.ChartDate]", GetType(Date))
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
         Parameter3.Name = "startTime"
         Parameter3.Type = GetType(DevExpress.DataAccess.Expression)
         Parameter3.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
-        Parameter4.Name = "endTime"
+        Parameter4.Name = "endDate"
         Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
-        Me.ObjectDataSource2.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2, Parameter3, Parameter4})
+        Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
+        Parameter5.Name = "endTime"
+        Parameter5.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
+        Me.ObjectDataSource2.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2, Parameter3, Parameter4, Parameter5})
         '
         'XrChart1
         '
@@ -195,7 +205,7 @@ Partial Public Class DataLoggerReport
         Me.XrChart1.Legend.Direction = DevExpress.XtraCharts.LegendDirection.BottomToTop
         Me.XrChart1.Legend.Name = "Default Legend"
         Me.XrChart1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XrChart1.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 221.25!)
+        Me.XrChart1.LocationFloat = New DevExpress.Utils.PointFloat(3.916677!, 380.0411!)
         Me.XrChart1.Name = "XrChart1"
         Me.XrChart1.PaletteRepository.Add("Palette 1", New DevExpress.XtraCharts.Palette("Palette 1", DevExpress.XtraCharts.PaletteScaleMode.Repeat, New DevExpress.XtraCharts.PaletteEntry() {New DevExpress.XtraCharts.PaletteEntry(System.Drawing.Color.Red, System.Drawing.Color.Red), New DevExpress.XtraCharts.PaletteEntry(System.Drawing.Color.Green, System.Drawing.Color.Green)}))
         Me.XrChart1.SeriesDataMember = "LineValues.Direction"
@@ -207,16 +217,20 @@ Partial Public Class DataLoggerReport
         Me.XrChart1.SeriesTemplate.SeriesPointsSortingKey = DevExpress.XtraCharts.SeriesPointKey.Value_1
         Me.XrChart1.SeriesTemplate.ValueDataMembersSerializable = "LineValues.Value"
         Me.XrChart1.SeriesTemplate.View = StackedBarSeriesView1
-        Me.XrChart1.SizeF = New System.Drawing.SizeF(644.0!, 391.6667!)
+        Me.XrChart1.SizeF = New System.Drawing.SizeF(721.0002!, 483.3335!)
         '
         'XrLabel1
         '
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(6.0!, 6.0!)
+        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(6.00001!, 6.00001!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(638.0!, 26.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(715.0002!, 26.0!)
         Me.XrLabel1.StyleName = "Title"
-        Me.XrLabel1.Text = "Report Title"
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "Data Logger Report"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'DetailReportBand1
         '
@@ -271,7 +285,7 @@ Partial Public Class DataLoggerReport
         '
         'Detail3
         '
-        Me.Detail3.HeightF = 100.0!
+        Me.Detail3.HeightF = 0!
         Me.Detail3.Name = "Detail3"
         '
         'ObjectDataSource1
@@ -279,19 +293,22 @@ Partial Public Class DataLoggerReport
         Me.ObjectDataSource1.DataMember = "GetDataLoggerReport"
         Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
-        Parameter5.Name = "deviceID"
-        Parameter5.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
-        Parameter6.Name = "chartDate"
+        Parameter6.Name = "deviceID"
         Parameter6.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.ChartDate]", GetType(Date))
-        Parameter7.Name = "startTime"
+        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
+        Parameter7.Name = "startDate"
         Parameter7.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter7.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
-        Parameter8.Name = "endTime"
+        Parameter7.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
+        Parameter8.Name = "startTime"
         Parameter8.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
-        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter5, Parameter6, Parameter7, Parameter8})
+        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
+        Parameter9.Name = "endDate"
+        Parameter9.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter9.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
+        Parameter10.Name = "endTime"
+        Parameter10.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter10.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter6, Parameter7, Parameter8, Parameter9, Parameter10})
         '
         'Title
         '
@@ -395,12 +412,11 @@ Partial Public Class DataLoggerReport
         Me.StartTime.LookUpSettings = DynamicListLookUpSettings2
         Me.StartTime.Name = "StartTime"
         '
-        'ChartDate
+        'StartDate
         '
-        Me.ChartDate.Description = "Chart Date"
-        Me.ChartDate.Name = "ChartDate"
-        Me.ChartDate.Type = GetType(Date)
-        Me.ChartDate.ValueInfo = "2018-06-06"
+        Me.StartDate.Description = "Start Date"
+        Me.StartDate.Name = "StartDate"
+        Me.StartDate.Type = GetType(Date)
         '
         'EndTime
         '
@@ -413,12 +429,65 @@ Partial Public Class DataLoggerReport
         Me.EndTime.LookUpSettings = DynamicListLookUpSettings3
         Me.EndTime.Name = "EndTime"
         '
+        'EndDate
+        '
+        Me.EndDate.Description = "End Date"
+        Me.EndDate.Name = "EndDate"
+        Me.EndDate.Type = GetType(Date)
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 43.12499!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(104.6667!, 15.0!)
+        Me.XrLabel2.StyleName = "Title"
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.Text = "Start Date"
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 69.58332!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(104.6667!, 15.0!)
+        Me.XrLabel3.StyleName = "Title"
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.Text = "End Date"
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(300.75!, 69.58332!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(110.9166!, 15.0!)
+        Me.XrLabel4.StyleName = "Title"
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.Text = "Vehicle Name"
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(300.75!, 43.12499!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(110.9166!, 15.0!)
+        Me.XrLabel5.StyleName = "Title"
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.Text = "Company Name"
+        '
         'DataLoggerReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeaderBand1, Me.DetailReportBand1})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2, Me.ObjectDataSource3, Me.ObjectDataSource4})
         Me.DataSource = Me.ObjectDataSource1
-        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DeviceID, Me.ChartDate, Me.StartTime, Me.EndTime})
+        Me.PageHeight = 1500
+        Me.PageWidth = 927
+        Me.PaperKind = System.Drawing.Printing.PaperKind.LegalExtra
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DeviceID, Me.StartDate, Me.StartTime, Me.EndDate, Me.EndTime})
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption1, Me.DetailData1, Me.DetailCaption3, Me.DetailData3, Me.DetailData3_Odd, Me.DetailCaptionBackground3, Me.PageInfo})
         Me.Version = "17.2"
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -463,9 +532,14 @@ Partial Public Class DataLoggerReport
     Friend WithEvents ObjectDataSource3 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents DeviceID As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents StartTime As DevExpress.XtraReports.Parameters.Parameter
-    Friend WithEvents ChartDate As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents StartDate As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents DetailReport2 As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail3 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents ObjectDataSource4 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents EndTime As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents EndDate As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
 End Class

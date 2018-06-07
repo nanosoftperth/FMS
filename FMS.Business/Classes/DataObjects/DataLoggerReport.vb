@@ -9,7 +9,7 @@ Namespace DataObjects
         Public Property Spn As Integer
         Public Property StartDate As Date
         Public Property EndDate As Date
-        Public Shared Function GetLatLongLog(deviceid As String, startDate As String, endDate As String) As List(Of DevicePositionLatLong)
+        Public Shared Function GetLatLongLog(deviceid As String, startDate As Date, endDate As Date) As List(Of DevicePositionLatLong)
             Dim lstDPLatLong As New List(Of DevicePositionLatLong)
             Dim myPISystem As PISystem = New PISystems().DefaultPISystem
             myPISystem.Connect()
@@ -19,11 +19,11 @@ Namespace DataObjects
                 OSIsoft.AF.Asset.AFElement.FindElements(afdb, Nothing, "device",
                             AFSearchField.Template, True, AFSortField.Name, AFSortOrder.Ascending, 1000)
 
-            Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = "auto19").SingleOrDefault
+            Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = deviceid).SingleOrDefault
             Dim attr_Lat As Asset.AFAttribute = afe.Attributes("lat")
             Dim attr_Long As Asset.AFAttribute = afe.Attributes("long")
-            Dim st As New OSIsoft.AF.Time.AFTime(startDate, CultureInfo.InvariantCulture)
-            Dim et As New OSIsoft.AF.Time.AFTime(endDate, CultureInfo.InvariantCulture)
+            Dim st As New OSIsoft.AF.Time.AFTime(startDate.ToString("MM/dd/yyyy hh:mm:ss tt"), CultureInfo.InvariantCulture)
+            Dim et As New OSIsoft.AF.Time.AFTime(endDate.ToString("MM/dd/yyyy hh:mm:ss tt"), CultureInfo.InvariantCulture)
             Dim tr As New OSIsoft.AF.Time.AFTimeRange(st, et)
             Dim latvals As Asset.AFValues = attr_Lat.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)
             Dim longVals As Asset.AFValues = attr_Long.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)

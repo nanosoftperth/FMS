@@ -1288,11 +1288,11 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controllers\VehicleController.vb" />
-    <Compile Include="WebForm1.aspx.designer.vb">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="DataLoggerReport.aspx.designer.vb">
+      <DependentUpon>DataLoggerReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm1.aspx.vb">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="DataLoggerReport.aspx.vb">
+      <DependentUpon>DataLoggerReport.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="WebServices\Classes\VehicleDistanceData.vb" />
@@ -1666,7 +1666,7 @@
     <Content Include="Test_Forms\TestRyan.aspx" />
     <Content Include="Test_Forms\test_Settings.aspx" />
     <Content Include="Test_Forms\TimeZoneTester.aspx" />
-    <Content Include="WebForm1.aspx" />
+    <Content Include="DataLoggerReport.aspx" />
     <Content Include="WebServices\Uniqco_Integrator.svc" />
     <Content Include="WebServices\VehicleLog.aspx" />
     <Content Include="WebService_Uniqco.svc" />

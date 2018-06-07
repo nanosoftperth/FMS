@@ -45,30 +45,30 @@ Public Class ReportDataHandler
     Public Shared Function GetChartTimeList() As List(Of TimeClass)
         Dim lstTime As New List(Of TimeClass)
 
-        lstTime.Add(New TimeClass() With {.TimeValue = "12:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "1:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "2:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "3:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "4:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "5:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "6:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "7:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "8:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "9:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "10:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "11:00:00 AM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "12:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "1:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "2:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "3:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "4:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "5:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "6:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "7:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "8:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "9:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "10:00:00 PM"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "11:00:00 PM"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "1:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "2:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "3:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "4:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "5:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "6:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "7:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "8:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "9:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "10:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "11:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "12:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "13:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "14:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "15:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "16:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "17:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "18:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "19:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "20:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "21:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "22:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "25:00"})
+        lstTime.Add(New TimeClass() With {.TimeValue = "24:00"})
         Return lstTime
     End Function
     ''' <summary>
@@ -1073,12 +1073,16 @@ Public Class ReportDataHandler
         rept.Param1 = ThisSession.ParameterValues
         Return rept
     End Function
-    Public Shared Function GetDataLoggerReport(deviceID As String, chartDate As Date, startTime As String, endTime As String) As CacheDataLoggerReport
+    Public Shared Function GetDataLoggerReport(deviceID As String, startDate As Date, startTime As String, endDate As Date, endTime As String) As CacheDataLoggerReport
+        Dim sTime As String = IIf(startTime.Equals(""), "1", startTime.Split(":")(0))
+        Dim eTime As String = IIf(endTime.Equals(""), "24", endTime.Split(":")(0))
+        Dim dt1 As Date = startDate.AddHours(sTime)
+        Dim dt2 As Date = endDate.AddHours(eTime)
         Dim dtLogger As New CacheDataLoggerReport
         Dim objListLogger As New List(Of ReportFields)
-        Dim dt1 As Date = #6/15/2017 10:00:00 AM#
-        Dim dt2 As Date = #6/15/2017 11:00:00 AM#
-        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection("auto19", dt1, dt2)
+        'Dim dt1 As Date = #6/15/2017 10:00:00 AM#
+        'Dim dt2 As Date = #6/15/2017 11:00:00 AM#
+        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection(deviceID, dt1, dt2)
         For Each item In lstLoggerReport
             objListLogger.Add(New ReportFields() With {.Description = item.Description, .Direction = item.Direction, .Value = item.Value})
         Next
@@ -1086,13 +1090,17 @@ Public Class ReportDataHandler
         dtLogger.Param1 = "test"
         Return dtLogger
     End Function
-    Public Shared Function GetSpeedDataLoggerReport(deviceID As String, chartDate As Date, startTime As String, endTime As String) As CacheSpeedDataLogger
+    Public Shared Function GetSpeedDataLoggerReport(deviceID As String, startDate As Date, startTime As String, endDate As Date, endTime As String) As CacheSpeedDataLogger
+        Dim sTime As String = IIf(startTime.Equals(""), "1", startTime.Split(":")(0))
+        Dim eTime As String = IIf(endTime.Equals(""), "24", endTime.Split(":")(0))
+        Dim dt1 As Date = startDate.AddHours(sTime)
+        Dim dt2 As Date = endDate.AddHours(eTime)
         Dim dtSpeedLogger As New CacheSpeedDataLogger
         Dim objListLogger As New List(Of SpeedDataLogger)
-        Dim dt1 As Date = #6/15/2017 10:00:00 AM#
-        Dim dt2 As Date = #6/15/2017 11:00:00 AM#
+        'Dim dt1 As Date = #6/15/2017 10:00:00 AM#
+        'Dim dt2 As Date = #6/15/2017 11:00:00 AM#
 
-        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetSpeedDataLogger("auto19", dt1, dt2)
+        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetSpeedDataLogger(deviceID, dt1, dt2)
         For Each item In lstLoggerReport
             objListLogger.Add(New SpeedDataLogger() With {.Description = item.Description, .SpeedDateTime = item.SpeedDateTime, .Value = item.Value})
         Next
