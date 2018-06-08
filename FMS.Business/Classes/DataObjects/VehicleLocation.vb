@@ -161,7 +161,7 @@ Namespace DataObjects
 
             Next
 
-            ' New Code Remarks
+            ' New Code Remarks.ThisSession.User.RoleID
             'Dim listVehicle = (From vl In SingletonAccess.FMSDataContextContignous.VehicleLocations
             '                  Join al In SingletonAccess.FMSDataContextContignous.ApplicationLocations
             '                  On vl.BusinessLocationID Equals al.ApplicationLocationID
@@ -174,6 +174,51 @@ Namespace DataObjects
 
             Return objVehicleList
 
+        End Function
+        Public Shared Function GetDevicesByApplication() As Object
+            Dim listVehicle = (From vl In SingletonAccess.FMSDataContextContignous.VehicleLocations
+                               Join al In SingletonAccess.FMSDataContextContignous.ApplicationLocations
+                              On vl.BusinessLocationID Equals al.ApplicationLocationID
+                               Join av In SingletonAccess.FMSDataContextContignous.ApplicationVehicles
+                              On vl.VehicleID Equals av.ApplicationVehicleID
+                               Where (al.ApplicationID.Equals(ThisSession.ApplicationID))
+                               Select al.ApplicationID, al.ApplicationLocationID, al.Name, al.Address,
+                                    vl.LocationID, vl.VehicleID, Vehicle_Name = av.Name, av.DeviceID
+                                    ).ToList()
+
+            Return listVehicle
+        End Function
+        Public Shared Function IsUserSeeAllVehicle() As Boolean
+            Dim blnSeeAll As Boolean = False
+            Dim validateFeatureRoles As Object
+            Dim getFeature = (From au In SingletonAccess.FMSDataContextContignous.aspnet_Users
+                              Join aur In SingletonAccess.FMSDataContextContignous.aspnet_UsersInRoles
+                                    On au.UserId Equals aur.UserId
+                              Join ar In SingletonAccess.FMSDataContextContignous.aspnet_Roles
+                                    On aur.RoleId Equals ar.RoleId
+                              Join afr In SingletonAccess.FMSDataContextContignous.ApplicationFeatureRoles
+                                    On ar.RoleId Equals afr.RoleID
+                              Join f In SingletonAccess.FMSDataContextContignous.Features
+                                    On afr.FeatureID Equals f.FeatureID
+                              Where (au.ApplicationId = FMS.Business.ThisSession.ApplicationID) And
+                                   (au.UserId = FMS.Business.ThisSession.UserID) And
+                                   (f.FeatureID.Equals("DBD34E53-DC70-434E-9BF4-1CD98049A7C3")) 'Vehicle and Driver Management - See All Vehicle
+                              Select f.FeatureID, f.FeatureName, f.FeatureDescription).FirstOrDefault
+
+
+
+            If getFeature IsNot Nothing Then
+                validateFeatureRoles = From afr In SingletonAccess.FMSDataContextContignous.ApplicationFeatureRoles
+                                       Join f In SingletonAccess.FMSDataContextContignous.Features
+                                            On afr.FeatureID Equals f.FeatureID
+                                       Join r In SingletonAccess.FMSDataContextContignous.aspnet_Roles
+                                            On afr.RoleID Equals r.RoleId
+                                       Where afr.ApplicationID = FMS.Business.ThisSession.ApplicationID And f.FeatureID = getFeature.FeatureID
+                blnSeeAll = validateFeatureRoles IsNot Nothing
+            Else
+                blnSeeAll = False
+            End If
+            Return blnSeeAll
         End Function
 
         Public Shared Function GetPerAppID(applicationID As Guid, Optional IncludeDefault As Boolean = False) As List(Of Vehicles)

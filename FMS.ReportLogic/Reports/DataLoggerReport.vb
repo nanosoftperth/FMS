@@ -28,6 +28,9 @@ Public Class DataLoggerReport
         'Dim dt2 As Date = "6/11/2017 01:00:00 PM"
         'Dim dt2 As Date = "6/11/2017 11:13:42 AM"
         'Dim dt2 As Date = "6/11/2017 11:11:47 AM"
+
+        'Dim x = FMS.Business.DataObjects.VehicleLocation.IsUserSeeAllVehicle()
+
         Dim lstLatLong = FMS.Business.DataObjects.DataLoggerReport.GetLatLongLog(dId, dt1, dt2)
         Dim intMaxMark As Integer = 20
         Dim intCounted As Integer

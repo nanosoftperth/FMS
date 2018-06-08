@@ -36,11 +36,16 @@ Public Class ReportDataHandler
     End Function
     Public Shared Function GetDevicesByApplication() As List(Of DeviceChart)
         Dim dc As New List(Of DeviceChart)
-        Dim lstDevices = FMS.Business.DataObjects.Device.GetDevicesforApplication(ThisSession.ApplicationID)
+        Dim isSeeAllVehicle = FMS.Business.DataObjects.VehicleLocation.IsUserSeeAllVehicle()
+        Dim lstDevices As Object
+        If isSeeAllVehicle Then
+        Else
+        End If
+        lstDevices = DataObjects.VehicleLocation.GetDevicesByApplication()
         For Each devicex In lstDevices
             dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
         Next
-        Return dc
+        Return dc.Distinct().ToList()
     End Function
     Public Shared Function GetChartTimeList() As List(Of TimeClass)
         Dim lstTime As New List(Of TimeClass)
@@ -1087,7 +1092,11 @@ Public Class ReportDataHandler
             objListLogger.Add(New ReportFields() With {.Description = item.Description, .Direction = item.Direction, .Value = item.Value})
         Next
         dtLogger.LineValues = objListLogger
-        dtLogger.Param1 = "test"
+        Dim getDeviceID = DataObjects.VehicleLocation.GetPerDeviceID(deviceID)
+        dtLogger.Param1 = dt1.ToString("MM/dd/yyyy HH:mm:ss tt")
+        dtLogger.Param2 = dt2.ToString("MM/dd/yyyy HH:mm:ss tt")
+        dtLogger.Param3 = IIf(getDeviceID.Count > 0, getDeviceID(0).Name.ToString(), "")
+        dtLogger.Param4 = IIf(getDeviceID.Count > 0, getDeviceID(0).Vehicle_name.ToString(), "")
         Return dtLogger
     End Function
     Public Shared Function GetSpeedDataLoggerReport(deviceID As String, startDate As Date, startTime As String, endDate As Date, endTime As String) As CacheSpeedDataLogger
