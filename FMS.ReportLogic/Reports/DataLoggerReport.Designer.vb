@@ -45,6 +45,10 @@ Partial Public Class DataLoggerReport
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -77,10 +81,6 @@ Partial Public Class DataLoggerReport
         Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndTime = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,6 +133,42 @@ Partial Public Class DataLoggerReport
         Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrPictureBox1, Me.XrChart2, Me.XrChart1, Me.XrLabel1})
         Me.ReportHeaderBand1.HeightF = 1213.375!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param4]")})
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(423.1249!, 69.58332!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(293.8751!, 15.00002!)
+        Me.XrLabel9.Text = "XrLabel9"
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param3]")})
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(423.1249!, 43.12499!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(297.8752!, 15.0!)
+        Me.XrLabel8.Text = "XrLabel8"
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param2]")})
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(110.6667!, 69.58332!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(190.0833!, 14.99999!)
+        Me.XrLabel7.Text = "XrLabel7"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param1]")})
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(110.6667!, 43.12499!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(190.0833!, 15.0!)
+        Me.XrLabel6.Text = "XrLabel6"
         '
         'XrLabel5
         '
@@ -482,42 +518,6 @@ Partial Public Class DataLoggerReport
         Me.EndDate.Description = "End Date"
         Me.EndDate.Name = "EndDate"
         Me.EndDate.Type = GetType(Date)
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param1]")})
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(110.6667!, 43.12499!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(190.0833!, 15.0!)
-        Me.XrLabel6.Text = "XrLabel6"
-        '
-        'XrLabel7
-        '
-        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param2]")})
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(110.6667!, 69.58332!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(190.0833!, 14.99999!)
-        Me.XrLabel7.Text = "XrLabel7"
-        '
-        'XrLabel8
-        '
-        Me.XrLabel8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param3]")})
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(423.1249!, 43.12499!)
-        Me.XrLabel8.Name = "XrLabel8"
-        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(297.8752!, 15.0!)
-        Me.XrLabel8.Text = "XrLabel8"
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param4]")})
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(423.1249!, 69.58332!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(293.8751!, 15.00002!)
-        Me.XrLabel9.Text = "XrLabel9"
         '
         'DataLoggerReport
         '

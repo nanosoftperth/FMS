@@ -213,7 +213,8 @@ Namespace DataObjects
                                             On afr.FeatureID Equals f.FeatureID
                                        Join r In SingletonAccess.FMSDataContextContignous.aspnet_Roles
                                             On afr.RoleID Equals r.RoleId
-                                       Where afr.ApplicationID = FMS.Business.ThisSession.ApplicationID And f.FeatureID = getFeature.FeatureID
+                                       Where afr.ApplicationID = FMS.Business.ThisSession.ApplicationID And f.FeatureID = getFeature.FeatureID And r.RoleId = FMS.Business.ThisSession.User.RoleID
+                                       Select afr.ApplicationFeatureRoledID, afr.ApplicationID, f.FeatureName, afr.RoleID, r.RoleName
                 blnSeeAll = validateFeatureRoles IsNot Nothing
             Else
                 blnSeeAll = False

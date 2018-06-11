@@ -1087,17 +1087,21 @@ Public Class ReportDataHandler
         Dim objListLogger As New List(Of ReportFields)
         'Dim dt1 As Date = #6/15/2017 10:00:00 AM#
         'Dim dt2 As Date = #6/15/2017 11:00:00 AM#
-        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection(deviceID, dt1, dt2)
-        For Each item In lstLoggerReport
-            objListLogger.Add(New ReportFields() With {.Description = item.Description, .Direction = item.Direction, .Value = item.Value})
-        Next
-        dtLogger.LineValues = objListLogger
-        Dim getDeviceID = DataObjects.VehicleLocation.GetPerDeviceID(deviceID)
-        dtLogger.Param1 = dt1.ToString("MM/dd/yyyy HH:mm:ss tt")
-        dtLogger.Param2 = dt2.ToString("MM/dd/yyyy HH:mm:ss tt")
-        dtLogger.Param3 = IIf(getDeviceID.Count > 0, getDeviceID(0).Name.ToString(), "")
-        dtLogger.Param4 = IIf(getDeviceID.Count > 0, getDeviceID(0).Vehicle_name.ToString(), "")
-        Return dtLogger
+        If Not deviceID.Equals("") Then
+            Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection(deviceID, dt1, dt2)
+            For Each item In lstLoggerReport
+                objListLogger.Add(New ReportFields() With {.Description = item.Description, .Direction = item.Direction, .Value = item.Value})
+            Next
+            dtLogger.LineValues = objListLogger
+            Dim getDeviceID = DataObjects.VehicleLocation.GetPerDeviceID(deviceID)
+            dtLogger.Param1 = dt1.ToString("MM/dd/yyyy HH:mm:ss tt")
+            dtLogger.Param2 = dt2.ToString("MM/dd/yyyy HH:mm:ss tt")
+            dtLogger.Param3 = IIf(getDeviceID.Count > 0, getDeviceID(0).Name.ToString(), "")
+            dtLogger.Param4 = IIf(getDeviceID.Count > 0, getDeviceID(0).Vehicle_name.ToString(), "")
+            Return dtLogger
+        Else
+            Return Nothing
+        End If
     End Function
     Public Shared Function GetSpeedDataLoggerReport(deviceID As String, startDate As Date, startTime As String, endDate As Date, endTime As String) As CacheSpeedDataLogger
         Dim sTime As String = IIf(startTime.Equals(""), "1", startTime.Split(":")(0))
@@ -1110,13 +1114,16 @@ Public Class ReportDataHandler
         'Dim dt2 As Date = #6/15/2017 11:00:00 AM#
 
         Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetSpeedDataLogger(deviceID, dt1, dt2)
-        For Each item In lstLoggerReport
-            objListLogger.Add(New SpeedDataLogger() With {.Description = item.Description, .SpeedDateTime = item.SpeedDateTime, .Value = item.Value})
-        Next
-
-        dtSpeedLogger.LineValues = objListLogger
-        dtSpeedLogger.Param1 = "test"
-        Return dtSpeedLogger
+        If lstLoggerReport IsNot Nothing Then
+            For Each item In lstLoggerReport
+                objListLogger.Add(New SpeedDataLogger() With {.Description = item.Description, .SpeedDateTime = item.SpeedDateTime, .Value = item.Value})
+            Next
+            dtSpeedLogger.LineValues = objListLogger
+            dtSpeedLogger.Param1 = "test"
+            Return dtSpeedLogger
+        Else
+            Return Nothing
+        End If
     End Function
     Public Sub New()
 

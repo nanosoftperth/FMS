@@ -12,33 +12,37 @@ Namespace DataObjects
         Public Shared Function GetLatLongLog(deviceid As String, startDate As Date, endDate As Date) As List(Of DevicePositionLatLong)
             Dim lstDPLatLong As New List(Of DevicePositionLatLong)
             Dim myPISystem As PISystem = New PISystems().DefaultPISystem
-            myPISystem.Connect()
-            Dim afdb As AFDatabase = myPISystem.Databases("FMS")
+            Try
+                myPISystem.Connect()
+                Dim afdb As AFDatabase = myPISystem.Databases("FMS")
 
-            Dim afnamedcoll As AFNamedCollection(Of Asset.AFElement) =
-                OSIsoft.AF.Asset.AFElement.FindElements(afdb, Nothing, "device",
-                            AFSearchField.Template, True, AFSortField.Name, AFSortOrder.Ascending, 1000)
+                Dim afnamedcoll As AFNamedCollection(Of Asset.AFElement) =
+                    OSIsoft.AF.Asset.AFElement.FindElements(afdb, Nothing, "device",
+                                AFSearchField.Template, True, AFSortField.Name, AFSortOrder.Ascending, 1000)
 
-            Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = deviceid).SingleOrDefault
-            Dim attr_Lat As Asset.AFAttribute = afe.Attributes("lat")
-            Dim attr_Long As Asset.AFAttribute = afe.Attributes("long")
-            Dim st As New OSIsoft.AF.Time.AFTime(startDate.ToString("MM/dd/yyyy hh:mm:ss tt"), CultureInfo.InvariantCulture)
-            Dim et As New OSIsoft.AF.Time.AFTime(endDate.ToString("MM/dd/yyyy hh:mm:ss tt"), CultureInfo.InvariantCulture)
-            Dim tr As New OSIsoft.AF.Time.AFTimeRange(st, et)
-            Dim latvals As Asset.AFValues = attr_Lat.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)
-            Dim longVals As Asset.AFValues = attr_Long.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)
+                Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = deviceid).SingleOrDefault
+                Dim attr_Lat As Asset.AFAttribute = afe.Attributes("lat")
+                Dim attr_Long As Asset.AFAttribute = afe.Attributes("long")
+                Dim st As New OSIsoft.AF.Time.AFTime(startDate.ToString("MM/dd/yyyy hh:mm:ss tt"), CultureInfo.InvariantCulture)
+                Dim et As New OSIsoft.AF.Time.AFTime(endDate.ToString("MM/dd/yyyy hh:mm:ss tt"), CultureInfo.InvariantCulture)
+                Dim tr As New OSIsoft.AF.Time.AFTimeRange(st, et)
+                Dim latvals As Asset.AFValues = attr_Lat.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)
+                Dim longVals As Asset.AFValues = attr_Long.PIPoint.RecordedValues(tr, Data.AFBoundaryType.Inside, Nothing, False)
 
-            Dim intLatLongCount As Integer = Math.Max(latvals.Count, longVals.Count)
-            For counter As Integer = 0 To intLatLongCount - 1
-                Dim dpLatLong As New DevicePositionLatLong
-                dpLatLong.DeviceName = deviceid
-                dpLatLong.Latitude = latvals(counter).Value
-                dpLatLong.Longitude = longVals(counter).Value
-                dpLatLong.LatitudeDateTime = latvals(counter).Timestamp
-                dpLatLong.LongtitudeDateTime = longVals(counter).Timestamp
-                lstDPLatLong.Add(dpLatLong)
-            Next
-            Return lstDPLatLong
+                Dim intLatLongCount As Integer = Math.Max(latvals.Count, longVals.Count)
+                For counter As Integer = 0 To intLatLongCount - 1
+                    Dim dpLatLong As New DevicePositionLatLong
+                    dpLatLong.DeviceName = deviceid
+                    dpLatLong.Latitude = latvals(counter).Value
+                    dpLatLong.Longitude = longVals(counter).Value
+                    dpLatLong.LatitudeDateTime = latvals(counter).Timestamp
+                    dpLatLong.LongtitudeDateTime = longVals(counter).Timestamp
+                    lstDPLatLong.Add(dpLatLong)
+                Next
+                Return lstDPLatLong
+            Catch ex As Exception
+                Return Nothing
+            End Try
         End Function
         Public Shared Function Get7502DataLogger(deviceid As String, startDate As Date, endDate As Date) As List(Of SpeedReportFields)
             Dim param0 As New DataLoggerReport
@@ -71,31 +75,37 @@ Namespace DataObjects
         End Function
         Public Shared Function GetSpeedDataLogger(deviceid As String, startDate As Date, endDate As Date) As List(Of SpeedFields)
             Dim param0 As New DataLoggerReport
-            param0.DeviceId = deviceid
-            param0.Standard = "Zagro125"
-            param0.Spn = 1
-            param0.StartDate = startDate
-            param0.EndDate = endDate
-            Dim speedList = GetDataLogger(param0) 'pgn:578, spn:1, speed
+            If Not deviceid.Equals("") Then
 
-            Dim dtLogger As New List(Of SpeedFields)
-            Dim currentValue As Integer
-            Dim dtTimeA As DateTime
-            Dim dtTimeCurrent As DateTime
-            For d As Integer = 0 To speedList.Count
-                Dim objSpeed As New SpeedFields
-                Try
-                    dtTimeA = speedList(d + 1).Time.ToShortTimeString
-                    dtTimeCurrent = speedList(d).Time.ToShortTimeString
-                    objSpeed.Description = "Speed"
-                    currentValue = speedList(d).Value
-                    objSpeed.Value = speedList(d).Value
-                    objSpeed.SpeedDateTime = speedList(d).Time
-                    dtLogger.Add(objSpeed)
-                Catch ex As Exception
-                End Try
-            Next
-            Return dtLogger
+
+                param0.DeviceId = deviceid
+                param0.Standard = "Zagro125"
+                param0.Spn = 1
+                param0.StartDate = startDate
+                param0.EndDate = endDate
+                Dim speedList = GetDataLogger(param0) 'pgn:578, spn:1, speed
+
+                Dim dtLogger As New List(Of SpeedFields)
+                Dim currentValue As Integer
+                Dim dtTimeA As DateTime
+                Dim dtTimeCurrent As DateTime
+                For d As Integer = 0 To speedList.Count
+                    Dim objSpeed As New SpeedFields
+                    Try
+                        dtTimeA = speedList(d + 1).Time.ToShortTimeString
+                        dtTimeCurrent = speedList(d).Time.ToShortTimeString
+                        objSpeed.Description = "Speed"
+                        currentValue = speedList(d).Value
+                        objSpeed.Value = speedList(d).Value
+                        objSpeed.SpeedDateTime = speedList(d).Time
+                        dtLogger.Add(objSpeed)
+                    Catch ex As Exception
+                    End Try
+                Next
+                Return dtLogger
+            Else
+                Return Nothing
+            End If
         End Function
 
         Public Shared Function GetReportDirection(deviceid As String, startDate As Date, endDate As Date) As List(Of ReportFields)
