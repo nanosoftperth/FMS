@@ -5,5 +5,5 @@ End Class
 Public Class SpeedDataLogger
     Public Property Description As String
     Public Property SpeedDateTime As DateTime
-    Public Property Value As Integer
+    Public Property Value As Decimal
 End Class

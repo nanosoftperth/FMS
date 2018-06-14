@@ -21,6 +21,7 @@ Partial Public Class DataLoggerReport
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim PointSeriesLabel1 As DevExpress.XtraCharts.PointSeriesLabel = New DevExpress.XtraCharts.PointSeriesLabel()
         Dim SplineSeriesView1 As DevExpress.XtraCharts.SplineSeriesView = New DevExpress.XtraCharts.SplineSeriesView()
         Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
@@ -85,6 +86,7 @@ Partial Public Class DataLoggerReport
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(PointSeriesLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,6 +229,8 @@ Partial Public Class DataLoggerReport
         Me.XrChart2.DataSource = Me.ObjectDataSource2
         XyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Minute
         XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram1.AxisY.Interlaced = True
+        XyDiagram1.AxisY.Logarithmic = True
         XyDiagram1.AxisY.Title.Text = "Speed"
         XyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.[True]
         XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
@@ -242,7 +246,13 @@ Partial Public Class DataLoggerReport
         Me.XrChart2.SeriesDataMember = "LineValues.Description"
         Me.XrChart2.SeriesSerializable = New DevExpress.XtraCharts.Series(-1) {}
         Me.XrChart2.SeriesTemplate.ArgumentDataMember = "LineValues.SpeedDateTime"
+        PointSeriesLabel1.LineLength = 1
+        PointSeriesLabel1.TextPattern = "{V:n1}"
+        Me.XrChart2.SeriesTemplate.Label = PointSeriesLabel1
+        Me.XrChart2.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.[True]
         Me.XrChart2.SeriesTemplate.ValueDataMembersSerializable = "LineValues.Value"
+        SplineSeriesView1.ColorEach = True
+        SplineSeriesView1.LineTensionPercent = 100
         Me.XrChart2.SeriesTemplate.View = SplineSeriesView1
         Me.XrChart2.SizeF = New System.Drawing.SizeF(721.0002!, 279.875!)
         '
@@ -533,6 +543,7 @@ Partial Public Class DataLoggerReport
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(PointSeriesLabel1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()

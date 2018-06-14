@@ -76,8 +76,6 @@ Namespace DataObjects
         Public Shared Function GetSpeedDataLogger(deviceid As String, startDate As Date, endDate As Date) As List(Of SpeedFields)
             Dim param0 As New DataLoggerReport
             If Not deviceid.Equals("") Then
-
-
                 param0.DeviceId = deviceid
                 param0.Standard = "Zagro125"
                 param0.Spn = 1
@@ -755,7 +753,7 @@ Namespace DataObjects
     End Class
     Public Class SpeedFields
         Public Property Description As String
-        Public Property Value As Integer
+        Public Property Value As Decimal
         Public Property SpeedDateTime As DateTime
     End Class
     Public Class DevicePositionLatLong
