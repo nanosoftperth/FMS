@@ -20,6 +20,8 @@ Partial Public Class DataLoggerReport
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim ShapeRectangle1 As DevExpress.XtraPrinting.Shape.ShapeRectangle = New DevExpress.XtraPrinting.Shape.ShapeRectangle()
+        Dim ShapeRectangle2 As DevExpress.XtraPrinting.Shape.ShapeRectangle = New DevExpress.XtraPrinting.Shape.ShapeRectangle()
         Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
         Dim PointSeriesLabel1 As DevExpress.XtraCharts.PointSeriesLabel = New DevExpress.XtraCharts.PointSeriesLabel()
         Dim SplineSeriesView1 As DevExpress.XtraCharts.SplineSeriesView = New DevExpress.XtraCharts.SplineSeriesView()
@@ -46,6 +48,13 @@ Partial Public Class DataLoggerReport
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrShape2 = New DevExpress.XtraReports.UI.XRShape()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrShape1 = New DevExpress.XtraReports.UI.XRShape()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
@@ -82,6 +91,7 @@ Partial Public Class DataLoggerReport
         Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndTime = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,9 +142,94 @@ Partial Public Class DataLoggerReport
         '
         'ReportHeaderBand1
         '
-        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrPictureBox1, Me.XrChart2, Me.XrChart1, Me.XrLabel1})
+        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel13, Me.XrPanel1, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrPictureBox1, Me.XrChart2, Me.XrChart1, Me.XrLabel1})
         Me.ReportHeaderBand1.HeightF = 1213.375!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
+        '
+        'XrLabel13
+        '
+        Me.XrLabel13.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(6.00001!, 825.8746!)
+        Me.XrLabel13.Name = "XrLabel13"
+        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(576.2085!, 23.00006!)
+        Me.XrLabel13.StylePriority.UseFont = False
+        Me.XrLabel13.StylePriority.UseTextAlignment = False
+        Me.XrLabel13.Text = "Distance Travelled"
+        Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XrPanel1
+        '
+        Me.XrPanel1.BorderColor = System.Drawing.Color.Red
+        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrPanel1.BorderWidth = 2.0!
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel11, Me.XrShape2, Me.XrLabel10, Me.XrShape1})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(582.2085!, 392.5411!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(140.7082!, 97.04221!)
+        Me.XrPanel1.StylePriority.UseBorderColor = False
+        Me.XrPanel1.StylePriority.UseBorders = False
+        Me.XrPanel1.StylePriority.UseBorderWidth = False
+        '
+        'XrLabel12
+        '
+        Me.XrLabel12.BorderWidth = 0!
+        Me.XrLabel12.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(34.7915!, 67.75039!)
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(100.0!, 23.00005!)
+        Me.XrLabel12.StylePriority.UseBorderWidth = False
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.Text = "On or Forward"
+        '
+        'XrLabel11
+        '
+        Me.XrLabel11.BorderWidth = 0!
+        Me.XrLabel11.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(34.7915!, 44.75031!)
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(100.0!, 23.00005!)
+        Me.XrLabel11.StylePriority.UseBorderWidth = False
+        Me.XrLabel11.StylePriority.UseFont = False
+        Me.XrLabel11.Text = "Off or Backward"
+        '
+        'XrShape2
+        '
+        Me.XrShape2.BorderWidth = 0!
+        Me.XrShape2.FillColor = System.Drawing.Color.Green
+        Me.XrShape2.LineWidth = 0
+        Me.XrShape2.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 71.33389!)
+        Me.XrShape2.Name = "XrShape2"
+        Me.XrShape2.Shape = ShapeRectangle1
+        Me.XrShape2.SizeF = New System.Drawing.SizeF(17.70831!, 15.70831!)
+        Me.XrShape2.StylePriority.UseBorderWidth = False
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.BorderWidth = 0!
+        Me.XrLabel10.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(7.708359!, 10.00004!)
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(122.9998!, 23.00011!)
+        Me.XrLabel10.StylePriority.UseBorderWidth = False
+        Me.XrLabel10.StylePriority.UseFont = False
+        Me.XrLabel10.Text = "Legend"
+        '
+        'XrShape1
+        '
+        Me.XrShape1.BorderWidth = 0!
+        Me.XrShape1.FillColor = System.Drawing.Color.Red
+        Me.XrShape1.LineWidth = 0
+        Me.XrShape1.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 44.75031!)
+        Me.XrShape1.Name = "XrShape1"
+        Me.XrShape1.Shape = ShapeRectangle2
+        Me.XrShape1.SizeF = New System.Drawing.SizeF(17.70831!, 15.70831!)
+        Me.XrShape1.StylePriority.UseBorderWidth = False
         '
         'XrLabel9
         '
@@ -254,7 +349,7 @@ Partial Public Class DataLoggerReport
         SplineSeriesView1.ColorEach = True
         SplineSeriesView1.LineTensionPercent = 100
         Me.XrChart2.SeriesTemplate.View = SplineSeriesView1
-        Me.XrChart2.SizeF = New System.Drawing.SizeF(721.0002!, 279.875!)
+        Me.XrChart2.SizeF = New System.Drawing.SizeF(721.0002!, 238.2083!)
         '
         'ObjectDataSource2
         '
@@ -298,6 +393,7 @@ Partial Public Class DataLoggerReport
         Me.XrChart1.Legend.Border.Visibility = DevExpress.Utils.DefaultBoolean.[True]
         Me.XrChart1.Legend.Direction = DevExpress.XtraCharts.LegendDirection.BottomToTop
         Me.XrChart1.Legend.Name = "Default Legend"
+        Me.XrChart1.Legend.Title.Visible = True
         Me.XrChart1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
         Me.XrChart1.LocationFloat = New DevExpress.Utils.PointFloat(3.916677!, 380.0411!)
         Me.XrChart1.Name = "XrChart1"
@@ -311,7 +407,7 @@ Partial Public Class DataLoggerReport
         Me.XrChart1.SeriesTemplate.SeriesPointsSortingKey = DevExpress.XtraCharts.SeriesPointKey.Value_1
         Me.XrChart1.SeriesTemplate.ValueDataMembersSerializable = "LineValues.Value"
         Me.XrChart1.SeriesTemplate.View = StackedBarSeriesView1
-        Me.XrChart1.SizeF = New System.Drawing.SizeF(721.0002!, 483.3335!)
+        Me.XrChart1.SizeF = New System.Drawing.SizeF(578.2918!, 445.8335!)
         '
         'XrLabel1
         '
@@ -529,6 +625,18 @@ Partial Public Class DataLoggerReport
         Me.EndDate.Name = "EndDate"
         Me.EndDate.Type = GetType(Date)
         '
+        'XrLabel14
+        '
+        Me.XrLabel14.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 338.3744!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(721.0002!, 23.00006!)
+        Me.XrLabel14.StylePriority.UseFont = False
+        Me.XrLabel14.StylePriority.UseTextAlignment = False
+        Me.XrLabel14.Text = "Time Distance Travelled"
+        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
         'DataLoggerReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeaderBand1, Me.DetailReportBand1})
@@ -597,4 +705,12 @@ Partial Public Class DataLoggerReport
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
+    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrShape2 As DevExpress.XtraReports.UI.XRShape
+    Friend WithEvents XrShape1 As DevExpress.XtraReports.UI.XRShape
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
 End Class
