@@ -5,6 +5,30 @@ Public Class ThisSession
 
 #Region "properties"
 
+    Public Shared Property Username As String
+        Get
+            Return HttpContext.Current.Session("Username")
+        End Get
+        Set(value As String)
+            HttpContext.Current.Session("Username") = value
+        End Set
+    End Property
+    Public Shared Property Password As String
+        Get
+            Return HttpContext.Current.Session("Password")
+        End Get
+        Set(value As String)
+            HttpContext.Current.Session("Password") = value
+        End Set
+    End Property
+    Public Shared Property ApplicationVehicle As List(Of DataObjects.ApplicationVehicle)
+        Get
+            Return HttpContext.Current.Session("ApplicationVehicle")
+        End Get
+        Set(value As List(Of DataObjects.ApplicationVehicle))
+            HttpContext.Current.Session("ApplicationVehicle") = value
+        End Set
+    End Property
     Public Shared Property rm_DriverVehicleTimeReload As Boolean
         Get
             Return HttpContext.Current.Session("DriverVehicleTimeReload")

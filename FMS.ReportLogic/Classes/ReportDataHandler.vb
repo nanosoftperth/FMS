@@ -36,16 +36,16 @@ Public Class ReportDataHandler
     End Function
     Public Shared Function GetDevicesByApplication() As List(Of DeviceChart)
         Dim dc As New List(Of DeviceChart)
-        Dim isSeeAllVehicle = FMS.Business.DataObjects.VehicleLocation.IsUserSeeAllVehicle()
-        Dim lstDevices As Object
-        If isSeeAllVehicle Then
-        Else
-        End If
-        lstDevices = DataObjects.VehicleLocation.GetDevicesByApplication()
-        For Each devicex In lstDevices
-            dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
-        Next
-        Return dc.Distinct().ToList()
+        Try
+            Dim lstDevices As Object
+            lstDevices = ThisSession.ApplicationVehicle
+            For Each devicex In lstDevices
+                dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
+            Next
+            Return dc.Distinct().ToList()
+        Catch ex As Exception
+            Return Nothing
+        End Try
     End Function
     Public Shared Function GetChartTimeList() As List(Of TimeClass)
         Dim lstTime As New List(Of TimeClass)
@@ -1096,8 +1096,16 @@ Public Class ReportDataHandler
             Dim getDeviceID = DataObjects.VehicleLocation.GetPerDeviceID(deviceID)
             dtLogger.Param1 = dt1.ToString("MM/dd/yyyy HH:mm:ss tt")
             dtLogger.Param2 = dt2.ToString("MM/dd/yyyy HH:mm:ss tt")
-            dtLogger.Param3 = IIf(getDeviceID.Count > 0, getDeviceID(0).Name.ToString(), "")
-            dtLogger.Param4 = IIf(getDeviceID.Count > 0, getDeviceID(0).Vehicle_name.ToString(), "")
+            If getDeviceID.Count > 0 Then
+                dtLogger.Param3 = getDeviceID(0).Name.ToString()
+            Else
+                dtLogger.Param3 = ""
+            End If
+            If getDeviceID.Count > 0 Then
+                dtLogger.Param4 = getDeviceID(0).Vehicle_name.ToString()
+            Else
+                dtLogger.Param4 = ""
+            End If
             Return dtLogger
         Else
             Return Nothing

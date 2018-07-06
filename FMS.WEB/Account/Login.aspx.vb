@@ -1,3 +1,5 @@
+Imports System.Net
+
 Public Class Login
     Inherits System.Web.UI.Page
 
@@ -14,6 +16,8 @@ Public Class Login
         If Membership.ValidateUser(tbUserName.Text, tbPassword.Text) Then
             FormsAuthentication.SetAuthCookie(tbUserName.Text, cbRememberMe.Checked)
 
+            GetUsernamePassword(tbUserName.Text, tbPassword.Text)
+
             If String.IsNullOrEmpty(Request.QueryString("ReturnUrl")) Then
                 Response.Redirect("~/Home.aspx")
             Else
@@ -24,5 +28,10 @@ Public Class Login
             tbUserName.ErrorText = "Invalid user"
             tbUserName.IsValid = False
         End If
+    End Sub
+
+    Private Sub GetUsernamePassword(userName As String, password As String)
+        FMS.Business.ThisSession.Username = userName
+        FMS.Business.ThisSession.Password = password
     End Sub
 End Class

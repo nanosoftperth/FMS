@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/FMS.ServiceAccess.WebServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FMS.ServiceAccess.WebServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="TokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuccessLogin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TokenID" type="ser:guid" />
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenResponse" nillable="true" type="tns:TokenResponse" />
+  <xs:complexType name="ArrayOfVINNumberRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VINNumberRequest" nillable="true" type="tns:VINNumberRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVINNumberRequest" nillable="true" type="tns:ArrayOfVINNumberRequest" />
+  <xs:complexType name="VINNumberRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VINNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VINNumberRequest" nillable="true" type="tns:VINNumberRequest" />
+  <xs:complexType name="GetVehicleData_Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReturnMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VINNumberResponses" nillable="true" type="tns:ArrayOfVINNumberResponse" />
+      <xs:element minOccurs="0" name="WasAuthenticated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="WasSuccess" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetVehicleData_Response" nillable="true" type="tns:GetVehicleData_Response" />
+  <xs:complexType name="ArrayOfVINNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VINNumberResponse" nillable="true" type="tns:VINNumberResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVINNumberResponse" nillable="true" type="tns:ArrayOfVINNumberResponse" />
+  <xs:complexType name="VINNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DailyReadings" nillable="true" type="tns:ArrayOfDailyReading" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VINNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WasError" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VINNumberResponse" nillable="true" type="tns:VINNumberResponse" />
+  <xs:complexType name="ArrayOfDailyReading">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DailyReading" nillable="true" type="tns:DailyReading" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDailyReading" nillable="true" type="tns:ArrayOfDailyReading" />
+  <xs:complexType name="DailyReading">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Enginehours" type="xs:double" />
+      <xs:element minOccurs="0" name="Kilometers" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ReadingDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DailyReading" nillable="true" type="tns:DailyReading" />
+</xs:schema>

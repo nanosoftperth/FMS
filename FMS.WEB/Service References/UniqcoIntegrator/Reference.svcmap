@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1f230b93-e5af-45af-93e0-ed0e5f7027e0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://demo.nanosoft.com.au/uniqco_integrator.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Uniqco_Integrator.xsd" MetadataType="Schema" ID="2d41a228-1374-49ce-99cb-1db3c1399ad1" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd2" />
+    <MetadataFile FileName="Uniqco_Integrator1.xsd" MetadataType="Schema" ID="72b7cbfc-8901-4821-85b2-bc18b95139a5" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd0" />
+    <MetadataFile FileName="Uniqco_Integrator2.xsd" MetadataType="Schema" ID="473bede0-57b7-4db0-b873-310522ddc4cc" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd1" />
+    <MetadataFile FileName="Uniqco_Integrator.disco" MetadataType="Disco" ID="a5c344e1-4740-4d99-a54c-23221881252f" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?disco" />
+    <MetadataFile FileName="Uniqco_Integrator.wsdl" MetadataType="Wsdl" ID="11bba504-e97d-4bc1-805f-86a90ddc7408" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

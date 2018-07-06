@@ -912,6 +912,13 @@
       <DependentUpon>ReportContentPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ReportPageValidator.aspx.designer.vb">
+      <DependentUpon>ReportPageValidator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPageValidator.aspx.vb">
+      <DependentUpon>ReportPageValidator.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\ReportScheduler.aspx.designer.vb">
       <DependentUpon>ReportScheduler.aspx</DependentUpon>
     </Compile>
@@ -1124,6 +1131,11 @@
     <Compile Include="Contacts.aspx.vb">
       <DependentUpon>Contacts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Service References\UniqcoIntegrator\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="FleetManagement\SiteDetailsMain.aspx.designer.vb">
@@ -1615,6 +1627,7 @@
     <Content Include="FleetManagement\RateIncreases.aspx" />
     <Content Include="ReportContent.aspx" />
     <Content Include="FleetManagement\ReportContentPage.aspx" />
+    <Content Include="ReportPageValidator.aspx" />
     <Content Include="Reports\report backup\reporttocopy.png" />
     <Content Include="Reports\ReportScheduler.aspx" />
     <Content Include="ResourceMgmtReport.aspx" />
@@ -1646,6 +1659,15 @@
     <Content Include="GeoFencePropertyDisplay.aspx" />
     <Content Include="Contacts.aspx" />
     <Content Include="FleetManagement\SiteDetailsMain.aspx" />
+    <Content Include="My Project\DataSources\FMS.ServiceAccess.WebServices.GetVehicleData_Response.datasource" />
+    <Content Include="My Project\DataSources\FMS.ServiceAccess.WebServices.TokenResponse.datasource" />
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator.disco" />
+    <None Include="Service References\UniqcoIntegrator\configuration91.svcinfo" />
+    <None Include="Service References\UniqcoIntegrator\configuration.svcinfo" />
+    <None Include="Service References\UniqcoIntegrator\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
     <Content Include="Test_Forms\BusinessLocationaspx.aspx" />
     <Content Include="Test_Forms\CANData.aspx" />
     <Content Include="Test_Forms\CAN_Explorer.aspx" />
@@ -1782,6 +1804,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator.wsdl" />
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1820,6 +1852,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\UniqcoIntegrator\" />
   </ItemGroup>
   <!--<ItemGroup>
     <Folder Include="App_Data\" />

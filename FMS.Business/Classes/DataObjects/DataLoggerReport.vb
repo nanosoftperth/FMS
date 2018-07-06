@@ -666,7 +666,7 @@ Namespace DataObjects
             Dim reportRoadRailOff As New ReportFields
             For d As Integer = 0 To pressureValues1.Count
                 Try
-                    reportRoadRailOn.Description = "Road Rail Engaged"
+                    reportRoadRailOn.Description = "Rail Wheels Down"
                     reportRoadRailOff.Description = reportRoadRailOn.Description
                     If pressureValues1(d).Value >= 60 And pressureValues2(d).Value >= 60 Then
                         intRoadRailOn = intRoadRailOn + 1
@@ -681,7 +681,7 @@ Namespace DataObjects
                         End If
                         If intRoadRailValueOn1 < 60 And intRoadRailValueOn2 < 60 Then
                             reportRoadRailOn = New ReportFields
-                            reportRoadRailOn.Direction = "Road Rail Engaged On-" & intRoadRailOn.ToString()
+                            reportRoadRailOn.Direction = "Rail Wheels Down On-" & intRoadRailOn.ToString()
                             reportRoadRailOn.Value = intRoadRailOn 'On
                             blnRoadRailOn = True
                             blnAddedOn = True
@@ -699,7 +699,7 @@ Namespace DataObjects
                         End If
                         If intRoadRailValueOff1 >= 60 And intRoadRailValueOff2 >= 60 Then
                             reportRoadRailOff = New ReportFields
-                            reportRoadRailOff.Direction = "Road Rail Engaged Off-" & intRoadRailOff.ToString()
+                            reportRoadRailOff.Direction = "Rail Wheels Down Off-" & intRoadRailOff.ToString()
                             reportRoadRailOff.Value = intRoadRailOff  'Off
                             blnRoadRailOff = True
                             blnAddedOff = True
@@ -710,15 +710,15 @@ Namespace DataObjects
             Next
             If Not blnAddedOn And intRoadRailOn > 0 Then
                 reportRoadRailOn = New ReportFields
-                reportRoadRailOn.Description = "Road Rail Engaged"
-                reportRoadRailOn.Direction = "Road Rail Engaged On-" & intRoadRailOn.ToString()
+                reportRoadRailOn.Description = "Rail Wheels Down"
+                reportRoadRailOn.Direction = "Rail Wheels Down On-" & intRoadRailOn.ToString()
                 reportRoadRailOn.Value = intRoadRailOn 'On
                 dtLogger.Add(reportRoadRailOn)
             End If
             If Not blnAddedOff And intRoadRailOff > 0 Then
                 reportRoadRailOff = New ReportFields
-                reportRoadRailOff.Description = "Road Rail Engaged"
-                reportRoadRailOff.Direction = "Road Rail Engaged Off-" & intRoadRailOff.ToString()
+                reportRoadRailOff.Description = "Rail Wheels Down"
+                reportRoadRailOff.Direction = "Rail Wheels Down Off-" & intRoadRailOff.ToString()
                 reportRoadRailOff.Value = intRoadRailOff  'Off
                 dtLogger.Add(reportRoadRailOff)
             End If
