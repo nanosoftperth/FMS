@@ -49,31 +49,9 @@ Public Class ReportDataHandler
     End Function
     Public Shared Function GetChartTimeList() As List(Of TimeClass)
         Dim lstTime As New List(Of TimeClass)
-
-        lstTime.Add(New TimeClass() With {.TimeValue = "1:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "2:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "3:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "4:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "5:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "6:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "7:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "8:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "9:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "10:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "11:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "12:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "13:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "14:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "15:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "16:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "17:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "18:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "19:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "20:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "21:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "22:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "25:00"})
-        lstTime.Add(New TimeClass() With {.TimeValue = "24:00"})
+        For counter As Integer = 1 To 24
+            lstTime.Add(New TimeClass() With {.TimeValue = counter & ":00"})
+        Next
         Return lstTime
     End Function
     ''' <summary>

@@ -24,7 +24,8 @@ Public Class DataLoggerReport
         Dim dt1 As Date = sDate.AddHours(sTime)
         Dim dt2 As Date = eDate.AddHours(eTime)
 
-        'Dim dt1 As Date = "6/11/2017 11:00:00 AM"
+        'Dim dId As String = "auto19"
+        'Dim dt1 As Date = "6/06/2017 11:00:00 AM"
         'Dim dt2 As Date = "6/11/2017 01:00:00 PM"
         'Dim dt2 As Date = "6/11/2017 11:13:42 AM"
         'Dim dt2 As Date = "6/11/2017 11:11:47 AM"
@@ -60,17 +61,28 @@ Public Class DataLoggerReport
 
         Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=12&size=720x350" & strMarker
         If lstLatLong IsNot Nothing AndAlso lstLatLong.Count > 0 Then
-            url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=12&size=720x350" & strMarker
+            url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=10&size=720x350" & strMarker
         End If
 
-        Using wc As New WebClient()
-            Dim bc() As Byte = wc.DownloadData(url)
-            Dim bmp As Bitmap = Nothing
-            Using stream As Stream = New MemoryStream(bc)
-                stream.Seek(0, SeekOrigin.Begin)
-                bmp = TryCast(Bitmap.FromStream(stream), Bitmap)
+        Dim bc() As Byte = Nothing
+        Dim bmp As Bitmap
+        Try
+            Using wc As New WebClient()
+                bc = wc.DownloadData(url)
+                Using stream As Stream = New MemoryStream(bc)
+                    stream.Seek(0, SeekOrigin.Begin)
+                    bmp = TryCast(Bitmap.FromStream(stream), Bitmap)
+                End Using
             End Using
-            XrPictureBox1.Image = bmp
-        End Using
+        Catch ex As Exception
+            Using wc As New WebClient()
+                bc = wc.DownloadData("https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=12&size=720x350")
+                Using stream As Stream = New MemoryStream(bc)
+                    stream.Seek(0, SeekOrigin.Begin)
+                    bmp = TryCast(Bitmap.FromStream(stream), Bitmap)
+                End Using
+            End Using
+        End Try
+        XrPictureBox1.Image = bmp
     End Sub
 End Class
