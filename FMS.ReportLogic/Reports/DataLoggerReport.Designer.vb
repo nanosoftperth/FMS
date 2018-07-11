@@ -42,12 +42,14 @@ Partial Public Class DataLoggerReport
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim DynamicListLookUpSettings3 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings4 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Me.ObjectDataSource4 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -77,6 +79,7 @@ Partial Public Class DataLoggerReport
         Me.Detail2 = New DevExpress.XtraReports.UI.DetailBand()
         Me.DetailReport2 = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail3 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.ObjectDataSource5 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Title = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailCaption1 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -91,7 +94,8 @@ Partial Public Class DataLoggerReport
         Me.StartDate = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndTime = New DevExpress.XtraReports.Parameters.Parameter()
         Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.Marker = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.ZoomValue = New DevExpress.XtraReports.Parameters.Parameter()
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +107,7 @@ Partial Public Class DataLoggerReport
         CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(SecondaryAxisX1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -145,6 +150,18 @@ Partial Public Class DataLoggerReport
         Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel13, Me.XrPanel1, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrPictureBox1, Me.XrChart2, Me.XrChart1, Me.XrLabel1})
         Me.ReportHeaderBand1.HeightF = 1213.375!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 338.3744!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(721.0002!, 23.00006!)
+        Me.XrLabel14.StylePriority.UseFont = False
+        Me.XrLabel14.StylePriority.UseTextAlignment = False
+        Me.XrLabel14.Text = "Time Distance Travelled"
+        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
         'XrLabel13
         '
@@ -425,8 +442,7 @@ Partial Public Class DataLoggerReport
         'DetailReportBand1
         '
         Me.DetailReportBand1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeaderBand1, Me.DetailBand1, Me.DetailReport, Me.DetailReport1, Me.DetailReport2})
-        Me.DetailReportBand1.DataMember = "LineValues"
-        Me.DetailReportBand1.DataSource = Me.ObjectDataSource1
+        Me.DetailReportBand1.DataSource = Me.ObjectDataSource5
         Me.DetailReportBand1.Level = 0
         Me.DetailReportBand1.Name = "DetailReportBand1"
         '
@@ -477,6 +493,12 @@ Partial Public Class DataLoggerReport
         '
         Me.Detail3.HeightF = 0!
         Me.Detail3.Name = "Detail3"
+        '
+        'ObjectDataSource5
+        '
+        Me.ObjectDataSource5.DataMember = "GetZoomValues"
+        Me.ObjectDataSource5.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource5.Name = "ObjectDataSource5"
         '
         'ObjectDataSource1
         '
@@ -625,27 +647,34 @@ Partial Public Class DataLoggerReport
         Me.EndDate.Name = "EndDate"
         Me.EndDate.Type = GetType(Date)
         '
-        'XrLabel14
+        'Marker
         '
-        Me.XrLabel14.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 338.3744!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(721.0002!, 23.00006!)
-        Me.XrLabel14.StylePriority.UseFont = False
-        Me.XrLabel14.StylePriority.UseTextAlignment = False
-        Me.XrLabel14.Text = "Time Distance Travelled"
-        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.Marker.Description = "Marker"
+        Me.Marker.Name = "Marker"
+        Me.Marker.Type = GetType(Boolean)
+        Me.Marker.ValueInfo = "True"
+        '
+        'ZoomValue
+        '
+        Me.ZoomValue.Description = "Zoom "
+        DynamicListLookUpSettings4.DataAdapter = Nothing
+        DynamicListLookUpSettings4.DataMember = Nothing
+        DynamicListLookUpSettings4.DataSource = Me.ObjectDataSource5
+        DynamicListLookUpSettings4.DisplayMember = "ZoomValue"
+        DynamicListLookUpSettings4.ValueMember = "ZoomValue"
+        Me.ZoomValue.LookUpSettings = DynamicListLookUpSettings4
+        Me.ZoomValue.Name = "ZoomValue"
+        Me.ZoomValue.ValueInfo = "10"
         '
         'DataLoggerReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeaderBand1, Me.DetailReportBand1})
-        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2, Me.ObjectDataSource3, Me.ObjectDataSource4})
+        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2, Me.ObjectDataSource3, Me.ObjectDataSource4, Me.ObjectDataSource5})
         Me.DataSource = Me.ObjectDataSource1
         Me.PageHeight = 1500
         Me.PageWidth = 927
         Me.PaperKind = System.Drawing.Printing.PaperKind.LegalExtra
-        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DeviceID, Me.StartDate, Me.StartTime, Me.EndDate, Me.EndTime})
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DeviceID, Me.StartDate, Me.StartTime, Me.EndDate, Me.EndTime, Me.Marker, Me.ZoomValue})
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption1, Me.DetailData1, Me.DetailCaption3, Me.DetailData3, Me.DetailData3_Odd, Me.DetailCaptionBackground3, Me.PageInfo})
         Me.Version = "17.2"
         CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -659,6 +688,7 @@ Partial Public Class DataLoggerReport
         CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -713,4 +743,7 @@ Partial Public Class DataLoggerReport
     Friend WithEvents XrShape1 As DevExpress.XtraReports.UI.XRShape
     Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents ObjectDataSource5 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
+    Friend WithEvents Marker As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents ZoomValue As DevExpress.XtraReports.Parameters.Parameter
 End Class

@@ -16,3 +16,6 @@ End Class
 Public Class DeviceChart
     Public Property DeviceValue As String
 End Class
+Public Class ZoomClass
+    Public Property ZoomValue As String
+End Class

@@ -40,7 +40,9 @@ Public Class ReportDataHandler
             Dim lstDevices As Object
             lstDevices = ThisSession.ApplicationVehicle
             For Each devicex In lstDevices
-                dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
+                If Not devicex.DeviceID Is Nothing Then
+                    dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
+                End If
             Next
             Return dc.Distinct().ToList()
         Catch ex As Exception
@@ -53,6 +55,13 @@ Public Class ReportDataHandler
             lstTime.Add(New TimeClass() With {.TimeValue = counter & ":00"})
         Next
         Return lstTime
+    End Function
+    Public Shared Function GetZoomValues() As List(Of ZoomClass)
+        Dim lstZoom As New List(Of ZoomClass)
+        For counter As Integer = 1 To 12
+            lstZoom.Add(New ZoomClass() With {.ZoomValue = counter.ToString()})
+        Next
+        Return lstZoom
     End Function
     ''' <summary>
     ''' IF this report has been cached in RAM , then return the cached report.

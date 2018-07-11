@@ -16,6 +16,7 @@ Public Class DataLoggerReport
 
     End Sub
     Private Sub XtraReport1_DataSourceDemanded(ByVal sender As Object, ByVal e As EventArgs) Handles Me.DataSourceDemanded
+        Dim mkr As Boolean = Marker.Value
         Dim dId As String = DeviceID.Value.ToString()
         Dim sDate As Date = StartDate.Value
         Dim eDate As Date = EndDate.Value
@@ -25,21 +26,19 @@ Public Class DataLoggerReport
         Dim dt2 As Date = eDate.AddHours(eTime)
 
         'Dim dId As String = "auto19"
-        'Dim dt1 As Date = "6/06/2017 11:00:00 AM"
-        'Dim dt2 As Date = "6/11/2017 01:00:00 PM"
+        'Dim dt1 As Date = "06/06/2017 11:00:00 AM"
+        'Dim dt2 As Date = "15/06/2017 12:00:00 PM"
         'Dim dt2 As Date = "6/11/2017 11:13:42 AM"
         'Dim dt2 As Date = "6/11/2017 11:11:47 AM"
 
-        'Dim x = FMS.Business.DataObjects.VehicleLocation.IsUserSeeAllVehicle()
-
         Dim lstLatLong = FMS.Business.DataObjects.DataLoggerReport.GetLatLongLog(dId, dt1, dt2)
-        Dim xMarker As String() = New String() {}
+        Dim xMarker As New List(Of String)
+        Dim lstPath As New List(Of String)
         If lstLatLong IsNot Nothing Then
             Dim intMaxMark As Integer = 20
             Dim intCounted As Integer
             intCounted = Math.Abs((lstLatLong.Count / intMaxMark))
 
-            xMarker = New String(intMaxMark) {}
             Dim intCounter As Integer = 0
             Dim intCount As Integer = intCounted
             Dim ListCount As Integer = lstLatLong.Count
@@ -47,7 +46,8 @@ Public Class DataLoggerReport
             For Each latLong In lstLatLong
                 If intCount.Equals(intCounted) Or ListCount <= intMaxMark Then
                     If intCounter <= intMaxMark Then
-                        xMarker(intCounter) = "&markers=size:tiny%7Ccolor:red%7Clabel:S%7C" & latLong.Latitude.ToString() & "," & latLong.Longitude.ToString()
+                        xMarker.Add("&markers=size:tiny%7Ccolor:red%7Clabel:S%7C" & latLong.Latitude.ToString() & "," & latLong.Longitude.ToString())
+                        lstPath.Add(latLong.Latitude.ToString() & "," & latLong.Longitude.ToString())
                         intCounter += 1
                         intCount = 0
                     End If
@@ -58,10 +58,17 @@ Public Class DataLoggerReport
         End If
 
         Dim strMarker As String = String.Join("", xMarker)
+        Dim strPat As String = String.Join("|", lstPath)
 
-        Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=12&size=720x350" & strMarker
+        Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=" & ZoomValue.Value & "&size=720x350"
+
         If lstLatLong IsNot Nothing AndAlso lstLatLong.Count > 0 Then
-            url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=10&size=720x350" & strMarker
+            If mkr Then
+                'url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=7&size=720x350" & strMarker
+                url = "https://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350" & strMarker
+            Else
+                url = "http://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350&path=color:0xff0000ff|weight:5|" & strPat & "&sensor=false"
+            End If
         End If
 
         Dim bc() As Byte = Nothing
