@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://demo.nanosoft.com.au/uniqco_integrator.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://uniqco.nanosoft.com.au:999/uniqco_integrator.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Uniqco_Integrator.xsd" MetadataType="Schema" ID="2d41a228-1374-49ce-99cb-1db3c1399ad1" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd2" />
-    <MetadataFile FileName="Uniqco_Integrator1.xsd" MetadataType="Schema" ID="72b7cbfc-8901-4821-85b2-bc18b95139a5" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd0" />
-    <MetadataFile FileName="Uniqco_Integrator2.xsd" MetadataType="Schema" ID="473bede0-57b7-4db0-b873-310522ddc4cc" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd1" />
-    <MetadataFile FileName="Uniqco_Integrator.disco" MetadataType="Disco" ID="a5c344e1-4740-4d99-a54c-23221881252f" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?disco" />
-    <MetadataFile FileName="Uniqco_Integrator.wsdl" MetadataType="Wsdl" ID="11bba504-e97d-4bc1-805f-86a90ddc7408" SourceId="1" SourceUrl="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?wsdl" />
+    <MetadataFile FileName="Uniqco_Integrator3.xsd" MetadataType="Schema" ID="647176d5-124b-4619-a297-e2f3d084ebcb" SourceId="1" SourceUrl="http://windows-vultr:999/Uniqco_Integrator.svc?xsd=xsd2" />
+    <MetadataFile FileName="Uniqco_Integrator1.wsdl" MetadataType="Wsdl" ID="1786ec92-d595-4634-b026-797873830452" SourceId="1" SourceUrl="http://windows-vultr:999/Uniqco_Integrator.svc?wsdl" />
+    <MetadataFile FileName="Uniqco_Integrator31.xsd" MetadataType="Schema" ID="cfb18ae9-c2da-4c53-910c-37b0301abcea" SourceId="1" SourceUrl="http://windows-vultr:999/Uniqco_Integrator.svc?xsd=xsd1" />
+    <MetadataFile FileName="Uniqco_Integrator32.xsd" MetadataType="Schema" ID="5a1bba87-4d33-453c-b93f-3ff0b0d3ba84" SourceId="1" SourceUrl="http://windows-vultr:999/Uniqco_Integrator.svc?xsd=xsd0" />
+    <MetadataFile FileName="Uniqco_Integrator1.disco" MetadataType="Disco" ID="2ee33d5d-2e62-4341-85f5-cf6c187ef9be" SourceId="1" SourceUrl="http://windows-vultr:999/Uniqco_Integrator.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

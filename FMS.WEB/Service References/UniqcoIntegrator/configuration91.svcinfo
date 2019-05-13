@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="yYCeNqhJDGvAfJhtcoYiU7ubgtQ=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="a5QLcSuLk+HuNreUYRq4u1fCkos=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpsBinding_IUniqco_Integrator">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpsBinding_IUniqco_Integrator" contract="UniqcoIntegrator.IUniqco_Integrator" bindingType="basicHttpBinding" address="https://demo.nanosoft.com.au/Uniqco_Integrator.svc/Uniqco_Integrator" bindingConfiguration="BasicHttpsBinding_IUniqco_Integrator">
+    <endpoint name="BasicHttpsBinding_IUniqco_Integrator" contract="UniqcoIntegrator.IUniqco_Integrator" bindingType="basicHttpBinding" address="https://serviceaccess.nanosoft.com.au/Uniqco_Integrator.svc/Uniqco_Integrator" bindingConfiguration="BasicHttpsBinding_IUniqco_Integrator">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://demo.nanosoft.com.au/Uniqco_Integrator.svc/Uniqco_Integrator</serializedValue>
+          <serializedValue>https://serviceaccess.nanosoft.com.au/Uniqco_Integrator.svc/Uniqco_Integrator</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

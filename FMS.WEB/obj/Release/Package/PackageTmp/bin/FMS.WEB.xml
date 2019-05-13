@@ -940,6 +940,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.DataLogger7502Report._WebChartControl2">
+<summary>
+WebChartControl2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DataLogger7502Report._WebChartControl1">
+<summary>
+WebChartControl1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ClientAssignments._form1">
 <summary>
 form1 control.
@@ -6173,6 +6191,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:FMS.WEB.ReportPageValidator._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.ReportPageValidator._TextBox1">
+<summary>
+TextBox1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FMS.WEB.ReportScheduler._form1">
 <summary>
 form1 control.
@@ -10659,6 +10695,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.UserManagement._ASPxRoundPanel1">
 <summary>
 ASPxRoundPanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.DataLoggerReport._LoadingPanel">
+<summary>
+LoadingPanel control.
 </summary>
 <remarks>
 Auto-generated field.

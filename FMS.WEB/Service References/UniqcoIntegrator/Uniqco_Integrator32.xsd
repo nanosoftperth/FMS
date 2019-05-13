@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="https://demo.nanosoft.com.au/Uniqco_Integrator.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FMS.ServiceAccess.WebServices" />
+  <xs:import schemaLocation="http://windows-vultr:999/Uniqco_Integrator.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FMS.ServiceAccess.WebServices" />
   <xs:element name="CreateToken">
     <xs:complexType>
       <xs:sequence>
