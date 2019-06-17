@@ -60,9 +60,9 @@ Public Class ReportPageValidator
 
                 'for testing in demo.nanosoft.com.au:555
                 'Response.Redirect(urlToken.URL.Replace("uniqco.nanosoft.com.au", "demo.nanosoft.com.au:555").Replace("FleetMap.aspx", "DataLoggerReport.aspx").Replace("VinNumber={0}&", ""), False)
-                'Response.Redirect(urlToken.URL.Replace("uniqco.nanosoft.com.au", "localhost:18356").Replace("FleetMap.aspx", "DataLoggerReport.aspx").Replace("VinNumber={0}&", ""), False)
+                Response.Redirect(urlToken.URL.Replace("uniqco.nanosoft.com.au", "localhost:18356").Replace("FleetMap.aspx", "DataLoggerReport.aspx").Replace("VinNumber={0}&", ""), False)
 
-                Response.Redirect(urlToken.URL.Replace("FleetMap.aspx", "DataLoggerReport.aspx").Replace("VinNumber={0}&", ""), False)
+                'Response.Redirect(urlToken.URL.Replace("FleetMap.aspx", "DataLoggerReport.aspx").Replace("VinNumber={0}&", ""), False)
             Else
                 FMS.Business.ThisSession.ProblemPageMessage = urlToken.ErrorMessage
 

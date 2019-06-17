@@ -287,6 +287,8 @@ function getInfoWindow2() {
 
 function infoWindowCSS(w) {
 
+    return;
+
     $('#iw-container').closest('.gm-style-iw').parent().addClass('custom-iw');
 
     $('.custom-iw').parent().addClass('iconposition');

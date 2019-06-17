@@ -60,14 +60,13 @@ Public Class DataLoggerReport
         Dim strMarker As String = String.Join("", xMarker)
         Dim strPat As String = String.Join("|", lstPath)
 
-        Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=" & ZoomValue.Value & "&size=720x350"
-
+        Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=" & ZoomValue.Value & "&size=720x350 &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
         If lstLatLong IsNot Nothing AndAlso lstLatLong.Count > 0 Then
             If mkr Then
                 'url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=7&size=720x350" & strMarker
-                url = "https://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350" & strMarker
+                url = "https://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350" & strMarker & " &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
             Else
-                url = "http://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350&path=color:0xff0000ff|weight:5|" & strPat & "&sensor=false"
+                url = "http://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350&path=color:0xff0000ff|weight:5|" & strPat & "&sensor=false &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
             End If
         End If
 
@@ -83,7 +82,7 @@ Public Class DataLoggerReport
             End Using
         Catch ex As Exception
             Using wc As New WebClient()
-                bc = wc.DownloadData("https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=12&size=720x350")
+                bc = wc.DownloadData("https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=12&size=720x350&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g")
                 Using stream As Stream = New MemoryStream(bc)
                     stream.Seek(0, SeekOrigin.Begin)
                     bmp = TryCast(Bitmap.FromStream(stream), Bitmap)

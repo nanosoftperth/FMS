@@ -4,6 +4,7 @@
 .custom-iw { 
 	/*top: 15px !important;*/
     width:320px !Important;
+    margin-top: -60px !important;
 	/*left: 0px !important;*/
 	background-color: #fff;
 	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
@@ -31,6 +32,12 @@ button {
     color: #069;
     text-decoration: underline;
     cursor: point;
+}
+
+
+/*needed to move the popup when clicking a map item up 61px above the 60px icon ( for when you click on a truck)*/
+div.gm-style-iw.gm-style-iw-c, div.gm-style-iw-t::after {
+    margin-top: -61px;
 }
 
 /*For Dashboard*/

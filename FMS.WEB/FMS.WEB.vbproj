@@ -1679,6 +1679,7 @@
     <Content Include="FleetManagement\SiteDetailsMain.aspx" />
     <Content Include="My Project\DataSources\FMS.ServiceAccess.WebServices.GetVehicleData_Response.datasource" />
     <Content Include="My Project\DataSources\FMS.ServiceAccess.WebServices.TokenResponse.datasource" />
+    <None Include="My Project\PublishProfiles\PRODUCTION-WARNING.pubxml" />
     <None Include="Service References\UniqcoIntegrator\configuration91.svcinfo" />
     <None Include="Service References\UniqcoIntegrator\configuration.svcinfo" />
     <None Include="Service References\UniqcoIntegrator\Reference.svcmap">
@@ -1805,7 +1806,6 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\PublishProfiles\FMS.pubxml" />
     <None Include="My Project\PublishProfiles\to iis.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
