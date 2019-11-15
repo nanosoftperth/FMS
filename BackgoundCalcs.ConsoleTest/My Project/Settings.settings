@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ApprovedCalcList" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">demo</Value>
+      <Value Profile="(Default)">erceg</Value>
     </Setting>
     <Setting Name="AlarmsAndEventsUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">demo.nanosoft.com.au/alarmsandevents.aspx</Value>

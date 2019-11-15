@@ -28,7 +28,7 @@ Public Class Register
             lblEmail.Text = ""
             Try
                 If o.aspnet_Membership.Email.Length > 1 And IsNothing(0) = False Then
-                    lblEmail.Text = "This email account is already existing"
+                    lblEmail.Text = "This email account already exists"
                     Exit Sub
                 End If
             Catch

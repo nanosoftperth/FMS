@@ -17,7 +17,7 @@ Namespace BackgroundCalculations
             Dim applicationName As String = DataObjects.Application.GetFromAppID(appid).ApplicationName
 
             'Get all the geofences from the last time this application was ran 
-            Dim geofencecollissions As List(Of DataObjects.GeoFenceDeviceCollision) = _
+            Dim geofencecollissions As List(Of DataObjects.GeoFenceDeviceCollision) =
                                 DataObjects.GeoFenceDeviceCollision.GetAllForApplication(appid, startDate)
 
             If geofencecollissions.Count = 0 Then Exit Sub
@@ -46,8 +46,8 @@ Namespace BackgroundCalculations
 
 
                 'Finds geofence collissions which have not been processed yet for this alert type 
-                Dim geoReportRslts As List(Of ReportGeneration.AlertTypeUnprocessedCollission_Report) = _
-                                                ReportGeneration.AlertTypeUnprocessedCollission_Report.GetForAlertType( _
+                Dim geoReportRslts As List(Of ReportGeneration.AlertTypeUnprocessedCollission_Report) =
+                                                ReportGeneration.AlertTypeUnprocessedCollission_Report.GetForAlertType(
                                                                                     appid, alertDefn.ApplicationAlertTypeID, startDate)
 
 
@@ -59,7 +59,7 @@ Namespace BackgroundCalculations
                 If results.Count = 0 Then Continue For
 
                 'grab the driver
-                Dim alertDriver As DataObjects.ApplicationDriver = drivers.Where( _
+                Dim alertDriver As DataObjects.ApplicationDriver = drivers.Where(
                                                                 Function(d) d.ApplicationDriverID = alertDefn.DriverID).SingleOrDefault
 
                 'if the driver has been deleted, then we cannot process this alert
@@ -87,7 +87,7 @@ Namespace BackgroundCalculations
                     End If
 
                     'IF the alert defenition has a booking refrerence, then grab that booking so we can grab the arrival time
-                    Dim booking As DataObjects.ApplicationBooking = If(alertDefn.BookingID.HasValue, _
+                    Dim booking As DataObjects.ApplicationBooking = If(alertDefn.BookingID.HasValue,
                                                                        DataObjects.ApplicationBooking.GetFromID(alertDefn.BookingID.Value), Nothing)
 
 
@@ -190,7 +190,7 @@ Namespace BackgroundCalculations
                                     .Where(Function(a) a.GeoFenceCollisionID = rslt.GeoFenceCollissoinID _
                                                 And a.AlertTypeID = alertDefn.ApplicationAlertTypeID).Count > 0
 
-            Dim thisSubscriber As DataObjects.Subscriber = _
+            Dim thisSubscriber As DataObjects.Subscriber =
                     subscribers.Where(Function(s) s.NativeID = alertDefn.SubscriberNativeID).SingleOrDefault()
 
 
@@ -321,7 +321,7 @@ Namespace BackgroundCalculations
 
             'Get ALL devices from AF (for all applications)
             Dim afnamedcoll As AFNamedCollection(Of Asset.AFElement) =
-                OSIsoft.AF.Asset.AFElement.FindElements(afdb, Nothing, "device", _
+                OSIsoft.AF.Asset.AFElement.FindElements(afdb, Nothing, "device",
                             AFSearchField.Template, True, AFSortField.Name, AFSortOrder.Ascending, 1000)
 
 
@@ -330,13 +330,24 @@ Namespace BackgroundCalculations
             'Get the application from the appid provided to the method
             Dim app As FMS.Business.DataObjects.Application = FMS.Business.DataObjects.Application.GetFromAppID(appid)
 
-            Dim geofences As List(Of FMS.Business.DataObjects.ApplicationGeoFence) = _
+            Dim geofences As List(Of FMS.Business.DataObjects.ApplicationGeoFence) =
                         FMS.Business.DataObjects.ApplicationGeoFence.GetAllApplicationGeoFences(app.ApplicationID)
 
             For Each devicename As String In app.GetAllDevicesNames
 
-                Dim afe As Asset.AFElement = (From x In afnamedcoll Where x.Name = devicename).SingleOrDefault
+                Dim afe_list As List(Of Asset.AFElement) = (From x In afnamedcoll Where x.Name = devicename).ToList()
 
+                If afe_list.Count > 1 Then
+                    Console.WriteLine("there is more than one AF Entity with the name {0}", devicename)
+                    For Each x As Asset.AFElement In afe_list
+                        Console.WriteLine("element path for {0} is: {1}", x.Name, x.GetPath)
+                    Next
+                    Continue For
+                End If
+
+                Dim afe = afe_list.FirstOrDefault()
+
+                Console.WriteLine("AF element name: {0}", afe.Name)
                 'if we cannot find the element in the list above, then move on (not created yet, should probably log this)
                 If afe Is Nothing Then Continue For
 
@@ -414,7 +425,7 @@ Namespace BackgroundCalculations
                     If iMax = 0 Then Continue For
 
                     'get the open geofence collisions for this device
-                    Dim openGeoFenceCollisions As List(Of FMS.Business.DataObjects.GeoFenceDeviceCollision) = _
+                    Dim openGeoFenceCollisions As List(Of FMS.Business.DataObjects.GeoFenceDeviceCollision) =
                                 FMS.Business.DataObjects.GeoFenceDeviceCollision.GetAllWithoutEndDates(app.ApplicationID, devicename) _
                                .ToList
 
@@ -424,8 +435,8 @@ Namespace BackgroundCalculations
 
                         'Console.WriteLine("geofence name " & geofence.Name)
 
-                        Dim lst As List(Of Loc) = _
-                                geofence.ApplicationGeoFenceSides.Select( _
+                        Dim lst As List(Of Loc) =
+                                geofence.ApplicationGeoFenceSides.Select(
                                             Function(x) New Loc(CDbl(x.Latitude), CDbl(x.Longitude))).ToList
 
 
@@ -436,7 +447,7 @@ Namespace BackgroundCalculations
                             Dim l As New Loc(lat, lng)
 
                             'is the device already known to be in this geofence?
-                            Dim alreadyHaveOpenCollision As Boolean = _
+                            Dim alreadyHaveOpenCollision As Boolean =
                             openGeoFenceCollisions.Where(Function(x) x.ApplicationGeoFenceID _
                                                              = geofence.ApplicationGeoFenceID).Count > 0
 
@@ -468,7 +479,7 @@ Namespace BackgroundCalculations
                                     gfdc.EndTime = Nothing
                                     gfdc.DeviceID = deviceid
 
-                                    gfdc.GeoFenceDeviceCollissionID = _
+                                    gfdc.GeoFenceDeviceCollissionID =
                                         FMS.Business.DataObjects.GeoFenceDeviceCollision.Create(gfdc)
 
                                     'add this new open collision to the list
@@ -484,13 +495,13 @@ Namespace BackgroundCalculations
 
                                     Dim time As Date = latvals(i).Timestamp.LocalTime
 
-                                    Dim lstCols As List(Of FMS.Business.DataObjects.GeoFenceDeviceCollision) = _
-                                                openGeoFenceCollisions.Where( _
+                                    Dim lstCols As List(Of FMS.Business.DataObjects.GeoFenceDeviceCollision) =
+                                                openGeoFenceCollisions.Where(
                                                     Function(x) _
                                                             x.ApplicationGeoFenceID = geofence.ApplicationGeoFenceID _
                                                         And x.DeviceID = devicename _
                                                         And x.EndTime Is Nothing _
-                                                        And x.StartTime <= kvp.Key _
+                                                        And x.StartTime <= kvp.Key
                                                 ).ToList
 
                                     For Each gdc As FMS.Business.DataObjects.GeoFenceDeviceCollision In lstCols

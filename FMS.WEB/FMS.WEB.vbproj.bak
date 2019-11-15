@@ -65,26 +65,108 @@
     </PublishDatabaseSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Charts.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.CodeParser.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Data.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.DataAccess.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Images.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Images.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Office.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Pdf.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.PivotGrid.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Printing.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.RichEdit.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Export">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.RichEdit.v17.2.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Sparkline.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.SpellChecker.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v17.2.Core">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Spreadsheet.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Utils.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGauges.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxGauges.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxHtmlEditor.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxPivotGrid.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxRichEdit.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxRichEdit.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxScheduler.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxScheduler.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxSpellChecker.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxSpreadsheet.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxThemes.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.ASPxTreeList.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.Resources.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.Resources.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Web.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v17.2.Service, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Images.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.Xpo.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Printing.v15.1.Service, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.XtraBars.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraBars.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraEditors.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraPrinting.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v17.2.Service, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraReports.v17.2.Service.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v15.1.Service, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.XtraTreeList.v17.2">
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraTreeList.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\EnterpriseLibrary.SemanticLogging.2.0.1406.1\lib\net45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
@@ -140,89 +222,37 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="DevExpress.Data.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraCharts.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraGauges.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraGauges.v17.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraGauges.v17.2.Presets, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraGauges.v17.2.Presets.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxSpellChecker.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraCharts.v17.2.Web, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraCharts.v17.2.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxTreeList.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraReports.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxThemes.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraReports.v17.2.Web, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraReports.v17.2.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxPivotGrid.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraPivotGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraPivotGrid.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraScheduler.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.SpellChecker.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraGauges.v15.1.Presets, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Web.ASPxGauges.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraReports.v15.1.Web, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Web.ASPxScheduler.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Web.ASPxRichEdit.v15.1, Version=15.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
+      <HintPath>..\..\..\Devexpress Version 17.2\DevExpress.XtraScheduler.v17.2.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -900,6 +930,13 @@
       <DependentUpon>ReportContentPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ReportPageValidator.aspx.designer.vb">
+      <DependentUpon>ReportPageValidator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPageValidator.aspx.vb">
+      <DependentUpon>ReportPageValidator.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\ReportScheduler.aspx.designer.vb">
       <DependentUpon>ReportScheduler.aspx</DependentUpon>
     </Compile>
@@ -1113,6 +1150,11 @@
       <DependentUpon>Contacts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Service References\UniqcoIntegrator\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="FleetManagement\SiteDetailsMain.aspx.designer.vb">
       <DependentUpon>SiteDetailsMain.aspx</DependentUpon>
@@ -1276,6 +1318,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controllers\VehicleController.vb" />
+    <Compile Include="DataLoggerReport.aspx.designer.vb">
+      <DependentUpon>DataLoggerReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DataLoggerReport.aspx.vb">
+      <DependentUpon>DataLoggerReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="WebServices\Classes\VehicleDistanceData.vb" />
     <Compile Include="WebServices\IUniqco_Integrator.vb" />
     <Compile Include="WebServices\Uniqco_Integrator.svc.vb">
@@ -1596,6 +1645,7 @@
     <Content Include="FleetManagement\RateIncreases.aspx" />
     <Content Include="ReportContent.aspx" />
     <Content Include="FleetManagement\ReportContentPage.aspx" />
+    <Content Include="ReportPageValidator.aspx" />
     <Content Include="Reports\report backup\reporttocopy.png" />
     <Content Include="Reports\ReportScheduler.aspx" />
     <Content Include="ResourceMgmtReport.aspx" />
@@ -1627,6 +1677,16 @@
     <Content Include="GeoFencePropertyDisplay.aspx" />
     <Content Include="Contacts.aspx" />
     <Content Include="FleetManagement\SiteDetailsMain.aspx" />
+    <Content Include="My Project\DataSources\FMS.ServiceAccess.WebServices.GetVehicleData_Response.datasource" />
+    <Content Include="My Project\DataSources\FMS.ServiceAccess.WebServices.TokenResponse.datasource" />
+    <None Include="My Project\PublishProfiles\PRODUCTION-WARNING.pubxml" />
+    <None Include="Service References\UniqcoIntegrator\configuration91.svcinfo" />
+    <None Include="Service References\UniqcoIntegrator\configuration.svcinfo" />
+    <None Include="Service References\UniqcoIntegrator\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator1.disco" />
     <Content Include="Test_Forms\BusinessLocationaspx.aspx" />
     <Content Include="Test_Forms\CANData.aspx" />
     <Content Include="Test_Forms\CAN_Explorer.aspx" />
@@ -1647,6 +1707,7 @@
     <Content Include="Test_Forms\TestRyan.aspx" />
     <Content Include="Test_Forms\test_Settings.aspx" />
     <Content Include="Test_Forms\TimeZoneTester.aspx" />
+    <Content Include="DataLoggerReport.aspx" />
     <Content Include="WebServices\Uniqco_Integrator.svc" />
     <Content Include="WebServices\VehicleLog.aspx" />
     <Content Include="WebService_Uniqco.svc" />
@@ -1745,7 +1806,6 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\PublishProfiles\FMS.pubxml" />
     <None Include="My Project\PublishProfiles\to iis.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1762,6 +1822,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator1.wsdl" />
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniqcoIntegrator\Uniqco_Integrator32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1801,6 +1871,9 @@
   <ItemGroup>
     <Folder Include="Reports\Classes\" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\UniqcoIntegrator\" />
+  </ItemGroup>
   <!--<ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>-->
@@ -1831,7 +1904,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62060</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18351/</IISUrl>
+          <IISUrl>http://localhost:18356/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

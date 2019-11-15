@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualBasic
 #Region "#usings_form_aspxcs"
 Imports DevExpress.XtraScheduler
-'Imports DevExpress.Web.ASPxEditors
+'Imports DevExpress.Web
 Imports DevExpress.Web.ASPxScheduler
 Imports DevExpress.Web.ASPxScheduler.Internal
 Imports System.Collections.Generic
@@ -9,7 +9,6 @@ Imports DevExpress.XtraScheduler.Localization
 Imports System.Collections
 Imports System
 Imports DXWebApplication1
-Imports DevExpress.Web
 
 #End Region ' #usings_form_aspxcs
 

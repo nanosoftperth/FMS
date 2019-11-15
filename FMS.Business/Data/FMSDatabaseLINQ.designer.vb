@@ -640,8 +640,8 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSDevConnectionString, mappingSource)
-		OnCreated
+        MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString, mappingSource)
+        OnCreated()
 	End Sub
 	
 	Public Sub New(ByVal connection As String)
