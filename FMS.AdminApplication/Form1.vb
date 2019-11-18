@@ -216,36 +216,38 @@
         rGeneral.RoleID = FMS.Business.DataObjects.Role.insert(rGeneral)
         rAdmin.RoleID = FMS.Business.DataObjects.Role.insert(rAdmin)
 
-        Dim featurelistGeneral As List(Of String) = {"209F096F-4EC1-4A9D-A4B4-209758BADA80",
-                                                     "D8E9ABBE-D5D6-4704-9650-351F7AB0043D",
-                                                     "5CD03979-748A-49FA-943C-12594438F24B"}.ToList
+        FMS.Business.DataObjects.Application.ResetALLFeatureAccess(appname)
+
+        'Dim featurelistGeneral As List(Of String) = {"209F096F-4EC1-4A9D-A4B4-209758BADA80",
+        '                                             "D8E9ABBE-D5D6-4704-9650-351F7AB0043D",
+        '                                             "5CD03979-748A-49FA-943C-12594438F24B"}.ToList
 
 
-        For Each flo As String In featurelistGeneral
+        'For Each flo As String In featurelistGeneral
 
-            Dim afr As New FMS.Business.DataObjects.ApplicationFeatureRole
+        '    Dim afr As New FMS.Business.DataObjects.ApplicationFeatureRole
 
-            afr.ApplicationFeatureRoleID = Guid.NewGuid
-            afr.ApplicationID = app.ApplicationID
-            afr.RoleID = rGeneral.RoleID
-            afr.FeatureID = New Guid(flo)
-
-
-            FMS.Business.DataObjects.ApplicationFeatureRole.insert(afr)
-        Next
+        '    afr.ApplicationFeatureRoleID = Guid.NewGuid
+        '    afr.ApplicationID = app.ApplicationID
+        '    afr.RoleID = rGeneral.RoleID
+        '    afr.FeatureID = New Guid(flo)
 
 
-        For Each flo2 As Business.DataObjects.Feature In FMS.Business.DataObjects.Feature.GetAllFeatures
+        '    FMS.Business.DataObjects.ApplicationFeatureRole.insert(afr)
+        'Next
 
-            Dim afr As New FMS.Business.DataObjects.ApplicationFeatureRole
 
-            afr.ApplicationFeatureRoleID = Guid.NewGuid
-            afr.ApplicationID = app.ApplicationID
-            afr.RoleID = rAdmin.RoleID
-            afr.FeatureID = flo2.FeatureID
+        'For Each flo2 As Business.DataObjects.Feature In FMS.Business.DataObjects.Feature.GetAllFeatures
 
-            FMS.Business.DataObjects.ApplicationFeatureRole.insert(afr)
-        Next
+        '    Dim afr As New FMS.Business.DataObjects.ApplicationFeatureRole
+
+        '    afr.ApplicationFeatureRoleID = Guid.NewGuid
+        '    afr.ApplicationID = app.ApplicationID
+        '    afr.RoleID = rAdmin.RoleID
+        '    afr.FeatureID = flo2.FeatureID
+
+        '    FMS.Business.DataObjects.ApplicationFeatureRole.insert(afr)
+        'Next
 
         MessageBox.Show("inserted all ApplicationFeatureRoles, admin and general")
 

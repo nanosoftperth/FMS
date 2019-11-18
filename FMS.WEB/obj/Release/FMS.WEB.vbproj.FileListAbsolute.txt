@@ -883,7 +883,6 @@ C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\System.Web.WebPages.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\EntityFramework.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\Antlr3.Runtime.pdb
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\System.Web.WebPages.Deployment.xml
-C:\jonathan\Cloned From GitHub\fms\FMS.WEB\obj\Release\FMS.WEB.vbprojResolveAssemblyReference.cache
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\obj\Release\FMS.WEB.Resources.resources
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\obj\Release\FMS.WEB.vbproj.GenerateResource.Cache
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\obj\Release\FMS.WEB.dll.licenses
@@ -1092,3 +1091,5 @@ C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\de\DevExpress.XtraLayout.v18.1.re
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\es\DevExpress.XtraLayout.v18.1.resources.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\ja\DevExpress.XtraLayout.v18.1.resources.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.WEB\bin\ru\DevExpress.XtraLayout.v18.1.resources.dll
+C:\jonathan\Cloned From GitHub\fms\FMS.WEB\obj\Release\FMS.WEB.vbprojAssemblyReference.cache
+C:\jonathan\Cloned From GitHub\fms\FMS.WEB\obj\Release\FMS.WEB.vbproj.CopyComplete

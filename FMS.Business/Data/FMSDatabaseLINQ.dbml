@@ -2596,4 +2596,8 @@
     <Parameter Name="CardID" Parameter="cardID" Type="System.String" DbType="NVarChar(255)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.usp_newApplicationAdminAndGroupFeatureSettings" Method="usp_newApplicationAdminAndGroupFeatureSettings">
+    <Parameter Name="APP_NAME" Parameter="aPP_NAME" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

@@ -350,7 +350,6 @@ C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\Microsoft.AspNet.Identi
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\OSIsoft.AFSDK.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\Newtonsoft.Json.xml
-C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.vbprojResolveAssemblyReference.cache
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.Resources.resources
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.vbproj.GenerateResource.Cache
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.dll.licenses
@@ -441,3 +440,5 @@ C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\de\DevExpress.Sparkline
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\es\DevExpress.Sparkline.v18.1.Core.resources.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\ja\DevExpress.Sparkline.v18.1.Core.resources.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\bin\ru\DevExpress.Sparkline.v18.1.Core.resources.dll
+C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.vbprojAssemblyReference.cache
+C:\jonathan\Cloned From GitHub\fms\FMS.ServiceAccess\obj\Release\FMS.ServiceAccess.vbproj.CopyComplete

@@ -818,7 +818,6 @@ C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\FMS.Business.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\FMS.Business.dll.config
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\OSIsoft.AFSDK.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\Newtonsoft.Json.xml
-C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\obj\Release\FMS.ReportLogic.vbprojResolveAssemblyReference.cache
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\obj\Release\FMS.ReportLogic.Resources.resources
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\obj\Release\FMS.ReportLogic.AnnualAnalysisReport.resources
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\obj\Release\FMS.ReportLogic.AuditContractReport.resources
@@ -1089,3 +1088,5 @@ C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\de\DevExpress.Web
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\es\DevExpress.Web.v18.1.resources.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\ja\DevExpress.Web.v18.1.resources.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\bin\Release\ru\DevExpress.Web.v18.1.resources.dll
+C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\obj\Release\FMS.ReportLogic.vbprojAssemblyReference.cache
+C:\jonathan\Cloned From GitHub\fms\FMS.ReportLogic\obj\Release\FMS.ReportLogic.vbproj.CopyComplete

@@ -1,8 +1,0 @@
-﻿/* @font-face kit by Fonts2u (http://www.fonts2u.com) */ 
-@font-face {font-family:"Windows Command Prompt Regular";
-            src:url("../Content/windows_command_prompt.eot?") format("eot"),
-                url("../Content/windows_command_prompt.woff") format("woff"),
-                url("../Content/windows_command_prompt.ttf") format("truetype"),
-                url("../Content/windows_command_prompt.svg#Windows-Command-Prompt") format("svg");
-            font-weight:normal;
-            font-style:normal;}

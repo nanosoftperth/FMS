@@ -303,7 +303,8 @@ C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\bin\Microsoft.Owin.Security.Twitte
 C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\bin\System.Web.Http.Owin.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\bin\OSIsoft.AFSDK.xml
-C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\obj\Release\FMS.WEBAPI.csprojResolveAssemblyReference.cache
 C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\obj\Release\FMS.WEBAPI.csproj.CoreCompileInputs.cache
 C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\obj\Release\FMS.WEBAPI.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\obj\Release\FMS.WEBAPI.pdb
+C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\obj\Release\FMS.WEBAPI.csprojAssemblyReference.cache
+C:\jonathan\Cloned From GitHub\fms\FMS.WEBAPI\obj\Release\FMS.WEBAPI.csproj.CopyComplete

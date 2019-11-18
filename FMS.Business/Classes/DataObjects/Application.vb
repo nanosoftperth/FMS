@@ -167,7 +167,20 @@ Namespace DataObjects
 #End Region
 
 
+#Region "admin features"
 
+        ''' <summary>
+        ''' for a specific application (from the name), deletes all
+        ''' the group accosiactions with features and then associates the general and admin 
+        ''' groups with ALL features. wrapper for usp_newApplicationAdminAndGroupFeatureSettings stored procedure.
+        ''' </summary>
+        Public Shared Sub ResetALLFeatureAccess(applicationName As String)
+
+            SingletonAccess.FMSDataContextNew.usp_newApplicationAdminAndGroupFeatureSettings(applicationName)
+
+        End Sub
+
+#End Region
 
 
 #Region "timezone methods"

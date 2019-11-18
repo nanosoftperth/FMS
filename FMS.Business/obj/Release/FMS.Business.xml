@@ -83,6 +83,13 @@ FMS.Business
  </summary>
  <remarks></remarks>
 </member>
+<member name="M:FMS.Business.DataObjects.Application.ResetALLFeatureAccess(System.String)">
+ <summary>
+ for a specific application (from the name), deletes all
+ the group accosiactions with features and then associates the general and admin 
+ groups with ALL features. wrapper for usp_deleteGeoFenceCollisions stored procedure.
+ </summary>
+</member>
 <member name="P:FMS.Business.DataObjects.ApplicationBooking.DateCreated">
  <summary>
  This will be set to 01/jan/2970 if there is a NULL in the database for 

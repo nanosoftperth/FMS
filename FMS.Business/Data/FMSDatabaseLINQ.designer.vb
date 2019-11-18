@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMS")>
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="FMS")>  _
 Partial Public Class LINQtoSQLClassesDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -640,8 +640,8 @@ Partial Public Class LINQtoSQLClassesDataContext
   #End Region
 	
 	Public Sub New()
-        MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString, mappingSource)
-        OnCreated()
+		MyBase.New(Global.FMS.Business.My.MySettings.Default.FMSConnectionString, mappingSource)
+		OnCreated
 	End Sub
 	
 	Public Sub New(ByVal connection As String)
@@ -1754,6 +1754,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_UpdateCustomersBaseOnCardID")>  _
 	Public Function usp_UpdateCustomersBaseOnCardID(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationID", DbType:="UniqueIdentifier")> ByVal applicationID As System.Nullable(Of System.Guid), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CardID", DbType:="NVarChar(255)")> ByVal cardID As String) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationID, cardID)
+		Return CType(result.ReturnValue,Integer)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_newApplicationAdminAndGroupFeatureSettings")>  _
+	Public Function usp_newApplicationAdminAndGroupFeatureSettings(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="APP_NAME", DbType:="VarChar(100)")> ByVal aPP_NAME As String) As Integer
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), aPP_NAME)
 		Return CType(result.ReturnValue,Integer)
 	End Function
 End Class
