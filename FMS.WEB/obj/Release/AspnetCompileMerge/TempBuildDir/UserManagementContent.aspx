@@ -252,7 +252,7 @@
 
         <div class="centreme">
 
-            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="5"
+            <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="3"
                 EnableTabScrolling="True" EnableTheming="True" Theme="SoftOrange" Width="100%">
                 <TabPages>
 

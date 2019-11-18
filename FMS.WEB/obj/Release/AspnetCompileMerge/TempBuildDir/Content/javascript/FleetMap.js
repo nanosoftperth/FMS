@@ -416,6 +416,18 @@ function infoWindowCSSForCanBus(w) {
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function infoWindowCSSForDashboard(w) {
 
+    
+
+    $('.gm-style-iw').css("box-shadow", "none");
+    $('.gm-style-iw-d').css("overflow", "");
+    $('.gm-style-iw').css("background-color", "rgba(255, 255, 255, 0.0)");
+    $('.gm-style-iw gm-style-iw-c button').css('display', 'none');
+    $('.gm-style-iw-c > button').css('display', 'none');
+
+    
+
+    return null;
+
     $('#iw-container_dash').closest('.gm-style-iw').parent().addClass('custom-iw2_dash');
 
     $('#iw-container_dash').closest('.gm-style-iw').prev('div').remove();
