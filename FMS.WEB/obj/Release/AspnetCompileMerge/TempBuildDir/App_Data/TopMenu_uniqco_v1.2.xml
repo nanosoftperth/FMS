@@ -9,7 +9,11 @@
 
   <item Text="Alarms &amp; Events" NavigateUrl="AlarmsAndEvents.aspx" ></item>
 
-  <item Text="Reporting" NavigateUrl="ReportGenerator.aspx"  />
+  
+  <item Text="Reporting &#x21D3;" NavigateUrl="#">
+    <item Text="Report Generator" NavigateUrl="ReportGenerator.aspx" />
+    <item Text="AS7502 Compliance Report" NavigateUrl="ReportPageValidator.aspx" />
+  </item>
 
   <item Text="Dashboard System" NavigateUrl="Dashboarding.aspx"  />
   

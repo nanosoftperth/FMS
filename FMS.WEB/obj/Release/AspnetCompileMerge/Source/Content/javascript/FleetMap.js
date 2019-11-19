@@ -17,7 +17,7 @@ var selectedTrucks;
 var infoWindowVehicle = new google.maps.InfoWindow();
 //function showInfoWindow(event)
 function showInfoWindow(event) {
-    
+
     //var vertices = '<br><br>' + this.getPath();
     var s = '<div id=\'iw-container\'>' + this.Name + '</div>';//'<b>' + this.Name + '</b><br>'
     //iw-title 
@@ -34,12 +34,12 @@ function showInfoWindow(event) {
 
 
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title"> ' + this.Name + ' </div>' +
-                  '<div class="iw-content">' +
-                    contentString
+        '<div class="iw-title"> ' + this.Name + ' </div>' +
+        '<div class="iw-content">' +
+        contentString
     '</div>' +
-    '<div class="iw-bottom-gradient"></div>' +
-  '</div>';
+        '<div class="iw-bottom-gradient"></div>' +
+        '</div>';
 
 
     infoWindowVehicle = new google.maps.InfoWindow();
@@ -60,7 +60,7 @@ var priDeviceName = '';
 var priDashEvent = null;
 var priVehicleName = '';
 
-function ShowDashboard(event, name, deviceID,vehicleName, clicktype) {
+function ShowDashboard(event, name, deviceID, vehicleName, clicktype) {
     var strDashName = name;
     //priDeviceID = this.DeviceID;
     //priDeviceName = this.Name;
@@ -76,7 +76,7 @@ function ShowDashboard(event, name, deviceID,vehicleName, clicktype) {
     //    alert('rightclick');
     //}
     //else { alert('Not rightclick'); }
-    
+
     var param = {};
     param.vehicleID = '1';
 
@@ -114,14 +114,14 @@ function ShowDashboard(event, name, deviceID,vehicleName, clicktype) {
 
     priDashEvent = event;
     var content = '<div id="iw-container_dash">' +
-                  '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
-                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 358px;font-size: 11px; background-color: transparent;" onclick="getInfoWindow2()">Launch NanoTracker Diplay</button></div>' +
-                   contentString + '</div>' +
-                   '<div id="idDashTail" class="dash_tail">' + '</div>'
-        
+        '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
+        '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 358px;font-size: 11px; background-color: transparent;" onclick="getInfoWindow2()">Launch NanoTracker Diplay</button></div>' +
+        contentString + '</div>' +
+        '<div id="idDashTail" class="dash_tail">' + '</div>'
+
     '</div>' +
-    '<div class="iw-bottom-gradient_dash"></div>' +
-  '</div>';
+        '<div class="iw-bottom-gradient_dash"></div>' +
+        '</div>';
 
     //  var content = '<div id="iw-container_dash">' +
     //                '<div class="iw-title_dash"> ' + this.Name + ' </div>' +
@@ -147,8 +147,7 @@ function ShowDashboard(event, name, deviceID,vehicleName, clicktype) {
 
     google.maps.event.addListener(infoWindowVehicle, 'domready', function () { infoWindowCSSForDashboard(infoWindowVehicle) });
 
-    if (!infoWindowVehicle.getMap())
-    {
+    if (!infoWindowVehicle.getMap()) {
         infoWindowVehicle.open(map);
     }
 
@@ -177,12 +176,12 @@ function showInfoWindow2(event) {
 
     evnt = event;
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title2"> ' + this.Name + '<button type="button" style="float:right; width:110px; text-align:right; font-size:15px;" onclick="getDashboard()">View Dashboard</button> </div>' +
-                  '<div class="iw-content2">' +
-                    contentString
+        '<div class="iw-title2"> ' + this.Name + '<button type="button" style="float:right; width:110px; text-align:right; font-size:15px;" onclick="getDashboard()">View Dashboard</button> </div>' +
+        '<div class="iw-content2">' +
+        contentString
     '</div>' +
-    '<div class="iw-bottom-gradient"></div>' +
-  '</div>';
+        '<div class="iw-bottom-gradient"></div>' +
+        '</div>';
 
 
     infoWindowVehicle = new google.maps.InfoWindow();
@@ -218,23 +217,23 @@ function getDashboard() {
     }
     evnt = priDashEvent;
     var content = '<div id="iw-container_dash">' +
-                  '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
-                  '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 358px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoTracker Diplay</button></div>' +
-                   contentString + '</div>' +
-                   '<div id="idDashTail" class="dash_tail">' + '</div>'
+        '<div id="idCloseWindow" style="width: 35px; height: 33px; position: absolute; top: 3px; left: 612px; background-color: transparent;" onclick="infoWindowVehicle.close()"><img src="Content/Images/Dashboard/CloseButton.png" id="iClose" style="max-height: 100%; max-width: 100%; cursor: pointer; background-color: transparent;"/></div>' +
+        '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 358px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoTracker Diplay</button></div>' +
+        contentString + '</div>' +
+        '<div id="idDashTail" class="dash_tail">' + '</div>'
 
     '</div>' +
-    '<div class="iw-bottom-gradient_dash"></div>' +
-  '</div>';
+        '<div class="iw-bottom-gradient_dash"></div>' +
+        '</div>';
 
 
-  //  var content = '<div id="iw-container_dash">' +
-  //               '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
-  //               '<div class="iw-content_dash">' +
-  //                 contentString
-  //  '</div>' +
-  //  '<div class="iw-bottom-gradient"></div>' +
-  //'</div>';
+    //  var content = '<div id="iw-container_dash">' +
+    //               '<div id="iLDLink"><button type="button" style="width:200px;text-align:right;top: 110px;position: absolute;font-family: arial;font-weight: bold;left: 351px;font-size: 11px;" onclick="getInfoWindow2()">Launch NanoSoft Display</button></div>' +
+    //               '<div class="iw-content_dash">' +
+    //                 contentString
+    //  '</div>' +
+    //  '<div class="iw-bottom-gradient"></div>' +
+    //'</div>';
 
     infoWindowVehicle = new google.maps.InfoWindow();
 
@@ -248,14 +247,14 @@ function getDashboard() {
 }
 
 function getInfoWindow2() {
-    
+
     //var vertices = '<br><br>' + this.getPath();
     var s = '<div id=\'iw-container\'>' + priDeviceName + '</div>';//'<b>' + this.Name + '</b><br>';
     //iw-title 
     //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + this.DeviceID;
     //var newURL = 'CanBusPropertyDisplay.aspx?DeviceID=' + priDeviceID + "&DeviceName=" + priVehicleName ; //original code
-    var newURL = 'CanBusDisplayProperty.aspx?DeviceID=' + priDeviceID + "&DeviceName=" + priVehicleName; 
-    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 600px; width: 400px;\' ></iframe>';
+    var newURL = 'CanBusDisplayProperty.aspx?DeviceID=' + priDeviceID + "&DeviceName=" + priVehicleName;
+    contentString = '<iframe src=\'' + newURL + '\' marginwidth=\'0\' marginheight=\'0\' frameborder=\'0\' overflow-y=\'scroll\' overflow-x=\'hidden\' style=\'height: 360px; width: 400px;\' ></iframe>';
     //style=\'height: 280px; width: 245px\
     contentString = '<div class=\'iw-content2\'>' + contentString + '</div>';
 
@@ -267,12 +266,12 @@ function getInfoWindow2() {
 
     evnt = priDashEvent;
     var content = '<div id="iw-container">' +
-                  '<div class="iw-title2"> ' + priDeviceName + '<button type="button" style="float:right; width:110px; text-align:right; font-size:15px;" onclick="getDashboard()">View Dashboard</button> </div>' +
-                  '<div class="iw-content2">' +
-                    contentString
+        '<div class="iw-title2"> ' + priDeviceName + '<button type="button" style="float:right; width:110px; text-align:right; font-size:15px;" onclick="getDashboard()">View Dashboard</button> </div>' +
+        '<div class="iw-content2">' +
+        contentString
     '</div>' +
-    '<div class="iw-bottom-gradient"></div>' +
-  '</div>';
+        '<div class="iw-bottom-gradient"></div>' +
+        '</div>';
 
 
     infoWindowVehicle = new google.maps.InfoWindow();
@@ -352,6 +351,12 @@ function infoWindowCSS(w) {
 
 function infoWindowCSSForCanBus(w) {
 
+
+    $('.gm-style-iw-d').css("overflow", "");
+    $('.iw-content2').css("overflow", "");
+
+    return;
+
     $('#iw-container').closest('.gm-style-iw').parent().addClass('custom-iw2');
 
     $('.custom-iw2').parent().addClass('iconposition');
@@ -416,7 +421,7 @@ function infoWindowCSSForCanBus(w) {
 //This function used for showing dashboard as per requirement 16/Jun/17 9:02 AM (UW-184: Create front end for E-Maxi popup)
 function infoWindowCSSForDashboard(w) {
 
-    
+
 
     $('.gm-style-iw').css("box-shadow", "none");
     $('.gm-style-iw-d').css("overflow", "");
@@ -424,7 +429,7 @@ function infoWindowCSSForDashboard(w) {
     $('.gm-style-iw gm-style-iw-c button').css('display', 'none');
     $('.gm-style-iw-c > button').css('display', 'none');
 
-    
+
 
     return null;
 
@@ -478,7 +483,7 @@ function infoWindowCSSForDashboard(w) {
 
     // Reference to the div that groups the close button elements.
     var iwCloseBtn = iwOuter.next();
-    
+
     // Apply the desired effect to the close button
     //iwCloseBtn.css({ opacity: '1', left: '645px', top: '35px', border: '2px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
@@ -505,9 +510,9 @@ function infoWindowCSSForDashboard(w) {
 
 function Run_infoWindowCSSForCanBus() {
     window.open(
-              'https://www.google.com/',
-              '_blank'
-            );
+        'https://www.google.com/',
+        '_blank'
+    );
 }
 
 function GenericKeyDown(s, e) {
@@ -716,7 +721,7 @@ function configDateShowPopup() {
                 try {
                     this.CalendarShowing.FireEvent(this);
                 }
-                catch (err){
+                catch (err) {
                     var x = err;
                 }
                 ASPxClientDropDownEditBase.prototype.ShowDropDownArea.call(this, isRaiseEvent);
@@ -828,7 +833,7 @@ function clientServerroundRobin() {
     param.IsVehicleViewer = _vehicleViewer;
 
     ajaxMethod("RoundRobinService.svc/" + 'ClientServerRoundRobin',
-          param, clientServerroundRobin_SuccessCallback, clientServerroundRobin_ErrorCallback, clientServerroundRobin_FinallyCallback);
+        param, clientServerroundRobin_SuccessCallback, clientServerroundRobin_ErrorCallback, clientServerroundRobin_FinallyCallback);
 
     msgcount += 1;
 
@@ -1166,7 +1171,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         labelStyle: { opacity: 0.75 },
         zIndex: 9999999,
         truckName: vehicleName
-        
+
     });
 
     marker.DeviceID = markerID;
@@ -1199,7 +1204,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     //        //set first click
     //        touchtime = new Date().getTime();
     //        showInfoWindow(event, marker.Name, marker.DeviceID); 
-                        
+
     //    } else {
     //        //compare first click to this click and see if they occurred within double click threshold
     //        if (((new Date().getTime()) - touchtime) < 800) {
@@ -1210,20 +1215,20 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     //            //not a double click so set as a new first click
     //            touchtime = new Date().getTime();
     //            showInfoWindow(event, marker.Name, marker.DeviceID);
-                
+
     //        }
     //    }
- 
+
     //});
 
-    
+
 
     marker.ID = markerID;
     markers.push(marker);
 
     marker.setMap(map);
 
-    
+
 
     //  insert vehicle ID in Array
     VehicleSelectedArr.push(markerID);
@@ -1814,20 +1819,20 @@ function changeGradient() {
     if (thisHeatmap == null) return null;
 
     var gradient = [
-     'rgba(0, 255, 255, 0)',
-     'rgba(0, 255, 255, 1)',
-     'rgba(0, 191, 255, 1)',
-     'rgba(0, 127, 255, 1)',
-     'rgba(0, 63, 255, 1)',
-     'rgba(0, 0, 255, 1)',
-     'rgba(0, 0, 223, 1)',
-     'rgba(0, 0, 191, 1)',
-     'rgba(0, 0, 159, 1)',
-     'rgba(0, 0, 127, 1)',
-     'rgba(63, 0, 91, 1)',
-     'rgba(127, 0, 63, 1)',
-     'rgba(191, 0, 31, 1)',
-     'rgba(255, 0, 0, 1)'
+        'rgba(0, 255, 255, 0)',
+        'rgba(0, 255, 255, 1)',
+        'rgba(0, 191, 255, 1)',
+        'rgba(0, 127, 255, 1)',
+        'rgba(0, 63, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 223, 1)',
+        'rgba(0, 0, 191, 1)',
+        'rgba(0, 0, 159, 1)',
+        'rgba(0, 0, 127, 1)',
+        'rgba(63, 0, 91, 1)',
+        'rgba(127, 0, 63, 1)',
+        'rgba(191, 0, 31, 1)',
+        'rgba(255, 0, 0, 1)'
     ]
     thisHeatmap.set('gradient', !cbGradientToggle.GetChecked() ? null : gradient);
 }
@@ -1853,10 +1858,10 @@ function changeOpacity() {
 // Heatmap data (test): 500 Points
 function getPoints() {
     return [
-      new google.maps.LatLng(37.782551, -122.445368),
-      new google.maps.LatLng(37.782745, -122.444586),
-      new google.maps.LatLng(37.782842, -122.443688),
-      new google.maps.LatLng(37.782919, -122.442815)
+        new google.maps.LatLng(37.782551, -122.445368),
+        new google.maps.LatLng(37.782745, -122.444586),
+        new google.maps.LatLng(37.782842, -122.443688),
+        new google.maps.LatLng(37.782919, -122.442815)
     ];
 }
 
@@ -1960,5 +1965,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 //function OnGetSelectedFieldValues(selectedValues) {
 //    alert(selectedValues);
-//} 
-
+//}
