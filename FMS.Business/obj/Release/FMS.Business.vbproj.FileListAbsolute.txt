@@ -49,11 +49,11 @@ C:\jonathan\Cloned From GitHub\fms\FMS.Business\bin\Release\Newtonsoft.Json.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\bin\Release\OSIsoft.AFSDK.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\bin\Release\Newtonsoft.Json.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\bin\Release\OSIsoft.AFSDK.xml
+C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.vbprojAssemblyReference.cache
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.Resources.resources
-C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.vbproj.GenerateResource.Cache
+C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.vbproj.GenerateResource.cache
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.vbproj.CoreCompileInputs.cache
+C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.vbproj.CopyComplete
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.dll
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.xml
 C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.pdb
-C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.vbprojAssemblyReference.cache
-C:\jonathan\Cloned From GitHub\fms\FMS.Business\obj\Release\FMS.Business.vbproj.CopyComplete

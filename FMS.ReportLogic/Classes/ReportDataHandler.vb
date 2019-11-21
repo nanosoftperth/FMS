@@ -37,16 +37,26 @@ Public Class ReportDataHandler
     Public Shared Function GetDevicesByApplication() As List(Of DeviceChart)
         Dim dc As New List(Of DeviceChart)
         Try
-            Dim lstDevices As Object
-            lstDevices = ThisSession.ApplicationVehicle
-            For Each devicex In lstDevices
-                If Not devicex.DeviceID Is Nothing Then
-                    dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
-                End If
-            Next
-            Return dc.Distinct().ToList()
+            'Dim lstDevices As Object
+            'lstDevices = ThisSession.ApplicationVehicle
+            'For Each devicex In lstDevices
+            '    If Not devicex.DeviceID Is Nothing Then
+            '        dc.Add(New DeviceChart() With {.DeviceValue = devicex.DeviceID.ToString()})
+            '    End If
+            'Next
+            'Return dc.Distinct().ToList()
+
+            Dim vehicleList As List(Of FMS.Business.DataObjects.ApplicationVehicle)
+
+            Dim appid As Guid = ThisSession.ApplicationID
+            vehicleList = FMS.Business.DataObjects.ApplicationVehicle.GetAll(appid)
+
+            Dim retLst = (From x In vehicleList Select New DeviceChart With {.DeviceValue = x.DeviceID, .VehicleName = x.Name}).ToList()
+
+            Return retLst
+
         Catch ex As Exception
-            Return Nothing
+            Throw
         End Try
     End Function
     Public Shared Function GetChartTimeList() As List(Of TimeClass)
@@ -1074,29 +1084,40 @@ Public Class ReportDataHandler
         Dim objListLogger As New List(Of ReportFields)
         'Dim dt1 As Date = #6/15/2017 10:00:00 AM#
         'Dim dt2 As Date = #6/15/2017 11:00:00 AM#
-        If Not deviceID.Equals("") Then
-            Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection(deviceID, dt1, dt2)
-            For Each item In lstLoggerReport
-                objListLogger.Add(New ReportFields() With {.Description = item.Description, .Direction = item.Direction, .Value = item.Value})
-            Next
-            dtLogger.LineValues = objListLogger
-            Dim getDeviceID = DataObjects.VehicleLocation.GetPerDeviceID(deviceID)
-            dtLogger.Param1 = dt1.ToString("MM/dd/yyyy HH:mm:ss tt")
-            dtLogger.Param2 = dt2.ToString("MM/dd/yyyy HH:mm:ss tt")
-            If getDeviceID.Count > 0 Then
-                dtLogger.Param3 = getDeviceID(0).Name.ToString()
-            Else
-                dtLogger.Param3 = ""
-            End If
-            If getDeviceID.Count > 0 Then
-                dtLogger.Param4 = getDeviceID(0).Vehicle_name.ToString()
-            Else
-                dtLogger.Param4 = ""
-            End If
-            Return dtLogger
+
+        ' if we have not got a deviceID , then return nothing 
+        If String.IsNullOrEmpty(deviceID) Then Return Nothing
+
+        dtLogger.LogoBinary = ThisSession.ApplicationObject.GetLogoBinary()
+        dtLogger.VehicleDisplayName = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID(deviceID).Name
+        dtLogger.GeneratedDateTimeString = Now.ToString("dd/MMM/yyyy HH:mm:ss")
+
+        Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetReportDirection(deviceID, dt1, dt2)
+
+        For Each item In lstLoggerReport
+            objListLogger.Add(New ReportFields() With {.Description = item.Description, .Direction = item.Direction, .Value = item.Value})
+        Next
+        dtLogger.LineValues = objListLogger
+        Dim getDeviceID = DataObjects.VehicleLocation.GetPerDeviceID(deviceID)
+        dtLogger.Param1 = dt1.ToString("MM/dd/yyyy HH:mm:ss tt")
+        dtLogger.Param2 = dt2.ToString("MM/dd/yyyy HH:mm:ss tt")
+
+        If getDeviceID.Count > 0 Then
+            dtLogger.Param3 = getDeviceID(0).Name.ToString()
         Else
-            Return Nothing
+            dtLogger.Param3 = ""
         End If
+        If getDeviceID.Count > 0 Then
+            dtLogger.Param4 = getDeviceID(0).Vehicle_name.ToString()
+            dtLogger.VehicleDisplayName = dtLogger.Param4
+        Else
+            dtLogger.Param4 = ""
+        End If
+
+        Return dtLogger
+
+
+
     End Function
     Public Shared Function GetSpeedDataLoggerReport(deviceID As String, startDate As Date, startTime As String, endDate As Date, endTime As String) As CacheSpeedDataLogger
         Dim sTime As String = IIf(startTime.Equals(""), "1", startTime.Split(":")(0))
@@ -1111,7 +1132,8 @@ Public Class ReportDataHandler
         Dim lstLoggerReport = FMS.Business.DataObjects.DataLoggerReport.GetSpeedDataLogger(deviceID, dt1, dt2)
         If lstLoggerReport IsNot Nothing Then
             For Each item In lstLoggerReport
-                objListLogger.Add(New SpeedDataLogger() With {.Description = item.Description, .SpeedDateTime = item.SpeedDateTime, .Value = item.Value})
+                ' below division is to convert cm/s to km/h which is a more easily understandable metric
+                objListLogger.Add(New SpeedDataLogger() With {.Description = item.Description, .SpeedDateTime = item.SpeedDateTime, .Value = item.Value / 27.778})
             Next
             dtSpeedLogger.LineValues = objListLogger
             dtSpeedLogger.Param1 = "test"

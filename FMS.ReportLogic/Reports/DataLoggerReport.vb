@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Drawing.Printing
 Imports System.Globalization
 Imports System.IO
 Imports System.Net
@@ -16,6 +17,10 @@ Public Class DataLoggerReport
 
     End Sub
     Private Sub XtraReport1_DataSourceDemanded(ByVal sender As Object, ByVal e As EventArgs) Handles Me.DataSourceDemanded
+
+
+        'lblCompanyName.Text = FMS.Business.ThisSession.ApplicationName
+
         Dim mkr As Boolean = Marker.Value
         Dim dId As String = DeviceID.Value.ToString()
         Dim sDate As Date = StartDate.Value
@@ -60,15 +65,21 @@ Public Class DataLoggerReport
         Dim strMarker As String = String.Join("", xMarker)
         Dim strPat As String = String.Join("|", lstPath)
 
-        Dim url As String = "https://maps.googleapis.com/maps/api/staticmap?center=-31.9538987,115.85823189999996&zoom=" & ZoomValue.Value & "&size=720x350 &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
-        If lstLatLong IsNot Nothing AndAlso lstLatLong.Count > 0 Then
-            If mkr Then
-                'url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=7&size=720x350" & strMarker
-                url = "https://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350" & strMarker & " &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
-            Else
-                url = "http://maps.googleapis.com/maps/api/staticmap?zoom=" & ZoomValue.Value & "&size=720x350&path=color:0xff0000ff|weight:5|" & strPat & "&sensor=false &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
-            End If
-        End If
+        strPat = IIf(lstPath.Count > 0, String.Format("&path=color:0x0000ff|weight:5|{0}", strPat), String.Empty)
+
+        Dim url = String.Format("https://maps.googleapis.com/maps/api/staticmap?size=720x350&maptype=hybrid{0}{1}&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g", strMarker, strPat)
+
+        'If lstLatLong IsNot Nothing AndAlso lstLatLong.Count > 0 Then
+        '    If mkr Then
+        '        'url = "https://maps.googleapis.com/maps/api/staticmap?center=" & lstLatLong(0).Latitude & "," & lstLatLong(0).Longitude & "&zoom=7&size=720x350" & strMarker
+        '        url = "https://maps.googleapis.com/maps/api/staticmap?size=720x350" & strMarker & " &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
+        '    Else
+        '        url = "http://maps.googleapis.com/maps/api/staticmap?size=720x350&path=color:0x0000ff|weight:5|" & strPat & "&sensor=false &key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g"
+        '    End If
+        'End If
+
+        ''https://maps.googleapis.com/maps/api/staticmap?maptype=hybrid&size=720x350&path=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7588343333333,116.761815333333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7590311666667,116.761771833333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7592311666667,116.7617715&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7590368333333,116.761749166667&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7588345,116.761721&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.758652,116.761705666667&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.758463,116.761700833333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7586705,116.7617145&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7588645,116.761725333333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7590428333333,116.761773833333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7592345,116.761791333333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.759764,116.762081666667&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7599613333333,116.762085666667&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7601441666667,116.762103666667&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7603251666667,116.762121&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7601403333333,116.7621045&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7599431666667,116.762085833333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7597546666667,116.762066&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7595625,116.762045333333&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.7597438333333,116.762107666667&markers=size:tiny%7Ccolor:red%7Clabel:S%7C-20.759625,116.762039833333%20&key=AIzaSyA2FG3uZ6Pnj8ANsyVaTwnPOCZe4r6jd0g&path=color:0xff0000ff|weight:5|-20.7588343333333,116.761815333333|-20.7590311666667,116.761771833333|-20.7592311666667,116.7617715|-20.7590368333333,116.761749166667|-20.7588345,116.761721|-20.758652,116.761705666667|-20.758463,116.761700833333|-20.7586705,116.7617145|-20.7588645,116.761725333333|-20.7590428333333,116.761773833333|-20.7592345,116.761791333333|-20.759764,116.762081666667|-20.7599613333333,116.762085666667|-20.7601441666667,116.762103666667|-20.7603251666667,116.762121|-20.7601403333333,116.7621045|-20.7599431666667,116.762085833333|-20.7597546666667,116.762066|-20.7595625,116.762045333333|-20.7597438333333,116.762107666667|-20.759625,116.762039833333
+
 
         Dim bc() As Byte = Nothing
         Dim bmp As Bitmap
@@ -90,5 +101,12 @@ Public Class DataLoggerReport
             End Using
         End Try
         XrPictureBox1.Image = bmp
+        'imgCompanyLogo.Image = ObjectDataSource1.
+    End Sub
+
+    Private Sub DataLoggerReport_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
+
+
+
     End Sub
 End Class

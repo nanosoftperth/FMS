@@ -1,5 +1,7 @@
 
 
+Imports System.Diagnostics
+
 Namespace DataObjects
 
     Public Class CanDataPoint
@@ -83,10 +85,36 @@ Namespace DataObjects
 
         End Function
 
-        Public Shared Function GetPointWithData(SPN As Integer, vehicleid As String, _
-                                                standard As String, startDate As Date, endDate As Date) As DataObjects.CanDataPoint
+        ''' <summary>
+        ''' UTC string to be send instead of date, weird behaviour when getting API requests from Grafana into IIS
+        ''' randomly the endDate value was losing its value and resetting to null, unsure why. HACK
+        ''' </summary>
+        ''' <param name="SPN"></param>
+        ''' <param name="vehicleid"></param>
+        ''' <param name="standard"></param>
+        ''' <param name="startDate"></param>
+        ''' <param name="endDate"></param>
+        ''' <returns></returns>
+        Public Shared Function GetPointWithDataStr(SPN As Integer, vehicleid As String,
+                                                standard As String, ByVal startDate As String, ByVal endDate As String) As DataObjects.CanDataPoint
+
+            Dim sd As New Date
+            Dim ed As New Date
+
+            sd = CDate(startDate)
+            ed = CDate(endDate)
+
+            Return GetPointWithData(SPN, vehicleid, standard, sd, ed)
+
+        End Function
+
+        Public Shared Function GetPointWithData(SPN As Integer, vehicleid As String,
+                                                standard As String, ByVal startDate As Date, ByVal endDate As Date) As DataObjects.CanDataPoint
 
             Dim retobj As New CanDataPoint
+
+            Dim debugMsg As String = String.Format("startDate: {0}, endDate: {1}", startDate.ToLongDateString(), endDate.ToLongDateString())
+            Debug.WriteLine(debugMsg)
 
             Dim vehicle As DataObjects.ApplicationVehicle = DataObjects.ApplicationVehicle.GetFromName(vehicleid)
 
@@ -94,7 +122,7 @@ Namespace DataObjects
             retobj.MessageDefinition = DataObjects.CAN_MessageDefinition.GetForSPN(SPN, standard)
 
             ' Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
-            Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard, _
+            Dim tagName As String = DataObjects.CanDataPoint.GetTagName(vehicle.DeviceID, standard,
                                                                                 retobj.MessageDefinition.PGN)
             Try
 
@@ -642,8 +670,7 @@ Namespace DataObjects
                     Dim val As String = i(2).ToString + i(3).ToString
 
                     Dim intVal As Long = 0
-
-                    Long.TryParse(val, intVal)
+                    intVal = Integer.Parse(val, System.Globalization.NumberStyles.HexNumber)
 
                     cv.longVal = intVal
 
@@ -651,7 +678,7 @@ Namespace DataObjects
                                    "Diagonal mode road",
                                    IIf(val.Equals("08"),
                                        "Circle mode road",
-                                       IIf(val.Equals("10"),
+                                       IIf(val.Equals("0a"),
                                            "rail mode",
                                            IIf(val.Equals("00"),
                                                "Undefined", "Undefined"))))

@@ -134,11 +134,16 @@ Public Class DashboardController
         Dim startTime As Date = CDate(lok.range.from)
         Dim endTime As Date = CDate(lok.range.to)
 
+        Dim startTimeStr = lok.range.from
+        Dim endTimneStr = lok.range.to
+
+        Console.WriteLine("startTime:{0}, endTime:{1}", startTime, endTime)
+
         'grab the first target to determine if the result set should be timeserie or table
         Dim isTimeserie As Boolean = lok.targets(0).type = "timeserie"
 
         If isTimeserie Then
-            retobj = GetTimeSeriesResult(lok, startTime, endTime)
+            retobj = GetTimeSeriesResult(lok, startTimeStr, endTimneStr)
         Else
             retobj = GetTableResult(lok, startTime, endTime)
         End If
@@ -245,9 +250,13 @@ Public Class DashboardController
         End Sub
     End Class
 
-Public Function GetTimeSeriesResult(lok As queryRequestType, startTime As Date, endTime As Date) As Object
+    Public Function GetTimeSeriesResult(lok As queryRequestType, ByVal startTimeStr As String, ByVal endTimeStr As String) As Object
 
         Dim retobj As New List(Of queryReturnType)
+
+        Dim startTime As Date = CDate(startTimeStr)
+        Dim endTime As Date = CDate(endTimeStr)
+
 
         For Each x As cust_target In lok.targets
 
@@ -260,25 +269,25 @@ Public Function GetTimeSeriesResult(lok As queryRequestType, startTime As Date, 
             Dim spn As Integer = CInt(strs(2))
             Dim spnNAme As String = strs(3)
 
-            Dim canDataPoint = Business.DataObjects.CanDataPoint.GetPointWithData(spn, vehicleName, standard, startTime, endTime)
+            Dim canDataPoint = Business.DataObjects.CanDataPoint.GetPointWithDataStr(spn, vehicleName, standard, startTimeStr, endTimeStr)
 
             Dim cnt As Integer = canDataPoint.CanValues.Count
 
-            Dim dataPoints As Long(,) = New Long(cnt - 1, 1) {}
+            Dim dataPoints As Object(,) = New Object(cnt - 1, 1) {}
 
             Dim isStringType As Boolean = False
             Dim i As Integer = 0
-            Dim lng As Long
+            Dim numValue As Decimal
 
-            If cnt > 0 Then isStringType = Not Long.TryParse(canDataPoint.CanValues.First.ValueStr, lng)
+            If cnt > 0 Then isStringType = Not Decimal.TryParse(canDataPoint.CanValues.First.ValueStr, numValue)
 
-
+            'time series results can only show numeric values, so we will only ever show the numeric value here (even if it is an enum)
             For Each cv In canDataPoint.CanValues
 
                 Try
 
                     Dim unixTimestamp = CLng(cv.Time.AddHours(-8).Subtract(CDate("01/jan/1970")).TotalSeconds) * 1000
-                    Dim val As Long = If(isStringType, cv.longVal, cv.Value)
+                    Dim val As Object = IIf(isStringType, cv.longVal, cv.Value)
 
                     If cv.Time >= startTime AndAlso cv.Time <= endTime Then
                         dataPoints(i, 0) = val
@@ -308,7 +317,17 @@ Public Function GetTimeSeriesResult(lok As queryRequestType, startTime As Date, 
     Public Class cust_range
 
         Public Property from As String
+
+        Private _to As String
+
         Public Property [to] As String
+            Get
+                Return _to
+            End Get
+            Set(ByVal value As String)
+                _to = value
+            End Set
+        End Property
 
         Public Sub New()
 
@@ -377,7 +396,7 @@ Public Function GetTimeSeriesResult(lok As queryRequestType, startTime As Date, 
 
         Public Property target As String
 
-        Public Property datapoints As Long(,)
+        Public Property datapoints As Object(,)
 
         Public Sub New()
 

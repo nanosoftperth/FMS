@@ -20,56 +20,56 @@ Partial Public Class DataLoggerReport
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DataLoggerReport))
         Dim ShapeRectangle1 As DevExpress.XtraPrinting.Shape.ShapeRectangle = New DevExpress.XtraPrinting.Shape.ShapeRectangle()
         Dim ShapeRectangle2 As DevExpress.XtraPrinting.Shape.ShapeRectangle = New DevExpress.XtraPrinting.Shape.ShapeRectangle()
         Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
         Dim PointSeriesLabel1 As DevExpress.XtraCharts.PointSeriesLabel = New DevExpress.XtraCharts.PointSeriesLabel()
         Dim SplineSeriesView1 As DevExpress.XtraCharts.SplineSeriesView = New DevExpress.XtraCharts.SplineSeriesView()
+        Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim SecondaryAxisX1 As DevExpress.XtraCharts.SecondaryAxisX = New DevExpress.XtraCharts.SecondaryAxisX()
+        Dim KeyColorColorizer1 As DevExpress.XtraCharts.KeyColorColorizer = New DevExpress.XtraCharts.KeyColorColorizer()
+        Dim StackedBarSeriesView1 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings3 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings4 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
         Dim Parameter1 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter2 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter3 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter4 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter5 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
-        Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
-        Dim SecondaryAxisX1 As DevExpress.XtraCharts.SecondaryAxisX = New DevExpress.XtraCharts.SecondaryAxisX()
-        Dim KeyColorColorizer1 As DevExpress.XtraCharts.KeyColorColorizer = New DevExpress.XtraCharts.KeyColorColorizer()
-        Dim StackedBarSeriesView1 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
         Dim Parameter6 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter7 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter8 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter9 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
         Dim Parameter10 As DevExpress.DataAccess.ObjectBinding.Parameter = New DevExpress.DataAccess.ObjectBinding.Parameter()
-        Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Dim DynamicListLookUpSettings3 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Dim DynamicListLookUpSettings4 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Me.ObjectDataSource4 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrShape2 = New DevExpress.XtraReports.UI.XRShape()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrShape1 = New DevExpress.XtraReports.UI.XRShape()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.imgCompanyLogo = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox2 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrShape2 = New DevExpress.XtraReports.UI.XRShape()
+        Me.XrShape1 = New DevExpress.XtraReports.UI.XRShape()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrChart2 = New DevExpress.XtraReports.UI.XRChart()
-        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.XrChart1 = New DevExpress.XtraReports.UI.XRChart()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.DetailReportBand1 = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.GroupHeaderBand1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.DetailBand1 = New DevExpress.XtraReports.UI.DetailBand()
@@ -79,8 +79,6 @@ Partial Public Class DataLoggerReport
         Me.Detail2 = New DevExpress.XtraReports.UI.DetailBand()
         Me.DetailReport2 = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail3 = New DevExpress.XtraReports.UI.DetailBand()
-        Me.ObjectDataSource5 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Title = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailCaption1 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailData1 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -96,32 +94,26 @@ Partial Public Class DataLoggerReport
         Me.EndDate = New DevExpress.XtraReports.Parameters.Parameter()
         Me.Marker = New DevExpress.XtraReports.Parameters.Parameter()
         Me.ZoomValue = New DevExpress.XtraReports.Parameters.Parameter()
-        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ObjectDataSource2 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource3 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource4 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource5 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(PointSeriesLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(SecondaryAxisX1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
-        '
-        'ObjectDataSource4
-        '
-        Me.ObjectDataSource4.DataMember = "GetDevicesByApplication"
-        Me.ObjectDataSource4.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource4.Name = "ObjectDataSource4"
-        '
-        'ObjectDataSource3
-        '
-        Me.ObjectDataSource3.DataMember = "GetChartTimeList"
-        Me.ObjectDataSource3.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource3.Name = "ObjectDataSource3"
         '
         'Detail
         '
@@ -133,206 +125,250 @@ Partial Public Class DataLoggerReport
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 100.0!
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.imgCompanyLogo, Me.XrLabel9, Me.XrLabel1})
+        Me.TopMargin.HeightF = 151.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrTable1
+        '
+        Me.XrTable1.Font = New System.Drawing.Font("Trebuchet MS", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(23.54168!, 116.6667!)
+        Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(368.1252!, 25.0!)
+        Me.XrTable1.StylePriority.UseFont = False
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell2, Me.XrTableCell3})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param1]")})
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell1.Text = "XrTableCell1"
+        Me.XrTableCell1.TextTrimming = System.Drawing.StringTrimming.None
+        Me.XrTableCell1.Weight = 1.4062496902708377R
+        Me.XrTableCell1.WordWrap = False
+        '
+        'XrTableCell2
+        '
+        Me.XrTableCell2.Name = "XrTableCell2"
+        Me.XrTableCell2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell2.Text = "to"
+        Me.XrTableCell2.Weight = 0.19791605394054385R
+        Me.XrTableCell2.WordWrap = False
+        '
+        'XrTableCell3
+        '
+        Me.XrTableCell3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param2]")})
+        Me.XrTableCell3.Name = "XrTableCell3"
+        Me.XrTableCell3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell3.Text = "XrTableCell3"
+        Me.XrTableCell3.Weight = 2.0770855201152787R
+        Me.XrTableCell3.WordWrap = False
+        '
+        'imgCompanyLogo
+        '
+        Me.imgCompanyLogo.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageUrl", "[LogoBinary]"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Image", "[LogoBinary]")})
+        Me.imgCompanyLogo.Image = CType(resources.GetObject("imgCompanyLogo.Image"), System.Drawing.Image)
+        Me.imgCompanyLogo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopRight
+        Me.imgCompanyLogo.LocationFloat = New DevExpress.Utils.PointFloat(428.5417!, 20.09731!)
+        Me.imgCompanyLogo.Name = "imgCompanyLogo"
+        Me.imgCompanyLogo.SizeF = New System.Drawing.SizeF(284.375!, 103.6875!)
+        Me.imgCompanyLogo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VehicleDisplayName]")})
+        Me.XrLabel9.Font = New System.Drawing.Font("Trebuchet MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(23.54168!, 71.97224!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(368.1252!, 33.70847!)
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseForeColor = False
+        Me.XrLabel9.StylePriority.UsePadding = False
+        Me.XrLabel9.Text = "XrLabel9"
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.BorderWidth = 0!
+        Me.XrLabel1.Font = New System.Drawing.Font("Trebuchet MS", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(23.54164!, 20.0973!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(368.1252!, 51.87494!)
+        Me.XrLabel1.StyleName = "Title"
+        Me.XrLabel1.StylePriority.UseBorderWidth = False
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UsePadding = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "AS7502 Compliance Report"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 100.0!
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrPictureBox2})
+        Me.BottomMargin.HeightF = 108.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Trebuchet MS", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(29.79161!, 33.10699!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(154.1667!, 15.10729!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseForeColor = False
+        Me.XrLabel7.StylePriority.UsePadding = False
+        Me.XrLabel7.Text = "AS7502 Compliance Report"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[GeneratedDateTimeString]")})
+        Me.XrLabel6.Font = New System.Drawing.Font("Trebuchet MS", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(347.3099!, 33.10699!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(204.4347!, 15.10728!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseForeColor = False
+        Me.XrLabel6.StylePriority.UsePadding = False
+        Me.XrLabel6.Text = "Generated on "
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Trebuchet MS", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(266.328!, 33.10699!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(79.43475!, 15.10729!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseForeColor = False
+        Me.XrLabel5.StylePriority.UsePadding = False
+        Me.XrLabel5.Text = "Generated on "
+        '
+        'XrPictureBox2
+        '
+        Me.XrPictureBox2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageUrl", "[LogoBinary]"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Image", "[LogoBinary]")})
+        Me.XrPictureBox2.Image = CType(resources.GetObject("XrPictureBox2.Image"), System.Drawing.Image)
+        Me.XrPictureBox2.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopRight
+        Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(611.2795!, 22.94642!)
+        Me.XrPictureBox2.Name = "XrPictureBox2"
+        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(101.637!, 39.25605!)
+        Me.XrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
+        '
         'ReportHeaderBand1
         '
-        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel13, Me.XrPanel1, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrPictureBox1, Me.XrChart2, Me.XrChart1, Me.XrLabel1})
-        Me.ReportHeaderBand1.HeightF = 1213.375!
+        Me.ReportHeaderBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.XrShape2, Me.XrShape1, Me.XrLabel12, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrPictureBox1, Me.XrChart2, Me.XrChart1})
+        Me.ReportHeaderBand1.HeightF = 1218.271!
         Me.ReportHeaderBand1.Name = "ReportHeaderBand1"
-        '
-        'XrLabel14
-        '
-        Me.XrLabel14.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 338.3744!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(721.0002!, 23.00006!)
-        Me.XrLabel14.StylePriority.UseFont = False
-        Me.XrLabel14.StylePriority.UseTextAlignment = False
-        Me.XrLabel14.Text = "Time Distance Travelled"
-        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
-        'XrLabel13
-        '
-        Me.XrLabel13.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(6.00001!, 825.8746!)
-        Me.XrLabel13.Name = "XrLabel13"
-        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel13.SizeF = New System.Drawing.SizeF(576.2085!, 23.00006!)
-        Me.XrLabel13.StylePriority.UseFont = False
-        Me.XrLabel13.StylePriority.UseTextAlignment = False
-        Me.XrLabel13.Text = "Distance Travelled"
-        Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
-        'XrPanel1
-        '
-        Me.XrPanel1.BorderColor = System.Drawing.Color.Red
-        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrPanel1.BorderWidth = 2.0!
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel11, Me.XrShape2, Me.XrLabel10, Me.XrShape1})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(582.2085!, 392.5411!)
-        Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(140.7082!, 97.04221!)
-        Me.XrPanel1.StylePriority.UseBorderColor = False
-        Me.XrPanel1.StylePriority.UseBorders = False
-        Me.XrPanel1.StylePriority.UseBorderWidth = False
-        '
-        'XrLabel12
-        '
-        Me.XrLabel12.BorderWidth = 0!
-        Me.XrLabel12.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(34.7915!, 67.75039!)
-        Me.XrLabel12.Name = "XrLabel12"
-        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(100.0!, 23.00005!)
-        Me.XrLabel12.StylePriority.UseBorderWidth = False
-        Me.XrLabel12.StylePriority.UseFont = False
-        Me.XrLabel12.Text = "On or Forward"
         '
         'XrLabel11
         '
         Me.XrLabel11.BorderWidth = 0!
         Me.XrLabel11.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(34.7915!, 44.75031!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(494.9634!, 306.2854!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(100.0!, 23.00005!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(99.99997!, 16.7442!)
         Me.XrLabel11.StylePriority.UseBorderWidth = False
         Me.XrLabel11.StylePriority.UseFont = False
-        Me.XrLabel11.Text = "Off or Backward"
+        Me.XrLabel11.Text = "Off / Backward"
         '
         'XrShape2
         '
+        Me.XrShape2.Angle = 233
         Me.XrShape2.BorderWidth = 0!
         Me.XrShape2.FillColor = System.Drawing.Color.Green
         Me.XrShape2.LineWidth = 0
-        Me.XrShape2.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 71.33389!)
+        Me.XrShape2.LocationFloat = New DevExpress.Utils.PointFloat(607.7949!, 306.2854!)
         Me.XrShape2.Name = "XrShape2"
         Me.XrShape2.Shape = ShapeRectangle1
         Me.XrShape2.SizeF = New System.Drawing.SizeF(17.70831!, 15.70831!)
         Me.XrShape2.StylePriority.UseBorderWidth = False
         '
-        'XrLabel10
-        '
-        Me.XrLabel10.BorderWidth = 0!
-        Me.XrLabel10.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(7.708359!, 10.00004!)
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(122.9998!, 23.00011!)
-        Me.XrLabel10.StylePriority.UseBorderWidth = False
-        Me.XrLabel10.StylePriority.UseFont = False
-        Me.XrLabel10.Text = "Legend"
-        '
         'XrShape1
         '
+        Me.XrShape1.Angle = 232
         Me.XrShape1.BorderWidth = 0!
         Me.XrShape1.FillColor = System.Drawing.Color.Red
         Me.XrShape1.LineWidth = 0
-        Me.XrShape1.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 44.75031!)
+        Me.XrShape1.LocationFloat = New DevExpress.Utils.PointFloat(477.2552!, 307.3215!)
         Me.XrShape1.Name = "XrShape1"
         Me.XrShape1.Shape = ShapeRectangle2
         Me.XrShape1.SizeF = New System.Drawing.SizeF(17.70831!, 15.70831!)
         Me.XrShape1.StylePriority.UseBorderWidth = False
         '
-        'XrLabel9
+        'XrLabel12
         '
-        Me.XrLabel9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param4]")})
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(423.1249!, 69.58332!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(293.8751!, 15.00002!)
-        Me.XrLabel9.Text = "XrLabel9"
-        '
-        'XrLabel8
-        '
-        Me.XrLabel8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param3]")})
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(423.1249!, 43.12499!)
-        Me.XrLabel8.Name = "XrLabel8"
-        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(297.8752!, 15.0!)
-        Me.XrLabel8.Text = "XrLabel8"
-        '
-        'XrLabel7
-        '
-        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param2]")})
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(110.6667!, 69.58332!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(190.0833!, 14.99999!)
-        Me.XrLabel7.Text = "XrLabel7"
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Param1]")})
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(110.6667!, 43.12499!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(190.0833!, 15.0!)
-        Me.XrLabel6.Text = "XrLabel6"
-        '
-        'XrLabel5
-        '
-        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(300.75!, 43.12499!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(110.9166!, 15.0!)
-        Me.XrLabel5.StyleName = "Title"
-        Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.Text = "Company Name"
+        Me.XrLabel12.BorderWidth = 0!
+        Me.XrLabel12.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(625.5034!, 306.2854!)
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(87.41321!, 16.7442!)
+        Me.XrLabel12.StylePriority.UseBorderWidth = False
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.Text = "On / Forward"
         '
         'XrLabel4
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(300.75!, 69.58332!)
+        Me.XrLabel4.Font = New System.Drawing.Font("Trebuchet MS", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(23.54164!, 793.4948!)
         Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(110.9166!, 15.0!)
-        Me.XrLabel4.StyleName = "Title"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(353.9883!, 27.01202!)
         Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.Text = "Vehicle Name"
+        Me.XrLabel4.StylePriority.UseForeColor = False
+        Me.XrLabel4.StylePriority.UsePadding = False
+        Me.XrLabel4.Text = "Journey"
         '
         'XrLabel3
         '
-        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 69.58332!)
+        Me.XrLabel3.Font = New System.Drawing.Font("Trebuchet MS", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(24.08336!, 296.0176!)
         Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(94.25003!, 15.0!)
-        Me.XrLabel3.StyleName = "Title"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(353.9883!, 27.01202!)
         Me.XrLabel3.StylePriority.UseFont = False
-        Me.XrLabel3.Text = "End Date"
+        Me.XrLabel3.StylePriority.UseForeColor = False
+        Me.XrLabel3.StylePriority.UsePadding = False
+        Me.XrLabel3.Text = "Zagro Emaxi specific data "
         '
         'XrLabel2
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(5.999994!, 43.12499!)
+        Me.XrLabel2.Font = New System.Drawing.Font("Trebuchet MS", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(23.54167!, 10.00001!)
         Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(94.25003!, 15.0!)
-        Me.XrLabel2.StyleName = "Title"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(353.9883!, 27.01203!)
         Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.Text = "Start Date"
+        Me.XrLabel2.StylePriority.UseForeColor = False
+        Me.XrLabel2.StylePriority.UsePadding = False
+        Me.XrLabel2.Text = "Vehicle speed"
         '
         'XrPictureBox1
         '
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(31.00001!, 863.3746!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(24.08336!, 830.9235!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(664.7917!, 350.0001!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(702.9166!, 387.3474!)
         '
         'XrChart2
         '
@@ -343,8 +379,10 @@ Partial Public Class DataLoggerReport
         XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
         XyDiagram1.AxisY.Interlaced = True
         XyDiagram1.AxisY.Logarithmic = True
+        XyDiagram1.AxisY.Tickmarks.MinorVisible = False
         XyDiagram1.AxisY.Title.Text = "Speed"
         XyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram1.AxisY.Visibility = DevExpress.Utils.DefaultBoolean.[False]
         XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
         XyDiagram1.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.[False]
         XyDiagram1.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.[False]
@@ -353,42 +391,23 @@ Partial Public Class DataLoggerReport
         Me.XrChart2.Diagram = XyDiagram1
         Me.XrChart2.Legend.Name = "Default Legend"
         Me.XrChart2.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XrChart2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 100.1661!)
+        Me.XrChart2.LocationFloat = New DevExpress.Utils.PointFloat(23.54167!, 37.01204!)
         Me.XrChart2.Name = "XrChart2"
         Me.XrChart2.SeriesDataMember = "LineValues.Description"
         Me.XrChart2.SeriesSerializable = New DevExpress.XtraCharts.Series(-1) {}
         Me.XrChart2.SeriesTemplate.ArgumentDataMember = "LineValues.SpeedDateTime"
+        PointSeriesLabel1.Border.Visibility = DevExpress.Utils.DefaultBoolean.[False]
         PointSeriesLabel1.LineLength = 1
+        PointSeriesLabel1.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        PointSeriesLabel1.Position = DevExpress.XtraCharts.PointLabelPosition.Center
         PointSeriesLabel1.TextPattern = "{V:n1}"
         Me.XrChart2.SeriesTemplate.Label = PointSeriesLabel1
-        Me.XrChart2.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Me.XrChart2.SeriesTemplate.SeriesDataMember = "LineValues.Description"
         Me.XrChart2.SeriesTemplate.ValueDataMembersSerializable = "LineValues.Value"
         SplineSeriesView1.ColorEach = True
         SplineSeriesView1.LineTensionPercent = 100
         Me.XrChart2.SeriesTemplate.View = SplineSeriesView1
-        Me.XrChart2.SizeF = New System.Drawing.SizeF(721.0002!, 238.2083!)
-        '
-        'ObjectDataSource2
-        '
-        Me.ObjectDataSource2.DataMember = "GetSpeedDataLoggerReport"
-        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource2.Name = "ObjectDataSource2"
-        Parameter1.Name = "deviceID"
-        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
-        Parameter2.Name = "startDate"
-        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
-        Parameter3.Name = "startTime"
-        Parameter3.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter3.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
-        Parameter4.Name = "endDate"
-        Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
-        Parameter5.Name = "endTime"
-        Parameter5.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
-        Me.ObjectDataSource2.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2, Parameter3, Parameter4, Parameter5})
+        Me.XrChart2.SizeF = New System.Drawing.SizeF(689.3749!, 238.2083!)
         '
         'XrChart1
         '
@@ -412,7 +431,7 @@ Partial Public Class DataLoggerReport
         Me.XrChart1.Legend.Name = "Default Legend"
         Me.XrChart1.Legend.Title.Visible = True
         Me.XrChart1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XrChart1.LocationFloat = New DevExpress.Utils.PointFloat(3.916677!, 380.0411!)
+        Me.XrChart1.LocationFloat = New DevExpress.Utils.PointFloat(24.08336!, 334.3034!)
         Me.XrChart1.Name = "XrChart1"
         Me.XrChart1.PaletteRepository.Add("Palette 1", New DevExpress.XtraCharts.Palette("Palette 1", DevExpress.XtraCharts.PaletteScaleMode.Repeat, New DevExpress.XtraCharts.PaletteEntry() {New DevExpress.XtraCharts.PaletteEntry(System.Drawing.Color.Red, System.Drawing.Color.Red), New DevExpress.XtraCharts.PaletteEntry(System.Drawing.Color.Green, System.Drawing.Color.Green)}))
         Me.XrChart1.SeriesDataMember = "LineValues.Direction"
@@ -421,28 +440,17 @@ Partial Public Class DataLoggerReport
         Me.XrChart1.SeriesTemplate.ColorDataMember = "LineValues.Direction"
         KeyColorColorizer1.PaletteName = "Palette 1"
         Me.XrChart1.SeriesTemplate.Colorizer = KeyColorColorizer1
+        Me.XrChart1.SeriesTemplate.SeriesDataMember = "LineValues.Direction"
         Me.XrChart1.SeriesTemplate.SeriesPointsSortingKey = DevExpress.XtraCharts.SeriesPointKey.Value_1
         Me.XrChart1.SeriesTemplate.ValueDataMembersSerializable = "LineValues.Value"
         Me.XrChart1.SeriesTemplate.View = StackedBarSeriesView1
-        Me.XrChart1.SizeF = New System.Drawing.SizeF(578.2918!, 445.8335!)
-        '
-        'XrLabel1
-        '
-        Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(6.00001!, 6.00001!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(715.0002!, 26.0!)
-        Me.XrLabel1.StyleName = "Title"
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "Data Logger Report"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrChart1.SizeF = New System.Drawing.SizeF(689.3749!, 445.8335!)
         '
         'DetailReportBand1
         '
         Me.DetailReportBand1.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeaderBand1, Me.DetailBand1, Me.DetailReport, Me.DetailReport1, Me.DetailReport2})
         Me.DetailReportBand1.DataSource = Me.ObjectDataSource5
+        Me.DetailReportBand1.Expanded = False
         Me.DetailReportBand1.Level = 0
         Me.DetailReportBand1.Name = "DetailReportBand1"
         '
@@ -493,34 +501,6 @@ Partial Public Class DataLoggerReport
         '
         Me.Detail3.HeightF = 0!
         Me.Detail3.Name = "Detail3"
-        '
-        'ObjectDataSource5
-        '
-        Me.ObjectDataSource5.DataMember = "GetZoomValues"
-        Me.ObjectDataSource5.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource5.Name = "ObjectDataSource5"
-        '
-        'ObjectDataSource1
-        '
-        Me.ObjectDataSource1.DataMember = "GetDataLoggerReport"
-        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
-        Me.ObjectDataSource1.Name = "ObjectDataSource1"
-        Parameter6.Name = "deviceID"
-        Parameter6.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
-        Parameter7.Name = "startDate"
-        Parameter7.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter7.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
-        Parameter8.Name = "startTime"
-        Parameter8.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
-        Parameter9.Name = "endDate"
-        Parameter9.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter9.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
-        Parameter10.Name = "endTime"
-        Parameter10.Type = GetType(DevExpress.DataAccess.Expression)
-        Parameter10.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
-        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter6, Parameter7, Parameter8, Parameter9, Parameter10})
         '
         'Title
         '
@@ -604,11 +584,11 @@ Partial Public Class DataLoggerReport
         '
         'DeviceID
         '
-        Me.DeviceID.Description = "Device ID"
+        Me.DeviceID.Description = "Vehicle"
         DynamicListLookUpSettings1.DataAdapter = Nothing
         DynamicListLookUpSettings1.DataMember = Nothing
         DynamicListLookUpSettings1.DataSource = Me.ObjectDataSource4
-        DynamicListLookUpSettings1.DisplayMember = "DeviceValue"
+        DynamicListLookUpSettings1.DisplayMember = "VehicleName"
         DynamicListLookUpSettings1.ValueMember = "DeviceValue"
         Me.DeviceID.LookUpSettings = DynamicListLookUpSettings1
         Me.DeviceID.Name = "DeviceID"
@@ -666,28 +646,92 @@ Partial Public Class DataLoggerReport
         Me.ZoomValue.Name = "ZoomValue"
         Me.ZoomValue.ValueInfo = "10"
         '
+        'ObjectDataSource2
+        '
+        Me.ObjectDataSource2.DataMember = "GetSpeedDataLoggerReport"
+        Me.ObjectDataSource2.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource2.Name = "ObjectDataSource2"
+        Parameter1.Name = "deviceID"
+        Parameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter1.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
+        Parameter2.Name = "startDate"
+        Parameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter2.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
+        Parameter3.Name = "startTime"
+        Parameter3.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter3.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
+        Parameter4.Name = "endDate"
+        Parameter4.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter4.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
+        Parameter5.Name = "endTime"
+        Parameter5.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter5.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
+        Me.ObjectDataSource2.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter1, Parameter2, Parameter3, Parameter4, Parameter5})
+        '
+        'ObjectDataSource3
+        '
+        Me.ObjectDataSource3.DataMember = "GetChartTimeList"
+        Me.ObjectDataSource3.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource3.Name = "ObjectDataSource3"
+        '
+        'ObjectDataSource4
+        '
+        Me.ObjectDataSource4.DataMember = "GetDevicesByApplication"
+        Me.ObjectDataSource4.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource4.Name = "ObjectDataSource4"
+        '
+        'ObjectDataSource5
+        '
+        Me.ObjectDataSource5.DataMember = "GetZoomValues"
+        Me.ObjectDataSource5.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource5.Name = "ObjectDataSource5"
+        '
+        'ObjectDataSource1
+        '
+        Me.ObjectDataSource1.DataMember = "GetDataLoggerReport"
+        Me.ObjectDataSource1.DataSource = GetType(FMS.ReportLogic.ReportDataHandler)
+        Me.ObjectDataSource1.Name = "ObjectDataSource1"
+        Parameter6.Name = "deviceID"
+        Parameter6.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter6.Value = New DevExpress.DataAccess.Expression("[Parameters.DeviceID]", GetType(String))
+        Parameter7.Name = "startDate"
+        Parameter7.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter7.Value = New DevExpress.DataAccess.Expression("[Parameters.StartDate]", GetType(Date))
+        Parameter8.Name = "startTime"
+        Parameter8.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter8.Value = New DevExpress.DataAccess.Expression("[Parameters.StartTime]", GetType(String))
+        Parameter9.Name = "endDate"
+        Parameter9.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter9.Value = New DevExpress.DataAccess.Expression("[Parameters.EndDate]", GetType(Date))
+        Parameter10.Name = "endTime"
+        Parameter10.Type = GetType(DevExpress.DataAccess.Expression)
+        Parameter10.Value = New DevExpress.DataAccess.Expression("[Parameters.EndTime]", GetType(String))
+        Me.ObjectDataSource1.Parameters.AddRange(New DevExpress.DataAccess.ObjectBinding.Parameter() {Parameter6, Parameter7, Parameter8, Parameter9, Parameter10})
+        '
         'DataLoggerReport
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeaderBand1, Me.DetailReportBand1})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1, Me.ObjectDataSource2, Me.ObjectDataSource3, Me.ObjectDataSource4, Me.ObjectDataSource5})
         Me.DataSource = Me.ObjectDataSource1
+        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 151, 108)
         Me.PageHeight = 1500
         Me.PageWidth = 927
         Me.PaperKind = System.Drawing.Printing.PaperKind.LegalExtra
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DeviceID, Me.StartDate, Me.StartTime, Me.EndDate, Me.EndTime, Me.Marker, Me.ZoomValue})
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption1, Me.DetailData1, Me.DetailCaption3, Me.DetailData3, Me.DetailData3_Odd, Me.DetailCaptionBackground3, Me.PageInfo})
-        Me.Version = "17.2"
-        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Version = "18.1"
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(PointSeriesLabel1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(SplineSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrChart2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(SecondaryAxisX1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrChart1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ObjectDataSource4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
@@ -727,23 +771,25 @@ Partial Public Class DataLoggerReport
     Friend WithEvents ObjectDataSource4 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents EndTime As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents EndDate As DevExpress.XtraReports.Parameters.Parameter
-    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
-    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrShape2 As DevExpress.XtraReports.UI.XRShape
     Friend WithEvents XrShape1 As DevExpress.XtraReports.UI.XRShape
-    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ObjectDataSource5 As DevExpress.DataAccess.ObjectBinding.ObjectDataSource
     Friend WithEvents Marker As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents ZoomValue As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents imgCompanyLogo As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPictureBox2 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
 End Class

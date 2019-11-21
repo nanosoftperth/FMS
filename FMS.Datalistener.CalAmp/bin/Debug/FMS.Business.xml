@@ -83,6 +83,13 @@ FMS.Business
  </summary>
  <remarks></remarks>
 </member>
+<member name="M:FMS.Business.DataObjects.Application.ResetALLFeatureAccess(System.String)">
+ <summary>
+ for a specific application (from the name), deletes all
+ the group accosiactions with features and then associates the general and admin 
+ groups with ALL features. wrapper for usp_newApplicationAdminAndGroupFeatureSettings stored procedure.
+ </summary>
+</member>
 <member name="P:FMS.Business.DataObjects.ApplicationBooking.DateCreated">
  <summary>
  This will be set to 01/jan/2970 if there is a NULL in the database for 
@@ -173,24 +180,41 @@ FMS.Business
  for serialisation only
  </summary>
 </member>
+<member name="P:FMS.Business.DataObjects.CanValue.longVal">
+ <summary>
+ the integer value taken from the hex value (i.e. 00010 = 2 = "parking brake on")
+ </summary>
+</member>
 <member name="F:FMS.Business.DataObjects.CanDataPoint.TAG_STRING_FORMAT">
  <summary>
  Format = CAN_DeviceID_CanStandard_PGN (eg: CAN_demo01_Zagro125_255)
  </summary>
  <remarks></remarks>
 </member>
-<member name="M:FMS.Business.DataObjects.CanDataPoint.ConvertDecToBinPos(System.Decimal)">
- <summary>
- Takes a number such as 4.5 and does the following:
- (4 * 8) + 4 = 36
- 4 * 8 (bits in a byte) + ( (5 -1))
- </summary>            
-</member>
 <member name="M:FMS.Business.DataObjects.CanDataPoint.GetLast100Values(System.String,System.String)">
  <summary>
  Required for binding of a devexpress control to show the last 100 values of a standard/spn
  </summary>
  <param name="Standard_SPN">bar seperated values showing the {Standard}|{SPN} </param>
+</member>
+<member name="M:FMS.Business.DataObjects.CanDataPoint.GetPointWithDataStr(System.Int32,System.String,System.String,System.String,System.String)">
+ <summary>
+ UTC string to be send instead of date, weird behaviour when getting API requests from Grafana into IIS
+ randomly the endDate value was losing its value and resetting to null, unsure why. HACK
+ </summary>
+ <param name="SPN"></param>
+ <param name="vehicleid"></param>
+ <param name="standard"></param>
+ <param name="startDate"></param>
+ <param name="endDate"></param>
+ <returns></returns>
+</member>
+<member name="M:FMS.Business.DataObjects.CanDataPoint.CanValueList.ConvertDecToBinPos(System.Decimal)">
+ <summary>
+ Takes a number such as 4.5 and does the following:
+ (4 * 8) + 4 = 36
+ 4 * 8 (bits in a byte) + ( (5 -1))
+ </summary>            
 </member>
 <member name="M:FMS.Business.DataObjects.Device.#ctor">
  <summary>

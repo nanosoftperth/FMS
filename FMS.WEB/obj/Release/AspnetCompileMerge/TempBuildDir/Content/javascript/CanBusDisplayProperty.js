@@ -16,7 +16,7 @@ if (!String.prototype.format) {
     };
 }
 
-var uri = '/api/vehicle/GetFormattedCanMessageSnapshot?_deviceid={0}&_standard={1}&_spn={2}'
+var uri = '/api/vehicle/GetFormattedCanMessageSnapshot?_deviceid={0}&_standard={1}&_spn={2}';
 
 function loopGetVals() {
 

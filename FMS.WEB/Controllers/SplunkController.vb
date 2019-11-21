@@ -373,49 +373,49 @@ Public Class SplunkController
 
         Dim retobj As New List(Of DashboardController.queryReturnType)
 
-        For Each x As DashboardController.cust_target In lok.targets
+        'For Each x As DashboardController.cust_target In lok.targets
 
-            Dim qrt = New DashboardController.queryReturnType With {.target = x.target}
+        '    Dim qrt = New DashboardController.queryReturnType With {.target = x.target}
 
-            'new_cache_obj.Add(String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, x.Name))
-            Dim strs() As String = x.target.Split(">")
-            Dim vehicleName As String = strs(0)
-            Dim standard As String = strs(1)
-            Dim spn As Integer = CInt(strs(2))
-            Dim spnNAme As String = strs(3)
+        '    'new_cache_obj.Add(String.Format("{0}>{1}>{2}>{3}", av.Name, x.Standard, x.SPN, x.Name))
+        '    Dim strs() As String = x.target.Split(">")
+        '    Dim vehicleName As String = strs(0)
+        '    Dim standard As String = strs(1)
+        '    Dim spn As Integer = CInt(strs(2))
+        '    Dim spnNAme As String = strs(3)
 
-            Dim canDataPoint = Business.DataObjects.CanDataPoint.GetPointWithData(spn, vehicleName, standard, startTime, endTime)
+        '    Dim canDataPoint = Business.DataObjects.CanDataPoint.GetPointWithData(spn, vehicleName, standard, startTime, endTime)
 
-            Dim cnt As Integer = canDataPoint.CanValues.Count
+        '    Dim cnt As Integer = canDataPoint.CanValues.Count
 
-            Dim dataPoints As Long(,) = New Long(cnt - 1, 1) {}
+        '    Dim dataPoints As Long(,) = New Long(cnt - 1, 1) {}
 
-            Dim i As Integer = 0
+        '    Dim i As Integer = 0
 
-            For Each cv In canDataPoint.CanValues
+        '    For Each cv In canDataPoint.CanValues
 
-                Try
-                    'Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds
+        '        Try
+        '            'Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds
 
-                    Dim unixTimestamp = CLng(cv.Time.AddHours(-8).Subtract(CDate("01/jan/1970")).TotalSeconds) * 1000
-                    Dim val As Long = cv.Value
+        '            Dim unixTimestamp = CLng(cv.Time.AddHours(-8).Subtract(CDate("01/jan/1970")).TotalSeconds) * 1000
+        '            Dim val As Long = cv.Value
 
-                    If cv.Time >= startTime AndAlso cv.Time <= endTime Then
-                        dataPoints(i, 0) = val
-                        dataPoints(i, 1) = unixTimestamp
-                    End If
+        '            If cv.Time >= startTime AndAlso cv.Time <= endTime Then
+        '                dataPoints(i, 0) = val
+        '                dataPoints(i, 1) = unixTimestamp
+        '            End If
 
-                    i += 1
+        '            i += 1
 
-                Catch ex As Exception
+        '        Catch ex As Exception
 
-                End Try
-            Next
+        '        End Try
+        '    Next
 
-            qrt.datapoints = dataPoints
+        '    qrt.datapoints = dataPoints
 
-            retobj.Add(qrt)
-        Next
+        '    retobj.Add(qrt)
+        'Next
 
 
         Return retobj
