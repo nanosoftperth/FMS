@@ -120,7 +120,7 @@ Public Class Test
 
     Protected Sub odsUsers_Inserting(sender As Object, e As ObjectDataSourceMethodEventArgs)
         'BY RYAN
-        'Dim agp = Membership.GeneratePassword(9, 0)
+        Dim agp = Membership.GeneratePassword(9, 0)
         'TODO: email must be unique per application and not empty
         Dim x = CType(e.InputParameters(0), FMS.Business.DataObjects.User)
 
@@ -140,7 +140,7 @@ Public Class Test
         'x.UserId = user.ProviderUserKey
         'send an email with agp
         If x.SendEmailtoUserWithDefPass Then
-            'BackgroundCalculations.EmailHelper.SendEmailUserCreated(x.Email, ThisSession.ApplicationName, x.UserName, agp)
+            BackgroundCalculations.EmailHelper.SendEmailUserCreated(x.Email, ThisSession.ApplicationName, x.UserName, agp)
             dgvUsers.JSProperties("cpHasInserted") = x.Email
 
         End If

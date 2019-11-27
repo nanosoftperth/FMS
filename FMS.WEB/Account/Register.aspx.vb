@@ -4,6 +4,12 @@ Public Class Register
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        ' if the application does not allow for self-registration, then redirect to a page stating this.
+        Dim allowedToSelfRegister = FMS.Business.DataObjects.Setting.GetAllowSelfRegistration(FMS.Business.ThisSession.ApplicationName)
+
+        Me.RedirectAsNoAccess(String.Format("{0} does not allow self-registration, please contact an administrator to create a user account." _
+                                                                                                            , FMS.Business.ThisSession.ApplicationName))
+
     End Sub
 
     Private Shared synclock_FMSDataContextNew As New Object

@@ -48,6 +48,18 @@ Namespace DataObjects
 
         End Sub
 
+
+        ''' <summary>
+        ''' Anti-pattern, sould not be used. This has been added as to avoid future confusion.
+        ''' All settings are shoes without values when the application is first created (on the website)
+        '''only the update function should be used to edit any of the default blank values. 
+        ''' </summary>
+        Public Shared Function Insert(x As FMS.Business.DataObjects.Setting)
+
+            Throw New NotImplementedException("you cannot ""insert"" a new setting this way, it needs to be added to the setting table first so it can then be edited via the website.")
+
+        End Function
+
         Public Shared Sub Update(x As FMS.Business.DataObjects.Setting)
 
             'check if the object already exists in the database, 
@@ -158,13 +170,27 @@ Namespace DataObjects
 
         Public Shared Function GetSettingsForApplication(applicationName As String, Optional returnLogoObj As Boolean = True) As List(Of Setting)
 
-            Dim uspr As List(Of DataObjects.Setting) = _
+            Dim uspr As List(Of DataObjects.Setting) =
                        (From i In SingletonAccess.FMSDataContextNew.usp_GetSettingsForApplication(applicationName)
                         Select New FMS.Business.DataObjects.Setting(i)).ToList
 
             If Not returnLogoObj Then uspr = (From s In uspr Where s.Name <> "Logo").ToList
 
             Return uspr
+
+        End Function
+
+        ''' <summary>
+        ''' Specific function to return the value of the "allowselfregistration" application setting
+        ''' the default is always True, an admin has to explicitly switch it off using the application settings
+        ''' after the application has been initially setup / configured
+        ''' </summary>
+        Public Shared Function GetAllowSelfRegistration(applicationName As String) As Boolean
+
+            Dim val = (From i In SingletonAccess.FMSDataContextNew.usp_GetSettingsForApplication(applicationName)
+                       Where i.Name.ToLower = "allowselfregistration").SingleOrDefault
+
+            Return IIf(val Is Nothing, True, CBool(val.Value))
 
         End Function
 

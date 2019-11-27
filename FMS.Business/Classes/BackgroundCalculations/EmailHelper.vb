@@ -50,10 +50,12 @@ Namespace BackgroundCalculations
         "The link will expire after 24 hours."
 
         Public Const EmailContentForNewUser As String =
-        "Alert from {0}.nanosoft.com.au, " & vbNewLine & vbNewLine &
-        "Your account has been successfully created. " & vbNewLine &
+        "{0}.nanosoft.com.au - you have a new account! " & vbNewLine & vbNewLine &
+        "Your account has been successfully created with an auto-generated password. " & vbNewLine &
         "Username :  {1}" & vbNewLine &
-        "Password :  {2}"
+        "Password :  {2}" & vbNewLine & vbNewLine &
+        "It is recommended that you change this password on first login." & vbNewLine & vbNewLine &
+        "Nanosoft FMS team"
 
         Public Const CanbusAlertEmailContent As String =
         "Dear {0}, " & vbNewLine & vbNewLine &
@@ -156,7 +158,7 @@ Namespace BackgroundCalculations
         Public Shared Function SendEmailUserCreated(emailList As String, companyName As String, username As String, password As String) As String
             Dim messageBody As String = String.Empty
             Try
-                Dim subject As String = String.Format("New user alert from {0}.nanosoft.com.au", companyName)
+                Dim subject As String = String.Format("An acocunt has been crated for you at {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(EmailContentForNewUser, companyName, username, password)
                 sendEmail(emailList, subject, messageBody)
             Catch ex As Exception

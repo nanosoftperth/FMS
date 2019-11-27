@@ -17,7 +17,8 @@ Module ExtentionModule
     'End Function
 
     <Extension()>
-    Public Function UserAuthorisationCheck(thisPage As System.Web.UI.Page, fml As FeatureListAccess) As Boolean
+    Public Function UserAuthorisationCheck(thisPage As System.Web.UI.Page,
+                                           fml As FeatureListAccess) As Boolean
 
         If Membership.GetUser Is Nothing Then
             FormsAuthentication.RedirectToLoginPage()
@@ -34,7 +35,13 @@ Module ExtentionModule
 
     End Function
 
+    <Extension()>
+    Public Sub RedirectAsNoAccess(thisPage As System.Web.UI.Page, Optional additionalMessage As String = "")
 
+        'redirect to the "no access" page with the message as to why
+        thisPage.Response.Redirect("~/NoAccessPage.aspx?additionalMessage=" & additionalMessage, False)
+
+    End Sub
 
     <Extension()>
     Public Function timezoneToPerth(ByVal d As Date?) As Date
