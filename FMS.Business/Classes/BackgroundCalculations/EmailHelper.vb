@@ -158,7 +158,7 @@ Namespace BackgroundCalculations
         Public Shared Function SendEmailUserCreated(emailList As String, companyName As String, username As String, password As String) As String
             Dim messageBody As String = String.Empty
             Try
-                Dim subject As String = String.Format("An acocunt has been crated for you at {0}.nanosoft.com.au", companyName)
+                Dim subject As String = String.Format("An account has been created for you at {0}.nanosoft.com.au", companyName)
                 messageBody = String.Format(EmailContentForNewUser, companyName, username, password)
                 sendEmail(emailList, subject, messageBody)
             Catch ex As Exception

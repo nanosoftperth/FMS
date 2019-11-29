@@ -278,7 +278,7 @@
                                     <Settings ShowGroupPanel="True" />
                                     <ClientSideEvents EndCallback="function(s,e){
                                             if (s.cpHasInserted) {
-                                                alert('A mail has been sent to ' + s.cpHasInserted + ' with the default password.');
+                                                alert('An email has been sent to ' + s.cpHasInserted + ' with an auto-generated password.');
                                                 delete s.cpHasInserted;
 
                                             }

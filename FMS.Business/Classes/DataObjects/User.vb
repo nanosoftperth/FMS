@@ -17,6 +17,7 @@ Namespace DataObjects
         Public Property SendEmailtoUserWithDefPass As Boolean 
         Public Property RoleName As String
 
+        Public Property Preferences As List(Of DataObjects.UserPreference)
 
         ''' <summary>
         ''' If this has a null value in the DB backend, then this will return an empty GUID
@@ -55,6 +56,9 @@ Namespace DataObjects
                 Dim r As aspnet_UsersInRole = u.aspnet_UsersInRoles.FirstOrDefault
 
                 If r IsNot Nothing Then Me.RoleID = r.RoleId
+
+                Me.Preferences = DataObjects.UserPreference.GetForUser(.UserId)
+
             End With
 
         End Sub

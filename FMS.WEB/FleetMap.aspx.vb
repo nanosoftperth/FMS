@@ -57,8 +57,16 @@ Public Class FleetMap
 
         Dim defaultBusinessLocation As DataObjects.ApplicationLocation = DataObjects.ApplicationLocation.GetFromID(appLocationID)
 
+        ' grab the business latitude and longitude and push this data client side so the map can open over these coordinates
         settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = "Business_Lattitude", .Value = defaultBusinessLocation.Lattitude})
         settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = "Business_Longitude", .Value = defaultBusinessLocation.Longitude})
+        settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = "UserID", .Value = ThisSession.UserID.ToString()})
+
+        For Each up In FMS.Business.DataObjects.UserPreference.GetForUser(ThisSession.UserID)
+
+            Dim settingName As String = String.Format("UserPreference_{0}", up.Name)
+            settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = settingName, .Value = up.Value})
+        Next
 
         settingstoSendtoCLient.AddRange(GetVINNumberSettings)
 

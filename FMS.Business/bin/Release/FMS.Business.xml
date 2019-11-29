@@ -280,6 +280,13 @@ FMS.Business
  </summary>
  <remarks></remarks>
 </member>
+<member name="T:FMS.Business.DataObjects.UserPreference">
+ <summary>
+ There is another table in SQL which details the 
+ different possible preferences. To add a new preference, this needs to be added manually using SQLMS
+ values taken from a stored procedure 
+ </summary>
+</member>
 <member name="M:FMS.Business.DataObjects.WorkRequest.#ctor">
  <summary>
  for serialization purposes only
@@ -298,6 +305,20 @@ FMS.Business
  for serialisation only
  </summary>
  <remarks></remarks>
+</member>
+<member name="M:FMS.Business.DataObjects.Setting.Insert(FMS.Business.DataObjects.Setting)">
+ <summary>
+ Anti-pattern, sould not be used. This has been added as to avoid future confusion.
+ All settings are shoes without values when the application is first created (on the website)
+only the update function should be used to edit any of the default blank values. 
+ </summary>
+</member>
+<member name="M:FMS.Business.DataObjects.Setting.GetAllowSelfRegistration(System.String)">
+ <summary>
+ Specific function to return the value of the "allowselfregistration" application setting
+ the default is always True, an admin has to explicitly switch it off using the application settings
+ after the application has been initially setup / configured
+ </summary>
 </member>
 <member name="P:FMS.Business.DataObjects.User.ApplicationLocationID">
  <summary>

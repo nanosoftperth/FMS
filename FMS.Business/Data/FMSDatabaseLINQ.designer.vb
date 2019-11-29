@@ -637,6 +637,12 @@ Partial Public Class LINQtoSQLClassesDataContext
     End Sub
   Partial Private Sub DeleteCUST(instance As CUST)
     End Sub
+  Partial Private Sub InsertUserPreference(instance As UserPreference)
+    End Sub
+  Partial Private Sub UpdateUserPreference(instance As UserPreference)
+    End Sub
+  Partial Private Sub DeleteUserPreference(instance As UserPreference)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -1324,6 +1330,18 @@ Partial Public Class LINQtoSQLClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property Preferences() As System.Data.Linq.Table(Of Preference)
+		Get
+			Return Me.GetTable(Of Preference)
+		End Get
+	End Property
+	
+	Public ReadOnly Property UserPreferences() As System.Data.Linq.Table(Of UserPreference)
+		Get
+			Return Me.GetTable(Of UserPreference)
+		End Get
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.aspnet_Membership_CreateUser")>  _
 	Public Function aspnet_Membership_CreateUser(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="ApplicationName", DbType:="NVarChar(256)")> ByVal applicationName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserName", DbType:="NVarChar(256)")> ByVal userName As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Password", DbType:="NVarChar(128)")> ByVal password As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordSalt", DbType:="NVarChar(128)")> ByVal passwordSalt As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Email", DbType:="NVarChar(256)")> ByVal email As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordQuestion", DbType:="NVarChar(256)")> ByVal passwordQuestion As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordAnswer", DbType:="NVarChar(128)")> ByVal passwordAnswer As String, <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="IsApproved", DbType:="Bit")> ByVal isApproved As System.Nullable(Of Boolean), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CurrentTimeUtc", DbType:="DateTime")> ByVal currentTimeUtc As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="CreateDate", DbType:="DateTime")> ByVal createDate As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UniqueEmail", DbType:="Int")> ByVal uniqueEmail As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PasswordFormat", DbType:="Int")> ByVal passwordFormat As System.Nullable(Of Integer), <Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="UserId", DbType:="UniqueIdentifier")> ByRef userId As System.Nullable(Of System.Guid)) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), applicationName, userName, password, passwordSalt, email, passwordQuestion, passwordAnswer, isApproved, currentTimeUtc, createDate, uniqueEmail, passwordFormat, userId)
@@ -1761,6 +1779,12 @@ Partial Public Class LINQtoSQLClassesDataContext
 	Public Function usp_newApplicationAdminAndGroupFeatureSettings(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="APP_NAME", DbType:="VarChar(100)")> ByVal aPP_NAME As String) As Integer
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), aPP_NAME)
 		Return CType(result.ReturnValue,Integer)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_GetUserPreferences")>  _
+	Public Function usp_GetUserPreferences(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="UniqueIdentifier")> ByVal userID As System.Nullable(Of System.Guid)) As ISingleResult(Of usp_GetUserPreferencesResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), userID)
+		Return CType(result.ReturnValue,ISingleResult(Of usp_GetUserPreferencesResult))
 	End Function
 End Class
 
@@ -3345,7 +3369,7 @@ Partial Public Class ApplicationDriver
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_photoBinary", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property photoBinary() As System.Data.Linq.Binary
 		Get
 			Return Me._photoBinary
@@ -4989,7 +5013,7 @@ Partial Public Class ApplicationImage
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Img", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property Img() As System.Data.Linq.Binary
 		Get
 			Return Me._Img
@@ -5378,7 +5402,7 @@ Partial Public Class ApplicationSettingValue
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true, UpdateCheck:=UpdateCheck.Never)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -27711,6 +27735,215 @@ Partial Public Class CUST
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Preference")>  _
+Partial Public Class Preference
+	
+	Private _PreferenceID As System.Guid
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _ValueType As String
+	
+	Private _DefaultValue As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreferenceID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property PreferenceID() As System.Guid
+		Get
+			Return Me._PreferenceID
+		End Get
+		Set
+			If ((Me._PreferenceID = value)  _
+						= false) Then
+				Me._PreferenceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NChar(500)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me._Description = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueType", DbType:="NVarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property ValueType() As String
+		Get
+			Return Me._ValueType
+		End Get
+		Set
+			If (String.Equals(Me._ValueType, value) = false) Then
+				Me._ValueType = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DefaultValue", DbType:="NVarChar(500) NOT NULL", CanBeNull:=false)>  _
+	Public Property DefaultValue() As String
+		Get
+			Return Me._DefaultValue
+		End Get
+		Set
+			If (String.Equals(Me._DefaultValue, value) = false) Then
+				Me._DefaultValue = value
+			End If
+		End Set
+	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.UserPreference")>  _
+Partial Public Class UserPreference
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _UserPreferenceID As System.Guid
+	
+	Private _UserID As System.Guid
+	
+	Private _PreferenceID As System.Guid
+	
+	Private _Value As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnUserPreferenceIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnUserPreferenceIDChanged()
+    End Sub
+    Partial Private Sub OnUserIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnUserIDChanged()
+    End Sub
+    Partial Private Sub OnPreferenceIDChanging(value As System.Guid)
+    End Sub
+    Partial Private Sub OnPreferenceIDChanged()
+    End Sub
+    Partial Private Sub OnValueChanging(value As String)
+    End Sub
+    Partial Private Sub OnValueChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserPreferenceID", DbType:="UniqueIdentifier NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property UserPreferenceID() As System.Guid
+		Get
+			Return Me._UserPreferenceID
+		End Get
+		Set
+			If ((Me._UserPreferenceID = value)  _
+						= false) Then
+				Me.OnUserPreferenceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._UserPreferenceID = value
+				Me.SendPropertyChanged("UserPreferenceID")
+				Me.OnUserPreferenceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property UserID() As System.Guid
+		Get
+			Return Me._UserID
+		End Get
+		Set
+			If ((Me._UserID = value)  _
+						= false) Then
+				Me.OnUserIDChanging(value)
+				Me.SendPropertyChanging
+				Me._UserID = value
+				Me.SendPropertyChanged("UserID")
+				Me.OnUserIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreferenceID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property PreferenceID() As System.Guid
+		Get
+			Return Me._PreferenceID
+		End Get
+		Set
+			If ((Me._PreferenceID = value)  _
+						= false) Then
+				Me.OnPreferenceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._PreferenceID = value
+				Me.SendPropertyChanged("PreferenceID")
+				Me.OnPreferenceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Value", DbType:="NChar(500) NOT NULL", CanBeNull:=false)>  _
+	Public Property Value() As String
+		Get
+			Return Me._Value
+		End Get
+		Set
+			If (String.Equals(Me._Value, value) = false) Then
+				Me.OnValueChanging(value)
+				Me.SendPropertyChanging
+				Me._Value = value
+				Me.SendPropertyChanged("Value")
+				Me.OnValueChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 Partial Public Class aspnet_Roles_GetAllRolesResult
 	
 	Private _RoleName As String
@@ -28002,7 +28235,7 @@ Partial Public Class usp_GetSettingsForApplicationResult
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ValueObj", DbType:="VarBinary(MAX)", CanBeNull:=true)>  _
 	Public Property ValueObj() As System.Data.Linq.Binary
 		Get
 			Return Me._ValueObj
@@ -38789,6 +39022,98 @@ Partial Public Class usp_GetRateIncreaseCuaReportResult
 		Set
 			If (String.Equals(Me._ServiceDescription, value) = false) Then
 				Me._ServiceDescription = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class usp_GetUserPreferencesResult
+	
+	Private _UserID As System.Nullable(Of System.Guid)
+	
+	Private _PreferenceID As System.Guid
+	
+	Private _UserPreferenceID As System.Nullable(Of System.Guid)
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _Value As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier")>  _
+	Public Property UserID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._UserID
+		End Get
+		Set
+			If (Me._UserID.Equals(value) = false) Then
+				Me._UserID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PreferenceID", DbType:="UniqueIdentifier NOT NULL")>  _
+	Public Property PreferenceID() As System.Guid
+		Get
+			Return Me._PreferenceID
+		End Get
+		Set
+			If ((Me._PreferenceID = value)  _
+						= false) Then
+				Me._PreferenceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserPreferenceID", DbType:="UniqueIdentifier")>  _
+	Public Property UserPreferenceID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._UserPreferenceID
+		End Get
+		Set
+			If (Me._UserPreferenceID.Equals(value) = false) Then
+				Me._UserPreferenceID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me._Name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NChar(500)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me._Description = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Value", DbType:="NChar(500) NOT NULL", CanBeNull:=false)>  _
+	Public Property Value() As String
+		Get
+			Return Me._Value
+		End Get
+		Set
+			If (String.Equals(Me._Value, value) = false) Then
+				Me._Value = value
 			End If
 		End Set
 	End Property

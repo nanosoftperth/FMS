@@ -1453,6 +1453,23 @@
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Preference" Member="Preferences">
+    <Type Name="Preference">
+      <Column Name="PreferenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NChar(500)" CanBeNull="true" />
+      <Column Name="ValueType" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultValue" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserPreference" Member="UserPreferences">
+    <Type Name="UserPreference">
+      <Column Name="UserPreferenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PreferenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="NChar(500) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.aspnet_Membership_CreateUser" Method="aspnet_Membership_CreateUser">
     <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
@@ -2599,5 +2616,16 @@
   <Function Name="dbo.usp_newApplicationAdminAndGroupFeatureSettings" Method="usp_newApplicationAdminAndGroupFeatureSettings">
     <Parameter Name="APP_NAME" Parameter="aPP_NAME" Type="System.String" DbType="VarChar(100)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_GetUserPreferences" Method="usp_GetUserPreferences">
+    <Parameter Name="userID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="usp_GetUserPreferencesResult">
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PreferenceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserPreferenceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NChar(500)" CanBeNull="true" />
+      <Column Name="Value" Type="System.String" DbType="NChar(500) NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

@@ -7,7 +7,8 @@ Public Class Register
         ' if the application does not allow for self-registration, then redirect to a page stating this.
         Dim allowedToSelfRegister = FMS.Business.DataObjects.Setting.GetAllowSelfRegistration(FMS.Business.ThisSession.ApplicationName)
 
-        Me.RedirectAsNoAccess(String.Format("{0} does not allow self-registration, please contact an administrator to create a user account." _
+        If Not allowedToSelfRegister Then _
+            Me.RedirectAsNoAccess(String.Format("{0} does not allow self-registration, please contact an administrator to create a user account." _
                                                                                                             , FMS.Business.ThisSession.ApplicationName))
 
     End Sub

@@ -1413,29 +1413,66 @@ window.onload = window.onresize = function () {
 //    marker.setMap(map);
 //} 
 
+
+//var uri = '../api/User/GetCanMessageValue?deviceid=' + deviceId;
+//$.get(uri).done(function (data) { DeviceWithZagro(data); });
+
+
+function generic_callback(data) {
+
+    console.log(data);
+}
+
+// if the bounds change of the map, then IF the map zoom has changed, then set that as the new map zoom for that user.
+function mapOrientationChanged() {
+
+    var UserID = serverSetting_UserID;
+
+    var uri = "../api/Users/SetPreference?UserID={0}&PreferenceName={1}&Value={2}".format(UserID, "MapZoom", map.getZoom());
+    $.get(uri).done(function (data) { generic_callback(data); });
+}
+
+// if the map type changes, then we will save this as the prefered map type for that specific user.
+function mapTypeIDChanged() {
+
+
+
+}
+
 function initialize() {
 
     var lat = parseFloat(serverSetting_Business_Lattitude);
     var lng = parseFloat(serverSetting_Business_Longitude);
 
-
-    //center: new google.maps.LatLng(-32.052925, 115.930010),
+    // get user specific settings for the map
+    var mapZoom = parseInt(serverSetting_UserPreference_MapZoom);
+    var mapTypeIdStr = serverSetting_UserPreference_MapType.toLowerCase();
 
     var mapProp = {
         center: new google.maps.LatLng(lat, lng),
-        zoom: 11,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: mapZoom,
+        mapTypeId: mapTypeIdStr
     };
 
     map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-    //addPPJSMarker(lat, lng, serverSetting_CompanyName);
-
-
+    
     google.maps.event.addListener(map, 'click', function (event) {
         logthis(event.latLng);
     });
 
+    google.maps.event.addListener(map, 'center_changed', function () {
+       // mapOrientationChanged();
+    });
+
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+        mapOrientationChanged();
+    });
+
+    google.maps.event.addListener(map, 'maptypeid_changed', function () {
+        mapOrientationChanged();
+    });
+       
 
     initAutocomplete();
 

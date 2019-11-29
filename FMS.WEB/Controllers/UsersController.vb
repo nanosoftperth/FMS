@@ -10,10 +10,36 @@ Imports System.Web.Security
 
 Namespace Controllers
 
-
-
     Public Class UsersController
         Inherits ApiController
+
+
+        ''' <summary>
+        ''' this is by definition insecure, we need to enanble the session state here to allow the app to use the logged in user ID and not allow that to be dictated to.
+        ''' </summary>
+        ''' <param name="UserID"></param>
+        ''' <param name="PreferenceName"></param>
+        ''' <param name="Value"></param>
+        ''' <returns>if the operation did not caus an exception (bool value)</returns>
+        <HttpGet()>
+        Public Function SetPreference(UserID As String, PreferenceName As String, Value As String)
+
+            Dim OperationWasSuccessful As Boolean = True
+
+            Try
+
+                'Dim UserID As Guid = FMS.Business.ThisSession.User.UserId
+                FMS.Business.DataObjects.UserPreference.SetUserPreference(Guid.Parse(UserID), PreferenceName, Value)
+
+            Catch ex As Exception
+
+                OperationWasSuccessful = False
+
+            End Try
+
+            Return OperationWasSuccessful
+
+        End Function
 
         ' GET api/<controller>
         Public Function GetValues() As IEnumerable(Of String)

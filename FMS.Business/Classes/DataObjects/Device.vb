@@ -47,7 +47,7 @@ Namespace DataObjects
             Dim lst As New List(Of DataObjects.CAN_MessageDefinition)
 
             'search for all the pi points which exist for the device
-            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints( _
+            Dim plst As PISDK.PointList = SingletonAccess.HistorianServer.GetPoints(
                                                         String.Format("tag = 'CAN*{0}*'", deviceid))
 
             Dim cnt As Integer = plst.Count
@@ -96,6 +96,7 @@ Namespace DataObjects
             Return lst
 
         End Function
+
         Public Function GetLatLongs(dt As DateTime) As KeyValuePair(Of Decimal, Decimal)
 
             Dim pipNameLat As String = String.Format("{0}_lat", Me.DeviceID)

@@ -220,10 +220,12 @@
     <Compile Include="Classes\DataObjects\Group.vb" />
     <Compile Include="Classes\DataObjects\GroupSubscriber.vb" />
     <Compile Include="Classes\DataObjects\LogEntry.vb" />
+    <Compile Include="Classes\DataObjects\Preference.vb" />
     <Compile Include="Classes\DataObjects\ReportSchedule.vb" />
     <Compile Include="Classes\DataObjects\SimulatorSetting.vb" />
     <Compile Include="Classes\DataObjects\Subscriber.vb" />
     <Compile Include="Classes\DataObjects\TimeZone.vb" />
+    <Compile Include="Classes\DataObjects\UserPreference.vb" />
     <Compile Include="Classes\DataObjects\VehicleLocation.vb" />
     <Compile Include="Classes\DataObjects\WebServiceLogLine.vb" />
     <Compile Include="Classes\DataObjects\WorkRequest.vb" />
