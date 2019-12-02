@@ -223,7 +223,7 @@ function drawPathTestWithoutRoadSnap(p,indx) {
             icons: createArrow.d,
             //path: p
             //geodesic: true,
-            strokeColor: Colors[indx],
+            strokeColor: Colors[indx]
             //strokeOpacity: 0
             //strokeWeight: 2        
         });

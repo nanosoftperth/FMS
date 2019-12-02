@@ -444,6 +444,7 @@ function cbViewGeoFencesWithBooking_checkChanged() {
 }
 function showGeoFenceLabels() {
 
+
     var show = cbViewGeoFenceLabels.GetChecked();
 
     var showb  = cbViewGeoFencesWithBooking.GetChecked();

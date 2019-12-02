@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2.9.014")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2.9.021")>  _
         Public ReadOnly Property version() As String
             Get
                 Return CType(Me("version"),String)
@@ -121,7 +121,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("rio-tinto")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("partners")>  _
         Public ReadOnly Property debug_company_name() As String
             Get
                 Return CType(Me("debug_company_name"),String)

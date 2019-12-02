@@ -1153,21 +1153,21 @@ function getDataFromServer(deviceId) {
 }
 // Adds a marker to the map and push to the array.
 var touchtime = 0;
-function addMarker(location, lblContent, markerID, vehicleName, applicationImageID, isWithCanBus) {
-    var icon = {
-        url: icon_truck + '&Id=' + applicationImageID, // url
-        scaledSize: new google.maps.Size(60, 60), // scaled size
-        origin: new google.maps.Point(0, 0), // origin
-        anchor: new google.maps.Point(0, 0) // anchor
-    };
+function addMarker(location, lblContent, markerID, vehicleName, applicationImageID, isWithCanBus, showLabel) {
+
+    var imageURL = icon_truck + '&Id=' + applicationImageID;
+
+    var icon = getScaledIcon(imageURL);
+
+    var labelClass = showLabel ? 'labels' : 'labels-hidden';
 
     var marker = new MarkerWithLabel({
         position: location,
-        icon: icon_truck + '&Id=' + applicationImageID,
+        icon: icon,
         labelContent: lblContent,
         labelAnchor: new google.maps.Point(22, 0),
         //labelAnchor: new google.maps.Point(22, 0),
-        labelClass: "labels", // the CSS class for the label
+        labelClass: labelClass, // the CSS class for the label
         labelStyle: { opacity: 0.75 },
         zIndex: 9999999,
         truckName: vehicleName
@@ -1179,9 +1179,7 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
     marker.TruckName = vehicleName;
 
     marker.addListener('click', showInfoWindow);//DeviceID
-    //marker.addListener('rightclick', ShowDashboard);
-    //marker.addListener('dblclick', ShowDashboard);
-    //marker.addListener('mousedown', ShowDashboard);
+
     if (isWithCanBus) {
         marker.addListener('rightclick', function (event) {
             ShowDashboard(event, marker.Name, marker.DeviceID, vehicleName, 'rightclick');
@@ -1194,41 +1192,9 @@ function addMarker(location, lblContent, markerID, vehicleName, applicationImage
         });
     }
 
-
-    //marker.addListener('rightclick', showInfoWindow2);
-    //marker.addListener('rightclick', ShowDashboard);
-    //marker.addListener('dblclick', ShowDashboard);
-    //marker.addListener('click', function (event) {
-
-    //    if (touchtime == 0) {
-    //        //set first click
-    //        touchtime = new Date().getTime();
-    //        showInfoWindow(event, marker.Name, marker.DeviceID); 
-
-    //    } else {
-    //        //compare first click to this click and see if they occurred within double click threshold
-    //        if (((new Date().getTime()) - touchtime) < 800) {
-    //            //double click occurred
-    //            ShowDashboard(event, marker.Name, marker.DeviceID)
-    //            touchtime = 0;
-    //        } else {
-    //            //not a double click so set as a new first click
-    //            touchtime = new Date().getTime();
-    //            showInfoWindow(event, marker.Name, marker.DeviceID);
-
-    //        }
-    //    }
-
-    //});
-
-
-
     marker.ID = markerID;
     markers.push(marker);
-
     marker.setMap(map);
-
-
 
     //  insert vehicle ID in Array
     VehicleSelectedArr.push(markerID);
@@ -1267,20 +1233,28 @@ function upsertMapTrucks(result) {
         //alter the lat and long for the truck
         var markerPosn = new google.maps.LatLng(trucks[index].lat, trucks[index].lng);
 
+        var showLabels = map.getZoom() >= 11;
+
+        var labelClass = showLabels ? "labels" : "labels labels-hidden";
+
         if (trucksMarker != null) {
             //BY RYAN: THE ITERATION HAS TO PASS THRU A CHECK IF VEHICLES NOT SELECTED CAN BE VISIBLE
             if (cbExcludeCars.GetChecked()) {
-                var truckIsHidden = (trucks[index].isHidden != 1);
-                //By RYAN: Hide marker and label
-                trucksMarker.visible = truckIsHidden;
-                trucksMarker.labelVisible = truckIsHidden;
-                trucksMarker.labelClass = "labels" + ((!truckIsHidden) ? " labels-hidden" : "");
+
+                //HACK: below is now manually set to false so we see all the vehicles, cant see how the below ever worked.
+
+                var showTruck = true; //(trucks[index].isHidden == 1);
+                
+                trucksMarker.visible = showTruck;
+                trucksMarker.labelVisible = showTruck;
+                trucksMarker.labelClass = showTruck ? labelClass : "labels labels-hidden";
             }
             else {
                 trucksMarker.visible = true;
                 trucksMarker.labelVisible = true;
-                trucksMarker.labelClass = "labels";
+                trucksMarker.labelClass = labelClass;
             }
+
             trucksMarker.labelContent = labelContent;
             moveMarker(trucksMarker, markerPosn);
             trucksMarker.label.setStyles();
@@ -1290,18 +1264,19 @@ function upsertMapTrucks(result) {
 
 
         } else {
-            addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName, trucks[index].ApplicationImageID, isWithCanBus);
+
+            addMarker(markerPosn, labelContent, trucks[index].ID, trucks[index].TruckName, trucks[index].ApplicationImageID, isWithCanBus, showLabels );
         }
 
 
     }
-    if (map.getZoom() <= 11) {
-        $('.labels').hide();
-    }
-    else {
-        //By Ryan
-        $('.labels:not(.labels-hidden)').show();
-    }
+    //if (map.getZoom() <= 11) {
+    //    $('.labels').hide();
+    //}
+    //else {
+    //    //By Ryan
+    //    $('.labels:not(.labels-hidden)').show();
+    //}
 }
 var numDeltas = 3000 / 100;
 var delay = 100;
@@ -1371,7 +1346,7 @@ window.mobileAndTabletcheck = function () {
     var check = false;
     (function (a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
-}
+};
 
 window.onload = window.onresize = function () {
 
@@ -1381,42 +1356,43 @@ window.onload = window.onresize = function () {
 
     if (window.mobileAndTabletcheck()) { $('#viewInRealTimeCheckbox').css({ top: '70px' }); }
 
-    //var window_height = window.innerHeight;
-    ////console.log(left.offsetHeight);
-    ////console.log(window_height);
-    //if (left.offsetHeight < window_height) {
-    //    left.style.height = window_height - 70 + "px";
 
-    //} else { }
+};
 
+function getScaledIcon(imageURL) {
+
+    // at zoom 22, size is 110
+    // at zoom 1, size is 15, linear algebra calc below
+    var scaledSize = 75 / 22 * map.getZoom() + 255 / 22;
+
+    var image = {
+        url: imageURL,        
+        //size: new google.maps.Size(64, 64),
+        scaledSize: new google.maps.Size(scaledSize, scaledSize),
+        origin: new google.maps.Point(0, 0),        
+        anchor: new google.maps.Point(scaledSize / 3, scaledSize)
+    };
+
+    return image;
 
 }
 
-//function addPPJSMarker(lat, lng, companyName) {
+function mapZoomChanged_MarkerSize() {
 
-//    //var lat = parseFloat(serverSetting_Business_Lattitude);
-//    //var lng = parseFloat(serverSetting_Business_Longitude);
-//    var markerPosn = new google.maps.LatLng(lat, lng);
+    $(markers).each(function (s, e) {
 
-//    //var companyName = serverSetting_CompanyName;
+        // grab the URL from the current market, this may be in one of two formats which is catered for below
+        var imageURL = e.icon.url === undefined ? e.icon : e.icon.url;
 
-//    var marker = new MarkerWithLabel({
-//        position: markerPosn,
-//        icon: icon_home,
-//        labelContent: companyName,
-//        labelAnchor: new google.maps.Point(22, 0),
-//        labelClass: "labels", // the CSS class for the label
-//        labelStyle: { opacity: 0.75 },
-//        map: map
-//    });
+        // grab scaled image 
+        e.icon = getScaledIcon(imageURL);
 
-//    marker.setMap(map);
-//} 
+        // refresh the map ( as per documentation)
+        e.setMap(null);
+        e.setMap(map);
+    });
 
-
-//var uri = '../api/User/GetCanMessageValue?deviceid=' + deviceId;
-//$.get(uri).done(function (data) { DeviceWithZagro(data); });
-
+};
 
 function generic_callback(data) {
 
@@ -1426,16 +1402,38 @@ function generic_callback(data) {
 // if the bounds change of the map, then IF the map zoom has changed, then set that as the new map zoom for that user.
 function mapOrientationChanged() {
 
+    // change the size of the markers on the map due to the new zoom level 
+    mapZoomChanged_MarkerSize();
+
+    // tell the server of the new zoom level and save for when site next visited
     var UserID = serverSetting_UserID;
 
     var uri = "../api/Users/SetPreference?UserID={0}&PreferenceName={1}&Value={2}".format(UserID, "MapZoom", map.getZoom());
     $.get(uri).done(function (data) { generic_callback(data); });
 }
 
+
+
+
 // if the map type changes, then we will save this as the prefered map type for that specific user.
 function mapTypeIDChanged() {
 
+    var UserID = serverSetting_UserID;
 
+    var uri = "../api/Users/SetPreference?UserID={0}&PreferenceName={1}&Value={2}".format(UserID, "MapType", map.getMapTypeId().toUpperCase());
+    $.get(uri).done(function (data) { generic_callback(data); });
+
+}
+
+// if the map type changes, then we will save this as the prefered map type for that specific user.
+function map_dragend() {
+
+    var UserID = serverSetting_UserID;
+
+    var latlngSr = map.getCenter().lat() + "|" + map.getCenter().lng();
+
+    var uri = "../api/Users/SetPreference?UserID={0}&PreferenceName={1}&Value={2}".format(UserID, "LastGPSPosition", latlngSr);
+    $.get(uri).done(function (data) { generic_callback(data); });
 
 }
 
@@ -1447,6 +1445,13 @@ function initialize() {
     // get user specific settings for the map
     var mapZoom = parseInt(serverSetting_UserPreference_MapZoom);
     var mapTypeIdStr = serverSetting_UserPreference_MapType.toLowerCase();
+    var lastVisitedCoords = serverSetting_UserPreference_LastGPSPosition.toLowerCase();  
+
+    // if there are actaully some lat/long coordinates saved as a preference for the user, then use them instead
+    if (lastVisitedCoords != "") {
+        lat = lastVisitedCoords.split("|")[0];
+        lng = lastVisitedCoords.split("|")[1];
+    }
 
     var mapProp = {
         center: new google.maps.LatLng(lat, lng),
@@ -1470,7 +1475,11 @@ function initialize() {
     });
 
     google.maps.event.addListener(map, 'maptypeid_changed', function () {
-        mapOrientationChanged();
+        mapTypeIDChanged();
+    });
+
+    google.maps.event.addListener(map, 'dragend', function () {
+        map_dragend();
     });
        
 
@@ -1520,13 +1529,14 @@ function initAutocomplete() {
     map.addListener('bounds_changed', function () {
 
         searchBox.setBounds(map.getBounds());
-        if (map.getZoom() <= 11) {
-            $('.labels').hide('slow');
-        }
-        else {
-            //By Ryan
-            $('.labels:not(.labels-hidden)').show('slow');
-        }
+
+        //if (map.getZoom() <= 11) {
+        //    $('.labels').hide();
+        //}
+        //else {
+        //    //By Ryan
+        //    $('.labels:not(.labels-hidden)').show();
+        //}
 
     });
 

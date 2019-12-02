@@ -420,7 +420,16 @@
                                 SettingsBehavior-ConfirmDelete="true"
                                 Theme="SoftOrange" OnDataBound ="dgvVehicles_DataBound" Style="width: 100%" OnPreRender="dgvVehicles_PreRender">
                             <Settings ShowFilterRow="True"  />
+
+<SettingsAdaptivity>
+<AdaptiveDetailLayoutProperties ColCount="1"></AdaptiveDetailLayoutProperties>
+</SettingsAdaptivity>
+
                                 <SettingsPager PageSize="15"></SettingsPager>
+
+<SettingsBehavior ConfirmDelete="True"></SettingsBehavior>
+
+<EditFormLayoutProperties ColCount="1"></EditFormLayoutProperties>
                                 <Columns>
                                     <dx:GridViewDataColumn FieldName="DeviceID" VisibleIndex="0" Caption="Show"> 
                                         <FilterTemplate>
@@ -528,7 +537,7 @@
                                     <tr>
                                         <td style="padding-top: 7px; padding-left: 68px;">
                                             <div style="float: left;">
-                                                <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFenceLabels" ID="cbViewGeoFenceLabels" Checked="false" runat="server" EnableTheming="True" Text="show labels">
+                                                <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFenceLabels" ID="cbViewGeoFenceLabels" Checked="True" runat="server" EnableTheming="True" Text="show labels" CheckState="Checked">
                                                     <ClientSideEvents CheckedChanged="function(s, e) {
 	cbViewGeoFenceLabels_checkChanged(e);
 }" />
@@ -932,12 +941,16 @@
             text-align: center;
             border: 2px solid black;
             white-space: nowrap;
-            opacity: 0.7 !Important;
+            opacity: 0.9 !important;
             /*margin-top:39px !important;*/
         }
 
+        .labels-hidden{
+            display:none !important;
+        }
+
             .labels:hover {
-                opacity: 0.1 !Important;
+                /*opacity: 0.1 !Important;*/
                 background-color: none !Important;
             }
 
@@ -951,6 +964,7 @@
             /*width: 60px;*/
             /*border: 2px solid black;*/
             white-space: nowrap;
+            opacity: 0.9 !important;
         }
     </style>
 

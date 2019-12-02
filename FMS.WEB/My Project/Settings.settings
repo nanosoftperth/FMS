@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="version" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">2.9.014</Value>
+      <Value Profile="(Default)">2.9.021</Value>
     </Setting>
     <Setting Name="debug_testing_token" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
@@ -32,7 +32,7 @@
       <Value Profile="(Default)">Zagro125|1,Zagro125|2,Zagro125|3,Zagro125|5,Zagro500|13,Zagro125|7,Zagro500|7,Zagro125|8,Zagro125|9,Zagro125|10,Zagro125|11,Zagro500|3,Zagro500|8,Zagro500|9,Zagro500|10,Zagro500|11,Zagro500|12,Zagro500|14,Zagro500|16</Value>
     </Setting>
     <Setting Name="debug_company_name" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">rio-tinto</Value>
+      <Value Profile="(Default)">partners</Value>
     </Setting>
   </Settings>
 </SettingsFile>

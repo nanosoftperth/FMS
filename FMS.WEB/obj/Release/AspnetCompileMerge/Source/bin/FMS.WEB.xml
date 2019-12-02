@@ -4022,6 +4022,15 @@ To modify move field declaration from designer file to code-behind file.
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="M:FMS.WEB.Controllers.UsersController.SetPreference(System.String,System.String,System.String)">
+ <summary>
+ this is by definition insecure, we need to enanble the session state here to allow the app to use the logged in user ID and not allow that to be dictated to.
+ </summary>
+ <param name="UserID"></param>
+ <param name="PreferenceName"></param>
+ <param name="Value"></param>
+ <returns>if the operation did not caus an exception (bool value)</returns>
+</member>
 <member name="M:FMS.WEB.Controllers.VehicleController.Get">
  <summary>
  Get vehicle values
