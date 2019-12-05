@@ -38,8 +38,13 @@
 
         Public Shared Function GetForUser(UserID As Guid) As List(Of FMS.Business.DataObjects.UserPreference)
 
-            Return (From x In SingletonAccess.FMSDataContextContignous.usp_GetUserPreferences(UserID)
-                    Select New FMS.Business.DataObjects.UserPreference(x)).ToList
+            Using dbContext As New FMS.Business.LINQtoSQLClassesDataContext
+
+                Return (From x In dbContext.usp_GetUserPreferences(UserID)
+                        Select New FMS.Business.DataObjects.UserPreference(x)).ToList
+
+            End Using
+
 
         End Function
 
@@ -55,31 +60,40 @@
 
         Public Shared Sub SetUserPreference(userid As Guid, PreferenceName As String, value As String)
 
-            'get the prefence by name 
-            Dim preference As FMS.Business.DataObjects.Preference =
-                (From p In SingletonAccess.FMSDataContextContignous.Preferences
-                 Where p.Name.ToLower().Equals(PreferenceName.ToLower)
-                 Select New FMS.Business.DataObjects.Preference(p)).Single
 
-            Dim preferenceID As Guid = preference.PreferenceID
+            'create databse connection instancen 
+            Using dbContext As New FMS.Business.LINQtoSQLClassesDataContext
 
-            Dim userPref As FMS.Business.UserPreference
 
-            userPref = SingletonAccess.FMSDataContextContignous.UserPreferences.Where(Function(x) x.PreferenceID = preferenceID And x.UserID = userid).SingleOrDefault
+                'get the prefence by name 
+                Dim preference As FMS.Business.DataObjects.Preference =
+                    (From p In dbContext.Preferences
+                     Where p.Name.ToLower().Equals(PreferenceName.ToLower)
+                     Select New FMS.Business.DataObjects.Preference(p)).Single
 
-            If userPref Is Nothing Then
-                userPref = New FMS.Business.UserPreference
-                SingletonAccess.FMSDataContextContignous.UserPreferences.InsertOnSubmit(userPref)
-            End If
+                Dim preferenceID As Guid = preference.PreferenceID
 
-            With userPref
-                .PreferenceID = preferenceID
-                .UserID = userid
-                .UserPreferenceID = IIf(.UserPreferenceID = Guid.Empty, Guid.NewGuid, .UserPreferenceID)
-                .Value = value
-            End With
+                Dim userPref As FMS.Business.UserPreference
 
-            SingletonAccess.FMSDataContextContignous.SubmitChanges()
+                userPref = dbContext.UserPreferences.Where(Function(x) x.PreferenceID = preferenceID And x.UserID = userid).SingleOrDefault
+
+                If userPref Is Nothing Then
+                    userPref = New FMS.Business.UserPreference
+                    dbContext.UserPreferences.InsertOnSubmit(userPref)
+                End If
+
+                With userPref
+                    .PreferenceID = preferenceID
+                    .UserID = userid
+                    .UserPreferenceID = IIf(.UserPreferenceID = Guid.Empty, Guid.NewGuid, .UserPreferenceID)
+                    .Value = value
+                End With
+
+                dbContext.SubmitChanges()
+
+            End Using
+
+
 
         End Sub
 

@@ -33,9 +33,13 @@ Namespace DataObjects
 
         Public Shared Function GetAllPreferences() As List(Of FMS.Business.DataObjects.Preference)
 
-            Return (From x In SingletonAccess.FMSDataContextContignous.Preferences
-                    Select New DataObjects.Preference(x)
-                        ).ToList
+            Using dbContext As New LINQtoSQLClassesDataContext
+
+                Return (From x In dbContext.Preferences
+                        Select New DataObjects.Preference(x)
+                                        ).ToList
+            End Using
+
 
         End Function
 

@@ -18,8 +18,8 @@ function RootMasterControlsInitialised() {
     ///IF THE LOGO IS A OVERLAYED ACROSS THE LOGOUT DETAILS, THEN MOVE IT TO THE LEFT
     var logoHeight = $('.headerLogo').height();
     if (logoHeight > 90) {
-        $('.loginControl').css('right', '130px');
-        $('.loginControl').css('top', '-17px');
+        $('.loginControl').css('right', '90px');
+        $('.loginControl').css('top', '-60px');
     } else {
         $('.loginControl').css('right', '1px');
     }

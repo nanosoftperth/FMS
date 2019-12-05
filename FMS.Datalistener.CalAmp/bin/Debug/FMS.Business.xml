@@ -280,6 +280,13 @@ FMS.Business
  </summary>
  <remarks></remarks>
 </member>
+<member name="T:FMS.Business.DataObjects.UserPreference">
+ <summary>
+ There is another table in SQL which details the 
+ different possible preferences. To add a new preference, this needs to be added manually using SQLMS
+ values taken from a stored procedure 
+ </summary>
+</member>
 <member name="M:FMS.Business.DataObjects.WorkRequest.#ctor">
  <summary>
  for serialization purposes only

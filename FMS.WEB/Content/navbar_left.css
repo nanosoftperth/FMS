@@ -1,0 +1,338 @@
+﻿/*
+    DEMO STYLE
+*/
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter UI", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6c757d;
+    text-align: left;
+    background-color: #f8f9fa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+.indented a {
+    margin-left: 15px !important;
+    padding: 50px;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar-collapse a {
+    color: white !important;
+}
+
+.navbar {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 15px 10px;
+    background: #343a40;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: 1px;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+.wrapper {
+    /* display: flex; */
+    align-items: stretch;
+    width: 100%;
+    perspective: 1500px;
+    /* top:0; */
+    /* bottom:0; */
+    height: calc(100vh - 97px);
+}
+
+.mainContentPane, .contentPane {
+    bottom: 0px;
+}
+
+body {
+    height: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    color: #fff;
+    background-color: #383e43 !important;
+}
+
+    #sidebar.active {
+        margin-left: -250px;
+        width: 0px;
+        /*transform: rotateY(100deg);*/
+    }
+
+.content.active {
+    margin-left: 0px;
+}
+
+#sidebar hr {
+    width: 90%;
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-color: #6c757d;
+    border-width: 1px;
+    /* margin-top:-20px; */
+}
+
+#sidebar .sidebar-header {
+    padding: 20px 30px 0px 20px;
+    background-color: #343a40 !important;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    /* border-bottom: 1px solid #47748b; */
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+    #sidebar ul li a:hover {
+        color: #dbcaca;
+        background: #343a40;
+    }
+
+.navbar-right {
+    font-size: 16px !important;
+}
+
+.navbar-left {
+    font-size: 23px !important;
+}
+
+.navbar-right a:hover {
+    color: #dbcaca !important;
+}
+
+.navbar-left a:hover {
+    color: #white !important;
+}
+
+
+.navbar-left a {
+    color: white !important;
+    cursor: arrow !important;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background-color: #343a40e0 !important;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: fixed;
+    margin-left: 200px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+
+ul ul a {
+    font-size: 12px !important;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    font-weight: 200;
+    margin-left: 10px;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+    ul.CTAs a {
+        text-align: center;
+        font-size: 0.9em !important;
+        display: block;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article, a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+}
+
+.content {
+    height: 100%;
+    color: #fff;
+    background-color: #343a40 !important;
+    padding: 0px;
+    min-height: 100%;
+    margin-left: 250px;
+    overflow: hidden;
+}
+
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5f7 !important;
+    margin-left: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #333333;
+    border-radius: 15px;
+}
+
+    #sidebarCollapse span {
+        width: 80%;
+        height: 2px;
+        margin: 0 auto;
+        display: block;
+        background: #555;
+    }
+
+        #sidebarCollapse span:first-of-type {
+            transform: rotate(45deg) translate(2px, 2px);
+        }
+
+        #sidebarCollapse span:nth-of-type(2) {
+            opacity: 0;
+        }
+
+        #sidebarCollapse span:last-of-type {
+            transform: rotate(-45deg) translate(1px, -1px);
+        }
+
+    #sidebarCollapse.active span {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 768px) {
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar {
+        margin-left: 0px;
+        width: 250px;
+    }
+
+    .content {
+        margin-left: 0px;
+    }
+
+        .content.active {
+            margin-left: 5px;
+        }
+
+
+    #sidebarCollapse {
+        margin-left: 255px;
+    }
+
+
+        #sidebarCollapse.active {
+            margin-left: 0px;
+        }
+
+            #sidebarCollapse.active span:first-of-type,
+            #sidebarCollapse.active span:nth-of-type(2),
+            #sidebarCollapse.active span:last-of-type {
+                transform: none;
+                opacity: 1;
+                margin: 5px auto;
+            }
+
+
+
+        #sidebarCollapse span {
+            margin: 0 auto;
+            transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+        }
+
+            #sidebarCollapse span:first-of-type {
+                transform: rotate(45deg) translate(2px, 2px);
+            }
+
+            #sidebarCollapse span:nth-of-type(2) {
+                opacity: 0;
+            }
+
+            #sidebarCollapse span:last-of-type {
+                transform: rotate(-45deg) translate(1px, -1px);
+            }
+}

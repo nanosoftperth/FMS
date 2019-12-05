@@ -103,6 +103,8 @@ Namespace DataObjects
             End Using
 
 
+            ctx.Dispose()
+
         End Function
 
 #End Region

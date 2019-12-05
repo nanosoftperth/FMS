@@ -1456,7 +1456,19 @@ function initialize() {
     var mapProp = {
         center: new google.maps.LatLng(lat, lng),
         zoom: mapZoom,
-        mapTypeId: mapTypeIdStr
+        mapTypeId: mapTypeIdStr,
+
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DEFAULT,
+            position: google.maps.ControlPosition.BOTTOM_CENTER
+        },
+
+        fullscreenControl: true,
+
+        fullscreenControlOptions: {
+            position: google.maps.ControlPosition.RIGHT_BOTTOM
+        }
+
     };
 
     map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
@@ -1482,6 +1494,13 @@ function initialize() {
         map_dragend();
     });
        
+    // this event only fires once the map is COMPLETELEY LOADED , addlisteneronce makes sure that this is also only fired the FIRTST TIME THIS HAPPENS
+    google.maps.event.addListenerOnce(map, 'tilesloaded', function () {
+
+        //add the close button
+        addMaptopMenu();
+    });
+
 
     initAutocomplete();
 
@@ -1491,6 +1510,40 @@ function initialize() {
 
     instansiateDefaultService();
 
+    
+}
+
+
+function addMaptopMenu() {
+
+    var html = $('#sidebarCollapse')[0].outerHTML;
+
+    var centerControlDiv = document.createElement('div');
+
+    $(centerControlDiv).html(html);
+
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
+
+
+    //HACK: race condition! there is not "complete" event after a control has 
+    // been added to the map.
+    setTimeout(
+        () => {
+
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('.content').toggleClass('active');
+                $('#sidebarCollapse').toggleClass('active');
+            });
+
+
+        }
+
+        , 1000);
 
 }
 

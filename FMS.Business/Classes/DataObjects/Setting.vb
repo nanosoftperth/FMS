@@ -187,10 +187,16 @@ Namespace DataObjects
         ''' </summary>
         Public Shared Function GetAllowSelfRegistration(applicationName As String) As Boolean
 
-            Dim val = (From i In SingletonAccess.FMSDataContextNew.usp_GetSettingsForApplication(applicationName)
-                       Where i.Name.ToLower = "allowselfregistration").SingleOrDefault
+            Using dataContext As New LINQtoSQLClassesDataContext
 
-            Return IIf(val Is Nothing, True, CBool(val.Value))
+
+                Dim val = (From i In dataContext.usp_GetSettingsForApplication(applicationName)
+                           Where i.Name.ToLower = "allowselfregistration").SingleOrDefault
+
+                Return If(val Is Nothing OrElse String.IsNullOrEmpty(val.Value),
+                                        True, CBool(val.Value))
+
+            End Using
 
         End Function
 

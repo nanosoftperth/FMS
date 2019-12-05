@@ -52,7 +52,7 @@
             Collapsible="true"
             Theme="Metropolis">
 
-            <SettingsAdaptivity CollapseAtWindowInnerWidth="500" />
+            <SettingsAdaptivity CollapseAtWindowInnerWidth="1" />
             <Styles>
                 <Panel CssClass="panel"></Panel>
                 <ExpandedPanel CssClass="expandedPanel"></ExpandedPanel>
