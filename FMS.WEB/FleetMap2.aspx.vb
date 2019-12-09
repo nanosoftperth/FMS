@@ -62,6 +62,14 @@ Public Class FleetMap2
         settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = "Business_Longitude", .Value = defaultBusinessLocation.Longitude})
         settingstoSendtoCLient.Add(New DataObjects.Setting With {.Name = "UserID", .Value = ThisSession.UserID.ToString()})
 
+
+        ' send all of the application settings to the client sidefor use in JS 
+        settingstoSendtoCLient.AddRange((From x In DataObjects.Setting.GetSettingsForApplication(ThisSession.ApplicationName.ToLower, False)
+                                         Select New DataObjects.Setting _
+                                            With {.Name = String.Format("ApplicationSetting_{0}", x.Name), .Value = x.Value}).ToList)
+
+
+
         For Each up In FMS.Business.DataObjects.UserPreference.GetForUser(ThisSession.UserID)
 
             Dim settingName As String = String.Format("UserPreference_{0}", up.Name)

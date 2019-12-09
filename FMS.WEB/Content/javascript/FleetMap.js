@@ -1351,31 +1351,54 @@ window.mobileAndTabletcheck = function () {
 window.onload = window.onresize = function () {
 
     //var left = document.getElementById('googleMap');
-
-    $('#googleMap').height($('#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane').height() + 14);
-
-    if (window.mobileAndTabletcheck()) { $('#viewInRealTimeCheckbox').css({ top: '70px' }); }
+//$('#googleMap').height($('#ctl00_ctl00_MainPane_Content_ContentLeft_LeftPane').height() + 14);
+    //if (window.mobileAndTabletcheck()) { $('#viewInRealTimeCheckbox').css({ top: '70px' }); }
 
 
 };
 
 function getScaledIcon(imageURL) {
 
+    // this actually requires some linear algebra!
     // at zoom 22, size is 110
     // at zoom 1, size is 15, linear algebra calc below
-    var scaledSize = 75 / 22 * map.getZoom() + 255 / 22;
+    // var scaledSize = 75 / 22 * map.getZoom() + 255 / 22;
 
+    var maxHeight = parseInt(serverSetting_ApplicationSetting_MapIconHeightAtMaxZoom);
+    var minHeight = parseInt(serverSetting_ApplicationSetting_MapIconHeightAtMinZoom);
+
+    /*           y2 - y1
+        slope = ---------
+                 x2 - x1
+    */
+
+    var x1 = 1;
+    var y1 = minHeight;
+    var x2 = 22;
+    var y2 = maxHeight;
+
+    var slope = (y2 - y1) / (x2 - x1);
+
+    // y = mx + b
+    // y1 = slope * x1 + b
+    var b = -1 * ((slope * x1) - y1);
+    // y = 2x + b ( x is the zoom, we want y which is the icon height)
+    var scaledSize = (slope * map.getZoom()) + b;
+
+    // return the image type object fro google maps which determines the URL but also the icon size, we are to presume that the icon is a square here. 
     var image = {
         url: imageURL,        
-        //size: new google.maps.Size(64, 64),
         scaledSize: new google.maps.Size(scaledSize, scaledSize),
-        origin: new google.maps.Point(0, 0),        
+        origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(scaledSize / 3, scaledSize)
     };
 
+    //console.log('scaledSize: {0} getZoom: {1}'.format(scaledSize, map.getZoom()));
     return image;
-
 }
+
+
+
 
 function mapZoomChanged_MarkerSize() {
 

@@ -170,13 +170,19 @@ Namespace DataObjects
 
         Public Shared Function GetSettingsForApplication(applicationName As String, Optional returnLogoObj As Boolean = True) As List(Of Setting)
 
-            Dim uspr As List(Of DataObjects.Setting) =
-                       (From i In SingletonAccess.FMSDataContextNew.usp_GetSettingsForApplication(applicationName)
-                        Select New FMS.Business.DataObjects.Setting(i)).ToList
+            Using dataContext As New LINQtoSQLClassesDataContext
 
-            If Not returnLogoObj Then uspr = (From s In uspr Where s.Name <> "Logo").ToList
 
-            Return uspr
+                Dim uspr As List(Of DataObjects.Setting) =
+                      (From i In dataContext.usp_GetSettingsForApplication(applicationName)
+                       Select New FMS.Business.DataObjects.Setting(i)).ToList
+
+                If Not returnLogoObj Then uspr = (From s In uspr Where s.Name <> "Logo").ToList
+
+                Return uspr
+
+            End Using
+
 
         End Function
 
