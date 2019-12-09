@@ -3,7 +3,7 @@
 
 
   <item Text="Home" NavigateUrl="Home.aspx" />
-  <item Text="Fleet Map" NavigateUrl="FleetMap.aspx" />
+  <item Text="Fleet Map" NavigateUrl="FleetMap2.aspx" />
 
   <item Text="GeoFences &amp; Alerts" NavigateUrl="AlarmsAndAlerts.aspx"   />
 

@@ -1,6 +1,5 @@
-﻿/*
-    DEMO STYLE
-*/
+﻿
+
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
@@ -72,6 +71,7 @@ a, a:hover, a:focus {
     /* top:0; */
     /* bottom:0; */
     height: calc(100vh - 97px);
+    overflow: hidden;
 }
 
 .mainContentPane, .contentPane {
@@ -91,7 +91,18 @@ body {
     z-index: 999;
     color: #fff;
     background-color: #383e43 !important;
+    overflow: hidden;
 }
+
+#sidebar {
+    font: 12px 'Segoe UI', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif !important;
+}
+
+
+    #sidebar ul li ul li {
+        padding-left: 10px;
+        padding-right: 10px
+    }
 
     #sidebar.active {
         margin-left: -250px;
@@ -148,6 +159,16 @@ body {
     font-size: 16px !important;
 }
 
+/* HACK: this overwrites some devexpress classes.*/
+.dxbButton_Office2010Black {
+    padding: 4px !important;
+    text-align: center !important;
+    border-radius: 5px !important;
+    margin-bottom: 8px !important;
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
 .navbar-left {
     font-size: 23px !important;
 }
@@ -167,8 +188,7 @@ body {
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background-color: #343a40e0 !important;
+    color: #fff;    
 }
 
 
@@ -275,6 +295,44 @@ a.article, a.article:hover {
         margin: 5px auto;
     }
 
+.mCSB_container {
+    overflow: visible !important;
+}
+
+.mCustomScrollBox {
+    overflow: visible !important;
+}
+
+
+#tblHeatMapOptions tr td table {
+    text-align: right !important;
+    width: 100%;
+    margin-right: 10px;
+}
+
+#sidebar label {
+    color: #ffff;
+}
+
+
+#tblHeatMapOptions table {
+    margin-left: 22px !important;
+}
+
+
+#geofences td {
+    
+    text-align: right;
+}
+
+#geofences table {
+    width: 100%;
+}
+
+
+.dxichCellSys {
+    width: 30px;
+}
 
 
 /* ---------------------------------------------------
@@ -316,6 +374,7 @@ a.article, a.article:hover {
                 opacity: 1;
                 margin: 5px auto;
             }
+
 
 
 

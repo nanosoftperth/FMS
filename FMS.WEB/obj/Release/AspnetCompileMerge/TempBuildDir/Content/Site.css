@@ -324,14 +324,12 @@ div.gm-style-iw.gm-style-iw-c, div.gm-style-iw-t::after {
 
 
 .headerLogo {
-    
     float: right;
     position: absolute;
     right: 10px;
     top: -2px;
     max-height: 100px;
     max-width: 20vmin !important;
-    
     /*width: 130px;*/
 }
 
@@ -442,6 +440,28 @@ html, body {
     text-decoration: none;
     font-size: x-large;
     color: black;
+}
+
+.topZindex {
+    z-index: 9999;
+}
+
+@media (max-width: 768px) {
+
+
+    #ctl00_ctl00_HeaderPane_header_companyName {
+        display: none;
+    }
+
+    #ctl00_ctl00_HeaderPane_header_applicationName {
+        font-size: 6vw;
+    }
+}
+
+.subitem {
+    text-align: right;
+    padding-left: 0px !important;
+    margin-left: 8px;
 }
 
 .loginControl {
@@ -1070,21 +1090,37 @@ html, body {
 }
 
 #pac-input {
-    background-color: #fff;
+    color: black;
+    border-style: none;
     font-family: Roboto;
     font-size: 15px;
     font-weight: 300;
+    font: 16px 'Segoe UI', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif;
+    background-position: right;
+    background-image: url(/Content/Images/search_icon_light.svg);
+    background-repeat: no-repeat;
+    background-size: 48px;
     /*margin-left: 12px;
   margin-right: 12px;*/
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 100%;
     z-index: 1;
+    height: 35px;
+    border-radius: 5px;
 }
 
-    #pac-input:focus {
-        border-color: #4d90fe;
-    }
+/* Show red borders when filled, but invalid */
+input:not(:placeholder-shown) {
+    background-image: none !important;
+}
+
+#pac-input input:valid {
+}
+
+#pac-input:focus {
+    /*background-image: none;*/
+}
 
 .pac-container {
     font-family: Roboto;

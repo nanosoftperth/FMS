@@ -5282,240 +5282,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FMS.WEB.FleetMap2._ASPxDateEdit1">
-<summary>
-ASPxDateEdit1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._ddlTrucks">
-<summary>
-ddlTrucks control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._heatMapStartTime">
-<summary>
-heatMapStartTime control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._heatMapEndTime">
-<summary>
-heatMapEndTime control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._btnHeatMapSearch">
-<summary>
-btnHeatMapSearch control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cbExcludeCars">
-<summary>
-cbExcludeCars control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cb">
-<summary>
-cb control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cbOpiacy">
-<summary>
-cbOpiacy control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cbRadius">
-<summary>
-cbRadius control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox1">
-<summary>
-ASPxCheckBox1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox2">
-<summary>
-ASPxCheckBox2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox5">
-<summary>
-ASPxCheckBox5 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox3">
-<summary>
-ASPxCheckBox3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cbSnapToRoad">
-<summary>
-cbSnapToRoad control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._ASPxLabel9">
-<summary>
-ASPxLabel9 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._spinTimeSeconds">
-<summary>
-spinTimeSeconds control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._comboTimeSecondsMultiplier">
-<summary>
-comboTimeSecondsMultiplier control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox4">
-<summary>
-ASPxCheckBox4 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._dgvVehicles">
-<summary>
-dgvVehicles control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._odsMapMarker">
-<summary>
-odsMapMarker control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._odsVehicles">
-<summary>
-odsVehicles control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._odsTrucks">
-<summary>
-odsTrucks control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cbViewGeoFences">
-<summary>
-cbViewGeoFences control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cbViewGeoFencesWithBooking">
-<summary>
-cbViewGeoFencesWithBooking control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._cbViewGeoFenceLabels">
-<summary>
-cbViewGeoFenceLabels control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FMS.WEB.FleetMap2._btnViewGeofencing">
-<summary>
-btnViewGeofencing control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:FMS.WEB.FleetMap2._ASPxButton1">
 <summary>
 ASPxButton1 control.
@@ -5825,6 +5591,231 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FMS.WEB.FleetMap2._popupReport">
 <summary>
 popupReport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._ASPxDateEdit1">
+<summary>
+ASPxDateEdit1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._ddlTrucks">
+<summary>
+ddlTrucks control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._heatMapStartTime">
+<summary>
+heatMapStartTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._heatMapEndTime">
+<summary>
+heatMapEndTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cbExcludeCars">
+<summary>
+cbExcludeCars control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cb">
+<summary>
+cb control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cbOpiacy">
+<summary>
+cbOpiacy control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cbRadius">
+<summary>
+cbRadius control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox1">
+<summary>
+ASPxCheckBox1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox2">
+<summary>
+ASPxCheckBox2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox5">
+<summary>
+ASPxCheckBox5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox3">
+<summary>
+ASPxCheckBox3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cbSnapToRoad">
+<summary>
+cbSnapToRoad control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._spinTimeSeconds">
+<summary>
+spinTimeSeconds control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._comboTimeSecondsMultiplier">
+<summary>
+comboTimeSecondsMultiplier control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._ASPxCheckBox4">
+<summary>
+ASPxCheckBox4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._btnHeatMapSearch">
+<summary>
+btnHeatMapSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._dgvVehicles">
+<summary>
+dgvVehicles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._odsMapMarker">
+<summary>
+odsMapMarker control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._odsVehicles">
+<summary>
+odsVehicles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._odsTrucks">
+<summary>
+odsTrucks control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cbViewGeoFences">
+<summary>
+cbViewGeoFences control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cbViewGeoFencesWithBooking">
+<summary>
+cbViewGeoFencesWithBooking control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._cbViewGeoFenceLabels">
+<summary>
+cbViewGeoFenceLabels control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FMS.WEB.FleetMap2._btnViewGeofencing">
+<summary>
+btnViewGeofencing control.
 </summary>
 <remarks>
 Auto-generated field.

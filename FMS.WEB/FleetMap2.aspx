@@ -22,28 +22,24 @@
 
 
     <!-- CSS -->
-    <!--<link rel="stylesheet" type="text/css" href="static/css/main.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="static/css/header_template.css">-->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="Content/navbar_left.css">
+
+
+    <link rel="stylesheet" type="text/css"  href="Content/css/bootstrap.min.css?version=<%=WebVersion%>">
+    <link rel="stylesheet" type="text/css" href="Content/navbar_left.css?version=<%=WebVersion%>">
 
     <!-- custom scrollbar for navbox on left (and other places if need be) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="Content/css/jquery.mCustomScrollbar.min.css?version=<%=WebVersion%>">
 
-    <!-- EXTERNAL JS LIBRARIES-->
-    <script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-    crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
-    integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-    
-     
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <!-- EXTERNAL JS LIBRARIES-->
+    <script src="Content/javascript/jquery-1.12.4.js?version=<%=WebVersion%>"></script>
+    <script src="Content/javascript/jquery-ui.js?version=<%=WebVersion%>"></script>
+    <script src="Content/javascript/bootstrap.min.js?version=<%=WebVersion%>"></script>
 
     <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="Content/javascript/jquery.mCustomScrollbar.concat.min.js?version=<%=WebVersion%>"></script>
 
 
     <style type="text/css">
@@ -74,562 +70,91 @@
             GET IT BACK FROM FLEETMAP.ASPX UNEDITED
      -->
 
-    <div style="display:none;">
-        
-             <dx:ASPxPanel DefaultButton="ASPxButton1"
-        ID="LeftPane"
-        runat="server"
-        FixedPosition="WindowLeft"
-        ClientInstanceName="leftPane"
-        CssClass="leftPane"
-        Collapsible="True">
+    <div style="display: none;">
 
-        <SettingsAdaptivity CollapseAtWindowInnerWidth="1" />
-        <Styles>
-            <Panel CssClass="panel"></Panel>
-        </Styles>
+        <dx:ASPxPanel DefaultButton="ASPxButton1"
+            ID="LeftPane"
+            runat="server"
+            FixedPosition="WindowLeft"
+            ClientInstanceName="leftPane"
+            CssClass="leftPane"
+            Collapsible="True">
 
-        <PanelCollection> 
-            <dx:PanelContent runat="server" ID="test1" SupportsDisabledAttribute="True" Width="100%"> 
-                <section id="accordion"> 
-                    <div class="sidebartop1"> 
-                        <input type="checkbox" class="chkbox" id="check-1" />
-                        <label class="accordianTitle" for="check-1">Show specific date/time</label> 
-                        <article>
-                            <br />
-                            <div style="padding-left: 15px; font-weight: bold;">
-                                <span class="dateTimePicker" style="margin-left: 2px;">Enter the time you wish to view:</span>
-                                <dx:ASPxDateEdit ID="ASPxDateEdit1"
-                                    runat="server"
-                                    Date="01/20/2016 00:06:00"
-                                    EditFormat="DateTime"
-                                    ClientInstanceName="dateViewThisDateTime"
-                                    EnableTheming="True" 
-                                    Theme="MetropolisBlue"
-                                     >
-                                    <TimeSectionProperties Visible="True">
-                                        <TimeEditProperties>
-                                            <ClearButton Visibility="Auto">
-                                            </ClearButton>
-                                        </TimeEditProperties>
-                                    </TimeSectionProperties>
-                                    <ClientSideEvents DateChanged="function(s, e) {
-	dateedit_Click(s,e);
-}"
-                                        CalendarCustomDisabledDate="function(s, e) {  }"
-                                        KeyDown="function(s,e){dateedit_Click(s,e);e.returnValue = false;e.cancel = true;}" />
+            <SettingsAdaptivity CollapseAtWindowInnerWidth="1" />
+            <Styles>
+                <Panel CssClass="panel"></Panel>
+            </Styles>
 
-                                    <Buttons>
-                                        <dx:EditButton Visible="false" Text="view on map">
-                                        </dx:EditButton>
-                                    </Buttons>
-                                    <ClearButton Visibility="Auto">
-                                    </ClearButton>
-
-                                    <Paddings PaddingLeft="10px"></Paddings>
-                                </dx:ASPxDateEdit>
-                            </div>
-                            <br />
-                        </article>
-                    </div>
-
-                    <div class="sidebartop1">
-                        <input type="checkbox" class="chkbox" id="check-2" />
-                        <label class="accordianTitle" for="check-2">Address search</label>
-                        <article>
-                            <p>
-                                <b>Search for address</b>
-                                <input id="pac-input" type="text" placeholder="Search Box">
-                            </p>
-                        </article>
-                    </div>
-
-                    <div class="sidebartop1">
-                        <input class="chkbox" type="checkbox" id="check-3" />
-
-                        <label class="accordianTitle" for="check-3">Activity Viewer</label>
-
-                        <article>
-                            <br />
-                            <div style="font-weight: bold;">
-                                <table style="width:100% !important;display:table-cell !important;">
-                                    <tr>
-                                        <td>
-                                            <span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">Vehicle / Driver:</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <dx:ASPxDropDownEdit AutoPostBack="false" ClientInstanceName="checkComboBox" ID="ddlTrucks" runat="server" AnimationType="None">
-                                                <DropDownWindowStyle BackColor="#EDEDED" />
-                                                <DropDownWindowTemplate>
-                                                    <dx:ASPxListBox Width="100%" ID="listBox" ClientInstanceName="checkListBox" SelectionMode="CheckColumn" runat="server">
-                                                        <Border BorderStyle="None" />
-                                                        <BorderBottom BorderStyle="Solid" BorderWidth="1px" BorderColor="#DCDCDC" />
-                                                        <Items>
-                                                            <dx:ListEditItem Text="(Select all)" />
-                                                        </Items>
-                                                        <ClientSideEvents SelectedIndexChanged="OnListBoxSelectionChanged" />
-                                                    </dx:ASPxListBox>
-                                                    <table style="width: 100%">
-                                                        <tr>
-                                                            <td style="padding: 4px">
-                                                                <dx:ASPxButton ID="ASPxButton1" AutoPostBack="False" runat="server" Text="Close" Style="float: right">
-                                                                    <ClientSideEvents Click="function(s, e){ checkComboBox.HideDropDown(); }" />
-                                                                </dx:ASPxButton>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </DropDownWindowTemplate>
-                                                <ClientSideEvents TextChanged="SynchronizeListBoxValues"
-                                                    DropDown="SynchronizeListBoxValues" />
-                                            </dx:ASPxDropDownEdit>
-                                        </td>
-                                    </tr>
-
-                                    <%-- <tr>
-                                        <td>
-                                            <dx:ASPxComboBox ID="cboSelectedTruck"
-                                                ClientInstanceName="cboSelectedTruck"
-                                                ClientEnabled="true"
-                                                ClientIDMode="Predictable"
-                                                ValueField="ID"
-                                                TextField="ComboBoxDisplay"
-                                                runat="server"
-                                                ValueType="System.String"
-                                                DataSourceID="odsTrucks"
-                                                Theme="Metropolis">
-                                                <ClearButton Visibility="Auto"></ClearButton>
-                                            </dx:ASPxComboBox>
-                                        </td>
-                                    </tr>--%>
-                                    <tr>
-                                        <td><span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">Start Time:</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <dx:ASPxDateEdit ID="heatMapStartTime" AutoPostBack="false" ClientInstanceName="heatMapStartTime" ClientIDMode="Predictable" ClientEnabled="true" runat="server" Date="01/20/2016 00:06:00" EditFormat="DateTime"
-                                                EnableTheming="True" Height="22px" Paddings-PaddingLeft="10px" padding-right="10px"
-                                                Theme="MetropolisBlue">
-                                                <TimeSectionProperties Visible="True">
-                                                    <TimeEditProperties>
-                                                        <ClearButton Visibility="Auto">
-                                                        </ClearButton>
-                                                    </TimeEditProperties>
-                                                </TimeSectionProperties>
-                                                <ClientSideEvents ButtonClick="function(s, e) {
-	dateedit_Click(s,e);
-}"
-                                                    CalendarCustomDisabledDate="function(s, e) {
-	
-}" />
-                                                <Buttons>
-                                                    <dx:EditButton Visible="false" Text="View">
-                                                    </dx:EditButton>
-                                                </Buttons>
-                                                <ClearButton Visibility="Auto">
-                                                </ClearButton>
-
-                                                <Paddings PaddingLeft="10px"></Paddings>
-                                            </dx:ASPxDateEdit>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">End Time:</span>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <dx:ASPxDateEdit
-                                                AutoPostBack="false"
-                                                ID="heatMapEndTime"
-                                                ClientInstanceName="heatMapEndTime"
-                                                ClientEnabled="true"
-                                                ClientIDMode="Predictable"
-                                                runat="server"
-                                                Date="01/20/2016 00:06:00"
-                                                EditFormat="DateTime"
-                                                EnableTheming="True"
-                                                Height="22px"
-                                                Paddings-PaddingLeft="10px"
-                                                padding-right="10px"
-                                                Theme="MetropolisBlue"
-                                                >
-
-                                                <TimeSectionProperties Visible="True">
-                                                    <TimeEditProperties>
-                                                        <ClearButton Visibility="false">
-                                                        </ClearButton>
-                                                    </TimeEditProperties>
-                                                </TimeSectionProperties>
-                                                <ClientSideEvents ButtonClick="function(s, e) {
-	dateedit_Click(s,e);
-}"
-                                                    CalendarCustomDisabledDate="function(s, e) {
-	
-}" />
-                                                <Buttons>
-                                                    <dx:EditButton Visible="false" Text="View">
-                                                    </dx:EditButton>
-                                                </Buttons>
-                                                <ClearButton Visibility="Auto">
-                                                </ClearButton>
-
-                                                <Paddings PaddingLeft="10px"></Paddings>
-                                            </dx:ASPxDateEdit>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top: 5px;">
-
-                                            <table id="tblHeatMapOptions" style="float: right;">
-                                                <tr>
-                                                    <td style="padding: 2px;">
-                                                        <dx:ASPxButton ID="btnHeatMapSearch"
-                                                            ClientInstanceName="btnHeatMapSearch"
-                                                            runat="server"
-                                                            AutoPostBack="false"
-                                                            Text="View Activity">
-
-                                                            <ClientSideEvents Click="function(){btnHeatMapSearch_Click();}" />
-                                                        </dx:ASPxButton>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="cbExcludeCars" runat="server" ClientInstanceName="cbExcludeCars" EnableTheming="True" Text="Hide vehicles not selected" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	cbExcludeCars_CheckChanged(s, e);
-}" />
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="cb" runat="server" ClientInstanceName="cbGradientToggle" EnableTheming="True" Text="Gradient" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	changeGradient();
-}" />
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="cbOpiacy" runat="server" ClientInstanceName="cbOpiacyToggle" EnableTheming="True" Text="Opiacy" Checked="true" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	changeOpacity();
-}" />
-                                                        </dx:ASPxCheckBox>
-
-                                                    </td>
-                                                </tr>
-                                                <tr>
+            <PanelCollection>
+                <dx:PanelContent runat="server" ID="test1" SupportsDisabledAttribute="True" Width="100%">
+                    <section id="accordion">
 
 
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="cbRadius" ClientInstanceName="cdRadiusToggle" runat="server" EnableTheming="True" Text="Radius" Checked="true" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	changeRadius();
-}" />
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="ASPxCheckBox1" Checked="true" ClientInstanceName="cbShowjourney" runat="server" EnableTheming="True" Text="Show Journey" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	showJourneyTogle()
-}" />
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="ASPxCheckBox2" ClientInstanceName="cbShowHeatmap" runat="server" EnableTheming="True" Text="Show Heatmap" Checked="true" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	toggleHeatmap()
-}" />
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
+                        <div class="sidebartop1">
+                        </div>
 
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="ASPxCheckBox5" runat="server" ClientInstanceName="cbFollowTruck" EnableTheming="True" Text="Follow Vehicle" Checked="true" Theme="SoftOrange">
-                                                        </dx:ASPxCheckBox>
+                        <div class="sidebartop1">
+                            <input class="chkbox" type="checkbox" id="check-3" />
 
-                                                    </td>
-                                                </tr>
+                            <label class="accordianTitle" for="check-3">Activity Viewer</label>
+
+                            <article>
+                                <br />
+                                <div style="font-weight: bold;">
+                                </div>
+                                <br />
+                            </article>
+                        </div>
+
+                        <!--- Vehicle Viewer tab  -->
+
+                        <!---End Vehicle Viewer tab  -->
 
 
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="ASPxCheckBox3" ClientInstanceName="cbHeatmapAutoUpdate" runat="server" EnableTheming="True" Text="Real-time update" Checked="false" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	cbHeatmapAutoUpdate_CheckChanged(s,e)
-}" />
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
+                        <div>
 
-                                                <tr>
-                                                    <td>
-                                                        <dx:ASPxCheckBox ID="cbSnapToRoad" ClientInstanceName="cbSnapToRoad" runat="server" EnableTheming="True" Text="Snap to road" Checked="true" Theme="SoftOrange">
-                                                            <ClientSideEvents CheckedChanged="function(s, e) {
-	cbSnapToRoad_CheckChanged(s,e)
-}" />
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
+                            <label class="accordianTitle" for="check-4">Geo-Fencing and Alerts</label>
 
+                            <article>
 
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
+                                <div style="padding: 5px;">
+                                </div>
+                            </article>
+                        </div>
 
-                                        <td>
-
-                                            <table>
-                                                <tr>
-                                                    <td colspan="4">
-                                                        <dx:ASPxLabel ID="ASPxLabel9" runat="server" Text="Vehicle update options" Font-Bold="True"></dx:ASPxLabel>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <dx:ASPxSpinEdit ID="spinTimeSeconds" ClientInstanceName="spinTimeSeconds" runat="server" Number="3" Theme="Default" EnableTheming="True" Width="45px">
-                                                            <ClearButton Visibility="Auto"></ClearButton>
-                                                        </dx:ASPxSpinEdit>
-                                                    </td>
-                                                    <td colspan="2">
-                                                        <dx:ASPxComboBox ID="comboTimeSecondsMultiplier" ClientInstanceName="comboTimeSecondsMultiplier" runat="server" Theme="Default" EnableTheming="True" SelectedIndex="1" Width="100%">
-                                                            <Items>
-                                                                <dx:ListEditItem Text="Seconds" Value="1"></dx:ListEditItem>
-                                                                <dx:ListEditItem Text="Minutes" Value="60" Selected="True"></dx:ListEditItem>
-                                                                <dx:ListEditItem Text="Hours" Value="3600"></dx:ListEditItem>
-                                                            </Items>
-
-                                                            <ClearButton Visibility="Auto"></ClearButton>
-
-                                                        </dx:ASPxComboBox>
-                                                    </td>
-                                                    <td style="padding-left: 3px; padding-right: 2px;">
-                                                        <dx:ASPxCheckBox ID="ASPxCheckBox4" ClientInstanceName="cbAutoIncrement" runat="server">
-                                                            <ClientSideEvents CheckedChanged="function(s,e){cbAutoIncrement_CheckedChanged(s,e);}" />
-
-                                                        </dx:ASPxCheckBox>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-
-                                    </tr>
-                                </table>
-                            </div>
-                            <br />
-                        </article>
-                    </div>
-
-                    <!--- Vehicle Viewer tab  -->
-                    <div>
-                        <input class="chkbox" type="checkbox" id="check-5" />
-                        <label class="accordianTitle showHide" for="check-5" onclick="GetIcon(this);" id="lblVehicle">
-                            Vehicle Viewer
-                                 <img id="img" class="clsImageHide" />
-                        </label>
-                        <article>
-                            <dx:ASPxGridView ID="dgvVehicles"
-                                ClientInstanceName="dgvVehicles"
+                        <div>
+                            <dx:ASPxButton CssClass="floatright" ID="ASPxButton1" AutoPostBack="false"
+                                ClientInstanceName="btnViewCurrentMapTime"
                                 runat="server"
-                                AutoGenerateColumns="False"
-                                DataSourceID="odsVehicles"
-                                EnableTheming="True"
-                                KeyFieldName="ApplicationVehileID"
-                                SettingsBehavior-ConfirmDelete="true"
-                                Theme="SoftOrange" OnDataBound ="dgvVehicles_DataBound" Style="width: 100%" OnPreRender="dgvVehicles_PreRender">
-                            <Settings ShowFilterRow="True"  />
+                                Text="View Current Map Time"
+                                Theme="Office2010Black"
+                                EnableTheming="True">
 
-<SettingsAdaptivity>
-<AdaptiveDetailLayoutProperties ColCount="1"></AdaptiveDetailLayoutProperties>
-</SettingsAdaptivity>
-
-                                <SettingsPager PageSize="15"></SettingsPager>
-
-<SettingsBehavior ConfirmDelete="True"></SettingsBehavior>
-
-<EditFormLayoutProperties ColCount="1"></EditFormLayoutProperties>
-                                <Columns>
-                                    <dx:GridViewDataColumn FieldName="DeviceID" VisibleIndex="0" Caption="Show"> 
-                                        <FilterTemplate>
-                                            <div style="margin-left: 5px">
-                                                <input type="checkbox" id="chkHeaderShow" onchange="GetAllSelected(this);" class="chkHead" />
-                                            </div>
-                                        </FilterTemplate> 
-                                        <DataItemTemplate>
-                                            <div>
-                                                <input type="checkbox" id="chkShow" class="chk" value='<%# Eval("DeviceID")%>' onchange="GetID(this.value, this)" runat="server" />
-                                            </div>
-                                        </DataItemTemplate>
-                                        <Settings AllowAutoFilter="False" />
-                                         
-                                    </dx:GridViewDataColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle" >
-                                        <DataItemTemplate>
-                                            <div style="width: 100%">
-                                                <div style="width: 30px;float: left;">
-                                                    <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" />
-                                                </div>
-                                                <div style="width: 70%;padding-top: 5px;font-size: 12px;float: left;">
-                                                    <%#Eval("Name")%>
-                                                </div>
-                                            </div>
-                                        </DataItemTemplate>
-                                          <Settings AutoFilterCondition="Contains" />
-                                    </dx:GridViewDataTextColumn>
-                                </Columns>
-                                <ClientSideEvents EndCallback="function(s, e) { GetSelectedRows(s,e);}" />
-                                 
-                            </dx:ASPxGridView>
-                        </article>
-                        <!-- DataSource  -->
-                        <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
-                            <SelectParameters>
-                                <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
-                                <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
-                            </SelectParameters>
-                        </asp:ObjectDataSource>
-                        <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
-                            <SelectParameters>
-                                <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
-                            </SelectParameters>
-                        </asp:ObjectDataSource>
-                    </div>
-                    <!---End Vehicle Viewer tab  -->
-                    <asp:ObjectDataSource ID="odsTrucks"
-                        runat="server"
-                        SelectMethod="GetExampleFleetNow"
-                        TypeName="FMS.Business.Truck">
-
-                        <SelectParameters>
-                            <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appid"></asp:SessionParameter>
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-
-                    <div>
-                        <input class="chkbox" type="checkbox" id="check-4" />
-                        <label class="accordianTitle" for="check-4">Geo-Fencing and Alerts</label>
-
-                        <article>
-
-                            <div style="padding: 5px;">
-                                <table>
-                                    <tr>
-                                        <td style="padding-top: 7px;">
-                                            <span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">Create boundaries and alerts for your vehicles:</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top: 7px; padding-left: 68px;">
-                                            <div style="float: left;">
-                                                <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFences"
-                                                    ID="cbViewGeoFences"
-                                                    Checked="false"
-                                                    runat="server"
-                                                    EnableTheming="True"
-                                                    AutoPostBack="false"
-                                                    Text="show geo-fences">
-                                                    <ClientSideEvents CheckedChanged="function(s, e) {
-	cbViewGeoFences_checkChanged(e);
-}" />
-                                                </dx:ASPxCheckBox>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top: 7px; padding-left: 68px;">
-                                            <div style="float: left;">
-                                                <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFencesWithBooking"
-                                                    ID="cbViewGeoFencesWithBooking"
-                                                    Checked="false"
-                                                    runat="server"
-                                                    EnableTheming="True"
-                                                    AutoPostBack="false"
-                                                    Text="include bookings">
-                                                    <ClientSideEvents CheckedChanged="function(s, e) {
-	cbViewGeoFencesWithBooking_checkChanged(e);
-}" />
-                                                </dx:ASPxCheckBox>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top: 7px; padding-left: 68px;">
-                                            <div style="float: left;">
-                                                <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFenceLabels" ID="cbViewGeoFenceLabels" Checked="True" runat="server" EnableTheming="True" Text="show labels" CheckState="Checked">
-                                                    <ClientSideEvents CheckedChanged="function(s, e) {
-	cbViewGeoFenceLabels_checkChanged(e);
-}" />
-                                                </dx:ASPxCheckBox>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top: 7px; padding-left: 40px; padding-bottom: 10px;">
-                                            <dx:ASPxButton CssClass="floatright" ID="btnViewGeofencing" AutoPostBack="false"
-                                                ClientInstanceName="btnViewGeofencing"
-                                                runat="server"
-                                                Text="Configure Geo-Fences"
-                                                EnableTheming="True">
-
-                                                <ClientSideEvents Click="function(s, e) {
-	                                                SetPCVisible (true);
-                                                }"></ClientSideEvents>
-
-                                            </dx:ASPxButton>
-                                        </td>
-                                    </tr>
-
-                                </table>
-
-                            </div>
-                        </article>
-                    </div>
-
-                    <div>
-                        <dx:ASPxButton CssClass="floatright" ID="ASPxButton1" AutoPostBack="false"
-                            ClientInstanceName="btnViewCurrentMapTime"
-                            runat="server"
-                            Text="View Current Map Time"
-                            EnableTheming="True">
-
-                            <ClientSideEvents Click="function(s, e) {
+                                <ClientSideEvents Click="function(s, e) {
 	                                                btnViewCurrentMapTime_Click();
                                                 }"></ClientSideEvents>
 
-                        </dx:ASPxButton>
-                    </div>
+                            </dx:ASPxButton>
+                        </div>
 
-                    <div>
+                        <div>
 
-                        <dx:ASPxLabel ID="ASPxLabel10" runat="server" ClientInstanceName="errormessage" Text=""></dx:ASPxLabel>
-                    </div>
+                            <dx:ASPxLabel ID="ASPxLabel10" runat="server" ClientInstanceName="errormessage" Text=""></dx:ASPxLabel>
+                        </div>
 
-                </section>
+                    </section>
 
 
-            </dx:PanelContent>
-        </PanelCollection>
-    </dx:ASPxPanel>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxPanel>
     </div>
 
     <dx:ASPxPopupControl ClientInstanceName="popupGeoCaching" Width="500px" Height="340px" MaxWidth="800px" MaxHeight="800px"
         MinHeight="340px"
         MinWidth="500px"
-        ID="pcMain" ShowFooter="True"
+        ID="pcMain" 
+        ShowFooter="True"
         FooterText="(c) nanosoft.com.au"
         PopupElementID="btnViewGeofencing"
         HeaderText="Area of Countries"
@@ -640,7 +165,12 @@
         DragElement="Window"
         ResizingMode="Postponed"
         ShowSizeGrip="True"
-        CloseAction="CloseButton" PopupAnimationType="Fade" CloseAnimationType="Fade" PopupHorizontalAlign="LeftSides" PopupVerticalAlign="Below">
+        CloseAction="CloseButton" 
+        PopupAnimationType="Fade" 
+        CloseAnimationType="Fade" 
+        PopupHorizontalAlign="LeftSides"
+        PopupVerticalAlign="Below">
+
 
         <ClientSideEvents Closing="function(s,e){popupGeoCaching_Closing(s,e);}" />
 
@@ -1098,7 +628,7 @@
         MinWidth="820px"
         ShowFooter="False"
         FooterText="(c) nanosoft.com.au"
-        PopupElementID="btnViewGeofencing"
+        PopupElementID=""
         HeaderText="Area of Countries"
         EnableViewState="False"
         AllowDragging="True"
@@ -1119,98 +649,608 @@
 
 
         <nav id="sidebar" style="display: block;">
-      <div class="sidebar-header">
-        <img style="width:100%;height:auto;" src="Content/Images/logo/logo-white.png">
-      </div>
 
-      <ul class="list-unstyled components">
-        <p>Map Options</p>
+            <div class="sidebar-header">
+                <img style="width: 100%; height: auto;" src="Content/Images/logo/logo-white.png">
+            </div>
 
-        <li class="active">
+            <ul class="list-unstyled components">
+                <%--<p>Map Options</p>--%>
 
-          <a href="#layers" data-toggle="collapse" aria-expanded="false" class="collapsed">Layers</a>
+                <li>
 
-          <ul class="list-unstyled collapse" id="layers" aria-expanded="false" style="height: 0px;">
+                    <input type="checkbox" class="chkbox" id="check-2" />
 
-            <li><a href="#">Personnel</a></li>
-            <li><a href="#">Toolboxes</a></li>
-            <li><a href="#">Vehicles</a></li>
-            <li><a href="#">Custom Sensors</a></li>
+                    <p>
+                        <input id="pac-input" type="text" placeholder="Search Box">
+                    </p>
 
-          </ul>
+                </li>
 
-        </li>
+                <li class="">
 
-        <li class="active">
+                    <a href="#selectDateTime" data-toggle="collapse" aria-expanded="false" class="collapsed">Select Date/Time</a>
 
-          <a href="#geofences" data-toggle="collapse" aria-expanded="false" class="collapsed">Geo-Fences</a>
+                    <ul class="list-unstyled collapse" id="selectDateTime" aria-expanded="false" style="height: 0px;">
 
-          <ul class="list-unstyled collapse" id="geofences" aria-expanded="false" style="height: 0px;">
+                        <li>
+                            <input type="checkbox" class="chkbox" id="check-1" />
 
-            <li><a href="#">Show</a></li>
-            <li><a href="#">Add / Remove</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Alarms / Alerts</a></li>
-          </ul>
+                            <span class="dateTimePicker" style="margin-left: 2px;">Enter the time you wish to view:</span>
 
-        </li>
+                            <dx:ASPxDateEdit ID="ASPxDateEdit1"
+                                runat="server"
+                                Date="01/20/2016 00:06:00"
+                                EditFormat="DateTime"
+                                CssClass="topZindex"
+                                Width="100%"
+                                ClientInstanceName="dateViewThisDateTime"
+                                EnableTheming="True"
+                                Height="28px"
+                                Theme="Office2010Black">
+
+                                <TimeSectionProperties Visible="True">
+                                    <TimeEditProperties>
+                                        <ClearButton Visibility="Auto">
+                                        </ClearButton>
+                                    </TimeEditProperties>
+                                </TimeSectionProperties>
+                                <ClientSideEvents DateChanged="function(s, e) {
+	dateedit_Click(s,e);
+}"
+                                    CalendarCustomDisabledDate="function(s, e) {  }"
+                                    KeyDown="function(s,e){dateedit_Click(s,e);e.returnValue = false;e.cancel = true;}" />
+
+                                <Buttons>
+                                    <dx:EditButton Visible="false" Text="view on map">
+                                    </dx:EditButton>
+                                </Buttons>
+                                <ClearButton Visibility="Auto">
+                                </ClearButton>
+
+                                <Paddings PaddingLeft="10px"></Paddings>
+
+                            </dx:ASPxDateEdit>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+
+                    <a href="#activityViewer" data-toggle="collapse" aria-expanded="false" class="collapsed">Activity Viewer</a>
+
+                    <ul class="list-unstyled collapse" id="activityViewer" aria-expanded="false" style="height: 0px;">
+
+                        <li>
+                            <table class="activityViewerTable" style="width: 100% !important; display: table-cell !important;">
+                                <tr>
+                                    <td>
+                                        <span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">Vehicle / Driver:</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <dx:ASPxDropDownEdit
+                                            Width="100%"
+                                            EnableTheming="True"
+                                            Height="28px"
+                                            Theme="Office2010Black"
+                                            AutoPostBack="false" ClientInstanceName="checkComboBox" ID="ddlTrucks" runat="server" AnimationType="None">
+                                            <DropDownWindowStyle BackColor="#EDEDED" />
+                                            <DropDownWindowTemplate>
+                                                <dx:ASPxListBox Width="100%" ID="listBox" ClientInstanceName="checkListBox" SelectionMode="CheckColumn" runat="server">
+                                                    <Border BorderStyle="None" />
+                                                    <BorderBottom BorderStyle="Solid" BorderWidth="1px" BorderColor="#DCDCDC" />
+                                                    <Items>
+                                                        <dx:ListEditItem Text="(Select all)" />
+                                                    </Items>
+                                                    <ClientSideEvents SelectedIndexChanged="OnListBoxSelectionChanged" />
+                                                </dx:ASPxListBox>
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="padding: 4px">
+                                                            <dx:ASPxButton ID="ASPxButton1" AutoPostBack="False" runat="server" Text="Close" Style="float: right">
+                                                                <ClientSideEvents Click="function(s, e){ checkComboBox.HideDropDown(); }" />
+                                                            </dx:ASPxButton>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </DropDownWindowTemplate>
+                                            <ClientSideEvents TextChanged="SynchronizeListBoxValues"
+                                                DropDown="SynchronizeListBoxValues" />
+                                        </dx:ASPxDropDownEdit>
+                                    </td>
+                                </tr>
 
 
-      </ul>
+                                <tr>
+                                    <td><span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">Start Time:</span></td>
+                                </tr>
 
-      <hr>
+                                <tr>
+                                    <td>
+                                        <dx:ASPxDateEdit ID="heatMapStartTime"
+                                            AutoPostBack="false"
+                                            ClientInstanceName="heatMapStartTime"
+                                            ClientIDMode="Predictable"
+                                            ClientEnabled="true"
+                                            runat="server"
+                                            Date="01/20/2016 00:06:00"
+                                            EditFormat="DateTime"
+                                            Width="100%"
+                                            EnableTheming="True"
+                                            Height="28px"
+                                            Theme="Office2010Black">
+                                            <TimeSectionProperties Visible="True">
+                                                <TimeEditProperties>
+                                                    <ClearButton Visibility="Auto">
+                                                    </ClearButton>
+                                                </TimeEditProperties>
+                                            </TimeSectionProperties>
+                                            <ClientSideEvents ButtonClick="function(s, e) {
+	dateedit_Click(s,e);
+}"
+                                                CalendarCustomDisabledDate="function(s, e) {
+	
+}" />
+                                            <Buttons>
+                                                <dx:EditButton Visible="false" Text="View">
+                                                </dx:EditButton>
+                                            </Buttons>
+                                            <ClearButton Visibility="Auto">
+                                            </ClearButton>
+
+                                            <Paddings PaddingLeft="10px"></Paddings>
+                                        </dx:ASPxDateEdit>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="dateTimePicker" style="margin-left: 2px; margin-top: 5px;">End Time:</span>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <dx:ASPxDateEdit
+                                            AutoPostBack="false"
+                                            ID="heatMapEndTime"
+                                            ClientInstanceName="heatMapEndTime"
+                                            ClientEnabled="true"
+                                            ClientIDMode="Predictable"
+                                            runat="server"
+                                            Date="01/20/2016 00:06:00"
+                                            EditFormat="DateTime"
+                                            Width="100%"
+                                            EnableTheming="True"
+                                            Height="28px"
+                                            Theme="Office2010Black">
+
+                                            <TimeSectionProperties Visible="True">
+                                                <TimeEditProperties>
+                                                    <ClearButton Visibility="false">
+                                                    </ClearButton>
+                                                </TimeEditProperties>
+                                            </TimeSectionProperties>
+                                            <ClientSideEvents ButtonClick="function(s, e) {
+	dateedit_Click(s,e);
+}"
+                                                CalendarCustomDisabledDate="function(s, e) {
+	
+}" />
+                                            <Buttons>
+                                                <dx:EditButton Visible="false" Text="View">
+                                                </dx:EditButton>
+                                            </Buttons>
+                                            <ClearButton Visibility="Auto">
+                                            </ClearButton>
+
+                                            <Paddings PaddingLeft="10px"></Paddings>
+                                        </dx:ASPxDateEdit>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 10px;">
+
+                                        <li class="active">
+
+                                            <a href="#activityViewerOptions" data-toggle="collapse" aria-expanded="false" class="collapsed subitem">* advanced options</a>
+
+                                            <ul class="list-unstyled collapse" id="activityViewerOptions" aria-expanded="false" style="height: 0px;">
+
+                                                <li>
+
+                                                    <table id="tblHeatMapOptions" style="width: 100%;">
+
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="cbExcludeCars" runat="server" ClientInstanceName="cbExcludeCars" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Hide vehicles not selected" CheckState="Unchecked">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	cbExcludeCars_CheckChanged(s, e);
+}" />
+                                                                </dx:ASPxCheckBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="cb" runat="server" ClientInstanceName="cbGradientToggle" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Gradient">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	changeGradient();
+}" />
+                                                                </dx:ASPxCheckBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="cbOpiacy" runat="server" ClientInstanceName="cbOpiacyToggle" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Opiacy" Checked="true">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	changeOpacity();
+}" />
+                                                                </dx:ASPxCheckBox>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
 
 
-      <ul class="list-unstyled in indented">
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="cbRadius" ClientInstanceName="cdRadiusToggle" runat="server" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Radius" Checked="true">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	changeRadius();
+}" />
+                                                                </dx:ASPxCheckBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="ASPxCheckBox1" Checked="true" ClientInstanceName="cbShowjourney" runat="server" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Show Journey">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	showJourneyTogle()
+}" />
+                                                                </dx:ASPxCheckBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="ASPxCheckBox2" ClientInstanceName="cbShowHeatmap" runat="server" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Show Heatmap" Checked="true">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	toggleHeatmap()
+}" />
+                                                                </dx:ASPxCheckBox>
+                                                            </td>
+                                                        </tr>
 
-        <p>Quick Links</p>
-        <li>
-          <a target="_blank" href="https://bhptechsi.atlassian.net/wiki/spaces/LOC/pages/681705563/Charter+and+Scope">Charter &amp;
-            Scope</a>
-        </li>
-        <li>
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="ASPxCheckBox5" runat="server" ClientInstanceName="cbFollowTruck" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Follow Vehicle" Checked="true">
+                                                                </dx:ASPxCheckBox>
 
-        </li>
-        <li>
-          <a target="_blank" href="https://bhptechsi.atlassian.net/wiki/spaces/LOC/pages/680821750/Initiative+Updates">Initative
-            Updates</a>
-        </li>
-        <li>
+                                                            </td>
+                                                        </tr>
 
-        </li>
-        <li>
-          <a target="_blank" href="https://bhptechsi.atlassian.net/wiki/spaces/LOC/pages/680821754/File+lists">Documentation</a>
-        </li>
-        <li>
 
-        </li>
-        <li>
-          <a target="_blank" href="https://bhptechsi.atlassian.net/secure/RapidBoard.jspa?projectKey=LOC&amp;rapidView=481&amp;view=planning.nodetail">Project
-            Backlog</a>
-        </li>
-        <li>
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="ASPxCheckBox3" ClientInstanceName="cbHeatmapAutoUpdate" runat="server" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Real-time update" Checked="false">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	cbHeatmapAutoUpdate_CheckChanged(s,e)
+}" />
+                                                                </dx:ASPxCheckBox>
+                                                            </td>
+                                                        </tr>
 
-        </li>
-      </ul>
+                                                        <tr>
+                                                            <td>
+                                                                <dx:ASPxCheckBox ID="cbSnapToRoad" ClientInstanceName="cbSnapToRoad" runat="server" TextAlign="Left" EnableTheming="True" Theme="Office2010Black" Text="Snap to road" Checked="true">
+                                                                    <ClientSideEvents CheckedChanged="function(s, e) {
+	cbSnapToRoad_CheckChanged(s,e)
+}" />
+                                                                </dx:ASPxCheckBox>
+                                                            </td>
+                                                        </tr>
 
-      <hr>
 
-      <ul class="list-unstyled CTAs">
-        <li><a href="javascript:showModalAndRefreshContent();" class="article">Send Marco !</a></li>
-      </ul>
-    </nav>
 
-        <div class="content"  id="googleMap" style="position: relative; overflow: hidden;">       
+
+                                                    </table>
+
+
+                                                </li>
+                                            </ul>
+
+                                        </li>
+
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+
+                                        <table>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <span id="autoplayJourney">Auto-play journey?
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>
+                                                    <dx:ASPxSpinEdit ID="spinTimeSeconds" ClientInstanceName="spinTimeSeconds" runat="server" Number="3" Theme="Default" EnableTheming="True" Width="45px">
+                                                        <ClearButton Visibility="Auto"></ClearButton>
+                                                    </dx:ASPxSpinEdit>
+                                                </td>
+                                                <td colspan="2">
+                                                    <dx:ASPxComboBox ID="comboTimeSecondsMultiplier" ClientInstanceName="comboTimeSecondsMultiplier" runat="server" Theme="Default" EnableTheming="True" SelectedIndex="1" Width="100%">
+                                                        <Items>
+                                                            <dx:ListEditItem Text="Seconds" Value="1"></dx:ListEditItem>
+                                                            <dx:ListEditItem Text="Minutes" Value="60" Selected="True"></dx:ListEditItem>
+                                                            <dx:ListEditItem Text="Hours" Value="3600"></dx:ListEditItem>
+                                                        </Items>
+
+                                                        <ClearButton Visibility="Auto"></ClearButton>
+
+                                                    </dx:ASPxComboBox>
+                                                </td>
+                                                <td style="padding-left: 3px; padding-right: 2px;">
+                                                    <dx:ASPxCheckBox ID="ASPxCheckBox4" ClientInstanceName="cbAutoIncrement" runat="server">
+                                                        <ClientSideEvents CheckedChanged="function(s,e){cbAutoIncrement_CheckedChanged(s,e);}" />
+
+                                                    </dx:ASPxCheckBox>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 15px 0px 5px 0px; text-align: right;">
+                                        <dx:ASPxButton ID="btnHeatMapSearch"
+                                            ClientInstanceName="btnHeatMapSearch"
+                                            runat="server"
+                                            AutoPostBack="false"
+                                            EnableTheming="True"
+                                            Theme="Office2010Black"
+                                            Text="View Activity">
+
+                                            <ClientSideEvents Click="function(){btnHeatMapSearch_Click();}" />
+                                        </dx:ASPxButton>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </li>
+                    </ul>
+
+                </li>
+
+
+                <li class="vehicle_viewer">
+
+                    <a href="#vehicle_viewer" data-toggle="collapse" aria-expanded="false" class="collapsed">Vehicle Visibility</a>
+
+                    <ul class="list-unstyled collapse" id="vehicle_viewer" aria-expanded="false" style="height: 0px;">
+
+                        <li>
+
+
+                            <input class="chkbox" type="checkbox" id="check-5" />
+
+                            <dx:ASPxGridView ID="dgvVehicles"
+                                ClientInstanceName="dgvVehicles"
+                                runat="server"
+                                AutoGenerateColumns="False"
+                                DataSourceID="odsVehicles"
+                                EnableTheming="True"
+                                KeyFieldName="ApplicationVehileID"
+                                SettingsBehavior-ConfirmDelete="true"
+                                Theme="Office2010Black"
+                                OnDataBound="dgvVehicles_DataBound"
+                                Style="width: 230px"
+                                OnPreRender="dgvVehicles_PreRender">
+
+                                <Settings ShowFilterRow="True" />
+
+                                <SettingsAdaptivity>
+                                    <AdaptiveDetailLayoutProperties ColCount="1"></AdaptiveDetailLayoutProperties>
+                                </SettingsAdaptivity>
+
+                                <SettingsPager PageSize="5"></SettingsPager>
+
+                                <SettingsBehavior ConfirmDelete="True"></SettingsBehavior>
+
+                                <EditFormLayoutProperties ColCount="1"></EditFormLayoutProperties>
+                                <Columns>
+                                    <dx:GridViewDataColumn FieldName="DeviceID" VisibleIndex="0" Caption="Show">
+                                        <FilterTemplate>
+                                            <div style="margin-left: 5px">
+                                                <input type="checkbox" id="chkHeaderShow" onchange="GetAllSelected(this);" class="chkHead" />
+                                            </div>
+                                        </FilterTemplate>
+                                        <DataItemTemplate>
+                                            <div>
+                                                <input type="checkbox" id="chkShow" class="chk" value='<%# Eval("DeviceID")%>' onchange="GetID(this.value, this)" runat="server" />
+                                            </div>
+                                        </DataItemTemplate>
+                                        <Settings AllowAutoFilter="False" />
+
+                                    </dx:GridViewDataColumn>
+                                    <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="2" Caption="Vehicle">
+                                        <DataItemTemplate>
+                                            <div style="width: 100%">
+                                                <div style="width: 30px; float: left;">
+                                                    <asp:Image ID="imgVehicle" ImageUrl='<%#"ImageHandler.ashx?imgID="& Convert.ToString(Eval("ApplicationImageID"))%>' runat="server" Height="26px" Width="26px" />
+                                                </div>
+                                                <div style="width: 70%; padding-top: 5px; font-size: 12px; float: left;">
+                                                    <%#Eval("Name")%>
+                                                </div>
+                                            </div>
+                                        </DataItemTemplate>
+                                        <Settings AutoFilterCondition="Contains" />
+                                    </dx:GridViewDataTextColumn>
+                                </Columns>
+                                <ClientSideEvents EndCallback="function(s, e) { GetSelectedRows(s,e);}" />
+
+                            </dx:ASPxGridView>
+
+                            <!-- DataSources  -->
+                            <asp:ObjectDataSource ID="odsMapMarker" runat="server" SelectMethod="GetAllApplicationImages" TypeName="FMS.Business.DataObjects.ApplicationImage">
+                                <SelectParameters>
+                                    <asp:SessionParameter DbType="Guid" Name="applicationid" SessionField="ApplicationID" />
+                                    <asp:Parameter Name="type" Type="String" DefaultValue="vehicle" />
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+
+                            <asp:ObjectDataSource ID="odsVehicles" runat="server" DataObjectTypeName="FMS.Business.DataObjects.ApplicationVehicle" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetAll" TypeName="FMS.Business.DataObjects.ApplicationVehicle" UpdateMethod="Update">
+                                <SelectParameters>
+                                    <asp:SessionParameter DbType="Guid" Name="appplicationID" SessionField="ApplicationID" />
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+
+                            <asp:ObjectDataSource ID="odsTrucks"
+                                runat="server"
+                                SelectMethod="GetExampleFleetNow"
+                                TypeName="FMS.Business.Truck">
+
+                                <SelectParameters>
+                                    <asp:SessionParameter SessionField="ApplicationID" DbType="Guid" Name="appid"></asp:SessionParameter>
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+
+                        </li>
+                    </ul>
+
+                </li>
+
+
+                <li class="">
+
+                    <a href="#geofences" data-toggle="collapse" aria-expanded="false" class="collapsed">Geo-Fences</a>
+
+                    <input class="chkbox" type="checkbox" id="check-4" />
+
+                    <ul class="list-unstyled collapse" id="geofences" aria-expanded="false" style="height: 0px;">
+
+                        <li>
+
+                            <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFences"
+                                ID="cbViewGeoFences"
+                                Checked="false"
+                                runat="server"
+                                EnableTheming="True"
+                                TextAlign="Left"
+                                AutoPostBack="false"
+                                Text="show geo-fences">
+                                <ClientSideEvents CheckedChanged="function(s, e) {
+	cbViewGeoFences_checkChanged(e);
+}" />
+                            </dx:ASPxCheckBox>
+
+                        </li>
+                        <li>
+
+                            <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFencesWithBooking"
+                                ID="cbViewGeoFencesWithBooking"
+                                Checked="false"
+                                runat="server"
+                                TextAlign="Left"
+                                EnableTheming="True"
+                                AutoPostBack="false"
+                                Text="include bookings">
+                                <ClientSideEvents CheckedChanged="function(s, e) {
+	cbViewGeoFencesWithBooking_checkChanged(e);
+}" />
+                            </dx:ASPxCheckBox>
+
+                        </li>
+
+                        <li>
+                            <dx:ASPxCheckBox ClientInstanceName="cbViewGeoFenceLabels"
+                                ID="cbViewGeoFenceLabels"
+                                Checked="True"
+                                runat="server"
+                                EnableTheming="True"
+                                TextAlign="Left"
+                                Text="show labels"
+                                CheckState="Checked">
+
+                                <ClientSideEvents CheckedChanged="function(s, e) {
+	cbViewGeoFenceLabels_checkChanged(e);
+}" />
+                            </dx:ASPxCheckBox>
+                        </li>
+                        <li>
+                            <dx:ASPxButton CssClass="floatright"
+                                ID="btnViewGeofencing"
+                                AutoPostBack="false"
+                                ClientInstanceName="btnViewGeofencing"
+                                runat="server"
+                                Text="Configure Geo-Fences"
+                                Theme="Office2010Black"
+                                EnableTheming="True">
+
+                                <ClientSideEvents Click="function(s, e) {
+	                                                SetPCVisible (true);
+                                                }"></ClientSideEvents>
+
+
+                            </dx:ASPxButton>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+            </ul>
+
+            <hr>
+
+
+            <ul class="list-unstyled in indented">
+
+                <p>Quick Links</p>
+                <li>
+                    <a target="_blank" href="AlarmsAndAlerts.aspx"> Record of Geo-Fence events </a>
+                </li>
+                <li></li>
+                <li>
+                    <a target="_blank" href="AlarmsAndEvents.aspx">Alarms and Events</a>                    
+                </li>
+                <li></li>
+                <li>
+                    <a target="_blank" href="ReportGenerator.aspx">Reporting System </a>
+                </li>
+                <li></li>
+                <li>
+                    <a target="_blank" href="Dashboarding.aspx">Dashboard </a>
+                </li>
+                <li></li>
+            </ul>
+
+            <hr>
+
+            <ul class="list-unstyled CTAs">
+                <li><a href="javascript:SetPCVisible(true);" class="article">Geo-Fence Explorer</a></li>
+                <li><a href="javascript:SetPCVisible(true);" class="article">Map Date &amp; Time</a></li>
+            </ul>
+        </nav>
+
+        <div class="content" id="googleMap" style="position: relative; overflow: hidden;">
         </div>
 
     </div>
 
-    <div id="closeButtoncontent" style="display:none;">
-		<button type="button" id="sidebarCollapse" class="navbar-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <div id="closeButtoncontent" style="display: none;">
+        <button type="button" id="sidebarCollapse" class="navbar-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
     </div>
 
@@ -1397,16 +1437,16 @@
         $(document).ready(function () {
 
             $("#sidebar").mCustomScrollbar({
-                 theme: "minimal"
+                theme: "minimal"
             });
 
             $('#sidebarCollapse').on('click', function () {
-                    // open or close navbar
-                    $('#sidebar').toggleClass('active');
-                    // close dropdowns
-                    $('.collapse.in').toggleClass('in');
-                    // and also adjust aria-expanded attributes we use for the open/closed arrows
-                    // in our CSS
+                // open or close navbar
+                $('#sidebar').toggleClass('active');
+                // close dropdowns
+                $('.collapse.in').toggleClass('in');
+                // and also adjust aria-expanded attributes we use for the open/closed arrows
+                // in our CSS
                 $('a[aria-expandjavascript:showModalAndRefreshContent();ed=true]').attr('aria-expanded', 'false');
             });
 

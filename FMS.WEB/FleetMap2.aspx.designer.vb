@@ -32,240 +32,6 @@ Partial Public Class FleetMap2
     Protected WithEvents test1 As Global.DevExpress.Web.PanelContent
     
     '''<summary>
-    '''ASPxDateEdit1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxDateEdit1 As Global.DevExpress.Web.ASPxDateEdit
-    
-    '''<summary>
-    '''ddlTrucks control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlTrucks As Global.DevExpress.Web.ASPxDropDownEdit
-    
-    '''<summary>
-    '''heatMapStartTime control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents heatMapStartTime As Global.DevExpress.Web.ASPxDateEdit
-    
-    '''<summary>
-    '''heatMapEndTime control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents heatMapEndTime As Global.DevExpress.Web.ASPxDateEdit
-    
-    '''<summary>
-    '''btnHeatMapSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnHeatMapSearch As Global.DevExpress.Web.ASPxButton
-    
-    '''<summary>
-    '''cbExcludeCars control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbExcludeCars As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cb As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''cbOpiacy control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbOpiacy As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''cbRadius control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbRadius As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''ASPxCheckBox1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxCheckBox1 As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''ASPxCheckBox2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxCheckBox2 As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''ASPxCheckBox5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxCheckBox5 As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''ASPxCheckBox3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxCheckBox3 As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''cbSnapToRoad control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbSnapToRoad As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''ASPxLabel9 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxLabel9 As Global.DevExpress.Web.ASPxLabel
-    
-    '''<summary>
-    '''spinTimeSeconds control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents spinTimeSeconds As Global.DevExpress.Web.ASPxSpinEdit
-    
-    '''<summary>
-    '''comboTimeSecondsMultiplier control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents comboTimeSecondsMultiplier As Global.DevExpress.Web.ASPxComboBox
-    
-    '''<summary>
-    '''ASPxCheckBox4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASPxCheckBox4 As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''dgvVehicles control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dgvVehicles As Global.DevExpress.Web.ASPxGridView
-    
-    '''<summary>
-    '''odsMapMarker control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsMapMarker As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''odsVehicles control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsVehicles As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''odsTrucks control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents odsTrucks As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''cbViewGeoFences control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbViewGeoFences As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''cbViewGeoFencesWithBooking control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbViewGeoFencesWithBooking As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''cbViewGeoFenceLabels control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbViewGeoFenceLabels As Global.DevExpress.Web.ASPxCheckBox
-    
-    '''<summary>
-    '''btnViewGeofencing control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnViewGeofencing As Global.DevExpress.Web.ASPxButton
-    
-    '''<summary>
     '''ASPxButton1 control.
     '''</summary>
     '''<remarks>
@@ -579,6 +345,231 @@ Partial Public Class FleetMap2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents popupReport As Global.DevExpress.Web.ASPxPopupControl
+    
+    '''<summary>
+    '''ASPxDateEdit1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxDateEdit1 As Global.DevExpress.Web.ASPxDateEdit
+    
+    '''<summary>
+    '''ddlTrucks control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlTrucks As Global.DevExpress.Web.ASPxDropDownEdit
+    
+    '''<summary>
+    '''heatMapStartTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents heatMapStartTime As Global.DevExpress.Web.ASPxDateEdit
+    
+    '''<summary>
+    '''heatMapEndTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents heatMapEndTime As Global.DevExpress.Web.ASPxDateEdit
+    
+    '''<summary>
+    '''cbExcludeCars control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbExcludeCars As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''cb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cb As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''cbOpiacy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbOpiacy As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''cbRadius control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbRadius As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''ASPxCheckBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxCheckBox1 As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''ASPxCheckBox2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxCheckBox2 As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''ASPxCheckBox5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxCheckBox5 As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''ASPxCheckBox3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxCheckBox3 As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''cbSnapToRoad control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbSnapToRoad As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''spinTimeSeconds control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents spinTimeSeconds As Global.DevExpress.Web.ASPxSpinEdit
+    
+    '''<summary>
+    '''comboTimeSecondsMultiplier control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents comboTimeSecondsMultiplier As Global.DevExpress.Web.ASPxComboBox
+    
+    '''<summary>
+    '''ASPxCheckBox4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ASPxCheckBox4 As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''btnHeatMapSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnHeatMapSearch As Global.DevExpress.Web.ASPxButton
+    
+    '''<summary>
+    '''dgvVehicles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dgvVehicles As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
+    '''odsMapMarker control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsMapMarker As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsVehicles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsVehicles As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''odsTrucks control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents odsTrucks As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''cbViewGeoFences control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbViewGeoFences As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''cbViewGeoFencesWithBooking control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbViewGeoFencesWithBooking As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''cbViewGeoFenceLabels control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbViewGeoFenceLabels As Global.DevExpress.Web.ASPxCheckBox
+    
+    '''<summary>
+    '''btnViewGeofencing control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnViewGeofencing As Global.DevExpress.Web.ASPxButton
     
     '''<summary>
     '''ASPxGlobalEvents1 control.
