@@ -24,6 +24,7 @@ Public Class RoundRobinService
     '****           activityViewer_autoIncrement_secondsTotal 
     '****           var autoUpdateCurrentActivity 
     '******************************************************************************
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -42,6 +43,7 @@ Public Class RoundRobinService
     ''' <param name="isFirstCall">is this the first time that the page is calling this function? (for cache reasons)</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
+    ''' 
     <OperationContract()>
 <WebInvoke(Method:="POST", BodyStyle:=WebMessageBodyStyle.WrappedRequest, ResponseFormat:=WebMessageFormat.Json)>
     Public Function ClientServerRoundRobin(activityViewer_SelectedVehicle As String,
@@ -151,7 +153,8 @@ Public Class RoundRobinService
                 If foundTruck Is Nothing Then Continue For
 
                 foundTruck.ShowJourneyOnMap = True 'marker for client side processing
-                foundTruck.JourneyLatLngs = foundTruck.GetHeatMapLatLongForTime(StartTime, EndTime, TimeSpan.FromSeconds(10))
+                foundTruck.JourneyLatLngs = foundTruck.GetHeatMapWithWeightings(StartTime, EndTime)
+                'foundTruck.GetHeatMapLatLongForTime(StartTime, EndTime, TimeSpan.FromSeconds(10))
             Next
 
         Catch ex As Exception

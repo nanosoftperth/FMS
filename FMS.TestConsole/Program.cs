@@ -12,7 +12,15 @@ namespace FMS.TestConsole
         static void Main(string[] args)
         {
 
-            
+            var a =  FMS.Business.DataObjects.Application.GetFromApplicationName("stanboroughfarm");
+
+            var vehicle = FMS.Business.DataObjects.ApplicationVehicle.GetFromDeviceID("0-00-2D-42");
+
+            var t = new FMS.Business.Truck(vehicle.DeviceID, DateTime.Now, "blep", "test trcuk", Guid.NewGuid());
+
+            var reslt = t.GetHeatMapWithWeightings(DateTime.Parse("25 Sep 2019"), DateTime.Parse("30 Dec 2019"));
+
+            return;
 
             var x = FMS.Business.DataObjects.Device.GetCANMessageDefinitions("Komatsu01");
 

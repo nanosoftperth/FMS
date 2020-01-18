@@ -1,5 +1,5 @@
 ﻿Imports System.Runtime.Serialization
-
+Imports FMS.Business.ReportGeneration 'kinda weird reference but had no time to move timeseriesfloat out of the reportigeneration namespace
 
 
 <Serializable()>
@@ -128,6 +128,61 @@ Public Class Truck
 
     End Sub
 
+    Public Function GetHeatMapWithWeightings(starttime As Date, endtime As Date) As List(Of LatLong)
+
+        'get the pi tags for the latitude and longitude. 
+        Dim retlst As New List(Of LatLong)
+
+        'convert the start and end times to Perth Times
+        starttime = starttime.timezoneToPerth
+        endtime = endtime.timezoneToPerth
+
+        'grab the pi tags with the lat/long coords for this truck
+        Dim piplat As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(ID & "_lat")
+        Dim pilng As PISDK.PIPoint = SingletonAccess.HistorianServer.PIPoints(ID & "_long")
+
+        'convert the start and end times to PI times
+        Dim pitStart As New PITimeServer.PITime With {.LocalDate = starttime}
+        Dim pitEnd As New PITimeServer.PITime With {.LocalDate = endtime}
+
+        'gab all lat/long co-ords
+        Dim lat_pivs As PISDK.PIValues = piplat.Data.RecordedValues(pitStart, pitEnd, PISDK.BoundaryTypeConstants.btInside)
+        Dim lng_pivs As PISDK.PIValues = pilng.Data.RecordedValues(pitStart, pitEnd, PISDK.BoundaryTypeConstants.btInside)
+
+        'convert the values to a dictionary of values for very fast lookups 
+        Dim LatitudesDict As Dictionary(Of Date, Decimal) = TimeSeriesFloat.gettValsFromPIValsAsDict(lat_pivs, False, False, True)
+        Dim LongitudesDict As Dictionary(Of Date, Decimal) = TimeSeriesFloat.gettValsFromPIValsAsDict(lng_pivs, False, False, True)
+
+        Dim dates As List(Of Date) = (From x As PISDK.PIValue In lat_pivs Select x.TimeStamp.LocalDate).Distinct.ToList()
+
+        Dim futureDate As Date = endtime
+
+        Dim retLatLngs As New List(Of LatLong)
+
+        ' we are iterating through the dates backwards here 
+        For Each d As Date In dates.OrderByDescending(Of Date)(Function(x) x).ToList
+
+            Try
+
+                Dim lat As Decimal = LatitudesDict(d)
+                Dim lng As Decimal = LongitudesDict(d)
+
+                Dim secondsDifference = (futureDate - d).TotalSeconds
+
+                retLatLngs.Add(New LatLong(lat, lng, secondsDifference, d))
+
+            Catch ex As Exception
+                Console.WriteLine("Exception: {1} {0}", ex.Message, d)
+            End Try
+
+            futureDate = d
+
+        Next
+
+        Return (From ll In retLatLngs Order By ll.Date_Time Ascending Select ll).ToList
+
+    End Function
+
     Public Function GetHeatMapLatLongForTime(starttime As Date, endtime As Date, timeperiod As TimeSpan) As List(Of LatLong)
 
         Dim retlst As New List(Of LatLong)
@@ -143,7 +198,6 @@ Public Class Truck
         Dim dateObjects As New List(Of Date)
 
         If endtime > Now Then endtime = Now
-
 
         '***** IF the timeperiod produced > than 1500 results, then increase the timeperiod *****
         Dim MAX_RESULTS_TO_CLIENT As Integer = 250000
@@ -197,11 +251,15 @@ Public Class Truck
 
         Public Property Lat As String
         Public Property Lng As String
+        Public Property Weighting As Decimal
+        Public Property Date_Time As DateTime
 
-        Public Sub New(lt As String, lg As String)
+        Public Sub New(lt As String, lg As String, Optional weighting As Decimal = 1, Optional date_time As Date = Nothing)
 
             Me.Lat = lt
             Me.Lng = lg
+            Me.Weighting = weighting
+            Me.Date_Time = date_time
 
         End Sub
 

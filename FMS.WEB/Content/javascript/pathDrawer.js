@@ -27,7 +27,7 @@ var ArrowHeadSymbol = {
 };
 //by RYAN P.
 //declare read only variable
-var createArrow  = {
+var createArrow = {
     get d() { // will be called as createArrow.d
         var iconsArrow = [{
             icon: lineSymbol, // dotted line
@@ -37,7 +37,7 @@ var createArrow  = {
 
         //add 20 the Arrow heads on the line
         //position each heads with 1% offset in the lineSymbol
-        for (var i = 1; i <= 100; i ++) {// 1% also looks good         
+        for (var i = 1; i <= 100; i++) {// 1% also looks good         
             iconsArrow.push({
                 icon: ArrowHeadSymbol,
                 offset: i + '%', // i(1) %
@@ -48,7 +48,7 @@ var createArrow  = {
 };
 var line = new google.maps.Polyline({
     path: [{ lat: 22.291, lng: 153.027 }, { lat: 18.291, lng: 153.027 }],
-    strokeOpacity: 0, 
+    strokeOpacity: 0,
     icons: createArrow.d,
     map: map
 });
@@ -73,7 +73,7 @@ var PolyLines = [];
 var Colors = ["#000000", "#FF0000", "#3f48cc", "#800000", "#fff200", "#ff7f27"];
 
 
- 
+
 function showJourneyTogle() {
 
     if (PolyLines != null) {
@@ -89,7 +89,7 @@ function showJourneyTogle() {
 
 function drawPathTestFromGlobalObject() {
 
-    var xyz = [];   
+    var xyz = [];
 
     //remove the polylines from the map (as were going to re-add them)
     if (PolyLines != null) {
@@ -109,18 +109,21 @@ function drawPathTestFromGlobalObject() {
         if (item.ShowJourneyOnMap && i <= 4) {
 
             var googlelatlngs = [];
+            var googleLatLngsPath = [];
 
             item.JourneyLatLngs.forEach(function (entry) {
-                googlelatlngs.push(new google.maps.LatLng(Number(entry.Lat), Number(entry.Lng)));
+                googleLatLngsPath.push(new google.maps.LatLng(Number(entry.Lat), Number(entry.Lng)));
+                var gLatLng = { location: new google.maps.LatLng(Number(entry.Lat), Number(entry.Lng)), weight: entry.Weighting };
+                googlelatlngs.push(gLatLng);
             });
 
-            flightPaths.push(googlelatlngs);
+            flightPaths.push(googleLatLngsPath);
 
             var thisPoly = new google.maps.Polyline({
                 strokeOpacity: 0,
                 icons: createArrow.d,
                 strokeColor: Colors[i],
-                path: googlelatlngs
+                path: googleLatLngsPath
             })
 
             PolyLines.push(thisPoly);
@@ -133,7 +136,7 @@ function drawPathTestFromGlobalObject() {
         flightPaths.forEach(function (item, index) {
             drawPathTest(index); //flightPath.setMap(null);
         })
-    }    
+    }
 }
 
 
@@ -143,19 +146,19 @@ function drawPathTest(indx) {
 
     //flightPaths[indx];
 
-   // if (flightPath != null) { flightPath.setMap(null); }
+    // if (flightPath != null) { flightPath.setMap(null); }
 
     var pathValues = [];
-    var pathLatLongs = [];   
+    var pathLatLongs = [];
 
     //get the path from the ploylines array (global variable)
     var path = PolyLines[indx].getPath();
 
-    for (var i = 0; i < path.length ; i++) {
+    for (var i = 0; i < path.length; i++) {
 
         var urlVal = path.getAt(i).toUrlValue();
         var pVal = ({ lat: Number(path.getAt(i).lat()), lng: Number(path.getAt(i).lng()) });
-        
+
         if (pathValues.indexOf(urlVal) == -1) {
             pathValues.push(urlVal);
             pathLatLongs.push(pVal);
@@ -172,7 +175,7 @@ function drawPathTest(indx) {
 
     if (cbSnapToRoad.GetChecked()) { p = pathLatLongs.splice(0, pathLatLongs.length - firstBlockSize) }
 
-    drawPathTestWithoutRoadSnap(p,indx);
+    drawPathTestWithoutRoadSnap(p, indx);
 
     if (cbSnapToRoad.GetChecked()) {
 
@@ -183,10 +186,10 @@ function drawPathTest(indx) {
         var smallPath = pathValues.splice(startIndex, pathValues.length);
 
         snappedCoordinates = [];
-        var newPath = runSnapToRoad(smallPath,indx);
+        var newPath = runSnapToRoad(smallPath, indx);
 
     } else {
-        drawPathTestWithoutRoadSnap(PolyLines[indx].getPath(),indx);
+        drawPathTestWithoutRoadSnap(PolyLines[indx].getPath(), indx);
     }
 }
 
@@ -209,7 +212,7 @@ var clockMarker = new MarkerWithLabel({
 
 
 
-function drawPathTestWithoutRoadSnap(p,indx) {
+function drawPathTestWithoutRoadSnap(p, indx) {
 
     if (PolyLines != null) {
 
@@ -247,8 +250,8 @@ function drawPathTestWithoutRoadSnap(p,indx) {
     PolyLines[indx].setMap(cbShowjourney.GetChecked() ? map : null);
 
     var setMapBoundsForJourney = ((cbShowjourney.GetChecked()) && (!cbAutoIncrement.GetChecked()) && (!cbHeatmapAutoUpdate.GetChecked()))
-    
-    if (setMapBoundsForJourney == true) { zoomToObject(PolyLines[indx]); }
+
+    //if (setMapBoundsForJourney == true) { zoomToObject(PolyLines[indx]); }
 
 }
 
@@ -256,7 +259,7 @@ function zoomToObject(obj) {
 
     var bounds = new google.maps.LatLngBounds();
     var points = obj.getPath().getArray();
-    for (var n = 0; n < points.length ; n++) {
+    for (var n = 0; n < points.length; n++) {
         bounds.extend(points[n]);
     }
     map.fitBounds(bounds);
@@ -278,7 +281,7 @@ function flightPath_MouseOut(e) {
 // Snap a user-created polyline to roads and draw the snapped path
 
 
-function runSnapToRoad(pathArr,indx) {
+function runSnapToRoad(pathArr, indx) {
 
     var thisPathArr = [];
     var maxCount = pathArr.length;
@@ -298,7 +301,7 @@ function runSnapToRoad(pathArr,indx) {
         path: thisPathArr.join('|')
     }, function (data) {
         //alert(JSON.stringify(data));
-        processSnapToRoadResponse(data, remainderPathArr,indx);
+        processSnapToRoadResponse(data, remainderPathArr, indx);
     });
 
     // receivedSnappedDataFromGoogle(pathValues);
@@ -342,21 +345,21 @@ function receivedSnappedDataFromGoogle(thisPath, indx) {
 
         PolyLines[indx].getPath().j.forEach(
 
-          function (item, index) {
-              //flightPath.getPath()
-              var itm = new google.maps.LatLng(item.lat(), item.lng());
-              newArr.push(itm);
-          }
+            function (item, index) {
+                //flightPath.getPath()
+                var itm = new google.maps.LatLng(item.lat(), item.lng());
+                newArr.push(itm);
+            }
         )
     } catch (e) { }
 
 
     thisPath.forEach(
-      function (item, index) {
-          //flightPath.getPath()
-          var itm = new google.maps.LatLng(item.lat(), item.lng());
-          newArr.push(itm);
-      }
+        function (item, index) {
+            //flightPath.getPath()
+            var itm = new google.maps.LatLng(item.lat(), item.lng());
+            newArr.push(itm);
+        }
     )
 
     drawPathTestWithoutRoadSnap(newArr, indx);
